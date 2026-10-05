@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(appConfig.siteUrl),
   title: 'Chuyện Nhỏ — công cụ miễn phí · ERPCons',
   description: 'Công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí. Xử lý trên máy bạn, tệp không tải lên.',
-  icons: { icon: withBase('/favicon.svg'), apple: withBase('/apple-touch-icon.png') },
+  icons: { icon: withBase('/brand/chuyen-nho-mark-v1.png'), apple: withBase('/brand/chuyen-nho-mark-v1.png') },
 }
 export default function RootLayout({ children }: { children: ReactNode }) {
   return <html lang="vi" data-theme="light" data-bs-theme="light" suppressHydrationWarning style={themeCssVars(themeTokens.light) as CSSProperties}>

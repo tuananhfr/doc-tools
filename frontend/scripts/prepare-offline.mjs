@@ -23,5 +23,5 @@ for (const url of pages) {
   for (const match of html.matchAll(/\/_next\/image\?[^"\s,<>]+/g)) optimizedImages.add(withBase(match[0].replaceAll('&amp;', '&')))
 }
 const brand = fs.readdirSync('public/brand').filter((name) => /\.(png|webp|svg)$/.test(name)).map((name) => '/brand/' + name)
-const manifest = { version: build, assets: [...new Set([...pages.map(withBase), ...['/auth-background.jpg', '/favicon.svg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])] }
+const manifest = { version: build, assets: [...new Set([...pages.map(withBase), ...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])] }
 fs.writeFileSync('public/offline-manifest.json', JSON.stringify(manifest), 'utf8')
