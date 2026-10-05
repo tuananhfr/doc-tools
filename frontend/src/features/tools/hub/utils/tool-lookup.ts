@@ -18,7 +18,7 @@ export function toolTone(tool: ToolDefinition): ToolTone {
 }
 
 export function toolPageTitle(tool: ToolDefinition): string {
-  return `${tool.pageTitle ?? `${tool.name} miễn phí`} · ERPCons`
+  return `${tool.pageTitle ?? `${tool.name} miễn phí`} · Chuyện Nhỏ`
 }
 
 export function findToolBySlug(slug: string, catalog: ToolDefinition[] = TOOL_CATALOG): ToolDefinition | null {

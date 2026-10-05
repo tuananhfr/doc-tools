@@ -12,7 +12,7 @@ import { ToolsRouter } from '@/runtime/ToolsRouter'
 
 export const metadata: Metadata = {
   metadataBase: new URL(appConfig.siteUrl),
-  title: 'Chuyện Nhỏ — công cụ miễn phí · ERPCons',
+  title: 'Chuyện Nhỏ — công cụ miễn phí',
   description: 'Công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí. Xử lý trên máy bạn, tệp không tải lên.',
   icons: { icon: withBase('/brand/chuyen-nho-mark-v1.png'), apple: withBase('/brand/chuyen-nho-mark-v1.png') },
 }
