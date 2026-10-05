@@ -1,4 +1,5 @@
 'use client'
+import { SERVICE_WORKER_SCOPE, withBase } from '@/utils/url'
 import { useEffect, useState, type ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import dayjs from 'dayjs'
@@ -14,7 +15,7 @@ export function ToolsProviders({ children }: { children: ReactNode }) {
   useEffect(() => applyThemeMode(mode), [mode])
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-      void navigator.serviceWorker.register('/sw.js').catch(() => undefined)
+      void navigator.serviceWorker.register(withBase('/sw.js'), { scope: SERVICE_WORKER_SCOPE }).catch(() => undefined)
     }
   }, [])
   return <ToastProvider><QueryClientProvider client={client}>{children}</QueryClientProvider></ToastProvider>

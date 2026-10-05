@@ -22,6 +22,10 @@
  * ở đúng lúc đó được phép ép SW mới lên.
  */
 
+import { SERVICE_WORKER_SCOPE, SERVICE_WORKER_CACHE_PREFIX } from './url'
+
+const ownsRegistration = (registration: ServiceWorkerRegistration) => registration.scope === new URL(SERVICE_WORKER_SCOPE, location.origin).href
+
 const SW_TIMEOUT_MS = 4000
 
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | undefined> {
@@ -93,14 +97,14 @@ async function activateWaitingWorker(registration: ServiceWorkerRegistration): P
 async function resetServiceWorker(): Promise<void> {
   try {
     const registrations = await navigator.serviceWorker.getRegistrations()
-    await Promise.all(registrations.map((registration) => registration.unregister()))
+    await Promise.all(registrations.filter(ownsRegistration).map((registration) => registration.unregister()))
   } catch {
     /* Không gỡ được thì thôi — vẫn thử xoá cache bên dưới. */
   }
 
   try {
     const keys = await caches.keys()
-    await Promise.all(keys.filter((key) => key.startsWith('workbox-precache')).map((key) => caches.delete(key)))
+    await Promise.all(keys.filter((key) => key.startsWith(SERVICE_WORKER_CACHE_PREFIX)).map((key) => caches.delete(key)))
   } catch {
     /* `caches` bị chặn (chế độ riêng tư): bỏ qua. */
   }
@@ -121,8 +125,8 @@ export async function prepareReloadForNewBuild({ force = false } = {}): Promise<
   if (!('serviceWorker' in navigator)) return
 
   try {
-    const registration = await navigator.serviceWorker.getRegistration()
-    if (!registration) return
+    const registration = await navigator.serviceWorker.getRegistration(SERVICE_WORKER_SCOPE)
+    if (!registration || !ownsRegistration(registration)) return
 
     /*
      * `force`: người dùng tự bấm "Tải lại ứng dụng" trên trang lỗi — tức lần

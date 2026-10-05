@@ -1,3 +1,4 @@
+import { withBase } from '@/utils/url'
 import Image from 'next/image'
 import { Icon } from '@/components/ui/Icon'
 import { HERO_PROMISES } from '@/features/site/config/home-content'
@@ -16,7 +17,7 @@ export function ToolsHero({ keyword, onKeyword, onSearch }: ToolsHeroProps) {
       <div className="cn-container cn-hero-layout">
         <div className="cn-hero-art cn-hero-art--documents" aria-hidden="true">
           <p className="cn-sketch-caption">Những việc nhỏ<br />tạo nên giá trị lớn.</p>
-          <Image src="/brand/documents-hero-v1.png" width={1280} height={1280} sizes="(max-width: 767px) 124px, (max-width: 1023px) 170px, 300px" alt="" preload />
+          <Image src={withBase('/brand/documents-hero-v1.png')} width={1280} height={1280} sizes="(max-width: 767px) 124px, (max-width: 1023px) 170px, 300px" alt="" preload />
         </div>
         <div className="cn-hero-content">
           <h1 id="erp-tools-hero-title" className="cn-hero-wordmark">Chuyện <span>Nhỏ</span><span className="cn-wordmark-strokes" aria-hidden="true"><b /><b /><b /></span></h1>
@@ -26,7 +27,7 @@ export function ToolsHero({ keyword, onKeyword, onSearch }: ToolsHeroProps) {
           <ul className="cn-hero-promises" aria-label="Sử dụng ngay">{HERO_PROMISES.map((promise) => <li key={promise}><Icon name="check-circle-fill" />{promise}</li>)}</ul>
         </div>
         <div className="cn-hero-art cn-hero-art--skyline">
-          <div aria-hidden="true"><p className="cn-sketch-caption">Đơn giản hôm nay.<br />Bền vững ngày mai.</p><Image src="/brand/skyline-hero-v1.png" width={1792} height={896} sizes="300px" alt="" /></div>
+          <div aria-hidden="true"><p className="cn-sketch-caption">Đơn giản hôm nay.<br />Bền vững ngày mai.</p><Image src={withBase('/brand/skyline-hero-v1.png')} width={1792} height={896} sizes="300px" alt="" /></div>
           <HeroStats />
         </div>
       </div>

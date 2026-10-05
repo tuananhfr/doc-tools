@@ -1,6 +1,6 @@
 # DocTools Frontend
 
-Repo độc lập cho DocTools công khai Free, dùng Next.js và TypeScript. Trang chủ ở /, mỗi công cụ ở /<slug>; URL /doc-tools cũ được chuyển hướng sang URL mới. Code feature, UI, text và engine được giữ nguyên từ ERPCons. Manifest đối chiếu ở docs/upstream-manifest.json; tài liệu nguồn ở docs/upstream.
+Repo độc lập cho DocTools công khai Free, dùng Next.js và TypeScript. Trang chủ ở /, mỗi công cụ ở /<slug>; Khi NEXT_PUBLIC_BASE_PATH rỗng, URL /doc-tools cũ chuyển hướng về /. Khi cấu hình /doc-tools, trang chủ và công cụ nằm dưới prefix này. Code feature, UI, text và engine được giữ nguyên từ ERPCons. Manifest đối chiếu ở docs/upstream-manifest.json; tài liệu nguồn ở docs/upstream.
 
 ## Chạy local
 
@@ -13,9 +13,21 @@ npm run dev
 
 Mở http://localhost:3002/. Chạy production bằng npm run build rồi npm run start.
 
-Copy .env.example thành .env.local khi cần thay cấu hình. BACKEND_URL trỏ đến API NestJS đã triển khai riêng, mặc định http://127.0.0.1:3003. Next.js proxy /api/v1/tools/* tới địa chỉ này. NEXT_PUBLIC_SITE_URL dùng cho canonical và sitemap; NEXT_PUBLIC_ERPCONS_URL dùng cho link đăng nhập/Pro. Biến NEXT_PUBLIC được chốt lúc build. Repo frontend chỉ cần địa chỉ HTTP của backend để kết nối API.
+Copy .env.example thành .env.local khi cần thay cấu hình. BACKEND_URL trỏ đến API NestJS đã triển khai riêng, mặc định http://127.0.0.1:3003. Next.js proxy <basePath>/api/v1/tools/* tới địa chỉ này; backend vẫn dùng /api/v1/tools/*. NEXT_PUBLIC_SITE_URL là origin (ví dụ https://lpc.vn) dùng cho canonical và sitemap; NEXT_PUBLIC_ERPCONS_URL dùng cho link đăng nhập/Pro. Biến NEXT_PUBLIC được chốt lúc build. Repo frontend chỉ cần địa chỉ HTTP của backend để kết nối API.
 
 Repo có package-lock.json, node_modules và Git riêng. Chạy npm ci trong từng repo để cài đúng phiên bản đã khóa; không khai báo npm workspace hoặc liên kết package sang repo còn lại.
+
+## Triển khai dưới đường dẫn con
+
+Đặt trong .env.local trước khi build:
+
+```dotenv
+NEXT_PUBLIC_BASE_PATH=/doc-tools
+NEXT_PUBLIC_SITE_URL=https://lpc.vn
+BACKEND_URL=http://127.0.0.1:3003
+```
+
+Chạy npm run build rồi restart service frontend. Đổi base path cần build lại. Homepage /doc-tools chuyển hướng sang /doc-tools/ để nằm trong scope service worker; công cụ vẫn ở /doc-tools/<slug>. React Router giữ đường dẫn nội bộ / và dùng basename để tạo URL public. Service worker và cache được giới hạn theo prefix, tránh tác động ứng dụng khác trên cùng domain. Nginx proxy /doc-tools và /doc-tools/ tới http://127.0.0.1:3002 với proxy_pass không có dấu / cuối để giữ nguyên URI.
 
 ## Kiểm chứng
 

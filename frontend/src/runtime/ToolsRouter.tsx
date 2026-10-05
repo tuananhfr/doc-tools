@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
+import { ROUTER_BASENAME, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
 import { createBrowserRouter, createMemoryRouter, RouterProvider, type RouteObject } from 'react-router-dom'
 import { ToolsLayout } from '@/layouts/ToolsLayout'
@@ -21,7 +22,7 @@ export function ToolsRouter() {
   const pathname = usePathname()
   // Retain the data router so file handoff, screen identity and leave guards keep their behavior.
   const [router] = useState(() => typeof window === 'undefined'
-    ? createMemoryRouter(routes, { initialEntries: [pathname ?? ROUTES.docTools] })
-    : createBrowserRouter(routes))
+    ? createMemoryRouter(routes, { basename: ROUTER_BASENAME, initialEntries: [withBase(pathname ?? ROUTES.docTools)] })
+    : createBrowserRouter(routes, { basename: ROUTER_BASENAME }))
   return <RouterProvider router={router} />
 }

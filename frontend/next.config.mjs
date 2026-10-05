@@ -1,7 +1,11 @@
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 const require = createRequire(import.meta.url)
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? '').trim().replace(/\/+$/, '')
+if (basePath && !/^\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+$/.test(basePath)) throw new Error('NEXT_PUBLIC_BASE_PATH must be empty or an absolute path without a trailing slash')
 const config = {
+  basePath,
+  skipTrailingSlashRedirect: Boolean(basePath),
   reactStrictMode: true,
   agentRules: false,
   poweredByHeader: false,

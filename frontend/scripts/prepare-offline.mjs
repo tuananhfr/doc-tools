@@ -1,6 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
+const basePath = JSON.parse(fs.readFileSync('.next/required-server-files.json', 'utf8')).config.basePath ?? ''
+const withBase = url => basePath + url
 const assets = []
 function walk(dir) {
   for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -18,8 +20,8 @@ for (const url of pages) {
   const file = path.join('.next/server/app', url === '/' ? 'index.html' : url.slice(1) + '.html')
   const html = fs.readFileSync(file, 'utf8')
   // Precache every emitted image size so a cold offline reload also works at another viewport.
-  for (const match of html.matchAll(/\/_next\/image\?[^"\s,<>]+/g)) optimizedImages.add(match[0].replaceAll('&amp;', '&'))
+  for (const match of html.matchAll(/\/_next\/image\?[^"\s,<>]+/g)) optimizedImages.add(withBase(match[0].replaceAll('&amp;', '&')))
 }
 const brand = fs.readdirSync('public/brand').filter((name) => /\.(png|webp|svg)$/.test(name)).map((name) => '/brand/' + name)
-const manifest = { version: build, assets: [...new Set([...pages, '/auth-background.jpg', '/favicon.svg', '/logo-tekshot.png', ...brand, ...assets, ...optimizedImages])] }
+const manifest = { version: build, assets: [...new Set([...pages.map(withBase), ...['/auth-background.jpg', '/favicon.svg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])] }
 fs.writeFileSync('public/offline-manifest.json', JSON.stringify(manifest), 'utf8')

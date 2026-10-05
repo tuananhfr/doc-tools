@@ -1,3 +1,4 @@
+import { withBase } from '@/utils/url'
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { TOOL_CATALOG } from '@/features/tools/hub/config/tool-catalog'
@@ -9,8 +10,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tool } = resolveToolRoute(slug)
   if (!tool) return { robots: { index: false, follow: true } }
   return { title: toolPageTitle(tool), description: tool.description,
-    alternates: { canonical: '/' + tool.slug },
-    openGraph: { title: toolPageTitle(tool), description: tool.description, url: '/' + tool.slug },
+    alternates: { canonical: withBase('/' + tool.slug) },
+    openGraph: { title: toolPageTitle(tool), description: tool.description, url: withBase('/' + tool.slug) },
     twitter: { card: 'summary', title: toolPageTitle(tool), description: tool.description },
   }
 }

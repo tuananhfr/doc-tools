@@ -1,3 +1,4 @@
+import { withBase } from '@/utils/url'
 import Image from 'next/image'
 import { Icon } from '@/components/ui/Icon'
 import erpLogo from '@/assets/logo-full.png?url'
@@ -12,7 +13,7 @@ export function EcosystemSection() {
       <p className="cn-section-description">Từ những việc nhỏ hôm nay, đến công việc lớn hơn ngày mai.</p>
       <div className="cn-product-grid">
         <article className="cn-product cn-product--erp">
-          <Image className="cn-product-photo" src="/auth-background.jpg" fill sizes="(max-width: 767px) 100vw, 50vw" alt="" />
+          <Image className="cn-product-photo" src={withBase('/auth-background.jpg')} fill sizes="(max-width: 767px) 100vw, 50vw" alt="" />
           <div className="cn-product-content">
             <Image className="cn-product-logo cn-product-logo--erp" src={erpLogo} width={190} height={72} unoptimized alt="ERPCons Construction OS" />
             <h3>Quản lý công việc, dự án và doanh nghiệp xây dựng trên một nền tảng.</h3>
@@ -24,9 +25,9 @@ export function EcosystemSection() {
           </div>
         </article>
         <article className="cn-product cn-product--tekshot">
-          <Image className="cn-product-photo" src="/brand/tekshot-site-v1.png" fill sizes="(max-width: 767px) 100vw, 50vw" alt="" />
+          <Image className="cn-product-photo" src={withBase('/brand/tekshot-site-v1.png')} fill sizes="(max-width: 767px) 100vw, 50vw" alt="" />
           <div className="cn-product-content">
-            <Image className="cn-product-logo cn-product-logo--tekshot" src="/logo-tekshot.png" width={178} height={87} alt="TekShot" />
+            <Image className="cn-product-logo cn-product-logo--tekshot" src={withBase('/logo-tekshot.png')} width={178} height={87} alt="TekShot" />
             <h3>Kết nối camera, hiện trường và vận hành trong một hệ sinh thái.</h3>
             <p>Tekshot OS<br />Nhìn thực tế. Tạo giá trị thật.</p>
             <div className="cn-product-actions">
@@ -40,7 +41,7 @@ export function EcosystemSection() {
         <h3>Cùng một hệ sinh thái. Nhiều giá trị hơn.</h3>
         <p>Chuyện Nhỏ là bộ công cụ miễn phí từ ERPCons &amp; LPC, giúp bạn xử lý nhanh những việc nhỏ hằng ngày.</p>
         <div className="cn-ecosystem-steps">
-          <div><Image src="/brand/chuyen-nho-mark-v1.png" width={64} height={64} alt="" /><span><strong>Chuyện Nhỏ</strong><small>Cần một việc nhỏ.<br />Dùng ngay.</small></span></div>
+          <div><Image src={withBase('/brand/chuyen-nho-mark-v1.png')} width={64} height={64} alt="" /><span><strong>Chuyện Nhỏ</strong><small>Cần một việc nhỏ.<br />Dùng ngay.</small></span></div>
           <Icon className="cn-step-arrow" name="arrow-right" />
           <div><Icon name="buildings" /><span><strong>ERPCons</strong><small>Quản lý công việc,<br />dự án và doanh nghiệp.</small></span></div>
           <Icon className="cn-step-arrow" name="arrow-right" />
