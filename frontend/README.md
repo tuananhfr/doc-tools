@@ -29,6 +29,38 @@ BACKEND_URL=http://127.0.0.1:3003
 
 Chạy npm run build rồi restart service frontend. Đổi base path cần build lại. Homepage /doc-tools chuyển hướng sang /doc-tools/ để nằm trong scope service worker; công cụ vẫn ở /doc-tools/<slug>. React Router giữ đường dẫn nội bộ / và dùng basename để tạo URL public. Service worker và cache được giới hạn theo prefix, tránh tác động ứng dụng khác trên cùng domain. Nginx proxy /doc-tools và /doc-tools/ tới http://127.0.0.1:3002 với proxy_pass không có dấu / cuối để giữ nguyên URI.
 
+## Cập nhật trên server
+
+Lệnh npm run deploy dành cho server Linux đã có service doc-tools-frontend và dependencies được cài. Chọn Node.js 24 trong môi trường riêng của DocTools trước khi chạy:
+
+```sh
+export NVM_DIR="$HOME/.nvm-doc-tools"
+source "$NVM_DIR/nvm.sh" --no-use
+nvm use 24.21.0
+
+cd /var/www/doc-tools
+git pull --ff-only origin main
+cd frontend
+npm run deploy
+```
+
+Lệnh deploy chạy npm run build, gồm build Next.js và tạo manifest offline, rồi gọi sudo systemctl restart doc-tools-frontend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Nếu restart thất bại, lệnh deploy báo lỗi; xem log service để xử lý. Lệnh npm run build vẫn chỉ build như trước, không gọi systemd.
+
+Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong frontend trước khi deploy. Build có thể làm frontend/public/offline-manifest.json hiện modified vì đây là file tự sinh; nếu cần bỏ thay đổi này trước khi pull, chỉ chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools.
+
+Build ghi trực tiếp vào .next đang phục vụ, không giữ bản dự phòng. Build lỗi không restart service nhưng có thể ảnh hưởng file của bản đang chạy; cache không bảo đảm tránh tình huống này. Frontend có gián đoạn ngắn khi restart. Kiểm tra sau deploy:
+
+```sh
+sudo systemctl status doc-tools-frontend --no-pager -l
+curl --retry 10 --retry-connrefused --retry-delay 1 -I http://127.0.0.1:3002/doc-tools/
+```
+
+Nếu service lỗi:
+
+```sh
+sudo journalctl -u doc-tools-frontend -n 80 --no-pager
+```
+
 ## Kiểm chứng
 
 - npm test: test logic thuần.
