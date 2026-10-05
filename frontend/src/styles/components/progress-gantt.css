@@ -1,0 +1,147 @@
+/* =========================================================================
+   Biểu đồ Gantt tiến độ (`components/gantt/ProgressGantt`)
+
+   Dùng chung: 12 thủ tục pháp lý của dự án, "Biểu đồ công việc" của giao
+   dịch. Rời khỏi `features/project.css` khi có màn thứ hai — neo vào tên một
+   feature thì màn kia phải @import chéo hoặc chép sang file thứ hai.
+
+   Chiều cao cố định: dhtmlxGantt đo container lúc `init()`, nên vùng chứa
+   PHẢI có chiều cao thật trước đó — để `height: auto` là biểu đồ dựng ra cao
+   0px và màn hình trắng trơn, không có lỗi nào báo ra.
+   ========================================================================= */
+
+/* Hai cụm dạt về hai mép, đúng như hai `<ul class="gantt-controls">` của
+   template `paragraphs_gantt`. */
+.erp-progress-gantt__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 8px;
+  border: 1px solid var(--erp-border);
+  border-bottom: 0;
+  border-radius: var(--erp-radius-md) var(--erp-radius-md) 0 0;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-progress-gantt__tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.erp-progress-gantt__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface);
+}
+
+.erp-progress-gantt__btn:hover {
+  color: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+}
+
+/* Nút đang TẮT (ẩn lưới / ẩn biểu đồ) làm mờ đi — trạng thái bật/tắt phải nhìn
+   ra được, không chỉ nằm trong `aria-pressed`. */
+.erp-progress-gantt__btn.is-off {
+  opacity: 0.45;
+}
+
+.erp-progress-gantt__search {
+  width: 200px;
+}
+
+.erp-progress-gantt__dates {
+  width: auto;
+}
+
+.erp-progress-gantt__dates .form-control {
+  width: 140px;
+}
+
+.erp-progress-gantt__scale {
+  width: 96px;
+}
+
+.erp-progress-gantt__canvas {
+  height: min(62vh, 560px);
+  min-height: 320px;
+  border: 1px solid var(--erp-border);
+  border-radius: 0 0 var(--erp-radius-md) var(--erp-radius-md);
+  overflow: hidden;
+}
+
+/* Dòng "chưa có bước nào" đứng TRÊN khung biểu đồ, không thay thế nó — xem
+   docblock trong ProjectLegalPanel. */
+.erp-progress-gantt__empty {
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+
+/* Nút hành động chính của thanh công cụ Gantt ("Thêm bước"). Tô brand vì đây là
+   nút GHI duy nhất ở đây — mọi nút còn lại chỉ đổi cách nhìn. */
+.erp-progress-gantt__btn.is-primary {
+  color: var(--erp-text-on-accent);
+  border-color: var(--erp-brand);
+  background: var(--erp-brand);
+}
+
+.erp-progress-gantt__btn:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.erp-gantt-row-edit {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  color: var(--erp-primary);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+}
+
+.erp-gantt-row-edit:hover {
+  background: var(--erp-primary-subtle, var(--erp-surface-secondary));
+}
+
+/* Dải "kế hoạch" dưới thanh thực tế — lớp vẽ `addTaskLayer`. */
+.erp-progress-gantt__baseline {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--erp-action-secondary) 55%, var(--erp-surface));
+  pointer-events: none;
+}
+
+/* Mốc giai đoạn thanh toán: CHỈ ĐỌC nên sơn xám, đã chấp thuận thì xanh.
+   Màu không là tín hiệu duy nhất — tooltip ghi rõ "đã chấp thuận". */
+.erp-gantt .gantt_task_line.erp-progress-gantt__stage .gantt_task_content,
+.erp-gantt .gantt_task_line.erp-progress-gantt__stage {
+  background: var(--erp-text-muted);
+  border-color: var(--erp-text-muted);
+}
+
+.erp-gantt .gantt_task_line.erp-progress-gantt__stage.is-done,
+.erp-gantt .gantt_task_line.erp-progress-gantt__stage.is-done .gantt_task_content {
+  background: var(--erp-success);
+  border-color: var(--erp-success);
+}
+
+.erp-progress-gantt__btn.is-primary:hover {
+  color: var(--erp-text-on-accent);
+  border-color: var(--erp-brand-hover);
+  background: var(--erp-brand-hover);
+}

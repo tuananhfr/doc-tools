@@ -1,0 +1,751 @@
+/* ==========================================================================
+   Huong nha & la ban (features/tools/orientation)
+   Mau chi qua token --erp-*; la ban ve bang SVG lay mau tu useThemeTokens().
+   ========================================================================== */
+
+.erp-orient-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-orient-muted {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-section-title {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ---------- Ghi chu co icon (trang thai = icon + chu + mau) ---------- */
+
+.erp-orient-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-note > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-info);
+}
+
+.erp-orient-note--success { background: var(--erp-success-soft); }
+.erp-orient-note--success > .bi { color: var(--erp-success); }
+.erp-orient-note--warning { background: var(--erp-warning-soft); }
+.erp-orient-note--warning > .bi { color: var(--erp-warning); }
+.erp-orient-note--danger { background: var(--erp-danger-soft); }
+.erp-orient-note--danger > .bi { color: var(--erp-danger); }
+.erp-orient-note--info { background: var(--erp-info-soft); }
+
+.erp-orient-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-orient-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-orient-badge--success { background: var(--erp-success-soft); color: var(--erp-success); }
+.erp-orient-badge--warning { background: var(--erp-warning-soft); color: var(--erp-warning); }
+.erp-orient-badge--danger { background: var(--erp-danger-soft); color: var(--erp-danger); }
+
+.erp-orient-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-orient-actions .btn {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-orient-actions__link {
+  min-height: var(--erp-touch-target);
+  padding-inline: 4px;
+}
+
+/* ---------- Chon nguon ---------- */
+
+.erp-orient-nofile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-orient-nofile .btn {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-orient-nofile__hint {
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* ---------- Vung anh + thanh cong cu ---------- */
+
+.erp-orient-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-orient-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+  padding: 4px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-orient-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.erp-orient-tab:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-orient-tab.is-active,
+.erp-orient-tab.is-active:hover {
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow1);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-orient-tab.is-active .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-orient-bar__actions {
+  display: flex;
+  gap: 4px;
+}
+
+.erp-orient-snap {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-orient-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-orient-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 4px 12px 4px 4px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-step:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.erp-orient-step__badge {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--erp-surface-secondary);
+  border-radius: 50%;
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.erp-orient-step.is-current {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-orient-step.is-current .erp-orient-step__badge {
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-orient-step.is-done .erp-orient-step__badge {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-orient-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-hint > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-action-secondary);
+}
+
+/* Buoc dat Bac la buoc nguoi dung hay bo qua nhat - noi khung de khong lot mat. */
+.erp-orient-hint--key {
+  padding: 8px 12px;
+  background: var(--erp-action-secondary-soft);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+}
+
+.erp-orient-shape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-orient-page {
+  width: auto;
+}
+
+/* ---------- Khung anh: anh + SVG + num keo ---------- */
+
+.erp-orient {
+  overflow: hidden;
+  border-radius: var(--erp-radius-md);
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+}
+
+.erp-orient.is-disabled {
+  cursor: progress;
+}
+
+.erp-orient__image,
+.erp-orient__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.erp-orient__image {
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.erp-orient__layer {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.erp-orient__grip,
+.erp-orient__dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.erp-orient__grip {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: var(--erp-surface);
+  border: 3px solid var(--erp-text-primary);
+  border-radius: 50%;
+  box-shadow: var(--erp-shadow2);
+  cursor: grab;
+  touch-action: none;
+}
+
+.erp-orient__grip:active {
+  cursor: grabbing;
+}
+
+/* Dich bam 44px quanh num 16px (DS muc 11). */
+.erp-orient__grip::after {
+  position: absolute;
+  inset: -17px;
+  border-radius: 50%;
+  content: '';
+}
+
+.erp-orient__grip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Dau mui ten = num xoay: to hon duoi mui ten de nguoi dung biet keo dau nao. */
+.erp-orient__grip.is-head {
+  width: 20px;
+  height: 20px;
+}
+
+.erp-orient__grip--north { border-color: var(--erp-brand); }
+.erp-orient__grip--north.is-head { background: var(--erp-brand); }
+.erp-orient__grip--axis { border-color: var(--erp-info); }
+.erp-orient__grip--axis.is-active { border-color: var(--erp-construction); }
+.erp-orient__grip--axis.is-active.is-head { background: var(--erp-construction); }
+.erp-orient__grip--compass { border-color: var(--erp-action-secondary); }
+
+.erp-orient__grip--size {
+  border-style: dashed;
+  border-color: var(--erp-action-secondary);
+  cursor: ew-resize;
+}
+
+.erp-orient__grip--trace {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+}
+
+.erp-orient__grip--trace.is-selected {
+  background: var(--erp-construction);
+  border-color: var(--erp-text-on-accent);
+}
+
+/* Diem dau vung dang ve: bam de khep - rong ruot, to hon cac dinh con lai. */
+.erp-orient__grip--close {
+  width: 22px;
+  height: 22px;
+  background: var(--erp-surface);
+  border: 4px solid var(--erp-construction);
+  cursor: pointer;
+}
+
+.erp-orient__dot {
+  width: 10px;
+  height: 10px;
+  background: var(--erp-construction);
+  border: 2px solid var(--erp-surface);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ---------- Cach lay huong / do bang may ---------- */
+
+.erp-orient-degree {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 200px;
+}
+
+.erp-orient-degree .form-control {
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-orient-degree__unit {
+  color: var(--erp-text-secondary);
+  font-size: 1.125rem;
+}
+
+.erp-orient-device {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-orient-device__steps {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-live {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 12px 16px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-orient-live__value {
+  color: var(--erp-text-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.erp-orient-live__direction {
+  color: var(--erp-text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.erp-orient-live__meta {
+  flex-basis: 100%;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Doi tuong do ---------- */
+
+.erp-orient-targets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-orient-target {
+  display: flex;
+  align-items: stretch;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-orient-target.is-active {
+  border-color: var(--erp-construction);
+  box-shadow: inset 3px 0 0 var(--erp-construction);
+}
+
+.erp-orient-target__pick {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  background: none;
+  border: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.erp-orient-target__icon {
+  flex: none;
+  color: var(--erp-info);
+  font-size: 1.125rem;
+}
+
+.erp-orient-target.is-active .erp-orient-target__icon {
+  color: var(--erp-construction);
+}
+
+.erp-orient-target__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-orient-target__name {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-orient-target__value {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-orient-target__remove,
+.erp-orient-person__remove {
+  flex: none;
+  width: var(--erp-touch-target);
+  min-height: var(--erp-touch-target);
+  color: var(--erp-text-secondary);
+}
+
+.erp-orient-target-hint {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-add {
+  display: flex;
+  gap: 8px;
+}
+
+.erp-orient-add .form-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-orient-add .btn {
+  flex: none;
+  min-height: var(--erp-touch-target);
+}
+
+/* ---------- Ket qua ---------- */
+
+.erp-orient-result {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-orient-result__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-orient-result__target {
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-orient-result__value {
+  color: var(--erp-text-primary);
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.erp-orient-result__direction {
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.erp-orient-result__fine,
+.erp-orient-result__origin {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-orient-result__empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-orient-result__empty > .bi {
+  margin-top: 2px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-orient-result__others {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--erp-border);
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.erp-orient-result__others li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-orient-result__num {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-orient-result__compass {
+  display: block;
+  width: min(100%, 280px);
+  height: auto;
+  margin-inline: auto;
+}
+
+/* ---------- Theo tuoi ---------- */
+
+.erp-orient-person {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-orient-person__fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+}
+
+.erp-orient-person__lunar {
+  font-size: 0.8125rem;
+}
+
+.erp-orient-reading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-orient-reading__kua,
+.erp-orient-reading__good {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-orient-disclaimer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.8125rem;
+}
+
+.erp-orient-disclaimer > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-info);
+}
+
+.erp-orient-disclaimer p {
+  margin: 0 0 4px;
+}
+
+.erp-orient-disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Mat troi ---------- */
+
+.erp-orient-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+
+.erp-orient-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-orient-facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.erp-orient-facts dt {
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-orient-facts dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Man cam ung / man hep ---------- */
+
+@media (pointer: coarse) {
+  .erp-orient__grip {
+    width: 22px;
+    height: 22px;
+  }
+
+  .erp-orient__grip::after {
+    inset: -11px;
+  }
+
+  .erp-orient-tab,
+  .erp-orient-step,
+  .erp-orient-bar__actions .btn {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+@media (max-width: 576px) {
+  /* Dai che do (hub) gian het co o man hep - de no mot hang rieng, link doi nguon xuong duoi. */
+  .erp-orient-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .erp-orient-head .erp-orient-actions__link {
+    align-self: flex-start;
+  }
+
+  .erp-orient-person__fields {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .erp-orient-person__fields .erp-flow-field:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .erp-orient-result__value {
+    font-size: 2rem;
+  }
+}

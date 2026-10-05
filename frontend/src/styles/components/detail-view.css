@@ -1,0 +1,711 @@
+/* ===========================================================================
+ * KHUNG MÀN XEM MỘT BẢN GHI — `.erp-detail__*`
+ *
+ * Dùng chung cho ba màn xem chỉ đọc: phiếu tài chính (`AdvanceDetailModal`),
+ * văn bản đi (`OutgoingDocumentDetailModal`) và đề xuất (`ProposalDetailModal`).
+ * Cả ba đọc cùng một khung: dải đầu → lưới 9/3 → tấm thẻ → lưới nhãn/giá trị →
+ * bảng chỉ đọc → dòng thời gian duyệt → tệp → trao đổi.
+ *
+ * ============================================================================
+ * VÌ SAO Ở `components/` CHỨ KHÔNG Ở `features/`
+ * ============================================================================
+ * Bộ luật này ra đời trong `features/advance.css` với tên `advance-view__*` vì
+ * tài chính là màn xem đầu tiên. Khi màn thứ hai và thứ ba cần đúng khung ấy
+ * thì neo vào tên một feature là sai: hoặc phải `@import` chéo giữa các
+ * feature, hoặc chép sang file thứ hai và sinh ra hai bảng màu sẽ lệch nhau.
+ *
+ * Cùng bài học `.erp-gantt` (Dplan ↔ Pháp lý dự án), `.erp-step` (tạm ứng ↔
+ * văn bản đi ↔ đề xuất) và `.erp-richtext` (tác vụ ↔ tài chính).
+ *
+ * ============================================================================
+ * KHÁC `advance-form__panel` Ở CHỖ NÀO
+ * ============================================================================
+ * Form tạm ứng có bộ tấm thẻ riêng (`advance-form__panel`) vì bố cục của nó
+ * chép cây `field_group` của Drupal và có thể đổi theo Drupal. Tấm thẻ ở đây là
+ * của MÀN XEM — hai thứ trông giống nhau hôm nay nhưng thay đổi vì hai lý do
+ * khác nhau, nên cố ý không gộp.
+ * ======================================================================== */
+
+/* ------------------------------------------------------------ Khung modal */
+
+/* Cùng bề rộng với modal form để mở Xem rồi bấm Sửa không nhảy khung. */
+.erp-detail .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+.erp-detail .modal-header,
+.erp-detail .modal-footer {
+  padding-block: 10px;
+}
+
+.erp-detail .modal-body {
+  padding: 12px 16px;
+}
+
+/* Mã bản ghi trên tiêu đề modal - dữ liệu tra cứu, không phải tiêu đề. */
+.erp-detail__code {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.erp-detail__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 200px;
+  color: var(--erp-text-secondary);
+}
+
+/* --------------------------------------------------------------- Lưới 9/3 */
+
+/*
+ * `9fr 3fr` chứ không phải `75% 25%`: `fr` đã trừ phần `gap` rồi, còn phần
+ * trăm thì không - cộng lại thành 100% + gap và tràn ra ngoài modal.
+ *
+ * `minmax(0, ...)` ở hai cột con là BẮT BUỘC: mặc định của grid item là
+ * `min-width: auto`, nên một cái bảng bên trong sẽ BÀNH cột 9 ra thay vì cuộn
+ * trong chính nó, và cột 3 bị đẩy khỏi màn.
+ */
+.erp-detail__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.erp-detail__main,
+.erp-detail__side {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------- Tấm thẻ */
+
+.erp-detail__panel {
+  min-width: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  padding: 10px 12px 12px;
+}
+
+.erp-detail__panel-title {
+  margin: 0 0 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+/* Con số đi kèm tiêu đề khối (số bình luận, số dòng) - thông tin phụ, không
+   dựng thành một dòng riêng. */
+.erp-detail__count {
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------- Dải đầu */
+
+.erp-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/* Tiêu đề bản ghi là một câu dài (trích yếu), không phải một cái nhãn - nên nó
+   được ưu tiên bề ngang và tự xuống dòng, còn badge thì không bao giờ. */
+.erp-detail__title {
+  flex: 1 1 320px;
+  min-width: 0;
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.erp-detail__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Vài mốc để nhận ra bản ghi - chữ nhỏ, đẩy sang mép phải của dải đầu. */
+.erp-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0;
+  margin-inline-start: auto;
+}
+
+.erp-detail__meta dt {
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.erp-detail__meta dd {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ------------------------------------------------- Lưới nhãn / giá trị */
+
+/*
+ * NHÃN TRÁI, GIÁ TRỊ PHẢI, CÙNG MỘT DÒNG.
+ *
+ * Cột nhãn có BỀ RỘNG CỐ ĐỊNH (`--erp-detail-label`) chứ không phải
+ * `max-content`: `max-content` tính theo TỪNG hàng (mỗi hàng là một grid
+ * riêng) nên cột nhãn của các hàng không thẳng nhau - đúng cái làm một bảng
+ * tra cứu khó đọc.
+ *
+ * HAI cột chứ không phải bốn (min 340px): một cặp nhãn+giá trị cần gấp đôi chỗ
+ * so với một giá trị đứng một mình.
+ */
+.erp-detail__grid {
+  --erp-detail-label: 140px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 8px 28px;
+  margin: 0;
+}
+
+.erp-detail__row {
+  display: grid;
+  grid-template-columns: var(--erp-detail-label) minmax(0, 1fr);
+  /* `baseline`: giá trị dài xuống hai dòng thì nhãn vẫn thẳng với DÒNG ĐẦU. */
+  align-items: baseline;
+  gap: 0 12px;
+  min-width: 0;
+}
+
+/* Nhãn KHÔNG được xuống dòng - đó là cả điểm của bố cục này. Nhãn dài hơn cột
+   thì cắt bằng "…" và giữ nguyên văn ở `title`: một nhãn gãy hai dòng làm giá
+   trị bên cạnh trôi khỏi hàng của nó. */
+.erp-detail__row dt {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Giá trị VẪN được xuống dòng: tên pháp nhân dài tới 45 ký tự, cắt bằng "…" là
+   hai tổ chức khác nhau trông y hệt nhau. */
+.erp-detail__row dd {
+  margin: 0;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Biến thể cột nhãn RỘNG - cho khối mà nhãn chính là nghĩa của giá trị bên
+ * cạnh (chín ô tiền của phiếu tài chính: nhãn dài nhất ~176px ở cỡ 13px).
+ * Nới cho cả lưới thì mọi khối khác phải gánh 40px trống trên mỗi hàng.
+ */
+.erp-detail__grid--wide {
+  --erp-detail-label: 180px;
+
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+}
+
+.erp-detail__note {
+  margin: 0;
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+}
+
+/* --------------------------------------------------------- Bảng chỉ đọc */
+
+.erp-detail__scroll {
+  overflow-x: auto;
+}
+
+.erp-detail__table {
+  margin-bottom: 0;
+  width: 100%;
+  min-width: 620px;
+}
+
+/* Phải ghép thêm `.table` để thắng `components/table.css` (`.table > thead th`
+   có độ ưu tiên 0,1,2) - cùng lý do đã ghi ở `.advance-lines__table`. */
+.erp-detail__table.table > :not(caption) > * > * {
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+
+.erp-detail__table.table > thead th {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.erp-detail__table.table > thead th.erp-detail__col-num,
+.erp-detail__table.table > thead th.erp-detail__col-money {
+  text-align: right;
+}
+
+.erp-detail__col-index { width: 44px; }
+.erp-detail__col-unit { width: 96px; }
+.erp-detail__col-num { width: 100px; }
+.erp-detail__col-money { width: 140px; }
+
+.erp-detail__index {
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+.erp-detail__num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------- Nút duyệt ở cột phải */
+
+/* Xếp DỌC và giãn hết bề ngang: cột phải chỉ ~350px, hai nút nằm ngang sẽ vỡ
+   chữ ngay ở nhãn dài nhất ("Bổ sung hồ sơ"). */
+/*
+ * Nut chuyen buoc: XEP NGANG, hai nut mot hang (yeu cau nghiep vu 09/09/2026).
+ *
+ * Ban truoc `flex-direction: column` nen moi nut chiem tron mot dong: khoi
+ * "Thao tac" cao gap doi can thiet trong khi nhan tren mat nut chi la mot tu
+ * ("Bổ sung", "Chấp thuận", "Chuyển bước") — buoc dich nam o tooltip va
+ * `aria-label`, khong o mat nut, nen khong co gi de phai keo dai ca dong.
+ * Cot phai rong ~300px, du cho hai nut ngan dung canh nhau.
+ *
+ * `flex: 1 1 calc(50% - 3px)` (3px = mot nua gap) cho ra HAI nut mot hang va
+ * hai nut BANG NHAU: de `auto` thi be ngang chay theo do dai nhan, hai nut
+ * canh nhau lech nhau trong ra nhu mot cai bi cat. Mot nut dung mot minh thi
+ * `flex-grow` cho no an tron hang — dung hinh cu, khong phai mot ngoai le.
+ *
+ * KHONG khai lai `justify-content: center` o day: `.btn` cua
+ * `components/button.css` da la `inline-flex` + `justify-content: center`, va
+ * do bang Chrome thi chu VAN can giua o ca ban truoc lan ban sau. Them mot
+ * dong thua kem mot loi giai thich sai la cach chac chan de nguoi sau tin nham.
+ *
+ * Ba man xem (tam ung · van ban di · de xuat) dung CHUNG lop nay — sua o day
+ * la ca ba doi theo, dung chep sang file cua tung feature.
+ *
+ * Do bang Chrome tren cot rong 300px: 2 nut -> MOT hang, moi nut 134px;
+ * 1 nut -> tron hang 274px; 4 nut -> HAI hang deu nhau. Ban truoc:
+ * 2 nut -> hai hang, 4 nut -> bon hang.
+ */
+.erp-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-detail__actions > * {
+  flex: 1 1 calc(50% - 3px);
+  min-width: 0;
+}
+
+/* ---------------------------------------------------- Dòng thời gian duyệt */
+
+.erp-detail__steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-detail__step {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding-bottom: 12px;
+}
+
+/* Đường nối giữa các bước - vẽ bằng `::before` của chính mỗi bước, trừ bước
+   cuối. Vẽ một đường riêng chạy hết chiều cao thì nó thừa ra dưới chấm cuối. */
+.erp-detail__step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  left: 10px;
+  width: 1px;
+  background: var(--erp-border);
+}
+
+.erp-detail__step:last-child {
+  padding-bottom: 0;
+}
+
+.erp-detail__step-no {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--erp-brand-soft);
+  color: var(--erp-brand);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Bước CHƯA có người duyệt: mờ đi chứ không ẩn - ẩn thì bước đang chờ biến mất
+   khỏi nhật ký và người đọc tưởng quy trình dừng ở bước trước đó. */
+.erp-detail__step[data-pending] .erp-detail__step-no {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+}
+
+.erp-detail__step[data-pending] .erp-detail__step-body {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-detail__step-body {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.erp-detail__step-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-detail__step-head span {
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-detail__step-move {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-detail__step-tag {
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  font-size: 11px;
+}
+
+.erp-detail__step-note {
+  margin: 4px 0 0;
+  padding: 6px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+}
+
+/* ---------------------------------------------------------------------------
+ * KHỐI TRAO ĐỔI (`features/core/comments/CommentPanel`)
+ *
+ * Dùng chung cho ba màn xem. Ba phân hệ gọi chung `erp_api.entity_comments`
+ * bên Drupal nên trả về cùng một hình dạng và phải có cùng một giao diện.
+ * ------------------------------------------------------------------------ */
+
+/*
+ * Danh sách CUỘN TRONG CHÍNH NÓ, không kéo dài tấm thẻ.
+ *
+ * Một bản ghi đi qua nhiều bước duyệt có thể có hàng chục bình luận; để tràn
+ * ra thì ô nhập bị đẩy xuống tận đáy modal và người dùng phải cuộn cả cột phải
+ * mới gõ được một câu. Trần 320px ~ 4-5 bình luận, đủ để đọc mạch cuối.
+ */
+.erp-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-comments__item {
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-comments__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 10px;
+  margin-bottom: 4px;
+  font-size: 0.8125rem;
+}
+
+.erp-comments__author {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-comments__author .erp-avatar {
+  width: 22px;
+  height: 22px;
+  font-size: 9px;
+}
+
+.erp-comments__head > span:not(.erp-comments__author) {
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nội dung là HTML người dùng soạn bên Drupal (có thể có <p>, <ul>, link,
+   ảnh) - phải chịu được một đoạn văn, không phải một dòng. */
+.erp-comments__body {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.erp-comments__body > :last-child {
+  margin-bottom: 0;
+}
+
+.erp-comments__body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Chờ duyệt: người khác chưa thấy. Màu vàng là lớp nhận biết THỨ HAI - câu
+   chữ và icon đồng hồ đã nói đủ nghĩa nếu không thấy màu. */
+.erp-comments__pending {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 0 0;
+  color: var(--erp-warning);
+  font-size: 11px;
+}
+
+/*
+ * Ô soạn thảo chiếm trọn bề ngang, nút Gửi nằm DƯỚI và đẩy sang phải.
+ *
+ * `min-width: 0` cho cả chuỗi bọc nó là BẮT BUỘC: item của flex mặc định
+ * `min-width: auto`, tức không co dưới min-content của chính nó - mà
+ * min-content của CKEditor là cả thanh công cụ trên một hàng (~580px). Trong
+ * cột phải ~325px nó phình qua khung, và vì `align-items: flex-end` neo về mép
+ * phải nên phần thừa tràn sang TRÁI, đè lên nội dung ở cột 9.
+ *
+ * Đó cũng là thứ cho CKEditor tự gom nút vào menu "⋮": nó gom theo bề rộng ĐO
+ * ĐƯỢC, mà khi item tự do phình thì nó đo ra một con số rộng rãi.
+ *
+ * KHÔNG chữa bằng `overflow: hidden` ở tấm thẻ - làm vậy cắt luôn các menu bung
+ * ra của chính thanh công cụ.
+ */
+.erp-comments__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* `Field` bọc ô nhập trong `<Form.Group>`, mà React-Bootstrap 2 render thẻ đó
+   thành một `<div>` chỉ mang `className` được truyền vào (`mb-3`) - class
+   `form-group` là của Bootstrap 4, bản 5 không còn. Nhắm vào con TRỰC TIẾP. */
+.erp-comments__form > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.erp-comments__form > .btn {
+  width: auto;
+}
+
+/* CKEditor lồng nhiều lớp; chỉ một lớp quên `min-width: 0` là cả chuỗi lại
+   phình theo min-content. */
+.erp-comments__form .erp-richtext,
+.erp-comments__form .ck.ck-editor,
+.erp-comments__form .ck.ck-editor__main,
+.erp-comments__form .ck.ck-toolbar,
+.erp-comments__form .ck-editor__editable {
+  min-width: 0;
+  max-width: 100%;
+}
+/* ---------------------------------------------------------- Tệp đính kèm */
+
+.erp-detail__files {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-detail__files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* "Không có tệp đính kèm." — tấm thẻ vẫn hiện để còn chỗ xem lịch sử tệp. */
+.erp-detail__empty {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-detail__files:empty {
+  display: none;
+}
+
+.erp-detail__file-size {
+  flex: 0 0 auto;
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- Khổ hẹp */
+
+/* Dưới 1200px lưới 9/3 gộp làm một cột; dải đầu cũng phải bỏ cách đẩy
+   `margin-inline-start: auto` của cụm mốc, nếu không nó dính mép phải trong
+   khi tiêu đề ở mép trái và hai thứ trông như không liên quan. */
+@media (max-width: 1199.98px) {
+  .erp-detail__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-detail__meta {
+    margin-inline-start: 0;
+    flex-basis: 100%;
+  }
+}
+
+/* Field Mode: chữ 16px nên nhãn dài thêm ~20%; giữ 140px là nhãn dài bị cắt
+   ngay ở trạng thái bình thường, không phải trường hợp hiếm. */
+[data-theme='field'] .erp-detail__grid {
+  --erp-detail-label: 170px;
+}
+
+[data-theme='field'] .erp-detail__grid--wide {
+  --erp-detail-label: 216px;
+}
+
+/* --------------------------------------------------------------------------
+   Giá trị của một hàng khi nó là LIÊN KẾT (`DetailRow.href`).
+
+   `--erp-action-secondary` (blue) chứ không phải Crimson: đây là điều hướng
+   thường ngày, còn Crimson dành cho CTA và chỉ ~2% diện tích
+   (ERPcons_Design_System.md, mục 14). Gạch chân là dấu hiệu THỨ HAI — người
+   không phân biệt được màu vẫn thấy nó bấm được (mục 05 & 11).
+   -------------------------------------------------------------------------- */
+.erp-detail__link {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.erp-detail__link:hover,
+.erp-detail__link:focus-visible {
+  color: var(--erp-action-secondary-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+ * DAI "TOM TAT TAI CHINH" CUA MAN XEM (`DetailMoneyStrip`)
+ *
+ * Cung hinh voi `.advance-summary` cua form Tai chinh, nhung khoa vao khung
+ * dung chung: man xem don ban · don mua · phieu xuat · phieu nhap deu can mot
+ * dai tien, @import cheo sang CSS cua feature tai chinh la sai ranh gioi.
+ * ------------------------------------------------------------------------ */
+
+.erp-detail__money {
+  border-color: var(--erp-border-strong);
+}
+
+.erp-detail__money-grid {
+  display: grid;
+  /* ~170px de con tien 12 chu so khong bi cat - tu xuong cot khi hep. */
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px 12px;
+}
+
+.erp-detail__money-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-detail__money-label {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.erp-detail__money-value {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.erp-detail__money-note {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-detail__money-cell--total {
+  border-color: var(--erp-border-strong);
+}
+
+.erp-detail__money-cell--total .erp-detail__money-value {
+  font-size: 1.25rem;
+}

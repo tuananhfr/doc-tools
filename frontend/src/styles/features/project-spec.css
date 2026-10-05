@@ -1,0 +1,729 @@
+/* =========================================================================
+   Spec dự án (quantity/project-spec) — khung Cost Intelligence
+
+   Header dự án + mức sẵn sàng · rail mục bên trái · workspace giữa · cột ngữ
+   cảnh bên phải. Trang dùng `.erp-scroll-page` (nhiều khối xếp dọc), rail và
+   cột ngữ cảnh dính (sticky) trong vùng cuộn đó.
+
+   Tiền tố `erp-pspec-` riêng: `.erp-count`, `.erp-stat`… đã có nghĩa khác
+   trong styles/components.
+   ========================================================================= */
+
+.erp-pspec {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.erp-pspec button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- Header dự án -------------------------------------------------------- */
+
+.erp-pspec-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px) auto;
+  align-items: center;
+  gap: 16px 24px;
+  padding: 16px 20px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-pspec-hero__overline {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pspec-hero__title {
+  margin: 2px 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+  color: var(--erp-text-primary);
+  text-wrap: balance;
+}
+
+.erp-pspec-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-hero__meta span + span::before {
+  content: '·';
+  margin-right: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pspec-hero__readiness {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-inline-start: 24px;
+  border-inline-start: 1px solid var(--erp-border);
+}
+
+.erp-pspec-hero__score {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.erp-pspec-hero__pct {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-hero__score-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-hero__todo {
+  font-size: 12px;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.erp-pspec-save-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--erp-success);
+}
+
+.erp-pspec-save-state.is-dirty {
+  color: var(--erp-warning);
+  font-weight: 600;
+}
+
+/* Thanh tiến độ mảnh dùng chung cho header và thẻ bảng spec. */
+.erp-pspec-meter {
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-pspec-meter > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-action-secondary);
+  transition: width .25s ease;
+}
+
+.erp-pspec-hero__readiness:not(.has-blockers) .erp-pspec-meter > span {
+  background: var(--erp-success);
+}
+
+/* ---- Khung 3 cột ---------------------------------------------------------- */
+
+.erp-pspec__layout {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr) 288px;
+  align-items: start;
+  gap: 16px;
+}
+
+.erp-pspec__main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* `.erp-card` mặc định cao 100% để cân lưới; ở đây card xếp dọc theo nội dung. */
+.erp-pspec__main > .erp-card {
+  height: auto;
+}
+
+/* Power Edit cần bề ngang cho bảng: dưới 1441px đẩy cột ngữ cảnh xuống dưới. */
+@media (max-width: 1440px) {
+  .erp-pspec__layout.is-wide {
+    grid-template-columns: 208px minmax(0, 1fr);
+  }
+
+  .erp-pspec__layout.is-wide .erp-pspec-context {
+    position: static;
+    grid-column: 2;
+  }
+}
+
+/* ---- Rail mục ------------------------------------------------------------- */
+
+.erp-pspec-rail {
+  position: sticky;
+  top: 0;
+  padding: 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-pspec-rail ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-pspec-rail__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 14px;
+  text-align: left;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.erp-pspec-rail__item:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-rail__item.is-active {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+.erp-pspec-rail__label {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-pspec-rail__count {
+  min-width: 22px;
+  padding: 1px 6px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pspec-rail__count.is-blocker {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.erp-pspec-rail__count.is-warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-pspec-rail__ok {
+  color: var(--erp-success);
+}
+
+/* ---- Tổng quan ------------------------------------------------------------ */
+
+.erp-pspec-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.erp-pspec-summary__item {
+  --erp-pspec-tone: var(--erp-neutral);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--erp-border);
+  border-top: 3px solid var(--erp-pspec-tone);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  text-align: left;
+  transition: background-color .15s ease;
+}
+
+.erp-pspec-summary__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-pspec-summary__item:active {
+  transform: translateY(1px);
+}
+
+.erp-pspec-summary__item.is-assumed { --erp-pspec-tone: var(--erp-warning); }
+.erp-pspec-summary__item.is-confirmed { --erp-pspec-tone: var(--erp-success); }
+.erp-pspec-summary__item.is-danger { --erp-pspec-tone: var(--erp-danger); }
+
+.erp-pspec-summary__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-summary__value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-summary__hint {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pspec-lead {
+  max-width: 72ch;
+  font-size: 14px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* ---- Exception Review ----------------------------------------------------- */
+
+.erp-pspec-exceptions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-pspec-exceptions > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+  font-size: 14px;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-exceptions > li:last-child {
+  border-bottom: 0;
+}
+
+.erp-pspec-exceptions__icon {
+  margin-top: 2px;
+}
+
+.is-blocker > .erp-pspec-exceptions__icon { color: var(--erp-danger); }
+.is-warning > .erp-pspec-exceptions__icon { color: var(--erp-warning); }
+
+.erp-pspec-exceptions__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-pspec-exceptions__where {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-exceptions__where > span {
+  font-weight: 700;
+}
+
+.is-blocker .erp-pspec-exceptions__where > span { color: var(--erp-danger); }
+.is-warning .erp-pspec-exceptions__where > span { color: var(--erp-warning); }
+
+.erp-pspec-exceptions__go.btn {
+  flex: none;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.erp-pspec-exceptions__more,
+.erp-pspec-exceptions__empty {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-exceptions__empty {
+  margin: 0;
+}
+
+.erp-pspec-exceptions__empty .bi {
+  color: var(--erp-success);
+}
+
+/* ---- Mức tin cậy ---------------------------------------------------------- */
+
+.erp-pspec-maturity {
+  --erp-pspec-tone: var(--erp-neutral);
+  --erp-pspec-tone-soft: var(--erp-neutral-soft);
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-pspec-tone-soft);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+}
+
+.erp-pspec-maturity .bi {
+  color: var(--erp-pspec-tone);
+}
+
+.erp-pspec-maturity.is-assumed { --erp-pspec-tone: var(--erp-warning); --erp-pspec-tone-soft: var(--erp-warning-soft); }
+.erp-pspec-maturity.is-confirmed { --erp-pspec-tone: var(--erp-success); --erp-pspec-tone-soft: var(--erp-success-soft); }
+
+/* ---- Thẻ bảng spec -------------------------------------------------------- */
+
+.erp-pspec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.erp-pspec-tile {
+  --erp-pspec-tone: var(--erp-neutral);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--erp-border);
+  border-top: 3px solid var(--erp-pspec-tone);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-pspec-tile.is-ok { --erp-pspec-tone: var(--erp-success); }
+.erp-pspec-tile.is-warning { --erp-pspec-tone: var(--erp-warning); }
+.erp-pspec-tile.is-blocker { --erp-pspec-tone: var(--erp-danger); }
+
+.erp-pspec-tile__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-pspec-tile__head h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-tile__status {
+  flex: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-pspec-tone);
+}
+
+.erp-pspec-tile__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-pspec-tile__stats dt {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-tile__stats dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-tile__note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-tile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* ---- Cột ngữ cảnh --------------------------------------------------------- */
+
+.erp-pspec-context {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-pspec-context__block {
+  padding: 14px 16px;
+}
+
+.erp-pspec-context__block + .erp-pspec-context__block {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-pspec-context__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-context .erp-pspec-exceptions > li {
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.erp-pspec-context__maturity + .erp-pspec-context__maturity {
+  margin-top: 12px;
+}
+
+.erp-pspec-context__maturity-label {
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-stack {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-pspec-stack > span {
+  flex-basis: 0;
+  background: var(--erp-neutral);
+}
+
+.erp-pspec-stack > span.is-assumed { background: var(--erp-warning); }
+.erp-pspec-stack > span.is-confirmed { background: var(--erp-success); }
+
+.erp-pspec-context__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pspec-context__legend .bi { color: var(--erp-neutral); }
+.erp-pspec-context__legend .is-assumed .bi { color: var(--erp-warning); }
+.erp-pspec-context__legend .is-confirmed .bi { color: var(--erp-success); }
+
+.erp-pspec-context__legend b {
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-context__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.erp-pspec-context__facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-pspec-context__facts dt {
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-context__facts dd {
+  margin: 0;
+  text-align: right;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-context__note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pspec-check-table th:not(:first-child):not(:last-child) {
+  min-width: 175px;
+}
+
+.erp-pspec-check-table th:first-child,
+.erp-pspec-check-table th:last-child {
+  width: 42px;
+}
+
+.erp-pspec-check-table textarea {
+  min-width: 160px;
+  resize: vertical;
+}
+
+/* ---- Tablet & mobile ------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+  .erp-pspec-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  }
+
+  .erp-pspec-hero__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  /* Rail thành dải chip cuộn ngang, dính trên đầu vùng nội dung. */
+  .erp-pspec__layout,
+  .erp-pspec__layout.is-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-pspec__layout.is-wide .erp-pspec-context {
+    grid-column: auto;
+  }
+
+  .erp-pspec-rail {
+    z-index: 2;
+    padding: 6px;
+  }
+
+  .erp-pspec-rail ul {
+    flex-direction: row;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .erp-pspec-rail__item {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .erp-pspec-rail__item.is-active {
+    box-shadow: inset 0 -3px 0 var(--erp-action-secondary);
+  }
+
+  .erp-pspec-context {
+    position: static;
+  }
+
+  .erp-pspec-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-pspec-hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 14px 16px;
+  }
+
+  .erp-pspec-hero__readiness {
+    padding-inline-start: 0;
+    padding-top: 12px;
+    border-inline-start: 0;
+    border-top: 1px solid var(--erp-border);
+  }
+
+  .erp-pspec-hero__actions .btn {
+    flex: 1 1 auto;
+    min-height: 44px;
+  }
+
+  .erp-pspec-label {
+    flex-wrap: wrap;
+  }
+}
+
+/* Nut xac nhan goi y tu dien vat lieu trong danh sach loi */
+.erp-pspec-exceptions__approve {
+  margin-top: .4rem;
+}
+
+/* Bao cao chay thu khi nop tep spec */
+.erp-pspec-report {
+  margin-top: 1rem;
+}
+
+.erp-pspec-report__lead {
+  margin: 0 0 .5rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-pspec-report__table {
+  margin: 0;
+}
+
+.erp-pspec-report__table td {
+  vertical-align: top;
+}
+
+.erp-pspec-report__note {
+  min-width: 16rem;
+  color: var(--erp-text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-pspec-meter > span,
+  .erp-pspec-rail__item,
+  .erp-pspec-summary__item {
+    transition: none;
+  }
+}

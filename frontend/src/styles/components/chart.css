@@ -1,0 +1,219 @@
+/*
+ * Bieu do - muc 07 & 11.
+ * Moi chart BAT BUOC co legend/label; khong truyen dat series chi bang mau.
+ * Mau series lay tu chart token, truyen vao qua bien --erp-series.
+ */
+
+.erp-chart__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.erp-chart__unit {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+/* Legend */
+.erp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+}
+
+.erp-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-legend__swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--erp-series, var(--erp-neutral));
+}
+
+.erp-legend__name {
+  color: var(--erp-text-secondary);
+}
+
+.erp-legend__value {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+/* Bieu do cot nhom */
+.erp-bars {
+  position: relative;
+}
+
+.erp-bars__grid-line {
+  position: absolute;
+  inset-inline: 0;
+  border-top: 1px solid var(--erp-chart-grid, var(--erp-border));
+  opacity: 0.6;
+}
+
+.erp-bars__groups {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100%;
+}
+
+.erp-bars__group {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.erp-bars__bar {
+  width: 12px;
+  max-width: 28%;
+  background: var(--erp-series, var(--erp-action-secondary));
+  border-radius: 4px 4px 0 0;
+}
+
+/* Field Mode: cot day hon de nhin ro ngoai nang (muc 07). */
+[data-theme='field'] .erp-bars__bar {
+  width: 16px;
+}
+
+.erp-bars__labels {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-bars__label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Donut */
+.erp-donut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.erp-donut__figure {
+  position: relative;
+  flex: none;
+}
+
+.erp-donut__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.erp-donut__center-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+.erp-donut__center-label {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-donut__list {
+  flex: 1;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-donut__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.875rem;
+}
+
+.erp-donut__name {
+  flex: 1;
+  min-width: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-donut__percent {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Cột chồng (StackedBarChart) — khe 2px màu nền giữa các đoạn, bo 4px ở đỉnh. */
+.erp-stack__group {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+}
+
+.erp-stack__column {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+  width: 40%;
+  min-width: 18px;
+  max-width: 56px;
+}
+
+.erp-stack__segment {
+  min-height: 2px;
+  background: var(--erp-series, var(--erp-action-secondary));
+}
+
+.erp-stack__column > :last-child .erp-stack__segment,
+.erp-stack__column > .erp-stack__segment:last-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.erp-stack__total {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-stack__caption {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-stack .erp-bars {
+  margin-top: 20px;
+}

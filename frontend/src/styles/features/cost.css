@@ -1,0 +1,1182 @@
+/*
+ * Chi phí & Giá — khối riêng của màn Giá xây dựng.
+ *
+ * Thanh biến động và thanh so sánh KHÔNG dùng chart library: chúng là một con
+ * số duy nhất trên một trục, dựng bằng div rẻ hơn và không kéo thêm dependency
+ * chỉ để vẽ một hình chữ nhật.
+ */
+
+/* --- Biến động giá theo nhóm vật tư -------------------------------------- */
+
+.erp-price__movement {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.erp-price__movement-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 2fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.erp-price__movement-name {
+  color: var(--erp-text-secondary);
+}
+
+.erp-price__movement-track {
+  height: 8px;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-price__movement-bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--erp-radius-pill);
+}
+
+/* Giá vật tư TĂNG là tin xấu với nhà thầu — dùng danger, không dùng success. */
+.erp-price__movement-bar--up {
+  background: var(--erp-danger);
+}
+
+.erp-price__movement-bar--down {
+  background: var(--erp-success);
+}
+
+.erp-price__movement-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-price__movement-value--up {
+  color: var(--erp-danger);
+}
+
+.erp-price__movement-value--down {
+  color: var(--erp-success);
+}
+
+/* --- So sánh giá theo nguồn ---------------------------------------------- */
+
+.erp-price__compare {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-price__compare th {
+  padding-bottom: 8px;
+  color: var(--erp-text-tertiary);
+  font-weight: 500;
+}
+
+.erp-price__compare td {
+  padding: 8px 0;
+  border-top: 1px solid var(--erp-border);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Giá + % lệch nằm một hàng, thanh bar xuống hàng dưới chiếm trọn bề ngang ô.
+   Bản cũ để cả ba thứ cạnh nhau trong một ô hẹp và chúng tự xuống dòng lộn xộn. */
+.erp-price__compare-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.erp-price__compare-track {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 6px;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-price__compare-bar {
+  display: block;
+  height: 100%;
+  background: var(--erp-action-secondary);
+}
+
+/* Giá mua nội bộ là MỐC so sánh, không phải một nguồn ngang hàng. */
+.erp-price__compare-bar--base {
+  background: var(--erp-construction);
+}
+
+.erp-price__compare-delta {
+  white-space: nowrap;
+  color: var(--erp-success);
+}
+
+/* --- Thẻ tệp đính kèm trong panel chi tiết ------------------------------- */
+
+.erp-price__file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-price__file-name {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 576px) {
+  .erp-price__movement-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Màn hẹp: bỏ thanh, giữ tên + số — một thanh 40px không đọc ra gì. */
+  .erp-price__movement-track {
+    display: none;
+  }
+}
+
+/* --- Bảng giá thị trường ------------------------------------------------- */
+
+.erp-price__supplier {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Nhãn loại nguồn: thông tin phụ, không được to bằng tên nhà cung cấp. */
+.erp-price__kind {
+  padding: 1px 8px;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+  white-space: nowrap;
+}
+
+.erp-price__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-price__delta--up { color: var(--erp-danger); }
+.erp-price__delta--down { color: var(--erp-success); }
+
+.erp-price__stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.erp-price__star--on { color: var(--erp-warning); }
+.erp-price__star--off { color: var(--erp-border-strong); }
+
+.erp-price__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: var(--erp-radius-round);
+  vertical-align: middle;
+}
+
+/* --- Biểu đồ đường ------------------------------------------------------- */
+
+/* Bề rộng do ResizeObserver quyết định và ghi vào thuộc tính `width` của SVG.
+   KHÔNG đặt `width: 100%` ở đây — CSS thắng thuộc tính, và SVG sẽ bị kéo giãn
+   trở lại đúng như lỗi vừa sửa. */
+.erp-line {
+  display: block;
+  max-width: 100%;
+}
+
+.erp-line__grid {
+  stroke: var(--erp-border);
+  stroke-width: 1;
+}
+
+.erp-line__axis {
+  fill: var(--erp-text-tertiary);
+  font-size: 11px;
+}
+
+.erp-line__path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.erp-line__path--dashed {
+  stroke-dasharray: 6 4;
+}
+
+/* --- Danh sách xếp hạng / nguồn / tài liệu ------------------------------- */
+
+.erp-price__ranked,
+.erp-price__suggest,
+.erp-price__actions,
+.erp-price__docs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.erp-price__ranked li,
+.erp-price__suggest li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-price__ranked--bars li {
+  display: grid;
+  grid-template-columns: minmax(96px, 1fr) auto auto;
+}
+
+.erp-price__actions li,
+.erp-price__docs li {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+.erp-price__actions li { color: var(--erp-text-secondary); }
+
+/* --- Đường ống xử lý ----------------------------------------------------- */
+
+.erp-price__pipeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.erp-price__pipeline li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 180px;
+}
+
+.erp-price__pipeline-body { min-width: 0; }
+
+.erp-price__pipeline-arrow { color: var(--erp-text-tertiary); }
+
+.erp-price__doc,
+.erp-price__target {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.erp-price__targets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.erp-price__ocr {
+  display: grid;
+  gap: 4px;
+  min-width: 96px;
+}
+
+/* Ô tên tài liệu trong bảng đầu vào: tên tệp liền một khối (sxd_..._2026.pdf)
+   nên phải có bề rộng tối thiểu, không thì `overflow-wrap: anywhere` bẻ từng
+   vài ký tự một dòng. Dài quá thì cắt 2 dòng, tên đủ nằm ở `title`. */
+.erp-price__doc--row {
+  align-items: flex-start;
+  min-width: 220px;
+}
+
+.erp-price__doc-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-text-secondary);
+  font-size: 1.125rem;
+}
+
+.erp-price__doc-body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-price__doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.erp-price__source-cell {
+  display: block;
+  line-height: 1.35;
+}
+
+/* Tin cậy + phiên bản chung một ô: hai nhãn xếp dọc, căn trái. */
+.erp-price__badge-stack {
+  display: inline-grid;
+  justify-items: start;
+  gap: 4px;
+}
+
+.erp-price__ocr-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Thẻ "Loại văn bản": cột thanh `auto` của `--bars` co về 0 trong thẻ hẹp. */
+.erp-price__ranked.erp-price__type-bars li {
+  grid-template-columns: auto minmax(48px, 1fr) auto;
+}
+
+.erp-price__type-bars strong {
+  white-space: nowrap;
+}
+
+.erp-price__type-bars .erp-price__compare-track {
+  margin-top: 0;
+}
+
+/* --- Khối mã nguồn ------------------------------------------------------- */
+
+.erp-price__code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.erp-price__code-body {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.erp-price__endpoint {
+  color: var(--erp-text-primary);
+  background: var(--erp-surface-secondary);
+  padding: 1px 6px;
+  border-radius: var(--erp-radius-sm);
+}
+
+/* Phương thức HTTP: màu + CHỮ, chữ mới là thứ đọc được khi in đen trắng. */
+.erp-price__method {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-price__method--get { color: var(--erp-info); }
+.erp-price__method--post { color: var(--erp-success); }
+.erp-price__method--patch { color: var(--erp-warning); }
+.erp-price__method--delete { color: var(--erp-danger); }
+
+.erp-price__logbar {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --- O chon vat tu (Bien dong / So sanh) --------------------------------- */
+
+.erp-price__picker {
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+/* --- Ô chọn vật tư (Biến động / So sánh giá) ------------------------------ */
+
+/* Rộng vừa một tên vật tư dài; full-width trông như thanh tìm kiếm toàn trang
+   và người dùng sẽ tưởng nó lọc mọi thứ. */
+.erp-price__picker {
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+/* Biến động: ô tỉnh đứng cạnh ô vật tư — hai ô cùng quyết định một chuỗi. */
+.erp-price__movement-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.erp-price__movement-toolbar .erp-price__picker {
+  flex: 1 1 320px;
+  margin-bottom: 0;
+}
+
+.erp-price__province {
+  flex: 0 1 260px;
+}
+
+@media (max-width: 576px) {
+  .erp-price__province {
+    flex-basis: 100%;
+  }
+}
+
+/* Ô đầu tiên của `.erp-table__toolbar` được flex:1 — để nguyên thì ô tìm kiếm
+   dãn hết bề ngang bảng. */
+.erp-price__search {
+  max-width: 360px;
+}
+
+.erp-price__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-price__toolbar .erp-price__search {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-price__toolbar .erp-advanced-filter__trigger {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* --- Nút xoá nguồn bị chặn (Nguồn thu thập giá) --------------------------- */
+
+/* Nút `disabled` không phát sự kiện chuột nên tooltip neo vào nó sẽ không bao
+   giờ hiện; nhường hover cho span bọc ngoài thì Tip mới chạy. */
+.erp-source__delete--blocked {
+  pointer-events: none;
+}
+
+/* --- Yêu cầu báo giá: danh sách ứng viên giá từng dòng ------------------- */
+
+/* `table-layout: auto` chia cot theo noi dung VA theo cho con lai: khi bang bi
+   ep vua be rong container thi `min-width` tren <th> bi bo qua va cot yeu nhat
+   (Ghi chu) bi bop xuong ~79px — o nhap chi doc duoc hai chu mot dong. Phai cho
+   ca BANG mot be rong toi thieu de no tran ra va cuon ngang trong
+   `.table-responsive`; min-width tren tung cot mot khong du. */
+.erp-price__request-table {
+  min-width: 1240px;
+}
+
+.erp-price__candidates-col {
+  min-width: 360px;
+}
+
+.erp-price__item-col {
+  min-width: 260px;
+}
+
+/* `min-width` tren <th> khong tao duoc NHU CAU chieu rong: o nhap ben trong
+   khai `width: 100%` nen no co theo cot chu khong doi cot phai rong ra. Ep
+   thang len o nhap thi cot moi buoc phai giu 180px. */
+.erp-price__request-table td textarea {
+  min-width: 180px;
+}
+
+.erp-price__candidates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Cả khối là <label> để bấm vào đâu cũng chọn được — radio 16px là mục tiêu
+   chạm quá nhỏ cho người duyệt trên máy tính bảng. */
+.erp-price__candidate {
+  display: block;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.erp-price__candidate:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-price__candidate:has(input:checked) {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-price__candidate .form-check {
+  margin: 0;
+  min-height: 0;
+}
+
+.erp-price__candidate-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-price__candidate-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-price__candidate-title {
+  color: var(--erp-text-secondary);
+}
+
+.erp-price__request-progress .progress {
+  height: 12px;
+}
+
+/* --- Khớp danh mục vật tư (Tổng quan) ------------------------------------- */
+
+.erp-price__matching {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-price__matching-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-price__matching-head strong {
+  font-size: 1.5rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-price__matching-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.erp-price__matching-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 8px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-price__matching-list strong {
+  color: var(--erp-text-primary);
+}
+
+/* --- Chứng từ gốc trong panel chi tiết dòng giá --------------------------- */
+
+.erp-price__doc-ref {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+/* --- Lối mở tài liệu giá (tệp / CDE / trang nguồn) ------------------------ */
+
+.erp-price__doc-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.erp-price__doc-links a {
+  white-space: nowrap;
+}
+
+.erp-price__doc-links--compact {
+  gap: 4px 8px;
+  margin-inline-start: 8px;
+}
+
+/* Muc phu trong panel dong gia: than offcanvas khong co padding (overlay.css). */
+.erp-price__panel-section {
+  padding: 16px 24px 24px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-price__periods {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-price__periods-table td,
+.erp-price__periods-table th {
+  vertical-align: top;
+}
+
+/* Ky cua chinh dong dang mo - nguoi doc can biet minh dang dung o dau. */
+.erp-price__periods-current td {
+  background: var(--erp-info-soft);
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .erp-price__panel-section {
+    padding: 16px;
+  }
+}
+
+/* Ghi chu duoi bang so sanh: cach tinh chenh lech, dong bi loai vi khac DVT. */
+.erp-price__compare-notes {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* === Giá xây dựng v2: tin cậy, phiên bản, dữ liệu theo PDF ================== */
+
+/* Tên + quy cách trong ô bảng: quy cách là dòng phụ, không nối vào tên. */
+.erp-price__name {
+  display: block;
+  min-width: 180px;
+}
+
+.erp-price__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-price__panel-head {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.erp-price__panel-head .erp-price__badges {
+  margin-top: 4px;
+}
+
+/* Ghi chú dài của Sở: giữ xuống dòng như trên PDF, không cắt. */
+.erp-price__long-text {
+  white-space: pre-line;
+}
+
+/* Hai công tắc tin cậy nằm ngay trên thanh công cụ bảng giá. */
+.erp-price__trust-switches {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  white-space: nowrap;
+}
+
+.erp-price__trust-switches .form-check {
+  margin-bottom: 0;
+}
+
+.erp-price__input-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.erp-price__input-toolbar .form-check {
+  margin-bottom: 8px;
+}
+
+/* Máy phát hiện dấu / chữ ký — liệt kê, không phải kết luận. */
+.erp-price__detections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  color: var(--erp-text-secondary);
+}
+
+.erp-price__trust-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-price-doc__side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* `.erp-card { height: 100% }` trong trang cuộn ghim thẻ cao đúng một màn
+   hình và hàng bảng tràn khỏi khung. Thẻ bảng + thẻ cột phải cao theo nội dung. */
+.erp-price-doc__data.erp-card,
+.erp-price-doc__side > .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Lịch sử phiên bản: bản đang xem có vạch trái, không chỉ đổi màu nền. */
+.erp-price__versions {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-price__versions li {
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-price__versions li.is-viewing {
+  border-left: 3px solid var(--erp-action-secondary);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-price__version-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* Ô chữ dài trong bảng PDF (ghi chú, đơn vị cung cấp): 2 dòng, đủ chữ ở title
+   và trong panel chi tiết. */
+.erp-price__clamp {
+  display: -webkit-box;
+  min-width: 200px;
+  max-width: 320px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Ô PDF nguyên bản của một dòng giá. */
+.erp-price__raw summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.erp-price__raw summary:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-price__raw-cells {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+
+.erp-price__raw-cells th,
+.erp-price__raw-cells td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.erp-price__raw-cells th {
+  width: 40%;
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.erp-price__raw-empty {
+  color: var(--erp-text-tertiary);
+}
+
+/* Nguồn thu thập: kết quả kiểm tra bản mới nhất. */
+.erp-price__source-check {
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  min-width: 220px;
+}
+
+.erp-price__source-latest {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* OCR lại: ba bước, bước xong có dấu tích — không chỉ phân biệt bằng màu. */
+.erp-price__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+  padding: 0;
+  list-style: none;
+  counter-reset: price-step;
+}
+
+.erp-price__steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  counter-increment: price-step;
+}
+
+.erp-price__steps li::before {
+  content: counter(price-step);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.erp-price__steps li.is-active {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-price__steps li.is-done {
+  border-color: var(--erp-success);
+  color: var(--erp-text-primary);
+}
+
+.erp-price__steps li.is-done::before {
+  content: '✓';
+  color: var(--erp-success);
+}
+
+.erp-price__candidate,
+.erp-price__candidate-preview {
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-price__candidate-preview {
+  margin-top: 12px;
+  background: var(--erp-surface);
+}
+
+.erp-price__candidate-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.erp-price__candidate-head .form-control {
+  max-width: 280px;
+}
+
+.erp-price__batch-bar {
+  height: 10px;
+}
+
+.erp-price__preview-table td,
+.erp-price__preview-table th {
+  white-space: nowrap;
+}
+
+.erp-price__pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 576px) {
+  .erp-price__toolbar {
+    flex-wrap: wrap;
+  }
+
+  .erp-price__trust-switches {
+    order: 3;
+    width: 100%;
+    white-space: normal;
+  }
+}
+
+/* So sánh giá: công tắc "Bao gồm giá tham khảo" đứng cạnh ô chọn vật tư. */
+.erp-price__compare-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  max-width: none;
+}
+
+.erp-price__compare-picker > :first-child {
+  flex: 0 1 480px;
+  min-width: 0;
+}
+
+.erp-price__compare-picker .form-check {
+  margin-bottom: 0;
+}
+
+/* --- Gia vat tu da nganh: o chon nganh + nhan nganh ----------------------- */
+
+/* Nhom nut chon nganh o header. Dang chon = nen Blue (action.secondary) +
+   icon + chu — lua chon ngu canh, khong phai CTA nen khong dung Crimson. */
+.erp-price-industry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.erp-price-industry--segmented {
+  flex-wrap: wrap;
+  gap: 0;
+  /* Nut 44px cao hon tieu de: chua khoang tho voi hang the KPI ben duoi. */
+  margin-bottom: 8px;
+}
+
+.erp-price-industry--segmented .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--erp-touch-target, 44px);
+  padding-inline: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.erp-price-industry--segmented .btn-check:checked + .btn {
+  background: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-price-industry--segmented .btn-check:focus-visible + .btn {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+/* Nhan tieng Viet dai ("Thuc pham & Do uong (F&B)") khong duoc day vo header. */
+.erp-price-industry__label {
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+.erp-price-industry__stage {
+  display: inline-flex;
+  color: var(--erp-warning);
+}
+
+.erp-price-industry--segmented .btn-check:checked + .btn .erp-price-industry__stage {
+  color: inherit;
+}
+
+.erp-price-industry__lead {
+  color: var(--erp-text-secondary);
+}
+
+.erp-price-industry__select {
+  min-height: var(--erp-touch-target, 44px);
+  min-width: 14rem;
+}
+
+.erp-price-industry-badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* So tien ngoai te + ty gia di kem gia VND: phu, khong tranh cho so chinh. */
+.erp-price-money__foreign {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-price-money__missing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--erp-warning);
+}
+
+/* Man hep: nhom nut chiem tron hang, cac nut chia deu. */
+@media (max-width: 576px) {
+  .erp-price-industry--segmented {
+    width: 100%;
+  }
+
+  .erp-price-industry--segmented .btn {
+    flex: 1 1 auto;
+  }
+
+  .erp-price-industry__label {
+    max-width: 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-price-industry--segmented .btn {
+    transition: none;
+  }
+}
+
+/* Chon nhieu nganh cho nguon: hang ngang, xuong dong khi hep. */
+.erp-price-industry-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+/* O gia: so VND chinh + dong ngoai te / canh bao xep doc. */
+.erp-price-money {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: inherit;
+  gap: 2px;
+}
+
+/* So tien + ty gia la mot cum doc lien — xuong dong giua chung la doc sai so. */
+.erp-price-money__foreign,
+.erp-price-money__missing {
+  white-space: nowrap;
+}
+
+/* --- Chuyen du lieu gia (cau truc YAML + goi ZIP) ------------------------ */
+.erp-price-transfer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* `.erp-card { height: 100% }` toan cuc: the dat THANG trong cot flex se cao
+   bang ca trang (cung bay voi .erp-ce-settings). The trong Row thi giu 100%
+   de hai the Xuat/Nhap bang nhau. */
+.erp-price-transfer > .erp-card {
+  height: auto;
+}
+
+.erp-price-transfer__hint {
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-price-transfer__ok {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.erp-price-transfer__gaps {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.erp-price-transfer__gaps .erp-price-transfer__hint {
+  overflow-wrap: anywhere;
+}
+
+.erp-price-transfer__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.erp-price-transfer__sets {
+  display: grid;
+  gap: 8px;
+}
+
+.erp-price-transfer__set {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  cursor: pointer;
+}
+
+.erp-price-transfer__set:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-price-transfer__count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-price-transfer__preview {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-price-transfer__source {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-price-transfer__report td,
+.erp-price-transfer__report th {
+  font-variant-numeric: tabular-nums;
+}

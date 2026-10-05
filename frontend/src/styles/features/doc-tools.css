@@ -1,0 +1,2003 @@
+/* Trinh chinh sua PDF - ERPCons DocTools ban Free (features/tools/pdf). Khung quanh no: tools-hub.css. */
+
+/*
+ * Phong cua SO TRANG / WATERMARK in vao tep (Be Vietnam Pro, OFL) - cung tep TTF
+ * ma pdf-lib nhung khi xuat, de lop phu tren man hinh do dung be rong chu.
+ * Khong phai font giao dien; trinh duyet chi tai khi lop phu that su ve chu.
+ */
+@font-face {
+  font-family: 'DocTools Stamp';
+  src: url('../../assets/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Stamp';
+  src: url('../../assets/fonts/BeVietnamPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Nghieng + co chan: chi cho chu sua lai; trinh duyet chi tai khi co chu dung toi. */
+@font-face {
+  font-family: 'DocTools Stamp';
+  src: url('../../assets/fonts/BeVietnamPro-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Stamp';
+  src: url('../../assets/fonts/BeVietnamPro-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Serif';
+  src: url('../../assets/fonts/NotoSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Serif';
+  src: url('../../assets/fonts/NotoSerif-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Serif';
+  src: url('../../assets/fonts/NotoSerif-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Serif';
+  src: url('../../assets/fonts/NotoSerif-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*
+ * Phong thay cho chu SUA LAI: Arimo / Tinos cung be rong ky tu voi Arial /
+ * Times New Roman, nen chu moi chiem dung cho chu cu. Chi tai khi co chu dung toi.
+ */
+@font-face {
+  font-family: 'DocTools Match';
+  src: url('../../assets/fonts/Arimo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match';
+  src: url('../../assets/fonts/Arimo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match';
+  src: url('../../assets/fonts/Arimo-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match';
+  src: url('../../assets/fonts/Arimo-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match Serif';
+  src: url('../../assets/fonts/Tinos-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match Serif';
+  src: url('../../assets/fonts/Tinos-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match Serif';
+  src: url('../../assets/fonts/Tinos-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DocTools Match Serif';
+  src: url('../../assets/fonts/Tinos-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/*
+ * TRANG KHONG TU CUON NUA: khung quanh no lo viec do - `.erp-shell__content` khi
+ * da dang nhap, `.erp-tools-guest` voi khach (styles/features/tools-hub.css).
+ * `--erp-doc-viewport` = chieu cao vung cuon do, cho nhung khoi dinh (bang xuat)
+ * tu gioi han chieu cao; khung app tru di header.
+ */
+.erp-doc-tools {
+  --erp-doc-viewport: 100dvh;
+  --erp-doc-frame-pad: 0px;
+  color: var(--erp-text-primary);
+}
+
+/*
+ * `--erp-doc-frame-pad` = `padding` cua `.erp-shell__content` (20 / 16 / 10px, xem
+ * layout/app-shell.css). Chrome neo `sticky` o mep NOI DUNG cua khung cuon, nen
+ * `top: 0` chua mot khe cao bang padding ma trang cuon qua lo ra phia tren thanh
+ * cong cu - cung cach chua voi `--erp-est-shell-pad` (cost-estimate.css).
+ */
+.erp-shell .erp-doc-tools {
+  --erp-doc-viewport: calc(100dvh - var(--erp-header-height) - var(--erp-safe-top));
+  --erp-doc-frame-pad: 20px;
+}
+
+@media (max-width: 1024px) {
+  .erp-shell .erp-doc-tools {
+    --erp-doc-frame-pad: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-shell .erp-doc-tools {
+    --erp-doc-frame-pad: 10px;
+  }
+}
+
+.erp-doc-tools__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---------- Nut "Xuat tep" dinh day (man hep) ---------- */
+
+.erp-doc-jump {
+  display: none;
+}
+
+/* ---------- Goi y sau khi tha tep ---------- */
+
+.erp-doc-suggest {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 16px;
+  padding: 8px 8px 8px 16px;
+  background: var(--erp-action-secondary-soft);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-doc-suggest__label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-suggest__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-doc-suggest__actions .btn {
+  min-height: var(--erp-touch-target);
+  background: var(--erp-surface);
+}
+
+.erp-doc-suggest__close {
+  flex: none;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  padding: 14px;
+}
+
+/* ---------- Vung tha tep (trang trong) ---------- */
+
+.erp-doc-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 880px;
+  margin: 32px auto 0;
+  padding: 48px 24px 32px;
+  text-align: center;
+  background: var(--erp-surface);
+  border: 2px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-lg);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.erp-doc-drop.is-over {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-doc-drop__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-action-secondary);
+  font-size: 1.75rem;
+}
+
+.erp-doc-drop__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.erp-doc-drop__hint {
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-drop__pick {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 24px;
+  margin-top: 4px;
+}
+
+/* Input an bang visually-hidden: focus ban phim phai hien tren nut thay the. */
+.erp-doc-drop input:focus-visible + .erp-doc-drop__pick,
+.erp-doc-drop__pick:has(+ input:focus-visible) {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-doc-drop__caps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.erp-doc-drop__caps li {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Thanh thao tac ---------- */
+
+.erp-doc-toolbar {
+  position: sticky;
+  top: calc(-1 * var(--erp-doc-frame-pad));
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* Tach nhom bang khoang trang, khong ke vach: toolbar xuong dong thi vach cuoi dong lo lung. */
+  gap: 8px 32px;
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-doc-toolbar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.erp-doc-toolbar__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin-left: auto;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-toolbar__count strong {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-toolbar__status .btn-link {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-doc-toolbar__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: var(--erp-touch-target);
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: var(--erp-touch-target);
+  min-height: var(--erp-touch-target);
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.erp-doc-tool .bi {
+  font-size: 1rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-tool:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.erp-doc-tool:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.erp-doc-tool:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-doc-tool:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.erp-doc-tool[aria-pressed='true'] {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-doc-tool[aria-pressed='true'] .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-doc-tool--danger:not(:disabled),
+.erp-doc-tool--danger:not(:disabled) .bi {
+  color: var(--erp-danger);
+}
+
+/* ---------- Luoi trang ---------- */
+
+.erp-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 240px;
+}
+
+.erp-doc-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  transition: border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+}
+
+.erp-doc-page:hover {
+  border-color: var(--erp-border-strong);
+}
+
+.erp-doc-page.is-selected {
+  border-color: var(--erp-action-secondary);
+  box-shadow: 0 0 0 1px var(--erp-action-secondary);
+}
+
+.erp-doc-page.is-dragging {
+  opacity: 0.4;
+}
+
+/* Vach chi cho thay trang se roi vao ben nao - nam trong khe 16px giua hai the. */
+.erp-doc-page.is-drop-before::before,
+.erp-doc-page.is-drop-after::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+}
+
+.erp-doc-page.is-drop-before::before {
+  left: -10px;
+}
+
+.erp-doc-page.is-drop-after::after {
+  right: -10px;
+}
+
+.erp-doc-page__select {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--erp-radius-lg) var(--erp-radius-lg) 0 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.erp-doc-page__select:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+/* Khung VUONG: anh vua khung thi xoay 90° van nam tron trong khung. */
+.erp-doc-page__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-doc-sheet {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow1);
+}
+
+/* Anh la noi dung TRANG GIAY (khong theo theme) - trang anh la to A4 nen trang, anh vua kho. */
+.erp-doc-sheet__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  object-fit: contain;
+  background: #fff;
+}
+
+/* Lop phu so trang / watermark: phong rieng, khong theo font giao dien (xem @font-face o dau tep). */
+.erp-doc-stamp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'DocTools Stamp', sans-serif;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.erp-doc-page__placeholder {
+  padding: 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-doc-page__spinner {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-doc-page__check {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.erp-doc-page.is-selected .erp-doc-page__check {
+  color: var(--erp-action-secondary);
+}
+
+.erp-doc-page__rotation {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-page__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 0 12px;
+  min-width: 0;
+}
+
+.erp-doc-page__no {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-page__origin {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.erp-doc-page__moves {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+}
+
+.erp-doc-page__move {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-page__move:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-doc-page__move:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-doc-page__move:disabled {
+  opacity: 0.3;
+}
+
+.erp-doc-page__grip {
+  color: var(--erp-text-tertiary);
+  cursor: grab;
+}
+
+/* Nut xem to nam DE len khung anh, canh nut chon — khong long button trong button. */
+.erp-doc-page__visual {
+  position: relative;
+}
+
+.erp-doc-page__zoom {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  box-shadow: var(--erp-shadow1);
+  opacity: 0;
+  transition: opacity 150ms ease, background-color 150ms ease;
+}
+
+.erp-doc-page:hover .erp-doc-page__zoom,
+.erp-doc-page:focus-within .erp-doc-page__zoom {
+  opacity: 1;
+}
+
+.erp-doc-page__zoom:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-doc-page__zoom:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Cam ung khong co hover — an di la khong ai biet co nut. */
+@media (hover: none) {
+  .erp-doc-page__zoom {
+    opacity: 1;
+  }
+}
+
+/* ---------- Xem trang to ---------- */
+
+.erp-doc-preview {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-doc-preview__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 8px 16px;
+  background: var(--erp-surface);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-doc-preview__title {
+  display: flex;
+  /* Nen nho: ten tep tu cat "…" de thanh vua mot dong thay vi day nut xuong dong. */
+  flex: 1 1 96px;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.erp-doc-preview__no {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-preview__origin {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.erp-doc-preview__group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-doc-preview__percent {
+  min-width: 5ch;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-preview__stage {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  overflow: auto;
+  /* Thanh cuon hien/an lam khung hep lai → "vua ngang" tinh lai → giat qua lai. */
+  scrollbar-gutter: stable;
+}
+
+.erp-doc-preview__stage.is-pannable {
+  cursor: grab;
+}
+
+.erp-doc-preview__stage.is-panning {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* margin:auto thay cho can giua bang grid/justify — trang to hon khung van cuon toi duoc mep trai/tren. */
+.erp-doc-preview__sheet {
+  position: relative;
+  flex: none;
+  margin: auto;
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-doc-preview__canvas,
+.erp-doc-preview__canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.erp-doc-preview__state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-doc-preview__sheet .erp-doc-preview__state {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- Tim chu ---------- */
+
+.erp-doc-search {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.erp-doc-search__box {
+  position: relative;
+}
+
+.erp-doc-search__box .form-control {
+  min-height: var(--erp-touch-target);
+  padding-left: 36px;
+}
+
+.erp-doc-search__icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--erp-text-tertiary);
+  pointer-events: none;
+}
+
+.erp-doc-search__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.875rem;
+}
+
+.erp-doc-search__status,
+.erp-doc-search__note {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-search__note {
+  align-items: flex-start;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+/* ---------- OCR (tab Tim) ---------- */
+.erp-doc-ocr {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-doc-ocr__intro {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-doc-ocr__running {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+}
+
+.erp-doc-ocr__status {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-ocr__bar {
+  height: 6px;
+}
+
+.erp-doc-search__replace {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-doc-search__replace-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-doc-search__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.erp-doc-search__pick {
+  flex: none;
+  min-height: 0;
+  margin: 10px 0 0 4px;
+}
+
+.erp-doc-search__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 0 6px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-doc-search__flag.is-warn {
+  color: var(--erp-text-primary);
+  background: var(--erp-warning-soft);
+}
+
+.erp-doc-search__flag.is-done {
+  color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-doc-search__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-doc-search__count {
+  min-width: 6ch;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-search__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 60vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.erp-doc-search__page {
+  position: sticky;
+  top: 0;
+  padding: 8px 8px 4px;
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.erp-doc-search__hit {
+  display: block;
+  width: 100%;
+  min-height: var(--erp-touch-target);
+  padding: 8px;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  text-align: left;
+  overflow-wrap: anywhere;
+  background: transparent;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  cursor: pointer;
+}
+
+.erp-doc-search__hit:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-doc-search__hit:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-doc-search__hit.is-active {
+  background: var(--erp-action-secondary-soft);
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+.erp-doc-search__hit mark {
+  padding: 0 1px;
+  color: inherit;
+  background: var(--erp-warning-soft);
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+/* Lop to ket qua: chi tren man hinh, ton token de doc duoc tren nen trang o ca 3 theme. */
+.erp-doc-hits {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.erp-doc-hits polygon {
+  fill: var(--erp-warning);
+  fill-opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
+.erp-doc-hits polygon.is-active {
+  fill: var(--erp-action-secondary);
+  fill-opacity: 0.3;
+  stroke: var(--erp-action-secondary);
+  stroke-width: 2;
+}
+
+.erp-doc-page__hits {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Danh dau (trong o xem to) ---------- */
+
+/*
+ * LUON MOT HANG, phan thua cuon ngang. Cho xuong dong thi chon But / Chu (hien
+ * them o mau + do net) la thanh cao gap doi o man 1440 -> ca trang nhay ~48px
+ * moi lan doi cong cu. `overflow-x: scroll` (khong phai auto) giu san cho cho
+ * thanh cuon: auto thi chinh thanh cuon hien ra lai day trang xuong.
+ */
+.erp-doc-markbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0 0 16px;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--erp-border-strong) transparent;
+  background: var(--erp-surface);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-doc-markbar__group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Field: o chon mau dau cao 48px (form.css) con nut cong cu 44px -> chon Dau duyet la thanh cao them 4px. Giu san chieu cao do. */
+[data-theme='field'] .erp-doc-markbar__group {
+  min-height: 48px;
+}
+
+.erp-doc-markbar__tool,
+.erp-doc-markbar__width {
+  padding: 0;
+}
+
+/* Hoan tac / Xong dinh o mep phai: cuon ngang toi dau cung khong mat nut thoat. */
+.erp-doc-markbar__actions {
+  position: sticky;
+  right: 0;
+  margin-left: auto;
+  padding: 0 16px 0 8px;
+  background: var(--erp-surface);
+  border-left: 1px solid var(--erp-border);
+}
+
+.erp-doc-markbar__swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  cursor: pointer;
+}
+
+.erp-doc-markbar__swatch > span {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-round);
+}
+
+.erp-doc-markbar__swatch:hover > span {
+  transform: scale(1.1);
+}
+
+.erp-doc-markbar__swatch[aria-pressed='true'] > span {
+  box-shadow:
+    0 0 0 2px var(--erp-surface),
+    0 0 0 4px var(--erp-text-primary);
+}
+
+.erp-doc-markbar__swatch:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-doc-markbar__stroke {
+  display: block;
+  width: 20px;
+  background: currentColor;
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-doc-markbar__glyph {
+  font-weight: 600;
+  line-height: 1;
+}
+
+.erp-doc-markbar__preset {
+  flex: none;
+  width: auto;
+  min-height: var(--erp-touch-target);
+}
+
+.erp-doc-markbar__done {
+  padding: 0 12px;
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-doc-markbar__done .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-doc-preview__stage.is-marking {
+  user-select: none;
+}
+
+/* Lop ve nam tren anh trang; chu dung phong in vao tep nhu lop phu so trang. */
+.erp-doc-markup {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'DocTools Stamp', sans-serif;
+  white-space: pre;
+  /* Cham keo tren dien thoai la ve, khong phai cuon trang. */
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.erp-doc-markup[data-tool='select'] {
+  cursor: default;
+}
+
+.erp-doc-markup[data-tool='text'],
+.erp-doc-markup[data-tool='note'] {
+  cursor: text;
+}
+
+.erp-doc-markup[data-tool='stamp'] {
+  cursor: copy;
+}
+
+/* Tô sáng / gạch bám dòng: rê lên chữ thì con trỏ thành dấu chèn để biết kéo sẽ bám theo chữ. */
+.erp-doc-markup[data-over-text] {
+  cursor: text;
+}
+
+.erp-doc-markup__outline {
+  fill: none;
+  stroke: var(--erp-action-secondary);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+/* Xoa that: khoi den dac + vien do dut net, khong lan voi khung che chu. */
+.erp-doc-redact__edge {
+  fill: none;
+  stroke: var(--erp-danger);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.erp-doc-markup__handle {
+  fill: var(--erp-surface);
+  stroke: var(--erp-action-secondary);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.erp-doc-markup__input {
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  min-width: 3em;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'DocTools Stamp', sans-serif;
+  line-height: 1.3;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+  outline: 1px dashed var(--erp-action-secondary);
+  resize: none;
+}
+
+.erp-doc-markup__input.is-note {
+  background: color-mix(in srgb, var(--erp-doc-note) 20%, white);
+  outline: 1px solid var(--erp-doc-note);
+}
+
+/* Khung chu / ghi chu da keo rong: o go cung tu xuong dong nhu luc xuat. */
+.erp-doc-markup__input.is-wrapped {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Sua chu: ngat dong nhu luc xuat (tu xuong dong, be tu dai), xoay quanh goc tren-trai theo huong chu goc. */
+.erp-doc-markup__input.is-edit {
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  transform-origin: 0 0;
+}
+
+/* Thanh danh dau: nhac sua/che chu chi tren be mat. */
+.erp-doc-markbar__notice {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+/* Thanh cat chi co loi nhac + 2 nut: xuong dong duoc, khong can dai cuon ngang. */
+.erp-doc-cropbar {
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 4px 16px;
+  overflow-x: visible;
+}
+
+.erp-doc-cropbar .erp-doc-markbar__notice {
+  flex: 1 1 auto;
+  white-space: normal;
+}
+
+.erp-doc-cropbar .erp-doc-markbar__actions {
+  position: static;
+  padding: 4px 0;
+  border-left: 0;
+}
+
+.erp-doc-markbar__notice--redact {
+  color: var(--erp-danger);
+  font-weight: 500;
+}
+
+/* Cat trang: phan bi bo phu toi — trang luon la giay trang nen mau phu khong theo theme. */
+.erp-doc-crop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.erp-doc-crop__shade {
+  fill: rgb(0 0 0 / 0.45);
+}
+
+.erp-doc-crop__box {
+  fill: transparent;
+  stroke: var(--erp-action-secondary);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+  cursor: move;
+}
+
+.erp-doc-cropbar__actions {
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+/* ---------- Bang xuat ---------- */
+
+/* Dinh ngay duoi thanh cong cu (chieu cao do bang ResizeObserver o DocToolbar);
+   cao hon man hinh thi tu cuon, khong thi phan duoi khong bao gio keo toi duoc.
+   Chua 32px o day = le duoi lon nhat cua khung quanh (khach 32, khung app 20):
+   chua it hon thi cuon toi cuoi trang, bang bi mep duoi cua cot day nguoc len,
+   hang tab chui xuong duoi thanh cong cu. */
+.erp-doc-export {
+  --erp-doc-export-top: calc(var(--erp-doc-toolbar-h, 64px) + 16px - var(--erp-doc-frame-pad));
+  position: sticky;
+  top: var(--erp-doc-export-top);
+  max-height: calc(var(--erp-doc-viewport) - var(--erp-doc-toolbar-h, 64px) - 48px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-doc-export__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.erp-doc-export__section + .erp-doc-export__section {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-doc-export__title {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.erp-doc-export__title .bi {
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-export__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  margin-bottom: 4px;
+}
+
+.erp-doc-export__scope {
+  margin: 4px 0;
+}
+
+.erp-doc-export__sheet,
+.erp-doc-export__options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 12px;
+  margin: 8px 0 12px;
+}
+
+.erp-doc-export__sheet > legend,
+.erp-doc-export__options > legend,
+.erp-doc-export__hint {
+  grid-column: 1 / -1;
+  float: none;
+}
+
+.erp-doc-export__hint {
+  margin-top: 2px;
+}
+
+.erp-doc-export__sublabel {
+  margin-bottom: 2px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-doc-export__status {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-doc-nudge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-success-soft);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-doc-nudge__text {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-doc-nudge__icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-success);
+}
+
+.erp-doc-nudge__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-doc-export__status-text {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-export__status-bar {
+  height: 6px;
+}
+
+/* Khong transition: tien do nhich lien tuc -> vach chay khong ngung -> ve lai ca trang, xuat cham han. */
+.erp-doc-export__status-bar .progress-bar {
+  transition: none;
+}
+
+.erp-doc-export__cta,
+.erp-doc-export .btn {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-doc-export__ranges {
+  padding-left: 24px;
+}
+
+.erp-doc-export__row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.erp-doc-export__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-doc-export__note {
+  margin: 0 0 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-doc-export__note--redact {
+  margin-top: 8px;
+  color: var(--erp-danger);
+}
+
+/* ---------- Tab cot phai + trang tri ---------- */
+
+.erp-doc-export__tabs {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-bottom: 0;
+  padding: 0 8px;
+  background: var(--erp-surface);
+}
+
+.erp-doc-export__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-deco__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: var(--erp-touch-target);
+}
+
+.erp-doc-deco__head .erp-doc-export__title {
+  flex: 1;
+}
+
+.erp-doc-deco__toggle {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: var(--erp-touch-target);
+  cursor: pointer;
+}
+
+.erp-doc-deco__head .form-check {
+  margin: 0;
+  padding-left: 0;
+}
+
+.erp-doc-deco__head .form-check-input {
+  width: 2.75rem;
+  height: 1.5rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+.erp-doc-deco__hint {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.erp-doc-deco__slots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-doc-deco__slot {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-doc-deco__slot-label {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-doc-deco__tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-doc-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 2px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.erp-doc-token code {
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-doc-token:hover {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-border-strong);
+}
+
+.erp-doc-token:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-doc-deco__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* Nhan "Cach mep (pt)" dai hon o 1/3 cot - cho xuong dong thay vi cat chu. */
+.erp-doc-deco__grid .erp-doc-export__label {
+  min-height: 2.5em;
+  display: flex;
+  align-items: flex-end;
+}
+
+.erp-doc-deco__colors .form-check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-doc-deco__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--erp-radius-round);
+  border: 1px solid var(--erp-border-strong);
+}
+
+.erp-doc-range__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.erp-doc-range__value {
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-scope {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (hover: none) {
+  .erp-doc-token,
+  .erp-doc-range .form-range {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+/* ---------- Man hinh vua & nho ---------- */
+
+/* Thanh xem to chi vua mot dong tu ~1200px. Hep hon: dong 1 = tieu de + chuyen trang +
+   Dong, dong 2 = thu phong + danh dau — de tu xuong dong thi nut Dong roi le loi xuong
+   dong duoi, khong con o goc tren-phai nhu moi hop thoai. */
+@media (max-width: 1200px) {
+  /* Nen chiem gan het dong: chi con cho cho nhom chuyen trang + Dong, nhom thu phong bi day xuong. */
+  .erp-doc-preview__title {
+    flex: 1 1 calc(100% - 400px);
+    order: -3;
+  }
+
+  .erp-doc-preview__group--nav {
+    order: -2;
+  }
+
+  .erp-doc-preview__close {
+    order: -1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-doc-tools__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-doc-export {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    /* Nut "Xuat tep" cuon toi day: thieu le nay thi hang tab chui duoi thanh cong cu dinh. */
+    scroll-margin-top: calc(var(--erp-doc-toolbar-h, 64px) + 16px);
+  }
+
+  .erp-doc-jump {
+    position: sticky;
+    bottom: 16px;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    pointer-events: none;
+  }
+
+  .erp-doc-jump__button {
+    min-height: 48px;
+    padding-inline: 24px;
+    box-shadow: var(--erp-shadow2);
+    pointer-events: auto;
+  }
+
+  /* Cot phai khong con tu cuon: dinh top:0 thi tab chui xuong duoi thanh cong cu dinh. */
+  .erp-doc-export__tabs {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-doc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .erp-doc-page.is-drop-before::before {
+    left: -8px;
+  }
+
+  .erp-doc-page.is-drop-after::after {
+    right: -8px;
+  }
+
+  /* Dien thoai: bo chu, giu icon + tooltip/aria de thanh cong cu khong chiem nua man hinh. */
+  .erp-doc-tool__label,
+  .erp-doc-toolbar__reset-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Thanh dinh: de moi nhom tu xuong dong thi 3 nhom + trang thai thanh 5 dong,
+     che hon 1/3 man hinh 740px khi cuon. Trai 10 nut ra luoi 5 cot = 2 dong. */
+  .erp-doc-toolbar {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .erp-doc-toolbar__group {
+    display: contents;
+  }
+
+  .erp-doc-tool {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .erp-doc-toolbar__status {
+    grid-column: 1 / -1;
+    flex-wrap: nowrap;
+    margin-left: 0;
+    padding-left: 8px;
+  }
+
+  /* ConfirmAction boc nut trong mot span — day chinh span do sang phai. */
+  .erp-doc-toolbar__status > :last-child {
+    margin-left: auto;
+  }
+
+  .erp-doc-drop {
+    margin-top: 8px;
+    padding: 32px 16px 24px;
+  }
+
+  /* Nhan + nut dong chung hang dau, cac goi y xuong duoi: de nguyen thi nut dong roi thanh mot hang rieng. */
+  .erp-doc-suggest {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .erp-doc-suggest__actions {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .erp-doc-preview__bar {
+    padding: 4px 8px;
+    gap: 4px 8px;
+  }
+
+  .erp-doc-preview__title {
+    flex: 1 1 0;
+  }
+
+  .erp-doc-preview__stage {
+    padding: 8px;
+  }
+
+  .erp-doc-markbar {
+    gap: 8px;
+    padding: 4px 8px 0;
+  }
+
+  /* Man hep: nhom thao tac chiem hon nua be ngang, dinh lai la che het cong cu -> cho cuon theo. */
+  .erp-doc-markbar__actions {
+    position: static;
+    padding: 0;
+    border-left: 0;
+  }
+
+  .erp-doc-cropbar {
+    padding: 4px 8px;
+  }
+
+  .erp-doc-cropbar .erp-doc-markbar__notice {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-doc-drop,
+  .erp-doc-tool,
+  .erp-doc-page__zoom,
+  .erp-doc-page,
+  .erp-doc-token {
+    transition: none;
+  }
+}
+
+/* ---------- Dien form ---------- */
+
+.erp-doc-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-doc-form__label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Hang o chon cao bang vung cham 44px: can giua de "tr. N" khong rot xuong duoi. */
+.erp-doc-form__label-row:has(> .form-check) {
+  align-items: center;
+}
+
+.erp-doc-form__label-row .form-check {
+  min-height: var(--erp-touch-target);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-doc-form__page {
+  flex: none;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-form__required {
+  color: var(--erp-danger);
+}
+
+.erp-doc-form__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+.erp-doc-form__choices .form-check {
+  min-height: var(--erp-touch-target);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+/* Ten tep dai (ho-so-thanh-toan-dot-2-ban-ky.pdf) khong duoc day cot phai rong ra. */
+.erp-doc-form__file {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-doc-form__warn {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.8125rem;
+}
+
+.erp-doc-form__warn .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+/* Thanh Ap dung dinh day cot phai: form dai van thay nut ma khong phai cuon het. */
+.erp-doc-form__apply {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--erp-surface);
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-doc-form__apply .erp-doc-export__cta {
+  flex: 1 1 auto;
+}
+
+.erp-doc-form__discard {
+  flex: none;
+}
+
+/* ---------- Don ban scan ---------- */
+.erp-doc-scan__section + .erp-doc-scan__section {
+  margin-top: 20px;
+}
+
+.erp-doc-scan__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0 0 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-doc-scan__action {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.erp-doc-scan__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-doc-scan__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  padding: 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.erp-doc-scan__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-doc-scan__item:has(input:checked) {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-doc-scan__item:has(input:focus-visible) {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-doc-scan__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 128px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+}
+
+.erp-doc-scan__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-doc-scan__meta small {
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-scan__check {
+  min-height: 0;
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.erp-doc-scan__empty {
+  color: var(--erp-text-secondary);
+}
+
+.erp-doc-scan__warn {
+  color: var(--erp-danger);
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-doc-scan__item {
+    transition: none;
+  }
+}

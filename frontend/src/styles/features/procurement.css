@@ -1,0 +1,99 @@
+/*
+ * Style rieng cua phan he Mua hang & Cung ung (menu 08).
+ *
+ * Khong viet hex o day - moi mau doc qua bien `--erp-*` de ba theme
+ * Light / Dark / Field dung chung mot component (Design System muc 12 & 15).
+ */
+
+/* Trang thai nhap kho tren the kanban: nhan trang thai + ma phieu. */
+.erp-procurement__receipt {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+/*
+ * Diem so + xep hang di canh nhau (danh gia NCC, ty le giao dung han).
+ *
+ * Con so va nhan chu luon di cung: mot con so tran khong noi duoc "88 diem la
+ * tot hay xau", con mot nhan mau khong noi duoc "tot den muc nao".
+ */
+.erp-procurement__rating {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tien do tren the kanban: con so truoc, thanh tien do sau. */
+.erp-procurement__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 120px;
+}
+
+.erp-procurement__progress-bar {
+  height: 4px;
+}
+
+/* --- Bang doi chieu bao gia (So sanh nha cung cap) --- */
+
+.erp-procurement__sheet-meta {
+  margin-bottom: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-procurement__sheet-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-procurement__quotes {
+  margin-bottom: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-procurement__quotes th,
+.erp-procurement__quotes td {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/*
+ * Dong bao gia duoc chon.
+ *
+ * To nen NHAT + vien trai day: dong duoc chon phai noi len khi luot mat, nhung
+ * ban than nhan "Đã chọn" o cot cuoi moi la thu mang nghia - nen day chi la ho
+ * tro thi giac, khong phai cach duy nhat de biet (muc 05 & 11).
+ */
+.erp-procurement__quote--selected > * {
+  background: var(--erp-success-soft);
+}
+
+.erp-procurement__quote--selected > :first-child {
+  box-shadow: inset 3px 0 0 var(--erp-success);
+}
+
+.erp-procurement__quote-flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 576px) {
+  /* Bang bao gia van cuon ngang duoc, nhung ghi chu thi xuong dong cho de doc. */
+  .erp-procurement__sheet-note {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

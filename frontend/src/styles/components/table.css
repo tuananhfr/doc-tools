@@ -1,0 +1,817 @@
+/*
+ * Bang du lieu - muc 10.
+ * Header dung surface phu, trang thai dung badge semantic, hang hover ro.
+ */
+
+.table {
+  --bs-table-bg: var(--erp-surface);
+  --bs-table-color: var(--erp-text-primary);
+  --bs-table-border-color: var(--erp-border);
+  --bs-table-hover-bg: var(--erp-surface-hover);
+  --bs-table-hover-color: var(--erp-text-primary);
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+
+.table > thead {
+  background: var(--erp-surface-secondary);
+}
+
+.table > thead th {
+  padding: 12px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: middle;
+}
+
+.table > tbody td {
+  padding: 12px 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/*
+ * Dòng cuối bỏ viền đáy để khỏi chồng lên viền của khung .erp-table — NHƯNG
+ * KHÔNG áp trong TỜ IN. Bảng hàng của bản in là HTML Drupal mang class .table,
+ * và luật này (0,2,3) thắng luật kẻ viền của tờ in (.erp-order-print__goods
+ * .table > tbody td = 0,2,2) ⇒ dòng cuối / dòng "Tổng cộng" mất gạch đáy trên
+ * mọi bản in nhúng bảng Drupal (đơn bán, đơn mua, hợp đồng…), im lặng.
+ */
+.table > tbody tr:last-child td:not(#print td, .erp-print td) {
+  border-bottom: none;
+}
+
+/* Khung bang: vien + bo goc + cuon ngang rieng cho vung bang. */
+.erp-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/*
+ * Hang tien ich cua bang - gio chi con nut "Cot".
+ *
+ * Tim kiem va bo loc da chuyen len `PageToolbar` o cap trang, nen hang nay
+ * khong con phai cao bang mot o nhap: giu 16px doc la an khong cua man hinh
+ * mot dong du lieu ma chang hien them gi.
+ */
+.erp-table__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--erp-border);
+  /*
+   * KHONG gian doc.
+   *
+   * `flex: 1 1 auto` cu lam hang nay an het cho thua cua the bang khi bang
+   * RONG: noi dung canh giua theo chieu doc nen tieu de bi day xuong ~140px va
+   * con mot mang trang nua truoc header cot. Vung cuon moi la thu duoc gian.
+   */
+  flex: 0 0 auto;
+}
+
+.erp-table__scroll {
+  flex: 1 1 auto;
+  overflow-x: auto;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Nut sap xep tren header - co icon chi huong, khong chi doi mau. */
+.erp-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.erp-table__sort:hover {
+  color: var(--erp-action-secondary);
+}
+
+.erp-table__sort-icon {
+  font-size: 0.75rem;
+  opacity: 0.45;
+}
+
+.erp-table__sort--active .erp-table__sort-icon {
+  opacity: 1;
+  color: var(--erp-action-secondary);
+}
+
+/* Cot thao tac ghim ben phai. */
+.erp-table__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+/*
+ * Keo dong de doi thu tu (`onRowMove` cua `DataTable`).
+ *
+ * Cot tay keo hep va KHONG nam trong menu "Cot": an no la mat duong doi thu tu
+ * ma khong co gi noi vi sao. Padding cua o hep hon moi o khac vi trong o chi co
+ * mot nut icon.
+ */
+.table > thead th.erp-table__drag-col,
+.table > tbody td.erp-table__drag-cell {
+  width: 40px;
+  padding-inline: 8px 0;
+}
+
+.erp-table__drag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 32px;
+  border: none;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  cursor: grab;
+  /* Khong co dong nay thi tren man cham trinh duyet cuon trang theo ngon tay
+     thay vi gui pointermove — keo khong bao gio bat dau. */
+  touch-action: none;
+}
+
+.erp-table__drag:hover,
+.erp-table__drag:focus-visible {
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-table__drag:focus-visible {
+  outline: 2px solid var(--erp-action-secondary);
+  outline-offset: 1px;
+}
+
+/* Field Mode: dich bam toi thieu 44px, cung luat voi moi nut icon khac. */
+[data-theme='field'] .erp-table__drag {
+  width: var(--erp-touch-target, 44px);
+  height: var(--erp-touch-target, 44px);
+}
+
+/* Trong luc keo: khong boi den chu, con tro "dang cam" tren ca bang. */
+.erp-table--dragging,
+.erp-table--dragging .erp-table__drag {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/*
+ * Dong dang keo: nen soft + vien trai dam — dong nay CHINH LA ban xem truoc,
+ * no da dung o cho se roi xuong. Mo di nhu the kanban thi nguoi dung doc ra la
+ * "dong bi an", trong khi o day no la dong quan trong nhat tren man hinh.
+ */
+/*
+ * Qua bien `--bs-table-bg-state`, KHONG dat `background`: Bootstrap 5.3 to mau
+ * o bang `box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state…)`, nen mot
+ * `background` rieng bi lop hover phu len — dong dang keo luon nam duoi con tro
+ * nen luon bi hover, va mau keo khong bao gio hien ra.
+ */
+.table > tbody tr.erp-table__row--dragging > td {
+  --bs-table-bg-state: var(--erp-action-secondary-soft);
+}
+
+.table > tbody tr.erp-table__row--dragging > td:first-child {
+  box-shadow:
+    inset 3px 0 0 var(--erp-action-secondary),
+    inset 0 0 0 9999px var(--erp-action-secondary-soft);
+}
+
+.erp-table__row--dragging .erp-table__drag {
+  color: var(--erp-action-secondary);
+}
+
+/* Lop phu khi dang tai - giu nguyen du lieu cu de khong nhay layout. */
+.erp-table__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--erp-surface) 65%, transparent);
+  z-index: 2;
+}
+
+.erp-table__empty {
+  padding: 48px 16px;
+  text-align: center;
+  color: var(--erp-text-tertiary);
+}
+
+/* Thanh phan trang. */
+.erp-table__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  flex: 0 0 auto;
+  margin-bottom: 15px;
+}
+
+.erp-table__page-size {
+  width: auto;
+  min-height: 32px;
+  padding-block: 2px;
+  font-size: 0.75rem;
+}
+
+.pagination {
+  --bs-pagination-color: var(--erp-text-secondary);
+  --bs-pagination-bg: var(--erp-surface);
+  --bs-pagination-border-color: var(--erp-border);
+  --bs-pagination-hover-color: var(--erp-action-secondary);
+  --bs-pagination-hover-bg: var(--erp-action-secondary-soft);
+  --bs-pagination-hover-border-color: var(--erp-border);
+  --bs-pagination-focus-box-shadow: 0 0 0 2px var(--erp-action-secondary-soft);
+  --bs-pagination-active-bg: var(--erp-action-secondary);
+  --bs-pagination-active-border-color: var(--erp-action-secondary);
+  --bs-pagination-active-color: var(--erp-text-on-accent);
+  --bs-pagination-disabled-color: var(--erp-text-tertiary);
+  --bs-pagination-disabled-bg: var(--erp-surface);
+  --bs-pagination-disabled-border-color: var(--erp-border);
+  --bs-pagination-border-radius: var(--erp-radius-md);
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .erp-table__footer {
+    justify-content: center;
+  }
+
+  .table > thead th,
+  .table > tbody td {
+    padding: 10px 12px;
+  }
+}
+
+/*
+ * `PageToolbar` NHUNG trong hang tien ich cua bang.
+ *
+ * Khong cho no gian thi cai `justify-content: space-between` cua chinh no vo
+ * nghia: o tim kiem dinh sat nut "Them moi" thay vi ve mep phai. Va bo khoang
+ * dem duoi cua ban dung rieng - o day da co padding cua hang roi.
+ */
+.erp-table__toolbar > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-table__toolbar .erp-page-toolbar {
+  margin-bottom: 0;
+}
+
+/*
+ * Bang RONG: keo bang cao het vung cuon roi canh giua loi giai thich.
+ *
+ * Khong lam vay thi doan chu dinh ngay duoi header con lai mot mang trang cao
+ * gan 500px - nguoi dung doc ra la "trang bi hong" chu khong phai "khong co
+ * du lieu".
+ */
+.erp-table--empty .erp-table__scroll > .table {
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.erp-table--empty tbody td {
+  vertical-align: middle;
+}
+
+.erp-table--empty .erp-table__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  min-height: 200px;
+}
+
+/*
+ * TABLE ENGINE — cột NGỮ NGHĨA (`components/data-table/column-schema.ts`).
+ *
+ * `DataTable` gắn `erp-col--<kiểu>` lên `<th>` / `<td>` của cột có khai `type`.
+ * Bề rộng và căn lề đi qua `resolveColumn`; ở đây chỉ còn thứ CSS mới làm được:
+ * không gãy dòng, chữ số thẳng cột, cột tên giữ bề rộng đọc được, cột thao tác
+ * ghim mép phải.
+ */
+.table > thead th.erp-col--nowrap,
+.table > tbody td.erp-col--nowrap {
+  white-space: nowrap;
+}
+
+/* Chữ số cùng bề rộng: một cột tiền đọc được theo hàng đơn vị. */
+.table > tbody td.erp-col--money,
+.table > tbody td.erp-col--number {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Cột chữ ĐƯỢC xuống dòng phải có bề rộng tối thiểu. Bảng dàn cột tự động: khi
+ * tổng bề rộng vượt khung, trình duyệt bóp cột xuống-dòng-được trước (cột
+ * nowrap không co được) — tên khách hàng thành mỗi từ một dòng, một dòng bảng
+ * cao 260px. Có mức sàn thì bảng cuộn ngang có kiểm soát, cột thao tác vẫn ghim.
+ * Hai con số khớp `minWidth` của kiểu trong `column-schema.ts`.
+ */
+.table > thead th.erp-col--text_primary,
+.table > tbody td.erp-col--text_primary {
+  min-width: 200px;
+}
+
+.table > thead th.erp-col--entity,
+.table > tbody td.erp-col--entity {
+  min-width: 160px;
+}
+
+/*
+ * Cột thao tác GHIM mép phải khi bảng cuộn ngang — nút sửa / chuyển bước của
+ * dòng không được trôi khỏi màn hình. Ô của Bootstrap đã có nền đặc
+ * (`--bs-table-bg`) và tô hover bằng `box-shadow: inset`, nên KHÔNG đặt thêm
+ * `box-shadow` ở đây: đặt là mất màu hover của đúng ô này.
+ *
+ * Từ 577px trở lên: ở điện thoại dòng là thẻ, ô thao tác nằm cuối thẻ.
+ */
+@media (min-width: 577px) {
+  .erp-table__scroll .table > thead th.erp-col--action,
+  .erp-table__scroll .table > tbody td.erp-col--action {
+    position: sticky;
+    right: 0;
+    z-index: 1;
+  }
+
+  /*
+   * Vạch ngăn mép trái: cột ghim che phần bảng trôi bên dưới, không có vạch thì
+   * cột bị che dở trông như bị cắt chữ. Vẽ bằng phần tử giả vì viền của ô trong
+   * bảng `border-collapse` không đi theo ô ghim.
+   */
+  .erp-table__scroll .table > thead th.erp-col--action::before,
+  .erp-table__scroll .table > tbody td.erp-col--action::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: 1px;
+    background: var(--erp-border);
+    pointer-events: none;
+  }
+}
+
+/*
+ * TABLET (577–1024px) — mode riêng, không phải desktop co nhỏ.
+ *
+ * `DataTable` chỉ vẽ các cột VỪA bề ngang (`fitColumns`); cột còn lại nằm trong
+ * hàng chi tiết `.erp-table__detail`, mở bằng nút `.erp-table__more` cuối dòng.
+ * Vùng chạm tối thiểu 44px cho mọi nút trong bảng (tài liệu MASTER mục 3).
+ */
+.table > thead th.erp-table__more-col,
+.table > tbody td.erp-table__more-cell {
+  width: 48px;
+  padding-inline: 0 4px;
+  text-align: center;
+}
+
+.erp-table__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--erp-touch-target, 44px);
+  height: var(--erp-touch-target, 44px);
+  border: none;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+}
+
+.erp-table__more:hover,
+.erp-table__more:focus-visible,
+.erp-table__more[aria-expanded='true'] {
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-table__more:focus-visible {
+  outline: 2px solid var(--erp-action-secondary);
+  outline-offset: 1px;
+}
+
+/* Hàng chi tiết không đổi màu khi rê: nó là phần mở rộng của dòng trên, không phải một dòng. */
+.table > tbody tr.erp-table__detail > td {
+  --bs-table-bg-state: var(--erp-surface-secondary);
+  padding: 8px 16px 14px;
+}
+
+.erp-table__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 6px 32px;
+  margin: 0;
+}
+
+.erp-table__fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.erp-table__fact > dt {
+  flex: 0 0 auto;
+  max-width: 45%;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.erp-table__fact > dd {
+  min-width: 0;
+  margin: 0;
+  text-align: end;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 577px) and (max-width: 1024px) {
+  /*
+   * Nút thao tác xếp tối đa BA nút một hàng. Bảng có 5–6 nút 44px trên một dòng
+   * (Đơn bán, Đơn mua) là cột thao tác rộng hơn 300px: ở tablet dọc bảng chỉ còn
+   * lại mỗi cột tên. Xếp hai hàng thì dòng cao thêm 48px nhưng giữ được hai, ba
+   * cột dữ liệu — khớp `TABLET_ACTION_WIDTH` của `DataTable`.
+   */
+  .erp-table .erp-table__actions {
+    flex-wrap: wrap;
+    max-width: calc(3 * var(--erp-touch-target, 44px) + 8px);
+    margin-left: auto;
+    white-space: normal;
+  }
+
+  .erp-table .erp-table__actions .btn-icon,
+  .erp-table .erp-table__sort {
+    min-width: var(--erp-touch-target, 44px);
+    min-height: var(--erp-touch-target, 44px);
+  }
+
+  .erp-table .erp-table__sort {
+    min-width: 0;
+  }
+}
+
+/*
+ * BẢNG XẾP CHỒNG (`.erp-stack-table`) — điện thoại ≤576px, docs/mobile/README.md.
+ *
+ * Bảng 6–8 cột ở 390px cuộn ngang: đọc một dòng phải vuốt qua lại. Ở điện thoại
+ * MỖI DÒNG thành một thẻ: ô TÊN lên đầu (không nhãn), các ô còn lại là "nhãn —
+ * giá trị", ô thao tác xuống cuối. Desktop không đổi gì — vẫn là bảng.
+ *
+ * Ba nơi sinh ra lớp này, cùng một bộ luật:
+ * - `DataTable` (lớp `__title` / `__actions` / `__skip` / `__extra` / `__toggle`);
+ * - `ReportTable` (cùng các lớp đó, thêm hàng nhóm và hàng tổng);
+ * - `StackTable` (`components/common`) cho bảng VIẾT TAY: nó đọc hàng tiêu đề
+ *   rồi gắn THUỘC TÍNH `data-label` / `data-stack` (title · actions · skip · wide,
+ *   và `group` trên `<tr>`). Bảng viết tay muốn tự quyết thì gắn thẳng
+ *   `data-label` + các lớp `__title` / `__actions` vào ô.
+ *
+ * Danh sách có tương tác riêng (mở chi tiết trong bảng trượt…) thì dùng
+ * `ObjectCard`, xem `SiteRecordBoard`.
+ *
+ * Bộ chọn `:is(.erp-stack-table.table, table.erp-stack-table)`: nhận cả bảng
+ * react-bootstrap lẫn `<table>` thô (`StackTable plain`). Độ đặc hiệu của `:is`
+ * lấy theo vế mạnh nhất nên bằng đúng `.erp-stack-table` + `.table` cũ — không luật
+ * nào của màn đang thua nay lại thắng.
+ */
+@media (max-width: 576px) {
+  .erp-table-scroll:has(> .erp-stack-table) {
+    overflow-x: visible;
+  }
+
+  /* `!important`: `DataTable` / `ReportTable` đặt `min-width` bằng style inline. */
+  :is(.erp-stack-table.table, table.erp-stack-table) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0 !important;
+    border: 0;
+  }
+
+  /* Thẻ nằm trên nền trang, không lồng trong khung trắng của bảng. */
+  .erp-table__scroll:has(> .erp-stack-table) {
+    padding: 8px;
+    background: var(--erp-bg);
+  }
+
+  /*
+   * Ẩn khỏi màn hình, không ẩn khỏi trình đọc màn hình.
+   *
+   * `display: block` là BẮT BUỘC: `<thead>` mặc định là `table-header-group`, mà
+   * `width` / `overflow` không có tác dụng với hộp bảng — nó giữ nguyên bề rộng
+   * thật của hàng tiêu đề (bảng 6 cột nowrap là 800px) và đẩy khung cuộn của
+   * bảng ra một thanh cuộn ngang, dù không chữ nào hiện ra. Đã mắc ở màn So
+   * sánh nhà cung cấp (01/10/2026).
+   */
+  :is(.erp-stack-table.table, table.erp-stack-table) > thead,
+  :is(.erp-stack-table.table, table.erp-stack-table) > colgroup {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-lg);
+    background: var(--erp-surface);
+  }
+
+  /*
+   * `:is(td, th)`: nhiều bảng dùng `<th scope="row">` làm ô tên của dòng. Chỉ nhắm
+   * `td` thì ô đó đứng ngoài mọi luật ở đây — giữ `nowrap` của bảng gốc và tràn
+   * khỏi thẻ (màn So sánh nhà cung cấp, 01/10/2026).
+   *
+   * Ô = lưới hai cột (nhãn | giá trị), không phải flex: một ô có thể mang chữ
+   * trần KÈM vài dòng phụ (`<div>`); flex sẽ xếp chúng cạnh nhau trên một hàng.
+   * Nhãn nằm ở ô (hàng 1, cột 1); mọi thứ còn lại tự rơi xuống cột 2, mỗi phần
+   * tử một hàng. KHÔNG cho nhãn `span` nhiều hàng: phần chiều cao dư bị chia
+   * cho các hàng rỗng, ra một khe trắng dưới mọi ô có giá trị hai dòng.
+   */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(td, th) {
+    display: grid;
+    grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: baseline;
+    justify-items: end;
+    position: static;
+    width: auto;
+    min-width: 0;
+    padding: 2px 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    /* `!important`: ô mang `.text-start` / `.text-center` của Bootstrap. */
+    text-align: end !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(td, th)[data-label]::before {
+    content: attr(data-label);
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    color: var(--erp-text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-align: start;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(td, th) > * {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(td, th):empty {
+    display: none;
+  }
+
+  /* Ô nhận diện dòng: lên đầu thẻ, trọn bề ngang, không nhãn. */
+  /* `justify-items: normal`: Chrome áp `justify-items` cho cả khối thường, nên
+     để nguyên `end` của ô lưới là dòng tên co lại và dạt sang phải. */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(.erp-stack-table__title, [data-stack='title'], th:not([data-label])) {
+    display: block;
+    justify-items: normal;
+    order: -1;
+    padding-bottom: 4px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-align: start !important;
+  }
+
+  /* Dòng "không có dữ liệu" / khung xương của `DataTable`: một ô trọn thẻ. */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(td, th)[colspan] {
+    display: block;
+    justify-items: normal;
+    text-align: center !important;
+  }
+
+  /* `StackTable`: ô gộp nhiều cột trong một dòng dữ liệu (nhãn "Tổng cộng" của
+     hàng tổng) — chữ trần, canh trái, đậm. */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > td[data-stack='wide'] {
+    order: -1;
+    font-weight: 600;
+    text-align: start !important;
+  }
+
+  /* `StackTable`: hàng chỉ có MỘT ô gộp hết bảng (tiêu đề nhóm) — là một dòng
+     chữ giữa các thẻ, không phải một thẻ. */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr[data-stack='group'] {
+    padding: 6px 2px 0;
+    border: 0;
+    background: transparent;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr[data-stack='group'] > td {
+    text-align: start !important;
+  }
+
+  /* Cột số thứ tự không phải dữ kiện; cột vượt quá số dữ kiện bày sẵn nằm sau
+     nút "Xem thêm". */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(.erp-stack-table__skip, [data-stack='skip']),
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr:not(.is-expanded) > :is(td, th).erp-stack-table__extra {
+    display: none;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr > :is(td, th).erp-stack-table__toggle {
+    display: block;
+    order: 1;
+    justify-items: normal;
+    text-align: start !important;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr > :is(td, th).erp-stack-table__toggle .btn {
+    min-height: 32px;
+  }
+
+  .erp-table__sort-select {
+    width: auto;
+    max-width: 55%;
+  }
+
+  /*
+   * Dòng GHI CHÚ của dòng trên (`StackTable` gắn `.erp-stack-table__note`): dính
+   * vào đáy thẻ của dòng đó. Khoảng hở giữa hai thẻ là 8px + viền 1px, nên kéo
+   * lên 9px rồi bỏ viền / bo góc ở chỗ hai khối chạm nhau.
+   */
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr.erp-stack-table__note {
+    margin-top: -9px;
+    padding-top: 0;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr:has(+ tr.erp-stack-table__note) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr.erp-stack-table__note > :is(td, th)[colspan] {
+    display: block;
+    justify-items: normal;
+    padding: 0 0 2px;
+    text-align: start !important;
+  }
+
+  /*
+   * Dòng TIÊU ĐỀ NHÓM trong thân bảng (`<tr><th colSpan>` — "Phần móng", "Phần
+   * thân"…): là tên một nhóm thẻ, không phải một thẻ. Bỏ khung, để như tiêu đề
+   * mục đứng trên các thẻ của nhóm.
+   */
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr:has(> th:only-child) {
+    padding: 6px 2px 0;
+    border: 0;
+    background: transparent;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tbody > tr > th:only-child {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--erp-text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    /* `!important`: luật ô gộp (`[colspan]`) phía trên canh giữa bằng `!important`. */
+    text-align: start !important;
+  }
+
+  /*
+   * Hàng TỔNG (`<tfoot>`) của bảng viết tay: một thẻ riêng, nền phụ, đứng sau
+   * các thẻ dòng. Ô gộp ("Tổng cộng") làm tiêu đề thẻ; ô số mang nhãn cột như
+   * mọi dòng khác (`StackTable` gắn `data-label` cho cả `<tfoot>`).
+   */
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot {
+    display: block;
+    margin-top: 8px;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-lg);
+    background: var(--erp-surface-secondary);
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th) {
+    display: grid;
+    grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: baseline;
+    justify-items: end;
+    padding: 2px 0;
+    border: 0;
+    background: transparent;
+    text-align: end !important;
+    font-weight: 600;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th)[data-label]::before {
+    content: attr(data-label);
+    grid-column: 1;
+    justify-self: start;
+    color: var(--erp-text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-align: start;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th) > * {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th)[colspan]:not([colspan='1']) {
+    display: block;
+    justify-items: normal;
+    text-align: start !important;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th):empty,
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th).erp-stack-table__skip,
+  :is(.erp-stack-table.table, table.erp-stack-table) > tfoot > tr > :is(td, th).erp-stack-table__actions:empty {
+    display: none;
+  }
+
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(.erp-stack-table__actions, [data-stack='actions']) {
+    display: flex;
+    order: 2;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid var(--erp-border);
+  }
+
+  .erp-stack-table.table > :is(tbody, tfoot) > tr > [data-stack='actions']:empty {
+    display: none;
+  }
+
+  /* Đích bấm của nút icon trong thẻ: 40px thay vì 26–32px của bảng. */
+  :is(.erp-stack-table.table, table.erp-stack-table) > :is(tbody, tfoot) > tr > :is(.erp-stack-table__actions, [data-stack='actions']) .btn-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Thanh tiến độ trong thẻ: trọn cột giá trị (ô gốc là flex, `justify-items: end`
+     của ô lưới co nó về 0px — chỉ còn con số, mất thanh). */
+  .erp-stack-table.table > :is(tbody, tfoot) > tr > td > .progress {
+    justify-self: stretch;
+    align-self: center;
+    min-width: 0;
+  }
+
+  /* Ô nhập trong thẻ (ô chọn nhóm chi phí…): trọn cột giá trị. */
+  .erp-stack-table.table > :is(tbody, tfoot) > tr > td > :is(.form-select, .form-control) {
+    justify-self: stretch;
+  }
+}

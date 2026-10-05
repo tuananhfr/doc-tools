@@ -1,0 +1,182 @@
+/*
+ * MASTER-DETAIL cho TABLET NGANG — pilot (`components/common/MasterDetail.tsx`).
+ *
+ * Lưới một cột; chỉ chia đôi khi ô chi tiết có nội dung (`:has`), để đóng chi
+ * tiết là danh sách lấy lại trọn bề ngang. Cột chi tiết 42% nhưng không hẹp hơn
+ * 360px — dưới đó bảng dòng hàng của phiếu không còn đọc được.
+ *
+ * Chỉ áp trong `--docked` (tablet ngang); mọi khổ khác `MasterDetail` chỉ là một
+ * lớp bọc không đổi bố cục.
+ */
+.erp-master-detail {
+  height: 100%;
+  min-height: 0;
+}
+
+.erp-master-detail--docked {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.erp-master-detail--docked:has(> .erp-master-detail__detail:not(:empty)) {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 42%);
+}
+
+.erp-master-detail__master {
+  min-width: 0;
+}
+
+/* Lớp bọc ở khổ thường: khung trang của màn (đặt trên cột danh sách) vẫn cao trọn. */
+.erp-master-detail:not(.erp-master-detail--docked) > .erp-master-detail__master {
+  height: 100%;
+}
+
+/*
+ * Ô chi tiết BÁM DÍNH đầu vùng cuộn và cao tối đa bằng phần màn hình còn lại:
+ * ở trang cuộn (khung dự án) lưới cao bằng cả danh sách, để kéo giãn thì chân
+ * khung (In / Cập nhật / Đóng) nằm tận cuối, ngoài màn hình. `top: 12px` khớp
+ * `DOCK_GAP` của `MasterDetail`. `max-height: 100%`
+ * giữ nó không vượt hàng lưới ở trang danh sách (lưới cao cố định). Khung bên
+ * trong co theo (flex + `min-height: 0`) và chỉ THÂN khung cuộn.
+ */
+.erp-master-detail__detail {
+  position: sticky;
+  top: 12px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  /* `--erp-dock-max-height`: chiều cao vùng cuộn chứa màn, `MasterDetail` đo và đặt. */
+  max-height: min(
+    100%,
+    var(--erp-dock-max-height, calc(100dvh - var(--erp-header-height, 64px) - var(--erp-safe-top, 0px) - 24px))
+  );
+}
+
+.erp-master-detail__detail:empty {
+  display: none;
+}
+
+/* ------------------------------------------------------------ Khung neo */
+
+.erp-dock {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  outline: none;
+}
+
+.erp-dock:focus-visible {
+  box-shadow: 0 0 0 2px var(--erp-focus-ring);
+}
+
+.erp-dock__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px 10px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-dock__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Nút đóng: vùng chạm 44px như mọi nút ở tablet (tài liệu MASTER mục 3). */
+.erp-dock__header .btn-close {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background-size: 14px;
+}
+
+.erp-dock__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 12px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/*
+ * Chân khung dồn TRÁI: góc phải dưới màn hình là chỗ của bong bóng trợ lý AI nổi
+ * trên mọi trang — dồn phải thì nút cuối ("Đóng") nằm dưới nó.
+ */
+.erp-dock__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-dock__footer .btn {
+  min-height: 44px;
+}
+
+/* Khung 360–480px: lưới 9/3 của màn xem gộp một cột (cùng luật khổ < 1200px của modal). */
+.erp-dock .erp-detail__cols {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/*
+ * Lưới nhãn–giá trị: ở modal mỗi cột tối thiểu 340px; khung neo chỉ còn ~330px
+ * nên cột đó tràn và cắt chữ ở mép phải. Ở đây một cột, nhãn 120px.
+ */
+.erp-dock .erp-detail__grid {
+  --erp-detail-label: 120px;
+
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.erp-dock .erp-detail__meta {
+  margin-inline-start: 0;
+  flex-basis: 100%;
+}
+
+/*
+ * Dòng đang mở ở khung phải — vạch trái + nền nhạt (không chỉ đổi màu: người
+ * không phân biệt được màu vẫn thấy vạch). Xanh điều hướng, không phải Crimson —
+ * Crimson dành cho CTA (ERPcons_Design_System.md mục 14).
+ */
+.erp-master-detail--docked tr.is-active > td {
+  --bs-table-bg-state: var(--erp-action-secondary-soft);
+}
+
+.erp-master-detail--docked tr.is-active > td:first-child {
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+/*
+ * Vùng chạm 44px cho MỌI nút và liên kết trong khung neo (tài liệu MASTER mục 3;
+ * đo 03/10/2026: "Lịch sử tệp" 28px, nút chuyển bước 32px, liên kết tệp / hợp
+ * đồng 19px). Khung này chỉ có ở tablet cảm ứng nên không cần media query.
+ */
+.erp-dock__body :is(button, .btn, [role='button'], summary) {
+  min-height: 44px;
+}
+
+.erp-dock__body a[href] {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Thẻ kanban đang mở: viền xanh điều hướng quanh thẻ. */
+.erp-master-detail--docked .erp-kanban li.is-active > * {
+  border-radius: var(--erp-radius-md);
+  box-shadow: 0 0 0 2px var(--erp-action-secondary);
+}

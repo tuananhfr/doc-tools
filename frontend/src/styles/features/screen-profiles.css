@@ -1,0 +1,49 @@
+/*
+ * Ma trận thiết bị & offline (features/core/screen-profiles).
+ * Bảng rộng ~1.600px nên cuộn ngang trong khung; cột "Màn" dính trái để khi
+ * cuộn sang các ô chọn vẫn biết đang sửa màn nào.
+ */
+.erp-screen-matrix__scroll {
+  overflow-x: auto;
+}
+
+.erp-screen-matrix {
+  min-width: 1620px;
+  font-size: 0.8125rem;
+}
+
+.erp-screen-matrix th {
+  white-space: nowrap;
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  background: var(--erp-surface);
+}
+
+.erp-screen-matrix td {
+  vertical-align: top;
+}
+
+.erp-screen-matrix th:first-child,
+.erp-screen-matrix td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--erp-surface);
+  box-shadow: 1px 0 0 var(--erp-border);
+}
+
+.erp-screen-matrix td:first-child code {
+  color: var(--erp-text-secondary);
+  word-break: break-all;
+}
+
+/* Dòng có bản nháp chưa lưu: vạch trái + nền nhạt — kèm số trên nút Lưu, nên
+   màu không phải tín hiệu duy nhất. */
+.erp-screen-matrix tr.is-dirty > td {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-screen-matrix tr.is-dirty > td:first-child {
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary), 1px 0 0 var(--erp-border);
+  background: var(--erp-surface-secondary);
+}

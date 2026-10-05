@@ -1,0 +1,303 @@
+/*
+ * Doi chieu cong no (`/debt/compare/:id`) - chep `detail-print-debt.css` cua
+ * module Drupal erp_accountant, doi ten lop sang tien to `erp-dcmp` vi
+ * `.section-card`, `.info-box`, `.status-item`... la ten qua chung.
+ */
+.erp-dcmp {
+  padding: 20px;
+  display: flex;
+  /* Chu goc cua theme Drupal (do tren trang cu): 13px, dong 1.5. */
+  font-size: 13px;
+  line-height: 1.5;
+  color: #212529;
+}
+
+.erp-dcmp__card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-dcmp__title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.erp-dcmp__badge {
+  background: #dcfce7;
+  color: #15803d;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erp-dcmp__actions .btn {
+  min-width: 110px;
+}
+
+/* Nut theo theme Drupal `erpcons` (do tren trang cu), khong theo theme app. */
+.erp-dcmp .erp-dcmp__actions .btn {
+  padding: 4.875px 9.75px;
+  border-radius: 4.875px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+
+.erp-dcmp .erp-dcmp__actions .btn-outline-secondary {
+  color: #6c757d;
+  background: transparent;
+  border-color: #6c757d;
+}
+
+.erp-dcmp .erp-dcmp__actions .btn-outline-secondary:hover {
+  color: #fff;
+  background: #6c757d;
+}
+
+.erp-dcmp .erp-dcmp__actions .btn-warning {
+  color: #fff;
+  background: #e42325;
+  border-color: #e42325;
+}
+
+.erp-dcmp .erp-dcmp__actions .btn-primary {
+  color: #fff;
+  background: #0781b0;
+  border-color: #0781b0;
+}
+
+.erp-dcmp .erp-dcmp__actions .btn-warning:hover,
+.erp-dcmp .erp-dcmp__actions .btn-primary:hover {
+  filter: brightness(0.92);
+}
+
+.erp-dcmp__info-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.erp-dcmp__info-box {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  background: #fff;
+}
+
+.erp-dcmp__info-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.erp-dcmp__info-value {
+  font-weight: 700;
+  color: #111827;
+}
+
+.erp-dcmp__tabs {
+  border-bottom: 1px solid #e5e7eb;
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.erp-dcmp__tabs li {
+  text-decoration: none;
+  color: #6b7280;
+  padding: 14px 0;
+  font-weight: 600;
+  border: unset !important;
+  border-bottom: 2px solid transparent;
+}
+
+.erp-dcmp__tabs button {
+  border: unset !important;
+}
+
+/* Trang cu dung `#businessTabs` (selector id) nen thang theme; o day ghim lai. */
+.erp-dcmp .erp-dcmp__tabs .nav-link {
+  padding: 6.5px 13px;
+  border-radius: 4.875px 4.875px 0 0;
+  color: #0d6efd;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19.5px;
+}
+
+.erp-dcmp .erp-dcmp__tabs .nav-link.active {
+  background: #fff;
+  color: #2563eb;
+  border-bottom: 2px solid transparent !important;
+  border-bottom-color: #2563eb !important;
+}
+
+.erp-dcmp__section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.erp-dcmp__section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: 18px;
+}
+
+.erp-dcmp__pair {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.erp-dcmp__pair-label {
+  width: 180px;
+  color: #6b7280;
+  /* Lop `.label` cua theme Drupal to dam nhan nay. */
+  font-weight: 700;
+}
+
+.erp-dcmp__pair-value {
+  font-weight: 600;
+}
+
+.erp-dcmp__status-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.erp-dcmp__ok {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.erp-dcmp__bad {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.erp-dcmp .text-success {
+  color: #187d45 !important;
+}
+
+/*
+ * Trang Drupal de ca trang cuon ngang khi bang 13 cot tran; `.erp-scroll-page`
+ * cat `overflow-x`, nen cho rieng khoi bang tu cuon ngang.
+ */
+.erp-dcmp__table-wrap {
+  overflow-x: auto;
+}
+
+.erp-dcmp__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-dcmp__table th,
+.erp-dcmp__table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.erp-dcmp__table th {
+  background: #f9fafb;
+  text-align: center;
+  font-weight: 700;
+}
+
+@media (max-width: 1400px) {
+  .erp-dcmp__info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .erp-dcmp__info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dong noi dung chi co dien giai: khong di qua kho nen khong doi chieu. */
+.erp-dcmp__line-note {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-dcmp__table td.erp-dcmp__table-empty {
+  padding: 16px;
+  color: #6b7280;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ---- Tab "Tài liệu đính kèm": danh sách tệp + khung xem trước của CDE ---- */
+.erp-dcmp__files {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-dcmp__files--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.erp-dcmp__file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-dcmp__file-list button {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #374151;
+  font-size: 13px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.erp-dcmp__file-list button:hover {
+  background: #f9fafb;
+}
+
+.erp-dcmp__file-list button.active {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.erp-dcmp__empty {
+  margin: 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media (max-width: 992px) {
+  .erp-dcmp__files {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

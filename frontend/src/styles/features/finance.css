@@ -1,0 +1,504 @@
+/*
+ * Style rieng cua khoi Tai chinh - Cong no.
+ *
+ * Chi chua thu KHONG dung lai o noi khac; kanban, bang, the KPI deu nam o
+ * `styles/components/`. Mau luon doc qua bien `--erp-*` (muc 12).
+ */
+
+/* --- Tinh hinh thuc hien ngan sach ---------------------------------------- */
+
+.erp-finance__budget {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-finance__budget-head,
+.erp-finance__budget-row {
+  display: grid;
+  grid-template-columns: 1fr auto 48px;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.erp-finance__budget-head {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-finance__budget-head span:last-child,
+.erp-finance__budget-percent {
+  text-align: end;
+}
+
+.erp-finance__budget-item {
+  padding: 12px 0;
+}
+
+.erp-finance__budget-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-finance__budget-value {
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-finance__budget-percent {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-finance__budget-bar {
+  margin-top: 8px;
+}
+
+/* --- Top chi phi ---------------------------------------------------------- */
+
+.erp-finance__mini-table {
+  font-size: 0.8125rem;
+}
+
+.erp-finance__mini-table thead th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-finance__mini-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Tinh hinh cong no ---------------------------------------------------- */
+
+.erp-finance__debt {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.erp-finance__debt-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-finance__debt-total {
+  margin: 4px 0 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-finance__debt-total span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-finance__debt-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Trong han = tien do tot (Green); qua han = rui ro (Danger) - muc 05. */
+.erp-finance__debt-line--ok {
+  color: var(--erp-success);
+}
+
+.erp-finance__debt-line--late {
+  color: var(--erp-danger);
+}
+
+.erp-finance__debt-note {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+/* --- Dung chung trong bang / the ------------------------------------------ */
+
+/* So am (am quy, chenh lech kiem ke) - luon di kem dau tru hoac icon. */
+.erp-finance__amount--negative {
+  color: var(--erp-danger);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-finance__account-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+
+/* --- Ngân quỹ > Quỹ tiền mặt (`/finance/funds`) ---------------------------
+   Tiền tố `erp-cf-` (cash fund). */
+.erp-cf-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Tên sổ quỹ bấm được để mở sổ chi tiết — trông như link, là nút. */
+.erp-cf-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-brand);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+}
+
+.erp-cf-link:hover,
+.erp-cf-link:focus-visible {
+  text-decoration: underline;
+}
+
+.erp-cf-actions {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.erp-cf-form__heading {
+  margin: 20px 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--erp-border);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.erp-cf-form__heading:first-child {
+  margin-top: 0;
+}
+
+/* Sổ chi tiết thu chi */
+.erp-cf-ledger__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.erp-cf-ledger__dates {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-cf-ledger__dates .form-control {
+  width: 150px;
+}
+
+.erp-cf-ledger__search {
+  width: 260px;
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.erp-cf-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.erp-cf-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-cf-summary span {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-cf-summary strong {
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-cf-summary--in strong,
+.erp-cf-in {
+  color: var(--erp-success);
+}
+
+.erp-cf-summary--out strong,
+.erp-cf-out {
+  color: var(--erp-danger);
+}
+
+.erp-cf-summary--negative strong {
+  color: var(--erp-danger);
+}
+
+.table.erp-cf-ledger__table {
+  min-width: 980px;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.table.erp-cf-ledger__table > thead > tr > th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface-secondary);
+}
+
+.table.erp-cf-ledger__table > :is(tfoot, tbody > .erp-cf-ledger__opening) > tr > td,
+.table.erp-cf-ledger__table > tbody > .erp-cf-ledger__opening > td {
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+}
+
+/* ============================================================================
+ * Sổ quỹ > Báo cáo biến động quỹ (`FundReportView`)
+ * ============================================================================
+ * Nhiều khối xếp dọc (bộ chọn, thẻ số, biểu đồ, bảng) trong `.erp-list-page`
+ * vốn chỉ cho MỘT khối giãn, nên khối báo cáo tự cuộn bên trong chính nó.
+ */
+.erp-fr {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*
+ * Thẻ và bảng dùng chung khai `height: 100%` để lấp đầy trang một-khối. Ở đây
+ * chúng xếp chồng nhau nên phải cao theo nội dung — không thì thẻ biểu đồ chiếm
+ * trọn màn hình và đẩy bảng quỹ ra ngoài. Chỉ có MỘT thanh cuộn, của `.erp-fr`.
+ */
+.erp-fr > * {
+  flex-shrink: 0;
+}
+
+.erp-fr > .erp-card,
+.erp-fr > .erp-table {
+  height: auto;
+}
+
+.erp-fr > .erp-table > .erp-table__scroll {
+  overflow-y: visible;
+}
+
+.erp-fr__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+}
+
+.erp-fr__filters .form-label {
+  margin-bottom: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-fr__filters .form-select {
+  min-width: 260px;
+}
+
+.erp-fr__month {
+  display: flex;
+  gap: 4px;
+}
+
+.erp-fr__manage {
+  margin-left: auto;
+}
+
+.erp-fr-chart__trend {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+/*
+ * Bảng biến động theo ngày. Một tháng là 28–31 dòng, nên dòng gọn và khung có
+ * chiều cao trần + thanh cuộn riêng; tiêu đề và dòng "Cả tháng" ghim lại để
+ * cuộn tới ngày nào cũng còn thấy cột nào là gì và tổng là bao nhiêu.
+ */
+.erp-fr-daily {
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-fr-daily > .table > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+  padding: 6px 12px;
+}
+
+.erp-fr-daily > .table > thead > tr > th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.erp-fr-daily > .table > tfoot > tr > :is(th, td) {
+  position: sticky;
+  bottom: 0;
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+}
+
+/* Ngày không phát sinh vẫn hiện cho đủ tháng nhưng chữ nhạt. */
+.erp-fr-daily > .table > tbody > .erp-fr-daily__idle > td {
+  color: var(--erp-text-tertiary);
+}
+
+/* Mức thay đổi so với tháng trước: mũi tên + số, màu chỉ là lớp nhấn thêm. */
+.erp-fr-change {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.erp-fr-change--good {
+  color: var(--erp-success);
+}
+
+.erp-fr-change--bad {
+  color: var(--erp-danger);
+}
+
+.erp-fr-change--neutral {
+  color: var(--erp-text-secondary);
+}
+
+/* Nút ghim quỹ ưu tiên — vùng bấm 32px dù icon nhỏ. */
+.erp-fr-star {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-fr-star:hover,
+.erp-fr-star:focus-visible {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+}
+
+.erp-fr-star--on,
+.erp-fr-star--on:hover {
+  color: var(--erp-warning);
+}
+
+.erp-fr-spark {
+  display: block;
+  margin: 0 auto;
+}
+
+.erp-fr-spark polyline {
+  fill: none;
+  stroke: var(--erp-text-tertiary);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.erp-fr-spark--up polyline {
+  stroke: var(--erp-success);
+}
+
+.erp-fr-spark--down polyline {
+  stroke: var(--erp-danger);
+}
+
+/* Hộp "Quỹ ưu tiên và nhóm quỹ": danh sách bên trái, quỹ để tích bên phải. */
+.erp-fr-manage__layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.erp-fr-manage__targets .list-group-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-fr-manage__count {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.erp-fr-manage__funds {
+  display: grid;
+  gap: 6px;
+  max-height: 320px;
+  padding: 8px 12px;
+  overflow-y: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+@media (max-width: 767.98px) {
+  .erp-fr-manage__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-fr__filters .form-select {
+    min-width: 0;
+  }
+
+  .erp-fr__manage {
+    margin-left: 0;
+  }
+}
+
+/*
+ * Hop thoai gop thu / gop chi: danh sach phieu da chon co the dai vai chuc dong,
+ * nen khoi nay tu cuon con cot form ben phai dung yen.
+ */
+.erp-posting-combine__picked {
+  max-height: 52vh;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-posting-combine__picked thead th,
+.erp-posting-combine__picked tfoot th {
+  position: sticky;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-posting-combine__picked thead th {
+  top: 0;
+}
+
+.erp-posting-combine__picked tfoot th {
+  bottom: 0;
+}

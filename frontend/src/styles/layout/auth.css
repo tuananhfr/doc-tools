@@ -1,0 +1,631 @@
+/*
+ * Trang dang nhap (split screen).
+ * Desktop: cot nhan dien (anh nen) + cot thao tac, footer chay het chieu ngang.
+ * <=1024px: bo cot nhan dien, logo doi len header (tai cau truc theo task).
+ *
+ * KHUNG CO DINH: toan trang cao dung 1 man hinh, khong cuon. `100dvh` tru
+ * thanh dia chi cua trinh duyet mobile (100vh tinh ca phan bi che -> tran).
+ * Chi hai vung duoc phep cuon noi bo lam van an toan khi man hinh qua thap
+ * hoac zoom 200%: `__brand` va `__body`. Cac media query theo CHIEU CAO ben
+ * duoi nen dan nhip doc de o man hinh laptop 768px van vua trong mot khung.
+ */
+
+.erp-auth {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  /* Mo dang app tren iPhone: khong de topbar nam duoi thanh trang thai. */
+  padding: var(--erp-safe-top) var(--erp-safe-right) var(--erp-safe-bottom) var(--erp-safe-left);
+  overflow: hidden;
+}
+
+.erp-auth__split {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  /*
+   * Hang phai bam dung chieu cao khung. De `auto` thi hang no theo noi dung,
+   * tran ra ngoai `.erp-auth` va bi `overflow: hidden` cat mat - thay vi de
+   * hai cot con tu cuon.
+   */
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+}
+
+.erp-auth__brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px 48px;
+  overflow: hidden auto;
+}
+
+/* Logo la lien ket ve trang chu khi cot nay duoc dung ngoai trang dang nhap. */
+.erp-auth__brand-home {
+  /* Logo von duoc canh giua cot (anh `object-fit: contain` keo het be ngang). */
+  align-self: center;
+  display: inline-flex;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-auth__brand-home:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 4px;
+}
+
+/* Luoi blueprint mo - chi dung khi chua cau hinh anh nen. */
+.erp-auth__brand-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(var(--erp-auth-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--erp-auth-grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(120% 90% at 20% 20%, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(120% 90% at 20% 20%, #000 0%, transparent 75%);
+}
+
+.erp-auth__brand > *:not(.erp-auth__brand-grid) {
+  position: relative;
+}
+
+.erp-auth__headline {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.erp-auth__lead {
+  margin: 16px 0 0;
+  max-width: 520px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* Vach Crimson: dau nhan dien duy nhat tren panel (~2% visual). */
+.erp-auth__rule {
+  width: 56px;
+  height: 3px;
+  margin-top: 16px;
+  margin-left: auto;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-brand);
+}
+
+.erp-auth__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: start;
+  gap: 24px;
+}
+
+.erp-auth__feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.erp-auth__feature-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-auth__feature-line {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.erp-auth__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  font-size: 0.75rem;
+}
+
+.erp-auth__main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px 24px 16px;
+}
+
+.erp-auth__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+}
+
+/* Logo chi xuat hien khi cot brand bi an (<=1024px). */
+.erp-auth__topbar-brand {
+  display: none;
+}
+
+/*
+ * Menu cong cu cong khai (khong can dang nhap moi dung duoc) - sat trai thanh
+ * dau trang. Mac dinh la menu tha xuong; thanh du rong thi doi sang hang lien ket
+ * (khoi "MENU CONG CU THEO BE RONG" o cuoi file).
+ */
+.erp-auth__tools {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.erp-auth__tools-inline {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-auth__tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.erp-auth__tool:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-auth__tool:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-auth__tool-icon {
+  flex: none;
+  font-size: 1.125rem;
+  color: var(--erp-action-secondary);
+}
+
+/* Trong menu tha xuong moi muc co hai dong: ten cong cu va mo ta. */
+.erp-auth__tool-title {
+  display: block;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-auth__tool-desc {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-auth__tools-menu .dropdown-item {
+  padding-block: 8px;
+  /* Man hep: mo ta xuong dong thay vi day menu tran ra ngoai man hinh. */
+  white-space: normal;
+}
+
+.erp-auth__tools-menu .dropdown-menu {
+  /* Rong theo dong dai nhat (moi muc mot dong), chi xuong dong khi man qua hep. */
+  width: max-content;
+  max-width: calc(100vw - 72px);
+}
+
+
+/*
+ * `margin: auto` tren card thay cho `align-items: center`: khi noi dung cao
+ * hon vung nay (zoom lon), flexbox canh giua se cat mat phan dinh va khong
+ * cuon toi duoc - margin auto thi khong.
+ */
+.erp-auth__body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 0;
+}
+
+.erp-auth__card {
+  width: 100%;
+  max-width: 560px;
+  margin: auto;
+  border-radius: var(--erp-radius-xl);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-auth__card > .card-body {
+  padding: 24px 28px;
+}
+
+.erp-auth__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-auth__title {
+  margin: 0;
+  /* H2 cua DS - 32px chi de danh cho H1 trang noi dung. */
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.erp-auth__form {
+  margin-top: 20px;
+}
+
+/*
+ * Khoang cach giua cac o nhap - thay cho `mb-3` cua Bootstrap de con dieu chinh
+ * duoc theo chieu cao viewport (mb-3 cung 16px, khong nen duoc).
+ */
+.erp-auth__field {
+  margin-bottom: 16px;
+}
+
+.erp-auth__version {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-auth__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.erp-auth__submit {
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.erp-auth__hint {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-auth__sso {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.erp-auth__sso .btn {
+  min-height: 48px;
+  padding-inline: 6px;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.erp-auth__methods {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.erp-auth__method {
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-auth__method-title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-auth__method-desc {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Dai chung chi bao mat & tuan thu - nen ve MOT hang.
+ * Ban cu xep icon-tile 40px + badge hai dong + link "Xem chi tiet" chiem ~116px
+ * chieu cao, la khoi ton dien tich nhat trong card. Mo ta day du cua tung chung
+ * chi chuyen sang `title` de van tra cuu duoc khi hover.
+ */
+.erp-auth__compliance {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-auth__compliance-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-auth__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-auth__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--erp-text-primary);
+}
+
+/* Banner mock (dev): mac dinh mot dong, bung ra khi bam. */
+.erp-auth__mock summary {
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.erp-auth__mock summary:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-auth__mock details[open] > .alert__description {
+  margin-top: 6px;
+}
+
+.erp-auth__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 12px 32px;
+  border-top: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+}
+
+.erp-auth__footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+@media (max-width: 1440px) {
+  .erp-auth__features,
+  .erp-auth__sso {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Laptop 768px (vung nhin thuc ~640px sau khi tru thanh cong cu trinh duyet).
+ * Nen mot bac: bot padding va co chu tren cot nhan dien, siet nhip card.
+ */
+@media (max-height: 800px) {
+  .erp-auth__brand {
+    gap: 16px;
+    padding: 24px 32px;
+  }
+
+  .erp-auth__headline {
+    font-size: 32px;
+  }
+
+  .erp-auth__lead {
+    margin-top: 12px;
+    font-size: 0.875rem;
+  }
+
+  .erp-auth__features {
+    /* Hai cot o day de 6 the khong day cot nhan dien cao them. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 12px;
+  }
+
+  .erp-auth__main {
+    padding: 8px 24px 12px;
+  }
+
+  .erp-auth__body {
+    padding: 8px 0;
+  }
+
+  .erp-auth__card > .card-body {
+    padding: 20px 24px;
+  }
+
+  .erp-auth__form {
+    margin-top: 16px;
+  }
+
+  .erp-auth__field {
+    margin-bottom: 12px;
+  }
+}
+
+/*
+ * Man hinh rat thap (netbook, cua so nua man, mobile ngang). Bo cac khoi
+ * bo tro de form dang nhap luon nguyen ven trong khung.
+ */
+@media (max-height: 660px) {
+  .erp-auth__lead,
+  .erp-auth__compliance {
+    display: none;
+  }
+
+  .erp-auth__features {
+    gap: 12px;
+  }
+
+  .erp-auth__hint {
+    margin-top: 12px;
+  }
+
+  .erp-auth__topbar {
+    min-height: 40px;
+  }
+
+  .erp-auth__footer {
+    padding-block: 8px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-auth__split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-auth__brand {
+    display: none;
+  }
+
+  .erp-auth__topbar-brand {
+    display: block;
+  }
+
+  .erp-auth__methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-auth__main {
+    padding: 4px 16px 8px;
+  }
+
+  .erp-auth__body {
+    padding: 8px 0;
+  }
+
+  .erp-auth__card {
+    /* Bo do noi tren mobile: card la toan bo man, khong can nang len. */
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .erp-auth__card > .card-body {
+    padding: 16px 4px;
+  }
+
+  .erp-auth__title {
+    font-size: 1.25rem;
+  }
+
+  .erp-auth__form {
+    margin-top: 16px;
+  }
+
+  .erp-auth__field {
+    margin-bottom: 12px;
+  }
+
+  .erp-auth__sso,
+  .erp-auth__methods {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Footer mobile: chi giu lien ket phap ly, bo dong ban quyen va website. */
+  .erp-auth__footer {
+    justify-content: center;
+    text-align: center;
+    gap: 4px 16px;
+    padding: 8px 16px;
+  }
+
+  .erp-auth__footer-copy,
+  .erp-auth__footer-site {
+    display: none;
+  }
+
+  .erp-auth__footer-links {
+    gap: 4px 16px;
+  }
+}
+
+/*
+ * MENU CONG CU THEO BE RONG.
+ * Thanh dau trang nam trong cot thao tac, ma cot nay co ba che do:
+ *   >=1025px  hai cot, cot thao tac rong 7/12 viewport, khong co logo;
+ *   577-1024  mot cot, co logo day du ben trai (~121px);
+ *   <=576px   mot cot, logo chi con dau hieu, hai dieu khien ben phai rut gon.
+ * Nen cung mot cach hien can nguong viewport khac nhau o moi che do. Moi nguong
+ * duoc do sao cho menu + logo + hai dieu khien con du it nhat ~12px. Hai dieu
+ * khien rong nhat o theme "Ngoai troi" (287px; mobile 150px) - doi nhan cong cu,
+ * nhan theme hay them cong cu thi phai do lai.
+ */
+
+/* Hai lien ket ngay tren thanh, thay cho menu tha xuong. */
+@media (min-width: 1200px), (min-width: 840px) and (max-width: 1024px) {
+  .erp-auth__tools-inline {
+    display: flex;
+  }
+
+  .erp-auth__tools-menu {
+    display: none;
+  }
+}
+
+/* Chat: bot dem cua nut menu va khe cua thanh de con cho cho nhan. */
+@media (max-width: 379px), (min-width: 577px) and (max-width: 629px) {
+  .erp-auth__topbar {
+    gap: 8px;
+  }
+
+  .erp-auth__tools-menu .dropdown-toggle {
+    padding-inline: 6px;
+  }
+}
+
+/* Chat nhat: nut menu chi con icon (ten nam o `aria-label`). */
+@media (max-width: 349px), (min-width: 577px) and (max-width: 629px) {
+  .erp-auth__tools-text {
+    display: none;
+  }
+}

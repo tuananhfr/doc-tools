@@ -1,0 +1,133 @@
+/*
+ * Thanh dieu khien MOT HANG cua man hinh danh sach (`PageToolbar`).
+ *
+ *   [Kanban|Bảng] [Tiêu đề (N)] [+ Thêm mới] [hành động phụ] … [tìm kiếm] [nâng cao]
+ *
+ * Gop `PageHeader` + `ListToolbar` cu lai: o man hinh danh sach thi chieu cao
+ * la tai nguyen quy nhat, moi hang mat di la mot dong bang bi cat.
+ */
+
+.erp-page-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  /*
+   * MOI control tren thanh cao bang nhau.
+   *
+   * Mac dinh he thong: `.form-control` cao 40px con `.btn-sm` cao 32px - lech
+   * 8px nen o tim kiem lui hon hai ben. Ep ve mot con so duy nhat de ca hang
+   * thang mep tren mep duoi.
+   */
+  --erp-toolbar-control-height: 34px;
+}
+
+.erp-page-toolbar__left,
+.erp-page-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-page-toolbar__title {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--erp-text-primary);
+}
+
+.erp-page-toolbar__count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-page-toolbar__search {
+  width: 260px;
+  max-width: 100%;
+}
+
+.erp-page-toolbar .form-control,
+.erp-page-toolbar .btn {
+  min-height: var(--erp-toolbar-control-height);
+}
+
+/* Field Mode van phai >= 48px (Design System muc 06) - khai lai o day vi rule
+   tren co do uu tien cao hon rule chung cua theme. */
+[data-theme='field'] .erp-page-toolbar {
+  --erp-toolbar-control-height: 48px;
+}
+
+/* Field Mode: nut va o nhap to hon de bam duoc ngoai cong truong (muc 11). */
+[data-theme='field'] .erp-page-toolbar__title {
+  font-size: 1.25rem;
+}
+
+/*
+ * Mobile: thanh cong cu gap doi thanh HAI hang (tieu de + nut o tren, o tim o
+ * duoi), nen `gap` khong con la khoang cach ngang ma la khoang cach DOC giua
+ * hai hang - cong voi `margin-bottom` la 24px chi de ngan cach thanh cong cu
+ * voi noi dung. Ha ca hai xuong 8px.
+ */
+@media (max-width: 576px) {
+  .erp-page-toolbar {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /*
+   * Nut hanh dong dat ve LE PHAI cua hang.
+   *
+   * `__left` phai chiem tron hang truoc (`flex: 1 1 100%`), neu khong no chi
+   * rong bang noi dung va `auto` khong con cho de day. Lay le tu TIEU DE chu
+   * khong dung `justify-content: space-between`: hang nay co ba nhom (nut doi
+   * cach xem, tieu de, cum nut) nen space-between se rai deu ca ba, tach nut
+   * doi cach xem khoi tieu de ma no thuoc ve.
+   */
+  .erp-page-toolbar__left {
+    flex: 1 1 100%;
+  }
+
+  .erp-page-toolbar__title {
+    margin-inline-end: auto;
+  }
+}
+
+/* Man hep: tieu de va o tim kiem chiem tron dong, cac nut xuong duoi. */
+@media (max-width: 900px) {
+  .erp-page-toolbar__right {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+
+  .erp-page-toolbar__search {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* Menu "Thêm mới" phân loại (Dự án: Hành chính / Thương mại / Xây dựng…).
+   Nút phải cao bằng các control còn lại trên hàng, nên ép size của
+   Dropdown.Toggle về đúng .btn-sm thay vì để Bootstrap tự chọn. */
+.erp-page-toolbar .dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/*
+ * Khe cho nut "Cột" cua KanbanBoard (portal vao). `display: contents` de khe
+ * rong o dang bang khong an them mot khoang `gap`.
+ */
+.erp-page-toolbar__slot {
+  display: contents;
+}

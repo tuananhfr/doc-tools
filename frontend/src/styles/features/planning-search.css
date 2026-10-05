@@ -1,0 +1,718 @@
+/*
+ * Tra cứu quy hoạch — BẢN ĐỒ LÀ CHÍNH: bản đồ phủ trọn khung, mọi điều khiển
+ * (ô tìm, nút chọn lớp, nền, thẻ kết quả) là thẻ nổi đặt chồng lên trên.
+ */
+.erp-plan-search {
+  --plan-float-shadow: 0 2px 10px rgba(15, 23, 42, 0.18);
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  overflow: hidden;
+}
+
+/* `isolation`: các tầng z-index 400–1000 của Leaflet nằm gọn trong bản đồ,
+   không trồi lên trên thẻ nổi, menu thả hay modal của ứng dụng. */
+.erp-plan-search__map {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  background: var(--erp-surface-secondary);
+  cursor: crosshair;
+}
+
+/* Hàng trên: ô tìm · nút chọn lớp · nền. `pointer-events` tắt ở hàng, bật lại ở
+   từng thẻ — khoảng trống giữa các thẻ vẫn bấm xuống bản đồ được. */
+.erp-plan-search__top {
+  position: absolute;
+  inset: 12px 12px auto 12px;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.erp-plan-search__top > * {
+  pointer-events: auto;
+}
+
+.erp-plan-search__search {
+  flex: 0 0 380px;
+  min-width: 0;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  box-shadow: var(--plan-float-shadow);
+}
+
+.erp-plan-search__searchbox {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 44px;
+  padding: 0 6px 0 14px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-plan-search__searchbox input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  padding: 0 6px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  font-size: 0.92rem;
+}
+
+.erp-plan-search__searchbox button {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+}
+
+.erp-plan-search__searchbox button:hover:not(:disabled) {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-plan-search__searchbox .erp-plan-search__locate {
+  color: var(--bs-primary);
+  font-size: 1.1rem;
+}
+
+.erp-plan-search__hits {
+  display: grid;
+  max-height: 320px;
+  padding: 4px;
+  border-top: 1px solid var(--erp-border);
+  overflow-y: auto;
+}
+
+.erp-plan-search__hits p {
+  margin: 0;
+  padding: 8px 10px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8rem;
+}
+
+.erp-plan-search__hit {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-primary);
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.erp-plan-search__hit:hover {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-plan-search__hit > .bi {
+  color: var(--erp-text-tertiary);
+}
+
+/* Nút chọn lớp: một hàng, nhiều lớp thì vuốt ngang chứ không đẩy bản đồ xuống. */
+.erp-plan-search__chips {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  padding: 4px 2px 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.erp-plan-search__chips > * {
+  flex: none;
+  box-shadow: var(--plan-float-shadow);
+}
+
+.erp-plan-search__chips .form-select {
+  width: auto;
+  max-width: 190px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+  font-weight: 600;
+}
+
+.erp-plan-search__chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-plan-search__chip.is-active {
+  background: var(--bs-primary);
+  color: #fff;
+}
+
+.erp-plan-search__chip.is-empty {
+  color: var(--erp-text-tertiary);
+  font-weight: 500;
+}
+
+.erp-plan-search__bases {
+  display: flex;
+  flex: none;
+  padding: 3px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  box-shadow: var(--plan-float-shadow);
+}
+
+.erp-plan-search__bases button {
+  height: 30px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.erp-plan-search__bases button.is-active {
+  background: var(--erp-text-primary);
+  color: var(--erp-surface);
+}
+
+.erp-plan-search__opacity,
+.erp-plan-search__hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  box-shadow: var(--plan-float-shadow);
+  color: var(--erp-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.erp-plan-search__warn {
+  position: absolute;
+  top: 68px;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: min(560px, calc(100% - 24px));
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  box-shadow: var(--plan-float-shadow);
+  color: var(--erp-warning);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transform: translateX(-50%);
+}
+
+/* Đang bật lớp quy hoạch: nền đường chuyển xám nhạt để màu quy định của bản đồ
+   quy hoạch không bị màu nền trộn vào. Ảnh vệ tinh giữ nguyên. */
+.erp-plan-search__map.has-overlay .erp-plan-base--street {
+  filter: grayscale(1) brightness(1.08) contrast(0.85);
+}
+
+.erp-plan-search__opacity button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.erp-plan-search__opacity button[aria-pressed='true'] {
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+}
+
+.erp-plan-search__legend {
+  position: absolute;
+  top: 68px;
+  right: 12px;
+  bottom: 110px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  /* Ảnh chú giải của cổng nguồn rộng 400px — khung hẹp hơn là chữ ký hiệu nhỏ không đọc được. */
+  width: 430px;
+  max-width: calc(100% - 24px);
+  border-radius: var(--erp-radius-lg);
+  background: #fff;
+  box-shadow: var(--plan-float-shadow);
+  overflow: hidden;
+}
+
+.erp-plan-search__legend > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 14px;
+  border-bottom: 1px solid var(--erp-border);
+  color: #1f2937;
+}
+
+.erp-plan-search__legend > header button {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: #4b5563;
+}
+
+.erp-plan-search__legend > div {
+  min-height: 0;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.erp-plan-search__legend img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.erp-plan-search__swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 3px;
+  vertical-align: -2px;
+}
+
+.erp-plan-search__opacity input {
+  width: 150px;
+}
+
+/* Có cả hai thì gợi ý nằm trên thanh độ đậm. */
+.erp-plan-search__opacity ~ .erp-plan-search__hint {
+  bottom: 64px;
+}
+
+/* Thẻ kết quả nổi dưới ô tìm, cùng bề ngang. */
+.erp-plan-search__sheet {
+  position: absolute;
+  top: 68px;
+  bottom: 16px;
+  left: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  max-width: calc(100% - 24px);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  box-shadow: var(--plan-float-shadow);
+  overflow: hidden;
+}
+
+.erp-plan-search__sheet.is-collapsed {
+  bottom: auto;
+}
+
+.erp-plan-search__sheet > header {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  padding: 12px 8px 12px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-plan-search__sheet.is-collapsed > header {
+  border-bottom: 0;
+}
+
+.erp-plan-search__sheet > header button {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+}
+
+.erp-plan-search__sheet > header button:hover {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-plan-search__point {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 2px;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-plan-search__point span {
+  color: var(--erp-text-secondary);
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-plan-search__sheet-body {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 0;
+  padding: 14px 16px 16px;
+  overflow-y: auto;
+}
+
+.erp-plan-search__sheet-body h3 {
+  margin: 6px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.erp-plan-search__muted,
+.erp-plan-search__note {
+  color: var(--erp-text-tertiary);
+  font-size: 0.78rem;
+}
+
+.erp-plan-search__source {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.86rem;
+}
+
+.erp-plan-search__source-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+}
+
+.erp-plan-search__level {
+  flex: none;
+  padding: 1px 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-info-soft);
+  color: var(--erp-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.erp-plan-search__feature {
+  display: grid;
+  gap: 6px;
+}
+
+.erp-plan-search__feature + .erp-plan-search__feature {
+  padding-top: 10px;
+  border-top: 1px dashed var(--erp-border);
+}
+
+.erp-plan-search__feature-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--erp-text-tertiary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.erp-plan-search__feature-head button {
+  padding: 2px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--bs-primary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.erp-plan-search__params {
+  display: grid;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-plan-search__param {
+  display: grid;
+  gap: 4px;
+  padding: 8px 12px;
+  font-size: 0.86rem;
+}
+
+.erp-plan-search__param + .erp-plan-search__param {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-plan-search__param > button {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  text-align: left;
+}
+
+.erp-plan-search__param > button span {
+  color: var(--erp-text-secondary);
+}
+
+.erp-plan-search__param > button strong {
+  text-align: right;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.erp-plan-search__param-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.erp-plan-search__kind {
+  padding: 1px 7px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.erp-plan-search__kind.is-source {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-plan-search__kind.is-computed {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-plan-search__param > p {
+  margin: 2px 0 0;
+  padding: 6px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.78rem;
+}
+
+.erp-plan-search__props {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-plan-search__props > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0;
+}
+
+.erp-plan-search__props dt {
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.erp-plan-search__props dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.erp-plan-search__text {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Một nguồn chính thức = một dòng bấm được, mở trang nguồn ở thẻ mới. */
+.erp-plan-search__link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 9px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+  font-size: 0.86rem;
+  text-decoration: none;
+}
+
+.erp-plan-search__link:hover {
+  border-color: var(--bs-primary);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+}
+
+.erp-plan-search__link > span:first-child {
+  display: grid;
+  flex: 1 1 auto;
+  gap: 1px;
+  min-width: 0;
+}
+
+.erp-plan-search__link small {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-plan-search__link > .bi {
+  flex: none;
+  color: var(--bs-primary);
+}
+
+.erp-plan-search__disclaimer {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  margin: 4px 0 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.76rem;
+}
+
+.erp-plan-config {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.erp-plan-config__list {
+  display: grid;
+  gap: 6px;
+}
+
+.erp-plan-config__list > button:not(.btn) {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.erp-plan-config__list > button.is-active {
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.erp-plan-config__list small,
+.erp-plan-config__empty {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-plan-config__empty {
+  margin: 0;
+}
+
+/* Màn hẹp: ô tìm trọn bề ngang, nút lớp xuống hàng dưới, thẻ kết quả thành
+   tấm trượt ở đáy để bản đồ còn chỗ nhìn. */
+@media (max-width: 900px) {
+  .erp-plan-search__top {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .erp-plan-search__search {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .erp-plan-search__chips {
+    flex: 1 1 0;
+    order: 2;
+  }
+
+  .erp-plan-search__bases {
+    order: 3;
+    margin-top: 4px;
+  }
+
+  .erp-plan-search__sheet {
+    top: auto;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
+    max-height: 52%;
+  }
+
+  .erp-plan-search__opacity span {
+    display: none;
+  }
+
+  .erp-plan-search__opacity input {
+    width: 110px;
+  }
+
+  .erp-plan-search__legend {
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
+
+  .erp-plan-config {
+    grid-template-columns: 1fr;
+  }
+}

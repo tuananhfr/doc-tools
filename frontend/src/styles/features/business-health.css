@@ -1,0 +1,1318 @@
+/*
+ * Kham suc khoe doanh nghiep (features/crm/business-health).
+ *
+ * Hai phan: trang kham CONG KHAI (`.bh-exam`, nam ngoai AppLayout) va man lam
+ * viec noi bo (`.bh-manage`, trong AppLayout). Moi mau deu di qua token --erp-*.
+ */
+
+/* ============================================================================
+ * KHUNG TRANG KHAM - phai TU CUON.
+ * reset.css khoa `overflow: hidden` o html/body/#root (khung app tu cuon ben
+ * trong), ma trang nay nam ngoai khung do: de `min-height` la noi dung dai hon
+ * man hinh bi cat. Cung cach `device-check.css` da lam.
+ *
+ * Trang chia doi nhu trang dang nhap: cot nhan dien ERPCons ben trai
+ * (`.erp-auth__brand` cua `layout/auth.css`, tu an tu 1024px tro xuong) dung
+ * yen, chi cot kham ben phai (`.bh-exam`) cuon.
+ * ========================================================================== */
+.bh-split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  /* Hang bam dung chieu cao khung de hai cot tu cuon ben trong (xem auth.css). */
+  grid-template-rows: minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.bh-exam {
+  box-sizing: border-box;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 max(16px, calc((100% - 880px) / 2)) 48px;
+  background: var(--erp-bg);
+  color: var(--erp-text-primary);
+}
+
+.bh-exam.is-busy {
+  cursor: progress;
+}
+
+.bh-exam__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+/* Logo chi hien khi cot nhan dien bi an (<=1024px) - cot do da co logo. */
+.bh-exam__brand {
+  display: none;
+  border-radius: var(--erp-radius-sm);
+}
+
+.bh-exam__header > .erp-caption {
+  margin-left: auto;
+}
+
+/* Lien ket chu ve trang chu - chi o man rong, noi logo khong nam trong cot kham. */
+.bh-exam__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
+  margin-left: -12px;
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.bh-exam__home:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.bh-exam__main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bh-exam__footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.bh-exam__footer p {
+  margin: 0 0 4px;
+}
+
+/* `.erp-card` khai `height: 100%` cho luoi dashboard; o day khung cao theo noi dung. */
+.bh-exam .erp-card,
+.bh-manage .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* --- Thong bao -------------------------------------------------------------- */
+
+.bh-notice,
+.bh-banner,
+.bh-disclaimer {
+  display: block;
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.bh-notice {
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.bh-banner {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.bh-disclaimer {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.bh-lead {
+  max-width: 68ch;
+  color: var(--erp-text-secondary);
+}
+
+.bh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.bh-empty {
+  padding: 32px 0;
+  color: var(--erp-text-secondary);
+  text-align: center;
+}
+
+/* Ma tham chieu (finding / rule / evidence): chu don cach, mau phu. */
+.bh-ids {
+  display: block;
+  margin: 8px 0 0;
+  color: var(--erp-text-tertiary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Nut dang chu: bo qua cau hoi, go bang, kham lai. */
+.bh-skip {
+  min-height: var(--erp-touch-target);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-text-secondary);
+  text-decoration: underline;
+}
+
+.bh-skip:hover {
+  color: var(--erp-text-primary);
+}
+
+.bh-skip[aria-pressed='true'] {
+  color: var(--erp-warning);
+  font-weight: 600;
+}
+
+.bh-skip:focus-visible,
+.bh-exam__home:focus-visible,
+.bh-option:focus-visible,
+.bh-tab:focus-visible,
+.bh-exam__brand:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.bh-details summary {
+  min-height: var(--erp-touch-target);
+  color: var(--erp-text-secondary);
+  cursor: pointer;
+}
+
+.bh-copy {
+  display: flex;
+  gap: 8px;
+}
+
+.bh-copy .form-control {
+  min-width: 0;
+}
+
+.bh-copy .btn {
+  flex: none;
+}
+
+/* --- Man mo dau ------------------------------------------------------------- */
+
+.bh-landing {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bh-landing > * {
+  margin: 0;
+}
+
+.bh-levels {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.bh-levels li {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-levels__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bh-levels p {
+  margin: 0 0 4px;
+}
+
+.bh-consent .form-check-input {
+  flex: none;
+}
+
+/* --- Cau hoi ---------------------------------------------------------------- */
+
+.bh-quiz {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bh-progress__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bh-question {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-question.is-skipped {
+  background: var(--erp-surface-secondary);
+}
+
+/* `legend` mac dinh noi tren vien; keo no vao trong khung nhu mot tieu de. */
+.bh-question legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.bh-question legend + * {
+  clear: both;
+}
+
+.bh-question__domain {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--erp-intelligence);
+}
+
+.bh-options {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.bh-option {
+  min-height: var(--erp-touch-target);
+  padding: 10px 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: left;
+  transition: background-color 150ms, border-color 150ms;
+}
+
+.bh-option:hover {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-border-strong);
+}
+
+.bh-option[aria-pressed='true'] {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  font-weight: 600;
+}
+
+.bh-number {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.bh-number .form-control {
+  width: 120px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Ket qua ---------------------------------------------------------------- */
+
+.bh-result {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bh-result > * {
+  margin: 0;
+}
+
+.bh-result__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.bh-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bh-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Tab co vach chi bao ro, khong chi doi mau chu. */
+.bh-tab {
+  min-height: var(--erp-touch-target);
+  padding: 8px 14px;
+  border: 1px solid var(--erp-border);
+  border-bottom-width: 3px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  transition: background-color 150ms, border-color 150ms;
+}
+
+.bh-tab:hover {
+  background: var(--erp-surface-hover);
+}
+
+.bh-tab[aria-selected='true'] {
+  border-bottom-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+}
+
+.bh-theme {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bh-theme .form-label {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+}
+
+.bh-cards {
+  display: grid;
+  gap: 12px;
+}
+
+.bh-card {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-left: 4px solid var(--erp-info);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-card--warning {
+  border-left-color: var(--erp-warning);
+}
+
+.bh-card--danger {
+  border-left-color: var(--erp-danger);
+}
+
+.bh-card p {
+  margin: 0 0 8px;
+}
+
+.bh-card__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bh-card__title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.bh-cards--large .bh-card__title {
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.bh-card__flag {
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.bh-card__flag--warning {
+  background: var(--erp-warning-soft);
+}
+
+.bh-card__flag--success {
+  background: var(--erp-success-soft);
+  font-weight: 600;
+}
+
+.bh-card__rx {
+  padding: 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-card__rx p:last-child {
+  margin-bottom: 0;
+}
+
+.bh-primary,
+.bh-map,
+.bh-step,
+.bh-lab,
+.bh-cleared {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-primary {
+  border-color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+}
+
+.bh-primary p {
+  margin: 0 0 4px;
+}
+
+.bh-primary__route {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.bh-cleared {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.bh-cleared ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.bh-map__overall strong {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.bh-map__bars {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bh-map__bars li {
+  display: grid;
+  grid-template-columns: minmax(120px, 34%) 1fr 36px;
+  align-items: center;
+  gap: 12px;
+}
+
+.bh-map__bar {
+  height: 12px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.bh-map__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--erp-radius-pill);
+}
+
+.bh-map__fill--success {
+  background: var(--erp-success);
+}
+
+.bh-map__fill--warning {
+  background: var(--erp-warning);
+}
+
+.bh-map__fill--danger {
+  background: var(--erp-danger);
+}
+
+.bh-map__score {
+  font-weight: 700;
+  text-align: right;
+}
+
+.bh-readiness {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+  margin: 12px 0 0;
+}
+
+.bh-readiness dt {
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.bh-readiness dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.bh-report section {
+  margin-bottom: 24px;
+}
+
+.bh-report ul {
+  padding-left: 20px;
+}
+
+.bh-table {
+  overflow-x: auto;
+  margin-bottom: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.bh-table th,
+.bh-table td {
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+.bh-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Tieu de dong (`th scope="row"`): table.css chi dat khoang dem cho `td` va cho
+ * `thead th`, nen o day phai tu dat de cot dau thang hang voi cac cot con lai.
+ */
+.bh-table .table > tbody th {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--erp-border);
+  font-weight: 600;
+}
+
+.bh-table .table > tbody th,
+.bh-table .table > tbody td {
+  vertical-align: top;
+}
+
+.bh-table .table > tbody tr:last-child th {
+  border-bottom: none;
+}
+
+.bh-nowrap {
+  white-space: nowrap;
+}
+
+.bh-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.bh-step p {
+  margin: 0 0 8px;
+}
+
+.bh-form {
+  display: grid;
+  gap: 12px;
+  max-width: 480px;
+}
+
+/* --- Phieu chi dinh: xet nghiem (L3) va ban do van hanh (L4) ---------------- */
+
+.bh-lab {
+  border-color: var(--erp-intelligence);
+}
+
+.bh-lab > p {
+  margin: 0 0 8px;
+}
+
+.bh-lab__test {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-lab__test.is-done {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.bh-lab__test p {
+  margin: 0 0 8px;
+}
+
+.bh-lab__title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Loi moi lay so lieu tu chinh he thong ERPCons (chi nhan vien co quyen thay). */
+.bh-erp {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid var(--erp-intelligence);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-intelligence-soft);
+}
+
+.bh-erp p {
+  margin: 0;
+}
+
+.bh-erp .form-select {
+  max-width: 360px;
+}
+
+/* O chon file an ve mat hinh anh; nhan ben canh dong vai nut bam. */
+.bh-lab__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.btn:has(+ .bh-lab__file:focus-visible) {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+ * CAC CAP SAU CHAN DOAN: Scanner (L4), Hoi chan (L5), Phac do (L6), Tai kham (L7)
+ * ========================================================================== */
+
+/* Khung chung cua mot khoi ket qua (hoi chan / phac do / tai kham). */
+.bh-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-stage > * {
+  margin: 0;
+}
+
+.bh-stage ul,
+.bh-stage ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.bh-stage li + li {
+  margin-top: 4px;
+}
+
+.bh-stage__heading {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.bh-stage__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-stage__item > * {
+  margin: 0;
+}
+
+.bh-stage__item .bh-card__top {
+  margin-bottom: 0;
+}
+
+/* The con cua mot khoi dung nen cua khoi, khong long them mot lop xam. */
+.bh-stage__item .bh-card__rx {
+  background: var(--erp-surface);
+}
+
+.bh-stage__item .bh-card__rx > * {
+  margin: 0 0 8px;
+}
+
+.bh-stage__item .bh-card__rx > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Y kien cua tung mang trong mot ket luan hoi chan. */
+.bh-opinions {
+  display: grid;
+  gap: 8px;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.bh-opinions li {
+  margin: 0 !important;
+  padding-left: 12px;
+  border-left: 3px solid var(--erp-border-strong);
+}
+
+/* Dong phu duoi mot dong chinh (phong ban, nguon, cach do lai). */
+.bh-scan__sub {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+/* --- So do van hanh (Scanner) ----------------------------------------------- */
+
+.bh-scan {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.bh-scan .bh-table {
+  margin-bottom: 0;
+  background: var(--erp-surface);
+}
+
+.bh-scan th[scope='row'] {
+  min-width: 150px;
+}
+
+.bh-scan__gaps {
+  min-width: 250px;
+}
+
+.bh-scan__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.bh-scan__notes {
+  display: grid;
+  gap: 12px;
+}
+
+.bh-scan__note {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.bh-scan__note ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.bh-scan__note p {
+  margin: 0;
+}
+
+.bh-scan__note-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Phieu chi dinh thu gon lai khi luot kham da qua cap nop bang. */
+details.bh-lab > summary {
+  min-height: var(--erp-touch-target);
+  cursor: pointer;
+}
+
+details.bh-lab > summary .erp-h4 {
+  display: inline;
+}
+
+details.bh-lab[open] > summary {
+  margin-bottom: 8px;
+}
+
+details.bh-lab > summary:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* --- Phuong an va phac do --------------------------------------------------- */
+
+.bh-scenarios {
+  display: grid;
+  gap: 12px;
+}
+
+.bh-scenario {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-scenario.is-start {
+  border-color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+}
+
+.bh-scenario p {
+  margin: 0 0 8px;
+}
+
+.bh-scenario p:last-child {
+  margin-bottom: 0;
+}
+
+.bh-roadmap {
+  display: grid;
+  gap: 12px;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.bh-roadmap > li {
+  margin: 0 !important;
+  padding: 12px 16px;
+  border-left: 3px solid var(--erp-intelligence);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-roadmap__phase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bh-steps-line {
+  display: grid;
+  gap: 8px;
+}
+
+.bh-steps-line li {
+  margin: 0 !important;
+}
+
+.bh-steps-line li.is-suggested {
+  font-weight: 600;
+}
+
+.bh-steps-line .erp-badge {
+  margin-left: 8px;
+}
+
+/* --- Tai kham --------------------------------------------------------------- */
+
+.bh-verdict {
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+}
+
+.bh-verdict--success {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.bh-verdict--danger {
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.bh-verdict--warning {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.bh-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.bh-counts li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 !important;
+}
+
+/* Cau tra loi lan truoc, hien ngay duoi cau hoi khi tai kham. */
+.bh-previous {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+/* Cac khoi L5-L7 trong man quan ly: xep doc, khong vien long vien. */
+.bh-stages {
+  display: grid;
+  gap: 16px;
+}
+
+/* ============================================================================
+ * MAN LAM VIEC NOI BO (CRM > Marketing > Kham suc khoe DN)
+ * ========================================================================== */
+
+.bh-manage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: var(--erp-content-max-width);
+}
+
+.bh-manage > * {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.bh-manage__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.bh-count-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bh-count-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.bh-count-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.bh-count-list .erp-num {
+  font-weight: 700;
+}
+
+.bh-registry__tests {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.bh-registry__tests article {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.bh-registry__tests .bh-ids {
+  display: inline;
+}
+
+/* ============================================================================
+ * BO CAU HOI FORMAT 3 (dac ta IMPLEMENTATION v3.0)
+ * ========================================================================== */
+
+/* --- Ket luan chung cua luot kham -------------------------------------------
+ * "Khong tim ra benh" la mot ket qua hop le: hai ket luan tot dung tong
+ * success, khong trinh bay nhu mot ket qua "thieu". */
+.bh-outcome-verdict,
+.bh-withheld {
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.bh-outcome-verdict p:last-child,
+.bh-withheld ul:last-child {
+  margin-bottom: 0;
+}
+
+.bh-outcome-verdict__title {
+  margin: 4px 0 8px;
+}
+
+.bh-outcome-verdict--success {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.bh-outcome-verdict--warning,
+.bh-withheld {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.bh-outcome-verdict--info {
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.bh-withheld ul {
+  padding-left: 20px;
+}
+
+/* --- Cau hoi: vi sao hoi, chon nhieu, "khong biet" -------------------------- */
+
+.bh-why summary {
+  min-height: var(--erp-touch-target);
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.bh-why p {
+  margin: 0 0 8px;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.bh-question__hint {
+  margin: 0 0 6px;
+}
+
+.bh-options--multi .bh-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* "Khong biet" la mot dap an that nhung khong phai mot nhan dinh: de nhe hon
+ * cac dap an khac de nguoi tra loi khong chon no chi vi no noi bat. */
+.bh-option--unknown {
+  border-style: dashed;
+  color: var(--erp-text-secondary);
+}
+
+/* --- Chuoi lap luan cua mot phat hien --------------------------------------- */
+
+.bh-chain ul,
+.bh-outcome ul {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+.bh-dissent {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+/* --- Respondent 360 ---------------------------------------------------------- */
+
+.bh-respondents {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.bh-respondents > li {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-respondents p {
+  margin: 4px 0 8px;
+}
+
+.bh-invite {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* --- L7: can thiep va ket qua that ------------------------------------------- */
+
+.bh-intervention,
+.bh-outcome {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.bh-outcome {
+  background: var(--erp-surface);
+}
+
+.bh-intervention__point,
+.bh-proposal__note {
+  width: auto;
+  min-width: 140px;
+}
+
+.bh-proposal__note {
+  flex: 1 1 220px;
+}
+
+.bh-form {
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+  padding-top: 8px;
+}
+
+/* --- So phat hanh -------------------------------------------------------------- */
+
+.bh-release__badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bh-release__failed {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+@media (min-width: 720px) {
+  .bh-levels {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .bh-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bh-cards:not(.bh-cards--large) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bh-scenarios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bh-scan__notes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*
+ * Trang kham chia doi: cot kham chi rong 7/12 viewport, nen tu 1025px den
+ * ~1240px no hep hon moc 720px o tren du viewport da rong - tra cac luoi ve
+ * mot cot nhu tren mobile.
+ */
+@media (min-width: 1025px) and (max-width: 1239px) {
+  .bh-exam .bh-options,
+  .bh-exam .bh-cards:not(.bh-cards--large),
+  .bh-exam .bh-scenarios,
+  .bh-exam .bh-scan__notes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .bh-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bh-exam__brand {
+    display: inline-flex;
+  }
+
+  .bh-exam__home {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-option,
+  .bh-tab {
+    transition: none;
+  }
+}
+
+/* --- In / luu PDF ban bao cao chuan ----------------------------------------- */
+
+@media print {
+  .bh-split {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .bh-split > .erp-auth__brand {
+    display: none;
+  }
+
+  .bh-exam {
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .bh-exam__header,
+  .bh-exam__footer,
+  .bh-no-print {
+    display: none;
+  }
+
+  .bh-card,
+  .bh-stage__item,
+  .bh-scenario,
+  .bh-roadmap > li,
+  .bh-report section {
+    break-inside: avoid;
+  }
+}

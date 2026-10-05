@@ -1,0 +1,466 @@
+/*
+ * Sidebar dieu huong (desktop sticky + drawer mobile dung chung markup).
+ * Muc dang chon co DAI MAU ben trai + nen soft, khong chi doi mau chu (muc 10).
+ */
+
+.erp-sider {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--erp-sidebar-bg);
+}
+
+/*
+ * `position: sticky` TU tao stacking context, nen bang menu con ben trong
+ * sidebar khong the noi len tren header (z-index 20) hay vung noi dung du dat
+ * z-index bao nhieu. Nang han ca sidebar len tren header de bang menu con khong
+ * bi che.
+ */
+.erp-sider--fixed {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 100vh;
+  flex: none;
+  width: var(--erp-sidebar-width);
+  border-inline-end: 1px solid var(--erp-border);
+  transition: width 0.18s ease;
+}
+
+.erp-sider--collapsed {
+  width: var(--erp-sidebar-collapsed-width);
+}
+
+.erp-sider__brand {
+  display: flex;
+  align-items: center;
+  height: var(--erp-header-height);
+  padding: 0 16px;
+  border-bottom: 1px solid var(--erp-border);
+  flex: none;
+}
+
+.erp-sider--collapsed .erp-sider__brand {
+  justify-content: center;
+  padding: 0;
+}
+
+/*
+ * Sidebar co dinh (iPad mo dang app): thang hang voi header da cong vung an
+ * toan. Ban trong Offcanvas thi KHONG - chinh `.offcanvas` da chua cho roi.
+ */
+.erp-sider--fixed .erp-sider__brand {
+  height: calc(var(--erp-header-height) + var(--erp-safe-top));
+  padding-top: var(--erp-safe-top);
+}
+
+/* Logo la loi ve Trang chu - giu dang "anh", chi doi opacity khi ro chuot. */
+.erp-sider__brand-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-radius: var(--erp-radius-md);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.erp-sider__brand-link:hover {
+  opacity: 0.85;
+}
+
+/*
+ * O tim kiem toan he thong - CHI dung dau menu tren mobile (tu tablet tro len
+ * no van o header). Cung chieu cao voi dai logo de khung khong nhay khi doi
+ * breakpoint.
+ */
+.erp-sider__search {
+  display: flex;
+  align-items: center;
+  height: var(--erp-header-height);
+  padding: 0 12px;
+  border-bottom: 1px solid var(--erp-border);
+  flex: none;
+}
+
+.erp-sider__search .erp-input-affix {
+  width: 100%;
+}
+
+.erp-sider__search .form-control {
+  background-color: var(--erp-surface-secondary);
+  border-color: transparent;
+  border-radius: var(--erp-radius-round);
+}
+
+.erp-sider__search .form-control:focus {
+  background-color: var(--erp-surface);
+}
+
+.erp-sider__nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+}
+
+.erp-sider__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tieu de khu (vd "Cài đặt") — tach 11 phan he nghiep vu voi khu cau hinh o
+   cuoi sidebar (MENU-005 v4.2). Thu gon thi chi con vach ke. */
+.erp-sider__zone {
+  margin: 12px 4px 4px;
+  padding: 10px 8px 2px;
+  border-top: 1px solid var(--erp-border);
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.erp-sider--collapsed .erp-sider__zone {
+  margin: 8px 4px;
+  padding: 0;
+}
+
+/* Mot dong menu: dung chung cho muc la va tieu de submenu. */
+.erp-sider__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  margin-bottom: 2px;
+  border: none;
+  background: transparent;
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.erp-sider__item:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+.erp-sider__item--active {
+  background: var(--erp-brand-soft);
+  color: var(--erp-brand);
+  font-weight: 600;
+}
+
+.erp-sider__item--active::before {
+  content: '';
+  position: absolute;
+  inset-block: 8px;
+  inset-inline-start: -8px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: var(--erp-brand);
+}
+
+.erp-sider__icon {
+  flex: none;
+  width: 18px;
+  font-size: 1.125rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.erp-sider__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-sider__caret {
+  flex: none;
+  font-size: 0.75rem;
+  transition: transform 0.18s ease;
+}
+
+.erp-sider__item--open .erp-sider__caret {
+  transform: rotate(90deg);
+}
+
+/*
+ * Muc con: thut vao, khong co icon.
+ * Menu 3 cap nen moi cap thut mot buoc NHO dan - thut deu 30px thi cap 3 bi
+ * day sat mep phai va nhan bi cat mat.
+ */
+.erp-sider__sublist {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+/* Cap 2: thang hang voi nhan cua muc cha (qua khoi icon). */
+.erp-sider__sublist--l1 {
+  padding-inline-start: 28px;
+}
+
+/* Cap 3: thut them mot buoc nho + duong ke doc de thay ro nhanh. */
+.erp-sider__sublist--l2 {
+  margin-inline-start: 4px;
+  padding-inline-start: 12px;
+  border-inline-start: 1px solid var(--erp-border);
+}
+
+/* Cap 4: menu con nho hon trong cac module nhu "Van phong dien tu", "Dplan". */
+.erp-sider__sublist--l3 {
+  margin-inline-start: 8px;
+  padding-inline-start: 10px;
+  border-inline-start: 1px dashed var(--erp-border);
+}
+
+.erp-sider__sublist .erp-sider__item {
+  min-height: 36px;
+  font-weight: 400;
+}
+
+/* Nhom chuc nang (cap 2) dam hon man hinh (cap 3) de doc ra thu bac. */
+.erp-sider__item--l1 {
+  font-weight: 500;
+}
+
+.erp-sider__item--l2 {
+  padding-block: 6px;
+  font-size: 0.8125rem;
+}
+
+.erp-sider__item--l3 {
+  min-height: 34px;
+  padding-block: 5px;
+  padding-inline-start: 10px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-sider__item--l3 .erp-sider__icon {
+  width: 16px;
+  font-size: 0.95rem;
+}
+
+.erp-sider--collapsed .erp-sider__label,
+.erp-sider--collapsed .erp-sider__caret {
+  display: none;
+}
+
+.erp-sider--collapsed .erp-sider__item {
+  justify-content: center;
+  padding: 8px;
+}
+
+.erp-sider--collapsed .erp-sider__sublist {
+  padding-inline-start: 0;
+}
+
+/*
+ * Sidebar thu gon: submenu khong mo tai cho duoc (nhan da bi an) nen noi ra
+ * ben phai khi hover/focus vao muc cha. Dung `position: fixed` de vung cuon
+ * cua sidebar khong cat mat bang menu.
+ */
+.erp-sider__has-flyout {
+  position: relative;
+}
+
+.erp-sider__flyout {
+  position: fixed;
+  z-index: 1;
+  min-width: 232px;
+  max-width: 288px;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  /*
+   * Bang DINH LIEN vao muc cha (JS dat `left` = canh phai cua muc, chong 2px):
+   * chuot di cheo sang bang khong roi ra khoang trong nen menu khong bi mat.
+   */
+  padding: 6px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-sider__flyout-title {
+  margin: 0 0 4px;
+  padding: 6px 12px 4px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/* Trong bang menu con thi nhan hien binh thuong tro lai. */
+.erp-sider--collapsed .erp-sider__flyout .erp-sider__label {
+  display: block;
+}
+
+.erp-sider--collapsed .erp-sider__flyout .erp-sider__item {
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+
+/*
+ * Trong bang menu con, cap 3 van phai thut vao (bang van hien nhan day du)
+ * - neu khong thi nhom chuc nang va man hinh nhin nhu cung mot cap.
+ */
+.erp-sider--collapsed .erp-sider__flyout .erp-sider__sublist--l2 {
+  margin-inline-start: 4px;
+  padding-inline-start: 12px;
+  border-inline-start: 1px solid var(--erp-border);
+}
+
+.erp-sider--collapsed .erp-sider__flyout .erp-sider__sublist--l3 {
+  margin-inline-start: 8px;
+  padding-inline-start: 10px;
+  border-inline-start: 1px dashed var(--erp-border);
+}
+
+/* Chan sidebar: ho so nguoi dung + nut thu gon. */
+.erp-sider__footer {
+  flex: none;
+  padding: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-sider__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--erp-touch-target);
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  border-radius: var(--erp-radius-md);
+  text-align: start;
+  cursor: pointer;
+}
+
+.erp-sider--collapsed .erp-sider__user {
+  justify-content: center;
+  padding: 8px;
+}
+
+.erp-sider__user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-sider__user-meta {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+[data-theme='field'] .erp-sider__item {
+  min-height: 48px;
+}
+
+/* ==========================================================================
+   Badge — so viec dang cho nguoi dang dang nhap
+   ========================================================================== */
+
+/*
+ * MAU: `--erp-action-secondary` (blue), KHONG phai Crimson va KHONG phai
+ * Danger.
+ *
+ * DS muc 05: Crimson chi danh cho identity/CTA chinh (~2% dien tich) — mot chip
+ * crimson lap lai tren nhieu muc menu la pha dung han muc do. Con Danger thi
+ * sai NGHIA: "co 8 don cho ban duyet" la viec binh thuong hang ngay, khong phai
+ * rui ro; DS con ghi ro "Dashboard day badge do -> Danger <1% o trang thai binh
+ * thuong". Blue la mau HANH DONG, dung voi thu nay: co viec can bam vao.
+ *
+ * KHONG COLOR-ONLY (DS muc 05 + 11): chip luon mang CON SO, ke ca luc sidebar
+ * thu gon — vi vay khong dung mot cham tron trang tri. Cau day du ("8 việc đang
+ * chờ bạn") nam o `title`, o text an cho trinh doc man hinh, va o tooltip cua
+ * muc thu gon.
+ */
+.erp-sider__badge {
+  flex: none;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  /* Cot so nhay khi con so doi tu 8 -> 12 neu khong co tabular-nums. */
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Muc dang mo (nen crimson-soft, chu crimson) van giu chip blue: doi chip sang
+ * crimson o day la hai sac do canh nhau va mat luon dau hieu "muc nay dang
+ * chon". Hai thu tra loi hai cau khac nhau nen phai giu hai mau.
+ */
+
+/*
+ * THU GON: nhan bi an, chip chuyen len goc tren phai cua icon.
+ *
+ * Neo vao chinh nut (`.erp-sider__item` da `position: relative`).
+ *
+ * `position: absolute` chu khong phai thu nho chip tai cho — nut thu gon chi
+ * rong ~48px va da bi icon 18px chiem giua, de chip trong luong flex la icon
+ * bi day lech khoi tam va ca dai icon rung rinh theo do dai con so.
+ */
+.erp-sider--collapsed .erp-sider__item--l0 > .erp-sider__badge {
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-end: 2px;
+  min-width: 16px;
+  padding: 0 4px;
+  font-size: 0.625rem;
+  line-height: 15px;
+  /* Tach chip khoi icon ben duoi khi hai mau gan nhau (theme toi). */
+  box-shadow: 0 0 0 2px var(--erp-surface);
+}
+
+[data-theme='field'] .erp-sider__badge {
+  /* Field mode doi contrast >= 7:1 va doc duoc trong nang: chip to hon mot bac. */
+  min-width: 22px;
+  font-size: 0.75rem;
+  line-height: 20px;
+}
+
+/*
+ * BA MUC NANG — mac dinh (`info`) da khai o tren.
+ *
+ * `warning`/`danger` danh cho quy tac "quá hạn" ma nguoi quan tri tu cau hinh.
+ * DS muc 05 chot Danger < 1% dien tich o trang thai binh thuong, nen chi dung
+ * no cho thu that su tre han; badge "chờ bạn duyệt" hang ngay giu mau blue.
+ *
+ * Mau KHONG BAO GIO la tin hieu duy nhat (DS muc 05 + 11): chip luon mang con
+ * so, va cau day du ("Phiếu quá hạn 3 ngày: 4") nam o `title` cung nhu o text
+ * an cho trinh doc man hinh — o do con them chu "(quá hạn)" cho muc `danger`.
+ */
+.erp-sider__badge--warning {
+  background: var(--erp-warning);
+}
+
+.erp-sider__badge--danger {
+  background: var(--erp-danger);
+}
+
+.erp-sider__search .erp-menu-search {
+  width: 100%;
+}

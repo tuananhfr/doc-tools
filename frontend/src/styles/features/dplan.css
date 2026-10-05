@@ -1,0 +1,811 @@
+/**
+ * Dplan - bieu do Gantt (dhtmlxGantt Pro).
+ *
+ * ============================================================================
+ * LOP CAU NOI, KHONG PHAI THEME RIENG
+ * ============================================================================
+ * dhtmlxGantt mang CSS cua no (mau xam/xanh co dinh, hex cung trong file).
+ * Thay vi sua file thu vien - se mat khi cap nhat ban Pro - ta ghi de bang
+ * cac bien cua no o day va chi cap gia tri tu token `--erp-*`. Nho vay bieu do
+ * doi mau theo Light / Dark / Field ma khong dong nao viet hex.
+ */
+
+/*
+ * Chieu cao lay tron khung (`.erp-shell__container` da `height: 100%`) chu
+ * khong tu tinh `100vh - header`: tru tay la sai ngay khi doi chieu cao header
+ * hoac padding cua khung, va Field Mode thi header cao hon that.
+ */
+.erp-dplan {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Mot HANG duy nhat: tieu de + tim kiem + loc + thang + nut, theo cach lam
+   cua TaskToolbar/AdvanceToolbar de tiet kiem chieu cao man hinh. */
+.erp-dplan__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+}
+
+.erp-dplan__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--erp-text);
+  max-width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-dplan__count {
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-dplan__search { width: 14rem; }
+.erp-dplan__select { width: 12rem; }
+.erp-dplan__date { width: 9.5rem; }
+.erp-dplan__scale { width: 7rem; }
+
+.erp-dplan__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.erp-dplan__chart-wrapper {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 24rem;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  overflow: hidden;
+}
+
+.erp-dplan__chart { width: 100%; height: 100%; }
+
+.erp-dplan__chart-loading,
+.erp-dplan__state {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-dplan__hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+/* --- Cot nguoi thuc hien ------------------------------------------------- */
+.erp-dplan__avatars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.erp-dplan__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--erp-border);
+}
+
+.erp-dplan__avatar--text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--erp-primary-subtle, var(--erp-surface-secondary));
+  color: var(--erp-primary, var(--erp-text));
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- Ghi de mau cua thu vien -------------------------------------------- */
+.gantt_container,
+.gantt_grid,
+.gantt_task {
+  background: var(--erp-surface);
+  color: var(--erp-text);
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   Nền biểu đồ
+   ==========================================================================
+   MỌI luật dưới đây đều neo vào `.erp-gantt`. Không phải để giới hạn phạm vi
+   mà để THẮNG ĐỘ ĐẶC HIỆU: file CSS của dhtmlxGantt nạp lúc chạy nên nó luôn
+   đứng sau trong tài liệu, và mọi luật một-class bên mình sẽ thua nó. Thêm một
+   class nữa là đủ, và cách này không phụ thuộc vào việc thẻ <link> được chèn ở
+   đâu.
+
+   Lớp này CỐ Ý mang tên trung tính chứ không phải `.erp-dplan__chart`: từ khi
+   "Pháp lý dự án" cũng dựng Gantt thì có hai màn dùng chung thư viện, và neo
+   vào tên của một màn là màn kia giữ nguyên nền trắng của thư viện giữa app
+   đang ở chế độ tối — hỏng ÂM THẦM, chỉ lộ ra khi đổi theme. Biểu đồ mới thì
+   thêm class `erp-gantt` vào chính thẻ truyền cho `gantt.init()`.
+   dhtmlxGantt tô cứng nền trắng cho gần như mọi thành phần. Không sơn lại từ
+   token thì màn Dplan giữ nguyên nền trắng giữa một app đang ở chế độ tối, và
+   những màu bám theo theme (dòng đang trỏ, dòng đang chọn) đổ lên nền trắng
+   thành một vệt đen. Sơn cả nền lẫn trạng thái từ CÙNG một gốc là cách duy
+   nhất để hai chế độ sáng/tối đều đúng. */
+.erp-gantt .gantt_container,
+.erp-gantt .gantt_task_bg,
+.erp-gantt .gantt_data_area,
+.erp-gantt .gantt_grid,
+.erp-gantt .gantt_grid_data,
+.erp-gantt .gantt_row,
+.erp-gantt .gantt_task_row {
+  background-color: var(--erp-surface);
+  color: var(--erp-text-primary);
+}
+
+/* O trong dong KHONG duoc to nen: chung nam de len dong, to vao la nuot mat
+   mau cua dong dang tro va dong dang chon. Chi ke vien. */
+.erp-gantt .gantt_task_cell,
+.erp-gantt .gantt_grid_data .gantt_cell {
+  color: var(--erp-text-primary);
+}
+
+.erp-gantt .gantt_grid_scale,
+.erp-gantt .gantt_task_scale,
+.erp-gantt .gantt_scale_line,
+.erp-gantt .gantt_grid_head_cell,
+.erp-gantt .gantt_row,
+.erp-gantt .gantt_task_row,
+.erp-gantt .gantt_task_cell,
+.erp-gantt .gantt_grid_data .gantt_cell {
+  border-color: var(--erp-border);
+}
+
+.erp-gantt .gantt_grid_scale,
+.erp-gantt .gantt_task_scale {
+  background-color: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.erp-gantt .gantt_row.odd,
+.erp-gantt .gantt_task_row.odd {
+  background-color: color-mix(in srgb, var(--erp-text-primary) 4%, var(--erp-surface));
+}
+
+/* Trạng thái dòng là LỚP PHỦ trên nền, không phải một màu nền khác: nhờ vậy
+   chúng luôn nhạt hơn nền một chút ở cả hai chế độ, thay vì có thể tối hơn. */
+.erp-gantt .gantt_row:hover,
+.erp-gantt .gantt_task_row:hover,
+.erp-gantt .gantt_grid_data .gantt_row:hover,
+.erp-gantt .gantt_grid_data .gantt_row.odd:hover {
+  background-color: color-mix(in srgb, var(--erp-brand) 8%, var(--erp-surface));
+}
+
+.erp-gantt .gantt_row.gantt_selected,
+.erp-gantt .gantt_task_row.gantt_selected,
+.erp-gantt .gantt_grid_data .gantt_row.gantt_selected {
+  background-color: color-mix(in srgb, var(--erp-brand) 15%, var(--erp-surface));
+}
+
+/* Ngay nghi / ngay le - do backend quyet dinh, xem `meta.holidays`. */
+.erp-gantt .gantt_task_cell.weekend {
+  background-color: color-mix(in srgb, var(--erp-danger) 8%, var(--erp-surface));
+}
+
+/* --- Thanh công việc ------------------------------------------------------
+   Hai mã màu này CỐ ĐỊNH, không lấy từ token theme: biểu đồ Dplan bên Drupal
+   và bên này phải ra cùng một màu, người dùng đối chiếu hai màn hình cạnh
+   nhau. Khai một chỗ ở đây thay vì rải hex khắp các luật bên dưới. Dòng trễ
+   và dải dự kiến không có ràng buộc đó nên vẫn theo token.
+
+   BIẾN PHẢI KHAI TRÊN `.erp-gantt`, CÙNG LỚP VỚI LUẬT DÙNG NÓ. Tới 14/09/2026
+   chúng chỉ nằm trên `.erp-dplan__chart`, nên ở mọi biểu đồ KHÁC Dplan (Pháp
+   lý dự án, Biểu đồ công việc của giao dịch) `var(--erp-dplan-task)` không
+   phân giải ⇒ `background-color` vô hiệu ⇒ **thanh trong suốt**: lưới đủ dòng,
+   trục thời gian đủ, khung biểu đồ trắng trơn, không lỗi nào báo ra. */
+.erp-gantt,
+.erp-dplan__chart {
+  --erp-dplan-task: #3db9d3;
+  --erp-dplan-parent: #46ad51;
+  --erp-dplan-late: var(--erp-chart-negative);
+  --erp-dplan-planned: var(--erp-chart-forecast);
+}
+
+.erp-gantt .gantt_task_line {
+  background-color: var(--erp-dplan-task);
+  border-color: transparent;
+  border-radius: 3px;
+}
+
+.erp-gantt .gantt_task_progress {
+  background-color: color-mix(in srgb, var(--erp-dplan-task) 85%, black);
+  border-radius: 3px;
+}
+
+/* Xanh lá CHỈ dành cho dòng cha - dòng gộp của cả một nhánh, phải nhận ra
+   ngay giữa danh sách vài trăm dòng. Tiến độ 100% KHÔNG đổi màu thanh: cột
+   "Tiến độ" và phần tô đậm trên thanh đã nói điều đó rồi, tô xanh lá thêm lần
+   nữa thì dòng con xong việc trông y hệt dòng cha. */
+.erp-gantt .gantt_task_line.gantt_project,
+.erp-gantt .gantt_task_line.erp-dplan__bar--parent {
+  background-color: var(--erp-dplan-parent);
+}
+
+.erp-gantt .gantt_task_line.gantt_project .gantt_task_progress,
+.erp-gantt .gantt_task_line.erp-dplan__bar--parent .gantt_task_progress {
+  background-color: color-mix(in srgb, var(--erp-dplan-parent) 85%, black);
+}
+
+.erp-gantt .gantt_task_line.erp-dplan__bar--fail {
+  background-color: var(--erp-dplan-late);
+}
+
+.erp-gantt .gantt_task_line.erp-dplan__bar--fail .gantt_task_progress {
+  background-color: color-mix(in srgb, var(--erp-dplan-late) 85%, black);
+}
+
+.erp-gantt .gantt_task_line .gantt_task_content { color: var(--erp-text-on-accent); }
+
+/* Dòng không được sửa: nhạt màu và bỏ con trỏ kéo, để người dùng biết trước
+   khi bấm thay vì nhận lỗi 403 từ server. */
+.erp-gantt .gantt_task_line.erp-dplan__bar--readonly {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* --- Dải "ngày dự kiến" --------------------------------------------------
+   Vẽ bởi lớp `setupBaseline()`: khoảng DỰ KIẾN nằm ngay DƯỚI khoảng THỰC TẾ,
+   để nhìn một cái là biết việc chạy sớm hay muộn so với kế hoạch. Vị trí dọc
+   do JS tính (xem BASELINE_TOP) vì nó phụ thuộc chiều cao dòng. */
+.erp-dplan__baseline {
+  position: absolute;
+  box-sizing: border-box;
+  height: 8px;
+  border: 1px solid var(--erp-dplan-planned);
+  border-radius: 2px;
+  background-color: color-mix(in srgb, var(--erp-dplan-planned) 45%, var(--erp-surface));
+  pointer-events: none;
+}
+
+.erp-gantt .gantt_grid_head_cell,
+.erp-gantt .gantt_scale_cell { color: var(--erp-text-secondary); }
+
+.gantt_task_link .gantt_line_wrapper div { background: var(--erp-text-secondary); }
+.erp-gantt .gantt_link_arrow_right { border-left-color: var(--erp-text-secondary); }
+
+/* --- Form chi tiet ------------------------------------------------------- */
+.erp-dplan__readonly-tag {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-sm, 4px);
+}
+
+
+/* Nhan bang <button> de van bam duoc bang ban phim ma khong long <a> trong
+   bang - vien va nen bo di, chi giu mau lien ket. */
+.erp-linkish {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-primary);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.erp-linkish:hover { text-decoration: underline; }
+
+/* --- Nhãn của ô chọn trong form -------------------------------------------
+   Phần còn lại của khối này (chips, danh sách phẳng, avatar) từng thuộc
+   `ResourcePicker`. Component đó đã bị xoá: mọi ô chọn giờ là `EntityPicker`,
+   nên chúng dùng CSS chung ở `components/`, không còn bản riêng ở đây. */
+.erp-dplan-picker__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+/* Vach "Hôm nay" - dung mau canh bao nhu ban Drupal. */
+.gantt_marker.erp-dplan__today {
+  background: var(--erp-danger);
+  opacity: 0.85;
+}
+
+.gantt_marker.erp-dplan__today .gantt_marker_content {
+  background: var(--erp-danger);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0 0.25rem;
+  border-radius: var(--erp-radius-sm, 4px);
+}
+
+/* --- Hộp thoại Xuất ------------------------------------------------------ */
+.erp-dplan-export {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.erp-dplan-export__note {
+  margin-top: 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+}
+
+/* Toàn màn hình: thư viện gắn class này lên khung biểu đồ. */
+.gantt_container.gantt_fullscreen,
+.erp-dplan__chart-wrapper:fullscreen {
+  background: var(--erp-surface);
+}
+
+/* ==========================================================================
+   Báo cáo chu kỳ (/personal/cycle-reports)
+   ==========================================================================
+   Cùng nguồn dữ liệu với biểu đồ Dplan nên để chung file: nội dung báo cáo là
+   bản chốt của chính các dòng công việc phía trên. */
+.erp-cycle-report__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-cycle-report__meta dt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  margin-bottom: 0.15rem;
+}
+
+.erp-cycle-report__meta dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-cycle-report__summary {
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  border-left: 3px solid var(--erp-brand);
+  white-space: pre-line;
+}
+
+.erp-cycle-report__block + .erp-cycle-report__block {
+  margin-top: 1.5rem;
+}
+
+.erp-cycle-report__block-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--erp-text-primary);
+}
+
+/* Bảng báo cáo rộng hơn hộp thoại là chuyện thường (7 cột) — cho nó tự cuộn
+   ngang trong khung của mình, đừng để cả trang trượt theo. */
+.erp-cycle-report__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-cycle-report__scroll table {
+  margin: 0;
+  min-width: 100%;
+  font-size: 0.8125rem;
+}
+
+.erp-cycle-report__scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-cycle-report__scroll td {
+  vertical-align: top;
+}
+
+/* --- Menu ẩn/hiện cột ----------------------------------------------------- */
+/* Ô ▾ là cả vùng bấm, không chỉ mỗi ký tự: trải kín ô tiêu đề để không phải
+   nhắm vào một mũi tên bé xíu. */
+.erp-dplan__chart .erp-dplan__column-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--erp-text-primary);
+}
+
+.erp-gantt .gantt_grid_head_cell:hover .erp-dplan__column-toggle {
+  color: var(--erp-brand);
+}
+
+/* `fixed` chứ không `absolute`: toạ độ nhận được là toạ độ viewport, và ô tiêu
+   đề neo nó nằm trong một vùng cuộn được. */
+.erp-dplan__column-menu {
+  position: fixed;
+  z-index: 1055;
+  min-width: 190px;
+  padding: 0.5rem 0.75rem;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-dplan__column-menu .form-check {
+  margin-bottom: 0.25rem;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.erp-dplan__column-menu .form-check:last-child { margin-bottom: 0; }
+
+/* --- Hàng tiêu đề --------------------------------------------------------- */
+.erp-dplan__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Đứng riêng một hàng nên không cần cắt sớm nữa. */
+.erp-dplan__heading .erp-dplan__title {
+  max-width: none;
+}
+
+/* --- Bảng điều khiển ------------------------------------------------------ */
+.erp-dplan__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.65rem 1.5rem;
+}
+
+.erp-dplan__option-label {
+  display: block;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-dplan__option-hint {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--erp-text-secondary);
+}
+
+/* --- Phần trăm ở đầu thanh công việc --------------------------------------
+   Thanh có thể ngắn hơn cả cụm chữ, nên nhãn phần trăm neo tuyệt đối vào mép
+   trái thay vì nằm trong dòng chảy — có bị tràn thì tràn phần tên việc. */
+.erp-dplan__chart .erp-dplan__bar-percent {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Thời gian dự trữ: vệt gạch chéo mờ nối tiếp thanh công việc, cố tình nhạt
+   hơn mọi thứ khác vì nó là khoảng CÓ THỂ trễ, không phải việc phải làm. */
+.erp-dplan__slack {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 3px;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--erp-text-secondary) 22%, transparent) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+/* --- Form thêm/sửa công việc: bố cục hai cột -------------------------------
+   Mục tiêu là VỪA MỘT MÀN HÌNH. Form cũ xếp một cột trong modal `lg` nên thân
+   modal cao ~795px — cuộn ngay trên laptop 1366×768. Hai cột đưa nó về ~420px.
+   Thêm trường mới thì thêm vào MỘT trong hai cột cho cân, đừng nối thêm hàng
+   xuống dưới cùng. */
+.erp-dplan-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4px 28px;
+  align-items: start;
+}
+
+/* Hẹp thì xếp dọc — lúc đó cuộn là chấp nhận được, còn hơn ô nhập bị bóp. */
+@media (max-width: 991.98px) {
+  .erp-dplan-form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+/* `Field` luôn bọc control trong `.mb-3`. Trong lưới này khoảng cách do `gap`
+   của cột lo, nên khoảng đệm đó chỉ làm form cao thêm vô ích. */
+.erp-dplan-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.erp-dplan-form__col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.erp-dplan-form__block {
+  min-width: 0;
+}
+
+/* Tiêu đề khối + đường kẻ kéo dài hết phần còn lại: nhẹ hơn `FormSection`
+   (không khung, không thanh nền) nên chia được nhóm mà gần như không tốn thêm
+   chiều cao. */
+.erp-dplan-form__block-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-dplan-form__block-title::after {
+  content: '';
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--erp-border);
+}
+
+.erp-dplan-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-dplan-form__picker {
+  min-width: 0;
+}
+
+.erp-dplan-form__eval {
+  margin-top: 12px;
+}
+
+.erp-dplan-form__switch {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-dplan-form__switch .form-check {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+/* --- Lưới ngày 2×2 ---------------------------------------------------------
+   Hàng = kế hoạch / thực tế, cột = bắt đầu / kết thúc. Bốn nhãn dài của bản cũ
+   ("Bắt đầu", "Bắt đầu dự kiến"...) không nói được cặp nào là kế hoạch, cặp nào
+   là thực tế — bên Drupal là `field_expected_date_time` và
+   `field_actual_date_time`. */
+.erp-dplan-dates {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px 10px;
+  align-items: center;
+}
+
+.erp-dplan-dates__head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-dplan-dates__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/* Chấm màu nhắc lại hai kiểu thanh trên biểu đồ: dải kế hoạch là viền rỗng,
+   thanh thực tế là khối đặc. Mã màu phải viết lại ở đây vì modal render qua
+   portal, nằm ngoài `.erp-dplan__chart` nơi khai các biến đó. */
+.erp-dplan-dates__dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 3px;
+}
+
+.erp-dplan-dates__dot--planned {
+  border: 1px solid var(--erp-border-strong);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-dplan-dates__dot--actual {
+  background: #3db9d3;
+}
+
+.erp-dplan-dates__note {
+  grid-column: 2 / -1;
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Tiến độ --------------------------------------------------------------- */
+.erp-dplan-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.erp-dplan-progress__range {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-dplan-progress__num {
+  flex: 0 0 6rem;
+  width: 6rem;
+}
+
+/* --- Ô tiêu đề -------------------------------------------------------------
+   Đây là dòng người dùng đọc đầu tiên khi mở lại công việc, nên nó to hơn mọi
+   ô khác trong form — thứ bậc chứ không phải trang trí. Cùng lý do đó nhãn của
+   nó cũng khác: các ô còn lại mô tả thuộc tính, ô này là chính cái tên. */
+.erp-dplan-form__title .form-control {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.erp-dplan-form__title .form-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+/* Danh mục rỗng: ô bị khoá, nội dung nằm ở placeholder nên phải đọc được —
+   mặc định của trình duyệt cho input disabled quá mờ. */
+.erp-dplan-form__picker .form-control:disabled::placeholder {
+  color: var(--erp-text-tertiary);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+ * Bản in BÁO CÁO CHU KỲ (`CycleReportPrintSheet`) — chép bố cục view Drupal
+ * `dplan_report:page_print_plan_report`. Tờ giấy, bảng kẻ khung và đầu trang
+ * đứng trên `.erp-print*` dùng chung (`advance-print.css`); ở đây chỉ phần riêng.
+ * Không dùng token `--erp-*` cho màu: giấy luôn chữ đen nền trắng.
+ * -------------------------------------------------------------------------- */
+
+/* Drupal: logo ở col-5, rộng 60% cột. */
+.erp-cycle-print__logo {
+  flex: 0 0 41.6667%;
+}
+
+.erp-cycle-print__logo img {
+  width: 60%;
+  max-height: none;
+}
+
+.erp-cycle-print__rule {
+  margin: 8px 0;
+  border: 0;
+  border-top: 1px solid #000;
+  opacity: 0.25;
+}
+
+.erp-cycle-print__title {
+  margin: 8px 0;
+}
+
+/* Bảng thông tin: `table table-info-report` — kẻ dòng, không kẻ cột. */
+.erp-cycle-print__info {
+  width: 100%;
+  margin-bottom: 8px;
+  border-collapse: collapse;
+}
+
+.erp-cycle-print__info th,
+.erp-cycle-print__info td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #dee2e6;
+  text-align: left;
+  vertical-align: top;
+}
+
+.erp-cycle-print__info th:first-child {
+  width: 25%;
+  white-space: nowrap;
+}
+
+.erp-cycle-print__section {
+  margin: 16px 0 4px;
+  font-size: 13pt;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.erp-cycle-print__table {
+  margin-top: 4px;
+}
+
+/* Tên công việc / dự án dài: cho gãy dòng thay vì tràn lề. */
+.erp-print__table.erp-cycle-print__table td {
+  overflow-wrap: anywhere;
+}
+
+.erp-print__table.erp-cycle-print__table thead th {
+  white-space: normal;
+}
+
+.erp-print__table td.erp-cycle-print__rich {
+  text-align: left;
+}
+
+.erp-cycle-print__conclude {
+  margin-left: 3rem;
+  white-space: pre-line;
+}
+
+/* Hàng ký: col-4 · col-5 · col-3 của Drupal. */
+.erp-cycle-print__signatures {
+  display: grid;
+  grid-template-columns: 4fr 5fr 3fr;
+  margin-top: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  break-inside: avoid;
+}

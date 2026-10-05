@@ -1,0 +1,132 @@
+/* Lop noi: modal, offcanvas, tooltip, popover. */
+
+.modal-content {
+  background: var(--erp-surface);
+  border-color: var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  color: var(--erp-text-primary);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--erp-border);
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.offcanvas {
+  --bs-offcanvas-bg: var(--erp-sidebar-bg);
+  --bs-offcanvas-color: var(--erp-text-primary);
+  --bs-offcanvas-border-color: var(--erp-border);
+  --bs-offcanvas-padding-x: 0;
+  --bs-offcanvas-padding-y: 0;
+  /* Menu mobile phu ca chieu cao man hinh - chua thanh trang thai va thanh Home. */
+  padding-top: var(--erp-safe-top);
+  padding-bottom: var(--erp-safe-bottom);
+}
+
+.offcanvas-body {
+  padding: 0;
+}
+
+.tooltip {
+  --bs-tooltip-bg: var(--erp-text-primary);
+  --bs-tooltip-color: var(--erp-bg);
+  --bs-tooltip-font-size: 0.75rem;
+  --bs-tooltip-border-radius: var(--erp-radius-sm);
+  --bs-tooltip-opacity: 1;
+}
+
+.popover {
+  --bs-popover-bg: var(--erp-surface);
+  --bs-popover-border-color: var(--erp-border);
+  --bs-popover-border-radius: var(--erp-radius-md);
+  --bs-popover-header-bg: transparent;
+  --bs-popover-header-color: var(--erp-text-primary);
+  --bs-popover-body-color: var(--erp-text-secondary);
+  --bs-popover-font-size: 0.875rem;
+  --bs-popover-max-width: 300px;
+  box-shadow: var(--erp-shadow2);
+}
+
+.popover-header {
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-bottom: none;
+  padding-bottom: 4px;
+}
+
+/* Hop xac nhan (thay Popconfirm cua antd). */
+.erp-confirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Toast (thay message cua antd) - luon co icon + noi dung (muc 10). */
+.erp-toaster {
+  position: fixed;
+  top: 16px;
+  inset-inline-end: 16px;
+  z-index: 1090;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: min(420px, calc(100vw - 32px));
+}
+
+.erp-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--erp-border);
+  border-inline-start-width: 3px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  box-shadow: var(--erp-shadow2);
+  font-size: 0.875rem;
+}
+
+.erp-toast--success {
+  border-inline-start-color: var(--erp-success);
+}
+
+.erp-toast--info {
+  border-inline-start-color: var(--erp-info);
+}
+
+.erp-toast--warning {
+  border-inline-start-color: var(--erp-warning);
+}
+
+.erp-toast--danger {
+  border-inline-start-color: var(--erp-danger);
+}
+
+.erp-toast__icon {
+  flex: none;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.erp-toast__close {
+  flex: none;
+  border: none;
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .erp-toaster {
+    inset-inline: 16px;
+    max-width: none;
+  }
+}

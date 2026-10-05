@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Đề xuất — form nhập (menu Nhân sự › Đề xuất)
+
+   Ba modal của phân hệ này (đề xuất chung, tăng ca, điều chỉnh cơ chế) trước
+   đây dựng `<Modal size="lg">` thô: 800px bề ngang, ô xếp 2 cột, mỗi hàng ăn
+   HAI khoảng cách cộng dồn nên form dài gấp đôi màn hình và phải cuộn để nhập.
+
+   Mục tiêu ở đây là KHÔNG PHẢI CUỘN — form vừa một màn 1080p. Đạt được bằng
+   hai việc tách bạch: nới bề ngang để xếp được 3 cột, và siết khoảng cách dọc.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Bề ngang.
+
+   `size` của react-bootstrap chỉ có ba nấc (sm/lg/xl = 1140px). Dùng đúng con
+   số mà `.advance-modal` và `.erp-profile-modal` đang dùng — repo này chỉ nên
+   có MỘT bề ngang cho modal nhiều cột, thêm con số thứ ba là ba form cùng họ
+   trông lệch nhau.
+
+   Đặt `--bs-modal-width` chứ KHÔNG ghi đè `max-width`: `.modal-dialog-scrollable`
+   tính chiều cao thân modal từ biến đó, ghi đè max-width là thân cuộn sai.
+   -------------------------------------------------------------------------- */
+.erp-propose-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+  /* Lề mặc định 1.75rem × 2 = 56px chiều cao. Modal đã `centered` nên lề chỉ
+     còn là khoảng thở; lấy lại ~32px cho nội dung. */
+  --bs-modal-margin: 0.75rem;
+}
+
+.erp-propose-modal .modal-header,
+.erp-propose-modal .modal-footer {
+  padding-block: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Mật độ — sáu chỗ, xếp theo lượng chiều cao thu được.
+
+   Chỉ hạ khoảng cách DỌC. Gutter ngang giữ nguyên vì ba cột vẫn phải tách nhau
+   rõ, và chiều cao control KHÔNG đụng tới — xem cảnh báo Field Mode ở dưới.
+
+   Phạm vi khoá vào `.erp-propose-form` (truyền qua `bodyClassName` của
+   `FormModal`) nên không màn nào khác đổi theo.
+   -------------------------------------------------------------------------- */
+
+/* 1. Khoảng cách giữa hai hàng ô do MỘT nguồn quyết định — gutter của `<Row>`.
+      Giữ thêm `mb-3` là hai nguồn cộng dồn (1rem + 1rem = 2rem trắng giữa hai
+      hàng ô chỉ cao 38px), và mỗi lần chỉnh mật độ phải nhớ sửa hai chỗ.
+      `!important` là bắt buộc: `.mb-3` của Bootstrap tự nó đã `!important`. */
+.erp-propose-form .row {
+  --bs-gutter-y: 0.5rem;
+}
+
+.erp-propose-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* 2. Nhãn sát ô của nó. 8px mặc định nhân với ~10 hàng ô là gần 70px chiều cao
+      cho thứ không ai nhìn — nhãn dính ô vẫn đọc đúng vì nó cùng cột và cách
+      hàng trên 8px. */
+.erp-propose-form .form-label {
+  margin-bottom: 2px;
+}
+
+/* 3. Dòng chú thích bám sát ô và nhỏ hơn một bậc: nó là chú thích, không phải
+      nội dung. */
+.erp-propose-form .form-text {
+  margin-top: 1px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+/* 4. Thân modal mỏng lại. */
+.erp-propose-form.erp-form-modal__body {
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+/* 5. Ô thấp hơn ~4px.
+
+      TUYỆT ĐỐI KHÔNG ĐẶT `min-height` Ở ĐÂY. Field Mode ép `min-height: 48px`
+      với CÙNG độ đặc hiệu (`[data-theme='field'] .form-control` = 0,0,2,0), mà
+      `features/*.css` nạp SAU `components/form.css` — một dòng `min-height`
+      trong khối này sẽ thắng và phá luôn chế độ công trường, im lặng, chỉ lộ
+      khi ai đó đổi theme. Hạ chiều cao bằng `padding-block` thì Field Mode vẫn
+      giữ nguyên 48px. */
+.erp-propose-form .form-control,
+.erp-propose-form .form-select {
+  padding-block: 0.25rem;
+}
+
+/* Vung cuon: KHONG dat `max-height` o day. `FormModal` luon bat `scrollable`,
+   nen Bootstrap da kep chieu cao `.modal-dialog` va `.erp-form-modal .modal-body`
+   da co `overflow-y: auto`. Dat them mot tran nua la hai luat cung tranh mot
+   viec, va tren man thap thi tran cung hon se thang - than modal ngan lai giua
+   khung trong. */
+
+/* --------------------------------------------------------------------------
+   Bảng nhiều dòng trong form (nội dung in, thiết bị, công tác phí, tăng ca).
+
+   Ô nhập trong ô bảng vẫn là `<Field>` dùng chung nên mang theo `mb-3` và nhãn
+   rỗng; luật ở trên đã dẹp lề, phần còn lại là siết chính cái bảng.
+   -------------------------------------------------------------------------- */
+.erp-propose-form .table {
+  margin-bottom: 8px;
+}
+
+.erp-propose-form .table > :not(caption) > * > * {
+  padding: 4px 6px;
+}
+
+/* Tiêu đề cột: chữ nhỏ, in hoa nhẹ — nó là nhãn của cả cột, không phải dữ
+   liệu. Không dùng `text-transform: uppercase` cho chuỗi tiếng Việt có dấu ở
+   cỡ nhỏ hơn: dấu chồng lên nhau khó đọc. */
+.erp-propose-form .table > thead th {
+  padding-block: 2px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--erp-text-muted);
+  white-space: nowrap;
+}
+
+.erp-propose-form .table > thead th small {
+  font-weight: 400;
+}
+
+/* Nút "Thêm dòng" nằm ngay dưới bảng, không cần lề trên. */
+.erp-propose-form .table + .btn,
+.erp-propose-form .table-responsive + .btn {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Nhãn của một khối không phải ô nhập (bảng, tệp đính kèm).
+
+   `<Form.Label>` đứng một mình không có control đi kèm nên không thừa hưởng
+   luật (2) ở trên — nó là tiêu đề của cả một khối, cho nó nhịp riêng.
+   -------------------------------------------------------------------------- */
+.erp-propose-form__block-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+/* Số đề xuất đứng cạnh tiêu đề modal — là DỮ LIỆU TRA CỨU, không phải tiêu đề.
+   Cùng cách `.advance-modal__code` bày mã chứng từ của phiếu tạm ứng: chữ đơn
+   sắc, nền nhạt, để mắt phân biệt ngay với tên màn hình. Ô nhập số đã bỏ hẳn —
+   backend tự đánh số, xem `ProposeNumberGenerator`. */
+.erp-propose-modal__code {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+/* Tong de xuat cua bang Thuong — con so DAN XUAT, khong phai o nhap.
+   Dat cung hang voi nut "Them dong", day sang phai: mat doc bang tu tren
+   xuong roi gap ngay con so tong o chan, dung nhip cua mot bang tinh. */
+.erp-propose-form__total {
+  color: var(--erp-text-secondary);
+  font-size: 0.9rem;
+}
+
+.erp-propose-form__total strong {
+  color: var(--erp-text);
+}
+
+/* --------------------------------------------------------------------------
+   Cột phải 3/12 của form "Điều chỉnh cơ chế" — cụm điều khiển + năm ô tổng.
+
+   Chép `group_col_right` (`col-12 col-lg-3`) → `group_shadow_body_right`
+   (`shadow p-2`) của form Drupal: một khối nổi đứng cạnh bốn bảng lương, để
+   mắt tách được "số tổng" khỏi "số theo dòng".
+
+   `position: sticky` là thứ Drupal KHÔNG có, thêm vào vì lý do đo được: bảng
+   "Bảng thông tin lương phụ cấp" trung bình 9 dòng nên cột trái dài hơn cột
+   phải nhiều lần — cuộn tới cuối bảng mà năm ô tổng đã trôi khỏi màn hình thì
+   người nhập phải cuộn ngược lên mỗi lần đối chiếu một con số.
+   -------------------------------------------------------------------------- */
+.erp-propose-form__aside {
+  position: sticky;
+  top: 0;
+  padding: 12px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow-sm, 0 1px 3px rgb(0 0 0 / 12%));
+}
+
+/* Ô cuối không cần lề dưới — khối đã có padding riêng. */
+.erp-propose-form__aside > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Bảng trong tab: SÁU cột nên phải được cuộn ngang RIÊNG.
+
+   `.table-responsive` của Bootstrap đã lo việc đó, nhưng ô nhập trong bảng thì
+   không có bề ngang tối thiểu nên trình duyệt bóp chúng lại tới mức không đọc
+   được số. Đặt sàn cho ô số; cột đầu đã có `min-width` khai tại chỗ.
+   -------------------------------------------------------------------------- */
+.erp-propose-form .table .form-control,
+.erp-propose-form .table .form-select {
+  min-width: 92px;
+}
+
+/* Tab của form cơ chế: bỏ viền hộp mặc định, chỉ giữ hàng tab —
+   thân tab đã nằm trong modal có nền riêng. */
+.erp-propose-form .nav-tabs {
+  margin-bottom: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Dòng "Quyết định" trên thẻ kanban — bấm vào ra bản in của quyết định.
+
+   Màu `success` là dấu hiệu THỨ HAI, không phải dấu hiệu duy nhất: dòng này
+   chỉ xuất hiện khi đề xuất ĐÃ có quyết định, nhãn chữ "Quyết định" vẫn nói rõ
+   đó là gì, và gạch chân cho biết nó bấm được kể cả khi người dùng không phân
+   biệt được màu (ERPcons_Design_System.md, mục 05 & 11).
+
+   `--erp-success` chứ không phải hex: ba theme (Light / Dark / Field)
+   mỗi cái một sắc xanh, viết cứng là Field Mode tụt xuống dưới ngưỡng
+   contrast 7:1.
+   -------------------------------------------------------------------------- */
+.erp-proposal-decision {
+  color: var(--erp-success);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.erp-proposal-decision:hover,
+.erp-proposal-decision:focus-visible {
+  color: var(--erp-success);
+  text-decoration-thickness: 2px;
+}

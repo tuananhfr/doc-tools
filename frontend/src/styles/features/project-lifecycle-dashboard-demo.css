@@ -1,0 +1,139 @@
+.lifecycle-board{--lb-blue:#1265ed;--lb-border:#d9e5f6;--lb-ink:#142b5b;color:var(--lb-ink);display:grid;gap:12px;padding:2px 0 20px;font-size:13px}
+.lifecycle-board *{box-sizing:border-box}
+.lifecycle-board button{font:inherit;cursor:pointer}
+.lifecycle-board__section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lifecycle-board__link{border:0;background:transparent;color:#0758ca;padding:2px 0;font-weight:600}.lifecycle-board__demo{display:inline-flex;align-items:center;vertical-align:middle;border-radius:5px;background:#fff1d6;color:#a75a00;font-size:11px;font-weight:750;padding:3px 6px;margin-left:5px;text-transform:uppercase;letter-spacing:.03em}
+.lifecycle-board__outline,.lifecycle-board__primary{border:1px solid #b9cff4;background:white;color:#0758ca;padding:8px 12px;border-radius:6px;font-weight:650;white-space:nowrap}.lifecycle-board__outline:hover{background:#edf5ff}.lifecycle-board__primary{background:#1265ed;border-color:#1265ed;color:white}
+.lifecycle-board__stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.lifecycle-board__stage{position:relative;min-height:46px;border:1px solid #dce9f9;border-radius:9px;background:#f0f6ff;color:#173466;display:flex;align-items:center;gap:10px;padding:5px 9px;text-align:left;font-weight:700}.lifecycle-board__stage:hover{filter:saturate(1.3);border-color:#8bb6f4}.lifecycle-board__stage-number{display:grid;place-items:center;flex:none;width:29px;height:29px;border-radius:50%;background:white;box-shadow:0 1px 6px #a6bede7a;color:#0c56bb;font-size:12px}.lifecycle-board__stage.is-active{box-shadow:inset 0 0 0 2px currentColor}.lifecycle-board__stage.is-green{background:#e5f8f3;color:#08815b}.lifecycle-board__stage.is-blue{background:#e2eeff;color:#135dc5}.lifecycle-board__stage.is-amber{background:#fff1d6;color:#b76b00}.lifecycle-board__stage.is-slate{background:#edf2fa;color:#596f94}.lifecycle-board__stage.is-purple{background:#edeaff;color:#5d43ac}.lifecycle-board__stage i{position:absolute;right:-8px;width:8px;height:3px;background:#b7ccef}
+.lifecycle-board__subnav{display:flex;gap:2px;overflow:auto;background:#fff;border:1px solid var(--lb-border);border-radius:7px;padding:3px;scrollbar-width:thin}.lifecycle-board__subnav button{border:0;background:transparent;color:#244477;padding:8px 10px;white-space:nowrap;border-bottom:2px solid transparent}.lifecycle-board__subnav button:hover,.lifecycle-board__subnav button.is-active{color:#0758d3;background:#edf5ff;border-bottom-color:#1265ed}
+.lifecycle-board__metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(177px,1fr));gap:8px}.lifecycle-board__metric,.lifecycle-board__card{background:#fff;border:1px solid var(--lb-border);border-radius:7px;box-shadow:0 1px 4px #dce9f24d}.lifecycle-board__metric{min-height:95px;display:flex;align-items:center;gap:11px;padding:11px}.lifecycle-board__metric.is-live{border-left:3px solid #0ba46e}.lifecycle-board__metric-icon{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:6px;font-size:20px;color:white}.lifecycle-board__metric-icon.is-green{background:#08a870}.lifecycle-board__metric-icon.is-blue{background:#1168e8}.lifecycle-board__metric-icon.is-purple{background:#823ee2}.lifecycle-board__metric-icon.is-orange{background:#fb9219}.lifecycle-board__metric-icon.is-red{background:#ec3048}.lifecycle-board__metric-body{display:grid;gap:3px;min-width:0;width:100%}.lifecycle-board__metric-body small{font-size:11px;color:#63799e}.lifecycle-board__metric-body strong{font-size:19px;line-height:1.2;color:#112b5b}.lifecycle-board__progress{display:block;height:6px;background:#e2eafa;border-radius:20px;overflow:hidden;min-width:45px}.lifecycle-board__progress>span{display:block;height:100%;border-radius:inherit;background:#1265ed}.lifecycle-board__progress>span.is-green{background:#0ba46e}.lifecycle-board__progress>span.is-orange{background:#f59a21}.lifecycle-board__progress>span.is-purple{background:#8b48d9}.lifecycle-board__progress>span.is-red{background:#ed4256}
+.lifecycle-board__content-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:10px}.lifecycle-board__bottom-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.lifecycle-board__card{min-width:0;padding:12px}.lifecycle-board__section-head{margin-bottom:10px}.lifecycle-board__section-head h3,.lifecycle-board__card h4{margin:0;color:#0d2e68;font-size:15px;font-weight:750}.lifecycle-board__muted{font-size:11px;color:#7890b0}.lifecycle-board__filters{display:flex;gap:5px;overflow:auto;margin-bottom:9px}.lifecycle-board__filters button{border:0;border-radius:5px;background:#eef5ff;color:#24518a;padding:5px 10px;white-space:nowrap}.lifecycle-board__filters button.is-active{background:#d8e8ff;color:#0758c9;border-bottom:2px solid #1265ed}.lifecycle-board__table-wrap{overflow:auto}.lifecycle-board table{border-collapse:collapse;width:100%;min-width:610px;font-size:12px}.lifecycle-board th{background:#eef5ff;color:#506994;text-align:left;font-weight:700}.lifecycle-board th,.lifecycle-board td{border-bottom:1px solid #e8eef8;padding:8px 7px;white-space:nowrap}.lifecycle-board tbody tr:hover,.lifecycle-board tbody tr.is-selected{background:#f5faff}.lifecycle-board__row-button{background:none;border:0;color:#123b7b;text-align:left;font-weight:600;padding:0}.lifecycle-board__table-progress{display:flex;align-items:center;gap:7px;min-width:90px}.lifecycle-board__table-progress .lifecycle-board__progress{width:75px}.lifecycle-board__status{display:inline-block;border-radius:4px;padding:4px 7px;background:#e7f1ff;color:#145ac2;font-size:11px}.lifecycle-board__status.is-good{background:#dff8ee;color:#07835b}.lifecycle-board__status.is-bad{background:#ffe5e7;color:#d3263b}.lifecycle-board__status.is-pending{background:#fff0dc;color:#a05b00}.lifecycle-board__selected{margin:8px 0 0;font-size:11px;color:#667fa0}
+.lifecycle-board__fact-list{display:grid;gap:0}.lifecycle-board__fact-list>div{display:grid;grid-template-columns:1fr auto;gap:5px 10px;border-bottom:1px solid #e7eef8;padding:9px 1px}.lifecycle-board__fact-list>div:last-child{border:0}.lifecycle-board__fact-list strong{color:#0c387a;text-align:right}.lifecycle-board__fact-list .lifecycle-board__progress{grid-column:1/-1}.lifecycle-board__list{display:grid;gap:0}.lifecycle-board__list>span{display:flex;gap:8px;align-items:center;padding:9px 2px;border-bottom:1px solid #e7eef8}.lifecycle-board__list>span:last-child{border:0}.lifecycle-board__list i{color:#1963c7}.lifecycle-board__risk{display:grid;gap:7px;margin:12px 0}.lifecycle-board__risk span{display:flex;align-items:center;gap:9px}.lifecycle-board__risk i{width:8px;height:8px;border-radius:50%}.lifecycle-board__risk i.is-red{background:#ed4256}.lifecycle-board__risk i.is-orange{background:#f59a21}.lifecycle-board__risk i.is-blue{background:#1265ed}.lifecycle-board__visual{height:175px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;border-radius:5px;padding:13px;color:white;background:linear-gradient(0deg,#082852c9,#0b438317),url('/auth-background.jpg') center 43%/cover}.lifecycle-board__visual.is-legal{background-position:center 65%}.lifecycle-board__visual span{font-size:15px;font-weight:750}.lifecycle-board__visual small{font-size:11px;color:#e6f3ff}
+.lifecycle-board__form-layout{display:grid;grid-template-columns:minmax(0,2.5fr) minmax(240px,.8fr);gap:10px}.lifecycle-board__form-main{display:grid;gap:9px}.lifecycle-board__form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.lifecycle-board__form-rail{display:grid;align-content:start;gap:9px}.lifecycle-board__form-rail .lifecycle-board__card{display:grid;gap:10px}.lifecycle-board__fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:11px}.lifecycle-board__fields--single{grid-template-columns:1fr}.lifecycle-board__field-wide{grid-column:1/-1}.lifecycle-board label{display:grid;gap:5px;font-size:12px;color:#35517e}.lifecycle-board input:not([type='checkbox']),.lifecycle-board select,.lifecycle-board textarea{width:100%;border:1px solid #cbdbf0;border-radius:5px;background:#fff;color:#18366a;padding:8px;font:inherit;min-width:0}.lifecycle-board textarea{min-height:62px;resize:vertical}.lifecycle-board__full-textarea{margin-top:8px;min-height:46px!important}.lifecycle-board__upload{height:125px;border:1px dashed #8db6ee;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#f7fbff;color:#1464ca;margin:12px 0}.lifecycle-board__upload i{font-size:25px}.lifecycle-board__upload small{color:#7290b6}.lifecycle-board__pill{float:right;border-radius:4px;background:#e5efff;color:#145bd1;font-size:11px;padding:4px 6px}.lifecycle-board__steps{counter-reset:step;display:grid;gap:0;list-style:none;padding:0;margin:0}.lifecycle-board__steps li{counter-increment:step;display:flex;align-items:center;gap:9px;border-bottom:1px solid #e8eef8;padding:7px 0}.lifecycle-board__steps li:before{content:counter(step);display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1px solid #b5c9e6;color:#687da2}.lifecycle-board__steps li.is-active:before{background:#1265ed;border-color:#1265ed;color:white}.lifecycle-board__check{display:flex!important;align-items:center;gap:8px;border-bottom:1px solid #e8eef8;padding:5px 0}.lifecycle-board__check input{accent-color:#1265ed}.lifecycle-board__form-rail p{margin:0;color:#6680a1;font-size:11px}
+@media(max-width:1100px){.lifecycle-board__stages{grid-template-columns:repeat(5,minmax(130px,1fr));overflow:auto}.lifecycle-board__stage{font-size:12px}.lifecycle-board__content-grid,.lifecycle-board__form-layout{grid-template-columns:1fr}.lifecycle-board__bottom-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.lifecycle-board__section-head{align-items:flex-start;flex-direction:column}.lifecycle-board__metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.lifecycle-board__bottom-grid,.lifecycle-board__form-grid{grid-template-columns:1fr}.lifecycle-board__fields{grid-template-columns:1fr}.lifecycle-board__field-wide{grid-column:auto}}
+
+/* Màn demo cấp 3 của chặng Thực hiện (ProjectExecutionDemoPanel). */
+.erp-exec-demo__code{margin-left:auto;font-size:11px;color:#6b86ad}
+.erp-exec-demo__tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.erp-exec-demo__tools input{width:200px}
+.erp-exec-demo__side{display:grid;gap:10px;align-content:start;min-width:0}
+.erp-exec-demo__actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.erp-exec-demo__num{text-align:right;white-space:nowrap}
+.erp-exec-demo__checklist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px;font-size:12px;color:#34507c}
+.erp-exec-demo__checklist li.is-done .bi{color:#07835b}
+.erp-exec-demo tbody tr{cursor:pointer}
+
+/* Chín màn An toàn (HSE) — dữ liệu thật (ProjectHsePanel), dùng lại khung lifecycle-board. */
+.lifecycle-board__outline.is-danger{border-color:#f0b4b4;color:#b42318}.lifecycle-board__outline.is-danger:hover{background:#fdecec}
+.lifecycle-board button:disabled{cursor:not-allowed;opacity:.55}
+.erp-hse__quick{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 4px}
+.erp-hse__quick .lifecycle-board__outline{padding:5px 10px;font-size:12px}
+.erp-hse__transitions{display:grid;gap:8px;margin-top:10px}
+.erp-hse__transitions>div{display:grid;gap:4px}
+.erp-hse__transitions button{width:100%}
+.erp-hse__reason{display:flex;gap:5px;align-items:flex-start;color:#a75a00;font-size:12px;line-height:1.35}
+.erp-hse__text{display:grid;gap:3px;padding:8px 1px;border-top:1px solid #e7eef8}
+.erp-hse__text>span{font-size:12px;color:#6b86ad}
+.erp-hse__text>p{margin:0;white-space:pre-line;overflow-wrap:anywhere}
+.erp-hse__files{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:12px}
+.erp-hse__files a{color:#0758ca;overflow-wrap:anywhere}
+.erp-hse-form__risk{border:1px solid var(--erp-border,#d9e5f6);border-radius:8px;padding:10px}
+.erp-hse-form__checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px 16px}
+.erp-hse-form__required{color:#b42318;font-size:12px}
+/* Đầu bảng hồ sơ hiện trường: MỘT hàng — (tiêu đề · Thêm mới) trái, ô tìm phải; không xếp dọc ở màn hẹp. */
+.lifecycle-board__section-head:has(>.erp-site-record__head-start){flex-direction:row;align-items:center;flex-wrap:nowrap}
+.erp-site-record__head-start{display:flex;align-items:center;gap:12px;min-width:0}
+.erp-site-record__head-start h3{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.erp-site-record__head-start .lifecycle-board__primary{padding:6px 12px}
+.erp-site-record__search{width:240px;max-width:40%;flex:0 1 auto;margin-left:auto}
+/* Ô gắn tài liệu CDE / văn bản đi / đến của hồ sơ bàn giao. */
+.erp-site-ref{display:flex;flex-direction:column;gap:6px}
+.erp-site-ref__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.erp-site-ref__list{list-style:none;margin:0;padding:6px 10px;max-height:200px;overflow-y:auto;border:1px solid var(--erp-border);border-radius:8px;background:var(--erp-surface)}
+.erp-site-ref__list.is-invalid{border-color:var(--erp-danger)}
+.erp-site-ref__list>li+li{border-top:1px solid var(--erp-border)}
+.erp-site-ref__list .form-check{margin:0;padding-block:4px}
+.erp-site-ref__item{display:flex;flex-direction:column;line-height:1.3}
+.erp-site-ref__item strong{font-weight:600}
+.erp-site-ref__item small{color:var(--erp-text-tertiary)}
+.erp-site-ref__facts .erp-hse__text>span{display:flex;align-items:center;justify-content:space-between}
+
+/* Chặng Chuyển giao (26/09/2026): Tổng quan · tiêu chí sẵn sàng · Công việc · Lịch sử. */
+.erp-transfer__main{display:grid;gap:10px;align-content:start;min-width:0}
+.erp-transfer__tile{border:0;text-align:left;cursor:pointer;font:inherit}
+.erp-transfer__tile:disabled{cursor:default;opacity:.7}
+.erp-transfer__tile:not(:disabled):hover{box-shadow:0 0 0 1px var(--erp-border-strong)}
+.lifecycle-board__metric-body strong.erp-transfer__decision{font-size:15px;line-height:1.3}
+.erp-transfer__warn{display:flex;gap:6px;align-items:flex-start;margin:8px 0;padding:8px 10px;border-radius:6px;background:var(--erp-warning-soft);color:var(--erp-text-primary);font-size:12px}
+.erp-transfer__warn .bi{color:var(--erp-warning)}
+.erp-transfer__criteria{list-style:none;margin:0;padding:0;display:grid}
+.erp-transfer__criteria li{display:grid;grid-template-columns:18px minmax(0,1fr) auto 92px;gap:8px;align-items:center;padding:7px 2px;border-bottom:1px solid var(--erp-border)}
+.erp-transfer__criteria li:last-child{border:0}
+.erp-transfer__criteria li.is-conflict{background:var(--erp-danger-soft)}
+.erp-transfer__criteria-body{display:grid;min-width:0}
+.erp-transfer__criteria-body strong,.erp-transfer__criteria-body .lifecycle-board__row-button{font-size:13px;font-weight:600;white-space:normal}
+.erp-transfer__criteria-body small{color:var(--erp-text-secondary);font-size:11px}
+.erp-transfer__criteria-icon.is-good{color:var(--erp-success)}
+.erp-transfer__criteria-icon.is-pending{color:var(--erp-warning)}
+.erp-transfer__criteria-icon.is-bad{color:var(--erp-danger)}
+.erp-transfer__criteria-icon{color:var(--erp-text-tertiary)}
+.erp-transfer__criteria-tick{font-size:11px;color:var(--erp-text-secondary);white-space:nowrap}
+.erp-transfer__timeline{list-style:none;margin:0;padding:0;display:grid}
+.erp-transfer__timeline li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:2px 10px;padding:7px 2px;border-bottom:1px solid var(--erp-border);font-size:12px}
+.erp-transfer__timeline li:last-child{border:0}
+.erp-transfer__timeline li small{grid-row:1/3;color:var(--erp-text-secondary)}
+.erp-transfer__timeline li .lifecycle-board__row-button{font-size:12px;white-space:normal}
+.erp-transfer__timeline li.is-created .bi{color:var(--erp-success)}
+.erp-transfer__timeline li .bi{color:var(--erp-info)}
+.erp-transfer__timeline.is-compact li{grid-template-columns:1fr}
+.erp-transfer__timeline.is-compact li small{grid-row:auto}
+.erp-transfer__day h4{margin:12px 0 4px;font-size:12px;color:var(--erp-text-secondary);text-transform:uppercase;letter-spacing:.03em}
+.erp-transfer__tasks{margin-top:10px}
+.erp-transfer__readiness-head{margin-bottom:10px}
+@media(max-width:700px){.erp-transfer__criteria li{grid-template-columns:18px minmax(0,1fr);}.erp-transfer__criteria li .lifecycle-board__status,.erp-transfer__criteria-tick{grid-column:2}}
+
+/* =========================================================================
+   Hồ sơ hiện trường trên ĐIỆN THOẠI (≤576px) — docs/mobile/README.md.
+   `SiteRecordBoard` đổi bảng thành danh sách thẻ (`ObjectCard`) và mở chi tiết
+   trong bảng trượt; các luật dưới đây chỉ thu gọn phần còn lại của màn.
+   Neo `[data-domain]` để không chạm các màn khác dùng chung `.lifecycle-board`.
+   ========================================================================= */
+.erp-site-record__fact strong{font-weight:600;color:var(--erp-text-primary)}
+.erp-site-sheet.offcanvas-bottom{height:auto;max-height:90dvh;padding-bottom:var(--erp-safe-bottom);border-radius:var(--erp-radius-xl) var(--erp-radius-xl) 0 0}
+.erp-site-sheet .offcanvas-header{align-items:flex-start;gap:12px;padding:14px 16px 8px}
+.erp-site-sheet__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;margin:0;font-size:1rem;font-weight:700;line-height:1.35;overflow-wrap:anywhere}
+.erp-site-sheet__code{display:block;color:var(--erp-text-tertiary);font-size:.75rem;font-weight:600;font-variant-numeric:tabular-nums}
+.erp-site-sheet__body.lifecycle-board{align-content:start;gap:10px;padding:4px 12px 16px}
+/* Tiêu đề bảng trượt đã mang mã + tên — bỏ dòng "Chi tiết · mã" lặp lại. */
+.erp-site-sheet__body>section:first-child>.lifecycle-board__section-head{display:none}
+.erp-site-sheet__body .erp-exec-demo__actions .lifecycle-board__outline{min-height:40px}
+.erp-site-sheet__body .erp-hse__transitions button{min-height:var(--erp-touch-target)}
+@media(max-width:576px){
+  .lifecycle-board[data-domain]{gap:10px;padding-bottom:12px}
+  /* Tên màn một dòng; câu mô tả mục đích nhường chỗ cho nội dung. */
+  .lifecycle-board[data-domain]>.lifecycle-board__section-context{margin:0;padding:0;border:0;background:transparent}
+  .lifecycle-board[data-domain]>.lifecycle-board__section-context strong{font-size:15px}
+  .lifecycle-board[data-domain]>.lifecycle-board__section-context span{display:none}
+  /* Chỉ số: lưới 2 cột, mỗi ô ~56px thay vì ~100px. */
+  .lifecycle-board[data-domain] .lifecycle-board__metrics{gap:6px}
+  .lifecycle-board[data-domain] .lifecycle-board__metric{min-height:0;gap:8px;padding:7px 9px}
+  .lifecycle-board[data-domain] .lifecycle-board__metric-icon{width:30px;height:30px;font-size:15px}
+  .lifecycle-board[data-domain] .lifecycle-board__metric-body{gap:0}
+  .lifecycle-board[data-domain] .lifecycle-board__metric-body small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lifecycle-board[data-domain] .lifecycle-board__metric-body strong{font-size:16px}
+  .lifecycle-board[data-domain] .lifecycle-board__metric-body .lifecycle-board__progress{margin-block:2px}
+  /* Thẻ nằm thẳng trên nền trang — không lồng thẻ trong thẻ. */
+  .lifecycle-board[data-domain] .lifecycle-board__main{padding:0;border:0;background:transparent;box-shadow:none}
+  /* Đầu danh sách: (tên · nút tạo) một hàng, ô tìm một hàng. */
+  .lifecycle-board[data-domain] .lifecycle-board__section-head:has(>.erp-site-record__head-start){flex-wrap:wrap;gap:8px}
+  .lifecycle-board[data-domain] .erp-site-record__head-start{flex:1 1 100%;flex-wrap:wrap;justify-content:space-between;gap:8px}
+  .lifecycle-board[data-domain] .erp-site-record__head-start .lifecycle-board__primary,
+  .lifecycle-board[data-domain] .erp-site-record__head-start .lifecycle-board__outline{min-height:40px}
+  .lifecycle-board[data-domain] .erp-site-record__search{width:100%;max-width:none;min-height:40px;margin:0}
+  .lifecycle-board[data-domain] .lifecycle-board__filters{scrollbar-width:none}
+  .lifecycle-board[data-domain] .lifecycle-board__filters button{min-height:36px;padding:6px 12px}
+  /* Nút mở nhanh của Tổng quan: một hàng cuộn ngang, không xếp hai dòng. */
+  .lifecycle-board[data-domain] .erp-hse__quick{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 0 8px}
+  .lifecycle-board[data-domain] .erp-hse__quick .lifecycle-board__outline{flex:none;min-height:36px}
+}

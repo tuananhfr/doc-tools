@@ -1,0 +1,1065 @@
+/*
+ * Style rieng cua khoi Nhan su (menu 03, 04, 11, 12, 13, 14, 15).
+ *
+ * Chi chua thu KHONG dung lai o noi khac; bang, kanban, badge deu nam o
+ * `styles/components/`. Mau luon doc qua bien `--erp-*` (muc 12).
+ */
+
+/* --- O User ID + thao tac o dau bang Nhan su ------------------------------- */
+
+/* So o tren, hang nut o duoi - cot hep, nut van o dau dong. */
+.erp-employee-id {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.erp-employee-id__value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* `.erp-table__actions` mac dinh day nut sang phai (cot thao tac cuoi bang).
+   Lui nut trai vao 6px de icon thang cot voi con so ben tren. */
+.erp-employee-id .erp-table__actions {
+  justify-content: flex-start;
+  margin-inline-start: -6px;
+}
+
+/* --- O "nguoi" trong bang -------------------------------------------------- */
+
+.erp-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-person__avatar {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  font-size: 0.6875rem;
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-person__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-person__name {
+  font-weight: 600;
+}
+
+.erp-person__caption {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Ten tep dinh kem trong bang. */
+.erp-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--erp-text-secondary);
+}
+
+/* --- Lich lam viec linh hoat (don tu) ------------------------------------- */
+
+.erp-weekly {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-weekly__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 66px;
+  padding: 6px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+}
+
+.erp-weekly__day {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-weekly__slot {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-weekly__slot--off {
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Cham cong: ca lam & dong thoi gian ----------------------------------- */
+
+/* Gio bat dau ca - "vien thuoc" nhe, khong to ca o. */
+.erp-shift__time {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 62px;
+  padding: 4px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-punch {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+/* Vao / ra phan biet bang CHU (V / R), mau chi la lop phu tro (muc 05). */
+.erp-punch__time {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-success);
+}
+
+.erp-punch__time--out {
+  color: var(--erp-text-secondary);
+}
+
+.erp-punch__time abbr {
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+}
+
+.erp-punch__hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-secondary);
+}
+
+.erp-punch__hours--ok {
+  color: var(--erp-success);
+  font-weight: 600;
+}
+
+/* --- Danh gia & khen thuong ----------------------------------------------- */
+
+.erp-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-score__max {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Danh sach nguoi duoc de cu tren the kanban. */
+.erp-nominees {
+  margin: 0;
+  padding-inline-start: 18px;
+}
+
+.erp-nominees li + li {
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Cham cong dang to lich - moi hang mot tuan (Thu 2 -> CN)
+ *
+ * Khac luoi 31 cot cua `PunchGrid`: man nay chi co mot nguoi nen xep theo tuan
+ * de ngay roi dung cot thu cua no, khoi cuon ngang.
+ * ------------------------------------------------------------------------ */
+
+.erp-punch-calendar {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-punch-calendar__table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.erp-punch-calendar__table th {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+  font-weight: 600;
+  text-align: start;
+}
+
+/* Hai cot cuoi tuan co dinh o phai - nhin phat ra hom nao di lam thu 7 / CN. */
+.erp-punch-calendar__table th:nth-child(6),
+.erp-punch-calendar__table th:nth-child(7) {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-punch-calendar__cell {
+  height: 112px;
+  padding: 8px 10px;
+  border-block-start: 1px solid var(--erp-border);
+  border-inline-start: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.erp-punch-calendar__cell:first-child {
+  border-inline-start: 0;
+}
+
+.erp-punch-calendar__cell--weekend {
+  background: var(--erp-surface-secondary);
+}
+
+/* O dem cua tuan dau/cuoi: giu khung nhung mo han di, khong bao gio co du lieu. */
+.erp-punch-calendar__cell--outside {
+  opacity: 0.35;
+}
+
+.erp-punch-calendar__cell--worked {
+  background: var(--erp-success-soft, var(--erp-surface));
+}
+
+.erp-punch-calendar__day {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+  font-weight: 600;
+}
+
+.erp-punch-calendar__times {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-size: 0.75rem;
+}
+
+.erp-punch-calendar__time abbr {
+  display: inline-block;
+  width: 1.1em;
+  color: var(--erp-success);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.erp-punch-calendar__time--out abbr {
+  color: var(--erp-danger);
+}
+
+.erp-punch-calendar__total {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Di muon / ve som: mau canh bao nhung KHONG to dam - no la ghi chu, khong
+ * phai loi. Ngay nao cung to do thi mat het tac dung canh bao.
+ */
+.erp-punch-calendar__late {
+  color: var(--erp-warning);
+}
+
+@media (max-width: 768px) {
+  .erp-punch-calendar__cell {
+    height: 104px;
+    padding: 6px 8px;
+  }
+}
+
+.erp-punch-calendar__legend {
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--erp-border);
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+}
+
+/* ---------------------------------------------------------------------------
+ * Bam gio tac vu
+ * ------------------------------------------------------------------------ */
+
+.erp-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/*
+ * Ô tổng giờ giữ BỀ RỘNG CỐ ĐỊNH, kể cả khi rỗng.
+ *
+ * Đây là chỗ từng gây nhảy giao diện: ô chỉ hiện khi có giờ, nên vừa bấm play
+ * là khối rộng thêm và cả thẻ kanban xô sang. `tabular-nums` lo nốt phần đồng
+ * hồ đếm giây — 9s lên 10s không đẩy gì.
+ */
+.erp-timer__total {
+  /* Du cho "00h:39m:06s" - dinh dang rong nhat ma o nay phai chua. */
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 8.6em;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.erp-timer__total:enabled {
+  cursor: pointer;
+}
+
+.erp-timer__total:enabled:hover {
+  color: var(--erp-text-primary);
+  text-decoration: underline;
+}
+
+/* Ô rỗng vẫn chiếm chỗ nhưng không được nhận tương tác. */
+.erp-timer__total:disabled {
+  cursor: default;
+}
+
+/* Dang chay: vien thuoc do de tach khoi nen the va thay ngay tu xa. */
+.erp-timer__total--live {
+  padding: 2px 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-danger-soft, transparent);
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+/* Chạy qua ngày = nhiều khả năng quên bấm dừng, không phải làm 30 tiếng. */
+.erp-timer__total--stale {
+  color: var(--erp-warning);
+}
+
+.erp-timer--compact .erp-timer__total {
+  min-width: 8em;
+  font-size: 0.75rem;
+}
+
+/* --- Hộp lịch sử bấm giờ -------------------------------------------------- */
+
+.erp-timer-history__task {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+  font-weight: 400;
+}
+
+.erp-timer-history__person + .erp-timer-history__person {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-timer-history__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-timer-history__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-timer-history__sum {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.erp-timer-history__list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-timer-history__row {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0 4px 32px;
+  font-size: var(--erp-font-size-sm);
+}
+
+.erp-timer-history__duration {
+  min-width: 5em;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-timer-history__when {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-timer-history__total {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+  text-align: end;
+  color: var(--erp-text-secondary);
+}
+
+.erp-timer-history__empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+/* Người không có quyền quản lý chỉ thấy ca của chính mình — nói rõ. */
+.erp-shift__scope {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+}
+
+/* Nhãn phụ "Từ" / "Đến" của ô khoảng ngày trong form đơn từ.
+
+   Ô `field_app_time` là daterange CÓ GIỜ PHÚT, nên hai đầu là hai ô
+   `datetime-local` khá rộng - không có nhãn thì người dùng phải đoán ô nào là
+   đầu, ô nào là cuối. Drupal cũng gắn nhãn cho hai đầu. */
+.erp-field-sublabel {
+  margin-bottom: 2px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-muted);
+}
+
+[data-theme='field'] .erp-field-sublabel {
+  font-size: 0.875rem;
+}
+
+/* Xếp dọc các dòng của ô `data_field` nhiều dòng (nội dung công việc, thiết bị). */
+.erp-stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   The don tu (kanban) - dung chung o /hr/requests va tab don tu cua ho so
+   ========================================================================== */
+
+/*
+ * Tieu de the CAN GIUA.
+ *
+ * Tieu de mot don CHINH LA nhan loai don ("Đi muộn", "Nghỉ phép" - backend tra
+ * `bundleLabel()`), tuc mot nhan ngan dung chung cho ca cot: can giua thi no
+ * doc nhu mot cai nhan, con can trai thi no gia lam dong dau tien cua danh sach
+ * truong ngay ben duoi.
+ *
+ * Khoa vao THE (`.erp-request-card`) chu khong vao BANG: cung mot the xuat hien
+ * o hai bang khac nhau. Cung bai hoc voi `.erp-gantt` va `.erp-step`.
+ */
+.erp-request-card .erp-kanban-card__title {
+  text-align: center;
+}
+
+/*
+ * Bốn form tuyển dụng (JD · yêu cầu · ứng viên · hợp đồng) — bố cục chép
+ * field_group của form Drupal đang chạy, phần lớn là lưới 9/3.
+ *
+ * Khoảng cách hàng do MỘT nguồn quyết định: gutter của `<Row className="g-3">`.
+ * `Field` tự thêm `mb-3` nên hai lớp cộng dồn thành 2rem cho ô cao 38px — cùng
+ * cách `.erp-profile-form` gỡ — nhưng chỉ ở ô CUỐI của một cột: form hợp đồng
+ * xếp ba ô chồng nhau trong một cột (chép Column-1..4 của Drupal), gỡ hết thì
+ * chúng dính vào nhau. TUYỆT ĐỐI không đặt `min-height` cho control ở
+ * đây: Field Mode ép 48px với cùng độ đặc hiệu và file này nạp sau
+ * `components/form.css` (hai file CSS cũ của form JD / yêu cầu đã phạm đúng
+ * lỗi đó — đã xoá).
+ */
+.erp-recruitment-modal .modal-dialog {
+  --bs-modal-width: min(1320px, 96vw);
+}
+
+.erp-recruitment-form .row > * > .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+.erp-recruitment-form .erp-form-section {
+  margin-top: 12px;
+}
+
+.erp-recruitment-form__aside {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  background: var(--erp-surface);
+}
+
+.erp-recruitment-form__sum {
+  font-weight: 600;
+}
+
+/*
+ * Form "Thông tin phỏng vấn" (`CandidateInterviewModal`). Hai bảng lương / phụ
+ * cấp xếp chồng trong một khối nên cần khoảng cách riêng; ba ô tổng là con số
+ * DẪN XUẤT — vẽ thành dải chỉ đọc, không phải ô nhập bị khoá.
+ */
+.erp-interview-form .erp-array-table + .erp-array-table {
+  margin-top: 12px;
+}
+
+.erp-interview-form__totals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+
+.erp-interview-form__total {
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-interview-form__total dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-interview-form__total dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+@media (max-width: 575.98px) {
+  .erp-interview-form__totals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ===========================================================================
+ * Menu Chấm công — bốn lưới theo kỳ (ngày công, dòng thời gian, xác nhận
+ * giờ, ca làm). Mọi tín hiệu đều có CHỮ (V/R, M/S, +n, "Thiếu ra"); màu chỉ là
+ * lớp phụ (mục 05 & 11). Không hex — chỉ `--erp-*` (mục 12).
+ * ======================================================================== */
+
+/* Khối cao tự nhiên xếp trên/dưới bảng trong `erp-list-page` (cột flex cao
+   100%): không co lại, để bảng — thứ duy nhất có vùng cuộn riêng — nhận phần
+   còn lại. Thiếu dòng này thì khối bị bóp và chữ tràn ra ngoài. */
+.erp-list-page > .erp-att-summary,
+.erp-list-page > .erp-shift__scope,
+.erp-list-page > .erp-timesheet__legend {
+  flex: 0 0 auto;
+}
+
+.erp-list-page > .erp-timesheet__legend {
+  margin-top: 12px;
+}
+
+/* --- Lùi / tiến kỳ ------------------------------------------------------- */
+
+.erp-period-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-period-stepper__label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  line-height: 1.15;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  /* Nhãn nằm giữa hai nút nhưng không bấm được — giữ màu chữ thường thay vì
+     màu mờ của `.disabled`, vì đây là thông tin chính của cả màn. */
+  opacity: 1 !important;
+  color: var(--erp-text-primary) !important;
+}
+
+.erp-period-stepper__range {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-period-stepper__home {
+  padding-inline: 4px;
+  white-space: nowrap;
+}
+
+/* --- Dải số liệu một hàng ------------------------------------------------ */
+
+.erp-att-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 0 0 12px;
+}
+
+.erp-att-summary__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-att-summary__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-att-summary__icon {
+  color: var(--erp-att-tone, var(--erp-neutral));
+}
+
+.erp-att-summary__value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-att-summary__label {
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.erp-att-summary__hint {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-att-summary__item--info { --erp-att-tone: var(--erp-info); }
+.erp-att-summary__item--success { --erp-att-tone: var(--erp-success); }
+.erp-att-summary__item--construction { --erp-att-tone: var(--erp-construction); }
+.erp-att-summary__item--neutral { --erp-att-tone: var(--erp-neutral); }
+
+/* Cảnh báo: viền + nền nhạt đúng tone — đếm được "cần làm gì" từ xa. */
+.erp-att-summary__item--warning {
+  --erp-att-tone: var(--erp-warning);
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-att-summary__item--danger {
+  --erp-att-tone: var(--erp-danger);
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.erp-att-summary__tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+}
+
+.erp-att-summary__tools .form-check {
+  margin: 0;
+}
+
+/* --- Ô ngày của các lưới tháng ------------------------------------------- */
+
+/* Cột ngày hẹp: bỏ padding 16px mặc định của bảng báo cáo, để ô bấm được phủ
+   kín cột (vùng chạm lớn nhất có thể trên một cột 46px). */
+.erp-report .table > thead th.erp-punch-col,
+.erp-report .table > thead th.erp-work-col,
+.erp-report .table > thead th.erp-shift-col {
+  padding-inline: 2px;
+}
+
+.erp-report .table > tbody td.erp-punch-col,
+.erp-report .table > tbody td.erp-work-col,
+.erp-report .table > tbody td.erp-shift-col {
+  padding: 3px;
+  vertical-align: middle;
+}
+
+/* Nút phủ cả ô — reset kiểu nút trình duyệt, giữ vòng focus của hệ thống. */
+.erp-punch-cell,
+.erp-work-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 40px;
+  padding: 3px 2px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.erp-punch-cell:hover,
+.erp-work-cell:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+}
+
+.erp-punch-cell:focus-visible,
+.erp-work-cell:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Ngày cần soát (thiếu dấu / dấu thừa): nền cảnh báo NHẠT + chữ "—"/"+n" ở
+   đúng dòng của nó — nhìn là biết quên chấm đầu ca hay cuối ca. */
+.erp-punch-cell--review {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-punch__time--missing {
+  color: var(--erp-warning);
+  font-weight: 700;
+}
+
+.erp-punch__flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* Cờ nhỏ trên ô: chữ + màu, không bao giờ chỉ màu. */
+.erp-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+abbr.erp-flag {
+  cursor: help;
+  border: none;
+}
+
+.erp-flag--warning {
+  color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-flag--info {
+  color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.erp-flag--construction {
+  color: var(--erp-construction);
+  background: var(--erp-construction-soft);
+}
+
+.erp-flag--success {
+  color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-att-review {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.erp-att-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-secondary);
+}
+
+.erp-att-count--done {
+  color: var(--erp-success);
+  font-weight: 600;
+}
+
+/* --- Giờ công nhân viên (giờ bấm đồng hồ) -------------------------------- */
+
+/* Cột tên KHÔNG co: bảng layout tự động sẽ lấy chỗ của nó chia cho 31 cột ngày,
+   tên xuống 3-4 dòng và mỗi dòng bảng cao gấp đôi (đo 11/09/2026). */
+.erp-report .table th.erp-wt-name-col,
+.erp-report .table td.erp-wt-name-col {
+  min-width: 230px;
+}
+
+.erp-wt-cell__value {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  white-space: nowrap;
+}
+
+/* Lượt quên tắt đồng hồ (tự cắt 23:59): viền đứt + nền cảnh báo nhạt + dấu
+   "!" — giờ đáng ngờ phải nhìn ra khác giờ làm thật, và không chỉ bằng màu. */
+.erp-work-cell.erp-wt-cell--clipped {
+  border: 1px dashed var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-wt-cell__flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12px;
+  height: 12px;
+  margin-left: 2px;
+  border-radius: 999px;
+  background: var(--erp-warning);
+  color: var(--erp-surface);
+  font-size: 0.5625rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.erp-wt-flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.erp-wt-project {
+  font-weight: 500;
+}
+
+/* Giờ không gắn dự án: vẫn là giờ đã làm, chỉ nói rõ nó chưa thuộc dự án nào. */
+.erp-wt-project--none {
+  font-style: italic;
+  color: var(--erp-text-secondary);
+}
+
+.erp-wt-percent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1px;
+  cursor: help;
+}
+
+.erp-wt-percent--over {
+  font-weight: 600;
+}
+
+.erp-wt-sort {
+  width: auto;
+}
+
+.erp-wt-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-wt-entries li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.erp-wt-entries li + li {
+  padding-top: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-wt-entry__time {
+  font-weight: 600;
+}
+
+.erp-wt-entry__task {
+  color: var(--erp-text-primary);
+}
+
+/* --- Hộp chi tiết ô ------------------------------------------------------ */
+
+.erp-cell-popover {
+  max-width: 340px;
+}
+
+.erp-cell-popover .popover-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.875rem;
+}
+
+.erp-cell-popover__sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-cell-popover__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-cell-popover__list dt {
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-cell-popover__list dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+}
+
+.erp-cell-popover__marks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-cell-popover__marks li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-stamps {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.erp-stamp {
+  padding: 1px 6px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-stamp small {
+  color: var(--erp-text-tertiary);
+}
+
+/* Dấu không được chọn làm vào/ra — gạch viền đứt để tách khỏi hai dấu chính. */
+.erp-stamp--extra {
+  border-style: dashed;
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+/* --- Ca làm: một sắc độ mỗi khung giờ (chữ giờ vẫn in trên ô) ------------ */
+
+.erp-shift__time--info {
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-shift__time--success {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-shift__time--construction {
+  border-color: var(--erp-construction);
+  background: var(--erp-construction-soft);
+  color: var(--erp-construction);
+}
+
+.erp-shift__time--intelligence {
+  border-color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+}
+
+.erp-shift__time--neutral {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+}
+
+/* Xem tháng: ô 58px — giờ vào trên, giờ ra dưới. */
+.erp-shift__time--compact {
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  padding: 2px 0;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.6875rem;
+  line-height: 1.25;
+}
+
+.erp-shift__end {
+  font-weight: 400;
+  opacity: 0.85;
+}

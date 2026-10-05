@@ -1,0 +1,955 @@
+/*
+ * Style rieng cua feature `core/dashboard` (Trang chu - Tong quan).
+ * Chi chua thu KHONG dung lai o feature khac; phan dung chung nam o components/.
+ */
+
+/* Hero chao mung dau trang. */
+.erp-welcome {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  border-radius: var(--erp-radius-xl);
+  background: linear-gradient(120deg, var(--erp-hero-from) 0%, var(--erp-hero-to) 100%);
+  color: var(--erp-text-on-accent);
+}
+
+/*
+ * Loi chao: giu san 260px (con so cua ban inline cu) roi moi cho co.
+ *
+ * Ba khoi cung mot hang nen loi chao la cai bi ep truoc; duoi nguong nay thi
+ * "Xin chào, <tên>" vo thanh ba dong va hero cao hon ca luc chua gop hang.
+ */
+.erp-welcome__intro {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+/*
+ * Co chu CO GIAN theo be ngang, khong phai mot con so co dinh.
+ *
+ * Tu khi hero gop ba khoi vao mot hang, loi chao chi con ~300px o khoang
+ * 768-1200px - o do 2rem lam "Xin chào, <tên>" vo thanh hai dong va keo cao ca
+ * hero. `clamp` cho no tu nho lai: 28px o man rong, ~26px o tablet, khong bao
+ * gio duoi 20px. Media `<= 768px` ben duoi van ep 1.25rem - do la nguong cua
+ * mobile, khong phai phep co gian.
+ */
+.erp-welcome__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.erp-welcome__subtitle {
+  margin: 8px 0 0;
+  font-size: 0.875rem;
+  opacity: 0.72;
+}
+
+/*
+ * Hai o thong tin va dai cham cong phai CAO BANG NHAU.
+ *
+ * Hero khai `align-items: center` nen mac dinh moi khoi chi cao bang noi dung
+ * cua rieng no - o thong tin co hai dong (~60px) con dai cham cong mot dong
+ * (~44px), dat canh nhau thanh ba khoi le tang. `align-self: stretch` cho
+ * chung cao bang DONG, roi tung o ben trong `height: 100%` de an het phan
+ * duoc chia.
+ */
+.erp-welcome__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: stretch;
+  gap: 12px;
+}
+
+.erp-welcome__chip {
+  height: 100%;
+}
+
+/*
+ * Cho dat dai cham cong trong hero.
+ *
+ * MOT HANG: loi chao - hai o thong tin - dai cham cong (chot 03/09/2026).
+ * Hero cao 96px thay vi 168px, tuc lay lai gan mot phan tu man hinh dau tien
+ * cho noi dung that.
+ */
+.erp-welcome__slot {
+  flex: 0 1 auto;
+  align-self: stretch;
+  min-width: 0;
+}
+
+/*
+ * Dai MO RA thi chiem tron mot hang.
+ *
+ * Luc do no khong con la mot dai nua ma la ca danh sach dia diem cong o trang
+ * thai dinh vi - de chung chen canh chip thoi tiet thi ca hai deu vo. Dung
+ * `:has()` vi trang thai mo/dong nam trong `CheckInCard`, con o nay la
+ * `WelcomeBanner`: bat component kia bao nguoc len chi de doi mot dong CSS la
+ * dung mot prop xuyen hai feature cho viec trinh bay.
+ */
+.erp-welcome__slot:has(.erp-checkin-bar--open) {
+  flex: 1 1 100%;
+}
+
+/*
+ * Duoi 1200px thi ba khoi khong con du cho tren mot hang - dai cham cong xuong
+ * hang rieng. Nguong nay do theo be ngang that: loi chao ~400px + hai o thong
+ * tin ~400px + dai ~300px = 1100px, cong le hai ben.
+ */
+@media (max-width: 1199.98px) {
+  .erp-welcome__slot {
+    flex: 1 1 100%;
+  }
+}
+
+.erp-welcome__chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--erp-radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.erp-welcome__chip-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.erp-welcome__chip-body {
+  min-width: 0;
+}
+
+.erp-welcome__chip-date {
+  font-weight: 600;
+}
+
+.erp-welcome__chip-meta {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/*
+ * Man hep: hero go dung BA dong - loi chao, cau chao mung, hai o thong tin.
+ * Chu cat bang "..." chu KHONG xuong dong: ten nguoi dung dai (hoac ten tinh
+ * dai) thi mot dong tho ra hai dong keo ca dai hero cao them ~60px, va lan
+ * xuong duoi la khoi Cham cong bi day khoi man dau tien.
+ */
+@media (max-width: 768px) {
+  .erp-welcome {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .erp-welcome__intro {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .erp-welcome__title,
+  .erp-welcome__subtitle,
+  .erp-welcome__chip-date,
+  .erp-welcome__chip-meta {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .erp-welcome__title {
+    font-size: 1.25rem;
+  }
+
+  .erp-welcome__subtitle {
+    margin-top: 4px;
+    font-size: 0.8125rem;
+  }
+
+  /* Hai o phai chia doi mot hang: `nowrap` de khong tut xuong, `flex: 1 1 0`
+     + `min-width: 0` de chung co the co lai - thieu min-width thi noi dung
+     ben trong giu nguyen be ngang va o van tran ra ngoai. */
+  .erp-welcome__chips {
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .erp-welcome__chip {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .erp-welcome__chip-value {
+    font-size: 1rem;
+  }
+
+  .erp-welcome__chip-date {
+    font-size: 0.8125rem;
+  }
+}
+
+/* =========================================================================
+   Trang chu ca nhan hoa (features/core/dashboard/blocks). Moi block la mot
+   SectionCard; luat o day chi lo phan ruot dung chung.
+   ========================================================================= */
+
+.erp-home-bar__source {
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Block cao bang nhau trong mot hang - nhin la biet hang nao di voi nhau. */
+.erp-home-block {
+  height: 100%;
+}
+
+.erp-home-block__extra {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+}
+
+.erp-home-block__count {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-block__state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 4px;
+  font-size: 0.875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-block__state--danger {
+  color: var(--erp-danger);
+}
+
+/* Chip dem theo buoc. Mau chi la lop thu hai - chu luon noi ro y nghia. */
+.erp-home-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.erp-home-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+}
+
+.erp-home-chip--info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-home-chip--danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/* Danh sach dong trong block. */
+.erp-home-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-home-list__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-home-list__row:last-child {
+  border-bottom: none;
+}
+
+.erp-home-list__icon {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-list__main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-home-list__title {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+a.erp-home-list__title:hover {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-home-list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-list__aside {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+.erp-home-list__aside--danger {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+.erp-home-list__aside--strong {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* So dem cua "Cho toi xu ly" - cung bang mau voi badge tren sidebar. */
+.erp-home-count {
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.erp-home-count--warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-home-count--danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/* O nut thao tac nhanh / loi tat. */
+.erp-home-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.erp-home-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 84px;
+  padding: 10px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.erp-home-tile:hover,
+.erp-home-tile:focus-visible {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-home-tile__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-home-tile__label {
+  line-height: 1.3;
+}
+
+.erp-home-tile__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+/*
+ * Mat mang: nut ma man dich khong dung duoc thi MO + o khoa (van bam duoc de
+ * doc ly do) - cung cach menu lam voi `erp-sider__item--offline-blocked`. Mau
+ * khong phai tin hieu duy nhat: co icon khoa va chu an cho trinh doc man hinh.
+ */
+.erp-home-tile.is-offline-blocked {
+  opacity: 0.55;
+}
+
+.erp-home-tile__lock {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  color: var(--erp-text-secondary);
+  line-height: 1;
+}
+
+/* Bo soan bo cuc - ba tab (hop tuy chinh + form bo mac dinh). */
+.erp-home-editor__tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.erp-home-editor__tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.erp-home-editor__panel {
+  padding-top: 16px;
+}
+
+.erp-home-editor__heading {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-editor__empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Tab Thao tac nhanh: chon (trai) | thu tu (phai); mobile xep doc. */
+.erp-home-editor__actions-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.erp-home-editor__checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 6px;
+}
+
+.erp-home-editor__check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-home-editor__check .form-check-input {
+  float: none;
+  margin: 0;
+}
+
+.erp-home-editor__check .form-check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+/* Danh sach keo tha. */
+.erp-sortable {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-sortable__item--dragging {
+  opacity: 0.85;
+}
+
+.erp-sortable__item--dragging .erp-home-editor__row {
+  border-color: var(--erp-action-secondary);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+}
+
+.erp-sortable__handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  cursor: grab;
+  /* Bat buoc: khong co thi tren cam ung keo tay keo la cuon trang. */
+  touch-action: none;
+}
+
+.erp-sortable__handle:hover,
+.erp-sortable__handle:focus-visible {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-sortable__item--dragging .erp-sortable__handle {
+  cursor: grabbing;
+}
+
+.erp-home-editor__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 8px 4px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-home-editor__row--compact {
+  padding-block: 4px;
+}
+
+.erp-home-editor__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.erp-home-editor__name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-editor__size {
+  width: 130px;
+  flex: 0 0 auto;
+}
+
+/* Them block: the theo nhom chuc nang. */
+.erp-home-editor__add {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-home-editor__group-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-home-editor__group-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 6px;
+}
+
+.erp-home-editor__add-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: start;
+  cursor: pointer;
+}
+
+.erp-home-editor__add-card:hover,
+.erp-home-editor__add-card:focus-visible {
+  border-style: solid;
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-home-editor__add-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 0.875rem;
+}
+
+.erp-home-editor__add-text small {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-home-editor__add-plus {
+  margin-inline-start: auto;
+  color: var(--erp-action-secondary);
+}
+
+@media (max-width: 767.98px) {
+  .erp-home-editor__actions-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Ba tab chia deu be ngang, chu xuong dong - tab cuoi khong bi day ra ngoai man. */
+  .erp-home-editor__tabs .nav-item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .erp-home-editor__tabs .nav-link {
+    justify-content: center;
+    height: 100%;
+    padding: 8px 4px;
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+  }
+
+  /* Dong block: ten chiem ca hang, be ngang + nut bo xuong hang duoi.
+     Dong `--compact` (Thu tu hien thi cua Thao tac nhanh) KHONG co o be ngang,
+     nen phai giu MOT hang: cho xuong dong la nut bo roi xuong hang duoi va dat
+     ve ben TRAI, moi dong cao gap doi. */
+  .erp-home-editor__row:not(.erp-home-editor__row--compact) {
+    flex-wrap: wrap;
+  }
+
+  .erp-home-editor__row:not(.erp-home-editor__row--compact) .erp-home-editor__name {
+    flex-basis: calc(100% - 80px);
+  }
+
+  .erp-home-editor__size {
+    flex: 1 1 auto;
+    width: auto;
+    margin-inline-start: 38px;
+  }
+
+  .erp-home-editor__checks,
+  .erp-home-editor__group-items {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-sortable__handle {
+    width: 36px;
+    height: 44px;
+  }
+}
+
+/* Trang chu tren mobile: dau the xuong hang thay vi de chu va link de len nhau. */
+.erp-home-block .card-header {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+@media (max-width: 576px) {
+  .erp-home-tiles {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  }
+
+  .erp-home-tile {
+    min-height: 76px;
+  }
+}
+
+/*
+ * Bieu do tac vu: xuong hang theo BE NGANG CUA THE, vi cot Thao tac nhanh
+ * co the lam the hep ngay ca khi viewport van la desktop.
+ */
+.erp-home-chart-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.erp-home-chart-split > .erp-donut {
+  flex: 1 1 330px;
+  min-width: 0;
+}
+
+.erp-home-chart-split > .erp-home-ranked {
+  flex: 1 1 210px;
+  min-width: 0;
+}
+
+.erp-home-chart-note {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-home-ranked {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-home-ranked__row {
+  display: grid;
+  grid-template-columns: minmax(90px, 38%) minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.erp-home-ranked__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--erp-text-secondary);
+}
+
+.erp-home-ranked__track {
+  height: 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-home-ranked__bar {
+  display: block;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  background: var(--erp-series);
+}
+
+.erp-home-ranked__value {
+  text-align: end;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Dai chi so duoi hero (HomeKpiStrip) - dung lai the StatCard. Toi da 5 the
+ * mot hang; hep lai thi tu xuong dong, the nao cung toi thieu 180px.
+ */
+.erp-home-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.erp-home-kpis > * > .card {
+  height: 100%;
+}
+
+@media (max-width: 576px) {
+  .erp-home-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/*
+ * Thao tac nhanh dang DANH SACH DOC (cot phai trang chu): icon trai, nhan
+ * giua, badge sat mep phai - cung o tile, chi doi huong.
+ */
+.erp-home-tiles--list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-home-tiles--list .erp-home-tile {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 10px;
+  text-align: start;
+}
+
+.erp-home-tiles--list .erp-home-tile__icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+}
+
+.erp-home-tiles--list .erp-home-tile__label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-home-tiles--list .erp-home-tile__badge,
+.erp-home-tiles--list .erp-home-tile__lock {
+  position: static;
+  flex: none;
+}
+
+/* Cot phai: the Thao tac nhanh cao theo noi dung va dinh khi cuon trang. */
+.erp-home-side .erp-home-block {
+  height: auto;
+  position: sticky;
+  top: 0;
+}
+
+/* =========================================================================
+   "HÔM NAY" TRÊN ĐIỆN THOẠI (≤576px) — đích đầu của Mobile Shell.
+   Tài liệu Mobile FINAL: điện thoại là thẻ/danh sách với 3–5 dữ kiện chính,
+   không phải dashboard máy tính thu nhỏ. Chỉ CSS, không đổi markup.
+   ========================================================================= */
+@media (max-width: 576px) {
+  /* Hero chỉ còn lời chào + dải chấm công: ngày giờ đã có trên thanh trạng
+     thái của điện thoại, câu chào mừng không mang thông tin. */
+  .erp-welcome__chips,
+  .erp-welcome__subtitle {
+    display: none;
+  }
+
+  .erp-welcome {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .erp-welcome__title {
+    font-size: 1.0625rem;
+  }
+
+  /* Thẻ chỉ số dạng GỌN: ô icon trái, nhãn + con số phải — một hàng ~60px
+     thay vì ~160px. Chú thích và thanh tiến độ nhường cho màn chi tiết. */
+  .erp-home-kpis .erp-stat > .card-body {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 10px;
+    row-gap: 0;
+    align-content: center;
+    min-height: 60px;
+    padding: 8px 10px;
+  }
+
+  .erp-home-kpis .erp-stat .erp-stat__head {
+    display: contents;
+  }
+
+  .erp-home-kpis .erp-stat .erp-icon-tile {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .erp-home-kpis .erp-stat .erp-stat__label {
+    grid-column: 2;
+    display: block;
+    overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .erp-home-kpis .erp-stat .erp-stat__value {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .erp-home-kpis .erp-stat .erp-stat__number {
+    font-size: 1.125rem;
+    line-height: 1.25;
+  }
+
+  .erp-home-kpis .erp-stat .erp-stat__caption,
+  .erp-home-kpis .erp-stat .erp-stat__progress {
+    display: none;
+  }
+
+  /* Số thẻ lẻ: thẻ cuối trải hết hàng thay vì để một ô trống bên phải. */
+  .erp-home-kpis > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  /* Thao tác nhanh lên TRÊN các block và thành lưới 4 ô một hàng. */
+  .erp-home-side .erp-home-block {
+    position: static;
+  }
+
+  .erp-home-side .erp-home-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  /* Chữ 11px + đệm ngang 2px: ô rộng ~78px ở máy 393px (~69px ở máy 360px),
+     nhãn hai-ba từ như "Phiếu kế toán" (~62px ở 11px) nằm gọn một dòng. Ở 12px
+     + đệm 4px nó cần 67px trong khi chỉ có 66px nên xuống dòng. */
+  .erp-home-side .erp-home-tile {
+    min-height: 72px;
+    padding: 8px 2px;
+    border-color: transparent;
+    font-size: 0.6875rem;
+  }
+
+  /* Field Mode: chữ trên ô không xuống dưới 13px. */
+  [data-theme='field'] .erp-home-side .erp-home-tile,
+  [data-theme='field'] .erp-home-kpis .erp-stat .erp-stat__label {
+    font-size: 0.8125rem;
+  }
+}

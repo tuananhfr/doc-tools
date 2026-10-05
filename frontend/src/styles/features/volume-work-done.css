@@ -1,0 +1,218 @@
+/* ==========================================================================
+   Bảng "Khối lượng đã thực hiện" — lập từ hồ sơ thanh toán
+   ========================================================================== */
+
+.erp-volume-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+.erp-volume-modal .modal-body {
+  max-height: calc(100vh - 10.5rem);
+  overflow-y: auto;
+}
+
+.erp-volume-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-info-soft);
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.erp-volume-note--warn {
+  background: var(--erp-warning-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Bảng khối lượng — VỪA BỀ NGANG, KHÔNG CUỘN
+   --------------------------------------------------------------------------
+   CỐ Ý không dùng lại `.erp-contract__lines`: class đó mang `min-width: 1180px`
+   cho bảng 10 cột của bảng giá, đem sang bảng 7 cột này là ép cuộn ngang dù màn
+   hình còn thừa chỗ.
+
+   `table-layout: fixed` + `<colgroup>`: sáu cột số chốt bề ngang theo con số
+   dài nhất, cột "Nội dung" ăn hết phần còn lại và tự xuống dòng — tên vật tư
+   tiếng Việt dài ("Diện tích sàn Cos 7.5m (Phần chỉ có dầm bo)") mà để bảng tự
+   chia là nó đẩy cả bảng rộng ra. */
+.erp-volume-table table {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  margin: 0;
+}
+
+.erp-volume-table td:first-child {
+  /* Xuống dòng giữa từ khi tên quá dài, thay vì nong cột ra. */
+  overflow-wrap: anywhere;
+}
+
+.erp-volume-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-volume-table th,
+.erp-volume-table td {
+  vertical-align: middle;
+}
+
+/* Mọi cột số dùng tabular để không nhảy cột khi người dùng đang gõ. */
+.erp-volume-table .erp-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cột DUY NHẤT gõ được — tách khỏi năm cột chỉ đọc bằng nền và viền. */
+.erp-volume-table__input {
+  background: var(--erp-surface);
+  border-left: 1px solid var(--erp-border);
+  border-right: 1px solid var(--erp-border);
+}
+
+.erp-volume-table__row--filled {
+  background: var(--erp-success-soft);
+}
+
+.erp-volume-table__unit {
+  margin-left: 6px;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+.erp-volume-table tfoot td {
+  border-top: 2px solid var(--erp-border-strong);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Bản in "Bảng xác định giá trị khối lượng công việc hoàn thành"
+   ==========================================================================
+   Tờ giấy dùng class CHUNG `.erp-print` (khổ A4, Times New Roman, lề
+   15/20/15/25mm, đổ bóng) — xem `advance-print.css`. Dưới đây CHỈ là phần
+   riêng của biểu mẫu này.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Nhịp chữ theo MẪU
+   --------------------------------------------------------------------------
+   Mẫu là bản in Drupal `/print-internal-approval/{id}` (khung `.outline-print`
+   của theme): 13px, dòng 1.5. Mọi số đo dưới đây đo thẳng trên trang đó bằng
+   getComputedStyle, viết bằng `em` để đi cùng cỡ chữ gốc. Tờ giấy chung
+   `.erp-print` là 12pt — để nguyên thì chữ to hơn mẫu, cột nào cũng phình và
+   bảng tràn khỏi mép giấy. */
+/* Khung tờ giấy KHÔNG phải A4 trên màn hình: mẫu Drupal dùng
+   `.outline-print-full-width` — tờ giấy trải hết cột nội dung, nên bảng 10
+   cột mới có chỗ cho cột "Tên công việc". Bó vào 210mm thì chín cột số đã
+   chiếm gần hết, cột tên chỉ còn ~94px. Khi IN thì `@page` vẫn quyết khổ giấy
+   (xem `advance-print.css`), luật này chỉ đổi bản xem trên màn hình.
+
+   66.667% = `col-lg-8` — cột chứa tờ giấy của mẫu (1/3 còn lại là khung phê
+   duyệt). Không bao giờ hẹp hơn khổ A4, không bao giờ tràn khung. */
+.erp-print-page__sheet--plan {
+  flex: 0 1 auto;
+  width: max(210mm, 66.667%);
+}
+
+.erp-plan-print {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.erp-plan-print p {
+  margin: 0;
+}
+
+.erp-plan-print__title {
+  /* 39px của mẫu = 3em của chữ gốc 13px; tính theo cỡ tiêu đề 1.25em là 2.4em. */
+  margin: 0 0 2.4em;
+  font-size: 1.25em;
+  line-height: 1.5;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Khối sửa tay (`contentEditable`): trên màn hình để khung focus mặc định
+   của trình duyệt như mẫu, cho người dùng biết đang sửa; khi in thì không được
+   in khung đó ra giấy. */
+@media print {
+  .erp-plan-print__editable {
+    outline: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Bảng do backend kết xuất
+   --------------------------------------------------------------------------
+   HTML đi vào đây là CHÍNH HTML của bản in Drupal (`table table-bordered`),
+   cột KHÔNG khai độ rộng — trình duyệt chia theo nội dung. Muốn cột to/nhỏ
+   giống mẫu thì chỉ cần cỡ chữ + đệm ô giống mẫu, đừng tự đặt width.
+
+   Selector phải có `.table`: `components/table.css` khai `.table > tbody td`
+   padding 12px 16px ở (0,1,2); viết `.erp-plan-print__table td` (0,1,1) thì
+   bị nuốt — đó chính là lỗi cột phình, bảng tràn giấy trước đây.
+
+   Căn lề KHÔNG ép ở đây: mỗi ô mang sẵn `text-center`/`text-start`/`text-end`
+   từ backend (utility Bootstrap, !important); ô không mang class — như
+   "STT", "Tên công việc" ở header — căn trái, đúng như mẫu. */
+.erp-plan-print__table {
+  margin-top: 0.5em;
+}
+
+.erp-plan-print__table .table {
+  --bs-table-bg: transparent;
+  --bs-table-color: #000;
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: inherit;
+  color: #000;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-plan-print__table .table td,
+.erp-plan-print__table .table th {
+  padding: 0.5em;
+  border: 1px solid #000;
+  vertical-align: middle;
+  text-align: left;
+  color: #000;
+}
+
+/* Cột "Tên công việc" (`text-start`) được bẻ giữa chuỗi. Diễn giải hay có
+   một cụm liền không dấu cách (`223,39*1,300,000=290,407,000`) — cụm đó định
+   bề rộng tối thiểu của cả bảng và đẩy nó tràn khỏi khổ A4 (mẫu Drupal cũng
+   tràn, nhưng nằm trong khung cuộn ngang; trên giấy thì mất chữ). Cột số KHÔNG
+   được bẻ: một con số gãy đôi là con số đọc sai. */
+.erp-plan-print__table .table td.text-start {
+  width: 32%;
+  overflow-wrap: anywhere;
+}
+
+/* Khối giá trị dưới bảng (`erp-print-summary`, `table-sm`) KHÔNG kẻ khung —
+   nó là danh sách giá trị, không phải bảng dữ liệu. */
+.erp-plan-print__table .table.erp-print-summary td {
+  padding: 0.25em;
+  border: 0;
+}
+
+.erp-plan-print__empty {
+  margin: 24px 0;
+  padding: 24px;
+  border: 1px dashed #c7c7c7;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Hai pháp nhân, không chừa chỗ ký — nên không cần khoảng trống phía dưới như
+   khối ký của tờ trình tài chính. */
+.erp-plan-print__signatures {
+  margin-top: 3em;
+  font-weight: 700;
+  text-transform: uppercase;
+}

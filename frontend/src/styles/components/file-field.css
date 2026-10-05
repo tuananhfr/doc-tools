@@ -1,0 +1,68 @@
+/*
+ * O dinh kem tep dung chung (`components/form/FileField.tsx`).
+ *
+ * Tach ra khoi `features/tasks.css` khi phieu tai chinh dung lai o nay. Mot
+ * component thi mot file CSS - de o feature thi feature thu hai phai hoac chep
+ * lai, hoac import CSS cua feature khac.
+ */
+
+.erp-file-field__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.erp-file-field__head .form-label {
+  margin-bottom: 0;
+}
+
+.erp-file-field__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.erp-file-field__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+/* Tên tệp dài phải cắt, nhưng KHÔNG cắt cột dung lượng và nút gỡ - hai thứ đó
+   là thông tin cố định, mất đi thì hàng vô dụng. */
+.erp-file-field__item a,
+.erp-file-field__item > span:first-of-type {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-file-field__size {
+  flex: 0 0 auto;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-file-field__empty {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-file-field__errors {
+  margin: 8px 0 0;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+}
+

@@ -1,0 +1,437 @@
+/*
+ * Nhat ky AI (features/core/ai-platform) - man quan tri, bang day. Header bang
+ * dinh (sticky) trong khung cuon rieng: sticky khong an theo trang khi bang
+ * nam trong .table-responsive (overflow) nen khung phai tu cuon doc.
+ */
+.erp-ai-audit__table {
+  max-height: min(70vh, 720px);
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Duoi ~900px bang cuon ngang thay vi bop cot con 2-3 chu mot dong. */
+.erp-ai-audit__table table {
+  min-width: 880px;
+}
+
+.erp-ai-audit__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface-secondary);
+  white-space: nowrap;
+}
+
+.erp-ai-audit__system {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-audit__purpose,
+.erp-ai-audit__ref {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-ai-audit__key {
+  font-family: var(--bs-font-monospace);
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+/* Chi ma job (UUID dai) duoc ngat giua chuoi; khoa muc dich ngat la kho doi chieu. */
+.erp-ai-audit__ref .erp-num {
+  overflow-wrap: anywhere;
+}
+
+.erp-ai-audit__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.erp-ai-audit__more .btn {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-ai-audit__more-error {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-danger);
+}
+
+/* Dien thoai: the thay cho bang (DS muc 06 - khong thu nho bang 6 cot). */
+.erp-ai-audit__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-ai-audit__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-ai-audit__card-head,
+.erp-ai-audit__card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.erp-ai-audit__card-meta {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+/* Giam sat AI - khung 3 tab (Tong quan / Luot chay / Nhat ky). */
+.erp-ai-monitor__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.erp-ai-monitor__actions .btn {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-ai-monitor__tabs {
+  margin-bottom: 16px;
+}
+
+.erp-ai-usage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-ai-usage__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+}
+
+.erp-ai-usage__notice .bi {
+  color: var(--erp-warning);
+  margin-top: 2px;
+}
+
+.erp-ai-usage__table th {
+  white-space: nowrap;
+}
+
+.erp-ai-usage__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-ai-usage__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-ai-usage__list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.erp-ai-usage__list-meta {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-runs__status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 240px;
+}
+
+/* Loi tu GoClaw co the dai (JSON cua nha cung cap) - cat 2 dong, du noi dung o title. */
+.erp-ai-runs__error {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.75rem;
+  color: var(--erp-danger);
+  overflow-wrap: anywhere;
+}
+
+/* 30 nhan ngay tren mot truc chen nhau va cat chu o mep phai; giu nhan cot 1, 6, 11... */
+.erp-ai-usage__chart--dense .erp-bars__label:not(:nth-child(5n + 1)) > div {
+  visibility: hidden;
+}
+
+/* Giam sat AI - chi tiet luot chay (trace GoClaw doc truc tiep). */
+.erp-ai-runs__open {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.erp-ai-runs__open:hover {
+  color: var(--erp-action-secondary-hover);
+}
+
+.erp-ai-runs__card {
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.erp-ai-runs__card:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+}
+
+.erp-ai-runs__card:active {
+  transform: translateY(1px);
+}
+
+.erp-ai-trace .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-ai-trace__block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-ai-trace__block + .erp-ai-trace__block {
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-ai-trace__grid {
+  display: grid;
+  /* min() cho điện thoại giữ 2 cột thay vì một cột dài. */
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 40%), 1fr));
+  gap: 8px 24px;
+  margin: 0;
+}
+
+.erp-ai-trace__grid--summary {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-ai-trace__grid dt {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-trace__grid dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.erp-ai-trace__id {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-ai-trace__grid .erp-ai-audit__key {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.erp-ai-trace__copy {
+  padding: 0 4px;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.erp-ai-trace__text {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-ai-trace__text-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-trace__text pre,
+.erp-ai-trace__error {
+  max-height: 320px;
+  margin: 0;
+  overflow: auto;
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.erp-ai-trace__text pre {
+  padding: 6px 12px 10px;
+  color: var(--erp-text-primary);
+}
+
+.erp-ai-trace__error {
+  padding: 10px 12px;
+  border: 1px solid var(--erp-danger);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.erp-ai-trace__spans-title {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.erp-ai-trace__spans {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-ai-trace__spans .erp-ai-trace__spans {
+  margin-top: 6px;
+  padding-left: 20px;
+  border-left: 2px solid var(--erp-border);
+  margin-left: 12px;
+}
+
+.erp-ai-trace__span {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-ai-trace__span > summary,
+div.erp-ai-trace__span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  min-height: 44px;
+  padding: 6px 12px;
+}
+
+.erp-ai-trace__span > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.erp-ai-trace__span > summary::-webkit-details-marker {
+  display: none;
+}
+
+.erp-ai-trace__span > summary::before {
+  content: '\F285';
+  font-family: bootstrap-icons;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  transition: transform 150ms ease;
+}
+
+.erp-ai-trace__span[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.erp-ai-trace__span > summary:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-ai-trace__type {
+  padding: 1px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  font-family: var(--bs-font-monospace);
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-trace__name {
+  flex: 1 1 160px;
+  min-width: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.erp-ai-trace__meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ai-trace__span-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+@media (max-width: 576px) {
+  .erp-ai-trace__spans .erp-ai-trace__spans {
+    margin-left: 4px;
+    padding-left: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-ai-runs__card,
+  .erp-ai-trace__span > summary::before {
+    transition: none;
+  }
+}

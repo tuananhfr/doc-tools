@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Công văn tạm ứng — form lập từ hồ sơ thanh toán
+   ========================================================================== */
+
+/* Form hai cột: văn bản bên trái cần đủ rộng để đọc được đoạn soạn thảo, cột
+   phải gom tiền + thông tin. `size="xl"` (1140px) chia ra chỉ còn ~440/380 nên
+   nhãn tiếng Việt dài tràn hai dòng; nới như `.advance-modal` đang làm. */
+.erp-dispatch-modal .modal-dialog {
+  --bs-modal-width: min(1360px, 96vw);
+}
+
+.erp-dispatch-modal .modal-body {
+  max-height: calc(100vh - 10.5rem);
+  overflow-y: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Dải số của hợp đồng — CHỈ ĐỌC
+   --------------------------------------------------------------------------
+   Ba con số này do hợp đồng quyết định, người lập không sửa. Bày chúng dưới
+   dạng ô nhập (kể cả `readonly`) là mời người ta bấm vào rồi thất vọng, nên
+   chuyển hẳn sang dạng số đọc — vẫn nằm trong form values để gửi lên. */
+.erp-dispatch-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 16px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-border);
+}
+
+.erp-dispatch-summary > div {
+  padding: 8px 12px;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-dispatch-summary dt {
+  margin: 0 0 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.erp-dispatch-summary dd {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  /* Ba số xếp cạnh nhau, không tabular là chúng lệch cột khi đổi giá trị. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* "Còn lại" là con số quyết định trần của đề nghị -> đậm hơn hai số kia. */
+.erp-dispatch-summary__remaining dd {
+  color: var(--erp-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Khối "Thành tiền"
+   --------------------------------------------------------------------------
+   Đây là con số cả dây duyệt làm việc trên đó, và cũng là thứ bị chặn khi
+   vượt trần — tách ra một khối riêng để nó không trôi lẫn giữa các ô khác. */
+.erp-dispatch-total {
+  margin-top: 4px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-dispatch-total .erp-field-money {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.erp-dispatch-total__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+}
+
+.erp-dispatch-total__words {
+  flex: 1 1 100%;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.erp-dispatch-total__cap {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Vượt trần: cảnh báo ngay tại chỗ, không bắt người dùng ngước lên đầu form.
+   Dùng `--erp-danger` chứ KHÔNG dùng Crimson thương hiệu. */
+.erp-dispatch-total--over {
+  border-color: var(--erp-danger);
+}
+
+.erp-dispatch-total__error {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 8px 0 0;
+  color: var(--erp-danger);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   Vùng soạn thảo
+   -------------------------------------------------------------------------- */
+
+/* Nội dung công văn tự viết lại theo số tiền — nói cho người dùng biết, nếu
+   không họ tưởng mình gõ hỏng khi thấy chữ đổi. */
+.erp-dispatch-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-info-soft);
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@media (max-width: 992px) {
+  .erp-dispatch-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

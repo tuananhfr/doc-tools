@@ -1,0 +1,123 @@
+.erp-cash-book-print-page {
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: auto;
+  background: var(--erp-bg);
+  padding: 22px 18px 48px;
+}
+
+.erp-cash-book-print-page__content {
+  max-width: 1420px;
+  margin: 0 auto;
+}
+
+.erp-cash-book-print-page__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border: 1px solid var(--erp-border);
+  border-radius: 10px;
+  background: var(--erp-surface);
+}
+
+.erp-cash-book-print-page__period,
+.erp-cash-book-print-page__quick {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px;
+}
+
+.erp-cash-book-print-page__period { flex: 1; }
+.erp-cash-book-print-page__quick { margin-left: auto; }
+
+.erp-cash-book-print-page__period label {
+  display: grid;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.erp-cash-book-print-page__period input {
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: 6px;
+  color: var(--erp-text-primary);
+  background: var(--erp-surface);
+}
+
+.erp-cash-book-print {
+  page: cash-book-landscape;
+  padding: 25mm 14mm 22mm;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 9%);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+}
+
+.erp-cash-book-print__header { text-align: center; }
+.erp-cash-book-print__company {
+  min-height: 28px;
+  text-align: right;
+  font-size: 12pt;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.erp-cash-book-print__header h1 {
+  margin: 12px 0 6px;
+  font-size: 18pt;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.erp-cash-book-print__header p { margin: 0 0 24px; font-size: 12pt; }
+.erp-cash-book-print__meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.erp-cash-book-print__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 9.5pt;
+}
+.erp-cash-book-print__table th,
+.erp-cash-book-print__table td {
+  border: 1px solid #555;
+  padding: 5px 6px;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.erp-cash-book-print__table thead th { text-align: center; background: #f1f1f1; }
+.erp-cash-book-print__table tfoot th { text-align: center; background: #f1f1f1; }
+.erp-cash-book-print__table tfoot td { font-weight: 700; background: #f1f1f1; }
+.erp-cash-book-print__table tr { break-inside: avoid; }
+.erp-cash-book-print__table thead { display: table-header-group; }
+.erp-cash-book-print__table tfoot { display: table-row-group; }
+.erp-cash-book-print__index { width: 4%; text-align: center; }
+.erp-cash-book-print__explain { width: 22%; }
+.erp-cash-book-print__nowrap { white-space: nowrap; }
+.erp-cash-book-print__number { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.erp-cash-book-print__empty { text-align: center; padding: 22px !important; }
+
+@page cash-book-landscape { size: A4 landscape; margin: 12mm; }
+
+@media print {
+  html, body, #root { height: auto !important; overflow: visible !important; background: #fff !important; }
+  .erp-cash-book-print-page { height: auto !important; min-height: 0; padding: 0; overflow: visible; background: #fff; }
+  .erp-cash-book-print-page__content { max-width: none; }
+  .erp-cash-book-print-page__toolbar { display: none !important; }
+  .erp-cash-book-print,
+  .erp-cash-book-print * { visibility: visible; }
+  .erp-cash-book-print { padding: 0; box-shadow: none; }
+  .erp-cash-book-print__table thead th,
+  .erp-cash-book-print__table tfoot th,
+  .erp-cash-book-print__table tfoot td { background: #f1f1f1 !important; print-color-adjust: exact; }
+}

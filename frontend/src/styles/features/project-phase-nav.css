@@ -1,0 +1,34 @@
+.project-phase-nav{display:grid;gap:7px;margin-top:10px;padding-bottom:9px;min-width:0}
+.project-phase-nav__stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;min-width:0}
+.project-phase-nav__stage{display:flex;align-items:center;gap:9px;min-width:0;min-height:44px;padding:5px 9px;border:1px solid #d9e6f7;border-radius:8px;background:#f3f7ff;color:#204775;font-size:12px;font-weight:650;text-align:left;cursor:pointer}
+.project-phase-nav__stage:hover{border-color:#78a8e8}
+/* Mỗi tông khai HAI màu: `--stage-ink` cho chữ trên nền nhạt, `--stage-solid`
+   cho nền đặc lúc đang chọn. Bản đặc cố ý tối hơn hẳn bản chữ: chữ trắng trên
+   `--stage-ink` chỉ đạt 4,4:1 (xanh lá), dưới cả ngưỡng AA 4,5 — mọi
+   `--stage-solid` dưới đây đo được **7,5–9,9:1**, tức qua cả ngưỡng 7:1 của
+   Field Mode. */
+.project-phase-nav__stage.is-green{--stage-ink:#058961;--stage-solid:#03613f;background:#e9fbf5;color:var(--stage-ink)}
+.project-phase-nav__stage.is-blue{--stage-ink:#135dc5;--stage-solid:#0d4fa5;background:#e9f2ff;color:var(--stage-ink)}
+.project-phase-nav__stage.is-amber{--stage-ink:#aa6800;--stage-solid:#7a4900;background:#fff4dc;color:var(--stage-ink)}
+.project-phase-nav__stage.is-slate{--stage-ink:#546f99;--stage-solid:#3b5175;background:#f0f5fc;color:var(--stage-ink)}
+.project-phase-nav__stage.is-purple{--stage-ink:#6548aa;--stage-solid:#4c3385;background:#f0edff;color:var(--stage-ink)}
+.project-phase-nav__stage.is-active{background:var(--stage-solid);border-color:var(--stage-solid);color:#fff;font-weight:750;box-shadow:0 2px 10px #16325414}
+.project-phase-nav__stage.is-active:hover{border-color:var(--stage-solid)}
+.project-phase-nav__number{display:grid;place-items:center;flex:none;width:29px;height:29px;border-radius:50%;background:#fff;box-shadow:0 1px 5px #a9c1db80;font-size:12px;font-weight:750}
+/* Vòng tròn số nền trắng và THỪA HƯỞNG `color` của nút — ô đang chọn đổi chữ
+   sang trắng thì con số biến mất. Phải gán lại màu tông cho nó. */
+.project-phase-nav__stage.is-active .project-phase-nav__number{color:var(--stage-solid);box-shadow:none}
+.project-phase-nav__items{display:flex;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:thin;border:1px solid var(--erp-border);border-radius:7px;background:var(--erp-surface)}
+.project-phase-nav__items button{flex:none;max-width:230px;padding:7px 10px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--erp-text-secondary);font-size:12px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;cursor:pointer}
+.project-phase-nav__items button:hover{background:var(--erp-surface-secondary);color:var(--erp-info)}
+.project-phase-nav__items button.is-active{background:var(--erp-info-soft);border-bottom-width:3px;border-bottom-color:var(--erp-info);color:var(--erp-info);font-weight:750;box-shadow:inset 0 0 0 1px var(--erp-info)}
+.project-phase-nav__link{margin-left:4px;color:var(--erp-action-secondary);font-size:13px;vertical-align:-1px}
+@media(max-width:1000px){.project-phase-nav__stages{grid-template-columns:repeat(5,minmax(145px,1fr));overflow-x:auto;scrollbar-width:thin}}
+@media(max-width:576px){.project-phase-nav{margin-top:7px}.project-phase-nav__stage{min-height:40px}.project-phase-nav__items button{padding:7px 9px}}
+.lifecycle-board__section-context{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;padding:9px 12px;border:1px solid #d7e7fb;border-radius:7px;background:#f3f8ff;color:#254575;font-size:12px}
+.lifecycle-board__section-context strong{font-size:13px;color:#104997}
+/* Chặng dự án ĐANG Ở (khác chặng đang xem): nhãn chữ "Hiện tại" + viền đậm tông. */
+.project-phase-nav__label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.project-phase-nav__stage.is-current{border-width:2px;border-color:var(--stage-ink)}
+.project-phase-nav__now{margin-left:auto;flex:none;padding:1px 7px;border-radius:999px;background:var(--stage-solid);color:#fff;font-size:10.5px;font-weight:750;line-height:18px}
+.project-phase-nav__stage.is-active .project-phase-nav__now{background:#fff;color:var(--stage-solid)}

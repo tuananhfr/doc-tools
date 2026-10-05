@@ -1,0 +1,344 @@
+/*
+ * Cong cu PDF lam tren TUNG TRANG cua "Chuyen Nho": Sap xep, Danh so trang,
+ * Dong dau, Che thong tin. Khung luong (chon tep / tuy chon / ket qua) o
+ * tools-flow.css; day chi la vung lam viec thay cho danh sach tep.
+ */
+
+.erp-page-stage {
+  /* Tran chieu cao cua trang: trang doc cao hon man hinh la mat phan chan trang, phai cuon moi thay. */
+  --erp-page-stage-height: min(72vh, 760px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-page-stage__head,
+.erp-page-stage__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  min-width: 0;
+}
+
+.erp-page-stage__caption {
+  display: flex;
+  flex: 1 1 200px;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-page-stage__name {
+  overflow: hidden;
+  font-weight: 600;
+  /* line-height rong: chu Viet co dau hai tang bi cat dau khi ellipsis voi dong chat. */
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-page-stage__meta {
+  flex: none;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-page-stage__actions,
+.erp-page-stage__nav {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-page-stage__page {
+  min-width: 96px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/*
+ * Khung co DUNG ti le cua trang (--erp-page-ratio = rong / cao do component ghi):
+ * lop phu (so trang, dau, khung che) dat theo phan tram cua khung nay.
+ */
+.erp-page-stage__frame {
+  position: relative;
+  width: min(100%, calc(var(--erp-page-stage-height) * var(--erp-page-ratio, 0.707)));
+  aspect-ratio: var(--erp-page-ratio, 0.707);
+  margin-inline: auto;
+  overflow: hidden;
+  /* Trang giay luon trang, khong theo theme - nhu trong trinh chinh sua. */
+  background: #fff;
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-page-stage__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.erp-page-stage__canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.erp-page-stage__status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 16px;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.erp-page-stage__stamp {
+  position: absolute;
+  pointer-events: none;
+}
+
+.erp-page-stage__hint,
+.erp-page-stage__empty {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-page-stage__empty {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+/* ---------- Sap xep PDF: luoi trang ---------- */
+
+.erp-organize {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-organize__tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 8px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-organize__frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-organize__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.erp-organize__no {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-organize__origin {
+  overflow: hidden;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-organize__actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.erp-organize__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 40px;
+  padding: 0;
+  color: var(--erp-text-secondary);
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-page-stage__nav .erp-organize__button {
+  width: 44px;
+}
+
+.erp-organize__button:hover:not(:disabled) {
+  color: var(--erp-text-primary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-organize__button--remove:hover:not(:disabled) {
+  color: var(--erp-danger);
+}
+
+.erp-organize__button:disabled {
+  opacity: 0.35;
+}
+
+/* ---------- Che thong tin PDF: lop khoanh vung ---------- */
+
+.erp-redact {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Keo de ve khung chu khong cuon trang; cuon bang phan ngoai to giay. */
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.erp-redact.is-disabled {
+  cursor: default;
+}
+
+/* Xem truoc dung nhu tep ra: khoi den dac. Mau cua TRANG GIAY, khong theo theme. */
+.erp-redact__box {
+  fill: #000;
+  stroke: var(--erp-danger);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  cursor: pointer;
+}
+
+.erp-redact__draft {
+  fill: rgb(0 0 0 / 0.45);
+  stroke: var(--erp-danger);
+  stroke-width: 1.5;
+}
+
+/* ---------- Tuy chon: hai o so canh nhau ---------- */
+
+.erp-flow-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Dich bam tren man cam ung: 44px (DS muc 11). */
+@media (pointer: coarse) {
+  .erp-organize__button {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+/* Dien thoai: 4 nut x 44px khong vua o 144px - luoi hai cot, nut xep 2 x 2. */
+@media (max-width: 576px) {
+  .erp-page-stage {
+    padding: 12px;
+  }
+
+  .erp-organize {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .erp-organize__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Chen chu ky: o ky tay + lop dat chu ky len trang ---------- */
+
+.erp-sign-pad {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: 8px;
+  /* Keo de ky chu khong cuon trang. */
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.erp-sign-pad.is-disabled {
+  cursor: default;
+}
+
+/* O ky luon trang: day la mau cua GIAY, muc den/xanh phai doc duoc o ca ba theme. */
+.erp-sign-pad__paper {
+  fill: #fff;
+}
+
+.erp-sign-pad__rule {
+  stroke: #c9ced6;
+  stroke-width: 1;
+  stroke-dasharray: 6 5;
+}
+
+.erp-sign-pad__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px 12px;
+}
+
+@media (pointer: coarse) {
+  .erp-sign-pad__actions .btn,
+  .erp-page-stage__bar .btn-link {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+.erp-sign {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  cursor: copy;
+}
+
+.erp-sign.is-disabled {
+  cursor: default;
+}
+
+.erp-sign__mark {
+  position: absolute;
+  outline: 1px dashed var(--erp-danger);
+  outline-offset: 2px;
+  cursor: move;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.erp-sign.is-disabled .erp-sign__mark {
+  outline: none;
+  cursor: default;
+}

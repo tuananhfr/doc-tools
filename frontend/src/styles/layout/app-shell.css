@@ -1,0 +1,106 @@
+/* Khung ung dung sau dang nhap: sidebar + header + vung noi dung. */
+
+.erp-shell {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  min-height: 0;
+  /* Xoay ngang tren iPhone: tai tho nam o canh trai/phai. */
+  padding-inline: var(--erp-safe-left) var(--erp-safe-right);
+  overflow: hidden;
+  background: var(--erp-bg);
+}
+
+.erp-shell__main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  /* Chua thanh Home cua iPhone: dong cuoi cua trang khong nam duoi no. */
+  padding-bottom: var(--erp-safe-bottom);
+  overflow: hidden;
+}
+
+/*
+ * Vung noi dung la NOI DUY NHAT duoc cuon: header va sidebar dung yen.
+ *
+ * `overflow-y: auto` chu KHONG phai `hidden`: trang tu quan chieu cao (bang,
+ * kanban - xem `list-page.css`) cao dung bang khung nen khong sinh ra thanh
+ * cuon nao; con trang xep doc tu nhien (dashboard, tong quan, bao cao nhieu
+ * the) truoc day bi cat mat phan duoi ma nguoi dung khong co cach nao voi toi.
+ * Day la luoi an toan: them trang moi quen chon khung cung khong mat noi dung.
+ */
+.erp-shell__content {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/*
+ * `height: 100%` (khong phai `min-height`): `.erp-list-page` ben trong khai
+ * `height: 100%`, ma phan tram chi phan giai duoc khi CHA co chieu cao that.
+ * Trang xep doc cao hon khung thi tran ra ngoai va do `.erp-shell__content`
+ * cuon - dung y do.
+ */
+.erp-shell__container {
+  width: 100%;
+  max-width: var(--erp-content-max-width);
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .erp-shell__content {
+    padding: 16px;
+  }
+}
+
+/*
+ * Mobile: le ngoai xuong 10px.
+ *
+ * Man 390px thi 16px moi ben an 8,2% be ngang cho mot dai trong, trong khi the
+ * kanban ben trong con phai chua ten to chuc dai 45 ky tu. Duoi 10px thi noi
+ * dung dinh sat vien man hinh - do la san.
+ */
+@media (max-width: 576px) {
+  .erp-shell__content {
+    padding: 10px;
+  }
+}
+
+/* Luoi noi dung dung chung cho trang nghiep vu. */
+.erp-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+}
+
+/*
+ * Che do TRAN BE NGANG - trang tu bat bang `useFullWidthContent()`.
+ *
+ * Chi bo tran kep va ha padding, KHONG dung `100vw`: sidebar van chiem cho
+ * nen 100vw se thua ra dung bang be rong sidebar va sinh thanh cuon ngang.
+ */
+[data-content-width='full'] .erp-shell__container {
+  max-width: none;
+  margin: 0;
+}
+
+[data-content-width='full'] .erp-shell__content {
+  padding: 12px;
+}
+
+@media (max-width: 1024px) {
+  [data-content-width='full'] .erp-shell__content {
+    padding: 8px;
+  }
+}

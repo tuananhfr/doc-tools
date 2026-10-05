@@ -1,0 +1,312 @@
+/*
+ * Style rieng cua khoi CRM & Tang truong (menu 02).
+ *
+ * Mau file cho feature moi: tao `styles/features/<domain>.css`, khai bao class
+ * co tien to `erp-<domain>__*` roi import trong `styles/index.css`.
+ *
+ * Khong viet hex o day - moi mau doc qua bien `--erp-*` de ba theme
+ * Light / Dark / Field dung chung mot component (Design System muc 12 & 15).
+ */
+
+/* Ten khach hang trong bang: ten chinh + ten viet tat. */
+.erp-crm__customer-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.erp-crm__customer-short {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * O ten khach hang bam duoc de mo slide-over chi tiet.
+ *
+ * Dung <button> chu khong phai <div onClick>: ban phim tab toi duoc, Enter mo
+ * duoc, va focus ring hien ro tren ca ba theme (muc 11).
+ */
+.erp-crm__link-cell {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.erp-crm__customer-name-text {
+  color: var(--erp-action-secondary);
+  font-weight: 500;
+}
+
+.erp-crm__link-cell:hover .erp-crm__customer-name-text {
+  text-decoration: underline;
+}
+
+.erp-crm__link-cell:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-sm);
+}
+
+/* Nguon lead / kenh tiep thi: icon + nhan chu, khong to mau kenh. */
+.erp-crm__source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.erp-crm__source .bi {
+  color: var(--erp-text-tertiary);
+}
+
+/* Gia tri con trong / chua co - nhat hon nhung van doc duoc. */
+.erp-muted {
+  color: var(--erp-text-tertiary);
+}
+
+/* Cau mo dau trong modal thao tac (phan bo lead, tra thuong...). */
+.erp-modal__lead {
+  margin-bottom: 16px;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Slide-over xem nhanh mot ban ghi.
+ *
+ * Xem chi tiet giua chung danh sach khong nen day nguoi dung sang trang khac
+ * (mat vi tri cuon va bo loc dang co), cung khong nen dung modal giua man vi
+ * no che mat bang du lieu dang doi chieu.
+ */
+.erp-panel {
+  width: min(520px, 100%);
+}
+
+/* overlay.css dat padding offcanvas ve 0 cho moi lop noi - panel phai tu dat
+   lai, khong thi tieu de va nut dong dinh sat mep. Khop le cua footer. */
+.erp-panel .offcanvas-header {
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-panel__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.erp-panel__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-panel__files {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-panel__files li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/*
+ * O "da chi / muc tieu": con so - thanh tien do - dong chu ket luan.
+ *
+ * Dong chu la phan BAT BUOC: vuot ngan sach hay dat muc tieu phai doc duoc ma
+ * khong can nhin mau thanh (Design System muc 05 & 11).
+ */
+.erp-crm__budget {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.erp-crm__budget-bar {
+  width: 100%;
+  min-width: 88px;
+  height: 4px;
+}
+
+.erp-crm__budget-note {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-tertiary);
+}
+
+/* Tieu de nhieu chu: tranh de mot tu roi lai mot minh o dong cuoi. */
+.erp-balance {
+  text-wrap: balance;
+}
+
+/* Dai chip tom tat tren dau bao cao tang truong. */
+.erp-crm__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: baseline;
+}
+
+.erp-crm__summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-crm__summary-label {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-crm__summary-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+/* Danh sach "Lead mới nhất" tren trang Khách hàng 360. */
+.erp-crm__feed {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-crm__feed-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--erp-touch-target);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-crm__feed-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.erp-crm__feed-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-crm__feed-title {
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-crm__feed-meta {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Loi tat sang cac man hinh cua phan he.
+ *
+ * Moi o cao it nhat mot touch target (44px) va co focus ring rieng - day la
+ * link that, khong phai the trang tri (muc 06 & 11).
+ */
+.erp-crm__shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.erp-crm__shortcut {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+  text-decoration: none;
+  background: var(--erp-surface);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.erp-crm__shortcut .erp-icon-tile {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-crm__shortcut:hover {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-border-strong);
+  color: var(--erp-text-primary);
+}
+
+.erp-crm__shortcut:active {
+  transform: translateY(1px);
+}
+
+.erp-crm__shortcut:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-crm__shortcut {
+    transition: none;
+  }
+
+  .erp-crm__shortcut:active {
+    transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-panel .offcanvas-header,
+  .erp-panel__footer {
+    padding: 16px;
+  }
+
+  /* Nhan trang thai xuong dong rieng thay vi ep hai cot vao 375px. */
+  .erp-crm__feed-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Form "Thêm nội dung Danh sách nhận quà".
+ *
+ * Bang khach nhan qua co sau cot; o modal `xl` (1140px) chia 9/3 thi moi o
+ * chi con ~110px. Noi modal ra dung cach `.erp-propose-modal` - dat bien
+ * `--bs-modal-width` chu khong ghi de `max-width`.
+ * ------------------------------------------------------------------------ */
+.erp-gift-event-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}

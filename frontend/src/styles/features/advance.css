@@ -1,0 +1,1196 @@
+/*
+ * Style rieng cua man Tam ung. Khung chieu cao (thanh cong cu co dinh + bang /
+ * kanban tu cuon) da thanh lop dung chung `.erp-list-page` - xem
+ * `styles/layout/list-page.css`. Thanh dieu khien mot hang dung chung
+ * `.erp-page-toolbar` - xem `styles/components/page-toolbar.css`.
+ */
+
+/* ---------------------------------------------------------------------------
+ * FORM PHIEU TAI CHINH - VUA MOT MAN HINH, KHONG CUON
+ *
+ * Luoi 12 cot, moi o khai be ngang bang mot lop `advance-form__c*`. So do hang
+ * nam trong docblock cua `AdvanceFormModal`. Cung khuon voi form Tac vu
+ * (`features/tasks.css`) de hai man hinh gan nhau khong lech nhip.
+ *
+ * KHOANG CACH CHI DEN TU MOT NGUON. `<Field>` boc moi o trong `Form.Group` kem
+ * `mb-3` (16px) cua Bootstrap; cong voi `gap` cua luoi thanh 28px moi hang.
+ * Tat `mb-3` trong rieng modal nay va de `gap` lo het.
+ *
+ * Phai dung `!important`: lop tien ich cua Bootstrap (`.mb-3`) tu no da
+ * `!important`, khong co cach nao khac de de len ma khong sua `<Field>` dung
+ * chung cho ca app.
+ * ------------------------------------------------------------------------ */
+
+/* Luoi 9/3 can be ngang. O `size="xl"` (1140px) cot 3 chi con ~250px - nhan
+   "Tài khoản nhận tiền" da tran hai dong. 1440px cho cot 3 ~350px, du cho hai
+   o chon nam canh nhau; `96vw` de man 13" khong bi cat le. */
+.advance-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+.advance-modal .modal-header,
+.advance-modal .modal-footer {
+  padding-block: 10px;
+}
+
+.advance-modal .modal-body {
+  padding: 12px 16px;
+  /* 10.5rem = 168px: le modal 56 + dau 47 + chan 58, cong mot chut du. Cung
+     con so voi form Tac vu - hai modal cung khung thi cung tran. */
+  max-height: calc(100vh - 10.5rem);
+  overflow-y: auto;
+}
+
+.advance-modal .modal-body .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* Ma chung tu tren tieu de modal - la du lieu tra cuu, khong phai tieu de. */
+.advance-modal__code {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.advance-form__alert {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  font-size: 0.8125rem;
+}
+
+.advance-form__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  /* 8px doc / 12px ngang. Doc sat hon ngang co chu dich: hai o cung HANG la
+     hai truong khac nhau, phai tach ro; hai o chong nhau theo chieu doc thi
+     da co nhan cua o duoi lam ranh gioi roi. */
+  gap: 8px 12px;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------------------
+ * KHUNG 9/3 - CHEP CAY field_group CUA FORM DRUPAL
+ *
+ * `group_row` → `group_col_9` (Thong tin chung + tab Noi dung/Chung tu) va
+ * `group_col_3` (Thong tin thanh toan). So do day du trong docblock cua
+ * `AdvanceFormModal`.
+ *
+ * Dung `9fr 3fr` chu khong phai `75% 25%`: `fr` da tru phan `gap` roi, con
+ * phan tram thi khong - cong lai thanh 100% + gap, tran ra ngoai modal.
+ *
+ * `minmax(0, ...)` o hai cot con la bat buoc: mac dinh cua grid item la
+ * `min-width: auto`, nen bang noi dung (min-width 760px) se BANH cot 9 ra thay
+ * vi cuon trong chinh no, va cot 3 bi day ra khoi man.
+ * ------------------------------------------------------------------------ */
+
+.advance-form__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.advance-form__main,
+.advance-form__side {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+
+.advance-form__panel {
+  min-width: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  padding: 10px 12px 12px;
+}
+
+/* Nhan nhom - cung vai tro voi `group_type` / `group_shadow` ben Drupal: noi
+   cho nguoi dung biet dang o cum nao, khong phai mot tieu de noi dung. */
+.advance-form__panel-title {
+  margin: 0 0 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+/* ---------------------------------------------------------------------------
+ * MUC CON TRONG MOT TAM THE
+ *
+ * Cot phai tung la MOT danh sach phang hon 20 o. No van phai giu nguyen thu tu
+ * cua `group_shadow` (xem docblock `AdvanceFormModal`), nen thu duy nhat lam
+ * duoc la dat RANH GIOI vao khe giua hai o da dung canh nhau - va ranh gioi do
+ * phai la mot duong ke mong, khong phai mot cai hop long trong hop.
+ *
+ * Hop long hop chinh la thu vua go bo: cum "Tai khoan nhan tien" truoc day la
+ * mot `<fieldset>` co vien + bo goc rieng nam trong tam the da co vien, ra hai
+ * duong vien cach nhau 10px chay song song.
+ * ------------------------------------------------------------------------ */
+
+.advance-form__block {
+  min-width: 0;
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+/* Cung ngon ngu voi `__panel-title`, nhat hon mot bac de thay ngay cai nao la
+   the va cai nao la muc con cua the. */
+.advance-form__block-title {
+  margin: 0 0 8px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+/* Panel cua tab tu ve vien va nen rieng cho tung phan, nen bo padding cua vo. */
+.advance-form__panel--tabs {
+  padding: 0;
+  overflow: hidden;
+}
+
+.advance-form__panel--tabs .nav-tabs {
+  gap: 4px;
+  padding: 6px 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+.advance-form__panel--tabs .tab-content {
+  padding: 12px;
+}
+
+/* ---------------------------------------------------------------------------
+ * DAI "TOM TAT TAI CHINH" (`AdvanceSummaryStrip`)
+ *
+ * Ba con so tien cua phieu. Truoc day chung nam rai o ba cho - chan bang noi
+ * dung, ba dong ket qua cua khoi lam tron, va mot o `readOnly disabled` ben cot
+ * phai - nen co ba luat CSS rieng cho cung mot viec. Ca ba da duoc go.
+ *
+ * Dai nam NGOAI tab: bang noi dung o trong tab "Noi dung", dat dai vao do thi
+ * sang tab "Chung tu" la khong con thay tien.
+ * ------------------------------------------------------------------------ */
+
+.advance-summary__grid {
+  display: grid;
+  /* Tu xuong cot khi hep, khong can media query rieng: ba the deu can toi thieu
+     ~170px de con tien 12 chu so khong bi cat. */
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 8px 12px;
+}
+
+.advance-summary__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.advance-summary__label {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.advance-summary__value {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.advance-summary__note {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/*
+ * Chenh lech lam tron: xanh khi lam tron len, do khi xuong. Mau chi bao HUONG
+ * lech chu khong phai tot/xau, va dau `+`/`-` moi la thu noi ra dieu do - mau
+ * la lop nhan biet thu hai (DS muc 05 & 11).
+ */
+.advance-summary__value[data-sign='up'] {
+  color: var(--erp-success);
+}
+
+.advance-summary__value[data-sign='down'] {
+  color: var(--erp-danger);
+}
+
+.advance-summary__value[data-sign='zero'] {
+  color: var(--erp-text-tertiary);
+}
+
+/* The cuoi la con so nguoi duyet tim khi mo phieu - to hon va vien dam de mat
+   dung lai o dung no. */
+.advance-summary__cell--total {
+  border-color: var(--erp-border-strong);
+}
+
+.advance-summary__cell--total .advance-summary__value {
+  font-size: 1.25rem;
+}
+
+/* Ca dai la khoi TIEN cua form - vien dam de mat dung lai o day truoc. */
+.advance-summary {
+  border-color: var(--erp-border-strong);
+}
+
+/* ---------------------------------------------------------------------------
+ * CONG TAC LAM TRON KHI NAM TRONG DAI
+ *
+ * `.advance-rounding` duoc dung o cot phai rong ~350px nen no xep DOC: sau lua
+ * chon thanh mot cot, ba dong ket qua ben duoi. Trong dai thi no co gan 1000px
+ * be ngang va khong con dong ket qua nao - de nguyen kieu xep doc thi mot hang
+ * radio duy nhat keo dai khoi cao them ~200px cho thu chi can hai dong.
+ *
+ * Chi doi CACH XEP o day, khong dung toi `AdvanceRoundingPanel`: cung mot khoi
+ * markup, hai chieu rong, hai cach bay - dung viec cua CSS.
+ * ------------------------------------------------------------------------ */
+
+.advance-summary__rounding {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+/* Bo vo the cua khoi: no da nam trong tam the cua dai, giu them mot lop nen +
+   vien nua la hop long hop. */
+.advance-summary__rounding .advance-rounding {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* Doc 8px giua tieu de va hang lua chon; khoang cach giua cac lua chon do
+     chinh `__options` khai. */
+  gap: 8px 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* ---------------------------------------------------------------------------
+ * HAI HANG: tieu de, roi sau lua chon nam ngang.
+ *
+ *   LAM TRON SO TIEN DE NGHI
+ *   o Khong lam tron  o 1.000  o 10.000  o 100.000  o 1.000.000  o Tuy chinh [Buoc]
+ *
+ * Tung co hang thu ba cho o "Cach lam tron"; o do da go 03/09/2026 (yeu cau
+ * nghiep vu). No khong bao gio dung vua sau day lua chon: nhan sau lua chon do
+ * BACKEND cap (`meta.formRules.roundingUnits` <- `AdvanceFormRules::ROUNDING_UNITS`),
+ * bon nhan lap lai chu "Lam tron" nen ca day dai ~1.100px, con sau o "Buoc" chi
+ * con ~120px trong trong khi nhan + o chon can ~215px. Ghi lai de neu co ngay
+ * dua o do tro lai thi biet truoc: hoac rut ngan nhan ben Drupal, hoac dat no
+ * len hang tieu de.
+ * ------------------------------------------------------------------------ */
+
+.advance-summary__rounding .advance-rounding__title {
+  flex: 0 0 100%;
+  margin-bottom: 0;
+}
+
+/*
+ * `flex: 0 0 100%` cho hop chua lua chon - no LUON mo hang moi.
+ *
+ * Day cung la thu chan khong cho no chen len hang tieu de: neu de `auto`,
+ * `flex-basis` doc ra be rong MAX-CONTENT (be rong khi xep het sau lua chon
+ * tren MOT dong, ~1.100px) va trinh duyet se thu nhet no vao cho con lai cua
+ * hang 1 truoc khi xuong dong.
+ */
+.advance-summary__rounding .advance-rounding__options {
+  flex: 0 0 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+}
+
+/* O buoc tu go van phai dinh vao dong radio "Tuy chinh" - nhung `margin-left:
+   auto` cua ban xep doc se day no ra tan cuoi hang khi xep ngang. */
+.advance-summary__rounding .advance-rounding__custom {
+  width: 88px;
+  margin-left: 4px;
+}
+
+.advance-form__c2 { grid-column: span 2; }
+.advance-form__c3 { grid-column: span 3; }
+.advance-form__c4 { grid-column: span 4; }
+.advance-form__c6 { grid-column: span 6; }
+.advance-form__c12 { grid-column: span 12; }
+
+/* Nhan cua o va legend cua fieldset phai cung nhip. 0.875rem = Body 14 cua
+   thang chu DS (muc 09), khong tu che co moi. */
+.advance-form__grid .form-label {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Ben Drupal ba o nay la MOT truong `field_advance_bank` (data_field, ba cot
+ * con), nen chung phai doc ra la MOT CUM - "Chu tai khoan" rat de bi doc nham
+ * thanh "Nguoi thu huong" o hang tren.
+ *
+ * Cum do gio la mot `advance-form__block` nhu cac muc khac cua cot phai: duong
+ * ke + tieu de muc, khong con vien bao rieng. Van giu `<fieldset>/<legend>` vi
+ * do la ngu nghia dung cho mot nhom o lien quan; chi reset phan trinh bay mac
+ * dinh cua trinh duyet.
+ */
+.advance-form__bank > legend {
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+/* So thi phai tabular, neu khong go them mot chu so la o nhay ngang. */
+.advance-form__grid input[type='number'],
+.advance-form__grid input[type='date'] {
+  font-variant-numeric: tabular-nums;
+}
+
+.advance-form__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 200px;
+  color: var(--erp-text-secondary);
+}
+/* Man XEM phieu da chuyen sang lop DUNG CHUNG -
+   xem `styles/components/detail-view.css` (`.erp-detail__*`). Ba man xem
+   (tai chinh, van ban di, de xuat) doc chung mot khung. */
+/* ---------------------------------------------------------------------------
+ * Bang noi dung tai chinh
+ * ------------------------------------------------------------------------ */
+
+.advance-lines__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* Cung nhip voi `.advance-form__panel-title`: hai cot cua form deu danh dau
+   dau khoi bang mot dong chu nho in hoa, khong phai cot mot kieu. */
+.advance-lines__title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+/* Bang rong hon modal tren man hep -> cuon TRONG bang, khong day ca trang. */
+.advance-lines__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+/*
+ * BE RONG COT DO CSS QUYET DINH, KHONG DE TRINH DUYET TU CHIA
+ * ===========================================================
+ * `table-layout: fixed` + `width: 100%`: moi cot lay dung so do khai duoi day,
+ * con cot "Noi dung" (khong khai) nuot phan du. De mac dinh (`auto`) thi trinh
+ * duyet chia theo NOI DUNG dang co: bang vua mo, o nao cung rong, nen cot cuoi
+ * phinh ra mot mang trong con cot Noi dung thi bi bop lai - dung canh o anh
+ * chup man hinh truoc khi sua.
+ */
+/*
+ * Sau khi bo cot "Thue" (form Drupal khong ve o do) bang con 6 cot, nen be
+ * rong toi thieu ha xuong - de nguyen 880px thi tren man 1366 bang van sinh
+ * thanh cuon ngang du thua cho.
+ */
+.advance-lines__table {
+  margin-bottom: 0;
+  width: 100%;
+  table-layout: fixed;
+  min-width: 720px;
+}
+
+/*
+ * PHAI DE `.table` TRONG SELECTOR, KHONG BO DUOC
+ * ----------------------------------------------
+ * `components/table.css` khai `.table > thead th` va `.table > tbody td` voi
+ * padding 12px 16px. Selector do co do uu tien (0,1,2), cao hon
+ * `.advance-lines__table > :not(caption) > * > *` (0,1,1) - viet kieu do thi
+ * so do o day bi nuot sach ma khong bao gi. Ghep them `.table` (react-bootstrap
+ * luon dat class do len the <table>) de len (0,2,1) va thang.
+ *
+ * 10px doc: o nhap cua Bootstrap da cao 38px, con 12px cua bang du lieu thi
+ * hang qua thua; cot dau va cot cuoi thut them cho khong dinh sat vien.
+ */
+.advance-lines__table.table > :not(caption) > * > * {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.advance-lines__table.table > :not(caption) > * > *:first-child {
+  padding-left: 14px;
+}
+
+.advance-lines__table.table > :not(caption) > * > *:last-child {
+  padding-right: 14px;
+}
+
+/* Khoang cach giua hai o trong cung mot hang do padding lo, nen o nhap trai
+   rong het cot - khong dat margin rieng cho tung o. */
+.advance-lines__table .form-control,
+.advance-lines__table .form-select {
+  width: 100%;
+}
+
+/* Tieu de cot: chu nho, hoa, mau nhat - de mat roi thang xuong phan du lieu. */
+.advance-lines__table.table > thead th {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+ * Tieu de cua cot so phai can PHAI, thang voi con so ben duoi. De can trai
+ * (mac dinh cua `th`) thi nhan "Gia tri (VND)" nam mot dau con so nam mot neo,
+ * va mat phai nhay qua nhay lai khi doc bang.
+ */
+.advance-lines__table.table > thead th.advance-lines__col-num,
+.advance-lines__table.table > thead th.advance-lines__col-money {
+  text-align: right;
+}
+
+
+.advance-lines__col-index {
+  width: 44px;
+}
+
+.advance-lines__col-unit {
+  width: 120px;
+}
+
+.advance-lines__col-num {
+  width: 108px;
+}
+
+
+.advance-lines__col-money {
+  width: 156px;
+}
+
+.advance-lines__col-action {
+  width: 52px;
+}
+
+/* So thu tu dong: mo di, no la thu de dinh vi chu khong phai du lieu. */
+.advance-lines__index {
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+/* So can phai va dung font so deu de doc cot cho nhanh. */
+.advance-lines__money,
+.advance-lines__input-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.advance-lines__money {
+  white-space: nowrap;
+}
+
+/*
+ * Nut xoa chi hien ro khi tro chuot vao dong. Mot cot thung rac dam mau chay
+ * doc bang keo mat khoi cac o dang nhap, ma no la thao tac hiem nhat o day.
+ */
+.advance-lines__action {
+  text-align: center;
+}
+
+.advance-lines__remove {
+  color: var(--erp-text-tertiary);
+  opacity: 0.55;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.advance-lines__table.table > tbody tr:hover .advance-lines__remove:not(:disabled) {
+  opacity: 1;
+  color: var(--erp-danger);
+}
+
+.advance-lines__remove:disabled {
+  opacity: 0.25;
+}
+
+/* Bang KHONG con `<tfoot>`: tong tien va so dong nay nam o dai "Tom tat tai
+   chinh" ngay ben duoi. */
+
+/*
+ * Dien thoai: bang nay xep THE theo luat chung `.erp-line-table`
+ * (`styles/components/form-kit.css`). O day chi con phan rieng.
+ */
+@media (max-width: 575.98px) {
+  /* Man cam ung khong co hover: nut xoa hien ro san. */
+  .advance-lines__remove:not(:disabled) {
+    opacity: 1;
+  }
+}
+
+/*
+ * Hang "+ Them dong" duoi bang.
+ *
+ * Net DUT chu khong phai net lien: no khong phai mot dong du lieu cua bang ma
+ * la cho de them mot dong - vien dut la quy uoc san co cho "cho trong dat
+ * duoc". Nen trong suot vi no nam ngay duoi chan bang (`--erp-surface-secondary`),
+ * to nen nua thi hai dai mau dinh lien thanh mot khoi.
+ *
+ * Nam NGOAI `.advance-lines__scroll`: dat trong do thi khi bang bi cuon ngang,
+ * hang nay troi sang trai va bien mat khoi tam nhin.
+ */
+.advance-lines__add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.advance-lines__add:hover {
+  border-color: var(--erp-brand);
+  background: var(--erp-surface-hover);
+  color: var(--erp-brand);
+}
+
+/* Vien dut khong duoc lam dau hieu focus: no la trang thai NGHI cua nut nay,
+   nen focus phai co vong rieng ben ngoai. */
+.advance-lines__add:focus-visible {
+  outline: 2px solid var(--erp-brand);
+  outline-offset: 2px;
+}
+/* Duoi 1200px: bo luoi 9/3, cot "Thong tin thanh toan" xuong duoi. Giu thu tu
+   DOM = thu tu dien, nen khong can `order`. */
+@media (max-width: 1199.98px) {
+  .advance-form__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Cac cot hep gop lai, sau cot thanh nguyen hang. */
+  .advance-form__grid > .advance-form__c2,
+  .advance-form__grid > .advance-form__c3,
+  .advance-form__grid > .advance-form__c4 {
+    grid-column: span 6;
+  }
+
+  .advance-form__grid > .advance-form__c6 {
+    grid-column: span 12;
+  }
+}
+
+/* Mobile: mot cot. DS muc 06 cam "desktop thu nho" - o day dung la tai cau
+   truc that vi thu tu doc van la thu tu dien, chi khac so cot. */
+@media (max-width: 767.98px) {
+  .advance-form__grid > [class*='advance-form__c'] {
+    grid-column: span 12;
+  }
+}
+
+/* Field mode: chu 16px + control 48px nen hang cao hon, noi gap doc ra cho de
+   nham va chap nhan cuon - dung nhu DS muc 11 uu tien. */
+[data-theme='field'] .advance-form__grid {
+  gap: 16px;
+}
+
+/* Dich bam 48px nhu moi control o Field Mode. An toan vi day la lop RIENG cua
+   nut, khong phai `.form-control` - dat `min-height` len `.form-control` trong
+   `features/*.css` se de len chinh luat 48px cua Field Mode va pha no. */
+[data-theme='field'] .advance-lines__add {
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+/*
+ * Nut chuyen buoc cua phieu tam ung dung lop DUNG CHUNG `.erp-step`
+ * (`styles/components/workflow-step.css`) - man van ban di dung cai nut y het,
+ * giu hai ban sao la sinh ra hai bang mau se lech nhau.
+ */
+
+/* ============================================== Làm tròn tổng tiền đề nghị */
+
+/*
+ * Khối "Làm tròn số tiền đề nghị" (`AdvanceRoundingPanel`) — bản React của
+ * khối cùng tên trên form Drupal (`erp_advance/css/advance_form.css`).
+ *
+ * Trông như một tấm thẻ chứ không như một ô nhập: bốn field làm tròn đứng sau
+ * nó đều nằm ở vùng `hidden` của form display, người dùng chỉ thấy đúng khối
+ * này. Markup ở đây là thẻ tự viết (không phải Form API), nên selector bám
+ * thẳng vào lớp `.advance-rounding__*` thay vì `.js-form-item` như bản Drupal.
+ */
+.advance-rounding {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+
+.advance-rounding__title {
+  margin-bottom: 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.advance-rounding__options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.advance-rounding__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 3px 4px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.advance-rounding__option:hover {
+  background: var(--erp-surface-hover);
+}
+
+.advance-rounding__option .form-check {
+  margin: 0;
+}
+
+.advance-rounding__option .form-check-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/* Ô bước tùy chỉnh nằm trong chính dòng radio "Tùy chỉnh", đẩy sát mép phải. */
+.advance-rounding__custom {
+  width: 120px;
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Khoi nay chi con phan CHON BUOC: o "Cach lam tron" da go 03/09/2026 (yeu cau
+   nghiep vu), ba dong ket qua da chuyen sang dai "Tom tat tai chinh". Luat cua
+   ca hai deu da xoa - de lai la mot bang mau se lech voi thu dang chay. */
+
+/* Khối này giờ chỉ còn phần CÔNG TẮC (bước + hướng); ba dòng kết quả và luật
+   màu chênh lệch đã chuyển sang `.advance-summary__value[data-sign]`. */
+
+/* ===================================== Các ô tham chiếu do ngữ cảnh điền */
+
+/*
+ * Khối "Gắn với" (`AdvanceContextRefs`) — sáu trường mà form Drupal KHÔNG vẽ ô
+ * nhập (chúng nằm trong field_group `group_none`, class `d-none`), giá trị đến
+ * từ tám nhánh prefill theo query string.
+ *
+ * Trông như một tấm thẻ thông tin, cố ý không giống ô nhập: đây là thứ để đọc,
+ * và một ô input bị khoá thì người dùng vẫn cứ bấm vào.
+ */
+.advance-context-refs {
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+
+.advance-context-refs__title {
+  margin-bottom: 6px;
+  color: var(--erp-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.advance-context-refs__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.advance-context-refs__row + .advance-context-refs__row {
+  border-top: 1px solid var(--erp-border);
+}
+
+.advance-context-refs__row .form-label {
+  margin: 0;
+  flex: 0 0 auto;
+  color: var(--erp-text-tertiary);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.advance-context-refs__value {
+  min-width: 0;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* ============================================ Thẻ phiếu trên bảng Kanban */
+
+/*
+ * `.erp-advance-card` — thẻ Kanban của phiếu tài chính, dựng theo đúng bố cục
+ * bản Drupal mà kế toán vẫn mở song song với màn React.
+ *
+ * ============================================================================
+ * VÌ SAO CĂN GIỮA Ở ĐÂY MÀ KHÔNG PHẢI Ở `KanbanCard`
+ * ============================================================================
+ * Mọi bảng Kanban khác căn trái — mắt quét một cột thẻ theo một mép thẳng thì
+ * nhanh hơn hẳn. Riêng phiếu tài chính thì tiêu đề + luồng kế toán đóng vai
+ * ĐẦU CHỨNG TỪ, và người dùng đối chiếu từng thẻ với bản Drupal đặt cạnh bên,
+ * nên hai đầu thẻ phải trông giống nhau. Đây là ngoại lệ có chủ ý, khoanh đúng
+ * một màn hình — không đẩy lên lớp dùng chung.
+ */
+.erp-advance-card .erp-kanban-card__title,
+.erp-advance-card .erp-kanban-card__subtitle {
+  text-align: center;
+}
+
+/* Tiêu đề của chứng từ, không phải tiêu đề của một dòng danh sách. */
+.erp-advance-card .erp-kanban-card__title {
+  font-size: 1rem;
+}
+
+.erp-advance-card .erp-kanban-card__subtitle {
+  margin-top: 0;
+  font-size: 0.8125rem;
+}
+
+/*
+ * Nhãn không xuống dòng, giá trị mới xuống.
+ *
+ * Cột Kanban rộng 300–380px, mà thẻ tài chính có những nhãn dài ("Tài khoản
+ * thụ hưởng", "Ngày hạch toán"). Nhãn và giá trị chảy chung MỘT MẠCH CHỮ nên
+ * không có ranh giới cột nào nói hộ đâu là nhãn: để mặc định thì nhãn bị bẻ
+ * đôi giữa chừng và người đọc mất một nhịp mới nhận ra.
+ *
+ * An toàn về bề ngang: nhãn dài nhất ở đây khoảng 122px, còn dòng hẹp nhất
+ * (cột 300px trừ padding thẻ) vẫn còn 272px.
+ */
+.erp-advance-card .erp-kanban-card__field dt {
+  white-space: nowrap;
+}
+
+/*
+ * Chân thẻ tài chính thở rộng hơn một nhịp so với mặc định.
+ *
+ * Thẻ này là thẻ dài nhất của cả app (tới 12 dòng trường), nên hàng thời gian
+ * và hàng avatar/nút cần tách khỏi nhau rõ hơn để chân thẻ không đọc thành
+ * dòng thứ 13. Bố cục hai hàng thì do `.erp-kanban-card__footer` lo — đừng đặt
+ * lại `flex-direction` ở đây.
+ */
+.erp-advance-card .erp-kanban-card__footer {
+  gap: 10px;
+}
+
+/* Ngoi sao luong ke toan truoc tieu de phieu (AdvanceFlowStar). */
+.erp-adv-flow-star {
+  margin-right: 6px;
+  font-size: 0.9em;
+}
+
+.erp-adv-flow-star--danger {
+  color: var(--erp-danger);
+}
+
+.erp-adv-flow-star--success {
+  color: var(--erp-success);
+}
+
+/* Ma QR trong khoi hoan tat thanh toan (AdvanceFinishPanel). */
+.erp-advance-qr__code {
+  text-align: center;
+}
+
+.erp-advance-qr__code img {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+}
+
+.erp-advance-qr__bank {
+  margin: 8px 0 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-advance-qr__amount {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+/* Khoi "Hoàn tất thanh toán" o man Xem phieu (AdvanceFinishPanel). */
+.erp-adv-finish {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-adv-finish .form-label {
+  margin-bottom: 4px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-adv-finish__value {
+  font-weight: 600;
+}
+
+/* Nut "Xem mã QR" - trong nhu mot duong link, khong dem le nut. */
+.erp-adv-finish__qr-toggle {
+  padding: 0;
+  text-decoration: none;
+}
+
+.erp-adv-finish__hint {
+  margin: 4px 0 0;
+  color: var(--erp-text-secondary);
+}
+
+/* O ngay + nut Luu cung hang (AdvanceAccountDatePanel). */
+.erp-adv-date__row {
+  display: flex;
+  gap: 8px;
+}
+
+/* Khoi "Cân đối" o man Xem phieu (AdvanceBalancePanel). */
+.erp-adv-bal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ba so moi hang "nhan - gia tri": ba o ngang nhau tran chu o cot hep. */
+.erp-adv-bal__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-adv-bal__stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-adv-bal__stats dt {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.erp-adv-bal__stats dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* "Còn lại" la con so ke toan can nhin nhat. */
+.erp-adv-bal__stats > .is-key {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-adv-bal__stats > .is-key dt,
+.erp-adv-bal__stats > .is-key dd {
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.erp-adv-bal__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+}
+
+.erp-adv-bal__list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    'round code value'
+    'state state state';
+  gap: 2px 8px;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-adv-bal__list li:last-child {
+  border-bottom: 0;
+}
+
+.erp-adv-bal__round {
+  grid-area: round;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-adv-bal__code {
+  grid-area: code;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-adv-bal__value {
+  grid-area: value;
+  font-weight: 600;
+  text-align: right;
+}
+
+.erp-adv-bal__state {
+  grid-area: state;
+}
+
+.erp-adv-bal__muted,
+.erp-adv-bal__loading {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/*
+ * Xem truoc phieu chi (AdvanceVoucherPreviewModal) - mau Drupal
+ * `page_print_iep_expenditure`. La TO GIAY nen luon nen trang chu den, ke ca
+ * che do toi - giong `.erp-print`.
+ */
+.erp-adv-voucher__note {
+  margin-bottom: 12px;
+}
+
+.erp-adv-voucher {
+  padding: 24px 28px;
+  border: 1px solid var(--erp-border);
+  background: #fff;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+}
+
+.erp-adv-voucher__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-adv-voucher__logo img {
+  max-width: 160px;
+  max-height: 70px;
+  object-fit: contain;
+}
+
+.erp-adv-voucher__logo:empty {
+  display: none;
+}
+
+.erp-adv-voucher__company {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  text-align: right;
+}
+
+.erp-adv-voucher__company strong {
+  text-transform: uppercase;
+}
+
+.erp-adv-voucher__title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.erp-adv-voucher__title h4,
+.erp-adv-voucher__title h6 {
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.erp-adv-voucher__title h4 {
+  margin-bottom: 4px;
+}
+
+.erp-adv-voucher__title p {
+  margin: 4px 0 0;
+}
+
+.erp-adv-voucher__grid {
+  display: grid;
+  grid-template-columns: minmax(150px, 25%) 1fr;
+  row-gap: 2px;
+  column-gap: 12px;
+  margin-top: 20px;
+}
+
+.erp-adv-voucher__sign-date {
+  margin: 16px 0 12px;
+  text-align: right;
+}
+
+.erp-adv-voucher__signs {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 110px;
+  text-align: center;
+}
+
+.erp-adv-voucher__signs div {
+  display: flex;
+  flex-direction: column;
+}
+
+@page advance-voucher {
+  size: A4 portrait;
+  margin: 15mm 20mm;
+}
+
+@media print {
+  .erp-adv-voucher--page {
+    page: advance-voucher;
+    padding: 0;
+    border: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .erp-adv-voucher {
+    padding: 16px;
+  }
+
+  .erp-adv-voucher__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .erp-adv-voucher__label {
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .erp-adv-voucher__signs {
+    flex-wrap: wrap;
+  }
+}
+
+/* Tab "Chứng từ" o man Xem phieu (AdvanceDocumentsTab): bo sung, khong xoa. */
+.erp-adv-docs {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-adv-docs__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.erp-adv-docs__actions > .erp-muted {
+  margin-right: auto;
+}
+
+/* Form lap PHIEU CAN DOI: o "Giá trị cân đối" thay bang noi dung
+   (AdvanceFormModal > AdvanceBalanceValue). */
+.advance-form__balance {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+  padding: 4px 0;
+}
+
+.advance-form__balance-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.advance-form__balance-stats > div {
+  padding: 10px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.advance-form__balance-stats dt {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.advance-form__balance-stats dd {
+  margin: 2px 0 0;
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+/* "Còn lại" - con so gioi han o nhap ben duoi. */
+.advance-form__balance-stats > .is-key dt,
+.advance-form__balance-stats > .is-key dd {
+  color: var(--erp-text-primary);
+  font-weight: 700;
+}
+
+.advance-form__balance-stats > .is-key {
+  box-shadow: inset 0 0 0 1px var(--erp-border-strong);
+}
+
+@media (max-width: 576px) {
+  .advance-form__balance-stats {
+    grid-template-columns: 1fr;
+  }
+}

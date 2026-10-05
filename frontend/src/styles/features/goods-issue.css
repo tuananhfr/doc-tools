@@ -1,0 +1,194 @@
+/* ==========================================================================
+   Giao van / Phieu xuat hang - GoodsIssuePage
+   Ap dung thiet ke Kanban chuan cua he thong ERPcons (khong ghi de mau sac cu).
+   ========================================================================== */
+
+/* Dinh dang ban in phieu xuat kho */
+
+.erp-goods-transport .modal-dialog {
+  --bs-modal-width: min(1320px, calc(100vw - 32px));
+}
+
+.erp-goods-delivery .modal-dialog { --bs-modal-width: min(1180px, calc(100vw - 32px)); }
+.erp-goods-delivery__search { position: relative; margin-bottom: 12px; }
+.erp-goods-delivery__search > .bi { position: absolute; top: 50%; left: 13px; transform: translateY(-50%); color: var(--bs-secondary-color); pointer-events: none; }
+.erp-goods-delivery__search .form-control { padding-left: 38px; }
+.erp-goods-delivery__list { display: grid; gap: 8px; }
+.erp-goods-delivery__line { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px; border: 1px solid var(--bs-border-color); border-radius: 12px; background: var(--bs-body-bg); }
+.erp-goods-delivery__line-info { min-width: 0; }
+.erp-goods-delivery__line-info strong { display: block; line-height: 1.35; overflow-wrap: anywhere; }
+.erp-goods-delivery__line-info span { display: block; margin-top: 3px; color: var(--bs-secondary-color); font-size: .83rem; }
+.erp-goods-delivery__quantity { display: flex; align-items: center; gap: 12px; flex: none; }
+.erp-goods-delivery__quantity > span { color: var(--bs-secondary-color); white-space: nowrap; font-size: .85rem; }
+.erp-goods-delivery__quantity .form-control { width: 108px; text-align: right; font-variant-numeric: tabular-nums; }
+.erp-goods-delivery__pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; color: var(--bs-secondary-color); font-size: .85rem; }
+.erp-goods-delivery__pager > div { display: flex; gap: 6px; }
+@media (max-width: 575px) {
+  .erp-goods-delivery__line { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .erp-goods-delivery__quantity { width: 100%; justify-content: space-between; }
+}
+
+.erp-goods-transport__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  background: var(--bs-tertiary-bg);
+  font-size: .9rem;
+}
+
+.erp-goods-transport__summary .bi { margin-right: 6px; color: var(--bs-primary); }
+.erp-goods-transport__summary span:last-child { margin-left: auto; }
+.erp-goods-transport__warehouse {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  font-size: .875rem;
+  line-height: 1.55;
+}
+.erp-goods-transport__remove { float: right; margin-top: -42px; }
+.erp-goods-transport__lines {
+  overflow: hidden;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  background: var(--bs-body-bg);
+}
+.erp-goods-transport__line-tools,
+.erp-goods-transport__line-actions,
+.erp-goods-transport__line-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+}
+.erp-goods-transport__line-tools { background: var(--bs-tertiary-bg); }
+.erp-goods-transport__search { position: relative; flex: 1; min-width: 0; }
+.erp-goods-transport__search > .bi {
+  position: absolute;
+  top: 50%;
+  left: 11px;
+  transform: translateY(-50%);
+  color: var(--bs-secondary-color);
+  pointer-events: none;
+}
+.erp-goods-transport__search .form-control { padding-left: 35px; }
+.erp-goods-transport__filter { width: 155px; flex: none; }
+.erp-goods-transport__line-actions {
+  border-bottom: 1px solid var(--bs-border-color);
+  color: var(--bs-secondary-color);
+  font-size: .8rem;
+}
+.erp-goods-transport__line-actions > div { display: flex; gap: 6px; }
+.erp-goods-transport__line-actions .btn { white-space: nowrap; }
+.erp-goods-transport__table { table-layout: fixed; }
+.erp-goods-transport__table th {
+  padding: 10px;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.erp-goods-transport__table th:first-child { width: 39%; }
+.erp-goods-transport__table th:nth-child(2) { width: 10%; }
+.erp-goods-transport__table th:nth-child(3),
+.erp-goods-transport__table th:nth-child(4) { width: 18%; }
+.erp-goods-transport__table th:last-child { width: 15%; }
+.erp-goods-transport__table td { padding: 10px; border-color: var(--bs-border-color); }
+.erp-goods-transport__table tbody tr:last-child td { border-bottom: 0; }
+.erp-goods-transport__table .form-control { min-width: 78px; }
+.erp-goods-transport__table .form-check { margin: 0; }
+.erp-goods-transport__item { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+.erp-goods-transport__item strong { display: block; line-height: 1.35; overflow-wrap: anywhere; }
+.erp-goods-transport__item .form-check { flex: none; padding-top: 2px; }
+.erp-goods-transport__row--off { background: var(--bs-tertiary-bg); }
+.erp-goods-transport__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 120px;
+  color: var(--bs-secondary-color);
+  font-size: .9rem;
+}
+.erp-goods-transport__line-footer {
+  min-height: 52px;
+  border-top: 1px solid var(--bs-border-color);
+  color: var(--bs-secondary-color);
+  font-size: .78rem;
+}
+.erp-goods-transport__line-footer .bi { margin-right: 3px; }
+.erp-goods-transport__pager { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+.erp-goods-transport__pager .btn { display: grid; place-items: center; width: 32px; height: 30px; padding: 0; }
+.erp-goods-transport__pager .bi { margin: 0; }
+
+@media (max-width: 767px) {
+  .erp-goods-transport__summary span:last-child { margin-left: 0; width: 100%; }
+  .erp-goods-transport__line-tools,
+  .erp-goods-transport__line-actions,
+  .erp-goods-transport__line-footer { flex-wrap: wrap; }
+  .erp-goods-transport__line-tools { align-items: stretch; }
+  .erp-goods-transport__search { flex-basis: 100%; }
+  .erp-goods-transport__filter { width: 100%; }
+  .erp-goods-transport__line-actions > div { width: 100%; }
+  .erp-goods-transport__line-actions .btn { flex: 1; }
+  .erp-goods-transport__lines .table-responsive { overflow: visible; }
+  .erp-goods-transport__table,
+  .erp-goods-transport__table tbody { display: block; width: 100%; }
+  .erp-goods-transport__table thead { display: none; }
+  .erp-goods-transport__table tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    padding: 14px;
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+  .erp-goods-transport__table tbody tr:last-child { border-bottom: 0; }
+  .erp-goods-transport__table td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+  }
+  .erp-goods-transport__table td:first-child,
+  .erp-goods-transport__table td:nth-child(2) { grid-column: 1 / -1; }
+  .erp-goods-transport__table td:nth-child(2) { text-align: left !important; }
+  .erp-goods-transport__table td:last-child { grid-column: 1 / -1; text-align: left !important; }
+  .erp-goods-transport__table td:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    color: var(--bs-secondary-color);
+    font-size: .75rem;
+    font-weight: 600;
+  }
+  .erp-goods-transport__table .form-control { min-width: 0; }
+  .erp-goods-transport__line-footer .erp-goods-transport__pager { margin-left: auto; }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .erp-goods-issue-print-modal,
+  .erp-goods-issue-print-modal * {
+    visibility: visible;
+  }
+  .erp-goods-issue-print-modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .erp-goods-issue-print-modal .modal-content {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}

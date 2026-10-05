@@ -1,0 +1,109 @@
+/*
+ * Thang chu chot o v1.1 - size CO DINH (muc 09):
+ * H1 32 / H2 24 / H3 20 / H4 16 / Body 14 / Caption 12 / Overline 10.
+ */
+
+h1,
+.erp-h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+h2,
+.erp-h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h3,
+.erp-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+h4,
+h5,
+h6,
+.erp-h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.erp-body {
+  font-size: 0.875rem;
+}
+
+.erp-caption {
+  font-size: 0.75rem;
+}
+
+.erp-overline {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Mau chu ngu nghia - thay cho <Typography.Text type="secondary"> cua antd. */
+.erp-text-primary {
+  color: var(--erp-text-primary);
+}
+
+.erp-text-secondary {
+  color: var(--erp-text-secondary);
+}
+
+.erp-text-tertiary {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-text-brand {
+  color: var(--erp-brand);
+}
+
+.erp-text-action {
+  color: var(--erp-action-secondary);
+}
+
+.erp-text-success {
+  color: var(--erp-success);
+}
+
+.erp-text-warning {
+  color: var(--erp-warning);
+}
+
+.erp-text-danger {
+  color: var(--erp-danger);
+}
+
+.erp-text-intelligence {
+  color: var(--erp-intelligence);
+}
+
+.erp-text-construction {
+  color: var(--erp-construction);
+}
+
+.erp-text-on-accent {
+  color: var(--erp-text-on-accent);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  padding: 1px 5px;
+  border-radius: var(--erp-radius-sm);
+}

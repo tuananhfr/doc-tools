@@ -1,0 +1,83 @@
+/* Trang "Kiem tra thiet bi" (features/core/device-check) - nam ngoai AppLayout. */
+/*
+ * TRANG PHAI TU CUON: reset.css khoa `overflow: hidden` o html/body/#root (khung
+ * app tu cuon ben trong), ma trang nay nam ngoai khung do. De `min-height` la
+ * noi dung dai hon man hinh bi cat, khong keo xuong duoc (da gap tren Android).
+ * Cot 880px giu bang padding hai ben de thanh cuon nam o mep man hinh.
+ */
+.erp-device-check {
+  box-sizing: border-box;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px max(16px, calc((100% - 880px) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--erp-bg);
+}
+
+/* Con cua flex column mac dinh co lai: phai giu kich thuoc that de vung cuon tinh dung. */
+.erp-device-check > * {
+  flex-shrink: 0;
+}
+
+/*
+ * `.erp-card` (SectionCard) khai `height: 100%`. Trang nay nay co chieu cao
+ * CO DINH (100dvh) nen 100% phan giai thanh CA MAN HINH: moi khung cao dung mot
+ * man, khung 1 bi cat mat nut "Xin giu du lieu lau dai", khung 3-4 thua khoang
+ * trang (da gap tren Android). Khung o day phai cao theo noi dung.
+ */
+.erp-device-check > .erp-card {
+  height: auto;
+}
+
+.erp-device-check__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-device-check__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.erp-device-check__table td {
+  vertical-align: top;
+}
+
+.erp-device-check__label {
+  width: 55%;
+}
+
+.erp-device-check__value {
+  word-break: break-word;
+}
+
+.erp-device-check__photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.erp-device-check__photo {
+  margin: 0;
+}
+
+.erp-device-check__photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--erp-radius-sm, 6px);
+  border: 1px solid var(--erp-border);
+}
+
+.erp-device-check__report {
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 12px;
+}

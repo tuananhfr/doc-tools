@@ -1,0 +1,700 @@
+/*
+ * Kanban theo buoc duyet - muc 05, 06, 10.
+ *
+ * Ban goc Drupal to kin dau cot bang do/xanh bao hoa. O ERPcons, dau cot dung
+ * nen trung tinh + VACH TONE + icon + so luong: giu duoc nhip doc quen thuoc
+ * ma khong pha ty le mau 74% Neutral / 2% Crimson (muc 01 & 14).
+ */
+
+.erp-kanban {
+  border-color: var(--erp-border);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.erp-kanban__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/*
+ * Grid mot hang thay cho flex.
+ *
+ * Ly do khong phai tham my: voi `align-items: flex-start` cu, moi cot cao bang
+ * dung so the trong no, nen cot rong chi con mot dai vai chuc pixel - va do
+ * cung la TOAN BO vung tha khi keo. Nguoi dung phai nham vao mot dai mong o
+ * dinh cot. `stretch` cho moi cot cao bang cot cao nhat, vung tha phu kin cot.
+ */
+/*
+ * Thanh an/hien cot: ghi chu cot dang an ben trai, nut "Cột" ben phai. Ghi chu
+ * la bat buoc - an cot la giau the, phai noi ra.
+ */
+.erp-kanban__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-kanban__bar-note {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-kanban__scroll {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  /* Rong ra duoc tren man hinh lon nhung co tran - the qua rong thi mat nhip doc. */
+  grid-auto-columns: minmax(300px, 380px);
+  justify-content: start;
+  align-items: stretch;
+  gap: 16px;
+  padding: 16px;
+  overflow-x: auto;
+  background: var(--erp-bg);
+}
+
+.erp-kanban__loading {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-end: 16px;
+  z-index: 2;
+  color: var(--erp-action-secondary);
+}
+
+.erp-kanban__column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  /* Grid lo phan chieu rong; con lai cot tu keo dai het chieu cao duoc chia. */
+  min-height: 0;
+}
+
+.erp-kanban__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-top: 3px solid var(--erp-kanban-tone, var(--erp-neutral));
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-kanban__head--neutral {
+  --erp-kanban-tone: var(--erp-neutral);
+}
+.erp-kanban__head--info {
+  --erp-kanban-tone: var(--erp-info);
+}
+.erp-kanban__head--warning {
+  --erp-kanban-tone: var(--erp-warning);
+}
+.erp-kanban__head--success {
+  --erp-kanban-tone: var(--erp-success);
+}
+.erp-kanban__head--danger {
+  --erp-kanban-tone: var(--erp-danger);
+}
+
+.erp-kanban__head-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-kanban__head-title .bi {
+  color: var(--erp-kanban-tone);
+}
+
+.erp-kanban__count {
+  flex: none;
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.erp-kanban__summary {
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nut "+" tren dau cot - tao ban ghi ngay tai buoc do. */
+.erp-kanban__add {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-tertiary);
+  background: transparent;
+}
+
+.erp-kanban__add:hover,
+.erp-kanban__add:focus-visible {
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-kanban__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0 2px 2px;
+  /* `flex: 1` de o trong cua cot cung la vung tha; `min-height: 0` bat buoc
+     phai co, thieu no thi flex item khong co lai duoc va thanh cuon khong hien. */
+  flex: 1;
+  min-height: 140px;
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.erp-kanban__empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 12px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Keo tha (chi bat khi feature truyen `onCardMove`) --------------------- */
+
+.erp-kanban__draggable {
+  cursor: grab;
+}
+
+.erp-kanban__draggable:active {
+  cursor: grabbing;
+}
+
+/* The dang bay: mo di + nghieng nhe, de phan biet voi cho no sap dap xuong. */
+.erp-kanban__draggable--dragging {
+  opacity: 0.5;
+  transform: rotate(-1deg);
+}
+
+/* Cot dang nhan the: vien net dut + nen soft, kem chu "Thả vào đây". */
+.erp-kanban__column--over .erp-kanban__list {
+  outline: 2px dashed var(--erp-brand);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-brand-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-kanban__draggable--dragging {
+    opacity: 0.7;
+    transform: none;
+  }
+
+  .erp-kanban-card {
+    transition: none;
+  }
+}
+
+/* --- The kanban ----------------------------------------------------------- */
+
+.erp-kanban-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow1);
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+/* Nang nhe khi tro toi - bao rang the la mot doi tuong thao tac duoc. */
+.erp-kanban__draggable:hover .erp-kanban-card {
+  border-color: var(--erp-border-strong);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-kanban-card__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--erp-text-primary);
+}
+
+.erp-kanban-card__code {
+  margin: -6px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-kanban-card__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+/*
+ * MOT MACH CHU LIEN TUC, khong phai hai cot.
+ *
+ * Truoc day moi dong la mot flex hai o, nen gia tri cua tung dong bat dau o
+ * mot vi tri khac nhau (nhan ngan thi gan le trai, nhan dai thi day sang tan
+ * giua the) - mep trai cua phan gia tri rang cua tu tren xuong duoi. Nang hon:
+ * dong nao gia tri dai thi phan xuong dong bi THUT VAO bang dung chieu dai
+ * nhan cua rieng no, moi dong thut mot kieu.
+ *
+ * De `<div>` bao ngoai lam hop khoi va cho `dt`/`dd` thanh inline: nhan in dam
+ * roi gia tri chay tiep NGAY SAU tren cung mot mach chu, va khi het dong thi
+ * chu xuong dong ve dung LE TRAI CUA THE nhu moi doan van xuoi khac.
+ */
+.erp-kanban-card__field dt,
+.erp-kanban-card__field dd {
+  display: inline;
+}
+
+.erp-kanban-card__field dt {
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Dau hai cham dat bang CSS chu khong nhet vao chuoi nhan.
+ *
+ * Nhan con duoc dung lai o cho khac (bang, form, aria-label) va o do khong co
+ * dau hai cham. Nhet vao du lieu la moi noi phai nho cat no ra.
+ *
+ * KHOANG TRANG sau dau hai cham cung nam o day, va phai la khoang trang
+ * THUONG chu khong phai `\00a0`: JSX nuot khoang trang giua `</dt>` va `<dd>`
+ * nen khong con gi ngan hai chu; con nbsp thi dinh chet chu dau tien cua gia
+ * tri vao nhan, gap gia tri dai la be dong sai cho. Khoang trang thuong tu thu
+ * lai khi roi vao cuoi dong - dung cai ta muon.
+ */
+.erp-kanban-card__field dt::after {
+  content: ': ';
+}
+
+.erp-kanban-card__field dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  /*
+   * Chuoi khong co khoang trang de ngat (so tai khoan, ma don hang) dai hon
+   * be ngang the thi tu be xuong dong thay vi tran ra ngoai. `break-word` chu
+   * khong phai `anywhere`: chi be khi ca tu thuc su khong vua, nen
+   * "0011004221983" giu nguyen mot khoi chung nao con cho.
+   */
+  overflow-wrap: break-word;
+}
+
+.erp-kanban-card__value--strong {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Ca hang mot mau - chi bat khi field khai `toneLabel` (dong quan trong nhat
+ * cua the, vi du "Số tiền đề nghị"). `dt` phai duoc goi ten trong selector:
+ * quy tac `.erp-kanban-card__field dt` ngay tren da dat `color` cho no, thua
+ * ke tu the cha khong de len duoc.
+ */
+.erp-kanban-card__field--danger dt,
+.erp-kanban-card__field--danger dd {
+  color: var(--erp-danger);
+}
+
+.erp-kanban-card__field--success dt,
+.erp-kanban-card__field--success dd {
+  color: var(--erp-success);
+}
+
+/* Chi to nhung o ma NHAN da noi ro y nghia - mau la lop nhan biet thu hai. */
+.erp-kanban-card__value--danger {
+  color: var(--erp-danger);
+}
+
+.erp-kanban-card__value--success {
+  color: var(--erp-success);
+}
+
+/* Dong phu duoi tieu de: luong ke toan, phan loai... */
+.erp-kanban-card__subtitle {
+  margin: -4px 0 0;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Dong phu co mau -> bo nghieng va tang do dam.
+ *
+ * Chu nghieng co nham mot vai tro: "day la chu thich, khong phai du lieu". Khi
+ * dong nay da la MOT PHAN LOAI co mau rieng (luong xanh / luong do) thi no
+ * khong con la chu thich nua, va chu nghieng mau nhat thi doc kem han.
+ */
+.erp-kanban-card__subtitle--success,
+.erp-kanban-card__subtitle--danger {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.erp-kanban-card__subtitle--success {
+  color: var(--erp-success);
+}
+
+.erp-kanban-card__subtitle--danger {
+  color: var(--erp-danger);
+}
+
+.erp-kanban-card__files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-kanban-card__files li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-kanban-card__workflow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/*
+ * Chan the: HAI HANG, moi hang chia hai dau.
+ *
+ *     ngay tao                        chuyen buoc gan nhat
+ *     avatar | avatar                 nut nut nut
+ *
+ * Chep bo cuc chan the ben Drupal - nguoi dung mo hai man canh nhau de doi
+ * chieu. Ban truoc la MOT hang (hai moc xep doc ben trai, nguoi + nut ben
+ * phai): ton gap doi chieu cao cho cung luong chu, va o cot 300px thi khoi ben
+ * phai hay bi `flex-wrap` day xuong thanh mot tang thu ba.
+ */
+.erp-kanban-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-kanban-card__meta,
+.erp-kanban-card__foot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/*
+ * Hang thoi gian van cho xuong dong: cot hep nhat 300px tru padding con 272px,
+ * hai moc "28/08/2026 11:13" kem icon roi vao khoang 240px - vua, nhung mot
+ * the co them `extraMeta` thi khong. Xuong dong van doc duoc; de `nowrap` thi
+ * chu bi nen hoac tran ra ngoai.
+ */
+.erp-kanban-card__meta {
+  flex-wrap: wrap;
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+  /* Chu so deu be ngang -> hai moc thang cot voi nhau giua cac the. */
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Moc thu hai + dau phu la MOT khoi, luon nam sat mep phai va thang cot voi
+ * hang nut ben duoi.
+ */
+.erp-kanban-card__meta-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+/*
+ * NGUOI TAO | NGUOI PHE DUYET
+ *
+ * Hai nhom avatar, ngan bang mot vach. Vach la thu DUY NHAT noi len "ben trai
+ * khac vai tro voi ben phai", nen no phai dam va cach deu - de sat qua thi hai
+ * nhom doc thanh mot day lien.
+ */
+.erp-kanban-card__people {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-kanban-card__people-sep {
+  flex: none;
+  color: var(--erp-border-strong);
+  font-size: 0.875rem;
+  line-height: 1;
+  user-select: none;
+}
+
+/*
+ * Hang nut LUON sat mep phai, ke ca khi the khong co avatar nao.
+ *
+ * `space-between` cua hang cha chi day duoc hai khoi ra hai dau khi CO du hai
+ * khoi; con mot minh thi no nam ben trai - va the khong co nguoi duyet se co
+ * hang nut lech han so voi cac the ben canh.
+ */
+.erp-kanban-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-inline-start: auto;
+}
+
+/*
+ * Nut icon o chan the: o 26px thay 32px (19/09/2026). Khoang trong giua hai
+ * icon la phan le cua CHINH O NUT (icon 16px trong o 32px = 16px trong) chu
+ * khong phai `gap`; the don ban co toi 9 nut nen hang icon trai rong va thua.
+ *
+ * Man cam ung giu 32px: day la dich bam, thu nho la bam truot sang nut ben
+ * canh (DS muc 11).
+ */
+@media (pointer: fine) {
+  /* Ca nut `.btn-icon` THIEU `btn-sm` (the hop dong: o 40px, khe 19-26px). */
+  .erp-kanban-card__actions .btn-icon,
+  .erp-kanban-card__actions .btn-icon.dropdown-toggle {
+    width: 26px;
+    min-width: 26px;
+    height: 26px;
+    min-height: 26px;
+  }
+}
+
+/* Doi view Kanban / Bang. */
+.erp-view-toggle .btn {
+  gap: 6px;
+}
+
+/*
+ * ĐIỆN THOẠI: MỘT cột + hàng chip bước duyệt (`.erp-kanban--single`, do
+ * `KanbanBoard` bật khi ≤576px).
+ *
+ * Bản trước cho các cột cuộn ngang, mỗi cột 88vw, với lý do "xếp chồng dọc làm
+ * mất cái nhìn toàn bộ quy trình". Lý do đó vẫn đúng — nhưng cột đầu ("Bản
+ * thảo") thường rỗng, nên màn mở ra là một khung trống trọn màn hình và thẻ
+ * nằm ngoài mép phải. Hàng chip giữ được cái nhìn toàn quy trình (mọi bước kèm
+ * số thẻ trên một hàng); nội dung bên dưới là đúng một cột, rộng hết màn.
+ */
+.erp-kanban__stages {
+  display: flex;
+  /* Trong `.erp-list-page` khung kanban là cột flex cao cố định: không khai
+     `flex: none` thì hàng chip (có `overflow`) bị bóp còn vài pixel. */
+  flex: none;
+  gap: 6px;
+  padding: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.erp-kanban__stage {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.erp-kanban__stage .bi {
+  color: var(--erp-kanban-tone);
+}
+
+/* Chip đang chọn: viền + nền + chữ đậm + `aria-selected` — không chỉ đổi màu. */
+.erp-kanban__stage.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-text-primary);
+  font-weight: 700;
+}
+
+.erp-kanban__stage:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/*
+ * Vùng thẻ cuộn DỌC (thanh công cụ + hàng chip đứng yên phía trên). Phải khai
+ * rõ cả hai trục: `overflow-x: visible` thì trong `.erp-list-page` vùng này
+ * không cuộn nữa và thẻ tràn ra bị khung (`overflow: hidden`) cắt mất, im lặng.
+ */
+.erp-kanban--single .erp-kanban__scroll {
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Một cột thì danh sách chảy theo trang — không lồng vùng cuộn dọc thứ hai. */
+.erp-kanban--single .erp-kanban__list {
+  max-height: none;
+  overflow-y: visible;
+}
+
+/* Tên + số của cột đã nằm trên chip. */
+.erp-kanban--single .erp-kanban__head-title {
+  display: none;
+}
+
+.erp-kanban--single .erp-kanban__head {
+  justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+  .erp-kanban__scroll {
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .erp-kanban__toolbar {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  /* Dau cot va the dau tien: 12 -> 8px. */
+  .erp-kanban__column {
+    gap: 8px;
+  }
+
+  .erp-kanban__list {
+    gap: 8px;
+  }
+
+  /*
+   * The: le trong 14 -> 10px, khoang giua cac khoi 10 -> 8px.
+   *
+   * The tam ung co toi 8 dong truong, nen moi pixel cat duoc o day duoc nhan
+   * len - va cai dang bi ep tren man 390px la BE NGANG cua chinh cac dong do
+   * (ten to chuc 45 ky tu dang phai xuong ba dong).
+   */
+  .erp-kanban-card {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .erp-view-toggle__label {
+    display: none;
+  }
+}
+
+/* Field Mode: vien dam hon, chu to hon de doc duoc ngoai nang (muc 11). */
+[data-theme='field'] .erp-kanban-card {
+  border-color: var(--erp-border-strong);
+  box-shadow: none;
+}
+
+[data-theme='field'] .erp-kanban-card__fields {
+  font-size: 0.9375rem;
+}
+
+/* Nut "Cột" - cung nhip voi nut "Tìm kiếm nâng cao". */
+.erp-kanban__columns-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-kanban__columns-toggle .badge {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mobile: nhan an, con icon + badge (cung luat `.erp-advanced-filter__label`). */
+@media (max-width: 576px) {
+  .erp-kanban__columns-label {
+    display: none;
+  }
+}
+
+/* Nut "Tải thêm" o cuoi cot da dong (Hoan thanh / That bai) - xem useKanbanLanes.
+   Dat NGOAI danh sach the nen danh sach cuon ma nut van nam o day cot. */
+.erp-kanban__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: var(--erp-touch-target, 36px);
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-action-secondary);
+  text-decoration: none;
+}
+
+.erp-kanban__more:hover:not(:disabled) {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-kanban__more-rest {
+  color: var(--erp-text-secondary);
+}

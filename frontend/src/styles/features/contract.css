@@ -1,0 +1,1685 @@
+/* =========================================================================
+   Hợp đồng / giao dịch (`crm:offers`)
+
+   Chỉ những gì KHÔNG dùng lại được: khung làm việc mang tiền tố
+   `erp-workspace-*` (dùng chung với dự án), thẻ kanban và bảng đã có sẵn.
+   ========================================================================= */
+
+/* --- Nút chuyển bước ------------------------------------------------------
+   Màu khoá theo `tone` mà mapper quy ra từ chuỗi `class` của Drupal
+   (`btn-dark-blue`, `btn-red custom-transition-cancel`). ĐỔI MÀU MỘT BƯỚC
+   DUYỆT LÀ SỬA CẤU HÌNH DRUPAL, không sửa code hai đầu.
+
+   Cùng cách làm với `styles/features/advance.css`, nhưng ở đây dùng token của
+   Crimson Ice chứ không chép hex của theme Drupal: nút này không đứng cạnh
+   màn Drupal để người dùng đối chiếu như tờ trình tạm ứng. */
+.erp-contract__transition {
+  border: 1px solid transparent;
+  font-size: 0.8125rem;
+}
+
+.erp-contract__transition--forward {
+  background: var(--erp-primary);
+  border-color: var(--erp-primary);
+  color: var(--erp-on-primary);
+}
+
+.erp-contract__transition--forward:hover:not(:disabled) {
+  background: var(--erp-primary-hover);
+  border-color: var(--erp-primary-hover);
+}
+
+/* Bước trả lại / huỷ: viền chứ không tô đầy — nó không phải hành động mặc
+   định, và một hàng nút đỏ đặc cạnh nhau thì không còn phân biệt được cái
+   nào nguy hiểm hơn (Design System, mục 10). */
+.erp-contract__transition--back {
+  background: transparent;
+  border-color: var(--erp-danger);
+  color: var(--erp-danger);
+}
+
+.erp-contract__transition--back:hover:not(:disabled) {
+  background: var(--erp-danger-soft);
+}
+
+.erp-contract__transitions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* --- Bốn ô tiền trong form sửa: CHỈ ĐỂ ĐỌC -------------------------------
+   Chúng là TỔNG của bảng giá `field_contract_job_chart`, do
+   `js/offers_calculate.js` tính lại mỗi lần bảng đổi. Trình bày như một khối
+   số liệu chứ không phải ô nhập, để không ai tưởng gõ vào được. */
+.erp-contract__totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.erp-contract__totals dt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-muted);
+}
+
+.erp-contract__totals dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Bảng giá giao dịch ---------------------------------------------------
+   Hai cấp: hạng mục (`package_progress`) chứa các dòng tiền
+   (`transaction_value`). Đo trên dữ liệu thật thì phần lớn hạng mục KHÔNG mang
+   giá — tiền nằm ở cấp hai — nên hạng mục được trình bày như một tiêu đề nhóm
+   chứ không phải một hàng của bảng. */
+.erp-contract__chart {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-contract__chart-head,
+.erp-contract__chart-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.erp-contract__chart-foot {
+  justify-content: space-between;
+}
+
+.erp-contract__grand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-contract__package {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-contract__package-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-contract__package-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Bảng 8-9 cột không thể co vào bề ngang modal: cuộn ngang TRONG khung của nó,
+   phần còn lại của form không bị kéo theo. Cùng lý do với `minWidth` của
+   `FieldArrayTable`. */
+.erp-table-scroll {
+  overflow-x: auto;
+  /* Một trục overflow khác `visible` thì trục kia tính ra `auto` — nên khung
+     này KHÔNG được chứa menu gợi ý nào (xem bài học của `TagSelect`). Ở đây chỉ
+     có `<select>` gốc nên an toàn. */
+  max-width: 100%;
+}
+
+.erp-contract__lines {
+  /* 10 cot (them o Tim vat tu) - khong the co vao be ngang modal. */
+  min-width: 1180px;
+  margin: 0;
+}
+
+.erp-contract__lines td {
+  vertical-align: middle;
+}
+
+/* Form giai đoạn thanh toán: bảng rộng, phần điều khiển luôn gọn trên đầu. */
+.erp-contract-payment-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+.erp-contract-payment__controls {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-contract-payment__controls .form-group {
+  min-width: min(100%, 320px);
+  margin: 0;
+}
+
+.erp-contract-payment__total {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-contract-payment__table {
+  min-width: 1120px;
+}
+
+.erp-contract-payment__table td {
+  min-width: 128px;
+}
+
+.erp-contract-payment__table td:nth-child(2) {
+  min-width: 230px;
+}
+
+@media (max-width: 640px) {
+  .erp-contract-payment__total { margin-left: 0; width: 100%; }
+}
+
+/* Ô do BACKEND tính — trình bày như số liệu, không như ô nhập, để không ai
+   tưởng gõ vào được. */
+.erp-contract__derived {
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-muted);
+}
+
+/* --- Điều khoản hợp đồng: HTML thô của Drupal ------------------------------
+   Ba trường `field_doc_base` / `field_offers_contract_terms` /
+   `field_offers_contract_terms_sc` chứa HTML người dùng soạn trong CKEditor
+   (78–79% bản ghi có). Chuỗi luôn phải qua `sanitizeHtml` trước khi render —
+   ở đây chỉ lo phần nhìn. */
+.erp-rich-text {
+  line-height: 1.65;
+}
+
+.erp-rich-text :where(p, ul, ol, table) {
+  margin-block: 0 0.75rem;
+}
+
+.erp-rich-text :where(h1, h2, h3, h4) {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-block: 1rem 0.5rem;
+}
+
+/* Bảng do người dùng dán vào không được đẩy vỡ bố cục — cuộn trong khung. */
+.erp-rich-text table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+
+.erp-rich-text :where(td, th) {
+  border: 1px solid var(--erp-border);
+  padding: 6px 8px;
+}
+
+/* --- Tệp đính kèm --------------------------------------------------------- */
+.erp-contract__files {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-contract__files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-contract__files a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* --- Chuan bi ho so thanh toan (contracts_plan_payment:page_internal_approval) */
+.erp-contract-payment-plans__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.erp-contract-payment-plans__heading {
+  min-width: 220px;
+  margin-right: auto;
+}
+
+.erp-contract-payment-plans__heading h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.erp-contract-payment-plans__heading .erp-muted {
+  display: block;
+  margin-top: 2px;
+  font-size: .78rem;
+}
+
+.erp-contract-payment-plans__search {
+  width: min(320px, 100%);
+}
+
+.erp-contract-payment-plans__actions,
+.erp-contract-payment-plans__transitions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 991.98px) {
+  .erp-contract-payment-plans__toolbar {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .erp-contract-payment-plans__heading,
+  .erp-contract-payment-plans__search {
+    width: 100%;
+  }
+}
+
+/* --- Form phụ lục ----------------------------------------------------------
+   Bảng nội dung 9 cột tối thiểu 1180px, rộng hơn `size="xl"` (1140px) — để
+   nguyên thì cột "Thành tiền" bị cắt ngay khi mở form. Dùng CÙNG bề ngang
+   `min(1440px, 96vw)` với các modal nhiều cột khác (`.advance-modal`,
+   `.erp-propose-modal`), đặt qua biến chứ không ghi đè `max-width`. */
+.erp-contract-appendix-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+/* --- Tab "Giá trị hợp đồng" (`group_history`) -----------------------------
+   Một bảng, hàng tiêu đề nhóm chen giữa (hạng mục bảng giá / phụ lục). Neo cả
+   `.table > tbody` để vượt (0,1,2) của `.table > tbody td` trong table.css. */
+.erp-contract-value {
+  min-width: 860px;
+  margin: 0;
+}
+
+.table.erp-contract-value > thead > tr > th,
+.table.erp-contract-value > tbody > tr > td {
+  padding: 8px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.table.erp-contract-value > tbody > tr.erp-contract-value__group > th {
+  padding: 8px 12px;
+  text-align: start;
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/* --- Tab "Khối lượng & Nghiệm thu" (`ContractVolumePanel`) ----------------
+   Cây hạng mục: dòng CHA đậm + nền nhạt, dòng gom chi tiết thường; tên thụt
+   theo độ sâu STT (biến động `--erp-volume-depth` đặt inline). Neo `.table >`
+   để vượt (0,1,2) của `.table > tbody td` trong table.css. */
+.erp-volume {
+  min-width: 980px;
+  margin: 0;
+}
+
+.table.erp-volume > thead > tr > th,
+.table.erp-volume > tbody > tr > td,
+.table.erp-volume > tfoot > tr > td {
+  padding: 6px 10px;
+  font-variant-numeric: tabular-nums;
+  vertical-align: top;
+}
+
+.table.erp-volume > thead > tr > th {
+  white-space: nowrap;
+}
+
+.table.erp-volume > tbody > tr > td.erp-volume__name {
+  min-width: 260px;
+  padding-inline-start: calc(10px + var(--erp-volume-depth, 0) * 16px);
+}
+
+.table.erp-volume > tbody > tr.erp-volume__parent > td {
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+}
+
+.table.erp-volume > tbody > tr.erp-volume__line > td.erp-volume__name {
+  color: var(--erp-text-secondary);
+}
+
+.table.erp-volume > tfoot > tr.erp-volume__total > td {
+  font-weight: 600;
+  border-top: 2px solid var(--erp-border);
+}
+
+.erp-volume__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+/* --- Hai tab lưu trữ tài liệu (paragraph `storage`) ------------------------ */
+.erp-contract-storage {
+  min-width: 760px;
+  margin: 0;
+}
+
+.table.erp-contract-storage > thead > tr > th,
+.table.erp-contract-storage > tbody > tr > td {
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+.erp-contract-storage__files {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-contract-storage__files li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-contract-storage__files li > .erp-muted {
+  white-space: nowrap;
+}
+
+/* --- Tab "Hợp đồng thầu phụ" (`group_report`) ------------------------------ */
+.erp-contract-subcontracts {
+  min-width: 1100px;
+  margin: 0;
+}
+
+.table.erp-contract-subcontracts > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+/* Tiêu đề hai tầng: ô "Giá trị (VND)" gộp cột phải căn giữa theo chiều dọc với
+   các ô rowSpan bên cạnh. */
+.table.erp-contract-subcontracts > thead > tr > th {
+  vertical-align: middle;
+  background: var(--erp-surface-secondary);
+}
+
+.table.erp-contract-subcontracts > tfoot > tr > td {
+  background: var(--erp-surface-secondary);
+}
+
+/* --- Tab "Vai trò đối tác" (`field_contract_role_partner`) ----------------- */
+.erp-contract-partner-roles {
+  min-width: 720px;
+  margin: 0;
+}
+
+.table.erp-contract-partner-roles > thead > tr > th,
+.table.erp-contract-partner-roles > tbody > tr > td {
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+.erp-contract-partner-roles__members {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-contract-partner-roles__members li {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+}
+
+.erp-contract-partner-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-contract-partner-form__table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.erp-contract-partner-form__row {
+  display: grid;
+  grid-template-columns: minmax(260px, 2fr) minmax(180px, 1fr) 40px;
+  gap: 8px;
+  /* Ô chip cao lên theo số người — hai ô còn lại neo mép trên. */
+  align-items: start;
+  min-width: 500px;
+}
+
+.erp-contract-partner-form__row--head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+  border-bottom: 1px solid var(--erp-border);
+  padding-bottom: 4px;
+}
+
+/* --- "Biểu đồ công việc": lightbox + form "Chi tiết" -------------------- */
+.erp-contract-task-form__block {
+  margin: 0 0 12px;
+  padding: 8px 12px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-contract-task-form__block > legend {
+  float: none;
+  width: auto;
+  margin: 0;
+  padding: 0 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+}
+
+/* Bốn ô dẫn xuất CHỈ ĐỌC — nhãn trái, số phải, như các ô tổng của hợp đồng. */
+.erp-contract-task-detail__derived {
+  margin: 4px 0 12px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-contract-task-detail__derived > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.erp-contract-task-detail__derived dt {
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-contract-task-detail__derived dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.erp-contract-task-detail-modal {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+/* =========================================================================
+   Giao diện Form Hợp đồng / Giao dịch dạng Trang (.erp-contract-form-page)
+   ========================================================================= */
+.erp-contract-form-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.erp-contract-form-page__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+}
+
+.erp-contract-form-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  text-decoration: none;
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.erp-contract-form-page__back:hover {
+  color: var(--erp-primary);
+}
+
+.erp-contract-form-page__title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-contract-form-page__title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.erp-contract-form-page__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--erp-text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.erp-contract-form-page__subtitle {
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+  margin: 0;
+}
+
+.erp-contract-form-page__head-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- Card khối thông tin trong form --- */
+.erp-contract-form-page__card {
+  background: var(--erp-card-bg, #ffffff);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg, 12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  padding: 24px 28px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.erp-contract-form-page__card:focus-within {
+  border-color: var(--erp-primary-soft, #bfdbfe);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.erp-contract-form-page__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--erp-border-subtle, var(--erp-border));
+}
+
+.erp-contract-form-page__card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--erp-primary-soft, rgba(37, 99, 235, 0.08));
+  color: var(--erp-primary, #2563eb);
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.erp-contract-form-page__card-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-contract-form-page__card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--erp-text);
+  margin: 0;
+}
+
+.erp-contract-form-page__card-desc {
+  font-size: 0.8125rem;
+  color: var(--erp-text-muted);
+  margin: 2px 0 0;
+}
+
+/* --- Khối thẻ số liệu thống kê (Totals Metrics) --- */
+.erp-contract-form-page__totals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.erp-contract-form-page__total-item {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--erp-surface-secondary, #f8fafc);
+  border: 1px solid var(--erp-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-contract-form-page__total-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--erp-text-secondary);
+}
+
+.erp-contract-form-page__total-val {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--erp-text);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .erp-contract-form-page {
+    padding: 16px;
+    gap: 16px;
+  }
+  .erp-contract-form-page__card {
+    padding: 16px;
+  }
+}
+
+
+/* =========================================================================
+   Form thêm/sửa giao dịch — bố cục của form Drupal, mật độ GỌN
+   =========================================================================
+   Cột chính (group_title + group_tabs) | cột phải "Thông tin thêm"
+   (group_more_information). Khuôn mật độ chép `.erp-profile-form`:
+   khoảng cách giữa hai hàng ô do MỘT nguồn (gutter 0.5rem) quyết định — bỏ
+   `mb-3` của `Field`. TUYỆT ĐỐI không đặt `min-height` cho control ở đây:
+   Field Mode ép 48px với cùng độ đặc hiệu và file này nạp sau.
+   ========================================================================= */
+.erp-contract-form.erp-contract-form-page {
+  max-width: none;
+  padding: 10px 16px 16px;
+  gap: 0;
+}
+.erp-contract-form .erp-contract-form-page__head {
+  padding-bottom: 0;
+  align-items: center;
+}
+.erp-contract-form .erp-contract-form-page__back {
+  margin-bottom: 2px;
+}
+.erp-contract-form .erp-contract-form-page__title {
+  font-size: 1.2rem;
+}
+/* Dải "điền từ chứng từ" (CDE) đầu form hợp đồng. */
+.erp-contract-form__ocr {
+  /* `.alert` của app là flex ngang - dải này là đoạn văn xếp dọc. */
+  display: block;
+  margin-top: 10px;
+  font-size: 0.875rem;
+}
+.erp-contract-form__ocr-list {
+  padding-left: 18px;
+}
+.erp-contract-form__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 12px;
+  align-items: start;
+  margin-top: 10px;
+}
+.erp-contract-form__main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.erp-contract-form__panel {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  padding: 12px 14px;
+  min-width: 0;
+}
+/* Cột phải dài hơn màn hình khi cuộn bảng giá — dính để luôn thấy nó. */
+.erp-contract-form__side {
+  position: sticky;
+  top: 12px;
+}
+.erp-contract-form__side-title,
+.erp-contract-form__block-title {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+.erp-contract-form__side-title {
+  margin-bottom: 6px;
+}
+.erp-contract-form__block-title {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+.erp-contract-form .row {
+  --bs-gutter-y: 0.5rem;
+}
+.erp-contract-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+.erp-contract-form .form-label {
+  margin-bottom: 2px;
+  font-size: 0.8125rem;
+}
+.erp-contract-form .form-text {
+  margin-top: 1px;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+.erp-contract-form .form-control,
+.erp-contract-form .form-select {
+  padding-block: 0.25rem;
+}
+
+/* Bốn ô tiền — chỉ đọc, backend tính lại lúc lưu. */
+.erp-contract-form__totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0 0;
+}
+.erp-contract-form__totals > div {
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+}
+.erp-contract-form__totals dt {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+.erp-contract-form__totals dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.erp-contract-form__totals .is-total dd {
+  color: var(--erp-action-secondary);
+}
+
+.erp-contract-form__tabs .nav-tabs {
+  margin-bottom: 10px;
+}
+.erp-contract-form__tabs .nav-link {
+  padding: 6px 12px;
+}
+
+.erp-contract-form__files {
+  list-style: none;
+  margin: 6px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Khối điều khiển của bảng giai đoạn thanh toán gọn lại trong form. */
+.erp-contract-form .erp-contract-payment__controls {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+}
+.erp-contract-payment__condition {
+  min-width: min(100%, 280px);
+  margin: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .erp-contract-form__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .erp-contract-form__side {
+    position: static;
+  }
+}
+@media (max-width: 767.98px) {
+  .erp-contract-form__totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Cột "Thông tin thêm" đóng lại → bảng giá lấy trọn bề ngang. */
+.erp-contract-form__cols.is-side-closed {
+  grid-template-columns: minmax(0, 1fr);
+}
+.erp-contract-form__side-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.erp-contract-form__side-head .erp-contract-form__side-title {
+  margin-bottom: 0;
+}
+
+/* --- Bảng giá trong form: cột có bề rộng thật (colgroup + fixed) ---------- */
+.erp-contract-form .erp-contract__chart {
+  gap: 10px;
+}
+.erp-contract-form .erp-contract__package {
+  padding: 8px 10px;
+  gap: 6px;
+  background: var(--erp-surface-secondary);
+}
+.erp-contract__package-no {
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+}
+.erp-contract-chart__table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 1080px;
+  margin: 0;
+  background: var(--erp-surface);
+}
+.erp-contract-chart__table > thead th {
+  padding: 6px 8px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+.erp-contract-chart__table > tbody td {
+  padding: 3px 4px;
+  vertical-align: middle;
+}
+/* Ô trong bảng lấp đủ cột, không phụ thuộc bề rộng chữ bên trong. */
+.erp-contract-chart__table .form-control,
+.erp-contract-chart__table .form-select {
+  width: 100%;
+  min-width: 0;
+}
+/* Ô chọn hẹp: bớt đệm phải cho mũi tên để còn chỗ hiện "10%" / "m²". */
+.erp-contract-chart__table .form-select {
+  padding-inline: 6px 22px;
+  background-position: right 4px center;
+}
+.erp-contract-chart__table .erp-contract__derived {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Giá tham chiếu dưới ô Đơn giá — bấm để dùng. */
+.erp-contract-chart__ref {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--erp-action-secondary);
+  cursor: pointer;
+}
+.erp-contract-chart__ref:hover {
+  text-decoration: underline;
+}
+.erp-contract-form .erp-contract__chart-head {
+  gap: 4px 20px;
+}
+.erp-contract-form .erp-contract__chart-head .form-check {
+  margin-bottom: 0;
+}
+
+/* Popup Sửa hồ sơ thanh toán: khoảng cách hàng chỉ do gutter của Row (0.5rem). */
+.erp-contract-plan-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* ---------------------------------------------------------------------------
+ * Tab "Thanh toán & Công nợ" — bốn mục tài chính (ContractFinancePanel)
+ * ------------------------------------------------------------------------- */
+.erp-contract-finance-table {
+  margin-bottom: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-contract-finance-table thead th {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Dòng cha "khế ước" của báo cáo khoản vay — như `table-primary fw-bold` bên Drupal. */
+.erp-contract-finance-table__group > td {
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-contract-finance-table--narrow {
+  max-width: 880px;
+}
+
+.erp-contract-finance-sheet__title {
+  margin: 0 0 12px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.erp-contract-finance-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-contract-finance-filter .form-control {
+  width: auto;
+}
+
+/* ---------------------------------------------------------------------------
+ * "Báo cáo tài chính" — bảng điều khiển tài chính hợp đồng (ContractFinanceDashboard)
+ * Lưới 12 cột như mẫu; ≤1440 hai khối/hàng, ≤1024 một khối/hàng (DS mục 06).
+ * ------------------------------------------------------------------------- */
+.erp-fin-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-fin-dash__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.erp-fin-dash__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.erp-fin-dash__kpis {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* Sáu thẻ một hàng: số 13–14 chữ số phải vừa ~190px. */
+.erp-fin-dash__kpis .erp-stat__number {
+  font-size: 1.25rem;
+}
+
+.erp-fin-dash__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.erp-fin-dash__grid > * {
+  min-width: 0;
+  margin: 0;
+}
+
+.erp-fin-dash__span-3 { grid-column: span 3; }
+.erp-fin-dash__span-4 { grid-column: span 4; }
+.erp-fin-dash__span-5 { grid-column: span 5; }
+.erp-fin-dash__span-12 { grid-column: 1 / -1; }
+
+@media (max-width: 1440px) {
+  .erp-fin-dash__span-3,
+  .erp-fin-dash__span-4,
+  .erp-fin-dash__span-5 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-fin-dash__span-3,
+  .erp-fin-dash__span-4,
+  .erp-fin-dash__span-5 {
+    grid-column: 1 / -1;
+  }
+}
+
+.erp-fin-dash__empty {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.erp-fin-dash__note {
+  margin: 8px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-fin-dash__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--erp-action-secondary);
+  text-decoration: none;
+}
+
+.erp-fin-dash__link:hover {
+  text-decoration: underline;
+}
+
+.erp-fin-dash__pos { color: var(--erp-success); }
+.erp-fin-dash__neg { color: var(--erp-danger); }
+
+/* Tiến độ: biểu đồ + cột số bên phải như mẫu. */
+.erp-fin-dash__progress {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-fin-dash__progress-chart {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.erp-fin-dash__side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 36px 0 0;
+  min-width: 112px;
+}
+
+.erp-fin-dash__side dt {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-fin-dash__side dd {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+@media (max-width: 576px) {
+  .erp-fin-dash__progress {
+    grid-template-columns: 1fr;
+  }
+
+  .erp-fin-dash__side {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+}
+
+/* Cảnh báo */
+.erp-fin-dash__alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-fin-dash__alert {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+a.erp-fin-dash__alert:hover {
+  background: var(--erp-surface-hover);
+}
+
+a.erp-fin-dash__alert:focus-visible,
+.erp-fin-dash__approval:focus-visible,
+.erp-fin-dash__seg-btn:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-fin-dash__alert-icon { font-size: 1rem; }
+.erp-fin-dash__alert-icon--danger { color: var(--erp-danger); }
+.erp-fin-dash__alert-icon--warning { color: var(--erp-warning); }
+.erp-fin-dash__alert-icon--info { color: var(--erp-info); }
+
+.erp-fin-dash__alert-meta {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-fin-dash__alert-meta--danger { color: var(--erp-danger); }
+.erp-fin-dash__alert-meta--warning { color: var(--erp-text-primary); }
+.erp-fin-dash__alert-meta--info { color: var(--erp-text-secondary); }
+
+/* Bảng trong thẻ */
+.erp-fin-dash__table > :not(caption) > * > * {
+  padding: 8px 8px;
+}
+
+.erp-fin-dash__table td:first-child {
+  min-width: 132px;
+}
+
+.erp-fin-dash__work {
+  min-width: 180px;
+}
+
+.erp-fin-dash__table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-fin-dash__table td {
+  font-size: 0.8125rem;
+  vertical-align: middle;
+}
+
+.erp-fin-dash__table td.text-end {
+  white-space: nowrap;
+}
+
+.erp-fin-dash__done {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.erp-fin-dash__done .progress {
+  flex: 1;
+  height: 6px;
+}
+
+.erp-fin-dash__done span {
+  min-width: 44px;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+/* Hàng nhãn — số (Hợp đồng & phụ lục, Công nợ) */
+.erp-fin-dash__rows {
+  margin: 0;
+}
+
+.erp-fin-dash__rows > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--erp-border);
+  font-size: 0.8125rem;
+}
+
+.erp-fin-dash__rows > div:last-child {
+  border-bottom: 0;
+}
+
+.erp-fin-dash__rows dt {
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-fin-dash__rows dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.erp-fin-dash__row--strong dt,
+.erp-fin-dash__row--strong dd {
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+/* Công tắc Khách hàng / Nhà cung cấp */
+.erp-fin-dash__seg {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 8px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-fin-dash__seg-btn {
+  flex: 1;
+  min-height: 36px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.erp-fin-dash__seg-btn.is-active {
+  background: var(--erp-surface);
+  color: var(--erp-action-secondary);
+  box-shadow: var(--erp-shadow1);
+}
+
+/* Hồ sơ & phê duyệt */
+.erp-fin-dash__approvals {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Chip "Chờ duyệt" xuống dòng dưới nhãn — nhãn không bao giờ bị cắt. */
+.erp-fin-dash__approval > .erp-badge {
+  grid-column: 2 / -1;
+  justify-self: start;
+}
+
+.erp-fin-dash__approval {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  row-gap: 2px;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 4px 8px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.erp-fin-dash__approval:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-fin-dash__approval-icon { color: var(--erp-action-secondary); }
+
+.erp-fin-dash__approval-total {
+  min-width: 28px;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Biểu đồ dòng tiền */
+.erp-cashflow {
+  position: relative;
+  overflow-x: auto;
+}
+
+.erp-cashflow__zero {
+  stroke: var(--erp-border-strong);
+  stroke-width: 1;
+}
+
+.erp-cashflow__crosshair {
+  stroke: var(--erp-text-tertiary);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.erp-cashflow__dot {
+  stroke: var(--erp-surface);
+  stroke-width: 2;
+}
+
+.erp-cashflow__tooltip {
+  position: absolute;
+  top: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+  font-size: 0.75rem;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.erp-cashflow__key {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-fin-dash__alert,
+  .erp-fin-dash__approval,
+  .erp-fin-dash__seg-btn {
+    transition: none;
+  }
+}
+
+/* "Gộp hồ sơ" (ContractPaymentPlanCombineModal) — bảng chọn trái, form phải như trang VBO Drupal. */
+.erp-plan-combine {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(280px, 5fr);
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .erp-plan-combine {
+    grid-template-columns: 1fr;
+  }
+}
+
+.erp-plan-combine__list,
+.erp-plan-combine__form {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-plan-combine__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-plan-combine__list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.erp-plan-combine__table {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-plan-combine__table tbody tr {
+  cursor: pointer;
+}
+
+.erp-plan-combine__table tbody tr.is-selected > td {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-plan-combine__check {
+  width: 36px;
+}
+
+.erp-plan-combine__plan {
+  min-width: 220px;
+}
+
+.erp-plan-combine__linked {
+  max-width: 180px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-plan-combine__content {
+  min-height: 38px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-plan-combine__offer {
+  font-weight: 600;
+}
+
+.erp-plan-combine__warn {
+  font-size: 0.8125rem;
+}
+
+/* ==========================================================================
+   "Hồ sơ thực hiện" — Nhân sự, ATLĐ (`ContractPersonnelTab`) · Nội quy, quy
+   chế (`ConstructionSitePage`). Cùng khuôn các panel khác của khung hợp đồng:
+   bề mặt `--erp-surface`, viền `--erp-border`, KHÔNG `bg-white` (vỡ Dark /
+   Field) và không `shadow-sm` chồng lên card. Crimson chỉ ở CTA "Thêm".
+   ========================================================================== */
+
+.erp-contract-subtabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  margin-bottom: 0;
+}
+
+.erp-contract-subtabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  min-height: var(--erp-touch-target);
+}
+
+.erp-contract-subtabs__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.erp-contract-subtabs .nav-link.active .erp-contract-subtabs__count {
+  background: var(--erp-brand-soft);
+  color: var(--erp-brand);
+}
+
+/* Thân một mục con: một bề mặt duy nhất, dính liền dải tab phía trên. */
+.erp-contract-subpanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-top: 0;
+  border-radius: 0 0 var(--erp-radius-lg) var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-contract-subpanel__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-contract-subpanel__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-contract-subpanel__title .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-contract-subpanel__desc {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+/* Khối thông tin phụ (thông tin đợt, đợt nhật ký, danh sách đợt): nền phụ. */
+.erp-contract-subpanel__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+}
+
+.erp-contract-subpanel__note strong {
+  color: var(--erp-text-primary);
+}
+
+/* Chip chọn đợt biểu mẫu. */
+.erp-contract-batch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 2px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 12px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.erp-contract-batch:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-contract-batch.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-contract-batch:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Thẻ một nội quy / một đợt nhật ký. */
+.erp-contract-record {
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-contract-record--muted {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-contract-subpanel .table th {
+  white-space: nowrap;
+}
+
+.erp-contract-subpanel .table td {
+  vertical-align: middle;
+}
+
+.erp-contract-subpanel__search {
+  width: min(240px, 100%);
+}
+
+.erp-contract-pre {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-contract-batch {
+    transition: none;
+  }
+}
+
+.erp-contract-record .min-w-0 {
+  min-width: 0;
+}
+
+/* Nhãn TRÁI, giá trị PHẢI — cùng khuôn lưới nhãn/giá trị của màn xem. */
+.erp-contract-record__meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-contract-record__meta dt {
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-contract-record__meta dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  overflow-wrap: anywhere;
+}

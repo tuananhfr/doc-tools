@@ -1,0 +1,54 @@
+/* =========================================================================
+   AddressSuggestField — gợi ý địa chỉ
+   =========================================================================
+   Menu portal ra <body> với `position: fixed`; toạ độ do JS đặt inline. Lý do
+   giống `TagSelect`: ô nằm trong modal và trong khối có `overflow`, mà một trục
+   overflow khác `visible` thì trục kia thành `auto` và menu bị cắt.
+   z-index 1080 > `--bs-modal-zindex` (1055).
+   ========================================================================= */
+
+.erp-address-suggest__menu {
+  position: fixed;
+  z-index: 1080;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-address-suggest__option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  text-align: left;
+  color: var(--erp-text-primary);
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.erp-address-suggest__option:hover,
+.erp-address-suggest__option:focus-visible {
+  background: var(--erp-surface-secondary);
+}
+
+/* Toạ độ — lớp thông tin THỨ HAI, cho biết chọn xong sẽ điền được Vĩ/Kinh độ. */
+.erp-address-suggest__coords {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-address-suggest__empty {
+  padding: 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}

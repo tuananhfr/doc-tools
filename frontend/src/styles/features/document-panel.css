@@ -1,0 +1,660 @@
+/*
+ * Khối "Chứng từ" (CDE) trên form phiếu tài chính.
+ *
+ * Bố cục bám `DocumentPanelBuilder::markup()` + `js/document_panel.js` bên
+ * Drupal: cột checklist bên trái, thanh tiêu đề + dòng nhắc + bảng tám cột bên
+ * phải. Tên lớp giữ đúng thứ tự khối để đọc song song hai bên cho dễ.
+ *
+ * Không viết hex ở đây - mọi màu đọc qua biến `--erp-*` để ba theme
+ * Light / Dark / Field dùng chung một component (Design System mục 12 & 15).
+ */
+
+.doc-panel__loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  color: var(--erp-text-secondary);
+}
+
+.doc-panel__layout {
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Dưới 1024px cột checklist tụt xuống thành một khối ngang phía trên bảng. */
+@media (max-width: 1024px) {
+  .doc-panel__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+ * Cột trái - checklist loại chứng từ
+ * ========================================================================== */
+
+.doc-panel__checklist {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.doc-panel__cl-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--erp-border);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.doc-panel__cl-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.doc-panel__cl-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  min-height: 40px;
+  border-bottom: 1px solid var(--erp-border);
+  transition: background-color 150ms ease;
+}
+
+.doc-panel__cl-item:last-child {
+  border-bottom: 0;
+}
+
+.doc-panel__cl-item:hover {
+  background: var(--erp-surface-hover);
+}
+
+/* Đã có tệp thì tên đậm lên - trạng thái đọc được mà không cần nhìn màu. */
+.doc-panel__cl-item.is-have .doc-panel__cl-name {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.doc-panel__cl-check {
+  margin: 0;
+  min-height: auto;
+}
+
+.doc-panel__cl-check .form-check-input {
+  margin: 0;
+}
+
+.doc-panel__cl-name {
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+}
+
+.doc-panel__cl-count {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.doc-panel__cl-item.is-have .doc-panel__cl-count {
+  color: var(--erp-success);
+}
+
+.doc-panel__cl-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.doc-panel__cl-add:hover {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.doc-panel__cl-add:focus-visible,
+.doc-panel__cl-check .form-check-input:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.doc-panel__cl-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.doc-panel__cl-progress-label {
+  grid-column: 1 / -1;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.doc-panel__cl-bar {
+  height: 4px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.doc-panel__cl-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-action-secondary);
+  transition: width 250ms ease;
+}
+
+.doc-panel__cl-percent {
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+ * Cột phải - thanh tiêu đề, dòng nhắc, bảng
+ * ========================================================================== */
+
+.doc-panel__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.doc-panel__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-panel__toolbar-title {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.doc-panel__count {
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.doc-panel__toolbar-actions {
+  margin-inline-start: auto;
+}
+
+.doc-panel__hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.doc-panel__hint b {
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.doc-panel__table-wrap {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: auto;
+  max-height: 380px;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+/* Cả vùng bảng là đích thả tệp - kể cả khi đã có dòng. */
+.doc-panel__table-wrap.is-dragging {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.doc-panel__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 16px;
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+.doc-panel__empty .bi {
+  font-size: 1.75rem;
+}
+
+.doc-panel__table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+/* Bảng nằm trong tab hẹp - ghim đầu bảng để cuộn vẫn đọc được cột. */
+.doc-panel__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.doc-panel__table tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.doc-panel__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.doc-panel__col-idx,
+.doc-panel__idx {
+  width: 40px;
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+.doc-panel__col-ver {
+  width: 92px;
+}
+
+.doc-panel__col-status {
+  width: 132px;
+}
+
+/*
+ * Hai nút: hành động chính (Tạo / Mở form đích) rồi mới tới nút bỏ dòng.
+ * Rộng hơn bản cũ vì cột này trước đây chỉ có một nút thùng rác.
+ */
+.doc-panel__col-act {
+  width: 108px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.doc-panel__select,
+.doc-panel__title-input {
+  min-width: 0;
+}
+
+.doc-panel__pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+}
+
+.doc-panel__pick:hover {
+  background: var(--erp-action-secondary-soft);
+}
+
+.doc-panel__pick:focus-visible,
+.doc-panel__remove:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.doc-panel__fname {
+  margin-top: 4px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* Thư mục con của tệp khi nạp cả thư mục — cho thấy cây được giữ nguyên. */
+.doc-panel__folder {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.doc-panel__error {
+  margin-top: 4px;
+  color: var(--erp-danger);
+  font-size: 0.75rem;
+}
+
+.doc-panel__match {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+}
+
+/*
+ * "Đã có trên ERP" KHÁC "tệp này trùng hồ sơ cũ".
+ *
+ * Dòng cảnh báo màu vàng ở trên nói về TỆP (sha256 trùng, lưu tiếp là đẻ hồ sơ
+ * thứ hai). Dòng này nói về NGHIỆP VỤ: chứng từ đã được nhập vào ERP rồi, nên
+ * nút bên phải là "Mở" chứ không phải "Tạo". Hai chuyện khác nhau và có thể
+ * cùng xuất hiện, nên phải phân biệt được bằng cả màu lẫn biểu tượng.
+ */
+.doc-panel__match.is-existing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-success);
+}
+
+.doc-panel__cell-text,
+.doc-panel__ver {
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Hành động chính của dòng: sang form nghiệp vụ tương ứng.
+ *
+ * Có CHỮ chứ không chỉ icon — "Tạo" và "Mở" dẫn tới hai kết cục rất khác nhau
+ * (một cái đẻ bản ghi mới, một cái mở bản ghi đã có), và phân biệt bằng mỗi
+ * hình mũi tên là mời người dùng bấm nhầm.
+ */
+.doc-panel__act {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  margin-right: 2px;
+  padding: 0 8px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.doc-panel__act:hover {
+  background: var(--erp-action-secondary-soft);
+}
+
+.doc-panel__act.is-existing {
+  border-color: var(--erp-success);
+  color: var(--erp-success);
+}
+
+.doc-panel__act.is-existing:hover {
+  background: var(--erp-success-soft);
+}
+
+/*
+ * Danh mục chưa có màn tạo bên giao diện mới.
+ *
+ * KHÔNG dùng thuộc tính `disabled`: nút phải bấm được thì mới nói ra được lý
+ * do. Viền đứt + chữ mờ để nhìn là biết nó khác nút thật, còn con trỏ giữ
+ * `pointer` vì nó thực sự phản hồi khi bấm.
+ */
+.doc-panel__act.is-pending {
+  border-style: dashed;
+  color: var(--erp-text-tertiary);
+}
+
+.doc-panel__act.is-pending:hover {
+  background: var(--erp-bg);
+  color: var(--erp-text-secondary);
+}
+
+.doc-panel__act:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.doc-panel__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.doc-panel__remove:hover {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/* Trạng thái của một dòng: icon + nhãn chữ, không bao giờ chỉ có màu. */
+.doc-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.doc-panel__badge.is-info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.doc-panel__badge.is-intelligence {
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+}
+
+.doc-panel__badge.is-success {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.doc-panel__badge.is-neutral {
+  background: var(--erp-neutral-soft);
+  color: var(--erp-neutral);
+}
+
+.doc-panel__badge.is-danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/* ==========================================================================
+ * Cột "Hiệu lực" trên bảng chứng từ
+ *
+ * Hai ô ngày xếp dọc trong một cột hẹp: bảng đã có 7 cột, thêm hai cột nữa là
+ * đẩy cả bảng ra ngoài màn hình. Ô trên là ngày hiệu lực, ô dưới là ngày hết
+ * hiệu lực — thứ tự đọc tự nhiên, và tooltip nói rõ ô nào là ô nào.
+ * ========================================================================== */
+
+.doc-panel__col-valid {
+  width: 148px;
+}
+
+.doc-panel__valid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.doc-panel__date {
+  width: 100%;
+  padding: 2px 6px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.doc-panel__date:focus {
+  outline: 2px solid var(--erp-focus, var(--erp-action-primary));
+  outline-offset: 1px;
+}
+
+/* O trong thi mo di, de mat luot qua bang chi dung lai o dong CO han. */
+.doc-panel__date:invalid,
+.doc-panel__date:not(:focus):placeholder-shown {
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Khong co cot checklist -> bang chung tu chiem tron chieu ngang.
+ *
+ * Dung trong ngu canh BO HO SO: checklist liet ke 18 loai chung tu tai chinh,
+ * mot bo ho so phap ly khong can loai nao trong so do nen no chi lam nhieu.
+ */
+.doc-panel__layout--wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Canh bao nho canh nut Luu: so dong chua chon danh muc. */
+.doc-panel__warn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+ * Chứng từ mua bán đã có trên ERP: hoàn thành theo chứng từ / đối chiếu
+ *
+ * Dòng nhắc dưới ô tiêu đề nói TRƯỚC khi bấm chứng từ sẽ làm gì với bản ghi.
+ * Mỗi trạng thái một màu + một biểu tượng (không bao giờ chỉ có màu):
+ *   is-fulfill    sẽ hoàn thành theo SL giao thực tế (việc CẦN làm)
+ *   is-done       đã hoàn thành ngay trên màn này
+ *   is-completed  đã hoàn thành trên ERP từ trước — chỉ còn đối chiếu
+ *   is-blocked    không tự hoàn thành được, kèm lý do
+ *   is-changes    loại khác đã có, khác bản ghi ở vài ô
+ * ========================================================================== */
+
+.doc-panel__match.is-fulfill,
+.doc-panel__match.is-done,
+.doc-panel__match.is-completed,
+.doc-panel__match.is-blocked,
+.doc-panel__match.is-changes {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 100%;
+  line-height: 1.35;
+}
+
+.doc-panel__match.is-fulfill {
+  color: var(--erp-intelligence);
+}
+
+.doc-panel__match.is-done {
+  color: var(--erp-success);
+  font-weight: 600;
+}
+
+.doc-panel__match.is-completed {
+  color: var(--erp-text-tertiary);
+}
+
+.doc-panel__match.is-blocked,
+.doc-panel__match.is-changes {
+  color: var(--erp-warning);
+}
+
+/* Lý do chặn có thể dài: cắt còn 2 dòng, đầy đủ nằm ở tooltip. */
+.doc-panel__match.is-blocked {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.doc-panel__badge.is-warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+/*
+ * "Hoàn thành" là nút DUY NHẤT trên bảng ghi kho + công nợ, nên nó là nút đặc
+ * (nền màu) — khác hẳn các nút viền mở form. "Đối chiếu" thì chỉ đọc, viền.
+ */
+.doc-panel__act.is-fulfill {
+  border-color: var(--erp-brand);
+  background: var(--erp-brand);
+  color: var(--erp-text-on-accent);
+}
+
+.doc-panel__act.is-fulfill:hover {
+  border-color: var(--erp-brand-hover);
+  background: var(--erp-brand-hover);
+}
+
+.doc-panel__act.is-review {
+  border-color: var(--erp-warning);
+  color: var(--erp-warning);
+}
+
+.doc-panel__act.is-review:hover {
+  background: var(--erp-warning-soft);
+}
+
+/* "AI đọc": lưu trước, OCR sau — việc TUỲ CHỌN, viền màu trí tuệ nhân tạo. */
+.doc-panel__act.is-read {
+  border-color: var(--erp-intelligence);
+  color: var(--erp-intelligence);
+}
+
+.doc-panel__act.is-read:hover {
+  background: var(--erp-intelligence-soft);
+}

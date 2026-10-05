@@ -1,0 +1,264 @@
+/*
+ * Phan hoi trang thai: alert, empty, error, skeleton, progress, spinner.
+ * Moi trang thai deu co ICON + NHAN CHU (muc 05 & 11).
+ */
+
+/*
+ * `.alert` LA FLEX CONTAINER -> CHU PHAI NAM TRONG MOT THE BAO
+ * ============================================================
+ * Flex bien MOI mach noi dung roi rac thanh mot flex item ("anonymous flex
+ * item"). Nen viet thang chu vao trong <Alert> ma co ke mot the inline la vo
+ * cau van thanh nhieu cot, cach nhau dung 10px gap:
+ *
+ *     <Alert><Icon/> Thao tác này <strong>vượt cấp</strong> — bỏ qua…</Alert>
+ *      -> [icon] [Thao tác này] [vượt cấp] [— bỏ qua…]   BON COT
+ *
+ * Dung khuon nay, khong co ngoai le:
+ *
+ *     <Alert>
+ *       <Icon name="…" className="alert__icon" />
+ *       <div>… chu, ke ca <code>/<strong> …</div>
+ *     </Alert>
+ */
+.alert {
+  --bs-alert-border-radius: var(--erp-radius-md);
+  --bs-alert-padding-x: 14px;
+  --bs-alert-padding-y: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  border-width: 1px;
+}
+
+.alert__icon {
+  flex: none;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.alert-danger {
+  --bs-alert-color: var(--erp-danger);
+  --bs-alert-bg: var(--erp-danger-soft);
+  --bs-alert-border-color: transparent;
+}
+
+.alert-success {
+  --bs-alert-color: var(--erp-success);
+  --bs-alert-bg: var(--erp-success-soft);
+  --bs-alert-border-color: transparent;
+}
+
+.alert-warning {
+  --bs-alert-color: var(--erp-warning);
+  --bs-alert-bg: var(--erp-warning-soft);
+  --bs-alert-border-color: transparent;
+}
+
+.alert-info {
+  --bs-alert-color: var(--erp-info);
+  --bs-alert-bg: var(--erp-info-soft);
+  --bs-alert-border-color: transparent;
+}
+
+.alert__title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.alert__description {
+  color: var(--erp-text-secondary);
+}
+
+/* Trang thai rong / loi / khong co quyen. */
+.erp-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.erp-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 1.5rem;
+}
+
+.erp-state__icon--danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.erp-state__icon--warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-state__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-state__description {
+  margin: 0;
+  max-width: 520px;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-state__code {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--erp-text-tertiary);
+  line-height: 1;
+}
+
+/* Skeleton khi dang tai chi tiet. */
+.erp-skeleton {
+  display: block;
+  height: 14px;
+  border-radius: var(--erp-radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--erp-surface-secondary) 25%,
+    var(--erp-surface-hover) 37%,
+    var(--erp-surface-secondary) 63%
+  );
+  background-size: 400% 100%;
+  animation: erp-skeleton 1.4s ease infinite;
+}
+
+.erp-skeleton + .erp-skeleton {
+  margin-top: 12px;
+}
+
+/*
+ * O khung xuong trong mot hang cua bang.
+ *
+ * Do rong ngau nhien-nhin thi dep hon nhung se doi moi lan render; giu 70%
+ * cho moi o de hang khong nhay khi React ve lai.
+ */
+.erp-skeleton--cell {
+  width: 70%;
+  height: 12px;
+  margin: 2px 0;
+}
+
+.erp-skeleton--title {
+  height: 20px;
+  width: 40%;
+}
+
+@keyframes erp-skeleton {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* Progress: mac dinh Blue (du lieu he thong), truyen --erp-progress de doi. */
+.progress,
+.progress-stacked {
+  --bs-progress-bg: var(--erp-surface-secondary);
+  --bs-progress-border-radius: var(--erp-radius-pill);
+  --bs-progress-bar-bg: var(--erp-progress, var(--erp-action-secondary));
+  height: 8px;
+}
+
+.progress--lg {
+  height: 12px;
+}
+
+.spinner-border {
+  color: var(--erp-action-secondary);
+}
+
+.erp-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px 16px;
+  color: var(--erp-text-tertiary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Toast PWA - bao co ban moi / da san sang chay ngoai tuyen                   */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * z-index 1085: tren offcanvas/modal (1055) va toast cua Bootstrap (1090 dat
+ * cho `.erp-toast` o overlay.css) nhung duoi dropdown neo tay (1080)... thuc
+ * te chi can cao hon lop noi dung. Dat 1085 de thong bao khong bi form modal
+ * che mat, van khong dam len lop canh bao cua he thong.
+ */
+.erp-pwa-toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1085;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: min(360px, calc(100vw - 32px));
+  padding: 14px 14px 14px 16px;
+  border-radius: var(--erp-radius-lg);
+  box-shadow: var(--erp-shadow2);
+}
+
+/* Tren dien thoai: tra het chieu ngang, chua an toan cho vung home indicator. */
+@media (max-width: 575.98px) {
+  .erp-pwa-toast {
+    right: 12px;
+    left: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    width: auto;
+  }
+}
+
+.erp-pwa-toast__icon {
+  flex: none;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.erp-pwa-toast__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-pwa-toast__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.erp-pwa-toast__text {
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-pwa-toast__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.erp-pwa-toast__close {
+  flex: none;
+  margin-top: 2px;
+}

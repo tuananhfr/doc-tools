@@ -1,0 +1,239 @@
+/* Utility dung chung. Bootstrap lo spacing/flex/grid; day chi bo sung phan thieu. */
+
+.erp-clamp-1,
+.erp-clamp-2,
+.erp-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.erp-clamp-1 {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.erp-clamp-2 {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.erp-clamp-3 {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/*
+ * Con so co be rong deu nhau. Bat buoc cho MOI cot so, tien te, so dien thoai,
+ * ma phieu va gia tri KPI: khong co no thi so nhay cot moi lan du lieu doi.
+ */
+.erp-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Vung bam duoc: hover nhe, giu touch target >= 44px (muc 06). */
+.erp-hoverable {
+  transition: background-color 0.15s ease;
+}
+
+.erp-hoverable:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-touch {
+  min-height: var(--erp-touch-target);
+}
+
+/* Nut "tran": khong vien, khong nen - dung cho item danh sach bam duoc. */
+.erp-plain-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.erp-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: 6px;
+}
+
+.erp-file-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  color: inherit;
+  line-height: 1.35;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: default;
+}
+
+.erp-file-name:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.erp-file-name .bi {
+  flex: none;
+}
+
+.erp-file-name__full,
+.erp-file-name__text {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.erp-file-name__full {
+  text-overflow: ellipsis;
+}
+
+.erp-file-name__head {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.erp-file-name__ellipsis,
+.erp-file-name__tail {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* O tron dung cho avatar chu cai (thay Avatar cua antd). */
+.erp-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  background: var(--erp-brand-soft);
+  color: var(--erp-brand);
+}
+
+.erp-avatar--sm {
+  width: 28px;
+  height: 28px;
+  font-size: 0.75rem;
+}
+
+/* O vuong bo goc chua icon - dung o StatCard, danh sach rui ro, tinh nang. */
+.erp-icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--erp-radius-md);
+  font-size: 1.0625rem;
+  line-height: 1;
+}
+
+.erp-icon-tile--lg {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--erp-radius-lg);
+  font-size: 1.25rem;
+}
+
+/* Duong ke ngang co chu o giua (thay Divider plain cua antd). */
+.erp-divider-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-divider-text::before,
+.erp-divider-text::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-divider {
+  border: 0;
+  border-top: 1px solid var(--erp-border);
+  opacity: 1;
+  margin: 0;
+}
+
+/* Cham trang thai - LUON di kem nhan chu, khong dung mot minh (muc 05). */
+.erp-dot {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+/* --- O bang gom hai dong: gia tri chinh + chu thich ----------------------- */
+
+/*
+ * Truoc day nam trong `features/hr.css` nhung duoc dung o ca Nhan su, Tuyen
+ * dung va Du an - do la mot tien ich CUA BANG chu khong phai style rieng cua
+ * mot nghiep vu, nen chuyen ve day.
+ */
+.erp-cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-cell-stack__main {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-cell-stack__caption {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Chu bi cat bang "..." khi vuot be ngang cot. */
+.erp-truncate {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*
+ * Khong xuong dong. Dung cho o mang MOT gia tri khong duoc cat (ma phieu, so
+ * van ban ngan, ngay thang) - `erp-clamp-*` cat theo SO DONG, cai nay cam
+ * xuong dong han.
+ */
+.erp-nowrap {
+  white-space: nowrap;
+}

@@ -1,0 +1,2149 @@
+/*
+ * ============================================================================
+ * TỜ TRÌNH THANH TOÁN — trang in
+ * ============================================================================
+ * Hai vùng có LUẬT MÀU KHÁC HẲN NHAU, đừng trộn:
+ *
+ *  1. `.erp-print` — TỜ GIẤY. Luôn chữ đen trên nền trắng, cố ý KHÔNG dùng
+ *     token `--erp-*`: người dùng để Light/Dark/Field thì bản in vẫn phải ra
+ *     một tờ giấy giống hệt nhau. Bám theo bản in Drupal (`_print.scss`):
+ *     Times New Roman, lề 15/20/15/25mm.
+ *
+ *  2. `.erp-print-page`, `.erp-print-aside` — GIAO DIỆN quanh tờ giấy. Đây là
+ *     UI bình thường nên theo đúng Design System: token, thang chữ, focus ring,
+ *     hover. `@media print` ẩn hẳn phần này.
+ */
+
+.erp-print-page {
+  height: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 24px 24px 48px;
+  background: var(--erp-bg);
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Hai cột: tờ trình bên trái, cụm làm việc bên phải — đúng bố cục của bản in
+ * Drupal (col-lg-8 + form-comment-print-right).
+ */
+.erp-print-page__layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.erp-print-page__sheet {
+  flex: 0 1 210mm;
+  width: 210mm;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/*
+ * Hàng nút trên tờ giấy (In, Xuất Word).
+ *
+ * Class này TỪNG không có quy tắc nào — kể cả quy tắc ẩn khi in. Hệ quả: bấm
+ * In thì chính cái nút "In" cũng nằm trên trang giấy. `@media print` ở cuối
+ * file ẩn hẳn nó đi.
+ */
+.erp-print-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-print-page__month {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text);
+}
+
+.erp-print-page__month input {
+  width: 150px;
+}
+
+/* Biên bản nghiệm thu tăng ca: các mục và cột bám theo mẫu Word. */
+.erp-print--overtime-acceptance .erp-print__header {
+  margin-bottom: 18px;
+}
+
+.erp-print--overtime-acceptance .erp-print__acceptance-title {
+  margin: 0 0 20px;
+  line-height: 1.35;
+}
+
+.erp-print__acceptance-section {
+  margin-bottom: 12px;
+}
+
+.erp-print__acceptance-section h2 {
+  margin: 8px 0 4px;
+  font-family: inherit;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.erp-print--overtime-acceptance .erp-print__acceptance-section p {
+  margin-bottom: 5px;
+  overflow-wrap: anywhere;
+}
+
+.erp-print__acceptance-indent {
+  padding-left: 16px;
+}
+
+.erp-print__table.erp-print__acceptance-table {
+  table-layout: fixed;
+  font-size: 10pt;
+}
+
+.erp-print__acceptance-table th:first-child {
+  width: 7%;
+}
+
+.erp-print__acceptance-table th:nth-child(2) {
+  width: 31%;
+}
+
+.erp-print__acceptance-table th:nth-child(3),
+.erp-print__acceptance-table th:nth-child(4),
+.erp-print__acceptance-table th:nth-child(5) {
+  width: 20.666%;
+}
+
+.erp-print__table.erp-print__acceptance-table th,
+.erp-print__table.erp-print__acceptance-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  vertical-align: top;
+}
+
+.erp-print__table.erp-print__acceptance-table th:first-child,
+.erp-print__table.erp-print__acceptance-table td:first-child {
+  text-align: center;
+}
+
+.erp-print__table.erp-print__acceptance-monthly-table {
+  table-layout: fixed;
+  font-size: 9pt;
+}
+
+.erp-print__acceptance-monthly-table th:nth-child(1) { width: 20%; }
+.erp-print__acceptance-monthly-table th:nth-child(2) { width: 12%; }
+.erp-print__acceptance-monthly-table th:nth-child(3) { width: 20%; }
+.erp-print__acceptance-monthly-table th:nth-child(4) { width: 24%; }
+.erp-print__acceptance-monthly-table th:nth-child(5) { width: 13%; }
+.erp-print__acceptance-monthly-table th:nth-child(6) { width: 11%; }
+
+.erp-print__table.erp-print__acceptance-monthly-table th,
+.erp-print__table.erp-print__acceptance-monthly-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  vertical-align: top;
+}
+
+.erp-print__acceptance-table tbody td {
+  min-height: 30px;
+  height: 30px;
+}
+
+.erp-print__acceptance-signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  text-align: center;
+  break-inside: avoid;
+}
+
+.erp-print__acceptance-signatures > div {
+  min-height: 85px;
+}
+
+/* --------------------------------------------------------------------------
+ * 1. TỜ GIẤY
+ * -------------------------------------------------------------------------- */
+
+.erp-print {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 15mm 20mm 15mm 25mm;
+  background: #fff;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+  line-height: 1.4;
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-print p {
+  margin: 0 0 2px;
+}
+
+.erp-print__header {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+/* Header biên bản bàn giao & phiếu giao hàng (tỉ lệ 58% - 42% khớp col-7 & col-5 của Drupal) */
+.erp-print__handover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/*
+ * 58% + 42% ĐÃ BẰNG 100%, cộng thêm `gap: 16px` của hàng là đầu trang luôn rộng
+ * hơn tờ giấy đúng 16px. Trên màn hình phần thừa nằm lọt trong lề 20mm nên
+ * không thấy; khi in, vùng in hẹp đúng bằng nội dung nên cột phải (Số biên
+ * bản · Hình thức giao · Ngày giao) bị CẮT ở mép. Chia khoảng cách cho hai cột
+ * và cho co (`min-width: 0`).
+ */
+.erp-print__handover-header .erp-print__logo {
+  flex: 0 1 calc(58% - 8px);
+  max-width: calc(58% - 8px);
+  min-width: 0;
+}
+
+.erp-print__masthead-logo {
+  max-height: 52px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.erp-print__handover-org {
+  font-size: 9.5pt;
+  line-height: 1.4;
+  color: #222;
+}
+
+.erp-print__handover-org-name {
+  font-weight: 700;
+  font-size: 11pt;
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.erp-print__handover-header .erp-print__org {
+  flex: 0 1 calc(42% - 8px);
+  max-width: calc(42% - 8px);
+  min-width: 0;
+  text-align: right;
+}
+
+.erp-print__masthead-title {
+  font-size: 14pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 6px;
+  letter-spacing: 0.5px;
+}
+
+.erp-print__handover-meta {
+  font-size: 10pt;
+  line-height: 1.5;
+  text-align: left;
+  border-top: 1px dashed #ccc;
+  padding-top: 4px;
+}
+
+.erp-print__handover-meta > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  /* Giá trị là text node trần (không chọn được bằng selector) — cho nó gãy
+     dòng thay vì đẩy tràn khỏi cột khi số biên bản quá dài. */
+  overflow-wrap: anywhere;
+}
+
+.erp-print__logo {
+  flex: 0 0 40%;
+  min-height: 24mm;
+}
+
+.erp-print__logo img {
+  max-width: 100%;
+  max-height: 24mm;
+  object-fit: contain;
+}
+
+.erp-print__org {
+  flex: 1;
+  text-align: right;
+}
+
+.erp-print__org-name {
+  font-weight: 700;
+  text-transform: uppercase;
+  /* Tên công ty dài hay để lại một từ mồ côi ở dòng cuối. */
+  text-wrap: balance;
+}
+
+/*
+ * Slogan phải NHẸ hơn tên công ty. Trước đây class này không có quy tắc nào
+ * nên nó in ra cùng cỡ chữ thân bài, đứng ngay dưới một dòng in hoa đậm —
+ * thành ra hai dòng tranh nhau làm tên tổ chức.
+ */
+.erp-print__org-slogan {
+  font-size: 11pt;
+  font-style: italic;
+}
+
+.erp-print__title {
+  margin: 14px 0 0;
+  font-size: 16pt;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.erp-print__code {
+  margin-bottom: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+.erp-print__to {
+  margin-bottom: 4px;
+}
+
+/* Hai cột thông tin. In ra giấy vẫn giữ hai cột, không xuống một cột. */
+.erp-print__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+  margin-bottom: 4px;
+}
+
+.erp-print__line {
+  /* Giá trị dài (tên tài khoản, nội dung) phải xuống dòng chứ không tràn lề. */
+  overflow-wrap: anywhere;
+}
+
+.erp-print__proposal-meta {
+  font-size: 11pt;
+}
+
+.erp-print__proposal-meta .erp-print__line {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px;
+}
+
+.erp-print__proposal-meta .erp-print__line strong {
+  white-space: nowrap;
+}
+
+.erp-print__table-divider {
+  border-top: 1px solid #c7c7c7;
+  margin: 12px 0 0;
+}
+
+.erp-print__equipment-table th:nth-child(1),
+.erp-print__equipment-table td:nth-child(1) {
+  width: 58%;
+}
+
+.erp-print__equipment-table th:nth-child(2),
+.erp-print__equipment-table td:nth-child(2) {
+  width: 17%;
+}
+
+.erp-print__equipment-table th:nth-child(3),
+.erp-print__equipment-table td:nth-child(3) {
+  width: 13%;
+}
+
+.erp-print__equipment-table th:nth-child(4),
+.erp-print__equipment-table td:nth-child(4) {
+  width: 12%;
+}
+
+.erp-print__equipment-product {
+  white-space: normal !important;
+}
+
+.erp-print__business-fee-table {
+  table-layout: fixed;
+}
+
+.erp-print__business-fee-table th:nth-child(1),
+.erp-print__business-fee-table td:nth-child(1) {
+  width: 7%;
+}
+
+.erp-print__business-fee-table th:nth-child(2),
+.erp-print__business-fee-table td:nth-child(2) {
+  width: 13%;
+}
+
+.erp-print__business-fee-table th:nth-child(3),
+.erp-print__business-fee-table td:nth-child(3),
+.erp-print__business-fee-table th:nth-child(4),
+.erp-print__business-fee-table td:nth-child(4),
+.erp-print__business-fee-table th:nth-child(5),
+.erp-print__business-fee-table td:nth-child(5),
+.erp-print__business-fee-table th:nth-child(7),
+.erp-print__business-fee-table td:nth-child(7) {
+  width: 13%;
+}
+
+.erp-print__business-fee-table th:nth-child(6),
+.erp-print__business-fee-table td:nth-child(6) {
+  width: 28%;
+}
+
+.erp-print__bonus-table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 10pt;
+}
+
+table.erp-print__bonus-table thead th {
+  white-space: normal;
+  line-height: 1.2;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.erp-print__bonus-table th,
+.erp-print__bonus-table td {
+  box-sizing: border-box;
+  padding: 4px 3px;
+  overflow-wrap: anywhere;
+}
+
+.erp-print__bonus-table th:nth-child(1),
+.erp-print__bonus-table td:nth-child(1) { width: 6%; }
+.erp-print__bonus-table th:nth-child(2),
+.erp-print__bonus-table td:nth-child(2) { width: 14%; }
+.erp-print__bonus-table th:nth-child(3),
+.erp-print__bonus-table td:nth-child(3) { width: 14%; }
+.erp-print__bonus-table th:nth-child(4),
+.erp-print__bonus-table td:nth-child(4) { width: 14%; }
+.erp-print__bonus-table th:nth-child(5),
+.erp-print__bonus-table td:nth-child(5) { width: 12%; }
+.erp-print__bonus-table th:nth-child(6),
+.erp-print__bonus-table td:nth-child(6) { width: 12%; }
+.erp-print__bonus-table th:nth-child(7),
+.erp-print__bonus-table td:nth-child(7) { width: 12%; }
+.erp-print__bonus-table th:nth-child(8),
+.erp-print__bonus-table td:nth-child(8) { width: 16%; }
+
+/*
+ * Hang tieu de PHONG BAN cua bang thuong.
+ *
+ * `width: auto` la BAT BUOC: o nay la `td:nth-child(1)` nen trung luat
+ * `width: 6%` cua cot STT o tren, ma bang chay `table-layout: fixed` — de
+ * nguyen thi ca hang nhom bi ep con 6% be ngang.
+ */
+/*
+ * Bat buoc phai neo them `.erp-print__bonus-table`: `.erp-print__table td`
+ * (0,1,1) khai `text-align: center` va nam SAU trong file, nen mot rule
+ * `.erp-print__row--group td` cung do dac hieu se THUA — ten phong ban van
+ * bi can giua, im lang.
+ */
+.erp-print__bonus-table .erp-print__row--group td {
+  width: auto;
+  text-align: left;
+}
+
+/*
+ * Dong DAU cua moi phong ban in dam — chep dung `.first-row-group td` cua
+ * theme Drupal (`themes/custom/erpcons/css/style.css`), thu ma ban in
+ * `/propose-rewards-discipline/{id}` dang dung.
+ */
+.erp-print__row--group-first td {
+  font-weight: bold;
+}
+
+.erp-print__total-line {
+  margin: 8px 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-print__total-line em {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.erp-print__total-line strong {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+ * Khối giá trị của nhánh hợp đồng / công nợ / cân đối
+ * -------------------------------------------------------------------------- */
+
+.erp-print__money-block {
+  margin: 8px 0 8px 24pt;
+  max-width: 75%;
+}
+
+.erp-print__money-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-print__in-words {
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+ * Bảng nội dung tài chính
+ * -------------------------------------------------------------------------- */
+
+.erp-print__table {
+  width: 100%;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+
+/* Bản in Drupal kẻ khung cả bảng, không phải chỉ gạch chân. */
+.erp-print__table th,
+.erp-print__table td {
+  padding: 4px 6px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+
+.erp-print__table th {
+  text-align: center;
+}
+
+.erp-print__table td {
+  text-align: center;
+}
+
+/*
+ * Tiêu đề cột KHÔNG được gãy dòng: "Đơn vị" vỡ thành "Đơn / vị" làm bảng cao
+ * thêm một dòng và lệch hẳn so với bản in Drupal.
+ */
+.erp-print__table thead th {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.erp-print__schedule-table {
+  table-layout: fixed;
+  font-size: 10px;
+}
+
+.erp-print__schedule-table th,
+.erp-print__schedule-table td {
+  padding: 4px 2px;
+  overflow-wrap: anywhere;
+}
+
+.erp-print__schedule-table thead th {
+  white-space: normal;
+}
+
+.erp-print__schedule-table th:first-child {
+  width: 16%;
+}
+
+.erp-print__cell--center {
+  text-align: center;
+}
+
+/*
+ * Ô chữ dài (tên tài liệu / hàng hoá) căn TRÁI. Phải neo `.erp-print__table td`
+ * (0,2,1): `.erp-print__table td { text-align: center }` (0,1,1) đứng trên và
+ * một class trần (0,1,0) sẽ thua nó.
+ */
+.erp-print__table td.erp-print__cell--left {
+  text-align: left;
+}
+
+/* Dòng "V/v: <tiêu đề>" của biên bản giao, ngay dưới đầu trang. */
+.erp-print__handover-subject {
+  margin: 6px 0 8px;
+  text-align: left;
+}
+
+/* Số tiền phải thẳng cột khi đọc dọc — lỗi hay gặp nhất ở bảng ERP. */
+.erp-print__cell--right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/*
+ * ============================================================================
+ * CỘT CỦA BẢNG NỘI DUNG TÀI CHÍNH
+ * ============================================================================
+ * Ba class này đã có sẵn trong `AdvancePrintSheet` nhưng CHƯA HỀ có quy tắc
+ * nào — chúng là bản sinh đôi bị bỏ quên của `--center` / `--right` ở trên.
+ * Hệ quả trên tờ trình: cột STT, Số lượng, Đơn giá, Thành tiền đều căn trái
+ * như chữ thường, số tiền so le nhau nên không dò dọc được cột nào ra cột nào.
+ *
+ * KHÔNG đụng tới `thead`: `.erp-print__table thead th` (0,2,1) thắng mấy
+ * selector một class này (0,1,0) nên tiêu đề vẫn căn giữa như bản in Drupal.
+ * Riêng ô tổng ở `tfoot` thì không khớp `thead th`, nên nhận căn phải ở đây —
+ * đúng ý, tổng phải thẳng cột với các số nó cộng lên.
+ */
+.erp-print__col-no {
+  width: 6%;
+  text-align: center;
+}
+
+.erp-print__col-unit {
+  width: 10%;
+  text-align: center;
+}
+
+.erp-print__col-num {
+  width: 15%;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* "Tổng cộng" nằm sát con số nó cộng ra, không trôi giữa năm cột trống. */
+.erp-print__table tfoot th {
+  text-align: right;
+}
+
+.erp-print__totals {
+  margin-top: 6px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-print__grand-total {
+  font-size: 13pt;
+}
+
+.erp-print__bank {
+  margin: 8px 0;
+}
+
+.erp-print__place {
+  margin: 14px 0 8px;
+  text-align: right;
+}
+
+.erp-print__formal-date {
+  margin: 14px 0 8px;
+  text-align: right;
+}
+
+.erp-print__formal-date em {
+  font-style: italic;
+}
+
+.erp-print__printing-table {
+  margin-top: 8px;
+}
+
+.erp-print__printing-table th,
+.erp-print__printing-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.erp-print__printing-table td:first-child,
+.erp-print__printing-table th:first-child {
+  text-align: left;
+}
+
+.erp-print__signatures--printing {
+  margin-top: 0;
+}
+
+.erp-print__content-job-table + .erp-print__line {
+  margin-top: 2px;
+  font-size: 10pt;
+}
+
+.erp-print__content-job-table {
+  width: 100%;
+  table-layout: fixed;
+  margin: 10px 0 4px;
+  border-collapse: collapse;
+  font-size: 10pt;
+}
+
+.erp-print__content-job-table th,
+.erp-print__content-job-table td {
+  padding: 5px 6px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+
+.erp-print__content-job-table th {
+  text-align: left;
+}
+
+.erp-print__content-job-table td {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.erp-print__content-job-table th:nth-child(1),
+.erp-print__content-job-table td:nth-child(1) {
+  width: 37%;
+}
+
+.erp-print__content-job-table th:nth-child(2),
+.erp-print__content-job-table td:nth-child(2) {
+  width: 18%;
+}
+
+.erp-print__content-job-table th:nth-child(3),
+.erp-print__content-job-table td:nth-child(3) {
+  width: 18%;
+}
+
+.erp-print__content-job-table th:nth-child(4),
+.erp-print__content-job-table td:nth-child(4) {
+  width: 27%;
+}
+
+.erp-print__content-job-table + .erp-print__line {
+  margin-top: 2px;
+  font-size: 10pt;
+}
+/*
+ * ============================================================================
+ * DÃY Ô KÝ — nằm NGANG, chia đều, bao nhiêu ô cũng được
+ * ============================================================================
+ * Trước đây chỉ có biến thể `--three`, còn `.erp-print__signatures` trần thì
+ * KHÔNG có quy tắc nào. Cả ba tờ in đều gắn class trần đó, nên tờ trình tài
+ * chính (4 ô: Người đề nghị / Quản lý / Kế toán / Giám đốc) rơi về `<div>`
+ * khối mặc định và xếp dọc thành bốn dòng.
+ *
+ * `grid-auto-flow: column` + `grid-auto-columns: 1fr`: mọi ô vào CÙNG MỘT
+ * HÀNG và rộng bằng nhau, không cần biết trước có mấy ô. Đây là lý do bản này
+ * thay hẳn `--three` (33.333% cứng) — số vai trò ký do backend trả về, ba hay
+ * bốn là tuỳ loại phiếu.
+ *
+ * `break-inside: avoid` để dãy chữ ký không bị cắt làm đôi sang trang sau —
+ * một tờ trình ký hai trang là chứng từ không dùng được.
+ */
+.erp-print__signatures {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  width: 100%;
+  margin-top: 8px;
+  break-inside: avoid;
+}
+
+.erp-print__signatures > div {
+  box-sizing: border-box;
+  text-align: center;
+  /* Chỗ trống để ký tay bên dưới chức danh. */
+  padding-bottom: 18mm;
+}
+
+/* Chức danh gãy đôi ("Người đề / nghị") làm lệch chiều cao giữa các ô. */
+.erp-print__signatures strong {
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+ * ĐẦU TRANG HAI CỘT (`masthead`)
+ * --------------------------------------------------------------------------
+ * Khác `header` ở chỗ tên chứng từ đứng NGANG TẦM logo chứ không nằm dưới —
+ * đó là cách bản in Drupal của biên bản bàn giao bày, và cũng là cách người
+ * đọc nhận ra tờ giấy trong một xấp.
+ *
+ * Cột trái rộng hơn vì nó ôm địa chỉ đầy đủ; cột phải chỉ có mấy dòng số hiệu.
+ */
+.erp-print__masthead {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0 16px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.erp-print__masthead-logo {
+  display: block;
+  max-width: 45mm;
+  max-height: 20mm;
+  margin-bottom: 4px;
+  object-fit: contain;
+}
+
+/* Địa chỉ / điện thoại in nhỏ hơn thân bài — chúng là chú thích của tên. */
+.erp-print__masthead-line {
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+.erp-print__masthead-doc {
+  align-self: end;
+}
+
+.erp-print__masthead-title {
+  margin: 0 0 6px;
+  font-size: 15pt;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/*
+ * Nhãn trái - giá trị phải. Giữ một khoảng hở tối thiểu để số hiệu dài không
+ * dính vào nhãn khi hai bên gần chạm nhau.
+ */
+.erp-print__masthead-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+}
+
+.erp-print__masthead-info > span:first-child {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.erp-print__masthead-info > span:last-child {
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+ * CỤM HAI CỘT CÓ VÁCH NGĂN (`fields` biến thể `justified`)
+ * -------------------------------------------------------------------------- */
+.erp-print__grid--split {
+  gap: 0;
+  padding-top: 6px;
+  border-top: 1px solid #000;
+}
+
+.erp-print__grid--split > div:first-child {
+  padding-right: 12px;
+  border-right: 1px solid #000;
+}
+
+.erp-print__grid--split > div:last-child {
+  padding-left: 12px;
+}
+
+.erp-print__pair {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 10px;
+}
+
+.erp-print__pair-label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/*
+ * Giá trị dài (địa chỉ công trình, tên pháp nhân) phải XUỐNG DÒNG và vẫn dồn
+ * về lề phải, chứ không đẩy nhãn ra khỏi cột.
+ */
+.erp-print__pair-value {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+ * CHÂN TRANG — địa chỉ đầy đủ của pháp nhân, in nhỏ ở cuối tờ giấy.
+ * -------------------------------------------------------------------------- */
+.erp-print__footer {
+  margin-top: 14px;
+  padding-top: 6px;
+  border-top: 1px solid #000;
+  font-size: 9.5pt;
+  text-align: center;
+}
+
+/*
+ * Khoảng giữ chỗ cho chân trang trong `<tfoot>` của `PrintPageFrame`. Chỉ có
+ * nghĩa khi in (chân trang lúc đó là `position: fixed`), trên màn hình ẩn đi.
+ */
+.erp-print__footer-space {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+ * BIÊN BẢN BÀN GIAO — bản gọn
+ * --------------------------------------------------------------------------
+ * Bản in Drupal của biên bản chữ nhỏ hơn hẳn tờ trình thanh toán: cả tờ giấy
+ * chỉ chiếm khoảng nửa trên trang A4, phần còn lại để trống cho hai chữ ký và
+ * dấu. Dùng chung cỡ 12pt của tờ trình thì cùng nội dung đó tràn gần kín trang
+ * và trông như một biểu mẫu khác hẳn.
+ *
+ * Vì vậy mọi quy tắc ở khối này bám lớp `--receipt_delivery` do
+ * `PrintForm` gắn theo id biểu mẫu — sửa ở đây KHÔNG đụng tới tờ trình.
+ *
+ * `min-height` + `flex` là để chân trang rơi xuống ĐÁY TRANG như bản Drupal
+ * chứ không dính ngay dưới chữ ký. 297mm trừ lề trên dưới của `@page`.
+ */
+.erp-print--receipt_delivery {
+  display: flex;
+  min-height: calc(297mm - 30mm);
+  flex-direction: column;
+  font-size: 9.5pt;
+  line-height: 1.3;
+}
+
+.erp-print--receipt_delivery .erp-print__footer {
+  /* Đẩy chân trang xuống đáy, phần trống dồn hết vào đây. */
+  margin-top: auto;
+  font-size: 8pt;
+}
+
+.erp-print--receipt_delivery .erp-print__masthead {
+  margin-bottom: 6px;
+}
+
+/*
+ * Logo bản Drupal chỉ cỡ con tem. Để 45mm như mặc định thì riêng cái logo đã
+ * cao bằng cả khối tên + địa chỉ bên dưới nó.
+ */
+.erp-print--receipt_delivery .erp-print__masthead-logo {
+  max-width: 26mm;
+  max-height: 13mm;
+}
+
+.erp-print--receipt_delivery .erp-print__org-name {
+  font-size: 9.5pt;
+}
+
+.erp-print--receipt_delivery .erp-print__masthead-line {
+  font-size: 8.5pt;
+  line-height: 1.25;
+}
+
+.erp-print--receipt_delivery .erp-print__masthead-title {
+  margin-bottom: 4px;
+  font-size: 13pt;
+}
+
+.erp-print--receipt_delivery .erp-print__masthead-info {
+  font-size: 9pt;
+}
+
+.erp-print--receipt_delivery .erp-print__grid--split {
+  margin-bottom: 8px;
+}
+
+.erp-print--receipt_delivery .erp-print__pair {
+  font-size: 9pt;
+}
+
+/* Bảng nội dung: ô sát hơn và chữ nhỏ hơn thân bài, đúng bản Drupal. */
+.erp-print--receipt_delivery .erp-print__table {
+  margin: 6px 0;
+  font-size: 8.5pt;
+}
+
+.erp-print--receipt_delivery .erp-print__table th,
+.erp-print--receipt_delivery .erp-print__table td {
+  padding: 2px 4px;
+}
+
+/* `.erp-print__line` là class chung của cả khối `text` lẫn khối `fields`. */
+.erp-print--receipt_delivery .erp-print__line {
+  font-size: 9pt;
+}
+
+/*
+ * Hai ô ký: bản Drupal chừa sẵn một khoảng trống lớn bên dưới chức danh để ký
+ * tay và đóng dấu — đó là lý do nửa dưới trang giấy để trống.
+ */
+.erp-print--receipt_delivery .erp-print__signatures {
+  margin-top: 10px;
+}
+
+.erp-print--receipt_delivery .erp-print__signatures > div {
+  padding-bottom: 24mm;
+  font-size: 9.5pt;
+}
+
+
+/* --------------------------------------------------------------------------
+ * 1.6. BỔ SUNG CÁC BIỂU MẪU VĂN BẢN HÀNH CHÍNH (VĂN BẢN ĐI)
+ * -------------------------------------------------------------------------- */
+
+.erp-print__page {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-print__page > tbody > tr > td,
+.erp-print__page > tfoot > tr > td {
+  padding: 0;
+  border: none;
+}
+
+/* Đầu trang 2 cột dùng chung cho Công văn, Quyết định, Thông báo */
+.erp-print__meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.erp-print__meta-left {
+  flex: 0 0 52%;
+  max-width: 52%;
+}
+
+.erp-print__meta-left--wide {
+  flex: 0 0 55%;
+  max-width: 55%;
+}
+
+.erp-print__meta-right {
+  flex: 0 0 46%;
+  max-width: 46%;
+  text-align: right;
+}
+
+.erp-print__meta-right--narrow {
+  flex: 0 0 44%;
+  max-width: 44%;
+  text-align: right;
+}
+
+.erp-print__meta-logo {
+  max-height: 52px;
+  max-width: 100%;
+  margin-bottom: 8px;
+  object-fit: contain;
+  display: block;
+}
+
+.erp-print__meta-number {
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+.erp-print__meta-subject {
+  font-style: italic;
+  margin-top: 3px;
+  text-wrap: pretty;
+}
+
+.erp-print__meta-org {
+  font-weight: 700;
+  font-size: 10.5pt;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.erp-print__meta-date {
+  font-style: italic;
+  font-size: 10.5pt;
+  margin-top: 6px;
+}
+
+/* Khối tiêu đề chính giữa */
+.erp-print__center-heading {
+  text-align: center;
+  margin: 22px 0 16px;
+}
+
+.erp-print__center-title {
+  margin: 0;
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.erp-print__center-subtitle {
+  font-style: italic;
+  font-size: 11pt;
+  margin-top: 6px;
+  color: #222;
+}
+
+.erp-print__short-rule {
+  width: 80px;
+  border-bottom: 1.5px solid #000;
+  margin: 8px auto 0;
+}
+
+.erp-print__authority {
+  text-align: center;
+  font-weight: 700;
+  font-size: 12pt;
+  text-transform: uppercase;
+  margin: 16px 0;
+}
+
+.erp-print__lead-in {
+  text-align: center;
+  font-weight: 700;
+  font-size: 12pt;
+  letter-spacing: 1px;
+  margin: 18px 0 12px;
+}
+
+.erp-print__sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.erp-print__doc-number {
+  font-size: 11pt;
+}
+
+.erp-print__subject {
+  font-size: 11.5pt;
+  font-style: italic;
+}
+
+.erp-print__to-block {
+  text-align: center;
+  margin: 12px 0 16px;
+  font-size: 12pt;
+}
+
+.erp-print__to-label {
+  text-decoration: underline;
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.erp-print__basis {
+  font-style: italic;
+  margin: 12px 0 16px;
+  line-height: 1.6;
+  text-align: justify;
+  font-size: 11pt;
+}
+
+.erp-print__basis p,
+.erp-print__basis div,
+.erp-print__basis li {
+  text-indent: 12mm;
+  margin-bottom: 4px;
+}
+
+.erp-print__content-body {
+  margin: 14px 0;
+  line-height: 1.6;
+  text-align: justify;
+  font-size: 11pt;
+}
+
+.erp-print__content-body p {
+  text-indent: 12mm;
+  margin-bottom: 8px;
+}
+
+.erp-print__decision-body {
+  margin: 16px 0;
+  line-height: 1.65;
+  text-align: justify;
+  font-size: 11pt;
+}
+
+.erp-print__decision-body p {
+  text-indent: 12mm;
+  margin-bottom: 10px;
+}
+
+.erp-print__decision-body ul,
+.erp-print__decision-body ol {
+  padding-left: 18mm;
+  margin-bottom: 8px;
+}
+
+.erp-print__bottom-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  break-inside: avoid;
+}
+
+.erp-print__recipients {
+  flex: 0 0 45%;
+  font-size: 10pt;
+  line-height: 1.45;
+}
+
+.erp-print__recipients-title {
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.erp-print__recipients-item {
+  font-style: italic;
+}
+
+.erp-print__signer {
+  flex: 0 0 50%;
+  text-align: center;
+}
+
+.erp-print__signer-date {
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+/*
+ * Dòng địa danh-ngày đứng một hàng RIÊNG phía trên hai cột chữ ký, cùng lưới
+ * 50/50 nên vẫn nằm giữa cột bên phải. Để nó trong cột phải thì cột đó cao hơn
+ * đúng một dòng, và vai trò, dòng hướng dẫn, tên người ký của hai bên không
+ * còn thẳng hàng nhau.
+ */
+.erp-print__signer-date-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  break-inside: avoid;
+  break-after: avoid;
+}
+
+.erp-print__signer-date-row + .erp-print__bottom-row {
+  margin-top: 0;
+}
+
+.erp-print__signer-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 22mm;
+}
+
+.erp-print__signer-org {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+.erp-print__signer-role {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11pt;
+  margin-top: 3px;
+}
+
+.erp-print__signer-hint {
+  font-style: italic;
+  font-size: 9.5pt;
+  color: #555;
+  margin-top: 2px;
+}
+
+.erp-print__signer-gap {
+  height: 28mm;
+}
+
+.erp-print__signer-gap--22 {
+  height: 22mm;
+}
+
+.erp-print__signer-gap--25 {
+  height: 25mm;
+}
+
+.erp-print__signer-gap--30 {
+  height: 30mm;
+}
+
+.erp-print__signer-gap--32 {
+  height: 32mm;
+}
+
+.erp-print__signer-name {
+  font-weight: 700;
+  font-size: 11pt;
+}
+
+.erp-print__to-target {
+  font-size: 11.5pt;
+  font-weight: 700;
+}
+
+.erp-print__closing {
+  font-style: italic;
+  font-weight: 700;
+  margin: 14px 0 20px;
+  padding-left: 12mm;
+}
+
+.erp-print__col-note {
+  width: 220px;
+  text-align: left;
+}
+
+.erp-print__title--spaced {
+  margin-top: 16px;
+}
+
+.erp-print__meeting-participants {
+  margin: 10px 0;
+  font-size: 11pt;
+  line-height: 1.5;
+}
+
+.erp-print__section-title {
+  margin: 10px 0 6px;
+  font-size: 11pt;
+  font-weight: 700;
+}
+
+.erp-print__meeting-participant-table,
+.erp-print__meeting-box-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 12px;
+}
+
+.erp-print__meeting-participant-table th,
+.erp-print__meeting-participant-table td,
+.erp-print__meeting-box-content table th,
+.erp-print__meeting-box-content table td {
+  border: 1px solid #333;
+  padding: 6px 8px;
+  vertical-align: top;
+  font-size: 10.5pt;
+}
+
+.erp-print__meeting-participant-table th,
+.erp-print__meeting-box-content table th {
+  background: #f0f0f0;
+  font-weight: 700;
+  text-align: center;
+}
+
+.erp-print__handover-header {
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid #000;
+  margin-bottom: 14px;
+}
+
+.erp-print__handover-org {
+  font-size: 9.5pt;
+  line-height: 1.45;
+}
+
+.erp-print__handover-org-name {
+  font-size: 10.5pt;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.erp-print__handover-meta {
+  font-size: 10pt;
+  line-height: 1.5;
+}
+
+/* Biểu mẫu Biên bản bàn giao */
+.erp-print__handover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #000;
+  margin: 14px 0;
+  font-size: 10.5pt;
+}
+
+.erp-print__handover-col {
+  padding: 10px 14px;
+}
+
+.erp-print__handover-col:first-child {
+  border-right: 1px solid #000;
+}
+
+.erp-print__handover-line {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.erp-print__handover-line:last-child {
+  margin-bottom: 0;
+}
+
+.erp-print__handover-label {
+  font-weight: 700;
+  width: 95px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.erp-print__handover-val {
+  flex: 1;
+  text-align: left;
+  word-break: break-word;
+}
+
+.erp-print__commitment {
+  margin: 14px 0;
+  font-size: 10.5pt;
+  line-height: 1.6;
+}
+
+/* Biểu mẫu Biên bản họp */
+.erp-print__meeting-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+
+.erp-print__meeting-table td,
+.erp-print__meeting-table th {
+  border: 1px solid #333;
+  padding: 6px 10px;
+  font-size: 11pt;
+}
+
+.erp-print__meeting-table .meeting-head {
+  background: #f0f0f0;
+  font-weight: 700;
+  width: 130px;
+}
+
+.erp-print__meeting-box {
+  border: 1px solid #333;
+  margin: 14px 0;
+}
+
+.erp-print__meeting-box-title {
+  border-bottom: 1px solid #333;
+  padding: 6px;
+  text-align: center;
+  font-weight: 700;
+  background: #f8f8f8;
+}
+
+.erp-print__meeting-box-content {
+  padding: 10px;
+  min-height: 60mm;
+  line-height: 1.5;
+}
+
+.erp-print__meeting-box-content table:last-child {
+  margin-bottom: 0;
+}
+
+/* Biểu mẫu Công văn tạm ứng */
+.erp-print__bank-details {
+  margin: 12px 0;
+  padding: 8px 12px;
+  background: #fafafa;
+  border-left: 3px solid #666;
+  font-size: 11pt;
+  line-height: 1.5;
+}
+
+.erp-print__bank-details-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.erp-print__text-right {
+  text-align: right;
+}
+
+.erp-print__cell--empty {
+  text-align: center;
+  font-style: italic;
+  padding: 12px;
+}
+
+.erp-print__bold {
+  font-weight: 700;
+}
+
+.erp-print__note-line {
+  margin: 0 0 4px 0;
+  font-style: italic;
+}
+
+.erp-print__handover-list {
+  margin-top: 14px;
+}
+
+.erp-print__handover-list-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 11pt;
+}
+
+.erp-print__dispatch-coop {
+  margin: 14px 0 4px;
+  font-size: 11.5pt;
+}
+
+.erp-print__dispatch-thanks {
+  font-size: 11.5pt;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.erp-print__page-content {
+  vertical-align: top;
+}
+
+/* --------------------------------------------------------------------------
+ * 2. CỤM LÀM VIỆC CẠNH TỜ TRÌNH
+ * --------------------------------------------------------------------------
+ * Bản dựng của trường `nothing_1` (display `page_advance_print`). Không in ra
+ * giấy, nên ở đây dùng token bình thường như mọi màn khác.
+ */
+
+.erp-print-aside {
+  flex: 0 0 23rem;
+  max-width: 23rem;
+}
+
+/*
+ * ============================================================================
+ * MỘT HÀNG NÚT, GIÃN LẤP KÍN
+ * ============================================================================
+ * Thực tế mỗi phiếu chỉ có một đến hai nút duyệt ("Chuyển bước", và "Bổ sung"
+ * với ai đủ quyền). Nên gộp chung với In / Xuất word thành một hàng: luôn có
+ * ít nhất ba nút, không còn cảnh một nút đứng một mình.
+ *
+ * `flex: 1 1 auto` là phần làm nên bố cục:
+ *
+ *  - `flex-grow: 1` cho mọi nút giãn ra lấp kín hàng, nên KHÔNG còn lề phải
+ *    răng cưa như bản `justify-content: flex-end` ban đầu.
+ *  - `flex-basis: auto` (chứ không phải `0`) cho phần giãn chia theo ĐỘ DÀI
+ *    NHÃN. Để `0` thì nút nào cũng rộng bằng nhau, và "In" hai chữ cái sẽ to
+ *    ngang "Xuất word" — thừa chỗ ở nút này, chật ở nút kia.
+ *
+ * Bốn nút trở lên thì tự xuống hàng, và vì vẫn `flex-grow` nên hàng nào cũng
+ * được lấp kín chứ không cụt một đoạn.
+ */
+.erp-print-aside__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.erp-print-aside__actions > .btn {
+  flex: 1 1 auto;
+  /* Nhãn ngắn như "In" vẫn phải đủ rộng để bấm trúng. */
+  min-width: 84px;
+}
+
+.erp-print-aside__card {
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--erp-border);
+  /* Container dùng radius lớn; phần tử bên trong dùng sm/md. */
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-print-aside__title {
+  margin: 0 0 12px;
+}
+
+.erp-print-aside__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-print-aside__table th {
+  padding: 0 4px 8px;
+  border-bottom: 1px solid var(--erp-border-strong);
+  font-weight: 600;
+  text-align: left;
+  color: var(--erp-text-secondary);
+}
+
+.erp-print-aside__table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.erp-print-aside__table tbody tr {
+  transition: background-color 180ms ease;
+}
+
+.erp-print-aside__table tbody tr:hover {
+  background: var(--erp-surface-hover);
+}
+
+/* Cột thời gian phải thẳng hàng khi đọc dọc nhật ký duyệt. */
+.erp-print-aside__table td:nth-child(2) {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/*
+ * Ghi chú duyệt là bắt buộc nên gần như dòng nào cũng có — cho xuống dòng riêng
+ * để cột trạng thái không bị kéo dài ra.
+ */
+.erp-print-aside__note {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-print-aside__tabs {
+  margin-bottom: -1px;
+}
+
+.erp-print-aside__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-print-aside__label {
+  margin: 0 0 4px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-print-aside__label--section {
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-print-aside__value {
+  margin: 0;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/*
+ * Trạng thái "Đã thanh toán" — nền mềm + icon + nhãn chữ. Không bao giờ chỉ
+ * dùng màu để nói lên ý nghĩa.
+ */
+.erp-print-aside__paid {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+  font-weight: 600;
+}
+
+.erp-print-aside__info {
+  margin: 0 0 6px;
+}
+
+/* Tiêu đề mục tệp. */
+.erp-print-aside__files-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-print-aside__files-head .erp-print-aside__label {
+  margin: 0;
+}
+
+.erp-print-aside__files {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.erp-print-aside__files li {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 4px;
+  border-radius: var(--erp-radius-sm);
+  transition: background-color 180ms ease;
+}
+
+.erp-print-aside__files li:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-print-aside__size {
+  flex: none;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-print-aside__empty {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * KHONG khai lai focus ring o day: `base/reset.css` da co `:focus-visible`
+ * toan cuc voi dung hai dong nay. Chep lai la mot cho nua phai nho sua khi
+ * doi mau focus.
+ */
+
+/* --------------------------------------------------------------------------
+ * Màn hẹp — theo breakpoint của Design System (≤1024px)
+ * -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .erp-print-page {
+    padding: 12px;
+  }
+
+  .erp-print-page__layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /*
+   * Cụm làm việc lên TRƯỚC tờ trình: trên màn hẹp việc cần làm là duyệt phiếu,
+   * còn tờ giấy chỉ để đọc lại. Bắt người dùng cuộn qua cả trang A4 mới tới
+   * nút duyệt là sai nhiệm vụ.
+   */
+  .erp-print-aside {
+    order: -1;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 210mm;
+  }
+
+  .erp-print-aside__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-print {
+    /* Lề in 25mm trên màn 375px chỉ còn lại một cột chữ hẹp. */
+    padding: 16px;
+    font-size: 11pt;
+  }
+
+  .erp-print__grid,
+  .erp-print-aside__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+   * Bốn ô ký cạnh nhau trên màn 375px thì mỗi ô còn ~80px — chức danh tràn ra
+   * ngoài. Xuống hai hàng, mỗi hàng hai ô.
+   *
+   * `grid-auto-flow: row` là phần BẮT BUỘC: quy tắc gốc chảy theo cột nên tự
+   * sinh cột mới cho từng ô, `grid-template-columns` sẽ không có tác dụng nếu
+   * không trả luồng về hàng.
+   */
+  .erp-print__signatures {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Khi in
+ * -------------------------------------------------------------------------- */
+
+@page {
+  size: auto;
+  margin: 15mm 20mm 15mm 25mm;
+}
+
+@media print {
+  /*
+   * ==========================================================================
+   * IN THEO VÙNG `#print` — CÙNG CƠ CHẾ VỚI print.js BÊN DRUPAL
+   * ==========================================================================
+   * Bên Drupal, nút in là print.js và nó trỏ vào `#print` (`<table id="print">`
+   * trong bản in; nút xuất Word cũng khai `printable: '#print'`). Ở đây làm y
+   * hệt bằng CSS: chỉ nhánh mang `#print` được vẽ ra giấy, mọi thứ khác trong
+   * `body` biến mất.
+   *
+   * Cái được: muốn thêm/bớt thứ gì khỏi trang giấy thì đưa nó VÀO hoặc RA khỏi
+   * `#print`. Không còn phải đi liệt kê từng thứ cần ẩn rồi quên một cái —
+   * đúng lỗi vừa gặp: `.erp-print-page__actions` không có quy tắc nào nên chính
+   * nút "In" cũng nằm trên trang giấy.
+   *
+   * `#print` do `PrintForm` gắn lên tờ giấy, nên mọi trang in của app đều được
+   * bảo vệ mà không phải khai lại.
+   */
+  body * {
+    visibility: hidden;
+  }
+
+  #print,
+  #print * {
+    visibility: visible;
+  }
+
+  /*
+   * `visibility: hidden` chỉ làm phần tử TRONG SUỐT — nó VẪN CHIẾM CHỖ. Để
+   * nguyên thì trang một mở đầu bằng một khoảng trắng đúng bằng chiều cao
+   * thanh nút. Nên phần vỏ đã biết vẫn phải gỡ hẳn bằng `display: none`.
+   *
+   * KHÔNG kéo `#print` lên đầu bằng `position: absolute` (mẹo thường thấy của
+   * kiểu này): khối absolute không cắt trang một cách tin cậy, mà tờ trình
+   * thanh toán thì dài nhiều trang. Gỡ vỏ đi thì `#print` tự nằm ở đầu.
+   *
+   * Phần vỏ bọc ngoài (`.erp-print-page`, `__layout`, `__sheet`) KHÔNG cần cho
+   * hiện lại: `visibility` để con ghi đè được cha, nên `#print` vẫn vẽ ra dù
+   * mấy lớp bọc nó đang ẩn — và nền / bóng đổ của chúng thì đúng là không nên
+   * lên giấy.
+   */
+  .erp-print-page__actions,
+  .erp-print-aside,
+  .erp-toaster {
+    display: none;
+  }
+
+  html,
+  body,
+  #root {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .erp-print-page {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0;
+    background: none;
+  }
+
+  .erp-print-page__layout {
+    display: block;
+  }
+
+  /*
+   * Bề rộng tờ giấy do `@page` quyết, không do khung màn hình: giữ `210mm` +
+   * `flex` của bản xem trên màn hình thì trình duyệt phải co nội dung lại cho
+   * vừa khổ và chữ ra nhỏ hơn cỡ đã đặt.
+   */
+  .erp-print-page__sheet {
+    width: auto;
+    max-width: none;
+  }
+
+  .erp-print {
+    max-width: none;
+    /* Lề đã do `@page` lo; giữ padding nữa là lề đôi. */
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .erp-print__table {
+    /* Bảng dài vẫn được cắt sang trang, nhưng KHÔNG cắt giữa một dòng. */
+    break-inside: auto;
+  }
+
+  .erp-print__table tr {
+    break-inside: avoid;
+  }
+
+  .erp-print__table thead {
+    /* Sang trang mới thì lặp lại tiêu đề cột. */
+    display: table-header-group;
+  }
+
+  /*
+   * ========================================================================
+   * CHÂN TRANG PHÁP NHÂN Ở ĐÁY MỖI TRANG (`PrintPageFrame`)
+   * ========================================================================
+   * Chân trang chảy theo nội dung thì chỉ đứng ngay dưới dòng chữ cuối — văn
+   * bản ngắn là nó lơ lửng giữa trang. `position: fixed` khi in: Chrome vẽ
+   * phần tử fixed lên MỌI trang, bám đáy vùng in (bên trong lề `@page`).
+   *
+   * Đi kèm bắt buộc: `tfoot` giữ một khoảng trống cao hơn chân trang, trình
+   * duyệt lặp `tfoot` ở cuối mỗi trang nên nội dung không chạy đè lên nó.
+   * Chân trang dài hơn 2 dòng thì nâng `height` của khoảng trống theo.
+   *
+   * Mọi tổ tiên của chân trang KHÔNG được có `transform`/`filter` khi in —
+   * có là `fixed` bám theo tổ tiên đó thay vì trang giấy.
+   */
+  .erp-print__page tfoot {
+    display: table-footer-group;
+  }
+
+  .erp-print__footer-space {
+    display: block;
+    height: 16mm;
+  }
+
+  .erp-print__footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    background: #fff;
+  }
+
+  /*
+   * Biên bản bàn giao dựng `min-height` + flex trên màn hình để đẩy chân trang
+   * xuống đáy tờ. Khi in chân trang đã fixed, giữ `min-height` một trang là
+   * nội dung + khoảng giữ chỗ tràn sang một trang trắng thứ hai.
+   */
+  .erp-print--receipt_delivery {
+    display: block;
+    min-height: 0;
+  }
+
+  .erp-print--receipt_delivery .erp-print__footer-space {
+    height: 12mm;
+  }
+}
+
+/*
+ * ============================================================================
+ * THÔNG TIN NGƯỜI LAO ĐỘNG (`employee_labor_book.print.yml`)
+ * ============================================================================
+ * Mười một mục, phần lớn là bảng — ở 12pt mặc định của tờ trình thì một người
+ * có vài chục lần nghỉ phép trong năm là 4–5 trang. 10,5pt đưa về 2–3 trang
+ * mà vẫn đọc được trên giấy A4.
+ *
+ * TIÊU ĐỀ MỤC ("I. THÔNG TIN CHUNG"…) là section `text` in đậm — DSL không có
+ * loại "tiêu đề mục" riêng, và thêm một loại chỉ để có khoảng cách là mở rộng
+ * DSL vì chuyện trình bày. Chúng là `<p>` CON TRỰC TIẾP của `#print` chứa
+ * `<strong>`; dòng "Nhãn: giá trị" của section `fields` cũng có `<strong>`
+ * nhưng nằm trong một `<div>` bọc, nên combinator `>` không bắt nhầm.
+ */
+.erp-print--employee_labor_book {
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+/*
+ * ============================================================================
+ * DANH SÁCH CBNV ĐƯỢC ĐIỀU CHỈNH THU NHẬP (`PolicyAdjustmentSheet`)
+ * ============================================================================
+ * Bảng rộng: hai phía × (Tổng + 3 khoản + Phụ cấp) + 5 cột cố định = 15 cột
+ * với dữ liệu thật. Khổ dọc 170mm (sau lề) thì mỗi cột tiền còn ~11mm, số tám
+ * chữ số tràn ra. Vì vậy tờ này in KHỔ NGANG.
+ *
+ * KHỔ NGANG PHẢI LÀ TRANG ĐƯỢC ĐẶT TÊN (`@page pal-landscape`), không phải một
+ * `@page { size: landscape }` trần: CSS là toàn cục, và `@page` trần ở đây sẽ
+ * xoay luôn MỌI bản in khác của app (tờ trình, quyết định, đơn từ…). Cùng lý do,
+ * mọi mẫu in có lề riêng (đơn bán, OnTime, JD, công trường) đều dùng trang
+ * đặt tên — `@page` trần DUY NHẤT của app là luật chung ở mục "Khi in" của file này.
+ *
+ * Luật màu vẫn là luật TỜ GIẤY: chữ đen nền trắng, không dùng token.
+ */
+@page pal-landscape {
+  size: A4 landscape;
+  margin: 10mm 10mm 12mm;
+}
+
+/*
+ * TÊN TRANG ĐẶT Ở GỐC `html`, KHÔNG ĐẶT Ở TỜ GIẤY. Tên trang ĐỔI giữa hai khối
+ * là một điểm ngắt trang BẮT BUỘC: đặt `page` lên `.erp-print` thì các phần tử
+ * đứng sau nó trong `body` (bong bóng trợ lý, toaster — đều đã ẩn khi in) mang
+ * tên `auto`, và Chrome mở thêm MỘT TRANG TRẮNG chỉ để chứa chúng. Đo bằng
+ * `Page.printToPDF`: 7 người ra 2 trang, trang 2 rỗng. Đặt ở gốc thì mọi khối
+ * con (`page: auto` = kế thừa) cùng một tên, không còn điểm đổi nào.
+ *
+ * `:has()` giữ luật này trong đúng trang in danh sách — trang khác không có
+ * `.erp-print--policy-adjustment` nên vẫn in theo `@page` chung.
+ */
+html:has(.erp-print--policy-adjustment) {
+  page: pal-landscape;
+}
+
+/* Trên màn hình: khung tờ giấy rộng theo khổ ngang (297mm). */
+.erp-print-page__sheet--landscape {
+  flex-basis: 297mm;
+  width: 297mm;
+}
+
+.erp-print--policy-adjustment {
+  padding: 10mm 10mm 12mm;
+  font-size: 10pt;
+  line-height: 1.3;
+}
+
+.erp-pal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-pal__logo {
+  flex: 0 0 40%;
+}
+
+.erp-pal__logo img {
+  max-height: 60px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.erp-pal__org {
+  flex: 0 0 58%;
+  text-align: right;
+}
+
+.erp-pal__org-name {
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.erp-pal__org-slogan {
+  font-size: 12pt;
+}
+
+.erp-pal__title {
+  margin: 16px 0 4px;
+  font-size: 14pt;
+  font-weight: 700;
+  text-align: center;
+}
+
+.erp-print .erp-pal__subtitle {
+  margin: 0 0 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.erp-pal__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+
+.erp-pal__table th,
+.erp-pal__table td {
+  border: 1px solid #000;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+.erp-pal__table thead th {
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Hàng tên phòng ban gốc — chép `.pal-group` của bản Drupal. */
+.erp-pal__group td {
+  background: #e2e8f0;
+  font-weight: 700;
+  text-align: left;
+}
+
+.erp-pal__center {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.erp-pal__num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pal__strong {
+  font-weight: 700;
+}
+
+.erp-pal__name {
+  white-space: nowrap;
+}
+
+.erp-pal__empty {
+  padding: 18px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Ba ô ký — chừa chỗ ký tay bên dưới chức danh. */
+.erp-pal__signs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 14px;
+  padding-bottom: 25mm;
+  font-weight: 700;
+  text-align: center;
+  break-inside: avoid;
+}
+
+@media print {
+  /* Nền hàng phòng ban phải lên giấy — trình duyệt mặc định bỏ màu nền. */
+  .erp-pal__group td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .erp-print--policy-adjustment {
+    padding: 0;
+  }
+
+  /*
+   * Luật này nằm SAU khối `@media print` chung ở trên nên `width: 297mm` của
+   * bản màn hình sẽ thắng `width: auto` của khối đó — tờ giấy rộng hơn vùng in
+   * 20mm và trình duyệt co cả bảng lại. Trả về `auto` ngay trong khối in.
+   */
+  .erp-print-page__sheet--landscape {
+    width: auto;
+  }
+
+  .erp-pal__table tr {
+    break-inside: avoid;
+  }
+
+  .erp-pal__table thead {
+    display: table-header-group;
+  }
+}
+
+.erp-print--employee_labor_book > .erp-print__line:has(> strong) {
+  margin-top: 10px;
+  margin-bottom: 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #000;
+}
+
+.erp-print--employee_labor_book .erp-print__table {
+  font-size: 9.5pt;
+}
+
+.erp-print--employee_labor_book .erp-print__masthead-logo {
+  max-width: 30mm;
+  max-height: 15mm;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-print-aside__table tbody tr,
+  .erp-print-aside__files li {
+    transition: none;
+  }
+}

@@ -1,0 +1,246 @@
+/* ==========================================================================
+   QS Pro — lưới dự toán theo UI/UX Master Package 2027 (Wave 1):
+   S01 Enterprise Grid States · S02 Evidence Inspector · V03 Quantity
+   Workspace · V04 Estimate grid · V05 Focus Grid.
+   Tiền tố `qsp-` riêng (đã soát styles/components: không trùng lớp nào).
+   Chỉ dùng token màu có sẵn — không hard-code màu / spacing tại view.
+   ========================================================================== */
+
+/* ---- Mật độ: font giữ nguyên, chỉ đổi chiều cao dòng + đệm ô ------------- */
+.qsp-grid { --qsp-pad-y: 6px; --qsp-pad-x: 10px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.qsp-grid[data-density='comfortable'] { --qsp-pad-y: 12px; --qsp-pad-x: 12px; }
+.qsp-grid[data-density='compact'] { --qsp-pad-y: 6px; --qsp-pad-x: 10px; }
+.qsp-grid[data-density='dense'] { --qsp-pad-y: 3px; --qsp-pad-x: 8px; }
+
+.qsp-card > .card-body { display: flex; flex-direction: column; gap: 10px; padding: 12px 16px 14px; }
+.qsp-card .estimate-gate-bar,
+.qsp-card .estimate-revision-note { margin: 0; }
+
+/* ---- Thanh công cụ ------------------------------------------------------ */
+.qsp-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.qsp-toolbar__spacer { flex: 1 1 0; }
+.qsp-search { position: relative; flex: 1 1 240px; max-width: 360px; }
+.qsp-search > i { position: absolute; top: 50%; left: 10px; color: var(--erp-text-tertiary); transform: translateY(-50%); pointer-events: none; }
+.qsp-search .form-control { min-height: 34px; padding-left: 32px; }
+.qsp-segment,
+.qsp-density { display: inline-flex; overflow: hidden; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); }
+.qsp-segment button,
+.qsp-density button { display: inline-flex; align-items: center; gap: 4px; min-height: 32px; padding: 4px 10px; border: 0; background: none; color: var(--erp-text-secondary); font-size: .8125rem; font-weight: 500; white-space: nowrap; transition: background-color .15s ease, color .15s ease; }
+.qsp-segment button + button,
+.qsp-density button + button { border-left: 1px solid var(--erp-border); }
+.qsp-segment button:hover,
+.qsp-density button:hover { background: var(--erp-surface-hover); color: var(--erp-text-primary); }
+.qsp-segment button.is-active,
+.qsp-density button.is-active { background: var(--erp-action-secondary-soft); color: var(--erp-action-secondary); font-weight: 600; }
+.qsp-segment button:focus-visible,
+.qsp-density button:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: -2px; }
+.qsp-tool { display: inline-flex; align-items: center; gap: 4px; min-height: 34px; }
+.qsp-count { display: inline-grid; place-items: center; min-width: 18px; height: 18px; margin-left: 2px; padding: 0 5px; border-radius: var(--erp-radius-pill); background: var(--erp-warning-soft); color: var(--erp-warning); font-size: .6875rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---- Thao tác hàng loạt: tick nhiều dòng rồi xử lý một lần ------------ */
+.qsp-bulkbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-action-secondary-soft); }
+.qsp-bulkbar__count { margin-right: 4px; color: var(--erp-text-secondary); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.qsp-bulkbar__count strong { color: var(--erp-text-primary); }
+.qsp-check-cell { width: 1%; padding-right: 0 !important; padding-left: 10px !important; }
+.qsp-check-cell .form-check { min-height: 0; margin: 0; }
+
+/* ---- Vùng cuộn + bảng -------------------------------------------------- */
+.qsp-scroll { overflow: auto; min-height: 240px; max-height: calc(100vh - var(--erp-header-height) - 260px); border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); }
+.qsp-scroll:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 1px; }
+.qsp-scroll > .table-responsive,
+.qsp-scroll > .table { margin: 0; }
+.qsp-table { width: 100%; min-width: 980px; border-collapse: separate; border-spacing: 0; color: var(--erp-text-primary); font-size: .8125rem; line-height: 1.35; }
+.qsp-table th { position: sticky; top: 0; z-index: 2; padding: 8px var(--qsp-pad-x); border-bottom: 1px solid var(--erp-border-strong); background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .75rem; font-weight: 600; text-align: left; white-space: nowrap; }
+.qsp-table td { padding: var(--qsp-pad-y) var(--qsp-pad-x); border-bottom: 1px solid var(--erp-border); vertical-align: middle; }
+.qsp-num { text-align: right !important; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.qsp-strong { font-weight: 600; }
+.qsp-muted { color: var(--erp-text-tertiary); }
+.qsp-code { color: var(--erp-text-secondary); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.qsp-col-name { min-width: 220px; }
+.qsp-name { font-weight: 500; }
+.qsp-sub { display: block; margin-top: 2px; overflow: hidden; max-width: 420px; color: var(--erp-text-tertiary); font-size: .75rem; font-weight: 400; text-overflow: ellipsis; white-space: nowrap; }
+.qsp-sub code { font-size: .75rem; }
+.qsp-source { max-width: 220px; overflow: hidden; color: var(--erp-text-secondary); text-overflow: ellipsis; white-space: nowrap; }
+.qsp-delta--off { color: var(--erp-danger); font-weight: 600; }
+.qsp-actions { white-space: nowrap; }
+.qsp-actions .btn { margin: 1px 4px 1px 0; padding: .15rem .5rem; font-size: .75rem; }
+.qsp-expand { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 4px; padding: 0; border: 0; border-radius: var(--erp-radius-sm); background: none; color: var(--erp-text-secondary); vertical-align: middle; }
+.qsp-expand:hover { background: var(--erp-surface-hover); }
+.qsp-expand:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 0; }
+/*
+ * Gọn / Dày: MỘT dòng mỗi hàng để đạt 32–36px / 28–32px (mục 4). Dòng phụ
+ * (công thức, gross − cửa, tách giá, kiểm chéo, trùng tờ) chỉ hiện ở Thoáng;
+ * trạng thái hàng + Evidence Inspector vẫn giữ đủ thông tin đó.
+ */
+.qsp-grid:not([data-density='comfortable']) .qsp-sub,
+.qsp-grid:not([data-density='comfortable']) .estimate-dup-tag { display: none; }
+.qsp-grid:not([data-density='comfortable']) .qsp-table td { white-space: nowrap; }
+.qsp-grid:not([data-density='comfortable']) .qsp-name { display: block; overflow: hidden; max-width: 380px; text-overflow: ellipsis; }
+.qsp-grid:not([data-density='comfortable']) .qsp-gates { flex-wrap: nowrap; }
+.qsp-grid:not([data-density='comfortable']) .erp-badge { white-space: nowrap; }
+.qsp-grid[data-density='dense'] .erp-badge { padding-block: 0; }
+.qsp-grid[data-density='dense'] .estimate-gate-chip { padding-block: 0; }
+/*
+ * Nút trong ô thao tác: `.btn-sm` chung có min-height 32px (vùng chạm) làm hàng
+ * vượt chuẩn mật độ. Gọn/Dày là chế độ chuột + bàn phím nên thu nút; Thoáng và
+ * theme Field (công trường, cảm ứng) giữ nguyên vùng chạm.
+ */
+:root:not([data-theme='field']) .qsp-grid[data-density='compact'] { --qsp-pad-y: 4px; }
+:root:not([data-theme='field']) .qsp-grid[data-density='compact'] .qsp-actions .btn { min-height: 24px; padding: 0 .5rem; }
+:root:not([data-theme='field']) .qsp-grid[data-density='dense'] .qsp-actions .btn { min-height: 22px; padding: 0 .45rem; }
+.qsp-nowrap { white-space: nowrap; }
+.qsp-sub--badge { overflow: visible; }
+
+/* ---- S01 — trạng thái hàng -------------------------------------------- */
+.qsp-row { cursor: pointer; transition: background-color .12s ease; }
+.qsp-row:hover > td { background: var(--erp-surface-hover); }
+.qsp-row--error > td:first-child { box-shadow: inset 3px 0 0 var(--erp-danger); }
+.qsp-row--conflict > td:first-child { box-shadow: inset 3px 0 0 var(--erp-danger); }
+.qsp-row--assumption > td:first-child { box-shadow: inset 3px 0 0 var(--erp-warning); }
+.qsp-row--changed > td:first-child { box-shadow: inset 3px 0 0 var(--erp-info); }
+.qsp-row--ai > td:first-child { box-shadow: inset 3px 0 0 var(--erp-intelligence); }
+.qsp-row--excluded > td { color: var(--erp-text-tertiary); text-decoration: line-through; text-decoration-color: var(--erp-border-strong); }
+.qsp-row--excluded .qsp-actions,
+.qsp-row--excluded .erp-badge { text-decoration: none; }
+.qsp-row.is-unmatched > td { background: var(--erp-danger-soft); }
+.qsp-row.is-selected > td { background: var(--erp-action-secondary-soft); }
+.qsp-row.is-selected > td:first-child { box-shadow: inset 3px 0 0 var(--erp-action-secondary); }
+.qsp-row--total > td { background: var(--erp-surface-secondary); color: var(--erp-text-primary); font-weight: 600; }
+.qsp-row--group > td { padding-top: 8px; padding-bottom: 8px; border-bottom-color: var(--erp-border-strong); }
+.qsp-row--group i { color: var(--erp-text-tertiary); }
+.qsp-group-meta { margin-left: 8px; color: var(--erp-text-tertiary); font-size: .75rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.qsp-table tfoot .qsp-row--total > td { position: sticky; bottom: 0; z-index: 1; border-top: 2px solid var(--erp-border-strong); font-variant-numeric: tabular-nums; }
+.qsp-row--analysis > td { background: var(--erp-surface-secondary); }
+
+.qsp-state-cell { width: 1%; padding-right: 4px !important; padding-left: 8px !important; white-space: nowrap; }
+.qsp-state-icons { display: inline-flex; gap: 3px; font-size: .8125rem; }
+.qsp-state--danger { color: var(--erp-danger); }
+.qsp-state--warning { color: var(--erp-warning); }
+.qsp-state--info { color: var(--erp-info); }
+.qsp-state--ai { color: var(--erp-intelligence); }
+.qsp-state--neutral { color: var(--erp-text-tertiary); }
+.qsp-state--success { color: var(--erp-success); }
+.qsp-state--total { color: var(--erp-text-secondary); }
+.qsp-state-chips { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.qsp-state-chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: var(--erp-radius-pill); background: var(--erp-neutral-soft); font-size: .75rem; font-weight: 600; white-space: nowrap; }
+.qsp-state-chip.qsp-state--danger { background: var(--erp-danger-soft); }
+.qsp-state-chip.qsp-state--warning { background: var(--erp-warning-soft); }
+.qsp-state-chip.qsp-state--info { background: var(--erp-info-soft); }
+.qsp-state-chip.qsp-state--ai { background: var(--erp-intelligence-soft); }
+.qsp-state-chip.qsp-state--success { background: var(--erp-success-soft); }
+.qsp-state-chip.qsp-state--total { background: var(--erp-surface-secondary); }
+
+.qsp-subtable { width: 100%; margin: 4px 0 0; border-collapse: collapse; font-size: .75rem; }
+.qsp-subtable th { padding: 4px 6px; border-bottom: 1px solid var(--erp-border); color: var(--erp-text-tertiary); font-weight: 600; text-align: left; }
+.qsp-subtable td { padding: 3px 6px; border-bottom: 1px solid var(--erp-border); }
+
+/* ---- Thanh trạng thái + phím ------------------------------------------ */
+.qsp-statusbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; color: var(--erp-text-tertiary); font-size: .75rem; font-variant-numeric: tabular-nums; }
+.qsp-grid kbd,
+.qsp-inspector kbd,
+.qsp-drawing kbd,
+.qsp-shortcuts kbd,
+.estimate-ws-head kbd { display: inline-block; min-width: 18px; margin: 0 1px; padding: 0 4px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-sm); background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-family: inherit; font-size: .6875rem; font-weight: 600; line-height: 1.5; text-align: center; box-shadow: none; }
+.btn kbd { margin-left: 4px; }
+
+.qsp-legend-popover { max-width: 380px; }
+.qsp-legend { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: .75rem; }
+.qsp-legend li { display: grid; grid-template-columns: 96px 1fr; align-items: start; gap: 8px; color: var(--erp-text-secondary); }
+.qsp-shortcuts { width: 100%; font-size: .8125rem; }
+.qsp-shortcuts td { padding: 5px 0; border-bottom: 1px solid var(--erp-border); vertical-align: top; }
+.qsp-shortcuts td:first-child { width: 130px; white-space: nowrap; }
+
+/* ---- V03 — khung bản vẽ nguồn ----------------------------------------- */
+.qsp-drawing { border: 1px solid var(--erp-border); border-radius: var(--erp-radius-lg); background: var(--erp-surface); }
+.qsp-drawing__head { display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; }
+.qsp-drawing__toggle { display: flex; flex: 1; align-items: center; gap: 8px; min-width: 0; min-height: 40px; padding: 4px 8px; border: 0; border-radius: var(--erp-radius-md); background: none; color: var(--erp-text-primary); font-size: .875rem; text-align: left; }
+.qsp-drawing__toggle:hover { background: var(--erp-surface-hover); }
+.qsp-drawing__toggle:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: -2px; }
+.qsp-drawing__toggle > i { color: var(--erp-text-tertiary); }
+.qsp-drawing__meta { overflow: hidden; color: var(--erp-text-tertiary); font-size: .75rem; text-overflow: ellipsis; white-space: nowrap; }
+.qsp-drawing__body { overflow: hidden; border-top: 1px solid var(--erp-border); border-radius: 0 0 var(--erp-radius-lg) var(--erp-radius-lg); }
+.qsp-drawing__body > .qsp-ev-empty { margin: 0; padding: 16px; }
+
+/* ---- S02 — Evidence Inspector ----------------------------------------- */
+.qsp-inspector { gap: 0; padding: 0; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-lg); background: var(--erp-surface); }
+.qsp-inspector__head { display: flex; align-items: flex-start; gap: 8px; padding: 12px 12px 10px; border-bottom: 1px solid var(--erp-border); }
+.qsp-inspector__head > div { flex: 1; min-width: 0; }
+.qsp-inspector__head small { display: block; color: var(--erp-text-tertiary); font-size: .6875rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.qsp-inspector__head h2 { margin: 2px 0 6px; color: var(--erp-text-primary); font-size: .9375rem; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+.qsp-inspector__close { flex: none; min-width: 32px; min-height: 32px; padding: 0; color: var(--erp-text-secondary); }
+.qsp-inspector__figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 1px; border-bottom: 1px solid var(--erp-border); background: var(--erp-border); }
+.qsp-inspector__figures > div { padding: 8px 12px; background: var(--erp-surface); }
+.qsp-inspector__figures span { display: block; color: var(--erp-text-tertiary); font-size: .6875rem; }
+.qsp-inspector__figures strong { display: block; color: var(--erp-text-primary); font-size: .8125rem; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.qsp-inspector__actions { position: sticky; bottom: 0; display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid var(--erp-border); background: var(--erp-surface); }
+.qsp-inspector__actions:empty { display: none; }
+
+.qsp-ev-chain { display: flex; flex-direction: column; margin: 0; padding: 12px; list-style: none; }
+.qsp-ev-step { position: relative; padding: 0 0 14px 34px; scroll-margin-top: 8px; }
+.qsp-ev-step:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 2px; border-radius: var(--erp-radius-sm); }
+.qsp-ev-step:not(:last-child)::before { content: ''; position: absolute; top: 24px; bottom: 0; left: 11px; width: 2px; background: var(--erp-border); }
+.qsp-ev-step.is-ok:not(:last-child)::before { background: var(--erp-success-soft); }
+.qsp-ev-step__head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 24px; }
+.qsp-ev-step__head > i { color: var(--erp-text-tertiary); }
+.qsp-ev-step__head > strong { flex: 1; color: var(--erp-text-primary); font-size: .8125rem; }
+.qsp-ev-step__no { position: absolute; top: 0; left: 0; display: inline-grid; place-items: center; width: 24px; height: 24px; border: 2px solid var(--erp-border); border-radius: 50%; background: var(--erp-surface); color: var(--erp-text-secondary); font-size: .6875rem; font-weight: 700; }
+.qsp-ev-step.is-ok .qsp-ev-step__no { border-color: var(--erp-success); color: var(--erp-success); }
+.qsp-ev-step.is-warn .qsp-ev-step__no { border-color: var(--erp-warning); color: var(--erp-warning); }
+.qsp-ev-step.is-missing .qsp-ev-step__no { border-color: var(--erp-danger); color: var(--erp-danger); }
+.qsp-ev-step__status { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; border-radius: var(--erp-radius-pill); font-size: .6875rem; font-weight: 600; }
+.qsp-ev-step__status.is-ok { background: var(--erp-success-soft); color: var(--erp-success); }
+.qsp-ev-step__status.is-warn { background: var(--erp-warning-soft); color: var(--erp-warning); }
+.qsp-ev-step__status.is-missing { background: var(--erp-danger-soft); color: var(--erp-danger); }
+.qsp-ev-step__status.is-na { background: var(--erp-neutral-soft); color: var(--erp-text-secondary); }
+.qsp-ev-step__body { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; font-size: .8125rem; }
+
+.qsp-ev-facts { display: flex; flex-direction: column; gap: 3px; margin: 0; }
+.qsp-ev-facts > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 8px; }
+.qsp-ev-facts dt { color: var(--erp-text-tertiary); font-size: .75rem; font-weight: 500; }
+.qsp-ev-facts dd { margin: 0; color: var(--erp-text-primary); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.qsp-ev-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; color: var(--erp-text-secondary); font-size: .75rem; list-style: none; }
+.qsp-ev-list li { overflow-wrap: anywhere; }
+.qsp-ev-list i { color: var(--erp-text-tertiary); }
+.qsp-ev-list .qsp-sub { max-width: none; white-space: normal; }
+.qsp-ev-links { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.qsp-ev-links button { display: grid; grid-template-columns: minmax(0, 1fr) auto auto 14px; align-items: center; gap: 6px; width: 100%; min-height: 36px; padding: 4px 6px; border: 0; border-bottom: 1px solid var(--erp-border); background: none; color: var(--erp-text-primary); font-size: .75rem; text-align: left; }
+.qsp-ev-links button:hover { background: var(--erp-surface-hover); }
+.qsp-ev-links button:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: -2px; }
+.qsp-ev-code { display: block; padding: 6px 8px; border-radius: var(--erp-radius-sm); background: var(--erp-surface-secondary); color: var(--erp-text-primary); font-size: .75rem; overflow-wrap: anywhere; white-space: pre-wrap; }
+.qsp-ev-note { display: flex; gap: 6px; margin: 0; color: var(--erp-text-secondary); font-size: .75rem; }
+.qsp-ev-note.is-warn > i,
+.qsp-ev-note.is-missing > i { color: var(--erp-danger); }
+.qsp-ev-note.is-ok > i { color: var(--erp-success); }
+.qsp-ev-empty { margin: 0; color: var(--erp-text-tertiary); font-size: .75rem; }
+.qsp-ev-action { align-self: flex-start; display: inline-flex; align-items: center; gap: 4px; }
+.qsp-ev-basis { font-size: .75rem; }
+.qsp-ev-basis strong { color: var(--erp-text-primary); }
+.qsp-ev-basis.is-warn strong { color: var(--erp-warning); }
+.qsp-ev-basis ul { margin: 2px 0 0; padding-left: 16px; color: var(--erp-text-secondary); }
+.qsp-ev-price + .qsp-ev-price { padding-top: 6px; border-top: 1px dashed var(--erp-border); }
+
+/* ---- V05 — Focus Grid: lưới 80–95%, tối thiểu khung phụ ---------------- */
+.estimate-ws.is-focus { gap: 8px; }
+.estimate-ws.is-focus .estimate-ws-head { gap: 8px 16px; }
+.estimate-ws.is-focus .estimate-ws-head__meta,
+.estimate-ws.is-focus .estimate-ws-head__overline { display: none; }
+.estimate-ws.is-focus .estimate-ws-head__title { margin: 0; font-size: 1rem; }
+.estimate-ws.is-focus .estimate-ws-head__actions .btn,
+.estimate-ws.is-focus .estimate-ws-head__actions .dropdown-toggle { min-height: 36px; }
+.estimate-ws.is-focus .estimate-ws__main { gap: 8px; }
+.estimate-ws.is-focus .estimate-ws__body.is-bare { grid-template-columns: minmax(0, 1fr); }
+.estimate-ws.is-focus .qsp-card > .card-header { display: none; }
+.estimate-ws.is-focus .qsp-card > .card-body { padding: 8px 10px 10px; }
+.estimate-ws.is-focus .qsp-scroll { max-height: calc(100vh - var(--erp-header-height) - 250px); min-height: 320px; }
+.estimate-ws.is-focus .estimate-ws-footer { padding: 4px 10px; }
+
+@media (max-width: 576px) {
+  .qsp-search { flex-basis: 100%; max-width: none; }
+  .qsp-toolbar__spacer { display: none; }
+  .qsp-ev-facts > div { grid-template-columns: 92px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qsp-row,
+  .qsp-segment button,
+  .qsp-density button { transition: none; }
+}

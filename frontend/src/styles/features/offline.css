@@ -1,0 +1,695 @@
+/*
+ * Man "Lam viec offline" (features/core/offline) - nam TRONG AppLayout (cung
+ * header, cung menu voi luc online), vung noi dung cua khung tu cuon. Thiet ke
+ * cho dien thoai truoc: mot cot, dich bam >= 44px.
+ */
+.erp-offline {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-offline__bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px max(12px, calc((100% - 960px) / 2));
+  background: var(--erp-surface);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-offline__bar-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-offline__bar-title h1 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.erp-offline__bar-title p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-offline__body {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px max(12px, calc((100% - 960px) / 2)) 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-offline__body > * {
+  flex-shrink: 0;
+}
+
+/* Vien trang thai ket noi: mau KHONG phai tin hieu duy nhat - luon kem chu + icon. */
+.erp-offline__net {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.erp-offline__net--on {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-offline__net--off {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-offline__tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.erp-offline__tab {
+  flex: 0 0 auto;
+  min-height: var(--erp-touch-target);
+  padding: 0 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-offline__tab.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-offline__count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.erp-offline__count--alert {
+  background: var(--erp-danger);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-offline__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-offline__card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+}
+
+.erp-offline__card:hover,
+.erp-offline__card:focus-visible {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+}
+
+.erp-offline__card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.erp-offline__card-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-offline__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-offline__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-offline__progress {
+  height: 6px;
+  margin-top: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  overflow: hidden;
+}
+
+.erp-offline__progress > span {
+  display: block;
+  height: 100%;
+  background: var(--erp-action-secondary);
+}
+
+.erp-offline__sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.erp-offline__sync--synced {
+  color: var(--erp-success);
+}
+
+.erp-offline__sync--pending {
+  color: var(--erp-warning);
+}
+
+.erp-offline__sync--conflict {
+  color: var(--erp-danger);
+}
+
+.erp-offline__fab {
+  position: fixed;
+  /* Ne bong bong tro ly AI o goc phai duoi cua khung app. */
+  right: max(88px, calc((100% - 960px) / 2));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 20;
+  min-height: 48px;
+  border-radius: var(--erp-radius-pill);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-offline__photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+
+.erp-offline__photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--erp-radius-sm);
+  border: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.erp-offline__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.erp-offline__photo-badge {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  padding: 1px 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning);
+  color: var(--erp-text-on-accent);
+  font-size: 0.6875rem;
+}
+
+.erp-offline__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-offline__comment {
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-offline__comment-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  margin-bottom: 2px;
+}
+
+.erp-offline__comment p {
+  margin: 0;
+}
+
+.erp-offline__section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--erp-text-secondary);
+  margin: 12px 0 6px;
+}
+
+.erp-offline__states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-offline__op {
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-offline__op--attention {
+  border-color: var(--erp-danger);
+}
+
+.erp-offline__op-head {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.erp-offline__op-label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-offline__op-msg {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+  color: var(--erp-danger);
+}
+
+.erp-offline__op-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-offline__people {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+/* So thao tac chua gui tren nut header (layouts/components/AppHeader). */
+.erp-header__offline-count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning);
+  color: var(--erp-text-on-accent);
+  font-size: 0.625rem;
+  line-height: 16px;
+  text-align: center;
+}
+
+.erp-header__offline-count.is-alert {
+  background: var(--erp-danger);
+}
+
+/* W1 — hồ sơ hiện trường: chọn phân hệ (HSE / QA-QC) + mã hồ sơ trên thẻ. */
+.erp-offline__chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.erp-offline__chip {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-offline__chip.is-active {
+  border-style: solid;
+  border-color: var(--erp-text-primary);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-offline__code {
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 0.75rem;
+  padding: 1px 6px;
+  border-radius: var(--erp-radius-sm, 4px);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+/* Màn quản trị Quản trị › Phân quyền › Làm việc offline. */
+.erp-offline-admin {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-offline-admin__picker {
+  max-width: 420px;
+  margin-bottom: 10px;
+}
+
+.erp-offline-admin__note {
+  margin-bottom: 12px;
+}
+
+/* Nút đám mây trên header: mờ khi mọi thứ đã đồng bộ, nổi bật khi mất mạng. */
+.erp-header__offline.is-quiet {
+  opacity: 0.55;
+}
+
+.erp-header__offline.is-quiet:hover,
+.erp-header__offline.is-quiet:focus-visible {
+  opacity: 1;
+}
+
+.erp-header__offline.is-offline {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+/* Dải mất mạng dưới header (OfflineNetworkBanner). */
+.erp-offline-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 16px;
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  border-bottom: 1px solid var(--erp-warning);
+  font-size: 0.875rem;
+}
+
+.erp-offline-banner__text {
+  flex: 1 1 240px;
+}
+
+/* Man "Chuc nang nay chi lam khi online" (OnlineOnlyScreen). */
+.erp-offline-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 24px 16px;
+}
+
+.erp-offline-block--standalone {
+  min-height: 100vh;
+  min-height: 100dvh;
+  gap: 16px;
+  background: var(--erp-bg);
+}
+
+/* Muc menu khong dung duoc khi offline: mo + khoa, van bam duoc de doc ly do. */
+.erp-sider__item--offline-blocked {
+  opacity: 0.5;
+}
+
+.erp-sider__offline-lock {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+/* Hộp thư đi — thao tác lưu lúc mất mạng ở các màn online (offline/outbox.ts). */
+.erp-offline-outbox {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  background: var(--erp-surface);
+  padding: 12px;
+}
+.erp-offline-outbox__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.erp-offline-outbox__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.erp-offline-outbox__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+.erp-offline-outbox__item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.erp-offline-outbox__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.erp-offline-outbox__error {
+  color: var(--erp-danger);
+}
+
+.erp-offline-admin__features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Trạng thái offline của máy — trả lời "vì sao màn bị khoá khi mất mạng". */
+.erp-offline-diag {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.erp-offline-diag summary {
+  cursor: pointer;
+  color: var(--erp-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.erp-offline-diag dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+}
+.erp-offline-diag dt {
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+.erp-offline-diag dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+}
+.erp-offline-diag dd.is-warn {
+  color: var(--erp-warning);
+  font-weight: 500;
+}
+@media (max-width: 576px) {
+  .erp-offline-diag dl {
+    grid-template-columns: 1fr;
+  }
+  .erp-offline-diag dd {
+    margin-bottom: 4px;
+  }
+}
+
+.erp-offline__sync--rejected {
+  color: var(--erp-danger);
+}
+/* PC: thẻ xếp lưới, không kéo một cột dài hết bề ngang. */
+@media (min-width: 992px) {
+  .erp-offline__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+
+/* Màn Tác vụ khi mất mạng: ô chọn dự án đang xem, nằm trên thanh công cụ. */
+.erp-offline-tasks__project {
+  width: auto;
+  max-width: min(260px, 48vw);
+}
+
+.erp-offline-tasks__project-name {
+  max-width: min(260px, 48vw);
+  overflow: hidden;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Hàng chờ ảnh hiện trường trên máy (`OfflineEvidenceQueue`): một dòng mỗi lần chụp. */
+.erp-evidence-queue {
+  margin-bottom: 16px;
+}
+
+.erp-evidence-queue__warning,
+.erp-evidence-queue__hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  border-radius: var(--erp-radius-md, 8px);
+}
+
+.erp-evidence-queue__warning {
+  background: var(--erp-warning-soft);
+}
+
+.erp-evidence-queue__warning > .bi {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-evidence-queue__hint {
+  color: var(--erp-text-secondary);
+  background: var(--erp-neutral-soft);
+}
+
+.erp-evidence-queue__hint > .bi {
+  margin-top: 2px;
+}
+
+.erp-evidence-queue__item {
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.erp-evidence-queue__item .erp-offline-outbox__main {
+  flex: 1 1 0;
+}
+
+.erp-evidence-queue__thumb {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  font-size: 20px;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-sm, 4px);
+}
+
+.erp-evidence-queue__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.erp-evidence-queue__actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  max-width: 50%;
+}
+
+.erp-evidence-queue__reason {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.erp-evidence-queue__reason .form-control {
+  flex: 1 1 100%;
+}
+
+@media (max-width: 575.98px) {
+  .erp-evidence-queue__item {
+    flex-wrap: wrap;
+  }
+
+  .erp-evidence-queue__item .erp-offline-outbox__main {
+    flex-basis: calc(100% - 64px);
+  }
+
+  .erp-evidence-queue__actions {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    max-width: none;
+  }
+}

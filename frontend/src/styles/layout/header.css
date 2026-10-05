@@ -1,0 +1,236 @@
+/* Header ung dung: tim kiem toan he thong + thong bao + tai khoan. */
+
+.erp-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /*
+   * `flex: none` KHONG phai trang tri.
+   *
+   * Header la flex item trong cot `.erp-shell__main`, ma flex item mac dinh co
+   * `flex-shrink: 1`. Khi noi dung cao hon khung (vd bang du lieu 25 dong),
+   * trinh duyet BOP header xuong duoi 64px de nhet cho - logo bi cat, khoang
+   * dem bien mat, va chieu cao doi theo tung man hinh. Khoa lai de
+   * `--erp-header-height` la con so that chu khong phai gia tri mong muon.
+   */
+  flex: none;
+  /*
+   * Cong them `--erp-safe-top`: mo dang app tren iPhone thi header nam DUOI
+   * thanh trang thai (gio, pin), nen cua header phu len vung do cho lien mau.
+   * `--erp-header-height` van la chieu cao phan noi dung cua header.
+   */
+  height: calc(var(--erp-header-height) + var(--erp-safe-top));
+  padding: var(--erp-safe-top) 12px 0;
+  background: var(--erp-header-bg);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-header__search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.erp-header__search .erp-menu-search {
+  width: 100%;
+  max-width: 460px;
+}
+
+.erp-header__search .form-control {
+  background-color: var(--erp-surface-secondary);
+  border-color: transparent;
+  border-radius: var(--erp-radius-round);
+}
+
+.erp-header__search .form-control:focus {
+  background-color: var(--erp-surface);
+}
+
+/*
+ * CHI MOBILE: logo dung o header vi khong co sidebar co dinh de dat no.
+ * `margin-inline-end: auto` thay vai tro cua `.erp-header__search { flex: 1 }`
+ * - day cum tac vu ve sat le phai.
+ */
+.erp-header__brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  margin-inline-end: auto;
+  padding-inline: 4px;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.erp-header__brand:hover {
+  opacity: 0.85;
+}
+
+/*
+ * Man cuc hep: anh CO LAI theo cho con lai thay vi day cum nut ra ngoai.
+ *
+ * `BrandLogo` dat chieu cao bang inline style nen no thang moi rule `height` o
+ * day; chi cham `max-width` va `max-height`, con ty le do chinh anh giu.
+ */
+.erp-header__brand img {
+  max-width: 100%;
+  max-height: 41px;
+  object-fit: contain;
+}
+
+.erp-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/*
+ * CHI MOBILE: bo mui ten cua nut ICON mo bang chon (chuong thong bao).
+ *
+ * Caret cua Bootstrap an them ~14px be ngang cho mot dieu da hien nhien, va
+ * tren man 375px thi do la gan nua mot nut. Tu tablet tro len con cho nen giu
+ * nguyen, doi lai nut van tu noi ra la no mo duoc mot bang chon. (Avatar + menu
+ * tai khoan khong con o header dien thoai - xem dich "Tôi".)
+ */
+@media (max-width: 576px) {
+  .erp-header__actions .btn-icon.dropdown-toggle::after {
+    display: none;
+  }
+}
+
+/* Nut tai khoan o goc phai. */
+.erp-header__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--erp-touch-target);
+  padding: 4px 8px;
+  border: none;
+  background: transparent;
+  border-radius: var(--erp-radius-pill);
+  cursor: pointer;
+}
+
+.erp-header__user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-header__user .erp-avatar {
+  background: var(--erp-brand);
+  color: var(--erp-text-on-accent);
+}
+
+/* Bang thong bao — noi dung khai o features/notifications.css. */
+.erp-notifications {
+  padding: 4px;
+}
+
+/*
+ * Tim nhanh chuc nang tren menu (`MenuSearch`) - dung o header PC va o dau
+ * menu mobile. Danh sach tha xuong nam trong khung cua chinh o nhap
+ * (`position: absolute`): header la sticky, khong cuon, va `.erp-shell__main`
+ * cao hon danh sach nen khong bi cat.
+ */
+.erp-menu-search {
+  position: relative;
+  min-width: 0;
+}
+
+.erp-menu-search .erp-input-affix {
+  width: 100%;
+}
+
+.erp-menu-search__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  /* > --bs-offcanvas-zindex (1045): o tim cua menu mobile nam trong Offcanvas. */
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  max-height: min(440px, 70vh);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  box-shadow: var(--erp-shadow2);
+  overflow: hidden;
+}
+
+.erp-menu-search__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.erp-menu-search__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 6px 10px;
+  border-radius: var(--erp-radius-md);
+  cursor: pointer;
+}
+
+.erp-menu-search__item.is-active {
+  background: var(--erp-surface-hover);
+}
+
+.erp-menu-search__icon {
+  flex: none;
+  color: var(--erp-text-secondary);
+}
+
+.erp-menu-search__item.is-active .erp-menu-search__icon {
+  color: var(--erp-action-secondary);
+}
+
+.erp-menu-search__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-menu-search__label {
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+.erp-menu-search__trail {
+  overflow: hidden;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-menu-search__empty {
+  margin: 0;
+  padding: 14px 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-menu-search__hint {
+  flex: none;
+  margin: 0;
+  padding: 6px 12px;
+  border-top: 1px solid var(--erp-border);
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+/* Man cam ung khong co ban phim - dong goi y phim tat chi chiem cho. */
+@media (hover: none) {
+  .erp-menu-search__hint {
+    display: none;
+  }
+}

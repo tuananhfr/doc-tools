@@ -1,0 +1,266 @@
+/*
+ * Menu 14 Đối soát (/reconciliation/*) — tiền tố riêng `erp-recon-`.
+ * Trung tâm điều khiển · màn một báo cáo · bản chốt · quy tắc & dung sai.
+ */
+
+/* --- Trung tâm điều khiển: thẻ theo miền ---------------------------------- */
+.erp-recon-domains {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.erp-recon-sources,
+.erp-recon-issues {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-recon-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  min-height: 32px;
+  font-size: 0.8125rem;
+}
+
+.erp-recon-source__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-recon-source__lock {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-recon-source__numbers {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.erp-recon-issues li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+}
+
+/* --- Màn một báo cáo ------------------------------------------------------ */
+.erp-recon-domain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-recon-domain .erp-chip {
+  text-decoration: none;
+}
+
+.erp-recon-domain__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.erp-recon-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-recon-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-recon-summary__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-recon-status {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-size: 0.75rem;
+}
+
+/* --- Màn đối soát gốc của Drupal, nhúng cùng origin -------------------------- */
+.erp-recon-frame {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-recon-frame__page {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.erp-recon-frame__page--pending {
+  visibility: hidden;
+}
+
+.erp-recon-frame__message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.erp-recon-frame__message--note {
+  inset: auto 16px 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  box-shadow: var(--erp-shadow-md, 0 4px 16px rgb(0 0 0 / 12%));
+}
+
+/* --- Chi tiết một dòng: hai vế cạnh nhau ----------------------------------- */
+.erp-recon-case__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.erp-recon-case__canvas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.erp-recon-case__side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+  background: var(--erp-surface);
+  overflow-wrap: anywhere;
+}
+
+.erp-recon-case__side--diff {
+  border-style: dashed;
+  background: var(--erp-surface-sunken, var(--erp-surface));
+}
+
+.erp-recon-case__label {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-recon-case__facts {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-recon-case__facts dt {
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.erp-recon-case__facts dd {
+  margin: 0;
+}
+
+/* Điện thoại: hai hàng chip thành MỘT hàng cuộn ngang — nhường chiều cao cho bảng. */
+@media (max-width: 576px) {
+  .erp-recon-domain,
+  .erp-recon-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .erp-recon-domain > *,
+  .erp-recon-tabs > * {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .erp-recon-case__canvas,
+  .erp-recon-case__facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Bản chốt --------------------------------------------------------------- */
+.erp-recon-run__facts,
+.erp-recon-run__counts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+  font-size: 0.8125rem;
+}
+
+.erp-recon-run__note {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--erp-border);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  white-space: pre-line;
+}
+
+/* --- Quy tắc & dung sai ----------------------------------------------------- */
+.erp-recon-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 576px) {
+  .erp-recon-domains,
+  .erp-recon-rules {
+    grid-template-columns: 1fr;
+  }
+}

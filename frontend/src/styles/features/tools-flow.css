@@ -1,0 +1,789 @@
+/* "Chuyện Nhỏ" - luong ba buoc cua cong cu nhanh: chon tep -> chay -> ket qua (features/tools/hub/components/flow). */
+
+/* ---------- Khung hai cot ---------- */
+
+/*
+ * Tran 1200px: trong khung app vung noi dung rong toi 1440px, danh sach tep
+ * keo dai het co la ten tep mot dau, nut bo tep mot dau - mat phai quet ca man hinh.
+ * Can giua de cung truc voi the ket qua: sang buoc 3 noi dung khong nhay tu trai vao giua.
+ */
+.erp-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.erp-flow__main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-flow__side {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+/* ---------- Buoc 1: vung chon tep ---------- */
+
+.erp-flow-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 24px 32px;
+  text-align: center;
+  background: var(--erp-surface);
+  border: 2px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-lg);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.erp-flow-picker.is-over {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-flow-picker__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-action-secondary);
+  font-size: 1.5rem;
+}
+
+.erp-flow-picker__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.erp-flow-picker__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.erp-flow-picker__hint {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Nut chon tep + duong vao khac (chup anh) dung canh nhau, het cho thi xuong dong. */
+.erp-flow-picker__actions {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.erp-flow-picker__pick {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  min-height: var(--erp-touch-target);
+  padding-inline: 24px;
+  font-weight: 600;
+}
+
+/* Input an bang visually-hidden: focus ban phim phai hien tren nut thay the. */
+.erp-flow-picker__pick:has(+ input:focus-visible) {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Da co tep: thu lai thanh mot dai, nhuong cho cho danh sach tep. */
+.erp-flow-picker--compact {
+  flex-direction: row;
+  gap: 12px;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.erp-flow-picker--compact .erp-flow-picker__icon {
+  width: 40px;
+  height: 40px;
+  font-size: 1.125rem;
+}
+
+.erp-flow-picker--compact .erp-flow-picker__text {
+  flex: 1;
+}
+
+.erp-flow-picker--compact .erp-flow-picker__title {
+  font-size: 0.9375rem;
+}
+
+.erp-flow-picker--compact .erp-flow-picker__hint {
+  font-size: 0.8125rem;
+}
+
+.erp-flow-picker--compact .erp-flow-picker__pick {
+  padding-inline: 16px;
+}
+
+/* ---------- Tep bi bo qua ---------- */
+
+.erp-flow-rejected {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.875rem;
+}
+
+.erp-flow-rejected__icon {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-flow-rejected__title {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.erp-flow-rejected__list {
+  margin: 0;
+  padding-left: 16px;
+  overflow-wrap: anywhere;
+}
+
+.erp-flow-rejected__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+}
+
+.erp-flow-rejected__close:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+/* ---------- Tep da chon ---------- */
+
+.erp-flow-files {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-flow-files__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 4px 8px 4px 16px;
+}
+
+.erp-flow-files__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-flow-files__count {
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-flow-files__clear {
+  color: var(--erp-text-secondary);
+  text-decoration: none;
+}
+
+.erp-flow-files__clear:hover {
+  color: var(--erp-danger);
+}
+
+.erp-flow-files__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-flow-file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 8px 8px 8px 16px;
+  border-top: 1px solid var(--erp-border);
+  transition: background-color 150ms ease;
+}
+
+.erp-flow-file:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-flow-file:last-child {
+  border-radius: 0 0 var(--erp-radius-lg) var(--erp-radius-lg);
+}
+
+.erp-flow-file__order {
+  flex: none;
+  min-width: 20px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Ti le to giay dung: nguoi dung nhan ra tep qua trang dau, khong qua mot o vuong cat mat chu. */
+.erp-flow-file__thumb {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 48px;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  font-size: 1.125rem;
+}
+
+.erp-flow-file__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.erp-flow-file__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-flow-file__name {
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 600;
+  /* line-height rong: chu Viet co dau hai tang ("ễ", "ậ") bi cat dau khi ellipsis voi dong chat. */
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-flow-file__meta {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-flow-file__actions {
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+}
+
+/* 40px = min-height chung cua `.btn`: dat thap hon la nut thanh hinh chu nhat dung (36x40). */
+.erp-flow-file__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.erp-flow-file__button:hover:not(:disabled) {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+}
+
+.erp-flow-file__button:disabled {
+  border: 0;
+  color: var(--erp-text-tertiary);
+  opacity: 0.5;
+}
+
+/* Bootstrap dat `outline: 0` cho .btn, chi con quang mo 12% - tren nut chay mau crimson gan nhu
+   khong thay. CHI o khung khach moi lay lai vien focus cua DS muc 11: trong khung app, nut cua
+   luong phai giong moi nut khac cua app (quy uoc noi bo), khong tu khac di. */
+.erp-tools-guest .erp-flow .btn:focus-visible,
+.erp-tools-guest .erp-flow-result .btn:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Cot phai: tuy chon + chay ---------- */
+
+.erp-flow-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-flow-options__title {
+  float: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-flow-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-flow-field__label {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-flow-field__hint {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-flow-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-flow-choice__item {
+  margin: 0;
+  padding-block: 4px;
+}
+
+.erp-flow-choice__item .form-check-label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.erp-flow-choice__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.erp-flow-choice__hint {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Khoi "Trang anh" muon tu trinh chinh sua: bo le tren/duoi rieng cua bang xuat. */
+.erp-flow-options .erp-doc-export__sheet {
+  margin: 0;
+}
+
+.erp-flow-error {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  background: var(--erp-danger-soft);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-flow-error .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-danger);
+}
+
+.erp-flow-error__code {
+  display: block;
+  margin-top: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-flow__run {
+  width: 100%;
+  min-height: 48px;
+  font-weight: 600;
+}
+
+.erp-flow__hint {
+  margin: -8px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.erp-flow-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-flow-progress__text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-flow-progress__bar {
+  height: 8px;
+}
+
+.erp-flow-progress__cancel {
+  min-height: 40px;
+}
+
+/* ---------- Buoc 3: ket qua ---------- */
+
+.erp-flow-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 560px;
+  margin: 16px auto 0;
+  padding: 32px 24px 24px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  text-align: center;
+}
+
+.erp-flow-result__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+  font-size: 2rem;
+}
+
+/* Chay xong nhung khong dat dieu nguoi dung muon: dau tich xanh se noi nguoc voi tieu de. */
+.erp-flow-result__badge--warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-flow-result__badge--info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-flow-result__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Tieu de nhan focus bang lenh de trinh doc man hinh doc ket qua - khong phai dich bam, khong ve vien. */
+.erp-flow-result__title:focus {
+  outline: none;
+}
+
+.erp-flow-result__file {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  text-align: left;
+}
+
+.erp-flow-result__file-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--erp-surface);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-action-secondary);
+  font-size: 1.25rem;
+}
+
+.erp-flow-result__file-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-flow-result__file-name {
+  overflow: hidden;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-flow-result__file-meta {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-flow-result__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+}
+
+.erp-flow-result__text-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-flow-result__text-label {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-flow-result__text-body {
+  min-height: 160px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.erp-flow-result__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.erp-flow-result__download {
+  min-height: 48px;
+  font-weight: 600;
+}
+
+/* Hai cot co dinh: bon nut tren mot hang thi "Xem truoc" chat toi sat vien o the 560px. */
+.erp-flow-result__more {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* So nut le (khong co Xem truoc / Chia se / Sua tiep): nut cuoi rong het hang, khong de o trong. */
+.erp-flow-result__more .btn:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.erp-flow-result__more .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.erp-flow-result .erp-doc-nudge {
+  width: 100%;
+  text-align: left;
+}
+
+.erp-flow-result__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-flow-note {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.erp-flow-note .bi {
+  flex: none;
+  margin-top: 1px;
+}
+
+.erp-flow-note--success {
+  background: var(--erp-success-soft);
+}
+
+.erp-flow-note--success .bi {
+  color: var(--erp-success);
+}
+
+.erp-flow-note--info {
+  background: var(--erp-info-soft);
+}
+
+.erp-flow-note--info .bi {
+  color: var(--erp-info);
+}
+
+.erp-flow-note--warning {
+  background: var(--erp-warning-soft);
+}
+
+.erp-flow-note--warning .bi {
+  color: var(--erp-warning);
+}
+
+/* Field Mode ep moi nut cao 48px (DS muc 11) - nut icon rong theo cho vuong. */
+[data-theme='field'] .erp-flow-file__button,
+[data-theme='field'] .erp-flow-rejected__close {
+  width: 48px;
+  height: 48px;
+}
+
+/* ---------- Man hep ---------- */
+
+/* Dich bam tren man cam ung: 44px (DS muc 11). */
+@media (pointer: coarse) {
+  .erp-flow-file__button,
+  .erp-flow-rejected__close {
+    width: var(--erp-touch-target);
+    height: var(--erp-touch-target);
+  }
+
+  .erp-flow-files__clear,
+  .erp-flow-progress__cancel,
+  .erp-flow-result__more .btn,
+  .erp-flow-result__text-head .btn,
+  .erp-flow-result .erp-doc-nudge .btn {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+/* Duoi 1024px cot tuy chon 320px an mat nua danh sach tep: dua xuong duoi, het dinh. */
+@media (max-width: 1024px) {
+  .erp-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-flow__side {
+    position: static;
+  }
+}
+
+/* Ban sao cho cot cong cu cua khung khach chia doi - xem `.erp-tools-frame` (tools-hub.css). */
+@container erp-tools (max-width: 1024px) {
+  .erp-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-flow__side {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-flow-picker {
+    padding: 32px 16px 24px;
+  }
+
+  .erp-flow-picker--compact {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  /* Nut "Them tep" xuong dong rieng, rong het co: dai 360px khong du cho chu + nut canh nhau. */
+  .erp-flow-picker--compact .erp-flow-picker__actions {
+    flex: 1 0 100%;
+  }
+
+  .erp-flow-picker--compact .erp-flow-picker__pick {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .erp-flow-file {
+    gap: 8px;
+    padding-left: 12px;
+  }
+
+  /* Ba nut 44px da chiem 132px: giu so thu tu thi "51,7 KB · 12 trang" rot xuong dong hai, hang cao thap khong deu. */
+  .erp-flow-file__order {
+    display: none;
+  }
+
+  .erp-flow-result {
+    margin-top: 0;
+    padding: 24px 16px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-flow-picker,
+  .erp-flow-file,
+  .erp-flow-file__button {
+    transition: none;
+  }
+}

@@ -1,0 +1,78 @@
+/*
+ * ============================================================================
+ * NUT CHUYEN BUOC DUYET - MAU LAY TU CAU HINH BEN DRUPAL
+ * ============================================================================
+ * Dung chung cho MOI man co buoc duyet: tam ung `/finance`, van ban di
+ * `/documents/outgoing`, de xuat `/proposals`, va don tu `/hr/requests` (noi vao
+ * 09/09/2026 - truoc do no di variant rieng cua Bootstrap nen buoc TIEN TOI ra
+ * Crimson do con buoc TRA LAI ra Blue, tuc nguoc han bang mau nay).
+ *
+ * Truoc day rule nay nam trong `features/advance.css`
+ * voi tien to `erp-advance__step`; khi man thu hai can dung cai nut y het,
+ * chep mau sang mot file thu hai la sinh ra hai ban se lech nhau - cung bai
+ * hoc voi `.erp-gantt` cua Dplan va Phap ly du an.
+ *
+ * Workflow cua `field_status_advance` / `field_status_doc` khai `class` cho
+ * tung transition: `btn-dark-blue` buoc tien toi, `btn-pink` buoc tra lai "Bổ
+ * sung", `btn-red` buoc "Thất bại". Mapper doi ba lop do thanh `tone`
+ * (`forward` / `back` / `cancel`) de chuoi `btn-pink` khong ro len toi
+ * component (Rule 13); mau that thi chep dung ma cua theme Drupal
+ * (`themes/custom/erpcons/css/style.css`) de hai man dat canh nhau khong lech.
+ *
+ * DOI MAU MOT BUOC DUYET LA SUA CAU HINH DRUPAL, khong sua file nay.
+ *
+ * Day la mau CUA HE THONG CU, co y nam ngoai bang mau Crimson Ice: muc tieu la
+ * nguoi dung nhan ra dung cai nut ho van bam ben Drupal.
+ */
+:root {
+  --erp-step-forward: #00577d;
+  --erp-step-forward-hover: #0781b0;
+  --erp-step-back: #f0786c;
+  --erp-step-back-hover: #da3548;
+  --erp-step-cancel: #e42325;
+  --erp-step-cancel-hover: #f0786c;
+}
+
+.erp-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  color: #fff;
+}
+
+.erp-step:hover:not(:disabled),
+.erp-step:focus-visible {
+  color: #fff;
+}
+
+.erp-step--forward {
+  background-color: var(--erp-step-forward);
+}
+
+.erp-step--forward:hover:not(:disabled),
+.erp-step--forward:focus-visible {
+  background-color: var(--erp-step-forward-hover);
+}
+
+.erp-step--back {
+  background-color: var(--erp-step-back);
+}
+
+.erp-step--back:hover:not(:disabled),
+.erp-step--back:focus-visible {
+  background-color: var(--erp-step-back-hover);
+}
+
+.erp-step--cancel {
+  background-color: var(--erp-step-cancel);
+}
+
+.erp-step--cancel:hover:not(:disabled),
+.erp-step--cancel:focus-visible {
+  background-color: var(--erp-step-cancel-hover);
+}
+
+.erp-step:disabled {
+  opacity: 0.55;
+}

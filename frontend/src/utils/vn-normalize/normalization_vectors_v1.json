@@ -1,0 +1,3176 @@
+{
+  "normalization_version": 1,
+  "_comment": "Sinh bởi scripts/build-normalization-vectors.mjs (repo erpcons_frontend). Đừng sửa tay — sửa ca gốc trong script rồi chạy lại.",
+  "groups": {
+    "text": [
+      {
+        "id": "TXT-001",
+        "input": "Hoà Phát",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-001-nfd",
+        "input": "Hoa\u0300 Pha\u0301t",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-001-upper",
+        "input": "HOÀ PHÁT",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-001-zwsp",
+        "input": "H\u200boà Phát",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-001-padded",
+        "input": "\u00a0 Hoà Phát\t ",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002",
+        "input": "Hòa Phát",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-nfd",
+        "input": "Ho\u0300a Pha\u0301t",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-upper",
+        "input": "HÒA PHÁT",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-zwsp",
+        "input": "H\u200bòa Phát",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-padded",
+        "input": "\u00a0 Hòa Phát\t ",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-old-tone",
+        "input": "Hoà Phát",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-002-old-tone-nfd",
+        "input": "Hoa\u0300 Pha\u0301t",
+        "expected": "hòa phát"
+      },
+      {
+        "id": "TXT-003",
+        "input": "  Công   ty  ",
+        "expected": "công ty"
+      },
+      {
+        "id": "TXT-003-nfd",
+        "input": "  Co\u0302ng   ty  ",
+        "expected": "công ty"
+      },
+      {
+        "id": "TXT-003-upper",
+        "input": "  CÔNG   TY  ",
+        "expected": "công ty"
+      },
+      {
+        "id": "TXT-003-zwsp",
+        "input": " \u200b Công   ty  ",
+        "expected": "công ty"
+      },
+      {
+        "id": "TXT-003-padded",
+        "input": "\u00a0   Công   ty  \t ",
+        "expected": "công ty"
+      },
+      {
+        "id": "TXT-004",
+        "input": "THUỶ LỢI",
+        "expected": "thủy lợi"
+      },
+      {
+        "id": "TXT-004-nfd",
+        "input": "THUY\u0309 LO\u031b\u0323I",
+        "expected": "thủy lợi"
+      },
+      {
+        "id": "TXT-004-zwsp",
+        "input": "T\u200bHUỶ LỢI",
+        "expected": "thủy lợi"
+      },
+      {
+        "id": "TXT-004-padded",
+        "input": "\u00a0 THUỶ LỢI\t ",
+        "expected": "thủy lợi"
+      },
+      {
+        "id": "TXT-005",
+        "input": "Khoẻ mạnh",
+        "expected": "khỏe mạnh"
+      },
+      {
+        "id": "TXT-005-nfd",
+        "input": "Khoe\u0309 ma\u0323nh",
+        "expected": "khỏe mạnh"
+      },
+      {
+        "id": "TXT-005-upper",
+        "input": "KHOẺ MẠNH",
+        "expected": "khỏe mạnh"
+      },
+      {
+        "id": "TXT-005-zwsp",
+        "input": "K\u200bhoẻ mạnh",
+        "expected": "khỏe mạnh"
+      },
+      {
+        "id": "TXT-005-padded",
+        "input": "\u00a0 Khoẻ mạnh\t ",
+        "expected": "khỏe mạnh"
+      },
+      {
+        "id": "TXT-006",
+        "input": "Hoà\u200bPhát",
+        "expected": "hoàphát"
+      },
+      {
+        "id": "TXT-006-nfd",
+        "input": "Hoa\u0300\u200bPha\u0301t",
+        "expected": "hoàphát"
+      },
+      {
+        "id": "TXT-006-upper",
+        "input": "HOÀ\u200bPHÁT",
+        "expected": "hoàphát"
+      },
+      {
+        "id": "TXT-006-zwsp",
+        "input": "H\u200boà\u200bPhát",
+        "expected": "hoàphát"
+      },
+      {
+        "id": "TXT-006-padded",
+        "input": "\u00a0 Hoà\u200bPhát\t ",
+        "expected": "hoàphát"
+      },
+      {
+        "id": "TXT-007",
+        "input": "Hоa",
+        "expected": "hoa"
+      },
+      {
+        "id": "TXT-007-upper",
+        "input": "HОA",
+        "expected": "hoa"
+      },
+      {
+        "id": "TXT-007-zwsp",
+        "input": "H\u200bоa",
+        "expected": "hoa"
+      },
+      {
+        "id": "TXT-007-padded",
+        "input": "\u00a0 Hоa\t ",
+        "expected": "hoa"
+      },
+      {
+        "id": "TXT-008",
+        "input": "Ваo",
+        "expected": "bao"
+      },
+      {
+        "id": "TXT-008-upper",
+        "input": "ВАO",
+        "expected": "bao"
+      },
+      {
+        "id": "TXT-008-zwsp",
+        "input": "В\u200bаo",
+        "expected": "bao"
+      },
+      {
+        "id": "TXT-008-padded",
+        "input": "\u00a0 Ваo\t ",
+        "expected": "bao"
+      },
+      {
+        "id": "TXT-009",
+        "input": "Quý",
+        "expected": "quý"
+      },
+      {
+        "id": "TXT-009-nfd",
+        "input": "Quy\u0301",
+        "expected": "quý"
+      },
+      {
+        "id": "TXT-009-upper",
+        "input": "QUÝ",
+        "expected": "quý"
+      },
+      {
+        "id": "TXT-009-zwsp",
+        "input": "Q\u200buý",
+        "expected": "quý"
+      },
+      {
+        "id": "TXT-009-padded",
+        "input": "\u00a0 Quý\t ",
+        "expected": "quý"
+      },
+      {
+        "id": "TXT-010",
+        "input": "Quỳnh",
+        "expected": "quỳnh"
+      },
+      {
+        "id": "TXT-010-nfd",
+        "input": "Quy\u0300nh",
+        "expected": "quỳnh"
+      },
+      {
+        "id": "TXT-010-upper",
+        "input": "QUỲNH",
+        "expected": "quỳnh"
+      },
+      {
+        "id": "TXT-010-zwsp",
+        "input": "Q\u200buỳnh",
+        "expected": "quỳnh"
+      },
+      {
+        "id": "TXT-010-padded",
+        "input": "\u00a0 Quỳnh\t ",
+        "expected": "quỳnh"
+      },
+      {
+        "id": "TXT-011",
+        "input": "Hoàng",
+        "expected": "hoàng"
+      },
+      {
+        "id": "TXT-011-nfd",
+        "input": "Hoa\u0300ng",
+        "expected": "hoàng"
+      },
+      {
+        "id": "TXT-011-upper",
+        "input": "HOÀNG",
+        "expected": "hoàng"
+      },
+      {
+        "id": "TXT-011-zwsp",
+        "input": "H\u200boàng",
+        "expected": "hoàng"
+      },
+      {
+        "id": "TXT-011-padded",
+        "input": "\u00a0 Hoàng\t ",
+        "expected": "hoàng"
+      },
+      {
+        "id": "TXT-012",
+        "input": "Uỷ ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-012-nfd",
+        "input": "Uy\u0309 ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-012-upper",
+        "input": "UỶ BAN",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-012-zwsp",
+        "input": "U\u200bỷ ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-012-padded",
+        "input": "\u00a0 Uỷ ban\t ",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-013",
+        "input": "Ủy ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-013-nfd",
+        "input": "U\u0309y ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-013-upper",
+        "input": "ỦY BAN",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-013-zwsp",
+        "input": "Ủ\u200by ban",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-013-padded",
+        "input": "\u00a0 Ủy ban\t ",
+        "expected": "ủy ban"
+      },
+      {
+        "id": "TXT-014",
+        "input": "Toà nhà",
+        "expected": "tòa nhà"
+      },
+      {
+        "id": "TXT-014-nfd",
+        "input": "Toa\u0300 nha\u0300",
+        "expected": "tòa nhà"
+      },
+      {
+        "id": "TXT-014-upper",
+        "input": "TOÀ NHÀ",
+        "expected": "tòa nhà"
+      },
+      {
+        "id": "TXT-014-zwsp",
+        "input": "T\u200boà nhà",
+        "expected": "tòa nhà"
+      },
+      {
+        "id": "TXT-014-padded",
+        "input": "\u00a0 Toà nhà\t ",
+        "expected": "tòa nhà"
+      },
+      {
+        "id": "TXT-015",
+        "input": "Hoá đơn",
+        "expected": "hóa đơn"
+      },
+      {
+        "id": "TXT-015-nfd",
+        "input": "Hoa\u0301 đo\u031bn",
+        "expected": "hóa đơn"
+      },
+      {
+        "id": "TXT-015-upper",
+        "input": "HOÁ ĐƠN",
+        "expected": "hóa đơn"
+      },
+      {
+        "id": "TXT-015-zwsp",
+        "input": "H\u200boá đơn",
+        "expected": "hóa đơn"
+      },
+      {
+        "id": "TXT-015-padded",
+        "input": "\u00a0 Hoá đơn\t ",
+        "expected": "hóa đơn"
+      },
+      {
+        "id": "TXT-016",
+        "input": "Xoè",
+        "expected": "xòe"
+      },
+      {
+        "id": "TXT-016-nfd",
+        "input": "Xoe\u0300",
+        "expected": "xòe"
+      },
+      {
+        "id": "TXT-016-upper",
+        "input": "XOÈ",
+        "expected": "xòe"
+      },
+      {
+        "id": "TXT-016-zwsp",
+        "input": "X\u200boè",
+        "expected": "xòe"
+      },
+      {
+        "id": "TXT-016-padded",
+        "input": "\u00a0 Xoè\t ",
+        "expected": "xòe"
+      },
+      {
+        "id": "TXT-017",
+        "input": "Thuý Kiều",
+        "expected": "thúy kiều"
+      },
+      {
+        "id": "TXT-017-nfd",
+        "input": "Thuy\u0301 Kie\u0302\u0300u",
+        "expected": "thúy kiều"
+      },
+      {
+        "id": "TXT-017-upper",
+        "input": "THUÝ KIỀU",
+        "expected": "thúy kiều"
+      },
+      {
+        "id": "TXT-017-zwsp",
+        "input": "T\u200bhuý Kiều",
+        "expected": "thúy kiều"
+      },
+      {
+        "id": "TXT-017-padded",
+        "input": "\u00a0 Thuý Kiều\t ",
+        "expected": "thúy kiều"
+      },
+      {
+        "id": "TXT-018",
+        "input": "Mai Thuỳ",
+        "expected": "mai thùy"
+      },
+      {
+        "id": "TXT-018-nfd",
+        "input": "Mai Thuy\u0300",
+        "expected": "mai thùy"
+      },
+      {
+        "id": "TXT-018-upper",
+        "input": "MAI THUỲ",
+        "expected": "mai thùy"
+      },
+      {
+        "id": "TXT-018-zwsp",
+        "input": "M\u200bai Thuỳ",
+        "expected": "mai thùy"
+      },
+      {
+        "id": "TXT-018-padded",
+        "input": "\u00a0 Mai Thuỳ\t ",
+        "expected": "mai thùy"
+      },
+      {
+        "id": "TXT-019",
+        "input": "Loè loẹt",
+        "expected": "lòe loẹt"
+      },
+      {
+        "id": "TXT-019-nfd",
+        "input": "Loe\u0300 loe\u0323t",
+        "expected": "lòe loẹt"
+      },
+      {
+        "id": "TXT-019-upper",
+        "input": "LOÈ LOẸT",
+        "expected": "lòe loẹt"
+      },
+      {
+        "id": "TXT-019-zwsp",
+        "input": "L\u200boè loẹt",
+        "expected": "lòe loẹt"
+      },
+      {
+        "id": "TXT-019-padded",
+        "input": "\u00a0 Loè loẹt\t ",
+        "expected": "lòe loẹt"
+      },
+      {
+        "id": "TXT-020",
+        "input": "Xuý xoá",
+        "expected": "xúy xóa"
+      },
+      {
+        "id": "TXT-020-nfd",
+        "input": "Xuy\u0301 xoa\u0301",
+        "expected": "xúy xóa"
+      },
+      {
+        "id": "TXT-020-upper",
+        "input": "XUÝ XOÁ",
+        "expected": "xúy xóa"
+      },
+      {
+        "id": "TXT-020-zwsp",
+        "input": "X\u200buý xoá",
+        "expected": "xúy xóa"
+      },
+      {
+        "id": "TXT-020-padded",
+        "input": "\u00a0 Xuý xoá\t ",
+        "expected": "xúy xóa"
+      },
+      {
+        "id": "TXT-021",
+        "input": "Khoảng",
+        "expected": "khoảng"
+      },
+      {
+        "id": "TXT-021-nfd",
+        "input": "Khoa\u0309ng",
+        "expected": "khoảng"
+      },
+      {
+        "id": "TXT-021-upper",
+        "input": "KHOẢNG",
+        "expected": "khoảng"
+      },
+      {
+        "id": "TXT-021-zwsp",
+        "input": "K\u200bhoảng",
+        "expected": "khoảng"
+      },
+      {
+        "id": "TXT-021-padded",
+        "input": "\u00a0 Khoảng\t ",
+        "expected": "khoảng"
+      },
+      {
+        "id": "TXT-022",
+        "input": "Ngoài",
+        "expected": "ngoài"
+      },
+      {
+        "id": "TXT-022-nfd",
+        "input": "Ngoa\u0300i",
+        "expected": "ngoài"
+      },
+      {
+        "id": "TXT-022-upper",
+        "input": "NGOÀI",
+        "expected": "ngoài"
+      },
+      {
+        "id": "TXT-022-zwsp",
+        "input": "N\u200bgoài",
+        "expected": "ngoài"
+      },
+      {
+        "id": "TXT-022-padded",
+        "input": "\u00a0 Ngoài\t ",
+        "expected": "ngoài"
+      },
+      {
+        "id": "TXT-023",
+        "input": "Thuyền",
+        "expected": "thuyền"
+      },
+      {
+        "id": "TXT-023-nfd",
+        "input": "Thuye\u0302\u0300n",
+        "expected": "thuyền"
+      },
+      {
+        "id": "TXT-023-upper",
+        "input": "THUYỀN",
+        "expected": "thuyền"
+      },
+      {
+        "id": "TXT-023-zwsp",
+        "input": "T\u200bhuyền",
+        "expected": "thuyền"
+      },
+      {
+        "id": "TXT-023-padded",
+        "input": "\u00a0 Thuyền\t ",
+        "expected": "thuyền"
+      },
+      {
+        "id": "TXT-024",
+        "input": "Hoà-Phát",
+        "expected": "hòa-phát"
+      },
+      {
+        "id": "TXT-024-nfd",
+        "input": "Hoa\u0300-Pha\u0301t",
+        "expected": "hòa-phát"
+      },
+      {
+        "id": "TXT-024-upper",
+        "input": "HOÀ-PHÁT",
+        "expected": "hòa-phát"
+      },
+      {
+        "id": "TXT-024-zwsp",
+        "input": "H\u200boà-Phát",
+        "expected": "hòa-phát"
+      },
+      {
+        "id": "TXT-024-padded",
+        "input": "\u00a0 Hoà-Phát\t ",
+        "expected": "hòa-phát"
+      },
+      {
+        "id": "TXT-025",
+        "input": "hoà2",
+        "expected": "hòa2"
+      },
+      {
+        "id": "TXT-025-nfd",
+        "input": "hoa\u03002",
+        "expected": "hòa2"
+      },
+      {
+        "id": "TXT-025-upper",
+        "input": "HOÀ2",
+        "expected": "hòa2"
+      },
+      {
+        "id": "TXT-025-zwsp",
+        "input": "h\u200boà2",
+        "expected": "hòa2"
+      },
+      {
+        "id": "TXT-025-padded",
+        "input": "\u00a0 hoà2\t ",
+        "expected": "hòa2"
+      },
+      {
+        "id": "TXT-026",
+        "input": "Đức\u00a0Hòa",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-nfd",
+        "input": "Đu\u031b\u0301c\u00a0Ho\u0300a",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-upper",
+        "input": "ĐỨC\u00a0HÒA",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-zwsp",
+        "input": "Đ\u200bức\u00a0Hòa",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-padded",
+        "input": "\u00a0 Đức\u00a0Hòa\t ",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-old-tone",
+        "input": "Đức\u00a0Hoà",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-026-old-tone-nfd",
+        "input": "Đu\u031b\u0301c\u00a0Hoa\u0300",
+        "expected": "đức hòa"
+      },
+      {
+        "id": "TXT-027",
+        "input": "Lê\tVăn\nAn",
+        "expected": "lê văn an"
+      },
+      {
+        "id": "TXT-027-nfd",
+        "input": "Le\u0302\tVa\u0306n\nAn",
+        "expected": "lê văn an"
+      },
+      {
+        "id": "TXT-027-upper",
+        "input": "LÊ\tVĂN\nAN",
+        "expected": "lê văn an"
+      },
+      {
+        "id": "TXT-027-zwsp",
+        "input": "L\u200bê\tVăn\nAn",
+        "expected": "lê văn an"
+      },
+      {
+        "id": "TXT-027-padded",
+        "input": "\u00a0 Lê\tVăn\nAn\t ",
+        "expected": "lê văn an"
+      },
+      {
+        "id": "TXT-028",
+        "input": "ＡＢＣ\u3000１２３",
+        "expected": "abc 123"
+      },
+      {
+        "id": "TXT-028-zwsp",
+        "input": "Ａ\u200bＢＣ\u3000１２３",
+        "expected": "abc 123"
+      },
+      {
+        "id": "TXT-028-padded",
+        "input": "\u00a0 ＡＢＣ\u3000１２３\t ",
+        "expected": "abc 123"
+      },
+      {
+        "id": "TXT-029",
+        "input": "\ufeffNguyễn",
+        "expected": "nguyễn"
+      },
+      {
+        "id": "TXT-029-nfd",
+        "input": "\ufeffNguye\u0302\u0303n",
+        "expected": "nguyễn"
+      },
+      {
+        "id": "TXT-029-upper",
+        "input": "\ufeffNGUYỄN",
+        "expected": "nguyễn"
+      },
+      {
+        "id": "TXT-029-zwsp",
+        "input": "\ufeff\u200bNguyễn",
+        "expected": "nguyễn"
+      },
+      {
+        "id": "TXT-029-padded",
+        "input": "\u00a0 \ufeffNguyễn\t ",
+        "expected": "nguyễn"
+      },
+      {
+        "id": "TXT-030",
+        "input": "Trần\u00adVăn",
+        "expected": "trầnvăn"
+      },
+      {
+        "id": "TXT-030-nfd",
+        "input": "Tra\u0302\u0300n\u00adVa\u0306n",
+        "expected": "trầnvăn"
+      },
+      {
+        "id": "TXT-030-upper",
+        "input": "TRẦN\u00adVĂN",
+        "expected": "trầnvăn"
+      },
+      {
+        "id": "TXT-030-zwsp",
+        "input": "T\u200brần\u00adVăn",
+        "expected": "trầnvăn"
+      },
+      {
+        "id": "TXT-030-padded",
+        "input": "\u00a0 Trần\u00adVăn\t ",
+        "expected": "trầnvăn"
+      },
+      {
+        "id": "TXT-031",
+        "input": "Phạm Thùy Dương",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-nfd",
+        "input": "Pha\u0323m Thu\u0300y Du\u031bo\u031bng",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-upper",
+        "input": "PHẠM THÙY DƯƠNG",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-zwsp",
+        "input": "P\u200bhạm Thùy Dương",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-padded",
+        "input": "\u00a0 Phạm Thùy Dương\t ",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-old-tone",
+        "input": "Phạm Thuỳ Dương",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-031-old-tone-nfd",
+        "input": "Pha\u0323m Thuy\u0300 Du\u031bo\u031bng",
+        "expected": "phạm thùy dương"
+      },
+      {
+        "id": "TXT-032",
+        "input": "Công ty TNHH Xây dựng Lâm Phạm",
+        "expected": "công ty tnhh xây dựng lâm phạm"
+      },
+      {
+        "id": "TXT-032-nfd",
+        "input": "Co\u0302ng ty TNHH Xa\u0302y du\u031b\u0323ng La\u0302m Pha\u0323m",
+        "expected": "công ty tnhh xây dựng lâm phạm"
+      },
+      {
+        "id": "TXT-032-upper",
+        "input": "CÔNG TY TNHH XÂY DỰNG LÂM PHẠM",
+        "expected": "công ty tnhh xây dựng lâm phạm"
+      },
+      {
+        "id": "TXT-032-zwsp",
+        "input": "C\u200bông ty TNHH Xây dựng Lâm Phạm",
+        "expected": "công ty tnhh xây dựng lâm phạm"
+      },
+      {
+        "id": "TXT-032-padded",
+        "input": "\u00a0 Công ty TNHH Xây dựng Lâm Phạm\t ",
+        "expected": "công ty tnhh xây dựng lâm phạm"
+      },
+      {
+        "id": "TXT-033",
+        "input": "Ðức Thịnh",
+        "expected": "đức thịnh"
+      },
+      {
+        "id": "TXT-033-nfd",
+        "input": "Ðu\u031b\u0301c Thi\u0323nh",
+        "expected": "đức thịnh"
+      },
+      {
+        "id": "TXT-033-upper",
+        "input": "ÐỨC THỊNH",
+        "expected": "đức thịnh"
+      },
+      {
+        "id": "TXT-033-zwsp",
+        "input": "Ð\u200bức Thịnh",
+        "expected": "đức thịnh"
+      },
+      {
+        "id": "TXT-033-padded",
+        "input": "\u00a0 Ðức Thịnh\t ",
+        "expected": "đức thịnh"
+      },
+      {
+        "id": "TXT-034",
+        "input": "Nguye\u0302\u0303n Va\u0306n A\u0301nh",
+        "expected": "nguyễn văn ánh"
+      },
+      {
+        "id": "TXT-034-upper",
+        "input": "NGUYE\u0302\u0303N VA\u0306N A\u0301NH",
+        "expected": "nguyễn văn ánh"
+      },
+      {
+        "id": "TXT-034-zwsp",
+        "input": "N\u200bguye\u0302\u0303n Va\u0306n A\u0301nh",
+        "expected": "nguyễn văn ánh"
+      },
+      {
+        "id": "TXT-034-padded",
+        "input": "\u00a0 Nguye\u0302\u0303n Va\u0306n A\u0301nh\t ",
+        "expected": "nguyễn văn ánh"
+      },
+      {
+        "id": "TXT-035",
+        "input": "A\u200e\u200fB\u202aC",
+        "expected": "abc"
+      },
+      {
+        "id": "TXT-035-zwsp",
+        "input": "A\u200b\u200e\u200fB\u202aC",
+        "expected": "abc"
+      },
+      {
+        "id": "TXT-035-padded",
+        "input": "\u00a0 A\u200e\u200fB\u202aC\t ",
+        "expected": "abc"
+      },
+      {
+        "id": "TXT-036",
+        "input": "Dòng 1\u2028Dòng 2",
+        "expected": "dòng 1 dòng 2"
+      },
+      {
+        "id": "TXT-036-nfd",
+        "input": "Do\u0300ng 1\u2028Do\u0300ng 2",
+        "expected": "dòng 1 dòng 2"
+      },
+      {
+        "id": "TXT-036-upper",
+        "input": "DÒNG 1\u2028DÒNG 2",
+        "expected": "dòng 1 dòng 2"
+      },
+      {
+        "id": "TXT-036-zwsp",
+        "input": "D\u200bòng 1\u2028Dòng 2",
+        "expected": "dòng 1 dòng 2"
+      },
+      {
+        "id": "TXT-036-padded",
+        "input": "\u00a0 Dòng 1\u2028Dòng 2\t ",
+        "expected": "dòng 1 dòng 2"
+      },
+      {
+        "id": "TXT-037",
+        "input": "",
+        "expected": ""
+      },
+      {
+        "id": "TXT-038",
+        "input": "   ",
+        "expected": ""
+      },
+      {
+        "id": "TXT-039",
+        "input": "Ông Hoá",
+        "expected": "ông hóa"
+      },
+      {
+        "id": "TXT-039-nfd",
+        "input": "O\u0302ng Hoa\u0301",
+        "expected": "ông hóa"
+      },
+      {
+        "id": "TXT-039-upper",
+        "input": "ÔNG HOÁ",
+        "expected": "ông hóa"
+      },
+      {
+        "id": "TXT-039-zwsp",
+        "input": "Ô\u200bng Hoá",
+        "expected": "ông hóa"
+      },
+      {
+        "id": "TXT-039-padded",
+        "input": "\u00a0 Ông Hoá\t ",
+        "expected": "ông hóa"
+      },
+      {
+        "id": "TXT-040",
+        "input": "Hòa Bình",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-nfd",
+        "input": "Ho\u0300a Bi\u0300nh",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-upper",
+        "input": "HÒA BÌNH",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-zwsp",
+        "input": "H\u200bòa Bình",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-padded",
+        "input": "\u00a0 Hòa Bình\t ",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-old-tone",
+        "input": "Hoà Bình",
+        "expected": "hòa bình"
+      },
+      {
+        "id": "TXT-040-old-tone-nfd",
+        "input": "Hoa\u0300 Bi\u0300nh",
+        "expected": "hòa bình"
+      }
+    ],
+    "search_key": [
+      {
+        "id": "KEY-001",
+        "input": "Đức Hòa",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-nfd",
+        "input": "Đu\u031b\u0301c Ho\u0300a",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-upper",
+        "input": "ĐỨC HÒA",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-zwsp",
+        "input": "Đ\u200bức Hòa",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-padded",
+        "input": "\u00a0 Đức Hòa\t ",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-old-tone",
+        "input": "Đức Hoà",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-001-old-tone-nfd",
+        "input": "Đu\u031b\u0301c Hoa\u0300",
+        "expected": "duc hoa"
+      },
+      {
+        "id": "KEY-002",
+        "input": "ĐỨC",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-002-nfd",
+        "input": "ĐU\u031b\u0301C",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-002-zwsp",
+        "input": "Đ\u200bỨC",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-002-padded",
+        "input": "\u00a0 ĐỨC\t ",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-003",
+        "input": "duc",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-003-upper",
+        "input": "DUC",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-003-zwsp",
+        "input": "d\u200buc",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-003-padded",
+        "input": "\u00a0 duc\t ",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-004",
+        "input": "Trần",
+        "expected": "tran"
+      },
+      {
+        "id": "KEY-004-nfd",
+        "input": "Tra\u0302\u0300n",
+        "expected": "tran"
+      },
+      {
+        "id": "KEY-004-upper",
+        "input": "TRẦN",
+        "expected": "tran"
+      },
+      {
+        "id": "KEY-004-zwsp",
+        "input": "T\u200brần",
+        "expected": "tran"
+      },
+      {
+        "id": "KEY-004-padded",
+        "input": "\u00a0 Trần\t ",
+        "expected": "tran"
+      },
+      {
+        "id": "KEY-005",
+        "input": "Sơn",
+        "expected": "son"
+      },
+      {
+        "id": "KEY-005-nfd",
+        "input": "So\u031bn",
+        "expected": "son"
+      },
+      {
+        "id": "KEY-005-upper",
+        "input": "SƠN",
+        "expected": "son"
+      },
+      {
+        "id": "KEY-005-zwsp",
+        "input": "S\u200bơn",
+        "expected": "son"
+      },
+      {
+        "id": "KEY-005-padded",
+        "input": "\u00a0 Sơn\t ",
+        "expected": "son"
+      },
+      {
+        "id": "KEY-006",
+        "input": "Nguyễn Văn Ước",
+        "expected": "nguyen van uoc"
+      },
+      {
+        "id": "KEY-006-nfd",
+        "input": "Nguye\u0302\u0303n Va\u0306n U\u031bo\u031b\u0301c",
+        "expected": "nguyen van uoc"
+      },
+      {
+        "id": "KEY-006-upper",
+        "input": "NGUYỄN VĂN ƯỚC",
+        "expected": "nguyen van uoc"
+      },
+      {
+        "id": "KEY-006-zwsp",
+        "input": "N\u200bguyễn Văn Ước",
+        "expected": "nguyen van uoc"
+      },
+      {
+        "id": "KEY-006-padded",
+        "input": "\u00a0 Nguyễn Văn Ước\t ",
+        "expected": "nguyen van uoc"
+      },
+      {
+        "id": "KEY-007",
+        "input": "Hoà Phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-007-nfd",
+        "input": "Hoa\u0300 Pha\u0301t",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-007-upper",
+        "input": "HOÀ PHÁT",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-007-zwsp",
+        "input": "H\u200boà Phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-007-padded",
+        "input": "\u00a0 Hoà Phát\t ",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008",
+        "input": "hòa phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-nfd",
+        "input": "ho\u0300a pha\u0301t",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-upper",
+        "input": "HÒA PHÁT",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-zwsp",
+        "input": "h\u200bòa phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-padded",
+        "input": "\u00a0 hòa phát\t ",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-old-tone",
+        "input": "hoà phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-008-old-tone-nfd",
+        "input": "hoa\u0300 pha\u0301t",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-009",
+        "input": "Thủy lợi Đồng Nai",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-nfd",
+        "input": "Thu\u0309y lo\u031b\u0323i Đo\u0302\u0300ng Nai",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-upper",
+        "input": "THỦY LỢI ĐỒNG NAI",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-zwsp",
+        "input": "T\u200bhủy lợi Đồng Nai",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-padded",
+        "input": "\u00a0 Thủy lợi Đồng Nai\t ",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-old-tone",
+        "input": "Thuỷ lợi Đồng Nai",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-009-old-tone-nfd",
+        "input": "Thuy\u0309 lo\u031b\u0323i Đo\u0302\u0300ng Nai",
+        "expected": "thuy loi dong nai"
+      },
+      {
+        "id": "KEY-010",
+        "input": "Công ty Cổ phần Ưng Hòa",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-nfd",
+        "input": "Co\u0302ng ty Co\u0302\u0309 pha\u0302\u0300n U\u031bng Ho\u0300a",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-upper",
+        "input": "CÔNG TY CỔ PHẦN ƯNG HÒA",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-zwsp",
+        "input": "C\u200bông ty Cổ phần Ưng Hòa",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-padded",
+        "input": "\u00a0 Công ty Cổ phần Ưng Hòa\t ",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-old-tone",
+        "input": "Công ty Cổ phần Ưng Hoà",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-010-old-tone-nfd",
+        "input": "Co\u0302ng ty Co\u0302\u0309 pha\u0302\u0300n U\u031bng Hoa\u0300",
+        "expected": "cong ty co phan ung hoa"
+      },
+      {
+        "id": "KEY-011",
+        "input": "Bùi Ngọc Huyền",
+        "expected": "bui ngoc huyen"
+      },
+      {
+        "id": "KEY-011-nfd",
+        "input": "Bu\u0300i Ngo\u0323c Huye\u0302\u0300n",
+        "expected": "bui ngoc huyen"
+      },
+      {
+        "id": "KEY-011-upper",
+        "input": "BÙI NGỌC HUYỀN",
+        "expected": "bui ngoc huyen"
+      },
+      {
+        "id": "KEY-011-zwsp",
+        "input": "B\u200bùi Ngọc Huyền",
+        "expected": "bui ngoc huyen"
+      },
+      {
+        "id": "KEY-011-padded",
+        "input": "\u00a0 Bùi Ngọc Huyền\t ",
+        "expected": "bui ngoc huyen"
+      },
+      {
+        "id": "KEY-012",
+        "input": "Lâm Phạm",
+        "expected": "lam pham"
+      },
+      {
+        "id": "KEY-012-nfd",
+        "input": "La\u0302m Pha\u0323m",
+        "expected": "lam pham"
+      },
+      {
+        "id": "KEY-012-upper",
+        "input": "LÂM PHẠM",
+        "expected": "lam pham"
+      },
+      {
+        "id": "KEY-012-zwsp",
+        "input": "L\u200bâm Phạm",
+        "expected": "lam pham"
+      },
+      {
+        "id": "KEY-012-padded",
+        "input": "\u00a0 Lâm Phạm\t ",
+        "expected": "lam pham"
+      },
+      {
+        "id": "KEY-013",
+        "input": "Đắk Lắk",
+        "expected": "dak lak"
+      },
+      {
+        "id": "KEY-013-nfd",
+        "input": "Đa\u0306\u0301k La\u0306\u0301k",
+        "expected": "dak lak"
+      },
+      {
+        "id": "KEY-013-upper",
+        "input": "ĐẮK LẮK",
+        "expected": "dak lak"
+      },
+      {
+        "id": "KEY-013-zwsp",
+        "input": "Đ\u200bắk Lắk",
+        "expected": "dak lak"
+      },
+      {
+        "id": "KEY-013-padded",
+        "input": "\u00a0 Đắk Lắk\t ",
+        "expected": "dak lak"
+      },
+      {
+        "id": "KEY-014",
+        "input": "Bà Rịa – Vũng Tàu",
+        "expected": "ba ria – vung tau"
+      },
+      {
+        "id": "KEY-014-nfd",
+        "input": "Ba\u0300 Ri\u0323a – Vu\u0303ng Ta\u0300u",
+        "expected": "ba ria – vung tau"
+      },
+      {
+        "id": "KEY-014-upper",
+        "input": "BÀ RỊA – VŨNG TÀU",
+        "expected": "ba ria – vung tau"
+      },
+      {
+        "id": "KEY-014-zwsp",
+        "input": "B\u200bà Rịa – Vũng Tàu",
+        "expected": "ba ria – vung tau"
+      },
+      {
+        "id": "KEY-014-padded",
+        "input": "\u00a0 Bà Rịa – Vũng Tàu\t ",
+        "expected": "ba ria – vung tau"
+      },
+      {
+        "id": "KEY-015",
+        "input": "Hồ Chí Minh",
+        "expected": "ho chi minh"
+      },
+      {
+        "id": "KEY-015-nfd",
+        "input": "Ho\u0302\u0300 Chi\u0301 Minh",
+        "expected": "ho chi minh"
+      },
+      {
+        "id": "KEY-015-upper",
+        "input": "HỒ CHÍ MINH",
+        "expected": "ho chi minh"
+      },
+      {
+        "id": "KEY-015-zwsp",
+        "input": "H\u200bồ Chí Minh",
+        "expected": "ho chi minh"
+      },
+      {
+        "id": "KEY-015-padded",
+        "input": "\u00a0 Hồ Chí Minh\t ",
+        "expected": "ho chi minh"
+      },
+      {
+        "id": "KEY-016",
+        "input": "Quảng Ngãi",
+        "expected": "quang ngai"
+      },
+      {
+        "id": "KEY-016-nfd",
+        "input": "Qua\u0309ng Nga\u0303i",
+        "expected": "quang ngai"
+      },
+      {
+        "id": "KEY-016-upper",
+        "input": "QUẢNG NGÃI",
+        "expected": "quang ngai"
+      },
+      {
+        "id": "KEY-016-zwsp",
+        "input": "Q\u200buảng Ngãi",
+        "expected": "quang ngai"
+      },
+      {
+        "id": "KEY-016-padded",
+        "input": "\u00a0 Quảng Ngãi\t ",
+        "expected": "quang ngai"
+      },
+      {
+        "id": "KEY-017",
+        "input": "Thừa Thiên Huế",
+        "expected": "thua thien hue"
+      },
+      {
+        "id": "KEY-017-nfd",
+        "input": "Thu\u031b\u0300a Thie\u0302n Hue\u0302\u0301",
+        "expected": "thua thien hue"
+      },
+      {
+        "id": "KEY-017-upper",
+        "input": "THỪA THIÊN HUẾ",
+        "expected": "thua thien hue"
+      },
+      {
+        "id": "KEY-017-zwsp",
+        "input": "T\u200bhừa Thiên Huế",
+        "expected": "thua thien hue"
+      },
+      {
+        "id": "KEY-017-padded",
+        "input": "\u00a0 Thừa Thiên Huế\t ",
+        "expected": "thua thien hue"
+      },
+      {
+        "id": "KEY-018",
+        "input": "Nghệ An",
+        "expected": "nghe an"
+      },
+      {
+        "id": "KEY-018-nfd",
+        "input": "Nghe\u0323\u0302 An",
+        "expected": "nghe an"
+      },
+      {
+        "id": "KEY-018-upper",
+        "input": "NGHỆ AN",
+        "expected": "nghe an"
+      },
+      {
+        "id": "KEY-018-zwsp",
+        "input": "N\u200bghệ An",
+        "expected": "nghe an"
+      },
+      {
+        "id": "KEY-018-padded",
+        "input": "\u00a0 Nghệ An\t ",
+        "expected": "nghe an"
+      },
+      {
+        "id": "KEY-019",
+        "input": "Ỷ Lan",
+        "expected": "y lan"
+      },
+      {
+        "id": "KEY-019-nfd",
+        "input": "Y\u0309 Lan",
+        "expected": "y lan"
+      },
+      {
+        "id": "KEY-019-upper",
+        "input": "Ỷ LAN",
+        "expected": "y lan"
+      },
+      {
+        "id": "KEY-019-zwsp",
+        "input": "Ỷ\u200b Lan",
+        "expected": "y lan"
+      },
+      {
+        "id": "KEY-019-padded",
+        "input": "\u00a0 Ỷ Lan\t ",
+        "expected": "y lan"
+      },
+      {
+        "id": "KEY-020",
+        "input": "Ðức",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-020-nfd",
+        "input": "Ðu\u031b\u0301c",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-020-upper",
+        "input": "ÐỨC",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-020-zwsp",
+        "input": "Ð\u200bức",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-020-padded",
+        "input": "\u00a0 Ðức\t ",
+        "expected": "duc"
+      },
+      {
+        "id": "KEY-021",
+        "input": "Nguye\u0302\u0303n",
+        "expected": "nguyen"
+      },
+      {
+        "id": "KEY-021-upper",
+        "input": "NGUYE\u0302\u0303N",
+        "expected": "nguyen"
+      },
+      {
+        "id": "KEY-021-zwsp",
+        "input": "N\u200bguye\u0302\u0303n",
+        "expected": "nguyen"
+      },
+      {
+        "id": "KEY-021-padded",
+        "input": "\u00a0 Nguye\u0302\u0303n\t ",
+        "expected": "nguyen"
+      },
+      {
+        "id": "KEY-022",
+        "input": "Hoà\u200bPhát",
+        "expected": "hoaphat"
+      },
+      {
+        "id": "KEY-022-nfd",
+        "input": "Hoa\u0300\u200bPha\u0301t",
+        "expected": "hoaphat"
+      },
+      {
+        "id": "KEY-022-upper",
+        "input": "HOÀ\u200bPHÁT",
+        "expected": "hoaphat"
+      },
+      {
+        "id": "KEY-022-zwsp",
+        "input": "H\u200boà\u200bPhát",
+        "expected": "hoaphat"
+      },
+      {
+        "id": "KEY-022-padded",
+        "input": "\u00a0 Hoà\u200bPhát\t ",
+        "expected": "hoaphat"
+      },
+      {
+        "id": "KEY-023",
+        "input": "Thuỷ",
+        "expected": "thuy"
+      },
+      {
+        "id": "KEY-023-nfd",
+        "input": "Thuy\u0309",
+        "expected": "thuy"
+      },
+      {
+        "id": "KEY-023-upper",
+        "input": "THUỶ",
+        "expected": "thuy"
+      },
+      {
+        "id": "KEY-023-zwsp",
+        "input": "T\u200bhuỷ",
+        "expected": "thuy"
+      },
+      {
+        "id": "KEY-023-padded",
+        "input": "\u00a0 Thuỷ\t ",
+        "expected": "thuy"
+      },
+      {
+        "id": "KEY-024",
+        "input": "Khoẻ",
+        "expected": "khoe"
+      },
+      {
+        "id": "KEY-024-nfd",
+        "input": "Khoe\u0309",
+        "expected": "khoe"
+      },
+      {
+        "id": "KEY-024-upper",
+        "input": "KHOẺ",
+        "expected": "khoe"
+      },
+      {
+        "id": "KEY-024-zwsp",
+        "input": "K\u200bhoẻ",
+        "expected": "khoe"
+      },
+      {
+        "id": "KEY-024-padded",
+        "input": "\u00a0 Khoẻ\t ",
+        "expected": "khoe"
+      },
+      {
+        "id": "KEY-025",
+        "input": "Phú Yên",
+        "expected": "phu yen"
+      },
+      {
+        "id": "KEY-025-nfd",
+        "input": "Phu\u0301 Ye\u0302n",
+        "expected": "phu yen"
+      },
+      {
+        "id": "KEY-025-upper",
+        "input": "PHÚ YÊN",
+        "expected": "phu yen"
+      },
+      {
+        "id": "KEY-025-zwsp",
+        "input": "P\u200bhú Yên",
+        "expected": "phu yen"
+      },
+      {
+        "id": "KEY-025-padded",
+        "input": "\u00a0 Phú Yên\t ",
+        "expected": "phu yen"
+      },
+      {
+        "id": "KEY-026",
+        "input": "Tô Thị Ngọc Ánh",
+        "expected": "to thi ngoc anh"
+      },
+      {
+        "id": "KEY-026-nfd",
+        "input": "To\u0302 Thi\u0323 Ngo\u0323c A\u0301nh",
+        "expected": "to thi ngoc anh"
+      },
+      {
+        "id": "KEY-026-upper",
+        "input": "TÔ THỊ NGỌC ÁNH",
+        "expected": "to thi ngoc anh"
+      },
+      {
+        "id": "KEY-026-zwsp",
+        "input": "T\u200bô Thị Ngọc Ánh",
+        "expected": "to thi ngoc anh"
+      },
+      {
+        "id": "KEY-026-padded",
+        "input": "\u00a0 Tô Thị Ngọc Ánh\t ",
+        "expected": "to thi ngoc anh"
+      },
+      {
+        "id": "KEY-027",
+        "input": "Ưu đãi",
+        "expected": "uu dai"
+      },
+      {
+        "id": "KEY-027-nfd",
+        "input": "U\u031bu đa\u0303i",
+        "expected": "uu dai"
+      },
+      {
+        "id": "KEY-027-upper",
+        "input": "ƯU ĐÃI",
+        "expected": "uu dai"
+      },
+      {
+        "id": "KEY-027-zwsp",
+        "input": "Ư\u200bu đãi",
+        "expected": "uu dai"
+      },
+      {
+        "id": "KEY-027-padded",
+        "input": "\u00a0 Ưu đãi\t ",
+        "expected": "uu dai"
+      },
+      {
+        "id": "KEY-028",
+        "input": "ƠN",
+        "expected": "on"
+      },
+      {
+        "id": "KEY-028-nfd",
+        "input": "O\u031bN",
+        "expected": "on"
+      },
+      {
+        "id": "KEY-028-zwsp",
+        "input": "Ơ\u200bN",
+        "expected": "on"
+      },
+      {
+        "id": "KEY-028-padded",
+        "input": "\u00a0 ƠN\t ",
+        "expected": "on"
+      },
+      {
+        "id": "KEY-029",
+        "input": "Thép D16 CB400-V",
+        "expected": "thep d16 cb400-v"
+      },
+      {
+        "id": "KEY-029-nfd",
+        "input": "The\u0301p D16 CB400-V",
+        "expected": "thep d16 cb400-v"
+      },
+      {
+        "id": "KEY-029-upper",
+        "input": "THÉP D16 CB400-V",
+        "expected": "thep d16 cb400-v"
+      },
+      {
+        "id": "KEY-029-zwsp",
+        "input": "T\u200bhép D16 CB400-V",
+        "expected": "thep d16 cb400-v"
+      },
+      {
+        "id": "KEY-029-padded",
+        "input": "\u00a0 Thép D16 CB400-V\t ",
+        "expected": "thep d16 cb400-v"
+      },
+      {
+        "id": "KEY-030",
+        "input": "Hоа Phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-030-nfd",
+        "input": "Hоа Pha\u0301t",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-030-upper",
+        "input": "HОА PHÁT",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-030-zwsp",
+        "input": "H\u200bоа Phát",
+        "expected": "hoa phat"
+      },
+      {
+        "id": "KEY-030-padded",
+        "input": "\u00a0 Hоа Phát\t ",
+        "expected": "hoa phat"
+      }
+    ],
+    "company": [
+      {
+        "id": "CMP-001",
+        "input": "CTCP ABC",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-002",
+        "input": "Công ty Cổ phần ABC",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-003",
+        "input": "ABC JSC",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-004",
+        "input": "ABC J.S.C",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-005",
+        "input": "Công ty CP ABC",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-006",
+        "input": "Cty CP ABC",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-007",
+        "input": "ABC Joint Stock Company",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-008",
+        "input": "Cty TNHH ABC",
+        "expected": {
+          "legalForm": "llc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-009",
+        "input": "Công ty TNHH ABC",
+        "expected": {
+          "legalForm": "llc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-010",
+        "input": "Công ty trách nhiệm hữu hạn ABC",
+        "expected": {
+          "legalForm": "llc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-011",
+        "input": "Công ty TNHH Một thành viên Xây dựng Lâm Phạm",
+        "expected": {
+          "legalForm": "llc",
+          "core": "xay dung lam pham"
+        }
+      },
+      {
+        "id": "CMP-012",
+        "input": "Công ty TNHH MTV Foodtek",
+        "expected": {
+          "legalForm": "llc",
+          "core": "foodtek"
+        }
+      },
+      {
+        "id": "CMP-013",
+        "input": "Công ty TNHH Hai thành viên trở lên Minh Long",
+        "expected": {
+          "legalForm": "llc",
+          "core": "minh long"
+        }
+      },
+      {
+        "id": "CMP-014",
+        "input": "Lam Pham Construction Co., Ltd",
+        "expected": {
+          "legalForm": "llc",
+          "core": "lam pham construction"
+        }
+      },
+      {
+        "id": "CMP-015",
+        "input": "Lam Pham Construction Co.,Ltd",
+        "expected": {
+          "legalForm": "llc",
+          "core": "lam pham construction"
+        }
+      },
+      {
+        "id": "CMP-016",
+        "input": "ABC Company Limited",
+        "expected": {
+          "legalForm": "llc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-017",
+        "input": "ABC LLC",
+        "expected": {
+          "legalForm": "llc",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-018",
+        "input": "Doanh nghiệp tư nhân Minh Anh",
+        "expected": {
+          "legalForm": "private",
+          "core": "minh anh"
+        }
+      },
+      {
+        "id": "CMP-019",
+        "input": "DNTN Minh Anh",
+        "expected": {
+          "legalForm": "private",
+          "core": "minh anh"
+        }
+      },
+      {
+        "id": "CMP-020",
+        "input": "HTX Nông nghiệp Tân Phú",
+        "expected": {
+          "legalForm": "coop",
+          "core": "nong nghiep tan phu"
+        }
+      },
+      {
+        "id": "CMP-021",
+        "input": "Hợp tác xã Nông nghiệp Tân Phú",
+        "expected": {
+          "legalForm": "coop",
+          "core": "nong nghiep tan phu"
+        }
+      },
+      {
+        "id": "CMP-022",
+        "input": "Hộ kinh doanh Bình An",
+        "expected": {
+          "legalForm": "household",
+          "core": "binh an"
+        }
+      },
+      {
+        "id": "CMP-023",
+        "input": "Công ty hợp danh Luật Việt",
+        "expected": {
+          "legalForm": "partnership",
+          "core": "luat viet"
+        }
+      },
+      {
+        "id": "CMP-024",
+        "input": "Công ty ABC",
+        "expected": {
+          "legalForm": "company",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-025",
+        "input": "Cty ABC",
+        "expected": {
+          "legalForm": "company",
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-026",
+        "input": "ABC",
+        "expected": {
+          "legalForm": null,
+          "core": "abc"
+        }
+      },
+      {
+        "id": "CMP-027",
+        "input": "Tập đoàn Pi Holding",
+        "expected": {
+          "legalForm": null,
+          "core": "tap doan pi holding"
+        }
+      },
+      {
+        "id": "CMP-028",
+        "input": "  công   ty  cổ  phần   hoà phát ",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "hoa phat"
+        }
+      },
+      {
+        "id": "CMP-029",
+        "input": "CÔNG TY CỔ PHẦN TẬP ĐOÀN HÒA PHÁT",
+        "expected": {
+          "legalForm": "jsc",
+          "core": "tap doan hoa phat"
+        }
+      },
+      {
+        "id": "CMP-030",
+        "input": "",
+        "expected": {
+          "legalForm": null,
+          "core": ""
+        }
+      }
+    ],
+    "phone": [
+      {
+        "id": "PHN-001",
+        "input": "0381234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-002",
+        "input": "01681234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841681234567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-003",
+        "input": "+84 38 123 4567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-004",
+        "input": "84381234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-005",
+        "input": "+84 0381234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-006",
+        "input": "381234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-007",
+        "input": "038.123.4567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-008",
+        "input": "(038) 123-4567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-009",
+        "input": "0912 345 678",
+        "expected": {
+          "e164": "+84912345678",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-010",
+        "input": "0123 456 7890",
+        "expected": {
+          "e164": "+84834567890",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841234567890"
+          ]
+        }
+      },
+      {
+        "id": "PHN-011",
+        "input": "0120 123 4567",
+        "expected": {
+          "e164": "+84701234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841201234567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-012",
+        "input": "0199 123 4567",
+        "expected": {
+          "e164": "+84591234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841991234567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-013",
+        "input": "0188 765 4321",
+        "expected": {
+          "e164": "+84587654321",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841887654321"
+          ]
+        }
+      },
+      {
+        "id": "PHN-014",
+        "input": "+84 168 123 4567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841681234567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-015",
+        "input": "841681234567",
+        "expected": {
+          "e164": "+84381234567",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+841681234567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-016",
+        "input": "024 3826 4567",
+        "expected": {
+          "e164": "+842438264567",
+          "kind": "landline",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-017",
+        "input": "02436123456",
+        "expected": {
+          "e164": "+842436123456",
+          "kind": "landline",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-018",
+        "input": "0236 3812 345",
+        "expected": {
+          "e164": "+842363812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-019",
+        "input": "0225 3812 345",
+        "expected": {
+          "e164": "+842253812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-020",
+        "input": "04 3826 4567",
+        "expected": {
+          "e164": "+842438264567",
+          "kind": "landline",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+84438264567"
+          ]
+        }
+      },
+      {
+        "id": "PHN-021",
+        "input": "0511 3812 345",
+        "expected": {
+          "e164": "+842363812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+845113812345"
+          ]
+        }
+      },
+      {
+        "id": "PHN-022",
+        "input": "0240 3812 345",
+        "expected": {
+          "e164": "+842043812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+842403812345"
+          ]
+        }
+      },
+      {
+        "id": "PHN-023",
+        "input": "031 3812 345",
+        "expected": {
+          "e164": "+842253812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+84313812345"
+          ]
+        }
+      },
+      {
+        "id": "PHN-024",
+        "input": "061 3812 345",
+        "expected": {
+          "e164": "+842513812345",
+          "kind": "landline",
+          "valid": true,
+          "legacy": true,
+          "aliases": [
+            "+84613812345"
+          ]
+        }
+      },
+      {
+        "id": "PHN-025",
+        "input": "08 3829 1234",
+        "expected": {
+          "e164": "+84838291234",
+          "kind": "mobile",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-026",
+        "input": "+1 650 555 1234",
+        "expected": {
+          "e164": "+16505551234",
+          "kind": "international",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-027",
+        "input": "0065 6123 4567",
+        "expected": {
+          "e164": "+6561234567",
+          "kind": "international",
+          "valid": true,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-028",
+        "input": "12345",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-029",
+        "input": "abc",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-030",
+        "input": "0281234567",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-031",
+        "input": "0951234567",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-032",
+        "input": "0381234567 ext 12",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      },
+      {
+        "id": "PHN-033",
+        "input": "",
+        "expected": {
+          "e164": null,
+          "kind": null,
+          "valid": false,
+          "legacy": false,
+          "aliases": []
+        }
+      }
+    ],
+    "tax_code": [
+      {
+        "id": "TAX-001",
+        "input": "0100109106",
+        "expected": {
+          "canonical": "0100109106",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-002",
+        "input": "0300588569",
+        "expected": {
+          "canonical": "0300588569",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0300588569"
+        }
+      },
+      {
+        "id": "TAX-003",
+        "input": "0101248141",
+        "expected": {
+          "canonical": "0101248141",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0101248141"
+        }
+      },
+      {
+        "id": "TAX-004",
+        "input": "0900189284",
+        "expected": {
+          "canonical": "0900189284",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0900189284"
+        }
+      },
+      {
+        "id": "TAX-005",
+        "input": "0123456787",
+        "expected": {
+          "canonical": "0123456787",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0123456787"
+        }
+      },
+      {
+        "id": "TAX-006",
+        "input": "0312345673",
+        "expected": {
+          "canonical": "0312345673",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0312345673"
+        }
+      },
+      {
+        "id": "TAX-007",
+        "input": "0312345674",
+        "expected": {
+          "canonical": "0312345674",
+          "kind": "enterprise",
+          "valid": false,
+          "checksumValid": false,
+          "headOffice": "0312345674"
+        }
+      },
+      {
+        "id": "TAX-008",
+        "input": "0100 109 106",
+        "expected": {
+          "canonical": "0100109106",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-009",
+        "input": "0100.109.106",
+        "expected": {
+          "canonical": "0100109106",
+          "kind": "enterprise",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-010",
+        "input": "0101234567",
+        "expected": {
+          "canonical": "0101234567",
+          "kind": "enterprise",
+          "valid": false,
+          "checksumValid": false,
+          "headOffice": "0101234567"
+        }
+      },
+      {
+        "id": "TAX-011",
+        "input": "0100109107",
+        "expected": {
+          "canonical": "0100109107",
+          "kind": "enterprise",
+          "valid": false,
+          "checksumValid": false,
+          "headOffice": "0100109107"
+        }
+      },
+      {
+        "id": "TAX-012",
+        "input": "0100109106-001",
+        "expected": {
+          "canonical": "0100109106-001",
+          "kind": "branch",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-013",
+        "input": "0100109106001",
+        "expected": {
+          "canonical": "0100109106-001",
+          "kind": "branch",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-014",
+        "input": "0100109106 - 002",
+        "expected": {
+          "canonical": "0100109106-002",
+          "kind": "branch",
+          "valid": true,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-015",
+        "input": "0100109106-000",
+        "expected": {
+          "canonical": "0100109106-000",
+          "kind": "branch",
+          "valid": false,
+          "checksumValid": true,
+          "headOffice": "0100109106"
+        }
+      },
+      {
+        "id": "TAX-016",
+        "input": "0101234567-001",
+        "expected": {
+          "canonical": "0101234567-001",
+          "kind": "branch",
+          "valid": false,
+          "checksumValid": false,
+          "headOffice": "0101234567"
+        }
+      },
+      {
+        "id": "TAX-017",
+        "input": "001090012345",
+        "expected": {
+          "canonical": "001090012345",
+          "kind": "personal_id",
+          "valid": true,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-018",
+        "input": "079190012345",
+        "expected": {
+          "canonical": "079190012345",
+          "kind": "personal_id",
+          "valid": true,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-019",
+        "input": "099090012345",
+        "expected": {
+          "canonical": "099090012345",
+          "kind": "personal_id",
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-020",
+        "input": "000090012345",
+        "expected": {
+          "canonical": "000090012345",
+          "kind": "personal_id",
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-021",
+        "input": "12345",
+        "expected": {
+          "canonical": null,
+          "kind": null,
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-022",
+        "input": "01001091",
+        "expected": {
+          "canonical": null,
+          "kind": null,
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-023",
+        "input": "MST0100109106",
+        "expected": {
+          "canonical": null,
+          "kind": null,
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      },
+      {
+        "id": "TAX-024",
+        "input": "",
+        "expected": {
+          "canonical": null,
+          "kind": null,
+          "valid": false,
+          "checksumValid": null,
+          "headOffice": null
+        }
+      }
+    ],
+    "email": [
+      {
+        "id": "EML-001",
+        "input": "  KeToan@Congty.VN ",
+        "expected": {
+          "email": "ketoan@congty.vn",
+          "valid": true,
+          "generic": true
+        }
+      },
+      {
+        "id": "EML-002",
+        "input": "nguyen.van.a+erp@gmail.com",
+        "expected": {
+          "email": "nguyen.van.a+erp@gmail.com",
+          "valid": true,
+          "generic": false
+        }
+      },
+      {
+        "id": "EML-003",
+        "input": "info@abc.com",
+        "expected": {
+          "email": "info@abc.com",
+          "valid": true,
+          "generic": true
+        }
+      },
+      {
+        "id": "EML-004",
+        "input": "Ketoan+1@abc.vn",
+        "expected": {
+          "email": "ketoan+1@abc.vn",
+          "valid": true,
+          "generic": true
+        }
+      },
+      {
+        "id": "EML-005",
+        "input": "no-reply@abc.vn",
+        "expected": {
+          "email": "no-reply@abc.vn",
+          "valid": true,
+          "generic": true
+        }
+      },
+      {
+        "id": "EML-006",
+        "input": "danh.tran@lpc.vn",
+        "expected": {
+          "email": "danh.tran@lpc.vn",
+          "valid": true,
+          "generic": false
+        }
+      },
+      {
+        "id": "EML-007",
+        "input": "not-an-email",
+        "expected": {
+          "email": "not-an-email",
+          "valid": false,
+          "generic": false
+        }
+      },
+      {
+        "id": "EML-008",
+        "input": "a@b",
+        "expected": {
+          "email": "a@b",
+          "valid": false,
+          "generic": false
+        }
+      },
+      {
+        "id": "EML-009",
+        "input": "a b@c.vn",
+        "expected": {
+          "email": "ab@c.vn",
+          "valid": true,
+          "generic": false
+        }
+      },
+      {
+        "id": "EML-010",
+        "input": "\u200bsale@abc.vn",
+        "expected": {
+          "email": "sale@abc.vn",
+          "valid": true,
+          "generic": true
+        }
+      },
+      {
+        "id": "EML-011",
+        "input": "",
+        "expected": {
+          "email": "",
+          "valid": false,
+          "generic": false
+        }
+      }
+    ],
+    "business_code": [
+      {
+        "id": "BIZ-001",
+        "input": "  pj-2026-001 ",
+        "separator": null,
+        "expected": "PJ-2026-001"
+      },
+      {
+        "id": "BIZ-002",
+        "input": "0088/2026/đx/tks",
+        "separator": null,
+        "expected": "0088/2026/ĐX/TKS"
+      },
+      {
+        "id": "BIZ-003",
+        "input": "KH 26 0655",
+        "separator": null,
+        "expected": "KH260655"
+      },
+      {
+        "id": "BIZ-004",
+        "input": "PRD--1494",
+        "separator": null,
+        "expected": "PRD-1494"
+      },
+      {
+        "id": "BIZ-005",
+        "input": "prd_1494.5",
+        "separator": "-",
+        "expected": "PRD-1494-5"
+      },
+      {
+        "id": "BIZ-006",
+        "input": "-ABC-",
+        "separator": null,
+        "expected": "ABC"
+      },
+      {
+        "id": "BIZ-007",
+        "input": "lpc / cda / 260219",
+        "separator": null,
+        "expected": "LPC/CDA/260219"
+      },
+      {
+        "id": "BIZ-008",
+        "input": "lpc / cda / 260219",
+        "separator": "-",
+        "expected": "LPC-CDA-260219"
+      },
+      {
+        "id": "BIZ-009",
+        "input": "ast2004",
+        "separator": null,
+        "expected": "AST2004"
+      },
+      {
+        "id": "BIZ-010",
+        "input": "",
+        "separator": null,
+        "expected": ""
+      }
+    ],
+    "material": [
+      {
+        "id": "MAT-001",
+        "input": "D16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-002",
+        "input": "Ø16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-003",
+        "input": "ø 16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-004",
+        "input": "phi 16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-005",
+        "input": "fi16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-006",
+        "input": "φ16",
+        "brands": {},
+        "expected": "d16"
+      },
+      {
+        "id": "MAT-007",
+        "input": "Thép D16",
+        "brands": {},
+        "expected": "thep d16"
+      },
+      {
+        "id": "MAT-008",
+        "input": "Thép phi 12,5",
+        "brands": {},
+        "expected": "thep d12.5"
+      },
+      {
+        "id": "MAT-009",
+        "input": "CB400 V",
+        "brands": {},
+        "expected": "cb400v"
+      },
+      {
+        "id": "MAT-010",
+        "input": "CB400-V",
+        "brands": {},
+        "expected": "cb400v"
+      },
+      {
+        "id": "MAT-011",
+        "input": "cb 300-t",
+        "brands": {},
+        "expected": "cb300t"
+      },
+      {
+        "id": "MAT-012",
+        "input": "SD 390",
+        "brands": {},
+        "expected": "sd390"
+      },
+      {
+        "id": "MAT-013",
+        "input": "CB400 vàng",
+        "brands": {},
+        "expected": "cb400 vang"
+      },
+      {
+        "id": "MAT-014",
+        "input": "200 x 200",
+        "brands": {},
+        "expected": "200x200"
+      },
+      {
+        "id": "MAT-015",
+        "input": "200 X 200 X 10",
+        "brands": {},
+        "expected": "200x200x10"
+      },
+      {
+        "id": "MAT-016",
+        "input": "100*50",
+        "brands": {},
+        "expected": "100x50"
+      },
+      {
+        "id": "MAT-017",
+        "input": "200 × 100",
+        "brands": {},
+        "expected": "200x100"
+      },
+      {
+        "id": "MAT-018",
+        "input": "HP D16 CB400 V",
+        "brands": {
+          "hp": "Hòa Phát"
+        },
+        "expected": "hoa phat d16 cb400v"
+      },
+      {
+        "id": "MAT-019",
+        "input": "Thép cuộn D8 CB240-T Hòa Phát",
+        "brands": {},
+        "expected": "thep cuon d8 cb240t hoa phat"
+      },
+      {
+        "id": "MAT-020",
+        "input": "Ống thép mạ kẽm 2 inch",
+        "brands": {},
+        "expected": "ong thep ma kem 2 inch"
+      },
+      {
+        "id": "MAT-021",
+        "input": "Gạch đặc 220x105x60",
+        "brands": {},
+        "expected": "gach dac 220x105x60"
+      },
+      {
+        "id": "MAT-022",
+        "input": "Dây điện Cadivi CV 2.5",
+        "brands": {},
+        "expected": "day dien cadivi cv 2.5"
+      },
+      {
+        "id": "MAT-023",
+        "input": "Đá 1x2",
+        "brands": {},
+        "expected": "da 1x2"
+      },
+      {
+        "id": "MAT-024",
+        "input": "xi măng PCB40",
+        "brands": {},
+        "expected": "xi mang pcb40"
+      }
+    ],
+    "unit": [
+      {
+        "id": "UNT-001",
+        "input": "m3",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-002",
+        "input": "m³",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-003",
+        "input": "khối",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-004",
+        "input": "Khối",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-005",
+        "input": "m 3",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-006",
+        "input": "tấn",
+        "expected": {
+          "code": "t",
+          "base": "kg",
+          "factor": 1000
+        }
+      },
+      {
+        "id": "UNT-007",
+        "input": "T",
+        "expected": {
+          "code": "t",
+          "base": "kg",
+          "factor": 1000
+        }
+      },
+      {
+        "id": "UNT-008",
+        "input": "ton",
+        "expected": {
+          "code": "t",
+          "base": "kg",
+          "factor": 1000
+        }
+      },
+      {
+        "id": "UNT-009",
+        "input": "kg",
+        "expected": {
+          "code": "kg",
+          "base": "kg",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-010",
+        "input": "Kg",
+        "expected": {
+          "code": "kg",
+          "base": "kg",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-011",
+        "input": "m2",
+        "expected": {
+          "code": "m2",
+          "base": "m2",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-012",
+        "input": "m²",
+        "expected": {
+          "code": "m2",
+          "base": "m2",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-013",
+        "input": "mét",
+        "expected": {
+          "code": "m",
+          "base": "m",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-014",
+        "input": "md",
+        "expected": {
+          "code": "m",
+          "base": "m",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-015",
+        "input": "mét khối",
+        "expected": {
+          "code": "m3",
+          "base": "m3",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-016",
+        "input": "Mét vuông",
+        "expected": {
+          "code": "m2",
+          "base": "m2",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-017",
+        "input": "mi li mét",
+        "expected": {
+          "code": "mm",
+          "base": "m",
+          "factor": 0.001
+        }
+      },
+      {
+        "id": "UNT-018",
+        "input": "Kí lô",
+        "expected": {
+          "code": "kg",
+          "base": "kg",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-019",
+        "input": "mm",
+        "expected": {
+          "code": "mm",
+          "base": "m",
+          "factor": 0.001
+        }
+      },
+      {
+        "id": "UNT-020",
+        "input": "cái",
+        "expected": {
+          "code": "cai",
+          "base": "cai",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-021",
+        "input": "chiếc",
+        "expected": {
+          "code": "cai",
+          "base": "cai",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-022",
+        "input": "lít",
+        "expected": {
+          "code": "l",
+          "base": "m3",
+          "factor": 0.001
+        }
+      },
+      {
+        "id": "UNT-023",
+        "input": "bộ",
+        "expected": {
+          "code": "bo",
+          "base": "bo",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-024",
+        "input": "cây",
+        "expected": {
+          "code": "cay",
+          "base": "cay",
+          "factor": 1
+        }
+      },
+      {
+        "id": "UNT-025",
+        "input": "xyz",
+        "expected": null
+      },
+      {
+        "id": "UNT-026",
+        "input": "",
+        "expected": null
+      }
+    ]
+  }
+}

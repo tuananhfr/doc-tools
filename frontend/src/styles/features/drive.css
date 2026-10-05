@@ -1,0 +1,1782 @@
+/*
+ * Workspace theo dự án (features/core/drive) — ổ dự án của erp_storage.
+ *
+ * Bảng, badge, tab, nút, thanh tiến độ tải lên (`.erp-workspace__progress`) dùng
+ * lại lớp chung; file này chỉ có bố cục của màn. Mọi màu đi qua token nên ba
+ * theme dùng chung một bộ luật.
+ */
+
+.erp-drive {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Đầu màn: tên + trạng thái ổ | số liệu | nút mở cây NAS cũ. */
+.erp-drive__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.erp-drive__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-drive__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.erp-drive__summary {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive__head-actions {
+  margin-inline-start: auto;
+}
+
+.erp-drive__muted {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+p.erp-drive__muted {
+  margin: 0;
+}
+
+.erp-drive__num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-drive__section-title {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Dải vòng đời: dự án đã đóng → đếm ngược → chỉ đọc. Icon + câu chữ nói hết;
+   màu nền chỉ là lớp nhận biết thứ hai. */
+.erp-drive__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.erp-drive__notice--archived {
+  background: var(--erp-neutral-soft);
+}
+
+.erp-drive__notice > i {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-drive__notice--archived > i {
+  color: var(--erp-text-secondary);
+}
+
+.erp-drive__notice p {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.erp-drive__notice .btn {
+  flex: none;
+}
+
+.erp-drive__views {
+  margin-bottom: 0;
+}
+
+.erp-drive__count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive-files,
+.erp-drive-trash,
+.erp-drive-history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* Thanh công cụ một hàng: đường dẫn bên trái, tìm + nút bên phải. */
+.erp-drive__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.erp-drive__toolbar-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.erp-drive__search {
+  width: 240px;
+  max-width: 100%;
+}
+
+.erp-drive__crumbs {
+  min-width: 0;
+}
+
+.erp-drive__crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.erp-drive__crumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.erp-drive__crumbs li + li::before {
+  content: '›';
+  margin: 0 4px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-drive__crumbs li[aria-current='page'] {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.erp-drive__crumb {
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-action-secondary);
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+
+.erp-drive__crumb:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.erp-drive__crumb:disabled {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-drive__crumb:focus-visible,
+.erp-drive__folder:focus-visible,
+.erp-drive__version:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Dải lựa chọn: chỉ hiện khi đã tích ít nhất một mục. */
+.erp-drive__selection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  font-size: 0.875rem;
+}
+
+.erp-drive__selection > span {
+  margin-inline-end: 4px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dải "chờ dán": các mục vừa Sao chép / Cắt. Icon + chữ nói rõ là chép hay cắt. */
+.erp-drive__clipboard {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-drive__clipboard > .erp-drive__muted {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+/* Vùng thả tệp bao cả bảng. Viền đứt nét chỉ hiện khi đang kéo. */
+.erp-drive__drop {
+  position: relative;
+  min-height: 160px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  transition: opacity 150ms ease;
+}
+
+.erp-drive__drop.is-stale {
+  opacity: 0.6;
+}
+
+.erp-drive__drop.is-dropping {
+  border-color: var(--erp-action-secondary);
+  border-style: dashed;
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-drive__drop.is-dropping > :not(.erp-drive__hint) {
+  opacity: 0.25;
+}
+
+.erp-drive__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  /* Không nhận chuột: bắt sự kiện thì `dragleave` bắn ngay khi lớp này hiện. */
+  pointer-events: none;
+  color: var(--erp-action-secondary);
+  font-weight: 500;
+}
+
+.erp-drive__hint i {
+  font-size: 2rem;
+}
+
+.erp-drive-table.table {
+  margin-bottom: 0;
+}
+
+.erp-drive-table.table > tbody > tr.is-selected > td {
+  background: var(--erp-action-secondary-soft);
+}
+
+/* Mục vừa CẮT: mờ đi cho tới khi dán (hoặc bỏ) — cùng quy ước với trình quản
+   lý tệp. Dải "Đã cắt N mục" phía trên là lớp nói bằng chữ. */
+.erp-drive-table.table > tbody > tr.is-cut > td {
+  opacity: 0.5;
+}
+
+.erp-drive-table__check {
+  width: 36px;
+}
+
+.erp-drive-table__actions {
+  white-space: nowrap;
+  text-align: end;
+}
+
+.erp-drive-table__actions > * + * {
+  margin-inline-start: 6px;
+}
+
+.erp-drive__name {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-drive__icon {
+  flex: none;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--erp-action-secondary);
+}
+
+/* Thư mục dùng màu Copper để tách khỏi tệp bằng một liếc mắt — icon đã khác
+   hình nên màu chỉ là lớp thứ hai (cùng luật với Workspace cũ). */
+.erp-drive__icon--folder {
+  color: var(--erp-construction);
+}
+
+.erp-drive__name-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* Tên tệp dài XUỐNG DÒNG, không cắt "…": hai tệp hay chỉ khác nhau ở đuôi. */
+  overflow-wrap: anywhere;
+}
+
+.erp-drive__name-text a {
+  color: var(--erp-text-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.erp-drive__name-text a:hover {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-drive__folder,
+.erp-drive__version {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.erp-drive__folder {
+  font-weight: 600;
+}
+
+.erp-drive__folder:hover,
+.erp-drive__version:hover {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-drive__version {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Bỏ mũi tên của nút "⋮" — icon ba chấm đã nói nó mở ra được. */
+.erp-drive__more.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-item.erp-drive__danger {
+  color: var(--erp-danger);
+}
+
+/* Menu "⋮" neo `fixed` nên không cuộn theo trang: màn thấp hơn chính menu thì
+   menu tự cuộn bên trong, không để mục cuối (Xoá) nằm ngoài màn hình. */
+.erp-drive__row-menu {
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+}
+
+/* ------------------------------------------------------------------ nhật ký */
+
+.erp-drive-events {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-drive-events__item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.erp-drive-events__item + .erp-drive-events__item {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-drive-events__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+}
+
+.erp-drive-events__icon--success {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-drive-events__icon--info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-drive-events__icon--warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-drive-events__icon--danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.erp-drive-events__body {
+  min-width: 0;
+}
+
+.erp-drive-events__line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-drive-events__name {
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-events__detail {
+  color: var(--erp-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-events__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive-events__gone {
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+}
+
+.erp-drive-history__kind {
+  width: auto;
+  min-width: 180px;
+}
+
+.erp-drive-history__pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------- hộp */
+
+.erp-drive-versions__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.erp-drive-versions__history {
+  margin: 20px 0 8px;
+}
+
+.erp-drive-move {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: min(52vh, 420px);
+  margin: 0;
+  overflow-y: auto;
+}
+
+.erp-drive-move__legend {
+  margin-bottom: 6px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-drive-move__option {
+  padding-block: 4px;
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------- lọc · sắp xếp · đánh dấu */
+
+/* Dải lọc + sắp xếp: một hàng dưới thanh công cụ. */
+.erp-drive__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-drive__filters .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tiêu đề cột bấm được để sắp: trông như tiêu đề, không như nút. */
+.erp-drive__sort-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+}
+
+/* Mũi tên của cột CHƯA sắp chỉ hiện khi rê chuột / focus — sáu mũi tên luôn hiện là nhiễu. */
+.erp-drive__sort-head > i {
+  opacity: 0;
+  font-size: 0.75rem;
+}
+
+.erp-drive__sort-head:hover > i,
+.erp-drive__sort-head:focus-visible > i {
+  opacity: 0.6;
+}
+
+.erp-drive__sort-head.is-active {
+  color: var(--erp-text-primary);
+}
+
+.erp-drive__sort-head.is-active > i {
+  opacity: 1;
+  color: var(--erp-action-secondary);
+}
+
+.erp-drive__sort-head:focus-visible,
+.erp-drive__shared:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+th.text-end > .erp-drive__sort-head {
+  flex-direction: row-reverse;
+}
+
+/* Dòng phụ dưới tên: phiên bản · đang chia sẻ công khai · thư mục chứa (khi tìm). */
+.erp-drive__marks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+}
+
+.erp-drive__marks:empty {
+  display: none;
+}
+
+/* Dấu "đang có liên kết công khai": icon + CHỮ; màu cảnh báo là lớp thứ hai. */
+.erp-drive__shared {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-drive__shared:hover {
+  text-decoration: underline;
+}
+
+/* Dấu "đã có phiên bản lưu sang hồ sơ CDE": icon + CHỮ, bấm là mở Tài liệu CDE của dự án. */
+.erp-drive__archived {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-success);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.erp-drive__archived:hover {
+  color: var(--erp-success);
+  text-decoration: underline;
+}
+
+.erp-drive__archived:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Hộp "Chuyển sang hồ sơ CDE". */
+.erp-drive-cde__lead,
+.erp-drive-cde__note {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-drive-cde__lead > i,
+.erp-drive-cde__note > i {
+  flex: none;
+}
+
+.erp-drive-cde__note {
+  color: var(--erp-text-primary);
+}
+
+.erp-drive-cde__mode {
+  display: grid;
+  gap: 4px;
+}
+
+/* Hộp chuyển cả thư mục: dòng tóm tắt, danh sách tệp (cuộn riêng), tiến độ. */
+.erp-drive-cde__counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-drive-cde__counts strong {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive-cde__files {
+  max-height: 220px;
+  margin: 0 0 12px;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.erp-drive-cde__files > li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+}
+
+.erp-drive-cde__files > li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-drive-cde__file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-drive-cde__file-action {
+  color: var(--erp-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-cde__files > li.is-skip,
+.erp-drive-cde__files > li.is-missing {
+  color: var(--erp-text-secondary);
+}
+
+.erp-drive-cde__files > li.is-missing > i {
+  color: var(--erp-warning);
+}
+
+.erp-drive-cde__options {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-drive-cde__progress {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+@media (max-width: 576px) {
+  .erp-drive-cde__files > li {
+    grid-template-columns: 16px minmax(0, 1fr);
+  }
+
+  .erp-drive-cde__file-action {
+    grid-column: 2;
+  }
+}
+
+.erp-drive-cde__mode > legend {
+  float: none;
+  width: auto;
+  margin-bottom: 2px;
+  font-size: inherit;
+}
+
+.erp-drive__owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Dòng được chỉ tới từ một liên kết nội bộ: vạch trái + nền nhạt. */
+.erp-drive-table.table > tbody > tr.is-focus > td {
+  background: var(--erp-warning-soft);
+}
+
+.erp-drive-table.table > tbody > tr.is-focus > td:first-child {
+  box-shadow: inset 3px 0 0 var(--erp-warning);
+}
+
+.erp-drive-shares {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-drive-shares .erp-drive__notice {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- hộp chia sẻ */
+
+.erp-drive-share__block + .erp-drive-share__block {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-drive-share__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* Một liên kết: ô chỉ đọc co giãn + các nút đứng cạnh, xuống dòng khi hẹp. */
+.erp-drive-share__link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-drive-share__link > .form-control {
+  flex: 1 1 260px;
+  min-width: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-drive-share__via {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-drive-share__via .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-drive-share__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  font-size: 0.8125rem;
+}
+
+.erp-drive-share__warning > i {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-drive-share__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-drive-share__item {
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-drive-share__item .erp-drive-share__link {
+  margin-top: 0;
+}
+
+.erp-drive-share__item > p {
+  margin-top: 6px;
+}
+
+/* Form tạo liên kết: ba ô một hàng + nút, tự xuống dòng. */
+.erp-drive-share__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+  margin-top: 12px;
+}
+
+.erp-drive-share__form > div {
+  flex: 0 1 150px;
+  margin-bottom: 0 !important;
+}
+
+.erp-drive-share__form > .erp-drive-share__note {
+  flex: 1 1 200px;
+}
+
+.erp-drive-share__others {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* -------------------------------------------- trang công khai của liên kết */
+
+/* `body` của app khoá cuộn (khung app tự cuộn), nên trang ngoài khung tự cuộn. */
+.erp-share-page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 32px 16px;
+  overflow-y: auto;
+  background: var(--erp-bg);
+}
+
+.erp-share-page > * {
+  flex-shrink: 0;
+  width: min(640px, 100%);
+}
+
+.erp-share-page__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.erp-share-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-share-page__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.erp-share-page__icon {
+  flex: none;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--erp-action-secondary);
+}
+
+.erp-share-page__text {
+  min-width: 0;
+}
+
+.erp-share-page__name {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.erp-share-page__facts,
+.erp-share-page__by {
+  margin: 4px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-share-page__download {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  min-height: var(--erp-touch-target);
+}
+
+.erp-share-page__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-share-page__list > li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 12px;
+}
+
+.erp-share-page__list > li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-share-page__list a {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-share-page__refused {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.erp-share-page__refused .erp-share-page__icon {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-share-page__foot {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Điện thoại: thanh công cụ xếp dọc, ô tìm lấy trọn bề ngang. Bảng tự xếp thẻ
+   nhờ `StackTable`. */
+@media (max-width: 576px) {
+  .erp-drive__toolbar-end {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+
+  .erp-drive__search {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .erp-drive__upload {
+    display: flex;
+    flex: 1 1 0;
+  }
+
+  .erp-drive__toolbar-end .btn {
+    flex: 1 1 0;
+    min-height: var(--erp-touch-target);
+  }
+
+  .erp-drive__head-actions {
+    margin-inline-start: 0;
+  }
+
+  .erp-drive__notice {
+    flex-wrap: wrap;
+  }
+
+  .erp-drive-table__actions {
+    text-align: start;
+  }
+
+  /* Bốn tab không vừa một hàng: cuộn ngang thay vì rơi xuống hàng thứ hai. */
+  .erp-drive__views {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .erp-drive__views .nav-link {
+    white-space: nowrap;
+  }
+
+  /* Ba nút lọc vừa MỘT hàng: chia đều, giá trị của "Sắp xếp" ẩn khỏi mặt nút. */
+  .erp-drive__filters {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .erp-drive__filters > .dropdown {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .erp-drive__filters:has(> [role="status"]) {
+    flex-wrap: wrap;
+  }
+
+  .erp-drive__filters .btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: var(--erp-touch-target);
+    padding-inline: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .erp-drive__sort-value {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .erp-drive-share__form > div {
+    flex: 1 1 100%;
+  }
+
+  .erp-share-page {
+    padding: 16px 12px;
+  }
+
+  .erp-share-page__card {
+    padding: 16px;
+  }
+
+  .erp-share-page__download {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+/* ---------------------------------------------------------- ổ tổng hợp */
+
+/*
+ * Hộp "Workspace" ở đầu danh sách dự án (`DriveProjectsModal`): cột trái là ổ
+ * của từng dự án, bên phải là màn Workspace của dự án đang chọn.
+ *
+ * Z-INDEX thấp hơn hộp thoại thường một nấc (1045 / 1040 thay cho 1055 / 1050):
+ * các hộp con của Workspace (đổi tên, chia sẻ, phiên bản, chuyển tới…) mở CHỒNG
+ * lên hộp này. Cùng z-index thì lớp mờ của hộp con (1050) nằm DƯỚI hộp này
+ * (1055) — hộp con mở ra mà nền phía sau vẫn sáng và bấm được.
+ */
+.modal.erp-drive-hub {
+  --bs-modal-zindex: 1045;
+}
+
+.modal-backdrop.erp-drive-hub-backdrop {
+  --bs-backdrop-zindex: 1040;
+}
+
+.erp-drive-hub__body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+}
+
+.erp-drive-hub__drives,
+.erp-drive-hub__main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 16px;
+}
+
+/* Hẹp hơn 992px hộp chiếm trọn màn hình và hai khung THAY NHAU: chưa chọn ổ thì
+   thấy danh sách, chọn rồi thì thấy ổ đó kèm nút quay lại. */
+.erp-drive-hub__body.has-active > .erp-drive-hub__drives,
+.erp-drive-hub__body:not(.has-active) > .erp-drive-hub__main {
+  display: none;
+}
+
+.erp-drive-hub__body > .erp-drive-hub__drives,
+.erp-drive-hub__body > .erp-drive-hub__main {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.erp-drive-hub__back {
+  align-self: flex-start;
+}
+
+@media (min-width: 992px) {
+  /* Bề ngang đặt qua biến (không ghi đè `max-width`); chiều cao CỐ ĐỊNH để đổi ổ,
+     đổi thư mục không làm hộp co giãn theo số dòng. */
+  .erp-drive-hub .modal-dialog {
+    --bs-modal-width: min(1560px, 96vw);
+    height: calc(100vh - 2 * var(--bs-modal-margin));
+  }
+
+  .erp-drive-hub .modal-content {
+    height: 100%;
+  }
+
+  .erp-drive-hub__body {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    /* `minmax(0, …)`: hàng `auto` cao theo nội dung, hai khung sẽ không tự cuộn. */
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .erp-drive-hub__body.has-active > .erp-drive-hub__drives,
+  .erp-drive-hub__body:not(.has-active) > .erp-drive-hub__main {
+    display: flex;
+  }
+
+  .erp-drive-hub__drives {
+    border-inline-end: 1px solid var(--erp-border);
+    background: var(--erp-surface-secondary);
+  }
+
+  .erp-drive-hub__back {
+    display: none;
+  }
+}
+
+.erp-drive-hub__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-drive-hub__drive {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-primary);
+  text-align: start;
+}
+
+.erp-drive-hub__drive > i:first-child {
+  margin-top: 2px;
+}
+
+.erp-drive-hub__drive:hover {
+  background: var(--erp-surface-hover);
+}
+
+/* Ổ đang mở: viền + nền + icon thư mục MỞ + `aria-current` — màu không phải tín
+   hiệu duy nhất. */
+.erp-drive-hub__drive.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface);
+}
+
+.erp-drive-hub__drive:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-drive-hub__drive-main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-drive-hub__drive-name {
+  font-weight: 600;
+  /* Tên dự án dài xuống dòng, không cắt "…": hai dự án hay chỉ khác nhau ở đuôi. */
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-hub__go {
+  flex: none;
+  align-self: center;
+  color: var(--erp-text-tertiary);
+}
+
+/* Ô mở dự án chưa có trong danh sách, dồn xuống đáy cột. */
+.erp-drive-hub__other {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-drive-hub__main .erp-drive__title {
+  overflow-wrap: anywhere;
+}
+
+/* Dùng chung cho dòng của ổ: tổng số ổ trên tiêu đề, mã dự án, số liệu, vòng đời. */
+.erp-drive-directory__total {
+  margin-inline-start: 6px;
+  color: var(--erp-text-tertiary);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive-directory__code {
+  margin-inline-start: 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive-directory__meta {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Vòng đời của ổ: icon + chữ, màu chỉ là lớp nhận biết thứ hai. */
+.erp-drive-directory__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.erp-drive-directory__state--closing > i {
+  color: var(--erp-warning);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-drive__drop {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------- sao · lưới · xem trước · hạn mức */
+
+/* Nút sao của một mục. Hình sao đặc / rỗng là tín hiệu chính; màu chỉ là lớp thứ hai. */
+.erp-drive__star {
+  flex: none;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.erp-drive__star.is-on {
+  color: var(--erp-warning);
+}
+
+.erp-drive__star:hover {
+  color: var(--erp-text-primary);
+}
+
+.erp-drive__star:focus-visible {
+  outline: 2px solid var(--erp-action-secondary);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-drive__star:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.erp-drive__layout {
+  flex: none;
+}
+
+/* Lưới: ô tự chia cột theo bề ngang, không bao giờ cuộn ngang. */
+.erp-drive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-drive-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.erp-drive-card.is-selected {
+  border-color: var(--erp-action-secondary);
+  box-shadow: 0 0 0 1px var(--erp-action-secondary);
+}
+
+.erp-drive-card.is-cut {
+  opacity: 0.55;
+}
+
+.erp-drive-card.is-focus {
+  border-color: var(--erp-warning);
+  box-shadow: 0 0 0 2px var(--erp-warning-soft);
+}
+
+.erp-drive-card__thumb {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  cursor: pointer;
+}
+
+.erp-drive-card__thumb > .erp-drive__icon {
+  font-size: 2.75rem;
+}
+
+/* Ảnh PHỦ LÊN icon: ảnh không dựng được thì ẩn `<img>` là lộ lại icon. */
+.erp-drive-card__thumb > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-drive-card__thumb:focus-visible {
+  outline: 2px solid var(--erp-action-secondary);
+  outline-offset: -2px;
+}
+
+.erp-drive-card__check {
+  position: absolute;
+  top: 6px;
+  inset-inline-start: 8px;
+  margin: 0;
+  padding: 2px 4px 2px 26px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  line-height: 1;
+}
+
+.erp-drive-card__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 2px 4px;
+  padding: 8px 4px 8px 10px;
+}
+
+.erp-drive-card__name {
+  /* Hai dòng rồi mới cắt: tên tệp hay chỉ khác nhau ở đuôi (xem `title`). */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.erp-drive-card__tools {
+  display: flex;
+  align-items: center;
+}
+
+.erp-drive-card__meta {
+  grid-column: 1 / -1;
+  overflow-wrap: anywhere;
+}
+
+/* Trình xem trước. */
+.erp-drive-preview__title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-preview__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: 0;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-drive-preview__body[data-preview-kind='text'],
+.erp-drive-preview__body[data-preview-kind='none'] {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.erp-drive-preview__image,
+.erp-drive-preview__video {
+  max-width: 100%;
+  max-height: calc(100vh - 220px);
+  object-fit: contain;
+}
+
+.erp-drive-preview__frame {
+  width: 100%;
+  height: calc(100vh - 220px);
+  border: 0;
+  background: var(--erp-surface);
+}
+
+.erp-drive-preview__audio {
+  width: min(520px, 90%);
+}
+
+.erp-drive-preview__text {
+  flex: 1 1 auto;
+  max-height: calc(100vh - 252px);
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-preview__foot {
+  gap: 8px;
+}
+
+.erp-drive-preview__nav {
+  display: flex;
+  gap: 8px;
+  margin-inline-end: auto;
+}
+
+/* Thanh hạn mức ở đầu màn. */
+.erp-drive__quota {
+  display: grid;
+  gap: 4px;
+}
+
+.erp-drive__quota .progress {
+  height: 6px;
+}
+
+.erp-drive__quota-text {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-drive__quota-text > i {
+  margin-inline-end: 4px;
+}
+
+.erp-drive__quota--near .erp-drive__quota-text > i {
+  color: var(--erp-warning);
+}
+
+.erp-drive__quota--full .erp-drive__quota-text {
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+.erp-drive__quota--full .erp-drive__quota-text > i {
+  color: var(--erp-danger);
+}
+
+.erp-drive__notice--hold {
+  background: var(--erp-neutral-soft);
+}
+
+.erp-drive__notice--hold > i {
+  color: var(--erp-text-primary);
+}
+
+.erp-drive__head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Hộp chia sẻ: ô mật khẩu. */
+.erp-drive-share__form > .erp-drive-share__password {
+  flex: 1 1 100%;
+}
+
+.erp-drive-share__password-row {
+  display: flex;
+  gap: 8px;
+  max-width: 360px;
+}
+
+/* Trang công khai: ô nhập mật khẩu. */
+.erp-share-page__locked {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.erp-share-page__locked .form-control {
+  max-width: 320px;
+}
+
+/* Hộp CDE: công ty / hợp đồng và giá trị riêng của từng tệp. */
+.erp-drive-cde__files > li {
+  grid-template-columns: 16px minmax(0, 1fr) minmax(0, 1fr) auto;
+}
+
+.erp-drive-cde__file-edit {
+  align-self: center;
+}
+
+.erp-drive-cde__file-own {
+  display: grid;
+  grid-column: 2 / -1;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.erp-drive-cde__file-own > :only-child {
+  grid-column: 1 / -1;
+}
+
+/* Ổ tổng hợp: ô tìm chung + kết quả. */
+.erp-drive-hub__find {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-drive-hub__find > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 520px;
+}
+
+.erp-drive-hub__find > .btn {
+  flex: none;
+}
+
+.erp-drive-hub__results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-drive-hub__results.is-stale {
+  opacity: 0.6;
+}
+
+.erp-drive-hub__hits {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  list-style: none;
+}
+
+.erp-drive-hub__hits > li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-drive-hub__hit {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  text-align: start;
+}
+
+.erp-drive-hub__hit:hover {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-drive-hub__hit:focus-visible {
+  outline: 2px solid var(--erp-action-secondary);
+  outline-offset: -2px;
+}
+
+.erp-drive-hub__hit-main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-drive-hub__hit-name {
+  font-weight: 500;
+}
+
+.erp-drive-hub__hit-star {
+  margin-inline-end: 4px;
+  color: var(--erp-warning);
+}
+
+@media (min-width: 992px) {
+  .erp-drive-hub__body {
+    /* Hàng đầu là ô tìm chung (trải cả hai cột), hàng sau là hai khung. */
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .erp-drive-hub__find {
+    grid-column: 1 / -1;
+  }
+
+  /* Nút "về Workspace" của kết quả tìm chung hiện ở MỌI bề ngang. */
+  .erp-drive-hub__back.erp-drive-hub__back--always {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-drive__tool-label {
+    /* Ẩn kiểu visually-hidden: trình đọc màn hình vẫn có nhãn. */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .erp-drive__toolbar-end .erp-drive__layout {
+    display: flex;
+    flex: 1 1 0;
+  }
+
+  .erp-drive-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+  }
+
+  .erp-drive-cde__files > li {
+    grid-template-columns: 16px minmax(0, 1fr) auto;
+  }
+
+  .erp-drive-cde__file-own {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-drive-hub__find {
+    flex-wrap: wrap;
+  }
+
+  .erp-drive-preview__nav {
+    flex: 1 1 100%;
+  }
+}
+
+/* Thùng rác của Kho dữ liệu: dải chọn nguồn (tệp của hồ sơ | Workspace dự án). */
+.erp-storage-trash__sources {
+  gap: 4px;
+}
+
+/* Danh sách dự án: dự án đã đóng. */
+.erp-project-list__closed {
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+}

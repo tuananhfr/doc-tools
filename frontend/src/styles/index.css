@@ -1,0 +1,148 @@
+/*
+ * ERPCons - Entry point cua toan bo CSS ung dung.
+ *
+ * Thu tu import la co y:
+ *   1. base/      - token, reset, typography, utility (nen tang)
+ *   2. components/- ghi de bien cua tung component Bootstrap
+ *   3. layout/    - khung man hinh (shell, header, sidebar, auth, splash)
+ *   4. features/  - style rieng cua tung nghiep vu (them dan khi lam feature)
+ *
+ * QUY TAC:
+ * - CSS cua Bootstrap + Bootstrap Icons duoc import trong `main.tsx` TRUOC file
+ *   nay, nho vay moi rule o day deu thang ghi de.
+ * - Khong viet hex truc tiep. Moi mau doc qua bien `--erp-*`
+ *   (ERPcons_Design_System.md, muc 12).
+ * - Style cua mot chuc nang moi -> tao file trong `features/` va import o cuoi.
+ */
+
+/* 1. Base ------------------------------------------------------------------ */
+@import './base/tokens.css';
+@import './base/reset.css';
+@import './base/typography.css';
+@import './base/utilities.css';
+
+/* 2. Components ------------------------------------------------------------ */
+@import './components/button.css';
+@import './components/form.css';
+@import './components/form-kit.css';
+@import './components/file-field.css';
+@import './components/card.css';
+@import './components/table.css';
+@import './components/report-table.css';
+@import './components/badge.css';
+@import './components/nav.css';
+@import './components/overlay.css';
+@import './components/feedback.css';
+@import './components/upload-activity.css';
+@import './components/stat.css';
+@import './components/chart.css';
+@import './components/kanban.css';
+@import './components/workflow-step.css';
+@import './components/avatar.css';
+@import './components/page-toolbar.css';
+@import './components/tag-select.css';
+@import './components/richtext.css';
+@import './components/detail-view.css';
+@import './components/master-detail.css';
+@import './components/address-suggest.css';
+@import './components/workspace.css';
+@import './components/progress-gantt.css';
+@import './components/object-card.css';
+
+/* 3. Layout ---------------------------------------------------------------- */
+@import './layout/app-shell.css';
+@import './layout/list-page.css';
+@import './layout/header.css';
+@import './layout/sidebar.css';
+@import './layout/auth.css';
+@import './layout/splash.css';
+@import './layout/mobile-shell.css';
+
+/* 4. Features -------------------------------------------------------------- */
+@import './features/lookup.css';
+@import './features/advance.css';
+@import './features/advance-print.css';
+@import './features/cash-book-print.css';
+@import './features/debt-print.css';
+@import './features/contract-print.css';
+@import './features/dashboard.css';
+@import './features/crm.css';
+@import './features/crm-report.css';
+@import './features/crm-tekshot-report.css';
+@import './features/sales.css';
+@import './features/management.css';
+@import './features/procurement.css';
+@import './features/finance.css';
+@import './features/payroll.css';
+@import './features/hr.css';
+@import './features/kpi.css';
+@import './features/user-profile.css';
+@import './features/checkin.css';
+@import './features/assets.css';
+@import './features/office.css';
+@import './features/tasks.css';
+@import './features/dplan.css';
+/* `project.css` giữ CẢ khung làm việc dùng chung (`erp-workspace-*`) lẫn phần
+   riêng của dự án (`erp-project-roles`, `erp-project-rail`). Hợp đồng dùng lại
+   khung đó nên file này phải nạp TRƯỚC `contract.css`. Tách khối khung ra file
+   riêng là việc nên làm, chưa làm — xem CLAUDE.md, mục Trang xem hợp đồng. */
+@import './features/project.css';
+@import './features/project-lifecycle.css';
+@import './features/project-lifecycle-demo.css';
+@import './features/project-lifecycle-process-demo.css';
+@import './features/project-lifecycle-dashboard-demo.css';
+@import './features/project-phase-nav.css';
+@import './features/project-photo.css';
+@import './features/project-create.css';
+@import './features/contract.css';
+@import './features/document-panel.css';
+@import './features/documents-cde.css';
+@import './features/ip-registry.css';
+@import './features/documents-sets.css';
+@import './features/documents-library.css';
+@import './features/documents-legal.css';
+@import './features/advance-dispatch.css';
+@import './features/volume-work-done.css';
+@import './features/proposals.css';
+@import './features/cost.css';
+@import './features/order-form.css';
+@import './features/sales-order-print.css';
+@import './features/prep-doc.css';
+@import './features/assistant.css';
+@import './features/goods-issue.css';
+@import './features/quantity-estimate.css';
+@import './features/qs-workspace.css';
+@import './features/project-spec.css';
+@import './features/cost-estimate.css';
+@import './features/tmdt-workflow.css';
+@import './features/document-sharing.css';
+@import './features/products.css';
+@import './features/warehouse.css';
+@import './features/trace.css';
+@import './features/labels.css';
+@import './features/notifications.css';
+@import './features/debt-entry.css';
+@import './features/debt-compare.css';
+@import './features/tax.css';
+@import './features/screen-profiles.css';
+@import './features/device-check.css';
+@import './features/offline.css';
+@import './features/customer-tabs.css';
+@import './features/business-health.css';
+@import './features/storage.css';
+@import './features/drive.css';
+@import './features/review.css';
+@import './features/doc-tools.css';
+@import './features/tools-hub.css';
+@import './features/tools-flow.css';
+@import './features/tools-image.css';
+@import './features/tools-pdf.css';
+@import './features/tools-utility.css';
+@import './features/tools-orientation.css';
+@import './features/tools-barcode.css';
+@import './features/ai-platform.css';
+@import './features/security-log.css';
+@import './features/data-tools.css';
+@import './features/cash-in-transit.css';
+@import './features/reconciliation.css';
+@import './features/planning-search.css';

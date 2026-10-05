@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Tao ma vach + bao so kiem tra khi quet (features/tools/qr)
+   Ma luon den tren trang o moi theme - may quet doc do tuong phan, khong doc theme.
+   ========================================================================== */
+
+.erp-barcode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+
+.erp-barcode-muted {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-barcode-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--erp-info-soft);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.erp-barcode-note > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-info);
+}
+
+.erp-barcode-preview {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+/* SVG mang khổ in thật (mm) nên tự nhiên rất nhỏ - xem trước phóng ra cho đủ nhìn. */
+.erp-barcode-preview__code {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+}
+
+.erp-barcode-preview--empty {
+  aspect-ratio: auto;
+  min-height: 160px;
+}
+
+/* ---------- Hang loat ---------- */
+
+.erp-barcode-batch {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-barcode-batch__file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.erp-barcode-batch__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-barcode-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-barcode-stat--ok {
+  background: var(--erp-success-soft);
+  color: var(--erp-text-primary);
+}
+
+.erp-barcode-stat--ok .bi {
+  color: var(--erp-success);
+}
+
+.erp-barcode-stat--bad {
+  background: var(--erp-danger-soft);
+  color: var(--erp-text-primary);
+}
+
+.erp-barcode-stat--bad .bi {
+  color: var(--erp-danger);
+}
+
+.erp-barcode-errors {
+  max-height: 320px;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.8125rem;
+}
+
+.erp-barcode-errors th {
+  position: sticky;
+  top: 0;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-barcode-errors__value {
+  font-family: var(--bs-font-monospace);
+  overflow-wrap: anywhere;
+}
+
+.erp-barcode-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-barcode-actions .btn {
+  min-height: var(--erp-touch-target);
+}
+
+/* ---------- Ket qua quet: so kiem tra GS1 ---------- */
+
+.erp-scan-hit__gs1 {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-scan-hit__gs1 > .bi {
+  flex: none;
+  margin-top: 2px;
+}
+
+.erp-scan-hit__gs1--ok > .bi {
+  color: var(--erp-success);
+}
+
+.erp-scan-hit__gs1--bad {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .erp-barcode-actions .btn {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,55 @@
+/* Reset o cap ung dung - chi nhung gi Bootstrap chua lo. */
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--erp-bg);
+  color: var(--erp-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus phai nhin thay ro o ca Light / Dark / Field (muc 11). */
+:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Bootstrap Icons: can giua theo dong chu, khong day baseline. */
+.bi::before {
+  vertical-align: -0.125em;
+}
+
+/* Thanh cuon manh hon cho cac bang du lieu dai cua ERP. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--erp-border-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--erp-text-tertiary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

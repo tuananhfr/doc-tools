@@ -1,0 +1,99 @@
+/*
+ * Sổ sự kiện bảo mật (features/core/security-log) — màn quản trị, chỉ đọc.
+ *
+ * Bảng, thẻ số liệu, badge, modal dùng lại component chung; file này chỉ có vài
+ * chỗ bố cục riêng. Mọi màu đi qua token.
+ */
+
+/* Dải thẻ số liệu cao tự nhiên: không co lại, để bảng — thứ duy nhất có vùng
+   cuộn riêng trong `erp-list-page` — nhận phần còn lại. */
+.erp-list-page > .erp-security-log__stats {
+  flex: 0 0 auto;
+  margin-bottom: 12px;
+  /* Ngưỡng 200px mặc định làm bốn thẻ rớt thành 3 + 1 ở tablet dọc (768px). */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.erp-security-log__event {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-security-log__event .bi {
+  flex: 0 0 auto;
+  color: var(--erp-text-secondary);
+}
+
+/* Đường dẫn và mã tương quan dài không có khoảng trắng: phải cho gãy dòng. */
+.erp-security-log__code {
+  color: var(--erp-text-primary);
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Điện thoại: thẻ dạng đầy đủ (kể cả khi đã xếp 2 cột) cao ~320px và bóp danh
+ * sách còn ~140px. Dạng gọn: ô icon nhỏ bên trái, nhãn + số bên phải, bỏ chú
+ * thích — cả dải còn ~150px. Chỉ CSS, không đổi markup của `StatCard`.
+ */
+@media (max-width: 767.98px) {
+  .erp-list-page > .erp-security-log__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* Trang truy cập có ba thẻ: thẻ lẻ cuối trải hết hàng thay vì để một ô trống. */
+  .erp-security-log__stats > .erp-stat:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .erp-security-log__stats .erp-stat > .card-body {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    column-gap: 8px;
+    align-content: center;
+    padding: 8px 10px;
+  }
+
+  .erp-security-log__stats .erp-stat__head {
+    display: contents;
+  }
+
+  .erp-security-log__stats .erp-icon-tile {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .erp-security-log__stats .erp-stat__label,
+  .erp-security-log__stats .erp-stat__value {
+    grid-column: 2;
+  }
+
+  .erp-security-log__stats .erp-stat__label {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .erp-security-log__stats .erp-stat__value {
+    margin-top: 0;
+  }
+
+  .erp-security-log__stats .erp-stat__number {
+    font-size: 1.125rem;
+  }
+
+  .erp-security-log__stats .erp-stat__caption {
+    display: none;
+  }
+
+  /* Field Mode giữ nhãn ≥ 13px để đọc được ngoài công trường. */
+  [data-theme='field'] .erp-security-log__stats .erp-stat__label {
+    font-size: 0.8125rem;
+  }
+}

@@ -1,0 +1,352 @@
+/* ==========================================================================
+   In nhan truy xuat (features/inventory/labels) - modal in nhan tu Kho hang.
+   ========================================================================== */
+
+.erp-label-modal__count {
+  margin-left: 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.erp-label-modal__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.erp-label-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* Xem truoc dinh tren cung khi cuon cot tuy chon (modal scrollable). */
+.erp-label-modal__preview {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-label-section,
+.erp-label-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-label-settings {
+  gap: 16px;
+}
+
+.erp-label-section__title {
+  margin: 0;
+  padding: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-label-section__note {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+/* --- Mau nhan ------------------------------------------------------------- */
+
+.erp-label-templates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-label-templates > legend {
+  grid-column: 1 / -1;
+  float: none;
+  width: auto;
+  margin-bottom: 0;
+}
+
+.erp-label-template {
+  position: relative;
+  display: flex;
+  min-height: var(--erp-touch-target, 44px);
+  cursor: pointer;
+}
+
+.erp-label-template__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.erp-label-template__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.erp-label-template:hover .erp-label-template__body {
+  background: var(--erp-surface-hover);
+}
+
+/* Lua chon trong form: Blue (action.secondary), khong dung Crimson (DS muc 05). */
+.erp-label-template__input:checked + .erp-label-template__body {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  box-shadow: inset 0 0 0 1px var(--erp-action-secondary);
+}
+
+.erp-label-template__input:focus-visible + .erp-label-template__body {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-label-templates:disabled .erp-label-template {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.erp-label-template__name {
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-label-template__size {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-label-template__hint {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+/* --- Truong in + tuy chon ------------------------------------------------- */
+
+.erp-label-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.erp-label-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--erp-touch-target, 44px);
+  margin: 0;
+  padding-left: 0;
+}
+
+.erp-label-field .form-check-input {
+  float: none;
+  margin: 0;
+}
+
+/* Flex thay vi grid auto-fit: dong ghi chu keo het hang se giu lai cac cot
+   trong, mot o nhap duy nhat chi con 1/3 be rong. */
+.erp-label-shared {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.erp-label-shared > .form-group,
+.erp-label-shared > div {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.erp-label-shared > .erp-label-section__note {
+  flex-basis: 100%;
+}
+
+.erp-label-output {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px;
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-label-output .erp-segmented {
+  display: flex;
+  width: 100%;
+  margin: 8px 0 4px;
+}
+
+.erp-label-copies .form-control {
+  min-height: var(--erp-touch-target, 44px);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Xem truoc ------------------------------------------------------------ */
+
+.erp-label-preview__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  padding: 16px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+/* Nhan la giay that: trang muc den o MOI theme - may quet doc do tuong phan,
+   khong doc theme (cung ly do voi advance-print.css). */
+.erp-label-preview {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  box-shadow: var(--erp-shadow1);
+  font-family: var(--erp-font-family);
+  fill: #000;
+}
+
+.erp-label-preview__paper {
+  fill: #fff;
+}
+
+.erp-label-preview__bar {
+  fill: none;
+  stroke: #000;
+}
+
+.erp-label-preview__pending {
+  fill: #e6e6e6;
+}
+
+.erp-label-warnings {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-label-warnings ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Tien do + ket qua ---------------------------------------------------- */
+
+.erp-label-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-label-modal__footer {
+  gap: 8px;
+}
+
+.erp-label-modal__total {
+  margin-right: auto;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-label-modal__footer .btn {
+  min-height: var(--erp-touch-target, 44px);
+}
+
+.erp-label-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-label-outcome__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.erp-label-outcome__file {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-label-outcome__alert {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.erp-label-outcome__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.erp-label-outcome__list {
+  max-height: 200px;
+  margin: 0;
+  padding-left: 20px;
+  overflow-y: auto;
+}
+
+@media (max-width: 1024px) {
+  .erp-label-modal__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Man hep: xem truoc len dau de thay ngay nhan se ra sao khi doi mau. */
+  .erp-label-modal__preview {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-label-templates {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-label-output {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-label-modal__total {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-label-template__body {
+    transition: none;
+  }
+}

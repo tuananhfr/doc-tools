@@ -1,0 +1,98 @@
+/*
+ * Badge / Tag trang thai - muc 05 & 11.
+ * BAT BUOC: mau + icon + nhan chu. Khong bao gio chi dung mau.
+ */
+
+.erp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.erp-badge--success {
+  color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-badge--warning {
+  color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-badge--danger {
+  color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.erp-badge--info {
+  color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.erp-badge--neutral {
+  color: var(--erp-neutral);
+  background: var(--erp-neutral-soft);
+}
+
+.erp-badge--intelligence {
+  color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+}
+
+.erp-badge--construction {
+  color: var(--erp-construction);
+  background: var(--erp-construction-soft);
+}
+
+.erp-badge--brand {
+  color: var(--erp-brand);
+  background: var(--erp-brand-soft);
+}
+
+/* Bien the chi co vien - dung khi da co nhieu vung mau soft canh nhau. */
+.erp-badge--outline {
+  background: transparent;
+  border-color: currentcolor;
+}
+
+/* The trung tinh cho phan loai (loai KH, nhan cong viec...). */
+.erp-badge--plain {
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+}
+
+/* Cham dem tren icon (thong bao). */
+.erp-count {
+  position: absolute;
+  top: -2px;
+  inset-inline-end: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--erp-brand);
+  color: var(--erp-text-on-accent);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.erp-count--dot {
+  min-width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.erp-badge-anchor {
+  position: relative;
+  display: inline-flex;
+}

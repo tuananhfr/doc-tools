@@ -1,0 +1,164 @@
+/*
+ * Lookup - o chon ban ghi bang cach go tim (features/core/lookup).
+ *
+ * Khong co hex nao o day: moi mau doc qua bien `--erp-*` de Light/Dark/Field
+ * deu dung (ERPcons_Design_System.md, muc 12).
+ */
+
+.erp-lookup {
+  position: relative;
+}
+
+/*
+ * Danh sách gợi ý NỔI trên `document.body` qua portal, không nằm trong ô.
+ *
+ * Vị trí (`left` / `width` / `top` hoặc `bottom` / `max-height`) do JS đo rồi
+ * gắn bằng inline style — xem `EntityPicker`. Ở đây chỉ còn phần hình thức;
+ * đừng đặt lại `top`/`inset` kẻo đè mất số đo đó.
+ *
+ * `absolute` trước kia làm BẤT KỲ cha nào có `overflow` cũng cắt mất danh
+ * sách, mà gần hết chỗ dùng ô này đều có một cha như thế: thân modal của
+ * `FormModal` cuộn dọc, các bảng báo cáo cuộn ngang. `fixed` + portal thoát
+ * hết những cái đó.
+ *
+ * z-index PHẢI trên modal (`--bs-modal-zindex` = 1055): danh sách không còn
+ * nằm trong cây của modal nữa nên số cũ (1050, cố ý để dưới modal) sẽ đẩy nó
+ * xuống dưới lớp modal. Lấy đúng 1080 như `.erp-tag-select__menu` — hai menu
+ * nổi của hệ thống nên ở cùng một tầng, đừng đặt số riêng.
+ */
+.erp-lookup__menu {
+  position: fixed;
+  z-index: 1080;
+  max-height: 280px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-lookup__option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  cursor: pointer;
+}
+
+/* Chuot va ban phim dung CHUNG mot dau hieu: di chuot toi dau thi `is-active`
+   chuyen toi do, nen khong bao gio co hai dong cung sang. */
+.erp-lookup__option.is-active {
+  background: var(--erp-surface-hover);
+}
+
+.erp-lookup__option[aria-selected='true'] .erp-lookup__label {
+  font-weight: 600;
+  color: var(--erp-brand);
+}
+
+.erp-lookup__label {
+  color: var(--erp-text-primary);
+  line-height: 1.35;
+}
+
+.erp-lookup__meta {
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-lookup__state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Trang thai LOI khac trang thai RONG - va phai nhin ra duoc su khac nhau do.
+ * "Khong tim thay ket qua" la mot cau tra loi; "khong hoi duoc" la mot su co,
+ * nen no deo mau canh bao chu khong dung mau chu mo nhu moi dong phu khac.
+ *
+ * Cau chu thuong dai hon mot dong nen neo icon len dinh (de giua thi icon
+ * troi ra giua khoi chu) va cho phep xuong dong.
+ */
+.erp-lookup__state--error {
+  align-items: flex-start;
+  color: var(--erp-danger);
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* Field Mode: dong cao hon cho nguoi dung dung ngoai cong truong. */
+[data-theme='field'] .erp-lookup__option {
+  padding: 12px;
+}
+
+[data-theme='field'] .erp-lookup__meta {
+  font-size: 0.9375rem;
+}
+
+/* --- Chon nhieu ban ghi ------------------------------------------------- */
+
+.erp-lookup-multi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-lookup-multi__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-lookup-multi__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 3px 6px 3px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+}
+
+.erp-lookup-multi__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-tertiary);
+  background: transparent;
+}
+
+.erp-lookup-multi__remove:hover,
+.erp-lookup-multi__remove:focus-visible {
+  color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+/* Field Mode: chip to hon de bam duoc bang ngon tay (muc 11). */
+[data-theme='field'] .erp-lookup-multi__chip {
+  padding: 6px 8px 6px 12px;
+  font-size: 0.9375rem;
+}
+
+[data-theme='field'] .erp-lookup-multi__remove {
+  width: 24px;
+  height: 24px;
+}

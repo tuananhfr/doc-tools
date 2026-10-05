@@ -1,0 +1,2887 @@
+/* Ảnh dự án (workspace P1W08) — lưới ảnh + form thêm ảnh. */
+
+.erp-photo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.erp-photo-toolbar .erp-segmented .btn {
+  white-space: nowrap;
+}
+
+.erp-photo-toolbar .form-select {
+  width: auto;
+  min-width: 160px;
+}
+
+.erp-photo-toolbar__search {
+  flex: 1 1 220px;
+  max-width: 320px;
+}
+
+/* Ô lọc dự án của Kho ảnh. */
+.erp-photo-toolbar__project {
+  flex: 1 1 240px;
+  max-width: 320px;
+}
+
+.erp-photo-toolbar__count {
+  margin-left: auto;
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* `.erp-card` mặc định cao 100% (card cùng hàng cao bằng nhau); đứng một mình
+   trong trang thì bị khoá đúng chiều cao khung và lưới ảnh tràn ra ngoài viền. */
+.erp-photo-panel.erp-card {
+  height: auto;
+}
+
+/* Lưới masonry (EvidencePanel): khung ảnh theo tỉ lệ thật, JS chia ảnh vào
+   các cột — số cột tính từ bề rộng, khớp hằng số COLUMN_* trong component. */
+.erp-photo-masonry {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.erp-photo-masonry__col {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-photo-masonry .erp-photo-card {
+  height: auto;
+}
+
+.erp-photo-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  color: var(--erp-text-primary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+
+.erp-photo-card:hover {
+  border-color: var(--erp-border-strong);
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-photo-card:active {
+  transform: translateY(1px);
+}
+
+.erp-photo-card:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-photo-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-photo-card__media .erp-photo-thumb {
+  position: absolute;
+  inset: 0;
+}
+
+.erp-photo-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.erp-photo-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-photo-card__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-photo-card__target {
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-photo-card__author {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.erp-photo-card__body .erp-badge {
+  flex-shrink: 0;
+}
+
+.erp-photo-gps {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-photo-gps--success { color: var(--erp-success); }
+.erp-photo-gps--warning { color: var(--erp-warning); }
+.erp-photo-gps--neutral { color: var(--erp-text-tertiary); }
+
+.erp-photo-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.erp-photo-thumb--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 32px;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-neutral-soft);
+}
+
+/* Chừa chỗ cho tem thời gian ở đáy thẻ để icon + nhãn không bị che. */
+.erp-photo-card__media .erp-photo-thumb--placeholder {
+  justify-content: flex-start;
+  padding-top: 12%;
+}
+
+.erp-photo-thumb--placeholder small {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Việc còn dở của người xem */
+.erp-photo-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--erp-text-primary);
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-notice > .bi {
+  color: var(--erp-warning);
+}
+
+.erp-photo-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.erp-photo-grid.is-stale,
+.erp-photo-masonry.is-stale {
+  opacity: 0.6;
+  transition: opacity 150ms ease;
+}
+
+.erp-photo-card--skeleton {
+  aspect-ratio: 4 / 4.2;
+  pointer-events: none;
+  background: var(--erp-surface-secondary);
+  animation: erp-photo-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes erp-photo-pulse {
+  50% { opacity: 0.55; }
+}
+
+/* Lớp chữ trên ảnh (EvidenceStampOverlay) — cùng bố cục ảnh có dấu của
+   backend. Nền tối và vạch vàng cố định để chữ đọc được trên mọi ảnh, ở cả
+   ba theme — đây là "con dấu" in lên ảnh, không phải bề mặt giao diện. */
+.erp-stamp {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  max-width: calc(100% - 24px);
+  padding: 10px 12px 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--erp-text-on-accent);
+  text-align: left;
+  background: rgb(0 0 0 / 86%);
+  border-left: 4px solid var(--erp-warning);
+  border-radius: var(--erp-radius-sm);
+  text-shadow: 0 1px 1px rgb(0 0 0 / 50%);
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bề rộng CỐ ĐỊNH: `width: auto` làm khung co-theo-nội-dung tính thiếu
+   phần logo, chữ dài nhất (tiêu đề) tràn ra ngoài khung. */
+.erp-stamp__logo {
+  flex: none;
+  align-self: center;
+  width: 4.4em;
+  height: 5.2em;
+  object-fit: contain;
+}
+
+.erp-stamp__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-stamp__title {
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--erp-warning);
+  letter-spacing: 0.02em;
+}
+
+.erp-stamp__line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-stamp__line b {
+  font-weight: 600;
+}
+
+.erp-stamp__line--time {
+  font-weight: 700;
+}
+
+.erp-stamp__code {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 0 6px;
+  font-size: 0.85em;
+  color: inherit;
+  background: rgb(255 255 255 / 20%);
+  border-radius: 3px;
+}
+
+.erp-stamp--sm {
+  left: 6px;
+  bottom: 6px;
+  gap: 6px;
+  max-width: calc(100% - 12px);
+  padding: 5px 7px 5px 9px;
+  font-size: 11px;
+  line-height: 1.3;
+  border-left-width: 3px;
+}
+
+.erp-stamp--sm .erp-stamp__logo {
+  width: 2.4em;
+  height: 2.6em;
+}
+
+.erp-stamp--sm .erp-stamp__code {
+  margin-top: 2px;
+}
+
+/* Chi tiết: PC ảnh trái / thông tin phải, dưới 992px xếp dọc. */
+.erp-photo-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-photo-detail__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 16px;
+}
+
+.erp-photo-detail__code {
+  padding: 2px 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--erp-surface);
+  background: var(--erp-text-primary);
+  border-radius: var(--erp-radius-sm);
+}
+
+/* Nền tối cố định như trình xem ảnh — ảnh nằm giữa, không lẫn vào bề mặt theme. */
+.erp-photo-viewer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  overflow: hidden;
+  background: rgb(31 35 40);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Chỉ ảnh chính (con trực tiếp) — không đụng logo trong lớp chữ. */
+.erp-photo-viewer > img,
+.erp-photo-viewer > video {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+.erp-photo-viewer__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 16px;
+  font-size: 40px;
+  color: rgb(255 255 255 / 70%);
+  text-align: center;
+}
+
+.erp-photo-viewer__empty small {
+  font-size: 13px;
+}
+
+/* Ghi chú đè lên đáy khung xem (VD video không phát được, đang hiện ảnh đại diện). */
+.erp-photo-viewer__caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: rgb(255 255 255 / 92%);
+  text-align: center;
+  background: rgb(0 0 0 / 60%);
+}
+
+.erp-photo-detail__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-photo-modes {
+  display: inline-flex;
+}
+
+.erp-photo-modes .btn {
+  min-width: 72px;
+  font-weight: 600;
+}
+
+.erp-photo-modes .btn-check:checked + .btn {
+  color: var(--erp-surface);
+  background: var(--erp-text-primary);
+  border-color: var(--erp-text-primary);
+}
+
+.erp-photo-modes .btn-check:focus-visible + .btn {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-photo-detail__file {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-photo-detail__card {
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-photo-detail__card--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.erp-photo-detail__note {
+  margin: 0 0 12px;
+  max-width: 70ch;
+}
+
+.erp-photo-detail__subhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-photo-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-photo-links > li {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-photo-links__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-photo-links__label {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-photo-links__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--erp-danger);
+  background: transparent;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-photo-links__remove:hover {
+  background: var(--erp-danger-soft);
+}
+
+.erp-photo-links__remove:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-photo-links__confirm {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-photo-links__add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.erp-photo-links__add .form-select {
+  flex: 0 1 150px;
+  width: auto;
+  min-width: 0;
+}
+
+.erp-photo-links__picker {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+.erp-photo-links__add > .btn {
+  flex: none;
+}
+
+/* Bảng thông tin trong chi tiết */
+.erp-photo-view__meta {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 8px 16px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.erp-photo-view__meta dt {
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-view__meta dd {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Form thêm ảnh — một cột, mọi field cách nhau đúng 16px (`.mb-3` của Field);
+   field cuối của MỖI khối bỏ margin để đáy khối đều nhau. Rule chung của
+   FormModal chỉ lo khối cuối cùng. */
+.erp-photo-form .erp-form-section__body > .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Loại ảnh do mẫu quyết định (5–7 loại, nhãn dài) — chip xuống dòng được,
+   không nhồi vào một thanh segmented. */
+.erp-photo-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-photo-types > .btn {
+  flex: 0 0 auto;
+  min-height: var(--erp-touch-target, 44px);
+  padding-inline: 16px;
+  border-radius: var(--erp-radius-md) !important;
+  margin-left: 0 !important;
+}
+
+.erp-photo-types .btn-check:checked + .btn {
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+}
+
+.erp-photo-types .btn-check:focus-visible + .btn {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-photo-form__blocker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: var(--erp-danger);
+}
+
+.erp-photo-form__context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-photo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-photo-chip--success {
+  color: var(--erp-success);
+  background: var(--erp-success-soft);
+  border-color: transparent;
+}
+
+.erp-photo-chip--warning {
+  color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+  border-color: transparent;
+}
+
+.erp-photo-chip--neutral {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-photo-chip--danger {
+  color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+  border-color: transparent;
+}
+
+button.erp-photo-chip {
+  cursor: pointer;
+}
+
+button.erp-photo-chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-photo-picker__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-photo-picker__actions .btn {
+  min-height: 48px;
+}
+
+.erp-photo-picker__camera {
+  flex: 1 1 240px;
+  font-size: 16px;
+}
+
+.erp-photo-picker.is-invalid .erp-photo-picker__actions .btn {
+  border-color: var(--erp-danger);
+}
+
+.erp-photo-picker__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-photo-picker__item {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-picker__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.erp-photo-picker__name {
+  display: block;
+  padding: 4px 8px;
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-photo-picker__file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  font-size: 28px;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-photo-picker__status {
+  display: block;
+  padding: 0 8px 6px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-picker__status--done { color: var(--erp-success); }
+.erp-photo-picker__status--failed { color: var(--erp-danger); }
+
+.erp-photo-picker__item.is-failed {
+  border-color: var(--erp-danger);
+}
+
+.erp-photo-picker__item.is-done {
+  border-color: var(--erp-success);
+}
+
+.erp-photo-picker__status--working .bi {
+  display: inline-block;
+  animation: erp-photo-spin 1s linear infinite;
+}
+
+@keyframes erp-photo-spin {
+  to { transform: rotate(360deg); }
+}
+
+.erp-photo-picker__remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--erp-text-primary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-round);
+}
+
+.erp-photo-picker__remove:hover {
+  color: var(--erp-danger);
+}
+
+.erp-photo-picker__remove:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+@media (max-width: 991.98px) {
+  .erp-photo-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-photo-viewer > img,
+  .erp-photo-viewer > video {
+    max-height: 60vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-stamp {
+    left: 6px;
+    bottom: 6px;
+    max-width: calc(100% - 12px);
+    font-size: 11px;
+  }
+
+  .erp-stamp__logo {
+    width: 3.4em;
+    height: 4em;
+  }
+
+  .erp-photo-detail__file {
+    margin-left: 0;
+  }
+
+  .erp-photo-links__add .form-select {
+    flex-basis: 100%;
+  }
+
+  .erp-photo-toolbar .form-select,
+  .erp-photo-toolbar__project,
+  .erp-photo-toolbar__search {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .erp-photo-toolbar__count {
+    margin-left: 0;
+  }
+
+  .erp-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .erp-photo-masonry,
+  .erp-photo-masonry__col {
+    gap: 8px;
+  }
+
+  .erp-photo-view__meta {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .erp-photo-view__meta dd {
+    margin-bottom: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-photo-card,
+  .erp-photo-grid.is-stale,
+  .erp-photo-masonry.is-stale {
+    transition: none;
+  }
+
+  .erp-photo-card--skeleton,
+  .erp-photo-picker__status--working .bi {
+    animation: none;
+  }
+
+  .erp-photo-card:active {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Việc làm trên bằng chứng đã chụp (erp_evidence API_FRONTEND §7–§10):
+   chú thích / vùng đánh dấu, Before-After, tạo việc, xoá mềm – khôi phục.
+   ------------------------------------------------------------------------ */
+
+.erp-photo-toolbar__trash {
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Dải báo "đã xoá": cùng khung với dải việc còn dở, tone nguy hiểm. */
+.erp-photo-notice--danger {
+  background: var(--erp-danger-soft);
+}
+
+.erp-photo-notice--danger > .bi {
+  color: var(--erp-danger);
+}
+
+.erp-photo-notice > span {
+  flex: 1 1 240px;
+  min-width: 0;
+}
+
+.erp-photo-detail__viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-photo-detail__viewer > .erp-photo-detail__tools {
+  margin-top: -8px;
+}
+
+/* Ô thay cho ảnh không tải được (424: byte gốc không còn trên máy chủ…). */
+span.erp-photo-viewer__empty {
+  width: 100%;
+}
+
+/* Vùng đánh dấu: SVG phủ ĐÚNG phần ảnh thật (vị trí đặt bằng style). Nét sáng
+   + bóng tối cố định để đọc được trên mọi ảnh, ở cả ba theme — như lớp chữ. */
+.erp-photo-markup {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.erp-photo-markup.is-drawing {
+  z-index: 2;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+.erp-photo-markup__shape {
+  fill: none;
+  stroke: var(--erp-markup-color, rgb(245 179 1));
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 1px rgb(0 0 0 / 90%));
+}
+
+.erp-photo-markup__shape.is-active {
+  stroke-width: 4;
+  filter: drop-shadow(0 0 4px rgb(255 255 255));
+}
+
+.erp-photo-markup__shape.is-draft {
+  stroke-dasharray: 6 4;
+}
+
+.erp-photo-markup__label {
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--erp-markup-color, rgb(245 179 1));
+  stroke: rgb(0 0 0 / 75%);
+  stroke-width: 3px;
+  stroke-dasharray: none;
+  paint-order: stroke;
+}
+
+/* Danh sách chú thích */
+.erp-photo-notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-photo-notes > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-photo-notes__icon {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-photo-notes__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-photo-notes__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 14px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.erp-photo-notes__audio {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.erp-photo-notes__edit,
+.erp-photo-notes__pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.erp-photo-notes__edit .form-control,
+.erp-photo-notes__pending .form-control {
+  flex: 1 1 200px;
+  width: auto;
+}
+
+.erp-photo-notes__conflict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--bs-warning-border-subtle);
+  border-radius: 8px;
+  background: var(--bs-warning-bg-subtle);
+  font-size: 0.875rem;
+}
+
+.erp-photo-notes__conflict p {
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+.erp-photo-notes__actions {
+  display: inline-flex;
+  flex: none;
+  gap: 2px;
+}
+
+.erp-photo-notes__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--erp-text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-photo-notes__button:hover {
+  background: var(--erp-neutral-soft);
+}
+
+.erp-photo-notes__button--danger {
+  color: var(--erp-danger);
+}
+
+.erp-photo-notes__button--danger:hover {
+  background: var(--erp-danger-soft);
+}
+
+.erp-photo-notes__button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-photo-notes__empty {
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 13px;
+}
+
+.erp-photo-notes__compose {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.erp-photo-notes__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-photo-notes__draw .btn-check:checked + .btn {
+  color: var(--erp-surface);
+  background: var(--erp-text-primary);
+  border-color: var(--erp-text-primary);
+}
+
+.erp-photo-notes__draw .btn-check:focus-visible + .btn {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Before-After: ô ghép cặp */
+.erp-photo-pairs__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.erp-photo-pairs__form > p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-photo-pairs__title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-pairs__picker {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 2px 2px 8px;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.erp-photo-pairs__option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 124px;
+  padding: 4px;
+  font-size: 12px;
+  text-align: left;
+  color: var(--erp-text-primary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-pairs__option small {
+  overflow: hidden;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-photo-pairs__option.is-selected {
+  border-color: var(--erp-focus-ring);
+  box-shadow: 0 0 0 2px var(--erp-focus-ring);
+}
+
+.erp-photo-pairs__option:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-photo-pairs__thumb {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-photo-pairs__thumb .erp-photo-thumb--placeholder {
+  font-size: 20px;
+}
+
+.erp-photo-pairs__thumb .erp-photo-thumb--placeholder small {
+  white-space: normal;
+  text-align: center;
+  text-transform: none;
+}
+
+.erp-photo-pairs__actions,
+.erp-photo-action__submit,
+.erp-photo-delete__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tạo việc từ ảnh */
+.erp-photo-action {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.erp-photo-action > .erp-badge {
+  align-self: flex-start;
+}
+
+.erp-photo-action__label {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-action .erp-photo-form__blocker {
+  margin: 0;
+}
+
+.erp-photo-delete {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* So sánh Before-After. Nền tối cố định như khung xem ảnh. */
+.erp-photo-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-photo-compare__back {
+  margin-bottom: 16px;
+}
+
+.erp-photo-compare__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-photo-compare__modes {
+  margin-left: auto;
+}
+
+.erp-photo-compare__modes .btn {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.erp-photo-compare__side {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.erp-photo-compare__figure {
+  margin: 0;
+  overflow: hidden;
+  background: rgb(31 35 40);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-compare__figure > img,
+.erp-photo-compare__figure > .erp-photo-viewer__empty {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.erp-photo-compare__figure > .erp-photo-viewer__empty {
+  justify-content: center;
+}
+
+.erp-photo-compare__figure figcaption {
+  padding: 6px 8px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: rgb(255 255 255 / 85%);
+}
+
+.erp-photo-compare__stage {
+  position: relative;
+  width: 100%;
+  max-height: 72vh;
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+  overflow: hidden;
+  background: rgb(31 35 40);
+  border-radius: var(--erp-radius-md);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.erp-photo-compare__stage[data-mode='slider'] {
+  cursor: ew-resize;
+}
+
+.erp-photo-compare__base,
+.erp-photo-compare__top,
+.erp-photo-compare__top > img,
+.erp-photo-compare__top > .erp-photo-viewer__empty {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.erp-photo-compare__base,
+.erp-photo-compare__top > img {
+  object-fit: contain;
+}
+
+.erp-photo-compare__top > img {
+  transform-origin: center center;
+}
+
+.erp-photo-compare__stage .erp-photo-viewer__empty {
+  justify-content: center;
+}
+
+.erp-photo-compare__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: rgb(255 255 255);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 40%);
+  pointer-events: none;
+}
+
+.erp-photo-compare__handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  background: rgb(255 255 255);
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 50%);
+}
+
+.erp-photo-compare__tag {
+  position: absolute;
+  top: 8px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255 255 255);
+  background: rgb(0 0 0 / 60%);
+  border-radius: var(--erp-radius-sm);
+  pointer-events: none;
+}
+
+.erp-photo-compare__tag--before { left: 8px; }
+.erp-photo-compare__tag--after { right: 8px; }
+
+.erp-photo-compare__controls {
+  margin-top: -8px;
+}
+
+.erp-photo-compare__range {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-compare__align > summary {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.erp-photo-compare__inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 16px;
+  margin-top: 12px;
+}
+
+.erp-photo-compare__inputs .erp-photo-compare__range {
+  max-width: none;
+}
+
+.erp-photo-compare__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.erp-photo-compare__remove {
+  margin-left: auto;
+}
+
+.erp-photo-compare__error {
+  color: var(--erp-danger);
+}
+
+.erp-photo-compare__origin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.erp-photo-compare__hash {
+  font-family: var(--bs-font-monospace);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.erp-photo-compare__footnote {
+  margin: 0;
+  font-size: 13px;
+}
+
+@media (max-width: 767.98px) {
+  .erp-photo-compare__side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-photo-compare__modes {
+    margin-left: 0;
+  }
+
+  .erp-photo-compare__remove {
+    margin-left: 0;
+  }
+}
+
+/* Điện thoại công trường: nút gỡ / sửa chú thích đủ 44px cho ngón tay. */
+@media (pointer: coarse) {
+  .erp-photo-notes__button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   Close-out G1 (API_FRONTEND §2.1, §2.2b, §7): chính sách vị trí của mẫu,
+   file lớn chờ Wi-Fi, ghi âm.
+   ------------------------------------------------------------------------ */
+
+/* Thiếu vị trí: vì sao + cách sửa + nút thử lại / lưu kèm lý do. */
+.erp-photo-geo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 12px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--erp-text-primary);
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-geo > .bi {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-photo-geo--danger {
+  background: var(--erp-danger-soft);
+}
+
+.erp-photo-geo--danger > .bi {
+  color: var(--erp-danger);
+}
+
+.erp-photo-geo > span:not(.erp-photo-geo__actions) {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.erp-photo-geo__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-photo-geo__reason {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.erp-photo-geo__reason .form-label {
+  margin: 0;
+  font-weight: 500;
+}
+
+.erp-photo-geo__reason .form-control {
+  width: 100%;
+}
+
+.erp-photo-geo__reason .btn-link {
+  padding: 0;
+  font-size: 13px;
+}
+
+/* Lý do nút Lưu đang khoá — nằm cạnh nút, không bắt người dùng cuộn lên tìm. */
+.erp-photo-form__why {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  color: var(--erp-danger);
+}
+
+/* Đã lưu trên máy, chưa tới máy chủ (chờ Wi-Fi / máy chủ tạm hết chỗ). */
+.erp-photo-picker__status--held { color: var(--erp-warning); }
+
+.erp-photo-picker__item.is-held {
+  border-color: var(--erp-warning);
+}
+
+.erp-photo-picker__link {
+  display: block;
+  margin-top: 2px;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-focus-ring);
+  text-decoration: underline;
+  background: transparent;
+  border: 0;
+}
+
+.erp-photo-picker__link:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Ghi âm chú thích. */
+.erp-photo-voice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-photo-voice__error {
+  flex: 1 1 100%;
+  color: var(--erp-danger);
+}
+
+/* Chi tiết: lý do lưu khi không có vị trí. */
+.erp-photo-geo-reason {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--erp-warning);
+  overflow-wrap: anywhere;
+}
+
+.erp-photo-geo-reason strong {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+@media (pointer: coarse) {
+  .erp-photo-picker__link {
+    min-height: 32px;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   GHI NHẬN THỰC TẾ (mẫu giao diện 02/10/2026): chọn nhanh → chụp → bổ sung
+   thông tin → lưu → xem & chia sẻ. Một modal, điện thoại chiếm trọn màn.
+   ------------------------------------------------------------------------ */
+.erp-capture-modal .modal-content {
+  overflow: hidden;
+}
+
+.erp-capture-modal .modal-dialog {
+  --bs-modal-width: 520px;
+}
+
+.erp-capture {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: min(820px, calc(100dvh - 56px));
+}
+
+.erp-capture__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 56px;
+  padding: calc(8px + var(--erp-safe-top)) 12px 8px;
+  background: var(--erp-surface);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-capture__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.erp-capture__bar-button,
+.erp-capture__bar-space {
+  flex: 0 0 var(--erp-touch-target);
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+}
+
+.erp-capture__bar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+  color: var(--erp-text-primary);
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-round);
+}
+
+.erp-capture__bar-button:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-capture__bar-button:focus-visible,
+.erp-capture-tile:focus-visible,
+.erp-capture-type:focus-visible,
+.erp-capture-target:focus-visible,
+.erp-capture-shot--add:focus-visible,
+.erp-capture-note__mic:focus-visible,
+.erp-capture-done__suggest button:focus-visible,
+.erp-photo-tab:focus-visible,
+.erp-photo-strip__item:focus-visible,
+.erp-photo-viewer__nav:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-capture__bar > .btn {
+  min-width: 72px;
+  min-height: 36px;
+  font-weight: 600;
+}
+
+.erp-capture__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 16px 16px calc(16px + var(--erp-safe-bottom));
+  overflow-y: auto;
+  background: var(--erp-bg);
+}
+
+.erp-capture__body > * + * {
+  margin-top: 16px;
+}
+
+/* Bước 1 — chọn nhanh */
+.erp-capture-hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  color: var(--erp-text-on-accent);
+  background: linear-gradient(135deg, var(--erp-action-secondary), var(--erp-action-secondary-hover));
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture-hero strong {
+  display: block;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.erp-capture-hero small {
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.erp-capture-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-capture-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-capture-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 96px;
+  padding: 12px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--erp-text-primary);
+  text-align: center;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.erp-capture-tile:hover {
+  border-color: var(--erp-action-secondary);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-capture-tile > span {
+  overflow-wrap: anywhere;
+}
+
+.erp-capture-tile--accent > .bi { color: var(--erp-action-secondary); }
+.erp-capture-tile--success > .bi { color: var(--erp-success); }
+.erp-capture-tile--danger > .bi { color: var(--erp-danger); }
+.erp-capture-tile--warning > .bi { color: var(--erp-warning); }
+.erp-capture-tile--info > .bi { color: var(--erp-info); }
+.erp-capture-tile--neutral > .bi { color: var(--erp-text-tertiary); }
+
+.erp-capture-pick__actions,
+.erp-capture-done__actions,
+.erp-capture__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-capture-pick__actions .btn,
+.erp-capture-done__actions .btn,
+.erp-capture__foot .btn-lg {
+  min-height: 48px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.erp-capture-pick__foot {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+/* Bước 2 — camera. Nền tối cố định như ứng dụng máy ảnh, ở cả ba theme. */
+.erp-cam {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  color: rgb(255 255 255);
+  background: rgb(12 14 17);
+}
+
+.erp-cam__top,
+.erp-cam__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+/* Ba cột 1fr – auto – 1fr: nhóm công cụ nằm chính giữa dù nút Đóng (44px) và
+   nút Tiếp tục (96px) rộng khác nhau. */
+.erp-cam__top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  padding-top: calc(8px + var(--erp-safe-top));
+}
+
+.erp-cam__top > :first-child {
+  justify-self: start;
+}
+
+.erp-cam__top > :last-child {
+  justify-self: end;
+}
+
+.erp-cam__top-tools {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.erp-cam__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+  padding: 0;
+  font-size: 18px;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+}
+
+/* Nút chọn file có sẵn: có nhãn + nền để thấy là bấm được. Xếp dọc cho vừa
+   thanh trên ở màn 360px khi có cả đèn và zoom. */
+.erp-cam__pick {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 56px;
+  height: var(--erp-touch-target);
+  padding: 0 6px;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+  white-space: nowrap;
+  background: rgb(255 255 255 / 16%);
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-cam__pick > span {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.erp-cam__pick:active:not(:disabled) {
+  background: rgb(255 255 255 / 28%);
+}
+
+.erp-cam__icon:disabled,
+.erp-cam__pick:disabled,
+.erp-cam__last:disabled,
+.erp-cam__shutter:disabled {
+  opacity: 0.4;
+}
+
+.erp-cam__icon:focus-visible,
+.erp-cam__pick:focus-visible,
+.erp-cam__next:focus-visible,
+.erp-cam__last:focus-visible,
+.erp-cam__shutter:focus-visible,
+.erp-cam__mode:focus-visible {
+  outline: 2px solid rgb(255 255 255);
+  outline-offset: 2px;
+}
+
+.erp-cam__icon.is-on {
+  color: rgb(245 179 1);
+}
+
+.erp-cam__icon--text {
+  font-size: 13px;
+  font-weight: 700;
+  background: rgb(255 255 255 / 14%);
+}
+
+.erp-cam__icon--round {
+  width: 52px;
+  height: 52px;
+  font-size: 22px;
+  background: rgb(255 255 255 / 14%);
+}
+
+.erp-cam__next,
+.erp-cam__next-space {
+  min-width: 96px;
+}
+
+.erp-cam__next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(12 14 17);
+  background: rgb(255 255 255);
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-cam__stage {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  background: rgb(0 0 0);
+}
+
+.erp-cam__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.erp-cam__video.is-mirrored {
+  transform: scaleX(-1);
+}
+
+.erp-cam__flash {
+  position: absolute;
+  inset: 0;
+  background: rgb(255 255 255 / 70%);
+  pointer-events: none;
+}
+
+.erp-cam__state,
+.erp-cam__blocked {
+  max-width: 420px;
+  padding: 16px;
+  margin: 0;
+  font-size: 14px;
+  color: rgb(255 255 255 / 86%);
+  text-align: center;
+}
+
+.erp-cam__blocked p {
+  margin: 12px 0 16px;
+}
+
+.erp-cam__blocked-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-cam__blocked-actions .btn {
+  min-height: 48px;
+  font-weight: 600;
+}
+
+.erp-cam__overlay {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 80%);
+  pointer-events: none;
+}
+
+.erp-cam__overlay-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-cam__overlay-time {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.erp-cam__overlay-place {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-cam__overlay-gps {
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: rgb(0 0 0 / 45%);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-cam__overlay-gps--success { color: rgb(120 230 170); }
+.erp-cam__overlay-gps--warning { color: rgb(245 200 90); }
+.erp-cam__overlay-gps--danger { color: rgb(255 150 150); }
+
+.erp-cam__rec {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  background: rgb(0 0 0 / 55%);
+  border-radius: var(--erp-radius-pill);
+  transform: translateX(-50%);
+}
+
+.erp-cam__rec-dot {
+  width: 8px;
+  height: 8px;
+  background: rgb(230 60 60);
+  border-radius: 50%;
+}
+
+.erp-cam__message {
+  position: absolute;
+  top: 44px;
+  right: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  margin: 0;
+  font-size: 13px;
+  text-align: center;
+  background: rgb(0 0 0 / 60%);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-cam__bottom {
+  padding-block: 16px 8px;
+}
+
+.erp-cam__last {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  font-size: 20px;
+  color: rgb(255 255 255 / 70%);
+  background: rgb(255 255 255 / 10%);
+  border: 2px solid rgb(255 255 255 / 60%);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-cam__last img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--erp-radius-md) - 2px);
+}
+
+.erp-cam__badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 22px;
+  padding: 1px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(255 255 255);
+  background: var(--erp-action-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-cam__shutter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  background: none;
+  border: 4px solid rgb(255 255 255);
+  border-radius: 50%;
+}
+
+.erp-cam__shutter > span {
+  width: 54px;
+  height: 54px;
+  background: rgb(255 255 255);
+  border-radius: 50%;
+  transition: transform 0.1s ease, border-radius 0.15s ease, width 0.15s ease, height 0.15s ease;
+}
+
+.erp-cam__shutter:active > span {
+  transform: scale(0.9);
+}
+
+.erp-cam__shutter.is-video > span {
+  background: rgb(230 60 60);
+}
+
+.erp-cam__shutter.is-recording > span {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.erp-cam__modes {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 16px calc(12px + var(--erp-safe-bottom));
+}
+
+.erp-cam__mode {
+  min-height: 36px;
+  padding: 4px 14px;
+  font-size: 14px;
+  color: rgb(255 255 255 / 70%);
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-cam__mode.is-active {
+  font-weight: 700;
+  color: rgb(255 255 255);
+  background: rgb(255 255 255 / 16%);
+}
+
+/* Bước 3 — bổ sung thông tin (tối giản) */
+.erp-capture__section > h3,
+.erp-capture-done__next > h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.erp-capture__section > h3 > small {
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-capture-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.erp-capture-shot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-capture-shot > img,
+.erp-capture-shot__file {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.erp-capture-shot__file {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 24px;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-capture-shot__file small {
+  font-size: 11px;
+}
+
+.erp-capture-shot .erp-photo-picker__status {
+  padding-top: 4px;
+}
+
+.erp-capture-shot.is-failed { border-color: var(--erp-danger); }
+.erp-capture-shot.is-done { border-color: var(--erp-success); }
+.erp-capture-shot.is-held { border-color: var(--erp-warning); }
+
+.erp-capture-shot--add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  aspect-ratio: 1;
+  font-size: 12px;
+  color: var(--erp-action-secondary);
+  background: var(--erp-surface);
+  border-style: dashed;
+}
+
+.erp-capture-shot--add > .bi {
+  font-size: 20px;
+}
+
+.erp-capture-target {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 12px;
+  color: var(--erp-text-primary);
+  text-align: left;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture-target.is-empty {
+  border-color: var(--erp-warning);
+}
+
+.erp-capture-target__icon {
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-capture-target__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-capture-target__text strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-capture-target__text small {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-capture-target__editor {
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture-target__editor > .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+.erp-capture-nearby {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-capture-types {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-capture-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--erp-text-primary);
+  text-align: left;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-capture-type.is-active {
+  font-weight: 600;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+}
+
+.erp-capture-note {
+  position: relative;
+}
+
+.erp-capture-note textarea {
+  padding-right: 48px;
+}
+
+.erp-capture-note__mic {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 18px;
+  color: var(--erp-text-tertiary);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+}
+
+.erp-capture-note__mic.is-on {
+  color: var(--erp-text-on-accent);
+  background: var(--erp-danger);
+}
+
+.erp-capture-note__hint {
+  display: block;
+  margin-top: 4px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-capture__more {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture__more > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.erp-capture__more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.erp-capture__more[open] > summary > .bi {
+  transform: rotate(180deg);
+}
+
+.erp-capture__facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 12px;
+  padding: 0 12px 12px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-capture__facts dt {
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-capture__facts dd {
+  margin: 0;
+}
+
+.erp-capture__foot .btn-link {
+  color: var(--erp-text-secondary);
+}
+
+/* Bước 4 — lưu ghi nhận */
+.erp-capture-done {
+  text-align: center;
+}
+
+.erp-capture-done__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-top: 8px;
+  font-size: 32px;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-success);
+  border-radius: 50%;
+}
+
+.erp-capture-done__mark.is-queued {
+  background: var(--erp-warning);
+}
+
+.erp-capture-done__title {
+  margin: 12px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--erp-success);
+}
+
+.erp-capture-done__mark.is-queued + .erp-capture-done__title {
+  color: var(--erp-warning);
+}
+
+.erp-capture-done__text {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.erp-capture-done__facts {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 8px 8px;
+  max-width: 360px;
+  padding: 12px;
+  margin-inline: auto;
+  font-size: 14px;
+  text-align: left;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture-done__facts dt {
+  color: var(--erp-action-secondary);
+}
+
+.erp-capture-done__facts dd {
+  margin: 0;
+}
+
+.erp-capture-done__weather {
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.erp-capture-done__weather::before {
+  margin-right: 8px;
+  color: var(--erp-text-tertiary);
+  content: '•';
+}
+
+.erp-capture-done__kept {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--erp-warning);
+  text-align: left;
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-capture-done__next {
+  padding: 12px;
+  text-align: left;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-capture-done__suggest {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.erp-capture-done__suggest button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: var(--erp-touch-target);
+  padding: 4px 0;
+  font-size: 14px;
+  color: var(--erp-text-primary);
+  text-align: left;
+  background: none;
+  border: 0;
+}
+
+.erp-capture-done__suggest button > span {
+  flex: 1 1 auto;
+}
+
+.erp-capture-done__suggest button > .bi:first-child {
+  color: var(--erp-action-secondary);
+}
+
+.erp-capture-done__next > .erp-photo-detail__card {
+  border: 0;
+}
+
+/* Bước 5 — chi tiết ghi nhận */
+.erp-photo-detail__head {
+  display: flex;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.erp-photo-detail__head-tags {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.erp-photo-detail__head-icon {
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-detail__head-text {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-photo-detail__head-text strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-photo-detail__head-text small {
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-detail__head .erp-photo-detail__code {
+  font-size: 12px;
+}
+
+.erp-photo-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--erp-border);
+  scrollbar-width: none;
+}
+
+.erp-photo-detail__info > .erp-photo-tabs {
+  margin-bottom: 0;
+}
+
+.erp-photo-tab {
+  flex: 0 0 auto;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.erp-photo-tab.is-active {
+  font-weight: 600;
+  color: var(--erp-action-secondary);
+  border-bottom-color: var(--erp-action-secondary);
+}
+
+.erp-photo-detail__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-photo-viewer__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 18px;
+  color: rgb(255 255 255);
+  background: rgb(0 0 0 / 50%);
+  border: 0;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.erp-photo-viewer__nav:disabled {
+  opacity: 0.3;
+}
+
+.erp-photo-viewer__nav--prev { left: 8px; }
+.erp-photo-viewer__nav--next { right: 8px; }
+
+.erp-photo-viewer__count {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: rgb(255 255 255);
+  background: rgb(0 0 0 / 55%);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-photo-strip {
+  display: flex;
+  gap: 8px;
+  padding: 0 0 2px;
+  margin: -8px 0 0;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.erp-photo-strip__item {
+  display: block;
+  width: 72px;
+  height: 54px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border: 2px solid transparent;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-photo-strip__item.is-active {
+  border-color: var(--erp-action-secondary);
+}
+
+.erp-photo-strip__item img,
+.erp-photo-strip__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-photo-log {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.erp-photo-log > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+  padding: 8px 0;
+  font-size: 13px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-photo-log__time {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-photo-log__chain {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.erp-photo-log__chain--ok { color: var(--erp-success); }
+.erp-photo-log__chain--broken { color: var(--erp-danger); }
+
+.erp-photo-detail__footer {
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding-bottom: calc(12px + var(--erp-safe-bottom));
+}
+
+.erp-photo-detail__footer > .btn {
+  flex: 1 1 0;
+  min-height: var(--erp-touch-target);
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  /* Modal toàn màn hình: luồng chiếm trọn chiều cao. */
+  .erp-capture {
+    height: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Năm thẻ vừa một hàng ở màn 360px, không phải cuộn ngang mới thấy "Liên quan". */
+  .erp-photo-tabs {
+    gap: 0;
+  }
+
+  .erp-photo-tab {
+    flex: 1 1 auto;
+    padding-inline: 4px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-capture-tile,
+  .erp-cam__shutter > span {
+    transition: none;
+  }
+}
+
+.erp-capture-type--more {
+  color: var(--erp-text-secondary);
+  border-style: dashed;
+}
+
+/* ---------------------------------------------------------------------------
+   Chức năng mở sớm của bằng chứng (erp_evidence API_FRONTEND §17, 02/10/2026):
+   cảnh báo cho người duyệt, ảnh 360, loại lưu trữ, link chia sẻ ra ngoài,
+   ảnh đại diện của video.
+   --------------------------------------------------------------------------- */
+
+/* Cảnh báo cho người duyệt: tone THÔNG TIN — không phải lỗi, không chặn gì. */
+.erp-photo-notice--info {
+  background: var(--erp-info-soft);
+}
+
+.erp-photo-notice--info > .bi {
+  color: var(--erp-info);
+}
+
+/* Câu hỏi "có phải ảnh 360 không": trung tính, chờ người dùng trả lời. */
+.erp-photo-notice--neutral {
+  background: var(--erp-neutral-soft);
+}
+
+.erp-photo-notice--neutral > .bi {
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-warning__code {
+  padding: 2px 8px;
+  font-size: 12px;
+  color: var(--erp-text-primary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+/* Trình xem xoay <erp-pano-viewer> (web component dùng chung với Drupal — CSS
+   riêng của nó do bundle tự chèn). Ở đây chỉ đặt nó vào khung xem ảnh. */
+.erp-photo-viewer > .erp-photo-pano {
+  flex: 1 1 100%;
+  width: 100%;
+  height: min(72vh, 560px);
+  border-radius: 0;
+}
+
+/* Không nạp được trình xem: ảnh phẳng + dòng giải thích, cùng khung tối. */
+.erp-photo-pano-flat {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-photo-pano-flat > img {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+}
+
+.erp-photo-pano-flat__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: rgb(255 255 255 / 85%);
+  background: rgb(0 0 0 / 55%);
+}
+
+.erp-photo-pano-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-pano-toggle > .btn-link {
+  padding: 0 4px;
+  font-size: 13px;
+}
+
+/* Loại lưu trữ: nút "Đổi…" cạnh nhãn, form mở ngay dưới. */
+.erp-photo-classify__open {
+  margin-left: 8px;
+  padding: 0;
+  font-size: 13px;
+  vertical-align: baseline;
+}
+
+.erp-photo-classify {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.erp-photo-classify .erp-photo-form__blocker {
+  margin: 0;
+}
+
+/* Link chia sẻ ra ngoài */
+.erp-photo-share__blocked {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-photo-share__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px 12px;
+}
+
+.erp-photo-share__consent {
+  font-size: 13px;
+}
+
+.erp-photo-share__created {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: var(--erp-success-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Video đã có ảnh đại diện: dấu "phát" nhỏ ở góc trên phải (đáy thẻ là tem thời gian). */
+.erp-photo-thumb__play {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  color: rgb(255 255 255);
+  background: rgb(0 0 0 / 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Hạn lưu / trạng thái lưu trữ dưới tên loại lưu trữ (vòng đời đợt 2). */
+.erp-photo-retention {
+  display: block;
+  font-size: 12px;
+  color: var(--erp-text-muted, #5b6b7c);
+}
+
+.erp-photo-retention--due {
+  color: #8a5a00;
+  font-weight: 600;
+}

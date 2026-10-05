@@ -1,0 +1,55 @@
+/*
+ * Nhom avatar (AvatarStack) - nguoi tao / nguoi duyet mot ho so.
+ *
+ * `.erp-avatar` co san trong `base/utilities.css` (34px, mau brand). Trong mot
+ * NHOM avatar, kich thuoc nho lai va doi sang Blue/Trust: crimson chi danh cho
+ * nhan dien & CTA (~2%), khong dung cho danh sach nguoi (muc 01 & 05).
+ */
+
+.erp-avatars {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+.erp-avatars .erp-avatar {
+  width: 26px;
+  height: 26px;
+  font-size: 0.625rem;
+  border: 2px solid var(--erp-surface);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-avatars .erp-avatar + .erp-avatar {
+  margin-inline-start: -8px;
+}
+
+.erp-avatars .erp-avatar--rest {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Anh dai dien PHU LEN lop chu cai dau, khong thay the no.
+ *
+ * Chu cai van nam trong DOM va van duoc ve; anh chi che di. Nho vay anh tai
+ * hong (tep bi xoa ben Drupal, mang cong truong chap chon) chi can `display:
+ * none` la lo lai chu cai - khong co trang thai nao de dong bo, va khong bao
+ * gio con mot o anh vo tren the.
+ *
+ * `.erp-avatar` phai co `position: relative` va `overflow: hidden` de anh
+ * vuong duoc cat theo hinh tron cua o.
+ */
+.erp-avatar {
+  position: relative;
+  overflow: hidden;
+}
+
+.erp-avatar__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

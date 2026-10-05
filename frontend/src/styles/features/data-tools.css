@@ -1,0 +1,719 @@
+/*
+ * DataTools — nhập / xuất dữ liệu qua vùng tạm (features/core/data-tools).
+ * Chỉ dùng token `--erp-*`; ba theme khác nhau qua token, không qua nhánh riêng.
+ */
+
+.erp-datatools {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Chừa chỗ cho nút nổi của trợ lý: hàng nút cuối trang cuộn lên khỏi nó được. */
+  padding-bottom: 56px;
+}
+
+.erp-datatools__muted {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-datatools__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-datatools__filters .form-select {
+  width: auto;
+  min-width: 180px;
+}
+
+.erp-datatools__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.erp-datatools__row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+/* ---------------------------------------------------------------- Bước */
+
+.erp-datatools__steps {
+  display: grid;
+  /* 5 bước: nguồn · ánh xạ · kiểm tra · chạy thử & duyệt · ghi & đối soát. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-datatools__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--erp-touch-target, 44px);
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+  text-align: left;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.erp-datatools__step:not(:disabled):hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-datatools__step:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-datatools__step:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.erp-datatools__step-index {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-round, 50%);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-datatools__step.is-done {
+  color: var(--erp-text-primary);
+}
+
+.erp-datatools__step.is-done .erp-datatools__step-index {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-datatools__step.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-datatools__step.is-active .erp-datatools__step-index {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+/* ---------------------------------------------------------------- Khối */
+
+.erp-datatools__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-datatools__panel-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.erp-datatools__lead {
+  max-width: 78ch;
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-datatools__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.erp-datatools__foot-start {
+  margin-inline-end: auto;
+}
+
+.erp-datatools__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+}
+
+.erp-datatools__facts dt {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.erp-datatools__facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-datatools__hash {
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 12px;
+}
+
+/* ---------------------------------------------------------------- Tệp nguồn */
+
+.erp-datatools__drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  border: 2px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.erp-datatools__drop:hover,
+.erp-datatools__drop.is-over {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-datatools__drop:focus-within {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-datatools__drop.is-busy {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.erp-datatools__drop-icon {
+  font-size: 32px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-datatools__drop-title {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-datatools__reread {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.erp-datatools__reread .form-select,
+.erp-datatools__reread .form-control {
+  width: auto;
+  min-width: 140px;
+}
+
+.erp-datatools__scroll {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-datatools__scroll > .table {
+  margin: 0;
+}
+
+.erp-datatools__sample td,
+.erp-datatools__sample th {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- Ánh xạ */
+
+.erp-datatools__map td {
+  vertical-align: top;
+}
+
+.erp-datatools__map .form-select,
+.erp-datatools__map .form-control {
+  min-width: 190px;
+}
+
+.erp-datatools__map-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 180px;
+}
+
+.erp-datatools__map-name {
+  font-weight: 600;
+}
+
+.erp-datatools__required {
+  color: var(--erp-danger);
+}
+
+.erp-datatools__map-sample {
+  max-width: 260px;
+  overflow: hidden;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-datatools__options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 16px;
+}
+
+.erp-datatools__notice {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-datatools__notice--warning {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-datatools__notice--danger {
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.erp-datatools__notice--success {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-datatools__notice > .bi {
+  flex: none;
+  margin-top: 2px;
+}
+
+.erp-datatools__notice p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- Kiểm tra */
+
+.erp-datatools__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-datatools__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill, 999px);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.erp-datatools__chip:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-datatools__chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-datatools__chip[aria-pressed='true'] {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  font-weight: 600;
+}
+
+.erp-datatools__chip-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.erp-datatools__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-datatools__cell--error {
+  color: var(--erp-danger);
+  font-weight: 500;
+}
+
+.erp-datatools__cell--warning {
+  color: var(--erp-warning);
+  font-weight: 500;
+}
+
+.erp-datatools__issues {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-datatools__issue {
+  display: flex;
+  gap: 6px;
+}
+
+.erp-datatools__issue--error > .bi {
+  color: var(--erp-danger);
+}
+
+.erp-datatools__issue--warning > .bi {
+  color: var(--erp-warning);
+}
+
+.erp-datatools__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.erp-datatools__num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.erp-datatools__fieldset {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px 16px;
+}
+
+/* ------------------------------------------- Gợi ý ánh xạ · phê duyệt · nền */
+
+.erp-datatools__suggest {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-datatools__approval > div {
+  display: grid;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-items: start;
+}
+
+.erp-datatools__approval-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.erp-datatools__approval-form .form-control {
+  flex: 1 1 240px;
+  width: auto;
+  min-width: 0;
+}
+
+.erp-datatools__notice > div {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  justify-items: start;
+}
+
+.erp-datatools__server-run {
+  margin-inline-end: auto;
+}
+
+/* --------------------------------------------- Gói: lưu trữ · so sánh · cờ */
+
+.erp-datatools__compare {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-datatools__compare-result {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-datatools__compare-result td {
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
+.erp-datatools__flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.erp-datatools__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm, 4px);
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.erp-datatools__flag--warning {
+  border-color: var(--erp-warning);
+}
+
+.erp-datatools__flag--danger {
+  border-color: var(--erp-danger);
+}
+
+.erp-datatools__flag--success {
+  border-color: var(--erp-success);
+}
+
+/* ---------------------------------------------------------------- Cấu hình */
+
+.erp-datatools__settings {
+  display: grid;
+  gap: 16px;
+}
+
+.erp-datatools__group {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.erp-datatools__group > legend {
+  float: none;
+  width: auto;
+  margin-bottom: 4px;
+}
+
+.erp-datatools__key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-datatools__key > code {
+  flex: 1 1 320px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--erp-text-primary);
+}
+
+.erp-datatools__key > span {
+  flex: 1 0 100%;
+}
+
+.erp-datatools__keys {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.erp-datatools__key-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(0, 2fr) auto;
+  gap: 8px;
+  align-items: start;
+  width: 100%;
+}
+
+/* -------------------------------------- Chạy thử · đối soát L1–L5 · hoàn tác */
+
+.erp-datatools__report {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-datatools__actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-datatools__actions-grid > div {
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-datatools__actions-grid dt {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.erp-datatools__actions-grid dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-datatools__list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.erp-datatools__level {
+  margin: 12px 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erp-datatools__level-hint {
+  margin-left: 6px;
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+/* Hàng tiêu đề cấp (L1…L5) trong bảng đối soát — nằm giữa các dòng, không phải thead. */
+.erp-datatools__level-row th {
+  padding-top: 10px;
+  background: var(--erp-surface-secondary);
+  font-weight: 400;
+}
+
+.erp-datatools__level-row .erp-datatools__level {
+  margin: 0;
+}
+
+/* Chặng vòng đời (bộ Đóng gói) cạnh thẻ trạng thái kỹ thuật — chữ, không màu. */
+.erp-datatools__lifecycle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Khối chốt công việc: chứng nhận (L5) | hoàn tác, hai cột từ màn rộng. */
+.erp-datatools__closeout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.erp-datatools__closeout-part {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md, 8px);
+}
+
+.erp-datatools__closeout-part .erp-datatools__level {
+  margin-top: 0;
+}
+
+.erp-datatools__closeout-part textarea {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .erp-datatools__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-datatools__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-datatools__panel {
+    padding: 12px;
+  }
+
+  .erp-datatools__filters .form-select {
+    width: 100%;
+  }
+
+  .erp-datatools__key-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .erp-datatools__key-row > :nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-datatools__step,
+  .erp-datatools__drop,
+  .erp-datatools__chip {
+    transition: none;
+  }
+}

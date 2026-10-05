@@ -1,0 +1,70 @@
+/*
+ * Phân hệ Kho — tồn kho, lịch sử, phiếu chuyển / điều chỉnh / kiểm kê.
+ * Class `erp-warehouse__*`. Chỉ token `--erp-*`, không hex.
+ */
+
+/* Dải tổng của TẬP ĐÃ LỌC (không phải của trang) — một hàng chip, thay cho
+   hàng StatCard: màn tra cứu cần chỗ cho bảng, không cần thẻ lớn. */
+.erp-warehouse__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  font-size: 13px;
+}
+
+.erp-warehouse__summary dt {
+  display: inline;
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-warehouse__summary dt::after {
+  content: ': ';
+}
+
+.erp-warehouse__summary dd {
+  display: inline;
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-warehouse__summary > div {
+  white-space: nowrap;
+}
+
+/* Số âm: màu + dấu trừ + icon ở ô — màu không bao giờ là tín hiệu duy nhất. */
+.erp-warehouse__negative {
+  color: var(--erp-danger);
+}
+
+.erp-warehouse__positive {
+  color: var(--erp-success);
+}
+
+/* Chip "đang lọc một vật tư" — bộ lọc ẩn khỏi ô chọn nên phải NÓI RA. */
+.erp-warehouse__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 4px 2px 10px;
+  border-radius: 999px;
+  background: var(--erp-surface-secondary);
+  font-size: 13px;
+}
+
+/* Bảng dòng trong form phiếu — ô số canh phải. */
+.erp-warehouse-lines input[type='number'] {
+  text-align: right;
+}
+
+.erp-warehouse__diff {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding-top: 7px;
+}

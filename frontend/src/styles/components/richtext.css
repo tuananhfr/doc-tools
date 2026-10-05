@@ -1,0 +1,59 @@
+/* ===========================================================================
+ * TRÌNH SOẠN THẢO CÓ ĐỊNH DẠNG (CKEditor 5) — `.erp-richtext`
+ *
+ * Luật của COMPONENT `components/form/RichTextField.tsx` + `CKEditorBox.tsx`,
+ * không phải của một màn hình nào. Trước 03/09/2026 khối này nằm trong
+ * `features/tasks.css` vì Tác vụ là nơi đầu tiên dùng tới; khi màn XEM phiếu
+ * tài chính cần đúng ô soạn thảo ấy cho khối "Trao đổi" thì neo vào tên một
+ * feature là sai — hoặc phải `@import` chéo giữa hai feature, hoặc chép mã
+ * màu sang file thứ hai và sinh ra hai bảng biến `--ck-*` sẽ lệch nhau.
+ *
+ * Cùng bài học với `.erp-gantt` (Dplan ↔ Pháp lý dự án) và `.erp-step`
+ * (tạm ứng ↔ văn bản đi ↔ đề xuất).
+ * ======================================================================== */
+/* ---------------------------------------------------------------------------
+ * Trình soạn thảo (CKEditor 5)
+ *
+ * CKEditor tự vẽ giao diện bằng biến `--ck-*` của nó. Nối chúng sang token
+ * `--erp-*` thay vì viết đè từng selector: nhờ vậy cả ba theme sáng/tối/công
+ * trường đổi theo mà không cần một nhánh CSS nào.
+ * ------------------------------------------------------------------------ */
+
+.erp-richtext {
+  --ck-color-base-background: var(--erp-surface);
+  --ck-color-base-border: var(--erp-border);
+  --ck-color-base-text: var(--erp-text-primary);
+  --ck-color-toolbar-background: var(--erp-surface-secondary);
+  --ck-color-toolbar-border: var(--erp-border);
+  --ck-color-button-default-hover-background: var(--erp-surface-hover);
+  --ck-color-button-on-background: var(--erp-brand-soft);
+  --ck-color-button-on-color: var(--erp-brand);
+  --ck-color-focus-border: var(--erp-focus-ring);
+  --ck-border-radius: var(--erp-radius-sm);
+}
+
+.erp-richtext .ck-editor__editable {
+  min-height: var(--erp-richtext-min-height, 140px);
+}
+
+/* Vùng soạn thảo phải cuộn TRONG nó, không đẩy cả modal dài ra - người dùng
+   dán một bài dài là form mất luôn hai nút Lưu/Hủy. */
+.erp-richtext .ck-editor__editable_inline {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.erp-richtext--invalid .ck.ck-editor__main > .ck-editor__editable {
+  border-color: var(--erp-danger);
+}
+
+.erp-richtext__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}

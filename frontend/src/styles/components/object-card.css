@@ -1,0 +1,131 @@
+/*
+ * THẺ ĐỐI TƯỢNG (`ObjectCard`) — danh sách một cột trên điện thoại.
+ *
+ * Luật của tài liệu Mobile FINAL (phần 01 mục 8, phần 03 mục 5–6): tên chính
+ * tối đa 2 dòng, ngữ cảnh phụ 1 dòng, 3–5 dữ kiện, trạng thái luôn có icon +
+ * chữ. Màn chi tiết mới hiện tên đầy đủ.
+ */
+.erp-object-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-object-card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+/* Ngoại lệ cần xử lý: vạch bên trái. Chữ "Quá hạn…" nằm trong thẻ — màu không
+   là tín hiệu duy nhất. */
+.erp-object-card--alert {
+  border-inline-start: 3px solid var(--erp-danger);
+}
+
+.erp-object-card__main {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  min-height: var(--erp-touch-target);
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  text-align: start;
+  text-decoration: none;
+}
+
+a.erp-object-card__main:hover,
+button.erp-object-card__main:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-object-card__main:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-object-card__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 1.05rem;
+}
+
+.erp-object-card__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-object-card__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.erp-object-card__subtitle {
+  overflow: hidden;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-object-card__code {
+  margin-inline-end: 6px;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-object-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin-top: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-object-card__danger {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+.erp-object-card__actions {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  padding: 6px 4px 0 0;
+}
+
+.erp-object-card__more {
+  width: var(--erp-touch-target);
+  height: var(--erp-touch-target);
+}

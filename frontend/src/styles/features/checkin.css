@@ -1,0 +1,483 @@
+/*
+ * Cham cong nhanh tai trang chu (`features/hr/checkin`).
+ *
+ * Bo cuc doi theo nhiem vu chu khong thu nho theo man hinh (muc 06):
+ *   >= 992px : cot trai la trang thai dinh vi, cot phai la danh sach du an.
+ *   <= 576px : xep doc, bo dong tieu de cot, nut cham cong thu con o icon 52px.
+ */
+
+.erp-checkin {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 992px) {
+  .erp-checkin {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .erp-checkin__projects {
+    padding-inline-start: 24px;
+    border-inline-start: 1px solid var(--erp-border);
+  }
+}
+
+/* --- Dai gon trong hero "Xin chào" ---------------------------------------- */
+
+/*
+ * Dai nay nam TREN NEN GRADIENT cua hero, nen no phai tu dung nen rieng: chu
+ * cua hero la `--erp-text-on-accent` (gan trang), con noi dung ben trong dai
+ * dung mau chu thuong. Khong ke thua mau cua hero la cach duy nhat de phan mo
+ * rong (danh sach dia diem, o trang thai dinh vi) doc duoc o ca ba theme.
+ */
+.erp-checkin-bar {
+  /* Cao bang o thong tin ben canh - xem `.erp-welcome__chips`. Khi dai mo ra
+     thi no chiem tron mot hang nen chieu cao dong CHINH LA chieu cao cua no,
+     `100%` khong con rang buoc gi. */
+  height: 100%;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  border: 1px solid var(--erp-border);
+}
+
+.erp-checkin-bar__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 10px 12px;
+}
+
+/* Mo ra thi bar cao theo noi dung, hang dau tro lai chieu cao tu nhien. */
+.erp-checkin-bar--open,
+.erp-checkin-bar--open .erp-checkin-bar__row {
+  height: auto;
+}
+
+.erp-checkin-bar__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  /* Day cum nut ve sat le phai. */
+  margin-inline-end: auto;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-checkin-bar__label time {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-checkin-bar__muted {
+  font-weight: 400;
+  font-size: var(--erp-font-size-sm);
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * Nut cham cong CHI CO ICON o moi kho man (yeu cau nghiep vu 04/09/2026).
+ *
+ * Cau day du nam o `aria-label` va `title` - icon `check2-circle` mau
+ * primary dung canh dong chu "Chấm công vào lúc ..." khong con nghia nao khac,
+ * con bo chu thi dai ngan lai ~90px, du cho ca ba khoi cua hero o mot hang.
+ */
+.erp-checkin-bar__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--erp-touch-target);
+  min-width: var(--erp-touch-target);
+  padding-inline: 0;
+}
+
+/*
+ * Nut "hien them thong tin" la thao tac PHU - de `btn-sm` (32px) chu khong
+ * phai 40px nhu nut icon thuong. No dung canh mot nut hanh dong thuc su, hai
+ * o vuong bang nhau thi mat nay khong noi duoc cai nao la viec chinh.
+ */
+.erp-checkin-bar__toggle {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-checkin-bar__more {
+  margin: 10px 0 0;
+  text-align: right;
+  font-size: var(--erp-font-size-sm);
+}
+
+/* Phan mo rong: vach ngan de no khong dinh vao dai gon thanh mot khoi. */
+.erp-checkin-bar__panel {
+  padding: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+/*
+ * Mobile: TAT CA tren MOT hang - nhan, gio, nut cham, nut mo rong.
+ *
+ * Nut cham bo chu, con o vuong 44px (dung nguong vung bam) va nhan day du nam
+ * o `aria-label`/`title` - cung khuon voi nut cham trong danh sach dia diem.
+ * Ban truoc cho nut xuong hang rieng rong het dai: dich bam to that, nhung dai
+ * cao gap doi trong khi no dang nam trong hero, tuc day toan bo trang chu
+ * xuong theo.
+ */
+@media (max-width: 576px) {
+  .erp-checkin-bar__row {
+    flex-wrap: nowrap;
+    padding: 8px;
+    gap: 6px;
+  }
+
+  /*
+   * Nhan KHONG duoc co va KHONG duoc an chu (yeu cau nghiep vu 03/09/2026):
+   * "Chấm công" cat thanh "Chấm cônç" thi dai mat luon nghia.
+   *
+   * Cai gia phai biet: dai nam trong hero nen cho dung duoc chi con
+   * `man hinh - 20px (le noi dung) - 32px (le hero)`. Bon muc cong lai can
+   * ~291px, tuc vua tu 360px tro len (308px kha dung) va CHAT o may 320px
+   * (268px). Con so 320px la iPhone SE doi 1 - gan nhu khong con thiet bi nao.
+   * Muon vua ca o do thi phai bo GIAY khoi o gio, khong phai cat chu nhan.
+   */
+  .erp-checkin-bar__label {
+    flex: none;
+  }
+
+  /* Tach nut hanh dong khoi nut phu: hai o vuong dinh nhau trong thanh mot cum. */
+  .erp-checkin-bar__toggle {
+    margin-inline-start: 4px;
+  }
+
+  .erp-checkin-bar__panel {
+    padding: 10px;
+  }
+}
+
+/* --- Lan cham cong gan nhat ----------------------------------------------- */
+
+.erp-checkin__last {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-construction-soft);
+  color: var(--erp-text-secondary);
+  line-height: 1.5;
+}
+
+.erp-checkin__last .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-construction);
+}
+
+.erp-checkin__last strong,
+.erp-checkin__last time {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-checkin__last-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.erp-checkin__last-time {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Ten dia diem tra loi "cham o dau", khong phai tieu de - de nho va nhat hon
+   dong gio ngay tren no. */
+.erp-checkin__last-place {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--erp-text-tertiary);
+}
+
+/* Chua co dia diem nao mo cham cong - trang thai rong, khong phai loi. */
+.erp-checkin__empty {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 16px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-secondary);
+  font-size: var(--erp-font-size-sm);
+}
+
+.erp-checkin__empty .bi {
+  flex: none;
+  margin-top: 2px;
+}
+
+.erp-checkin__empty strong {
+  color: var(--erp-text-secondary);
+}
+
+.erp-checkin__last--empty {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-checkin__last--empty .bi {
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Trang thai dinh vi --------------------------------------------------- */
+
+.erp-checkin__geo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--erp-border);
+  border-inline-start: 3px solid var(--erp-checkin-tone);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-checkin__geo--success {
+  --erp-checkin-tone: var(--erp-success);
+  --erp-checkin-tone-soft: var(--erp-success-soft);
+}
+
+.erp-checkin__geo--info {
+  --erp-checkin-tone: var(--erp-info);
+  --erp-checkin-tone-soft: var(--erp-info-soft);
+}
+
+.erp-checkin__geo--warning {
+  --erp-checkin-tone: var(--erp-warning);
+  --erp-checkin-tone-soft: var(--erp-warning-soft);
+}
+
+.erp-checkin__geo--danger {
+  --erp-checkin-tone: var(--erp-danger);
+  --erp-checkin-tone-soft: var(--erp-danger-soft);
+}
+
+.erp-checkin__geo--neutral {
+  --erp-checkin-tone: var(--erp-neutral);
+  --erp-checkin-tone-soft: var(--erp-neutral-soft);
+}
+
+.erp-checkin__geo-icon {
+  color: var(--erp-checkin-tone);
+  background: var(--erp-checkin-tone-soft);
+}
+
+.erp-checkin__geo-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-checkin__geo-title {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-checkin__geo-hint {
+  margin: 2px 0 0;
+  max-width: 62ch;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-checkin__geo-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+/* --- Danh sach du an ------------------------------------------------------ */
+
+.erp-checkin__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 0 8px 8px;
+  border-bottom: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-checkin__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-checkin__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-checkin__row:last-child {
+  border-bottom: none;
+}
+
+.erp-checkin__project {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-checkin__project-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  text-wrap: balance;
+}
+
+/*
+ * Nhan diem, chi hien khi mot du an co NHIEU diem cham cong. Lam nhat va nho
+ * di de no khong tranh cho voi ten du an - no chi la thu phan biet hai dong
+ * cung ten.
+ */
+.erp-checkin__zone {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.erp-checkin__project-site {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-checkin__project-site .bi {
+  flex: none;
+}
+
+/* Dia chi dai thi cat bot; khoang cach khong bao gio bi cat. */
+.erp-checkin__project-address {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-checkin__project-distance {
+  flex: none;
+}
+
+.erp-checkin__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding-inline: 18px;
+  white-space: nowrap;
+}
+
+/* --- Mobile: tai cau truc theo nhiem vu (muc 06) -------------------------- */
+
+@media (max-width: 576px) {
+  .erp-checkin__head {
+    display: none;
+  }
+
+  /*
+   * Mot dong = mot dia diem.
+   *
+   * Nut trai het be ngang an mat ba dia diem duoi man hinh dau tien: nguoi dung
+   * phai cuon moi thay cho minh dang dung. Gom ten + dia chi + nut vao cung mot
+   * hang cho danh sach ngan lai, doi lai nhan chu tren nut - icon check2-circle
+   * mau primary o cuoi dong dia diem khong con nghia nao khac, va aria-label
+   * van giu nguyen cau "Cham cong tai <ten>".
+   */
+  .erp-checkin__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    min-height: 0;
+    padding: 10px 4px;
+  }
+
+  .erp-checkin__last {
+    margin-bottom: 8px;
+    padding: 10px 12px;
+  }
+
+  /*
+   * Nut "Cap nhat vi tri" tung chiem tron mot dong rong het the (~46px ke ca le)
+   * cho mot thao tac phu. Tren dien thoai no ve o vuong chi con icon o goc phai
+   * khoi dinh vi - cung khuon voi nut cham cong, nhan giu o aria-label.
+   *
+   * KHONG dat min-height o day: Field Mode ep 48px cho control voi cung do dac
+   * hieu ma file nay nap SAU components/, mot dong min-height se pha che do
+   * cong truong ma khong bao gi.
+   */
+  .erp-checkin__geo {
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .erp-checkin__geo-action {
+    flex: none;
+    width: 40px;
+    padding-inline: 0;
+    padding-block: 8px;
+    margin-top: 0;
+    justify-content: center;
+  }
+
+  .erp-checkin__geo-action-label {
+    display: none;
+  }
+
+  .erp-checkin__geo-title {
+    font-size: var(--erp-font-size-sm);
+  }
+
+  .erp-checkin__submit-label {
+    display: none;
+  }
+
+  /* Action cong truong tren dien thoai: 52px (muc 06) - o day la o vuong. */
+  .erp-checkin__submit {
+    width: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    padding-inline: 0;
+  }
+
+  /* Dia chi mot dong, khong con day chieu cao dong len. */
+  .erp-checkin__project-site {
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+}
+
+/* Lượt chấm còn trên máy / chấm lúc mất mạng — chữ nói ra, màu chỉ là lớp phụ. */
+.erp-checkin__queued {
+  color: var(--erp-warning);
+  font-weight: 500;
+}

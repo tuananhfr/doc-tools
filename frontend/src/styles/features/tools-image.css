@@ -1,0 +1,864 @@
+/* "Chuyen Nho" - cong cu anh (features/tools/image): vung lam viec cat / do anh va cua so camera. */
+
+/* ---------- Vung lam viec: the chua anh dang mo ---------- */
+
+.erp-image-stage {
+  /* Tran chieu cao cua anh: anh doc cao hon man hinh la mat nut keo o day, phai cuon moi thay. */
+  --erp-image-stage-height: min(70vh, 640px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-image-stage__caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-image-stage__name {
+  overflow: hidden;
+  font-weight: 600;
+  /* line-height rong: chu Viet co dau hai tang bi cat dau khi ellipsis voi dong chat. */
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-image-stage__meta {
+  flex: none;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Khung co DUNG ti le cua anh (--erp-image-ratio = rong / cao do component ghi):
+ * lop phu (khung cat, net do) dat theo phan tram cua khung nay nen khung lech ti le
+ * la moi toa do lech theo. Rong lay cai nho hon giua cot va (tran cao x ti le).
+ */
+.erp-image-stage__frame {
+  position: relative;
+  width: min(100%, calc(var(--erp-image-stage-height) * var(--erp-image-ratio, 1)));
+  aspect-ratio: var(--erp-image-ratio, 1);
+  margin-inline: auto;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-image-stage__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.erp-image-stage__status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 16px;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ---------- Khung cat ---------- */
+
+.erp-crop {
+  position: absolute;
+  inset: 0;
+}
+
+.erp-crop.is-disabled {
+  pointer-events: none;
+}
+
+/* Vung toi ngoai khung cat = bong cua mot hop trung voi khung, cat lai o mep anh. Tach khoi khung
+   that de tay nam o mep anh khong bi cat mat mot nua. */
+.erp-crop__mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.erp-crop__shade {
+  position: absolute;
+  box-shadow: 0 0 0 9999px rgb(0 0 0 / 0.5);
+}
+
+.erp-crop__box {
+  position: absolute;
+  outline: 1px solid var(--erp-text-on-accent);
+  cursor: move;
+  /* Keo khung tren man cam ung khong duoc thanh cuon trang. */
+  touch-action: none;
+}
+
+.erp-crop__box:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+/* Luoi mot phan ba de can bo cuc. */
+.erp-crop__thirds,
+.erp-crop__thirds::before,
+.erp-crop__thirds::after {
+  position: absolute;
+  pointer-events: none;
+}
+
+.erp-crop__thirds {
+  inset: 0;
+  color: color-mix(in srgb, var(--erp-text-on-accent) 45%, transparent);
+}
+
+.erp-crop__thirds::before,
+.erp-crop__thirds::after {
+  content: '';
+}
+
+.erp-crop__thirds::before {
+  inset: 0 33.333%;
+  border-inline: 1px solid currentColor;
+}
+
+.erp-crop__thirds::after {
+  inset: 33.333% 0;
+  border-block: 1px solid currentColor;
+}
+
+.erp-crop__handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  background: var(--erp-text-on-accent);
+  border: 2px solid var(--erp-action-secondary);
+  border-radius: var(--erp-radius-sm);
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+/* Dich bam 44px quanh o 14px (DS muc 11) - o nho de khong che anh, vung bam lon de keo trung. */
+.erp-crop__handle::after {
+  position: absolute;
+  inset: -15px;
+  content: '';
+}
+
+.erp-crop__handle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-crop__handle--nw { top: 0; left: 0; cursor: nwse-resize; }
+.erp-crop__handle--n { top: 0; left: 50%; cursor: ns-resize; }
+.erp-crop__handle--ne { top: 0; left: 100%; cursor: nesw-resize; }
+.erp-crop__handle--e { top: 50%; left: 100%; cursor: ew-resize; }
+.erp-crop__handle--se { top: 100%; left: 100%; cursor: nwse-resize; }
+.erp-crop__handle--s { top: 100%; left: 50%; cursor: ns-resize; }
+.erp-crop__handle--sw { top: 100%; left: 0; cursor: nesw-resize; }
+.erp-crop__handle--w { top: 50%; left: 0; cursor: ew-resize; }
+
+/* ---------- Tuy chon cat & chinh ---------- */
+
+.erp-image-turn {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-image-turn .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.erp-image-range__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-image-range__value {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-image-output strong {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-image-reset {
+  align-self: flex-start;
+  padding-inline: 0;
+  text-decoration: none;
+}
+
+/* ---------- Do anh: thanh cong cu ---------- */
+
+.erp-measure-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.erp-measure-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-measure-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.erp-measure-tab:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+/* The dang chon: nen noi + chu dam + icon doi mau - khong chi doi mau chu (DS muc 10). */
+.erp-measure-tab.is-active,
+.erp-measure-tab.is-active:hover {
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow1);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-measure-tab.is-active .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-measure-tab:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-measure-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-measure-bar__actions .btn {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.erp-measure-hint {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-measure-hint .bi {
+  flex: none;
+}
+
+/* Dang dat doan chuan: lan bam ke tiep KHONG ra so do - phai noi bat de nguoi dung khong bam nham. */
+.erp-measure-hint--reference {
+  padding: 8px 12px;
+  background: var(--erp-info-soft);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+}
+
+.erp-measure-hint--reference .bi {
+  color: var(--erp-info);
+}
+
+/* ---------- Do anh: anh + lop ve ---------- */
+
+.erp-measure {
+  cursor: crosshair;
+  user-select: none;
+}
+
+.erp-measure.is-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.erp-measure__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+}
+
+.erp-measure__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* `non-scaling-stroke`: SVG ve theo toa do ANH (anh 4000px co the hien o 800px) - khong co thi net
+   day mong theo ti le thu phong. Vien sang ben duoi de net doc duoc tren moi nen anh. */
+.erp-measure__halo,
+.erp-measure__stroke {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.erp-measure__halo {
+  stroke: var(--erp-text-on-accent);
+  stroke-width: 5;
+}
+
+.erp-measure__stroke {
+  stroke: var(--erp-brand);
+  stroke-width: 2.5;
+}
+
+.erp-measure__fill {
+  fill: var(--erp-brand);
+  fill-opacity: 0.18;
+  stroke: none;
+}
+
+.erp-measure__line--reference .erp-measure__stroke {
+  stroke: var(--erp-action-secondary);
+  stroke-dasharray: 8 6;
+}
+
+.erp-measure__line--draft .erp-measure__stroke {
+  stroke-dasharray: 4 5;
+}
+
+.erp-measure__grip,
+.erp-measure__dot,
+.erp-measure__count,
+.erp-measure__label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.erp-measure__grip {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  background: var(--erp-brand);
+  border: 2px solid var(--erp-text-on-accent);
+  border-radius: 50%;
+  box-shadow: var(--erp-shadow2);
+  cursor: grab;
+  touch-action: none;
+}
+
+.erp-measure__grip:active {
+  cursor: grabbing;
+}
+
+/* Dich bam 44px quanh cham 14px (DS muc 11). */
+.erp-measure__grip::after {
+  position: absolute;
+  inset: -17px;
+  border-radius: 50%;
+  content: '';
+}
+
+.erp-measure__grip:focus-visible,
+.erp-measure__count:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-measure__grip--reference {
+  background: var(--erp-action-secondary);
+}
+
+/* Diem dau cua vung dang ve: bam vao de khep vung - to hon, rong ruot de khac cac dinh con lai. */
+.erp-measure__grip--close {
+  width: 20px;
+  height: 20px;
+  background: var(--erp-text-on-accent);
+  border: 4px solid var(--erp-brand);
+  cursor: pointer;
+}
+
+.erp-measure__dot {
+  width: 10px;
+  height: 10px;
+  background: var(--erp-brand);
+  border: 2px solid var(--erp-text-on-accent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.erp-measure__dot--reference {
+  background: var(--erp-action-secondary);
+}
+
+.erp-measure__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 4px;
+  background: var(--erp-brand);
+  border: 2px solid var(--erp-text-on-accent);
+  border-radius: var(--erp-radius-pill);
+  box-shadow: var(--erp-shadow2);
+  color: var(--erp-text-on-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.erp-measure__count::after {
+  position: absolute;
+  inset: -10px;
+  content: '';
+}
+
+.erp-measure__label {
+  padding: 2px 8px;
+  background: var(--erp-brand);
+  border: 1px solid var(--erp-text-on-accent);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-on-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Nhan cua mot doan nam TREN diem giua: doan ngan ma nhan de len thi che mat hai dau keo. */
+.erp-measure__label--above {
+  transform: translate(-50%, calc(-100% - 10px));
+}
+
+.erp-measure__label--reference {
+  background: var(--erp-action-secondary);
+}
+
+/* ---------- Do anh: cot phai ---------- */
+
+.erp-measure-length {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 8px;
+}
+
+.erp-measure-warning {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-measure-warning .bi {
+  flex: none;
+  margin-top: 1px;
+  color: var(--erp-warning);
+}
+
+.erp-measure-results {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  list-style: none;
+}
+
+.erp-measure-result {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  min-height: 48px;
+  padding: 4px 4px 4px 12px;
+}
+
+.erp-measure-result + .erp-measure-result {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-measure-result--count {
+  padding-right: 12px;
+}
+
+.erp-measure-result__name {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-measure-result__value {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.erp-measure-result__extra {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* ---------- Camera ---------- */
+
+.erp-camera__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* O ngam luon toi o ca ba theme: khung hinh camera tren nen sang bi loa, kho can giay to. */
+.erp-camera__view {
+  --erp-image-stage-height: min(56vh, 480px);
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  padding: 8px;
+  background: var(--erp-hero-from);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-camera__video {
+  display: block;
+  max-width: 100%;
+  max-height: var(--erp-image-stage-height);
+}
+
+/* `display: block` o tren thang thuoc tinh `hidden` - phai an lai bang tay. */
+.erp-camera__video[hidden] {
+  display: none;
+}
+
+.erp-camera__shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.erp-camera__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 420px;
+  margin: 0;
+  padding: 24px 16px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.erp-camera__status-icon {
+  font-size: 2rem;
+}
+
+/* Nut vien tren nen toi cua o ngam: mau chu mac dinh cua outline-secondary chim vao nen. */
+.erp-camera__status .btn {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.erp-camera__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.erp-camera__controls--review {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.erp-camera__strip {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  /* Chua cho cho vien focus cua anh thu nho, khong thi bi `overflow` cat. */
+  padding: 4px;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.erp-camera__thumb {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-camera__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.erp-camera__thumb-order {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  min-width: 16px;
+  padding: 0 3px;
+  background: var(--erp-surface);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  font-size: 0.625rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 16px;
+  text-align: center;
+}
+
+.erp-camera__thumb:focus-visible,
+.erp-camera__shutter:focus-visible,
+.erp-camera__torch:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-camera__shutter {
+  width: 64px;
+  height: 64px;
+  padding: 4px;
+  background: var(--erp-surface);
+  border: 3px solid var(--erp-border-strong);
+  border-radius: 50%;
+  transition: transform 150ms ease;
+}
+
+.erp-camera__shutter-core {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--erp-action-secondary);
+  border-radius: 50%;
+  transition: background-color 150ms ease;
+}
+
+.erp-camera__shutter:hover:not(:disabled) .erp-camera__shutter-core {
+  background: var(--erp-action-secondary-hover);
+}
+
+.erp-camera__shutter:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.erp-camera__shutter:disabled {
+  opacity: 0.5;
+}
+
+.erp-camera__side {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.erp-camera__torch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: 50%;
+  color: var(--erp-text-secondary);
+  font-size: 1.125rem;
+}
+
+.erp-camera__torch.is-on {
+  background: var(--erp-warning-soft);
+  border-color: var(--erp-warning);
+  color: var(--erp-warning);
+}
+
+.erp-camera__count {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* ---------- Man cam ung / man hep ---------- */
+
+@media (pointer: coarse) {
+  .erp-crop__handle,
+  .erp-measure__grip {
+    width: 20px;
+    height: 20px;
+  }
+
+  .erp-crop__handle::after,
+  .erp-measure__grip::after {
+    inset: -12px;
+  }
+
+  .erp-measure__count {
+    min-width: 28px;
+    height: 28px;
+  }
+
+  .erp-measure-tab,
+  .erp-measure-bar__actions .btn,
+  .erp-image-reset {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-image-stage {
+    padding: 12px;
+  }
+
+  /* Ba the khong du mot hang o 360px: chia deu ba cot, chu xuong duoi icon. */
+  .erp-measure-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .erp-measure-tab {
+    flex-direction: column;
+    gap: 2px;
+    justify-content: center;
+    padding: 6px 4px;
+    font-size: 0.75rem;
+    white-space: normal;
+  }
+
+  .erp-measure-bar__actions {
+    width: 100%;
+  }
+
+  .erp-measure-bar__actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .erp-camera__controls--review .btn {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-measure-tab,
+  .erp-camera__shutter,
+  .erp-camera__shutter-core {
+    transition: none;
+  }
+}
+
+/* ---------- Che & dong dau anh: lop ve khung che ---------- */
+
+.erp-mark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Keo de ve khung chu khong cuon trang; cuon bang phan ngoai anh. */
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.erp-mark.is-disabled {
+  cursor: default;
+}
+
+/* Khoi den da duoc ve san tren canvas ben duoi; o day chi la vien de biet cho nao bam bo duoc. */
+.erp-mark__box {
+  fill: transparent;
+  stroke: var(--erp-danger);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  cursor: pointer;
+}
+
+.erp-mark__draft {
+  fill: rgb(0 0 0 / 0.45);
+  stroke: var(--erp-danger);
+  stroke-width: 1.5;
+}
+
+/* ---------- Anh the: so do to in ---------- */
+
+.erp-photo-sheet {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* To giay luon trang: day la mau cua GIAY in, khong theo theme. */
+.erp-photo-sheet__paper {
+  fill: #fff;
+  stroke: var(--erp-border);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.erp-photo-sheet__cell {
+  fill: var(--erp-surface-secondary);
+  stroke: var(--erp-text-secondary);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}

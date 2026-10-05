@@ -1,0 +1,84 @@
+/*
+ * Dieu huong dung chung: menu sidebar, tab, dropdown.
+ * Tab/menu dang chon phai co CHI BAO HINH DANG (dai mau / gach chan),
+ * khong chi doi mau chu (muc 10).
+ */
+
+.dropdown-menu {
+  --bs-dropdown-bg: var(--erp-surface);
+  --bs-dropdown-border-color: var(--erp-border);
+  --bs-dropdown-border-radius: var(--erp-radius-md);
+  --bs-dropdown-link-color: var(--erp-text-secondary);
+  --bs-dropdown-link-hover-color: var(--erp-text-primary);
+  --bs-dropdown-link-hover-bg: var(--erp-surface-hover);
+  --bs-dropdown-link-active-color: var(--erp-brand);
+  --bs-dropdown-link-active-bg: var(--erp-brand-soft);
+  --bs-dropdown-header-color: var(--erp-text-tertiary);
+  --bs-dropdown-divider-bg: var(--erp-border);
+  --bs-dropdown-font-size: 0.875rem;
+  box-shadow: var(--erp-shadow2);
+  padding: 6px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.dropdown-item.text-danger {
+  color: var(--erp-danger) !important;
+}
+
+.dropdown-item.text-danger:hover {
+  background: var(--erp-danger-soft);
+}
+
+/* Tabs */
+.nav-tabs {
+  --bs-nav-tabs-border-color: var(--erp-border);
+  --bs-nav-tabs-link-active-color: var(--erp-brand);
+  --bs-nav-tabs-link-active-bg: transparent;
+  --bs-nav-tabs-link-active-border-color: transparent transparent var(--erp-brand);
+  --bs-nav-link-color: var(--erp-text-secondary);
+  --bs-nav-link-hover-color: var(--erp-text-primary);
+  --bs-nav-link-font-size: 0.875rem;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.nav-tabs .nav-link {
+  border-width: 0 0 2px;
+  border-radius: 0;
+  padding: 10px 14px;
+  font-weight: 500;
+  min-height: 44px;
+}
+
+.nav-tabs .nav-link.active {
+  font-weight: 600;
+}
+
+/* Pill nho dung cho bo loc nhanh. */
+.erp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.erp-chip--active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}

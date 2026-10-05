@@ -1,0 +1,360 @@
+/*
+ * Tài liệu chuẩn bị dự án — báo cáo NCKT, chủ trương đầu tư.
+ *
+ * ===========================================================================
+ * BỐN MÀU LÀ CÔNG CỤ LÀM VIỆC, KHÔNG PHẢI TRANG TRÍ
+ * ===========================================================================
+ * Mục đích của chúng (đặc tả §4) là để người kiểm soát DỒN SỨC vào đúng chỗ
+ * thay vì đọc rải đều 120 trang. Vì vậy:
+ *
+ *   - vàng (AI) và đỏ (MISSING) là hai vùng phải DỪNG LẠI, nên chúng có viền
+ *     trái dày và nền rõ;
+ *   - xanh lá (DATA) và xanh dương (LEGAL) chỉ cần LIẾC, nên nền rất nhạt;
+ *   - HUMAN không tô nền gì cả — đã qua kiểm soát thì không cần đánh dấu.
+ *
+ * Đừng làm bốn màu này "đẹp đều nhau": chúng phải chênh nhau về mức độ gây chú
+ * ý, nếu không thì bảng màu mất đúng công dụng của nó.
+ */
+
+.prep-doc-shell {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 991.98px) {
+  .prep-doc-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Cây chương ----------------------------------------------------------- */
+
+.prep-tree {
+  max-height: calc(100vh - 260px);
+  overflow-y: auto;
+}
+
+.prep-tree__item {
+  display: block;
+  width: 100%;
+  text-align: start;
+  border: 0;
+  border-inline-start: 3px solid transparent;
+  background: transparent;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  line-height: 1.35;
+}
+
+.prep-tree__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+.prep-tree__item.is-active {
+  background: var(--erp-action-secondary-soft);
+  border-inline-start-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+}
+
+.prep-tree__item.has-blocker {
+  border-inline-start-color: var(--erp-danger);
+}
+
+.prep-tree__num {
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-tertiary);
+  margin-inline-end: 6px;
+}
+
+.prep-tree__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+/* Thụt lề theo cấp mục. Dùng biến để một dòng CSS phục vụ mọi cấp. */
+.prep-tree__item[data-depth='1'] {
+  padding-inline-start: 24px;
+}
+
+.prep-tree__item[data-depth='2'] {
+  padding-inline-start: 38px;
+}
+
+.prep-tree__item[data-depth='3'] {
+  padding-inline-start: 52px;
+}
+
+/* --- Chip mức tin cậy ----------------------------------------------------- */
+
+.prep-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 7px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.prep-trust--data {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.prep-trust--legal {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.prep-trust--ai {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.prep-trust--missing {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.prep-trust--human {
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Khối nội dung -------------------------------------------------------- */
+
+.prep-block {
+  border: 1px solid var(--erp-border);
+  border-inline-start-width: 4px;
+  border-radius: var(--erp-radius-md);
+  padding: 12px 14px;
+  background: var(--erp-surface);
+}
+
+.prep-block + .prep-block {
+  margin-top: 12px;
+}
+
+.prep-block--data {
+  border-inline-start-color: var(--erp-success);
+  background: color-mix(in srgb, var(--erp-success-soft) 35%, var(--erp-surface));
+}
+
+.prep-block--legal {
+  border-inline-start-color: var(--erp-info);
+  background: color-mix(in srgb, var(--erp-info-soft) 35%, var(--erp-surface));
+}
+
+/* Vàng và đỏ CỐ Ý đậm hơn hai màu trên — xem docblock đầu file. */
+.prep-block--ai {
+  border-inline-start-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.prep-block--missing {
+  border-inline-start-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.prep-block--human {
+  border-inline-start-color: var(--erp-border-strong);
+}
+
+.prep-block__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.prep-block__title {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.prep-block__editor {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  padding: 8px 10px;
+  font-family: var(--erp-font-family);
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.prep-block__editor:focus {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -1px;
+}
+
+/* Placeholder trong bản xem: phải NHÌN THẤY ĐƯỢC là một tham chiếu, không lẫn
+   vào chữ thường — đó là toàn bộ điểm khác biệt giữa số có nguồn và số gõ tay. */
+.prep-block__preview {
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.prep-ref {
+  background: var(--erp-success-soft);
+  border-bottom: 1px dashed var(--erp-success);
+  padding: 0 3px;
+  border-radius: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.prep-ref--missing {
+  background: var(--erp-danger-soft);
+  border-bottom-color: var(--erp-danger);
+  color: var(--erp-danger);
+}
+
+/* --- Bảng tham chiếu ------------------------------------------------------ */
+
+.prep-bindings {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.prep-bindings th {
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.prep-bindings td {
+  padding: 5px 6px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: middle;
+}
+
+.prep-bindings__value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.prep-bindings__key {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  font-size: 11px;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Phát hiện đối soát --------------------------------------------------- */
+
+.prep-finding {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--erp-radius-sm);
+  border-inline-start: 3px solid var(--erp-neutral);
+  background: var(--erp-surface-secondary);
+}
+
+.prep-finding + .prep-finding {
+  margin-top: 8px;
+}
+
+.prep-finding--blocker {
+  border-inline-start-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.prep-finding--warning {
+  border-inline-start-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.prep-finding--info {
+  border-inline-start-color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.prep-finding__hint {
+  color: var(--erp-text-secondary);
+  font-size: 12.5px;
+  margin-top: 3px;
+}
+
+.prep-finding__jump {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--erp-action-secondary);
+  font-size: 12.5px;
+  text-decoration: underline;
+}
+
+/* --- Chữ ký --------------------------------------------------------------- */
+
+.prep-sign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+.prep-sign + .prep-sign {
+  margin-top: 6px;
+}
+
+.prep-sign--invalid {
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.prep-sign__hash {
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  font-size: 11px;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Bản in xem trước ----------------------------------------------------- */
+
+.prep-preview {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  padding: 24px 28px;
+  max-height: 70vh;
+  overflow: auto;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.prep-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.prep-preview td {
+  border: 1px solid var(--erp-border-strong);
+  padding: 4px 8px;
+}
+
+/* --- Cảnh báo pháp lý ----------------------------------------------------- */
+
+.prep-legal-warning {
+  border-inline-start: 4px solid var(--erp-warning);
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+}

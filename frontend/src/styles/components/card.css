@@ -1,0 +1,201 @@
+/*
+ * Card - muc 10 & 04.
+ * Phan cap bang surface + border + spacing, KHONG dung shadow nang.
+ */
+
+.card {
+  --bs-card-bg: var(--erp-surface);
+  --bs-card-border-color: var(--erp-border);
+  --bs-card-border-radius: var(--erp-radius-lg);
+  --bs-card-inner-border-radius: var(--erp-radius-lg);
+  --bs-card-color: var(--erp-text-primary);
+  --bs-card-cap-bg: transparent;
+  --bs-card-spacer-x: 20px;
+  --bs-card-spacer-y: 20px;
+}
+
+.card-header {
+  border-bottom: none;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-header + .card-body {
+  padding-top: 14px;
+}
+
+/* Card tieu chuan cua he thong (SectionCard). */
+.erp-card {
+  height: 100%;
+}
+
+.erp-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-card__extra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+/* Vien tren mau accent: danh dau khoi co tin hieu rieng (vd AI = Teal). */
+.erp-card--accent {
+  border-top: 2px solid var(--erp-accent, var(--erp-action-secondary));
+}
+
+.erp-card--flush > .card-body {
+  padding: 16px;
+}
+
+/* Khoi tieu de trang. */
+.erp-page-header {
+  margin-bottom: 0;
+}
+
+.erp-page-header__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-page-header__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Tiêu đề + chú thích cùng một hàng. `min-width: 0` + `flex: 1` để chú thích dài
+   tự xuống dòng TRONG khối này thay vì đẩy hàng nút xuống dưới. */
+.erp-page-header__heading {
+  display: flex;
+  flex: 1 1 240px;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  min-width: 0;
+}
+
+.erp-page-header__note {
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.breadcrumb {
+  --bs-breadcrumb-font-size: 0.75rem;
+  --bs-breadcrumb-divider-color: var(--erp-text-tertiary);
+  --bs-breadcrumb-item-active-color: var(--erp-text-secondary);
+  --bs-breadcrumb-margin-bottom: 8px;
+}
+
+/* Danh sach thuoc tinh (thay Descriptions cua antd). */
+.erp-descriptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  overflow: hidden;
+  /*
+   * DO KHUNG CHUA, KHONG DO MAN HINH
+   * ==========================================================================
+   * `@media (max-width: 768px)` ben duoi CHI cuu duoc man hinh hep. No khong
+   * cuu duoc mot bang dat trong COT HEP cua man hinh rong - va do moi la ca
+   * hay gap: panel chi tiet rong 330px o viewport 1440px thi media query khong
+   * bao gio chay.
+   *
+   * Hau qua khi thieu: nhan `flex: none; width: 180px` khong co duoc, o grid
+   * chi 164px, nen o gia tri bi bop con 32px va chu xuong dong TUNG KY TU.
+   * Do trong thuc te tren ba man Gia xay dung: moi o gia tri = 32px, panel cao
+   * 1408px. Khong co loi nao bao ra - HTML hop le, CSS hop le, chi la khong
+   * doc duoc.
+   */
+  container-type: inline-size;
+}
+
+/*
+ * Khung chua hep -> xep NHAN TREN, GIA TRI DUOI thay vi canh nhau.
+ *
+ * NGUONG 600px TINH RA CHU KHONG DOAN. Bang co HAI cot, nen moi o rong
+ * dl/2. Mot o can chua nhan 180px + gia tri doc duoc it nhat 120px = 300px,
+ * suy ra dl phai >= 600px thi xep ngang moi vua.
+ *
+ * Da tung dat 400px va van hong: panel "Phan tich chenh lech" rong 426px lot
+ * qua nguong, moi o con 213px, nhan 180px an het va gia tri chi con 33px.
+ */
+@container (max-width: 600px) {
+  .erp-descriptions__item {
+    flex-direction: column;
+  }
+
+  .erp-descriptions__label {
+    width: auto;
+    padding-bottom: 4px;
+    border-inline-end: 0;
+  }
+
+  .erp-descriptions__value {
+    padding-top: 4px;
+  }
+}
+
+.erp-descriptions__item {
+  display: flex;
+  min-width: 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-descriptions__item--full {
+  grid-column: 1 / -1;
+}
+
+.erp-descriptions__label {
+  flex: none;
+  width: 180px;
+  padding: 12px 16px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-inline-end: 1px solid var(--erp-border);
+}
+
+.erp-descriptions__value {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--erp-text-primary);
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .erp-descriptions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-descriptions__label {
+    width: 130px;
+  }
+}

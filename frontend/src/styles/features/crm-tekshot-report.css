@@ -1,0 +1,311 @@
+.tekshot-report-page {
+  color: var(--erp-text-primary);
+  max-width: var(--erp-content-max-width);
+}
+
+/* SectionCard defaults to filling a dashboard grid cell. This page stacks
+   cards vertically in a fixed-height scroll area. */
+.tekshot-report-page .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.tekshot-report-header p { color: var(--erp-text-secondary); }
+.tekshot-report-header h1 { margin-bottom: .5rem; }
+.tekshot-families {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+.tekshot-families a,
+.tekshot-subnav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: max(48px, var(--erp-touch-target));
+  padding: .75rem 1rem;
+  border: 1px solid var(--erp-border);
+  border-bottom-width: 3px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 150ms, border-color 150ms;
+}
+.tekshot-families a[aria-current],
+.tekshot-subnav a[aria-current] {
+  color: var(--erp-text-primary);
+  border-bottom-color: var(--erp-action-secondary);
+  background: var(--erp-surface-secondary);
+}
+.tekshot-families a:hover,
+.tekshot-subnav a:hover { background: var(--erp-surface-hover); }
+.tekshot-family-hint { display: none; }
+.tekshot-report-page :is(a, button, input, select):focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+.tekshot-subnav { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.tekshot-filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+.tekshot-filters :is(input, select),
+.tekshot-filter-actions .btn,
+.tekshot-pagination .btn { min-height: max(48px, var(--erp-touch-target)); }
+.tekshot-filter-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.tekshot-filter-actions .form-check { margin-right: auto; }
+.tekshot-filter-advanced { margin-top: .75rem; border-top: 1px solid var(--erp-border); }
+.tekshot-filter-advanced summary { display: flex; align-items: center; min-height: var(--erp-touch-target); cursor: pointer; color: var(--erp-action-secondary); font-weight: 600; }
+.tekshot-filter-advanced[open] .tekshot-filters { padding: .75rem 0; }
+.tekshot-filter-advanced .form-check { padding-bottom: .5rem; }
+.tekshot-filter-advanced summary:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 2px; }
+.tekshot-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin: 0 0 1rem;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+.tekshot-metrics--six { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.tekshot-metrics > div { padding: 1rem; min-width: 0; }
+.tekshot-metrics > div + div { border-left: 1px solid var(--erp-border); }
+.tekshot-metrics dt { font-size: 12px; color: var(--erp-text-secondary); font-weight: 500; }
+.tekshot-metrics dd { margin: .5rem 0 0; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tekshot-metrics__compare { display: block; margin-top: .25rem; color: var(--erp-text-secondary); font-variant-numeric: tabular-nums; }
+.tekshot-report-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.tekshot-notice { padding: .75rem 1rem; border-left: 3px solid var(--erp-info); background: var(--erp-surface-secondary); color: var(--erp-text-secondary); }
+.tekshot-notice .bi { margin-right: .25rem; color: var(--erp-info); }
+.tekshot-empty { padding: 1.5rem 1rem; color: var(--erp-text-secondary); margin: 0; }
+.tekshot-caption { font-size: 12px; color: var(--erp-text-secondary); }
+.tekshot-alert { padding: 1rem; border-bottom: 1px solid var(--erp-border); }
+.tekshot-alert p { margin: .5rem 0; }
+.tekshot-alert__severity { display: inline-block; margin-left: .75rem; color: var(--erp-text-secondary); font-size: 12px; }
+.tekshot-alert--danger { border-left: 3px solid var(--erp-danger); padding-left: .75rem; }
+.tekshot-alert--warning { border-left: 3px solid var(--erp-warning); padding-left: .75rem; }
+.tekshot-alert--info { border-left: 3px solid var(--erp-info); padding-left: .75rem; }
+.tekshot-alert--danger .tekshot-alert__severity { color: var(--erp-danger); }
+.tekshot-alert--warning .tekshot-alert__severity { color: var(--erp-warning); }
+.tekshot-alert--info .tekshot-alert__severity { color: var(--erp-info); }
+.tekshot-report-source { margin: 0 0 .75rem; color: var(--erp-text-secondary); font-size: 14px; font-variant-numeric: tabular-nums; }
+.tekshot-mobile-filter-summary { display: none; }
+.tekshot-studio-operations { display: grid; gap: 1rem; }
+.tekshot-studio-operations__compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.tekshot-table-section { min-width: 0; padding: 1rem; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-lg); background: var(--erp-surface); }
+.tekshot-table-section h3 { margin: 0 0 .75rem; }
+.tekshot-chart__legend { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: .5rem 0 1rem; color: var(--erp-text-secondary); font-size: 12px; }
+.tekshot-chart__legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.tekshot-chart__swatch { display: inline-block; width: 1.25rem; border-top: 3px solid; }
+.tekshot-chart__swatch--planned { color: var(--erp-action-secondary); }
+.tekshot-chart__swatch--actual { color: var(--erp-intelligence); }
+.tekshot-chart__swatch--forecast { color: var(--erp-construction); }
+.tekshot-chart__swatch--reference { color: var(--erp-text-tertiary); }
+.tekshot-chart__canvas { overflow-x: auto; }
+.tekshot-chart__canvas svg { display: block; width: 100%; min-width: 34rem; height: 16rem; }
+.tekshot-chart__grid { stroke: var(--erp-border); stroke-width: 1; }
+.tekshot-chart__axis { fill: var(--erp-text-secondary); font-size: 11px; font-family: var(--erp-font-family); }
+.tekshot-chart__series { fill: none; stroke-width: 2.5; }
+.tekshot-chart__series circle { fill: var(--erp-surface); stroke-width: 2; }
+.tekshot-chart__series--planned { stroke: var(--erp-action-secondary); }
+.tekshot-chart__series--actual { stroke: var(--erp-intelligence); }
+.tekshot-chart__series--forecast { stroke: var(--erp-construction); }
+.tekshot-chart__series--reference { stroke: var(--erp-text-tertiary); stroke-dasharray: 6 3; }
+.tekshot-chart__details { margin-top: .75rem; }
+.tekshot-chart__details summary { cursor: pointer; padding: .75rem; min-height: var(--erp-touch-target); color: var(--erp-action-secondary); font-weight: 600; }
+.tekshot-chart__details .tekshot-table-section { margin-top: .5rem; }
+.tekshot-bars { display: grid; gap: .75rem; list-style: none; padding: 0; margin: 0; }
+.tekshot-bars li > div:first-child { display: flex; justify-content: space-between; gap: 1rem; font-size: 12px; }
+.tekshot-bars li span { overflow-wrap: anywhere; }
+.tekshot-bars li strong { flex: none; font-variant-numeric: tabular-nums; }
+.tekshot-bars__track { height: .5rem; margin-top: .25rem; background: var(--erp-surface-secondary); border-radius: var(--erp-radius-sm); }
+.tekshot-bars__track span { display: block; height: 100%; background: var(--erp-intelligence); border-radius: inherit; }
+.tekshot-pagination { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+.tekshot-loading { padding: 1rem; color: var(--erp-text-secondary); }
+.tekshot-loading > div { height: 2rem; margin-top: .75rem; background: var(--erp-surface-secondary); border-radius: var(--erp-radius-sm); }
+.tekshot-report-data__table td:first-child { white-space: normal; min-width: 12rem; max-width: 28rem; overflow-wrap: anywhere; }
+.tekshot-report-data__table th:first-child { position: sticky; left: 0; background: var(--erp-surface-secondary); }
+.tekshot-report-data__table td:first-child { position: sticky; left: 0; background: var(--erp-surface); }
+.tekshot-report-data__table tbody tr:hover td:first-child { background: var(--erp-surface-hover); }
+
+@media (max-width: 1024px) {
+  .tekshot-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tekshot-report-pair { grid-template-columns: 1fr; }
+  .tekshot-metrics--six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 576px) {
+  .tekshot-report-header p:not(.tekshot-caption) { display: none; }
+  .tekshot-families { display: flex; overflow-x: auto; gap: .25rem; margin-bottom: .5rem; padding-bottom: .25rem; scroll-snap-type: x proximity; }
+  .tekshot-families a { flex: none; min-height: var(--erp-touch-target); padding: .5rem .75rem; scroll-snap-align: start; }
+  .tekshot-subnav { flex-wrap: nowrap; overflow-x: auto; margin-bottom: .5rem; }
+  .tekshot-subnav > a { flex: none; min-height: var(--erp-touch-target); }
+  .tekshot-mobile-filter-summary { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-width: 0; }
+  .tekshot-mobile-filter-summary > span { min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+  .tekshot-mobile-filter-summary small { display: block; color: var(--erp-text-secondary); font-weight: 400; font-variant-numeric: tabular-nums; }
+  .tekshot-mobile-filter-summary .btn { flex: none; min-height: var(--erp-touch-target); }
+  .tekshot-filter-controls { display: none; }
+  .tekshot-filter-controls.is-open { display: block; margin-top: .75rem; }
+  .tekshot-applied-scope { display: none; }
+  .tekshot-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tekshot-filters > :first-child { grid-column: 1 / -1; }
+  .tekshot-metrics, .tekshot-metrics--six { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tekshot-metrics dd { font-size: 20px; }
+  .tekshot-metrics > div + div { border-left: 0; border-top: 1px solid var(--erp-border); }
+  .tekshot-filter-actions > .form-check { flex-basis: 100%; }
+  .tekshot-studio-operations__compare { grid-template-columns: 1fr; }
+  .tekshot-family-hint { display: flex; align-items: center; gap: .25rem; margin: -.25rem 0 .5rem; color: var(--erp-text-secondary); font-size: 12px; }
+}
+
+.tekshot-report-page__tabs {
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: .25rem;
+}
+
+.tekshot-report-page__tabs .btn-group {
+  min-width: max-content;
+}
+
+.tekshot-report-page__validation,
+.tekshot-report-page__hint {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1rem;
+  color: var(--erp-danger);
+}
+
+.tekshot-report-page__hint {
+  color: var(--erp-text-secondary);
+}
+
+.tekshot-report-page__loading {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 6rem;
+  color: var(--erp-text-secondary);
+}
+
+.tekshot-report-data__content {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Cột bảng đầu tiên là chữ (tên, nội dung bài): cho xuống dòng, giới hạn rộng. */
+.tekshot-report-page .wo-table .tekshot-cell-text {
+  max-width: 28rem;
+  min-width: 10rem;
+  white-space: normal;
+}
+
+.tekshot-report-data__section {
+  min-width: 0;
+}
+
+.tekshot-report-data__section > .erp-h4 {
+  margin-bottom: .75rem;
+  text-wrap: balance;
+}
+
+.tekshot-report-data__object {
+  display: grid;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--erp-border);
+}
+
+.tekshot-report-data__table {
+  max-height: 34rem;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.tekshot-report-data__table table {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.tekshot-report-data__table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface-secondary);
+}
+
+.tekshot-report-data__table th,
+.tekshot-report-data__table td {
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+.tekshot-report-data__section pre {
+  max-height: 28rem;
+  overflow: auto;
+  margin: 0;
+  padding: 1rem;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  font-size: .8125rem;
+  white-space: pre-wrap;
+}
+
+.tekshot-report-data__value {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .625rem .75rem;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.tekshot-report-data__value span {
+  color: var(--erp-text-secondary);
+}
+
+.tekshot-report-data__value strong {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+@media (max-width: 576px) {
+  .tekshot-report-page__tabs .btn {
+    min-height: var(--erp-touch-target);
+    white-space: nowrap;
+  }
+
+  .tekshot-report-data__object {
+    padding-left: .5rem;
+  }
+
+  .tekshot-report-data__table { max-height: none; overflow: visible; border: 0; }
+  .tekshot-report-data__table table { white-space: normal; }
+  .tekshot-report-data__table thead { display: none; }
+  .tekshot-report-data__table tbody,
+  .tekshot-report-data__table tr { display: block; }
+  .tekshot-report-data__table tr { border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); margin-bottom: .75rem; overflow: hidden; }
+  .tekshot-report-data__table td { display: flex; justify-content: space-between; gap: 1rem; text-align: right; padding: .5rem; white-space: normal; }
+  .tekshot-report-data__table td::before { content: attr(data-label); font-weight: 500; color: var(--erp-text-secondary); text-align: left; flex: 0 0 38%; }
+  .tekshot-report-data__table td:first-child { position: static; display: block; min-width: 0; max-width: none; text-align: left; }
+  .tekshot-report-data__table td:first-child::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tekshot-report-page * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Hàng "Đang xem" + nút quay lại tổng quan khi đang xem một website. */
+.tekshot-applied-scope-row { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.tekshot-applied-scope-row .tekshot-applied-scope { margin: 0; }

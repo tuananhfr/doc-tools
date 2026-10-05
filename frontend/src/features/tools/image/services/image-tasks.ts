@@ -1,0 +1,161 @@
+import type { FlowNote, FlowOutput, FlowStep, FlowTask } from '@/features/tools/hub'
+import { createZipWriter, stem } from '@/features/tools/shared'
+import { formatFileSize } from '@/utils/format'
+import type { ImageFormat, ImageItem, Size } from '../types/image.types'
+import { fitWithin, IMAGE_FORMAT, outputName, sizeLabel } from '../utils/image-format'
+import { createCanvas, decodeImage, encodeCanvas, releaseCanvas, writableFormat } from './image-codec'
+import { carryExif, exifNotes, originalExif, type ExifOutcome } from './image-exif'
+
+/**
+ * Việc làm trên CẢ LÔ ảnh: đổi định dạng và nén (ở đây), đổi cỡ + đổi tên
+ * (`batch-tasks.ts` dùng lại `reencode` / `eachImage` / `bundle`). Mỗi ảnh được giải mã, vẽ
+ * lại lên canvas rồi mã hoá — từng ảnh một, đóng bitmap ngay, để 50 ảnh 12 MP
+ * không cùng nằm trong RAM.
+ */
+
+interface Encoded {
+  name: string
+  blob: Blob
+}
+
+interface Redrawn {
+  blob: Blob
+  exif: ExifOutcome
+}
+
+/** Vẽ lại một ảnh ở kích thước `resize` trả về rồi mã hoá. JPG không có nền trong suốt nên tô trắng trước. */
+export async function reencode(item: ImageItem, format: ImageFormat, quality: number, resize: (size: Size) => Size): Promise<Redrawn> {
+  const bitmap = await decodeImage(item.file)
+  try {
+    const { canvas, context } = createCanvas(resize(bitmap))
+    try {
+      if (format === 'jpeg') {
+        context.fillStyle = 'white'
+        context.fillRect(0, 0, canvas.width, canvas.height)
+      }
+      context.imageSmoothingQuality = 'high'
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height)
+      return await carryExif(item, await encodeCanvas(canvas, format, quality), format, canvas)
+    } finally {
+      releaseCanvas(canvas)
+    }
+  } finally {
+    bitmap.close()
+  }
+}
+
+export async function eachImage(items: ImageItem[], step: FlowStep, verb: string, work: (item: ImageItem) => Promise<Redrawn>): Promise<Redrawn[]> {
+  const blobs: Redrawn[] = []
+  for (const [index, item] of items.entries()) {
+    step.signal.throwIfAborted()
+    step.onProgress(index, items.length, items.length > 1 ? `${verb} ảnh ${index + 1}/${items.length}` : undefined)
+    try {
+      blobs.push(await work(item))
+    } catch (error) {
+      // Lô nhiều ảnh: nói rõ ảnh nào hỏng, không thì người dùng phải thử từng tệp.
+      const reason = error instanceof Error ? error.message : 'không xử lý được ảnh.'
+      throw new Error(items.length > 1 ? `"${item.name}": ${reason}` : reason, { cause: error })
+    }
+  }
+  step.signal.throwIfAborted()
+  step.onProgress(items.length, items.length)
+  return blobs
+}
+
+/** Một ảnh thì trả thẳng ảnh; nhiều ảnh thì gói .zip — gói một tệp chỉ bắt người dùng giải nén thừa. */
+export async function bundle(files: Encoded[], zipName: string): Promise<FlowOutput> {
+  if (files.length === 1) return { name: files[0].name, blob: files[0].blob }
+  const zip = createZipWriter()
+  for (const file of files) zip.add(file.name, new Uint8Array(await file.blob.arrayBuffer()))
+  return { name: `${zipName}.zip`, blob: zip.finish(), detail: `${files.length} ảnh` }
+}
+
+export interface ConvertOptions {
+  format: ImageFormat
+  /** 0–1, chỉ dùng khi ra JPG / WebP. */
+  quality: number
+}
+
+/** Đổi cả lô sang một định dạng. Ảnh đã đúng định dạng thì giữ nguyên từng byte, không mã hoá lại cho xấu đi. */
+export function convertImagesTask(items: ImageItem[], { format, quality }: ConvertOptions): FlowTask {
+  return async (step) => {
+    const label = IMAGE_FORMAT[format].label
+    const results = await eachImage(items, step, 'Đang chuyển', async (item) => (item.format === format ? { blob: item.file, exif: await originalExif(item) } : reencode(item, format, quality, (size) => size)))
+    const files = items.map((item, index) => ({ name: outputName(item.name, format), blob: results[index].blob }))
+
+    const kept = items.filter((item) => item.format === format).length
+    const flattened = format === 'jpeg' && items.some((item) => item.format !== 'jpeg')
+    const notes: FlowNote[] = []
+    if (kept > 0) notes.push({ tone: 'info', text: `${kept} ảnh đã là ${label} sẵn — giữ nguyên, không mã hoá lại.` })
+    if (flattened) notes.push({ tone: 'info', text: 'JPG không có nền trong suốt: vùng trong suốt (nếu có) được tô trắng.' })
+    notes.push(...exifNotes(results.map((result) => result.exif)))
+
+    const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh ${label}`)
+    return {
+      title: items.length === 1 ? `Đã chuyển sang ${label}` : `Đã chuyển ${items.length} ảnh sang ${label}`,
+      output: items.length === 1 ? { ...output, detail: sizeLabel(items[0]) } : output,
+      notes,
+    }
+  }
+}
+
+export interface CompressOptions {
+  /** 0–1 cho JPG / WebP. */
+  quality: number
+  /** Cạnh dài tối đa (px); null = giữ kích thước. */
+  maxEdge: number | null
+}
+
+/**
+ * Nén cả lô, giữ định dạng của từng ảnh. Ảnh nào ra KHÔNG nhẹ hơn thì trả lại
+ * tệp gốc: một công cụ nén đưa về tệp nặng hơn là công cụ nói dối.
+ */
+export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: CompressOptions): FlowTask {
+  return async (step) => {
+    const results = await eachImage(items, step, 'Đang nén', (item) => reencode(item, writableFormat(item.format), quality, (size) => fitWithin(size, maxEdge)))
+    const blobs = results.map((result) => result.blob)
+
+    // Ảnh nào thật sự được thay bằng bản nén (bản nén nhẹ hơn tệp gốc).
+    const replaced = items.map((item, index) => blobs[index].size < item.size)
+    // Ảnh giữ nguyên tệp gốc thì EXIF (nếu có) vẫn còn, bất kể bản nén có mang được hay không.
+    const exif = results.map((result, index): ExifOutcome => (replaced[index] || result.exif === 'none' ? result.exif : 'kept'))
+    const files = items.map((item, index) =>
+      replaced[index] ? { name: outputName(item.name, writableFormat(item.format), ' - đã nén'), blob: blobs[index] } : { name: item.name, blob: item.file as Blob },
+    )
+    const changed = items.filter((_, index) => replaced[index])
+    const unchanged = items.length - changed.length
+    const shrunk = maxEdge ? changed.filter((item) => Math.max(item.width, item.height) > maxEdge).length : 0
+
+    const before = items.reduce((sum, item) => sum + item.size, 0)
+    const after = files.reduce((sum, file) => sum + file.blob.size, 0)
+    const smaller = after < before
+    const sizes = `${formatFileSize(before)} → ${formatFileSize(after)}`
+    const notes: FlowNote[] = []
+
+    if (smaller) notes.push({ tone: 'success', text: `${sizes} (nhẹ hơn ${Math.round((1 - after / before) * 100)}%).` })
+    if (unchanged > 0) {
+      const which = items.length === 1 ? 'Ảnh ra không nhẹ hơn ảnh gốc' : `${unchanged}/${items.length} ảnh không nhẹ hơn được`
+      notes.push({ tone: 'warning', text: `${which} — giữ nguyên tệp gốc. ${hintFor(items, maxEdge)}` })
+    }
+    if (shrunk > 0) notes.push({ tone: 'info', text: `${shrunk} ảnh được thu nhỏ về cạnh dài ${maxEdge} px.` })
+    notes.push(...exifNotes(exif))
+    if (changed.some((item) => item.format === 'webp') && writableFormat('webp') !== 'webp') {
+      notes.push({ tone: 'info', text: 'Trình duyệt này không ghi được WebP: ảnh WebP được lưu thành PNG.' })
+    }
+
+    const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh đã nén`)
+    return {
+      title: smaller ? 'Đã nén xong' : 'Không nén thêm được',
+      tone: smaller ? 'success' : 'warning',
+      output: items.length === 1 ? { ...output, detail: sizeLabel(replaced[0] ? fitWithin(items[0], maxEdge) : items[0]) } : output,
+      notes,
+    }
+  }
+}
+
+function hintFor(items: ImageItem[], maxEdge: number | null): string {
+  if (items.some((item) => item.format === 'png')) {
+    return 'PNG không mất dữ liệu nên khó nhỏ hơn; muốn nhẹ hẳn thì dùng "Chuyển đổi ảnh" sang JPG hoặc WebP.'
+  }
+  return maxEdge ? 'Ảnh đã được nén gần hết mức từ trước.' : 'Ảnh đã được nén gần hết mức từ trước — thử thêm "Cạnh dài tối đa" để thu nhỏ.'
+}

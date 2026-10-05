@@ -1,0 +1,802 @@
+/*
+ * Style rieng cua man Tac vu. Khung chieu cao (thanh cong cu co dinh + bang /
+ * kanban tu cuon) da thanh lop dung chung `.erp-list-page` - xem
+ * `styles/layout/list-page.css`.
+ */
+
+.task-module-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin: -8px -8px 8px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.task-module-nav__item {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.task-module-nav__item > button,
+.task-module-nav__menu button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.task-module-nav__item > button:hover,
+.task-module-nav__item > button.is-active {
+  color: var(--erp-brand);
+  background: var(--erp-brand-soft);
+}
+
+.task-module-nav__menu {
+  position: absolute;
+  inset-block-start: calc(100% + 4px);
+  inset-inline-start: 0;
+  z-index: 15;
+  min-width: 220px;
+  display: none;
+  padding: 6px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  box-shadow: var(--erp-shadow2);
+}
+
+.task-module-nav__item:hover .task-module-nav__menu,
+.task-module-nav__item:focus-within .task-module-nav__menu {
+  display: grid;
+}
+
+.task-module-nav__menu button {
+  justify-content: flex-start;
+  width: 100%;
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.task-module-nav__menu button:hover {
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+/*
+ * `width: 100%` KHÔNG phải trang trí.
+ *
+ * Khối này là flex item của `.erp-kanban-card__workflow` (display: flex), mà
+ * flex item mặc định co theo nội dung — nên thanh tiến độ chỉ dài bằng dòng
+ * chữ "Khối lượng hoàn thành" thay vì hết bề ngang thẻ.
+ */
+.task-kanban-card__workflow {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.task-kanban-card__progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.task-kanban-card__progress strong {
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.task-kanban-card__workflow .progress {
+  height: 6px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.task-kanban-card__workflow .progress-bar {
+  background: var(--erp-info);
+}
+
+.task-kanban-card__workflow .btn {
+  justify-content: center;
+}
+
+/* Qua han duoc bao bang CHU kem icon, mau chi la lop nhan manh thu hai. */
+.task-card__overdue {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-inline-start: 8px;
+  color: var(--erp-danger);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.task-form__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 200px;
+  color: var(--erp-text-secondary);
+}
+
+.task-duration legend {
+  margin-bottom: 4px;
+}
+
+.task-modal .modal-content {
+  border-radius: var(--erp-radius-md);
+  border: 1px solid var(--erp-border);
+}
+
+.task-modal .modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/*
+ * ============================================================================
+ * FORM TAC VU - VUA MOT MAN HINH, KHONG CUON
+ * ============================================================================
+ * Luoi 12 cot, moi o khai be ngang bang mot lop `task-form__c*`. Xem so do
+ * hang trong docblock cua `TaskFormModal`.
+ *
+ * KHOANG CACH CHI DEN TU MOT NGUON. `<Field>` boc moi o trong `Form.Group`
+ * kem `mb-3` (16px) cua Bootstrap; cong voi `gap` cua luoi thanh 28px moi
+ * hang. Tat `mb-3` trong rieng modal nay va de `gap` lo het - lay lai khoang
+ * 160px chieu cao tren 10 hang, du de bo thanh cuon.
+ *
+ * Phai dung `!important`: lop tien ich cua Bootstrap (`.mb-3`) tu no da
+ * `!important`, khong co cach nao khac de de len ma khong sua `<Field>` dung
+ * chung cho ca app.
+ */
+.task-modal .modal-body .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.task-form__alert {
+  margin-bottom: 12px;
+}
+
+.task-form__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  /*
+   * 8px doc / 12px ngang. Doc sat hon ngang co chu dich: hai o cung HANG la
+   * hai truong khac nhau, phai tach ro; hai o chong nhau theo chieu doc thi
+   * da co nhan cua o duoi lam ranh gioi roi.
+   */
+  gap: 8px 12px;
+  align-items: start;
+}
+
+.task-form__c2 { grid-column: span 2; }
+.task-form__c3 { grid-column: span 3; }
+.task-form__c4 { grid-column: span 4; }
+.task-form__c6 { grid-column: span 6; }
+.task-form__c12 { grid-column: span 12; }
+
+/* Nhan cua o va legend cua fieldset phai cung nhip, neu khong hang "Thoi
+   luong / Do uu tien / Khoi luong" lech nhau mot vai pixel o dong dau.
+   0.875rem = Body 14 cua thang chu DS (muc 09), khong tu che co moi. */
+.task-form__grid .form-label,
+.task-duration legend {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Goi y duoi o: 0.625rem = Overline 10 cua thang chu DS (muc 09) - bac nho
+ * nhat con hop le. Khong xuong 9px hay 11px: lech thang chu la thu ai cung
+ * thay nhung khong ai chi ra duoc.
+ *
+ * Doi lai cho co nho, van van van la CAU DAY DU (khong viet tat, khong ALL
+ * CAPS) va mau `--erp-text-secondary` - Overline 10 chi duoc phep neu no ngan
+ * va doc mot lan; goi y o day dung nhu vay.
+ */
+.task-form__grid .form-text {
+  display: block;
+  margin-top: 1px;
+  font-size: 0.625rem;
+  line-height: 1.3;
+}
+
+/*
+ * Field mode tra goi y ve Caption 12: ngoai cong truong, duoi nang, 10px voi
+ * dau tieng Viet la khong doc noi. DS muc 11 uu tien doc duoc hon vua man.
+ */
+[data-theme='field'] .task-form__grid .form-text {
+  font-size: 0.75rem;
+}
+
+.task-duration {
+  min-width: 0;
+}
+
+.task-duration > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* Desktop: cot c4 hep thi cho phep xuong dong (giu nguyen hanh vi cu).
+     Mobile ep mot hang bang `1fr` - xem media query cuoi file. */
+  flex-wrap: wrap;
+}
+
+/* Mot cap "o + don vi" di lien nhau, khong bao gio tach ra hai dong. */
+.task-duration__unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Bo `min-height: 34px` cu: o thoi luong tung thap hon moi o khac trong form
+   3px, du de nhin ra khi chung dung cung mot hang. */
+.task-duration .form-control {
+  width: 56px;
+  padding-inline: 6px;
+  text-align: center;
+  /* So thi phai tabular, neu khong go them mot chu so la o nhay ngang. */
+  font-variant-numeric: tabular-nums;
+}
+
+.task-form__grid input[type='number'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+ * Khoi luong hoan thanh - thanh keo
+ *
+ * Bam theo widget `range_slider` ben Drupal ve HANH VI (keo, con so hien canh
+ * nhan), nhung mau thi dung token ngu nghia: danger -> warning -> success doc
+ * duoc la "chua lam -> dang toi -> xong". Dai mau cua Drupal di tu do sang
+ * xanh mong ket, khong mang y nghia nao va cung khong nam trong bang mau cua
+ * DS.
+ * ------------------------------------------------------------------------ */
+
+.task-progress__label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.task-progress__value {
+  color: var(--erp-text-primary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-progress__range {
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  appearance: none;
+}
+
+/*
+ * Track phai khai RIENG cho tung engine - gop `::-webkit-...` va `::-moz-...`
+ * vao mot selector thi ca hai deu bi bo qua (mot pseudo-element la khong hop
+ * le lam hong toan bo rule).
+ */
+.task-progress__range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--erp-danger) 0%,
+    var(--erp-warning) 50%,
+    var(--erp-success) 100%
+  );
+}
+
+.task-progress__range::-moz-range-track {
+  height: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: linear-gradient(
+    90deg,
+    var(--erp-danger) 0%,
+    var(--erp-warning) 50%,
+    var(--erp-success) 100%
+  );
+}
+
+/* Nut keo: vien day de noi bat tren ca ba theme, khong dua vao bong do. */
+.task-progress__range::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -5px;
+  border: 3px solid var(--erp-surface);
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-text-primary);
+  cursor: grab;
+  transition: transform 150ms ease;
+}
+
+.task-progress__range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--erp-surface);
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-text-primary);
+  cursor: grab;
+  transition: transform 150ms ease;
+}
+
+.task-progress__range:active::-webkit-slider-thumb {
+  transform: scale(1.15);
+  cursor: grabbing;
+}
+
+.task-progress__range:active::-moz-range-thumb {
+  transform: scale(1.15);
+  cursor: grabbing;
+}
+
+/* Focus ring bat buoc - keo bang ban phim phai thay duoc dang o dau. */
+.task-progress__range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.task-progress__range:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-progress__range::-webkit-slider-thumb,
+  .task-progress__range::-moz-range-thumb {
+    transition: none;
+  }
+}
+
+.task-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 40px;
+  padding: 8px 12px;
+  color: var(--erp-text-secondary);
+  border: 1px solid var(--erp-border);
+  border-bottom: 0;
+  border-radius: var(--erp-radius-md) var(--erp-radius-md) 0 0;
+  background: var(--erp-surface);
+}
+
+.task-editor-toolbar + textarea {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/*
+ * Man hinh thap: KHONG ep vua bang cach thu nho chu hay control - Field mode
+ * yeu cau control 48px va chu 16px, ep nho la pha DS. Cho phan than cuon, con
+ * dau va hai nut giu nguyen tai cho.
+ */
+/*
+ * Siet phan VO cua modal, khong siet o nhap.
+ *
+ * Dau va chan modal an 1rem tren duoi theo mac dinh Bootstrap - o mot form
+ * dac nhu the nay do la 24px chi de cho trong. Ha xuong 10px giu duoc nhip ma
+ * tra lai gan mot hang o nhap.
+ */
+.task-modal .modal-header,
+.task-modal .modal-footer {
+  padding-block: 10px;
+}
+
+.task-modal .modal-body {
+  padding: 12px 16px;
+  /*
+   * 10.5rem = 168px: le modal 56 + dau 47 + chan 58, cong mot chut du. Truoc
+   * day dat 13rem (208px) nen tren man 768px con phai cuon du noi dung DA vua
+   * - thanh cuon do la do con so nay chua tinh lai sau khi siet vo, khong
+   * phai do form con cao.
+   */
+  max-height: calc(100vh - 10.5rem);
+  overflow-y: auto;
+}
+
+/* Dưới 1200px: bốn cột hẹp gộp thành hai, sáu cột thành nguyên hàng. */
+@media (max-width: 1199.98px) {
+  .task-form__grid > .task-form__c2,
+  .task-form__grid > .task-form__c3,
+  .task-form__grid > .task-form__c4 {
+    grid-column: span 6;
+  }
+
+  .task-form__grid > .task-form__c6 {
+    grid-column: span 12;
+  }
+}
+
+/*
+ * Mobile: mot cot. DS muc 06 cam "desktop thu nho" - o day dung la tai cau
+ * truc that vi thu tu doc van la thu tu dien, chi khac so cot.
+ */
+@media (max-width: 767.98px) {
+  .task-form__grid > [class*='task-form__c'] {
+    grid-column: span 12;
+  }
+
+  /*
+   * BA CAP CHIA DEU MOT HANG, khong xuong dong.
+   *
+   * Truoc day o rong CUNG 72px + `flex-wrap: wrap`: tong ba cap keo dai ~338px
+   * trong khi than modal tren dien thoai chi con ~340px, nen cap "phút" tut
+   * xuong dong thu hai va truong nay cao gap doi moi truong khac. Chia deu
+   * theo `1fr` thi no vua o moi be ngang - khong con con so 72px nao de sai.
+   *
+   * CAN THAN: `Field` boc control trong mot <div class="mb-3"> (Form.Group),
+   * nen FLEX ITEM cua moi cap la CAI DIV DO chu khong phai <input>. Dat
+   * `flex` thang len `.form-control` la dat vao phan tu BEN TRONG - div boc
+   * giu nguyen be ngang mac dinh cua input (~180px), o "ngày" phinh to va day
+   * chu "ngày" ra ngoai khoi. Phai chia flex o tang div, con input thi 100%.
+   */
+  .task-duration > div {
+    flex-wrap: nowrap;
+  }
+
+  .task-duration__unit {
+    flex: 1 1 0;
+  }
+
+  .task-duration__unit > div {
+    flex: 1 1 auto;
+    min-width: 0;
+    /* `.mb-3` cua Bootstrap la `!important` - o day khong can le duoi vi hang
+       nay khong co thong bao loi nam duoi o. */
+    margin-bottom: 0 !important;
+  }
+
+  .task-duration .form-control {
+    /* Ngon tay tren dien thoai: khong duoi nguong cham. */
+    min-height: var(--erp-touch-target);
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Don vi khong duoc co lai thanh "ngà..." khi o an het cho. */
+  .task-duration__unit > span {
+    flex: none;
+  }
+}
+
+/* Field mode: chu 16px + control 48px nen hang cao hon, noi gap doc ra cho de
+   nham va chap nhan cuon - dung nhu DS muc 11 uu tien. */
+[data-theme='field'] .task-form__grid {
+  gap: 16px;
+}
+
+/* Cot tien do trong bang - thanh mong + so, doc duoc ma khong chiem cho. */
+.task-table__progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.task-table__progress .progress {
+  flex: 1;
+  min-width: 48px;
+  height: 6px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.task-table__progress .progress-bar {
+  background: var(--erp-info);
+}
+
+.task-table__progress span {
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-secondary);
+}
+
+/* Thanh dieu khien mot hang da chuyen thanh component dung chung -
+   xem `styles/components/page-toolbar.css` (`.erp-page-toolbar`). */
+
+/* Trình soạn thảo CKEditor đã chuyển thành component dùng chung -
+   xem `styles/components/richtext.css` (`.erp-richtext`). */
+
+/* ---------------------------------------------------------------------------
+ * Modal XEM tác vụ (chỉ đọc)
+ *
+ * Bố cục chép từ `core.entity_view_display.task.work_task.default` bên Drupal:
+ * ba khối 3/3/6 rồi tới tab Nội dung | Tệp đính kèm. Nhãn nằm TRÊN giá trị vì
+ * mọi trường của view display đó đều khai `label: above`.
+ * ------------------------------------------------------------------------ */
+
+.task-detail__group {
+  display: grid;
+  /* auto-fit: cap ngay thang dung canh nhau khi con cho, tu xuong dong khi cot
+     hep - trong khung 8/4 cot trai chi con ~185px, hai o ngay canh nhau o do la
+     mot dong bi cat doi. */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  height: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Mặc định chiếm cả hàng; chỉ cặp ngày tháng đứng đôi (`group_date` d-flex). */
+.task-detail__field {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.task-detail__field--half {
+  grid-column: span 1;
+}
+
+.task-detail__field dt {
+  margin-bottom: 2px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.task-detail__field dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  word-break: break-word;
+}
+
+.task-detail__progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-detail__progress .progress {
+  flex: 1;
+  height: 6px;
+}
+
+.task-detail__progress .progress-bar {
+  background: var(--erp-info);
+}
+
+.task-detail__progress strong {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-detail__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--erp-warning);
+}
+
+/* Con số luôn đi kèm dãy sao — hình dạng không bao giờ là lớp nhận biết duy
+   nhất (ERPcons_Design_System.md mục 05 & 11). */
+.task-detail__stars-value {
+  margin-inline-start: 6px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-detail__tabs {
+  margin-top: 16px;
+}
+
+.task-detail__tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+}
+
+.task-detail__tab-body {
+  padding: 14px;
+  border: 1px solid var(--erp-border);
+  border-top: 0;
+  border-end-start-radius: var(--erp-radius-md);
+  border-end-end-radius: var(--erp-radius-md);
+}
+
+/* Nội dung do CKEditor soạn: giới hạn chiều cao rồi cho cuộn TRONG tab, nếu
+   không một bài dài đẩy nút Đóng ra khỏi tầm mắt. */
+.task-detail__content {
+  max-height: 320px;
+  overflow-y: auto;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.task-detail__content :is(h1, h2, h3, h4) {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.task-detail__content img,
+.task-detail__content table {
+  max-width: 100%;
+}
+
+.task-detail__content table {
+  border-collapse: collapse;
+}
+
+.task-detail__content :is(td, th) {
+  padding: 6px 10px;
+  border: 1px solid var(--erp-border);
+}
+
+.task-detail__files {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-detail__files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+.task-detail__file-size {
+  flex: none;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 14px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.task-detail__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Modal xem rộng hơn `size="xl"` (1140px): thêm cột bình luận 4/12 thì khối
+   thông tin bên trái chỉ còn ~740px, mà nó đã chia tiếp 3/3/6. */
+.task-detail .modal-dialog {
+  max-width: min(1360px, 96vw);
+}
+
+/* ---------------------------------------------------------------------------
+ * Cột bình luận — `group_comment` (col-lg-4) của view display
+ *
+ * Cũ trước mới sau, ô nhập dưới cùng: đúng thứ tự `comment_default` bên Drupal
+ * (`form_location: true`). Danh sách tự cuộn trong nó để ô nhập luôn ở trong
+ * tầm mắt, không bị một cuộc trao đổi dài đẩy xuống dưới đáy modal.
+ * ------------------------------------------------------------------------ */
+
+.task-comments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 12px 14px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.task-comments__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.task-comments__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.task-comments__item {
+  padding: 10px 12px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+.task-comments__item header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.task-comments__item header strong {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+}
+
+.task-comments__item header time {
+  display: block;
+  color: var(--erp-text-secondary);
+  font-size: 0.6875rem;
+}
+
+.task-comments__body {
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  word-break: break-word;
+}
+
+.task-comments__body :last-child {
+  margin-bottom: 0;
+}
+
+.task-comments__body img {
+  max-width: 100%;
+}
+
+/* Chờ duyệt nói bằng CHỮ kèm icon — người gửi phải biết người khác chưa thấy
+   dòng vừa gửi (ERPcons_Design_System.md mục 05 & 11). */
+.task-comments__pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 6px 0 0;
+  color: var(--erp-warning);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.task-comments__form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.task-comments__form .btn {
+  align-self: flex-end;
+}

@@ -1,0 +1,1805 @@
+{
+  "source": "erpcons_frontend",
+  "files": [
+    {
+      "path": "src/features/tools/hub/index.ts",
+      "sha256": "d52a51751742e85bef3988f3d898ec610429a5f825273923b2827382522bb072"
+    },
+    {
+      "path": "src/features/tools/image/index.ts",
+      "sha256": "87c1b21b1d1221ded628991b906a43cb61d67d59048666a33f02781353916b15"
+    },
+    {
+      "path": "src/features/tools/pdf/index.ts",
+      "sha256": "0cadd62043f78458f4614e6d45500837685f9960b53964a4c2acd6a639758d0e"
+    },
+    {
+      "path": "src/features/tools/qr/index.ts",
+      "sha256": "6824ae6a0b88789421b62dfda50f8f72e3d4f9a5c642dc310aefa419094691eb"
+    },
+    {
+      "path": "src/features/tools/shared/index.ts",
+      "sha256": "dc86b395ffa09fc275419baef6582838a355888b2a5c45c7cb99c6c3dba8eef4"
+    },
+    {
+      "path": "src/features/tools/utility/index.ts",
+      "sha256": "1d80e374cc7832a00c4996098946cfb6fa20f4459d6a014dd08ac2fc76d87f46"
+    },
+    {
+      "path": "src/features/tools/hub/components/CopyButton.tsx",
+      "sha256": "49063234745c0fa6bc72479d8db1046d4f6839cad9a3481e1345d9441cfe89eb"
+    },
+    {
+      "path": "src/features/tools/hub/components/GuestPrefs.tsx",
+      "sha256": "1d2815e64509f861f7f9de980304c1ca1a1650cc8c2d3303bc2dc64f2dcbbbeb"
+    },
+    {
+      "path": "src/features/tools/hub/components/GuestSessionAction.tsx",
+      "sha256": "61522c687ec5ea23188cd9731d9498baebecf8f690fed8a4c6a33b4b7e23fd3c"
+    },
+    {
+      "path": "src/features/tools/hub/components/HeroStats.tsx",
+      "sha256": "75db1006d17bbc2569dab1bb683797ebed108b621ca850ea0ba23636e348df3f"
+    },
+    {
+      "path": "src/features/tools/hub/components/HeroTrialActions.tsx",
+      "sha256": "5639b7e2176f92e0a74281923bf1b21d9212a120cc8b1e92c7b4a416dda86968"
+    },
+    {
+      "path": "src/features/tools/hub/components/HubAside.tsx",
+      "sha256": "f28f965e18a3299a6e77b01cf4c9f5ad7dc91692263e219396563d20d4c20ccf"
+    },
+    {
+      "path": "src/features/tools/hub/components/LoginNudge.tsx",
+      "sha256": "52da4ba0ad157ae71e6a647a9c43fae71d34feba3021224fd7a9f1a6cc666b9b"
+    },
+    {
+      "path": "src/features/tools/hub/components/ProContactButton.tsx",
+      "sha256": "7759ce81aee132536ce51d17a21db9cd75a0ba4eb3222acab066585fce7e691e"
+    },
+    {
+      "path": "src/features/tools/hub/components/ProTrialTrigger.tsx",
+      "sha256": "113af0c774a20b3d7f124bbff89ea57487ee1b138a0cf07918ff7e3081de5215"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolCard.tsx",
+      "sha256": "1df76674f111e756dd2fec8068605105bbfc3c32a10f7ddb0a91aff20321ae70"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolFilters.tsx",
+      "sha256": "a84b15384d9b1703c09bf27a2f9b1cbcbab43ce707139a36c1ee83d53e6470a6"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolLeaveGuard.tsx",
+      "sha256": "d56790830b3c413e4698f46ec6a618a21971b0f477ed3ffa295ae9ae4070ab49"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolsBranchOutlet.tsx",
+      "sha256": "a045785fbe0402dea79739f819b013b2e64a51c99315945aa5253690da202c3d"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolsHero.tsx",
+      "sha256": "cd8ac7d54f54fb4dbbf2a9dc1fca3afeeb5588437569865b0b41d35de6f8fefc"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolTile.tsx",
+      "sha256": "6be97d6d66a4e652a8adc655a20382cca088f405614295fcfe892366207d118a"
+    },
+    {
+      "path": "src/features/tools/hub/components/ToolUnsupported.tsx",
+      "sha256": "8bde1d3d1b3df0ef722675b434d1b028db641169f31d6a136d13bc54f54c2420"
+    },
+    {
+      "path": "src/features/tools/hub/config/limits.ts",
+      "sha256": "0756d4d8991d91bad1cd1641a1fa7407a7230537fc87fb0fbcf84bf930301fb3"
+    },
+    {
+      "path": "src/features/tools/hub/config/pro-offer.ts",
+      "sha256": "0910432cc16f2325237ae39f90f464470c04b1dbf43f25559d1080ac57f24aa6"
+    },
+    {
+      "path": "src/features/tools/hub/config/tool-catalog.ts",
+      "sha256": "22fb681545f229a8917c0376cc4420e42ce6c20b3a7905c20897b6d81246baf9"
+    },
+    {
+      "path": "src/features/tools/hub/config/tool-list.ts",
+      "sha256": "84e42a506ba52d9f041332e54335641c98d8bdbf21e5a0efc529a052cf7928c3"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/tools-branch.ts",
+      "sha256": "691cc0f61b154ab286b4325c3e1ed020dc4f869cd51c2a28affecebcf5acc35f"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useDownloadNudge.tsx",
+      "sha256": "e381a769b98fc89d20bbf0bfa1633ffbb50261954a7ab0b51e0b32b03d1a5c62"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useFlowRun.ts",
+      "sha256": "4633e06d674b355b05c92eecc91607c6874bfd356b82386390843fbea05965d0"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useGuestSessionAction.ts",
+      "sha256": "261bad15135e621767cd6cada1994dbcefc75543dfabbedb7120b5e679de4566"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useHubPrefs.ts",
+      "sha256": "baf1fa14c0669c5514f8d9ac93bcf586ab5fb0fedf4306b3b35da082a8d143b5"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useHubStats.ts",
+      "sha256": "5f721af4a03a18fa06b9413769a2eecf8895076d9a8d65c53a08c4566de72679"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/usePageTitle.ts",
+      "sha256": "19062fd90949cee7966fd25a07367181fb01867034323cec7c5cdf27a84ffc10"
+    },
+    {
+      "path": "src/features/tools/hub/hooks/useRecordToolVisit.ts",
+      "sha256": "7de6b7c4e8c4cdb08c5ca3e1b698ca99a5920db3f5d6e3cfc790da1409369715"
+    },
+    {
+      "path": "src/features/tools/hub/pages/ToolRoutePage.tsx",
+      "sha256": "e2dfb329a6e60657984d4964004075d844e6f4a3aac3de86cf12a4a59c5410b9"
+    },
+    {
+      "path": "src/features/tools/hub/pages/ToolsHubPage.tsx",
+      "sha256": "04f7f30db7274aeb074d838ceeced3de890087baf22cfb8a713d4dbd391a46f1"
+    },
+    {
+      "path": "src/features/tools/hub/services/tool-visits.service.ts",
+      "sha256": "85797fb62ffad6b28a30dbf2311a37925794fa136973aaf1d8f7f38d1dc05ace"
+    },
+    {
+      "path": "src/features/tools/hub/types/flow.types.ts",
+      "sha256": "10ad556d6dcf308bc5a60d398be63a32767d79402aa4bea6a0cef95d66115a7a"
+    },
+    {
+      "path": "src/features/tools/hub/types/tool.types.ts",
+      "sha256": "e4fb4a3ccd44f4eb5579ea89ada765f7763b4376694cb6c47b05e6096cbeaef9"
+    },
+    {
+      "path": "src/features/tools/hub/utils/browser-support.test.ts",
+      "sha256": "a14983add64a7d26ea322b8d987ff0f5f58f8b14b21d8a2964dd5eeb805421c3"
+    },
+    {
+      "path": "src/features/tools/hub/utils/browser-support.ts",
+      "sha256": "0be3ad83e716be3bdcf266662d9848b74cec46ef27cbfbf3af66b68353863efa"
+    },
+    {
+      "path": "src/features/tools/hub/utils/camera-error.ts",
+      "sha256": "cecd55e872d6a6f90343de20dcfbd41188d276e0f870e9b0da2b2fd572f7e5ee"
+    },
+    {
+      "path": "src/features/tools/hub/utils/clipboard.ts",
+      "sha256": "5b60743d42b15771115d752e04e45b7dee7c8d60738aa858f4bcc67e896d52e0"
+    },
+    {
+      "path": "src/features/tools/hub/utils/flow-output.test.ts",
+      "sha256": "1808b5110229a3bee089bcae5ea196b3dc1e157cc1b0240bbd4073e15e839eea"
+    },
+    {
+      "path": "src/features/tools/hub/utils/flow-output.ts",
+      "sha256": "91084c12b0bf0de7978e4b9219cb0509c827cc8308a7f87250794701b6de9f18"
+    },
+    {
+      "path": "src/features/tools/hub/utils/hub-prefs.test.ts",
+      "sha256": "ffc1594a45417d270f5db301dca34d5e4fd006ebcdfa1b5bc425d097cd048afb"
+    },
+    {
+      "path": "src/features/tools/hub/utils/hub-prefs.ts",
+      "sha256": "596fe56cbdfc1e9da2d15acc314aba5fcb06b5ae52556b2862dfc01d4f544a47"
+    },
+    {
+      "path": "src/features/tools/hub/utils/number-input.test.ts",
+      "sha256": "88cca995ba8c238c41fc96f8d93c0796f332d138b9c863baf3859ef623ed49d7"
+    },
+    {
+      "path": "src/features/tools/hub/utils/number-input.ts",
+      "sha256": "3b5ff8254e2201bbedab88726c0507812d90dc1613037d5f11e556dd785980a5"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-error.test.ts",
+      "sha256": "e0b4f7943d54ba62a85b92b227e17c034e7897933de97586f982890268dfa93d"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-error.ts",
+      "sha256": "905c3db8f13a741e339498708bd25cb0407ad7e89718fcf786d3122e099f281a"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-lookup.test.ts",
+      "sha256": "8fb3205f4fcd3d98a1764533cb2a95fed4f3b0a44326a887b504cea668b8db59"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-lookup.ts",
+      "sha256": "79a1ceb19cf4f780b15ef2cf8c8fba342772b1387000e0a4e6c8856c720edffe"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-registry.test.ts",
+      "sha256": "70c6b67a46797b8a7e4e646f6ed30096989d2526db47c94a451bae1a165b0096"
+    },
+    {
+      "path": "src/features/tools/hub/utils/tool-registry.ts",
+      "sha256": "0d0610188008c8ac5e74056d1cbae2f4bec0711ece16be4f187c3881c4b255a7"
+    },
+    {
+      "path": "src/features/tools/image/components/CameraCapture.tsx",
+      "sha256": "01a0e1ff8000cc3e76495a3b1cd5d9115f68c8e67f8d4b871ad9999933afa0d8"
+    },
+    {
+      "path": "src/features/tools/image/components/CropBox.tsx",
+      "sha256": "23ae15f1e2456950c295c8e914b484678b26ffae11246f08c8afebfa1bf3d5ac"
+    },
+    {
+      "path": "src/features/tools/image/components/CropOptions.tsx",
+      "sha256": "d65d54bdcdb3a159dc80bbd39f4ffbb82a3e0967b424c1e369e4de6066d0f15f"
+    },
+    {
+      "path": "src/features/tools/image/components/CropStage.tsx",
+      "sha256": "91b7062bfcf1b55ffcb1c57927b9deebcfc8cc06d6716dbb98d99cbfc900471a"
+    },
+    {
+      "path": "src/features/tools/image/components/ImageToolShell.tsx",
+      "sha256": "baf6d3763da33fd699b1244f4a12dc049ff66a2ffe4dc783cda22c642c4ccafc"
+    },
+    {
+      "path": "src/features/tools/image/components/MarkOptions.tsx",
+      "sha256": "7aa0b71418d2ff74241c8ea21b287f72af4d0a176ce7fa0f4f432ebe2e428080"
+    },
+    {
+      "path": "src/features/tools/image/components/MarkOverlay.tsx",
+      "sha256": "cd888c2e340ba26e17f00025db67dae56eb5f8c9f5076d6a946f4ec28ecf6ead"
+    },
+    {
+      "path": "src/features/tools/image/components/MarkStage.tsx",
+      "sha256": "afd28a8a57298f4267f72dbbd3c50f22c56a7b5b651b97fc88b429b2fdcf4a2d"
+    },
+    {
+      "path": "src/features/tools/image/components/MeasureCanvas.tsx",
+      "sha256": "43151226efc3a82ee163927f71bf2da81717c5f28792efdbf2375dd81ce2ba4d"
+    },
+    {
+      "path": "src/features/tools/image/components/MeasureOptions.tsx",
+      "sha256": "6d8108cd1ebc68b440f11b436ef4f23fd7f3f3c52ccc7ac2885672c831580650"
+    },
+    {
+      "path": "src/features/tools/image/components/MeasureStage.tsx",
+      "sha256": "9d703ead34b36362bd85cbd40c38e372c093aaabed17a37afd34a81b3cc127c1"
+    },
+    {
+      "path": "src/features/tools/image/components/PhotoSheetPreview.tsx",
+      "sha256": "ceeb4bffe7399e28b7de9762bfdf30d55a7c68714c43d5475d2003637f88ffe0"
+    },
+    {
+      "path": "src/features/tools/image/config/photo-presets.ts",
+      "sha256": "e0d5a71cfac95b3fcca82139406f92f18e319ec16fa9f17b134ceaa7040050eb"
+    },
+    {
+      "path": "src/features/tools/image/hooks/useCamera.ts",
+      "sha256": "f2179cb9ad74e2bbc11fdcd90dd7dbb6d33ab1a76697e3f025e347f35b1bf737"
+    },
+    {
+      "path": "src/features/tools/image/hooks/useCropEdit.ts",
+      "sha256": "e17b3e4d3543c998209ec35f5c7140891c4ab13764b9cfbd4789f9007abb7ca9"
+    },
+    {
+      "path": "src/features/tools/image/hooks/useImageFiles.ts",
+      "sha256": "b5358007be524f1d4ca8c24410426bf97155c4edbedc22b2e6d06a8d8b13958f"
+    },
+    {
+      "path": "src/features/tools/image/hooks/useMarkEdit.ts",
+      "sha256": "15ebcf29833a1991b3f5372f5c86823dc66bad30f083270de1739ff7ad66d9b5"
+    },
+    {
+      "path": "src/features/tools/image/hooks/useMeasure.ts",
+      "sha256": "301a14b00f41f581b9177b0d6cbe8d6a5a46bebfc8a2b65bbc330b57008256e9"
+    },
+    {
+      "path": "src/features/tools/image/hooks/usePhotoCrop.ts",
+      "sha256": "478099f783315c03de86c6b63dde81ff668eae946ddb0701acf0a577608dc205"
+    },
+    {
+      "path": "src/features/tools/image/pages/BatchImagePage.tsx",
+      "sha256": "f356e1ce8b6bfbc5f247f09a2fbce069dcee4382ead3435e3b06a9e75388c3da"
+    },
+    {
+      "path": "src/features/tools/image/pages/CompressImagePage.tsx",
+      "sha256": "3ac94f60f3232190116df7996a923d453f6369cf6c46f1d5ae30d7aab1b6026d"
+    },
+    {
+      "path": "src/features/tools/image/pages/ConvertImagePage.tsx",
+      "sha256": "4e92919636e3318867ac2df926d5b526a529cd337934f9f7f19767a068701bd9"
+    },
+    {
+      "path": "src/features/tools/image/pages/CropImagePage.tsx",
+      "sha256": "e59e596546f54776164cc1d49b9c953498c6a4466ea41c10f13dba148f4558df"
+    },
+    {
+      "path": "src/features/tools/image/pages/IdPhotoPage.tsx",
+      "sha256": "8e12e21eafa7a78de8fc2e6e028ff18f6e78611ce4c73be7918a901486a86ff2"
+    },
+    {
+      "path": "src/features/tools/image/pages/MarkImagePage.tsx",
+      "sha256": "6e80167ace886efe586c69fca4ee4d32219e495cf6be9b2f62742c20e182a7b1"
+    },
+    {
+      "path": "src/features/tools/image/pages/MeasureImagePage.tsx",
+      "sha256": "5960ac0445df1ec9453480f73d4b53df08a1d6716b7e4dbb27fd9a204ccc7269"
+    },
+    {
+      "path": "src/features/tools/image/services/batch-tasks.ts",
+      "sha256": "9c9ba63d44bf54e11cd00fed2f5ed2d5f5da87a70dc73e0b0d37da772560f3b4"
+    },
+    {
+      "path": "src/features/tools/image/services/crop-render.ts",
+      "sha256": "fadbc5a1508168620cd3820d0f83c1fd01a8cb0c1d9ec00c625fd03a61404cf2"
+    },
+    {
+      "path": "src/features/tools/image/services/edit-tasks.ts",
+      "sha256": "ba78982b2594d9e8ef4391333c3a4ad4532d864a0d85c079493d530785e5537b"
+    },
+    {
+      "path": "src/features/tools/image/services/image-codec.ts",
+      "sha256": "17a814e8552832992e6e307951ea7e7eff5b97a67af7c8cf614f956815d9d8fd"
+    },
+    {
+      "path": "src/features/tools/image/services/image-exif.ts",
+      "sha256": "0b303e7d13ce8a3eaa9ca5141602c9a5e9fec45a8987f16aab5f91a3d615224e"
+    },
+    {
+      "path": "src/features/tools/image/services/image-intake.ts",
+      "sha256": "faf1e7fcecf8c0240d645f3fad7d1b961d89f9319ae2635000516b33d64fec6f"
+    },
+    {
+      "path": "src/features/tools/image/services/image-tasks.ts",
+      "sha256": "bc55a5f306c5fa20510e2323587748fe3ae106f1216272113971a2eb2b81af29"
+    },
+    {
+      "path": "src/features/tools/image/services/mark-render.ts",
+      "sha256": "c296c4bb0cb8e9eae0a11f707b55318a19f0df975d00f6718f5ce74811124405"
+    },
+    {
+      "path": "src/features/tools/image/services/measure-render.ts",
+      "sha256": "abc259584f11365b0b0a04e3d30709c6eb65074514cb51a751c5da447103dec1"
+    },
+    {
+      "path": "src/features/tools/image/services/photo-sheet.ts",
+      "sha256": "166c69e6d3fd359ab71dbd2e7ed5fc99d24a61c42db0b8121b334872fe39c076"
+    },
+    {
+      "path": "src/features/tools/image/types/image.types.ts",
+      "sha256": "a899a8409b864682dc7b46f6509e0208b6422fbaedeff3265c971c379374af91"
+    },
+    {
+      "path": "src/features/tools/image/types/mark.types.ts",
+      "sha256": "67d1ecee2127eaf7d301c4e9fc51610655990b4daee990bff91a589f869853e4"
+    },
+    {
+      "path": "src/features/tools/image/types/measure.types.ts",
+      "sha256": "22f88904f4ad4dda859ff429d8cbdba16c0757dc6743dc1baabce0039a705594"
+    },
+    {
+      "path": "src/features/tools/image/utils/adjust.test.ts",
+      "sha256": "9da4e8e6295ffc4b0ab6dc0cbb5707fdb0fbe37fb6337fb682191c186cfde6a5"
+    },
+    {
+      "path": "src/features/tools/image/utils/adjust.ts",
+      "sha256": "e516e4f56cf234b4bffa884966f4aa7c10d1bb39ef0640c2fcb126996bae842e"
+    },
+    {
+      "path": "src/features/tools/image/utils/batch.test.ts",
+      "sha256": "47085ec661366a259da755690f616a2482e7baac1dc811dc8e113751d812bc22"
+    },
+    {
+      "path": "src/features/tools/image/utils/batch.ts",
+      "sha256": "a8bbb0cd85e8feebb8ca1890acafaf865c0a5692a538537ba68c50d6df1e59e1"
+    },
+    {
+      "path": "src/features/tools/image/utils/crop-rect.test.ts",
+      "sha256": "30343560a68e5774f703c481085fa0a271ec843e40d56fc9402ae2ef6ebea3c3"
+    },
+    {
+      "path": "src/features/tools/image/utils/crop-rect.ts",
+      "sha256": "86cb5531ae47aefbf7212f439905072508db6f26f5e7d6d1bfc5ae4255100831"
+    },
+    {
+      "path": "src/features/tools/image/utils/crop-state.test.ts",
+      "sha256": "008df1adc87224a08a75bcc5b8d003d743cfdb474789951833dc9c9e503df09b"
+    },
+    {
+      "path": "src/features/tools/image/utils/crop-state.ts",
+      "sha256": "d9b90e5d1604c4c1412d36f39fbabbe6ca9302e3a05516ef05a4965d8b5b3a8d"
+    },
+    {
+      "path": "src/features/tools/image/utils/image-format.test.ts",
+      "sha256": "c057e92c8bedfc979afbf2877eeacc50c0831bf10bbe208ec12935a1c5aba2dc"
+    },
+    {
+      "path": "src/features/tools/image/utils/image-format.ts",
+      "sha256": "bc925d3965686be2f4cc20b861969c93e44f0e32e1fae7bef3dca63ba0629a02"
+    },
+    {
+      "path": "src/features/tools/image/utils/jpeg-density.ts",
+      "sha256": "09ecd50e6082b33c2d473de7c99796d5a568a3ccebeee3ddb417e68a48c8428a"
+    },
+    {
+      "path": "src/features/tools/image/utils/mark.test.ts",
+      "sha256": "f1df243ec8cf7d2a8b15faf51425644218978ab32be3f834e41bcb4ce7f8c972"
+    },
+    {
+      "path": "src/features/tools/image/utils/mark.ts",
+      "sha256": "594c3c2c1d9321506d6bde0f9d231052d4ee188163d553c01b216dc69c669a02"
+    },
+    {
+      "path": "src/features/tools/image/utils/measure-state.ts",
+      "sha256": "9a7880f08dcef3f672118ff409e4b43634139b574eefa49fbdf65b693f90a134"
+    },
+    {
+      "path": "src/features/tools/image/utils/measure.test.ts",
+      "sha256": "72fc4cb942402820b784239c3754874a334d2a7c38a40919c4cb89a7278372c3"
+    },
+    {
+      "path": "src/features/tools/image/utils/measure.ts",
+      "sha256": "80c02e2c427135f4d563d0a1583ed90fc39eebdd8564d98f27a83eed3af2872f"
+    },
+    {
+      "path": "src/features/tools/image/utils/photo-layout.test.ts",
+      "sha256": "0b19a0a4d848a00d5e67621e4f120bee29436b3a5142ef96de42a20a74c3f58b"
+    },
+    {
+      "path": "src/features/tools/image/utils/photo-layout.ts",
+      "sha256": "77db37dca34c1e15d3effff2e2a87241f9ca69fdbf938ea8337bf24ae8d314bb"
+    },
+    {
+      "path": "src/features/tools/orientation/components/AgePanel.tsx",
+      "sha256": "ebc31726f85f5541af674775b7f5f4f3cd866f4e336638ea15f9e7676ba3eab8"
+    },
+    {
+      "path": "src/features/tools/orientation/components/DeviceCompassPanel.tsx",
+      "sha256": "d4cbaeb2082db366403107710ef4792fcd82462aba168ac646fa69c0b7486441"
+    },
+    {
+      "path": "src/features/tools/orientation/components/ExportPanel.tsx",
+      "sha256": "687c6463440b0152e2af633a1a5b4d32f9353bd0c1f8b8f460225fa6c7e85003"
+    },
+    {
+      "path": "src/features/tools/orientation/components/MethodPanel.tsx",
+      "sha256": "006625d245e9dcc3d1277c277fd75bbbf375aa20e471cb3a1dab3201be8502d2"
+    },
+    {
+      "path": "src/features/tools/orientation/components/OrientationCanvas.tsx",
+      "sha256": "aa1f330541ec6489d4003497197d42cb8287d26a253a15196f36e73d1b38a27f"
+    },
+    {
+      "path": "src/features/tools/orientation/components/OrientationStage.tsx",
+      "sha256": "cf210c6775e6b3cde47e7bd947b0f38d1bcb6f0c6983bb4d18274ff51eaf48db"
+    },
+    {
+      "path": "src/features/tools/orientation/components/ResultPanel.tsx",
+      "sha256": "0043d089b1fbf9356c5002591a648e53bbf5a1f3317772bf3dedeafc11a74c9d"
+    },
+    {
+      "path": "src/features/tools/orientation/components/ShapeLayer.tsx",
+      "sha256": "11a0cf79f50dff8efd607c8f26eb1f110ffa9cf2e76896d048983692fd49b369"
+    },
+    {
+      "path": "src/features/tools/orientation/components/SolarPanel.tsx",
+      "sha256": "f24bfa15915eeeb8efd9a77a698d3c3a4b99e409e0bdfcdd8e67bd5822c02307"
+    },
+    {
+      "path": "src/features/tools/orientation/components/SourcePicker.tsx",
+      "sha256": "d934976de018397f8616f99ac482083cb4fb42c67a6e8d28d3b9a15aff75f584"
+    },
+    {
+      "path": "src/features/tools/orientation/components/TargetsPanel.tsx",
+      "sha256": "ad2ad80dacee32f9a4831cc2f306ede2c14295c72592cf12810ca39668cd3e47"
+    },
+    {
+      "path": "src/features/tools/orientation/components/TechPanel.tsx",
+      "sha256": "32df26e3d8c325dc8eb306873620ddd32b2c56b78fc0c5960478a2a025c962f1"
+    },
+    {
+      "path": "src/features/tools/orientation/components/TraceShapeActions.tsx",
+      "sha256": "5b3625e4760cc2d55898553f17069dde21c4746af3f5b25f7dc6b99268310f8b"
+    },
+    {
+      "path": "src/features/tools/orientation/config/rule-profiles.ts",
+      "sha256": "378f3b2945933ca5b1b64a14bc1f2f03e2a02c00f995e7e1663f7d504135ab84"
+    },
+    {
+      "path": "src/features/tools/orientation/config/targets.ts",
+      "sha256": "6a21f8d4c842f2ba67dcbaf1d5215627d3e3e40aa2249a510e9b696e022e593f"
+    },
+    {
+      "path": "src/features/tools/orientation/hooks/useDeviceHeading.ts",
+      "sha256": "4832502d5a0ab824c1ababc201d29195d05aaf2522b90f2cab09385cd2624e7f"
+    },
+    {
+      "path": "src/features/tools/orientation/hooks/useOneShotLocation.ts",
+      "sha256": "d6bc654202e7aac5e76dca28f168342db8a67139d0546cbfc31937f6183fd0b6"
+    },
+    {
+      "path": "src/features/tools/orientation/hooks/useOrientation.ts",
+      "sha256": "5252b168300682ad784e143acd4f951aa1e34ac9ea57bd6ac1f979351b0b8a89"
+    },
+    {
+      "path": "src/features/tools/orientation/hooks/useOrientationSource.ts",
+      "sha256": "bb790687d988447c1bbd9f4a08590ae98afe90388489e86c8ef10e710965d743"
+    },
+    {
+      "path": "src/features/tools/orientation/pages/HouseOrientationPage.tsx",
+      "sha256": "390bd788e914bbce02eed5ff484fe9b82724013729c70dc78f5d21bdd8e61de5"
+    },
+    {
+      "path": "src/features/tools/orientation/services/compass-draw.ts",
+      "sha256": "6a66207618baafa11dfa061d5856f78248030b8f4d38f9a754346f6a4dc5d152"
+    },
+    {
+      "path": "src/features/tools/orientation/services/orientation-export.ts",
+      "sha256": "e231d3394d3856b2cc089f31fecdb5b67970905344b3ab64edc613a3b5b9be61"
+    },
+    {
+      "path": "src/features/tools/orientation/services/pdf-page.ts",
+      "sha256": "53ac5a289888de4993d7d9fc9a5700a82ee4cae28d0acaea730b7074e40c74c4"
+    },
+    {
+      "path": "src/features/tools/orientation/types/orientation.types.ts",
+      "sha256": "b35650b2468e930ffe1a43c8da9b18b34b86d54546651f53b9b30cc9532d236d"
+    },
+    {
+      "path": "src/features/tools/orientation/types/rule.types.ts",
+      "sha256": "bafca3a25740aedc58623ce27b0609e54195f97217673cd53c0068d9e09cb407"
+    },
+    {
+      "path": "src/features/tools/orientation/types/source.types.ts",
+      "sha256": "45e9f21740698b96f4251c69b4740a8398886a2dc487384c38312a6521ab9c46"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/azimuth.test.ts",
+      "sha256": "0431e702addbaf0cd4bfc156aade3e1fc03b3a0b617c6dc2a69aa6d51f206ecc"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/azimuth.ts",
+      "sha256": "ba2314e0b71f990a6b1357384920d90d27e7e680e75a4d5139d733df70d48945"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/compass-geometry.ts",
+      "sha256": "97a348b50d3ba2650b8efe13668532b1e37fbd76780565245db7dee03e6c7fd6"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/compass-palette.ts",
+      "sha256": "bfcb2ecd82d0fc7e3f6f1007c409c0c9177bc709578e6f9a1d17285bf34afd64"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/compass-view.ts",
+      "sha256": "8a832fc1654af9bede89db25e5455104579d81dba88f2989449440aa701bc234"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/device-heading.ts",
+      "sha256": "ad05af22edf3ccd0c0412846887a8ca0c7a7d9aa8ee52626eb77b75ed1858b0a"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/history.ts",
+      "sha256": "fccfd54cb90a8be0b6749e8cb46cfd66b985a5ad3108c10ec68ec0b7b85ccf79"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/orientation-record.test.ts",
+      "sha256": "5b268e7ebca890f769e61bec807c277f208a64d607267dd5a76e44da4e9039ab"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/orientation-record.ts",
+      "sha256": "7896ff69902696e6e904d7c33d5511059ff9c97101f224cac3dfd887d61e7c8b"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/orientation-state.test.ts",
+      "sha256": "dcb5c60d125e6872472a9123aedf444f107ccd49e0a08942b18768e1ae679626"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/orientation-state.ts",
+      "sha256": "febddd22f1833cd80f177a989fbf167a54b7ea15698cf5100e4ba9de8fd07d5e"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/orientation-summary.ts",
+      "sha256": "cbec8055f358c7fe875e3a49eccd83a4b7b3cae71d94990e4206b40bb8f10c4d"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/rule-engine.test.ts",
+      "sha256": "db0eb2db569f55f16c9564264efcc6f0d6bfe066d31e804da5cf22ec47e14f87"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/rule-engine.ts",
+      "sha256": "a96439f01e4fe53250aea39a09086d5dc07d0062181c5db65f4ab83c97ddb929"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/scene-geometry.ts",
+      "sha256": "daea7c469ad3679909f31f744f153c85851bb268bfb365a4079d9ce46f42183b"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/sensors.test.ts",
+      "sha256": "271e865b93b12b57348f8c59b772bf30e89a2cb395a439c9e284cf6afa07393c"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/solar.ts",
+      "sha256": "bd5ac081aad1ba784b41505fe589a9982dd2d963794b53460f2f2706703e6586"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/sun-exposure.test.ts",
+      "sha256": "97f8989cc6d813a7304b1fc46a271fd7b5cf494398a615fd264878bf96c9b307"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/sun-exposure.ts",
+      "sha256": "ff4b6cf9922edcacbdbd4cf7e65dfc0ed5ba5d41a26605ee2cdebbb954cacab7"
+    },
+    {
+      "path": "src/features/tools/orientation/utils/trace.ts",
+      "sha256": "ef996e390bc4adf75f27a6d68c24df10b39a1f95d9a461e9d4adec1e19750a3c"
+    },
+    {
+      "path": "src/features/tools/pdf/components/CropBar.tsx",
+      "sha256": "f16a494f2cd82139fc14f04e24a6ce4e8213d6053a41be69c9511709d3776b53"
+    },
+    {
+      "path": "src/features/tools/pdf/components/CropOverlay.tsx",
+      "sha256": "6c250e13fb43eba1664b843f56202d57b386cd251dd7085f31a4e3787999881a"
+    },
+    {
+      "path": "src/features/tools/pdf/components/decoration-fields.tsx",
+      "sha256": "2c702b71ead7899cdd350eabbc7360a262b5bb38605d9f6ffc8286bfbd7a70cb"
+    },
+    {
+      "path": "src/features/tools/pdf/components/DecorationOverlay.tsx",
+      "sha256": "3d01ce54c4f03a4ab795cee866a7d46b09847e92d741dfb5155c8cd7621cbc43"
+    },
+    {
+      "path": "src/features/tools/pdf/components/DecorationPanel.tsx",
+      "sha256": "6d7dd2273d0e8ff560aa12aec87140dd3158f31310f953d2e8715f28bd12fb20"
+    },
+    {
+      "path": "src/features/tools/pdf/components/DocSidePanel.tsx",
+      "sha256": "9b11fdae0ed3d287e42c7a5b9c767c24f4e29a8121e7dcc2287f60dd652ccb62"
+    },
+    {
+      "path": "src/features/tools/pdf/components/DocToolbar.tsx",
+      "sha256": "97e93612ce8529812cc18c1debefbd12d3329eff567f27ff20a7fb552620d893"
+    },
+    {
+      "path": "src/features/tools/pdf/components/DropZone.tsx",
+      "sha256": "9b66749e2c6bec698755174995ef12cc8f9277a14094a61485ebed06f0bac1f8"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ExportJump.tsx",
+      "sha256": "7d950de09a44e4e01bccd9f5fab0df480df6acf5bd3962c79e1e6ec1c3c70976"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ExportPanel.tsx",
+      "sha256": "f1eb85771c331416a66c8a597c1a0fabaf6fb0366432513c69263cb4dbda108a"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ExportStatus.tsx",
+      "sha256": "75c1f9ee3eca0aa095260444c5608a580d4002d6a4a197f6b00cd4891e71b653"
+    },
+    {
+      "path": "src/features/tools/pdf/components/FormFieldInput.tsx",
+      "sha256": "dbd53e87f0f0f9784dccaa246efefb006a1f56239a3ac454718311dcc5e3a6b1"
+    },
+    {
+      "path": "src/features/tools/pdf/components/FormFillPanel.tsx",
+      "sha256": "47611e8baafce987ac11121f1ad9152032a792c31f0a57a86498dfd40e60b30d"
+    },
+    {
+      "path": "src/features/tools/pdf/components/HeaderFooterSection.tsx",
+      "sha256": "efd62271222c4235af3d1ff588dbb74639c476500e8a30da7653d6acfacb9eee"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ImageSheetFields.tsx",
+      "sha256": "ed69a6ebfcf38222da4549f41ebd2cb8ea1f78775ed3963baaa8a7cbf389ba9e"
+    },
+    {
+      "path": "src/features/tools/pdf/components/MarkupEditor.tsx",
+      "sha256": "efa542a4977810af44b30023f1c1a466c41b47a87af1ce8973308baf7816aae6"
+    },
+    {
+      "path": "src/features/tools/pdf/components/MarkupShapes.tsx",
+      "sha256": "26424dfd26c6e25f1ecf28986b837a340a4488590ade8ee4947c0083d1ca1255"
+    },
+    {
+      "path": "src/features/tools/pdf/components/MarkupTextInput.tsx",
+      "sha256": "36d690abebb37a300cc26fb2829207c81e0a15457770fa0cdcb3499c603a9da9"
+    },
+    {
+      "path": "src/features/tools/pdf/components/MarkupToolbar.tsx",
+      "sha256": "a30fd8af638c5af1d5474b48ffb664b466068bb86d4ac41085f140debacf5b48"
+    },
+    {
+      "path": "src/features/tools/pdf/components/OcrSection.tsx",
+      "sha256": "73933c1aeb825b354c809d3b78027e50e3b63f14e256f94512e42d890bbc33ab"
+    },
+    {
+      "path": "src/features/tools/pdf/components/PageGrid.tsx",
+      "sha256": "2c0d7815e56e760b3eb0df4a5fd6d9dc21653bf08803f73f8fdaeb60bf17a8e5"
+    },
+    {
+      "path": "src/features/tools/pdf/components/PagePreviewModal.tsx",
+      "sha256": "6e9cbf9a123f1ad62c11ab8b3258d561e799a4de6b3f2a87ae0c804680e8dfc4"
+    },
+    {
+      "path": "src/features/tools/pdf/components/PageSheet.tsx",
+      "sha256": "012c648af84282a64e5f25b2ee05dda76e434bc43d1bcf1581c65c1b99f13796"
+    },
+    {
+      "path": "src/features/tools/pdf/components/PageThumb.tsx",
+      "sha256": "119db635a2652ed448c645ae4568c81d2cb7fc9618563fda7d0d2060fa778376"
+    },
+    {
+      "path": "src/features/tools/pdf/components/PdfOutputFields.tsx",
+      "sha256": "68a7ec3f5033f5a18a13e1bb53f37894f6f861594938c968b676f3b6a090e442"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ReplaceBar.tsx",
+      "sha256": "fd8e864222ba93e8a4b254825c0594901c07ca4402754def1ff93f84e9d23bcb"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ReplacePageModal.tsx",
+      "sha256": "2b7e75f0f88c5ec5ed476375d0d6814667e634f3eb9a891cce0a26d216471876"
+    },
+    {
+      "path": "src/features/tools/pdf/components/ScanCleanupModal.tsx",
+      "sha256": "afac04292a8b5aad323761b98b54acdb1ff12fae5e39b18674e4b99d78d0fd59"
+    },
+    {
+      "path": "src/features/tools/pdf/components/SearchPanel.tsx",
+      "sha256": "6c576756a4747ae98a22c42fecd557647404c711ae412d498ff3b8a0f49d2151"
+    },
+    {
+      "path": "src/features/tools/pdf/components/SuggestionBar.tsx",
+      "sha256": "a8f99f1ebbda56d44a9276c49a2f5ed317f0ba2e5100afe4b8b08ce9895fc58b"
+    },
+    {
+      "path": "src/features/tools/pdf/components/TextEditInput.tsx",
+      "sha256": "08bd256d363ced134283274611918d223308cdb0cd2981cb8ff93b8d7e3f6b27"
+    },
+    {
+      "path": "src/features/tools/pdf/components/TextHitLayer.tsx",
+      "sha256": "bcd702ed1edeb86a09b2bbed3743cec95b571da37adcaffacb9f04f4cb1a23f0"
+    },
+    {
+      "path": "src/features/tools/pdf/components/UnlockPdfModal.tsx",
+      "sha256": "998ac3df89d60506dc76f32debf8a94f79a882d36256bbfef273824e6999e566"
+    },
+    {
+      "path": "src/features/tools/pdf/components/WatermarkSection.tsx",
+      "sha256": "d8b23fa8587e09d5fb8895898071f63c669f8b8dda244985773be2540b324f73"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useDocExport.ts",
+      "sha256": "c8a54335a05cbbf30976aa46052ac56b71fcfe4d5df7bdf4a5d26d590d467210"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useDocWorkspace.ts",
+      "sha256": "d4b65933beab5af494eef13951cec31f033667f42f877d6da470de238b003ab6"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useFindReplace.ts",
+      "sha256": "e6b2c13778ecf7092e15862239dcdf6558405099dc2ce148dc3ad1d087dd30ff"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useFormFill.ts",
+      "sha256": "3d37bffaf32f4be498e252b4fdf675394081d53ca48984746662e180d454e39d"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useMarkupSession.ts",
+      "sha256": "4c8d660d1161f5afb59ef0ed03d0d7f5cd7d0e5ef3dc3ad17acb03145e57bca6"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useOcr.ts",
+      "sha256": "c3c31d86e31580278a3d504f78d3f22c954625602f9e3d7c00f62200e05545c8"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useOrganizePages.ts",
+      "sha256": "0a67a30d0feb2458df0e0be77a127677669b5dcc0f3d6bf84ee452c08b6e273a"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/usePagePreview.ts",
+      "sha256": "bc4a629dad09e6eec4041d3563611293fb599c4d050d09025c8577d49fd03639"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/usePageText.ts",
+      "sha256": "0c4db74fab70a794c1c9b7e16cf85a33103fcb94d8e861274cf9616dcb168b15"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/usePageThumbnail.ts",
+      "sha256": "729b6ba7dc04da652c8f7f723614786c05084103c226b1d7b1e4e5df74b7d4f4"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useQuickSources.ts",
+      "sha256": "28500c588a5603f17d616c1fef6df916526d759033f3ab5515945f25ccb7c251"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useReflowProbe.ts",
+      "sha256": "18456f9f8b32ee22ae9f29c5d3bfb83e27df11b0537dbd6cf7e104ff8ecc4aac"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useScanCleanup.ts",
+      "sha256": "470ae1e4fad135a216b0b647c93cd57ed60448c247b7105d3edcd1b106fd229d"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useStampImage.ts",
+      "sha256": "9d7cc4e03b2b3468d7c2053cb1121a652478ef3abb0cf9b90ee38168b845b922"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useTextEditSession.ts",
+      "sha256": "5078cb762b602b695d30bf9de924b7b03e8497458f6574b64484cac4031411ef"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useTextSearch.ts",
+      "sha256": "7f8cda79105688329c446f3555c68cecdc116e76e7e77df6990db67701d80cd8"
+    },
+    {
+      "path": "src/features/tools/pdf/hooks/useUnlockQueue.ts",
+      "sha256": "7024ab2e4c837b88aa5634b725eff16e4e48595dc518748d1802c9fd9c03c2e9"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/DocToolsPage.tsx",
+      "sha256": "3904b8c1db3e314091a742071d50fdab83d8c40ffde4805588e8558402946584"
+    },
+    {
+      "path": "src/features/tools/pdf/services/compare-task.ts",
+      "sha256": "b9e5c5e9f33124afe0806c90ddb610c44d8192f89d193fec693868a19754fd6a"
+    },
+    {
+      "path": "src/features/tools/pdf/services/doc-build.ts",
+      "sha256": "2d530d57a5ecc0e4608b179aa4bb2e8d8b363e12aca6c0baaf6937d3906d60dd"
+    },
+    {
+      "path": "src/features/tools/pdf/services/docx-lib.ts",
+      "sha256": "19d01d4915b28c2bdd62fb513ab5346123d7aefc3a7681d01c777aea7d64d313"
+    },
+    {
+      "path": "src/features/tools/pdf/services/handoff.ts",
+      "sha256": "1457d3a7f5e3d4ff882b5569b1e25b863ab024406caaa7cd3459abdb35206f73"
+    },
+    {
+      "path": "src/features/tools/pdf/services/ingest.ts",
+      "sha256": "de7028f49ce98ff4319aff5bcfd6165e30845fb3f5ad1db31b5b26a139a9dfdb"
+    },
+    {
+      "path": "src/features/tools/pdf/services/local-fonts.ts",
+      "sha256": "98f29273bdaa01a0f49a58548bcded5de4807d987260d5ef602d301b4a7f6b7d"
+    },
+    {
+      "path": "src/features/tools/pdf/services/ocr-store.ts",
+      "sha256": "9c89b5b42988a8ff650909d2b32c8f579f5220f5d0e184cb83e20f17ea49be97"
+    },
+    {
+      "path": "src/features/tools/pdf/services/ocr.ts",
+      "sha256": "c7f245676cd9082d7f1164862eb662962e6c70812ccd31d1c58900b0367291bc"
+    },
+    {
+      "path": "src/features/tools/pdf/services/page-edit.ts",
+      "sha256": "fc53ecf9c94c6cabcf7b8f642389d87c5f7c86cbc89448c244ea92bc72550511"
+    },
+    {
+      "path": "src/features/tools/pdf/services/page-preview.ts",
+      "sha256": "647aaa13c4bf87859afb12e3c8753dcccf60fd9f4aa94c0bdf4e7723cc1c71c5"
+    },
+    {
+      "path": "src/features/tools/pdf/services/page-size.ts",
+      "sha256": "6d4d8f8ea7ccc0c98bf208a46f1be3253dd4b5981a8e874d39a4f56138aabe39"
+    },
+    {
+      "path": "src/features/tools/pdf/services/page-tasks.ts",
+      "sha256": "3f7fc89b143d48d466e75ef0528542df988956d2b0f849e97af86c7a313b8e75"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-annotate.ts",
+      "sha256": "95baa6eb2fa01fc88c0168973c31c9f74e0d480da0e7830f1094d892e211f7c3"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-assemble.test.ts",
+      "sha256": "74a275b337c14aba7719f81ac58f82b618482d1ae97cb17d9fb192cafa0a5ea1"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-assemble.ts",
+      "sha256": "b51da1d9c69bd095f4901929110dd036b1a9d8c65d4d5a3c7367fd87aa61a087"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-carryover.test.ts",
+      "sha256": "d63ec33d5f5b541d8bf95983e77f78254cf0fa379c7f17225a293099e7c46c73"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-carryover.ts",
+      "sha256": "f308782cb0d268fa053a04e224a0add68206743a6bc58f0024c52f3ebc7d086c"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-compress.ts",
+      "sha256": "237ba4a293c3594d10ad16252bab57682f4d3f3023b243fa93f31e68eddab371"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-decorate.ts",
+      "sha256": "73b14a465a5ee14f6484c2d2ad061d39ab695966d15173baa309b8d850fe41a3"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-dedupe.test.ts",
+      "sha256": "4262d730f84a03544b609182a14f08a5e59383f25f274f536940e9fedce78380"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-dedupe.ts",
+      "sha256": "518dfaf1f26a96291057e6642f96b05120a0a1e1df57d62ddb20b8a9017c0ee1"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-draw.ts",
+      "sha256": "39403dd1b1f38f48c45dbee61c47be2f32de7bbbae98678eb82a29fb0366b079"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-fonts.ts",
+      "sha256": "1c66a07294945f94d057c1e4dc242d3e2aa08ef14caabe944b7058f71937d93d"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-form.test.ts",
+      "sha256": "25c2f2cb4de26e5e372a336b97ad5c96a5e0e996fe996af76164b665a099a673"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-form.ts",
+      "sha256": "a11ac7985193804a8cca8469d9162e9b04e4313d27270104c77b82982bf11800"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-markup.ts",
+      "sha256": "4ca0cfc7db6d03ddf4fc936fea3a1b3aeb387560029cdebd87d34a8164e13c59"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-ocr-layer.ts",
+      "sha256": "f1482f4a648424f07223ab2e03e8f97125a13d08cafb95906058d2fefe1d32b6"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-redact.ts",
+      "sha256": "6fcd7c43e2ad0500251849154685de2336d205b13376942d363174019795e93a"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-render.ts",
+      "sha256": "64146a0b4f5cb9839a7887a0e1f188e97b99fd11a6edf5ffc2d8cefc908b8097"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-to-image.ts",
+      "sha256": "dac34bb5ddb90c8626267e3b2e672a163370af8d53c6763cd941d4c1959ddc74"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-to-office.ts",
+      "sha256": "21e80428a8d406494ae4c709a0c43ca73a68e725c215485a11a362206e6ac493"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-unlock.test.ts",
+      "sha256": "689bc1727a1566f5767c7941d63b800b9265ca09d05e3cd8d648ee1d875fd744"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdf-unlock.ts",
+      "sha256": "023ceb21e19f60c182a6a15d5887a2253a23b06a3f58b255e2d2816bb4109827"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdfium-lib.ts",
+      "sha256": "c1ffcac40a78736cfb361774cecb2279da44ab871020f6e40aeeed221cc41c78"
+    },
+    {
+      "path": "src/features/tools/pdf/services/pdfium.ts",
+      "sha256": "3a1da4602727cb9de95ca51c01b52cf112c046b3ff09fd46c83897916bbdc7ba"
+    },
+    {
+      "path": "src/features/tools/pdf/services/qpdf.ts",
+      "sha256": "6639fd33f868f32c99205205ae3a25c68e1a986ffd4ed4b14af77bbdb2510c8d"
+    },
+    {
+      "path": "src/features/tools/pdf/services/quick-tasks.ts",
+      "sha256": "f1913dd8808f1801b2ba7d212c1f941b16acb6b0bf36953057c27141f93b0e1e"
+    },
+    {
+      "path": "src/features/tools/pdf/services/scan-cleanup.ts",
+      "sha256": "7b924e6d45fb03e5f9b823aa279fcd8790400469e1b825a04e477edff49ccad3"
+    },
+    {
+      "path": "src/features/tools/pdf/services/signature-image.ts",
+      "sha256": "66936c37374bdb923095644db2488fc3ed0f56b23d55e807772373ed3008ac66"
+    },
+    {
+      "path": "src/features/tools/pdf/services/stamp-image.ts",
+      "sha256": "c4f80a80baad629d2065d979a79d42f0eeeeef6ff80f583ca1569fe962c06b35"
+    },
+    {
+      "path": "src/features/tools/pdf/services/text-layer.ts",
+      "sha256": "e204a8fa46fca0e360c386484d7c32fffa814a474faebe89cd03a2525d465ef8"
+    },
+    {
+      "path": "src/features/tools/pdf/services/text-measure.ts",
+      "sha256": "321d1d91bff643d775e730bf8e1788afbbf8b961b5fa073921f2b64e6a837774"
+    },
+    {
+      "path": "src/features/tools/pdf/services/text-reflow.ts",
+      "sha256": "f29d947162d211d506640e577255f00d93abd2b4adaacc55965595bc3aa77ce8"
+    },
+    {
+      "path": "src/features/tools/pdf/services/text-style.ts",
+      "sha256": "a939782673b76f680eb0bb531caec3d38b3840dd452f00c6216c36b36a8fc1c1"
+    },
+    {
+      "path": "src/features/tools/pdf/services/thumbnails.ts",
+      "sha256": "a7c85f3a6b096e9c4085cf193a7c74557ffd2a7b571104fc3f9eff89d8ab6f84"
+    },
+    {
+      "path": "src/features/tools/pdf/types/decorations.types.ts",
+      "sha256": "8da686f583e27b2ec1de147a45d930ed43a449a13b891f7b9231e2fbb09a2c0a"
+    },
+    {
+      "path": "src/features/tools/pdf/types/doc-tools.types.ts",
+      "sha256": "b062576bd65e908b82765b34a379ca941d2644bf10bbe6cf53bbfce081cf8d82"
+    },
+    {
+      "path": "src/features/tools/pdf/types/form.types.ts",
+      "sha256": "a3a99abe44610cf9fe455c3d697ea3eed718403091f28382f1829d38ea6737ef"
+    },
+    {
+      "path": "src/features/tools/pdf/types/markup.types.ts",
+      "sha256": "a774b23fa9d48381b5f196ba48e54924c7d6d157bff7eb251440137da38f8e02"
+    },
+    {
+      "path": "src/features/tools/pdf/types/text-layer.types.ts",
+      "sha256": "d0f52ef20f9ea1fd7e98a8c297f9e05b28f9c79c28df98da4e62614899ef0837"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/batch-groups.test.ts",
+      "sha256": "510914b477f51c2f8ea71db2b23eed97c9b35048de4e7e0a3b31df86b44badab"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/batch-groups.ts",
+      "sha256": "8325bd79a40e09d035839f973e825d60941eba13ca7d3935966dddb765f8f6bc"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/canvas-cap.test.ts",
+      "sha256": "d5fdaf8be41aa7d729c7b10b358e9b959b031267137626b92ef1e67790197158"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/canvas-cap.ts",
+      "sha256": "a55d4bfa17de794ef08c5d0ec4b95cf5f205eec1b66c234156dc601ebbfa3a92"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/carryover-summary.ts",
+      "sha256": "6b87d1eeee3b07fe3d2a90dfdd068c7fad6635f81bd34b28947eae6bdc41e6ae"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/color-sample.test.ts",
+      "sha256": "3abeff3e2ea53dd7cf9b96617bab7933bb1a6366740652df490aa2043bdc3c66"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/color-sample.ts",
+      "sha256": "75e93d64a4226292010caa98572c27d15ae46486c9b09cc3c6a5488c9482dc1b"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/compression.test.ts",
+      "sha256": "92c57a0aff7495733f082640012814f104a7491653a34e6ad18757e7c9c8d34d"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/compression.ts",
+      "sha256": "df967886a0016d5555a8da2ea0e0ddd1472729962e7f4f6b9c386279d7302ccc"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/decorations.test.ts",
+      "sha256": "82530410e899d5410fcf757148e49e7ef3c2a35c9fe2a3c8703a8a259d43dd7c"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/decorations.ts",
+      "sha256": "07be2c3eb16908f7ac1e799202be52659a33a3346a4d72f80f83cf14d1f122a8"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/export-sections.ts",
+      "sha256": "ed2f9fb98fedf15e0f8a37cbd00b2520982743c3898a84fe6eba2805e40f2548"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/file-guard.test.ts",
+      "sha256": "61ef59bf54101707841f16d4ad2b3026c6b414dd5a6576c17309eccb63de6868"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/file-guard.ts",
+      "sha256": "b20f2f6a8261b69dd3ecc16e1ea3fe06f649b3dd2da8aeb1abb45eb030408e20"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/font-style.test.ts",
+      "sha256": "46c60e9c0a1b6e0d0310cef7a43c9748c38dce1c9765f1ba2a749e1440be99ed"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/font-style.ts",
+      "sha256": "87ec24dd1d0c0d557ee3143f73162f3b37c293f203e53ceae246e736ac72cc96"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/form-values.test.ts",
+      "sha256": "711e90d93d18312ba9e7186a742d8e72cc1e944c049f05cef33f8540833e0baf"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/form-values.ts",
+      "sha256": "d1af2039c35c6408d9c667c43da4f1fd84c8dfc589734826d6d7600d91769a03"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/image-sheet.test.ts",
+      "sha256": "ec3cd040922fec203b90699f2fd8b4d0fdcc49dfe859fbcd8a4265c591eb4115"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/image-sheet.ts",
+      "sha256": "cee5fbfce53741cdea7823809c85efc2c3a20541fc33c5084619617d82c3a290"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/is-typing.ts",
+      "sha256": "d9a8348447ea9b33485ad2c83fb0a67d3fea17d84da75ca8b09f267283e724e9"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-annotation.test.ts",
+      "sha256": "24e72ef2ee1dcc07d65e98b5d116d85750485f584354d3d88423976a7fdce5f9"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-annotation.ts",
+      "sha256": "e79ad43523b0e3231a76dd0607f7ea0060681a273f0d8694c88bb46bfb21ea72"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-draft.test.ts",
+      "sha256": "0d15e7cc741e24a5ead33dab1b36f8fa35bad13ab70821b9d5c7a59d8f962e95"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-draft.ts",
+      "sha256": "044067a7020b749844ff01d8607ed3d6e8cf449c8fa96fbf7dfb212796fc2034"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-geometry.test.ts",
+      "sha256": "9aa0b4275c8024f115e57d6eff35036f6393ea63e5a0efbb381841ee9c5d4814"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-geometry.ts",
+      "sha256": "ebc0ae5a5931125b517307d8867e694a285d82c91342e8c4bbc340aeb0d04083"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-transform.test.ts",
+      "sha256": "8e7ee80379b8d4e227970d05c079c07d63c5c7750bb14330df9705670d9dd586"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/markup-transform.ts",
+      "sha256": "cbd1e2caa6d2df371c01aa3274154633dd517f96511c9dd1f7d0be60243da90e"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/ocr-runs.test.ts",
+      "sha256": "271ce7e8b39e93b0ce634fa585533f28b0613989799d6c647de8c2bfc5860b31"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/ocr-runs.ts",
+      "sha256": "b27b15cbf5103a64a34e24b6cbb760403fdd0be6cfb8f3d919c1cb0fb911a22f"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/organize.test.ts",
+      "sha256": "531951df779a2b33bb53939952d1fc0e7c02f0a6298e69198612b615d997a521"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/organize.ts",
+      "sha256": "237b2034b135aff498438cfcf943b9f5117b6d2963d62fde85ec490679bbd5da"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/page-geometry.test.ts",
+      "sha256": "ac49bb7ea40767c941fced9adafe1e8b9c8ab9733e5060b67f0d44c2531ae76f"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/page-geometry.ts",
+      "sha256": "7c3a308ebdd57107dc3c2e3d2e01512b40fb6476916f6d37e7f31bc0c551ba77"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/page-label.ts",
+      "sha256": "956ffe5a0645091536920783f8dcc25239beb85a17df799084fc3c2d7f8a2b17"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/page-ops.test.ts",
+      "sha256": "a056528cf74d5d325eff3c17713e273e189f07e325e020107484d0c30cc9adb9"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/page-ops.ts",
+      "sha256": "8c72cdfdd154cc6e7c15472c482996fc1eb8161f83516c39d4ebb2e06d7942dd"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/pick-files.ts",
+      "sha256": "087be82132ac8a9c8ee0c3e4953534104e6c9636fb033e5211790ee62931705e"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/plain-text.test.ts",
+      "sha256": "29f3c23df50e3938f1094b80bc746e7036ac921569e141d1586b9e4a824844b6"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/plain-text.ts",
+      "sha256": "30de5a9ca5945f24336acb73aa3817f60247850cec1eb9956900b37a4c3153b1"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/preview-zoom.test.ts",
+      "sha256": "34ba291377f3537baa21ae797e37f8deca7011bcfd0c94cacb50083290533fb5"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/preview-zoom.ts",
+      "sha256": "889a27aad4308963e8d329a26c4d7d12852ae92b8e4181069398095f707859df"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/redaction.test.ts",
+      "sha256": "afbb445066fd9d14a8bc2e5bcd379f1e907223566ef20deb8ee459734ac7170f"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/redaction.ts",
+      "sha256": "d150111275b0240757142d60dc1d0aa4066dab0a817756c7d9cc415d06a9a6b4"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/reflow-layout.test.ts",
+      "sha256": "294c960fc6bd6eca207df02149974446da5a678c71c770145c893178d051ad2a"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/reflow-layout.ts",
+      "sha256": "8dbf5ab21143719616d5d55cb9cbf555840f8a1072b586070e2e62434aae9e7c"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/reflow-zones.test.ts",
+      "sha256": "d808551e0db9cd1bbd3116b180f9c6a5795a92ee0abedd7940bf74f0e56c7875"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/reflow-zones.ts",
+      "sha256": "74859d06d8b9c2fb8980239327f7e1d1b953d3a37f9392e86d5e145f9cef30c3"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/scan-analysis.test.ts",
+      "sha256": "04a780ccff8913681585d5b26591c82b7d47a965011964d4b2cadeb2d5782bab"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/scan-analysis.ts",
+      "sha256": "8e6df6dab6591892a4149b27fba8a7f5d31412109c4af3968d86b253765f90b6"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/scan-plan.test.ts",
+      "sha256": "18ad08d2cc22125c7ba1d0a115fec8d782c0155881ddf6afe7015f9d8dc75b12"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/scan-plan.ts",
+      "sha256": "1865d850aa16e204eb90b4761f982926421fd4b7094a871a610661f67e795f18"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/sfnt.test.ts",
+      "sha256": "ebb7497e22faebdc661bd5ff8a350e8631e3f853ebed7a798d986b8dfbb29625"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/sfnt.ts",
+      "sha256": "c51722891cc527862f2a7df30b3a7e70746f79c5052c4936e067437ecd880e74"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/sheet-ops.test.ts",
+      "sha256": "a68d441b7e1619eeb35489963bf56efa70a52a7145f88963443100f1fe13035c"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/sheet-ops.ts",
+      "sha256": "cc06fd00f2440c4ab076d6921f98dce21c0b4613999aed48e58f33a70884a59a"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/signature.test.ts",
+      "sha256": "f671844f2b0e4acba001ae45c2f93e739111d47644524a3d0fdac934331946ea"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/signature.ts",
+      "sha256": "7eee41c239b49279988fb19564e28bb43b1cf9ab531d4c890ce85da6e2dbda58"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/split-groups.test.ts",
+      "sha256": "111af78e61f4e9f32da8822ccc87e806783a650aeef2121e48ed46238b3da69d"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/split-groups.ts",
+      "sha256": "ef3bcb725852cead5e9d6816bf836d0ee78e9f15173047df01971c43258b6c0c"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/suggest-actions.test.ts",
+      "sha256": "43b75b793bed4f79167c6160dd00dc4a54aaf35a43fde17ec6b0cb29f0ca36be"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/suggest-actions.ts",
+      "sha256": "73931d600f42a84fb33f892d4432ff0005bcc20ac606416e15ba2259fa30cdc2"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-diff.test.ts",
+      "sha256": "7781dd491e4298d1a3a946cd3ad0b64e9d599994c5e836a8c5012ea8b585c6de"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-diff.ts",
+      "sha256": "1c22fe144844c36f1cbfb39ed2bc3bbec8a7e2840de6665a90794b5e055976e3"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-edit.test.ts",
+      "sha256": "b7e13e62d7c213208c47e1ab6fdd70ca2cfc913d5cd77e97cfbe8e3f51f47592"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-layout.test.ts",
+      "sha256": "d5d1f2c6c1c5aaf1837f5bb0d11d74770fcea5bfdee5c8fb386dece33fcdcc9d"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-layout.ts",
+      "sha256": "d323812dd46928abcd7d3f87138a7886850c68ba41e4289bb6878b13e4c73c73"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-paragraph.test.ts",
+      "sha256": "43e6744faeb1af6b4aae9d886e6c896d9cfaf9ecf079fa49528f972760b30a05"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-paragraph.ts",
+      "sha256": "03c2d52b3d6b50370c4a263fcb043a1d067cd7b0e27a96b047f56a1db6f9ca04"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-search.test.ts",
+      "sha256": "a46a9a7e4e5dac8b45df68c10f4bd1c95ad33366170c696ddbe5700a8cf2a417"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-search.ts",
+      "sha256": "c7fb06abb8d96a34bae030c34848241aa192c98184c8412091d284da6ae8f50a"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-select.test.ts",
+      "sha256": "97c22d65a2d864470fce0444dd48c5b321011622d342bbc97417ed5452ce6bb0"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-select.ts",
+      "sha256": "7efdf002fb18a4bb64b7873fb7910951a8a9d1c3a06b82074d8678b35cb89f22"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-wrap.test.ts",
+      "sha256": "68aacc240c29c060d556cd12237a7ccf18d82bfedba1acf6c26c44cd2d0a97de"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/text-wrap.ts",
+      "sha256": "a7a887e64d746be79799db910296e10a798b1ac748cbae8c3d893ae3fcb427de"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/work-step.test.ts",
+      "sha256": "19a0e5bf2583c1d4979e4ed8936181e6f34a23f10c5d8aedd24f99922925e964"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/work-step.ts",
+      "sha256": "e8c5d8550b51fbd3fc3ad958effc5317c9838883ae5a08adef58e1ba6b2c0a6e"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/workspace-reducer.test.ts",
+      "sha256": "1ce847a6e5e38e6f53db1937cd39cdeea4a6c76a0b39162fe3c1ece8ce0551ed"
+    },
+    {
+      "path": "src/features/tools/pdf/utils/workspace-reducer.ts",
+      "sha256": "fa230cda25b3ca88886725c4cc3394e90b1589c8a35ddc80b92149ee451c07f8"
+    },
+    {
+      "path": "src/features/tools/qr/components/BarcodeBatch.tsx",
+      "sha256": "675f81b539e6c67e16f2fab414bd8b7d4c2bfc763c4c321393d44091a14721d3"
+    },
+    {
+      "path": "src/features/tools/qr/components/BarcodeOptions.tsx",
+      "sha256": "a2a78e10c7562d2a164f689bd82e01612ad98168e7fff25cbc3ba50ccfc252c1"
+    },
+    {
+      "path": "src/features/tools/qr/components/BarcodePreview.tsx",
+      "sha256": "54c504c975f8c053acefcc46a0ce1eaed0f0ed376d1f3484f337121cdf8e8724"
+    },
+    {
+      "path": "src/features/tools/qr/components/Gs1Notice.tsx",
+      "sha256": "8ffaeefbeb68aa02d1fcc8ce51da2e1adbd2aa4badf65b2b80b0312b77f562d3"
+    },
+    {
+      "path": "src/features/tools/qr/components/QrCamera.tsx",
+      "sha256": "661ed1435bbb21f31370f8da10b2a9cd4ce40df550ca735dd900588487c32a3c"
+    },
+    {
+      "path": "src/features/tools/qr/components/QrColorPicker.tsx",
+      "sha256": "c45b849c70081e2d325252e502c5e1bf5262b93a2585637825f279bafe87bee1"
+    },
+    {
+      "path": "src/features/tools/qr/components/QrContentForm.tsx",
+      "sha256": "2a67c7ce8a71cc0178d997ba2b52379a3bcb23b182c3d282e876d82cb20e7bb1"
+    },
+    {
+      "path": "src/features/tools/qr/components/QrModeTabs.tsx",
+      "sha256": "4d5b408915aea759bdd7192ff382db8b63aac15a880aa5b96147aee1f6b14584"
+    },
+    {
+      "path": "src/features/tools/qr/components/QrPreview.tsx",
+      "sha256": "fac1d2d54e7a4c58fdc3f0b5eb8fe3fc161baf7aa496db5d934861c263c5fc63"
+    },
+    {
+      "path": "src/features/tools/qr/components/ScanResultList.tsx",
+      "sha256": "570fa85cf2fa7af80485e36c3aa84202903af3efb2bcd368b3dcd1f99a4c63fc"
+    },
+    {
+      "path": "src/features/tools/qr/config/barcode-kinds.ts",
+      "sha256": "e7fbf1bbcf6439c8fb334a74a618ea264f5973cd3280602c40f8989464f908f0"
+    },
+    {
+      "path": "src/features/tools/qr/config/qr-colors.ts",
+      "sha256": "1be6707ac53a358857129b17f96a4897e3f3076aa5f022f97e5cf221b07e50aa"
+    },
+    {
+      "path": "src/features/tools/qr/hooks/useBarcodeEngine.ts",
+      "sha256": "86feac630d10d2289294592ecf314eb221cdfb38b6c76680210e8f1920164c6b"
+    },
+    {
+      "path": "src/features/tools/qr/hooks/useQrScanner.ts",
+      "sha256": "a48130eb51b6860e9c3c6e258eb15da3b613bf3d477823c8374e59f8f7133293"
+    },
+    {
+      "path": "src/features/tools/qr/pages/BarcodeCreatePage.tsx",
+      "sha256": "437a29fe88a2d1afcd1fae0944b42df8d2de1d30f2cc90998428e43873ba076d"
+    },
+    {
+      "path": "src/features/tools/qr/pages/QrCreatePage.tsx",
+      "sha256": "49798984ba5ccc286ea7b5d1bb6e9f4c072ed90e7e41b9f2f74fc8f3770d4641"
+    },
+    {
+      "path": "src/features/tools/qr/pages/QrReadPage.tsx",
+      "sha256": "f0adcecb50d4c8ebdd21bfdfe93c1abcd4e18624f59ce9fdac109df923f617a9"
+    },
+    {
+      "path": "src/features/tools/qr/services/barcode-render.ts",
+      "sha256": "8f22f65548d4e50fcbc79604c14eecb488b7894fb35f7a7dbd4e6f185f51cc26"
+    },
+    {
+      "path": "src/features/tools/qr/services/batch-file.ts",
+      "sha256": "d0f3b57da0722af4c76a6579e0154392341b8c8f1274d204e85f632b39b645a9"
+    },
+    {
+      "path": "src/features/tools/qr/services/qr-render.ts",
+      "sha256": "e492b160320e018e309c359cf80a7af3cfe99c1a111e836460e30a1bcd864ecd"
+    },
+    {
+      "path": "src/features/tools/qr/services/qr-scan.ts",
+      "sha256": "c5558d13a93f110fd40fa2b7a0b22c779dd4a3df82ed665ab1e11d88d4526ff8"
+    },
+    {
+      "path": "src/features/tools/qr/types/barcode.types.ts",
+      "sha256": "24e14d9b389ebdeaa0a9c9eeaef9173ec3699650ef70ddeb9aa5578aa345eb89"
+    },
+    {
+      "path": "src/features/tools/qr/types/qr.types.ts",
+      "sha256": "f8e2833d6440625f86af4ed920c0bd8d190b21418ca942383a59439c810779e6"
+    },
+    {
+      "path": "src/features/tools/qr/utils/barcode-batch.ts",
+      "sha256": "116de24fd13e4a667821c1e0f0ad49605cacc4794c6e29845e65a70d2138aaad"
+    },
+    {
+      "path": "src/features/tools/qr/utils/barcode-check.test.ts",
+      "sha256": "2713cbb149098155321e573df9b8955db07262306eb66a484e46936340a306aa"
+    },
+    {
+      "path": "src/features/tools/qr/utils/barcode-check.ts",
+      "sha256": "33b8678f1f4d8563ed937800c1e3727984fa00884a509f5db82264f680e378bb"
+    },
+    {
+      "path": "src/features/tools/qr/utils/qr-file-name.ts",
+      "sha256": "f26508ed3b1a773ad0f7d50f7e8ef461ec87daff858934fa39026eebfee8b01b"
+    },
+    {
+      "path": "src/features/tools/qr/utils/qr-matrix.test.ts",
+      "sha256": "d4e848018fc19cde21d009b8775379f9f919142378b6ab4ff35f95329378a740"
+    },
+    {
+      "path": "src/features/tools/qr/utils/qr-matrix.ts",
+      "sha256": "a6c262483ef0673dcef398ac8af0402d738b18429ba10211505b2739fd008a4f"
+    },
+    {
+      "path": "src/features/tools/qr/utils/qr-payload.test.ts",
+      "sha256": "3c271f9c8d46857a7bab47a69ffea2ed254cb580f3957bc1a3ec60ae9516a503"
+    },
+    {
+      "path": "src/features/tools/qr/utils/qr-payload.ts",
+      "sha256": "9c82ce411397a4f471682bac03fc6aa693d2064f93b9cd7c61fd581cb4288afa"
+    },
+    {
+      "path": "src/features/tools/qr/utils/scan-content.ts",
+      "sha256": "e44b2155bc02d380d9b5d02591343c49a0f760bb8172e0e8bd7e1820fc6ff44b"
+    },
+    {
+      "path": "src/features/tools/qr/utils/svg-paths.test.ts",
+      "sha256": "f9c6da165f5112701d23fbbabbd1a7845ae4af34c3b5730877ec5ca4ca703954"
+    },
+    {
+      "path": "src/features/tools/qr/utils/svg-paths.ts",
+      "sha256": "48179fe7a83371e104a6ee318cb1ba34b0e3a2030d84cd49acd7ac137e9869ba"
+    },
+    {
+      "path": "src/features/tools/shared/utils/canvas-encode.ts",
+      "sha256": "33949a09b43350fd2d98262acccb1b36529502ee05cf2eb3e20e9e4eaf8c901a"
+    },
+    {
+      "path": "src/features/tools/shared/utils/file-names.test.ts",
+      "sha256": "19cf654b4b49bc9eb45c1cb365ef5c4c724938afb127ae31b13a3b1aa0d6aece"
+    },
+    {
+      "path": "src/features/tools/shared/utils/file-names.ts",
+      "sha256": "6bc3d0852e65df07aa8f9c70f67f6f64f040df5f3e4f43cb0209d2ed7f67b296"
+    },
+    {
+      "path": "src/features/tools/shared/utils/image-header.test.ts",
+      "sha256": "f60d53ce8579b912acabea158f34bef41964997e986dc454e022e88bdce2e599"
+    },
+    {
+      "path": "src/features/tools/shared/utils/image-header.ts",
+      "sha256": "206a7a9b3c16d55fdd761fbe25315c1dd1843b740d9ae4fb2fc8250a3fb0245b"
+    },
+    {
+      "path": "src/features/tools/shared/utils/jpeg-exif.test.ts",
+      "sha256": "d7e15b81c73a1176d18646dfecd2ee9a068b7729fc7025b7715842d0fccf634e"
+    },
+    {
+      "path": "src/features/tools/shared/utils/jpeg-exif.ts",
+      "sha256": "f27eedb0734d93f4b217070fe4665934dcd0fe2cea96b46f1ff377647be1b87c"
+    },
+    {
+      "path": "src/features/tools/shared/utils/png-webp-exif.test.ts",
+      "sha256": "ceb691d13c12d3df0935f1514f08348a6ddf1305cf5d33c02de1905cc0126334"
+    },
+    {
+      "path": "src/features/tools/shared/utils/png-webp-exif.ts",
+      "sha256": "5597c71262fe8ee15b591821375863f26f9c9c101e44e10c083133ad397aa2b2"
+    },
+    {
+      "path": "src/features/tools/shared/utils/zip.test.ts",
+      "sha256": "c48dc028f140a429f0ecc1b97d712d5293861bf2b058fa374d932bca0d40398b"
+    },
+    {
+      "path": "src/features/tools/shared/utils/zip.ts",
+      "sha256": "88c4924b94b929ca6e8f2eb3471b44bb524f96df210498985b71a0a9bab60d47"
+    },
+    {
+      "path": "src/features/tools/utility/components/ColorCodeField.tsx",
+      "sha256": "fce0355e91c09496b9876c15d0b357b1cd4f34e1f497ce3c298c603ea8cb5fbb"
+    },
+    {
+      "path": "src/features/tools/utility/components/NoteEditor.tsx",
+      "sha256": "2fa1c34bb04f04bc9448895f7518d4658ba9f9cec24a64df8116e60675805274"
+    },
+    {
+      "path": "src/features/tools/utility/components/NoteList.tsx",
+      "sha256": "35135b8d789b7f422e5cef8b1c699f6506d1b60b482b8f1615c8cd9e948f9d4c"
+    },
+    {
+      "path": "src/features/tools/utility/components/NoteTasks.tsx",
+      "sha256": "0bb014849ebaeac0c4e67fdfeaa0659e4dc08d99553379f62fd5c238770d9717"
+    },
+    {
+      "path": "src/features/tools/utility/components/NumberField.tsx",
+      "sha256": "2f2fe1167b3dd3939bd7fd7343e06c297088263fb6d7dc534e89c8daf582a550"
+    },
+    {
+      "path": "src/features/tools/utility/config/calc-formulas.ts",
+      "sha256": "18a8d6b54458adaf6b5b39739104b93e841aed2d748d0586032996919ca42c1a"
+    },
+    {
+      "path": "src/features/tools/utility/config/money-presets.ts",
+      "sha256": "ebe69d71395af6d92b3a794651f5f4c9960cad4d3ea2b3a0d1ca57791d3f21a3"
+    },
+    {
+      "path": "src/features/tools/utility/config/units.ts",
+      "sha256": "404d8f9ef00a351530056862103d11af6a739ce9df10f57da714dd83fd46bfd6"
+    },
+    {
+      "path": "src/features/tools/utility/hooks/useNotes.ts",
+      "sha256": "70a8c1be4c854275e6deab262446e68b852682026c646f02b7d53e9b9c20bd6d"
+    },
+    {
+      "path": "src/features/tools/utility/pages/CharCountPage.tsx",
+      "sha256": "22d3e45100b7b91f671c9a14ad34c471d34646ed3e4ace0990566db64f0db94c"
+    },
+    {
+      "path": "src/features/tools/utility/pages/ColorPage.tsx",
+      "sha256": "282fad053d9b86b0f90b5c47c01a6a1206618f2ae4011fa042e1bb6528c6382c"
+    },
+    {
+      "path": "src/features/tools/utility/pages/DateCalcPage.tsx",
+      "sha256": "b25f9889bbc8591c68d281b960b771912f7e408b58bc0da2df51e8311c50b009"
+    },
+    {
+      "path": "src/features/tools/utility/pages/MoneyCalcPage.tsx",
+      "sha256": "bbaf44daf54f27e5ed4f1ed01ff63d0b3d382303366aa25e9e8bfb592d5e2749"
+    },
+    {
+      "path": "src/features/tools/utility/pages/QuickCalcPage.tsx",
+      "sha256": "11dc79f829a0057f3b1efe01604d17dac103f61dbe29ccf8c1fb31a94929c391"
+    },
+    {
+      "path": "src/features/tools/utility/pages/QuickNotePage.tsx",
+      "sha256": "92320b35a184e4ce974c18bf305be4065ea3b8fc900e6dbbbfe13ed7bdf459dd"
+    },
+    {
+      "path": "src/features/tools/utility/pages/RandomCodePage.tsx",
+      "sha256": "14543904002c64d2b516426af6b9e68d0672a1901bba6323e94d947fa3ca5e43"
+    },
+    {
+      "path": "src/features/tools/utility/pages/UnitConvertPage.tsx",
+      "sha256": "4bdb3a10473abaca5ef520dccce9b4884aae3f3eb2834e07a7b1e2889540673a"
+    },
+    {
+      "path": "src/features/tools/utility/services/notes-store.ts",
+      "sha256": "1d6a0c8d4ab04f88c61848c63424dd14dbef8950d59d7625e2b58af0608a776d"
+    },
+    {
+      "path": "src/features/tools/utility/types/note.types.ts",
+      "sha256": "d9b3700907b6bae30b6f3143d5e8a69f9c79f7d33898c45b15fe534e866cb974"
+    },
+    {
+      "path": "src/features/tools/utility/utils/calc.test.ts",
+      "sha256": "670fda8fbe301f21b1f992275fad08af9ce6b3b43760864aa317dcafbec01af1"
+    },
+    {
+      "path": "src/features/tools/utility/utils/calc.ts",
+      "sha256": "b66135fce59d44324faf97bb167f068fe5f26b45a30aa58bb9d98539a511b4c2"
+    },
+    {
+      "path": "src/features/tools/utility/utils/color.ts",
+      "sha256": "a0c7b6fbfdfb5fccffc391540f7ae529949aa2f2d3867764fb208fd955006da8"
+    },
+    {
+      "path": "src/features/tools/utility/utils/date-calc.test.ts",
+      "sha256": "407e1be4131c7ed2fc370cafa1d1e6e37a9e801708fc9a9f72b9f79132f98d86"
+    },
+    {
+      "path": "src/features/tools/utility/utils/date-calc.ts",
+      "sha256": "c67913dc1faadeed0b834e28bab916937b1407d121181d30446a589fafaf8816"
+    },
+    {
+      "path": "src/features/tools/utility/utils/money.test.ts",
+      "sha256": "eddfa8961ef13499a599a3e446f4ee59de4d4549a7d66db9c6c67a2a7746a158"
+    },
+    {
+      "path": "src/features/tools/utility/utils/money.ts",
+      "sha256": "7bc5aac6fff7c911e312dc9915abf54e9014065b919d117351360ce8f776cca8"
+    },
+    {
+      "path": "src/features/tools/utility/utils/notes.ts",
+      "sha256": "33f279208368726baa950190668138f0b20a42c965abf77c8b7387e3dcf85435"
+    },
+    {
+      "path": "src/features/tools/utility/utils/random-code.ts",
+      "sha256": "8d33f11c1ecc4dcbc6e8da4bde844e5323a0dcbb0618ea79422674380d4e0d2c"
+    },
+    {
+      "path": "src/features/tools/utility/utils/random-notes.test.ts",
+      "sha256": "53bc381f927fb4bb1154e4e45f561473498133c9026a07530c549c594346dacf"
+    },
+    {
+      "path": "src/features/tools/utility/utils/text-color.test.ts",
+      "sha256": "8c7b0e332426402545b6dc1920ec50946ba57eeef38a5ce40f222abb2db06251"
+    },
+    {
+      "path": "src/features/tools/utility/utils/text-stats.ts",
+      "sha256": "61f9baa6ebdd9c0ff94dd37fa373b91e50555939e3d32ee2dadead95de7544db"
+    },
+    {
+      "path": "src/features/tools/utility/utils/unit-convert.ts",
+      "sha256": "c5f4278c2414a083bcadd4e7a8f4a75590f21ba78345aa5bd5f794d530df48ae"
+    },
+    {
+      "path": "src/features/tools/hub/components/board/ToolBoard.tsx",
+      "sha256": "c30a88891b2d30e09f6e4bc1b5593423a55a920b32c59b73b464326074226037"
+    },
+    {
+      "path": "src/features/tools/hub/components/board/ToolPanel.tsx",
+      "sha256": "73c0ac8640489e67ad814993d309e258686ba3c5c16c0ccf51a7f4771881274e"
+    },
+    {
+      "path": "src/features/tools/hub/components/board/ToolSegments.tsx",
+      "sha256": "1e99a96067d839d1573856cd722ef79ce1d74632efe5ae0fcd6ddc2bc7989358"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/FileList.tsx",
+      "sha256": "22755d3cb90c6e822e6f3ab052d492a089faa434019e5625b0c3444a3b76fc58"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/FilePicker.tsx",
+      "sha256": "883e0997e1ee4cdc8d297c84527f86644f5ef3cb2c0cac8e418a146cd59f7f5e"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/FlowChoice.tsx",
+      "sha256": "1b47dbe68ad1e5fc36354fdb2c3f1e0b008540e95ba4510c9619dd3819d9ee5a"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/FlowProgress.tsx",
+      "sha256": "ba7a90587ab8caa96ba72eb140250fd41fffa73d487f2d6b6bb3eadec7f77765"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/FlowResult.tsx",
+      "sha256": "bc25a5e48a554f4b1bd52b7f13608e22b2406436c8eacccc006e171b138f0ff9"
+    },
+    {
+      "path": "src/features/tools/hub/components/flow/ToolFlow.tsx",
+      "sha256": "a5f7d125c9e44203d41604e1f50c4067c879e47aba6499d2b6bd6506eba9eee3"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/DecorationStage.tsx",
+      "sha256": "0d121b0d3de8a871d7f5c036ac7940a4044094d960bff96188e939e49da7c751"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/OrganizeStage.tsx",
+      "sha256": "7a30d566a15764bec6bd178c1df1c85884113b5515ebbd46fd73a9430419a86b"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/PageCanvas.tsx",
+      "sha256": "96c890c01215f6a5a8ae1b20ea0771d40bbce232f44916c30562dbf5dce5bfaf"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/QuickToolShell.tsx",
+      "sha256": "bae7807c9eb0c5435f0c78637ba66620a1102768b3afb1bafcd86ad81e69f21c"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/RedactOverlay.tsx",
+      "sha256": "74301d297318a654e2ff672837bcbe193a76957f55521b339937c1f08bcfc841"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/RedactStage.tsx",
+      "sha256": "9fcd78c81cf28764152290d7515e64b7c0016f10a53b48bfa2423aaee2757ef7"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/SignaturePad.tsx",
+      "sha256": "09bc8bebc026d6bac88656a37ffceef2458393b4aafeead39e1e5043af129872"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/SignOverlay.tsx",
+      "sha256": "2f09ef43351f7bed5d93f737cfe9dc786e59dd72aa198a5c89bf836f15b54409"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/SignStage.tsx",
+      "sha256": "ff45183d768f37a8cfa5be0aff16ba38f400c51206217734dd5f2f4ac3816031"
+    },
+    {
+      "path": "src/features/tools/pdf/components/quick/StageHead.tsx",
+      "sha256": "b69c9d55bb8a6ca01c362c41407a1a35bfa413777c45da6e7d0fc59c148d72c4"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/ComparePdfPage.tsx",
+      "sha256": "b67cdb61cb2ae576e523ab20321b6d7061552a014e91a2ab4f63a8d048343de0"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/CompressPdfPage.tsx",
+      "sha256": "8f700d75194b2c5bdea51a4ff4497afdb23bdca379f4cb6125c0655fa6752f19"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/ConvertFilePage.tsx",
+      "sha256": "596045dd469c5fbb4ac20dd1032b53639c088a0575b8ddebd05c96cd3e76bb11"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/ImagesToPdfPage.tsx",
+      "sha256": "bb0a1acc7c89ab1e5914852c41fc1c78fa52d8b243cccd8fca06db3141062661"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/ImageToTextPage.tsx",
+      "sha256": "8acca2e8d2e31fd1cbf101bf2f6a70d0512dfc2529c72a0b4ceb62f779cf589f"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/MergePdfPage.tsx",
+      "sha256": "2a461d4712176e173cc38591bb2fb1bb9844189430ac112b1c5c56dcaf8dfd49"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/OcrPage.tsx",
+      "sha256": "ae9f139e63f66092b50f2dc868736b65f014bc6e252e277dff32cbaae2940f41"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/OrganizePdfPage.tsx",
+      "sha256": "c5d5f19850060a838c72378b7e49e238718a0f3ab12857cb7738b0277a0e5cd5"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/PageNumbersPage.tsx",
+      "sha256": "f8aef487a574fa30f77021c76dc5a12509bd570dae02214e06373ce6233adfd9"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/PdfToImagePage.tsx",
+      "sha256": "bdc018103188c9b5422265c7ca15f59bc5b9f467da8a2ea8822ecd270a1b6015"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/RedactPdfPage.tsx",
+      "sha256": "961b9f7c74da8f2bfda0b471ab33db8d432f5dc22f308c63f31ff9d4ee1ac16b"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/SignPdfPage.tsx",
+      "sha256": "82ecf0c50b09f197cca1c7bafb9da16b2da3f20acb8a37647668cda5a6ed537f"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/SplitPdfPage.tsx",
+      "sha256": "370cd4003483e54fceef5490ab4e4535003c6c93cb39fa6516313a55adc10f94"
+    },
+    {
+      "path": "src/features/tools/pdf/pages/quick/StampPdfPage.tsx",
+      "sha256": "24a20c9a594c56ee25033f47889497fd91248fd930b099ee45a27978c936ef6c"
+    }
+  ]
+}

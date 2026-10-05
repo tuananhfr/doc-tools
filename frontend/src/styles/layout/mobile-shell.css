@@ -1,0 +1,1032 @@
+/*
+ * MOBILE SHELL — khung điều hướng của điện thoại (≤576px) và bốn màn của nó
+ * (Công việc · Tra cứu · Tôi · Tất cả chức năng) + bảng "+".
+ * Xem docs/mobile/README.md.
+ *
+ * Màu: Crimson (`--erp-brand`) chỉ cho đích ĐANG CHỌN và nút "+" — đúng vai
+ * "điều hướng / hành động chính" của hệ màu; mọi thứ còn lại dùng blue/neutral.
+ * Trạng thái (đang chọn, khoá, quá hạn) luôn có thêm hình hoặc chữ, không chỉ màu.
+ */
+
+/* ------------------------------------------------------------ thanh dưới */
+
+.erp-tabbar {
+  position: relative;
+  z-index: 15;
+  display: grid;
+  flex: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  height: 56px;
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.erp-tabbar__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.erp-tabbar__item:hover {
+  color: var(--erp-text-primary);
+}
+
+.erp-tabbar__item:focus-visible,
+.erp-tabbar__plus:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+/* Đang chọn: vạch trên + icon tô đặc + chữ đậm — ba tín hiệu, không chỉ màu. */
+.erp-tabbar__item.is-active {
+  color: var(--erp-brand);
+  font-weight: 700;
+}
+
+.erp-tabbar__item.is-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--erp-brand);
+}
+
+.erp-tabbar__icon {
+  position: relative;
+  display: inline-flex;
+}
+
+.erp-tabbar__label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-tabbar__badge {
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  min-width: 18px;
+  padding: 0 5px;
+  border: 2px solid var(--erp-surface);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+.erp-tabbar__dot {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--erp-surface);
+  border-radius: 50%;
+  background: var(--erp-warning);
+}
+
+.erp-tabbar__dot.is-alert {
+  background: var(--erp-danger);
+}
+
+.erp-tabbar__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Nút "+" nhô lên khỏi thanh: đích bấm 52px, lớn hơn ngưỡng 44px. */
+.erp-tabbar__plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-top: -18px;
+  padding: 0;
+  border: 3px solid var(--erp-surface);
+  border-radius: 50%;
+  background: var(--erp-brand);
+  color: var(--erp-text-on-accent);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-tabbar__plus:hover {
+  background: var(--erp-brand-hover);
+}
+
+.erp-tabbar__plus:active {
+  transform: scale(0.96);
+}
+
+/* Bàn phím ảo bật lên (khung nhìn rất thấp): thanh dưới nhường chỗ cho ô nhập. */
+@media (max-height: 430px) {
+  .erp-tabbar {
+    display: none;
+  }
+}
+
+@media print {
+  .erp-tabbar,
+  .erp-device-notice {
+    display: none !important;
+  }
+}
+
+/* Nút trợ lý nổi đứng TRÊN thanh dưới thay vì đè lên đích "Tôi". */
+@media (max-width: 576px) {
+  .erp-shell .erp-assistant-fab {
+    right: 12px;
+    bottom: calc(56px + var(--erp-safe-bottom) + 12px);
+    width: 44px;
+    height: 44px;
+  }
+
+  .erp-shell .erp-assistant-window {
+    right: 12px;
+    bottom: calc(56px + var(--erp-safe-bottom) + 64px);
+    width: calc(100vw - 24px);
+    height: min(640px, calc(100dvh - var(--erp-header-height) - 56px - 84px));
+  }
+}
+
+/* ------------------------------------------------------- dải "PC trước" */
+
+.erp-device-notice {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.erp-device-notice > .bi {
+  margin-top: 2px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-device-notice__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-device-notice__close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: -4px -4px -4px 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+}
+
+.erp-device-notice__close:hover {
+  background: var(--erp-surface-hover);
+}
+
+/* ------------------------------------------------- khung chung của bốn màn */
+
+.erp-mshell-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Trên máy tính các màn này vẫn mở được — giữ bề ngang đọc được. */
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.erp-mshell-page > * {
+  flex: none;
+}
+
+.erp-mshell-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+}
+
+.erp-mshell-head__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-mshell-head__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Ba đoạn chọn phạm vi — chia đều bề ngang. */
+.erp-mshell-segments {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-mshell-segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.erp-mshell-segment.is-active {
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-mshell-segment:focus-visible,
+.erp-mshell-chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-mshell-segment__count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-size: 0.6875rem;
+  line-height: 18px;
+}
+
+/* Dải chip lọc: MỘT hàng, kéo ngang khi dài (chip là điều hướng phụ, không
+   phải bảng dữ liệu). */
+.erp-mshell-chips {
+  display: flex;
+  gap: 6px;
+  margin-inline: -2px;
+  padding: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.erp-mshell-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.erp-mshell-chips--wrap {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+
+.erp-mshell-chip {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.erp-mshell-chip:hover {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+}
+
+/* Đang chọn: nền đặc + chữ đậm (đảo sắc độ, đọc được cả khi mù màu). */
+.erp-mshell-chip.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-weight: 600;
+}
+
+.erp-mshell-chip--danger:not(.is-active) {
+  border-color: var(--erp-danger);
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+.erp-mshell-loading {
+  margin: 24px 0;
+  color: var(--erp-text-secondary);
+  text-align: center;
+}
+
+.erp-mshell-more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 2px 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* ------------------------------------------------------------- bảng "+" */
+
+.erp-hub.offcanvas-bottom {
+  height: auto;
+  max-height: 86dvh;
+  padding-bottom: var(--erp-safe-bottom);
+  border-radius: var(--erp-radius-xl) var(--erp-radius-xl) 0 0;
+}
+
+.erp-hub .offcanvas-header {
+  padding: 14px 16px 6px;
+}
+
+.erp-hub__title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.erp-hub__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 16px 16px;
+}
+
+.erp-hub__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.erp-hub__note > .bi {
+  margin-top: 2px;
+  color: var(--erp-warning);
+}
+
+.erp-hub__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-hub__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 96px;
+  padding: 12px 6px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: center;
+}
+
+.erp-hub__tile:hover,
+.erp-hub__tile:focus-visible {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-hub__tile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-hub__tile-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.erp-hub__tile-hint {
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  line-height: 1.25;
+}
+
+.erp-hub__empty {
+  margin: 12px 0;
+  color: var(--erp-text-secondary);
+  text-align: center;
+}
+
+.erp-hub__all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.erp-hub__all:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+/* --------------------------------------------------------------- Tra cứu */
+
+.erp-search-box > .form-control {
+  min-height: var(--erp-touch-target);
+}
+
+.erp-search-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-search-group__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.erp-search-group__clear {
+  margin-inline-start: auto;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.erp-search-group__state {
+  margin: 0;
+  padding: 4px 2px;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-search-group__state--error {
+  color: var(--erp-danger);
+}
+
+.erp-search-group__more {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-search-ask {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+.erp-search-ask > .bi:first-child {
+  color: var(--erp-intelligence);
+  font-size: 1.25rem;
+}
+
+.erp-search-ask__hint {
+  display: block;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* ------------------------------------------------------------------- Tôi */
+
+.erp-me-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.erp-me-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+.erp-me-profile:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-me-profile .erp-avatar {
+  width: 52px;
+  height: 52px;
+  font-size: 1.125rem;
+}
+
+.erp-me-profile__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-me-profile__name {
+  overflow: hidden;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-me-profile__meta {
+  overflow: hidden;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-me-profile__link {
+  color: var(--erp-action-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-me-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 12px;
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+.erp-me-row + .erp-me-row,
+.erp-me-theme + .erp-me-row {
+  border-top: 1px solid var(--erp-border);
+}
+
+a.erp-me-row:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-me-row__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-me-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-me-row__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-me-row__hint {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.erp-me-row__caret {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-me-device {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 12px 12px 0;
+}
+
+.erp-me-device__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.erp-me-device__state.is-offline {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-me-device__sync {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-me-counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+}
+
+.erp-me-count {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-me-count__value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.erp-me-count__label {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.erp-me-count.is-warning {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-me-count.is-danger {
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.erp-me-storage {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 12px 12px;
+  font-size: 0.8125rem;
+}
+
+.erp-me-storage__line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-me-storage__bar {
+  height: 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-me-storage__bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-action-secondary);
+}
+
+.erp-me-device__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.erp-me-theme {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.erp-me-theme__label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* Ba chế độ luôn nằm MỘT hàng, chia đều bề ngang (nhãn ngắn: Sáng · Tối · Ngoài trời). */
+.erp-me-theme__modes {
+  display: flex;
+  gap: 6px;
+}
+
+.erp-me-theme__modes > .erp-mshell-chip {
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+.erp-me-logout {
+  min-height: var(--erp-touch-target);
+  margin-bottom: 12px;
+}
+
+/* ------------------------------------------------------- Tất cả chức năng */
+
+.erp-allfn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 8px;
+}
+
+.erp-allfn-zone {
+  grid-column: 1 / -1;
+  margin: 8px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.erp-allfn-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 92px;
+  padding: 12px 4px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+
+.erp-allfn-tile:hover,
+.erp-allfn-tile:focus-visible {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-allfn-tile__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-allfn-tile__badge,
+.erp-allfn-badge {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
+.erp-allfn-tile__badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  border: 2px solid var(--erp-surface);
+}
+
+.erp-allfn-tile__badge.is-danger,
+.erp-allfn-badge.is-danger {
+  background: var(--erp-danger);
+}
+
+.erp-allfn-tile__label {
+  overflow-wrap: anywhere;
+}
+
+/* Khoá khi mất mạng: mờ đi VÀ có icon khoá / chữ ẩn cho trình đọc màn hình. */
+.erp-allfn-tile.is-offline-blocked,
+.erp-allfn-row.is-offline-blocked {
+  opacity: 0.55;
+}
+
+.erp-allfn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-allfn-group__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.erp-allfn-list {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  list-style: none;
+  overflow: hidden;
+}
+
+.erp-allfn-list > li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-allfn-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 12px;
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+.erp-allfn-row:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-allfn-row__icon {
+  flex: none;
+  color: var(--erp-action-secondary);
+}
+
+.erp-allfn-row__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-allfn-row__label {
+  font-size: 0.9375rem;
+}
+
+.erp-allfn-row__trail {
+  overflow: hidden;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-allfn-row__caret,
+.erp-allfn-row__lock {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-allfn-tag {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* "Gần đây": MỘT hàng trượt ngang. Xuống dòng thì 6 chip ăn ba hàng và đẩy
+   lưới phân hệ — thứ người dùng mở màn này để bấm — xuống nửa dưới màn hình.
+   Chip đã `flex: none` + `nowrap` nên không bị bóp; đệm 2px để viền focus
+   không bị vùng cuộn cắt. */
+.erp-allfn-recent {
+  display: flex;
+  gap: 6px;
+  margin-inline: -2px;
+  padding: 2px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.erp-allfn-recent::-webkit-scrollbar {
+  display: none;
+}
+
+/* Nút "⋮" trên thẻ: Bootstrap tự thêm mũi tên cho mọi dropdown-toggle. */
+.erp-object-card__more.dropdown-toggle::after {
+  display: none;
+}
+
+/* Block của trang chủ dùng lại trong màn Công việc cao theo NỘI DUNG (ở trang
+   chủ nó `height: 100%` để các block cùng hàng bằng nhau). */
+.erp-mshell-page .erp-home-block {
+  height: auto;
+}

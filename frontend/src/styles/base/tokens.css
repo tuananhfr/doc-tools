@@ -1,0 +1,129 @@
+/*
+ * Cau noi Design Token <-> Bootstrap.
+ *
+ * `styles/tokens.ts` la NGUON SU THAT duy nhat cua mau. Khi doi theme,
+ * `applyThemeMode()` ghi toan bo bien `--erp-*` len <html>; file nay anh xa
+ * chung sang bien `--bs-*` de moi component Bootstrap doi mau theo.
+ *
+ * => Component KHONG bao gio duoc viet hex; chi dung var(--erp-*) hoac class.
+ */
+
+/* Gia tri fallback (Light Mode) cho lan son dau tien truoc khi JS chay. */
+:root {
+  --erp-bg: #f2f6f8;
+  --erp-surface: #ffffff;
+  --erp-surface-secondary: #e7eef2;
+  --erp-surface-hover: rgba(82, 100, 119, 0.08);
+  --erp-text-primary: #101820;
+  --erp-text-secondary: #344454;
+  --erp-text-tertiary: #526477;
+  --erp-text-on-accent: #ffffff;
+  --erp-border: #d6e0e6;
+  --erp-border-strong: #aab7c2;
+  --erp-brand: #da3548;
+  --erp-brand-hover: #c9283e;
+  --erp-brand-soft: rgba(218, 53, 72, 0.1);
+  --erp-action-secondary: #3678d4;
+  --erp-action-secondary-hover: #1f6fe8;
+  --erp-action-secondary-soft: rgba(54, 120, 212, 0.12);
+  --erp-intelligence: #16a6a0;
+  --erp-intelligence-soft: rgba(22, 166, 160, 0.12);
+  --erp-construction: #c98245;
+  --erp-construction-soft: rgba(201, 130, 69, 0.14);
+  --erp-success: #159a68;
+  --erp-success-soft: rgba(21, 154, 104, 0.12);
+  --erp-warning: #c88920;
+  --erp-warning-soft: rgba(200, 137, 32, 0.14);
+  --erp-danger: #d9363e;
+  --erp-danger-soft: rgba(217, 54, 62, 0.12);
+  --erp-info: #3678d4;
+  --erp-info-soft: rgba(54, 120, 212, 0.12);
+  --erp-neutral: #718096;
+  --erp-neutral-soft: rgba(113, 128, 150, 0.12);
+  --erp-focus-ring: #3678d4;
+  --erp-sidebar-bg: #ffffff;
+  --erp-header-bg: #ffffff;
+  --erp-hero-from: #101820;
+  --erp-hero-to: #22303f;
+  --erp-shadow1: 0 1px 2px rgba(16, 24, 32, 0.06);
+  --erp-shadow2: 0 2px 8px rgba(16, 24, 32, 0.08);
+
+  --erp-radius-sm: 4px;
+  --erp-radius-md: 8px;
+  --erp-radius-lg: 12px;
+  --erp-radius-xl: 16px;
+  --erp-radius-round: 24px;
+  --erp-radius-pill: 32px;
+
+  --erp-header-height: 64px;
+
+  /*
+   * Vung an toan cua iOS (tai tho, thanh trang thai, thanh Home).
+   * `index.html` khai `viewport-fit=cover` + `black-translucent` nen khi mo
+   * dang app, trang ve CA duoi thanh trang thai - `100dvh` khong tru phan do.
+   * Moi khung dinh/day man hinh phai tu chua cho bang cac bien nay. Tren
+   * trinh duyet thuong va desktop chung deu bang 0.
+   */
+  --erp-safe-top: env(safe-area-inset-top, 0px);
+  --erp-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --erp-safe-left: env(safe-area-inset-left, 0px);
+  --erp-safe-right: env(safe-area-inset-right, 0px);
+  --erp-sidebar-width: 248px;
+  --erp-sidebar-collapsed-width: 76px;
+  --erp-content-max-width: 1680px;
+  --erp-touch-target: 44px;
+
+  --erp-font-family: 'Inter', 'Be Vietnam Pro', system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/*
+ * Anh xa sang Bootstrap. Dung ca `:root` va `[data-bs-theme]` de thang cac
+ * rule mac dinh cua Bootstrap 5.3 o moi che do sang/toi.
+ */
+:root,
+[data-bs-theme='light'],
+[data-bs-theme='dark'] {
+  --bs-body-bg: var(--erp-bg);
+  --bs-body-bg-rgb: 242, 246, 248;
+  --bs-body-color: var(--erp-text-primary);
+  --bs-emphasis-color: var(--erp-text-primary);
+  --bs-secondary-color: var(--erp-text-secondary);
+  --bs-tertiary-color: var(--erp-text-tertiary);
+
+  --bs-secondary-bg: var(--erp-surface-secondary);
+  --bs-tertiary-bg: var(--erp-surface-secondary);
+
+  --bs-border-color: var(--erp-border);
+  --bs-border-color-translucent: var(--erp-border);
+  --bs-border-radius: var(--erp-radius-md);
+  --bs-border-radius-sm: var(--erp-radius-sm);
+  --bs-border-radius-lg: var(--erp-radius-lg);
+  --bs-border-radius-xl: var(--erp-radius-xl);
+  --bs-border-radius-pill: var(--erp-radius-pill);
+
+  /* Crimson = Identity/CTA (muc 05). Link/hanh dong phu dung Blue. */
+  --bs-primary: var(--erp-brand);
+  --bs-link-color: var(--erp-action-secondary);
+  --bs-link-hover-color: var(--erp-action-secondary-hover);
+  --bs-link-color-rgb: 54, 120, 212;
+
+  --bs-success: var(--erp-success);
+  --bs-warning: var(--erp-warning);
+  --bs-danger: var(--erp-danger);
+  --bs-info: var(--erp-info);
+
+  --bs-focus-ring-color: var(--erp-action-secondary-soft);
+  --bs-focus-ring-width: 2px;
+
+  --bs-font-sans-serif: var(--erp-font-family);
+  --bs-body-font-family: var(--erp-font-family);
+  --bs-body-font-size: 0.875rem; /* Body 14px (muc 09) */
+  --bs-body-line-height: 1.55;
+}
+
+/* Field Mode: chu toi thieu 16px, tang do day vien (muc 06 & 11). */
+[data-theme='field'] {
+  --bs-body-font-size: 1rem;
+  --bs-border-color: var(--erp-border-strong);
+}

@@ -1,0 +1,142 @@
+/*
+ * Nhom tab cua man xem khach hang (CustomerTabs) - cong no, ban/mua, tai
+ * chinh, khoan vay, hop dong. Bang nhieu cot so: cuon ngang TRONG khung, dau
+ * bang dinh tren khi cuon doc.
+ */
+.erp-cust-tab__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.erp-cust-tab__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-cust-tab__filters .form-select {
+  width: auto;
+  min-width: 220px;
+}
+
+.erp-cust-tab__filters .form-control {
+  width: auto;
+}
+
+.erp-cust-tab__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-cust-tab__balance {
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-cust-tab__balance strong {
+  color: var(--erp-danger);
+}
+
+.erp-cust-tab__table-wrap {
+  max-height: 65vh;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-cust-tab__table {
+  font-size: 0.8125rem;
+}
+
+.erp-cust-tab__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-cust-tab__table td {
+  vertical-align: top;
+}
+
+/* Cot chu (noi dung, du an): khong de bang bop con mot tu moi dong. So thi khong xuong dong. */
+.erp-cust-tab__table .erp-cust-tab__text {
+  min-width: 220px;
+}
+
+.erp-cust-tab__table .erp-num {
+  white-space: nowrap;
+}
+
+/* Dong so du dau ky / tong phat sinh / cuoi ky / tong cong - nhu `fw-bold` cua mau. */
+.erp-cust-tab__table .is-summary td {
+  background: var(--erp-surface-secondary);
+  font-weight: 700;
+}
+
+.erp-cust-tab__table tfoot td {
+  position: sticky;
+  bottom: 0;
+}
+
+.erp-cust-tab__empty {
+  padding: 16px;
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+.erp-cust-tab__sub,
+.erp-cust-tab__info {
+  color: var(--erp-text-secondary);
+}
+
+.erp-cust-tab__info {
+  min-width: 200px;
+}
+
+.erp-cust-tab__paid {
+  color: var(--erp-success);
+  font-weight: 600;
+}
+
+.erp-cust-tab__debt {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--erp-danger);
+}
+
+.erp-cust-tab__toggle {
+  padding: 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.erp-cust-tab__detail > td {
+  background: var(--erp-surface-secondary);
+}
+
+/* Dang tai ban moi theo bo loc: giu bang cu, lam mo cho biet. */
+.erp-cust-tab__body.is-fetching {
+  opacity: 0.6;
+  transition: opacity 150ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-cust-tab__body.is-fetching {
+    transition: none;
+  }
+}

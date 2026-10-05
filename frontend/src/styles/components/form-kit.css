@@ -1,0 +1,1092 @@
+/*
+ * Form kit - cac khoi dung chung cua form nghiep vu.
+ *
+ * Bo sung cho `form.css` (do lo cac control Bootstrap goc). O day la nhung
+ * thu Bootstrap khong co: popup nhap lieu, section gap duoc, danh sach tick,
+ * bang dong lap lai, o chon tep.
+ *
+ * Moi mau doc qua bien `--erp-*` (ERPcons_Design_System.md, muc 12).
+ */
+
+/* --- Popup nhap lieu ------------------------------------------------------ */
+
+.erp-form-modal .modal-header {
+  align-items: flex-start;
+  border-bottom-color: var(--erp-border);
+}
+
+.erp-form-modal__subtitle {
+  margin: 2px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/*
+ * `scrollable` cua Bootstrap da cho than modal cuon rieng. Chan them tran
+ * chieu cao de form dai khong bao gio vuot qua man hinh, ke ca khi trinh duyet
+ * thu nho con 600px.
+ */
+.erp-form-modal .modal-dialog-scrollable .modal-content {
+  max-height: calc(100vh - 3.5rem);
+}
+
+/*
+ * Toan man hinh (mac dinh o dien thoai - `fullscreen="sm-down"` cua FormModal):
+ * bo tran chieu cao o tren, khong thi form dung lai cach day man 56px va de lo
+ * trang nen phia sau. `dvh` de thanh dia chi cua trinh duyet di dong thu vao /
+ * hien ra khong cat mat hang nut.
+ */
+.erp-form-modal .modal-fullscreen.modal-dialog-scrollable .modal-content {
+  max-height: none;
+}
+
+@media (max-width: 575.98px) {
+  .erp-form-modal .modal-fullscreen-sm-down {
+    height: 100dvh;
+  }
+
+  .erp-form-modal .modal-fullscreen-sm-down.modal-dialog-scrollable .modal-content {
+    max-height: none;
+  }
+
+  /* Hang nut: hai nut chia deu be ngang - dich bam lon, khong lech ve mot goc. */
+  .erp-form-modal .modal-fullscreen-sm-down .erp-form-modal__footer > .btn {
+    flex: 1 1 0;
+  }
+
+  /* Nut PHU (`extraActions`) xuong hang rieng phia tren Huy/Luu. Chia deu ca ba
+     nut tren mot hang thi moi nut con ~110px o man 390px: "Khôi phục mặc định"
+     gay thanh 4 dong va keo ca hang nut cao gap ba. Do dac hieu (0,5,0) phai
+     thang luat chung `form > .modal-footer > .btn` (0,4,1) o ben duoi. */
+  .erp-form-modal .modal-fullscreen-sm-down .erp-form-modal__footer > .btn:not(.erp-form-modal__main) {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .erp-form-modal .modal-fullscreen-md-down.modal-dialog-scrollable .modal-content {
+    max-height: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .erp-form-modal .modal-fullscreen-lg-down.modal-dialog-scrollable .modal-content {
+    max-height: none;
+  }
+}
+
+/*
+ * Form TU DUNG `<Modal fullscreen="sm-down"><Form>...` - KHONG qua FormModal
+ * (Tac vu, Tai chinh, tac vu offline). Cung bay o do: <form> boc ca
+ * header/body/footer nen `.modal-content` chi con mot flex item, bo cuc "than
+ * cuon - chan dung yen" cua Bootstrap mat hieu luc. O che do toan man hinh
+ * (dien thoai) form phai lap day man: tieu de tren cung, hang nut sat day, than
+ * cuon - va tran `max-height: calc(100vh - 10.5rem)` ma tung modal tu dat cho
+ * hop thoai thuong phai go (de nguyen thi hang nut lo lung cach day ~110px).
+ *
+ * Khoa vao lop cua Bootstrap chu khong vao ten mot feature: form moi chi can
+ * them `fullscreen="sm-down"`.
+ */
+@media (max-width: 575.98px) {
+  .modal-fullscreen-sm-down:has(> .modal-content > form) {
+    height: 100dvh;
+  }
+
+  /* Modal tu dat vien + bo goc cho hop thoai thuong (`.task-modal .modal-content`)
+     thi o che do toan man hinh phai go - khong thi form lech 1px moi canh. */
+  .modal-fullscreen-sm-down > .modal-content:has(> form) {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .modal-fullscreen-sm-down > .modal-content > form {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .modal-fullscreen-sm-down > .modal-content > form > .modal-header,
+  .modal-fullscreen-sm-down > .modal-content > form > .modal-footer {
+    flex-shrink: 0;
+  }
+
+  .modal-fullscreen-sm-down > .modal-content > form > .modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+  }
+
+  /* Hang nut chia deu be ngang - dich bam lon, khong lech ve mot goc. */
+  .modal-fullscreen-sm-down > .modal-content > form > .modal-footer > .btn {
+    flex: 1 1 0;
+  }
+}
+
+/*
+ * The <form> boc ca header/body/footer (phai vay thi nut Luu type="submit" moi
+ * nam trong form). Nhung khi do `.modal-content` chi con MOT flex item la
+ * <form>, nen bo cuc "than cuon - chan dung yen" cua Bootstrap khong con hieu
+ * luc: ca form tran ra va `overflow:hidden` cua modal-content cat mat thanh
+ * nut. Chuyen chinh <form> thanh flex column de nhan lai bo cuc do.
+ */
+.erp-form-modal .modal-content > form {
+  display: flex;
+  flex-direction: column;
+  /* Lap day `.modal-content`: o che do toan man hinh form NGAN (3 o) se de hang
+     nut lo lung giua man neu chi cao bang noi dung. Hop thoai thuong khong doi -
+     `.modal-content` o do cao theo noi dung. */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.erp-form-modal .modal-content > form > .modal-header,
+.erp-form-modal .modal-content > form > .modal-footer {
+  flex-shrink: 0;
+}
+
+.erp-form-modal .modal-content > form > .modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.erp-form-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px;
+  /*
+   * BAT BUOC. `.modal-content` la flex column; o che do mac dinh mot flex item
+   * co `min-height: auto` nen than modal TU CHOI co lai duoi chieu cao noi
+   * dung - no tran ra ngoai va day thanh nut Luu/Huy ra khoi khung. Voi form
+   * dai (Liên hệ, Dplan Marketing) thi nguoi dung khong con nut nao de bam.
+   */
+  min-height: 0;
+}
+
+.erp-form-modal__body > .erp-form-section:last-child .erp-form-section__body > *:last-child,
+.erp-form-modal__body > .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+.erp-form-modal__warning {
+  margin-bottom: 0;
+}
+
+.erp-form-modal__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-form-modal__footer {
+  border-top-color: var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+/* --- Section trong form --------------------------------------------------- */
+
+.erp-form-section {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-form-section__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  text-align: start;
+  background: var(--erp-surface-secondary);
+  border: 0;
+  border-radius: var(--erp-radius-lg) var(--erp-radius-lg) 0 0;
+}
+
+.erp-form-section__title {
+  flex: 1;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-form-section__toggle {
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+
+.erp-form-section__toggle:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-form-section__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+/* Section dang gap: thanh tieu de la vien duy nhat -> bo bo goc duoi. */
+.erp-form-section--collapsible:not(.is-open) .erp-form-section__head {
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-form-section__caret {
+  color: var(--erp-text-tertiary);
+  transition: transform 180ms ease;
+}
+
+.erp-form-section--collapsible.is-open .erp-form-section__caret {
+  transform: rotate(180deg);
+}
+
+.erp-form-section__body {
+  padding: 16px;
+}
+
+.erp-form-section__body > *:last-child {
+  margin-bottom: 0;
+}
+
+.erp-form-section__desc {
+  margin: 0 0 12px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Danh sach nhieu o tick ---------------------------------------------- */
+
+.erp-checklist {
+  display: grid;
+  gap: 6px 16px;
+  overflow-y: auto;
+}
+
+.erp-checklist--boxed {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-checklist--c2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.erp-checklist--c3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Nhan tieng Viet dai hay xuong hai dong - canh o tick len dong chu dau. */
+.erp-checklist .form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 0;
+  min-height: 32px;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+/*
+ * Tran cham (dien thoai / tablet cong truong) moi can o 44px theo DS muc 11.
+ * Ep 44px cho ca chuot thi danh sach 11 phap nhan cao gan 500px, nguoi dung
+ * phai cuon ba lan de tick hai o - dung o cham thi khong the bam trung.
+ */
+@media (pointer: coarse) {
+  .erp-checklist .form-check {
+    min-height: var(--erp-touch-target, 44px);
+  }
+}
+
+.erp-checklist .form-check-input {
+  margin: 0.2em 0 0;
+  flex-shrink: 0;
+}
+
+.erp-checklist .form-check-label {
+  line-height: 1.45;
+}
+
+/* --- Nhom radio nam ngang ------------------------------------------------- */
+
+.erp-radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  min-height: var(--erp-touch-target, 44px);
+  align-items: center;
+}
+
+/* --- O chon tep ----------------------------------------------------------- */
+
+.erp-file-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-file-field.is-invalid {
+  border-color: var(--erp-danger);
+}
+
+.erp-file-field__input {
+  display: none;
+}
+
+.erp-file-field .btn {
+  flex-shrink: 0;
+}
+
+.erp-file-field__name,
+.erp-file-field__empty {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.8125rem;
+}
+
+.erp-file-field__name {
+  color: var(--erp-text-primary);
+}
+
+.erp-file-field__empty {
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Bang dong lap lai ---------------------------------------------------- */
+
+.erp-array-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Vung cuon ngang cua bang nhieu cot. `padding-bottom` chua thanh cuon de no
+   khong de len dong cuoi. */
+.erp-array-table__scroll {
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.erp-array-table__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-array-table__head,
+.erp-array-table__row {
+  display: grid;
+  gap: 8px;
+  align-items: start;
+}
+
+.erp-array-table__head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+/* O nhap trong bang tu quan ly khoang cach -> bo margin mac dinh cua Field. */
+.erp-array-table__cell .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.erp-array-table__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--erp-text-tertiary);
+  text-decoration: none;
+}
+
+.erp-array-table__remove:hover:not(:disabled) {
+  color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-array-table__remove:disabled {
+  opacity: 0.4;
+}
+
+.erp-array-table__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-array-table__foot > .btn {
+  margin-inline-start: auto;
+}
+
+.erp-array-table__empty {
+  margin: 0;
+  padding: 12px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+}
+
+/*
+ * Man hinh hep: bang doi thanh the doc, moi o co nhan rieng lay tu header.
+ * Bo cuc 5 cot nhoi vao 375px thi moi o chi con ~50px, khong nhap noi.
+ */
+@media (max-width: 767.98px) {
+  /* Da doi sang the doc thi khong con gi de cuon ngang. */
+  .erp-array-table__scroll {
+    overflow-x: visible;
+  }
+
+  .erp-array-table__grid {
+    min-width: 0 !important;
+  }
+
+  .erp-array-table__head {
+    display: none;
+  }
+
+  .erp-array-table__row {
+    grid-template-columns: minmax(0, 1fr) 40px !important;
+    padding: 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-md);
+    background: var(--erp-surface-secondary);
+  }
+
+  /*
+   * MOI o nam o cot 1. Khong khai thi o thu ba tro di tu chay vao cot 2 - cot
+   * 40px cua nut xoa: bang 4 cot (vat tu | ton | so luong | ghi chu) ra o "So
+   * luong" rong 40px, khong go noi (do 01/10/2026 tren form chuyen kho).
+   */
+  .erp-array-table__cell {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .erp-array-table__cell::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--erp-text-tertiary);
+  }
+
+  .erp-array-table__remove {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+
+/* --- Cot so trong form ---------------------------------------------------- */
+
+.erp-field-number,
+.erp-field-money {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-form-section__caret,
+  .erp-form-section__toggle {
+    transition: none;
+  }
+}
+
+/* --- Tab trong form ------------------------------------------------------- */
+
+/*
+ * DS muc 10: tab dang chon phai co INDICATOR ro, khong chi doi mau chu.
+ * `nav.css` da lo phan chung; o day chi noi lai tab voi khung noi dung ben
+ * duoi de hai phan trong nhu mot khoi.
+ */
+.erp-form-tabs {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-form-tabs__panel {
+  padding-top: 16px;
+}
+
+/* --- Bang doi chieu trong form (SUMMARY) --------------------------------- */
+
+.erp-summary {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.erp-summary > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-summary dt {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-summary dd {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  /* Con so doi chieu phai thang cot khi go - xem checklist "tabular-nums". */
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-summary__total {
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-summary__total dt {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Con no > 0 la mot canh bao nghiep vu, khong phai loi -> Warning, khong Danger. */
+.erp-summary dd.is-warning {
+  color: var(--erp-warning);
+}
+
+/* --- Nhom nut chon che do (segmented) ------------------------------------ */
+
+.erp-segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.erp-segmented .btn {
+  flex: 1;
+  min-height: var(--erp-touch-target, 44px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Che do dang chon dung Blue (action.secondary) chu khong dung Crimson:
+   day la lua chon trong form, khong phai CTA chinh (DS muc 05). */
+.erp-segmented .btn-check:checked + .btn {
+  background: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-segmented .btn-check:focus-visible + .btn {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* --- Hang tong cuoi bang dong lap lai ------------------------------------- */
+
+.erp-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-totals dt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-totals dd {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-totals__grand dd {
+  color: var(--erp-action-secondary);
+}
+
+@media (max-width: 767.98px) {
+  .erp-totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Cum cong tac dat canh cac o select tren mot hang - can day cho thang voi o. */
+.erp-form-switches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  min-height: 40px;
+  margin-top: 26px;
+}
+
+/* --- Danh sach tieu chi cham (bang so sanh) ------------------------------- */
+
+.erp-criteria-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 40px;
+  gap: 8px;
+  align-items: start;
+}
+
+.erp-criteria-row .mb-3 {
+  margin-bottom: 8px !important;
+}
+
+/* Tieu chi CO DINH - khong sua duoc, nen ve nhu the doc chu khong nhu o nhap. */
+.erp-criteria-fixed {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-criteria-fixed li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-criteria-fixed .bi {
+  color: var(--erp-text-tertiary);
+}
+
+/* O ket qua tinh trong bang dong lap lai (Thanh tien cua giai doan). */
+.erp-array-table__output {
+  display: block;
+  min-height: 40px;
+  padding: 9px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+/* --- Form nhieu khoi: tab va tieu de phu ---------------------------------- */
+
+/*
+ * Than cua mot tab trong form.
+ *
+ * `.nav-tabs` da co gach chan roi, boc them mot khung vien nua thi noi dung
+ * nam trong "khung long khung" - nhat la khi ben trong con la `.erp-form-section`
+ * von cung co vien cua no.
+ */
+.erp-tab-body {
+  padding-top: 16px;
+}
+
+.erp-tab-body > *:last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * Tieu de phu trong mot khoi - dung khi mot tab phai bay HAI bang canh nhau
+ * (bien ban "Nghi viec": ban giao cong viec + ban giao vat tu). Nhe hon
+ * `.erp-form-section` de khong dung thanh mot cap khung nua.
+ */
+.erp-form-subhead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-form-subhead + * {
+  margin-bottom: 20px;
+}
+
+.erp-form-subhead .bi {
+  color: var(--erp-text-tertiary);
+}
+
+/* ---------------------------------------------------------------------------
+ * KHUON FORM NHIEU KHOI - luoi 12 cot + panel vien mong
+ *
+ * Chep khuon cua form phieu tam ung (`advance-form__*`) - man phuc tap nhat
+ * dang chay - nhung dat ten trung tinh de form nao cung dung duoc.
+ *
+ * Khac `.erp-form-section` o mot diem quyet dinh: nhan nhom la MOT DONG chu hoa
+ * nho, khong phai thanh tieu de nen xam cao 44px. Bon nam khoi xep canh nhau
+ * bang `.erp-form-section` thanh mot chong hop nang ne; bang panel thi van doc
+ * ra tung cum ma khong an mat chieu cao cua modal.
+ *
+ * KHOANG CACH CHI DEN TU MOT NGUON. `<Field>` boc moi o trong `Form.Group` kem
+ * `mb-3` (16px) cua Bootstrap; cong voi `gap` cua luoi thanh 28px moi hang. Tat
+ * `mb-3` trong modal dung khuon nay va de `gap` lo het. Phai `!important` vi lop
+ * tien ich cua Bootstrap tu no da `!important`.
+ * ------------------------------------------------------------------------ */
+
+.erp-form-modal--dense .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+}
+
+.erp-form-modal--dense .erp-form-modal__body {
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.erp-form-modal--dense .erp-form-modal__body .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/*
+ * Khung chinh/phu. `9fr 3fr` chu khong phai phan tram: `fr` da tru phan `gap`
+ * roi, con phan tram thi khong - cong lai thanh 100% + gap va tran ra ngoai.
+ *
+ * `minmax(0, ...)` la BAT BUOC: mac dinh cua grid item la `min-width: auto`,
+ * nen mot bang co `min-width` se BANH cot chinh ra thay vi tu cuon trong no,
+ * day cot phu ra khoi man.
+ */
+.erp-form-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 3fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.erp-form-main,
+.erp-form-side {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* 8px doc / 12px ngang co chu dich: hai o cung HANG la hai truong khac nhau,
+   phai tach ro; hai o chong nhau theo chieu doc thi da co nhan cua o duoi lam
+   ranh gioi roi. */
+.erp-form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 8px 12px;
+  align-items: start;
+}
+
+.erp-form-c3 { grid-column: span 3; }
+.erp-form-c4 { grid-column: span 4; }
+.erp-form-c5 { grid-column: span 5; }
+.erp-form-c6 { grid-column: span 6; }
+.erp-form-c7 { grid-column: span 7; }
+.erp-form-c12 { grid-column: span 12; }
+
+.erp-form-panel {
+  min-width: 0;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+/* Panel chua tab: tab tu ve nen va vien cua no, nen bo padding cua vo. */
+.erp-form-panel--tabs {
+  padding: 0;
+  overflow: hidden;
+}
+
+.erp-form-panel--tabs .nav-tabs {
+  gap: 4px;
+  padding: 6px 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-form-panel--tabs .tab-content {
+  padding: 12px;
+}
+
+/* Nhan nhom - noi cho nguoi dung biet dang o cum nao, khong phai mot tieu de
+   noi dung. */
+.erp-form-panel__title {
+  margin: 0 0 10px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+/* Nhan o va nhip chu, giu cung mot thang voi form tam ung. */
+.erp-form-grid .form-label {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/* Man hep: bo khung 9/3 truoc, roi moi bo luoi 12 cot. */
+@media (max-width: 1200px) {
+  .erp-form-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .erp-form-grid > * {
+    grid-column: span 12;
+  }
+}
+
+/*
+ * ============================================================================
+ * MAT DO CHUNG CUA MOI FORM NHAP (19/09/2026)
+ * ============================================================================
+ * Goc cua "khoang cach giua cac o rat xa": `Field` boc moi o trong `.mb-3`
+ * (16px) VA form dat o trong `<Row className="g-3">` (gutter doc 16px) - hai lop
+ * CONG DON nen hai hang o cao 40px cach nhau 32px, cong nhan cach o 6px. 13 form
+ * da tu va rieng (ho so nhan su, tuyen dung, hop dong, de xuat, tam ung...), ~65
+ * form con lai van thua.
+ *
+ * Luat o day ap cho MOI `<form>` VA moi `.modal-body` (vai modal dung `<Modal>` tho,
+ * than modal khong nam trong `<form>`), mot nguon khoang cach duy nhat: 8px giua hai
+ * hang (gutter doc HOAC margin cua o xep chong), nhan cach o 4px - dung con so
+ * cac form da va dang dung, de ca app mot nhip.
+ *
+ * `:where(form)` giu do dac hieu THAP: file nay nap TRUOC `features/*.css`, nen
+ * luat rieng cua mot form (`.erp-profile-form .mb-3`, `.erp-dplan-form .mb-3`)
+ * van thang. `!important` bat buoc vi tien ich `.mb-3` cua Bootstrap tu no da
+ * `!important` - cung do dac hieu thi luat nap SAU thang (Bootstrap nap o
+ * `main.tsx`, truoc `styles/index.css`).
+ *
+ * KHONG dat `min-height` cho control o day: Field Mode ep 48px (muc Theme).
+ */
+:where(form, .modal-body) .form-label {
+  margin-bottom: 4px;
+}
+
+:where(form, .modal-body) .mb-3 {
+  margin-bottom: 0.5rem !important;
+}
+
+/* O dung mot minh trong cot cua `<Row>`: khoang cach do gutter lo, khong cong them. */
+:where(form .row > *, .modal-body .row > *) > .mb-3:last-child {
+  margin-bottom: 0 !important;
+}
+
+:where(form, .modal-body) .row.g-3,
+:where(form, .modal-body) .row.gy-3 {
+  --bs-gutter-y: 0.5rem;
+}
+
+:where(form, .modal-body) .row.g-4,
+:where(form, .modal-body) .row.gy-4 {
+  --bs-gutter-y: 0.75rem;
+}
+
+/*
+ * Than modal la flex column co `gap`: o dat THANG trong than (khong boc `Row`)
+ * ma giu margin cua `.mb-3` thi hai lop lai cong don (do: 8 + 12 = 20px o 12
+ * form). `gap` la nguon duy nhat, cung nhip 8px voi gutter doc cua `Row`.
+ */
+:where(.erp-form-modal) .erp-form-modal__body {
+  gap: 8px;
+}
+
+:where(.erp-form-modal__body) > .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* --- Bang DONG NHAP LIEU viet tay (`<Table>` co o nhap trong tung o) ------- */
+
+/*
+ * DIEN THOAI: MOI DONG LA MOT THE, KHONG CUON NGANG
+ * ================================================
+ * Bang dong cua phieu tai chinh (6 cot, can 720px) va bang gia hop dong (9-11
+ * cot, can 1.080px) o man 390px cuon ngang ngay trong form, o "Noi dung" con
+ * 64px. `FieldArrayTable` da tu xep the; bang VIET TAY thi them lop
+ * `erp-line-table` len `<Table>` va khai tren tung `<td>`:
+ *
+ *   data-label="..."     nhan cua o (hang tieu de bi an o dien thoai)
+ *   data-line="index"    so thu tu - goc trai hang dau cua the ("Dong 1")
+ *   data-line="action"   nut xoa - goc phai hang dau
+ *   data-line="wide"     o chiem tron be ngang (ten, dien giai)
+ *   data-line="value"    o chi doc (thanh tien)
+ *
+ * Khong muon khai tay: dung `<StackTable variant="lines">` - no doc hang tieu
+ * de roi tu gan cac thuoc tinh tren (`components/common/StackTable.tsx`).
+ *
+ * O con lai chia hai cot. Chi doi CSS, khong doi DOM: RHF / state cua form van
+ * gan vao dung nhung o do. Selector mang `.table` + `tbody > tr > td` (0,2,3)
+ * de thang luat padding / vien cua tung bang (cao nhat 0,2,1) du file do nap
+ * sau. An han `thead` (khong visually-hidden): hang do van do rong ca nghin
+ * pixel va day be ngang vung cuon; o nhap da tu mang `aria-label`.
+ */
+@media (max-width: 575.98px) {
+  :is(.erp-table-scroll, .table-responsive, .advance-lines__scroll):has(> .erp-line-table) {
+    overflow-x: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  /* `!important`: nhieu bang dat `style={{ minWidth: 1080 }}` ngay tren the -
+     inline thang moi selector, de nguyen la the rong 1.080px va cuon ngang lai. */
+  .erp-line-table.table,
+  .erp-line-table.table > tbody,
+  .erp-line-table.table > tfoot {
+    display: block;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .erp-line-table.table > colgroup,
+  .erp-line-table.table > thead {
+    display: none;
+  }
+
+  .erp-line-table.table > tbody > tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px 10px;
+    align-items: end;
+    padding: 10px 12px 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-lg);
+    background: var(--erp-surface);
+  }
+
+  .erp-line-table.table > tbody > tr + tr {
+    margin-top: 8px;
+  }
+
+  .erp-line-table.table > tbody > tr > td {
+    display: block;
+    /* O khai `style={{ width: 120 }}` cho cot cua bang: o the thi la o hep. */
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+  }
+
+  .erp-line-table.table > tbody > tr > td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--erp-text-tertiary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  /* Hang dau cua the: "Dong 1" ben trai, nut xoa ben phai. */
+  .erp-line-table.table > tbody > tr > td[data-line='index'] {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    /* `.text-center` cua Bootstrap tu no `!important`. */
+    text-align: left !important;
+    color: var(--erp-text-secondary);
+    font-weight: 600;
+  }
+
+  .erp-line-table.table > tbody > tr > td[data-line='index']::before {
+    display: inline;
+    margin: 0 4px 0 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  .erp-line-table.table > tbody > tr > td[data-line='action'] {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .erp-line-table.table > tbody > tr > td[data-line='wide'] {
+    grid-column: 1 / -1;
+  }
+
+  /* Dong mot o gop het bang ("Chua co dong nao", tieu de nhom): dong chu, khong phai the. */
+  .erp-line-table.table > tbody > tr[data-line='group'] {
+    display: block;
+    padding: 8px 2px;
+    border: 0;
+    background: transparent;
+  }
+
+  /* Hang tong o chan bang: nhan ben trai, so ben phai; o trong thi bo. */
+  .erp-line-table.table > tfoot {
+    margin-top: 8px;
+  }
+
+  .erp-line-table.table > tfoot > tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 12px;
+    padding: 6px 12px;
+  }
+
+  .erp-line-table.table > tfoot > tr > :is(td, th) {
+    display: block;
+    width: auto !important;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .erp-line-table.table > tfoot > tr > :is(td, th):empty {
+    display: none;
+  }
+
+  .erp-line-table.table > tfoot > tr > td[data-label]:not([data-line='wide'])::before {
+    content: attr(data-label) ': ';
+    color: var(--erp-text-tertiary);
+    font-size: 0.75rem;
+  }
+
+  /* O chi doc (thanh tien): con so dam, nam cung hang voi o nhap ben canh. */
+  .erp-line-table.table > tbody > tr > td[data-line='value'] {
+    align-self: stretch;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+}

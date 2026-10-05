@@ -1,0 +1,571 @@
+/* ==========================================================================
+   Menu Thue - hoa don dien tu, kho hoa don, hang hoa, lien he
+   (`src/features/tax`). Chi dung token, khong hex (DS muc 12).
+   ========================================================================== */
+
+/* --- Dai tong o dau danh sach hoa don ------------------------------------ */
+
+.erp-tax-summary {
+  flex: 0 0 auto;
+}
+
+/* --- Thanh thao tac hang loat tren bang ----------------------------------- */
+
+.erp-tax-bulkbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tax-bulkbar__count {
+  margin-right: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-bulkbar__count strong {
+  color: var(--erp-text-primary);
+}
+
+/* Badge so viec ton tren nut ("Nhập hàng 24"). */
+.erp-tax-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-select {
+  display: inline-flex;
+  justify-content: center;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-tax-select .form-check-input {
+  float: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* --- O trong bang hoa don -------------------------------------------------- */
+
+.erp-tax-invoice-no {
+  color: var(--erp-success);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-code {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.erp-tax-files {
+  display: inline-flex;
+  gap: 6px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tax-muted {
+  color: var(--erp-text-tertiary);
+}
+
+/* So am: to do KEM icon (khong color-only, DS muc 05). */
+.erp-tax-negative {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+.erp-tax-strong {
+  font-weight: 600;
+}
+
+.erp-tax-dotted {
+  border-bottom: 1px dotted var(--erp-border-strong);
+  cursor: help;
+}
+
+/* --- Kho hoa don ----------------------------------------------------------- */
+
+.erp-tax-report-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  width: 100%;
+}
+
+.erp-tax-report-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 220px;
+}
+
+.erp-tax-report-bar__field .form-label {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.erp-tax-caption-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+}
+
+/* Ten hang mo nhat ky nhap xuat - nut that, trong nhu lien ket. */
+.erp-tax-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.erp-tax-link:hover {
+  color: var(--erp-action-secondary-hover);
+  text-decoration: underline;
+}
+
+.erp-tax-link:focus-visible {
+  border-radius: var(--erp-radius-sm);
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-report td,
+.erp-report tfoot th {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Hop thoai -------------------------------------------------------------- */
+
+.erp-tax-modal-sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.erp-tax-modal-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tax-modal-state--error {
+  color: var(--erp-danger);
+}
+
+.erp-tax-modal-scroll {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.erp-tax-modal-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--erp-surface);
+}
+
+.erp-tax-movements td,
+.erp-tax-modal-scroll td {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-movements__opening td {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.erp-tax-direction {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+/* --- Danh muc hang hoa / lien he ----------------------------------------- */
+
+.erp-tax-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-tax-name__alias {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-tax-legend {
+  margin-bottom: 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-tax-merge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-tax-merge__option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--erp-touch-target);
+  margin: 0;
+  padding: 8px 12px 8px 40px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.erp-tax-merge__option:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tax-merge__option:has(.form-check-input:checked) {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-tax-merge__option .form-check-label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.erp-tax-merge__name {
+  font-weight: 600;
+}
+
+.erp-tax-merge__meta {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-tax-merge__result {
+  margin: 16px 0 0;
+  color: var(--erp-text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-tax-link,
+  .erp-tax-merge__option {
+    transition: none;
+  }
+}
+
+/* --- Thanh pham vi kho: nut ben phai ------------------------------------- */
+
+.erp-tax-report-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* --- Dong "đang xem hóa đơn chờ nhập hàng" / canh bao ton lech ------------ */
+
+.erp-tax-pending {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+}
+
+.erp-tax-pending .btn-link {
+  margin-left: auto;
+  padding: 0;
+}
+
+/* --- Hop thoai thao tac ---------------------------------------------------- */
+
+.erp-tax-selected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.erp-tax-selected__list {
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-tax-hint--danger {
+  color: var(--erp-danger);
+}
+
+/* Cau hinh hoa don dien tu cua cong ty phat hanh. */
+.erp-tax-config {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tax-config__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tax-config__label {
+  min-width: 136px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-tax-config__edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-size: 0.8125rem;
+}
+
+/* --- Form hoa don dau ra -------------------------------------------------- */
+
+.erp-tax-line-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-tax-line-total {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-line-total span {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.erp-tax-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.erp-tax-totals > div {
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tax-totals dt {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.erp-tax-totals dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tax-totals__grand {
+  border: 1px solid var(--erp-border-strong);
+}
+
+.erp-tax-totals__grand dd {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+@media (max-width: 576px) {
+  .erp-tax-totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Form nhap / xuat hang ------------------------------------------------ */
+
+.erp-tax-details {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tax-details > summary {
+  padding: 8px 12px;
+  color: var(--erp-text-secondary);
+  cursor: pointer;
+}
+
+.erp-tax-details > summary:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-tax-details[open] > summary {
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tax-match td {
+  vertical-align: middle;
+}
+
+.erp-tax-match__cell {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tax-match__cell .invalid-feedback {
+  grid-column: 1 / -1;
+}
+
+/* Tao moi: o chon cach doi chieu ngang hang voi dong "ma - loai". */
+.erp-tax-match__cell:has(.erp-tax-match__new) {
+  align-items: start;
+}
+
+.erp-tax-match__new {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.erp-tax-match__new-name {
+  grid-column: 1 / -1;
+}
+
+.erp-tax-match__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-tax-match__tools .form-select {
+  width: auto;
+}
+
+.erp-tax-matched {
+  columns: 2 280px;
+  margin: 0;
+  padding: 8px 12px 8px 32px;
+}
+
+/* --- Chi tiet hoa don / phieu kho ------------------------------------------ */
+
+.erp-tax-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-tax-detail__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.erp-tax-detail__files {
+  display: flex;
+  gap: 8px;
+}
+
+/* --- Dinh khoan hoa don ----------------------------------------------------- */
+
+.erp-tax-journal-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.erp-tax-journal-alert {
+  display: block;
+  margin-bottom: 0;
+  padding: 8px 12px;
+}
+
+.erp-tax-journal-alert ul {
+  padding-left: 20px;
+}
+
+/* O chon loai thue / ban chat du rong de doc het nhan, bang cuon ngang. */
+.erp-tax-journal-lines .form-select {
+  min-width: 220px;
+}
+
+.erp-tax-journal-rule {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-tax-journal-footer {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-tax-journal-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tax-journal-date .form-control {
+  width: auto;
+}

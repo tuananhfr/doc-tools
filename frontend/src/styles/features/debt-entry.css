@@ -1,0 +1,131 @@
+/*
+ * Ghi nhan cong no phai thu / phai tra (`features/debt/entries`): modal cap
+ * nhat gia va modal ngay ghi so. Tien to `erp-debt-` rieng - xem CLAUDE.md
+ * muc CSS (`.erp-count` tung dung lop cua badge.css).
+ */
+
+.erp-debt-entry__context {
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* --- Thong tin phieu: luoi nhan / gia tri o dau modal ------------------- */
+.erp-debt-pricing__info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px 24px;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-debt-pricing__info dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-debt-pricing__info dd {
+  margin: 2px 0 0;
+  color: var(--erp-text-primary);
+}
+
+/* So cong no sau khi luu - chu VAN noi ro tang / giam, mau chi la lop thu hai. */
+.erp-debt-pricing__delta {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-debt-pricing__delta.is-up {
+  color: var(--erp-danger);
+}
+
+.erp-debt-pricing__delta.is-down {
+  color: var(--erp-success);
+}
+
+/* --- Bang dong hang ----------------------------------------------------- */
+.erp-debt-pricing__scroll {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.erp-debt-pricing__table {
+  min-width: 860px;
+  margin-bottom: 0;
+}
+
+.erp-debt-pricing__table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+.erp-debt-pricing__table td {
+  vertical-align: middle;
+}
+
+.erp-debt-pricing__table tr.is-changed > td {
+  background: var(--erp-info-soft);
+}
+
+.erp-debt-pricing__supply {
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-debt-pricing__code,
+.erp-debt-pricing__muted {
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-debt-pricing__input {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-debt-pricing__qty {
+  width: 110px;
+}
+
+.erp-debt-pricing__price {
+  width: 140px;
+}
+
+.erp-debt-pricing__discount {
+  width: 120px;
+}
+
+.erp-debt-pricing__tax {
+  width: 130px;
+}
+
+.erp-debt-pricing__amount {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-debt-pricing__hint {
+  font-size: 0.8125rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* STT va ghi chu "Trung mat hang voi dong ..." - hai dong cung vat tu khong gop. */
+.erp-debt-pricing__no {
+  width: 44px;
+  text-align: center;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-debt-pricing__twin {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-warning);
+}

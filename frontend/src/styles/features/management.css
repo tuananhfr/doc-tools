@@ -1,0 +1,63 @@
+/*
+ * Style rieng cua phan he Quan ly (menu 31) va cac bang bao cao cua no.
+ *
+ * Khong viet hex o day - moi mau doc qua bien `--erp-*` de ba theme
+ * Light / Dark / Field dung chung mot component (Design System muc 12 & 15).
+ */
+
+/*
+ * Chenh lech quy: con so + nhan ket luan ("Khớp sổ" / "Thiếu so với sổ").
+ *
+ * Hai thanh phan xuong dong tren the kanban vi the hep; nhan la phan BAT BUOC,
+ * khong duoc rut gon con mot con so am (muc 05 & 11).
+ */
+.erp-management__gap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/*
+ * O gio trong bang Worktime du an: so gio + dau hieu vuot gio chuan.
+ *
+ * Ban Drupal to do moi o vuot gio - ca bang thanh mot mau do va khong con
+ * canh bao nao noi bat. O day dau hieu la MUI TEN nho canh con so, kem tooltip
+ * va text an cho trinh doc man hinh (muc 05 & 14).
+ */
+.erp-worktime__cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  white-space: nowrap;
+}
+
+.erp-worktime__overtime {
+  color: var(--erp-warning);
+  font-size: 0.875rem;
+}
+
+/*
+ * Danh sach nhieu phap nhan / nhieu gach dau dong trong the va o bang bao cao.
+ *
+ * Dung <ul> that chu khong phai chuoi noi bang dau phay: nguoi doc man hinh
+ * nghe duoc "danh sách 6 mục", va mat luot qua dem duoc so dong.
+ */
+.erp-report__org-list,
+.erp-report__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.erp-report__bullets li {
+  text-wrap: pretty;
+}
+
+.erp-report__org-list li::marker,
+.erp-report__bullets li::marker {
+  color: var(--erp-text-tertiary);
+}

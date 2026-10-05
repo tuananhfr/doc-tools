@@ -1,0 +1,2092 @@
+/* =========================================================================
+   Dự án — Vai trò của Tổ chức và Nhân sự trong dự án
+   =========================================================================
+   Bám bố cục form Drupal: mỗi tổ chức là một khối gập được, đầu khối là hai ô
+   (Tổ chức | Vai trò tổ chức), dưới là bảng nhân sự + nút "Thêm dòng".
+
+   Dùng grid chứ không dùng `<table>`: mỗi ô là một control (ô chip nhiều giá
+   trị) chứ không phải chữ, mà `<table>` ép chiều cao hàng theo ô cao nhất nên
+   một dòng có 5 chip sẽ đội cả hàng lên và làm vỡ nhịp dọc.
+   ========================================================================= */
+
+.erp-project-roles__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Nhãn phụ trên đầu khối: tên tổ chức + số nhân sự. Là lớp thông tin THỨ HAI —
+   khối vẫn đọc được đầy đủ khi gập lại mà không có nó. */
+.erp-project-roles__badge {
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.erp-project-roles__table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Bảng hẹp lại thì cuộn TRONG khối, không đẩy modal tràn ngang. */
+  overflow-x: auto;
+}
+
+.erp-project-roles__row {
+  display: grid;
+  grid-template-columns: minmax(240px, 2fr) minmax(140px, 1fr) minmax(170px, 1fr) 40px;
+  gap: 8px;
+  /* `start` chứ không `center`: ô chip cao lên theo số chip, ba ô còn lại phải
+     neo ở mép trên để hàng không bị lệch tâm. */
+  align-items: start;
+  min-width: 640px;
+}
+
+.erp-project-roles__row--head {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--erp-text-tertiary);
+  border-bottom: 1px solid var(--erp-border);
+  padding-bottom: 4px;
+  min-width: 640px;
+}
+
+.erp-project-roles__rowactions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .erp-project-roles__head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================================================================
+   KHUNG LÀM VIỆC CỦA MỘT DỰ ÁN
+   =========================================================================
+   Vào một dự án là đổi ngữ cảnh điều hướng: sidebar 18 phân hệ của app nhường
+   chỗ cho menu của chính dự án đang mở. Vì vậy màn này dùng lại `.erp-shell`
+   (khung ngoài + vùng cuộn) nhưng có sidebar riêng — xem `ProjectViewPage`.
+
+   Ba tầng theo chiều dọc: AppHeader (dùng lại) → `.erp-workspace-top` (nhận diện
+   dự án + hàng thông tin + tab ngang) → nội dung + cột tóm tắt.
+   ========================================================================= */
+
+/* --- Sidebar ngữ cảnh dự án ---------------------------------------------- */
+
+/* Cùng cơ chế với `.erp-sider--fixed`: sticky tự tạo stacking context nên
+   sidebar phải nằm TRÊN header, nếu không mọi lớp nổi bên trong nó bị che. */
+.erp-workspace-nav--fixed {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  flex: none;
+  width: var(--erp-sidebar-width);
+  height: 100vh;
+  border-inline-end: 1px solid var(--erp-border);
+  background: var(--erp-sidebar-bg);
+}
+
+/* Thu gọn: chỉ còn dải icon. Chuyển động là `width` chứ không `transform` —
+   sidebar là flex item, vùng nội dung phải giãn theo cùng nhịp; `transform`
+   chỉ vẽ lại chính nó và để lại một khoảng trống bên cạnh. */
+.erp-workspace-nav--fixed {
+  transition: width 0.18s ease;
+}
+
+.erp-workspace-nav--fixed-collapsed {
+  width: var(--erp-sidebar-collapsed-width);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-workspace-nav--fixed {
+    transition: none;
+  }
+}
+
+.erp-workspace-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--erp-sidebar-bg);
+}
+
+.erp-workspace-nav--collapsed .erp-workspace-nav__brand {
+  justify-content: center;
+  padding: 0;
+}
+
+/* Icon căn giữa dải hẹp; nhãn ẩn nhưng vẫn nằm trong DOM cho trình đọc màn
+   hình — mỗi mục còn được bọc `Tip` để chuột cũng đọc được nhãn. */
+.erp-workspace-nav--collapsed .erp-workspace-nav__item {
+  justify-content: center;
+  padding: 8px;
+}
+
+.erp-workspace-nav--collapsed .erp-workspace-nav__text,
+.erp-workspace-nav--collapsed .erp-workspace-nav__hint {
+  display: none;
+}
+
+.erp-workspace-nav--collapsed .erp-workspace-nav__nav {
+  padding: 8px 6px;
+}
+
+/* Thu gọn: ô tìm còn lại dạng nút icon, cùng lề với các mục menu. */
+.erp-workspace-nav--collapsed .erp-workspace-nav__search {
+  padding: 8px 6px 0;
+}
+
+/* Dải màu của mục đang mở phải lùi vào theo padding mới, nếu không nó rơi ra
+   ngoài mép sidebar và biến mất. */
+.erp-workspace-nav--collapsed .erp-workspace-nav__item--active::before {
+  inset-inline-start: -6px;
+}
+
+.erp-workspace-nav__brand {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: var(--erp-header-height);
+  padding: 0 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-workspace-nav__picker,
+.erp-workspace-nav__search {
+  flex: none;
+  padding: 8px 12px 0;
+}
+
+.erp-workspace-nav__search {
+  padding-bottom: 8px;
+}
+
+/* Overline 10px + tracking dương — thang chữ của Design System, mục 09. */
+.erp-workspace-nav__label,
+.erp-workspace-nav__group-title {
+  margin: 0 0 4px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.erp-workspace-nav__nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+}
+
+.erp-workspace-nav__group + .erp-workspace-nav__group {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-workspace-nav__group-title {
+  padding: 0 12px;
+}
+
+.erp-workspace-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-workspace-nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  margin-bottom: 2px;
+  border: none;
+  background: transparent;
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.erp-workspace-nav__item:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+  text-decoration: none;
+}
+
+/* Mục đang mở có DẢI MÀU bên trái + nền soft, không chỉ đổi màu chữ (mục 10):
+   màu một mình không bao giờ là lớp nhận biết duy nhất. */
+.erp-workspace-nav__item--active {
+  background: var(--erp-brand-soft);
+  color: var(--erp-brand);
+  font-weight: 600;
+}
+
+.erp-workspace-nav__item--active::before {
+  content: '';
+  position: absolute;
+  inset-block: 8px;
+  inset-inline-start: -8px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: var(--erp-brand);
+}
+
+/* Mục cấp 3: thụt vào một bậc để thấy nó thuộc về mục ngay trên, thay cho một
+   tiêu đề nhóm riêng (xem `groupsOf`). Vạch dọc thay cho việc lùi lề trắng —
+   lùi lề một mình thì ở dải icon thu gọn không còn dấu vết gì. */
+.erp-workspace-nav__item--sub {
+  margin-inline-start: 14px;
+  width: calc(100% - 14px);
+  border-inline-start: 1px solid var(--erp-border);
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  font-weight: 400;
+}
+
+/* Mục của khung tạm (chưa có API): nhạt hơn một bậc — vẫn bấm được và vẫn đọc
+   rõ, nhưng không đứng ngang hàng với mục đã có dữ liệu thật. Chỉ là lớp nhận
+   biết THỨ HAI: `title` + câu trong nội dung mới là lớp nói ra điều đó. */
+.erp-workspace-nav__item--planned {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-workspace-nav--collapsed .erp-workspace-nav__item--sub {
+  /* Dải icon quá hẹp cho một bậc thụt — bỏ hẳn, tooltip vẫn nói rõ là mục gì. */
+  margin-inline-start: 0;
+  width: 100%;
+  border-inline-start: none;
+}
+
+.erp-workspace-nav__icon {
+  flex: none;
+  font-size: 1rem;
+}
+
+/* Nhãn tiếng Việt dài hơn tiếng Anh ~30% nên cắt một dòng, giữ tooltip là
+   chính nhãn qua `title` của trình duyệt khi tràn. */
+.erp-workspace-nav__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* Chừa chỗ cho dấu tiếng Việt: line-height chật làm cụt dấu huyền/ngã. */
+  line-height: 1.45;
+}
+
+.erp-workspace-nav__hint {
+  flex: none;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* Mục LIÊN KẾT CHÉO (object gốc ở phân hệ khác): blue = điều hướng, không phải CTA. */
+.erp-workspace-nav__hint--link {
+  color: var(--erp-action-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-workspace-nav__note {
+  margin: 8px 12px 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-workspace-nav__footer {
+  flex: none;
+  padding: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-workspace-nav__version {
+  margin: 4px 0 0;
+  padding: 0 12px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+/*
+ * ĐANG CHUYỂN SANG DỰ ÁN KHÁC — vẫn là dữ liệu của dự án TRƯỚC.
+ *
+ * Sidebar giữ nguyên (không có cú nhảy), phần còn lại mờ đi và khoá tương tác:
+ * bấm "Sửa dự án" trong ~300ms đó sẽ mở form của dự án cũ trong khi URL đã là
+ * dự án mới — sai âm thầm, mà lưu vào là ghi đè thật.
+ */
+.erp-workspace-main--busy {
+  opacity: 0.55;
+  pointer-events: none;
+  cursor: progress;
+  transition: opacity 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-workspace-main--busy {
+    transition: none;
+  }
+}
+
+/* --- Đầu trang: nhận diện dự án + tab ngang ------------------------------- */
+
+.erp-workspace-top {
+  flex: none;
+  padding: 12px 20px 0;
+  background: var(--erp-surface);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-workspace-top__ident {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Mã dự án là con số tra cứu — tabular để không nhảy cột giữa các dự án. */
+.erp-workspace-top__code {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Khối (mã · tên · badge). Desktop không tạo hộp — ba phần tử vẫn là ô của
+   hàng nhận diện; điện thoại mới gom thành một khối hai dòng (xem cuối mục). */
+.erp-workspace-top__title {
+  display: contents;
+}
+
+.erp-workspace-top__name {
+  min-width: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--erp-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-workspace-top__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.erp-workspace-top__tabs {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+  /* Cuộn ngang thay vì xuống dòng: hai hàng tab làm đầu trang cao gấp đôi. */
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.erp-workspace-top__tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.erp-workspace-top__tab:hover {
+  color: var(--erp-text-primary);
+}
+
+/* Tab đang mở có INDICATOR gạch dưới, không chỉ đổi màu chữ (mục 10). */
+.erp-workspace-top__tab--active {
+  color: var(--erp-brand);
+  border-bottom-color: var(--erp-brand);
+  font-weight: 600;
+}
+
+/* --- Thân trang: nội dung + cột tóm tắt ---------------------------------- */
+
+.erp-workspace-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Không có cột tóm tắt thì bỏ hẳn track thứ hai — để nguyên `1fr 300px` là
+   nội dung vẫn hẹp lại đúng 300px + gap cho một cột rỗng. */
+.erp-workspace-body--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.erp-workspace-body__main {
+  min-width: 0;
+}
+
+.erp-project-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+}
+
+.erp-project-rail__stats,
+.erp-project-rail__orgs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-project-rail__stats li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.erp-project-rail__stats li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-project-rail__icon {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-project-rail__stat-label {
+  flex: 1;
+  min-width: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-project-rail__stat-value {
+  color: var(--erp-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-project-rail__orgs li + li {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-project-rail__org {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.erp-project-rail__org-meta {
+  margin: 2px 0 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* Dưới 1200px cột tóm tắt xuống dưới nội dung — KHÔNG ẩn: nó là dữ liệu thật
+   (tổ chức và nhân sự của dự án), ẩn đi là mất thông tin chứ không phải gọn. */
+@media (max-width: 1200px) {
+  .erp-workspace-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-project-rail {
+    position: static;
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-workspace-top {
+    padding: 12px 16px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  /*
+   * Điện thoại: phần nhận diện gói trong MỘT hàng — [menu][quay lại][tên / mã ·
+   * badge]["⋮"]. Đầu trang dính trên mọi màn của bản ghi; bản trước xếp tên,
+   * badge và hàng nút thành ba dòng (~150px) trước cả thanh điều hướng.
+   */
+  .erp-workspace-top {
+    padding: 8px 12px 0;
+  }
+
+  .erp-workspace-top__ident {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .erp-workspace-top__title {
+    display: flex;
+    flex: 1 1 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 6px;
+    min-width: 0;
+  }
+
+  .erp-workspace-top__name {
+    order: -1;
+    flex: 1 0 100%;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .erp-workspace-top__title .erp-workspace-top__code {
+    padding: 0;
+    background: transparent;
+    font-size: 0.75rem;
+  }
+
+  .erp-workspace-top__title .erp-badge {
+    min-width: 0;
+    padding: 0 6px;
+    overflow: hidden;
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Hàng nút đầy đủ (khung chưa khai `compactActions`) xuống dòng riêng… */
+  .erp-workspace-top__actions {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+
+  /* …còn nút "⋮" thì ở lại cuối hàng nhận diện. */
+  .erp-workspace-top__actions--menu {
+    flex: none;
+    width: auto;
+    margin-inline-start: auto;
+  }
+
+  .erp-workspace-top__actions:empty {
+    display: none;
+  }
+}
+
+/* Nút "⋮" là nút icon — hình ba chấm đã nói nó mở ra được, không cần mũi tên. */
+.erp-workspace-top__more.dropdown-toggle::after {
+  display: none;
+}
+
+/* =========================================================================
+   Pháp lý dự án — danh sách thủ tục + bảng các bước
+   ========================================================================= */
+
+.erp-tile-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tile-list__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.erp-tile-list__item:hover {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-tile-list__icon {
+  flex: 0 0 auto;
+  font-size: 1.125rem;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tile-list__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.9375rem;
+}
+
+/* Số bước canh phải, chữ số đều bề ngang để cột không nhảy khi so sánh. */
+.erp-tile-list__count {
+  flex: 0 0 auto;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+
+/* Ô chỉ để đọc — dùng cho danh sách chức năng chưa mở được. Bỏ con trỏ tay và
+   hiệu ứng hover: một ô trông bấm được mà bấm không có gì xảy ra thì tệ hơn
+   một dòng chữ tĩnh. */
+.erp-tile-list__item--static {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.erp-tile-list__item--static:hover {
+  border-color: var(--erp-border);
+  background: transparent;
+}
+
+/* =========================================================================
+   Dự án — Tài liệu CDE
+   =========================================================================
+   Panel nằm TRONG một tab của dự án, không phải một trang danh sách. Nên nó
+   mượn nguyên hàng chip lọc, nút đổi cách hiển thị, bảng và lưới thẻ của màn
+   `/documents/cde` (`documents-cde.css` đã nạp toàn cục) — ở đây chỉ còn phần
+   riêng: thanh đầu panel và hai khối rỗng.
+   ========================================================================= */
+
+.project-docs {
+  padding: 16px;
+}
+
+/* Thanh đầu: tiêu đề bên trái, công cụ bên phải, xuống dòng khi hết chỗ.
+   KHÔNG dùng `PageToolbar` như các trang danh sách: cái đó mang theo tiêu đề
+   cỡ trang và nút "Thêm mới" ở tầm ưu tiên cao nhất, mà ở đây cả panel chỉ là
+   MỘT mục trong menu dự án — chiếm tầm đó là nói dối về thứ bậc. */
+.project-docs__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project-docs__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--erp-text-secondary);
+}
+
+.project-docs__title h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Số tài liệu: lớp thông tin thứ hai, không được to ngang tiêu đề. */
+.project-docs__count {
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.project-docs__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Ô tìm co giãn nhưng có trần: để nó nuốt hết bề ngang thì nút "Thêm tài liệu"
+   bị đẩy xuống hàng hai ngay cả trên màn rộng. */
+.project-docs__actions .project-docs__search {
+  width: clamp(180px, 26vw, 320px);
+}
+
+/* Khối rỗng — gặp rất nhiều vì `field_document_project` khởi đầu rỗng ở mọi dự
+   án (xem docblock của ProjectDocumentsPanel). Vì vậy nó phải trông như một
+   lời mời làm việc, không phải như một lỗi: icon nhạt, câu giải thích, và một
+   nút đi tiếp. */
+.project-docs__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 24px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  text-align: center;
+}
+
+.project-docs__empty > i {
+  font-size: 1.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.project-docs__empty p {
+  max-width: 48ch;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Dòng "sẽ gắn vào dự án X" trên popup tải lên. Không phải cảnh báo — nó khẳng
+   định một điều người dùng KHÔNG đổi được, nên dùng nền trung tính chứ không
+   phải màu vàng. */
+.project-docs__pin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* --- "Hợp đồng AB" / "Hợp đồng BB'" (tab Hợp đồng & Gói thầu) -------------- */
+.erp-project-contracts {
+  min-width: 1100px;
+  margin: 0;
+}
+
+.table.erp-project-contracts > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+  padding: 8px 12px;
+  vertical-align: top;
+}
+
+/* Tiêu đề hai tầng: ô "Giá trị (VND)" gộp cột căn giữa theo chiều dọc với các
+   ô rowSpan bên cạnh. */
+.table.erp-project-contracts > thead > tr > th {
+  vertical-align: middle;
+  background: var(--erp-surface-secondary);
+}
+
+.table.erp-project-contracts > tfoot > tr > td {
+  background: var(--erp-surface-secondary);
+}
+
+/* --- Form báo cáo OnTime -------------------------------------------------
+   Form Drupal dùng bảng nhập liệu khá sít để nhìn được trọn một hàng gồm đơn
+   vị, nhân lực và nội dung. Chỉ thu gọn các bảng nhập của OnTime; bảng dữ liệu
+   chung vẫn giữ vùng bấm rộng theo design system. */
+.table.erp-ontime-input-table > :is(thead, tbody) > tr > :is(th, td) {
+  padding: 6px 8px;
+}
+
+.erp-ontime-input-table :is(.form-control, .form-select) {
+  min-height: 34px;
+  padding-block: 4px;
+}
+
+.erp-ontime-input-table textarea.form-control {
+  min-height: 34px;
+}
+.erp-ontime-print-page .erp-print-page__sheet {
+  width: min(100%, 210mm);
+  margin-inline: auto;
+}
+
+.erp-ontime-print {
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 16mm 15mm 18mm;
+  background: white;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 1.35;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 12%);
+}
+
+.erp-ontime-print__header {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  min-height: 65px;
+  align-items: start;
+}
+
+.erp-ontime-print__brand-logo img {
+  display: block;
+  max-width: 180px;
+  height: 65px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.erp-ontime-print__brand-copy {
+  padding-top: 28px;
+  text-align: right;
+}
+
+.erp-ontime-print__brand-copy strong,
+.erp-ontime-print__brand-copy span {
+  display: block;
+}
+
+.erp-ontime-print__brand-copy strong {
+  text-transform: uppercase;
+}
+
+.erp-ontime-print h1 {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 700;
+}
+
+.erp-ontime-print__date {
+  margin: 2px 0 18px;
+  text-align: center;
+}
+
+.erp-ontime-print__meta {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0 18px;
+}
+
+.erp-ontime-print__meta p {
+  margin: 0 0 3px;
+}
+
+.erp-ontime-print__project {
+  grid-column: span 1;
+}
+
+.erp-ontime-print__address {
+  grid-column: span 2;
+}
+
+.erp-ontime-print__sections {
+  margin: 14px 0 0;
+  padding-left: 26px;
+}
+
+.erp-ontime-print__sections > li {
+  margin-bottom: 13px;
+  padding-left: 3px;
+  break-inside: avoid;
+}
+
+.erp-ontime-print h2 {
+  margin: 0 0 5px;
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.erp-ontime-print__table-wrap {
+  overflow: visible;
+}
+
+.erp-ontime-print table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10pt;
+}
+
+.erp-ontime-print th,
+.erp-ontime-print td {
+  padding: 5px 6px;
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+.erp-ontime-print th,
+.erp-ontime-print td.number {
+  text-align: center;
+}
+
+.erp-ontime-print__text {
+  white-space: pre-wrap;
+}
+
+.erp-ontime-print__images {
+  columns: 2;
+  column-gap: 10px;
+}
+
+.erp-ontime-print__images figure {
+  margin: 0 0 10px;
+  break-inside: avoid;
+}
+
+.erp-ontime-print__images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.erp-ontime-print__images figcaption {
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+  font-size: 9pt;
+  text-align: center;
+}
+
+@media print {
+  /*
+   * TRANG ĐẶT TÊN, không phải `@page` trần: CSS là toàn cục, `@page` trần ở đây
+   * đè lề của MỌI bản in khác (luật chung ở advance-print.css). Xem mục
+   * "Bản in" của CLAUDE.md.
+   */
+  @page erp-ontime {
+    size: A4 portrait;
+    margin: 10mm 12mm 14mm;
+  }
+
+  html:has(.erp-ontime-print-page) {
+    page: erp-ontime;
+  }
+
+  .erp-ontime-print-page,
+  .erp-ontime-print-page .erp-print-page__layout,
+  .erp-ontime-print-page .erp-print-page__sheet {
+    width: auto !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: white !important;
+  }
+
+  .erp-ontime-print {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .erp-ontime-print thead {
+    display: table-header-group;
+  }
+
+  .erp-ontime-print tr,
+  .erp-ontime-print figure {
+    break-inside: avoid;
+  }
+}
+
+/* ==========================================================================
+   Phan quyen menu du an (/management/project-scopes)
+   Luoi hai cot: danh sach muc (cuon rieng) | form cua muc dang chon.
+   ========================================================================== */
+
+.erp-pm-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-pm-layout__main {
+  min-width: 0;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  padding: 16px 20px;
+}
+
+@media (max-width: 991.98px) {
+  .erp-pm-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- Danh sach muc ------------------------------------------------------ */
+
+.erp-pm-list {
+  position: sticky;
+  top: calc(var(--erp-header-height) + 12px);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--erp-header-height) - 32px);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+  .erp-pm-list {
+    position: static;
+    max-height: 360px;
+  }
+}
+
+.erp-pm-list__search {
+  padding: 10px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-pm-list__body {
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+.erp-pm-list__empty {
+  padding: 16px;
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+}
+
+.erp-pm-list__section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 12px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+/* Tiêu đề mục cấp 2 của menu vòng đời (không bấm được, không có cấu hình). */
+.erp-pm-list__heading {
+  padding-block: 8px 2px;
+  padding-inline-end: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-pm-list__hint {
+  cursor: help;
+}
+
+.erp-pm-list__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding-block: 6px;
+  padding-inline-end: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--erp-text-primary);
+  font-size: 13px;
+  text-align: left;
+}
+
+.erp-pm-list__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-pm-list__item.is-active {
+  background: var(--erp-action-secondary-soft);
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+.erp-pm-list__item:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-pm-list__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-pm-list__tag {
+  margin-inline-start: 6px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+  font-size: 11px;
+  display: inline-block;
+}
+
+.erp-pm-list__dots {
+  display: inline-flex;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+/* Cham tat: vien rong. Cham bat: to dac — hinh dang doi, khong chi mau doi. */
+.erp-pm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--erp-border-strong);
+}
+
+.erp-pm-dot.is-on {
+  border-color: transparent;
+}
+
+.erp-pm-dot--view.is-on {
+  background: var(--erp-action-secondary);
+}
+
+.erp-pm-dot--write.is-on {
+  background: var(--erp-info);
+}
+
+.erp-pm-dot--delete.is-on {
+  background: var(--erp-warning);
+}
+
+.erp-pm-dot--approve.is-on {
+  background: var(--erp-success);
+}
+
+/* ---- Form -------------------------------------------------------------- */
+
+.erp-pm-form__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-pm-form__title {
+  min-width: 0;
+}
+
+.erp-pm-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-pm-template-menu {
+  max-height: 60vh;
+  overflow-y: auto;
+  min-width: 320px;
+}
+
+.erp-pm-block {
+  padding-block: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-pm-block:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.erp-pm-block__title {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pm-block__hint {
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pm-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.erp-pm-types__note {
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+.erp-pm-note {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+}
+
+.erp-pm-note > .bi {
+  margin-top: 2px;
+}
+
+.erp-pm-action {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-pm-action + .erp-pm-action {
+  margin-top: 10px;
+}
+
+.erp-pm-action--view {
+  border-color: var(--erp-border-strong);
+}
+
+.erp-pm-action__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 8px;
+}
+
+.erp-pm-action__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.erp-pm-action__hint {
+  flex: 1 1 240px;
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pm-action__tools .btn {
+  padding-block: 0;
+  font-size: 12px;
+}
+
+.erp-pm-action__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Bang vi tri cong ty: moi dong la mot the, ba o chon + hang quyen. */
+.erp-pm-positions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.erp-pm-positions__empty {
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+}
+
+.erp-pm-position {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-pm-position__dims {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.erp-pm-position__hint {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+.erp-pm-position__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 20px;
+  margin-top: 8px;
+}
+
+@media (max-width: 1199.98px) {
+  .erp-pm-position__dims {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .erp-pm-position__dims {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.erp-pm-sim__position {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 575.98px) {
+  .erp-pm-sim__position {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Khoi "Chuc nang trong cong ty" la duong cap quyen MAC DINH — vien trai nhan
+   manh, khong to nen (nen da dung cho the o duoi). */
+.erp-pm-block--primary {
+  padding-inline-start: 12px;
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+@media (max-width: 1199.98px) {
+  .erp-pm-action__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.erp-pm-action__cell {
+  min-width: 0;
+}
+
+.erp-pm-action__label {
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+/* ---- Thu theo vi tri --------------------------------------------------- */
+
+.erp-pm-sim__form {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-pm-sim__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 12px;
+}
+
+.erp-pm-sim__template {
+  width: auto;
+  max-width: 100%;
+  margin-inline-start: auto;
+}
+
+.erp-pm-sim__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.erp-pm-sim__group td {
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.erp-pm-matrix td {
+  vertical-align: top;
+}
+
+/* --- Tab "Tài chính dự án": Sổ quỹ · Phiếu thu · Công nợ ------------------
+   Tiền tố `erp-pf-` (project finance) — đừng đổi sang tên chung, `badge.css`
+   đã có `.erp-count` và từng làm ô đếm bay lên góc bảng. */
+.erp-pf-search {
+  width: 260px;
+  max-width: 100%;
+}
+
+.erp-pf-summary {
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.erp-pf-summary strong {
+  color: var(--erp-text-primary);
+}
+
+/* Tiêu đề thẻ phiếu thu bấm được để mở chi tiết — trông như chữ, không như nút. */
+.erp-pf-card-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.erp-pf-card-link:hover,
+.erp-pf-card-link:focus-visible {
+  color: var(--erp-brand);
+  text-decoration: underline;
+}
+
+.erp-pf-files {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.erp-pf-debt {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-pf-progress-col {
+  width: 150px;
+}
+
+.erp-pf-progress {
+  height: 6px;
+  margin: 6px 0 2px;
+  border-radius: 999px;
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-pf-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-success);
+}
+
+/* Màn "Nghiệm thu" của dự án — hai ô lọc trên đầu thẻ (tên hợp đồng dài). */
+.erp-acceptance__filter {
+  width: auto;
+  max-width: 280px;
+}
+.erp-acceptance__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.erp-acceptance__chips button {
+  border: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 13px;
+}
+.erp-acceptance__chips button span {
+  color: var(--erp-text-secondary);
+  margin-inline-start: 4px;
+}
+.erp-acceptance__chips button.is-active {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-action-secondary);
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+}
+.erp-acceptance__table td {
+  vertical-align: top;
+}
+.erp-acceptance__file {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: 6px;
+  font-size: 13px;
+}
+/* Màn Sản lượng của dự án. */
+.erp-output__pct {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 140px;
+}
+.erp-output__pct .progress {
+  flex: 1 1 auto;
+  height: 6px;
+}
+.erp-output__pct span {
+  min-width: 40px;
+  text-align: end;
+}
+.erp-output__package td {
+  background: var(--erp-surface-secondary);
+}
+.erp-output__total td {
+  font-weight: 600;
+  border-top: 2px solid var(--erp-border-strong);
+}
+
+/*
+ * Màn tổng hợp của các mục "Chuẩn bị dự án" (Quy hoạch & Đất đai, Thẩm định
+ * & Phê duyệt): hàng StatCard + thẻ bảng xếp dọc. `.erp-card` mặc định
+ * `height: 100%` — trả về `auto` kẻo thẻ cao bằng cả khung.
+ */
+.erp-prep-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-prep-overview > .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.erp-prep-overview__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .erp-prep-overview__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.erp-prep-overview__name {
+  min-width: 240px;
+}
+
+.erp-prep-overview__num {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Quy hoạch & đất đai: một workspace gọn, tách số liệu và hồ sơ thủ tục. */
+.erp-planning-workspace {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.erp-planning-workspace__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: linear-gradient(115deg, var(--erp-surface), var(--erp-info-soft));
+}
+
+.erp-planning-workspace__eyebrow {
+  color: var(--erp-info);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.erp-planning-workspace__head h2 {
+  margin: 5px 0 4px;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 700;
+}
+
+.erp-planning-workspace__head p {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-planning-workspace__head .btn {
+  flex: none;
+}
+
+.erp-planning-workspace__tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--erp-border);
+  overflow-x: auto;
+}
+
+.erp-planning-workspace__tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 10px 16px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.erp-planning-workspace__tabs button:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-planning-workspace__tabs button.is-active {
+  border-bottom-color: var(--erp-info);
+  color: var(--erp-info);
+}
+
+.erp-planning-workspace__tabs button:focus-visible {
+  outline: 2px solid var(--erp-info);
+  outline-offset: -3px;
+}
+
+.erp-planning-basis {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-planning-basis .erp-card {
+  height: auto;
+  min-width: 0;
+}
+
+.erp-planning-basis__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.erp-planning-basis__metric {
+  min-width: 0;
+  padding: 18px 20px;
+}
+
+.erp-planning-basis__metric + .erp-planning-basis__metric {
+  border-left: 1px solid var(--erp-border);
+}
+
+.erp-planning-basis__metric-top {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--erp-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.erp-planning-basis__metric-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-planning-basis__metric-value {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-planning-basis__metric-value strong {
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  line-height: 1.15;
+}
+
+.erp-planning-basis__metric-value span,
+.erp-planning-basis__metric small {
+  color: var(--erp-text-tertiary);
+  font-size: 0.78rem;
+}
+
+.erp-planning-basis__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-planning-basis__count {
+  color: var(--erp-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-planning-basis__land-list {
+  display: grid;
+  gap: 0;
+}
+
+.erp-planning-basis__land-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-planning-basis__land-row:first-child {
+  padding-top: 0;
+}
+
+.erp-planning-basis__land-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.erp-planning-basis__land-name,
+.erp-planning-basis__land-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-planning-basis__land-name strong {
+  font-weight: 600;
+}
+
+.erp-planning-basis__land-name span {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-planning-basis__land-amount {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-planning-basis__land-amount span {
+  color: var(--erp-text-tertiary);
+  font-size: 0.78rem;
+}
+
+.erp-planning-basis__bar {
+  height: 5px;
+  margin-top: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-planning-basis__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-info);
+}
+
+.erp-planning-basis__land-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-planning-basis__details {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.erp-planning-basis__details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-planning-basis__details > div:first-child {
+  padding-top: 0;
+}
+
+.erp-planning-basis__details > div:last-child {
+  border-bottom: 0;
+}
+
+.erp-planning-basis__details dt {
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.erp-planning-basis__details dd {
+  margin: 0;
+  max-width: 55%;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.erp-planning-basis__details dt small,
+.erp-planning-basis__review small {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.erp-planning-basis__review {
+  min-width: 170px;
+}
+
+.erp-planning-basis__note {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  font-size: 0.84rem;
+}
+
+.erp-planning-basis__table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.erp-planning-basis__table {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.erp-planning-basis__table th {
+  padding: 10px 12px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.erp-planning-basis__table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.erp-planning-basis__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.erp-planning-basis__unit,
+.erp-planning-basis__footnote {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-planning-basis__empty {
+  display: grid;
+  justify-items: center;
+  padding: 24px 12px;
+  color: var(--erp-text-tertiary);
+  text-align: center;
+}
+
+.erp-planning-basis__empty > .bi {
+  margin-bottom: 8px;
+  color: var(--erp-info);
+  font-size: 1.6rem;
+}
+
+.erp-planning-basis__empty p {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-planning-basis__footnote {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .erp-planning-basis__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .erp-planning-basis__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-planning-basis__metric:nth-child(3) {
+    border-left: 0;
+  }
+
+  .erp-planning-basis__metric:nth-child(n + 3) {
+    border-top: 1px solid var(--erp-border);
+  }
+}
+
+@media (max-width: 560px) {
+  .erp-planning-workspace__head {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .erp-planning-workspace__head .btn {
+    align-self: flex-start;
+  }
+
+  .erp-planning-basis__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .erp-planning-basis__metric,
+  .erp-planning-basis__metric:nth-child(3) {
+    border-left: 0;
+  }
+
+  .erp-planning-basis__metric + .erp-planning-basis__metric {
+    border-top: 1px solid var(--erp-border);
+  }
+
+  .erp-planning-basis__land-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .erp-planning-basis__details > div {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .erp-planning-basis__details dd {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+/* Nhóm chi phí của một cam kết — nhóm do hệ thống GỢI Ý thì in nghiêng, mờ. */
+.erp-cost__group {
+  min-width: 190px;
+}
+.erp-cost__group .is-suggested {
+  font-style: italic;
+  color: var(--erp-text-secondary);
+}
+
+
+/* "Tiến độ" của từng chặng vòng đời — dải chỉ số trên Gantt. */
+.erp-stage-schedule__summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+}
+.erp-stage-schedule__summary > div {
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: 8px;
+  background: var(--erp-surface-secondary);
+}
+.erp-stage-schedule__summary dt {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+.erp-stage-schedule__summary dd {
+  margin: 2px 0 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+.erp-stage-schedule__summary > .is-danger dd {
+  color: var(--erp-danger);
+}
+
+
+/* Hộp đổi trạng thái dự án (ProjectStatusModal). */
+.erp-project-status {
+  margin: 0 0 12px;
+}
+.erp-project-status__legend {
+  margin-bottom: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+.erp-project-status__option {
+  padding-block: 4px;
+}
+.erp-project-status__current,
+.erp-project-status__closed {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+.erp-project-status__error {
+  margin: 12px 0 0;
+  font-size: 0.875rem;
+  color: var(--erp-danger);
+}
+
+/* Danh sách tồn tại trong khung chi tiết biên bản nghiệm thu (Master-Detail, tablet ngang). */
+.erp-acceptance-dock__defects {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-acceptance-dock__defects > li + li {
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-acceptance-dock__defect-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}

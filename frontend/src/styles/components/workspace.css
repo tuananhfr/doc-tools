@@ -1,0 +1,201 @@
+/* =========================================================================
+   WorkspaceBrowser — duyệt thư mục NAS (lưới icon + thanh công cụ)
+
+   Bố cục bám trình duyệt tệp của Drupal (jQuery File Browser): thanh công cụ
+   back / up / refresh / home + ô đường dẫn, rồi lưới icon lớn.
+
+   Thanh công cụ bên Drupal là một dải TỐI cố định. Ở đây dùng
+   `--erp-surface-secondary` chứ không chép màu đó: một dải slate đen giữa giao
+   diện Light là màu nằm ngoài bảng Crimson Ice, và Field Mode cần contrast
+   ≥ 7:1 mà một hex viết cứng thì không đi theo theme được. Cấu trúc giữ nguyên
+   (icon + nhãn, cùng thứ tự nút) nên người dùng vẫn nhận ra ngay.
+   ========================================================================= */
+
+.erp-workspace__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md) var(--erp-radius-md) 0 0;
+  background: var(--erp-surface-secondary);
+}
+
+/* Nút công cụ: icon trên, nhãn dưới — nhãn luôn hiện, không giấu vào tooltip
+   (thiết bị cảm ứng không hover được, DS mục 11). */
+.erp-workspace__tool.btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 60px;
+  padding: 4px 6px;
+  border: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+}
+
+.erp-workspace__tool.btn i {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.erp-workspace__tool.btn:hover:not(:disabled) {
+  color: var(--erp-action-secondary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-workspace__tool.btn:disabled {
+  opacity: 0.45;
+}
+
+/* Ô đường dẫn chiếm hết phần còn lại; chỉ đọc nên không có viền nhấn. */
+.erp-workspace__path {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-left: 8px;
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 0.8125rem;
+}
+
+/* -------------------------------------------------------------------------
+   Lưới icon
+   ------------------------------------------------------------------------- */
+
+/* Vung tha tep: bao ca luoi. Vien dut net chi hien khi dang keo — mot khung
+   dut net thuong truc bien thanh nhieu ma khong noi them gi. */
+.erp-workspace__drop {
+  position: relative;
+}
+
+.erp-workspace__drop.is-dropping .erp-workspace__grid,
+.erp-workspace__drop.is-dropping .erp-workspace__note {
+  border-color: var(--erp-action-secondary);
+  border-style: dashed;
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-workspace__hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  /* Khong nhan chuot: neu bat su kien thi `dragleave` ban ngay khi lop nay
+     hien ra, va vien "tha vao day" nhap nhay theo tung buoc chuot. */
+  pointer-events: none;
+  color: var(--erp-action-secondary);
+  font-weight: 500;
+}
+
+.erp-workspace__hint i {
+  font-size: 2rem;
+}
+
+/* 16px chu khong phai thanh manh 4-6px: thanh nay CO chu "%" ben trong, va o
+   duoi 14px thi con so bi cat mat. */
+.erp-workspace__progress {
+  height: 16px;
+  margin-top: 8px;
+  font-size: 0.6875rem;
+}
+
+.erp-workspace__errors {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+
+.erp-workspace__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 4px;
+  /* Cao tối đa cố định để thanh công cụ luôn nhìn thấy khi thư mục nhiều tệp —
+     cuộn nằm trong lưới chứ không đẩy cả modal dài ra. */
+  max-height: min(56vh, 480px);
+  margin: 0;
+  padding: 12px 8px;
+  overflow-y: auto;
+  border: 1px solid var(--erp-border);
+  border-top: 0;
+  border-radius: 0 0 var(--erp-radius-md) var(--erp-radius-md);
+  list-style: none;
+}
+
+.erp-workspace__cell {
+  min-width: 0;
+}
+
+.erp-workspace__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-primary);
+  background: transparent;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.erp-workspace__tile:hover,
+.erp-workspace__tile:focus-visible {
+  border-color: var(--erp-border);
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-workspace__icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--erp-action-secondary);
+}
+
+/* Thư mục dùng màu Copper "hiện trường" để tách khỏi tệp chỉ bằng một liếc mắt
+   — nhưng icon đã khác hình (folder ≠ file-earmark) nên màu chỉ là lớp thứ hai. */
+.erp-workspace__cell .bi-folder-fill.erp-workspace__icon {
+  color: var(--erp-construction);
+}
+
+/* Tên tệp dài phải XUỐNG DÒNG chứ không cắt bằng "…": tên tệp trên NAS hay
+   khác nhau ở đuôi ("…-r02.pdf" vs "…-r03.pdf"), cắt đuôi là hai tệp trông y
+   hệt nhau. Giới hạn 2 dòng để ô không cao thấp so le. */
+.erp-workspace__label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-size: 0.8125rem;
+  line-height: 1.25;
+}
+
+.erp-workspace__meta {
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-workspace__note {
+  padding: 24px 8px;
+  border: 1px solid var(--erp-border);
+  border-top: 0;
+  border-radius: 0 0 var(--erp-radius-md) var(--erp-radius-md);
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------------
+   Popup
+   ------------------------------------------------------------------------- */
+
+.erp-workspace-modal__body {
+  padding: 12px;
+}

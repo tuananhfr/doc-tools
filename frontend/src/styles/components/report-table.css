@@ -1,0 +1,126 @@
+/*
+ * Bang bao cao theo ky (`components/report-table`).
+ *
+ * Ke thua toan bo dien mao cua `.erp-table`; o day chi them nhung gi rieng cua
+ * bao cao: header hai cap, hang nhom, hang tong, cot ghim trai.
+ * Khong viet hex - moi mau doc qua bien `--erp-*` (muc 12).
+ */
+
+.erp-report__caption {
+  margin: 0;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--erp-border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/* Header hai cap: o nhom cha co vien duoi de tach khoi cot con. */
+.erp-report .table > thead tr:first-child th {
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-report .table > thead th {
+  background: var(--erp-surface-secondary);
+}
+
+/* Cot ghim trai khi cuon ngang (STT, ho ten). */
+.erp-report__sticky {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--erp-surface);
+}
+
+.erp-report .table > thead .erp-report__sticky {
+  z-index: 3;
+}
+
+/* Hang tieu de nhom - nen surface phu + chu dam, khong to mau bao hoa. */
+.erp-report__group > th,
+.erp-report__group > td {
+  background: var(--erp-surface-secondary);
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+}
+
+/* Hang tong - vach tren day de doc duoc ma khong can to mau ca hang. */
+.erp-report__total > th,
+.erp-report__total > td {
+  background: var(--erp-surface-secondary);
+  border-top: 2px solid var(--erp-border-strong);
+  font-weight: 700;
+  color: var(--erp-text-primary);
+  white-space: nowrap;
+}
+
+.erp-report .table > tbody td,
+.erp-report .table > tfoot td,
+.erp-report .table > tfoot th {
+  padding: 10px 16px;
+}
+
+/* So lieu tien te - can phai va dung chu so deu be ngang de de doi chieu cot. */
+.erp-report .text-end {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+ * DIEN THOAI: bao cao xep thanh the (`.erp-stack-table`, table.css). Hang TONG
+ * len dau danh sach; hang nhom / hang tong giu nen phu de phan biet voi the du
+ * lieu (kem nhan chu - mau khong phai tin hieu duy nhat).
+ */
+@media (max-width: 576px) {
+  .erp-report .erp-stack-table.table > tfoot {
+    order: -1;
+  }
+
+  .erp-report .erp-stack-table.table > :is(tbody, tfoot) > tr:is(.erp-report__group, .erp-report__total) {
+    background: var(--erp-surface-secondary);
+  }
+
+  .erp-report .erp-stack-table.table > :is(tbody, tfoot) > tr > :is(td, th) {
+    padding: 2px 0;
+    border-top: 0;
+    white-space: normal;
+  }
+
+  .erp-report .erp-stack-table.table > :is(tbody, tfoot) > tr.erp-report__total {
+    border-color: var(--erp-border-strong);
+  }
+}
+
+/*
+ * DIEN THOAI: bang bao cao khong qua 12 cot la `StackTable` - moi dong mot the
+ * (luat the nam o `table.css`). O day chi them phan rieng cua bao cao: hang nhom
+ * va hang tong la THE co nhan chu, cot ghim khong con ghim.
+ *
+ * `.erp-report.erp-table` + `!important`: luat o gop (`[colspan]`) cua `table.css`
+ * canh giua bang `!important` va an cot so thu tu (`__skip`) - nhan cua hang
+ * nhom nam o dung cot do khi bang chi co mot cot mo ta.
+ */
+@media (max-width: 576px) {
+  .erp-report .erp-stack-table .erp-report__sticky {
+    position: static;
+    background: transparent;
+  }
+
+  .erp-report.erp-table .erp-stack-table > tbody > tr.erp-report__group:has(> td) {
+    background: var(--erp-surface-secondary);
+  }
+
+  .erp-report.erp-table .erp-stack-table > :is(tbody, tfoot) > tr:is(.erp-report__group, .erp-report__total):has(> td) > th {
+    display: block !important;
+    order: -1;
+    padding-bottom: 4px;
+    font-size: 0.9375rem;
+    text-align: start !important;
+    white-space: normal;
+  }
+
+  .erp-report.erp-table .erp-stack-table > :is(tbody, tfoot) > tr:is(.erp-report__group, .erp-report__total) > td {
+    border-top: 0;
+    white-space: normal;
+  }
+}

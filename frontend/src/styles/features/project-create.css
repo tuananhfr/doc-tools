@@ -1,0 +1,1247 @@
+/*
+ * Màn "Tạo dự án mới" nhiều bước (`ProjectFormPage`).
+ *
+ * Bố cục ba cột chép bản thiết kế "Khởi tạo dự án 092026": chế độ & mẫu (trái)
+ * · form của bước (giữa) · xem trước & kiểm tra (phải). Mật độ form theo khối
+ * "MẬT ĐỘ CHUNG" của form-kit.css — không thêm mb-3/g-3 riêng ở đây.
+ */
+
+.erp-pcreate {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 72px;
+}
+
+.erp-pcreate__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.erp-pcreate__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.erp-pcreate__title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 20px;
+  flex: none;
+}
+
+.erp-pcreate__title h1 {
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.erp-pcreate__title p {
+  margin: 2px 0 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pcreate__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---- Stepper ---- */
+.erp-pcreate__steps {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  overflow-x: auto;
+}
+
+.erp-pcreate__step {
+  flex: 1 1 0;
+  min-width: 170px;
+}
+
+.erp-pcreate__step button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  inline-size: 100%;
+  min-block-size: var(--erp-touch-target);
+  padding: 6px 10px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: transparent;
+  color: var(--erp-text-secondary);
+  text-align: start;
+  transition: background-color 150ms ease;
+}
+
+.erp-pcreate__step button:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.erp-pcreate__step button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-pcreate__step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 30px;
+  block-size: 30px;
+  flex: none;
+  border-radius: var(--erp-radius-round);
+  border: 1.5px solid var(--erp-border-strong);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pcreate__step-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.3;
+}
+
+.erp-pcreate__step-text strong {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-pcreate__step-text small {
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+.erp-pcreate__step.is-active button {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-pcreate__step.is-active .erp-pcreate__step-num {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-pcreate__step.is-active .erp-pcreate__step-text strong {
+  color: var(--erp-action-secondary);
+}
+
+.erp-pcreate__step.is-done .erp-pcreate__step-num {
+  border-color: var(--erp-success);
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-pcreate__step.has-error .erp-pcreate__step-num {
+  border-color: var(--erp-danger);
+  color: var(--erp-danger);
+}
+
+/* ---- Ba cột ---- */
+.erp-pcreate__grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 320px;
+  gap: 12px;
+  align-items: start;
+}
+
+.erp-pcreate__grid--no-aside {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+@media (max-width: 1440px) {
+  .erp-pcreate__grid {
+    grid-template-columns: 220px minmax(0, 1fr) 290px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .erp-pcreate__grid,
+  .erp-pcreate__grid--no-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.erp-pcreate__panel {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  padding: 14px 16px;
+  min-width: 0;
+}
+
+.erp-pcreate__panel + .erp-pcreate__panel {
+  margin-top: 12px;
+}
+
+.erp-pcreate__panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-pcreate__panel-title .erp-pcreate__step-index {
+  color: var(--erp-action-secondary);
+  margin-inline-end: 4px;
+}
+
+.erp-pcreate__sticky {
+  position: sticky;
+  top: calc(var(--erp-header-height) + 12px);
+}
+
+@media (max-width: 1199.98px) {
+  .erp-pcreate__sticky {
+    position: static;
+  }
+}
+
+/* ---- Cột trái: chế độ + mẫu ---- */
+.erp-pcreate__choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  inline-size: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: start;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.erp-pcreate__choice + .erp-pcreate__choice {
+  margin-top: 8px;
+}
+
+.erp-pcreate__choice:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-pcreate__choice:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-pcreate__choice.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-pcreate__choice .bi {
+  font-size: 18px;
+  color: var(--erp-action-secondary);
+  margin-top: 1px;
+}
+
+.erp-pcreate__choice strong {
+  display: block;
+  font-weight: 600;
+}
+
+.erp-pcreate__choice small {
+  display: block;
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.erp-pcreate__confirm {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  font-size: 12px;
+}
+
+/* ---- Lưới ô của bước ---- */
+.erp-pcreate__section {
+  margin: 16px 0 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pcreate__section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.erp-pcreate__hint {
+  margin: -2px 0 0;
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pcreate__table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 16px 0 6px;
+}
+
+.erp-pcreate__table-head h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.erp-pcreate__ratio {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  color: var(--erp-text-secondary);
+  padding-top: 8px;
+}
+
+.erp-pcreate__total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 6px 4px 0;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-secondary);
+}
+
+.erp-pcreate__total strong {
+  color: var(--erp-text-primary);
+}
+
+/* ---- Cây cấu trúc ---- */
+.erp-pcreate__tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.erp-pcreate__node {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--erp-radius-sm);
+  transition: background-color 150ms ease;
+}
+
+.erp-pcreate__node:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-pcreate__node.is-selected {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-pcreate__node-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-text-primary);
+  text-align: start;
+}
+
+.erp-pcreate__node-main:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-pcreate__node-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-pcreate__node-kind {
+  font-size: 11px;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+.erp-pcreate__node-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-construction-soft);
+  color: var(--erp-construction);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-pcreate__node-tools {
+  display: flex;
+  gap: 2px;
+}
+
+.erp-pcreate__structure {
+  display: grid;
+  /* Hai cột chỉ khi đủ rộng: panel chi tiết có 10 ô, dưới ~1700px bề ngang
+     màn thì mỗi ô chỉ còn vài chục px (đo: ô diện tích sàn hiện mỗi chữ số đầu). */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+@media (min-width: 1700px) {
+  .erp-pcreate__structure {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  }
+}
+
+.erp-pcreate__node-detail {
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+/* ---- Cột phải: xem trước + tóm tắt + kiểm tra ---- */
+.erp-pcreate__preview {
+  aspect-ratio: 16 / 10;
+  inline-size: 100%;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-tertiary);
+  border: 1px solid var(--erp-border);
+}
+
+.erp-pcreate__preview img,
+.erp-pcreate__preview iframe {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+.erp-pcreate__facts {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 10px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-pcreate__facts > div {
+  display: contents;
+}
+
+.erp-pcreate__facts dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-pcreate__facts dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.erp-pcreate__checks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.erp-pcreate__checks li {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.erp-pcreate__checks .is-ok .bi {
+  color: var(--erp-success);
+}
+
+.erp-pcreate__checks .is-warn .bi {
+  color: var(--erp-warning);
+}
+
+.erp-pcreate__profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.erp-pcreate__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.erp-pcreate__bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  gap: 8px;
+  align-items: center;
+}
+
+.erp-pcreate__bar-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.erp-pcreate__bar-label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-pcreate__bar-track {
+  block-size: 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-pcreate__bar-fill {
+  block-size: 100%;
+  background: var(--erp-action-secondary);
+}
+
+.erp-pcreate__bar b {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* ---- Chân trang dính ---- */
+.erp-pcreate__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  box-shadow: var(--erp-shadow2);
+}
+
+/* Chừa chỗ cho bong bóng trợ lý AI (cố định góc phải dưới) — không thì nó đè
+   lên nút "Tiếp tục" / "Tạo dự án". */
+@media (min-width: 577px) {
+  .erp-pcreate__footer {
+    padding-inline-end: 76px;
+  }
+}
+
+.erp-pcreate__footer-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.erp-pcreate__footer-status {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+@media (max-width: 576px) {
+  .erp-pcreate__step {
+    min-width: 52px;
+    flex: 0 0 auto;
+  }
+
+  .erp-pcreate__step:not(.is-active) .erp-pcreate__step-text {
+    display: none;
+  }
+
+  .erp-pcreate__footer-status {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-pcreate__step button,
+  .erp-pcreate__choice,
+  .erp-pcreate__node {
+    transition: none;
+  }
+}
+
+/* ===========================================================================
+   Đợt 2 · "Project Setup FINAL" — tab con, KPI, ma trận, readiness
+   =========================================================================== */
+
+/* ---- Tab con trong một bước ---- */
+.erp-pcreate__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-pcreate__tabs--sub {
+  margin-top: 12px;
+}
+
+.erp-pcreate__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.erp-pcreate__tab:hover {
+  color: var(--erp-text-primary);
+}
+
+.erp-pcreate__tab.is-active {
+  color: var(--erp-action-secondary);
+  border-bottom-color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-pcreate__tab:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-pcreate__tab-count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.erp-pcreate__tab-error {
+  color: var(--erp-danger);
+}
+
+/* ---- Dải KPI ---- */
+.erp-pcreate__kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.erp-pcreate__kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-pcreate__kpi span,
+.erp-pcreate__kpi small {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-pcreate__kpi strong {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pcreate__kpis--compact {
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  margin-top: 8px;
+}
+
+.erp-pcreate__kpis--compact .erp-pcreate__kpi {
+  background: var(--erp-surface);
+}
+
+.erp-pcreate__kpis--compact .erp-pcreate__kpi strong {
+  font-size: 14px;
+}
+
+.erp-pcreate__import-preview {
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* Bảng chọn sheet cho từng tab: hiện đủ mọi dòng, không trần chiều cao. */
+.erp-pcreate__import-map {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.erp-pcreate__warn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--erp-warning);
+  font-size: 12px;
+}
+
+/* ---- Cấu trúc: cây có trần chiều cao, không đẩy panel chi tiết xuống quá xa ---- */
+.erp-pcreate__tree-pane .erp-pcreate__tree {
+  max-height: 440px;
+  overflow: auto;
+}
+
+.erp-pcreate__node-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.erp-pcreate__node-head > .bi {
+  font-size: 22px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-pcreate__node-head div {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-pcreate__node-head small {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-pcreate__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-pcreate__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 28px;
+  padding: 2px 10px;
+  border: 1px dashed var(--erp-border-strong);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.erp-pcreate__chip:hover {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-pcreate__chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* ---- Bảng nhỏ (công năng, hạng mục con, tổ chức, ma trận) ---- */
+.erp-pcreate__table-scroll {
+  overflow-x: auto;
+  margin-bottom: 8px;
+}
+
+.erp-pcreate__mini-table {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.erp-pcreate__mini-table th,
+.erp-pcreate__mini-table td {
+  vertical-align: middle;
+}
+
+.erp-pcreate__mini-table .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.erp-pcreate__num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-pcreate__select-table tbody tr {
+  cursor: pointer;
+}
+
+.erp-pcreate__select-table tbody tr.is-selected > * {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-pcreate__link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  font-weight: 500;
+  text-align: start;
+}
+
+.erp-pcreate__link:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-pcreate__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.erp-pcreate__status.is-lead {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.erp-pcreate__status.is-invited {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-pcreate__status.is-pending {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-pcreate__status.is-draft {
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+}
+
+.erp-pcreate__subpanel {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-pcreate__scope-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-pcreate__matrix th[scope="col"] {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-pcreate__matrix th[scope="row"] {
+  min-width: 180px;
+  font-weight: 500;
+}
+
+.erp-pcreate__matrix .form-select {
+  min-width: 96px;
+}
+
+.erp-pcreate__perm.is-edit .form-select {
+  border-color: var(--erp-success);
+}
+
+.erp-pcreate__perm.is-view .form-select {
+  border-color: var(--erp-info);
+}
+
+.erp-pcreate__raci-cell {
+  min-width: 64px !important;
+  font-weight: 600;
+}
+
+/* ---- Readiness ---- */
+.erp-pcreate__readiness {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.erp-pcreate__readiness-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.erp-pcreate__readiness-head > div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-pcreate__readiness-head small {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+}
+
+.erp-pcreate__ring {
+  display: grid;
+  place-items: center;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.erp-pcreate__ring span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--erp-surface);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pcreate__readiness-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erp-pcreate__readiness-title > span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.erp-pcreate__readiness-title small {
+  color: var(--erp-text-secondary);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.erp-pcreate__readiness-title b {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-pcreate__readiness-group .erp-pcreate__readiness-title > .bi {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-pcreate__readiness-group.is-complete .erp-pcreate__readiness-title > .bi {
+  color: var(--erp-success);
+}
+
+.erp-pcreate__readiness-group ul {
+  margin: 4px 0 0 20px;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.erp-pcreate__readiness-group li {
+  padding: 1px 0;
+}
+
+.erp-pcreate__readiness-group li.is-ok {
+  color: var(--erp-text-secondary);
+}
+
+.erp-pcreate__readiness-group li button {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  text-align: start;
+}
+
+.erp-pcreate__readiness-group li.is-block button {
+  color: var(--erp-danger);
+}
+
+.erp-pcreate__readiness-group li button:hover {
+  text-decoration: underline;
+}
+
+.erp-pcreate__readiness-group li button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-pcreate__tab {
+    transition: none;
+  }
+}
+
+.erp-pcreate__node.has-error {
+  box-shadow: inset 3px 0 0 var(--erp-danger);
+}
+
+.erp-pcreate__matrix td .form-select:not(.erp-pcreate__raci-cell) {
+  min-width: 150px;
+}
+
+/* ------------------------------------------------------------------------
+ * Bước 0 — chọn LOẠI HÌNH dự án (`ProjectTypePicker`). Lưới thẻ | cột phải
+ * hướng dẫn. Ảnh, tên, mô tả đọc từ term `project_type`.
+ * ---------------------------------------------------------------------- */
+.erp-ptype {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-ptype__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.erp-ptype__card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  padding: 8px;
+  gap: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.erp-ptype__card:hover,
+.erp-ptype__card:focus-within {
+  border-color: var(--erp-action-secondary);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-ptype__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--erp-radius-md);
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-tertiary);
+  font-size: 40px;
+}
+
+.erp-ptype__media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.erp-ptype__num {
+  position: absolute;
+  inset-block-start: 8px;
+  inset-inline-start: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.erp-ptype__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-inline: 4px;
+  flex: 1;
+}
+
+.erp-ptype__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-ptype__name .bi {
+  color: var(--erp-action-secondary);
+  font-size: 18px;
+}
+
+.erp-ptype__desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ptype__examples {
+  margin: 4px 0 0;
+  padding-inline-start: 18px;
+  font-size: 13px;
+  color: var(--erp-text-primary);
+  line-height: 1.6;
+}
+
+.erp-ptype__pick {
+  margin: 0 4px 4px;
+}
+
+.erp-ptype__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  inset-block-start: 12px;
+}
+
+.erp-ptype__guide,
+.erp-ptype__custom {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  padding: 14px;
+}
+
+.erp-ptype__guide {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-ptype__guide h2,
+.erp-ptype__custom h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-ptype__guide ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.erp-ptype__guide li {
+  display: flex;
+  gap: 8px;
+}
+
+.erp-ptype__guide li .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-ptype__custom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-ptype__custom p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-ptype__custom-icon {
+  font-size: 24px;
+  color: var(--erp-action-secondary);
+}
+
+@media (max-width: 1199.98px) {
+  .erp-ptype {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-ptype__aside {
+    position: static;
+  }
+}

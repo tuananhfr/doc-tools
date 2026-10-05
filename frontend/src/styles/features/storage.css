@@ -1,0 +1,1495 @@
+/*
+ * Kho dữ liệu (features/core/storage) — màn quản trị của erp_storage.
+ *
+ * Khung thẻ, thẻ số liệu, badge, donut, bảng dùng lại component chung; file này
+ * chỉ có phần bố cục và các danh sách riêng của màn. Mọi màu đi qua token.
+ */
+
+.erp-storage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-storage__tabs {
+  margin-bottom: 0;
+}
+
+.erp-storage__count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-storage__overview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-storage__kpis .erp-stat__number,
+.erp-storage__number {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-storage__kpis .erp-stat__unit {
+  font-size: 0.875rem;
+}
+
+/* Lưới ba cột; "Tệp gần đây" chiếm hai cột như bản thiết kế. */
+.erp-storage__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.erp-storage__cell {
+  min-width: 0;
+}
+
+.erp-storage__cell--wide {
+  grid-column: span 2;
+}
+
+.erp-storage__cell--full {
+  grid-column: 1 / -1;
+}
+
+.erp-storage__muted {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-storage__footnote {
+  margin: 12px 0 0;
+}
+
+.erp-storage__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: none;
+  color: var(--erp-action-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: background-color 150ms ease;
+}
+
+.erp-storage__link:hover:not(:disabled) {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-storage__link:disabled {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-storage__link:focus-visible,
+.erp-storage-file__name:focus-visible,
+.erp-storage-shortcuts__tile:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-storage__code {
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+  word-break: break-all;
+}
+
+/* ------------------------------------------------------------------ */
+/* Thanh dung lượng theo nhóm                                           */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-bars__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto 52px;
+  grid-template-areas:
+    'label files size share'
+    'track track track track';
+  align-items: baseline;
+  column-gap: 12px;
+  row-gap: 6px;
+  font-size: 0.875rem;
+}
+
+.erp-storage-bars__label {
+  grid-area: label;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-bars__label .bi {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-storage-bars__files {
+  grid-area: files;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-storage-bars__size {
+  grid-area: size;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-storage-bars__share {
+  grid-area: share;
+  text-align: right;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-storage-bars__track {
+  grid-area: track;
+  height: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-storage-bars__bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-series, var(--erp-action-secondary));
+}
+
+[data-theme='field'] .erp-storage-bars__track {
+  border: 1px solid var(--erp-border-strong);
+}
+
+/* ------------------------------------------------------------------ */
+/* Nơi lưu trữ                                                          */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-nodes {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-nodes__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-storage-nodes__item:first-child {
+  padding-top: 0;
+}
+
+.erp-storage-nodes__item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.erp-storage-nodes__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.erp-storage-nodes__icon {
+  flex: none;
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-nodes__title {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-nodes__meta,
+.erp-storage-nodes__numbers {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-storage-nodes__capacity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-storage-nodes__capacity .erp-stat__progress {
+  margin: 0;
+}
+
+.erp-storage-nodes__roots {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-nodes__roots li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-storage-nodes__roots .bi {
+  flex: none;
+  color: var(--erp-success);
+}
+
+.erp-storage-nodes__roots code {
+  flex: none;
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+}
+
+.erp-storage-nodes__roots li.is-broken,
+.erp-storage-nodes__roots li.is-broken .bi {
+  color: var(--erp-danger);
+}
+
+/* ------------------------------------------------------------------ */
+/* Lối tắt                                                              */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-storage-shortcuts__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 76px;
+  padding: 10px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  text-wrap: balance;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.erp-storage-shortcuts__tile .bi {
+  font-size: 1.25rem;
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-shortcuts__tile:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-border-strong);
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-shortcuts__tile:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.erp-storage-shortcuts__tile:disabled {
+  color: var(--erp-text-tertiary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Chính sách                                                           */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-policies {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-policies__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-storage-policies__item:first-child {
+  padding-top: 0;
+}
+
+.erp-storage-policies__item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.erp-storage-policies__item .erp-badge {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Nút icon mở phần chính sách còn lại (mặc định chỉ hiện 3 dòng đầu). */
+.erp-storage-policies__more {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  border-top: 1px solid var(--erp-border);
+  padding-top: 4px;
+}
+
+.erp-storage-policies__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-storage-policies__label {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-policies__value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-policies__note {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Cổng tải xuống (E02)                                                 */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-gate {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-storage-gate__modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-gate__slot {
+  display: flex;
+  min-width: 0;
+}
+
+/* ConfirmAction bọc nút trong một span inline-flex — cho nó giãn hết ô. */
+.erp-storage-gate__slot > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.erp-storage-gate__mode {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font: inherit;
+  text-align: left;
+}
+
+button.erp-storage-gate__mode {
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+button.erp-storage-gate__mode:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-action-secondary);
+}
+
+button.erp-storage-gate__mode:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-storage-gate__mode > .bi {
+  flex: none;
+  margin-top: 2px;
+  font-size: 1.125rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Chế độ đang chạy: viền đậm + icon tích + chữ "đang chạy" — không chỉ màu. */
+.erp-storage-gate__mode.is-current {
+  border-color: var(--erp-action-secondary);
+  box-shadow: inset 0 0 0 1px var(--erp-action-secondary);
+}
+
+.erp-storage-gate__mode.is-current > .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-gate__mode-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-storage-gate__mode-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-storage-gate__current {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-gate__mode-hint {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-gate__side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-storage-gate__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.erp-storage-gate__stats dt {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-gate__stats dd {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-gate__stats dd .erp-storage__link {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.erp-storage-gate__note {
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .erp-storage-gate {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-storage-gate__modes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Sao lưu (E04)                                                        */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-backup {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-storage-backup--empty {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+}
+
+.erp-storage-backup--empty > .bi {
+  font-size: 1.5rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-storage-backup--empty p {
+  margin: 0;
+}
+
+.erp-storage-backup__main,
+.erp-storage-backup__side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-storage-backup__lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-backup__lead strong {
+  font-size: 1.25rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-backup__bar {
+  height: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  overflow: hidden;
+}
+
+.erp-storage-backup__bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-action-secondary);
+}
+
+.erp-storage-backup__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-backup__notes .bi {
+  margin-right: 4px;
+  color: var(--erp-text-tertiary);
+}
+
+/* Dòng cảnh báo: icon tam giác + chữ đậm hơn — màu không phải tín hiệu duy nhất. */
+.erp-storage-backup__notes .is-warning {
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-backup__notes .is-warning .bi {
+  color: var(--erp-warning);
+}
+
+.erp-storage-backup .erp-storage-gate__stats dd {
+  font-size: 1.125rem;
+}
+
+@media (max-width: 992px) {
+  .erp-storage-backup:not(.erp-storage-backup--empty) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-storage-backup .erp-storage-gate__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Khối "Khi NAS mất kết nối" dùng lại khung của khối Sao lưu; đây chỉ là hai
+   chỗ nó có thêm: câu dẫn và ô mốc thời gian (chữ nhỏ hơn con số). */
+.erp-storage-spool__lead {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-backup .erp-storage-gate__stats dd.erp-storage-spool__when {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* Cảnh báo                                                             */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-alerts__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.erp-storage-alerts__item .bi {
+  flex: none;
+  margin-top: 2px;
+}
+
+.erp-storage-alerts__item--danger {
+  background: var(--erp-danger-soft);
+}
+
+.erp-storage-alerts__item--danger .bi {
+  color: var(--erp-danger);
+}
+
+.erp-storage-alerts__item--warning {
+  background: var(--erp-warning-soft);
+}
+
+.erp-storage-alerts__item--warning .bi {
+  color: var(--erp-warning);
+}
+
+.erp-storage-alerts__item--info .bi {
+  color: var(--erp-info);
+}
+
+.erp-storage-alerts__item--success {
+  background: var(--erp-success-soft);
+}
+
+.erp-storage-alerts__item--success .bi {
+  color: var(--erp-success);
+}
+
+/* ------------------------------------------------------------------ */
+/* Tệp + hoạt động                                                      */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.erp-storage-file > .bi {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-storage-file__name {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  font-weight: 500;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.erp-storage-file__name:hover {
+  text-decoration: underline;
+}
+
+.erp-storage-recent td,
+.erp-storage-recent th {
+  white-space: nowrap;
+}
+
+.erp-storage-recent td:first-child {
+  white-space: normal;
+}
+
+.erp-storage-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-storage-activity__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  grid-template-areas:
+    'icon text'
+    'icon time';
+  column-gap: 10px;
+  font-size: 0.875rem;
+}
+
+.erp-storage-activity__icon {
+  grid-area: icon;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.875rem;
+}
+
+.erp-storage-activity__item--delete .erp-storage-activity__icon {
+  background: var(--erp-neutral-soft);
+  color: var(--erp-neutral);
+}
+
+.erp-storage-activity__text {
+  grid-area: text;
+  color: var(--erp-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.erp-storage-activity__time {
+  grid-area: time;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
+/* Sổ tệp                                                               */
+/* ------------------------------------------------------------------ */
+
+.erp-storage-objects {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-storage-objects__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.erp-storage-objects__search {
+  flex: 1 1 240px;
+  max-width: 360px;
+}
+
+.erp-storage-objects__filters .form-select {
+  flex: 0 1 190px;
+  width: auto;
+}
+
+.erp-storage-objects__filters .form-check {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.erp-storage-modal__title {
+  font-size: 1rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-storage-modal__heading {
+  margin: 20px 0 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Tablet / mobile                                                      */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+  .erp-storage__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-storage__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-storage__cell--wide {
+    grid-column: auto;
+  }
+
+  .erp-storage__kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .erp-storage-bars__row {
+    grid-template-columns: minmax(0, 1fr) auto 48px;
+    grid-template-areas:
+      'label size share'
+      'track track track';
+  }
+
+  .erp-storage-bars__files {
+    display: none;
+  }
+
+  .erp-storage-objects__search,
+  .erp-storage-objects__filters .form-select {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-storage__link,
+  .erp-storage-shortcuts__tile {
+    transition: none;
+  }
+
+  .erp-storage-shortcuts__tile:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Nhật ký tệp — dòng thời gian (màn quản trị + màn xem của bản ghi)   */
+/* ------------------------------------------------------------------ */
+
+.erp-file-history {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-file-history__group {
+  min-width: 0;
+}
+
+.erp-file-history__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.8125rem;
+}
+
+.erp-file-history__avatar {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  font-size: 0.625rem;
+}
+
+.erp-file-history__avatar--system {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-neutral);
+  font-size: 0.75rem;
+}
+
+.erp-file-history__who {
+  min-width: 0;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-file-history__time {
+  flex: none;
+  margin-inline-start: auto;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Thụt bằng đúng bề rộng avatar + khoảng cách: các dòng thẳng cột với tên người. */
+.erp-file-history__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 0 0 0 11px;
+  margin-inline-start: 11px;
+  border-inline-start: 2px solid var(--erp-border);
+  list-style: none;
+}
+
+.erp-file-history__line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-file-history__icon {
+  flex: none;
+  color: var(--erp-text-secondary);
+}
+
+.erp-file-history__line--success .erp-file-history__icon,
+.erp-file-history__line--success .erp-file-history__verb {
+  color: var(--erp-success);
+}
+
+.erp-file-history__line--danger .erp-file-history__icon,
+.erp-file-history__line--danger .erp-file-history__verb {
+  color: var(--erp-danger);
+}
+
+.erp-file-history__line--info .erp-file-history__icon,
+.erp-file-history__line--info .erp-file-history__verb {
+  color: var(--erp-action-secondary);
+}
+
+.erp-file-history__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  min-width: 0;
+}
+
+.erp-file-history__verb {
+  flex: none;
+  font-weight: 600;
+}
+
+.erp-file-history__arrow {
+  flex: none;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-file-history__file {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* `FileName` mặc định rộng 100% (đứng một mình trong ô bảng); ở đây nó đứng
+   cùng hàng với kích thước tệp nên phải co theo nội dung. */
+.erp-file-history__file .erp-file-name {
+  width: auto;
+  flex: 0 1 auto;
+  cursor: pointer;
+}
+
+.erp-file-history__file .erp-file-name:hover {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-file-history__name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-file-history__size,
+.erp-file-history__gone {
+  flex: none;
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+.erp-file-history__context {
+  flex: 1 1 100%;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+/* Nhãn "việc" trong bảng nhật ký chung: icon + chữ, màu chỉ là lớp thứ hai. */
+.erp-file-history__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--erp-text-secondary);
+}
+
+/* "sẽ chặn": lượt tải mà cổng tải xuống sẽ từ chối khi bật chặn — icon + chữ. */
+.erp-file-history__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-warning);
+}
+
+.erp-file-history__tag--success {
+  color: var(--erp-success);
+}
+
+.erp-file-history__tag--danger {
+  color: var(--erp-danger);
+}
+
+.erp-file-history__tag--info {
+  color: var(--erp-action-secondary);
+}
+
+/* Khối "Lịch sử tệp" mở tại chỗ dưới danh sách tệp đính kèm của một bản ghi. */
+.erp-file-history-box {
+  min-width: 0;
+}
+
+.erp-detail__files + .erp-file-history-box,
+.task-detail__files + .erp-file-history-box {
+  margin-top: 10px;
+}
+
+.erp-file-history-box__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 2px 8px;
+  margin-inline-start: -8px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.erp-file-history-box__toggle:hover {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-file-history-box__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-file-history-box__caret {
+  font-size: 0.6875rem;
+}
+
+.erp-file-history-box__panel {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-file-history-box__summary {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-file-history-box__note {
+  margin: 10px 0 0;
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-file-history-box__state {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-file-history-box__state--error {
+  color: var(--erp-danger);
+}
+
+.erp-storage-events__file,
+.erp-storage-events__record {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.erp-storage-versions td,
+.erp-storage-versions th {
+  white-space: nowrap;
+}
+
+[data-theme='field'] .erp-file-history-box__toggle {
+  min-height: var(--erp-touch-target);
+}
+
+/* ------------------------------------------------------------------------
+ * E05 — thùng rác, giữ lại bắt buộc, chính sách.
+ * ---------------------------------------------------------------------- */
+
+.erp-storage-trash__lead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-trash__lead p {
+  margin: 0;
+}
+
+/* Thời hạn: icon + chữ luôn có mặt, màu chỉ là lớp nhận biết thứ hai. */
+.erp-storage-trash__deadline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-trash__deadline--danger {
+  color: var(--erp-danger);
+}
+
+.erp-storage-trash__deadline--warning {
+  color: var(--erp-warning);
+}
+
+.erp-storage-trash__deadline--info {
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-trash__deadline--success {
+  color: var(--erp-success);
+}
+
+.erp-storage-trash__deadline--neutral {
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-storage-trash__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.erp-storage-objects__state {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.erp-storage-objects__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+}
+
+.erp-storage-policy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-storage-policy__card {
+  min-width: 0;
+}
+
+.erp-storage-policy__card--full {
+  grid-column: 1 / -1;
+}
+
+.erp-storage-policy__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-storage-policy__form .form-control[type='number'] {
+  max-width: 160px;
+}
+
+.erp-storage-policy__thresholds {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.erp-storage-policy__thresholds legend {
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-policy__threshold-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.erp-storage-policy__threshold-row .form-label {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-policy__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.erp-storage-policy__levels {
+  margin: 8px 0 0;
+}
+
+.erp-storage-policy__levels td:first-child,
+.erp-storage-policy__levels th:first-child {
+  width: 140px;
+  white-space: nowrap;
+}
+
+.erp-storage-holds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.erp-storage-holds > p {
+  margin: 0;
+}
+
+.erp-storage-holds__empty {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-storage-holds__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-storage-holds__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-storage-holds__item > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-storage-holds__item.is-released > .bi,
+.erp-storage-holds__item.is-released .erp-storage-holds__record {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-storage-holds__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-storage-holds__record {
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-storage-holds__reason {
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+/* Giữ lại bắt buộc trong khối "Lịch sử tệp" của một bản ghi. */
+.erp-file-hold {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-action-secondary);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-file-hold > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-file-hold__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.erp-file-hold__reason {
+  color: var(--erp-text-primary);
+}
+
+.erp-file-hold__meta {
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-file-hold--idle {
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.erp-file-hold--form {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  border-color: var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.erp-file-hold__label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-file-hold__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 991.98px) {
+  .erp-storage-policy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-storage-trash__actions {
+    justify-content: flex-start;
+  }
+
+  .erp-file-hold {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,215 @@
+.project-lifecycle {
+  display: grid;
+  gap: 12px;
+  color: var(--erp-text-primary);
+  container-type: inline-size;
+}
+
+.project-lifecycle .project-lifecycle__demo-button--secondary { background: var(--erp-surface); color: var(--erp-info); }
+
+.project-lifecycle__context-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--erp-info);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.project-lifecycle__macro { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.project-lifecycle__macro-unit { display: flex; min-width: 0; gap: 6px; }
+.project-lifecycle__macro-stage { display: grid; grid-template-columns: auto 1fr auto; align-content: center; gap: 2px 8px; width: 100%; min-width: 0; min-height: 79px; padding: 9px 11px; border: 1px solid var(--erp-border); border-left: 3px solid var(--erp-info); border-radius: var(--erp-radius-md); background: var(--erp-surface); color: var(--erp-text-primary); text-align: left; }
+.project-lifecycle__macro-stage--construction { border-left-color: var(--erp-success); }
+.project-lifecycle__macro-stage--review { border-left-color: var(--erp-construction); }
+.project-lifecycle__macro-stage--operations { border-left-color: #6847a9; }
+.project-lifecycle__macro-stage:hover, .project-lifecycle__macro-stage.is-active { border-color: var(--erp-info); background: var(--erp-info-soft); }
+.project-lifecycle__macro-stage span { grid-row: 1 / 3; align-self: center; color: var(--erp-info); font-size: 1.1rem; font-weight: 800; }
+.project-lifecycle__macro-stage strong { grid-column: 2; font-size: 0.8rem; line-height: 1.2; }
+.project-lifecycle__macro-stage small { grid-column: 2 / 4; color: var(--erp-text-secondary); font-size: 0.7rem; line-height: 1.25; }
+.project-lifecycle__macro-stage > i { grid-column: 3; grid-row: 1; color: var(--erp-info); }
+.project-lifecycle__macro-gate { display: flex; flex: 0 0 64px; flex-direction: column; align-items: center; justify-content: center; gap: 3px; padding: 5px; border: 1px dashed var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: 0.65rem; line-height: 1.1; }
+.project-lifecycle__macro-gate i { font-size: 1rem; }
+.project-lifecycle__macro-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 12px; padding: 7px 10px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); font-size: 0.73rem; }
+.project-lifecycle__macro-steps > strong { color: var(--erp-info); white-space: nowrap; }
+.project-lifecycle__macro-steps > div { display: flex; flex-wrap: wrap; gap: 5px; }
+.project-lifecycle__macro-steps span { padding: 3px 7px; border-radius: 999px; background: var(--erp-surface); color: var(--erp-text-secondary); }
+.project-lifecycle__stage-reference { border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); }
+.project-lifecycle__stage-reference summary { padding: 8px 11px; color: var(--erp-info); font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+.project-lifecycle__stage-reference .project-lifecycle__map { padding: 0 8px 8px; }
+@container (max-width: 1000px) { .project-lifecycle__macro { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 570px) { .project-lifecycle__macro { grid-template-columns: 1fr; } .project-lifecycle__macro-stage { min-height: 66px; } }
+
+.project-lifecycle__phasebar {
+  display: grid;
+  grid-template-columns: 4fr 3fr 1fr;
+  gap: 6px;
+}
+
+.project-lifecycle__phase {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding: 6px 10px;
+  border-radius: var(--erp-radius-md);
+  font-size: 0.77rem;
+}
+
+.project-lifecycle__phase strong { white-space: nowrap; }
+.project-lifecycle__phase span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-lifecycle__phase--project { color: var(--erp-info); background: var(--erp-info-soft); }
+.project-lifecycle__phase--handover { color: var(--erp-construction); background: var(--erp-construction-soft); }
+.project-lifecycle__phase--operations { color: var(--erp-success); background: var(--erp-success-soft); }
+
+.project-lifecycle__map {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.project-lifecycle__stage {
+  --lifecycle-accent: var(--erp-info);
+  display: flex;
+  min-height: 116px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid var(--erp-border);
+  border-top: 3px solid var(--lifecycle-accent);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: left;
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+
+.project-lifecycle__stage--handover { --lifecycle-accent: var(--erp-construction); }
+.project-lifecycle__stage--operations { --lifecycle-accent: var(--erp-success); }
+.project-lifecycle__stage:hover { transform: translateY(-2px); border-color: var(--lifecycle-accent); }
+.project-lifecycle__stage.is-active { border-color: var(--lifecycle-accent); background: var(--erp-surface-hover); }
+.project-lifecycle__stage:focus-visible,
+.project-lifecycle__links button:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 2px; }
+
+.project-lifecycle__stage-top { display: flex; align-items: center; justify-content: space-between; color: var(--lifecycle-accent); }
+.project-lifecycle__stage-top > i { font-size: 1rem; }
+.project-lifecycle__stage-number { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; }
+.project-lifecycle__stage strong { font-size: 0.82rem; line-height: 1.25; }
+.project-lifecycle__stage small { display: -webkit-box; overflow: hidden; color: var(--erp-text-secondary); font-size: 0.72rem; line-height: 1.3; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.project-lifecycle__stage-arrow { margin-top: auto; color: var(--lifecycle-accent); font-size: 0.68rem; font-weight: 650; }
+
+@container (min-width: 1300px) {
+  .project-lifecycle__map { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+
+@container (max-width: 800px) {
+  .project-lifecycle__map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.project-lifecycle__detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 290px);
+  gap: 16px;
+}
+
+@container (max-width: 850px) {
+  .project-lifecycle__detail { grid-template-columns: 1fr; }
+}
+
+.project-lifecycle__detail-main,
+.project-lifecycle__context {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.project-lifecycle__detail-heading { display: flex; align-items: center; gap: 14px; padding-bottom: 20px; border-bottom: 1px solid var(--erp-border); }
+.project-lifecycle__detail-heading > div > span { color: var(--erp-text-tertiary); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; }
+.project-lifecycle__detail-heading h2 { margin: 3px 0; font-size: 1.35rem; }
+.project-lifecycle__detail-heading p { margin: 0; color: var(--erp-text-secondary); font-size: 0.85rem; }
+.project-lifecycle__detail-icon { display: grid; width: 46px; height: 46px; flex: 0 0 46px; place-items: center; border-radius: var(--erp-radius-md); color: var(--erp-info); background: var(--erp-info-soft); font-size: 1.3rem; }
+.project-lifecycle__detail-icon--handover { color: var(--erp-construction); background: var(--erp-construction-soft); }
+.project-lifecycle__detail-icon--operations { color: var(--erp-success); background: var(--erp-success-soft); }
+
+.project-lifecycle__section { padding-top: 18px; }
+.project-lifecycle__section h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 0.87rem; font-weight: 700; }
+.project-lifecycle__section h3 i { color: var(--erp-info); font-size: 1.1rem; }
+.project-lifecycle__scope { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: var(--erp-text-secondary); font-size: 0.85rem; line-height: 1.45; }
+.project-lifecycle__gate { display: grid; gap: 9px; margin-top: 18px; padding: 14px 16px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); }
+.project-lifecycle__gate-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; }
+.project-lifecycle__gate-head strong,
+.project-lifecycle__gate > strong { display: inline-flex; align-items: center; gap: 7px; color: var(--erp-info); font-size: 0.84rem; }
+.project-lifecycle__gate-head span { color: var(--erp-text-tertiary); font-size: 0.72rem; }
+.project-lifecycle__gate p { margin: 0; color: var(--erp-text-secondary); font-size: 0.82rem; line-height: 1.45; }
+.project-lifecycle__gate small { color: var(--erp-text-tertiary); font-size: 0.72rem; line-height: 1.4; }
+.project-lifecycle__gate-outcomes { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-lifecycle__gate-outcomes span { padding: 4px 7px; border: 1px solid var(--erp-border); border-radius: 999px; background: var(--erp-surface); color: var(--erp-text-secondary); font-size: 0.7rem; }
+.project-lifecycle__links { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-lifecycle__links button { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 11px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); color: var(--erp-text-primary); text-align: left; }
+.project-lifecycle__links button:hover { border-color: var(--erp-info); color: var(--erp-info); }
+.project-lifecycle__links button i:last-child { margin-left: 4px; color: var(--erp-info); }
+.project-lifecycle__empty { margin: 0; color: var(--erp-text-tertiary); font-size: 0.83rem; }
+.project-lifecycle__section--next { margin-top: 18px; padding: 18px; border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); }
+.project-lifecycle__section--next h3 i { color: var(--erp-construction); }
+.project-lifecycle__section--next ul { display: grid; gap: 8px; margin: 0; padding-left: 19px; line-height: 1.45; }
+.project-lifecycle__section--next > p { margin: 14px 0 0; color: var(--erp-text-tertiary); font-size: 0.77rem; }
+.project-lifecycle__section-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.project-lifecycle__section-actions .project-lifecycle__demo-button { margin-top: 12px; }
+
+.project-lifecycle__reference { margin-top: 18px; padding: 12px 14px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); }
+.project-lifecycle__reference summary { color: var(--erp-info); font-size: 0.84rem; font-weight: 700; cursor: pointer; }
+.project-lifecycle__reference p { margin: 10px 0; color: var(--erp-text-secondary); font-size: 0.8rem; line-height: 1.5; }
+.project-lifecycle__reference > strong { display: block; margin: 13px 0 7px; font-size: 0.78rem; }
+.project-lifecycle__reference > small { display: block; margin-top: 10px; color: var(--erp-text-tertiary); font-size: 0.72rem; }
+.project-lifecycle__reference-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.project-lifecycle__reference-tags span { padding: 4px 7px; border-radius: 999px; background: var(--erp-info-soft); color: var(--erp-info); font-size: 0.7rem; }
+.project-lifecycle__reference-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; color: var(--erp-text-secondary); font-size: 0.75rem; }
+
+.project-lifecycle__layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 7px; }
+.project-lifecycle__layers button { display: flex; align-items: center; gap: 8px; min-height: 37px; padding: 7px 9px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); color: var(--erp-text-primary); font-size: 0.76rem; text-align: left; }
+.project-lifecycle__layers button i { color: var(--erp-info); font-size: 1rem; }
+.project-lifecycle__layers button:hover,
+.project-lifecycle__layers button.is-active { border-color: var(--erp-info); background: var(--erp-info-soft); }
+.project-lifecycle__layers button:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 2px; }
+.project-lifecycle__layer-detail { margin-top: 8px; padding: 12px; border-radius: var(--erp-radius-md); background: var(--erp-surface-secondary); }
+.project-lifecycle__layer-detail strong { font-size: 0.82rem; }
+.project-lifecycle__layer-detail p { margin: 5px 0 9px; color: var(--erp-text-secondary); font-size: 0.8rem; line-height: 1.45; }
+.project-lifecycle__layer-detail > small { color: var(--erp-text-tertiary); font-size: 0.73rem; }
+
+.project-lifecycle__context h3 { margin: 8px 0 6px; font-size: 1.06rem; line-height: 1.35; }
+.project-lifecycle__context > p { color: var(--erp-text-secondary); font-size: 0.82rem; line-height: 1.5; }
+.project-lifecycle__context dl { margin: 18px 0; }
+.project-lifecycle__context dl > div { padding: 10px 0; border-top: 1px solid var(--erp-border); }
+.project-lifecycle__context dt { color: var(--erp-text-tertiary); font-size: 0.72rem; font-weight: 500; }
+.project-lifecycle__context dd { margin: 3px 0 0; font-size: 0.84rem; font-weight: 650; overflow-wrap: anywhere; }
+.project-lifecycle__context-link { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 14px; padding: 0; border: 0; background: none; color: var(--erp-info); font-size: 0.82rem; font-weight: 650; }
+.project-lifecycle__context-link:hover { text-decoration: underline; }
+.project-lifecycle__context-note { display: flex; gap: 9px; padding: 12px; border-radius: var(--erp-radius-md); background: var(--erp-info-soft); color: var(--erp-info); font-size: 0.76rem; line-height: 1.4; }
+.project-lifecycle__context-note i { flex: 0 0 auto; }
+
+@media (max-width: 1180px) {
+  .project-lifecycle__phasebar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .project-lifecycle__phase { display: block; }
+  .project-lifecycle__phase span { display: block; margin-top: 4px; }
+}
+
+@media (max-width: 760px) {
+  .project-lifecycle__detail { grid-template-columns: 1fr; }
+  .project-lifecycle__phasebar { gap: 4px; }
+  .project-lifecycle__phase { padding: 7px; font-size: 0.68rem; }
+  .project-lifecycle__phase strong { white-space: normal; }
+  .project-lifecycle__phase span { display: none; }
+}
+
+@media (max-width: 520px) {
+  .project-lifecycle__stage { min-height: 122px; padding: 9px; }
+  .project-lifecycle__stage small { font-size: 0.7rem; }
+  .project-lifecycle__stage-arrow { font-size: 0.65rem; }
+  .project-lifecycle__detail-main,
+  .project-lifecycle__context { padding: 18px; }
+  .project-lifecycle__reference-list { grid-template-columns: 1fr; }
+}

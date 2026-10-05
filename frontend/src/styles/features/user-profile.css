@@ -1,0 +1,1518 @@
+/*
+ * Style rieng cua feature `hr/user-profile` - trang "Thông tin người dùng".
+ * Chi chua thu KHONG dung lai o feature khac; phan dung chung nam o components/.
+ *
+ * Moi mau doc qua bien `--erp-*`: ba theme Light / Dark / Field dung CHUNG
+ * cac rule duoi day, khac nhau duy nhat o gia tri token (muc 12 & 15).
+ */
+
+.erp-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Dau trang: dinh danh nguoi ------------------------------------------- */
+
+.erp-profile__head {
+  padding: 16px 20px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-profile__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Avatar to hon binh thuong: day la trang cua MOT con nguoi, mat nguoi la moc
+   dinh huong nhanh nhat khi mo nhieu ho so canh nhau. */
+.erp-profile__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.erp-profile__name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--erp-text-primary);
+  text-wrap: balance;
+}
+
+.erp-profile__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-profile__meta--soft {
+  gap: 16px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-profile__meta--soft .bi {
+  margin-inline-end: 4px;
+}
+
+.erp-profile__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+/* --- Hai cap tab ---------------------------------------------------------- */
+
+.erp-profile__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tab cap 1 cuon ngang tren man hep thay vi xuong hang: chin tab xuong ba hang
+   la day het noi dung xuong duoi man hinh. */
+.erp-profile__tabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 0;
+  scrollbar-width: thin;
+}
+
+.erp-profile__tabs .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.erp-profile__subtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-profile__subtabs .erp-chip {
+  min-height: var(--erp-touch-target);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.erp-profile__subtabs .erp-chip:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-profile__subtabs .erp-chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* --- Thanh cong cu trong tab ---------------------------------------------- */
+
+.erp-profile__toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.erp-profile__toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.erp-profile__chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.erp-profile__chips .erp-chip {
+  min-height: 36px;
+}
+
+.erp-profile__chips .erp-chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-profile__summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Nhan cua danh sach don: co H4 (16px, weight 500) theo thang chu muc 09.
+ *
+ * The la <h2> chu khong phai <h4>: trang nay chi co mot <h1> (ten nguoi), nen
+ * <h2> la cap dung cua mot khoi noi dung nam thang duoi no. CAP HEADING la
+ * chuyen cau truc, CO CHU la chuyen thi giac - trinh doc man hinh doc cap, mat
+ * nguoi doc co.
+ *
+ * Co phai khai o DAY chu khong dung `.erp-h4`: `typography.css` nap TRUOC file
+ * nay, ma hai class cung do dac hieu thi file sau thang - `.erp-profile__summary`
+ * se de 0.75rem cua no len tren, va chu khong to ra chut nao.
+ */
+.erp-profile__summary--title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--erp-text-primary);
+}
+
+.erp-profile__summary .erp-num {
+  color: var(--erp-text-primary);
+}
+
+/*
+ * The don tu: tieu de CAN GIUA.
+ *
+ * Tieu de o day khong phai mot cai ten rieng ma la NHAN LOAI DON (backend tra
+ * `bundleLabel()`), tuc mot nhan ngan dung chung cho ca cot - can giua thi no
+ * doc nhu mot cai nhan, con can trai thi no gia lam dong dau tien cua danh
+ * sach truong ben duoi.
+ *
+ * LUAT DA CHUYEN sang `.erp-request-card` (`features/hr.css`): tu 05/09/2026
+ * ca hai man dung CHUNG mot the, nen luat phai di theo THE chu khong theo bang
+ * - neo vao bang thi man thu hai phai nhan ban no, va do dung la cach hai the
+ * cu troi ra xa nhau.
+ */
+
+/*
+ * Bang kanban don tu trong ho so (cot = ket qua xu ly).
+ *
+ * Trang ho so la trang cuon (`.erp-scroll-page`) chu khong phai trang danh
+ * sach, nen cot GIU tran cuon rieng cua `.erp-kanban__list` - neu bo tran thi
+ * mot cot 20 don keo ca trang dai ra, ba cot con lai tro thanh khoang trang.
+ * Ha xuong 56vh de con nhin thay dau cot lan phan trang ben duoi.
+ */
+.erp-profile__board .erp-kanban__list {
+  max-height: 56vh;
+}
+
+/* The don lam viec linh hoat con cong them lich 7 o nen can cot rong hon. */
+.erp-profile__board--wide .erp-kanban__scroll {
+  grid-auto-columns: minmax(340px, 460px);
+}
+
+/* Hai khoi canh nhau, tu xuong mot cot duoi 1024px. */
+.erp-profile__pair {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+
+/* --- Lich lam viec tuan (tab Tổng quan) ----------------------------------- */
+
+.erp-week {
+  --erp-week-hour: 34px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  overflow-x: auto;
+}
+
+.erp-week__row {
+  display: grid;
+  grid-template-columns: 52px repeat(7, minmax(96px, 1fr));
+  min-width: 720px;
+}
+
+.erp-week__row--head {
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-week__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-inline-start: 1px solid var(--erp-border);
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-week__day--today {
+  color: var(--erp-brand);
+  font-weight: 600;
+}
+
+.erp-week__weekday {
+  font-weight: 600;
+}
+
+.erp-week__date {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-week__day--today .erp-week__date {
+  color: inherit;
+}
+
+.erp-week__row--body {
+  position: relative;
+  height: calc(var(--erp-week-hour) * 12);
+}
+
+.erp-week__gutter {
+  position: relative;
+}
+
+.erp-week__hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-week__hour {
+  height: var(--erp-week-hour);
+  padding-inline-end: 6px;
+  font-size: 0.625rem;
+  line-height: 1;
+  text-align: end;
+  color: var(--erp-text-tertiary);
+  transform: translateY(-4px);
+}
+
+.erp-week__column {
+  position: relative;
+  border-inline-start: 1px solid var(--erp-border);
+  /* Ke gio nam trong nen, khong phai the rieng: bot 84 the trong DOM. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--erp-border) 0,
+    var(--erp-border) 1px,
+    transparent 1px,
+    transparent var(--erp-week-hour)
+  );
+}
+
+.erp-week__column--today {
+  background-color: var(--erp-action-secondary-soft);
+}
+
+.erp-week__column--off {
+  background-color: var(--erp-surface-secondary);
+}
+
+.erp-week__off {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-week__block {
+  position: absolute;
+  inset-inline: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 6px;
+  overflow: hidden;
+  border-radius: var(--erp-radius-sm);
+  border-inline-start: 3px solid var(--erp-week-accent);
+  background: var(--erp-week-fill);
+  color: var(--erp-text-primary);
+}
+
+.erp-week__block-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.erp-week__block-time {
+  font-size: 0.625rem;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * Bon loai khoi = bon tin hieu ngu nghia, khong phai mau tu do:
+ * Blue = viec thuong (Trust/Data) · Copper = ra cong truong (Construction) ·
+ * Green = dao tao (Progress) · Neutral = hop.
+ */
+.erp-week__block--work,
+.erp-week__swatch--work {
+  --erp-week-accent: var(--erp-action-secondary);
+  --erp-week-fill: var(--erp-action-secondary-soft);
+}
+
+.erp-week__block--meeting,
+.erp-week__swatch--meeting {
+  --erp-week-accent: var(--erp-neutral);
+  --erp-week-fill: var(--erp-neutral-soft);
+}
+
+.erp-week__block--site,
+.erp-week__swatch--site {
+  --erp-week-accent: var(--erp-construction);
+  --erp-week-fill: var(--erp-construction-soft);
+}
+
+.erp-week__block--training,
+.erp-week__swatch--training {
+  --erp-week-accent: var(--erp-success);
+  --erp-week-fill: var(--erp-success-soft);
+}
+
+/*
+ * Hai lan trong mot cot: KE HOACH ben trai, CHAM CONG ben phai.
+ *
+ * Cot chi rong 96-135px nen hai lan la ~44-64px moi ben - du cho "08:15" o
+ * 0.625rem, khong du cho ten viec. Ten viec vi vay chuyen sang `title` +
+ * `.visually-hidden`, con mat khoi chi con hai moc gio xep tren duoi.
+ */
+.erp-week__block--plan {
+  inset-inline: 3px 50%;
+}
+
+.erp-week__block--punch {
+  inset-inline: 50% 3px;
+  --erp-week-accent: var(--erp-intelligence);
+  --erp-week-fill: var(--erp-intelligence-soft);
+}
+
+.erp-week__swatch--punch {
+  --erp-week-accent: var(--erp-intelligence);
+  --erp-week-fill: var(--erp-intelligence-soft);
+}
+
+/*
+ * Hai moc gio day ve hai dau khoi: doc tu tren xuong la "vao luc may, ra luc
+ * may" - dung hinh dang cua chinh thanh do tren truc thoi gian.
+ */
+.erp-week__block--plan .erp-week__block-time:last-of-type,
+.erp-week__block--punch .erp-week__block-time:last-of-type {
+  margin-block-start: auto;
+}
+
+/* --- Chan cot: con so cua ngay ------------------------------------------- */
+
+.erp-week__row--foot {
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-week__foot {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 28px;
+  padding: 6px 4px;
+  border-inline-start: 1px solid var(--erp-border);
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--erp-text-secondary);
+}
+
+.erp-week__foot--today {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-week__punch {
+  margin: 0;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-week__flag,
+.erp-week__req {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 1px 4px;
+  border-radius: var(--erp-radius-sm);
+  /*
+   * Mau la lop tin hieu THU HAI (muc 05 & 11): moi chip deu co icon rieng va
+   * chu doc duoc, nen in den trang hay mu mau van phan biet duoc.
+   */
+  background: var(--erp-week-flag-fill);
+  color: var(--erp-week-flag-text);
+}
+
+.erp-week__flag--late {
+  --erp-week-flag-fill: var(--erp-warning-soft);
+  --erp-week-flag-text: var(--erp-warning);
+}
+
+.erp-week__flag--early {
+  --erp-week-flag-fill: var(--erp-warning-soft);
+  --erp-week-flag-text: var(--erp-warning);
+}
+
+.erp-week__flag--timer {
+  --erp-week-flag-fill: var(--erp-intelligence-soft);
+  --erp-week-flag-text: var(--erp-intelligence);
+}
+
+.erp-week__req--success {
+  --erp-week-flag-fill: var(--erp-success-soft);
+  --erp-week-flag-text: var(--erp-success);
+}
+
+.erp-week__req--warning {
+  --erp-week-flag-fill: var(--erp-warning-soft);
+  --erp-week-flag-text: var(--erp-warning);
+}
+
+.erp-week__req--danger {
+  --erp-week-flag-fill: var(--erp-danger-soft);
+  --erp-week-flag-text: var(--erp-danger);
+}
+
+.erp-week__req--info {
+  --erp-week-flag-fill: var(--erp-info-soft);
+  --erp-week-flag-text: var(--erp-info);
+}
+
+.erp-week__req--neutral {
+  --erp-week-flag-fill: var(--erp-neutral-soft);
+  --erp-week-flag-text: var(--erp-text-secondary);
+}
+
+/*
+ * Field Mode: 16px chu, contrast >= 7:1. Chan cot la cho chu nho nhat cua ca
+ * the nen no la cho vo dau tien khi doc ngoai nang.
+ */
+[data-theme='field'] .erp-week__foot {
+  font-size: 0.8125rem;
+}
+
+[data-theme='field'] .erp-week__foot,
+[data-theme='field'] .erp-week__flag,
+[data-theme='field'] .erp-week__req {
+  color: var(--erp-text-primary);
+}
+
+.erp-week__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 12px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-week__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-week__legend-item dd {
+  margin: 0;
+}
+
+.erp-week__swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border-inline-start: 3px solid var(--erp-week-accent);
+  background: var(--erp-week-fill);
+}
+
+/* --- Yeu cau & phe duyet -------------------------------------------------- */
+
+.erp-approval-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-approval {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-approval:last-child {
+  border-bottom: none;
+}
+
+.erp-approval__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-approval__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Hoat dong gan day ---------------------------------------------------- */
+
+.erp-activity {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-activity:last-child {
+  border-bottom: none;
+}
+
+.erp-activity__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-activity__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-activity__time {
+  flex: none;
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+  white-space: nowrap;
+}
+
+/* --- Gio tu nhap ---------------------------------------------------------- */
+
+.erp-worktime__input {
+  width: 100%;
+  min-width: 40px;
+  height: 30px;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 0.8125rem;
+  border-color: transparent;
+  background: transparent;
+}
+
+.erp-worktime__input:hover {
+  border-color: var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.erp-worktime__input:focus {
+  border-color: var(--erp-focus-ring);
+  background: var(--erp-surface);
+}
+
+/*
+ * Man hinh cam ung: o nhap phai dat nguong cham 44px (muc 06 & 11). Tren
+ * chuot thi giu 30px - luoi 31 cot ma hang nao cung 44px thi mot thang khong
+ * con lot man hinh, va o do khong ai cham tay vao.
+ */
+@media (pointer: coarse) {
+  .erp-worktime__input {
+    height: var(--erp-touch-target);
+    font-size: 1rem;
+  }
+}
+
+/* Ngay da chot: van doc duoc nhung nhat di - "khoa", khong phai "mat". */
+.erp-worktime__locked {
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Danh gia 360 --------------------------------------------------------- */
+
+.erp-criteria {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-criteria__item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-criteria__item:last-child {
+  border-bottom: none;
+}
+
+.erp-criteria__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.erp-criteria__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-criteria__weight {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-criteria__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.erp-criteria__bar {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 10px;
+}
+
+.erp-criteria__bar-label {
+  font-size: 0.6875rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-criteria__bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: end;
+  color: var(--erp-text-primary);
+}
+
+.erp-criteria__progress {
+  height: 6px;
+}
+
+.erp-review-notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-review-note {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-review-note:last-child {
+  border-bottom: none;
+}
+
+.erp-review-note__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-review-note__score {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+.erp-review-note__body {
+  margin: 8px 0 0;
+  /* ~65-75 ky tu mot dong: doan mo ta dai hon the la mat nhip doc. */
+  max-width: 68ch;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--erp-text-secondary);
+}
+
+.erp-review-note__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Thong tin: the va dong thoi gian ------------------------------------- */
+
+.erp-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 18px;
+  border-inline-start: 1px solid var(--erp-border);
+}
+
+.erp-timeline__item {
+  position: relative;
+  padding: 0 0 18px;
+}
+
+.erp-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.erp-timeline__dot {
+  position: absolute;
+  inset-inline-start: -23px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--erp-surface);
+  background: var(--erp-action-secondary);
+}
+
+.erp-timeline__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-timeline__time {
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-timeline__change {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+}
+
+.erp-timeline__from {
+  color: var(--erp-text-tertiary);
+  text-decoration: line-through;
+}
+
+.erp-timeline__to {
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+.erp-timeline__meta {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* --- Luoi ngay dang to lich (Đơn từ / Ngày công theo ngày) ---------------- */
+
+.erp-daygrid {
+  overflow-x: auto;
+}
+
+.erp-daygrid__table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.erp-daygrid__table th {
+  padding: 6px 4px;
+  border: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  text-align: center;
+}
+
+.erp-daygrid__cell {
+  position: relative;
+  height: 60px;
+  padding: 4px;
+  border: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.erp-daygrid__cell--weekend {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-daygrid__cell--outside {
+  background: var(--erp-bg);
+}
+
+.erp-daygrid__cell--outside .erp-daygrid__day {
+  opacity: 0.4;
+}
+
+.erp-daygrid__cell--filled {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-daygrid__day {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-daygrid__value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  margin-top: 2px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+/* --- Som muon: phan bo theo muc do --------------------------------------- */
+
+.erp-breakdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-breakdown__item {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.2fr) minmax(80px, 2fr) 40px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.erp-breakdown__label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8125rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-breakdown__hint {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-breakdown__track {
+  height: 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.erp-breakdown__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-warning);
+}
+
+.erp-breakdown__value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: end;
+  color: var(--erp-text-primary);
+}
+
+.erp-breakdown__split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+/* --- Nghi phep ------------------------------------------------------------ */
+
+.erp-leave-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-leave {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-leave:last-child {
+  border-bottom: none;
+}
+
+.erp-leave__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.erp-leave__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-leave__bar {
+  height: 8px;
+}
+
+.erp-leave__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px 16px;
+  margin: 10px 0 0;
+}
+
+.erp-leave__figures dt {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-leave__figures dd {
+  margin: 2px 0 0;
+  font-size: 0.9375rem;
+  color: var(--erp-text-primary);
+}
+
+/* --- Phieu luong ---------------------------------------------------------- */
+
+.erp-payslip__head {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-payslip__head p {
+  margin: 0;
+}
+
+.erp-payslip__name {
+  margin-top: 4px !important;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-payslip__value {
+  margin-top: 4px !important;
+  font-size: 0.875rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-payslip__columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px 32px;
+}
+
+.erp-payslip__group-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-payslip__lines {
+  margin: 0;
+}
+
+.erp-payslip__line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--erp-border);
+}
+
+.erp-payslip__line dt {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+.erp-payslip__line dd {
+  flex: none;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-primary);
+}
+
+.erp-payslip__note {
+  font-size: 0.6875rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-payslip__line--total {
+  border-bottom: none;
+  border-top: 1px solid var(--erp-border);
+  margin-top: 4px;
+  padding-top: 10px;
+}
+
+.erp-payslip__line--total dt,
+.erp-payslip__line--total dd {
+  font-weight: 700;
+  color: var(--erp-text-primary);
+}
+
+.erp-payslip__net {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 14px 18px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-success-soft);
+}
+
+.erp-payslip__net-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-success);
+}
+
+.erp-payslip__net-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--erp-success);
+}
+
+/* --- O "nguoi" bam duoc trong bang danh sach nhan su ---------------------- */
+
+.erp-person-link {
+  display: block;
+  color: inherit;
+}
+
+.erp-person-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.erp-person-link:hover .erp-person__name {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-person-link:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--erp-radius-sm);
+}
+
+/* --- Mobile: tai cau truc theo nhiem vu, khong thu nho ban desktop -------- */
+
+@media (max-width: 768px) {
+  .erp-profile__head {
+    padding: 14px 16px;
+  }
+
+  .erp-profile__avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 1.125rem;
+  }
+
+  .erp-profile__name {
+    font-size: 1.25rem;
+  }
+
+  /* Ba dong meta phu chiem het man hinh dau ma khong ai doc tren dien thoai -
+     thong tin do da co day du trong tab "Tổng quan / Thông tin nhanh". */
+  .erp-profile__meta--soft {
+    display: none;
+  }
+
+  .erp-profile__actions {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+
+  .erp-profile__toolbar,
+  .erp-profile__toolbar-right {
+    width: 100%;
+  }
+
+  /*
+   * Thanh cong cu cua tab Don tu (RequestPanel): MOT hang tren mobile -
+   * [so dong] [o loc loai don - co gian] [Kanban|Bang] [+ ▾].
+   *
+   * Do dac hieu (0,2,0) de thang luat `width: 100%` ngay tren. O loc la phan tu
+   * DUY NHAT duoc co (`min-width: 0`): ba thu con lai co be rong co dinh, nen
+   * hang nay vua moi man tu 320px.
+   */
+  .erp-profile__toolbar--inline {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .erp-profile__toolbar--inline .erp-profile__summary--title {
+    flex: 0 0 auto;
+  }
+
+  .erp-profile__toolbar--inline .erp-profile__toolbar-right {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .erp-profile__toolbar--inline .erp-profile__toolbar-filter {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .erp-profile__toolbar--inline .erp-profile__toolbar-filter .form-select {
+    text-overflow: ellipsis;
+  }
+
+  .erp-profile__toolbar--inline .erp-profile__toolbar-right > :not(.erp-profile__toolbar-filter) {
+    flex: 0 0 auto;
+  }
+
+  /* Mot cot vua man hinh - keo ngang de doi cot, giong moi kanban khac
+     (`components/kanban.css` lam dieu nay tu 576px tro xuong). */
+  .erp-profile__board--wide .erp-kanban__scroll {
+    grid-auto-columns: 84vw;
+  }
+
+  .erp-criteria__bar {
+    grid-template-columns: 96px minmax(0, 1fr) 32px;
+  }
+
+  .erp-breakdown__item {
+    grid-template-columns: minmax(0, 1fr) 40px;
+  }
+
+  .erp-breakdown__track {
+    display: none;
+  }
+}
+
+/*
+ * Mobile (<=576px): hang cong cu don tu khong du cho cho chu.
+ *
+ * Hai nhan an khoi MAN HINH bang ky thuat visually-hidden, KHONG `display: none`:
+ * ten cua tieu de / cua nut van con voi trinh doc man hinh, va `innerText` van
+ * tra ve chu do (script kiem tim nut "Thêm mới" theo chu).
+ *  - ten danh sach: tab dang chon ngay ben tren da mang dung chu nay, con
+ *    "Đơn từ linh hoạt" mot minh an gan nua hang;
+ *  - nhan nut "Thêm mới": con icon + mui ten mo menu (dung cho moi cho dung
+ *    `CreateRequestMenu`, ke ca man /requests).
+ */
+@media (max-width: 576px) {
+  .erp-profile__toolbar--inline .erp-profile__summary-label,
+  .erp-create-menu__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .erp-create-menu__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: var(--erp-touch-target);
+    padding-inline: 10px;
+  }
+}
+
+/* Field Mode: vien ro hon, chu to hon - chong choi ngoai cong truong (muc 11). */
+[data-theme='field'] .erp-week__block-title,
+[data-theme='field'] .erp-week__block-time {
+  font-size: 0.75rem;
+}
+
+[data-theme='field'] .erp-week__block {
+  border-inline-start-width: 4px;
+}
+
+[data-theme='field'] .erp-daygrid__cell,
+[data-theme='field'] .erp-daygrid__table th {
+  border-color: var(--erp-border-strong);
+}
+
+/* ==========================================================================
+   Nhan "Dữ liệu mẫu"
+
+   Deo tren nhung khoi chua noi duoc API (xem SampleDataNotice). Co y KHONG
+   dung `alert` cua Bootstrap: alert la thong bao cua mot HANH DONG vua xay ra
+   va nguoi dung mong dong duoc no. Day la trang thai thuong truc cua khoi du
+   lieu, nen no phai mong, khong co nut dong, va nam sat tren chinh khoi ma no
+   noi toi.
+   ========================================================================== */
+.erp-sample-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  padding: 7px 11px;
+  border: 1px solid var(--erp-warning-border, var(--erp-warning));
+  border-radius: var(--erp-radius-sm, 6px);
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning-text, var(--erp-text));
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.erp-sample-notice > :first-child {
+  flex: none;
+  color: var(--erp-warning);
+}
+
+.erp-sample-notice__hint {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--erp-text-tertiary);
+  cursor: help;
+}
+
+/* Field Mode doi contrast >= 7:1 va co chu 16px - khong de nhan nay tut lai. */
+[data-theme='field'] .erp-sample-notice {
+  font-size: 1rem;
+  padding: 10px 14px;
+}
+
+/* ==========================================================================
+   Form "Sửa hồ sơ" — mật độ dày hơn mặc định
+
+   Form này hỏi 45 ô, nhiều nhất trong cả app. Ở mật độ mặc định nó cao gần
+   ba màn hình: mỗi hàng ăn HAI khoảng cách cộng dồn — `--bs-gutter-y` của
+   `<Row className="g-3">` (1rem) rồi lại `mb-3` của từng `Field` (1rem nữa).
+   Hai lớp đó chồng lên nhau chứ không thay thế nhau, nên khoảng trắng giữa
+   hai hàng ô là 2rem trong khi bản thân ô chỉ cao 38px.
+
+   Chỉ hạ khoảng cách DỌC. Gutter ngang giữ nguyên vì cột vẫn phải tách nhau
+   rõ, và chiều cao control không đụng tới — Field Mode đòi 48px.
+
+   `!important` là bắt buộc: `.mb-3` của Bootstrap tự nó đã `!important`.
+   Phạm vi khoá vào `.erp-profile-form` (truyền qua `bodyClassName` của
+   `FormModal`) nên không màn nào khác đổi theo.
+   ========================================================================== */
+.erp-profile-form .row {
+  --bs-gutter-y: 0.5rem;
+}
+/* Khoảng cách giữa hai hàng ô do MỘT nguồn quyết định — gutter của `<Row>`.
+   Giữ thêm `mb-3` là hai nguồn cộng dồn, và mỗi lần chỉnh mật độ phải nhớ sửa
+   hai chỗ. */
+.erp-profile-form .mb-3 {
+  margin-bottom: 0 !important;
+}
+/* Nhãn sát ô của nó. 8px mặc định nhân với ~14 hàng ô là gần 90px chiều cao
+   cho thứ không ai nhìn — trong khi nhãn dính ô vẫn đọc đúng vì nó cùng cột và
+   cách hàng trên 8px. */
+.erp-profile-form .form-label {
+  margin-bottom: 2px;
+}
+/* Dòng chú thích bám sát ô và nhỏ hơn một bậc: nó là chú thích, không phải nội
+   dung. */
+.erp-profile-form .form-text {
+  margin-top: 1px;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+/* Khung khối mỏng lại — bốn khối × (12+16)px lề trên dưới là hơn 110px chiều
+   cao chỉ để vẽ viền. Giữ viền, bớt lề. */
+.erp-profile-form .erp-form-section__head {
+  padding: 8px 14px;
+}
+.erp-profile-form .erp-form-section__body {
+  padding: 12px 14px;
+}
+.erp-profile-form.erp-form-modal__body {
+  gap: 12px;
+  padding: 14px 18px;
+}
+/* Ô thấp hơn ~4px. Chỉ hạ `padding-block` — TUYỆT ĐỐI không đặt `min-height`:
+   Field Mode ép `min-height: 48px` với cùng độ đặc hiệu, mà file này nạp sau
+   nên một dòng `min-height` ở đây sẽ thắng và phá luôn chế độ công trường. */
+.erp-profile-form .form-control,
+.erp-profile-form .form-select {
+  padding-block: 0.25rem;
+}
+/* Khối bảng nhiều dòng vẫn cần tách hẳn khỏi lưới ô đơn quanh nó. */
+.erp-profile-form .erp-array-table {
+  margin-block: 4px 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Ảnh đại diện — xếp DỌC: ảnh trên, hai nút dưới.
+
+   Xếp ngang (ảnh trái / nút phải) làm cụm này rộng ra và đẩy cột ô nhập hẹp
+   lại, trong khi bản thân ảnh chỉ dám to bằng chiều cao một dòng nút. Xếp dọc
+   cho ảnh lớn gấp đôi mà cột trái vẫn chỉ chiếm 3/12.
+
+   `aspect-ratio: 1` + `object-fit: cover` giữ ảnh vuông bất kể ảnh gốc: ảnh
+   chân dung của nhân sự có đủ tỷ lệ, để nguyên là mỗi hồ sơ một chiều cao khác
+   nhau và hàng ô bên phải nhảy theo.
+   -------------------------------------------------------------------------- */
+.erp-profile-avatar__box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Cột trái tụt xuống ~230px ở đúng mốc `lg`; lúc đó ảnh + hai nút không đứng
+     cùng hàng được nữa, cho nút rơi xuống thay vì tràn ra ngoài cột. */
+  flex-wrap: wrap;
+}
+.erp-profile-avatar__img {
+  /* Ảnh NHỎ và căn trái, hai nút nằm BÊN CẠNH — cả cụm cao đúng bằng một khối
+     84px thay vì 120 + 8 + 31. Cột trái là thứ quyết định form có phải cuộn
+     hay không, và đây là khối cao nhất của nó. */
+  width: 84px;
+  flex: 0 0 auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+.erp-profile-avatar__img--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--erp-text-tertiary);
+}
+.erp-profile-avatar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Hai nút xuống dòng trước khi tràn ra khỏi cột hẹp; "Chọn ảnh" + "Bỏ ảnh"
+     là ~165px, cột còn ~230px ở mốc `lg` sau khi trừ ảnh 84px. */
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   Nới bề ngang modal "Sửa hồ sơ".
+
+   `size="xl"` của react-bootstrap là 1140px; ở đó lưới 3/9 cho cột trái chỉ
+   ~250px — không đủ cho ảnh 140px cộng lề — và cột phải ba ô một hàng thì mỗi
+   ô còn ~270px, nhãn "Nhập lại mật khẩu mới" tràn hai dòng. 1440px cho trái
+   ~340px và mỗi ô phải ~330px; `96vw` để màn 13" không bị cắt lề.
+
+   Cùng con số và cùng cách `.advance-modal` đang dùng — đặt biến của Bootstrap
+   chứ không ghi đè `max-width`, để `.modal-dialog-scrollable` vẫn tính đúng.
+   -------------------------------------------------------------------------- */
+.erp-profile-modal .modal-dialog {
+  --bs-modal-width: min(1440px, 96vw);
+  /* Lề mặc định của modal căn giữa là 1,75rem mỗi đầu = 56px chiều cao mất
+     trắng. Hạ xuống 12px lấy lại ~32px cho phần thân — đúng phần quyết định
+     form có phải cuộn hay không. */
+  --bs-modal-margin: 0.75rem;
+}
+
+/* Cột trái ("Cài đặt tài khoản") xếp ô theo chiều DỌC, không có gutter của
+   `<Row>` để tách hai ô, nên luật thu hẹp `.mb-3` xuống 4px làm chúng dính vào
+   nhau. Cột phải không cần: ở đó mỗi ô nằm trong một `<Col>` và đã có
+   `--bs-gutter-y`. */
+.erp-profile-form__side .mb-3 {
+  margin-bottom: 8px !important;
+}
+
+/* ==========================================================================
+   Tab "Đánh giá vận hành" — khối nội dung KHÔNG được co lại
+   ==========================================================================
+   Trang hồ sơ là `.erp-scroll-page` (cao đúng 100%, tự cuộn) và `.erp-profile`
+   là một cột flex, nên phần thân tab là một flex item CÓ THỂ BỊ BÓP. Lớp dùng
+   chung `.erp-stack` lại khai `min-height: 0`, tức là bỏ luôn lớp bảo vệ cuối
+   cùng: nội dung dài hơn màn hình thì cả khối bị nén thay vì đẩy trang cuộn.
+
+   Tab này là tab dài nhất của trang hồ sơ (kỳ + ba thẻ số + bảng tiêu chí +
+   bảng nhân sự), nên nó chạm ngưỡng đó ngay từ dữ liệu thật đầu tiên: bảng
+   nhân sự co xuống còn MỘT dòng kèm thanh cuộn lồng nhau.
+
+   Không co nữa thì các khối giữ nguyên chiều cao thật và việc cuộn do một mình
+   trang lo — đúng cách các trang khác đang chạy. Chỉ đặt cho tab này chứ không
+   sửa `.erp-stack` dùng chung: mọi tab khác đang chạy đúng với luật hiện tại.
+   ========================================================================== */
+.erp-operation-tab {
+  flex-shrink: 0;
+}
+
+.erp-operation-tab > * {
+  flex-shrink: 0;
+}

@@ -1,0 +1,299 @@
+.lifecycle-process { display: grid; gap: 14px; min-width: 0; }
+.lifecycle-process__head,
+.lifecycle-process__card,
+.lifecycle-process__table,
+.lifecycle-process__select-card,
+.lifecycle-process__metrics > div,
+.lifecycle-process__cost-flow > div { border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); }
+.lifecycle-process__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; }
+.lifecycle-process__head h2 { margin: 5px 0 3px; font-size: 1.22rem; }
+.lifecycle-process__head p { margin: 0; color: var(--erp-text-secondary); font-size: .8rem; line-height: 1.4; }
+.lifecycle-process__back { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; color: var(--erp-info); font-size: .75rem; font-weight: 700; }
+.lifecycle-process__back:hover { text-decoration: underline; }
+.lifecycle-process__badge { display: inline-flex; align-items: center; width: max-content; max-width: 100%; padding: 4px 8px; border-radius: 999px; background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .68rem; font-weight: 700; white-space: nowrap; }
+.lifecycle-process__badge--info { background: var(--erp-info-soft); color: var(--erp-info); }
+.lifecycle-process__badge--success { background: var(--erp-success-soft); color: var(--erp-success); }
+.lifecycle-process__badge--warning { background: var(--erp-warning-soft, #fff4d6); color: var(--erp-warning, #9a6500); }
+.lifecycle-process__badge--danger { background: var(--erp-danger-soft, #ffebe9); color: var(--erp-danger, #bd342e); }
+.lifecycle-process__nav { display: flex; gap: 7px; min-width: 0; overflow-x: auto; padding-bottom: 4px; }
+.lifecycle-process__nav button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 7px; min-height: 36px; padding: 7px 11px; border: 1px solid var(--erp-border); border-radius: 999px; background: var(--erp-surface); color: var(--erp-text-secondary); font-size: .76rem; font-weight: 650; white-space: nowrap; }
+.lifecycle-process__nav button:hover,
+.lifecycle-process__nav button.is-active { border-color: var(--erp-info); background: var(--erp-info-soft); color: var(--erp-info); }
+.lifecycle-process__title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.lifecycle-process__title > div > span,
+.lifecycle-process__card-head > div > span { color: var(--erp-info); font-size: .66rem; font-weight: 750; letter-spacing: .06em; }
+.lifecycle-process__title h3 { margin: 2px 0; font-size: 1.1rem; }
+.lifecycle-process__title p { margin: 0; color: var(--erp-text-secondary); font-size: .8rem; }
+.lifecycle-process__toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lifecycle-process__toolbar label { color: var(--erp-text-secondary); font-size: .78rem; font-weight: 650; }
+.lifecycle-process__toolbar input,
+.lifecycle-process__toolbar select,
+.lifecycle-process__package select { min-height: 34px; padding: 6px 10px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); color: var(--erp-text-primary); font-size: .77rem; }
+.lifecycle-process__toolbar input { flex: 1 1 240px; max-width: 430px; }
+.lifecycle-process__toolbar select { max-width: min(100%, 390px); }
+.lifecycle-process__split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 300px); align-items: start; gap: 12px; min-width: 0; }
+.lifecycle-process__split--wide { grid-template-columns: minmax(0, 1fr) minmax(280px, 335px); }
+.lifecycle-process__card { min-width: 0; padding: 16px; }
+.lifecycle-process__card h4 { margin: 0 0 12px; font-size: .94rem; }
+.lifecycle-process__card h5 { margin: 0 0 13px; font-size: .85rem; line-height: 1.4; }
+.lifecycle-process__card > p { color: var(--erp-text-secondary); font-size: .78rem; line-height: 1.5; }
+.lifecycle-process__source-map { display: grid; grid-template-columns: minmax(230px, .8fr) minmax(0, 1.2fr); gap: 14px; align-items: center; }
+.lifecycle-process__source-map h4 { margin-bottom: 5px; }
+.lifecycle-process__source-map p { margin: 0; color: var(--erp-text-secondary); font-size: .76rem; line-height: 1.45; }
+.lifecycle-process__source-pairs { display: flex; flex-wrap: wrap; gap: 5px; }
+.lifecycle-process__source-pairs span { padding: 5px 7px; border-radius: 999px; background: var(--erp-info-soft); color: var(--erp-info); font-size: .68rem; font-weight: 650; }
+.lifecycle-process__card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.lifecycle-process__card-head h4 { margin: 3px 0 0; }
+.lifecycle-process__checklist { display: grid; margin-bottom: 13px; border-top: 1px solid var(--erp-border); }
+.lifecycle-process__checklist label { display: flex; align-items: flex-start; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--erp-border); cursor: pointer; }
+.lifecycle-process__checklist input { margin-top: 3px; accent-color: var(--erp-info); }
+.lifecycle-process__checklist strong,
+.lifecycle-process__checklist small { display: block; }
+.lifecycle-process__checklist strong { font-size: .8rem; }
+.lifecycle-process__checklist small { margin-top: 3px; color: var(--erp-text-tertiary); font-size: .7rem; }
+.lifecycle-process__primary,
+.lifecycle-process__secondary { display: inline-flex; align-items: center; gap: 8px; min-height: 35px; padding: 7px 11px; border: 1px solid var(--erp-info); border-radius: var(--erp-radius-md); font-size: .77rem; font-weight: 700; }
+.lifecycle-process__primary { background: var(--erp-info); color: #fff; }
+.lifecycle-process__secondary { background: var(--erp-surface); color: var(--erp-info); }
+.lifecycle-process__primary:hover,
+.lifecycle-process__secondary:hover { opacity: .88; }
+.lifecycle-process__feedback { margin: 11px 0 0; padding: 9px 11px; border-radius: var(--erp-radius-md); background: var(--erp-info-soft); color: var(--erp-info); font-size: .76rem; }
+.lifecycle-process__facts { display: grid; gap: 0; margin: 0; }
+.lifecycle-process__facts > div { padding: 8px 0; border-top: 1px solid var(--erp-border); }
+.lifecycle-process__facts dt { color: var(--erp-text-tertiary); font-size: .68rem; }
+.lifecycle-process__facts dd { margin: 3px 0 0; overflow-wrap: anywhere; font-size: .78rem; font-weight: 650; }
+.lifecycle-process__note { margin: 12px 0 0 !important; color: var(--erp-text-tertiary) !important; font-size: .72rem !important; line-height: 1.45; }
+.lifecycle-process__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.lifecycle-process__metrics > div { display: flex; flex-direction: column; gap: 3px; padding: 11px 14px; }
+.lifecycle-process__metrics span,
+.lifecycle-process__metrics small { color: var(--erp-text-secondary); font-size: .72rem; }
+.lifecycle-process__metrics strong { font-size: 1.25rem; line-height: 1.2; }
+.lifecycle-process__table { min-width: 0; overflow-x: auto; }
+.lifecycle-process__table table { width: 100%; min-width: 590px; border-collapse: collapse; }
+.lifecycle-process__table th { padding: 10px; background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .7rem; text-align: left; white-space: nowrap; }
+.lifecycle-process__table td { padding: 10px; border-top: 1px solid var(--erp-border); font-size: .76rem; vertical-align: middle; }
+.lifecycle-process__table tr.is-active td { background: var(--erp-info-soft); }
+.lifecycle-process__table td > button { display: grid; gap: 3px; padding: 0; border: 0; background: none; color: var(--erp-text-primary); text-align: left; }
+.lifecycle-process__table td > button:hover { color: var(--erp-info); }
+.lifecycle-process__table td strong { font-size: .76rem; }
+.lifecycle-process__table td small { color: var(--erp-text-tertiary); font-size: .7rem; }
+.lifecycle-process__table--nested { margin-top: 14px; }
+.lifecycle-process__stack { display: grid; gap: 8px; min-width: 0; }
+.lifecycle-process__select-card { display: grid; gap: 8px; width: 100%; padding: 12px; color: var(--erp-text-primary); text-align: left; }
+.lifecycle-process__select-card:hover,
+.lifecycle-process__select-card.is-active { border-color: var(--erp-info); background: var(--erp-info-soft); }
+.lifecycle-process__select-card > span:first-child { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.lifecycle-process__select-card strong { font-size: .82rem; }
+.lifecycle-process__select-card small { color: var(--erp-text-secondary); font-size: .72rem; }
+.lifecycle-process__tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.lifecycle-process__tags em { padding: 3px 6px; border-radius: 999px; background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .68rem; font-style: normal; }
+.lifecycle-process__cost-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.lifecycle-process__cost-flow > div { display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 11px; }
+.lifecycle-process__cost-flow span,
+.lifecycle-process__cost-flow small { color: var(--erp-text-secondary); font-size: .7rem; }
+.lifecycle-process__cost-flow strong { font-size: .98rem; }
+.lifecycle-process__chain { display: flex; flex-wrap: wrap; gap: 5px; }
+.lifecycle-process__chain span { display: inline-flex; align-items: center; gap: 8px; padding: 7px 9px; border-radius: var(--erp-radius-md); background: var(--erp-info-soft); color: var(--erp-info); font-size: .72rem; font-weight: 650; }
+.lifecycle-process__chain i { font-size: .68rem; }
+.lifecycle-process__callout { display: flex; gap: 9px; margin-top: 12px; padding: 11px; border-radius: var(--erp-radius-md); background: var(--erp-warning-soft, #fff4d6); color: var(--erp-text-primary); font-size: .74rem; line-height: 1.45; }
+.lifecycle-process__callout i { flex: 0 0 auto; color: var(--erp-warning, #9a6500); }
+.lifecycle-process__package { display: grid; border-top: 1px solid var(--erp-border); }
+.lifecycle-process__package > div { display: grid; grid-template-columns: 28px minmax(0, 1fr) 125px; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--erp-border); }
+.lifecycle-process__package-number { color: var(--erp-info); font-size: .72rem; font-weight: 800; }
+.lifecycle-process__package strong { font-size: .76rem; font-weight: 600; }
+.lifecycle-process__package select { width: 100%; font-size: .7rem; }
+.lifecycle-process__package-reason { grid-column: 2 / 4; width: 100%; min-height: 32px; padding: 6px 9px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); color: var(--erp-text-primary); font-size: .72rem; }
+.lifecycle-process__footer { display: flex; align-items: flex-start; gap: 7px; margin: 0; padding: 10px 12px; border: 1px dashed var(--erp-border); border-radius: var(--erp-radius-md); color: var(--erp-text-tertiary); font-size: .72rem; line-height: 1.45; }
+.lifecycle-process__footer i { flex: 0 0 auto; color: var(--erp-info); }
+.lifecycle-process button:focus-visible,
+.lifecycle-process input:focus-visible,
+.lifecycle-process select:focus-visible { outline: 2px solid var(--erp-focus-ring); outline-offset: 2px; }
+
+@container (max-width: 1250px) {
+  .lifecycle-process__cost-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@container (max-width: 930px) {
+  .lifecycle-process__split,
+  .lifecycle-process__split--wide,
+  .lifecycle-process__source-map { grid-template-columns: 1fr; }
+}
+
+@container (max-width: 650px) {
+  .lifecycle-process__title > .lifecycle-process__badge { display: none; }
+  .lifecycle-process__cost-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lifecycle-process__package > div { grid-template-columns: 24px minmax(0, 1fr); }
+  .lifecycle-process__package select,
+  .lifecycle-process__package-reason { grid-column: 2; }
+}
+
+@container (max-width: 500px) {
+  .lifecycle-process__head { align-items: flex-start; flex-direction: column; padding: 12px; }
+  .lifecycle-process__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.lifecycle-process__tower { display: grid; gap: 12px; }
+.lifecycle-process__tower-links { display: flex; flex-wrap: wrap; gap: 7px; }
+.lifecycle-process__tower-links button { padding: 7px 10px; border: 1px solid var(--erp-border); border-radius: var(--erp-radius-md); background: var(--erp-surface); color: var(--erp-info); font-size: 0.76rem; font-weight: 650; }
+.lifecycle-process__tower-links button:hover { border-color: var(--erp-info); background: var(--erp-info-soft); }
+
+/* Hai màn mẫu tiếp nhận hồ sơ và hậu kiểm theo luồng 2026. */
+.lifecycle-workflow { display: grid; gap: 10px; min-width: 0; color: var(--erp-text-primary); }
+.lifecycle-workflow__heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px 18px; min-width: 0; }
+.lifecycle-workflow__eyebrow { color: var(--erp-info); font-size: .65rem; font-weight: 800; letter-spacing: .08em; }
+.lifecycle-workflow__heading h3 { margin: 3px 0; font-size: 1.27rem; line-height: 1.2; }
+.lifecycle-workflow__heading p { margin: 0; color: var(--erp-text-secondary); font-size: .75rem; line-height: 1.35; }
+.lifecycle-workflow__actions, .lifecycle-workflow__mini-actions { display: flex; flex-wrap: wrap; gap: 5px; }
+.lifecycle-workflow__actions button, .lifecycle-workflow__mini-actions button, .lifecycle-workflow__report-button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 30px; padding: 5px 9px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface); color: var(--erp-info); font-size: .69rem; font-weight: 650; white-space: nowrap; }
+.lifecycle-workflow__actions button:hover, .lifecycle-workflow__mini-actions button:hover { border-color: var(--erp-info); }
+.lifecycle-workflow__actions button.is-primary, .lifecycle-workflow__mini-actions button.is-primary { border-color: var(--erp-info); background: var(--erp-info); color: #fff; }
+.lifecycle-workflow__notice { display: flex; align-items: center; gap: 7px; padding: 7px 9px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-info-soft); color: var(--erp-info); font-size: .71rem; }
+.lifecycle-workflow__notice button { margin-left: auto; border: 0; background: none; color: inherit; }
+.lifecycle-workflow__steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; min-width: 0; }
+.lifecycle-workflow__step { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 48px; padding: 6px 10px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface-secondary); }
+.lifecycle-workflow__step.is-current { border-color: color-mix(in srgb, var(--erp-info) 38%, var(--erp-border)); background: var(--erp-info-soft); }
+.lifecycle-workflow__step b { display: grid; flex: 0 0 28px; height: 28px; place-items: center; border-radius: 50%; background: #667789; color: #fff; font-size: .7rem; }
+.lifecycle-workflow__step.is-current b { background: var(--erp-info); }
+.lifecycle-workflow__step span { display: grid; gap: 1px; min-width: 0; }
+.lifecycle-workflow__step strong { overflow: hidden; font-size: .72rem; text-overflow: ellipsis; white-space: nowrap; }
+.lifecycle-workflow__step small { overflow: hidden; color: var(--erp-text-secondary); font-size: .64rem; text-overflow: ellipsis; white-space: nowrap; }
+.lifecycle-workflow__stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.lifecycle-workflow__stat { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 62px; padding: 8px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface); }
+.lifecycle-workflow__stat-icon { display: grid; flex: 0 0 27px; height: 27px; place-items: center; border-radius: 5px; font-size: .93rem; }
+.lifecycle-workflow__tone--blue { background: #e8f2ff; color: #1264bd; }
+.lifecycle-workflow__tone--green { background: #ddf7ec; color: #068556; }
+.lifecycle-workflow__tone--red { background: #ffe9ed; color: #d73959; }
+.lifecycle-workflow__tone--amber { background: #fff1db; color: #ba7210; }
+.lifecycle-workflow__tone--purple { background: #efe9ff; color: #6844b5; }
+.lifecycle-workflow__tone--sky { background: #e5f7ff; color: #1a8db4; }
+.lifecycle-workflow__stat > div { display: grid; gap: 1px; min-width: 0; }
+.lifecycle-workflow__stat strong { font-size: 1rem; line-height: 1.1; white-space: nowrap; }
+.lifecycle-workflow__stat span:not(.lifecycle-workflow__stat-icon), .lifecycle-workflow__stat small { overflow: hidden; font-size: .65rem; text-overflow: ellipsis; white-space: nowrap; }
+.lifecycle-workflow__stat small { color: var(--erp-text-secondary); }
+.lifecycle-workflow__intake-grid { display: grid; grid-template-columns: minmax(180px, 205px) minmax(0, 1fr) minmax(260px, 290px); align-items: start; gap: 8px; min-width: 0; }
+.lifecycle-workflow__intake-side { display: grid; gap: 8px; min-width: 0; }
+.lifecycle-workflow__panel { min-width: 0; padding: 10px; border: 1px solid var(--erp-border); border-radius: 6px; background: var(--erp-surface); }
+.lifecycle-workflow__panel h4 { margin: 0 0 8px; font-size: .77rem; }
+.lifecycle-workflow__panel h5 { margin: 12px 0 7px; font-size: .7rem; }
+.lifecycle-workflow__panel p { margin: 0 0 9px; color: var(--erp-text-secondary); font-size: .71rem; line-height: 1.4; }
+.lifecycle-workflow__panel-head { display: flex; align-items: center; justify-content: space-between; gap: 7px; margin-bottom: 8px; }
+.lifecycle-workflow__panel-head h4 { margin: 0; }
+.lifecycle-workflow__panel-head > button { padding: 2px 4px; border: 0; background: none; color: var(--erp-info); font-size: .68rem; }
+.lifecycle-workflow__upload { display: grid; gap: 5px; justify-items: center; width: 100%; padding: 13px 7px; border: 1px dashed var(--erp-info); border-radius: 6px; background: var(--erp-info-soft); color: var(--erp-info); text-align: center; }
+.lifecycle-workflow__upload > i { font-size: 1.35rem; }
+.lifecycle-workflow__upload strong { font-size: .68rem; }
+.lifecycle-workflow__upload small { color: var(--erp-text-secondary); font-size: .6rem; }
+.lifecycle-workflow__intake-side .lifecycle-workflow__mini-actions { margin-top: 7px; }
+.lifecycle-workflow__folder { display: flex; align-items: center; gap: 5px; width: 100%; min-width: 0; padding: 4px 5px; border: 0; border-radius: 4px; background: none; color: var(--erp-text-primary); text-align: left; }
+.lifecycle-workflow__folder:hover, .lifecycle-workflow__folder.is-active { background: var(--erp-info-soft); color: var(--erp-info); }
+.lifecycle-workflow__folder i { color: var(--erp-info); font-size: .69rem; }
+.lifecycle-workflow__folder span { overflow: hidden; flex: 1; font-size: .66rem; text-overflow: ellipsis; white-space: nowrap; }
+.lifecycle-workflow__folder small { padding: 2px 4px; border-radius: 5px; background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .6rem; }
+.lifecycle-workflow__segmented { display: flex; gap: 2px; }
+.lifecycle-workflow__segmented button { padding: 5px 7px; border: 1px solid var(--erp-border); border-radius: 4px; background: var(--erp-surface); color: var(--erp-text-secondary); font-size: .64rem; white-space: nowrap; }
+.lifecycle-workflow__segmented button.is-active { border-color: var(--erp-info); background: var(--erp-info); color: #fff; }
+.lifecycle-workflow__filters { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.lifecycle-workflow__filters input, .lifecycle-workflow__filters select { min-width: 0; min-height: 28px; padding: 4px 7px; border: 1px solid var(--erp-border); border-radius: 4px; background: var(--erp-surface); color: var(--erp-text-primary); font-size: .65rem; }
+.lifecycle-workflow__filters input { flex: 2 1 150px; }
+.lifecycle-workflow__filters select { flex: 1 1 95px; max-width: 165px; }
+.lifecycle-workflow__scroll { max-width: 100%; overflow-x: auto; }
+.lifecycle-workflow__scroll table { width: 100%; min-width: 680px; border-collapse: collapse; }
+.lifecycle-workflow__scroll th { padding: 7px 6px; background: var(--erp-surface-secondary); color: var(--erp-text-secondary); font-size: .59rem; font-weight: 750; text-align: left; white-space: nowrap; }
+.lifecycle-workflow__scroll td { padding: 7px 6px; border-top: 1px solid var(--erp-border); font-size: .62rem; line-height: 1.25; vertical-align: middle; }
+.lifecycle-workflow__scroll tr.is-selected td { background: var(--erp-info-soft); }
+.lifecycle-workflow__scroll td button { padding: 0; border: 0; background: none; color: var(--erp-info); font-size: inherit; font-weight: 700; text-align: left; white-space: nowrap; }
+.lifecycle-workflow__status { display: inline-block; padding: 3px 5px; border-radius: 4px; font-size: .59rem; white-space: nowrap; }
+.lifecycle-workflow__status--ok { background: #dff7ec; color: #047b4c; }
+.lifecycle-workflow__status--pending { background: #fff0cb; color: #a36400; }
+.lifecycle-workflow__status--risk { background: #ffe5e8; color: #c52b45; }
+.lifecycle-workflow__pagination { display: flex; justify-content: space-between; gap: 8px; margin-top: 7px; color: var(--erp-text-secondary); font-size: .61rem; }
+.lifecycle-workflow__doc-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 6px; }
+.lifecycle-workflow__doc-cards button { display: grid; justify-items: start; gap: 4px; padding: 9px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface); color: var(--erp-text-primary); text-align: left; }
+.lifecycle-workflow__doc-cards button.is-selected { border-color: var(--erp-info); background: var(--erp-info-soft); }
+.lifecycle-workflow__doc-cards strong { font-size: .69rem; }
+.lifecycle-workflow__doc-cards small { color: var(--erp-text-secondary); font-size: .62rem; }
+.lifecycle-workflow__preview { overflow: hidden; border: 1px solid var(--erp-border); border-radius: 5px; }
+.lifecycle-workflow__preview-toolbar, .lifecycle-workflow__preview-caption { display: flex; justify-content: space-between; padding: 5px 8px; background: #233e58; color: #f6fbff; font-size: .59rem; }
+.lifecycle-workflow__paper { display: grid; align-content: start; justify-items: center; gap: 14px; min-height: 190px; margin: 8px 13px; padding: 18px 12px; border: 1px solid #e5e5e5; background: #fff; color: #1c2c39; text-align: center; box-shadow: 0 3px 10px #14263b14; }
+.lifecycle-workflow__paper span { color: #ac4961; font-size: .61rem; font-weight: 800; }
+.lifecycle-workflow__paper b { font-size: .81rem; }
+.lifecycle-workflow__paper small, .lifecycle-workflow__paper p { font-size: .58rem; line-height: 1.5; }
+.lifecycle-workflow__preview-caption { background: #2b4050; }
+.lifecycle-workflow__detail-tabs { display: flex; gap: 2px; margin: 9px 0; overflow-x: auto; border-bottom: 1px solid var(--erp-border); }
+.lifecycle-workflow__detail-tabs button { flex: 0 0 auto; padding: 6px 5px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--erp-text-secondary); font-size: .62rem; }
+.lifecycle-workflow__detail-tabs button.is-active { border-bottom-color: var(--erp-info); color: var(--erp-info); font-weight: 750; }
+.lifecycle-workflow__facts { display: grid; gap: 4px; margin: 0; }
+.lifecycle-workflow__facts > div { display: grid; grid-template-columns: minmax(70px, 40%) minmax(0, 1fr); gap: 7px; font-size: .64rem; }
+.lifecycle-workflow__facts dt { color: var(--erp-text-secondary); }
+.lifecycle-workflow__facts dd { margin: 0; overflow-wrap: anywhere; font-weight: 650; }
+.lifecycle-workflow__chips, .lifecycle-workflow__evidence { display: flex; flex-wrap: wrap; gap: 5px; }
+.lifecycle-workflow__chips span, .lifecycle-workflow__evidence span, .lifecycle-workflow__evidence button { padding: 5px 7px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface-secondary); color: var(--erp-text-primary); font-size: .65rem; }
+.lifecycle-workflow__evidence button { color: var(--erp-info); }
+.lifecycle-workflow__document-detail > .lifecycle-workflow__mini-actions, .lifecycle-workflow__issue-detail > .lifecycle-workflow__mini-actions { margin-top: 10px; }
+.lifecycle-workflow__detail-copy { padding: 5px 0; font-size: .66rem; }
+.lifecycle-workflow__detail-copy p { margin: 5px 0; }
+.lifecycle-workflow__bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.lifecycle-workflow__bottom .lifecycle-workflow__panel > strong, .lifecycle-workflow__bottom .lifecycle-workflow__panel > small { display: block; margin-top: 5px; font-size: .68rem; }
+.lifecycle-workflow__bottom .lifecycle-workflow__panel > small { color: var(--erp-text-secondary); }
+.lifecycle-workflow__bar { height: 7px; overflow: hidden; border-radius: 999px; background: var(--erp-surface-secondary); }
+.lifecycle-workflow__bar span { display: block; height: 100%; border-radius: inherit; background: var(--erp-success); }
+.lifecycle-workflow__donut-row { display: flex; align-items: center; gap: 10px; }
+.lifecycle-workflow__donut { display: grid; flex: 0 0 72px; height: 72px; align-content: center; justify-items: center; border-radius: 50%; color: var(--erp-text-primary); font-size: .7rem; }
+.lifecycle-workflow__donut--documents { background: radial-gradient(circle at center, var(--erp-surface) 48%, transparent 50%), conic-gradient(#00a778 0 91%, #f4be52 91% 95%, #e75569 95% 98%, #ddd 98%); }
+.lifecycle-workflow__donut--issues { background: radial-gradient(circle at center, var(--erp-surface) 48%, transparent 50%), conic-gradient(#00a778 0 47%, #f4be52 47% 87%, #e75569 87%); }
+.lifecycle-workflow__donut--confidence { background: radial-gradient(circle at center, var(--erp-surface) 48%, transparent 50%), conic-gradient(#00a778 0 38%, #f4be52 38% 67%, #ed8241 67% 85%, #e75569 85%); }
+.lifecycle-workflow__donut strong { font-size: .85rem; }
+.lifecycle-workflow__donut small { font-size: .57rem; }
+.lifecycle-workflow__donut-row ul { display: grid; gap: 3px; margin: 0; padding-left: 15px; color: var(--erp-text-secondary); font-size: .61rem; }
+.lifecycle-workflow__audit-progress { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 8px; }
+.lifecycle-workflow__progress-card { display: grid; gap: 4px; padding: 8px; border: 1px solid var(--erp-border); border-radius: 5px; background: var(--erp-surface); }
+.lifecycle-workflow__progress-card strong { font-size: .67rem; }
+.lifecycle-workflow__progress-card b { font-size: .91rem; }
+.lifecycle-workflow__progress-card small { color: var(--erp-text-secondary); font-size: .61rem; }
+.lifecycle-workflow__tabs { display: flex; gap: 2px; min-width: 0; overflow-x: auto; border-bottom: 1px solid var(--erp-border); }
+.lifecycle-workflow__tabs button { display: flex; flex: 0 0 auto; align-items: center; gap: 4px; padding: 7px 8px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--erp-text-secondary); font-size: .68rem; white-space: nowrap; }
+.lifecycle-workflow__tabs button.is-active { border-bottom-color: var(--erp-info); color: var(--erp-info); font-weight: 750; }
+.lifecycle-workflow__stats--audit { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.lifecycle-workflow__insights { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; }
+.lifecycle-workflow__mini-bar { display: grid; grid-template-columns: minmax(65px, 1fr) minmax(0, 1.5fr) 20px; align-items: center; gap: 5px; margin: 5px 0; font-size: .63rem; }
+.lifecycle-workflow__mini-bar i { display: block; max-width: 100%; height: 6px; border-radius: 999px; background: var(--erp-info); }
+.lifecycle-workflow__mini-bar b { text-align: right; }
+.lifecycle-workflow__audit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 315px); align-items: start; gap: 8px; min-width: 0; }
+.lifecycle-workflow__audit-left { display: grid; gap: 8px; min-width: 0; }
+.lifecycle-workflow__issue-list .lifecycle-workflow__scroll table { min-width: 760px; }
+.lifecycle-workflow__risk { font-size: .62rem; font-weight: 700; }
+.lifecycle-workflow__risk--high { color: #d72f4d; }
+.lifecycle-workflow__risk--medium { color: #d08010; }
+.lifecycle-workflow__risk--low { color: #128560; }
+.lifecycle-workflow__issue-id { display: block; margin: 6px 0; color: var(--erp-info); font-size: .68rem; }
+.lifecycle-workflow__issue-detail h5 { margin: 0; font-size: .75rem; line-height: 1.3; }
+.lifecycle-workflow__issue-detail .lifecycle-workflow__scroll table { min-width: 0; }
+.lifecycle-workflow__issue-detail .lifecycle-workflow__scroll { margin-top: 10px; }
+.lifecycle-workflow__photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.lifecycle-workflow__photo-grid > span, .lifecycle-workflow__photo-grid > button { display: grid; align-content: center; justify-items: center; gap: 7px; min-height: 85px; padding: 8px; border: 1px solid var(--erp-border); border-radius: 5px; background: linear-gradient(145deg, #7294a7, #d1dcd4 55%, #6d867c); color: #fff; text-align: center; }
+.lifecycle-workflow__photo-grid > span:nth-child(2) { background: linear-gradient(145deg, #7b847f, #b6bdb3 52%, #697979); }
+.lifecycle-workflow__photo-grid > button { border-style: dashed; background: var(--erp-surface-secondary); color: var(--erp-info); }
+.lifecycle-workflow__photo-grid i { font-size: 1.4rem; }
+.lifecycle-workflow__photo-grid small { font-size: .61rem; line-height: 1.2; }
+.lifecycle-workflow__checklist { display: grid; gap: 5px; }
+.lifecycle-workflow__checklist label { display: flex; align-items: center; gap: 8px; padding: 7px; border: 1px solid var(--erp-border); border-radius: 5px; font-size: .7rem; }
+.lifecycle-workflow__checklist small { margin-left: auto; color: var(--erp-text-secondary); }
+
+@container (max-width: 1280px) {
+  .lifecycle-workflow__stats, .lifecycle-workflow__stats--audit { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lifecycle-workflow__insights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lifecycle-workflow__intake-grid { grid-template-columns: 185px minmax(0, 1fr); }
+  .lifecycle-workflow__document-detail { grid-column: 2; }
+}
+@container (max-width: 900px) {
+  .lifecycle-workflow__heading { align-items: flex-start; flex-direction: column; }
+  .lifecycle-workflow__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lifecycle-workflow__audit-progress { grid-template-columns: 1fr; }
+  .lifecycle-workflow__audit-grid { grid-template-columns: 1fr; }
+}
+@container (max-width: 670px) {
+  .lifecycle-workflow__stats, .lifecycle-workflow__stats--audit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lifecycle-workflow__intake-grid { grid-template-columns: 1fr; }
+  .lifecycle-workflow__intake-side .lifecycle-workflow__panel:nth-child(2) { max-height: 250px; overflow-y: auto; }
+  .lifecycle-workflow__document-detail { grid-column: 1; }
+  .lifecycle-workflow__insights, .lifecycle-workflow__bottom { grid-template-columns: 1fr; }
+}

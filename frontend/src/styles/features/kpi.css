@@ -1,0 +1,134 @@
+/*
+ * Nhom man KPI theo PL03 (Tac vu va Quy KPI).
+ *
+ * Van de duy nhat can CSS rieng: BANG RONG NAM TRONG `SectionCard`.
+ *
+ * `.card` cua Bootstrap KHONG clip noi dung, va `.erp-list-page` la mot flex
+ * column - hai thu do cong lai cho ra dung loi da thay tren anh chup: hang cua
+ * bang tran ra ngoai goc bo cua the, va bang day ca trang rong hon khung nhin
+ * thay vi tu cuon ngang trong khung cua no.
+ *
+ * `.erp-table` (bang cua DataTable) da giai bai nay bang `overflow: hidden`;
+ * o day lam dung nhu vay cho the bao ngoai.
+ */
+
+/*
+ * Khung trang: `erp-scroll-page kpi-page`, KHONG PHAI `erp-list-page`.
+ *
+ * Nam man KPI deu la trang NHIEU KHOI XEP DOC (tieu de, bo loc, dai the so,
+ * canh bao, bang) - dung khung so 2 cua `layout/list-page.css`. Ban dau dung
+ * nham khung so 1 va mat dong ma khong ai thay: cot flex cao dung 100% bop the
+ * bang vao phan con lai, `overflow: hidden` cua the cat mat phan thua, va khong
+ * co thanh cuon nao de keo toi. Do tren man 1440x900: Ban CNTT 11 nguoi chi hien
+ * 3, danh muc 88 tac vu cung chi hien 3; man laptop 1280x650 thi hien 0.
+ *
+ * Van la cot flex (khong phai khoi thuong): `.erp-card` khai `height: 100%`,
+ * dat trong khoi thuong thi MOI the (the trang thai rong, "Mau dung san"...)
+ * deu cao mot man hinh. Trong cot flex chung duoc bop ve dung noi dung nhu cu.
+ */
+.kpi-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * The bo loc (Cong ty / Phong ban / Ky) - KHONG duoc gian.
+ *
+ * `.erp-card { height: 100% }` sinh ra cho o luoi dashboard, nhung `.erp-list-page`
+ * la mot flex COLUMN: dat trong do, the bo loc an het cho thua va de lai mot
+ * mang trong gan 500px giua no va day so - dung thu nhin thay tren anh chup.
+ *
+ * Khoi "Mau dung san" cung luat: tu khi thanh luoi the, noi dung chi con hai
+ * hang nen the bi gian thanh 737px de trong mot nua (do tren man 1920).
+ */
+.kpi-scope-card,
+.kpi-preset-section {
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.kpi-table-card {
+  /*
+   * Clip hang bang vao trong goc bo cua the. Thieu dong nay thi hang cuoi ve de
+   * len goc bo va lo ra mot mieng vien phia duoi - dung thu nhin thay tren anh.
+   */
+  overflow: hidden;
+
+  /*
+   * Flex item trong mot cot flex mac dinh la `min-width: auto`, tuc KHONG co
+   * xuong duoi be rong noi dung. De nguyen thi bang rong day ca trang ra ngang
+   * va sinh thanh cuon o CAP TRANG thay vi cuon trong khung bang.
+   */
+  min-width: 0;
+
+  /*
+   * Cao BANG SO DONG va KHONG DUOC BOP - thieu mot trong hai la mat dong.
+   *
+   * `overflow: hidden` o tren khien chieu cao toi thieu tu dong cua flex item
+   * tut ve 0 (xem doan `flex-shrink: 0` trong `layout/list-page.css`), nen cot
+   * flex bop the xuong bao nhieu cung duoc va phan bi cat KHONG cuon toi duoc.
+   * `height: auto` go `height: 100%` cua `.erp-card`; viec cuon do trang lo.
+   */
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* Bang an sat vien the: `SectionCard compact` van chua 16px padding. */
+.kpi-table-card > .card-body {
+  padding: 0;
+}
+
+.kpi-table-card > .card-header {
+  padding-bottom: 12px;
+}
+
+/* Vung cuon ngang RIENG cua bang. */
+.kpi-table-scroll {
+  overflow-x: auto;
+  min-width: 0;
+}
+
+/*
+ * Be rong toi thieu dat tren tung COT (`minWidth` cua tung `<th>`) chu khong
+ * dat mot con so cung tren ca bang: mot bang `min-width: 980` bi ep rong 980px
+ * ke ca tren man hep, con dat theo cot thi bang tu co lai den gioi han that
+ * cua noi dung roi moi cuon.
+ */
+.kpi-table {
+  width: 100%;
+}
+
+.kpi-table > :not(caption) > * > * {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* The ma tac vu / cong viec - khong duoc xuong dong giua chung mot ma. */
+.kpi-table .badge {
+  white-space: nowrap;
+}
+
+/*
+ * Mau dung san (man Co che tinh KPI) - luoi the thay cho danh sach doc.
+ *
+ * `auto-fill` + `minmax` de so cot theo be rong THUC cua khoi chu khong theo
+ * breakpoint cua man hinh: dong/mo sidebar la so cot tu doi, het cho thi tu
+ * xuong hang. Cac the cung hang cao bang nhau (grid mac dinh `stretch`), nen
+ * nut "Dung mau" day xuong day (`mt-auto`) thang hang voi nhau.
+ *
+ * 240px + mo ta cat 3 dong (`erp-clamp-3`, re chuot xem du) la hai con so do
+ * duoc, khong phai uoc luong: de 260px va mo ta dai du thi tren man 1366 the
+ * hep cao ~190px, 3 cot x 4 hang ra 849px - DAI HON ca danh sach doc cu.
+ */
+.kpi-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.kpi-preset-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+}

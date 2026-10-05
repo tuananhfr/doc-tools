@@ -1,0 +1,134 @@
+/* =========================================================================
+   TagSelect — chọn nhiều giá trị từ danh sách có sẵn, hiện thành chip
+   =========================================================================
+   Ngôn ngữ hình giữ giống `.erp-lookup-multi` (ô tìm trên Solr) để hai loại ô
+   chọn-nhiều trong app không trông như hai thứ khác nhau. Chỉ khác phần thân:
+   ở đây gợi ý đến từ danh mục đã nằm trong bộ nhớ nên menu mở ngay khi focus.
+   ========================================================================= */
+
+.erp-tag-select {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.erp-tag-select__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.erp-tag-select__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 3px 6px 3px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+}
+
+.erp-tag-select__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-tertiary);
+  background: transparent;
+  cursor: pointer;
+}
+
+.erp-tag-select__remove:hover {
+  color: var(--erp-danger);
+  background: var(--erp-surface-hover);
+}
+
+/* Menu gợi ý — portal thẳng vào <body>, `fixed`, neo bằng toạ độ thật của ô nhập.
+   `top`/`left`/`width`/`max-height` do JS đặt inline.
+
+   KHÔNG được `absolute`: ô nhập nằm trong bảng có `overflow-x: auto`, mà theo
+   CSS một trục overflow khác `visible` thì trục kia tính ra `auto` — menu bị cắt
+   theo chiều dọc và người dùng phải cuộn trong bảng mới thấy. Trong modal nó còn
+   bị các `<select>` của hàng dưới vẽ đè lên.
+
+   z-index 1080 > `--bs-modal-zindex` (1055) để nổi trên modal của Bootstrap. */
+.erp-tag-select__menu {
+  position: fixed;
+  z-index: 1080;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-tag-select__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  text-align: left;
+  color: var(--erp-text-primary);
+  background: transparent;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.erp-tag-select__optiontext {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Dòng phụ (email) — lớp phân biệt CHÍNH khi nhiều người trùng tên, nên vẫn
+   phải đọc được: chỉ nhỏ và nhạt hơn, không ẩn sau hover. */
+.erp-tag-select__hint {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ảnh đại diện: 23/95 nhân sự không có ảnh, nên đây là lớp nhận biết PHỤ —
+   nhãn chữ luôn đứng cạnh và tự đọc được một mình. */
+.erp-tag-select__avatar {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--erp-surface-hover);
+}
+
+.erp-tag-select__option:hover,
+.erp-tag-select__option:focus-visible {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tag-select__empty {
+  padding: 6px 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-tag-select.is-invalid .form-control {
+  border-color: var(--erp-danger);
+}

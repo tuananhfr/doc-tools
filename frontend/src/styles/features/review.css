@@ -1,0 +1,1460 @@
+/*
+ * Kiem & Tham tra ho so (RCE) - `src/features/projects/reviews`.
+ *
+ * Tien to rieng `erp-rce-` cho MOI lop o day: `styles/components` da co
+ * `.erp-count` (position: absolute), `.erp-table`… - dat trung ten la vo bo cuc
+ * ma tsc/eslint khong keu.
+ *
+ * Chi dung token `--erp-*`, khong hex. Trang thai luon la icon + chu + mau.
+ */
+
+/* ============================================================================
+   DUNG CHUNG
+   ========================================================================= */
+
+.erp-rce-code {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.erp-rce-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.erp-rce-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a.erp-rce-chip:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+a.erp-rce-chip:focus-visible,
+.erp-rce-link:focus-visible,
+.erp-rce-gate__body:focus-visible,
+.erp-rce-action:focus-visible,
+.erp-rce-type:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Dong ghi chu co icon: thong tin, canh bao, da dat. */
+.erp-rce-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-left-width: 4px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-rce-note > i {
+  margin-top: 2px;
+  color: var(--erp-info);
+}
+
+.erp-rce-note.is-warning {
+  border-left-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-rce-note.is-warning > i {
+  color: var(--erp-warning);
+}
+
+.erp-rce-note.is-success {
+  border-left-color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-rce-note.is-success > i {
+  color: var(--erp-success);
+}
+
+.erp-rce-excerpt {
+  margin: 0;
+  padding: 8px 12px;
+  border-left: 3px solid var(--erp-border-strong);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.erp-rce-excerpt__label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-rce-empty {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+/* Nut trong nhu link trong bang: bam duoc bang ban phim, khong doi bo cuc o. */
+.erp-rce-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-text-primary);
+  font-weight: 500;
+  text-align: left;
+}
+
+.erp-rce-link:hover {
+  color: var(--erp-action-secondary);
+}
+
+/* So dem "con viec": to mau khi > 0, mo khi = 0. */
+.erp-rce-num {
+  font-weight: 600;
+}
+
+.erp-rce-num.is-zero {
+  color: var(--erp-text-tertiary);
+  font-weight: 400;
+}
+
+.erp-rce-num.is-danger {
+  color: var(--erp-danger);
+}
+
+.erp-rce-num.is-warning {
+  color: var(--erp-warning);
+}
+
+.erp-rce-num.is-intelligence {
+  color: var(--erp-intelligence);
+}
+
+/* --- Bang ----------------------------------------------------------------- */
+
+.erp-rce-table-wrap {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+/* Trang mot bang (`erp-list-page`): bang chiem phan con lai va tu cuon. */
+.erp-rce-table-wrap--fill {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.erp-rce-table {
+  font-size: 0.8125rem;
+}
+
+.erp-rce-table thead th {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.erp-rce-table--sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.erp-rce-table tbody tr {
+  transition: background-color 150ms ease;
+}
+
+/* Dong bam duoc: bang phat hien va cac bang cua dashboard. */
+.erp-rce-findings .erp-rce-table tbody tr,
+.erp-rce-dash .erp-rce-table tbody tr {
+  cursor: pointer;
+}
+
+.erp-rce-table__main {
+  min-width: 220px;
+}
+
+.erp-rce-table__main a {
+  text-decoration: none;
+}
+
+.erp-rce-table__sub {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.erp-rce-rowactions {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.erp-rce-filterbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.erp-rce-filterbar .form-select {
+  width: auto;
+  min-width: 160px;
+}
+
+.erp-rce-filterbar__total {
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-filterbar__actions {
+  margin-inline-start: auto;
+}
+
+.erp-rce-pager {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+/* --- Dong thoi gian (lich su phat hien, nhat ky ho so) -------------------- */
+
+.erp-rce-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-rce-timeline__item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.erp-rce-timeline__dot {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+  font-size: 0.875rem;
+}
+
+/* Moc cua engine: teal, de phan biet voi quyet dinh cua nguoi. */
+.erp-rce-timeline__item.is-system .erp-rce-timeline__dot {
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+}
+
+.erp-rce-timeline__line,
+.erp-rce-timeline__message,
+.erp-rce-timeline__reason,
+.erp-rce-timeline__authority {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-rce-timeline__line {
+  color: var(--erp-text-secondary);
+}
+
+.erp-rce-timeline__message {
+  color: var(--erp-text-primary);
+}
+
+.erp-rce-timeline__reason {
+  color: var(--erp-text-secondary);
+}
+
+.erp-rce-timeline__authority {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* ============================================================================
+   WORKSPACE CUA MOT HO SO KIEM
+   ========================================================================= */
+
+.erp-rce-ws,
+.erp-rce-dash {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Trang cuon la cot flex: khong cho khoi nao bi bop (xem list-page.css). */
+.erp-rce-ws > *,
+.erp-rce-dash > * {
+  flex-shrink: 0;
+}
+
+.erp-rce-dash > .erp-page-header {
+  margin-bottom: 0;
+}
+
+.erp-rce-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.erp-rce-head__main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-rce-head__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.erp-rce-head__back:hover {
+  color: var(--erp-text-primary);
+}
+
+.erp-rce-head__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.erp-rce-head__title .erp-rce-code {
+  font-size: 0.875rem;
+}
+
+.erp-rce-head__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-rce-head__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Hang so tom tat ------------------------------------------------------ */
+
+.erp-rce-summary {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.6fr) repeat(5, minmax(0, 1fr));
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-rce-summary__progress,
+.erp-rce-summary__cell {
+  padding: 12px 16px;
+}
+
+.erp-rce-summary__cell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0 8px;
+  border-inline-start: 1px solid var(--erp-border);
+  color: var(--erp-text-tertiary);
+}
+
+.erp-rce-summary__cell > i {
+  grid-row: span 2;
+  font-size: 1.125rem;
+}
+
+.erp-rce-summary__value {
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.erp-rce-summary__percent {
+  margin-inline-end: 6px;
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.erp-rce-summary__label {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.erp-rce-summary__progress .progress {
+  height: 6px;
+  margin-top: 8px;
+}
+
+.erp-rce-summary__cell.is-danger > i,
+.erp-rce-summary__cell.is-danger .erp-rce-summary__value {
+  color: var(--erp-danger);
+}
+
+.erp-rce-summary__cell.is-warning > i,
+.erp-rce-summary__cell.is-warning .erp-rce-summary__value {
+  color: var(--erp-warning);
+}
+
+.erp-rce-summary__cell.is-info > i {
+  color: var(--erp-info);
+}
+
+.erp-rce-summary__cell.is-intelligence > i,
+.erp-rce-summary__cell.is-intelligence .erp-rce-summary__value {
+  color: var(--erp-intelligence);
+}
+
+/* --- Dai gate G0 -> G5 ---------------------------------------------------- */
+
+.erp-rce-gates {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-rce-gates__list {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-rce-gate {
+  position: relative;
+  min-width: 0;
+}
+
+/* Vach noi giua hai buoc. */
+.erp-rce-gate + .erp-rce-gate::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  inset-inline-start: -8px;
+  width: 8px;
+  height: 2px;
+  background: var(--erp-border-strong);
+}
+
+.erp-rce-gate__body {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 2px;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-rce-gate__dot {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+  font-size: 0.875rem;
+}
+
+.erp-rce-gate__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.erp-rce-gate__key {
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.erp-rce-gate__label {
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.erp-rce-gate__state {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-rce-gate.is-done .erp-rce-gate__dot {
+  border-color: var(--erp-success);
+  background: var(--erp-success);
+  color: var(--erp-text-on-accent);
+}
+
+.erp-rce-gate.is-current .erp-rce-gate__dot {
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-rce-gate.is-current .erp-rce-gate__state {
+  color: var(--erp-info);
+  font-weight: 600;
+}
+
+.erp-rce-gate.is-blocked .erp-rce-gate__dot {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.erp-rce-gate.is-blocked .erp-rce-gate__state {
+  color: var(--erp-warning);
+  font-weight: 600;
+}
+
+.erp-rce-gate.is-later .erp-rce-gate__dot {
+  border-style: dashed;
+}
+
+.erp-rce-gate.is-todo .erp-rce-gate__label,
+.erp-rce-gate.is-later .erp-rce-gate__label {
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+/* Viec ke tiep: mot cau + nut cua gate dang o. */
+.erp-rce-next {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 10px 12px;
+  border-left: 4px solid var(--erp-info);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-rce-next.is-blocked {
+  border-left-color: var(--erp-warning);
+}
+
+.erp-rce-next__text {
+  min-width: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-next__text strong {
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.erp-rce-next__text p,
+.erp-rce-next__text ul {
+  margin: 2px 0 0;
+}
+
+.erp-rce-next__text ul {
+  padding-inline-start: 18px;
+}
+
+.erp-rce-next__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-rce-runline {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-rce-runline > i {
+  margin-top: 2px;
+}
+
+/* --- Tab ------------------------------------------------------------------ */
+
+.erp-rce-body {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-rce-tabs {
+  flex-wrap: nowrap;
+  padding: 0 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.erp-rce-tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  white-space: nowrap;
+}
+
+.erp-rce-tabs .nav-link:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-rce-tabpanel {
+  padding: 16px;
+}
+
+.erp-rce-notrun {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px 16px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-rce-notrun > i {
+  color: var(--erp-info);
+  font-size: 1.5rem;
+}
+
+.erp-rce-notrun strong {
+  color: var(--erp-text-primary);
+}
+
+.erp-rce-notrun p {
+  max-width: 68ch;
+  margin: 2px 0 0;
+  font-size: 0.8125rem;
+}
+
+/* --- Checklist ------------------------------------------------------------ */
+
+.erp-rce-checkgroup + .erp-rce-checkgroup {
+  margin-top: 20px;
+}
+
+.erp-rce-checkgroup__title {
+  margin: 0 0 8px;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-rce-checkgroup__title .erp-rce-count {
+  background: var(--erp-neutral-soft);
+  color: var(--erp-neutral);
+}
+
+.erp-rce-checks {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  list-style: none;
+}
+
+.erp-rce-check {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 10px 12px;
+}
+
+.erp-rce-check + .erp-rce-check {
+  border-top: 1px solid var(--erp-border);
+}
+
+/* Muc cho nguoi: vach trai de quet mat thay ngay. */
+.erp-rce-check.needs-human {
+  box-shadow: inset 3px 0 0 var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-rce-check__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.erp-rce-check__message,
+.erp-rce-check__note {
+  max-width: 88ch;
+  margin: 2px 0 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-rce-check__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin: 4px 0 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-rce-check-prompt {
+  max-width: 72ch;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* --- Can cu / pham vi ----------------------------------------------------- */
+
+.erp-rce-scope {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0 0 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-rce-scope > div {
+  padding: 8px 12px;
+}
+
+.erp-rce-scope > div + div {
+  border-inline-start: 1px solid var(--erp-border);
+}
+
+.erp-rce-scope dt {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.erp-rce-scope dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-rce-scope dd.is-warning {
+  color: var(--erp-warning);
+}
+
+p.erp-rce-scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+p.erp-rce-scope.is-warning {
+  border-color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+p.erp-rce-scope.is-warning > i {
+  color: var(--erp-warning);
+}
+
+/* --- Ket luan ------------------------------------------------------------- */
+
+.erp-rce-conclusion {
+  display: grid;
+  gap: 16px;
+  max-width: 920px;
+}
+
+.erp-rce-panel__title {
+  margin: 0 0 8px;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-rce-panel + .erp-rce-panel {
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-rce-conclusion__text {
+  max-width: 72ch;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.erp-rce-signature {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-success-soft);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-signature > i {
+  color: var(--erp-success);
+}
+
+/* ============================================================================
+   NGAN CHI TIET PHAT HIEN (V06) + XEM BANG CHUNG (V07)
+   ========================================================================= */
+
+.erp-rce-drawer {
+  --bs-offcanvas-bg: var(--erp-surface);
+  width: min(640px, 100vw) !important;
+}
+
+.erp-rce-drawer__head.offcanvas-header {
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 24px 14px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-rce-drawer__head-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.erp-rce-drawer__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-rce-drawer__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.erp-rce-drawer__sub,
+.erp-rce-drawer__meta {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.erp-rce-drawer__body.offcanvas-body {
+  padding: 16px 24px 24px;
+}
+
+.erp-rce-drawer__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-rce-drawer__section + .erp-rce-drawer__section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-rce-drawer__heading {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-rce-drawer__text {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.erp-rce-drawer__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-rce-drawer__foot .btn {
+  min-height: 36px;
+}
+
+.erp-rce-drawer__foot.is-empty {
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-rce-values > div {
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-rce-values dt {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.erp-rce-values dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.erp-rce-origin {
+  margin: 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.erp-rce-evidence,
+.erp-rce-basis {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-rce-evidence {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-rce-evidence__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.erp-rce-evidence__item + .erp-rce-evidence__item {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-rce-evidence__item > i {
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-rce-evidence__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-rce-evidence__label {
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.erp-rce-evidence__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-rce-evidence__excerpt {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-evidence__flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.erp-rce-rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+}
+
+.erp-rce-basis {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-rce-basis li {
+  padding-inline-start: 12px;
+  border-left: 2px solid var(--erp-border-strong);
+}
+
+.erp-rce-evidence-modal__head {
+  min-width: 0;
+}
+
+.erp-rce-evidence-modal__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin: 2px 0 0;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-rce-evidence-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ============================================================================
+   FORM (V02 + ghi nhan phat hien + chot muc kiem)
+   ========================================================================= */
+
+.erp-rce-create__grid,
+.erp-rce-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.erp-rce-create__full,
+.erp-rce-fields__full {
+  grid-column: 1 / -1;
+}
+
+.erp-rce-fields {
+  margin-top: 16px;
+}
+
+.erp-rce-fields__heading {
+  margin: 8px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-rce-modes,
+.erp-rce-outcomes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.erp-rce-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.erp-rce-mode:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-rce-mode.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-rce-mode .form-check {
+  margin: 0;
+  font-weight: 600;
+}
+
+.erp-rce-mode__hint {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.erp-rce-assign {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px 16px;
+  margin-bottom: 12px;
+}
+
+/* ============================================================================
+   DASHBOARD (V01)
+   ========================================================================= */
+
+.erp-rce-dash__card {
+  height: 100%;
+}
+
+.erp-rce-actions,
+.erp-rce-types {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-rce-actions > li + li,
+.erp-rce-types > li + li {
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-rce-action {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--erp-touch-target);
+  padding: 6px 8px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.erp-rce-action:hover,
+.erp-rce-type:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-rce-action__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-rce-action__title {
+  font-weight: 500;
+}
+
+.erp-rce-action__case {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.erp-rce-type {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-primary);
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.erp-rce-type__icon {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.erp-rce-type__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.erp-rce-type__main strong {
+  font-size: 0.875rem;
+}
+
+.erp-rce-type__question {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.erp-rce-type__counts {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* ============================================================================
+   BO QUY TAC
+   ========================================================================= */
+
+.erp-rce-rules {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-rce-rules > .erp-rce-filterbar {
+  flex: none;
+}
+
+.erp-rce-ruledetail > td {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-rce-ruledetail dl {
+  display: grid;
+  gap: 8px;
+  max-width: 96ch;
+  margin: 0;
+  padding: 4px 0 4px 22px;
+}
+
+.erp-rce-ruledetail dl > div {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.erp-rce-ruledetail dt {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.erp-rce-ruledetail dd {
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   MAN HEP - tai cau truc theo viec, khong thu nho ban desktop
+   ========================================================================= */
+
+@media (max-width: 1024px) {
+  .erp-rce-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .erp-rce-summary__progress {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--erp-border);
+  }
+
+  .erp-rce-summary__cell:nth-child(2),
+  .erp-rce-summary__cell:nth-child(5) {
+    border-inline-start: 0;
+  }
+
+  .erp-rce-summary__cell:nth-child(n + 5) {
+    border-top: 1px solid var(--erp-border);
+  }
+
+  /* Gate thanh danh sach doc: moi buoc mot dong, doc duoc ten + trang thai. */
+  .erp-rce-gates__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-rce-gate + .erp-rce-gate::before {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-rce-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-rce-summary__cell:nth-child(n) {
+    border-inline-start: 0;
+    border-top: 1px solid var(--erp-border);
+  }
+
+  .erp-rce-summary__cell:nth-child(odd) {
+    border-inline-start: 1px solid var(--erp-border);
+  }
+
+  /* O thu nam dung mot minh o hang cuoi: cho chiem ca hang. */
+  .erp-rce-summary__cell:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .erp-rce-gates__list,
+  .erp-rce-create__grid,
+  .erp-rce-fields,
+  .erp-rce-assign,
+  .erp-rce-values {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-rce-scope {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-rce-scope > div:nth-child(odd) {
+    border-inline-start: 0;
+  }
+
+  .erp-rce-scope > div:nth-child(n + 3) {
+    border-top: 1px solid var(--erp-border);
+  }
+
+  .erp-rce-check {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .erp-rce-action {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .erp-rce-action__kind {
+    grid-column: 1 / -1;
+  }
+
+  .erp-rce-ruledetail dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .erp-rce-filterbar .form-select {
+    flex: 1 1 140px;
+  }
+
+  .erp-rce-drawer__head.offcanvas-header,
+  .erp-rce-drawer__body.offcanvas-body,
+  .erp-rce-drawer__foot {
+    padding-inline: 16px;
+  }
+
+  .erp-rce-drawer__foot .btn {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-rce-mode,
+  .erp-rce-action,
+  .erp-rce-type,
+  .erp-rce-table tbody tr {
+    transition: none;
+  }
+}

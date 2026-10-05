@@ -1,0 +1,137 @@
+/*
+ * Khung CHIEU CAO cua trang nghiep vu.
+ *
+ * `.erp-shell__content` cuon doc (`overflow-y: auto`) nen khong trang nao con
+ * bi cat mat im lang nua. Nhung cuon ca vung noi dung chi la LUOI AN TOAN:
+ * bang / kanban ma tha cho cuon ngoai thi thanh cong cu va hang tieu de troi
+ * mat khoi man hinh. Vi vay trang nghiep vu van chon MOT trong hai khung duoi
+ * day - chon xong thi noi dung vua khit khung va thanh cuon ngoai khong xuat
+ * hien.
+ */
+
+/*
+ * 1. Trang danh sach - thanh cong cu co dinh, bang / kanban an het cho con lai
+ *    va TU CUON BEN TRONG. Ca trang khong bao gio cuon.
+ *
+ * `height: 100%` chu KHONG phai `min-height`: `.erp-table` ben trong khai
+ * `height: 100%`, ma phan tram chi phan giai duoc khi CHA co chieu cao that.
+ * Chi co `min-height` thi bang roi ve "cao bang so dong" - 25 dong la tran ra
+ * khoi khung, day ca cot flex va bop header xuong.
+ */
+.erp-list-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  color: var(--erp-text-primary);
+}
+
+/*
+ * Thu duy nhat duoc gian. Cac khoi khac (dai KPI ngan, ghi chu, chu thich) giu
+ * chieu cao tu nhien vi `flex-shrink` mac dinh khong lam chung to ra.
+ */
+.erp-list-page > .erp-table,
+.erp-list-page > .erp-kanban {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* `.erp-kanban` von la Card thuong, khong phai flex column - phai noi tiep
+   chuoi flex thi vung cuon ben trong moi biet minh cao bao nhieu. */
+.erp-list-page > .erp-kanban {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-list-page > .erp-kanban > .erp-kanban__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Cot khong con bi chan cung o 72vh: no cao bang dung phan con lai cua man
+   hinh, nen khong sinh ra hai thanh cuon long nhau. */
+.erp-list-page .erp-kanban__list {
+  max-height: none;
+}
+
+/* Bang cua nhom Van phong dien tu boc trong Card rieng (`.office-panel`) chu
+   khong dung `.erp-table`, nen phai noi chuoi flex bang tay. */
+.erp-list-page > .office-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.erp-list-page > .office-panel > .office-table-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/*
+ * 2. Trang nhieu khoi xep doc - dai KPI cao, bieu do, nhieu the bao cao.
+ *
+ * O day khong pin duoc bang vao phan con lai (pin xong thi bang chi cao vai
+ * chuc pixel), nen cho VUNG NOI DUNG cuon. Van khong phai ca trang cuon: header
+ * va sidebar dung yen.
+ *
+ * Trang co root la Fragment (khong co the boc chung) thi cu de nguyen: luoi an
+ * toan o `.erp-shell__content` cuon thay - chi khac la thanh cuon nam sat mep
+ * vung noi dung thay vi trong long trang.
+ */
+.erp-scroll-page {
+  height: 100%;
+  min-height: 0;
+  /*
+   * Khai RO `overflow-x: hidden`. Chi khai `overflow-y: auto` thi trinh duyet
+   * tu doi `overflow-x` tu `visible` thanh `auto`, ma `.row` cua Bootstrap co
+   * margin am (nua gutter, 8px voi `g-3`) tran ra hai mep -> thanh cuon ngang
+   * duoi day trang du du lieu khong he tran. Khong sua bang `mx-0` tren tung
+   * `.row`: lam vay cot dau/cuoi thut vao nua gutter, lech voi cac khoi khong
+   * dung row. Phan bi cat chi la padding cua cot, khong mat noi dung; bang
+   * rong van tu cuon ngang trong khung cua no.
+   */
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Cho thanh cuon mot chut cho de khong de len sat noi dung. */
+  padding-inline-end: 4px;
+  margin-inline-end: -4px;
+}
+
+/*
+ * Trong trang cuon, bang KHONG tu cuon nua.
+ *
+ * `.erp-table` mac dinh `height: 100%` de tu cuon ben trong - dung o trang danh
+ * sach, nhung o day thi sinh ra hai thanh cuon long nhau: nguoi dung lan banh
+ * xe khong doan duoc minh dang cuon bang hay cuon trang. Bo tran chieu cao de
+ * bang cao bang so dong, con viec cuon do MOT minh trang lo.
+ *
+ * ============================================================================
+ * `flex-shrink: 0` - BO TRAN CHIEU CAO THOI LA CHUA DU
+ * ============================================================================
+ * `.erp-scroll-page` cao dung 100% va la mot cot flex, nen moi khoi ben trong
+ * la mot flex item CO THE BI BOP. Voi flex item, chieu cao toi thieu tu dong
+ * (`min-height: auto`) chi bao ve duoc khoi nao co `overflow: visible` - ma
+ * `.erp-table` lai khai `overflow: hidden` de bo goc, nen chieu cao toi thieu
+ * cua no tut ve 0 va no bi bop bao nhieu cung duoc.
+ *
+ * Hau qua: mot tab nhieu khoi (vd "Đánh giá vận hành" cua trang ho so) bi bop
+ * den muc `.erp-table__scroll` chi con MOT DONG, kem hai thanh cuon long nhau -
+ * dung thu ma doan chu thich ben tren dang muon tranh. Chieu cao `auto` khong
+ * cuu duoc, vi bop la viec cua flex chu khong phai cua thuoc tinh `height`.
+ *
+ * Khong bop nua thi bang cao bang so dong, va `overflow-y: auto` cua trang lo
+ * phan cuon - dung y do da viet o tren.
+ */
+.erp-scroll-page .erp-table {
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* `.office-page` / `.asset-page` tu quan khoang cach bang `gap` - bo margin cua
+   thanh cong cu de hai co che khong cong don thanh mot khe qua rong. */
+.office-page > .erp-page-toolbar,
+.asset-page > .erp-page-toolbar {
+  margin-bottom: 0;
+}

@@ -1,0 +1,252 @@
+/* ==========================================================================
+ * Sổ theo dõi đăng ký bảo hộ SHTT (features/documents/ip-registry)
+ *
+ * Tiền tố `ip-` riêng: không đụng lớp dùng chung (bài học `.erp-count`).
+ * ========================================================================== */
+
+.ip-empty {
+  color: var(--erp-text-tertiary);
+  font-style: italic;
+}
+
+.ip-pre {
+  white-space: pre-line;
+}
+
+/* Ảnh mẫu nhãn hiệu / kiểu dáng */
+.ip-mark {
+  display: inline-block;
+  width: 72px;
+  height: 48px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+  object-fit: contain;
+}
+
+.ip-mark--lg {
+  width: 160px;
+  height: 100px;
+}
+
+.ip-mark--none {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface-secondary);
+}
+
+.ip-mark-edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ==========================================================================
+ * Khối "Hồ sơ SHTT" trong ngăn chi tiết CDE
+ * ========================================================================== */
+
+.ip-panel__empty p {
+  margin-bottom: 10px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.ip-card {
+  padding: 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.ip-card + .ip-card {
+  margin-top: 12px;
+}
+
+.ip-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ip-card__name {
+  min-width: 0;
+}
+
+.ip-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ip-card__sub {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.ip-card__due {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.ip-card__due.is-info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.ip-card__due.is-warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+}
+
+.ip-card__due.is-danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/* Nhãn cột dài hơn khối "Thông tin hồ sơ" ("Nhóm SPDV / Phân loại IPC"). */
+.ip-card__props .cde-props__row {
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: start;
+}
+
+.ip-card__props dd {
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.ip-status {
+  padding: 3px 8px;
+  border: 1px solid var(--erp-border);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: normal;
+  text-align: start;
+  line-height: 1.4;
+}
+
+.ip-card__subhead {
+  margin: 14px 0 8px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ip-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+}
+
+.ip-timeline li {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.ip-timeline__date {
+  color: var(--erp-text-tertiary);
+}
+
+.ip-timeline__here {
+  color: var(--erp-action-secondary);
+}
+
+.ip-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+ * Bảng 14 cột như file Excel (popup "Xem dạng bảng")
+ * ========================================================================== */
+
+.ip-sheet {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-sm);
+}
+
+.ip-sheet__table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.ip-sheet__table th,
+.ip-sheet__table td {
+  padding: 8px 10px;
+  border: 1px solid var(--erp-border);
+  vertical-align: top;
+}
+
+.ip-sheet__table th {
+  background: var(--erp-info-soft);
+  color: var(--erp-text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.ip-sheet__col--stt {
+  width: 48px;
+  text-align: center;
+}
+
+.ip-sheet__col--mark {
+  width: 96px;
+}
+
+.ip-sheet__col--status,
+.ip-sheet__col--summary,
+.ip-sheet__col--note {
+  min-width: 200px;
+}
+
+.ip-sheet__col--note {
+  white-space: pre-line;
+}
+
+/* Chip hạn xử lý trong bảng — nền nhạt, chữ đậm màu: đọc được trên mọi tông. */
+.ip-due-chip {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ip-due-chip.is-info {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.ip-due-chip.is-warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+}
+
+.ip-due-chip.is-danger {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}

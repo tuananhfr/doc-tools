@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-10-05T04:55:48.759Z",
+  "purpose": "Temporary snapshot of standalone frontend and backend repositories",
+  "sourceRepositoryCommits": {
+    "frontend": {
+      "commit": "8b24352809b1e6feb72551ce5ed58e8d9a2eb096",
+      "files": 737
+    },
+    "backend": {
+      "commit": "b17efa5dcf4e8da851cbb5de7ce98a658960920c",
+      "files": 22
+    }
+  },
+  "upstreamFeatureFiles": 450
+}

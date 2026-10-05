@@ -1,0 +1,452 @@
+/* =========================================================================
+   Hồ sơ — Thư viện, Danh mục, Phiên bản tài liệu
+   =========================================================================
+   Ba màn này dùng lại bảng, lưới thẻ, chip lọc và ngăn chi tiết của màn CDE
+   (`documents-cde.css` đã nạp toàn cục). Ở đây chỉ còn phần RIÊNG: dải hành
+   động lưu trữ, thẻ danh mục, và dòng thời gian lịch sử thao tác.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Thư viện hồ sơ
+   ------------------------------------------------------------------------- */
+
+/* Dải nhắc khi đang đứng trong kho lưu trữ. Nền trung tính chứ không phải màu
+   cảnh báo: đây là một chế độ xem hợp lệ, không phải một sự cố. */
+.doc-library__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--erp-action-secondary);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Hành động của hồ sơ đang mở. Dính đáy màn hình vì ngăn chi tiết là một
+   offcanvas cao hết màn — nút nằm trong luồng trang sẽ trôi khuất khi cuộn. */
+.doc-library__actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  box-shadow: var(--erp-shadow2);
+}
+
+/* Câu giải thích vì sao KHÔNG có nút lưu trữ. Bắt buộc phải có: một dải hành
+   động chỉ có mỗi nút "Lịch sử" đọc lên như màn hình bị hỏng, chứ không nói
+   được rằng người dùng này không có quyền đó. */
+.doc-library__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+}
+
+/* -------------------------------------------------------------------------
+   Danh mục hồ sơ
+   -------------------------------------------------------------------------
+   Trang dùng khung `.erp-scroll-page` (nhiều khối xếp dọc), KHÔNG phải
+   `.erp-list-page` — xem docblock của `DocumentCategoryPage`.
+
+   Nội dung chính là DANH SÁCH XẾP HẠNG. Ba lớp thông tin trên mỗi dòng, theo
+   đúng thứ tự mắt đọc: tên → thanh tỷ trọng → con số. Thanh chỉ là lớp thứ
+   hai, con số vẫn đứng ngay cạnh (mục 11: không bao giờ chỉ dùng màu/hình).
+   ------------------------------------------------------------------------- */
+
+/* Ô tìm nằm trong hàng tiêu đề (`PageHeader actions`) nên không tốn thêm một
+   hàng nào; trần 320px để nó không nuốt chỗ của tiêu đề. */
+.doc-categories .doc-categories__search {
+  width: clamp(200px, 28vw, 320px);
+}
+
+/* --- Dải số tổng --------------------------------------------------------- */
+
+/* Một hàng mỏng thay cho bốn thẻ KPI: nội dung của màn này là danh sách, số
+   tổng chỉ là ngữ cảnh. Bốn `StatCard` chiếm ~130px trước khi thấy dòng đầu. */
+.doc-sum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  padding: 12px 16px;
+  /* `.erp-page-header` cố ý để `margin-bottom: 0` (mỗi trang tự quyết khoảng
+     cách dưới tiêu đề), nên khối đầu tiên phải tự chừa. */
+  margin: 16px 0 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.doc-sum__item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.doc-sum__value {
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.doc-sum__value.is-success {
+  color: var(--erp-success);
+}
+
+.doc-sum__label {
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.doc-categories__lead {
+  max-width: 76ch;
+  margin: 0 0 12px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+/* --- Danh sách xếp hạng --------------------------------------------------- */
+
+.doc-rank {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.doc-rank > li + li .doc-rank__row,
+.doc-rank__skeleton + .doc-rank__skeleton {
+  border-top: 1px solid var(--erp-border);
+}
+
+.doc-rank__skeleton {
+  padding: 12px 16px;
+}
+
+/* Cả dòng là một nút: vùng bấm rộng hết chiều ngang, cao hơn 44px (mục 06). */
+.doc-rank__row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto 20px;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  transition: background 0.12s ease;
+}
+
+.doc-rank__row:hover {
+  background: var(--erp-surface-hover);
+}
+
+/* Thứ hạng: lớp thông tin yếu nhất, nhưng giữ lại vì nó cho biết "đây là bảng
+   đã xếp hạng" — không có nó người đọc phải tự đoán thứ tự có nghĩa hay không. */
+.doc-rank__no {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.doc-rank__main {
+  min-width: 0;
+}
+
+.doc-rank__name {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Thanh tỷ trọng: mảnh, chỉ để so sánh giữa các dòng. Cố ý KHÔNG dùng
+   `<progress>` — đây không phải tiến độ của một việc. */
+.doc-rank__bar {
+  display: block;
+  height: 5px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  overflow: hidden;
+}
+
+.doc-rank__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--erp-action-secondary);
+}
+
+/* Dòng đầu bảng tô Teal (Intelligence) để tách khỏi phần còn lại — đúng một
+   dòng, không tô nhiều hơn, nếu không lại thành một bảng bảy sắc. */
+.doc-rank > li:first-child .doc-rank__fill {
+  background: var(--erp-intelligence);
+}
+
+.doc-rank__stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  white-space: nowrap;
+}
+
+.doc-rank__count {
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+}
+
+.doc-rank__count strong {
+  margin-right: 2px;
+  color: var(--erp-text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.doc-rank__sub {
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.doc-rank__go {
+  color: var(--erp-border-strong);
+  transition: transform 0.12s ease, color 0.12s ease;
+}
+
+.doc-rank__row:hover .doc-rank__go {
+  color: var(--erp-action-secondary);
+  transform: translateX(2px);
+}
+
+/* Hẹp: bỏ cột thứ hạng và mũi tên, giữ tên + số. Không bóp 4 cột trên màn
+   360px — cột nào cũng vỡ. */
+@media (max-width: 640px) {
+  .doc-rank__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 12px;
+  }
+
+  .doc-rank__no,
+  .doc-rank__go {
+    display: none;
+  }
+}
+
+/* --- Loại chưa có hồ sơ --------------------------------------------------- */
+
+/* Nằm cuối trang và nhẹ hẳn về thị giác: vẫn đọc được, nhưng không tranh chỗ
+   với phần có dữ liệu. Trước đây chúng là 9 thẻ nét đứt cùng cỡ với loại đang
+   có 46 hồ sơ — chính chỗ làm màn hình rối. */
+.doc-empty {
+  padding: 12px 16px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: transparent;
+}
+
+.doc-empty__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.doc-empty__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.doc-empty__chip {
+  padding: 3px 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* -------------------------------------------------------------------------
+   Phiên bản tài liệu + lịch sử thao tác
+   ------------------------------------------------------------------------- */
+
+.doc-versions__tabs {
+  margin-bottom: 12px;
+}
+
+.doc-versions__tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Nhãn "đã lưu trữ" cạnh tên hồ sơ trên dòng phiên bản. Phiên bản của hồ sơ đã
+   cất vẫn hiện (đó là dữ liệu lịch sử), nên phải nói rõ nó không còn ở thư
+   viện — nếu không người dùng bấm sang thư viện và không tìm thấy. */
+.doc-versions__archived {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.doc-audit__tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Chỉ hai hành động được tô màu: cất đi và lấy lại. Bốn hành động còn lại
+   (tạo, thêm phiên bản, dùng lại, sửa) là việc thường ngày — tô hết thì không
+   còn gì nổi bật. */
+.doc-audit__tag.is-archive {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.doc-audit__tag.is-restore {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+/* -------------------------------------------------------------------------
+   Ngăn lịch sử của một hồ sơ
+   ------------------------------------------------------------------------- */
+
+.doc-audit {
+  width: min(440px, 92vw);
+}
+
+.doc-audit__subject {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--erp-text-tertiary);
+}
+
+.doc-audit__loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.875rem;
+}
+
+.doc-audit__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dòng thời gian: đường kẻ dọc nối các mốc, vẽ bằng border của chính hàng để
+   không phải thêm một phần tử trang trí nào. */
+.doc-audit__row {
+  display: flex;
+  gap: 12px;
+  padding: 0 0 16px 0;
+}
+
+.doc-audit__row:not(:last-child) .doc-audit__icon::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  width: 1px;
+  height: calc(100% + 16px);
+  background: var(--erp-border);
+  transform: translateX(-50%);
+}
+
+.doc-audit__icon {
+  position: relative;
+  flex: 0 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--erp-border);
+  border-radius: 50%;
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.doc-audit__row--archive .doc-audit__icon {
+  border-color: var(--erp-danger);
+  color: var(--erp-danger);
+}
+
+.doc-audit__row--restore .doc-audit__icon {
+  border-color: var(--erp-success);
+  color: var(--erp-success);
+}
+
+.doc-audit__body {
+  min-width: 0;
+  flex: 1;
+}
+
+.doc-audit__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.doc-audit__time {
+  flex: none;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.doc-audit__message {
+  margin: 2px 0 0;
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+}
+
+.doc-audit__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+}
+
+.doc-audit__subjectname {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

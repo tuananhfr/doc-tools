@@ -1,0 +1,2836 @@
+/*
+ * Khái toán / Tổng mức đầu tư — UI Final 25/09/2026 + tài liệu 2027
+ * (features/projects/cost-estimate/components/tmdt).
+ *
+ * 4 Master View + Review Mode trong V02. Trang NHIỀU khối xếp dọc, tự cuộn
+ * theo khung `.erp-shell__content` — không dùng `.erp-list-page` (bẫy "mất
+ * dòng không có thanh cuộn" ghi ở CLAUDE.md). Tiền tố riêng `erp-tmdt-` — đã
+ * grep `styles/components/*.css`, không trùng.
+ *
+ * Màu dữ liệu chỉ qua chart token; trạng thái luôn icon + chữ + màu.
+ */
+
+/* ---------- Khung: header + thanh ngang các màn | nội dung rộng hết khung ---------- */
+.erp-tmdt {
+  min-width: 0;
+}
+
+.erp-tmdt__main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-tmdt__main > .erp-card,
+.erp-tmdt-overview > .erp-card,
+.erp-tmdt-sources > .erp-card,
+.erp-tmdt-compare > .erp-card,
+.erp-tmdt-estimate > .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.erp-tmdt-mono {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+/* Nằm ở đáy header: mục chính dạng nút có nền khi chọn — khác hàng tab gạch
+   chân của mục con bên dưới, để hai cấp không lẫn vào nhau. */
+.erp-tmdt-nav {
+  display: flex;
+  /* Bù lề trong của header (16px mỗi bên) để đường kẻ chạy hết mép thẻ. */
+  flex-basis: calc(100% + 32px);
+  gap: 4px;
+  margin: 0 -16px -12px;
+  padding: 6px 12px;
+  overflow-x: auto;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-nav__item {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.erp-tmdt-nav__item:hover {
+  color: var(--erp-text-primary);
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-nav__item:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-tmdt-nav__item--active {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-tmdt-nav__item--active .bi {
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-nav__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--erp-danger);
+  border-radius: 50%;
+}
+
+/* ---------- C01 Header ---------- */
+.erp-tmdt-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 12px 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-head__id {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.erp-tmdt-head__code {
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-head__name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-head__sub {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-head__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tmdt-head__version {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-tmdt-head__version .form-select {
+  min-width: 240px;
+}
+
+.erp-tmdt-head__profile {
+  min-width: 200px;
+}
+
+.erp-tmdt-head__updated {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-pagehead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-tmdt-pagehead__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.erp-tmdt-pagehead__sub {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-note {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+  background: var(--erp-info-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-lock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--erp-text-primary);
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-lock > .bi {
+  color: var(--erp-warning);
+}
+
+/* ---------- KPI ---------- */
+.erp-tmdt-kpis {
+  display: grid;
+  gap: 12px;
+}
+
+.erp-tmdt-kpis--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.erp-tmdt-kpis--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.erp-tmdt-kpi {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 14px 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-kpi__icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 18px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-kpi__label {
+  padding-right: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-kpi__value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-tmdt-kpi__delta {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-kpi__status {
+  align-self: flex-start;
+  font-size: 13px;
+}
+
+@media (max-width: 1440px) {
+  .erp-tmdt-kpis--five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-tmdt-kpis--five,
+  .erp-tmdt-kpis--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Bố cục hàng ---------- */
+.erp-tmdt-overview,
+.erp-tmdt-sources,
+.erp-tmdt-compare,
+.erp-tmdt-estimate {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Gợi ý từ quy hoạch (V02): một dòng tóm tắt, bấm mới mở bảng ---------- */
+.erp-tmdt-plan {
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-plan__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 12px;
+}
+
+.erp-tmdt-plan__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  transition: background-color 150ms ease;
+}
+
+.erp-tmdt-plan__toggle:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-plan__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-tmdt-plan__toggle .bi-diagram-3 {
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-plan__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-tmdt-plan__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-plan__hint,
+.erp-tmdt-plan__note {
+  max-width: 110ch;
+  margin: 0;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-plan__note {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-plan__scroll {
+  overflow-x: auto;
+}
+
+.erp-tmdt-plan__table {
+  width: 100%;
+  font-size: 13px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.erp-tmdt-plan__table th,
+.erp-tmdt-plan__table td {
+  padding: 8px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-plan__table th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tmdt-plan__table tbody tr:hover td {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-plan__num {
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.erp-tmdt-plan__sub {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-plan__picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.erp-tmdt-plan__changed ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 0;
+  font-size: 13px;
+  list-style: none;
+}
+
+.erp-tmdt-plan__changed li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-tmdt-overview__row {
+  display: grid;
+  gap: 16px;
+}
+
+.erp-tmdt-overview__row > .erp-card {
+  height: auto;
+}
+
+.erp-tmdt-overview__row--charts {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.erp-tmdt-overview__row--compare {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+
+.erp-tmdt-sources__src {
+  min-width: 200px;
+}
+
+.erp-tmdt-overview__row--three {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.erp-tmdt-overview__row--two {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 1280px) {
+  .erp-tmdt-overview__row--charts,
+  .erp-tmdt-overview__row--compare,
+  .erp-tmdt-overview__row--three,
+  .erp-tmdt-overview__row--two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- V01 ---------- */
+.erp-tmdt-alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-alerts li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.erp-tmdt-alerts li > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-tmdt-alerts__icon {
+  font-size: 20px;
+}
+
+.erp-tmdt-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-tmdt-facts > div {
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  gap: 8px;
+}
+
+.erp-tmdt-facts dt {
+  font-weight: 500;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-facts dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-progress__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-tmdt-phases {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-phase {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tmdt-phase__dot {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--erp-text-tertiary);
+  border: 2px solid var(--erp-border-strong);
+  border-radius: 50%;
+}
+
+.erp-tmdt-phase--done .erp-tmdt-phase__dot {
+  color: var(--erp-text-on-accent);
+  background: var(--erp-success);
+  border-color: var(--erp-success);
+}
+
+.erp-tmdt-phase--current .erp-tmdt-phase__dot {
+  color: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-tmdt-phase__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.erp-tmdt-phase__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-phase--todo .erp-tmdt-phase__label {
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-phase__meta {
+  font-size: 11px;
+  color: var(--erp-text-tertiary);
+}
+
+/* ---------- Tab con / chế độ ---------- */
+.erp-tmdt-estimate__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-subtabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.erp-tmdt-subtabs--boxed {
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-subtabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  transition: color 150ms ease;
+}
+
+.erp-tmdt-subtabs__tab:hover {
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-subtabs__tab:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-tmdt-subtabs__tab--active {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  border-bottom-color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-views__count {
+  min-width: 20px;
+  padding: 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-tmdt-mode {
+  display: inline-flex;
+  margin-bottom: 6px;
+  padding: 2px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-mode button {
+  min-height: 36px;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-mode button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-tmdt-mode .erp-tmdt-mode--on {
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+}
+
+.erp-tmdt-review {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+}
+
+/* ---------- V02 lưới + drawer ---------- */
+.erp-tmdt-estimate__work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-tmdt-estimate__work--drawer {
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+
+.erp-tmdt-estimate__main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tmdt-toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.erp-tmdt-search {
+  width: 220px;
+}
+
+.erp-tmdt-columns {
+  min-width: 240px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.erp-tmdt-columns__item {
+  padding: 2px 16px;
+  font-size: 13px;
+}
+
+.erp-tmdt-grid-wrap {
+  max-height: calc(100vh - 300px);
+  min-height: 240px;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-grid {
+  width: 100%;
+  font-size: 13px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.erp-tmdt-grid th,
+.erp-tmdt-grid td {
+  padding: 5px 8px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-grid thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  white-space: nowrap;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tmdt-grid__check {
+  width: 32px;
+}
+
+.erp-tmdt-grid__no {
+  width: 56px;
+}
+
+.erp-tmdt-grid__name {
+  min-width: 220px;
+}
+
+.erp-tmdt-grid__level {
+  min-width: 168px;
+}
+
+/* Nhãn nhóm A–E, dòng tổng và ĐVT không xuống dòng — cột tự giãn theo. */
+.erp-tmdt-grid__group .erp-tmdt-grid__toggle,
+.erp-tmdt-grid__total td,
+.erp-tmdt-grid__unit {
+  white-space: nowrap;
+}
+
+.erp-tmdt-grid__num-input {
+  width: 110px;
+  margin-left: auto;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tmdt-grid__group td {
+  font-weight: 700;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tmdt-grid__subgroup td {
+  font-weight: 600;
+}
+
+.erp-tmdt-grid__group-code {
+  display: inline-block;
+  min-width: 22px;
+  margin-right: 4px;
+  padding: 0 4px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-grid__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  font: inherit;
+  color: var(--erp-text-primary);
+  text-align: start;
+  background: none;
+  border: 0;
+}
+
+.erp-tmdt-grid__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-tmdt-grid__row {
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.erp-tmdt-grid__row:hover td {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-grid__row--selected td {
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-tmdt-grid__row--selected td:first-child {
+  box-shadow: inset 3px 0 0 var(--erp-action-secondary);
+}
+
+.erp-tmdt-grid__row--error td:nth-child(3) {
+  box-shadow: inset 3px 0 0 var(--erp-danger);
+}
+
+.erp-tmdt-grid__row--warning td:nth-child(3) {
+  box-shadow: inset 3px 0 0 var(--erp-warning);
+}
+
+.erp-tmdt-grid__struck {
+  color: var(--erp-text-tertiary);
+  text-decoration: line-through;
+}
+
+.erp-tmdt-grid__total td {
+  position: sticky;
+  bottom: 0;
+  font-weight: 700;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary);
+}
+
+.erp-tmdt-gridfoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-gridfoot__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-tmdt-gridfoot__dot--success {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-gridfoot__dot--warning {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-gridfoot__dot--danger {
+  color: var(--erp-danger);
+}
+
+.erp-tmdt-gridfoot__dot--info,
+.erp-tmdt-gridfoot__dot--neutral {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-gridfoot__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.erp-tmdt-savestate {
+  font-weight: 600;
+}
+
+.erp-tmdt-savestate--unsaved {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-savestate--saving {
+  color: var(--erp-info);
+}
+
+.erp-tmdt-savestate--saved {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-drawer {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 120px);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 8px;
+}
+
+.erp-tmdt-drawer__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.erp-tmdt-drawer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--erp-text-secondary);
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-drawer__close:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-drawer__close:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-tmdt-drawer__ident {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 14px 8px;
+}
+
+.erp-tmdt-drawer__name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.erp-tmdt-drawer__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-drawer__tab {
+  flex: 1;
+  min-height: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+}
+
+.erp-tmdt-drawer__tab:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.erp-tmdt-drawer__tab--active {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  border-bottom-color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-drawer__body {
+  flex: 1;
+  padding: 12px 14px;
+  overflow: auto;
+}
+
+.erp-tmdt-drawer__method {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.erp-tmdt-drawer__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.erp-tmdt-drawer__kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.erp-tmdt-drawer__kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px;
+  background: var(--erp-info-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-drawer__kpi span,
+.erp-tmdt-drawer__kpi small {
+  font-size: 11px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-drawer__kpi strong {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-drawer__kpi--amount {
+  background: var(--erp-construction-soft);
+}
+
+.erp-tmdt-drawer__source {
+  padding: 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-drawer__findings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-drawer__foot {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-finding {
+  margin-bottom: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-left: 3px solid var(--erp-info);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tmdt-finding--blocker {
+  border-left-color: var(--erp-danger);
+}
+
+.erp-tmdt-finding--warning {
+  border-left-color: var(--erp-warning);
+}
+
+.erp-tmdt-formula__expr {
+  margin: 0 0 4px;
+  padding: 8px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-formula__factors {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.erp-tmdt-formula__factors li {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1280px) {
+  .erp-tmdt-estimate__work--drawer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-tmdt-drawer {
+    position: static;
+    max-height: none;
+  }
+}
+
+/* ---------- C06 Validation ---------- */
+.erp-tmdt-validation__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.erp-tmdt-validation__counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-tmdt-validation__group ul {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-validation__title {
+  margin: 8px 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erp-tmdt-validation__item {
+  display: block;
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  text-align: start;
+  color: var(--erp-text-primary);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+button.erp-tmdt-validation__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+button.erp-tmdt-validation__item:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+/* ---------- Cổng quy trình (V03 hồ sơ, V04 trình duyệt) ---------- */
+.erp-tmdt-gates__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.erp-tmdt-gate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-left-width: 4px;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-gate--done {
+  border-left-color: var(--erp-success);
+}
+
+.erp-tmdt-gate--current {
+  border-left-color: var(--erp-info);
+}
+
+.erp-tmdt-gate--stale {
+  border-left-color: var(--erp-warning);
+}
+
+.erp-tmdt-gate--focus {
+  box-shadow: 0 0 0 2px var(--erp-focus-ring);
+}
+
+.erp-tmdt-gate__head p {
+  margin: 0;
+}
+
+.erp-tmdt-gate__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-gate__state--done {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-gate__state--current {
+  color: var(--erp-info);
+}
+
+.erp-tmdt-gate__state--stale {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-gate__title {
+  margin: 2px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.erp-tmdt-gate__meta,
+.erp-tmdt-gate__machine {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-gate__stamp {
+  margin: 0;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: var(--erp-surface);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-gate__note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-gate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.erp-tmdt-gate__hint {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.erp-tmdt-checks li {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.erp-tmdt-checks__ok > .bi {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-checks__bad > .bi {
+  color: var(--erp-danger);
+}
+
+.erp-tmdt-checks__detail {
+  color: var(--erp-text-tertiary);
+}
+
+/* ---------- Bảng + tiện ích chung ---------- */
+.erp-tmdt-table {
+  font-size: 13px;
+}
+
+.erp-tmdt-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface);
+  white-space: nowrap;
+}
+
+.erp-tmdt-table__total td {
+  font-weight: 700;
+  color: var(--erp-text-on-accent);
+  background: var(--erp-action-secondary) !important;
+}
+
+.erp-tmdt-table-wrap {
+  max-height: 560px;
+  overflow: auto;
+}
+
+.erp-tmdt-row--muted td {
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-col-check {
+  width: 32px;
+}
+
+.erp-tmdt-undetected {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-empty {
+  margin: 0;
+  padding: 12px 0;
+  font-size: 14px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-subhead {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-up {
+  color: var(--erp-danger);
+}
+
+.erp-tmdt-down {
+  color: var(--erp-success);
+}
+
+/* ---------- V03 ---------- */
+.erp-tmdt-sourcecounts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.erp-tmdt-sourcecounts > div {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.erp-tmdt-sourcecounts .bi {
+  grid-row: span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-sourcecounts strong {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tmdt-sourcecounts span {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-recent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-recent li {
+  display: flex;
+  gap: 8px;
+}
+
+.erp-tmdt-profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.erp-tmdt-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  text-align: start;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  transition: border-color 150ms ease;
+}
+
+.erp-tmdt-profile:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-profile:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-tmdt-profile--active {
+  border-color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.erp-tmdt-profile__name {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-profile__desc {
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-profile__meta {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-trace td {
+  min-width: 120px;
+}
+
+.erp-tmdt-trace__name {
+  min-width: 180px !important;
+}
+
+.erp-tmdt-trace__lineage {
+  min-width: 160px;
+  font-size: 12px;
+}
+
+.erp-tmdt-state--success {
+  border-color: var(--erp-success);
+}
+
+.erp-tmdt-state--warning {
+  border-color: var(--erp-warning);
+}
+
+.erp-tmdt-state--danger {
+  border-color: var(--erp-danger);
+}
+
+/* ---------- V04 ---------- */
+.erp-tmdt-compare__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.erp-tmdt-compare__top > .erp-card {
+  height: auto;
+}
+
+.erp-tmdt-verpick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-tmdt-verpick__item {
+  margin: 0;
+  padding: 6px 10px 6px 34px;
+  font-size: 13px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-verpick__item--on {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-tmdt-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.erp-tmdt-grouping {
+  width: auto;
+}
+
+.erp-tmdt-remarks {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-movers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.erp-tmdt-drivers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.erp-tmdt-drivers li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  justify-content: space-between;
+}
+
+.erp-tmdt-phases--compact {
+  gap: 8px 20px;
+}
+
+@media (max-width: 1024px) {
+  .erp-tmdt-compare__top,
+  .erp-tmdt-movers,
+  .erp-tmdt-sourcecounts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Kịch bản */
+.erp-tmdt-scn-name {
+  max-width: 260px;
+}
+
+.erp-tmdt-scn-result {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-scn-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.erp-tmdt-scn-kpis > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* BOE / CR / audit */
+.erp-tmdt-boe__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.erp-tmdt-boe__facts dt {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-boe__facts dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.erp-tmdt-crs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-cr {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-cr__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 10px;
+}
+
+.erp-tmdt-cr__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  text-align: start;
+  background: none;
+  border: 0;
+}
+
+.erp-tmdt-cr__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-tmdt-cr__actions {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.erp-tmdt-cr__body {
+  padding: 8px 10px 10px 32px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-audit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-audit li {
+  padding-left: 10px;
+  border-left: 2px solid var(--erp-border);
+}
+
+/* ==========================================================================
+ * View chi tiết (bộ UI 25/09/2026): menu nhiều cấp, C1–C6, Căn cứ, Giá thị
+ * trường, Kịch bản / Trình duyệt / Lịch sử. Cùng tiền tố `erp-tmdt-`.
+ * ========================================================================== */
+
+/* ---------- Bố cục hàng / vùng làm việc có panel ---------- */
+.erp-tmdt-sources__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.erp-tmdt-detail__row {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-tmdt-detail__row > .erp-card {
+  height: auto;
+  min-width: 0;
+}
+
+.erp-tmdt-detail__row--c1 {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.9fr);
+}
+
+.erp-tmdt-detail__row--side {
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+}
+
+.erp-tmdt-detail__row--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.erp-tmdt-detail__row--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.erp-tmdt-detail__row--formula {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr) minmax(0, 1.1fr);
+}
+
+.erp-tmdt-detail__work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-tmdt-detail__work > .erp-card,
+.erp-tmdt-detail__lib > .erp-card {
+  height: auto;
+  min-width: 0;
+}
+
+.erp-tmdt-detail__work--panel {
+  grid-template-columns: minmax(0, 1fr) 340px;
+}
+
+.erp-tmdt-detail__lib {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.erp-tmdt-detail__lib--panel {
+  grid-template-columns: 220px minmax(0, 1fr) 320px;
+}
+
+.erp-tmdt-actions-inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.erp-tmdt-actions-inline .form-select {
+  width: auto;
+}
+
+/* ---------- Số lớn, chỉ tiêu, ô thống kê ---------- */
+.erp-tmdt-bignum {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--erp-action-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tmdt-bignum span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.erp-tmdt-bignum--sm {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.erp-tmdt-indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-indicators li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-indicators li:last-child {
+  border-bottom: 0;
+}
+
+.erp-tmdt-indicators .bi {
+  font-size: 18px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-indicators strong {
+  font-size: 15px;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.erp-tmdt-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.erp-tmdt-stats--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.erp-tmdt-stats--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.erp-tmdt-stats--five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.erp-tmdt-stat {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  min-width: 0;
+  padding: 12px 14px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-stat__icon {
+  display: inline-flex;
+  grid-row: span 2;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-stat__value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tmdt-stat__label {
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+  text-overflow: ellipsis;
+}
+
+.erp-tmdt-stat--info .erp-tmdt-stat__icon {
+  color: var(--erp-info);
+  background: var(--erp-info-soft);
+}
+
+.erp-tmdt-stat--success .erp-tmdt-stat__icon {
+  color: var(--erp-success);
+  background: var(--erp-success-soft);
+}
+
+.erp-tmdt-stat--warning .erp-tmdt-stat__icon {
+  color: var(--erp-warning);
+  background: var(--erp-warning-soft);
+}
+
+.erp-tmdt-stat--danger .erp-tmdt-stat__icon {
+  color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+}
+
+.erp-tmdt-stat--neutral .erp-tmdt-stat__icon {
+  color: var(--erp-neutral);
+  background: var(--erp-neutral-soft);
+}
+
+.erp-tmdt-stat--intelligence .erp-tmdt-stat__icon {
+  color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+}
+
+.erp-tmdt-stat--construction .erp-tmdt-stat__icon {
+  color: var(--erp-construction);
+  background: var(--erp-construction-soft);
+}
+
+.erp-tmdt-infostrip {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.erp-tmdt-infostrip > div {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-infostrip > div > .bi {
+  font-size: 22px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-infostrip > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Bảng: nhóm, dòng chọn, ô cắt chữ ---------- */
+.erp-tmdt-table__group td {
+  font-weight: 600;
+  background: var(--erp-surface-secondary);
+}
+
+.erp-tmdt-row--picked td {
+  background: var(--erp-action-secondary-soft) !important;
+}
+
+.erp-tmdt-detail__work .erp-tmdt-table tbody tr,
+.erp-tmdt-detail__lib .erp-tmdt-table tbody tr {
+  cursor: pointer;
+}
+
+.erp-tmdt-clip {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-tmdt-facts--panel {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.erp-tmdt-facts--panel > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.erp-tmdt-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.erp-tmdt-pager__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-tmdt-pager__size {
+  width: auto;
+}
+
+/* ---------- Danh sách liên kết / căn cứ / ghi chú ---------- */
+.erp-tmdt-linklist,
+.erp-tmdt-basis,
+.erp-tmdt-folders,
+.erp-tmdt-pick,
+.erp-tmdt-scnlist,
+.erp-tmdt-alertlist,
+.erp-tmdt-factorlist,
+.erp-tmdt-opinions,
+.erp-tmdt-periods {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-linklist li > button,
+.erp-tmdt-linklist li > a,
+.erp-tmdt-linklist li > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 6px 8px;
+  font-size: 13px;
+  color: var(--erp-text-primary);
+  text-align: start;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-linklist li > button:hover,
+.erp-tmdt-linklist li > a:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-linklist li > button:focus-visible,
+.erp-tmdt-linklist li > a:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-tmdt-basis {
+  gap: 0;
+  margin-top: 8px;
+}
+
+.erp-tmdt-basis li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-basis li > div {
+  flex: 1;
+  min-width: 180px;
+}
+
+.erp-tmdt-basis li > .bi {
+  font-size: 18px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-notes {
+  margin: 0 0 8px;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.erp-tmdt-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-tip > .bi {
+  font-size: 18px;
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-linkbtn {
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--erp-action-secondary);
+  background: none;
+  border: 0;
+}
+
+.erp-tmdt-linkbtn:hover {
+  text-decoration: underline;
+}
+
+.erp-tmdt-linkbtn:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+/* ---------- Tham số (C6) ---------- */
+.erp-tmdt-param {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  font-size: 13px;
+}
+
+.erp-tmdt-checkset .erp-tmdt-param {
+  grid-template-columns: 200px minmax(0, 1fr);
+  padding: 4px 0;
+}
+
+.erp-tmdt-param__label {
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-param__control {
+  min-width: 0;
+  font-weight: 500;
+}
+
+.erp-tmdt-param__control--short {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-tmdt-param__control--short .form-control {
+  width: 80px;
+}
+
+/* ---------- Lập khái toán › Thông số đầu vào: bảng kiểm "đủ để tính" ---------- */
+.erp-tmdt-ready {
+  padding: 16px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-left: 4px solid var(--erp-warning);
+  border-radius: var(--erp-radius-lg);
+}
+
+.erp-tmdt-ready--ok {
+  border-left-color: var(--erp-success);
+}
+
+.erp-tmdt-ready__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.erp-tmdt-ready__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-ready__title .bi {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-ready--ok .erp-tmdt-ready__title .bi {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-ready__sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-ready__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-tmdt-ready__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-ready__item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    'icon label action'
+    'icon value action';
+  align-items: center;
+  column-gap: 10px;
+  padding: 8px 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-ready__item > .bi {
+  grid-area: icon;
+  font-size: 16px;
+  color: var(--erp-success);
+}
+
+.erp-tmdt-ready__item--missing {
+  background: var(--erp-warning-soft);
+}
+
+.erp-tmdt-ready__item--missing > .bi {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-ready__label {
+  grid-area: label;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-tmdt-ready__value {
+  grid-area: value;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-ready__item .btn {
+  grid-area: action;
+}
+
+.erp-tmdt-ready__note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--erp-text-secondary);
+}
+
+/* Dải trên Bảng khái toán khi chưa đủ đầu vào — một nút đưa về đúng chỗ sửa. */
+.erp-tmdt-missing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--erp-text-primary);
+  background: var(--erp-warning-soft);
+  border: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-missing > .bi {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-missing .btn {
+  margin-left: auto;
+}
+
+.erp-tmdt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-tmdt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border-strong);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-tmdt-chip:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-tmdt-chip--on {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+  background: var(--erp-action-secondary-soft);
+  border-color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: 1px solid;
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-tmdt-verdict > .bi {
+  font-size: 20px;
+}
+
+.erp-tmdt-verdict--success {
+  background: var(--erp-success-soft);
+  border-color: var(--erp-success);
+}
+
+.erp-tmdt-verdict--success > .bi {
+  color: var(--erp-success);
+}
+
+.erp-tmdt-verdict--warning {
+  background: var(--erp-warning-soft);
+  border-color: var(--erp-warning);
+}
+
+.erp-tmdt-verdict--warning > .bi {
+  color: var(--erp-warning);
+}
+
+.erp-tmdt-verdict--danger {
+  background: var(--erp-danger-soft);
+  border-color: var(--erp-danger);
+}
+
+.erp-tmdt-verdict--danger > .bi {
+  color: var(--erp-danger);
+}
+
+.erp-tmdt-quick {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-tmdt-quick button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 72px;
+  padding: 8px;
+  font-size: 12px;
+  color: var(--erp-text-primary);
+  text-align: center;
+  background: var(--erp-surface-secondary);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  transition: background-color 150ms ease;
+}
+
+.erp-tmdt-quick button .bi {
+  font-size: 20px;
+  color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-quick button:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-quick button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+/* ---------- Thanh tỷ lệ ---------- */
+.erp-tmdt-ratio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-ratio li {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) 48px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.erp-tmdt-ratio__value,
+.erp-tmdt-ratio__pct {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-tmdt-ratio__track {
+  height: 10px;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-pill);
+}
+
+.erp-tmdt-ratio__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.erp-tmdt-ratio__fill--success {
+  background: var(--erp-success);
+}
+
+.erp-tmdt-ratio__fill--warning {
+  background: var(--erp-warning);
+}
+
+.erp-tmdt-ratio__fill--danger {
+  background: var(--erp-danger);
+}
+
+.erp-tmdt-ratio__fill--info {
+  background: var(--erp-info);
+}
+
+.erp-tmdt-ratio__fill--neutral {
+  background: var(--erp-neutral);
+}
+
+/* ---------- C4 ma trận hệ số ---------- */
+.erp-tmdt-bands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  list-style: none;
+}
+
+.erp-tmdt-bands li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-tmdt-bands .erp-tmdt-cell {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: 3px;
+}
+
+.erp-tmdt-cell--lo2 {
+  background: var(--erp-danger-soft) !important;
+}
+
+.erp-tmdt-cell--lo1 {
+  background: var(--erp-warning-soft) !important;
+}
+
+.erp-tmdt-cell--mid {
+  background: var(--erp-info-soft) !important;
+}
+
+.erp-tmdt-cell--hi1 {
+  background: var(--erp-success-soft) !important;
+}
+
+.erp-tmdt-cell--hi2 {
+  background: var(--erp-intelligence-soft) !important;
+}
+
+.erp-tmdt-matrix td.erp-tmdt-cell {
+  border-left: 1px solid var(--erp-surface);
+}
+
+.erp-tmdt-factorlist li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-pick li > button,
+.erp-tmdt-scnlist li > button,
+.erp-tmdt-folders li > button {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 8px;
+  font-size: 13px;
+  color: var(--erp-text-primary);
+  text-align: start;
+  background: none;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-tmdt-pick li > button {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.erp-tmdt-pick li > button:hover,
+.erp-tmdt-scnlist li > button:hover,
+.erp-tmdt-folders li > button:hover {
+  background: var(--erp-surface-hover);
+}
+
+.erp-tmdt-pick li > button:focus-visible,
+.erp-tmdt-scnlist li > button:focus-visible,
+.erp-tmdt-folders li > button:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+}
+
+.erp-tmdt-pick--on,
+.erp-tmdt-folders--on {
+  font-weight: 600;
+  background: var(--erp-action-secondary-soft) !important;
+}
+
+.erp-tmdt-folders .erp-tmdt-mono {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-scnlist {
+  margin-top: 12px;
+}
+
+.erp-tmdt-legend-dl {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.erp-tmdt-legend-dl > div {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.erp-tmdt-legend-dl dt {
+  font-style: italic;
+}
+
+.erp-tmdt-legend-dl dd {
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-tmdt-formula__expr--num {
+  font-size: 15px;
+  text-align: center;
+}
+
+.erp-tmdt-apply {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.erp-tmdt-apply .form-select {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- Giá thị trường ---------- */
+.erp-tmdt-periods {
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.erp-tmdt-periods li,
+.erp-tmdt-alertlist li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.erp-tmdt-alertlist li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-alertlist li > span:first-of-type {
+  flex: 1;
+}
+
+.erp-tmdt-grade {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.erp-tmdt-grade strong {
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Trình duyệt, lịch sử ---------- */
+.erp-tmdt-flow {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-tmdt-flow__step {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 120px;
+  padding: 0 6px 8px;
+  text-align: center;
+}
+
+.erp-tmdt-flow__step::before {
+  position: absolute;
+  top: 16px;
+  right: 50%;
+  left: -50%;
+  height: 2px;
+  content: '';
+  background: var(--erp-border);
+}
+
+.erp-tmdt-flow__step:first-child::before {
+  display: none;
+}
+
+.erp-tmdt-flow__dot {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  color: var(--erp-text-tertiary);
+  background: var(--erp-surface);
+  border: 2px solid var(--erp-border-strong);
+  border-radius: 50%;
+}
+
+.erp-tmdt-flow__step--done .erp-tmdt-flow__dot {
+  color: var(--erp-success);
+  border-color: var(--erp-success);
+}
+
+.erp-tmdt-flow__step--current .erp-tmdt-flow__dot {
+  color: var(--erp-action-secondary);
+  border-color: var(--erp-action-secondary);
+}
+
+.erp-tmdt-flow__step--stale .erp-tmdt-flow__dot {
+  color: var(--erp-warning);
+  border-color: var(--erp-warning);
+}
+
+.erp-tmdt-flow__label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.erp-tmdt-flow__meta {
+  font-size: 12px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-tmdt-opinions li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.erp-tmdt-beforeafter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.erp-tmdt-beforeafter > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 8px 10px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+@media (max-width: 1440px) {
+  .erp-tmdt-detail__row--c1 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-tmdt-stats--five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 1700px) {
+  .erp-tmdt-detail__lib--panel {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .erp-tmdt-detail__lib--panel > .erp-tmdt-side {
+    grid-column: 1 / -1;
+    position: static;
+    max-height: none;
+  }
+}
+
+@media (max-width: 1280px) {
+  .erp-tmdt-detail__row--side,
+  .erp-tmdt-detail__row--three,
+  .erp-tmdt-detail__row--formula,
+  .erp-tmdt-detail__work--panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-tmdt-side {
+    position: static;
+    max-height: none;
+  }
+
+  .erp-tmdt-stats--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .erp-tmdt-detail__row--c1,
+  .erp-tmdt-detail__row--two,
+  .erp-tmdt-detail__lib,
+  .erp-tmdt-detail__lib--panel,
+  .erp-tmdt-infostrip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-tmdt-stats--two,
+  .erp-tmdt-stats--four,
+  .erp-tmdt-stats--five,
+  .erp-tmdt-quick {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-tmdt-param,
+  .erp-tmdt-checkset .erp-tmdt-param {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-tmdt-clip {
+    max-width: 160px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-tmdt-quick button {
+    transition: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-tmdt-kpis--five,
+  .erp-tmdt-kpis--four {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .erp-tmdt-head__version .form-select {
+    min-width: 0;
+  }
+
+  .erp-tmdt-search {
+    width: 100%;
+  }
+
+  .erp-tmdt-toolbar__right {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .erp-tmdt-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  .erp-tmdt-nav,
+  .erp-tmdt-head__actions,
+  .erp-tmdt-subtabs,
+  .erp-tmdt-actions {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-tmdt-nav__item,
+  .erp-tmdt-plan__toggle,
+  .erp-tmdt-subtabs__tab,
+  .erp-tmdt-grid__row,
+  .erp-tmdt-profile {
+    transition: none;
+  }
+}

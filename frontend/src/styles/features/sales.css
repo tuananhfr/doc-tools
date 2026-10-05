@@ -1,0 +1,360 @@
+/*
+ * Style rieng cua phan he Ban hang (menu 03).
+ *
+ * Khong viet hex o day - moi mau doc qua bien `--erp-*` de ba theme
+ * Light / Dark / Field dung chung mot component (Design System muc 12 & 15).
+ */
+
+/*
+ * Xac suat chot mot giao dich: con so + thanh muc do.
+ *
+ * Thanh mau la lop trang tri; y nghia nam o con so "10%" ngay tren no. Bo
+ * thanh mau di van doc duoc day du thong tin (muc 05 & 11).
+ */
+.erp-sales__probability {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 0;
+}
+
+.erp-sales__probability-value {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-sales__probability-bar {
+  width: 100%;
+  min-width: 88px;
+  height: 4px;
+}
+
+/* ==========================================================================
+   Form "Xuất kho" mở từ thẻ Đơn bán (SalesOrderExportModal)
+   Bảng hàng hoá 9/12 + thông tin phiếu 3/12 như form Drupal; ở `xl` (1140px)
+   cột phải chỉ ~250px, nới cùng con số với `.advance-modal`.
+   ========================================================================== */
+.erp-order-action-modal .modal-dialog {
+  --bs-modal-width: min(1280px, 96vw);
+}
+
+/* Bảng nhãn/giá trị tóm tắt của bốn form thao tác đơn đã hoàn thành
+   (Xuất hoá đơn · Phát hành hoá đơn). Cột nhãn cố định để các hàng thẳng cột. */
+.erp-order-action__summary {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 4px 12px;
+  margin-bottom: 8px;
+}
+
+.erp-order-action__summary dt {
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-order-action__summary dd {
+  margin: 0;
+}
+
+.erp-order-export__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 12px;
+}
+
+/* Chip tồn kho — chỉ để XEM; kho đang chọn đậm lên để đối chiếu nhanh. */
+.erp-order-export__stock {
+  padding: 0 6px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+}
+
+.erp-order-export__stock strong {
+  color: var(--erp-danger);
+}
+
+.erp-order-export__stock.is-active {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+}
+
+/* ==========================================================================
+   Hồ sơ chất lượng của hợp đồng (`QualityFormPanel`) — form dựng động từ
+   schema Drupal (`DynamicQualityForm`).
+   --------------------------------------------------------------------------
+   Panel, bảng và modal dùng component chung (`SectionCard`, `Table`,
+   `FormModal`) nên KHÔNG có luật ở đây. Khối dưới chỉ lo BỐ CỤC của form
+   động; ô nhập mang class Bootstrap (`form-control`/`form-select`) nên màu,
+   viền, focus ring và Field Mode đi theo token như mọi form khác. Không đặt
+   `min-height` cho control — Field Mode ép 48px cùng độ đặc hiệu.
+   ========================================================================== */
+
+.erp-quality-forms td {
+  vertical-align: middle;
+}
+
+.qf-dynamic-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.qf-schema-field,
+.qf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.qf-field > span,
+.qf-schema-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.qf-required {
+  color: var(--erp-danger);
+}
+
+.qf-schema-help,
+.qf-muted {
+  font-size: 12px;
+  color: var(--erp-text-secondary);
+}
+
+/* Bảng / nhóm nhiều dòng chiếm trọn bề ngang của lưới. */
+.qf-schema-section,
+.qf-block {
+  grid-column: 1 / -1;
+}
+
+.qf-schema-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.qf-schema-section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.qf-schema-section > .btn {
+  align-self: flex-start;
+}
+
+.qf-complex-row,
+.qf-composite-row,
+.qf-repeat-row,
+.qf-range-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  align-items: end;
+}
+
+.qf-repeat-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.qf-complex-row,
+.qf-composite-row--repeat {
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--erp-border);
+}
+
+.qf-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--erp-touch-target);
+  margin: 0;
+}
+
+.qf-warning {
+  grid-column: 1 / -1;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-primary);
+  font-size: 13px;
+}
+
+/* Khối gập được (paragraph lồng nhau). */
+.qf-block {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  overflow: hidden;
+}
+
+.qf-block__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--erp-touch-target);
+  padding: 8px 12px;
+  border: 0;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.qf-block__toggle:hover {
+  background: var(--erp-surface-hover);
+}
+
+.qf-block__toggle:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.qf-block__toggle[aria-expanded='true'] {
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.qf-block__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+.qf-nested-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface);
+}
+
+.qf-nested-row-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.qf-nested-type {
+  flex: 1 1 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf-block__toggle {
+    transition: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .qf-dynamic-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Bố cục 9/3 của form Drupal (field_group `col-lg-9` / `col-lg-3`): nội dung
+   chính trái, số / ngày / địa điểm / tệp phải. Dưới 992px xếp chồng. */
+/* Ba form nhập của "Hồ sơ thực hiện" (Hồ sơ chất lượng · Nhân sự, ATLĐ · Nội
+   quy) rộng ~88% màn hình — biểu mẫu nhiều bảng, cột phải 9/3.
+   Biến PHẢI đặt trên `.modal-dialog`: `.modal-xl`/`.modal-lg` khai lại
+   `--bs-modal-width` ngay trên phần tử đó, đặt trên `.modal` là thua và
+   popup vẫn 1.140px (đã mắc). */
+.erp-contract-form-modal .modal-dialog {
+  --bs-modal-width: min(1680px, 88vw);
+}
+
+@media (max-width: 991.98px) {
+  .erp-contract-form-modal .modal-dialog {
+    --bs-modal-width: 96vw;
+  }
+}
+
+/* Ô đứng MỘT MÌNH trên hàng (số ô ngắn liền nhau là lẻ) và ô văn bản dài
+   trải trọn bề ngang — xem `layoutCells()` của `DynamicQualityForm`. */
+.qf-cell {
+  min-width: 0;
+}
+
+.qf-cell--wide {
+  grid-column: 1 / -1;
+}
+
+.qf-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  gap: 16px;
+  align-items: start;
+}
+
+.qf-dynamic-form--side {
+  grid-template-columns: 1fr;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.qf-group-title {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--erp-text-secondary);
+}
+
+.qf-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-file-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+@media (max-width: 991.98px) {
+  .qf-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tạo phiếu thu từ thẻ Đơn bán (`SalesOrderRevenueModal`)
+   --------------------------------------------------------------------------
+   `FileUploadField` dùng chung gốc `.erp-file-field` với `FileField` của
+   form-kit, nên ăn luôn khung viền + flex một hàng: nhãn, nút và danh sách tệp
+   bị dồn lên cùng một dòng. Trong khối "Chứng từ" trả nó về xếp dọc. */
+.erp-order-receipt .erp-file-field {
+  display: block;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+}

@@ -1,0 +1,3361 @@
+/*
+ * Hồ sơ CDE (`/documents/cde`) - danh sách tài liệu + form tải tệp.
+ *
+ * Bảng chứng từ của form tạo mới KHÔNG có style riêng ở đây: nó dùng lại bộ
+ * `.doc-panel__*` của khối CDE trên phiếu tài chính (`document-panel.css`) - ba
+ * màn hình cùng một luồng thì phải nhìn giống nhau, và đó là một bộ CSS duy
+ * nhất để sửa.
+ *
+ * Không viết hex ở đây - mọi màu đọc qua biến `--erp-*` để ba theme
+ * Light / Dark / Field dùng chung một component (Design System mục 12 & 15).
+ */
+
+/* ==========================================================================
+ * Thanh lọc nhanh (Trạng thái / Vùng CDE / Loại tài liệu)
+ *
+ * Trước đây khối này liệt kê MỌI giá trị thành chip: 6 trạng thái + 4 vùng =
+ * 12 nút xếp hai hàng ngay dưới tiêu đề, chỉ để nhận về hai lựa chọn đơn. Nay
+ * mỗi trường là một ô chọn, cả thanh gói trong MỘT hàng — xem `CdeFacetBar`.
+ * ========================================================================== */
+
+.cde-facets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cde-facets__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Ô chọn + nút bỏ lọc dính nhau thành một viên thuốc duy nhất. */
+.cde-facet {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+.cde-facet .dropdown {
+  display: inline-flex;
+}
+
+.cde-facet__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.cde-facet__btn:hover {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-action-secondary);
+}
+
+/* Menu đang mở: giữ vẻ "đang được dùng" để biết ô nào vừa bấm. */
+.cde-facet__btn.show {
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-action-secondary);
+}
+
+.cde-facet__btn:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Nhãn trường mờ hơn giá trị: đọc lướt cả hàng là thấy ngay đang lọc GÌ. */
+.cde-facet__name {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-facet__value {
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+/* Đang lọc: nền + viền + chữ, không chỉ đổi màu chữ (mục 10). */
+.cde-facet.is-active .cde-facet__btn {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.cde-facet.is-active .cde-facet__name,
+.cde-facet.is-active .cde-facet__value {
+  color: inherit;
+}
+
+/* Bo góc phải nhường chỗ cho nút ✕ ghép vào. */
+.cde-facet.is-active .cde-facet__btn {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  border-inline-end: 0;
+  padding-inline-end: 8px;
+}
+
+.cde-facet__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  border: 1px solid var(--erp-action-secondary);
+  border-inline-start: 0;
+  border-start-end-radius: var(--erp-radius-pill);
+  border-end-end-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+}
+
+.cde-facet__clear:hover {
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.cde-facet__clear:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Menu: nhãn bên trái, số đếm dồn về phải, dấu tích giữ một cột cố định. */
+.cde-facet__menu {
+  min-width: 232px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.cde-facet__menu .dropdown-item {
+  gap: 8px;
+}
+
+.cde-facet__tick {
+  flex: 0 0 16px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.cde-facet__option {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cde-facet__count {
+  flex: 0 0 auto;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+/* Field Mode: chạm được bằng găng tay ngoài công trường (mục 06). */
+[data-theme='field'] .cde-facet__btn {
+  min-height: 48px;
+  font-size: 0.9375rem;
+}
+
+[data-theme='field'] .cde-facet__clear {
+  width: 40px;
+}
+
+[data-theme='field'] .cde-facet__menu .dropdown-item {
+  min-height: 48px;
+}
+
+/* ==========================================================================
+ * Nút đổi cách hiển thị (Bảng / Lưới thẻ)
+ * ========================================================================== */
+
+.cde-view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  overflow: hidden;
+}
+
+.cde-view-toggle button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 30px;
+  border: 0;
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+}
+
+.cde-view-toggle button + button {
+  border-left: 1px solid var(--erp-border);
+}
+
+.cde-view-toggle button.is-active {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+/* ==========================================================================
+ * Ô dữ liệu dùng chung cho bảng, lưới thẻ và ngăn chi tiết
+ * ========================================================================== */
+
+.cde-code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-action-secondary);
+  font-family: var(--erp-font-mono, monospace);
+  font-size: 0.8125rem;
+}
+
+.cde-code:hover {
+  text-decoration: underline;
+}
+
+.cde-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: start;
+  color: inherit;
+  max-width: 100%;
+}
+
+.cde-title__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+}
+
+.cde-title__text {
+  display: block;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.cde-title:hover .cde-title__text {
+  color: var(--erp-action-secondary);
+}
+
+.cde-title__meta {
+  display: block;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Chưa phân loại: trạng thái hợp lệ, chờ phân loại — trung tính, không báo lỗi. */
+.cde-type.is-none {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-weight: 500;
+}
+
+/* Trạng thái OCR của tệp hiện hành trên bảng. */
+.cde-ai-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.cde-ai-chip.is-running {
+  color: var(--erp-text-secondary);
+}
+
+.cde-ai-chip.is-completed {
+  color: var(--erp-intelligence);
+}
+
+.cde-ai-chip.is-failed {
+  color: var(--erp-danger);
+}
+
+.cde-link {
+  color: var(--erp-action-secondary);
+}
+
+.cde-multi {
+  display: inline-flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.cde-empty {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-version {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cde-version__count {
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+.cde-row-actions {
+  display: inline-flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+.cde-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-md);
+  background: none;
+  color: var(--erp-text-tertiary);
+}
+
+.cde-icon-btn:hover {
+  border-color: var(--erp-border);
+  background: var(--erp-surface-hover);
+  color: var(--erp-action-secondary);
+}
+
+/* ==========================================================================
+ * Lưới thẻ
+ * ========================================================================== */
+
+.cde-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: 12px;
+}
+
+.cde-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cde-card-item:hover {
+  border-color: var(--erp-action-secondary);
+  box-shadow: var(--erp-shadow2);
+}
+
+.cde-card-item__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: start;
+  color: inherit;
+}
+
+.cde-card-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 1.125rem;
+}
+
+.cde-card-item__body {
+  min-width: 0;
+}
+
+.cde-card-item__code {
+  display: block;
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.cde-card-item__title {
+  display: block;
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.cde-card-item__meta {
+  display: block;
+  margin-top: 2px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-card-item__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cde-card-item__foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--erp-border);
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-card-item__foot .cde-icon-btn {
+  margin-inline-start: auto;
+}
+
+.cde-grid-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 48px 16px;
+  border: 1px dashed var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  color: var(--erp-text-tertiary);
+}
+
+.cde-grid-empty .bi {
+  font-size: 1.75rem;
+}
+
+.cde-grid-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* Khung `erp-list-page`: vùng thẻ ăn phần còn lại và TỰ CUỘN, thanh tìm kiếm +
+   thanh lọc đứng yên. Đệm 2px để viền/bóng lúc hover không bị cắt ở mép. */
+.cde-list > .cde-grid-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: -2px;
+  padding: 2px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Chỉ điện thoại mới gộp ngày cập nhật lên dòng mã (xem khối mobile dưới). */
+.cde-card-item__stamp {
+  display: none;
+}
+
+/* ==========================================================================
+ * Danh sách trên điện thoại (≤576px)
+ *
+ * Trang luôn ở dạng thẻ (`CdeDocumentListPage` bỏ bảng khi `useIsMobile`).
+ * Mục tiêu: một màn 390×844 thấy được 5–6 hồ sơ thay vì 2,5 thẻ cao.
+ * ========================================================================== */
+
+@media (max-width: 576px) {
+  /* Thanh lọc: MỘT hàng vuốt ngang thay vì bẻ hai hàng ăn mất chiều cao.
+     Đệm dọc 4px để vùng chạm mở rộng của nút (::after) không bị khung cuộn cắt. */
+  .cde-facets {
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin: -4px -10px 4px;
+    padding: 4px 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .cde-facets::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cde-facets__hint {
+    display: none;
+  }
+
+  .cde-facet {
+    flex: 0 0 auto;
+  }
+
+  /* Cao 36px cho gọn hàng, vùng chạm vẫn đủ 44px nhờ ::after (DS mục 06). */
+  .cde-facet__btn,
+  .cde-facet__clear {
+    position: relative;
+    min-height: 36px;
+  }
+
+  .cde-facet__btn::after,
+  .cde-facet__clear::after {
+    content: '';
+    position: absolute;
+    inset: -4px 0;
+  }
+
+  .cde-facet__clear {
+    width: 36px;
+  }
+
+  .cde-facet__menu .dropdown-item {
+    min-height: var(--erp-touch-target);
+  }
+
+  /* Thẻ: một cột, bố cục lưới 2 hàng —
+       [icon] mã · ngày / tiêu đề (2 dòng)
+       [chip loại · trạng thái · vùng]          [V3 ③] */
+  .cde-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .cde-card-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'main main'
+      'chips foot';
+    align-items: center;
+    gap: 8px 10px;
+    padding: 12px;
+  }
+
+  /* Bấm cả thẻ = mở hồ sơ: hover không có trên cảm ứng, thay bằng nhún nhẹ. */
+  .cde-card-item:hover {
+    border-color: var(--erp-border);
+    box-shadow: none;
+  }
+
+  .cde-card-item:active {
+    border-color: var(--erp-action-secondary);
+    background: var(--erp-surface-hover);
+  }
+
+  .cde-card-item__main {
+    grid-area: main;
+    gap: 10px;
+  }
+
+  .cde-card-item__main:focus-visible {
+    outline: 2px solid var(--erp-focus-ring);
+    outline-offset: 4px;
+    border-radius: var(--erp-radius-sm);
+  }
+
+  .cde-card-item__icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .cde-card-item__code {
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+  }
+
+  .cde-card-item__stamp {
+    display: inline;
+  }
+
+  .cde-card-item__title {
+    font-size: 0.9375rem;
+  }
+
+  /* Tên tệp trùng ý với tiêu đề + icon đuôi tệp — bỏ để thẻ còn 3 dòng. */
+  .cde-card-item__meta {
+    display: none;
+  }
+
+  /* Một hàng chip: danh mục + trạng thái (hai trường đầu của `chipFields`).
+     Vùng CDE rớt xuống hàng hai làm thẻ cao thêm 1/3 — xem trong ngăn chi tiết. */
+  .cde-card-item__chips {
+    grid-area: chips;
+    flex-wrap: nowrap;
+    gap: 4px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .cde-card-item__chips > :nth-child(n + 3) {
+    display: none;
+  }
+
+  .cde-card-item__chips:empty {
+    display: none;
+  }
+
+  .cde-card-item__chips .erp-badge,
+  .cde-card-item__chips .cde-type {
+    padding: 2px 8px;
+    font-size: 0.6875rem;
+  }
+
+  .cde-card-item__foot {
+    grid-area: foot;
+    align-self: end;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  /* Ngày đã lên dòng mã; nút mở tệp 28px quá nhỏ để chạm — ngăn chi tiết có
+     sẵn nút "Mở" / "Tải" cỡ ngón tay. */
+  .cde-card-item__date,
+  .cde-card-item__foot .cde-icon-btn {
+    display: none;
+  }
+
+  .cde-grid-more .btn {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+/* ==========================================================================
+ * Ngăn chi tiết hồ sơ
+ * ========================================================================== */
+
+/* overlay.css đặt padding offcanvas về 0 (cho sidebar) - ngăn này tự đặt lại,
+   cùng nhịp với `.erp-legal__drawer`. */
+.cde-drawer {
+  --bs-offcanvas-bg: var(--erp-surface);
+  width: min(600px, 100vw) !important;
+}
+
+.cde-drawer__head.offcanvas-header {
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 24px 14px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.cde-drawer__head-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.cde-drawer__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mã tài liệu - bấm để chép. */
+.cde-drawer__code {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: transparent;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.cde-drawer__code:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.cde-drawer__code:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.cde-drawer__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.cde-drawer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.cde-drawer__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.cde-drawer__sub {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-drawer__body.offcanvas-body {
+  padding: 16px 24px 24px;
+}
+
+.cde-drawer__section {
+  margin-top: 20px;
+}
+
+/* Khối theo dõi SHTT (`IpRegistrationPanel`) đứng đầu ngăn, trước khối tệp. */
+.cde-drawer__body > .cde-drawer__section:first-child {
+  margin-top: 0;
+}
+
+.cde-drawer__section + .cde-current {
+  margin-top: 20px;
+}
+
+.cde-drawer__section + .cde-drawer__section {
+  padding-top: 20px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.cde-drawer__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cde-drawer__count {
+  padding: 0 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  font-size: 0.6875rem;
+}
+
+/* ---- Tệp hiện hành --------------------------------------------------- */
+
+.cde-current {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface-secondary);
+}
+
+.cde-current.is-dragging {
+  border-color: var(--erp-action-secondary);
+}
+
+/* ---- Bản xem trước tệp (`CdeFilePreview`) --------------------------- */
+
+.cde-preview {
+  position: relative;
+  display: block;
+  max-height: 380px;
+  overflow: auto;
+  background: var(--erp-surface-secondary);
+}
+
+/* Cửa sổ "Phóng to": khung cao theo màn hình. */
+.cde-preview.is-expanded {
+  max-height: calc(100vh - 160px);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.cde-preview--image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cde-preview--image img {
+  display: block;
+  max-width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+}
+
+.cde-preview.is-expanded img {
+  max-height: calc(100vh - 170px);
+}
+
+.cde-preview--pdf {
+  height: 460px;
+  max-height: none;
+  overflow: hidden;
+}
+
+.cde-preview--pdf.is-expanded {
+  height: calc(100vh - 160px);
+}
+
+.cde-preview--pdf iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Bản vẽ: nền trắng như giấy ở mọi theme — nét vẽ CAD tối trên nền trắng. */
+.cde-preview--dwg {
+  height: 380px;
+  overflow: hidden;
+  background: var(--erp-surface);
+}
+
+.cde-preview--dwg.is-expanded {
+  height: calc(100vh - 160px);
+}
+
+/* Khung phóng to / thu nhỏ / kéo (`CdeDrawingViewer`). */
+.cde-cad__stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Kéo bằng ngón tay là dời bản vẽ, không phải cuộn trang. */
+  touch-action: none;
+  user-select: none;
+}
+
+.cde-cad__stage.is-zoomed {
+  cursor: grab;
+}
+
+.cde-cad__stage.is-zoomed:active {
+  cursor: grabbing;
+}
+
+.cde-preview .cde-cad__stage img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  max-height: none;
+  transform-origin: 0 0;
+  /* Lớp riêng: kéo và phóng tạm chỉ dời / giãn lớp, không vẽ lại SVG. */
+  will-change: transform;
+}
+
+.cde-cad__tools {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.cde-cad__tools .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.cde-cad__scale {
+  min-width: 52px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.cde-cad__hint {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  margin: 0;
+  padding: 2px 8px;
+  background: var(--erp-surface);
+  border-radius: var(--erp-radius-md);
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.cde-preview--loading {
+  padding: 16px;
+}
+
+.cde-preview__notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.cde-preview__notice > .bi {
+  font-size: 2rem;
+}
+
+/* Tệp mất / không tải được - nói thẳng thay vì hiện ảnh vỡ. */
+.cde-preview__notice.is-warning {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+  font-weight: 500;
+}
+
+.cde-preview__dwg .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--erp-touch-target);
+}
+
+.cde-preview__foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* Bảng tính - lưới kiểu Excel, tiêu đề cột + số dòng dính khi cuộn. */
+.cde-preview--sheet {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cde-preview__sheets {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+  padding: 6px 8px 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+.cde-preview__sheet {
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: var(--erp-radius-sm) var(--erp-radius-sm) 0 0;
+  background: transparent;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cde-preview__sheet:hover {
+  background: var(--erp-surface-hover);
+}
+
+.cde-preview__sheet.is-active {
+  border-color: var(--erp-border);
+  background: var(--erp-surface);
+  box-shadow: inset 0 2px 0 var(--erp-action-secondary);
+  color: var(--erp-text-primary);
+}
+
+.cde-preview__sheet:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+.cde-preview__grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  background: var(--erp-surface);
+}
+
+.cde-preview__empty {
+  padding: 24px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.cde-preview__table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+}
+
+.cde-preview__table th,
+.cde-preview__table td {
+  max-width: 280px;
+  padding: 3px 6px;
+  border-right: 1px solid var(--erp-border);
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: top;
+  white-space: pre-wrap;
+}
+
+.cde-preview__table td.is-num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.cde-preview__table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-weight: 500;
+  text-align: center;
+}
+
+.cde-preview__table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 36px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-weight: 400;
+  text-align: right;
+}
+
+.cde-preview__table thead th:first-child {
+  left: 0;
+  z-index: 3;
+}
+
+/* Word / chữ thuần - trang đọc được, giới hạn bề ngang dòng. */
+.cde-preview--page {
+  background: var(--erp-surface);
+}
+
+.cde-preview__doc,
+.cde-preview__text {
+  padding: 16px 20px;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.cde-preview.is-expanded .cde-preview__doc,
+.cde-preview.is-expanded .cde-preview__text {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.cde-preview__doc p,
+.cde-preview__doc li {
+  margin: 0 0 6px;
+  white-space: pre-wrap;
+}
+
+.cde-preview__doc ul {
+  margin: 0 0 8px;
+  padding-left: 20px;
+}
+
+.cde-preview__doc h3,
+.cde-preview__doc h4,
+.cde-preview__doc h5,
+.cde-preview__doc h6 {
+  margin: 12px 0 6px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.cde-preview__doc h3 {
+  font-size: 1.125rem;
+}
+
+.cde-preview__doc h4 {
+  font-size: 1rem;
+}
+
+.cde-preview__doc h5,
+.cde-preview__doc h6 {
+  font-size: 0.875rem;
+}
+
+.cde-preview__gap {
+  height: 6px;
+}
+
+.cde-preview__doc-table {
+  margin: 8px 0 12px;
+  overflow-x: auto;
+}
+
+.cde-preview__doc-table table {
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.cde-preview__doc-table td {
+  padding: 4px 8px;
+  border: 1px solid var(--erp-border);
+  vertical-align: top;
+  white-space: pre-line;
+}
+
+.cde-preview__text {
+  margin: 0;
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cde-zoom .modal-body {
+  padding: 12px 16px 16px;
+}
+
+.cde-current__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.cde-current__file {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.cde-current__file > .bi {
+  flex: 0 0 auto;
+  color: var(--erp-text-secondary);
+  font-size: 1.25rem;
+}
+
+.cde-current__name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.cde-current__meta {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.cde-current__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--erp-action-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cde-current__back:hover {
+  text-decoration: underline;
+}
+
+.cde-current__back:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.cde-current__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.cde-current__actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cde-current__drop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px dashed var(--erp-action-secondary);
+  border-radius: inherit;
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ---- Xử lý AI (lưu trước, OCR sau) ----------------------------------- */
+
+.cde-ai__state {
+  margin-left: auto;
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.cde-ai__state.is-running {
+  color: var(--erp-text-secondary);
+}
+
+.cde-ai__state.is-completed {
+  background: var(--erp-intelligence-soft);
+  color: var(--erp-intelligence);
+}
+
+.cde-ai__state.is-failed {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.cde-ai__meta {
+  margin: 0 0 10px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.cde-ai__error {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 10px;
+  color: var(--erp-danger);
+  font-size: 0.8125rem;
+}
+
+.cde-ai__suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-intelligence-soft);
+  font-size: 0.8125rem;
+}
+
+.cde-ai__facts {
+  margin: 12px 0;
+}
+
+.cde-ai__action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cde-ai__run {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---- Thông tin hồ sơ -------------------------------------------------- */
+
+.cde-quick {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cde-quick__label {
+  margin-bottom: 4px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.cde-props {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.cde-props__row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.cde-props__row dt {
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.cde-props__row dd {
+  margin: 0;
+  min-width: 0;
+  font-size: 0.875rem;
+}
+
+/* Ô trống gom một dòng - biết hồ sơ thiếu gì mà không phải đọc 7 dòng "—". */
+.cde-props__empty {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.cde-props__empty strong {
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.cde-props__empty .bi {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+/* ---- Phiên bản -------------------------------------------------------- */
+
+.cde-drawer__addver {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cde-drawer__addver .form-control {
+  flex: 1 1 auto;
+}
+
+.cde-drawer__addver .btn {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+}
+
+.cde-versions {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  list-style: none;
+}
+
+.cde-versions:empty {
+  display: none;
+}
+
+.cde-versions__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  transition: background-color 150ms ease;
+}
+
+.cde-versions__item + .cde-versions__item {
+  border-top: 1px solid var(--erp-border);
+}
+
+.cde-versions__item:hover {
+  background: var(--erp-surface-hover);
+}
+
+.cde-versions__tag {
+  flex: 0 0 52px;
+  padding: 2px 0;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Bản mới nhất là thứ người dùng cần 9 lần trên 10 - đánh dấu rõ. */
+.cde-versions__item.is-latest .cde-versions__tag {
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+}
+
+.cde-versions__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cde-versions__file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.875rem;
+}
+
+.cde-versions__now {
+  flex: 0 0 auto;
+  padding: 0 6px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+
+.cde-versions__meta {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-versions__lost {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cde-versions__dup {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  color: var(--erp-warning);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.cde-versions__note {
+  margin-top: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.cde-versions__get {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-secondary);
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.cde-versions__get:hover {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+}
+
+/* Phiên bản đang hiện ở khung xem trước. */
+.cde-versions__get.is-active {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.cde-versions__get:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.cde-versions__more.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-left: 0;
+}
+
+/* ---- Chân ngăn: luôn thấy, không phải cuộn qua 21 phiên bản ---------- */
+
+.cde-drawer__foot {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid var(--erp-border);
+  background: var(--erp-surface);
+}
+
+.cde-drawer__foot .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Xoá đứng tách về phải - xa nút hay bấm, khó bấm nhầm. `ConfirmAction` bọc
+   nút trong một `span`, nên đẩy phần tử con cuối chứ không đẩy `.btn`. */
+.cde-drawer__foot > :last-child {
+  margin-left: auto;
+}
+
+@media (max-width: 576px) {
+  .cde-drawer__head.offcanvas-header,
+  .cde-drawer__body.offcanvas-body,
+  .cde-drawer__foot {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .cde-current__bar {
+    flex-wrap: wrap;
+  }
+
+  .cde-props__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .cde-drawer__addver {
+    flex-wrap: wrap;
+  }
+
+  .cde-drawer__addver .btn {
+    min-height: var(--erp-touch-target);
+  }
+
+  /* ---- Đầu ngăn: tiêu đề dài 3 dòng là tối đa, phần còn lại để cho tệp ---- */
+  .cde-drawer__head.offcanvas-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .cde-drawer__head .btn-close {
+    flex: 0 0 auto;
+    width: var(--erp-touch-target);
+    height: var(--erp-touch-target);
+    margin: -10px -12px 0 0;
+    padding: 0;
+  }
+
+  .cde-drawer__title {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 1.125rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* "V7 · 7 phiên bản" đã có ở thanh tệp và đầu mục Phiên bản; trên điện
+     thoại nó chỉ đẩy dãy chip xuống hàng hai của một đầu ngăn đứng yên. */
+  .cde-drawer__chip {
+    display: none;
+  }
+
+  .cde-drawer__body.offcanvas-body {
+    padding-top: 12px;
+  }
+
+  /* Khung xem trước thấp hơn: trên máy 844px, 380px là gần nửa màn. Muốn xem
+     kỹ thì "Phóng to" mở toàn màn hình. */
+  .cde-preview {
+    max-height: 300px;
+  }
+
+  /* ---- Thanh tệp: bốn nút chia đều một hàng, cao đủ chạm ------------------ */
+  .cde-current__bar {
+    gap: 10px;
+  }
+
+  .cde-current__file {
+    flex-basis: 100%;
+  }
+
+  .cde-current__actions {
+    display: grid;
+    flex: 1 1 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .cde-current__actions .btn {
+    justify-content: center;
+    min-height: var(--erp-touch-target);
+  }
+
+  /* ---- Thông tin: Trạng thái | Vùng CDE cạnh nhau, ô chọn cao đủ chạm ----- */
+  .cde-quick {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .cde-quick .form-select,
+  .cde-props .form-select {
+    min-height: var(--erp-touch-target);
+    font-size: 1rem;
+  }
+
+  .cde-props__row dt {
+    font-size: 0.75rem;
+  }
+
+  /* ---- Thêm phiên bản: ô ghi chú rồi nút trải hết bề ngang --------------- */
+  .cde-drawer__addver .form-control {
+    min-height: var(--erp-touch-target);
+    font-size: 1rem;
+  }
+
+  .cde-drawer__addver .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  /* ---- Lịch sử phiên bản: tên tệp được trọn một dòng ---------------------
+     Nhãn "Hiện hành" bỏ đi: thẻ V của bản mới nhất đã tô đặc (`is-latest`).
+     Tên tệp trước đây chỉ còn "bv-kc-..." vì nhãn đó + hai nút 32px. */
+  .cde-versions__item {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .cde-versions__tag {
+    flex-basis: 40px;
+  }
+
+  .cde-versions__now {
+    display: none;
+  }
+
+  .cde-versions__get {
+    width: 40px;
+    height: 40px;
+    margin-block: -4px;
+  }
+
+  .cde-versions__more.btn {
+    min-height: var(--erp-touch-target);
+  }
+
+  /* ---- Chân ngăn: nút cao đủ chạm, chừa vùng thanh home của iPhone ------- */
+  .cde-drawer__foot {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cde-drawer__foot .btn {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+/* ==========================================================================
+ * Form tạo hồ sơ
+ * ========================================================================== */
+
+.cde-back {
+  padding: 0 6px;
+  color: var(--erp-text-secondary);
+}
+
+.cde-lead {
+  max-width: 78ch;
+  margin-bottom: 12px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.875rem;
+}
+
+.cde-card {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.cde-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cde-card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.cde-required {
+  color: var(--erp-danger);
+}
+
+.cde-field-error {
+  margin-top: 4px;
+  color: var(--erp-danger);
+  font-size: 0.75rem;
+}
+
+.cde-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--erp-danger);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+  font-size: 0.875rem;
+}
+
+/* `display: grid` ở trên đè thuộc tính `hidden` - khối gập trên điện thoại. */
+.cde-card__grid[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+ * Form tạo hồ sơ trên điện thoại (≤576px)
+ *
+ * Thứ tự theo VIỆC: thêm tệp → soát từng tờ → lưu. Bản trước để bảng chứng
+ * từ nằm dưới ~1.500px (ghi chú, 7 ô thông tin chung, checklist) và bảng 8 cột
+ * bóp ô chọn loại còn đúng chữ "Hợp".
+ *
+ * Ô nhập để cỡ chữ 16px: iOS Safari tự phóng to trang khi chạm vào ô nhỏ hơn.
+ * ========================================================================== */
+
+@media (max-width: 576px) {
+  /* ---- Thanh công cụ dính đỉnh: nút Lưu luôn trong tầm tay -------------- */
+  .cde-create > .erp-page-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    flex-wrap: nowrap;
+    padding-block: 4px 8px;
+    background: var(--erp-bg);
+  }
+
+  .cde-create .erp-page-toolbar__left {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .cde-create .erp-page-toolbar__right {
+    flex: 0 0 auto;
+  }
+
+  .cde-create .erp-page-toolbar__title {
+    overflow: hidden;
+    font-size: 1.125rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cde-create .erp-page-toolbar .btn {
+    min-height: var(--erp-touch-target);
+  }
+
+  .cde-create .cde-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--erp-touch-target);
+    margin-inline-start: -8px;
+  }
+
+  /* Nút phụ chỉ còn icon (có `aria-label`); nút chính giữ chữ. */
+  .cde-create .cde-btn-text {
+    display: none;
+  }
+
+  .cde-create .erp-page-toolbar__right .btn:has(.cde-btn-text),
+  .cde-create .doc-panel__toolbar-actions .btn:has(.cde-btn-text) {
+    justify-content: center;
+    min-width: var(--erp-touch-target);
+    padding-inline: 0;
+  }
+
+  /* Ghi chú dài 3 dòng — ô trống của bảng đã nói đúng điều đó. */
+  .cde-create .cde-lead {
+    display: none;
+  }
+
+  .cde-create .form-control,
+  .cde-create .form-select {
+    min-height: var(--erp-touch-target);
+    font-size: 1rem;
+  }
+
+  /* ---- Thông tin chung gập thành một dòng tóm tắt ------------------------ */
+  .cde-create .cde-card {
+    margin-bottom: 12px;
+    padding: 0;
+  }
+
+  .cde-card__toggle {
+    width: 100%;
+    min-height: var(--erp-touch-target);
+    margin: 0;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: var(--erp-radius-lg);
+    background: none;
+    text-align: start;
+  }
+
+  .cde-card__toggle:focus-visible {
+    outline: 2px solid var(--erp-focus-ring);
+    outline-offset: -2px;
+  }
+
+  .cde-card__summary {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-inline-start: auto;
+    color: var(--erp-text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .cde-create .cde-card__grid {
+    padding: 0 14px 14px;
+  }
+
+  /* ---- Bảng chứng từ lên TRƯỚC checklist -------------------------------- */
+  .cde-create .doc-panel__main {
+    order: -1;
+  }
+
+  .cde-create .doc-panel__toolbar {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .cde-create .doc-panel__toolbar-actions {
+    display: flex;
+    flex: 1 1 100%;
+    gap: 8px;
+    margin-inline-start: 0;
+  }
+
+  .cde-create .doc-panel__toolbar-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: var(--erp-touch-target);
+  }
+
+  .cde-create .doc-panel__toolbar-actions .btn:first-child {
+    flex: 1 1 auto;
+  }
+
+  /* Có dòng rồi thì bỏ khung cuộn 380px: trang tự cuộn, mỗi dòng là một thẻ. */
+  .cde-create .doc-panel__table-wrap:has(.doc-panel__table) {
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  /* ---- Mỗi dòng chứng từ thành một thẻ -----------------------------------
+       [1] [Loại chứng từ ▾………………………]
+           tên tệp · cỡ
+           [Tiêu đề…………………………………]
+           Số / Ký hiệu      Ngày chứng từ
+           Hiệu lực [từ ngày] [đến ngày]
+           [trạng thái]          [Tạo] [🗑]                                  */
+  .cde-create .doc-panel__table,
+  .cde-create .doc-panel__table tbody {
+    display: block;
+  }
+
+  .cde-create .doc-panel__table thead {
+    display: none;
+  }
+
+  .cde-create .doc-panel__table tbody tr {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'idx type type'
+      '. title title'
+      '. number date'
+      '. valid valid'
+      '. status act';
+    gap: 10px;
+    margin-bottom: 8px;
+    padding: 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-lg);
+    background: var(--erp-surface);
+  }
+
+  .cde-create .doc-panel__table tbody td {
+    display: block;
+    width: auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    text-align: start;
+  }
+
+  .cde-create .doc-panel__table td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--erp-text-tertiary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  /* Số / ngày chỉ để đối chiếu (AI đọc ra, thường trống lúc mới tải) — nhãn
+     nằm cùng dòng với giá trị cho thẻ bớt một hàng. */
+  .cde-create .doc-panel__table td.doc-panel__col-number::before,
+  .cde-create .doc-panel__table td.doc-panel__col-date::before {
+    display: inline;
+    margin: 0 4px 0 0;
+  }
+
+  .cde-create .doc-panel__table td:nth-child(1) {
+    grid-area: idx;
+    padding-top: 12px;
+    font-weight: 600;
+  }
+
+  .cde-create .doc-panel__table td:nth-child(2) {
+    grid-area: type;
+  }
+
+  .cde-create .doc-panel__table td:nth-child(3) {
+    grid-area: title;
+  }
+
+  .cde-create .doc-panel__table .doc-panel__col-number {
+    grid-area: number;
+  }
+
+  .cde-create .doc-panel__table .doc-panel__col-date {
+    grid-area: date;
+  }
+
+  .cde-create .doc-panel__table .doc-panel__col-valid {
+    grid-area: valid;
+  }
+
+  .cde-create .doc-panel__table .doc-panel__col-status {
+    grid-area: status;
+    align-self: center;
+  }
+
+  .cde-create .doc-panel__table .doc-panel__col-act {
+    display: flex;
+    grid-area: act;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .cde-create .doc-panel__fname {
+    margin-top: 4px;
+    font-size: 0.75rem;
+  }
+
+  .cde-create .doc-panel__pick {
+    min-height: 36px;
+    margin-top: 6px;
+    padding-inline: 12px;
+  }
+
+  .cde-create .doc-panel__valid {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .cde-create .doc-panel__date {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 40px;
+    font-size: 1rem;
+  }
+
+  .cde-create .doc-panel__act,
+  .cde-create .doc-panel__remove {
+    height: 40px;
+  }
+
+  .cde-create .doc-panel__act {
+    padding-inline: 12px;
+    font-size: 0.8125rem;
+  }
+
+  .cde-create .doc-panel__remove {
+    width: 40px;
+  }
+}
+
+/* Khung xương của danh sách phiên bản, khi bản đầy đủ còn đang về. */
+.cde-versions__loading {
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+/* ==========================================================================
+ * Chip tình trạng hiệu lực (cột "Hiệu lực" + trang Bộ hồ sơ)
+ *
+ * Ba màu ngữ nghĩa, TÁCH khỏi màu nhấn của giao diện: "sắp hết hạn" phải đọc
+ * được ngay ở tốc độ lướt mắt, không phụ thuộc người dùng có nhớ quy ước màu
+ * của hệ thống hay không.
+ * ========================================================================== */
+
+.cde-validity {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cde-validity__hint {
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.cde-validity--valid {
+  background: var(--erp-success-soft);
+  color: var(--erp-success);
+}
+
+.cde-validity--expiring {
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+}
+
+.cde-validity--expired {
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+.cde-validity--pending {
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.cde-validity--none {
+  color: var(--erp-text-tertiary);
+}
+
+/* ==========================================================================
+ * Bảng đối chiếu "hoàn thành theo chứng từ" (CdeFulfillmentModal) và danh
+ * sách thay đổi của loại khác đã có (CdeChangesModal).
+ * ========================================================================== */
+
+.cde-fulfill {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cde-fulfill__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.cde-fulfill__side {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--erp-radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cde-fulfill__side.is-sale {
+  background: var(--erp-info-soft);
+  color: var(--erp-info);
+}
+
+.cde-fulfill__side.is-purchase {
+  background: var(--erp-construction-soft);
+  color: var(--erp-construction);
+}
+
+.cde-fulfill__record {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+a.cde-fulfill__record:hover {
+  color: var(--erp-brand);
+}
+
+.cde-fulfill__record.is-new {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-fulfill__record-kind {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-fulfill__state {
+  padding: 1px 8px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-neutral-soft);
+  color: var(--erp-neutral);
+  font-size: 0.75rem;
+}
+
+.cde-fulfill__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.cde-fulfill__alert {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+
+/* Bảng dài thì cuộn trong khung riêng, đầu bảng dính trên. */
+.cde-fulfill__table-wrap {
+  max-height: 52vh;
+  overflow: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+.cde-fulfill__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+}
+
+.cde-fulfill__table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.cde-fulfill__table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--erp-border);
+  vertical-align: middle;
+}
+
+.cde-fulfill__table tr:last-child td {
+  border-bottom: 0;
+}
+
+.cde-fulfill__table tr.is-service td {
+  background: var(--erp-bg);
+  color: var(--erp-text-tertiary);
+}
+
+.cde-fulfill__col-idx {
+  width: 36px;
+  color: var(--erp-text-tertiary);
+  text-align: center !important;
+}
+
+.cde-fulfill__col-unit {
+  width: 72px;
+}
+
+.cde-fulfill__col-num {
+  width: 104px;
+  text-align: right !important;
+}
+
+.cde-fulfill__col-qty {
+  width: 132px;
+}
+
+.cde-fulfill__col-status {
+  width: 120px;
+}
+
+.cde-fulfill__name {
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+.cde-fulfill__sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-fulfill__sub .is-warning {
+  color: var(--erp-warning);
+}
+
+.cde-fulfill__input {
+  text-align: right;
+}
+
+.cde-fulfill__muted {
+  color: var(--erp-text-tertiary);
+  font-style: italic;
+}
+
+.cde-fulfill__extras {
+  padding: 8px 10px;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-warning-soft);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.cde-fulfill__warnings {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--erp-warning);
+  font-size: 0.8125rem;
+}
+
+.cde-fulfill__warnings li + li {
+  margin-top: 2px;
+}
+
+.cde-fulfill__field {
+  max-width: 520px;
+  font-size: 0.875rem;
+}
+
+.cde-fulfill__summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.cde-fulfill__summary-title {
+  margin-bottom: 4px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cde-fulfill__steps ol {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+}
+
+.cde-fulfill__amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 180px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.cde-fulfill__amount strong {
+  color: var(--erp-text-primary);
+  font-size: 1.25rem;
+}
+
+.cde-fulfill__amount small {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-fulfill__result-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 6px;
+}
+
+.cde-fulfill__irreversible {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-changes__label {
+  width: 180px;
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.cde-changes__current {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-changes__proposed {
+  color: var(--erp-text-primary);
+}
+
+@media (max-width: 767.98px) {
+  .cde-fulfill__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .cde-fulfill__amount {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   Nạp bản vẽ để lập dự toán (mở từ màn dự toán, `?returnTo=/quantity/estimate`)
+   và gợi ý gom thư mục vừa nạp thành một bộ hồ sơ.
+   ========================================================================== */
+
+.cde-estimate-bar,
+.cde-folder-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  font-size: 0.875rem;
+}
+
+.cde-estimate-bar {
+  border-color: var(--erp-intelligence);
+  background: var(--erp-intelligence-soft);
+}
+
+.cde-estimate-bar > .bi {
+  color: var(--erp-intelligence);
+  font-size: 1.125rem;
+}
+
+.cde-estimate-bar__text {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--erp-text-secondary);
+}
+
+.cde-estimate-bar__text strong {
+  color: var(--erp-text-primary);
+}
+
+.cde-estimate-bar__text b {
+  color: var(--erp-warning);
+}
+
+.cde-estimate-bar .form-check,
+.cde-folder-bar .form-check {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.cde-folder-bar > .bi {
+  color: var(--erp-construction);
+  font-size: 1.125rem;
+}
+
+.cde-folder-bar__name {
+  flex: 1 1 240px;
+  max-width: 420px;
+}
+
+.cde-folder-bar__hint {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+ * Kiểm tra trước khi tạo / đối soát chứng từ thanh toán (CdeMatchModal).
+ * Dùng lại khung `.cde-fulfill__*` của bảng đối chiếu kho — hai màn cùng một
+ * việc "so chứng từ với ERP rồi xác nhận" thì phải trông như một.
+ * ========================================================================== */
+
+.cde-match__ocr {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-intelligence-soft);
+}
+
+.cde-match__ocr-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-intelligence);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.cde-match__ocr-content {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.cde-match__exact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.cde-match__exact .btn-link {
+  padding: 0;
+}
+
+.cde-match__hint {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.cde-match__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 34vh;
+  overflow: auto;
+}
+
+.cde-match__card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  font-size: 0.8125rem;
+  text-align: left;
+}
+
+.cde-match__card:hover:not(:disabled) {
+  background: var(--erp-surface-hover);
+}
+
+.cde-match__card:focus-visible {
+  outline: 2px solid var(--erp-brand);
+  outline-offset: 1px;
+}
+
+/* Viền đậm, KHÔNG tô nền brand-soft: brand là đỏ, nền đỏ nhạt đọc thành "lệch". */
+.cde-match__card.is-active {
+  border-color: var(--erp-brand);
+  box-shadow: inset 0 0 0 1px var(--erp-brand);
+  background: var(--erp-surface-secondary);
+}
+
+.cde-match__card.is-closed {
+  color: var(--erp-text-tertiary);
+}
+
+.cde-match__card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.cde-match__card-head > .bi {
+  color: var(--erp-brand);
+}
+
+.cde-match__score {
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+}
+
+.cde-match__amount {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.cde-match__card-title {
+  color: var(--erp-text-secondary);
+}
+
+.cde-match__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cde-match__col-label {
+  width: 160px;
+  color: var(--erp-text-secondary);
+  font-weight: 500;
+}
+
+.cde-match__step-wait {
+  color: var(--erp-warning);
+}
+
+.cde-fulfill__amount .cde-match__diff {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+/* Còn lại của phiếu gốc sau lần cân đối — con số kế toán cần nhìn nhất. */
+.cde-fulfill__amount .cde-match__after {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+/* `.alert` là flex hàng ngang (feedback.css) — thân cảnh báo phải là MỘT cột,
+   không thì ô tích bị đẩy sang cạnh đoạn chữ. */
+.cde-match__alert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cde-match__ack {
+  margin: 0;
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+.cde-match__records {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cde-match__records li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Nút "Bổ sung thông tin" dạt về cuối dòng bản ghi. */
+.cde-match__supplement {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  .cde-match__amount {
+    margin-left: 0;
+  }
+
+  .cde-match__col-label {
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+ * Ô tiêu đề của bảng tài liệu — dòng chỉ còn hai cỡ chiều cao
+ *
+ * `erp-clamp-*` trên tiêu đề / tên tệp vốn KHÔNG chạy: `.cde-title__text` và
+ * `.cde-title__meta` khai `display: block` sau nó, đè mất `-webkit-box` mà
+ * line-clamp cần. Hệ quả là tiêu đề dài xuống 3–4 dòng, dòng cao thấp lộn xộn
+ * và mắt không quét dọc được. Trả lại `-webkit-box`: tiêu đề tối đa HAI dòng
+ * (tên hồ sơ tiếng Việt dài, một dòng thì cụt), tên tệp một dòng; phần bị cắt
+ * đọc trọn ở tooltip (`title`) và trong ngăn chi tiết.
+ *
+ * Kèm một SÀN bề rộng: cột Tiêu đề là cột duy nhất không khai bề rộng nên nhận
+ * phần thừa — bằng 0 khi màn hẹp. Thiếu chỗ thì bảng cuộn ngang, tên vẫn đọc được.
+ * ========================================================================== */
+
+.cde-title {
+  /* <button> co theo nội dung dù là flex — phải bảo nó lấp hết ô, nếu không
+     dòng tên tệp bị cắt theo bề rộng của TIÊU ĐỀ chứ không theo bề rộng cột. */
+  width: 100%;
+  min-width: 240px;
+}
+
+/*
+ * Khối chữ bên phải biểu tượng phải ĂN HẾT phần còn lại của nút.
+ *
+ * Chọn theo vị trí (`> span` không phải ô biểu tượng) chứ không theo một class
+ * riêng: ba màn dùng chung ô này (bảng tài liệu, danh sách bộ hồ sơ, trang phiên
+ * bản) bọc chữ trong một <span> trần. Để nó co theo nội dung thì dòng phụ bên
+ * trong (`width: 0; min-width: 100%`) tính ra đúng 0px — chữ biến mất, chỉ còn
+ * biểu tượng. Đã xảy ra thật ở danh sách bộ hồ sơ lúc mới thêm luật cắt một dòng.
+ */
+.cde-title > span:not(.cde-title__icon) {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cde-title__text.erp-clamp-2 {
+  display: -webkit-box;
+  /* Tiêu đề lấy từ tên tệp kiểu `Ho_so_FINAL_2027` không có dấu cách để ngắt. */
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Một dòng thì cắt bằng `text-overflow`, KHÔNG bằng line-clamp: line-clamp ngắt
+ * theo từ, nên tên tệp không dấu cách (`Ho_so_FINAL_2027.docx`) bị đẩy nguyên
+ * khối xuống dòng hai rồi cắt mất — dòng phụ chỉ còn "DOC-… · 41 KB · …".
+ */
+.cde-title__text.erp-clamp-1,
+.cde-title__meta.erp-clamp-1,
+.cde-title__folder.erp-clamp-1 {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /*
+   * `width: 0` + `min-width: 100%`: dòng không-xuống-dòng KHÔNG được góp bề
+   * rộng nội dung của nó vào cột. Thiếu cặp này thì bảng (auto layout) nới cột
+   * Tiêu đề theo tên tệp dài nhất và đẩy cột tác vụ ra ngoài mép phải — phần
+   * trăm trong `min-width` tính là 0 lúc đo cột, rồi mới giãn đủ 100% lúc vẽ.
+   */
+  width: 0;
+  min-width: 100%;
+}
+
+/* Dòng thư mục thụt 40px nên "đủ 100%" của nó phải trừ đi đúng khoản đó. */
+.cde-title__folder.erp-clamp-1 {
+  min-width: calc(100% - 40px);
+}
+
+/* Mã tài liệu và nhãn loại không bao giờ được gãy đôi. */
+.cde-code,
+.cde-type {
+  white-space: nowrap;
+}
+
+/* Mã tài liệu nhập vào dòng phụ (bảng gọn của trình duyệt thư mục). */
+.cde-title__code {
+  font-family: var(--erp-font-mono, monospace);
+}
+
+/* Thư mục chứa tài liệu, in dưới tiêu đề ở các bảng PHẲNG (lọc, danh sách CDE).
+   Thụt 40px = ô biểu tượng (30) + khe (10) của `.cde-title`, để thẳng cột với tiêu đề. */
+.cde-title__folder {
+  display: block;
+  max-width: 100%;
+  margin-inline-start: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  text-align: start;
+}
+
+/* "Mở vị trí tệp": bấm được thì mang màu liên kết. */
+.cde-title__folder.is-link {
+  color: var(--erp-action-secondary);
+}
+
+.cde-title__folder.is-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+ * Trình duyệt thư mục (`CdeFolderBrowser`) — cây bên trái, nội dung bên phải
+ *
+ * HAI MẶT PHẲNG, không phải năm mảnh rời. Cây là một thẻ; mọi thứ bên phải
+ * (thanh đường dẫn, thư mục con, bảng tệp) nằm trong MỘT thẻ thứ hai, ngăn nhau
+ * bằng đường kẻ. Bản đầu để thanh đường dẫn, từng ô thư mục và bảng mỗi thứ một
+ * khung riêng trên nền trang — ba thứ lơ lửng không ai nhóm lại, nhìn không ra
+ * "đây là nội dung của một thư mục".
+ *
+ * Khối này THAY chỗ của bảng trong khung `erp-list-page`, nên nó phải tự nối
+ * tiếp chuỗi flex: ăn hết chiều cao còn lại, rồi cây và bảng mỗi bên TỰ CUỘN.
+ * Thiếu `min-height: 0` ở bất kỳ mắt xích nào là bảng cao bằng số dòng, tràn
+ * khỏi khung và phần thừa bị cắt không có thanh cuộn.
+ *
+ * Tiền tố `cde-fb` riêng: `.erp-count`, `.breadcrumb` đều đã có nghĩa khác.
+ * ========================================================================== */
+
+.erp-list-page > .cde-fb {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.cde-fb {
+  display: flex;
+  gap: 12px;
+  min-height: 0;
+}
+
+.cde-fb__tree,
+.cde-fb__main {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.cde-fb__tree {
+  flex: 0 0 248px;
+  min-height: 0;
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.cde-fb__branch {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Dải nền chạy hết bề ngang cây; thụt theo cấp bằng biến do component đặt. */
+.cde-fb__node {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  margin-block: 1px;
+  padding-inline-start: calc(var(--cde-fb-depth, 0) * 16px);
+  border-radius: var(--erp-radius-md);
+  transition: background-color 0.15s ease;
+}
+
+.cde-fb__node:hover {
+  background: var(--erp-surface-hover);
+}
+
+.cde-fb__node.is-current {
+  background: var(--erp-action-secondary-soft);
+}
+
+/* Đích không hợp lệ trong hộp "Chuyển đến…" (chính thư mục đang chuyển + con của nó). */
+.cde-fb__node.is-disabled {
+  opacity: 0.45;
+}
+
+.cde-fb__node.is-disabled:hover {
+  background: none;
+}
+
+/* Ô mũi tên giữ chỗ cả khi thư mục không có con — tên các dòng cùng cấp thẳng hàng. */
+.cde-fb__twist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: none;
+  color: var(--erp-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+button.cde-fb__twist:hover {
+  color: var(--erp-text-primary);
+}
+
+.cde-fb__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 32px;
+  padding: 0 8px 0 2px;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: none;
+  color: var(--erp-text-primary);
+  font-size: 0.875rem;
+  text-align: start;
+}
+
+/* Dòng gốc không có ô mũi tên. */
+.cde-fb__tree > .cde-fb__node > .cde-fb__label {
+  padding-inline-start: 8px;
+  font-weight: 600;
+}
+
+.cde-fb__label > .bi {
+  flex: 0 0 auto;
+  color: var(--erp-construction);
+}
+
+.cde-fb__name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Đang chọn = nền + chữ đậm + màu, không chỉ đổi màu. */
+.cde-fb__node.is-current .cde-fb__label {
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.cde-fb__count {
+  flex: 0 0 auto;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* Khung nội dung: thanh đường dẫn / thư mục con / bảng tệp xếp dọc, ngăn bằng kẻ. */
+.cde-fb__main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cde-fb__bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/* Nút biểu tượng của thanh (ẩn cây, lên một cấp): lặng, chỉ hiện nền khi rê. */
+.cde-fb__tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-md);
+  background: none;
+  color: var(--erp-text-secondary);
+  transition: background-color 0.15s ease;
+}
+
+.cde-fb__tool:not(:disabled):hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.cde-fb__tool:disabled {
+  color: var(--erp-text-tertiary);
+  opacity: 0.45;
+}
+
+.cde-fb__crumbs {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-inline-start: 4px;
+}
+
+.cde-fb__crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.cde-fb__crumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Dấu ngăn do CSS sinh — trình đọc màn hình không đọc "gạch chéo" giữa các cấp. */
+.cde-fb__crumbs li + li::before {
+  content: '/';
+  margin: 0 2px;
+  color: var(--erp-text-tertiary);
+}
+
+.cde-fb__crumbs button,
+.cde-fb__crumbs span {
+  padding: 4px 6px;
+  border: 0;
+  border-radius: var(--erp-radius-sm);
+  background: none;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.cde-fb__crumbs button {
+  color: var(--erp-text-secondary);
+}
+
+.cde-fb__crumbs button:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-action-secondary);
+}
+
+.cde-fb__crumbs [aria-current] {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+/* Nút thao tác trên thư mục đang đứng (đổi tên, chuyển…). */
+.cde-fb__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 6px;
+}
+
+.cde-fb__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.cde-fb__action:not(:disabled):hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.cde-fb__action:disabled {
+  opacity: 0.45;
+}
+
+/*
+ * Nhãn khối ("Thư mục 2", "Tệp 7") — cùng kiểu chữ với tiêu đề cột của bảng
+ * (12px, đậm, hoa, giãn 0.04em) để hai nhãn và hàng tiêu đề đọc thành một họ.
+ */
+.cde-fb__section {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cde-fb__section b {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+/*
+ * Khối thư mục con: trần 40% chiều cao để thư mục có vài chục thư mục con
+ * không đẩy bảng tệp ra khỏi màn hình — quá trần thì lưới tự cuộn.
+ */
+.cde-fb__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+  min-height: 0;
+  max-height: 40%;
+  padding: 12px 16px 14px;
+  border-bottom: 1px solid var(--erp-border);
+}
+
+/* Thư mục chỉ chứa thư mục con: không có bảng bên dưới, khối được ăn hết chỗ. */
+.cde-fb__group:last-child {
+  flex: 1 1 auto;
+  max-height: none;
+  border-bottom: 0;
+}
+
+.cde-fb__folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+  align-content: start;
+  gap: 8px;
+  min-height: 0;
+  margin: -2px;
+  padding: 2px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+/* Ô thư mục: nền phụ trên mặt thẻ trắng, KHÔNG viền — thẻ lồng thẻ là thừa một lớp. */
+.cde-fb__folder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 6px 10px 6px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  text-align: start;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.cde-fb__folder:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+}
+
+.cde-fb__folder:active {
+  transform: translateY(1px);
+}
+
+.cde-fb__folder > .bi {
+  flex: 0 0 auto;
+  color: var(--erp-construction);
+  font-size: 1.25rem;
+}
+
+/* Mũi tên "đi vào": dấu hiệu ô này mở ra một cấp nữa, không phải mở một tệp. */
+.cde-fb__folder > .cde-fb__folder-go {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.cde-fb__folder-text {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.cde-fb__folder-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.cde-fb__folder-meta {
+  display: block;
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+/*
+ * Bảng tệp nằm TRONG khung nội dung: bỏ viền + bo góc riêng của nó (khung đã
+ * có), và cùng luật với `.erp-list-page > .erp-table` — bảng là thứ được giãn.
+ */
+.cde-fb__main > .erp-table {
+  flex: 1 1 auto;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.cde-fb__main .erp-table__toolbar {
+  padding: 8px 12px 8px 16px;
+}
+
+/* Dòng thấp hơn bảng thường một nấc: thư mục là nơi quét nhiều dòng nhất. */
+.cde-fb__main .table > thead th,
+.cde-fb__main .table > tbody td {
+  padding: 8px 12px;
+}
+
+.cde-fb__main .table > thead th:first-child,
+.cde-fb__main .table > tbody td:first-child {
+  padding-inline-start: 16px;
+}
+
+/*
+ * Nhãn loại dài ("Biên bản nghiệm thu") cắt bằng dấu ba chấm thay vì nới cột:
+ * cột nới ra là cột Tiêu đề co lại và cột tác vụ bị đẩy khỏi mép phải.
+ */
+.cde-fb__main .cde-type {
+  display: inline-block;
+  max-width: 124px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.cde-fb__main .cde-type > .bi {
+  margin-inline-end: 6px;
+}
+
+/* Lưới thẻ (tab tài liệu của dự án) cũng nằm trong khung. */
+.cde-fb__main > .cde-grid,
+.cde-fb__main > .cde-grid-empty {
+  margin: 12px 16px;
+}
+
+/* Thư mục chưa có gì bên trong (thường là thư mục vừa tạo). */
+.cde-fb__empty {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 200px;
+  padding: 32px 16px;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.cde-fb__empty > .bi {
+  margin-bottom: 8px;
+  color: var(--erp-text-tertiary);
+  font-size: 2rem;
+}
+
+.cde-fb__empty strong {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.cde-fb__twist:focus-visible,
+.cde-fb__label:focus-visible,
+.cde-fb__tool:focus-visible,
+.cde-fb__action:focus-visible,
+.cde-title__folder.is-link:focus-visible,
+.cde-fb__crumbs button:focus-visible,
+.cde-fb__folder:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+ * Hộp thoại thư mục (`CdeFolderDialogs`) — đặt tên, chọn thư mục đích
+ * ========================================================================== */
+
+/* Cây trong hộp chọn đích: cùng lớp với cây của trình duyệt, cao có trần. */
+.cde-fd__tree {
+  flex: none;
+  max-height: 44vh;
+}
+
+.cde-fd__new {
+  margin-top: 12px;
+}
+
+.cde-fd__dest,
+.cde-fd__hint,
+.cde-fd__warn {
+  margin: 10px 0 0;
+  font-size: 0.8125rem;
+}
+
+.cde-fd__dest {
+  color: var(--erp-text-secondary);
+}
+
+.cde-fd__dest b {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.cde-fd__hint {
+  color: var(--erp-text-tertiary);
+}
+
+/* Cảnh báo = biểu tượng + chữ, không chỉ màu. */
+.cde-fd__warn {
+  color: var(--erp-warning);
+}
+
+/* Câu nói rõ sẽ mất gì trong hộp xác nhận xoá thư mục. */
+.cde-fd__danger {
+  margin: 0;
+  color: var(--erp-danger);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+/* Nút "Xoá" trên thanh đường dẫn: đỏ ngay từ lúc chưa rê chuột. */
+.cde-fb__action--danger {
+  color: var(--erp-danger);
+}
+
+.cde-fb__action--danger:not(:disabled):hover {
+  border-color: var(--erp-danger);
+  background: var(--erp-danger-soft);
+  color: var(--erp-danger);
+}
+
+/*
+ * Điện thoại: bỏ cây. Đường dẫn + ô thư mục con đã đủ để đi lên / đi xuống, còn
+ * cây 248px ở màn 390px thì ăn hai phần ba bề ngang. Vùng bấm lên 44px.
+ */
+@media (max-width: 767.98px) {
+  /* Nút ẩn cây cũng bỏ: cây vốn không hiện ở bề ngang này. */
+  .cde-fb__tree,
+  .cde-fb__tool--tree {
+    display: none;
+  }
+
+  .cde-fb__bar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .cde-fb__tool {
+    flex-basis: 44px;
+    height: 44px;
+  }
+
+  .cde-fb__action {
+    height: 44px;
+    padding: 0 14px;
+  }
+
+  .cde-fb__crumbs button,
+  .cde-fb__crumbs span {
+    padding: 10px 6px;
+  }
+
+  .cde-fb__group {
+    padding-inline: 12px;
+  }
+
+  .cde-fb__folders {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cde-fb__node,
+  .cde-fb__tool,
+  .cde-fb__action,
+  .cde-fb__folder {
+    transition: none;
+  }
+
+  .cde-fb__folder:active {
+    transform: none;
+  }
+}

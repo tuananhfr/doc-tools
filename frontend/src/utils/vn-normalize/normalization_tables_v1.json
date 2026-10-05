@@ -1,0 +1,132 @@
+{
+  "normalization_version": 1,
+  "_comment": "Bang cau hinh DUNG CHUNG cho PHP (erpcons_dcp_normalize) va TypeScript (src/utils/vn-normalize). Ban goc nam o repo frontend; scripts/build-normalization-vectors.mjs chep sang module Drupal. Sua bang = tang normalization_version neu ket qua chuan hoa doi.",
+  "invisible": [
+    "\u00ad", "\u034f", "\u061c", "\u115f", "\u1160", "\u17b4", "\u17b5", "\u180e",
+    "\u200b", "\u200c", "\u200d", "\u200e", "\u200f",
+    "\u202a", "\u202b", "\u202c", "\u202d", "\u202e",
+    "\u2060", "\u2061", "\u2062", "\u2063", "\u2064",
+    "\u2066", "\u2067", "\u2068", "\u2069", "\u206a", "\u206b", "\u206c", "\u206d", "\u206e", "\u206f",
+    "\u3164", "\ufeff", "\uffa0"
+  ],
+  "homoglyphs": {
+    "а": "a", "е": "e", "о": "o", "р": "p", "с": "c", "у": "y",
+    "х": "x", "і": "i", "ј": "j", "ѕ": "s", "ԁ": "d", "ӏ": "l",
+    "һ": "h", "ԛ": "q", "ԝ": "w",
+    "А": "A", "В": "B", "Е": "E", "К": "K", "М": "M", "Н": "H",
+    "О": "O", "Р": "P", "С": "C", "Т": "T", "У": "Y", "Х": "X",
+    "І": "I", "Ј": "J", "Ѕ": "S",
+    "Α": "A", "Β": "B", "Ε": "E", "Ζ": "Z", "Η": "H", "Ι": "I",
+    "Κ": "K", "Μ": "M", "Ν": "N", "Ο": "O", "Ρ": "P", "Τ": "T",
+    "Υ": "Y", "Χ": "X", "ο": "o",
+    "Ð": "Đ", "Ɖ": "Đ"
+  },
+  "legal_forms": [
+    {
+      "form": "jsc",
+      "label": "Công ty cổ phần",
+      "aliases": ["cong ty co phan", "cty co phan", "cong ty cp", "cty cp", "ctcp", "joint stock company", "joint stock co", "jsc", "j s c"]
+    },
+    {
+      "form": "llc",
+      "label": "Công ty trách nhiệm hữu hạn",
+      "aliases": [
+        "cong ty trach nhiem huu han", "cty trach nhiem huu han", "trach nhiem huu han",
+        "cong ty tnhh", "cty tnhh", "tnhh",
+        "company limited", "co ltd", "limited liability company", "llc", "ltd", "limited"
+      ]
+    },
+    {
+      "form": "partnership",
+      "label": "Công ty hợp danh",
+      "aliases": ["cong ty hop danh", "cty hop danh", "partnership"]
+    },
+    {
+      "form": "private",
+      "label": "Doanh nghiệp tư nhân",
+      "aliases": ["doanh nghiep tu nhan", "dntn"]
+    },
+    {
+      "form": "coop",
+      "label": "Hợp tác xã",
+      "aliases": ["hop tac xa", "htx", "cooperative"]
+    },
+    {
+      "form": "household",
+      "label": "Hộ kinh doanh",
+      "aliases": ["ho kinh doanh", "hkd"]
+    },
+    {
+      "form": "company",
+      "label": "Công ty (chưa rõ loại hình)",
+      "aliases": ["cong ty", "cty", "company"]
+    }
+  ],
+  "legal_form_noise": ["mot thanh vien", "hai thanh vien tro len", "2 thanh vien tro len", "mtv", "2tv"],
+  "mobile_prefixes": [
+    "32", "33", "34", "35", "36", "37", "38", "39",
+    "52", "55", "56", "58", "59",
+    "70", "76", "77", "78", "79",
+    "81", "82", "83", "84", "85", "86", "87", "88", "89",
+    "90", "91", "92", "93", "94", "96", "97", "98", "99"
+  ],
+  "mobile_prefix_2018": {
+    "120": "70", "121": "79", "122": "77", "126": "76", "128": "78",
+    "123": "83", "124": "84", "125": "85", "127": "81", "129": "82",
+    "162": "32", "163": "33", "164": "34", "165": "35", "166": "36", "167": "37", "168": "38", "169": "39",
+    "186": "56", "188": "58",
+    "199": "59"
+  },
+  "landline_area_codes": [
+    "24", "28",
+    "203", "204", "205", "206", "207", "208", "209",
+    "210", "211", "212", "213", "214", "215", "216", "218", "219",
+    "220", "221", "222", "225", "226", "227", "228", "229",
+    "232", "233", "234", "235", "236", "237", "238", "239",
+    "251", "252", "254", "255", "256", "257", "258", "259",
+    "260", "261", "262", "263", "269",
+    "270", "271", "272", "273", "274", "275", "276", "277",
+    "290", "291", "292", "293", "294", "296", "297", "299"
+  ],
+  "_landline_note": "Ma vung co dinh cu -> moi (doi nam 2017). Chep tu bang cong bo cua Bo TT&TT; PHAI doi chieu lai voi Thong tu 15/2014/TT-BTTTT truoc khi dung cho du lieu that.",
+  "landline_area_2017": {
+    "4": "24", "8": "28",
+    "20": "214", "22": "212", "25": "205", "26": "206", "27": "207", "29": "216",
+    "30": "229", "31": "225", "33": "203", "36": "227", "37": "237", "38": "238", "39": "239",
+    "52": "232", "53": "233", "54": "234", "55": "255", "56": "256", "57": "257", "58": "258", "59": "269",
+    "60": "260", "61": "251", "62": "252", "63": "263", "64": "254", "66": "276", "67": "277", "68": "259",
+    "70": "270", "72": "272", "73": "273", "74": "294", "75": "275", "76": "296", "77": "297", "79": "299",
+    "230": "215", "231": "213", "240": "204", "241": "222", "280": "208", "281": "209",
+    "320": "220", "321": "221", "350": "228", "351": "226",
+    "500": "262", "501": "261", "510": "235", "511": "236",
+    "650": "274", "651": "271", "710": "292", "711": "293", "780": "290", "781": "291"
+  },
+  "generic_mailboxes": [
+    "admin", "administrator", "info", "information", "contact", "lienhe", "ketoan", "accounting", "accountant",
+    "finance", "taichinh", "sales", "sale", "kinhdoanh", "support", "hotro", "cskh", "customerservice",
+    "hr", "nhansu", "tuyendung", "recruitment", "careers", "jobs", "office", "vanphong", "hanhchinh",
+    "noreply", "no-reply", "donotreply", "billing", "invoice", "hoadon", "marketing", "mail", "email",
+    "webmaster", "postmaster", "hello", "team", "booking", "order", "orders", "muahang", "purchasing"
+  ],
+  "diameter_markers": ["ø", "φ", "ϕ", "⌀", "phi", "fi", "d"],
+  "steel_grade_prefixes": ["cb", "sd", "gr", "grade"],
+  "units": [
+    { "code": "mm", "label": "mm", "base": "m", "factor": 0.001, "aliases": ["mm", "mi li met", "milimet", "millimeter"] },
+    { "code": "cm", "label": "cm", "base": "m", "factor": 0.01, "aliases": ["cm", "xen ti met", "xentimet", "centimeter"] },
+    { "code": "m", "label": "m", "base": "m", "factor": 1, "aliases": ["m", "met", "meter", "metre", "md", "met dai"] },
+    { "code": "km", "label": "km", "base": "m", "factor": 1000, "aliases": ["km", "ki lo met", "kilomet", "kilometer"] },
+    { "code": "m2", "label": "m²", "base": "m2", "factor": 1, "aliases": ["m2", "m²", "met vuong", "sqm"] },
+    { "code": "m3", "label": "m³", "base": "m3", "factor": 1, "aliases": ["m3", "m³", "khoi", "met khoi", "cbm"] },
+    { "code": "l", "label": "lít", "base": "m3", "factor": 0.001, "aliases": ["l", "lit", "litre", "liter"] },
+    { "code": "g", "label": "g", "base": "kg", "factor": 0.001, "aliases": ["g", "gam", "gram", "gr"] },
+    { "code": "kg", "label": "kg", "base": "kg", "factor": 1, "aliases": ["kg", "ki lo", "kilo", "kilogram", "ki", "can"] },
+    { "code": "t", "label": "tấn", "base": "kg", "factor": 1000, "aliases": ["t", "tan", "ton", "tons", "tonne"] },
+    { "code": "cai", "label": "cái", "base": "cai", "factor": 1, "aliases": ["cai", "chiec", "pcs", "pc", "piece"] },
+    { "code": "bo", "label": "bộ", "base": "bo", "factor": 1, "aliases": ["bo", "set"] },
+    { "code": "cay", "label": "cây", "base": "cay", "factor": 1, "aliases": ["cay", "thanh"] },
+    { "code": "tam", "label": "tấm", "base": "tam", "factor": 1, "aliases": ["tam"] },
+    { "code": "bao", "label": "bao", "base": "bao", "factor": 1, "aliases": ["bao"] },
+    { "code": "hop", "label": "hộp", "base": "hop", "factor": 1, "aliases": ["hop", "box"] },
+    { "code": "cuon", "label": "cuộn", "base": "cuon", "factor": 1, "aliases": ["cuon", "roll"] }
+  ]
+}

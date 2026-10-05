@@ -1,0 +1,626 @@
+/*
+ * Form lap don mua hang / don ban hang (`components/order-form`).
+ *
+ * Khong viet hex o day - moi mau doc qua bien `--erp-*` de ba theme
+ * Light / Dark / Field dung chung mot component (Design System muc 12 & 15).
+ */
+
+/*
+ * ============================================================================
+ * KHUNG CHIEU CAO
+ * ============================================================================
+ * Trang KHONG cuon. Cot trai va bang hang tu cuon ben trong, con hang tong va
+ * cum nut luon nam trong tam mat - nguoi nhap don phai thay tong thanh toan
+ * doi ngay khi ho sua mot don gia, chu khong phai cuon xuong day de kiem tra.
+ *
+ * Cung ly do va cung ky thuat voi `.erp-list-page` (xem `layout/list-page.css`):
+ * `height: 100%` chu khong `min-height`, va moi cap trung gian phai co
+ * `min-height: 0` neu khong vung cuon ben trong khong biet minh cao bao nhieu.
+ */
+/*
+ * Xoa thanh cuon ngoai cua trang: form lap don tu quan chieu cao va cuon noi bo,
+ * khong de thanh cuon xuat hien o cap trang lam tran khoang xam thua o duoi.
+ */
+[data-no-scroll='true'] .erp-shell__content,
+.erp-shell__content:has(.erp-order-form) {
+  overflow: hidden !important;
+}
+
+.erp-order-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  gap: 12px;
+  color: var(--erp-text-primary);
+}
+
+.erp-order-form__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  flex-shrink: 0;
+}
+
+.erp-order-form__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--erp-text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.erp-order-form__back:hover {
+  color: var(--erp-action-secondary);
+  text-decoration: underline;
+}
+
+.erp-order-form__title {
+  margin: 0;
+}
+
+.erp-order-form__body {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* --- Cot trai: dinh danh don ----------------------------------------------- */
+
+.erp-order-form__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+/* `!important` bat buoc: `.mb-3` cua Bootstrap tu no da `!important` - thieu no
+   thi luat nay chua bao gio an va cot phu cong don margin + gap (do: 28px). */
+.erp-order-form__aside .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+/* Hai o ngay dat / ngay yeu cau nam canh nhau - mot cap thi doc theo hang
+   nhanh hon theo cot, va cot trai chi rong 300px nen vua du. */
+.erp-order-form__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.erp-order-form__scan {
+  width: 100%;
+  min-height: var(--erp-touch-target);
+}
+
+/*
+ * Truong co nhan long trong khung (`.form-floating`).
+ *
+ * Khoang cach giua cac truong do `gap` cua cot lo, nen phai go `margin-bottom`
+ * mac dinh cua `Form.Group` - neu khong moi truong thua 16px va cot trai dai
+ * them ba man hinh.
+ */
+.erp-field-floating {
+  margin-bottom: 0;
+}
+
+/*
+ * O chon ban ghi (`EntityPicker`) trong khung nhan long.
+ *
+ * Bootstrap chi biet `.form-floating > .form-control`, ma o chon boc them hai
+ * lop (`.erp-lookup` > `.erp-input-affix`) nen phai noi lai bang tay. Dung
+ * `:has()` de doc trang thai cua o nhap NAM SAU trong cay - khong co no thi
+ * nhan khong biet luc nao nen thu nho len tren.
+ */
+.form-floating > .erp-lookup {
+  width: 100%;
+}
+
+.form-floating > .erp-lookup .form-control {
+  height: calc(3.5rem + 2px);
+  padding: 1.625rem 0.75rem 0.625rem 2.25rem;
+}
+
+.form-floating:has(> .erp-lookup) > label {
+  z-index: 2;
+  padding-left: 2.25rem;
+}
+
+/* Nhan thu nho len tren thi bo thut le trai - no khong con de len icon kinh
+   lup nua, va thut them 36px o hang tren trong nhu bi lech. */
+.form-floating:has(> .erp-lookup .form-control:focus) > label,
+.form-floating:has(> .erp-lookup .form-control:not(:placeholder-shown)) > label {
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  padding-left: 0.75rem;
+}
+
+/* Ghi chu: `.form-floating > textarea` bi Bootstrap ep cung 100px, ma o ghi
+   chu cua don thuong dai hon mot dong. */
+.erp-order-form__aside .form-floating > textarea.form-control {
+  min-height: 96px;
+}
+
+/* --- O chon doi tac + nut them moi ---------------------------------------- */
+
+.erp-order-party {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  gap: 6px;
+  align-items: stretch;
+}
+
+/*
+ * Nut "+" cao BANG o nhap ben canh chu khong phai 44px mac dinh: hai phan tu
+ * canh nhau ma lech chieu cao thi mat doc thanh hai hang, va o day chung la
+ * mot hanh dong duy nhat ("chon khach hang, hoac tao khach hang moi").
+ */
+.erp-order-party__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-height: calc(3.5rem + 2px);
+}
+
+.erp-order-party__add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* --- Cot phai: bang vat tu ------------------------------------------------- */
+
+.erp-order-form__main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  overflow: hidden;
+  padding: 12px 16px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+}
+
+.erp-order-form__controls,
+.erp-order-form__toolbar,
+.erp-order-form__options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  flex-shrink: 0;
+}
+
+/* 3 ô select (Tổ chức, Kho hàng, Loại giá): chuẩn hóa kích thước đồng đều */
+.erp-order-form__controls > .mb-3 {
+  flex: 1 1 0;
+  min-width: 160px;
+  margin-bottom: 0 !important;
+}
+
+.erp-order-form__controls .form-select {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+}
+
+/* Ô tìm vật tư là thứ được giãn - người dùng gõ tìm thoải mái */
+.erp-order-form__search {
+  flex: 1 1 320px;
+  min-width: 240px;
+}
+
+.erp-order-form__search .form-label {
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+.erp-order-form__toolbar .form-select,
+.erp-order-form__options .form-select {
+  width: auto;
+  min-width: 170px;
+}
+
+/* Ô nhập trong các hàng công cụ tự quản lý khoảng cách. */
+.erp-order-form__toolbar .mb-3,
+.erp-order-form__options .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.erp-order-form__add {
+  white-space: nowrap;
+  min-height: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Cụm công tắc: 2 switch dạng cột, khớp đều chính xác chiều cao 40px của select Loại giá */
+.erp-order-form__switches {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40px;
+  min-height: 40px;
+  flex: 0 0 auto;
+  margin-inline-start: 0;
+  align-self: flex-end;
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+
+.erp-order-form__switches .mb-3 {
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.erp-order-form__switches .form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.erp-order-form__switches .form-check-input {
+  width: 28px;
+  height: 16px;
+  min-height: 16px;
+  float: none;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.erp-order-form__switches .form-check-label {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--erp-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+/*
+ * Vung cuon cua bang hang.
+ *
+ * Day la thu duy nhat duoc gian trong cot phai: hai hang cong cu o tren va
+ * hang tong o duoi giu chieu cao tu nhien, con bang hang an het cho con lai.
+ * Mot don 30 dong thi cuon o day, khong keo dai ca trang.
+ *
+ * Chuoi flex phai noi LIEN xuong tan `.erp-array-table__scroll`: cuon doc bat
+ * buoc phai xay ra o CHINH khung da cuon ngang san, neu khong tieu de cot
+ * `position: sticky` neo vao mot khung khong he cuon doc va no khong dinh.
+ */
+.erp-order-form__lines,
+.erp-order-form__lines > .erp-array-table {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.erp-order-form__lines .erp-array-table__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Tieu de cot dinh o dau vung cuon - dong thu 20 van phai biet cot nao la gi. */
+.erp-order-form__lines .erp-array-table__head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 6px 0;
+  background: var(--erp-surface);
+}
+
+/*
+ * Mot dong nhap + dong phu cua no di lien mot khoi: cach nhau 2px, con khoang
+ * cach giua HAI dong khac nhau van la 8px cua `.erp-array-table__grid`. Khong
+ * co lop nay thi dong phu cach dong nhap dung bang cach no cach dong duoi - va
+ * no se doc thanh ghi chu cua nham dong.
+ */
+.erp-order-form__lines .erp-array-table__group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* --- Trang thai lien ket vat tu cua mot dong ------------------------------- */
+
+.erp-order-line__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-order-line__link.is-linked {
+  color: var(--erp-success);
+}
+
+/* --- O so luong voi hai nut cong / tru ------------------------------------- */
+
+.erp-qty {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
+  gap: 4px;
+  align-items: center;
+}
+
+.erp-qty__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--erp-radius-round);
+  background: var(--erp-action-secondary);
+  color: var(--erp-text-on-accent);
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.erp-qty__step:hover:not(:disabled) {
+  background: var(--erp-action-secondary-hover);
+}
+
+.erp-qty__step:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.erp-qty__step:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-qty__step:disabled {
+  background: var(--erp-neutral);
+  opacity: 0.45;
+}
+
+.erp-qty__input {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Bon o tong ------------------------------------------------------------ */
+
+.erp-order-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.erp-order-totals dt {
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+}
+
+/*
+ * O tong nhin GIONG o nhap tien nhung khong phai o nhap: cung khung, cung hop
+ * don vi ben phai, khac o cho no khong co con tro text va khong nhan focus.
+ * Giu hinh dang do de mat doc mot hang lien mach voi cot "Đơn giá" ngay tren.
+ */
+.erp-order-totals dd {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  overflow: hidden;
+}
+
+.erp-order-totals__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 9px 12px;
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  overflow-x: auto;
+}
+
+.erp-order-totals__unit {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-inline-start: 1px solid var(--erp-border);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.erp-order-totals__item.is-grand .erp-order-totals__value {
+  color: var(--erp-action-secondary);
+}
+
+/* --- Cum nut cuoi trang ---------------------------------------------------- */
+
+.erp-order-form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.erp-order-form__foot .btn {
+  min-height: var(--erp-touch-target);
+  min-width: 120px;
+}
+
+/*
+ * ============================================================================
+ * MAN HINH HEP
+ * ============================================================================
+ * Duoi 1200px thi cot trai 300px + bang 8 cot khong con cung nam ngang duoc:
+ * bang bi bop den muc phai cuon ngang o moi dong. Xep hai khoi thanh MOT cot
+ * va tra viec cuon lai cho ca trang - dung mot thanh cuon van tot hon ba cai
+ * long nhau.
+ */
+@media (max-width: 1199.98px) {
+  [data-no-scroll='true'] .erp-shell__content,
+  .erp-shell__content:has(.erp-order-form) {
+    overflow-y: auto !important;
+  }
+
+  .erp-order-form {
+    height: auto;
+    overflow: visible;
+  }
+
+  .erp-order-form__body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    overflow: visible;
+  }
+
+  .erp-order-form__aside {
+    overflow: visible;
+  }
+
+  .erp-order-form__main {
+    overflow: visible;
+  }
+
+  .erp-order-form__lines .erp-array-table__scroll {
+    overflow-y: visible;
+  }
+
+  .erp-order-form__lines .erp-array-table__head {
+    position: static;
+  }
+}
+
+/*
+ * Man hinh hep: bang doi thanh the doc, moi o co nhan rieng lay tu header -
+ * dung luat cua `.erp-array-table` trong `form-kit.css`, chi khac o cho vien
+ * the phai bao CA dong phu, neu khong dong "Chưa liên kết vật tư" roi ra ngoai
+ * khung va treo lo lung giua hai the.
+ */
+@media (max-width: 767.98px) {
+  .erp-order-form__lines .erp-array-table__group {
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--erp-border);
+    border-radius: var(--erp-radius-md);
+    background: var(--erp-surface-secondary);
+  }
+
+  .erp-order-form__lines .erp-array-table__row {
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .erp-order-totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-order-form__switches {
+    margin-inline-start: 0;
+  }
+
+  .erp-order-form__foot .btn {
+    flex: 1 1 auto;
+  }
+}
+
+/*
+ * DIEN THOAI: hang nut "Ban nhap / Hoan thanh" DINH DAY vung cuon.
+ *
+ * Duoi 1200px ca trang cuon (xem tren) nen hang nut nam o CUOI form - don ba
+ * dong hang la phai cuon qua bon man hinh moi toi nut luu. `sticky` trong
+ * `.erp-shell__content` (vung cuon) giu no trong tam nhin; nen + vien tren de
+ * the dong hang cuon phia sau khong lan vao nut. Le am = dem cua vung noi dung
+ * o dien thoai (10px) de dai nen phu het be ngang.
+ */
+@media (max-width: 575.98px) {
+  .erp-order-form__foot {
+    position: sticky;
+    bottom: -10px;
+    z-index: 3;
+    flex-wrap: nowrap;
+    margin: 0 -10px -10px;
+    padding: 8px 10px 10px;
+    border-top: 1px solid var(--erp-border);
+    background: var(--erp-bg);
+  }
+
+  .erp-order-form__foot .btn {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Nut tro ly noi dung ngay tren thanh duoi - dung cho cua hang nut vua dinh
+     day, che mat nua nut "Hoan thanh". Nang no len tren hang nut. */
+  .erp-shell:has(.erp-order-form__foot) .erp-assistant-fab {
+    bottom: calc(56px + var(--erp-safe-bottom) + 12px + 64px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-qty__step {
+    transition: none;
+  }
+
+  .erp-qty__step:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+/*
+ * Form mở trong POPUP toàn màn hình (tab "Cung ứng" của khung hợp đồng —
+ * `OrderFormModal`). Thân modal là khung chiều cao của form, như
+ * `.erp-shell__content` ở dạng trang.
+ */
+.erp-order-form-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 16px 20px;
+  background: var(--erp-bg);
+}
+
+@media (max-width: 1199.98px) {
+  .erp-order-form-modal .modal-body {
+    overflow-y: auto;
+  }
+}

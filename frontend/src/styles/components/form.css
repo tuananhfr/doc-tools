@@ -1,0 +1,255 @@
+/*
+ * Form - muc 10 & 06.
+ * Input khuyen nghi 48px, Field Mode bat buoc 48px + chu 16px.
+ * Loi luon co MAU + CHU mo ta, khong bao gio chi doi mau vien.
+ */
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  margin-bottom: 6px;
+}
+
+.form-label .erp-required {
+  color: var(--erp-danger);
+  margin-inline-start: 2px;
+}
+
+.form-control,
+.form-select {
+  min-height: 40px;
+  background-color: var(--erp-surface);
+  border-color: var(--erp-border-strong);
+  color: var(--erp-text-primary);
+  border-radius: var(--erp-radius-md);
+}
+
+.form-control::placeholder {
+  color: var(--erp-text-tertiary);
+  opacity: 0.85;
+}
+
+.form-control:hover:not(:disabled),
+.form-select:hover:not(:disabled) {
+  border-color: var(--erp-action-secondary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--erp-focus-ring);
+  box-shadow: 0 0 0 2px var(--erp-action-secondary-soft);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  background-color: var(--erp-surface-secondary);
+  color: var(--erp-text-tertiary);
+}
+
+.form-control-lg,
+.form-select-lg {
+  min-height: 48px;
+  font-size: 1rem;
+}
+
+[data-theme='field'] .form-control,
+[data-theme='field'] .form-select {
+  min-height: 48px;
+  font-size: 1rem;
+  border-width: 1px;
+  border-color: var(--erp-border-strong);
+}
+
+/* Nhom input co icon dan truoc / nut dan sau. */
+.input-group-text {
+  background-color: var(--erp-surface);
+  border-color: var(--erp-border-strong);
+  color: var(--erp-text-tertiary);
+}
+
+.input-group > .form-control:focus + .input-group-text,
+.input-group:focus-within > .input-group-text {
+  border-color: var(--erp-focus-ring);
+}
+
+/* O tim kiem/nhap co icon nam BEN TRONG vien (khong dung input-group). */
+.erp-input-affix {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.erp-input-affix > .form-control {
+  padding-inline-start: 36px;
+}
+
+.erp-input-affix--suffix > .form-control {
+  padding-inline-end: 40px;
+}
+
+.erp-input-affix__prefix,
+.erp-input-affix__suffix {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  color: var(--erp-text-tertiary);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.erp-input-affix__prefix {
+  inset-inline-start: 12px;
+}
+
+.erp-input-affix__suffix {
+  inset-inline-end: 8px;
+  pointer-events: auto;
+}
+
+/* Nut hien/an mat khau, nut xoa nhanh. */
+.erp-input-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  border-radius: var(--erp-radius-sm);
+  color: var(--erp-text-tertiary);
+  cursor: pointer;
+}
+
+.erp-input-action:hover {
+  color: var(--erp-text-primary);
+  background: var(--erp-surface-hover);
+}
+
+/* O da co nut xoa rieng thi an nut xoa goc cua trinh duyet (Chrome/Safari)
+   — khong thi hien hai dau x khi focus. O search KHONG co nut rieng (sidebar,
+   header...) giu nguyen nut goc vi do la cach xoa nhanh duy nhat. */
+.erp-input-affix:has(.erp-input-action) > input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-check-input {
+  width: 1.125em;
+  height: 1.125em;
+  margin-top: 0.15em;
+  border-color: var(--erp-border-strong);
+}
+
+.form-check-input:checked {
+  background-color: var(--erp-brand);
+  border-color: var(--erp-brand);
+}
+
+.form-check-input:focus {
+  border-color: var(--erp-focus-ring);
+  box-shadow: 0 0 0 2px var(--erp-action-secondary-soft);
+}
+
+.form-check-label {
+  font-size: 0.875rem;
+  color: var(--erp-text-secondary);
+  cursor: pointer;
+}
+
+/* Trang thai loi/goi y - luon la chu, khong chi mau. */
+.form-text {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.invalid-feedback {
+  font-size: 0.75rem;
+  color: var(--erp-danger);
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: var(--erp-danger);
+  background-image: none;
+  padding-inline-end: 0.75rem;
+}
+
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  box-shadow: 0 0 0 2px var(--erp-danger-soft);
+}
+
+/* Khoang cach dong nhat giua cac truong trong mot form nghiep vu. */
+.erp-form-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.erp-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* --- Modal "Tim kiem nang cao" cua PageToolbar ---------------------------- */
+
+.erp-advanced-filter__body {
+  display: grid;
+  gap: 14px;
+}
+
+/*
+ * Bo loc dung chung (`PeriodFilters`, `PeriodRangeFilters`) von thiet ke de nam
+ * NGANG tren thanh cong cu: nhan dinh ben trai o nhap, o nhap rong co dinh.
+ * Trong modal thi moi o xep DOC va chiem tron be ngang, nen phai tra chung ve
+ * dang khoi - neu khong, o chon ngay se lech han so voi cac o select ben canh.
+ */
+.erp-advanced-filter__body .erp-filter-date {
+  display: block;
+}
+
+.erp-advanced-filter__body .erp-filter-date .form-control {
+  width: 100%;
+}
+
+.erp-advanced-filter__body .erp-filter-date__label {
+  margin-bottom: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+.erp-advanced-filter__body .erp-filter-presets {
+  flex-wrap: wrap;
+}
+
+.erp-advanced-filter__body .form-label {
+  margin-bottom: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--erp-text-secondary);
+}
+
+/* Dropdown goi y cua EntityPicker phai noi len tren modal. */
+.erp-advanced-filter__body .erp-lookup {
+  position: relative;
+  z-index: 1;
+}
+
+.erp-advanced-filter__trigger {
+  gap: 6px;
+}
+
+.erp-advanced-filter__trigger .badge {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mobile: nut loc chi con icon - xem chu thich trong `AdvancedFilter.tsx`. */
+@media (max-width: 576px) {
+  .erp-advanced-filter__label {
+    display: none;
+  }
+}

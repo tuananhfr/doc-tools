@@ -1,0 +1,73 @@
+import { Icon } from '@/components/ui'
+import { directionOf, formatDeg } from '../utils/azimuth'
+import { compassShapes } from '../utils/compass-geometry'
+import type { CompassPalette } from '../utils/compass-palette'
+import { standaloneCompass } from '../utils/compass-view'
+import type { OrientationState } from '../utils/orientation-state'
+import { measurements, provenance, targetLabel } from '../utils/orientation-summary'
+import { ShapeLayer } from './ShapeLayer'
+
+interface ResultPanelProps {
+  state: OrientationState
+  palette: CompassPalette
+  /** Vì sao chưa có số (null = đã có). */
+  missing: string | null
+  /** La bàn đứng riêng khi chưa đặt được lên ảnh. */
+  showCompass: boolean
+  sun: number | null
+}
+
+const SIDE = 280
+
+/** KẾT QUẢ ĐO (spec v1.1 §15): số độ + hướng + nguồn, tách hẳn khỏi phần theo tuổi. */
+export function ResultPanel({ state, palette, missing, showCompass, sun }: ResultPanelProps) {
+  const [main, ...others] = measurements(state)
+  const origin = provenance(state)
+
+  return (
+    <section className="erp-orient-result" aria-labelledby="orient-result-title">
+      <h2 id="orient-result-title" className="erp-orient-section-title">
+        Kết quả đo
+      </h2>
+
+      {main && main.azimuth !== null ? (
+        <div className="erp-orient-result__main" aria-live="polite">
+          <span className="erp-orient-result__target">{targetLabel(main.target)}</span>
+          <span className="erp-orient-result__value">{formatDeg(main.azimuth)}</span>
+          <span className="erp-orient-result__direction">{main.direction?.name}</span>
+          {state.divisions === 8 && state.mode === 'PROFESSIONAL' ? (
+            <span className="erp-orient-result__fine">16 hướng: {directionOf(main.azimuth, 16).name}</span>
+          ) : null}
+        </div>
+      ) : (
+        <p className="erp-orient-result__empty">
+          <Icon name="compass" />
+          {missing ?? 'Chưa có số đo.'}
+        </p>
+      )}
+
+      {others.some((item) => item.azimuth !== null) ? (
+        <ul className="erp-orient-result__others">
+          {others
+            .filter((item) => item.azimuth !== null)
+            .map((item) => (
+              <li key={item.target.id}>
+                <span>{targetLabel(item.target)}</span>
+                <span className="erp-orient-result__num">
+                  {formatDeg(item.azimuth ?? 0)} · {item.direction?.name}
+                </span>
+              </li>
+            ))}
+        </ul>
+      ) : null}
+
+      {origin ? <p className="erp-orient-result__origin">{origin}</p> : null}
+
+      {showCompass ? (
+        <svg className="erp-orient-result__compass" viewBox={`${-SIDE * 0.04} ${-SIDE * 0.04} ${SIDE * 1.08} ${SIDE * 1.08}`} role="img" aria-label="La bàn, Bắc ở trên">
+          <ShapeLayer shapes={compassShapes(standaloneCompass(state, SIDE, sun))} palette={palette} opacity={1} />
+        </svg>
+      ) : null}
+    </section>
+  )
+}

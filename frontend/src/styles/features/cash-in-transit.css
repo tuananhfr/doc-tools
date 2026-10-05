@@ -1,0 +1,353 @@
+/*
+ * Tiền đang đi đường (/finance/cash-in-transit) — tiền tố riêng `erp-cit-`.
+ * Năm thẻ chỉ số · hàng tab tình trạng · bảng phiếu thu / thẻ theo người giữ.
+ */
+
+.erp-cit-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin: -4px 0 12px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-cit-intro p {
+  margin: 0;
+}
+
+.erp-cit-intro__updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .erp-cit-spin {
+    display: inline-block;
+    animation: erp-cit-spin 0.9s linear infinite;
+  }
+}
+
+@keyframes erp-cit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Năm thẻ một hàng ở desktop rộng; lưới tự gãy ở màn hẹp hơn. */
+.erp-cit-kpis {
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1280px) {
+  .erp-cit-kpis {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.erp-cit-kpis .erp-avatars {
+  vertical-align: middle;
+}
+
+.erp-cit-kpi-danger {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+/* Khung danh sách: tab + công cụ ở trên, bảng ở dưới. */
+.erp-cit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.erp-cit-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.erp-cit-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.erp-cit-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.erp-cit-tab:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-cit-tab:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Tab đang chọn: nền + viền + chữ đậm — không chỉ đổi màu chữ (DS mục 10). */
+.erp-cit-tab.is-active {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-cit-tab__count {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-cit-tab__count::before {
+  content: '(';
+}
+
+.erp-cit-tab__count::after {
+  content: ')';
+}
+
+.erp-cit-bar__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-cit-sort {
+  width: auto;
+  min-width: 190px;
+}
+
+.erp-cit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-cit-views .btn.active {
+  background: var(--erp-action-secondary-soft);
+  border-color: var(--erp-action-secondary);
+  color: var(--erp-action-secondary);
+}
+
+/* Thanh chọn nhiều phiếu. */
+.erp-cit-bulk {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--erp-action-secondary);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-action-secondary-soft);
+  font-size: 0.875rem;
+}
+
+/* Ô "Nội dung / Khách hàng": icon chứng từ + số phiếu + nội dung + khách. */
+.erp-cit-doc {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.erp-cit-doc__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-surface-secondary);
+  color: var(--erp-text-secondary);
+}
+
+.erp-cit-doc__text,
+.erp-cit-method {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.erp-cit-doc__sub {
+  color: var(--erp-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.erp-cit-person {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-avatar.erp-cit-avatar {
+  width: 28px;
+  height: 28px;
+  font-size: 0.6875rem;
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+}
+
+.erp-cit-actions {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.erp-cit-actions__wait {
+  font-size: 0.75rem;
+}
+
+.erp-cit-more::after {
+  display: none;
+}
+
+.erp-cit-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+  font-size: 0.875rem;
+}
+
+/* Chân modal xem phiếu: phiếu trước · vị trí · phiếu sau, đẩy về mép trái. */
+.erp-cit-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-end: auto;
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cách xem THEO NGƯỜI GIỮ. */
+.erp-cit-holders {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.erp-cit-holder {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  background: var(--erp-surface);
+  color: var(--erp-text-primary);
+  text-align: start;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.erp-cit-holder:hover {
+  border-color: var(--erp-border-strong);
+  background: var(--erp-surface-hover);
+}
+
+.erp-cit-holder:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+.erp-cit-holder__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.erp-cit-holder__amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-cit-holder__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.erp-cit-holder__stale {
+  color: var(--erp-danger);
+  font-weight: 600;
+}
+
+.erp-cit-empty {
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  /* Điện thoại: thẻ chỉ số hai cột, gọn một nấc để bảng bắt đầu sớm. */
+  .erp-cit-kpis {
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .erp-cit-kpis .erp-stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .erp-cit-kpis .erp-stat .erp-stat__number {
+    font-size: 1.125rem;
+  }
+
+  /* Bảng ở điện thoại đã có ô sắp xếp riêng (DataTable) — bỏ ô trùng. */
+  .erp-cit-bar__tools {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .erp-cit-sort {
+    display: none;
+  }
+
+  .erp-cit-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .erp-cit-tab {
+    flex: none;
+  }
+}

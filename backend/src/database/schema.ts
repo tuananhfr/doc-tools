@@ -1,0 +1,15 @@
+export const SCHEMA = [
+  `CREATE TABLE IF NOT EXISTS tool_visits (
+    tool VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    count BIGINT UNSIGNED NOT NULL DEFAULT 0, changed BIGINT UNSIGNED NOT NULL DEFAULT 0
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS visit_flood_locks (
+    ip_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    seen_at BIGINT UNSIGNED NOT NULL, INDEX (seen_at)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS visit_flood_events (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ip_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    expires BIGINT UNSIGNED NOT NULL, INDEX (ip_hash, expires), INDEX (expires)
+  ) ENGINE=InnoDB`,
+]

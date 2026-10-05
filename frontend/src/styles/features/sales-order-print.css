@@ -1,0 +1,555 @@
+/* ==========================================================================
+ * BẢN IN ĐƠN BÁN HÀNG — SalesOrderPrintSheet (năm mẫu)
+ * ==========================================================================
+ * Đứng TRÊN tờ giấy chung .erp-print (advance-print.css). Bố cục chép năm
+ * display Drupal của view list_preorder (lưới col-7 | col-5 của Bootstrap).
+ * Không dùng token màu --erp-*: tờ giấy giống nhau ở mọi theme.
+ *
+ * .erp-print-page ở đầu file là khung trang in DÙNG CHUNG (cuộn được khi
+ * trang nằm ngoài AppLayout) — các trang in khác cũng dựa vào nó.
+ */
+
+.erp-print-page {
+  height: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 24px 24px 48px;
+  background: var(--erp-bg);
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.erp-order-print {
+  font-size: 11.5pt;
+}
+
+.erp-order-print h3,
+.erp-order-print h5 {
+  color: #000;
+  font-family: inherit;
+  font-weight: 700;
+  margin: 0;
+}
+
+.erp-order-print h3 { font-size: 17pt; }
+.erp-order-print h5 { font-size: 12pt; }
+
+.erp-order-print__forms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* --- Đầu trang: logo | tiêu đề, công ty | số đơn (col-7 | col-5) ------- */
+
+.erp-order-print__head {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  column-gap: 12px;
+  align-items: end;
+}
+
+.erp-order-print__logo {
+  max-height: 64px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Không có logo thì ô tiêu đề vẫn nằm cột phải. */
+.erp-order-print__head > .erp-order-print__title {
+  grid-column: 2;
+  text-align: center;
+}
+
+.erp-order-print__title--draft {
+  font-size: 15pt;
+  text-transform: uppercase;
+}
+
+.erp-order-print__title--big {
+  font-size: 22pt;
+  text-align: center;
+}
+
+.erp-order-print__company,
+.erp-order-print__meta {
+  margin: 4px 0;
+  font-size: 10.5pt;
+  align-self: start;
+}
+
+.erp-order-print__company-name {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11.5pt;
+}
+
+.erp-order-print__inline {
+  display: flex;
+  gap: 4px;
+}
+
+.erp-order-print__line {
+  margin: 0;
+}
+
+.erp-order-print__line--spread {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.erp-order-print__about {
+  width: fit-content;
+  margin: 4px auto;
+  font-size: 10.5pt;
+}
+
+/* --- Khách hàng -------------------------------------------------------- */
+
+.erp-order-print__client {
+  border-top: 1px solid #000;
+  padding-top: 8px;
+  font-size: 10.5pt;
+}
+
+.erp-order-print__client-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-order-print__client--split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 16px;
+  margin-top: 12px;
+}
+
+.erp-order-print__client--indent {
+  padding-left: 60px;
+}
+
+/* --- Bảng hàng (HTML backend) ------------------------------------------ */
+
+.erp-order-print__goods {
+  margin: 8px 0;
+}
+
+.erp-order-print__goods table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+/*
+ * HTML backend mang class .table + .table-responsive; components/table.css
+ * sơn ".table > thead th" (0,1,2) thành chữ HOA, đệm 12/16px, nền xám — neo
+ * thêm lớp tờ in để lên (0,2,2), cùng cách .erp-contract-print__goods.
+ */
+.erp-order-print__goods .table-responsive {
+  overflow: visible;
+}
+
+.erp-order-print__goods th,
+.erp-order-print__goods td,
+.erp-order-print__goods .table > thead th,
+.erp-order-print__goods .table > tbody td {
+  background: #fff;
+  color: #000;
+  padding: 3px 6px;
+  font-size: 10.5pt;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: normal;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+
+.erp-order-print__goods th,
+.erp-order-print__goods .table > thead th {
+  font-weight: 700;
+  text-align: center;
+}
+
+.erp-order-print__goods .text-start { text-align: left; }
+.erp-order-print__goods .text-end { text-align: right; }
+.erp-order-print__goods .text-center { text-align: center; }
+
+/* Tổng tiền do list_preorder() dựng (đơn đã hoàn thành) là một item_list. */
+.erp-order-print__goods ul {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  font-size: 10.5pt;
+}
+
+.erp-order-print__goods ul .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+}
+
+.erp-order-print__goods ul .d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Bảng tổng của Hóa đơn GTGT không kẻ viền trên/giữa. */
+.erp-order-print--vat .erp-order-print__goods td.border-top-0 { border-top: 0; }
+.erp-order-print--vat .erp-order-print__goods td.border-end-0 { border-right: 0; }
+.erp-order-print--vat .erp-order-print__goods td.border-start-0 { border-left: 0; }
+
+/* --- Tổng tiền (đơn chưa hoàn thành) ----------------------------------- */
+
+.erp-order-print__totals {
+  font-size: 10.5pt;
+}
+
+.erp-order-print__total-line {
+  margin-left: 50%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-order-print__note {
+  margin-top: 12px;
+  font-size: 10.5pt;
+}
+
+.erp-order-print__note-body {
+  margin-left: 16px;
+}
+
+/* --- Ký tên ------------------------------------------------------------ */
+
+.erp-order-print__place {
+  margin-top: 20px;
+  font-size: 10.5pt;
+}
+
+.erp-order-print__signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 40px;
+  min-height: 36mm;
+  align-content: start;
+  text-align: center;
+  font-size: 10.5pt;
+  break-inside: avoid;
+}
+
+.erp-order-print__signatures h5 {
+  font-size: 11pt;
+}
+
+.erp-order-print__signatures--plain {
+  margin-top: 8px;
+}
+
+.erp-order-print__signatures--vat {
+  margin-top: 48px;
+}
+
+.erp-order-print__history:not(:empty) {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid #000;
+  font-size: 10pt;
+}
+
+.erp-order-print__history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-order-print__history th,
+.erp-order-print__history td {
+  border: 1px solid #000;
+  padding: 2px 4px;
+}
+
+/* --- Hóa đơn GTGT ------------------------------------------------------ */
+
+.erp-order-print__vat-head {
+  display: grid;
+  grid-template-columns: 3fr 6fr 3fr;
+  align-items: start;
+}
+
+.erp-order-print__vat-title {
+  margin-top: 36px;
+}
+
+.erp-order-print__vat-serial {
+  margin-top: 24px;
+}
+
+.erp-order-print__vat-body {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #000;
+}
+
+.erp-order-print__vat-contact {
+  display: grid;
+  grid-template-columns: 5fr 3fr 4fr;
+}
+
+.erp-order-print__vat-body hr {
+  margin: 8px 0;
+  border-color: #000;
+  opacity: 0.4;
+}
+
+@media print {
+  .erp-order-print__goods tr,
+  .erp-order-print__totals {
+    break-inside: avoid;
+  }
+
+  /*
+   * TRANG ĐẶT TÊN, không phải `@page` trần: CSS là toàn cục, `@page` trần ở đây
+   * đè lề của MỌI bản in khác (luật chung ở advance-print.css). Xem mục
+   * "Bản in" của CLAUDE.md.
+   */
+  @page erp-sales-order {
+    size: A4 portrait;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+
+  html:has(.erp-order-print) {
+    page: erp-sales-order;
+  }
+
+  html,
+  body,
+  #root {
+    overflow: visible !important;
+    height: auto !important;
+    background: #fff !important;
+  }
+
+  body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .erp-print-page {
+    background: #fff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .erp-print-page__layout {
+    display: block !important;
+  }
+
+  .erp-print-page__sheet {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .erp-print-page__actions {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+ * BẢN IN ĐƠN MUA — PurchaseOrderPrintSheet (hai mẫu có giá / không giá)
+ * ==========================================================================
+ * Dùng lại toàn bộ khung .erp-order-print; chỉ khác ký tên BA cột và vạch kẻ
+ * trên dòng "Tổng thanh toán" (Twig `border-top pt-1`).
+ */
+
+.erp-purchase-print__signatures {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 8px;
+}
+
+.erp-purchase-print__totals {
+  margin-top: 12px;
+}
+
+.erp-purchase-print__total-line--ruled {
+  border-top: 1px solid #000;
+  padding-top: 2px;
+}
+
+/* ==========================================================================
+ * BẢN IN PHIẾU XUẤT — GoodsIssuePrintSheet (năm mẫu, view `view_warehouse`)
+ * ==========================================================================
+ * Dùng lại khung .erp-order-print (lưới col-7 | col-5, bảng hàng từ Twig);
+ * chỉ thêm ký tên BA cột, khối "Lệnh xuất" chia đôi, mẫu không logo, và hai
+ * giấy chứng nhận (bảng kẻ ô, tiêu đề song ngữ).
+ */
+
+.erp-issue-print__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #000;
+  padding-top: 8px;
+  font-size: 10.5pt;
+}
+
+.erp-issue-print__split-left {
+  padding-right: 12px;
+  border-right: 1px solid #000;
+}
+
+.erp-issue-print__split > div:last-child {
+  padding-left: 12px;
+}
+
+.erp-issue-print__client {
+  padding-left: 64px;
+}
+
+.erp-issue-print__client p {
+  margin: 0;
+}
+
+.erp-issue-print__center-meta {
+  width: 50%;
+  margin: 4px auto;
+}
+
+.erp-issue-print__note {
+  margin: 8px 0 0;
+  font-size: 10.5pt;
+}
+
+.erp-issue-print__sign {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 24px;
+  min-height: 36mm;
+  align-content: start;
+  text-align: center;
+  font-size: 10.5pt;
+  break-inside: avoid;
+}
+
+.erp-issue-print__place {
+  grid-column: 1 / -1;
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.erp-issue-print__sign h5 {
+  font-size: 11pt;
+}
+
+/* --- Hai giấy chứng nhận ----------------------------------------------- */
+
+.erp-issue-print__cert-head {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: end;
+  gap: 12px;
+}
+
+.erp-issue-print__cert-head p {
+  margin: 0;
+}
+
+.erp-issue-print__cert-title {
+  margin: 16px 0 0;
+  font-size: 15pt;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.erp-issue-print__cert-subtitle {
+  font-size: 1.1em;
+  color: #0d6efd;
+}
+
+.erp-issue-print__cert-no {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 8px 0;
+}
+
+.erp-issue-print__cert-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-top: 12px;
+  font-size: 10.5pt;
+}
+
+.erp-issue-print__cert-table th,
+.erp-issue-print__cert-table td {
+  border: 1px solid #000;
+  padding: 4px 6px;
+  vertical-align: top;
+  color: #000;
+  overflow-wrap: anywhere;
+}
+
+.erp-issue-print__cert-table thead th {
+  background: #f8f9fa;
+  font-weight: 700;
+  text-align: left;
+}
+
+.erp-issue-print__cert-row {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.erp-issue-print__cert-items th {
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.erp-issue-print__cert-tolerance {
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.erp-issue-print__cert-points {
+  margin-top: 12px;
+  font-size: 10.5pt;
+}
+
+.erp-issue-print__cert-sign th {
+  text-align: center !important;
+  text-transform: uppercase;
+}
+
+.erp-issue-print__cert-sign td {
+  width: 50%;
+  text-align: center;
+  vertical-align: bottom;
+  font-size: 12pt;
+}
+
+.erp-issue-print__cert-sign-space {
+  height: 64px;
+}
+
+.erp-issue-print__cert-note {
+  margin: 12px 0 0;
+  font-size: 10.5pt;
+}
+
+.erp-issue-print__cert-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 10pt;
+}

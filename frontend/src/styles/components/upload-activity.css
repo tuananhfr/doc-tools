@@ -1,0 +1,102 @@
+/* -------------------------------------------------------------------------- */
+/* Tien do tep lon dang tai theo tung phan (components/ui/UploadActivity)      */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Goc DUOI TRAI: goc duoi phai da co bong bong tro ly va toast PWA.
+ * z-index 1086: tren modal (1055) — tep thuong duoc tai tu trong mot form
+ * modal, khoi nay nam duoi modal la nguoi dung khong thay tien do dau ca.
+ */
+.erp-upload-activity {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 1086;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(360px, calc(100vw - 32px));
+}
+
+.erp-upload-activity__item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 10px 12px 14px;
+  color: var(--erp-text);
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-lg);
+  box-shadow: var(--erp-shadow2);
+}
+
+.erp-upload-activity__icon {
+  flex: none;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--erp-action-secondary);
+}
+
+.erp-upload-activity__item.is-retrying .erp-upload-activity__icon {
+  color: var(--erp-warning);
+}
+
+.erp-upload-activity__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.erp-upload-activity__name {
+  overflow: hidden;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.erp-upload-activity__bar {
+  height: 6px;
+  margin: 6px 0 4px;
+  overflow: hidden;
+  background: var(--erp-surface-secondary);
+  border-radius: 999px;
+}
+
+.erp-upload-activity__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--erp-action-secondary);
+  border-radius: inherit;
+  transition: width 0.2s linear;
+}
+
+.erp-upload-activity__item.is-retrying .erp-upload-activity__bar > span {
+  background: var(--erp-warning);
+}
+
+.erp-upload-activity__text {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--erp-text-secondary);
+}
+
+.erp-upload-activity__cancel {
+  flex: none;
+}
+
+/* Dien thoai: tra het be ngang, nam TREN thanh dieu huong duoi. */
+@media (max-width: 575.98px) {
+  .erp-upload-activity {
+    right: 12px;
+    left: 12px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    width: auto;
+  }
+}
+
+@media print {
+  .erp-upload-activity {
+    display: none;
+  }
+}

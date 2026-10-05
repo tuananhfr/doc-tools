@@ -1,0 +1,175 @@
+/*
+ * Button - muc 10 & 05.
+ *
+ *   Primary   = Crimson  -> CTA quan trong, nhan dien (~2% dien tich)
+ *   Secondary = Blue     -> hanh dong tin cay/du lieu
+ *   Outline   = trung tinh -> hanh dong phu
+ *   Ghost     = khong vien -> icon action trong bang, header
+ *   Danger    = semantic danger -> chi cho hanh dong pha huy
+ *
+ * Bootstrap 5.3 dung bien cuc bo cho tung variant nen ghi de o day la du,
+ * khong can build lai SCSS.
+ */
+
+.btn {
+  --bs-btn-font-weight: 500;
+  --bs-btn-border-radius: var(--erp-radius-md);
+  --bs-btn-focus-box-shadow: 0 0 0 2px var(--erp-action-secondary-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+}
+
+.btn-lg {
+  --bs-btn-font-size: 1rem;
+  min-height: 48px;
+}
+
+.btn-sm {
+  min-height: 32px;
+}
+
+/* Action ngoai cong truong: >= 48px (muc 06). */
+[data-theme='field'] .btn {
+  min-height: 48px;
+}
+
+[data-theme='field'] .btn-lg {
+  min-height: 56px;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--erp-text-on-accent);
+  --bs-btn-bg: var(--erp-brand);
+  --bs-btn-border-color: var(--erp-brand);
+  --bs-btn-hover-color: var(--erp-text-on-accent);
+  --bs-btn-hover-bg: var(--erp-brand-hover);
+  --bs-btn-hover-border-color: var(--erp-brand-hover);
+  --bs-btn-active-color: var(--erp-text-on-accent);
+  --bs-btn-active-bg: var(--erp-brand-hover);
+  --bs-btn-active-border-color: var(--erp-brand-hover);
+  --bs-btn-disabled-color: var(--erp-text-on-accent);
+  --bs-btn-disabled-bg: var(--erp-neutral);
+  --bs-btn-disabled-border-color: var(--erp-neutral);
+}
+
+.btn-secondary {
+  --bs-btn-color: var(--erp-text-on-accent);
+  --bs-btn-bg: var(--erp-action-secondary);
+  --bs-btn-border-color: var(--erp-action-secondary);
+  --bs-btn-hover-color: var(--erp-text-on-accent);
+  --bs-btn-hover-bg: var(--erp-action-secondary-hover);
+  --bs-btn-hover-border-color: var(--erp-action-secondary-hover);
+  --bs-btn-active-bg: var(--erp-action-secondary-hover);
+  --bs-btn-active-border-color: var(--erp-action-secondary-hover);
+  --bs-btn-disabled-bg: var(--erp-neutral);
+  --bs-btn-disabled-border-color: var(--erp-neutral);
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: var(--erp-text-secondary);
+  --bs-btn-border-color: var(--erp-border-strong);
+  --bs-btn-bg: var(--erp-surface);
+  --bs-btn-hover-color: var(--erp-action-secondary);
+  --bs-btn-hover-bg: var(--erp-action-secondary-soft);
+  --bs-btn-hover-border-color: var(--erp-action-secondary);
+  --bs-btn-active-color: var(--erp-action-secondary);
+  --bs-btn-active-bg: var(--erp-action-secondary-soft);
+  --bs-btn-active-border-color: var(--erp-action-secondary);
+  --bs-btn-disabled-color: var(--erp-text-tertiary);
+  --bs-btn-disabled-border-color: var(--erp-border);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--erp-brand);
+  --bs-btn-border-color: var(--erp-brand);
+  --bs-btn-hover-color: var(--erp-text-on-accent);
+  --bs-btn-hover-bg: var(--erp-brand);
+  --bs-btn-hover-border-color: var(--erp-brand);
+  --bs-btn-active-bg: var(--erp-brand-hover);
+  --bs-btn-active-border-color: var(--erp-brand-hover);
+}
+
+.btn-danger {
+  --bs-btn-color: var(--erp-text-on-accent);
+  --bs-btn-bg: var(--erp-danger);
+  --bs-btn-border-color: var(--erp-danger);
+  --bs-btn-hover-color: var(--erp-text-on-accent);
+  --bs-btn-hover-bg: var(--erp-danger);
+  --bs-btn-hover-border-color: var(--erp-danger);
+  --bs-btn-active-bg: var(--erp-danger);
+  --bs-btn-active-border-color: var(--erp-danger);
+}
+
+.btn-link {
+  --bs-btn-color: var(--erp-action-secondary);
+  --bs-btn-hover-color: var(--erp-action-secondary-hover);
+  --bs-btn-font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/*
+ * Ghost - thay `type="text"` cua antd: khong nen, khong vien.
+ * Tranh dung cho hanh dong quan trong ngoai troi (muc 10).
+ */
+.btn-ghost {
+  --bs-btn-color: var(--erp-text-secondary);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--erp-text-primary);
+  --bs-btn-hover-bg: var(--erp-surface-hover);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--erp-text-primary);
+  --bs-btn-active-bg: var(--erp-surface-hover);
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-color: var(--erp-text-tertiary);
+  --bs-btn-disabled-border-color: transparent;
+  --bs-btn-box-shadow: none;
+}
+
+.btn-ghost-danger {
+  --bs-btn-color: var(--erp-danger);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--erp-danger);
+  --bs-btn-hover-bg: var(--erp-danger-soft);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-bg: var(--erp-danger-soft);
+  --bs-btn-active-border-color: transparent;
+}
+
+/* Nut chi co icon - vuong, dung kich thuoc touch target. */
+.btn-icon {
+  width: 40px;
+  min-width: 40px;
+  padding: 0;
+}
+
+.btn-icon.btn-sm {
+  width: 32px;
+  min-width: 32px;
+}
+
+.btn-icon.btn-lg {
+  width: 48px;
+  min-width: 48px;
+}
+
+/* Nut dang tai: spinner thay icon, giu nguyen be rong. */
+.btn .spinner-border-sm {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-width: 0.15em;
+}
+
+/* Menu "⋯" mở trang Drupal (`DrupalLinksMenu`) — nút chỉ có icon, bỏ caret
+   của `.dropdown-toggle` cho cùng cỡ với các nút icon bên cạnh. */
+.erp-drupal-links__toggle::after {
+  display: none;
+}

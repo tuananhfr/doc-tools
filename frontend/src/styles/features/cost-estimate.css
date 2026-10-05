@@ -1,0 +1,881 @@
+/*
+ * Khái toán tổng mức đầu tư (features/projects/cost-estimate).
+ *
+ * Màn xếp dọc bốn vùng (thông tin dự án → suất vốn → điều chỉnh → TMĐT) bằng
+ * nhiều SectionCard liền nhau. `.erp-card` mặc định `height: 100%` để lấp ô
+ * lưới; xếp dọc trong một khung có chiều cao cố định thì MỖI thẻ cao bằng cả
+ * khung và phần dưới bị đẩy khỏi màn hình. Trả về `auto` và dùng `gap` thay
+ * cho margin từng thẻ.
+ */
+.erp-estimate {
+  /* = padding của `.erp-shell__content` (layout/app-shell.css) — dùng cho
+     `top`/`bottom` âm của hai thanh dính, xem `.erp-est-sticky-header`. */
+  --erp-est-shell-pad: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-estimate > .erp-card {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.erp-estimate > .alert {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .erp-estimate {
+    --erp-est-shell-pad: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .erp-estimate {
+    --erp-est-shell-pad: 10px;
+  }
+}
+
+/*
+ * Cấu hình danh mục khái toán (`/projects/cost-estimate/settings`).
+ *
+ * Trang NHIỀU KHỐI xếp dọc nên dùng khung `.erp-scroll-page` và là một cột
+ * flex: đặt trong khối thường, `.erp-card { height: 100% }` làm thẻ "Sửa dữ
+ * liệu danh mục" cao bằng cả màn hình và đẩy các tab khuất xuống dưới.
+ */
+.erp-ce-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.erp-ce-settings > * {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.erp-ce-settings .erp-card {
+  height: auto;
+}
+
+.erp-ce-settings__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.erp-ce-settings__tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Sổ rule & xác minh (Lượt 5, 5a). */
+.erp-ce-rules__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.erp-ce-rules__toolbar .form-select {
+  width: auto;
+}
+
+.erp-ce-rules__status {
+  width: 140px;
+}
+
+.erp-ce-rules__note {
+  min-width: 280px;
+}
+
+.erp-ce-rules__action {
+  width: 130px;
+}
+
+/* Bảng vùng theo tỉnh. */
+.erp-ce-zones__code {
+  width: 80px;
+}
+
+.erp-ce-zones__count {
+  width: 110px;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-ce-zones__zone {
+  width: 180px;
+}
+
+/* Bảng mã tính khoản mục. */
+.erp-ce-refs__index {
+  width: 44px;
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-ce-refs__status {
+  width: 150px;
+}
+
+.erp-ce-refs__code {
+  width: 360px;
+}
+
+.erp-ce-refs__label {
+  font-weight: 500;
+  color: var(--erp-text-primary);
+}
+
+.erp-ce-refs__hint {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+  max-width: 70ch;
+}
+
+.erp-ce-refs__hint--duplicate {
+  color: var(--erp-warning);
+}
+
+.erp-ce-refs__hint--unknown {
+  color: var(--erp-danger);
+}
+
+.erp-ce-refs__hint code {
+  font-size: inherit;
+  color: inherit;
+  background: var(--erp-surface-secondary);
+  padding: 0 4px;
+  border-radius: var(--erp-radius-sm);
+}
+
+/*
+ * ==========================================================================
+ * L4c-4 — làm lại giao diện màn khái toán (utility dùng chung)
+ * ==========================================================================
+ * Tiền tố `erp-est-` (riêng của lượt này, khác `erp-ce-` ở trên vốn dành cho
+ * trang quản trị danh mục) tránh đụng lớp đã có — đã `grep styles/components/
+ * *.css` trước khi đặt tên (bẫy `.erp-count` ở badge.css).
+ */
+
+/* Tabular-nums cho MỌI ô tiền/%/hệ số — dùng ở EstimateLineTable,
+   EstimateSummarySection, InvestmentTableSection, LifecycleStagesSection,
+   CostItemTable, RateSourceSection, AdjustmentSection. */
+.erp-est-num {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 4 StatCard đầu màn — cuộn đi như nội dung thường, KHÔNG dính. */
+.erp-est-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 1024px) {
+  .erp-est-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Thanh dính đầu — MỘT dòng: dải neo (trái) + TMĐT gọn + trạng thái (phải).
+ * Bản cũ cho cả 4 StatCard dính theo, ăn ~235px của khung cuộn cao 675px.
+ *
+ * `top` ÂM bằng đúng `padding` của `.erp-shell__content` (20 / 16 / 10px theo
+ * breakpoint, xem `layout/app-shell.css`): Chrome neo `sticky` ở mép NỘI DUNG
+ * của khung cuộn, nên `top: 0` chừa một khe cao bằng padding mà nội dung cuộn
+ * qua lộ ra phía trên thanh. Thanh Lưu dính đáy dùng cùng cách cho `bottom`.
+ */
+.erp-est-sticky-header {
+  position: sticky;
+  top: calc(-1 * var(--erp-est-shell-pad));
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 6px 8px 6px 6px;
+  background: var(--erp-surface);
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  box-shadow: var(--erp-shadow1);
+}
+
+.erp-est-sticky-header__total {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.erp-est-sticky-header__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-est-sticky-header__amount {
+  font-weight: 700;
+  color: var(--erp-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dải neo điều hướng giữa các vùng — nằm trong `.erp-est-sticky-header`. */
+.erp-est-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* Bù đúng chiều cao thanh dính (đo động, gắn trên `.erp-estimate`) cho MỌI
+   đích neo/cuộn-tới — tiêu đề vùng không bị thanh dính che. */
+.erp-est-anchor-target {
+  scroll-margin-top: var(--erp-est-sticky-h, 64px);
+}
+
+.erp-est-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--erp-radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--erp-text-secondary);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.erp-est-nav__link:hover {
+  background: var(--erp-surface-hover);
+  color: var(--erp-text-primary);
+}
+
+.erp-est-nav__link:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 1px;
+}
+
+.erp-est-nav__link--active {
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-action-secondary);
+  font-weight: 600;
+}
+
+.erp-est-nav__count {
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-warning-soft);
+  color: var(--erp-warning);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Thanh Lưu dính đáy — thay badge "chưa lưu" ở header thẻ 1. */
+.erp-est-savebar {
+  position: sticky;
+  bottom: calc(-1 * var(--erp-est-shell-pad));
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--erp-surface);
+  border-top: 1px solid var(--erp-border-strong);
+  box-shadow: var(--erp-shadow2);
+}
+
+/* Trạng thái rỗng của bảng hạng mục. */
+.erp-est-empty {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.erp-est-empty__icon {
+  font-size: 2rem;
+  color: var(--erp-text-tertiary);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Bảng hạng mục — độ rộng cột cố định (thay `style={{width}}`, skill
+   erpcons-ui mục "Chất lượng code": inline style trộn với class -> chuyển
+   hết vào CSS). */
+.erp-est-col-head {
+  min-width: 260px;
+}
+
+.erp-est-col-fn {
+  min-width: 220px;
+}
+
+.erp-est-col-level {
+  width: 190px;
+}
+
+.erp-est-col-scale {
+  width: 140px;
+}
+
+.erp-est-col-floors {
+  width: 110px;
+}
+
+.erp-est-col-amount {
+  width: 160px;
+}
+
+.erp-est-col-actions {
+  width: 56px;
+}
+
+/* Bảng hạng mục — cột "Hạng mục" (tên + nhóm + huy hiệu) và hàng mở rộng. */
+.erp-est-line__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.erp-est-line__toggle {
+  margin-top: 4px;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-est-line__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.erp-est-line__scale {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.erp-est-line__scale .form-control {
+  min-width: 70px;
+}
+
+.erp-est-line__floors {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-est-line__floors .form-control {
+  min-width: 44px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.erp-est-line__floors--warn {
+  outline: 1px solid var(--erp-warning);
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-est-line__actions {
+  color: var(--erp-text-secondary);
+}
+
+.erp-est-line__expand td {
+  background: var(--erp-surface-secondary);
+}
+
+.erp-est-line__expand-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 8px 4px;
+}
+
+.erp-est-line__expand-grid .form-group {
+  min-width: 180px;
+  flex: 1 1 180px;
+}
+
+/*
+ * Mobile ≤576px (Reviewer #3, `ERPcons_Design_System.md` dòng 174/191/305):
+ *   - KHÔNG scale nguyên bộ 4 StatCard xuống 2×2 rồi giữ dính — dòng 174 cấm
+ *     "scale desktop xuống mobile", và dính 2×2 chiếm ~⅓ màn hình lại còn bị
+ *     cắt số. Ẩn hẳn `.erp-est-summary`/`.erp-est-nav`, thay bằng
+ *     `.erp-est-summary-compact` MỘT DÒNG (dòng 191: ưu tiên nội dung quan
+ *     trọng — chỉ TMĐT + trạng thái).
+ *   - Bảng hạng mục thành thẻ 1 cột, không nhồi bảng nhiều cột.
+ *   - Chữ nội dung chính trong thẻ ≥16px (dòng 305).
+ */
+@media (max-width: 576px) {
+  .erp-est-line-table {
+    display: none;
+  }
+
+  /* Thanh dính còn MỘT dòng TMĐT + trạng thái, chữ ≥16px (DS dòng 305). */
+  .erp-est-summary,
+  .erp-est-nav {
+    display: none;
+  }
+
+  .erp-est-sticky-header {
+    padding: 10px 12px;
+  }
+
+  .erp-est-sticky-header__total {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .erp-est-sticky-header__amount {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .erp-est-savebar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.erp-est-cards {
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 576px) {
+  .erp-est-cards {
+    display: flex;
+  }
+}
+
+.erp-est-card {
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  padding: 12px;
+  background: var(--erp-surface);
+}
+
+.erp-est-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.erp-est-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.8125rem;
+  padding: 2px 0;
+}
+
+/*
+ * Chữ nội dung chính của thẻ hạng mục ≥16px (`ERPcons_Design_System.md`
+ * dòng 305) — ĐẶT SAU định nghĩa gốc `.erp-est-card__row` (0.8125rem) ở
+ * TRÊN: cùng độ đặc thù (một lớp), CSS xử theo THỨ TỰ TRONG FILE khi hoà —
+ * đặt override trước bản gốc thì bản gốc (đứng sau) thắng dù có `@media`
+ * hay không, và mobile vẫn hiện chữ 13px (đã tự bắt lỗi này bằng đo
+ * `getComputedStyle` khi kiểm ảnh 526px thật).
+ */
+@media (max-width: 576px) {
+  .erp-est-card .fw-semibold,
+  .erp-est-card__row,
+  .erp-est-card .small,
+  .erp-est-card .text-body-secondary,
+  .erp-est-card .text-body-tertiary {
+    font-size: 1rem;
+  }
+}
+
+/* Khối mở rộng của thẻ mobile (vòng sửa lượt 4d) — cùng lớp lưới
+   `.erp-est-line__expand-grid` với hàng mở rộng desktop, chỉ thêm viền trên
+   để tách khỏi phần tóm tắt của thẻ. */
+.erp-est-card__expand {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-est-card__expand .erp-est-line__expand-grid {
+  padding: 0;
+}
+
+/* Nháy viền một lần khi bấm "Điểm cần xử lý" có `line` — tôn trọng
+   prefers-reduced-motion (skill erpcons-ui mục 1). */
+@media not (prefers-reduced-motion: reduce) {
+  .erp-est-line--flash > td {
+    animation: erp-est-flash 250ms ease-out;
+  }
+}
+
+@keyframes erp-est-flash {
+  from {
+    box-shadow: inset 0 0 0 2px var(--erp-warning);
+  }
+  to {
+    box-shadow: inset 0 0 0 2px transparent;
+  }
+}
+
+/* Điểm cần xử lý — 3 mức. */
+.erp-est-issues__group + .erp-est-issues__group {
+  margin-top: 12px;
+}
+
+.erp-est-issues__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Huy hiệu trạng thái cạnh nhãn dòng (Bảng 1.1/1.2, bảng giai đoạn) — nền
+   nhạt `erp-badge`, thay Badge vàng đặc của Bootstrap làm bảng chói. */
+.erp-est-row-badge {
+  margin-left: 8px;
+  padding: 1px 8px;
+  vertical-align: 1px;
+}
+
+/* Danh sách dài gập được (hệ số chưa áp dụng…). */
+.erp-est-disclosure > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border-radius: var(--erp-radius-sm);
+}
+
+.erp-est-disclosure > summary:hover {
+  color: var(--erp-text-secondary);
+}
+
+.erp-est-disclosure > summary:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Nút "Về tổng hợp khái toán" — form mở từ màn tổng hợp (ProjectCostEstimateHub). */
+.erp-est-back {
+  align-self: flex-start;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* Màn tổng hợp khái toán (CostEstimateOverview). */
+.erp-est-overview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  margin-bottom: 16px;
+  font-size: 0.8125rem;
+}
+
+.erp-est-overview__code {
+  width: 56px;
+}
+
+.erp-est-overview__status {
+  width: 180px;
+}
+
+.erp-est-overview__total > td {
+  border-top: 2px solid var(--erp-border-strong);
+  background: var(--erp-surface-secondary);
+}
+
+/*
+ * Form "Thông tin dự án" (EstimateInputSection) — ba nhóm xếp dọc: thông tin
+ * cơ bản → đặc điểm dự án (thẻ bật/tắt, mỗi thẻ mở khối riêng) → quản lý và
+ * thẩm định. Màu chọn là xanh hành động phụ, KHÔNG dùng crimson (DS mục 05).
+ */
+.erp-est-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.erp-est-form__group + .erp-est-form__group {
+  padding-top: 20px;
+  border-top: 1px solid var(--erp-border);
+}
+
+.erp-est-form__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-bottom: 12px;
+}
+
+.erp-est-form__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--erp-text-primary);
+}
+
+.erp-est-form__sub {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+/* Ô chỉ đọc cao bằng `form-control-sm` để thẳng hàng với các ô cạnh. */
+.erp-est-form__derived {
+  display: flex;
+  align-items: center;
+  min-height: 31px;
+  font-size: 0.875rem;
+}
+
+/* Chip chọn nhiều (loại công trình). */
+.erp-est-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.erp-est-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-pill);
+  background: var(--erp-surface);
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.erp-est-chip[aria-pressed='true'] {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+  color: var(--erp-text-primary);
+  font-weight: 500;
+}
+
+/* Thẻ đặc điểm dự án. */
+.erp-est-traits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+}
+
+.erp-est-trait {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 10px;
+  align-items: start;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  color: inherit;
+  text-align: start;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.erp-est-trait__icon {
+  grid-row: 1 / span 2;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-est-trait__title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--erp-text-primary);
+}
+
+.erp-est-trait__hint {
+  grid-column: 2;
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-est-trait__state {
+  grid-row: 1 / span 2;
+  grid-column: 3;
+  color: var(--erp-text-tertiary);
+}
+
+.erp-est-trait[aria-pressed='true'] {
+  border-color: var(--erp-action-secondary);
+  background: var(--erp-action-secondary-soft);
+}
+
+.erp-est-trait[aria-pressed='true'] .erp-est-trait__icon,
+.erp-est-trait[aria-pressed='true'] .erp-est-trait__state {
+  color: var(--erp-action-secondary);
+}
+
+.erp-est-chip:hover:not(:disabled, [aria-pressed='true']),
+.erp-est-trait:hover:not(:disabled, [aria-pressed='true']) {
+  background: var(--erp-surface-hover);
+  border-color: var(--erp-border-strong);
+}
+
+.erp-est-chip:active:not(:disabled),
+.erp-est-trait:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.erp-est-chip:focus-visible,
+.erp-est-trait:focus-visible {
+  outline: 2px solid var(--erp-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Chỉ xem: vẫn đọc được thẻ nào đang bật, chỉ không bấm được. */
+.erp-est-chip:disabled,
+.erp-est-trait:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.erp-est-trait[aria-pressed='true']:disabled {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .erp-est-chip,
+  .erp-est-trait {
+    min-height: var(--erp-touch-target);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-est-chip,
+  .erp-est-trait {
+    transition: none;
+  }
+}
+
+/* Khối chi tiết của từng đặc điểm đang bật. */
+.erp-est-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.erp-est-panel {
+  padding: 12px 16px 16px;
+  border: 1px solid var(--erp-border);
+  border-inline-start: 3px solid var(--erp-action-secondary);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-est-panel__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.erp-est-panel__icon {
+  color: var(--erp-action-secondary);
+}
+
+.erp-est-panel__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-est-panel__close {
+  margin-inline-start: auto;
+  padding: 0;
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+.erp-est-panel__note {
+  max-width: 75ch;
+  margin-bottom: 10px;
+  font-size: 0.8125rem;
+  color: var(--erp-text-secondary);
+}
+
+/* Hệ số sẽ thêm nếu tick — nối sau nhãn ô chọn. */
+.erp-est-gain {
+  color: var(--erp-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Khối "Hệ số điều chỉnh định mức đang áp" — tính ngay ở client. */
+.erp-est-factors {
+  padding: 12px 16px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface-secondary);
+}
+
+.erp-est-factors__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.erp-est-factors__item {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+  font-size: 0.8125rem;
+}
+
+.erp-est-factors__target {
+  color: var(--erp-text-secondary);
+}
+
+.erp-est-factors__parts,
+.erp-est-factors__source {
+  font-size: 0.75rem;
+  color: var(--erp-text-tertiary);
+}

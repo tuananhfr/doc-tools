@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Truy xuat ERPCons (features/inventory/trace) - the ket qua tra ma vua quet.
+   ========================================================================== */
+
+.erp-trace-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+  font-size: 0.875rem;
+}
+
+.erp-trace-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.erp-trace-card__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-trace-card__mono {
+  font-family: var(--bs-font-monospace);
+  overflow-wrap: anywhere;
+}
+
+.erp-trace-card__muted {
+  margin: 0;
+  color: var(--erp-text-secondary);
+}
+
+.erp-trace-card__notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--erp-text-primary);
+}
+
+.erp-trace-card__notice > .bi {
+  flex: none;
+  margin-top: 2px;
+  color: var(--erp-text-secondary);
+}
+
+.erp-trace-card__facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 0;
+}
+
+.erp-trace-card__facts dt {
+  color: var(--erp-text-secondary);
+  font-weight: 400;
+}
+
+.erp-trace-card__facts dd {
+  margin: 0;
+  color: var(--erp-text-primary);
+  overflow-wrap: anywhere;
+}
+
+.erp-trace-card__events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--erp-border);
+  list-style: none;
+}
+
+.erp-trace-card__events li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+}
+
+.erp-trace-card__event-label {
+  color: var(--erp-text-primary);
+  font-weight: 600;
+}
+
+.erp-trace-card__retry {
+  align-self: flex-start;
+  min-height: var(--erp-touch-target);
+}
