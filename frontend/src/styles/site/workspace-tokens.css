@@ -1,0 +1,33 @@
+/* Adapt shared tool primitives without changing document rendering or engines. */
+.cn-shell--tool, body:has(.cn-shell--tool) > .modal {
+  --erp-font-family: var(--cn-font-family);
+  --erp-bg: var(--cn-hero);
+  --erp-surface: var(--cn-surface);
+  --erp-surface-secondary: var(--cn-hero);
+  --erp-surface-hover: var(--cn-tint);
+  --erp-text-primary: var(--cn-ink);
+  --erp-text-secondary: var(--cn-muted);
+  --erp-text-tertiary: var(--cn-muted);
+  --erp-text-on-accent: #fff;
+  --erp-border: var(--cn-line);
+  --erp-border-strong: color-mix(in srgb, var(--cn-muted) 45%, var(--cn-surface));
+  --erp-brand: #005be8;
+  --erp-brand-hover: #0047bb;
+  --erp-brand-soft: var(--cn-tint);
+  --erp-action-secondary: var(--cn-accent);
+  --erp-action-secondary-hover: var(--cn-accent-hover);
+  --erp-action-secondary-soft: var(--cn-tint);
+  --erp-focus-ring: var(--cn-focus);
+  --erp-neutral: #71839a;
+  --erp-radius-lg: var(--cn-radius-card);
+  --erp-radius-md: var(--cn-radius-button);
+  --erp-radius-sm: 6px;
+  --erp-shadow1: 0 2px 8px rgb(12 37 77 / 4%);
+  --bs-body-font-family: var(--cn-font-family);
+  --bs-body-color: var(--cn-ink);
+  --bs-body-bg: var(--cn-surface);
+  font-family: var(--cn-font-family);
+}
+[data-theme='dark'] :is(.cn-shell--tool, body:has(.cn-shell--tool) > .modal) {
+  --erp-action-secondary-hover: #b4d4ff;
+}

@@ -4,9 +4,9 @@
   "sourceRepositoryCommits": {
     "frontend": {
       "commit": "8b24352809b1e6feb72551ce5ed58e8d9a2eb096",
-      "files": 760,
+      "files": 764,
       "workingTreeChangesIncluded": true,
-      "sourceTreeSha256": "0dcf060ca3411f93ee54d8226283a3c5265d521e8ea0a579c1572bc054256317"
+      "sourceTreeSha256": "32be5702da4e9ffb4e6bf37cabc646a1ebd63d73e62417a33cd6bc4e4b3e9a1b"
     },
     "backend": {
       "commit": "b17efa5dcf4e8da851cbb5de7ce98a658960920c",
@@ -16,7 +16,7 @@
     }
   },
   "upstreamFeatureFiles": 450,
-  "updatedAt": "2026-10-05T10:10:32.399Z",
+  "updatedAt": "2026-10-05T10:44:45.177Z",
   "knownLimitations": [
     "Offline navigation with directory query filters may fall back to homepage HTML.",
     "Some optimized images at unvisited sizes may not be available offline."

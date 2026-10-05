@@ -1,0 +1,40 @@
+.cn-tool-workspace .erp-flow { gap: 24px; }
+.cn-tool-workspace :is(.erp-flow__side, .erp-tool-panel) { padding: 24px; border-color: var(--cn-line); border-radius: var(--cn-radius-card); box-shadow: var(--erp-shadow1); }
+.cn-tool-workspace .erp-flow__main { gap: 20px; }
+.cn-tool-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { justify-content: center; min-height: 320px; padding: 44px 28px; border: 1.5px dashed var(--erp-border-strong); border-radius: var(--cn-radius-card); }
+.cn-tool-workspace .erp-flow-picker__icon { width: 64px; height: 64px; border-radius: 16px; background: var(--cn-icon); color: var(--cn-accent); font-size: 28px; }
+.cn-tool-workspace .erp-flow-picker__title { font-size: 20px; font-weight: 700; }
+.cn-tool-workspace .erp-flow-picker__hint { font-size: 13px; line-height: 1.65; }
+.cn-tool-workspace .erp-flow-picker__actions { margin-top: 6px; gap: 10px; }
+.cn-tool-workspace .erp-flow-picker__pick { min-height: 48px; font-size: 14px; }
+.cn-tool-workspace .erp-flow-picker--compact { background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-tool-workspace .erp-flow-picker--compact .erp-flow-picker__icon { width: 40px; height: 40px; font-size: 20px; border-radius: 8px; }
+.cn-tool-workspace .erp-flow-picker--compact .erp-flow-picker__title { font-size: 14px; }
+.cn-tool-workspace .erp-flow-picker--compact .erp-flow-picker__hint { font-size: 12px; }
+.cn-tool-workspace .erp-flow-picker--compact .erp-flow-picker__actions { margin-top: 0; }
+.cn-tool-workspace :is(.erp-flow-options__title, .erp-tool-panel__title) { font-size: 16px; font-weight: 700; }
+.cn-tool-workspace .erp-flow-options__title { margin-bottom: 16px; }
+.cn-tool-workspace .erp-flow__run { min-height: 48px; font-size: 14px; }
+.cn-tool-workspace .erp-flow-choice__item:has(input:checked) { border-color: var(--cn-accent); background: var(--cn-tint); }
+.cn-tool-workspace .erp-flow-files { border-color: var(--cn-line); box-shadow: var(--erp-shadow1); }
+.cn-tool-workspace .erp-flow-files__head { min-height: 56px; padding-inline: 20px 12px; }
+.cn-tool-workspace .erp-flow-result { max-width: 640px; margin-top: 0; padding: 36px; gap: 20px; border-color: var(--cn-line); border-radius: var(--cn-radius-card); box-shadow: var(--erp-shadow1); }
+.cn-tool-workspace .erp-flow-result__title { font-size: 26px; font-weight: 700; }
+.cn-tool-workspace .erp-flow-result__file { padding: 16px; }
+.cn-tool-workspace .erp-flow-result__download { min-height: 48px; }
+.cn-tool-workspace .erp-flow-progress { gap: 12px; padding-top: 4px; }
+.cn-tool-workspace .erp-flow-progress__bar { height: 8px; border-radius: 8px; }
+.cn-tool-workspace .erp-tool-tabs { padding: 5px; gap: 5px; }
+.cn-tool-workspace .erp-tool-tab { min-height: 40px; padding-inline: 14px; }
+.cn-tool-workspace .erp-tool-tab.is-active { color: var(--cn-accent); box-shadow: none; }
+@media (max-width: 767px) {
+  .cn-tool-workspace .erp-flow { gap: 16px; }
+  .cn-tool-workspace :is(.erp-flow__side, .erp-tool-panel) { padding: 18px; }
+  .cn-tool-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 290px; padding: 32px 18px; }
+  .cn-tool-workspace .erp-flow-picker__title { font-size: 18px; }
+  .cn-tool-workspace .erp-flow-picker__actions { width: 100%; }
+  .cn-tool-workspace .erp-flow-picker__actions > :is(.btn, label) { flex: 1 1 auto; white-space: nowrap; }
+  .cn-tool-workspace .erp-flow-result { padding: 24px 18px; gap: 16px; }
+  .cn-tool-workspace .erp-flow-result__title { font-size: 22px; }
+  .cn-tool-workspace .erp-flow-result__more .btn { white-space: normal; }
+}

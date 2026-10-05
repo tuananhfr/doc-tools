@@ -151,3 +151,7 @@
 @import './site/shell.css';
 @import './site/home.css';
 @import './site/catalog.css';
+@import './site/workspace-tokens.css';
+@import './site/workspace.css';
+@import './site/workspace-flow.css';
+@import './site/workspace-editor.css';

@@ -1,7 +1,7 @@
 @font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 @font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
-.cn-site, .cn-mobile-navigation {
+.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal {
   --cn-font-family: 'CN Be Vietnam Pro', Arial, sans-serif;
   --cn-surface: #fff;
   --cn-ink: #0c254d;
@@ -22,7 +22,7 @@
   --cn-radius-button: 8px;
   --cn-header-height: 64px;
 }
-[data-theme='dark'] :is(.cn-site, .cn-mobile-navigation) {
+[data-theme='dark'] :is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal) {
   --cn-surface: #101e33;
   --cn-ink: #eff5ff;
   --cn-muted: #bac9dd;
@@ -34,7 +34,7 @@
   --cn-focus: #83b8ff;
   --cn-positive: #7bdec1;
 }
-[data-theme='field'] :is(.cn-site, .cn-mobile-navigation) {
+[data-theme='field'] :is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal) {
   --cn-ink: #071c37;
   --cn-muted: #304158;
   --cn-accent: #004dc9;

@@ -50,25 +50,31 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
   const unsupported = PDF_ENGINE_SCREENS.has(tool.screen) && !pdfEngineSupported()
 
   return (
-    <div className="erp-tool-page">
+    <div className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
       <nav className="erp-tool-crumb" aria-label="Vị trí">
         <Link className="erp-tool-crumb__back" to={base}>
           <Icon name="arrow-left" />
           Chuyện Nhỏ
         </Link>
         <Icon name="chevron-right" className="erp-tool-crumb__sep" />
-        <h1 className="erp-tool-crumb__title">{tool.name}</h1>
+        <span className="cn-tool-crumb-current">{tool.name}</span>
         {kind === 'public' ? <GuestPrefs className="erp-tool-crumb__prefs" /> : null}
-        {/* Khung khách không còn dải đầu trang: nút phiên đứng vào chỗ dòng cam kết. */}
         {sessionAction ? (
           <GuestSessionAction action={sessionAction} className="btn-outline-secondary erp-tool-crumb__action" />
-        ) : (
-          <p className="erp-tool-crumb__privacy">
-            <Icon name="shield-lock" />
-            {tool.noFile ? 'Chạy trên máy bạn — không gửi nội dung đi' : 'Xử lý trên máy bạn — tệp không tải lên'}
-          </p>
-        )}
+        ) : null}
       </nav>
+
+      <header className="cn-tool-intro">
+        <span className="cn-tool-intro__icon"><Icon name={tool.icon} /></span>
+        <div className="cn-tool-intro__text">
+          <h1 className="erp-tool-crumb__title">{tool.name}</h1>
+          <p className="cn-tool-description">{tool.description}</p>
+          <p className="cn-tool-privacy">
+            <Icon name="shield-check" />
+            {tool.noFile ? 'Chạy trên máy bạn, không gửi nội dung đi' : 'Xử lý trên máy bạn, tệp không tải lên'}
+          </p>
+        </div>
+      </header>
 
       {unsupported ? <ToolUnsupported toolName={tool.name} hubPath={base} /> : <Screen />}
     </div>

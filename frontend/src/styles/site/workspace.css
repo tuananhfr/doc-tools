@@ -1,0 +1,40 @@
+.cn-shell--tool .erp-tools-guest { background: var(--cn-hero); color: var(--cn-ink); }
+.cn-shell--tool .erp-tools-guest__main { padding: 24px max(24px, calc((100% - 1320px) / 2)) 40px; }
+.cn-tool-workspace { min-width: 0; font-family: var(--cn-font-family); line-height: 1.55; }
+.cn-tool-workspace > .erp-tool-crumb, .cn-tool-intro { max-width: 1200px; margin-inline: auto; }
+.cn-tool-workspace--editor > .erp-tool-crumb, .cn-tool-workspace--editor > .cn-tool-intro { max-width: none; }
+.cn-tool-workspace > .erp-tool-crumb { gap: 8px 12px; margin-bottom: 24px; }
+.cn-tool-workspace .erp-tool-crumb__back { min-height: 40px; color: var(--cn-muted); font-size: 12px; }
+.cn-tool-crumb-current { color: var(--cn-muted); font-size: 12px; }
+.cn-tool-workspace .erp-tool-crumb__sep { color: var(--cn-muted); font-size: 10px; }
+.cn-tool-workspace .erp-tool-crumb__prefs { margin-left: auto; }
+.cn-tool-workspace .erp-tool-crumb__action { min-height: 36px; font-size: 12px; width: auto; }
+.cn-tool-workspace .erp-tools-prefs__toggle { color: var(--cn-muted); }
+.cn-tool-intro { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 28px; }
+.cn-tool-intro__icon { display: grid; place-items: center; flex: none; width: 64px; height: 64px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); color: var(--cn-accent); font-size: 28px; }
+.cn-tool-intro__text { min-width: 0; }
+.cn-tool-workspace .erp-tool-crumb__title { font-size: clamp(26px, 2.5vw, 34px); font-weight: 700; line-height: 1.25; letter-spacing: -1px; }
+.cn-tool-description { margin: 8px 0 10px; color: var(--cn-muted); font-size: 14px; }
+.cn-tool-privacy { display: flex; align-items: flex-start; gap: 7px; margin: 0; color: var(--cn-muted); font-size: 12px; }
+.cn-tool-privacy .bi { color: var(--cn-positive); flex: none; }
+.cn-tool-workspace :is(.btn, .form-control, .form-select, .dropdown-menu) { font-family: var(--cn-font-family); }
+.cn-tool-workspace .btn { font-weight: 700; border-radius: var(--cn-radius-button); }
+.cn-tool-workspace :is(.form-control, .form-select) { min-height: 44px; font-size: 14px; }
+.cn-tool-workspace :is(a, button, input, select, textarea):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+.cn-tool-workspace .btn-outline-secondary { --bs-btn-color: var(--cn-ink); --bs-btn-border-color: var(--cn-line); }
+.cn-tool-workspace .progress { --bs-progress-bg: var(--cn-tint); }
+.cn-tool-workspace .progress-bar { background-color: #005be8; }
+body:has(.cn-shell--tool) > .modal :is(.modal-content, .dropdown-menu) { font-family: var(--cn-font-family); }
+@media (max-width: 767px) {
+  .cn-shell--tool .erp-tools-guest__main { padding: 16px 16px 32px; }
+  .cn-tool-workspace > .erp-tool-crumb { gap: 6px 8px; margin-bottom: 20px; }
+  .cn-tool-crumb-current { display: none; }
+  .cn-tool-workspace .erp-tool-crumb__sep { display: none; }
+  .cn-tool-workspace .erp-tool-crumb__action { margin-left: 0; flex: none; }
+  .cn-tool-intro { gap: 12px; margin-bottom: 22px; }
+  .cn-tool-intro__icon { width: 44px; height: 44px; font-size: 22px; border-radius: 8px; }
+  .cn-tool-workspace .erp-tool-crumb__title { font-size: 26px; letter-spacing: -.7px; }
+  .cn-tool-description { font-size: 13px; }
+  .cn-tool-privacy { font-size: 11px; }
+  .cn-tool-workspace :is(.form-control, .form-select) { font-size: 16px; }
+}
