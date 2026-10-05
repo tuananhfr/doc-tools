@@ -19,7 +19,7 @@ self.addEventListener('fetch', event => {
       return response
     } catch (error) {
       if (cached) return cached
-      if (event.request.mode === 'navigate') { const shell = await caches.match('/doc-tools'); if (shell) return shell }
+      if (event.request.mode === 'navigate') { const shell = await caches.match('/'); if (shell) return shell }
       throw error
     }
   })())

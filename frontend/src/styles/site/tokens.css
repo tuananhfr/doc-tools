@@ -1,0 +1,43 @@
+@font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'CN Be Vietnam Pro'; src: url('../../assets/fonts/BeVietnamPro-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+.cn-site, .cn-mobile-navigation {
+  --cn-font-family: 'CN Be Vietnam Pro', Arial, sans-serif;
+  --cn-surface: #fff;
+  --cn-ink: #0c254d;
+  --cn-muted: #536174;
+  --cn-accent: #005be8;
+  --cn-accent-hover: #0047bb;
+  --cn-hero: #f3f9ff;
+  --cn-tint: #eaf4ff;
+  --cn-line: #dce7f3;
+  --cn-icon: #edf5ff;
+  --cn-focus: #0070ed;
+  --cn-positive: #0c7a65;
+  --cn-red: #da263d;
+  --cn-on-accent: #fff;
+  --cn-navy: #0c254d;
+  --cn-radius-card: 12px;
+  --cn-radius-icon: 8px;
+  --cn-radius-button: 8px;
+  --cn-header-height: 64px;
+}
+[data-theme='dark'] :is(.cn-site, .cn-mobile-navigation) {
+  --cn-surface: #101e33;
+  --cn-ink: #eff5ff;
+  --cn-muted: #bac9dd;
+  --cn-accent: #83b8ff;
+  --cn-hero: #182b45;
+  --cn-tint: #1d344f;
+  --cn-line: #354a66;
+  --cn-icon: #254467;
+  --cn-focus: #83b8ff;
+  --cn-positive: #7bdec1;
+}
+[data-theme='field'] :is(.cn-site, .cn-mobile-navigation) {
+  --cn-ink: #071c37;
+  --cn-muted: #304158;
+  --cn-accent: #004dc9;
+  --cn-hero: #eef6ff;
+  --cn-line: #aec3dc;
+}

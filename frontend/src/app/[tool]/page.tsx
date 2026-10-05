@@ -9,15 +9,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tool } = resolveToolRoute(slug)
   if (!tool) return { robots: { index: false, follow: true } }
   return { title: toolPageTitle(tool), description: tool.description,
-    alternates: { canonical: '/doc-tools/' + tool.slug },
-    openGraph: { title: toolPageTitle(tool), description: tool.description, url: '/doc-tools/' + tool.slug },
+    alternates: { canonical: '/' + tool.slug },
+    openGraph: { title: toolPageTitle(tool), description: tool.description, url: '/' + tool.slug },
     twitter: { card: 'summary', title: toolPageTitle(tool), description: tool.description },
   }
 }
 export default async function ToolRoute({ params }: Props) {
   const { tool: slug } = await params
   const { tool, redirect: canonical } = resolveToolRoute(slug)
-  if (!tool) redirect('/doc-tools')
-  if (canonical) redirect('/doc-tools/' + canonical)
+  if (!tool) redirect('/')
+  if (canonical) redirect('/' + canonical)
   return null
 }

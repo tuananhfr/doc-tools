@@ -2,9 +2,9 @@ import { normalizeTextSearch } from '@/utils/text-search'
 import { CATEGORY_TONE, LEGACY_TOOL_QUERY, TOOL_CATALOG } from '../config/tool-catalog'
 import type { ReadyTool, ToolDefinition, ToolFilter, ToolTone } from '../types/tool.types'
 
-/** `base` = gốc của nhánh đang đứng (`useToolsBranch().base`): `/doc-tools` hoặc `/tools`. */
+/** Build a tool URL within its public or ERPCons branch. */
 export function toolPath(base: string, tool: Pick<ToolDefinition, 'slug'>): string {
-  return `${base}/${tool.slug}`
+  return `${base.replace(/\/+$/, '')}/${tool.slug}`
 }
 
 /** Đường dẫn theo `id` — cho công cụ này mở công cụ khác mà không chép slug sang chỗ thứ hai. */
@@ -48,7 +48,8 @@ export function resolveToolRoute(slug: string | undefined, catalog: ToolDefiniti
  * PDF ↔ Chỉnh sửa PDF) không dựng lại màn nên không tính là rời — tệp còn nguyên.
  */
 export function leavesToolScreen(base: string, currentPath: string, nextPath: string, catalog: ToolDefinition[] = TOOL_CATALOG): boolean {
-  const screenAt = (path: string) => (path.startsWith(`${base}/`) ? (resolveToolRoute(path.slice(base.length + 1).replace(/\/+$/, ''), catalog).tool?.screen ?? null) : null)
+  const prefix = `${base.replace(/\/+$/, '')}/`
+  const screenAt = (path: string) => (path.startsWith(prefix) ? (resolveToolRoute(path.slice(prefix.length).replace(/\/+$/, ''), catalog).tool?.screen ?? null) : null)
   const current = screenAt(currentPath)
   return current === null || screenAt(nextPath) !== current
 }

@@ -1,0 +1,84 @@
+/* Header sits outside the existing tool scroll region; Bootstrap owns overlay layers. */
+.cn-shell { display: grid; grid-template-rows: var(--cn-header-height) minmax(0, 1fr); height: 100dvh; overflow: hidden; }
+.cn-shell > .erp-tools-frame, .cn-shell .erp-tools-guest { height: 100%; min-height: 0; }
+.cn-shell--tool .erp-auth__brand { min-height: 0; }
+.cn-shell:not(.cn-shell--tool) .erp-tools-guest { background: var(--cn-surface); color: var(--cn-ink); }
+.cn-site-main { padding: 0; }
+.cn-site-page, .cn-header, .cn-footer { font-family: var(--cn-font-family); color: var(--cn-ink); line-height: 1.55; }
+.cn-container { width: min(100% - 64px, 1320px); margin-inline: auto; }
+.cn-header { background: var(--cn-surface); border-bottom: 1px solid var(--cn-line); position: relative; z-index: 2; }
+.cn-header-content { height: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.cn-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--cn-ink); text-decoration: none; font-size: 24px; font-weight: 700; letter-spacing: -1px; white-space: nowrap; }
+.cn-brand:hover { color: var(--cn-ink); }
+.cn-brand img { display: block; object-fit: contain; flex: none; }
+.cn-brand-accent { color: var(--cn-accent); }
+.cn-desktop-navigation { display: flex; align-items: center; gap: 22px; margin-right: auto; }
+.cn-desktop-navigation a { color: var(--cn-muted); text-decoration: none; font-size: 12px; white-space: nowrap; padding-block: 14px; }
+.cn-desktop-navigation a:hover, .cn-desktop-navigation a[aria-current] { color: var(--cn-accent); }
+.cn-header-actions { display: flex; align-items: center; gap: 10px; }
+.cn-header-products { display: flex; gap: 8px; }
+.cn-button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 40px; padding: 10px 17px; border: 1px solid transparent; border-radius: var(--cn-radius-button); background: #005be8; color: var(--cn-on-accent); font: 700 12px/1.45 var(--cn-font-family); text-decoration: none; white-space: nowrap; cursor: pointer; }
+.cn-button:hover { color: var(--cn-on-accent); background: var(--cn-accent-hover); }
+.cn-button:active { transform: translateY(1px); }
+.cn-button--navy { background: var(--cn-navy); }
+.cn-button--red { background: var(--cn-red); }
+.cn-button--red:hover { background: #b9172d; }
+.cn-button--outline { background: transparent; border-color: #b3c7de; color: var(--cn-on-accent); }
+.cn-button--outline:hover { background: rgb(255 255 255 / 12%); }
+.cn-icon-button { display: inline-grid; place-items: center; flex: none; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: var(--cn-ink); font-size: 20px; text-decoration: none; }
+.cn-icon-button:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-language { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: inherit; }
+.cn-header .erp-tools-prefs { gap: 10px; }
+.cn-header .erp-tools-prefs__toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; padding: 0; color: var(--cn-ink); background: transparent; border: 0; border-radius: 50%; font-size: 19px; }
+.cn-header .erp-tools-prefs__toggle::after { display: none; }
+.cn-header .dropdown-menu { font-family: var(--cn-font-family); }
+.cn-menu-toggle { display: none; }
+.cn-skip-link { position: absolute; left: 16px; top: -100px; padding: 10px 16px; color: var(--cn-on-accent); background: var(--cn-navy); border-radius: var(--cn-radius-button); }
+.cn-skip-link:focus { top: 8px; z-index: 3; }
+:is(.cn-header, .cn-footer, .cn-site-page) :is(a, button, input):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+.cn-mobile-navigation { color: var(--cn-ink); background: var(--cn-surface); font-family: var(--cn-font-family); max-width: min(340px, 100vw); }
+.cn-mobile-navigation .offcanvas-title { font-weight: 700; }
+.cn-mobile-navigation nav { display: grid; gap: 8px; }
+.cn-mobile-navigation nav a, .cn-mobile-products a { padding: 12px; color: var(--cn-ink); text-decoration: none; border-radius: var(--cn-radius-button); }
+.cn-mobile-navigation nav a:hover, .cn-mobile-products a:hover { background: var(--cn-tint); }
+.cn-mobile-products { display: grid; margin-top: 24px; border-top: 1px solid var(--cn-line); padding-top: 16px; }
+.cn-footer { border-top: 1px solid var(--cn-line); background: var(--cn-hero); padding-block: 20px; }
+.cn-footer-content { display: flex; align-items: center; gap: 28px; justify-content: space-between; }
+.cn-footer-brand { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--cn-muted); }
+.cn-brand--compact { font-size: 16px; letter-spacing: -.6px; gap: 3px; }
+.cn-brand--compact img { width: 32px; height: 32px; }
+.cn-footer-brand > span a { color: var(--cn-ink); font-weight: 700; text-decoration: none; }
+.cn-footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+.cn-footer nav a { font-size: 11px; text-decoration: none; color: var(--cn-muted); }
+.cn-footer nav a:hover { color: var(--cn-accent); }
+.cn-footer-motto { font-size: 11px; color: var(--cn-muted); white-space: nowrap; }
+[data-theme='dark'] .cn-brand img { background: #eef5ff; border-radius: 50%; }
+@media (max-width: 1279px) {
+  .cn-header-content { gap: 16px; }
+  .cn-desktop-navigation { gap: 14px; }
+  .cn-header-products .cn-button { padding-inline: 12px; }
+  .cn-desktop-navigation a { font-size: 11px; }
+}
+@media (max-width: 1099px) {
+  .cn-desktop-navigation { display: none; }
+  .cn-menu-toggle { display: inline-grid; }
+  .cn-header-actions { margin-left: auto; }
+  .cn-footer-content { flex-wrap: wrap; gap: 16px; }
+}
+@media (max-width: 1023px) { .cn-container { width: min(100% - 40px, 1320px); } }
+@media (max-width: 767px) {
+  .cn-site { --cn-header-height: 60px; }
+  .cn-container { width: calc(100% - 32px); }
+  .cn-header-content { gap: 8px; }
+  .cn-brand { font-size: 21px; gap: 4px; letter-spacing: -.8px; }
+  .cn-brand img { width: 40px; height: 40px; }
+  .cn-header-actions { gap: 2px; }
+  .cn-header-products, .cn-header-search { display: none; }
+  .cn-header .erp-tools-prefs { gap: 4px; }
+  .cn-icon-button, .cn-header .erp-tools-prefs__toggle { width: 34px; height: 36px; font-size: 18px; }
+  .cn-language { font-size: 11px; gap: 3px; }
+  .cn-footer-content, .cn-footer-brand { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .cn-brand--compact { font-size: 16px; }
+  .cn-brand--compact img { width: 32px; height: 32px; }
+  .cn-footer nav { gap: 16px; }
+}
