@@ -6,6 +6,6 @@ POST /api/v1/tools/visits and GET /api/v1/tools/stats preserve the flat {ok,...}
 
 Modules are under src. src/main.ts only composes the app; config/http-adapter.ts preserves parser and loopback proxy behavior. The database service creates its own tables. Keep controllers, services and repositories focused on their responsibilities. Never point this app at the ERPCons database.
 
-Run pnpm install --frozen-lockfile, pnpm test, pnpm build and pnpm lint within this repo. Tests use real MySQL and clean their own qa records. pnpm-workspace.yaml only configures allowed dependency build scripts for this single project. Do not add workspace packages, file dependencies or links to the frontend repository.
+Run npm ci, npm test, npm run build and npm run lint within this repo. Tests use real MySQL and clean their own qa records. Each repository owns its package-lock.json and dependencies. The lockfile was verified with Node.js 24 and npm 11.11.0. Do not add npm workspaces, file dependencies or links to the frontend repository.
 
 Preserve Vietnamese UTF-8 without BOM. Keep .env and generated dist/node_modules out of Git. Do not commit or push without explicit user instruction.

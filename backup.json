@@ -4,19 +4,19 @@
   "sourceRepositoryCommits": {
     "frontend": {
       "commit": "8b24352809b1e6feb72551ce5ed58e8d9a2eb096",
-      "files": 757,
+      "files": 756,
       "workingTreeChangesIncluded": true,
-      "sourceTreeSha256": "3ab0a79b2d8955b69852965bc1958b8db6170bc209cce05a38250e95b7f23a4a"
+      "sourceTreeSha256": "b173a536c855b10c02ebac9f501ea4b038d470b0d4c4138b46cb07c4674fcba2"
     },
     "backend": {
       "commit": "b17efa5dcf4e8da851cbb5de7ce98a658960920c",
-      "files": 22,
-      "workingTreeChangesIncluded": false,
-      "sourceTreeSha256": "0eebffb20a4e12e69099038dc33657173f58f5a00d3350ef0078727103ea0ca4"
+      "files": 21,
+      "workingTreeChangesIncluded": true,
+      "sourceTreeSha256": "fb763c5eba86e51bb88bfae47b6fb77b618a926b24dc0e9cca9f7934c1600101"
     }
   },
   "upstreamFeatureFiles": 450,
-  "updatedAt": "2026-10-05T08:16:26.264Z",
+  "updatedAt": "2026-10-05T09:20:53.869Z",
   "knownLimitations": [
     "Offline navigation with directory query filters may fall back to homepage HTML.",
     "Some optimized images at unvisited sizes may not be available offline."

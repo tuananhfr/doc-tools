@@ -6,6 +6,6 @@ Runtime composition is in src/runtime. Next.js hosts a persistent React Router d
 
 The only backend dependency is HTTP: BACKEND_URL configures the external NestJS counter API. Keep flat {ok,...} envelopes. The Free app has no local login; login/Pro links point to ERPCons.
 
-Run pnpm install --frozen-lockfile, pnpm test, pnpm build and pnpm lint within this repo. pnpm-workspace.yaml only configures allowed dependency build scripts for this single project. Do not add workspace packages, file dependencies or links to the backend repository.
+Run npm ci, npm test, npm run build and npm run lint within this repo. Each repository owns its package-lock.json and dependencies. The lockfile was verified with Node.js 24 and npm 11.11.0. Do not add npm workspaces, file dependencies or links to the backend repository.
 
 Preserve Vietnamese UTF-8 without BOM. UI verification requires responsive screenshots and real file processing. Do not commit or push without explicit user instruction.
