@@ -11,8 +11,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tool) return { robots: { index: false, follow: true } }
   return { title: toolPageTitle(tool), description: tool.description,
     alternates: { canonical: withBase('/' + tool.slug) },
-    openGraph: { title: toolPageTitle(tool), description: tool.description, url: withBase('/' + tool.slug) },
-    twitter: { card: 'summary', title: toolPageTitle(tool), description: tool.description },
+    openGraph: {
+      title: toolPageTitle(tool), description: tool.description, url: withBase('/' + tool.slug),
+      images: [{ url: withBase('/og/' + tool.slug), width: 1200, height: 630, type: 'image/png', alt: tool.name + ' — Chuyện Nhỏ' }],
+    },
+    twitter: {
+      card: 'summary_large_image', title: toolPageTitle(tool), description: tool.description,
+      images: [{ url: withBase('/og/' + tool.slug), alt: tool.name + ' — Chuyện Nhỏ' }],
+    },
   }
 }
 export default async function ToolRoute({ params }: Props) {
