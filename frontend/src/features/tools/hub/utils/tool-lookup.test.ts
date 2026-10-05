@@ -105,7 +105,7 @@ describe('legacyToolPath', () => {
 describe('filterTools', () => {
   it('filters by category', () => {
     const ids = filterTools(TOOL_CATALOG, 'calc', '').map((tool) => tool.id)
-    expect(ids).toEqual(['measure-image', 'quick-calc', 'unit-convert'])
+    expect(ids).toEqual(['study', 'measure-image', 'quick-calc', 'unit-convert'])
   })
 
   it('folds every PDF tool into the document group', () => {
@@ -115,19 +115,19 @@ describe('filterTools', () => {
 
   it('matches without diacritics, every word anywhere in name, description or synonyms', () => {
     // "ghép ảnh" là từ đồng nghĩa của Scan ảnh → PDF.
-    expect(filterTools(TOOL_CATALOG, 'all', 'ghep').map((tool) => tool.id)).toEqual(['scan-to-pdf', 'merge-pdf'])
+    expect(filterTools(TOOL_CATALOG, 'all', 'ghep').map((tool) => tool.id)).toEqual(['collage', 'scan-to-pdf', 'merge-pdf'])
     expect(filterTools(TOOL_CATALOG, 'all', 'ghep pdf').map((tool) => tool.id)).toEqual(['scan-to-pdf', 'merge-pdf'])
     expect(filterTools(TOOL_CATALOG, 'all', 'pdf nen').map((tool) => tool.id)).toEqual(['compress-pdf'])
   })
 
   it('applies category and keyword together', () => {
-    expect(filterTools(TOOL_CATALOG, 'image', 'nen').map((tool) => tool.id)).toEqual(['compress-image'])
+    expect(filterTools(TOOL_CATALOG, 'image', 'nen').map((tool) => tool.id)).toEqual(['remove-background', 'compress-image'])
   })
 })
 
 describe('toolPageTitle', () => {
   it('keeps the titles the four shared links already had', () => {
-    expect(toolPageTitle(resolveToolRoute('anh-sang-pdf').tool!)).toBe('Chuyển ảnh sang PDF miễn phí · ERPCons')
-    expect(toolPageTitle(resolveToolRoute('ghep-pdf').tool!)).toBe('Ghép PDF miễn phí · ERPCons')
+    expect(toolPageTitle(resolveToolRoute('anh-sang-pdf').tool!)).toBe('Chuyển ảnh sang PDF miễn phí · Chuyện Nhỏ')
+    expect(toolPageTitle(resolveToolRoute('ghep-pdf').tool!)).toBe('Ghép PDF miễn phí · Chuyện Nhỏ')
   })
 })

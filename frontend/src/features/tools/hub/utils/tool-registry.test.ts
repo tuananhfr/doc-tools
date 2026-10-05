@@ -41,6 +41,6 @@ describe('danh mục thật', () => {
     expect(found('giam dung luong')).toEqual(expect.arrayContaining(['compress-pdf', 'compress-image']))
     expect(found('docx')).toEqual(['convert-file'])
     expect(found('mã vạch')).toEqual(['barcode-create', 'qr-read'])
-    expect(found('mat khau')).toEqual(['random-code'])
+    expect(found('mat khau')).toEqual(['pdf-password', 'random-code'])
   })
 })

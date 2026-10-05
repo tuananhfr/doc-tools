@@ -11,7 +11,11 @@ const config = {
   poweredByHeader: false,
   async rewrites() {
     const backend = process.env.BACKEND_URL ?? 'http://127.0.0.1:3003'
-    return [{ source: '/api/v1/tools/:path*', destination: backend + '/api/v1/tools/:path*' }]
+    return [
+      { source: '/api/v1/tools/:path*', destination: backend + '/api/v1/tools/:path*' },
+      { source: '/api/v1/rules/:path*', destination: backend + '/api/v1/rules/:path*' },
+      { source: '/api/v1/contributions/:path*', destination: backend + '/api/v1/contributions/:path*' },
+    ]
   },
   webpack(config, { isServer, webpack }) {
     config.plugins.push(new webpack.NormalModuleReplacementPlugin(/hooks\/useHubPrefs$/, resource => {

@@ -37,6 +37,35 @@ const ColorPage = dynamic(() => import('@/features/tools/utility/pages/ColorPage
 const RandomCodePage = dynamic(() => import('@/features/tools/utility/pages/RandomCodePage'), { ssr: false, loading: () => <Loading /> })
 const QuickNotePage = dynamic(() => import('@/features/tools/utility/pages/QuickNotePage'), { ssr: false, loading: () => <Loading /> })
 const HouseOrientationPage = dynamic(() => import('@/features/tools/orientation/pages/HouseOrientationPage'), { ssr: false, loading: () => <Loading /> })
+const NumberWordsPage = dynamic(() => import('@/features/tools/vietnam/pages/NumberWordsPage'), { ssr: false, loading: () => <Loading /> })
+const LoanPage = dynamic(() => import('@/features/tools/finance/pages/LoanPage'), { ssr: false, loading: () => <Loading /> })
+const UnitPricePage = dynamic(() => import('@/features/tools/finance/pages/UnitPricePage'), { ssr: false, loading: () => <Loading /> })
+const StudyPage = dynamic(() => import('@/features/tools/study/pages/StudyPage'), { ssr: false, loading: () => <Loading /> })
+const PomodoroPage = dynamic(() => import('@/features/tools/study/pages/PomodoroPage'), { ssr: false, loading: () => <Loading /> })
+const GroupSplitPage = dynamic(() => import('@/features/tools/finance/pages/GroupSplitPage'), { ssr: false, loading: () => <Loading /> })
+const LegacyFontPage = dynamic(() => import('@/features/tools/vietnam/pages/LegacyFontPage'), { ssr: false, loading: () => <Loading /> })
+const ReadAloudPage = dynamic(() => import('@/features/tools/accessibility/pages/ReadAloudPage'), { ssr: false, loading: () => <Loading /> })
+const VietQrPage = dynamic(() => import('@/features/tools/qr/pages/VietQrPage'), { ssr: false, loading: () => <Loading /> })
+const InvoiceXmlPage = dynamic(() => import('@/features/tools/vietnam/pages/InvoiceXmlPage'), { ssr: false, loading: () => <Loading /> })
+const RemoveMetadataPage = dynamic(() => import('@/features/tools/image/pages/RemoveMetadataPage'), { ssr: false, loading: () => <Loading /> })
+const CollagePage = dynamic(() => import('@/features/tools/image/pages/CollagePage'), { ssr: false, loading: () => <Loading /> })
+const MessageRiskPage = dynamic(() => import('@/features/tools/safety/pages/MessageRiskPage'), { ssr: false, loading: () => <Loading /> })
+const FlashcardPage = dynamic(() => import('@/features/tools/study/pages/FlashcardPage'), { ssr: false, loading: () => <Loading /> })
+const HouseEstimatePage = dynamic(() => import('@/features/tools/construction/pages/HouseEstimatePage'), { ssr: false, loading: () => <Loading /> })
+const DictationPage = dynamic(() => import('@/features/tools/accessibility/pages/DictationPage'), { ssr: false, loading: () => <Loading /> })
+const MagnifierPage = dynamic(() => import('@/features/tools/accessibility/pages/MagnifierPage'), { ssr: false, loading: () => <Loading /> })
+const FormTemplatesPage = dynamic(() => import('@/features/tools/documents/pages/FormTemplatesPage'), { ssr: false, loading: () => <Loading /> })
+const ElectricityPage = dynamic(() => import('@/features/tools/finance/pages/ElectricityPage'), { ssr: false, loading: () => <Loading /> })
+const LunarCalendarPage = dynamic(() => import('@/features/tools/vietnam/pages/LunarCalendarPage'), { ssr: false, loading: () => <Loading /> })
+const PayrollPage = dynamic(() => import('@/features/tools/finance/pages/PayrollPage'), { ssr: false, loading: () => <Loading /> })
+const AddressConversionPage = dynamic(() => import('@/features/tools/vietnam/pages/AddressConversionPage'), { ssr: false, loading: () => <Loading /> })
+const FamilyCalendarPage = dynamic(() => import('@/features/tools/family/pages/FamilyCalendarPage'), { ssr: false, loading: () => <Loading /> })
+const PdfPasswordPage = dynamic(() => import('@/features/tools/pdf/pages/quick/PdfPasswordPage'), { ssr: false, loading: () => <Loading /> })
+const CvPage = dynamic(() => import('@/features/tools/documents/pages/CvPage'), { ssr: false, loading: () => <Loading /> })
+const RemoveBackgroundPage = dynamic(() => import('@/features/tools/image/pages/RemoveBackgroundPage'), { ssr: false, loading: () => <Loading /> })
+const IdeaSuggestionPage = dynamic(() => import('@/features/tools/community/pages/IdeaSuggestionPage'), { ssr: false, loading: () => <Loading /> })
+const RegulationFeedbackPage = dynamic(() => import('@/features/tools/community/pages/RegulationFeedbackPage'), { ssr: false, loading: () => <Loading /> })
+const AssistantPage = dynamic(() => import('@/features/tools/byoai/pages/AssistantPage'), { ssr: false, loading: () => <Loading /> })
 export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   editor: DocToolsPage,
   'merge-pdf': MergePdfPage,
@@ -72,4 +101,33 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   'random-code': RandomCodePage,
   'quick-note': QuickNotePage,
   'house-orientation': HouseOrientationPage,
+  'number-words': NumberWordsPage,
+  loan: LoanPage,
+  'unit-price': UnitPricePage,
+  study: StudyPage,
+  pomodoro: PomodoroPage,
+  'group-split': GroupSplitPage,
+  'legacy-font': LegacyFontPage,
+  'read-aloud': ReadAloudPage,
+  vietqr: VietQrPage,
+  'invoice-xml': InvoiceXmlPage,
+  'remove-metadata': RemoveMetadataPage,
+  collage: CollagePage,
+  'message-risk': MessageRiskPage,
+  flashcards: FlashcardPage,
+  'house-estimate': HouseEstimatePage,
+  dictation: DictationPage,
+  magnifier: MagnifierPage,
+  'form-templates': FormTemplatesPage,
+  electricity: ElectricityPage,
+  'lunar-calendar': LunarCalendarPage,
+  payroll: PayrollPage,
+  'address-conversion': AddressConversionPage,
+  'family-calendar': FamilyCalendarPage,
+  'pdf-password': PdfPasswordPage,
+  cv: CvPage,
+  'remove-background': RemoveBackgroundPage,
+  'idea-suggestion': IdeaSuggestionPage,
+  'regulation-feedback': RegulationFeedbackPage,
+  assistant: AssistantPage,
 }

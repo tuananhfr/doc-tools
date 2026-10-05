@@ -3,22 +3,23 @@
   "purpose": "Temporary snapshot of standalone frontend and backend repositories",
   "sourceRepositoryCommits": {
     "frontend": {
-      "commit": "8b24352809b1e6feb72551ce5ed58e8d9a2eb096",
-      "files": 766,
-      "workingTreeChangesIncluded": true,
-      "sourceTreeSha256": "f5d329daa0febd66a8ad53804d9a2b921bb85600055b6bbcccc1585b72e3fa04"
+      "commit": "6b9d2468f06954eb7692cccbaf06e45eaa1ae8ed",
+      "files": 856,
+      "workingTreeChangesIncluded": false,
+      "sourceTreeSha256": "27a3ff7f0d1a28196a22c3773fdb5eb356ce47a3b0fc99353f3a3f2053aba409"
     },
     "backend": {
-      "commit": "b17efa5dcf4e8da851cbb5de7ce98a658960920c",
-      "files": 21,
-      "workingTreeChangesIncluded": true,
-      "sourceTreeSha256": "fb763c5eba86e51bb88bfae47b6fb77b618a926b24dc0e9cca9f7934c1600101"
+      "commit": "5f8467a51b420d70fd8e0efc54a4d339b4aa5d31",
+      "files": 37,
+      "workingTreeChangesIncluded": false,
+      "sourceTreeSha256": "89a5d870de99cae0357c0c8346a72dd0f53c71b048fb1c6b0509f737df979f84"
     }
   },
   "upstreamFeatureFiles": 450,
-  "updatedAt": "2026-10-05T11:43:27.448Z",
+  "updatedAt": "2026-10-05T15:54:23.033Z",
   "knownLimitations": [
     "Offline navigation with directory query filters may fall back to homepage HTML.",
     "Some optimized images at unvisited sizes may not be available offline."
-  ]
+  ],
+  "sourceTreeHashFormat": "SHA-256 of sorted UTF-8 path + NUL + file SHA-256 hex + LF"
 }

@@ -6,7 +6,9 @@ Runtime composition is in src/runtime. Next.js hosts a persistent React Router d
 
 Tool Open Graph and Twitter metadata point to <basePath>/og/<slug>. The Node.js route prerenders PNG share cards for ready catalog tools and caches them with daily revalidation. src/features/site/server/tool-share-image.tsx renders the existing Bootstrap icon, catalog name/description, Chuyen Nho palette and local Be Vietnam Pro fonts with Arimo for symbol fallback through next/og; no external image or font requests are needed.
 
-The only backend dependency is HTTP: BACKEND_URL configures the external NestJS counter API. Keep flat {ok,...} envelopes. The Free app has no local login; login/Pro links point to ERPCons.
+The backend dependency is HTTP: BACKEND_URL configures the external NestJS counter, signed rule, and contribution APIs. Keep flat {ok,...} envelopes. The Free app has no local login; login/Pro links point to ERPCons. `next.config.mjs` rewrites tools, rules and contributions endpoints. Browser fetches must use `withBase` so prefixed deployments work.
+
+New archive-derived tools live in focused feature folders and are registered in hub/config/tool-list.ts, hub/types/tool.types.ts and runtime/tool-screens.tsx. Legal, address, payroll and electricity data only gain verified status from an Ed25519 signed rule package. BYOAI previews/redacts the prompt and submits only user-selected changes after consent; AI text never publishes itself. Family Calendar V1 is an IndexedDB local-only space with portable backup/ICS/print and foreground reminders; online sharing/account sync and Native remain gated by identity, privacy and product decisions. Existing image tools preserve EXIF; the explicit metadata-removal tool strips it.
 
 Run npm ci, npm test, npm run build and npm run lint within this repo. Each repository owns its package-lock.json and dependencies. The lockfile was verified with Node.js 24 and npm 11.11.0. Do not add npm workspaces, file dependencies or links to the backend repository.
 

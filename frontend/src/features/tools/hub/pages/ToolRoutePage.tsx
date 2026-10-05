@@ -71,7 +71,7 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
           <p className="cn-tool-description">{tool.description}</p>
           <p className="cn-tool-privacy">
             <Icon name="shield-check" />
-            {tool.noFile ? 'Chạy trên máy bạn, không gửi nội dung đi' : 'Xử lý trên máy bạn, tệp không tải lên'}
+            {tool.privacyNote ?? (tool.noFile ? 'Chạy trên máy bạn, không gửi nội dung đi' : 'Xử lý trên máy bạn, tệp không tải lên')}
           </p>
         </div>
       </header>

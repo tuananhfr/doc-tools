@@ -84,6 +84,35 @@ export type ToolScreen =
   | 'random-code'
   | 'quick-note'
   | 'house-orientation'
+  | 'number-words'
+  | 'loan'
+  | 'unit-price'
+  | 'study'
+  | 'pomodoro'
+  | 'group-split'
+  | 'legacy-font'
+  | 'read-aloud'
+  | 'vietqr'
+  | 'invoice-xml'
+  | 'remove-metadata'
+  | 'collage'
+  | 'message-risk'
+  | 'flashcards'
+  | 'house-estimate'
+  | 'dictation'
+  | 'magnifier'
+  | 'form-templates'
+  | 'electricity'
+  | 'lunar-calendar'
+  | 'payroll'
+  | 'address-conversion'
+  | 'family-calendar'
+  | 'pdf-password'
+  | 'cv'
+  | 'remove-background'
+  | 'idea-suggestion'
+  | 'regulation-feedback'
+  | 'assistant'
 
 interface ToolBase {
   id: string
@@ -98,6 +127,8 @@ interface ToolBase {
   pageTitle?: string
   /** Công cụ không nhận tệp: dòng cam kết đầu trang nói về DỮ LIỆU thay vì về tệp. */
   noFile?: boolean
+  /** Privacy statement for a tool that uses a browser-provided remote service. */
+  privacyNote?: string
   /** Thiếu = `browser`. */
   processing?: ToolProcessing
   /** Thứ hạng ở lưới "Hay dùng" (nhỏ đứng trước); thiếu = chỉ hiện khi xem tất cả. */
