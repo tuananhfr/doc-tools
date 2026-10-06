@@ -1,5 +1,6 @@
 import * as pdfjs from 'pdfjs-dist'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
+import { pdfjsWasmUrl } from '@/utils/pdfjs-wasm'
 import type { PdfSource } from '../types/doc-tools.types'
 import { CANVAS_CAP, fitScale } from '../utils/canvas-cap'
 
@@ -14,7 +15,7 @@ export function openPdf(source: PdfSource): Promise<PdfDocument> {
   if (!doc) {
     // `slice()` BẮT BUỘC: pdf.js chuyển (transfer) ArrayBuffer sang worker, bộ
     // đệm gốc bị tách rời thành 0 byte — lần xuất PDF sau đó đọc ra tệp rỗng.
-    doc = pdfjs.getDocument({ data: source.bytes.slice() }).promise
+    doc = pdfjs.getDocument({ data: source.bytes.slice(), wasmUrl: pdfjsWasmUrl(pdfjs.version) }).promise
     documents.set(source.id, doc)
   }
   return doc

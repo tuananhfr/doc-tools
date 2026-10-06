@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "node scripts/prepare-video.mjs",
-    "predev": "node scripts/prepare-video.mjs",
+    "postinstall": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs",
+    "predev": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs",
     "dev": "next dev --webpack -p 3002",
-    "prebuild": "node scripts/prepare-video.mjs",
+    "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs",
     "build": "next build --webpack && node scripts/prepare-offline.mjs",
     "deploy": "npm run build && sudo systemctl restart doc-tools-frontend",
     "start": "next start -p 3002",

@@ -1,6 +1,7 @@
 import * as pdfjs from 'pdfjs-dist'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
+import { pdfjsWasmUrl } from '@/utils/pdfjs-wasm'
 
 /*
  * Tệp này kéo pdf.js — CHỈ được nạp bằng `await import()` lúc người dùng chọn PDF.
@@ -17,7 +18,7 @@ function open(bytes: Uint8Array): Promise<PdfDocument> {
   let doc = documents.get(bytes)
   if (!doc) {
     // `slice()`: pdf.js chuyển ArrayBuffer sang worker và làm rỗng bản gốc — lúc xuất PDF còn cần lại.
-    doc = pdfjs.getDocument({ data: bytes.slice() }).promise.catch((error: unknown) => {
+    doc = pdfjs.getDocument({ data: bytes.slice(), wasmUrl: pdfjsWasmUrl(pdfjs.version) }).promise.catch((error: unknown) => {
       documents.delete(bytes)
       if (error instanceof Error && error.name === 'PasswordException') {
         throw new ToolError(TOOL_ERROR.permission, 'PDF có mật khẩu mở — gỡ mật khẩu bằng công cụ "Mở khoá PDF" rồi chọn lại.')
