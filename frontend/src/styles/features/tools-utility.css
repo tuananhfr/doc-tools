@@ -393,7 +393,15 @@
   color: var(--erp-text-on-accent);
 }
 
-/* Ma luon ve tren nen TRANG (trong chinh SVG) o ca ba theme: ma sang tren nen toi nhieu may quet khong doc. */
+.erp-qr-background { margin-top: 16px; }
+.erp-qr-background__options { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.erp-qr-background__option { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.erp-qr-background__colors { margin-top: 12px; }
+.erp-qr-color--background input:checked + .erp-qr-color__dot { color: var(--erp-text-primary); }
+.erp-qr-background__custom { display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; }
+.erp-qr-background__custom input { width: 44px; height: 36px; padding: 2px; border: 1px solid var(--erp-border); border-radius: 4px; cursor: pointer; }
+.erp-qr-background__custom span:last-child { font-family: var(--bs-font-monospace); }
+
 .erp-qr-preview {
   width: 100%;
   max-width: 320px;
@@ -401,6 +409,13 @@
   overflow: hidden;
   border: 1px solid var(--erp-border);
   border-radius: var(--erp-radius-md);
+}
+
+.erp-qr-preview--transparent {
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #e2e5e9 25%, transparent 25%), linear-gradient(-45deg, #e2e5e9 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e2e5e9 75%), linear-gradient(-45deg, transparent 75%, #e2e5e9 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
 }
 
 .erp-qr-preview__code {
