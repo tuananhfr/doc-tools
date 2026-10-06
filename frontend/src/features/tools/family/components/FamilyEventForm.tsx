@@ -2,36 +2,48 @@ import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import type { FamilyCategory, FamilyDataClass, FamilyEvent, FamilyMember, FamilyReminder, FamilyScope, Recurrence } from '../core/family'
 
-interface Props { members: FamilyMember[]; onSave: (event: FamilyEvent, reminder: FamilyReminder | null) => Promise<void>; disabled: boolean; today: string }
+export interface FamilyEventDraft { date: string; title?: string; recurrence?: Recurrence; hint?: string }
+interface Props {
+  members: FamilyMember[]
+  onSave: (event: FamilyEvent, reminder: FamilyReminder | null) => Promise<void>
+  onCancel?: () => void
+  disabled: boolean
+  draft: FamilyEventDraft
+  editing?: { event: FamilyEvent; reminder: FamilyReminder | null }
+}
 
 const CATEGORIES: [FamilyCategory, string][] = [['task', 'Việc gia đình'], ['school', 'Học tập'], ['appointment', 'Lịch hẹn'], ['deadline', 'Hạn giấy tờ'], ['medication', 'Nhắc thuốc'], ['payment', 'Thanh toán'], ['other', 'Khác']]
 const RECURRENCES: [Recurrence, string][] = [['once', 'Một lần'], ['daily', 'Hằng ngày'], ['weekly', 'Hằng tuần'], ['monthly', 'Hằng tháng'], ['yearly', 'Hằng năm']]
 const SCOPES: [FamilyScope, string][] = [['FAMILY_ALL', 'Cả gia đình'], ['PARENTS_SENIORS', 'Bố mẹ và ông bà'], ['PARENTS_CHILDREN', 'Bố mẹ và con'], ['PRIVATE', 'Chỉ trên thiết bị này']]
 
-export function FamilyEventForm({ members, onSave, disabled, today }: Props) {
-  const [title, setTitle] = useState('')
-  const [date, setDate] = useState(today)
-  const [time, setTime] = useState('')
-  const [notes, setNotes] = useState('')
-  const [category, setCategory] = useState<FamilyCategory>('task')
-  const [recurrence, setRecurrence] = useState<Recurrence>('once')
-  const [scope, setScope] = useState<FamilyScope>('FAMILY_ALL')
-  const [dataClass, setDataClass] = useState<FamilyDataClass>('NORMAL')
-  const [memberId, setMemberId] = useState(members[0]?.id ?? '')
-  const [reminderMinutes, setReminderMinutes] = useState('')
+// Form chỉ đọc `draft` / `editing` lúc khởi tạo: nơi gọi đổi `key` để mở một form mới.
+export function FamilyEventForm({ members, onSave, onCancel, disabled, draft, editing }: Props) {
+  const source = editing?.event
+  const [title, setTitle] = useState(source?.title ?? draft.title ?? '')
+  const [date, setDate] = useState(source?.date ?? draft.date)
+  const [time, setTime] = useState(source?.time ?? '')
+  const [notes, setNotes] = useState(source?.notes ?? '')
+  const [category, setCategory] = useState<FamilyCategory>(source?.category ?? 'task')
+  const [recurrence, setRecurrence] = useState<Recurrence>(source?.recurrence ?? draft.recurrence ?? 'once')
+  const [scope, setScope] = useState<FamilyScope>(source?.scope ?? 'FAMILY_ALL')
+  const [dataClass, setDataClass] = useState<FamilyDataClass>(source?.dataClass ?? 'NORMAL')
+  const [memberId, setMemberId] = useState(source ? source.memberIds[0] ?? '' : members[0]?.id ?? '')
+  const [reminderMinutes, setReminderMinutes] = useState(editing?.reminder ? String(editing.reminder.minutesBefore) : '')
   const [error, setError] = useState('')
   const changeCategory = (value: FamilyCategory) => { setCategory(value); if (value === 'medication') setDataClass('SENSITIVE') }
   const save = async () => {
     if (!title.trim() || !date) return
     if (reminderMinutes !== '' && (!time || !Number.isInteger(Number(reminderMinutes)) || Number(reminderMinutes) < 0 || Number(reminderMinutes) > 1440)) { setError('Nhắc việc cần giờ cụ thể và khoảng nhắc từ 0 đến 1.440 phút.'); return }
     const timestamp = new Date().toISOString()
-    const event: FamilyEvent = { id: crypto.randomUUID(), title: title.trim(), date, time, notes: notes.trim(), category, recurrence, scope, dataClass, memberIds: memberId ? [memberId] : [], completedDates: [], createdAt: timestamp, updatedAt: timestamp }
-    const reminder: FamilyReminder | null = reminderMinutes === '' ? null : { id: crypto.randomUUID(), eventId: event.id, minutesBefore: Number(reminderMinutes), recipientMemberIds: event.memberIds, hideDetails: dataClass === 'SENSITIVE' }
-    try { await onSave(event, reminder); setTitle(''); setNotes(''); setError('') }
+    // Sửa thì giữ nguyên id, ngày tạo và các lần đã đánh dấu xong: spec yêu cầu ID không đổi.
+    const event: FamilyEvent = { id: source?.id ?? crypto.randomUUID(), title: title.trim(), date, time, notes: notes.trim(), category, recurrence, scope, dataClass, memberIds: memberId ? [memberId] : [], completedDates: source?.completedDates ?? [], createdAt: source?.createdAt ?? timestamp, updatedAt: timestamp }
+    const reminder: FamilyReminder | null = reminderMinutes === '' ? null : { id: editing?.reminder?.id ?? crypto.randomUUID(), eventId: event.id, minutesBefore: Number(reminderMinutes), recipientMemberIds: event.memberIds, hideDetails: dataClass === 'SENSITIVE' }
+    try { await onSave(event, reminder); setError('') }
     catch { setError('Không lưu được lịch. Kiểm tra ngày và dữ liệu đã nhập.') }
   }
-  return <div className="erp-tool-panel">
-    <h2 className="h5">Thêm lịch gia đình</h2>
+  return <div className="erp-tool-panel cn-family-form">
+    <h2 className="h5">{source ? 'Sửa lịch' : 'Thêm lịch gia đình'}</h2>
+    {draft.hint ? <p className="cn-family-form__hint">{draft.hint}</p> : null}
     <div className="erp-tool-form__grid">
       <label className="erp-flow-field__label">Tên việc<Form.Control maxLength={300} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
       <label className="erp-flow-field__label">Ngày<Form.Control type="date" value={date} onChange={(event) => setDate(event.target.value)} /></label>
@@ -47,6 +59,9 @@ export function FamilyEventForm({ members, onSave, disabled, today }: Props) {
     {category === 'medication' ? <p className="mt-3">Nhắc thuốc chỉ theo dữ liệu bạn nhập; không phải tư vấn y tế. Nội dung nhạy cảm được ẩn trên thông báo mặc định.</p> : null}
     <p className="mt-3">Nhắc việc chỉ hiện khi trang đang mở hoặc trình duyệt cho phép thông báo; hệ điều hành có thể tạm dừng trang.</p>
     {error ? <p role="alert">{error}</p> : null}
-    <Button className="mt-3" disabled={disabled || !title.trim() || !date} onClick={() => void save()}>Lưu lịch trên thiết bị</Button>
+    <div className="d-flex flex-wrap gap-2 mt-3">
+      <Button disabled={disabled || !title.trim() || !date} onClick={() => void save()}>{source ? 'Lưu thay đổi' : 'Lưu lịch trên thiết bị'}</Button>
+      {onCancel ? <Button variant="outline-secondary" disabled={disabled} onClick={onCancel}>Hủy</Button> : null}
+    </div>
   </div>
 }

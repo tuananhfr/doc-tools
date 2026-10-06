@@ -1,0 +1,43 @@
+import { Button } from 'react-bootstrap'
+import { Icon } from '@/components/ui/Icon'
+import { solarToLunar } from '@/features/tools/vietnam'
+import { formatDayHeading } from '../core/event-labels'
+import type { FamilyEvent } from '../core/family'
+import { HOLIDAY_LAYERS, type Holiday } from '../core/vietnam-holidays'
+import { FamilyEventItem } from './FamilyEventItem'
+
+interface Props {
+  date: string
+  holidays: Holiday[]
+  events: FamilyEvent[]
+  memberNames: (event: FamilyEvent) => string
+  disabled: boolean
+  canEdit: boolean
+  onAdd: (date: string, holiday?: Holiday) => void
+  onEdit: (event: FamilyEvent) => void
+  onComplete: (eventId: string, date: string) => Promise<void>
+  onDelete: (eventId: string) => Promise<void>
+}
+
+const layerLabel = (holiday: Holiday) => HOLIDAY_LAYERS.find((layer) => layer.id === holiday.layer)?.label ?? ''
+
+export function FamilyDayPanel({ date, holidays, events, memberNames, disabled, canEdit, onAdd, onEdit, onComplete, onDelete }: Props) {
+  const [year, month, day] = date.split('-').map(Number)
+  const lunar = solarToLunar({ year, month, day })
+  return <section className="cn-family-panel" aria-live="polite">
+    <header className="cn-family-panel__head">
+      <h3>{formatDayHeading(date)}</h3>
+      {lunar ? <p>Âm lịch: ngày {lunar.day} tháng {lunar.month}{lunar.leap ? ' nhuận' : ''}</p> : null}
+    </header>
+    {holidays.length ? <ul className="cn-family-holidays">
+      {holidays.map((holiday) => <li key={holiday.id} className={`cn-family-holiday cn-family-holiday--${holiday.layer}`}>
+        <span className="cn-family-swatch" aria-hidden="true" />
+        <span className="cn-family-holiday__text"><strong>{holiday.name}</strong><small>{layerLabel(holiday)} · {holiday.lunar ? 'theo âm lịch' : 'theo dương lịch'}</small></span>
+        {canEdit && holiday.layer !== 'moon' ? <Button size="sm" variant="link" disabled={disabled} onClick={() => onAdd(date, holiday)}>Thêm nhắc</Button> : null}
+      </li>)}
+    </ul> : null}
+    {events.length ? <ul className="cn-family-events">{events.map((event) => <FamilyEventItem key={event.id} event={event} date={date} members={memberNames(event)} disabled={disabled} onComplete={onComplete} onEdit={canEdit ? onEdit : undefined} onDelete={onDelete} />)}</ul>
+      : <p className="cn-family-panel__empty">Chưa có lịch của gia đình trong ngày này.</p>}
+    {canEdit ? <Button className="cn-family-panel__add" disabled={disabled} onClick={() => onAdd(date)}><Icon name="plus-lg" /> Thêm vào ngày này</Button> : null}
+  </section>
+}
