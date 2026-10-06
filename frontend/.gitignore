@@ -10,3 +10,5 @@ dist/
 qa-output/
 # Sinh lại mỗi lần build bởi scripts/prepare-video.mjs (chép từ node_modules, ~32 MB).
 public/vendor/ffmpeg/
+# Sinh mỗi lần build bởi scripts/prepare-offline.mjs; track thì server build xong là chặn git pull.
+public/offline-manifest.json

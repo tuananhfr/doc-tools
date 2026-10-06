@@ -25,7 +25,9 @@ npx vitest run src/features/tools/rules/services/signed-rules.test.ts   # một 
   FFmpeg vào `public/vendor/ffmpeg/`. Thiếu thư mục đó thì chạy lại `npm ci`.
 - Vitest chỉ nhận `src/**/*.test.ts`, môi trường `node` (không DOM) — file `.test.tsx` bị
   bỏ qua im lặng. `TZ` cố định `Asia/Ho_Chi_Minh` trong `vitest.config.ts`.
-- `npm run build` luôn làm `public/offline-manifest.json` hiện modified — file tự sinh.
+- `public/offline-manifest.json` do `npm run build` sinh và đã gitignore (từng bị track,
+  build xong là chặn `git pull` trên server). Service worker chỉ đăng ký ở production nên
+  dev không cần file này.
 - `npm run deploy` chỉ dành cho server Linux (build rồi `sudo systemctl restart
   doc-tools-frontend`); quy trình ở README.
 

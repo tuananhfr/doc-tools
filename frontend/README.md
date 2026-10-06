@@ -46,7 +46,7 @@ npm run deploy
 
 Lệnh deploy chạy npm run build, gồm build Next.js và tạo manifest offline, rồi gọi sudo systemctl restart doc-tools-frontend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Nếu restart thất bại, lệnh deploy báo lỗi; xem log service để xử lý. Lệnh npm run build vẫn chỉ build như trước, không gọi systemd.
 
-Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong frontend trước khi deploy. Build có thể làm frontend/public/offline-manifest.json hiện modified vì đây là file tự sinh; nếu cần bỏ thay đổi này trước khi pull, chỉ chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools.
+Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong frontend trước khi deploy. frontend/public/offline-manifest.json do build tự sinh và không nằm trong Git (đã gitignore), nên build không còn làm git pull bị chặn. Server nào còn bản cũ đang bị track thì lần pull đầu tiên sau thay đổi này chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools trước, rồi pull và build lại.
 
 Build ghi trực tiếp vào .next đang phục vụ, không giữ bản dự phòng. Build lỗi không restart service nhưng có thể ảnh hưởng file của bản đang chạy; cache không bảo đảm tránh tình huống này. Frontend có gián đoạn ngắn khi restart. Kiểm tra sau deploy:
 
