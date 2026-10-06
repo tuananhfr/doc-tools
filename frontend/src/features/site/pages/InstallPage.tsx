@@ -8,6 +8,7 @@ import { withBase } from '@/utils/url'
 import { SitePageHero } from '../components/SitePageHero'
 import { detectInstallPlatform, INSTALL_PLATFORMS, INSTALL_TROUBLESHOOTING, type InstallPlatformId } from '../config/install-guide'
 import { SITE_PAGE_META } from '../config/site-pages'
+import { useInstallPrompt } from '../hooks/useInstallPrompt'
 
 const BENEFITS = [
   { icon: 'lightning-charge', label: 'Mở nhanh từ màn hình chính' },
@@ -20,6 +21,7 @@ export default function InstallPage() {
   usePageTitle(SITE_PAGE_META['cai-dat'].title)
   const [active, setActive] = useState<InstallPlatformId>('android')
   const [address, setAddress] = useState(() => appConfig.siteUrl.replace(/^https?:\/\//, '') + withBase('/'))
+  const { state: installState, install } = useInstallPrompt()
 
   // Đoán nền tảng sau hydrate: HTML tĩnh luôn vẽ thẻ Android để khớp lần vẽ đầu.
   useEffect(() => {
@@ -51,6 +53,17 @@ export default function InstallPage() {
         art={<span className="cn-install-phone"><Image src={withBase('/icons/icon-192.png')} width={96} height={96} alt="" /><b>Chuyện Nhỏ</b></span>}
       >
         <ul className="cn-page-points">{BENEFITS.map((item) => <li key={item.label}><Icon name={item.icon} />{item.label}</li>)}</ul>
+        {installState === 'ready' ? (
+          <div className="cn-install-action">
+            <button type="button" className="cn-button cn-install-cta" onClick={() => void install()}>
+              <Icon name="download" />Cài ứng dụng
+            </button>
+            <span>Một chạm, không qua kho ứng dụng.</span>
+          </div>
+        ) : null}
+        {installState === 'installed' ? (
+          <p className="cn-install-done" role="status"><Icon name="check-circle-fill" />Chuyện Nhỏ đã được cài trên thiết bị này.</p>
+        ) : null}
       </SitePageHero>
 
       <section className="cn-container cn-page-section" aria-labelledby="cn-install-choose">
