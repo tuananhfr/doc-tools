@@ -26,7 +26,7 @@ export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
           <Link className="cn-icon-button cn-header-search" to="/cong-cu#tim-cong-cu" aria-label="Tìm công cụ"><Icon name="search" /></Link>
           <div className="cn-header-products">
             <a className="cn-button cn-button--navy" href={PRODUCT_LINKS.erpcons} target="_blank" rel="noopener noreferrer">ERPCons</a>
-            <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">Tekshot OS</a>
+            <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">TekShot AI</a>
           </div>
           <button className="cn-icon-button cn-menu-toggle" type="button" aria-label="Mở menu" aria-expanded={menuOpen} aria-controls="cn-mobile-navigation" onClick={() => setMenuOpen(true)}><Icon name="list" /></button>
         </div>

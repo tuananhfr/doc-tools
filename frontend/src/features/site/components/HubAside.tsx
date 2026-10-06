@@ -19,10 +19,13 @@ function ProductCard({ item }: { item: Of<'product'> }) {
       <p>{item.description}</p>
       {erp
         ? <Image className="cn-hub-product-logo" src={erpLogo} width={150} height={57} unoptimized alt="ERPCons Construction OS" />
-        : <Image className="cn-hub-product-logo cn-hub-product-logo--tekshot" src={withBase('/logo-tekshot.png')} width={120} height={59} alt="Tekshot OS" />}
+        : <>
+            <Image className="cn-hub-product-logo cn-hub-product-logo--light" src={withBase('/brand/tekshot-ai-logo-light.webp')} width={440} height={162} alt="TekShot AI" />
+            <Image className="cn-hub-product-logo cn-hub-product-logo--dark" src={withBase('/brand/tekshot-ai-logo-dark.webp')} width={600} height={223} alt="TekShot AI" />
+          </>}
       <ul className="cn-hub-checks">{item.points.map((point) => <li key={point}><Icon name="check-circle-fill" />{point}</li>)}</ul>
       <a className={`cn-button${erp ? ' cn-button--red' : ''}`} href={erp ? PRODUCT_LINKS.erpcons : PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">
-        Tìm hiểu {erp ? 'ERPCons' : 'Tekshot OS'} <Icon name="arrow-up-right" />
+        Tìm hiểu {erp ? 'ERPCons' : 'TekShot AI'} <Icon name="arrow-up-right" />
       </a>
     </section>
   )

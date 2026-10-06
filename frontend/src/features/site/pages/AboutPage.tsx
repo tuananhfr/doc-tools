@@ -33,9 +33,9 @@ const PRODUCTS = [
   },
   {
     id: 'tekshot',
-    name: 'Tekshot OS',
-    role: 'Nhìn và vận hành thế giới thực',
-    points: ['Vision · Camera · Hiện trường', 'POS · Bán hàng', 'Studio · Insight · Central', 'Nhận diện AI từ camera'],
+    name: 'TekShot AI',
+    role: 'AI nhìn, hiểu, làm và học cho doanh nghiệp',
+    points: ['Camera AI · TekShot Vision', 'POS & Bán hàng · TekShot POS', 'Marketing AI · TekShot Studio', 'Research AI · TekShot Research'],
   },
 ] as const
 
@@ -83,7 +83,7 @@ export default function AboutPage() {
               <div className="cn-about-product-head">
                 {product.id === 'chuyen-nho' ? <Image src={withBase('/brand/chuyen-nho-mark-v1.png')} width={52} height={52} alt="" className="cn-about-logo-mark" /> : null}
                 {product.id === 'erpcons' ? <Image src={erpLogo} width={110} height={42} unoptimized alt="" className="cn-about-logo-erp" /> : null}
-                {product.id === 'tekshot' ? <Icon name="camera-video" /> : null}
+                {product.id === 'tekshot' ? <Icon name="cpu" /> : null}
                 <span><strong>{product.name}</strong><small>{product.role}</small></span>
               </div>
               <ul className="cn-hub-checks">{product.points.map((point) => <li key={point}><Icon name="check-circle-fill" />{point}</li>)}</ul>
@@ -93,10 +93,10 @@ export default function AboutPage() {
         <div className="cn-about-story">
           <p className="cn-about-story-motto" aria-hidden="true">Từ những việc nhỏ hôm nay<br />đến những công việc lớn ngày mai.</p>
           <div>
-            <p>Chuyện Nhỏ giúp bạn bắt đầu từ những việc nhỏ. Khi công việc phức tạp hơn, ERPCons và Tekshot OS là nơi bạn quản lý, kết nối và mở rộng giá trị.</p>
+            <p>Chuyện Nhỏ giúp bạn bắt đầu từ những việc nhỏ. Khi công việc phức tạp hơn, ERPCons và TekShot AI là nơi bạn quản lý, kết nối và mở rộng giá trị.</p>
             <div className="cn-page-actions">
               <a className="cn-button cn-button--red" href={PRODUCT_LINKS.erpcons} target="_blank" rel="noopener noreferrer">Tìm hiểu ERPCons <Icon name="arrow-up-right" /></a>
-              <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">Tìm hiểu Tekshot OS <Icon name="arrow-up-right" /></a>
+              <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">Tìm hiểu TekShot AI <Icon name="arrow-up-right" /></a>
             </div>
           </div>
         </div>

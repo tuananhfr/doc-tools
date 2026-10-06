@@ -17,8 +17,8 @@ export function HeroTrialActions({ children }: HeroTrialActionsProps) {
       <ProTrialTrigger url={PRO_CONTACT_URL} product="ERPcons" className="btn btn-sm btn-primary">
         Dùng thử ERPcons
       </ProTrialTrigger>
-      <ProTrialTrigger url={TEKSHOT_TRIAL_URL} product="TekshotOS" className="btn btn-sm btn-secondary">
-        Dùng thử TekshotOS
+      <ProTrialTrigger url={TEKSHOT_TRIAL_URL} product="TekShot AI" className="btn btn-sm btn-secondary">
+        Dùng thử TekShot AI
       </ProTrialTrigger>
       {children}
     </div>

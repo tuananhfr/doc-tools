@@ -19,7 +19,7 @@ export function MobileNavigation({ open, onClose }: MobileNavigationProps) {
         </nav>
         <div className="cn-mobile-products">
           <a href={PRODUCT_LINKS.erpcons} target="_blank" rel="noopener noreferrer">ERPCons</a>
-          <a href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">Tekshot OS</a>
+          <a href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">TekShot AI</a>
         </div>
       </Offcanvas.Body>
     </Offcanvas>

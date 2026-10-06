@@ -90,7 +90,7 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
       {
         id: 'lien-ket',
         heading: 'Liên kết bên ngoài',
-        paragraphs: ['Trang có liên kết tới ERPCons, Tekshot OS và các trang khác. Nội dung và chính sách của những trang đó do bên vận hành tương ứng chịu trách nhiệm.'],
+        paragraphs: ['Trang có liên kết tới ERPCons, TekShot AI và các trang khác. Nội dung và chính sách của những trang đó do bên vận hành tương ứng chịu trách nhiệm.'],
       },
       {
         id: 'trach-nhiem',
