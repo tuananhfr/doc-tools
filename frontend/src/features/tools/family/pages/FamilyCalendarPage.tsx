@@ -1,20 +1,16 @@
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard } from '@/features/tools/hub'
+import { buildMonthGrid, HolidayLayerToggles, holidaysInRange, MonthCalendar, shiftMonth, useHolidayLayers, type Holiday } from '@/features/tools/vietnam'
 import { FamilyAgenda } from '../components/FamilyAgenda'
 import { FamilyDayPanel } from '../components/FamilyDayPanel'
 import { FamilyEventForm, type FamilyEventDraft } from '../components/FamilyEventForm'
-import { FamilyLayerToggles } from '../components/FamilyLayerToggles'
 import { FamilyMembers } from '../components/FamilyMembers'
-import { FamilyMonthView } from '../components/FamilyMonthView'
 import { FamilyPortability } from '../components/FamilyPortability'
 import { FamilyPrint } from '../components/FamilyPrint'
 import { FamilySafety } from '../components/FamilySafety'
 import { useFamilySpace } from '../hooks/useFamilySpace'
 import { useForegroundReminders } from '../hooks/useForegroundReminders'
-import { useHolidayLayers } from '../hooks/useHolidayLayers'
-import { buildMonthGrid, shiftMonth } from '../core/month-grid'
-import { holidaysInRange, type Holiday } from '../core/vietnam-holidays'
 import { eventsForDate, type EmergencyContact, type FamilyEvent, type FamilyMember, type FamilyReminder, type PendingSos } from '../core/family'
 
 const todayInVietnam = () => new Date(Date.now() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10)
@@ -86,7 +82,7 @@ export default function FamilyCalendarPage() {
   return <>
     <style>{`.family-print-only { display: none; } @media print { body * { visibility: hidden !important; } .family-print-only, .family-print-only * { visibility: visible !important; } .family-print-only { display: block !important; position: absolute; left: 0; top: 0; width: 100%; color: #111; background: white; } @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
     <ToolBoard>
-      <div className={`cn-family${senior ? ' family-senior' : ''}`}>
+      <div className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
         <p className="cn-family-storage"><strong>Lưu trên thiết bị này</strong> · {space.events.length} lịch · {space.members.length} thành viên. Không cần tài khoản. Xóa dữ liệu trình duyệt sẽ mất lịch nếu bạn chưa tải bản sao lưu. Chưa bật chia sẻ hoặc đồng bộ qua mạng.</p>
         {error ? <p role="alert">{error}</p> : null}
         {notificationPermission === 'default' ? <div className="mb-3"><Button variant="outline-secondary" size="sm" onClick={() => void Notification.requestPermission().then(setNotificationPermission)}>Bật thông báo khi trang đang mở</Button></div> : null}
@@ -97,13 +93,13 @@ export default function FamilyCalendarPage() {
           </div>
           <label className="cn-family-viewer">Đang xem cho<Form.Select size="sm" value={viewer.id} onChange={(event) => setViewerId(event.target.value)}>{space.members.map((member) => <option value={member.id} key={member.id}>{member.name}</option>)}</Form.Select></label>
         </div>
-        {view === 'calendar' || view === 'list' ? <FamilyLayerToggles layers={layers} onToggle={toggle} /> : null}
-        {view === 'calendar' ? <div className="cn-family-layout">
-          <FamilyMonthView year={cursor.year} month={cursor.month} today={today} selected={selected} holidays={holidaysByDate} events={eventsByDate}
+        {view === 'calendar' || view === 'list' ? <HolidayLayerToggles layers={layers} onToggle={toggle} /> : null}
+        {view === 'calendar' ? <div className="cn-cal-layout">
+          <MonthCalendar year={cursor.year} month={cursor.month} today={today} selected={selected} holidays={holidaysByDate} marks={eventsByDate}
             onSelect={(date) => { selectDate(date); setEditor(null) }}
             onShift={(offset) => setCursor((current) => shiftMonth(current.year, current.month, offset))}
             onToday={() => selectDate(today)} />
-          <div className="cn-family-side">
+          <div className="cn-cal-side">
             {form ?? <FamilyDayPanel date={selected} holidays={holidaysByDate.get(selected) ?? holidaysInRange(selected, selected).filter((holiday) => layers.includes(holiday.layer))} events={eventsForDate(space, selected, viewer.id)} memberNames={memberNames} disabled={saving} canEdit={!senior} onAdd={addOn} onEdit={edit} onComplete={complete} onDelete={remove} />}
           </div>
         </div> : null}

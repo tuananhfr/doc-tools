@@ -1,2 +1,8 @@
 export { canChi, lunarToSolar, solarToLunar } from './utils/lunar-calendar'
 export type { CalendarDate, LunarDate } from './utils/lunar-calendar'
+export { HOLIDAY_LAYERS, holidaysInRange, MAX_RANGE_DAYS as HOLIDAY_RANGE_MAX_DAYS } from './utils/vietnam-holidays'
+export type { Holiday, HolidayLayer } from './utils/vietnam-holidays'
+export { buildMonthGrid, shiftMonth } from './utils/month-grid'
+export { MonthCalendar, type CalendarMark } from './components/MonthCalendar'
+export { HolidayLayerToggles } from './components/HolidayLayerToggles'
+export { useHolidayLayers } from './hooks/useHolidayLayers'

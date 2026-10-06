@@ -1,6 +1,7 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { CopyButton, parseDecimal, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
+import { HolidaysInRange } from '../components/HolidaysInRange'
 import { NumberField } from '../components/NumberField'
 import { addWorkdays, formatDay, spanBetween, toDay, todayYmd, weeksLabel } from '../utils/date-calc'
 
@@ -16,7 +17,7 @@ const MODES: { value: Mode; label: string; icon: string }[] = [
 /** ~274 năm: quá mức này kết quả vượt năm 9999 và ô ngày của trình duyệt không hiện được. */
 const MAX_COUNT = 100_000
 
-const WEEKEND_ONLY = 'Ngày làm việc ở đây chỉ loại Thứ Bảy và Chủ nhật. Công cụ KHÔNG biết ngày lễ, Tết, nghỉ bù hay lịch làm thứ Bảy của từng nơi — thời hạn có ngày lễ chen vào phải tự cộng thêm.'
+const WEEKEND_ONLY = 'Ngày làm việc ở đây chỉ loại Thứ Bảy và Chủ nhật. Ngày lễ lớn được liệt kê ở phần kết quả nhưng KHÔNG tự trừ; nghỉ bù hay lịch làm thứ Bảy của từng nơi cũng không tính — thời hạn có ngày lễ chen vào phải tự cộng thêm.'
 
 /** "01/01/2027" — phần ngày của `formatDay`, để chép sang chỗ khác. */
 const dateOnly = (day: number): string => formatDay(day).split(', ')[1]
@@ -87,6 +88,7 @@ export default function DateCalcPage() {
                     <span className="erp-tool-row__label">Ngày kết thúc (có tính)</span>
                   </li>
                 </ul>
+                <HolidaysInRange from={fromDayNumber} to={toDayNumber} />
               </>
             ) : (
               <>
@@ -106,6 +108,7 @@ export default function DateCalcPage() {
                 </p>
                 {kind === 'workday' ? <p className="erp-tool-result__note">Tức {Math.abs(landed - startDay)} ngày lịch.</p> : null}
                 <CopyButton text={dateOnly(landed)} label="Chép ngày" className="align-self-start" />
+                <HolidaysInRange from={startDay} to={landed} />
               </>
             ) : (
               <>

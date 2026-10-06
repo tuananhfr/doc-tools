@@ -1,4 +1,4 @@
-import { lunarToSolar, solarToLunar, type CalendarDate } from '@/features/tools/vietnam'
+import { lunarToSolar, solarToLunar, type CalendarDate } from './lunar-calendar'
 
 export type HolidayLayer = 'major' | 'lunar' | 'moon' | 'memorial'
 export interface Holiday { id: string; date: string; name: string; short: string; layer: HolidayLayer; lunar: boolean }
@@ -56,7 +56,7 @@ const LUNAR: FixedRule[] = [
 ]
 
 // Lịch dài hơn khoảng này là gọi nhầm; chặn để không lặp hàng nghìn lần đổi âm lịch.
-const MAX_RANGE_DAYS = 400
+export const MAX_RANGE_DAYS = 400
 const DAY_MS = 86400000
 
 const iso = (date: CalendarDate) => `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`

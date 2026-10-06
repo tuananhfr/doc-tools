@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
-import { HOLIDAY_LAYERS, type HolidayLayer } from '../core/vietnam-holidays'
+import { HOLIDAY_LAYERS, type HolidayLayer } from '../utils/vietnam-holidays'
 
-// Tuỳ chọn hiển thị của riêng trình duyệt này, không nằm trong bản sao lưu gia đình.
+// Tuỳ chọn hiển thị của riêng trình duyệt này, dùng chung cho Lịch âm – dương và Lịch Gia Đình; không nằm trong bản sao lưu gia đình.
 const STORAGE_KEY = 'chuyen-nho.family.holiday-layers'
 const DEFAULT_LAYERS = HOLIDAY_LAYERS.filter((layer) => layer.defaultOn).map((layer) => layer.id)
 

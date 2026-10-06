@@ -68,7 +68,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
     categories: ['money'], synonyms: ['lương net', 'thuế thu nhập cá nhân', 'bảo hiểm'], noFile: true, privacyNote: 'Tính trên máy; góp ý chỉ gửi khi bạn đồng ý', status: 'ready', screen: 'payroll',
   },
   {
-    id: 'lunar-calendar', slug: 'lich-am', name: 'Lịch âm – dương', description: 'Đổi ngày hai chiều, xem can chi và ngày giỗ âm lịch', icon: 'moon',
+    id: 'lunar-calendar', slug: 'lich-am', name: 'Lịch âm – dương', description: 'Lịch tháng âm – dương có ngày lễ, can chi, giờ hoàng đạo; đổi ngày hai chiều và tra ngày giỗ', icon: 'moon',
     categories: ['date', 'other'], synonyms: ['âm lịch', 'tết', 'ngày giỗ'], noFile: true, status: 'ready', screen: 'lunar-calendar',
   },
   {

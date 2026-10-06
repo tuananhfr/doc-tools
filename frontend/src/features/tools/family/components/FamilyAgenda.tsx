@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { formatDayHeading } from '../core/event-labels'
 import { dateOffset, eventsForDate, type FamilyEvent, type FamilySpace } from '../core/family'
-import { holidaysInRange, type HolidayLayer } from '../core/vietnam-holidays'
+import { holidaysInRange, type HolidayLayer } from '@/features/tools/vietnam'
 import { FamilyEventItem } from './FamilyEventItem'
 
 interface Props {
@@ -36,7 +36,7 @@ export function FamilyAgenda({ space, today, viewerId, layers, memberNames, onCo
     </div>
     {!groups.length ? <p className="cn-family-panel__empty">Chưa có lịch hoặc ngày lễ trong khoảng này.</p> : groups.map((group) => <div key={group.date} className="cn-family-agenda__day">
       <h3>{formatDayHeading(group.date)}</h3>
-      {group.holidays.length ? <ul className="cn-family-holidays">{group.holidays.map((holiday) => <li key={holiday.id} className={`cn-family-holiday cn-family-holiday--${holiday.layer}`}><span className="cn-family-swatch" aria-hidden="true" /><span className="cn-family-holiday__text"><strong>{holiday.name}</strong></span></li>)}</ul> : null}
+      {group.holidays.length ? <ul className="cn-cal-holidays">{group.holidays.map((holiday) => <li key={holiday.id} className={`cn-cal-holiday cn-cal-holiday--${holiday.layer}`}><span className="cn-cal-swatch" aria-hidden="true" /><span className="cn-cal-holiday__text"><strong>{holiday.name}</strong></span></li>)}</ul> : null}
       {group.events.length ? <ul className="cn-family-events">{group.events.map((event) => <FamilyEventItem key={`${event.id}-${group.date}`} event={event} date={group.date} members={memberNames(event)} disabled={disabled} onComplete={onComplete} onEdit={onEdit} onDelete={onDelete} />)}</ul> : null}
     </div>)}
     {range === 'upcoming' ? <p className="small mb-0">Hiển thị 30 ngày kể từ hôm nay. Lịch lặp vẫn còn sau khoảng này.</p> : null}

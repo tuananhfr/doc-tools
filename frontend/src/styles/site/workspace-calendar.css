@@ -1,0 +1,127 @@
+/* Lưới tháng âm – dương dùng chung cho Lịch âm – dương và Lịch Gia Đình. Màu lớp lễ chỉ sống trong .cn-cal. */
+.cn-cal {
+  --cal-major: var(--cn-red);
+  --cal-lunar: #b45309;
+  --cal-moon: #b45309;
+  --cal-memorial: var(--cn-positive);
+  --cal-event: var(--cn-accent);
+}
+[data-theme='dark'] .cn-cal {
+  --cal-major: #ff8f9c;
+  --cal-lunar: #f2b867;
+  --cal-moon: #f2b867;
+}
+.cn-cal-layer--major, .cn-cal-chip--major, .cn-cal-dot--major, .cn-cal-holiday--major { --chip: var(--cal-major); }
+.cn-cal-layer--lunar, .cn-cal-chip--lunar, .cn-cal-dot--lunar, .cn-cal-holiday--lunar { --chip: var(--cal-lunar); }
+.cn-cal-layer--moon, .cn-cal-chip--moon, .cn-cal-dot--moon, .cn-cal-holiday--moon { --chip: var(--cal-moon); }
+.cn-cal-layer--memorial, .cn-cal-chip--memorial, .cn-cal-dot--memorial, .cn-cal-holiday--memorial { --chip: var(--cal-memorial); }
+.cn-cal-chip--event, .cn-cal-dot--event { --chip: var(--cal-event); }
+.cn-cal-chip--more { --chip: var(--cn-muted); }
+
+.cn-cal-layers { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.cn-cal-layer { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; font-size: 13px; color: var(--cn-muted); background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
+.cn-cal-layer:hover { background: var(--cn-hero); }
+.cn-cal-layer:focus-visible, .cn-cal-day:focus-visible, .cn-cal-icon-button:focus-visible, .cn-cal-today:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: 2px; }
+.cn-cal-layer[aria-pressed='true'] { color: var(--cn-ink); border-color: color-mix(in srgb, var(--chip) 55%, var(--cn-line)); background: color-mix(in srgb, var(--chip) 9%, var(--cn-surface)); }
+.cn-cal-swatch { flex: none; width: 10px; height: 10px; border-radius: 3px; background: var(--chip); }
+.cn-cal-layer[aria-pressed='false'] .cn-cal-swatch { background: transparent; box-shadow: inset 0 0 0 1.5px var(--chip); }
+
+.cn-cal-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); gap: 16px; align-items: start; }
+.cn-cal-month { overflow: hidden; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); }
+.cn-cal-month__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--cn-line); }
+.cn-cal-month__bar h2 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.3px; color: var(--cn-ink); }
+.cn-cal-month__bar h2 span { color: var(--cn-muted); font-weight: 400; }
+.cn-cal-month__nav { display: flex; align-items: center; gap: 6px; }
+.cn-cal-icon-button, .cn-cal-today { display: inline-grid; place-items: center; height: 34px; color: var(--cn-ink); background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); cursor: pointer; }
+.cn-cal-icon-button { width: 34px; }
+.cn-cal-today { padding: 0 12px; font-size: 13px; font-weight: 700; }
+:is(.cn-cal-icon-button, .cn-cal-today):hover { background: var(--cn-hero); }
+:is(.cn-cal-icon-button, .cn-cal-today, .cn-cal-day):active { transform: translateY(1px); }
+
+.cn-cal-grid__weekdays, .cn-cal-grid__days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.cn-cal-grid__weekdays { border-bottom: 1px solid var(--cn-line); background: var(--cn-hero); }
+.cn-cal-grid__weekdays span { padding: 7px 8px; font-size: 12px; font-weight: 700; color: var(--cn-muted); }
+.cn-cal-grid__weekdays span:last-child { color: var(--cal-major); }
+.cn-cal-day { display: flex; flex-direction: column; align-items: stretch; gap: 1px; min-width: 0; min-height: 96px; padding: 6px 7px 7px; text-align: left; color: var(--cn-ink); background: var(--cn-surface); border: 0; border-right: 1px solid var(--cn-line); border-bottom: 1px solid var(--cn-line); cursor: pointer; transition: background-color .15s ease; }
+.cn-cal-day:nth-child(7n) { border-right: 0; }
+.cn-cal-day:nth-last-child(-n + 7) { border-bottom: 0; }
+.cn-cal-day:hover { background: var(--cn-hero); }
+.cn-cal-day.is-outside { background: color-mix(in srgb, var(--cn-hero) 55%, var(--cn-surface)); }
+.cn-cal-day.is-outside > :not(.cn-cal-day__chips, .cn-cal-day__dots) { opacity: .5; }
+.cn-cal-day.is-selected { box-shadow: inset 0 0 0 2px var(--cn-accent); }
+.cn-cal-day__solar { align-self: flex-start; display: inline-grid; place-items: center; min-width: 26px; height: 26px; margin: -2px 0 0 -4px; padding: 0 4px; font-size: 15px; font-weight: 700; border-radius: 13px; }
+.cn-cal-day.is-red .cn-cal-day__solar { color: var(--cal-major); }
+.cn-cal-day.is-today .cn-cal-day__solar { color: var(--cn-on-accent); background: var(--cn-accent); }
+[data-theme='dark'] .cn-cal-day.is-today .cn-cal-day__solar { color: var(--cn-surface); }
+.cn-cal-day__lunar { font-size: 11px; line-height: 1.2; color: var(--cn-muted); }
+.cn-cal-day__lunar.is-moon { font-weight: 700; color: var(--cal-lunar); }
+.cn-cal-day__chips { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; min-width: 0; }
+.cn-cal-chip { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; padding: 1px 5px; font-size: 11px; line-height: 1.3; overflow-wrap: anywhere; color: color-mix(in srgb, var(--chip) 72%, var(--cn-ink)); background: color-mix(in srgb, var(--chip) 13%, var(--cn-surface)); border-radius: 4px; }
+.cn-cal-chip--more { background: transparent; padding-left: 2px; }
+.cn-cal-day__dots { display: none; gap: 3px; justify-content: center; margin-top: 3px; }
+.cn-cal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--chip); }
+
+.cn-cal-side { position: sticky; top: calc(var(--cn-header-height) + 12px); }
+.cn-cal-panel { padding: 16px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); }
+.cn-cal-panel__head h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.3px; color: var(--cn-ink); }
+.cn-cal-panel__head p { margin: 2px 0 12px; font-size: 13px; color: var(--cn-muted); }
+
+.cn-cal-holidays { display: grid; gap: 6px; margin: 0 0 10px; padding: 0; list-style: none; }
+.cn-cal-holiday { display: flex; align-items: center; gap: 10px; padding: 8px 6px 8px 10px; border-radius: var(--cn-radius-button); background: color-mix(in srgb, var(--chip) 9%, var(--cn-surface)); }
+.cn-cal-holiday__text { flex: 1; min-width: 0; }
+.cn-cal-holiday__text strong { display: block; font-size: 14px; color: var(--cn-ink); }
+.cn-cal-holiday__text small { display: block; font-size: 12px; color: var(--cn-muted); }
+.cn-cal-holiday .btn-link { flex: none; padding: 2px 6px; font-size: 13px; }
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.cn-cal-layer, .cn-cal-day) { transition: none; }
+  :is(.cn-cal-icon-button, .cn-cal-today, .cn-cal-day):active { transform: none; }
+}
+@media (max-width: 991px) {
+  .cn-cal-layout { grid-template-columns: minmax(0, 1fr); }
+  .cn-cal-side { position: static; }
+}
+@media (max-width: 639px) {
+  .cn-cal-month__bar { padding: 10px 12px; }
+  .cn-cal-grid__weekdays span { padding: 6px 0; text-align: center; }
+  .cn-cal-day { align-items: center; min-height: 58px; padding: 5px 2px; text-align: center; }
+  .cn-cal-day__solar { align-self: center; margin: 0; font-size: 14px; }
+  .cn-cal-day__chips { display: none; }
+  .cn-cal-day__dots { display: flex; }
+}
+
+/* Lịch âm – dương: bảng chi tiết ngày và hai công cụ đổi ngày dưới lưới. */
+.cn-lunar__toolbar { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0 16px; scroll-margin-top: calc(var(--cn-header-height) + 12px); }
+.cn-lunar__jump { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13px; color: var(--cn-muted); white-space: nowrap; }
+.cn-lunar__jump .form-control { width: auto; }
+.cn-lunar__tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.cn-lunar__tools .erp-tool-panel { margin: 0; }
+.cn-lunar__result, .cn-lunar__years li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.cn-lunar__result { margin-top: 14px; padding-top: 12px; font-size: 14px; color: var(--cn-ink); border-top: 1px solid var(--cn-line); }
+.cn-lunar__years { margin: 14px 0 0; padding: 0; list-style: none; font-size: 14px; color: var(--cn-ink); }
+.cn-lunar__years li { padding: 8px 0; border-top: 1px solid var(--cn-line); }
+
+.cn-lunar-day__lunar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding: 10px 12px; border-radius: var(--cn-radius-button); background: color-mix(in srgb, var(--cal-lunar) 9%, var(--cn-surface)); }
+.cn-lunar-day__lunar strong { font-size: 40px; line-height: 1; font-weight: 700; letter-spacing: -1px; font-variant-numeric: tabular-nums; color: var(--cal-lunar); }
+.cn-lunar-day__lunar span { font-size: 15px; font-weight: 700; color: var(--cn-ink); }
+.cn-lunar-day__lunar small { display: block; font-size: 12px; font-weight: 400; color: var(--cn-muted); }
+.cn-lunar-day__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 10px; }
+.cn-lunar-day__facts dt { font-size: 12px; font-weight: 400; color: var(--cn-muted); }
+.cn-lunar-day__facts dd { margin: 0; font-size: 14px; font-weight: 700; color: var(--cn-ink); }
+.cn-lunar-day__spirit { margin: 0 0 12px; padding: 6px 10px; font-size: 13px; color: var(--cn-muted); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); }
+.cn-lunar-day__spirit strong { color: var(--cn-ink); }
+.cn-lunar-day__spirit.is-good { border-color: color-mix(in srgb, var(--cn-positive) 45%, var(--cn-line)); background: color-mix(in srgb, var(--cn-positive) 8%, var(--cn-surface)); }
+.cn-lunar-day__spirit.is-good strong { color: var(--cn-positive); }
+.cn-lunar-day__label { margin: 4px 0 6px; font-size: 13px; font-weight: 700; color: var(--cn-ink); }
+.cn-lunar-day__hours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 0 0 12px; padding: 0; list-style: none; }
+.cn-lunar-day__hours li { padding: 4px 6px; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--cn-muted); background: var(--cn-hero); border-radius: 4px; }
+.cn-lunar-day__hours strong { display: block; font-size: 13px; color: var(--cn-ink); }
+.cn-lunar-day__tet { margin: 0 0 10px; padding-top: 10px; font-size: 13px; color: var(--cn-ink); border-top: 1px solid var(--cn-line); }
+.cn-lunar-day__note { margin: 0; font-size: 12px; line-height: 1.5; color: var(--cn-muted); }
+
+@media (max-width: 767px) {
+  .cn-lunar__tools { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 639px) {
+  .cn-lunar__jump { width: 100%; justify-content: space-between; }
+}

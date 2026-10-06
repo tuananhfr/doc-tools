@@ -1033,3 +1033,46 @@
     transition: none;
   }
 }
+
+/* Tính ngày: ngày lễ lớn trong khoảng — chỉ báo tên, không tự trừ (dữ liệu pháp lý). */
+.erp-date-holidays {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--erp-border);
+  border-left: 3px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+}
+
+.erp-date-holidays__title {
+  margin: 0 0 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.erp-date-holidays ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cột kết quả chỉ ~270px: để ngày xuống dòng cố định, không nhảy hàng tùy độ dài tên lễ. */
+.erp-date-holidays li {
+  display: grid;
+  padding: 3px 0;
+  font-size: 0.8125rem;
+}
+
+.erp-date-holidays li small,
+.erp-date-holidays__more,
+.erp-date-holidays__hint {
+  color: var(--erp-text-secondary);
+}
+
+.erp-date-holidays li small {
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-date-holidays__hint {
+  margin: 6px 0 0;
+  font-size: 0.8125rem;
+}

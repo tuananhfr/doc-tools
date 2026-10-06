@@ -1,4 +1,4 @@
-import { solarToLunar } from '@/features/tools/vietnam'
+import { solarToLunar } from './lunar-calendar'
 
 export interface MonthCell { date: string; day: number; inMonth: boolean; weekday: number; lunarDay: number; lunarMonth: number; lunarLeap: boolean }
 
