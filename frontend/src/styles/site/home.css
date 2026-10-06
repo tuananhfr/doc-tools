@@ -44,7 +44,7 @@
 .cn-product-content { padding: 20px 24px; }
 .cn-product-logo { display: block; object-fit: contain; object-position: left; margin-bottom: 12px; }
 .cn-product-logo--erp { filter: brightness(0) invert(1); height: 52px; width: 170px; }
-.cn-product-logo--tekshot { height: 52px; width: 150px; padding: 5px 8px; border-radius: var(--cn-radius-icon); background: #fff; }
+.cn-product-logo--tekshot { height: 70px; width: 188px; margin-block: -9px 3px; }
 .cn-product h3 { font-size: 17px; line-height: 1.55; font-weight: 700; max-width: 405px; margin: 0 0 8px; }
 .cn-product p { color: #dbe7f6; font-size: 12px; line-height: 1.6; margin: 0 0 14px; }
 .cn-product-actions { display: flex; gap: 10px; flex-wrap: wrap; }

@@ -27,12 +27,12 @@ export function EcosystemSection() {
         <article className="cn-product cn-product--tekshot">
           <Image className="cn-product-photo" src={withBase('/brand/tekshot-site-v1.png')} fill sizes="(max-width: 767px) 100vw, 50vw" alt="" />
           <div className="cn-product-content">
-            <Image className="cn-product-logo cn-product-logo--tekshot" src={withBase('/logo-tekshot.png')} width={178} height={87} alt="TekShot" />
-            <h3>Kết nối camera, hiện trường và vận hành trong một hệ sinh thái.</h3>
-            <p>Tekshot OS<br />Nhìn thực tế. Tạo giá trị thật.</p>
+            <Image className="cn-product-logo cn-product-logo--tekshot" src={withBase('/brand/tekshot-ai-logo-dark.webp')} width={600} height={223} alt="TekShot AI" />
+            <h3>Nền tảng AI &amp; Software giúp doanh nghiệp nhìn thấy, hiểu sâu, tự động hóa và tăng trưởng.</h3>
+            <p>Camera AI · Bán hàng &amp; POS · Marketing AI<br />Research AI · Một nền tảng, mọi dữ liệu</p>
             <div className="cn-product-actions">
-              <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">Tìm hiểu Tekshot OS</a>
-              <ProTrialTrigger className="cn-button cn-button--outline" url={TEKSHOT_TRIAL_URL} product="TekshotOS">Dùng thử <Icon name="arrow-right" /></ProTrialTrigger>
+              <ProTrialTrigger className="cn-button" url={TEKSHOT_TRIAL_URL} product="TekShot AI">Dùng thử miễn phí</ProTrialTrigger>
+              <a className="cn-button cn-button--outline" href={`${PRODUCT_LINKS.tekshot}/video`} target="_blank" rel="noopener noreferrer">Xem demo <Icon name="arrow-right" /></a>
             </div>
           </div>
         </article>
@@ -45,7 +45,7 @@ export function EcosystemSection() {
           <Icon className="cn-step-arrow" name="arrow-right" />
           <div><Icon name="buildings" /><span><strong>ERPCons</strong><small>Quản lý công việc,<br />dự án và doanh nghiệp.</small></span></div>
           <Icon className="cn-step-arrow" name="arrow-right" />
-          <div><Icon name="camera-video" /><span><strong>Tekshot OS</strong><small>Kết nối và vận hành<br />thế giới thực.</small></span></div>
+          <div><Icon name="cpu" /><span><strong>TekShot AI</strong><small>AI nhìn, hiểu, làm và học<br />cho doanh nghiệp.</small></span></div>
           <p className="cn-ecosystem-motto">Làm việc nhẹ hơn.<br />Mỗi ngày tốt hơn.</p>
         </div>
       </div>
