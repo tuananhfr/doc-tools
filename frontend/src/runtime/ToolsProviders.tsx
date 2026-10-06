@@ -1,5 +1,5 @@
 'use client'
-import { SERVICE_WORKER_SCOPE, withBase } from '@/utils/url'
+import { configureServiceWorker } from '@/utils/service-worker'
 import { useEffect, useState, type ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import dayjs from 'dayjs'
@@ -14,9 +14,7 @@ export function ToolsProviders({ children }: { children: ReactNode }) {
   const mode = useAppStore(state => state.theme)
   useEffect(() => applyThemeMode(mode), [mode])
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-      void navigator.serviceWorker.register(withBase('/sw.js'), { scope: SERVICE_WORKER_SCOPE }).catch(() => undefined)
-    }
+    void configureServiceWorker().catch(error => console.warn('DocTools service worker setup failed', error))
   }, [])
   return <ToastProvider><QueryClientProvider client={client}>{children}</QueryClientProvider></ToastProvider>
 }

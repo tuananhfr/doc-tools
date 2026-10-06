@@ -23,7 +23,7 @@ describe('TOOL_CATALOG', () => {
   })
 
   it('shows the groups in a fixed order, starting with "all"', () => {
-    expect(TOOL_FILTERS.map((item) => item.value)).toEqual(['all', 'document', 'image', 'calc', 'money', 'date', 'data', 'home', 'other'])
+    expect(TOOL_FILTERS.map((item) => item.value)).toEqual(['all', 'document', 'image', 'calc', 'money', 'date', 'data', 'construction', 'home', 'other'])
   })
 })
 
@@ -105,7 +105,7 @@ describe('legacyToolPath', () => {
 describe('filterTools', () => {
   it('filters by category', () => {
     const ids = filterTools(TOOL_CATALOG, 'calc', '').map((tool) => tool.id)
-    expect(ids).toEqual(['study', 'measure-image', 'quick-calc', 'unit-convert'])
+    expect(ids).toEqual(['study', 'measure-image', 'quick-calc', 'unit-convert', 'structure-calc'])
   })
 
   it('folds every PDF tool into the document group', () => {

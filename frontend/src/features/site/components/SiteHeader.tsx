@@ -8,6 +8,7 @@ import { SiteBrand } from './SiteBrand'
 
 export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  // So pathname thôi: router phía máy chủ không biết query/hash, so cả chuỗi là lệch hydrate.
   const location = useLocation()
 
   return (
@@ -17,7 +18,7 @@ export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
         <SiteBrand />
         <nav className="cn-desktop-navigation" aria-label="Điều hướng chính">
           {SITE_NAVIGATION.map((item) => (
-            <Link key={item.to} to={item.to} aria-current={location.pathname + location.search + location.hash === item.to ? 'page' : undefined}>{item.label}</Link>
+            <Link key={item.to} to={item.to} aria-current={location.pathname === item.to ? 'page' : location.pathname.startsWith(item.to + '/') ? 'true' : undefined}>{item.label}</Link>
           ))}
         </nav>
         <div className="cn-header-actions">

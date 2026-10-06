@@ -16,7 +16,7 @@
     }
   },
   "upstreamFeatureFiles": 450,
-  "updatedAt": "2026-10-05T15:54:23.033Z",
+  "updatedAt": "2026-10-06T04:51:09.520Z",
   "knownLimitations": [
     "Offline navigation with directory query filters may fall back to homepage HTML.",
     "Some optimized images at unvisited sizes may not be available offline."

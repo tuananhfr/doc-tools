@@ -66,7 +66,15 @@ const RemoveBackgroundPage = dynamic(() => import('@/features/tools/image/pages/
 const IdeaSuggestionPage = dynamic(() => import('@/features/tools/community/pages/IdeaSuggestionPage'), { ssr: false, loading: () => <Loading /> })
 const RegulationFeedbackPage = dynamic(() => import('@/features/tools/community/pages/RegulationFeedbackPage'), { ssr: false, loading: () => <Loading /> })
 const AssistantPage = dynamic(() => import('@/features/tools/byoai/pages/AssistantPage'), { ssr: false, loading: () => <Loading /> })
+const CompressVideoPage = dynamic(() => import('@/features/tools/video/pages/CompressVideoPage'), { ssr: false, loading: () => <Loading /> })
+const TrimVideoPage = dynamic(() => import('@/features/tools/video/pages/TrimVideoPage'), { ssr: false, loading: () => <Loading /> })
+const VideoGifPage = dynamic(() => import('@/features/tools/video/pages/VideoGifPage'), { ssr: false, loading: () => <Loading /> })
+const ExtractAudioPage = dynamic(() => import('@/features/tools/video/pages/ExtractAudioPage'), { ssr: false, loading: () => <Loading /> })
 export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
+  'compress-video': CompressVideoPage,
+  'trim-video': TrimVideoPage,
+  'video-gif': VideoGifPage,
+  'extract-audio': ExtractAudioPage,
   editor: DocToolsPage,
   'merge-pdf': MergePdfPage,
   'split-pdf': SplitPdfPage,

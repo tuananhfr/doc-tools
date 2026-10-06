@@ -16,6 +16,22 @@ import type { ToolDefinition } from '../types/tool.types'
  */
 export const ALL_TOOLS: ToolDefinition[] = [
   {
+    id: 'compress-video', slug: 'nen-video', name: 'Nén video', description: 'Giảm dung lượng, xuất MP4 ngay trong trình duyệt', icon: 'file-earmark-play',
+    categories: ['other'], synonyms: ['giảm dung lượng video', 'compress video', 'mp4'], status: 'ready', screen: 'compress-video',
+  },
+  {
+    id: 'trim-video', slug: 'cat-video', name: 'Cắt video', description: 'Chọn đoạn theo giây, xuất video MP4 mới', icon: 'scissors',
+    categories: ['other'], synonyms: ['trim video', 'cắt clip', 'mp4'], status: 'ready', screen: 'trim-video',
+  },
+  {
+    id: 'video-gif', slug: 'tao-gif', name: 'Tạo GIF từ video', description: 'Biến một đoạn video ngắn thành ảnh động lặp lại', icon: 'film',
+    categories: ['other'], synonyms: ['gif', 'ảnh động', 'video sang gif'], status: 'ready', screen: 'video-gif',
+  },
+  {
+    id: 'extract-audio', slug: 'tach-am-thanh', name: 'Tách âm thanh từ video', description: 'Lấy âm thanh, xuất MP3, M4A hoặc WAV trên máy', icon: 'soundwave',
+    categories: ['other'], synonyms: ['video sang mp3', 'nhạc từ video', 'extract audio'], status: 'ready', screen: 'extract-audio',
+  },
+  {
     id: 'assistant', slug: 'tro-ly', name: 'Trợ lý chọn công cụ', description: 'Tìm tiện ích phù hợp và tự dùng AI qua câu hỏi đã xem trước', icon: 'chat-dots',
     categories: ['other'], synonyms: ['trợ lý ai', 'hỏi cách làm', 'tư vấn công cụ'], noFile: true, status: 'ready', screen: 'assistant',
   },
@@ -78,7 +94,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
     name: 'Khái toán chi phí xây nhà',
     description: 'Quy đổi diện tích, nhập đơn giá nhà thầu để ước tính chi phí',
     icon: 'house',
-    categories: ['home', 'money'],
+    categories: ['construction', 'home', 'money'],
     synonyms: ['diện tích xây dựng', 'dự toán nhà', 'đơn giá xây dựng'],
     noFile: true,
     status: 'ready',
@@ -444,7 +460,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
     name: 'Đo kích thước ảnh',
     description: 'Đo chiều dài, diện tích trên ảnh',
     icon: 'rulers',
-    categories: ['image', 'calc'],
+    categories: ['image', 'calc', 'construction'],
     synonyms: ['thước đo', 'đo bản vẽ', 'tỉ lệ'],
     status: 'ready',
     screen: 'measure-image',
@@ -596,7 +612,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
     name: 'Hướng nhà & la bàn',
     description: 'Đo hướng nhà, đặt la bàn lên ảnh, bản vẽ',
     icon: 'compass',
-    categories: ['home'],
+    categories: ['home', 'construction'],
     synonyms: ['la bàn', 'xem hướng nhà', 'hướng cửa', 'phong thuỷ', 'bát trạch', 'hướng mặt tiền', 'nắng chiều'],
     status: 'ready',
     screen: 'house-orientation',
@@ -661,5 +677,83 @@ export const ALL_TOOLS: ToolDefinition[] = [
     status: 'ready',
     screen: 'random-code',
     noFile: true,
+  },
+  // "Sắp có": công cụ đã có trong mẫu giao diện nhưng chưa làm. Mô tả nói việc nó SẼ làm;
+  // `processing: 'server'` = sẽ cần dữ liệu máy chủ, trang "Cách xử lý dữ liệu" nói trước.
+  {
+    id: 'construction-price', slug: 'gia-xay-dung', name: 'Giá xây dựng', description: 'Tra cứu đơn giá, vật liệu, nhân công theo địa phương', icon: 'database',
+    categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'planning-lookup', slug: 'quy-hoach', name: 'Quy hoạch', description: 'Tra cứu thông tin quy hoạch, chỉ tiêu sử dụng đất', icon: 'map',
+    categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'construction-law', slug: 'phap-ly-xay-dung', name: 'Pháp lý xây dựng', description: 'Tra cứu thủ tục, văn bản, biểu mẫu pháp lý', icon: 'bank',
+    categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'construction-standards', slug: 'tieu-chuan-xay-dung', name: 'Tiêu chuẩn xây dựng', description: 'Tra cứu và xem nhanh tiêu chuẩn, quy chuẩn', icon: 'book',
+    categories: ['construction'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'dossier-check', slug: 'kiem-ho-so', name: 'Kiểm hồ sơ', description: 'Soát lỗi thường gặp trong hồ sơ thiết kế, bản vẽ', icon: 'list-check',
+    categories: ['construction', 'document'], processing: 'server', status: 'soon',
+  },
+  {
+    id: 'structure-calc', slug: 'tinh-ket-cau', name: 'Tính kết cấu nhanh', description: 'Tính toán tiết diện, tải trọng cơ bản', icon: 'bricks',
+    categories: ['construction', 'calc'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'drawing-convert', slug: 'chuyen-doi-ban-ve', name: 'Chuyển đổi bản vẽ', description: 'Chuyển DWG, DXF sang PDF và đo kích thước', icon: 'arrow-left-right',
+    categories: ['construction', 'document'], status: 'soon',
+  },
+  {
+    id: 'drawing-area', slug: 'do-dien-tich-ban-ve', name: 'Đo diện tích trên bản vẽ', description: 'Đo diện tích, chu vi trên bản vẽ PDF', icon: 'bounding-box',
+    categories: ['construction'], status: 'soon',
+  },
+  {
+    id: 'site-diary', slug: 'nhat-ky-hien-truong', name: 'Nhật ký hiện trường', description: 'Chụp ảnh, ghi chú, đánh dấu ngay tại công trình', icon: 'camera',
+    categories: ['construction'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'supplier-lookup', slug: 'tra-cuu-nha-cung-cap', name: 'Tra cứu nhà cung cấp', description: 'Tìm nhà cung cấp vật liệu, thiết bị xây dựng', icon: 'truck',
+    categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'family-reminders', slug: 'nhac-viec', name: 'Nhắc việc', description: 'Nhắc uống thuốc, đưa đón, việc nhà, hẹn giờ', icon: 'bell',
+    categories: ['home', 'date'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'family-share', slug: 'chia-se-gia-dinh', name: 'Chia sẻ với gia đình', description: 'Mời người thân cùng xem và cập nhật lịch chung', icon: 'people',
+    categories: ['home'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'family-health', slug: 'suc-khoe-gia-dinh', name: 'Sức khỏe gia đình', description: 'Ghi lịch khám, nhắc thuốc cho từng người', icon: 'heart-pulse',
+    categories: ['home'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'house-chores', slug: 'viec-nha', name: 'Danh sách việc nhà', description: 'Phân công việc nhà, theo dõi việc đã xong', icon: 'clipboard-check',
+    categories: ['home'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'family-budget', slug: 'chi-tieu-gia-dinh', name: 'Chi tiêu gia đình', description: 'Ghi thu chi, theo dõi ngân sách đơn giản', icon: 'wallet2',
+    categories: ['home', 'money'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'family-album', slug: 'album-gia-dinh', name: 'Album gia đình', description: 'Lưu giữ ảnh và video khoảnh khắc gia đình', icon: 'images',
+    categories: ['home', 'image'], processing: 'server', status: 'soon',
+  },
+  {
+    id: 'special-days', slug: 'ngay-dac-biet', name: 'Ngày đặc biệt', description: 'Nhắc sinh nhật, kỷ niệm, ngày giỗ, ngày lễ', icon: 'gift',
+    categories: ['home', 'date'], noFile: true, status: 'soon',
+  },
+  {
+    id: 'honor-board', slug: 'bang-vinh-danh', name: 'Bảng vinh danh', description: 'Ghi nhận người góp dữ liệu đã được xác minh', icon: 'trophy',
+    categories: ['other'], processing: 'server', noFile: true, status: 'soon',
+  },
+  {
+    id: 'code-manager', slug: 'quan-ly-ma', name: 'Quản lý mã', description: 'Tạo danh sách mã QR, mã vạch và xuất tệp', icon: 'upc-scan',
+    categories: ['data'], processing: 'server', noFile: true, status: 'soon',
   },
 ]

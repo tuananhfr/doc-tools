@@ -1,4 +1,6 @@
 import { withBase } from '@/utils/url'
+import Script from 'next/script'
+import { developmentWorkerBootstrap } from '@/utils/development-service-worker'
 import type { Metadata } from 'next'
 import type { ReactNode, CSSProperties } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
 }
 export default function RootLayout({ children }: { children: ReactNode }) {
   return <html lang="vi" data-theme="light" data-bs-theme="light" suppressHydrationWarning style={themeCssVars(themeTokens.light) as CSSProperties}>
+    <head>{process.env.NODE_ENV === 'development' && <Script id="doctools-development-worker" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: developmentWorkerBootstrap() }} />}</head>
     <body><ToolsProviders><ToolsRouter />{children}</ToolsProviders></body>
   </html>
 }

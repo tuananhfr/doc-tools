@@ -8,3 +8,5 @@ dist/
 .env.*.local
 !*.example
 qa-output/
+# Sinh lại mỗi lần build bởi scripts/prepare-video.mjs (chép từ node_modules, ~32 MB).
+public/vendor/ffmpeg/

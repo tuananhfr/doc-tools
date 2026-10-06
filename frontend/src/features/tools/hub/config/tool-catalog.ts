@@ -46,6 +46,7 @@ const TOOL_GROUPS: { value: ToolCategory; label: string }[] = [
   { value: 'money', label: 'Tiền' },
   { value: 'date', label: 'Ngày & thời hạn' },
   { value: 'data', label: 'Dữ liệu' },
+  { value: 'construction', label: 'Xây dựng' },
   { value: 'home', label: 'Nhà & đời sống' },
   { value: 'tech', label: 'Kỹ thuật' },
   { value: 'other', label: 'Tiện ích khác' },
@@ -65,8 +66,9 @@ export const TOOL_FILTERS: { value: ToolFilter; label: string }[] = [
  * màu, nhưng Crimson Ice chỉ có bảy tông mang nghĩa — tự chế thêm (tím) là phá
  * bảng màu, còn tô ngẫu nhiên là màu không còn nói lên điều gì.
  *
- * Chín nhóm, sáu tông: `money` đi chung với `calc` (cùng là phép tính), `tech`
- * với `other`, `date` với `document`. Không nhóm nào mang `brand`: Tài liệu chiếm
+ * Mười nhóm, sáu tông: `money` đi chung với `calc` (cùng là phép tính), `tech`
+ * với `other`, `date` với `document`, `construction` với `home` (cùng là chuyện
+ * nhà cửa, công trình). Không nhóm nào mang `brand`: Tài liệu chiếm
  * nửa lưới, mà crimson chỉ dành cho identity / CTA (~2% diện tích).
  */
 export const CATEGORY_TONE: Record<ToolCategory, ToolTone> = {
@@ -76,6 +78,7 @@ export const CATEGORY_TONE: Record<ToolCategory, ToolTone> = {
   money: 'intelligence',
   date: 'info',
   data: 'success',
+  construction: 'warning',
   home: 'warning',
   tech: 'neutral',
   other: 'neutral',

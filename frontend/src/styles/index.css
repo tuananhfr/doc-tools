@@ -151,6 +151,8 @@
 @import './site/shell.css';
 @import './site/home.css';
 @import './site/catalog.css';
+@import './site/hub.css';
+@import './site/pages.css';
 @import './site/workspace-tokens.css';
 @import './site/workspace.css';
 @import './site/workspace-flow.css';

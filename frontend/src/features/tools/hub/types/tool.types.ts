@@ -17,6 +17,7 @@ export const TOOL_CATEGORY = {
   money: 'money',
   date: 'date',
   data: 'data',
+  construction: 'construction',
   home: 'home',
   tech: 'tech',
   other: 'other',
@@ -38,11 +39,13 @@ export const TOOL_STATUS = {
 export type ToolStatus = (typeof TOOL_STATUS)[keyof typeof TOOL_STATUS]
 
 /**
- * Việc xử lý diễn ra ở đâu (Registry, spec v2.0 §4 `processing_mode`). Hôm nay
- * mọi công cụ chạy trong trình duyệt; `browser-model` = có nạp thêm một mô hình
+ * Việc xử lý diễn ra ở đâu (Registry, spec v2.0 §4 `processing_mode`). Mọi công
+ * cụ ĐÃ LÀM chạy trong trình duyệt; `browser-model` = có nạp thêm một mô hình
  * nhận dạng chạy cục bộ (tesseract) — vẫn không gửi tệp đi, không LLM.
+ * `server` chỉ dành cho công cụ "Sắp có" cần dữ liệu máy chủ (quy hoạch, giá…),
+ * để trang "Cách xử lý dữ liệu" nói trước điều đó.
  */
-export type ToolProcessing = 'browser' | 'browser-model'
+export type ToolProcessing = 'browser' | 'browser-model' | 'server'
 
 /**
  * Màn thật của một công cụ đã dùng được. `editor` = trình chỉnh sửa PDF đầy đủ;
@@ -113,6 +116,10 @@ export type ToolScreen =
   | 'idea-suggestion'
   | 'regulation-feedback'
   | 'assistant'
+  | 'compress-video'
+  | 'trim-video'
+  | 'video-gif'
+  | 'extract-audio'
 
 interface ToolBase {
   id: string

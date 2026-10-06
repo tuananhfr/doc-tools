@@ -14,7 +14,8 @@ function walk(dir) {
 walk('.next/static')
 const build = fs.readFileSync('.next/BUILD_ID', 'utf8').trim()
 const routes = JSON.parse(fs.readFileSync('.next/prerender-manifest.json', 'utf8')).routes
-const pages = Object.entries(routes).filter(([url, route]) => url === '/' || url === '/cong-cu' || route.srcRoute === '/[tool]').map(([url]) => url)
+// Every prerendered page (it has an RSC payload); og images, robots and sitemap do not, and `/_*` are Next internals.
+const pages = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && !url.startsWith('/_')).map(([url]) => url)
 const optimizedImages = new Set()
 for (const url of pages) {
   const file = path.join('.next/server/app', url === '/' ? 'index.html' : url.slice(1) + '.html')
@@ -23,5 +24,8 @@ for (const url of pages) {
   for (const match of html.matchAll(/\/_next\/image\?[^"\s,<>]+/g)) optimizedImages.add(withBase(match[0].replaceAll('&amp;', '&')))
 }
 const brand = fs.readdirSync('public/brand').filter((name) => /\.(png|webp|svg)$/.test(name)).map((name) => '/brand/' + name)
-const manifest = { version: build, assets: [...new Set([...pages.map(withBase), ...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])] }
+const videoVendor = '/vendor/ffmpeg/core-0.12.10-wrapper-0.12.15/'
+// Keep the large video core lazy; the worker's normal runtime cache stores it after use.
+const optionalAssets = JSON.parse(fs.readFileSync('public' + videoVendor + 'assets.json', 'utf8')).assets.map(({ name }) => withBase(videoVendor + name))
+const manifest = { version: build, assets: [...new Set([...pages.map(withBase), ...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets }
 fs.writeFileSync('public/offline-manifest.json', JSON.stringify(manifest), 'utf8')

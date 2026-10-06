@@ -63,6 +63,8 @@ sudo journalctl -u doc-tools-frontend -n 80 --no-pager
 
 ## Kiểm chứng
 
+Bốn công cụ video Free (`/nen-video`, `/cat-video`, `/tao-gif`, `/tach-am-thanh`) dùng FFmpeg GPL chạy cục bộ trong worker. `npm ci`, `npm run dev` và `npm run build` tự chuẩn bị tài nguyên ở `public/vendor/ffmpeg/`; lần đầu xử lý cần tải khoảng 32 MB. Xem [docs/video-engine.md](docs/video-engine.md) để biết giới hạn thiết bị, chế độ offline, giấy phép và nguồn/build upstream.
+
 - npm test: test logic thuần.
 - npm run build: build Next.js và manifest offline.
 - npm run lint: kiểm tra TypeScript.
