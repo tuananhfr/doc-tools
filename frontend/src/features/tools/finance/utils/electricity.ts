@@ -37,3 +37,15 @@ export function waterBill(cubicMeters: number, price: number, feePercent: number
   const vat = subtotal * vatPercent / 100
   return { subtotal, fee, vat, total: subtotal + fee + vat }
 }
+
+export interface ElectricityRules { tiers: ElectricityTier[]; vatPercent?: number }
+
+/** `vatPercent` trong gói điện là tuỳ chọn: thuế nên phát hành thành gói `vat` riêng để đổi thuế không phải ký lại bảng giá. */
+export function parseElectricityRules(data: unknown): ElectricityRules | null {
+  if (!data || typeof data !== 'object') return null
+  const { tiers, vatPercent } = data as Record<string, unknown>
+  const valid = validateElectricityTiers(tiers)
+  if (!valid) return null
+  if (vatPercent === undefined) return { tiers: valid }
+  return typeof vatPercent === 'number' && Number.isFinite(vatPercent) && vatPercent >= 0 && vatPercent <= 100 ? { tiers: valid, vatPercent } : null
+}

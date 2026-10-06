@@ -21,6 +21,15 @@ export const SCHEMA = [
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX (kind, effective_from)
   ) ENGINE=InnoDB`,
+  // A kind may have several published packages; the date decides which one applies (rules.repository.ts).
+  `CREATE TABLE IF NOT EXISTS rule_published (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    kind VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    digest CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    published_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (kind, digest)
+  ) ENGINE=InnoDB`,
+  // Legacy single-pointer table, drained into rule_published by migrateLegacyRuleActive().
   `CREATE TABLE IF NOT EXISTS rule_active (
     kind VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
     digest CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,

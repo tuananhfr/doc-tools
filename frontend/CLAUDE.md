@@ -138,6 +138,11 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 - Dữ liệu pháp lý / địa chỉ / lương / tiền điện chỉ được coi là "đã xác minh" khi đến từ
   gói quy tắc ký Ed25519 (`features/tools/rules/services/signed-rules.ts`, khoá
   `NEXT_PUBLIC_RULE_SIGNING_KEY_SPKI`). Không có khoá → chỉ nhận tham số người dùng nhập.
+  Trang dùng `useSignedRules(kind, parse)` + `RuleStatus` (`features/tools/rules/`): trạng
+  thái `ready / none / invalid / unavailable` phải báo khác nhau, gói sắp hiệu lực hiện câu
+  báo trước. `parse` là hằng ngoài component. Ngày so hiệu lực là ngày Việt Nam, khớp backend.
+  Đổi địa chỉ KHÔNG có bảng tỉnh viết cứng: tỉnh lấy từ gói `addresses` (hoặc suy ra từ
+  `wards`); thuế điện lấy gói `vat` trước, rồi `vatPercent` trong gói điện.
   Không đưa số liệu trong archive vào như luật hiện hành.
 - BYOAI: xem trước + che thông tin nhạy cảm trong prompt, chỉ gửi thay đổi người dùng
   chọn sau khi đồng ý; văn bản AI không bao giờ tự xuất bản.

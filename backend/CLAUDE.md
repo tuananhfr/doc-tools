@@ -29,9 +29,13 @@ npm run build && node --test tests/rules.test.cjs   # một file test
 CLI người vận hành (chạy sau khi build, trên máy chủ tin cậy):
 
 ```bash
-npm run rules -- stage package.json <operator>
-npm run rules -- activate <kind>:<digest> <operator>
-npm run rules -- rollback <kind>:<digest> <operator>
+npm run rules -- keygen <thư mục ngoài repo>           # in sẵn dòng .env cho backend + frontend
+npm run rules -- sign <spec.json> <private.pem> <out.json>   # spec: data | dataFile | wardsCsv
+npm run rules -- check <package.json>                  # chữ ký, hạn, kiểm theo loại, so với gói đang hiệu lực
+npm run rules -- list <kind>
+npm run rules -- stage <package.json> <operator>
+npm run rules -- activate <kind>:<digest> <operator>   # gói ngày tương lai = lên lịch
+npm run rules -- rollback <kind>:<digest> <operator>   # = rút gói, gói trước tự hiệu lực lại
 npm run contributions -- show <uuid>
 npm run contributions -- verify <uuid> <reviewer> <note>   # rồi approve / publish
 ```
@@ -44,7 +48,7 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | Module | Đường dẫn | Việc |
 | --- | --- | --- |
 | `tools` | `POST /tools/visits` · `GET /tools/stats` | Bộ đếm lượt mở công cụ |
-| `rules` | `GET /rules/:kind` | Trả gói quy tắc đang kích hoạt, còn hiệu lực, xác minh được chữ ký |
+| `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
 | `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` | Nhận đề xuất ẩn danh, tra trạng thái theo mã biên nhận, ý tưởng đã duyệt |
 
 `src/cli/` là đường ghi DUY NHẤT cho gói quy tắc và việc duyệt đóng góp — không có
@@ -54,7 +58,9 @@ endpoint ghi công khai nào cho hai thứ đó.
 
 - **Không có migration.** `DatabaseService.onModuleInit` chạy `src/database/schema.ts`,
   toàn `CREATE TABLE IF NOT EXISTS`. Sửa cột ở đó **không** đổi bảng trên DB đã tồn tại —
-  phải tự viết `ALTER` và tính đường cho môi trường đang chạy.
+  phải tự viết `ALTER` và tính đường cho môi trường đang chạy. Chuyển dữ liệu thì viết
+  hàm riêng ở `database/migrations.ts` (gọi sau SCHEMA), đừng nhét `INSERT … SELECT` vào
+  SCHEMA: server và CLI khởi động cùng lúc sẽ deadlock.
 - **Parser body tự viết** (`config/http-adapter.ts`): nhận mọi content-type, JSON lỗi
   thành `null` thay vì 400 ở tầng parser — bắt chước Drupal cũ. Controller tự kiểm và trả
   `{ok:false, message}`.
@@ -71,7 +77,12 @@ endpoint ghi công khai nào cho hai thứ đó.
 
 - Envelope phẳng `{ok, ...}` và `Cache-Control: no-store` trên các endpoint công khai.
 - Gói quy tắc: hàng trong `rule_packages` bất biến, mọi stage / activate / rollback ghi
-  `rule_audit`. Chữ ký Ed25519 tính trên JSON bỏ `signature`, khoá object sắp theo chữ cái
+  `rule_audit`. Một loại có NHIỀU gói đã phát hành (`rule_published`); gói áp dụng là gói có
+  `effective_from` muộn nhất mà vẫn còn hạn vào **ngày Việt Nam** (`rule-dates.ts`, không
+  dùng ngày UTC). Hết hạn hay bị rút thì gói trước tự áp dụng lại. `rule_active` là bảng cũ,
+  được dồn sang `rule_published` lúc khởi động. Trần dữ liệu một gói 4 MB
+  (`MAX_RULE_DATA_LENGTH`); kiểm theo loại (`electricity`, `vat`, `payroll`, `addresses`) ở
+  `rule-kinds.ts`, chặn ở `sign`/`stage`. Chữ ký Ed25519 tính trên JSON bỏ `signature`, khoá object sắp theo chữ cái
   ở mọi cấp. Thiếu `RULE_SIGNING_PUBLIC_KEY_PEM` → `GET /rules/:kind` trả 503. Khoá riêng
   nằm ngoài repo.
 - Duyệt đóng góp: reviewer / approver / publisher là ba người khác nhau. Publish dữ liệu

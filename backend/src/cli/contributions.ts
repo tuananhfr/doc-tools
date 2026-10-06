@@ -3,6 +3,7 @@ import { DatabaseService } from '../database/database.service'
 import { ContributionsRepository } from '../contributions/contributions.repository'
 import { RulesRepository } from '../rules/rules.repository'
 import { verifyRulePackage } from '../rules/rule-package'
+import { vietnamToday } from '../rules/rule-dates'
 
 async function main() {
   const [action, id, actor, ...rest] = process.argv.slice(2)
@@ -30,8 +31,7 @@ async function main() {
         if (!publicKey) throw new Error('RULE_SIGNING_PUBLIC_KEY_PEM is required')
         const item = await new RulesRepository(database).getByDigest(contribution.domain as string, note!)
         if (!item || verifyRulePackage(item, publicKey).digest !== digest) throw new Error('Staged package signature does not verify')
-        const today = new Date().toISOString().slice(0, 10)
-        if (item.effectiveFrom > today || (item.effectiveTo && item.effectiveTo < today)) throw new Error('Rule package is outside its effective dates')
+        if (item.effectiveTo && item.effectiveTo < vietnamToday()) throw new Error('Rule package has already expired')
       }
     }
     const result = await repository.transition(id, action as 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke', actor, action === 'publish' ? null : note, digest)

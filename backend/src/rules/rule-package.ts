@@ -12,7 +12,10 @@ export interface RulePackage {
   signature: string
 }
 
-function canonical(value: unknown): string {
+// The national ward table (~11k rows) is about 1.6 MB of canonical JSON.
+export const MAX_RULE_DATA_LENGTH = 4_000_000
+
+export function canonical(value: unknown): string {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value)
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value)
   if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`
@@ -49,7 +52,7 @@ export function parseRulePackage(value: unknown): RulePackage {
   const source = item.source as Record<string, unknown>
   if (Object.keys(source).sort().join(',') !== 'retrievedAt,sha256,title,url' || typeof source.title !== 'string' || source.title.length < 2 || source.title.length > 300 || !isHttpsUrl(source.url) || typeof source.retrievedAt !== 'string' || Number.isNaN(Date.parse(source.retrievedAt)) || typeof source.sha256 !== 'string' || !/^[0-9a-f]{64}$/.test(source.sha256)) throw new Error('Invalid source evidence')
   if (typeof item.signature !== 'string' || !/^[A-Za-z0-9_-]{86}$/.test(item.signature)) throw new Error('Invalid Ed25519 signature')
-  if (item.data === undefined || canonical(item.data).length > 1_000_000) throw new Error('Invalid rule data')
+  if (item.data === undefined || canonical(item.data).length > MAX_RULE_DATA_LENGTH) throw new Error('Invalid rule data')
   return item as unknown as RulePackage
 }
 

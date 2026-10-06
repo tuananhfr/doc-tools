@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { electricityBill, validateElectricityTiers, waterBill } from './electricity'
+import { electricityBill, parseElectricityRules, validateElectricityTiers, waterBill } from './electricity'
+import { parseVatRule } from './vat-rule'
 
 describe('electricityBill', () => {
   it('charges each block only for its units', () => {
@@ -14,5 +15,16 @@ describe('electricityBill', () => {
   })
   it('keeps water fees and tax visible', () => {
     expect(waterBill(10, 10000, 10, 5)).toEqual({ subtotal: 100000, fee: 10000, vat: 5000, total: 115000 })
+  })
+})
+
+describe('signed electricity data', () => {
+  it('accepts tiers with or without a VAT rate and rejects a bad rate', () => {
+    const tiers = [{ upTo: 50, price: 1000 }, { upTo: null, price: 2000 }]
+    expect(parseElectricityRules({ tiers })).toEqual({ tiers })
+    expect(parseElectricityRules({ tiers, vatPercent: 8 })).toEqual({ tiers, vatPercent: 8 })
+    expect(parseElectricityRules({ tiers, vatPercent: '8' })).toBeNull()
+    expect(parseVatRule({ percent: 10 })).toEqual({ percent: 10 })
+    expect(parseVatRule({ percent: -1 })).toBeNull()
   })
 })

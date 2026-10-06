@@ -1,6 +1,8 @@
 import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
 import type { RowDataPacket } from 'mysql2/promise'
 import { DatabaseService } from '../database/database.service'
+import { vietnamToday } from '../rules/rule-dates'
+import { effectiveDigest, lockRulePublishing, publishPackage, unlockRulePublishing } from '../rules/rules.repository'
 import type { ContributionInput, SourceRef } from './contribution-input'
 
 export type ContributionStatus = 'NEEDS_SOURCE' | 'NEEDS_REVIEW' | 'VERIFIED' | 'REJECTED' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'REVOKED'
@@ -73,6 +75,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
   async transition(id: string, action: 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke', actor: string, note: string | null, digest: string | null) {
     const connection = await this.database.pool.getConnection()
     try {
+      if (action === 'publish') await lockRulePublishing(connection)
       await connection.beginTransaction()
       const [rows] = await connection.execute<RowDataPacket[]>('SELECT * FROM contributions WHERE id = ? FOR UPDATE', [id])
       if (!rows.length) throw new Error('Contribution not found')
@@ -91,17 +94,14 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
         if (row.domain !== 'ideas') {
           if (!digest) throw new Error('Signed rule package digest is required')
           if (row.base_snapshot_id) {
-            const [active] = await connection.execute<RowDataPacket[]>('SELECT digest FROM rule_active WHERE kind = ? FOR UPDATE', [row.domain])
-            if (active[0]?.digest !== row.base_snapshot_id) throw new Error('Base snapshot changed; review this contribution against the active version')
+            await connection.execute('SELECT id FROM rule_published WHERE kind = ? FOR UPDATE', [row.domain])
+            if (await effectiveDigest(connection, row.domain, vietnamToday()) !== row.base_snapshot_id) throw new Error('Base snapshot changed; review this contribution against the active version')
           }
           const [packages] = await connection.execute<RowDataPacket[]>('SELECT digest FROM rule_packages WHERE kind = ? AND digest = ?', [row.domain, digest])
           if (!packages.length) throw new Error('Matching signed rule package must be staged first')
         }
         if (actor === row.reviewed_by || actor === row.approved_by) throw new Error('Publisher must differ from reviewer and approver')
-        if (row.domain !== 'ideas') {
-          await connection.execute('INSERT INTO rule_active (kind, digest) VALUES (?, ?) ON DUPLICATE KEY UPDATE digest = VALUES(digest)', [row.domain, digest])
-          await connection.execute('INSERT INTO rule_audit (kind, digest, action, actor) VALUES (?, ?, ?, ?)', [row.domain, digest, 'activate', actor])
-        }
+        if (row.domain !== 'ideas') await publishPackage(connection, row.domain, digest!, actor)
       }
       const status: Record<typeof action, ContributionStatus> = { verify: 'VERIFIED', approve: 'APPROVED', reject: 'REJECTED', publish: 'PUBLISHED', supersede: 'SUPERSEDED', revoke: 'REVOKED' }
       await connection.execute('UPDATE contributions SET status = ?, reviewed_by = ?, approved_by = ?, published_digest = ? WHERE id = ?', [status[action], action === 'verify' ? actor : row.reviewed_by, action === 'approve' ? actor : row.approved_by, action === 'publish' ? digest : row.published_digest, id])
@@ -109,6 +109,9 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
       await connection.commit()
       return status[action]
     } catch (error) { await connection.rollback(); throw error }
-    finally { connection.release() }
+    finally {
+      if (action === 'publish') await unlockRulePublishing(connection)
+      connection.release()
+    }
   }
 }

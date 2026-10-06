@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
-import { fetchVerifiedRules, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
+import { formatRuleDate } from '@/features/tools/rules/services/signed-rules'
+import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
+import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
 import { ByoAiPanel } from '@/features/tools/byoai/components/ByoAiPanel'
 import { grossToNet, netToGross, validatePayrollRules, type PayrollRules } from '../utils/payroll'
 
@@ -39,9 +41,9 @@ export default function PayrollPage() {
   const [exempt, setExempt] = useState('0')
   const [fields, setFields] = useState<Record<RuleField, string>>(EMPTY_FIELDS)
   const [bracketText, setBracketText] = useState('')
-  const [verified, setVerified] = useState<VerifiedRulePackage<PayrollRules> | null>(null)
   const [usingVerified, setUsingVerified] = useState(false)
-  useEffect(() => { void fetchVerifiedRules<PayrollRules>('payroll').then((item) => { if (item && validatePayrollRules(item.data)) setVerified(item) }).catch(() => undefined) }, [])
+  const payrollRules = useSignedRules('payroll', validatePayrollRules)
+  const verified = payrollRules.state === 'ready' ? payrollRules.current : null
   const rules = parseRules(fields, bracketText)
   const options = { dependents: Number(dependents), region, insuranceBase: insuranceBase === '' ? undefined : Number(insuranceBase), exempt: Number(exempt) }
   const result = rules && salary !== '' ? mode === 'gross' ? grossToNet(Number(salary), options, rules) : netToGross(Number(salary), options, rules) : null
@@ -68,7 +70,7 @@ export default function PayrollPage() {
       {result.taxRows.map((row) => <tr key={row.level}><th>Bậc {row.level} · {formatNumber(row.rate * 100)}%</th><td>{formatNumber(row.amount)} đ</td></tr>)}
       <tr><th>Thuế TNCN</th><td>{formatNumber(result.tax)} đ</td></tr><tr><th>Doanh nghiệp đóng thêm</th><td>{formatNumber(result.employerTotal)} đ</td></tr><tr><th>Tổng chi phí doanh nghiệp</th><td>{formatNumber(result.employerCost)} đ</td></tr>
     </tbody></table></div> : <p className="erp-tool-result__note">Điền đầy đủ tham số từ bộ quy tắc đã ký hoặc bảng lương, hợp đồng và hướng dẫn của kế toán.</p>}
-    <p className="erp-tool-result__note">{usingVerified && verified ? `Gói tham số có chữ ký, hiệu lực từ ${verified.effectiveFrom}. Nguồn: ${verified.source.title}.` : 'Thông số do bạn nhập; công cụ không xác nhận đây là quy định hiện hành.'} Kết quả chưa thay thế quyết toán thuế thực tế.</p>
+    <p className="erp-tool-result__note">{usingVerified && verified ? `Gói tham số có chữ ký, hiệu lực từ ${formatRuleDate(verified.effectiveFrom)}. Nguồn: ${verified.source.title}.` : 'Thông số do bạn nhập; công cụ không xác nhận đây là quy định hiện hành.'} Kết quả chưa thay thế quyết toán thuế thực tế.</p>
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">Xem nguồn dữ liệu</a> : null}
   </div>}>
     <ToolPanel title="Tính lương Gross – Net">
@@ -80,7 +82,8 @@ export default function PayrollPage() {
         <label className="erp-flow-field__label">Lương đóng bảo hiểm (đ, để trống = Gross)<Form.Control type="number" min="0" step="1" value={insuranceBase} onChange={(event) => setInsuranceBase(event.target.value)} /></label>
         <label className="erp-flow-field__label">Phụ cấp miễn thuế trong Gross (đ)<Form.Control type="number" min="0" step="1" value={exempt} onChange={(event) => setExempt(event.target.value)} /></label>
       </div>
-      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>Áp dụng tham số đã ký</Button> : <p className="mt-3">Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống.</p>}
+      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>Áp dụng tham số đã ký</Button> : null}
+      <RuleStatus rules={payrollRules} label="tham số tính lương" noneText="Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống." />
       <details className="mt-3"><summary>Nhập tham số tính lương</summary><div className="erp-tool-form__grid mt-3">{RULE_FIELDS.map(({ key, label }) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min="0" step="any" value={fields[key]} onChange={(event) => updateField(key, event.target.value)} /></label>)}</div>
         <label className="erp-flow-field__label mt-3">Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
       </details>
