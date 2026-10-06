@@ -321,6 +321,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
     description: 'PDF sang Word, Excel, ảnh',
     icon: 'arrow-left-right',
     categories: ['document'],
+    processing: 'browser-model',
     priority: 6,
     synonyms: ['pdf to word', 'docx', 'xlsx', 'pdf sang excel', 'pdf sang jpg', 'pdf sang ảnh'],
     pageTitle: 'Chuyển PDF sang Word miễn phí',

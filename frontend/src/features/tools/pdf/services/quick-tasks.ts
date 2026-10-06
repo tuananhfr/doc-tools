@@ -58,10 +58,11 @@ function reducedNotes(reduced: number[], dpi: number): FlowNote[] {
   ]
 }
 
-function withoutTextNotes(count: number, target: ConvertTarget): FlowNote[] {
+function withoutTextNotes(count: number, target: ConvertTarget, recognized: boolean): FlowNote[] {
   if (count === 0 || (target !== 'word' && target !== 'excel')) return []
   const where = target === 'word' ? 'được chèn vào Word dạng ảnh' : 'nên để trống trong Excel'
-  return [{ tone: 'warning', text: `${count} trang không có lớp chữ (ảnh, bản scan) ${where}. Chạy "OCR văn bản" trước rồi chuyển lại để lấy được chữ.` }]
+  if (recognized) return [{ tone: 'warning', text: `${count} trang nhận dạng không ra chữ ${where}.` }]
+  return [{ tone: 'warning', text: `${count} trang không có lớp chữ (ảnh, bản scan) ${where}. Bật "Nhận dạng chữ trên trang scan" rồi chuyển lại để lấy được chữ.` }]
 }
 
 /** Ghép mọi tệp theo thứ tự đang xếp thành một PDF. */
@@ -146,13 +147,22 @@ export function compressTask(items: QuickItem[], level: Exclude<Compression, 'no
 
 const TARGET_NAME: Record<ConvertTarget, string> = { word: 'Word', excel: 'Excel', jpeg: 'ảnh JPG', png: 'ảnh PNG' }
 
-/** PDF → Word / Excel / ảnh từng trang; nhiều tệp thì mỗi tệp một kết quả, gói chung một .zip. */
-export function convertTask(items: QuickItem[], target: ConvertTarget, dpi: number): FlowTask {
+/**
+ * PDF → Word / Excel / ảnh từng trang; nhiều tệp thì mỗi tệp một kết quả, gói chung một .zip.
+ * `ocr`: nhận dạng trước các trang scan. Phần dựng Word/Excel đọc chữ qua `loadPageText`,
+ * vốn trả kết quả OCR đã lưu, nên không cần biết trang nào vừa được nhận dạng.
+ */
+export function convertTask(items: QuickItem[], target: ConvertTarget, dpi: number, ocr = false): FlowTask {
   return async (step) => {
     const context = contextOf(items)
     const pages = pagesOf(items)
     const title = `Đã chuyển sang ${TARGET_NAME[target]}`
     const office = target === 'word' || target === 'excel'
+    const found = office && ocr ? await recognizeMissing(context.sources, pages, pages.length, step) : null
+    const build = found
+      ? { signal: step.signal, onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + pages.length, `Đang dựng tệp ${TARGET_NAME[target]}`) }
+      : step
+    const officeNotes = (withoutText: number) => [...(found ? ocrNotes(found) : []), ...withoutTextNotes(withoutText, target, found !== null)]
 
     if (items.length > 1) {
       const built = await buildBatch(
@@ -161,17 +171,17 @@ export function convertTask(items: QuickItem[], target: ConvertTarget, dpi: numb
         office ? target : 'image',
         { output: DEFAULT_PDF_OUTPUT, image: { format: office ? 'jpeg' : target, dpi } },
         `Chuyển sang ${TARGET_NAME[target]}`,
-        step,
+        build,
       )
       return {
         title,
         output: output(built.file, `${items.length} tệp`),
-        notes: [...withoutTextNotes(built.withoutText, target), ...reducedNotes(built.reduced, dpi)],
+        notes: [...(office ? officeNotes(built.withoutText) : []), ...reducedNotes(built.reduced, dpi)],
       }
     }
     if (office) {
-      const built = await buildOffice(context, target, pages, firstName(items), step)
-      return { title, output: output(built.file, `${pages.length} trang`), notes: withoutTextNotes(built.withoutText, target) }
+      const built = await buildOffice(context, target, pages, firstName(items), build)
+      return { title, output: output(built.file, `${pages.length} trang`), notes: officeNotes(built.withoutText) }
     }
     const built = await buildImages(context, pages, target, dpi, firstName(items), step)
     return {

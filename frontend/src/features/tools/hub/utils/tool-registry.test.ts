@@ -32,7 +32,7 @@ describe('danh mục thật', () => {
 
   it('công cụ chạy mô hình nhận dạng chữ được khai là browser-model', () => {
     const models = TOOL_CATALOG.filter((item) => toolProcessing(item) === 'browser-model').map((item) => item.id)
-    expect(models.sort()).toEqual(['edit-pdf', 'image-to-text', 'ocr', 'view-pdf'])
+    expect(models.sort()).toEqual(['convert-file', 'edit-pdf', 'image-to-text', 'ocr', 'view-pdf'])
   })
 
   it('tìm ra công cụ bằng từ người dùng hay gõ, không có trong tên lẫn mô tả', () => {

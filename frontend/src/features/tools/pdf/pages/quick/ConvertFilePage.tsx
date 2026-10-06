@@ -26,6 +26,7 @@ export default function ConvertFilePage() {
   const quick = useQuickSources({ accept: ACCEPT, multiple: true })
   const [target, setTarget] = useState<ConvertTarget>('word')
   const [dpi, setDpi] = useState(150)
+  const [ocr, setOcr] = useState(true)
   const image = target === 'jpeg' || target === 'png'
 
   return (
@@ -37,7 +38,7 @@ export default function ConvertFilePage() {
       runLabel="Chuyển đổi"
       runIcon="arrow-left-right"
       blocked={null}
-      task={() => convertTask(quick.items, target, dpi)}
+      task={() => convertTask(quick.items, target, dpi, ocr)}
       options={
         <>
           <FlowChoice legend="Chuyển sang" value={target} options={TARGETS} onChange={setTarget} />
@@ -56,7 +57,15 @@ export default function ConvertFilePage() {
               </Form.Text>
             </Form.Group>
           ) : (
-            <p className="erp-flow-field__hint">Dựng lại từ chữ trong PDF — bố cục phức tạp có thể lệch. Bản scan cần chạy OCR trước.</p>
+            <>
+              <Form.Check id={`${ids}-ocr`} type="checkbox" label="Nhận dạng chữ trên trang scan (OCR tiếng Việt)" checked={ocr} aria-describedby={`${ids}-ocr-help`} onChange={(event) => setOcr(event.target.checked)} />
+              <p id={`${ids}-ocr-help`} className="erp-flow-field__hint">
+                {ocr
+                  ? 'Lần đầu tải bộ nhận dạng khoảng 1,4 MB, mỗi trang scan mất vài giây. Trang scan chỉ giữ lại chữ, không giữ hình, dấu, chữ ký.'
+                  : 'Trang scan sẽ được chèn vào Word dạng ảnh, để trống trong Excel.'}
+              </p>
+              <p className="erp-flow-field__hint">Dựng lại từ chữ trong PDF, bố cục phức tạp có thể lệch.</p>
+            </>
           )}
         </>
       }
