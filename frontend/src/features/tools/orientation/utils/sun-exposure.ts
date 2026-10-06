@@ -12,7 +12,11 @@ export interface SolarInput {
 export interface SolarReading {
   now: SunPosition
   day: SunDay
+  /** Vị trí mặt trời mỗi 15 phút khi còn trên trời — để biết mặt tiền đón nắng lúc nào. */
+  track: { position: SunPosition; morning: boolean }[]
 }
+
+const TRACK_STEP_MINUTES = 15
 
 /** Góc lệch nhỏ nhất giữa hai hướng, 0–180°. */
 export function angleBetween(a: number, b: number): number {
@@ -28,12 +32,14 @@ export function facesSun(front: number, sun: SunPosition): boolean {
 export type DaySide = 'MORNING' | 'AFTERNOON' | 'BOTH' | 'NONE'
 
 /**
- * Mặt tiền nhận nắng buổi nào trong ngày, xét theo hướng mọc / lặn. Thô nhưng
- * đủ trả lời câu người ta thật sự hỏi: "nhà này có bị nắng chiều không".
+ * Mặt tiền nhận nắng buổi nào trong ngày — xét cả đường đi của mặt trời, không chỉ
+ * hướng mọc / lặn: nhà hướng Nam ngày xuân phân lệch đúng 90° với cả hai mà vẫn đón
+ * nắng gần trọn ngày. Trả lời câu người ta thật sự hỏi: "nhà này có bị nắng chiều không".
  */
-export function daySide(front: number, day: SunDay): DaySide {
-  const morning = day.riseAzimuth !== null && angleBetween(front, day.riseAzimuth) < 90
-  const afternoon = day.setAzimuth !== null && angleBetween(front, day.setAzimuth) < 90
+export function daySide(front: number, reading: SolarReading): DaySide {
+  const lit = reading.track.filter((sample) => facesSun(front, sample.position))
+  const morning = lit.some((sample) => sample.morning)
+  const afternoon = lit.some((sample) => !sample.morning)
   if (morning && afternoon) return 'BOTH'
   if (morning) return 'MORNING'
   if (afternoon) return 'AFTERNOON'
@@ -54,5 +60,19 @@ export function readSolar(input: SolarInput | null): SolarReading | null {
   const [hour, minute] = timeMatch.slice(1).map(Number)
   const at = new Date(year, month - 1, day, hour, minute)
   if (Number.isNaN(at.getTime())) return null
-  return { now: sunPosition(at, input.latitude, input.longitude), day: sunDay(year, month, day, input.latitude, input.longitude) }
+  const sunDayInfo = sunDay(year, month, day, input.latitude, input.longitude)
+  return { now: sunPosition(at, input.latitude, input.longitude), day: sunDayInfo, track: sunTrack(sunDayInfo, input.latitude, input.longitude) }
+}
+
+/** Vùng cực mặt trời không mọc / không lặn: xét trọn 24 giờ quanh chính trưa, mẫu dưới chân trời tự bị loại. */
+function sunTrack(day: SunDay, latitude: number, longitude: number): SolarReading['track'] {
+  const noon = day.noon.getTime()
+  const from = day.sunrise?.getTime() ?? noon - 12 * 3_600_000
+  const to = day.sunset?.getTime() ?? noon + 12 * 3_600_000
+  const track: SolarReading['track'] = []
+  for (let time = from; time <= to; time += TRACK_STEP_MINUTES * 60_000) {
+    const position = sunPosition(new Date(time), latitude, longitude)
+    if (position.elevation > 0) track.push({ position, morning: time < noon })
+  }
+  return track
 }

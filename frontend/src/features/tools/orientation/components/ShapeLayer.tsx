@@ -1,3 +1,4 @@
+import { pointAt } from '../utils/azimuth'
 import type { CompassShape } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
 
@@ -8,6 +9,14 @@ interface ShapeLayerProps {
 }
 
 const points = (list: { x: number; y: number }[]) => list.map((point) => `${point.x},${point.y}`).join(' ')
+
+function arcPath(shape: Extract<CompassShape, { kind: 'arc' }>): string {
+  const sweep = shape.end - shape.start
+  const large = sweep > 180 ? 1 : 0
+  const [a, b] = [pointAt(shape.center, shape.start, shape.outer), pointAt(shape.center, shape.end, shape.outer)]
+  const [c, d] = [pointAt(shape.center, shape.end, shape.inner), pointAt(shape.center, shape.start, shape.inner)]
+  return `M${a.x},${a.y} A${shape.outer},${shape.outer} 0 ${large} 1 ${b.x},${b.y} L${c.x},${c.y} A${shape.inner},${shape.inner} 0 ${large} 0 ${d.x},${d.y} Z`
+}
 
 /** Vẽ danh sách hình (la bàn, trục, nét vẽ tay) bằng SVG — bản canvas lúc xuất là `drawShapes`, cùng một danh sách. */
 export function ShapeLayer({ shapes, palette, opacity }: ShapeLayerProps) {
@@ -50,6 +59,8 @@ export function ShapeLayer({ shapes, palette, opacity }: ShapeLayerProps) {
           }
           case 'polygon':
             return <polygon key={index} points={points(shape.points)} fill={color} fillOpacity={alpha} />
+          case 'arc':
+            return <path key={index} d={arcPath(shape)} fill={color} fillOpacity={alpha} />
           case 'text':
             return (
               <text
@@ -58,7 +69,7 @@ export function ShapeLayer({ shapes, palette, opacity }: ShapeLayerProps) {
                 y={shape.at.y}
                 fill={color}
                 fillOpacity={alpha}
-                stroke={palette.halo}
+                stroke={shape.halo === false ? 'none' : palette.halo}
                 strokeOpacity={alpha}
                 strokeWidth={shape.size * 0.28}
                 strokeLinejoin="round"
@@ -67,6 +78,7 @@ export function ShapeLayer({ shapes, palette, opacity }: ShapeLayerProps) {
                 fontWeight={shape.weight}
                 textAnchor="middle"
                 dominantBaseline="central"
+                transform={shape.rotate ? `rotate(${shape.rotate} ${shape.at.x} ${shape.at.y})` : undefined}
               >
                 {shape.text}
               </text>

@@ -19,7 +19,8 @@ export const TARGET_SPECS: TargetSpec[] = [
   { type: 'HOUSE_FRONTAGE', label: 'Hướng nhà', short: 'Nhà', icon: 'house-door', hint: 'Từ trong nhà nhìn thẳng ra mặt tiền' },
   { type: 'MAIN_DOOR', label: 'Cửa chính', short: 'Cửa', icon: 'door-open', hint: 'Từ trong nhà nhìn ra qua cửa chính' },
   { type: 'BALCONY', label: 'Ban công', short: 'Ban công', icon: 'building', hint: 'Từ trong phòng nhìn ra ban công' },
-  { type: 'KITCHEN', label: 'Bếp', short: 'Bếp', icon: 'fire', hint: 'Hướng người đứng nấu nhìn vào bếp' },
+  // Hướng bếp = hướng lưng người đứng nấu (mặt bếp nhìn ra), KHÔNG phải hướng người nấu nhìn vào.
+  { type: 'KITCHEN', label: 'Bếp', short: 'Bếp', icon: 'fire', hint: 'Hướng lưng người đứng nấu — ngược hướng người nấu nhìn vào bếp' },
   { type: 'ALTAR', label: 'Bàn thờ', short: 'Bàn thờ', icon: 'brightness-alt-high', hint: 'Hướng mặt bàn thờ nhìn ra' },
   { type: 'BED', label: 'Giường', short: 'Giường', icon: 'moon-stars', hint: 'Từ đầu giường nhìn về cuối giường' },
   { type: 'DESK', label: 'Bàn làm việc', short: 'Bàn', icon: 'laptop', hint: 'Hướng người ngồi làm việc nhìn tới' },

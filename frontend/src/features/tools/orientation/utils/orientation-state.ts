@@ -11,7 +11,7 @@ import type {
   UxMode,
 } from '../types/orientation.types'
 import { axisAngle, normalizeDeg, pointAt } from './azimuth'
-import { INITIAL_TRACE, MIN_POLYGON_POINTS, perpendicularAxis, rectPoints, type TraceShape, type TraceState, type TraceTag, type TraceTool } from './trace'
+import { dragRectCorner, INITIAL_TRACE, MIN_POLYGON_POINTS, perpendicularAxis, rectPoints, type TraceShape, type TraceState, type TraceTag, type TraceTool } from './trace'
 
 /** Cách lấy hướng ở bước 2 của luồng đơn giản (spec v1.1 §3). */
 export type OrientationMethod = 'DEVICE' | 'MANUAL' | 'DRAWING'
@@ -144,7 +144,7 @@ function traceReducer(state: OrientationState, action: Extract<OrientationAction
       const shapes = trace.shapes.map((shape) => {
         if (shape.id !== action.id) return shape
         // Khung chữ nhật giữ nguyên là chữ nhật: góc kéo + góc đối diện dựng lại khung.
-        if (shape.kind === 'rect') return { ...shape, points: rectPoints(action.point, shape.points[(action.index + 2) % 4]) }
+        if (shape.kind === 'rect') return { ...shape, points: dragRectCorner(shape.points, action.index, action.point) }
         return { ...shape, points: shape.points.map((point, index) => (index === action.index ? action.point : point)) }
       })
       return syncTagged(withTrace(state, { shapes }))
@@ -202,12 +202,21 @@ export function orientationReducer(state: OrientationState, action: OrientationA
     case 'step':
       return { ...state, step: action.step }
     case 'known-azimuth': {
-      if (action.azimuth === null || !Number.isFinite(action.azimuth)) return { ...state, anchor: null }
+      const valid = action.azimuth !== null && Number.isFinite(action.azimuth)
+      if (!state.compass) {
+        // Không ảnh: mỗi đối tượng một số riêng, gắn vào đối tượng ĐANG CHỌN. Dùng chung một mốc như khi
+        // có ảnh thì chốt số cho đối tượng thứ hai sẽ ghi đè số của hướng nhà.
+        const id = state.activeId
+        const withKnown = updateTarget(state, id, { known: valid ? normalizeDeg(action.azimuth!) : undefined })
+        if (!valid) return { ...withKnown, anchor: state.anchor?.source !== 'DRAWING' && state.anchor?.targetId === id ? null : state.anchor }
+        return { ...withKnown, anchor: { source: action.source, azimuth: normalizeDeg(action.azimuth!), targetId: id, accuracy: action.accuracy ?? null } }
+      }
+      if (!valid) return { ...state, anchor: null }
       return {
         ...state,
         anchor: {
           source: action.source,
-          azimuth: normalizeDeg(action.azimuth),
+          azimuth: normalizeDeg(action.azimuth!),
           targetId: anchorTargetId(state),
           accuracy: action.accuracy ?? null,
         },

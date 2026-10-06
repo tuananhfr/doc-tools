@@ -4,7 +4,7 @@ import type { Size } from '../types/orientation.types'
 import type { OrientationSourceFile } from '../types/source.types'
 import { compassShapes, scaleShapes, type CompassShape } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
-import { overlayCompass, standaloneCompass } from '../utils/compass-view'
+import { overlayCompass, standaloneCompass, type CompassExtras } from '../utils/compass-view'
 import type { OrientationState } from '../utils/orientation-state'
 import { sceneShapes } from '../utils/scene-geometry'
 import { drawShapes, drawLegend } from './compass-draw'
@@ -19,7 +19,7 @@ export interface ExportRequest {
   format: ExportFormat
   /** Nhãn cạnh mũi tên của từng đối tượng (id → nhãn). */
   labelOf: (id: string) => string
-  sun?: number | null
+  extras: CompassExtras
 }
 
 /** Lớp vẽ đè lên ảnh: nét vẽ tay + trục (đậm) và la bàn (độ mờ người dùng chọn). */
@@ -105,7 +105,7 @@ async function compassCard(request: ExportRequest): Promise<{ blob: Blob; size: 
   try {
     context.fillStyle = request.palette.disc
     context.fillRect(0, 0, size.width, size.height)
-    drawShapes(context, compassShapes(standaloneCompass(request.state, CARD_SIDE, request.sun ?? null)), request.palette, 1)
+    drawShapes(context, compassShapes(standaloneCompass(request.state, CARD_SIDE, request.extras)), request.palette, 1)
     drawLegend(context, request.legend, size, unit, request.palette)
     return { blob: await canvasPng(canvas), size }
   } finally {
@@ -156,7 +156,7 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
   const { source, state, format } = request
   const notes: FlowNote[] = []
   const view = source.kind === 'none' ? null : source.view
-  const spec = view ? overlayCompass(state, view, request.sun ?? null) : null
+  const spec = view ? overlayCompass(state, view, request.extras) : null
 
   if (!view || !spec) {
     const card = await compassCard(request)

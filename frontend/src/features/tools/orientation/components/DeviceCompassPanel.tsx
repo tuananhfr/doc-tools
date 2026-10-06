@@ -1,28 +1,15 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
-import { useDeviceHeading, type HeadingStatus } from '../hooks/useDeviceHeading'
+import { HEADING_FAILURE, STABILITY_BADGE } from '../config/heading-status'
+import { useDeviceHeading } from '../hooks/useDeviceHeading'
 import { directionOf, formatDeg, normalizeDeg } from '../utils/azimuth'
-import type { Stability } from '../utils/device-heading'
 
 interface DeviceCompassPanelProps {
   targetLabel: string
   disabled: boolean
   onLock: (azimuth: number, accuracy: number | null) => void
   onManual: () => void
-}
-
-const FAILURE: Partial<Record<HeadingStatus, string>> = {
-  unsupported: 'Trình duyệt này không đọc được la bàn của máy.',
-  insecure: 'La bàn chỉ chạy khi mở trang bằng HTTPS.',
-  denied: 'Bạn chưa cho phép đọc cảm biến hướng. Cho phép trong cài đặt trình duyệt rồi thử lại.',
-  'no-signal': 'Không nhận được tín hiệu la bàn — máy tính và nhiều trình duyệt không có cảm biến này.',
-}
-
-const STABILITY: Record<Stability, { label: string; icon: string; tone: string }> = {
-  STABLE: { label: 'Ổn định', icon: 'check-circle', tone: 'success' },
-  WOBBLY: { label: 'Còn dao động', icon: 'exclamation-circle', tone: 'warning' },
-  UNSTABLE: { label: 'Không ổn định', icon: 'exclamation-triangle', tone: 'danger' },
 }
 
 /**
@@ -32,10 +19,10 @@ const STABILITY: Record<Stability, { label: string; icon: string; tone: string }
 export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: DeviceCompassPanelProps) {
   const { status, reading, start, stop } = useDeviceHeading()
   const [outside, setOutside] = useState(false)
-  const failure = FAILURE[status]
+  const failure = HEADING_FAILURE[status]
   // Đứng ngoài nhìn vào nhà thì đầu máy chĩa NGƯỢC hướng nhà.
   const heading = reading ? normalizeDeg(reading.heading + (outside ? 180 : 0)) : null
-  const stability = reading?.stability ? STABILITY[reading.stability] : null
+  const stability = reading?.stability ? STABILITY_BADGE[reading.stability] : null
 
   return (
     <div className="erp-orient-device">
@@ -86,7 +73,7 @@ export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: 
       <div className="erp-orient-actions">
         {status === 'live' && heading !== null ? (
           <>
-            <Button variant="primary" disabled={disabled} onClick={() => onLock(heading, reading?.accuracy ?? null)}>
+            <Button variant="primary" disabled={disabled || reading?.stability === 'UNSTABLE'} onClick={() => onLock(heading, reading?.accuracy ?? null)}>
               <Icon name="pin-angle" className="me-2" />
               Chốt số đo cho {targetLabel.toLowerCase()}
             </Button>

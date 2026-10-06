@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import { Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
-import { parseDecimal, ToolPanel, ToolSegments, type ToolSegment } from '@/features/tools/hub'
+import { ToolPanel, ToolSegments, type ToolSegment } from '@/features/tools/hub'
 import { formatDeg } from '../utils/azimuth'
 import type { OrientationAction, OrientationMethod, OrientationState } from '../utils/orientation-state'
 import { DeviceCompassPanel } from './DeviceCompassPanel'
+import { ManualDegree } from './ManualDegree'
 
 interface MethodPanelProps {
   state: OrientationState
@@ -22,7 +21,9 @@ export function MethodPanel({ state, hasImage, disabled, anchorLabel, dispatch }
     { value: 'MANUAL', label: 'Tôi biết số độ', icon: '123' },
     ...(hasImage ? [{ value: 'DRAWING' as const, label: 'Theo bản vẽ', icon: 'map' }] : []),
   ]
-  const known = state.anchor && state.anchor.source !== 'DRAWING' ? state.anchor : null
+  const anchor = state.anchor && state.anchor.source !== 'DRAWING' ? state.anchor : null
+  // Không ảnh: mỗi đối tượng một số riêng — ô nhập và dòng "đã chốt" đi theo đối tượng đang chọn.
+  const known = anchor && (hasImage || anchor.targetId === state.activeId) ? anchor : null
 
   return (
     <ToolPanel title="Lấy hướng bằng cách nào?">
@@ -47,7 +48,7 @@ export function MethodPanel({ state, hasImage, disabled, anchorLabel, dispatch }
 
       {state.method === 'MANUAL' ? (
         <ManualDegree
-          key={known?.targetId ?? 'none'}
+          key={hasImage ? (known?.targetId ?? 'none') : state.activeId}
           label={anchorLabel}
           value={known?.source === 'MANUAL' ? known.azimuth : null}
           disabled={disabled}
@@ -62,47 +63,5 @@ export function MethodPanel({ state, hasImage, disabled, anchorLabel, dispatch }
         </p>
       ) : null}
     </ToolPanel>
-  )
-}
-
-interface ManualDegreeProps {
-  label: string
-  value: number | null
-  disabled: boolean
-  onChange: (azimuth: number | null) => void
-}
-
-function ManualDegree({ label, value, disabled, onChange }: ManualDegreeProps) {
-  const [text, setText] = useState(value === null ? '' : String(value).replace('.', ','))
-  const read = (raw: string) => (raw.trim() === '' ? null : parseDecimal(raw))
-  const parsed = read(text)
-  const invalid = text.trim() !== '' && (parsed === null || !Number.isFinite(parsed))
-
-  // Gõ tới đâu tính tới đó; số âm / quá 360 vẫn nhận và quy về [0, 360) — ORI-002.
-  const update = (raw: string) => {
-    setText(raw)
-    const next = read(raw)
-    if (raw.trim() === '' || (next !== null && Number.isFinite(next))) onChange(next)
-  }
-
-  return (
-    <Form.Group controlId="orient-manual" className="erp-flow-field">
-      <Form.Label className="erp-flow-field__label">Số độ của {label.toLowerCase()}</Form.Label>
-      <div className="erp-orient-degree">
-        <Form.Control
-          inputMode="decimal"
-          value={text}
-          placeholder="Ví dụ 132"
-          isInvalid={invalid}
-          disabled={disabled}
-          onChange={(event) => update(event.target.value)}
-        />
-        <span className="erp-orient-degree__unit" aria-hidden="true">
-          °
-        </span>
-      </div>
-      <Form.Text className="erp-flow-field__hint">Đo theo chiều kim đồng hồ từ Bắc: Đông 90°, Nam 180°, Tây 270°.</Form.Text>
-      {invalid ? <Form.Control.Feedback type="invalid" className="d-block">Nhập một số, ví dụ 132 hoặc 132,5.</Form.Control.Feedback> : null}
-    </Form.Group>
   )
 }

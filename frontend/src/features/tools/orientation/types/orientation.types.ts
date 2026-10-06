@@ -39,6 +39,8 @@ export interface OrientationTarget {
   label?: string
   /** Trục trên ảnh; null = chưa đặt (hoặc không có ảnh). */
   axis: Axis | null
+  /** Không ảnh: số độ đã chốt của riêng đối tượng này — không có trục để suy số từ một mốc chung. */
+  known?: number
 }
 
 /**

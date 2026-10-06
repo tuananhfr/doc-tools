@@ -3,7 +3,7 @@ import type { Axis, Point } from '../types/orientation.types'
 import type { SourceView } from '../types/source.types'
 import { compassShapes } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
-import { overlayCompass } from '../utils/compass-view'
+import { overlayCompass, type CompassExtras } from '../utils/compass-view'
 import type { OrientationAction, OrientationState } from '../utils/orientation-state'
 import { sceneShapes } from '../utils/scene-geometry'
 import { MIN_POLYGON_POINTS, snapPoint } from '../utils/trace'
@@ -13,7 +13,7 @@ interface OrientationCanvasProps {
   view: SourceView
   state: OrientationState
   palette: CompassPalette
-  sun: number | null
+  extras: CompassExtras
   disabled: boolean
   labelOf: (id: string) => string
   dispatch: (action: OrientationAction) => void
@@ -45,7 +45,7 @@ const shift = (axis: Axis, dx: number, dy: number): Axis => ({ from: { x: axis.f
  * kéo là nút HTML đặt theo phần trăm nên giữ cỡ 44px trên màn hình dù ảnh to nhỏ.
  * Kéo đuôi mũi tên = dời cả mũi tên; kéo đầu = xoay / đổi dài.
  */
-export function OrientationCanvas({ view, state, palette, sun, disabled, labelOf, dispatch, checkpoint, onPlace, selectedShape, onSelectShape }: OrientationCanvasProps) {
+export function OrientationCanvas({ view, state, palette, extras, disabled, labelOf, dispatch, checkpoint, onPlace, selectedShape, onSelectShape }: OrientationCanvasProps) {
   const surface = useRef<HTMLDivElement>(null)
   const drag = useRef<{ grip: Grip; x: number; y: number; start: Point; moved: boolean } | null>(null)
   const [hover, setHover] = useState<Point | null>(null)
@@ -62,7 +62,7 @@ export function OrientationCanvas({ view, state, palette, sun, disabled, labelOf
   const at = (point: Point): CSSProperties => ({ left: `${(point.x / view.width) * 100}%`, top: `${(point.y / view.height) * 100}%` })
 
   const short = Math.min(view.width, view.height)
-  const compassSpec = overlayCompass(state, view, sun)
+  const compassSpec = overlayCompass(state, view, extras)
 
   /** Đưa núm tới `point`; `from` = chỗ con trỏ lúc bắt đầu kéo (để dời cả mũi tên theo độ dời). */
   const moveGrip = (grip: Grip, point: Point, from: Point) => {

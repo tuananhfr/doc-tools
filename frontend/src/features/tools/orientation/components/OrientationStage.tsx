@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui'
 import type { Point } from '../types/orientation.types'
 import type { OrientationSourceFile } from '../types/source.types'
 import type { CompassPalette } from '../utils/compass-palette'
+import type { CompassExtras } from '../utils/compass-view'
 import type { OrientationAction, OrientationState, OrientationStep } from '../utils/orientation-state'
 import type { TraceTool } from '../utils/trace'
 import { OrientationCanvas } from './OrientationCanvas'
@@ -13,7 +14,7 @@ interface OrientationStageProps {
   source: Extract<OrientationSourceFile, { kind: 'image' | 'pdf' }>
   state: OrientationState
   palette: CompassPalette
-  sun: number | null
+  extras: CompassExtras
   busy: boolean
   canUndo: boolean
   canRedo: boolean
@@ -165,7 +166,7 @@ export function OrientationStage(props: OrientationStageProps) {
         view={source.view}
         state={state}
         palette={props.palette}
-        sun={props.sun}
+        extras={props.extras}
         disabled={busy}
         labelOf={labelOf}
         dispatch={dispatch}

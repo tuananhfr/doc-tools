@@ -60,6 +60,33 @@ describe('orientationReducer', () => {
     expect(state.anchor).toMatchObject({ targetId: 't1', azimuth: 90 })
   })
 
+  it('không ảnh: chốt số cho đối tượng thứ hai không ghi đè hướng nhà', () => {
+    let state = initialOrientation(null)
+    state = orientationReducer(state, { type: 'known-azimuth', azimuth: 178.4, source: 'DEVICE', accuracy: 10 })
+    state = orientationReducer(state, { type: 'add-target', target: 'KITCHEN' })
+    state = orientationReducer(state, { type: 'known-azimuth', azimuth: 90, source: 'MANUAL' })
+    const value = (id: string) => targetAzimuth(state.targets.find((target) => target.id === id)!, state.anchor, state.targets)
+    expect(value('t1')).toBeCloseTo(178.4, 9)
+    expect(value('t2')).toBe(90)
+    // Xoá số của bếp chỉ xoá số của bếp.
+    state = orientationReducer(state, { type: 'known-azimuth', azimuth: null, source: 'MANUAL' })
+    expect(value('t2')).toBeNull()
+    expect(value('t1')).toBeCloseTo(178.4, 9)
+  })
+
+  it('kéo góc khung qua cạnh đối diện: góc đối diện đứng yên, khung không sụp', () => {
+    let state = reduce([{ type: 'trace-tool', tool: 'rect' }, { type: 'trace-point', point: { x: 10, y: 20 } }, { type: 'trace-point', point: { x: 50, y: 60 } }])
+    const id = state.trace.shapes[0].id
+    // Kéo đỉnh 0 (10,20) vượt qua đỉnh 2 (50,60), từng bước như khi rê chuột.
+    for (const point of [{ x: 40, y: 50 }, { x: 70, y: 80 }, { x: 90, y: 100 }]) {
+      state = orientationReducer(state, { type: 'trace-move', id, index: 0, point, transient: true })
+    }
+    const points = state.trace.shapes[0].points
+    expect(points[0]).toEqual({ x: 90, y: 100 })
+    expect(points[2]).toEqual({ x: 50, y: 60 })
+    expect(new Set(points.map((point) => `${point.x},${point.y}`)).size).toBe(4)
+  })
+
   it('đổi cách lấy hướng là bỏ mốc cũ', () => {
     const state = reduce([{ type: 'place-north', at: { x: 1, y: 1 }, length: 10 }, { type: 'method', method: 'MANUAL' }])
     expect(state.anchor).toBeNull()

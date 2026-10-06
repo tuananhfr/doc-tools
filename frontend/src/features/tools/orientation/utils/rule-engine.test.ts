@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { RULE_PROFILES } from '../config/rule-profiles'
+import { CURRENT_RULE_PROFILE, RULE_PROFILES } from '../config/rule-profiles'
 import type { PersonProfile, RuleProfile } from '../types/rule.types'
-import { goodDirections, kuaNumber, readDirection, readPerson, validateProfile } from './rule-engine'
+import { goodDirections, kuaNumber, readDirection, readHouse, readPerson, validateProfile } from './rule-engine'
 
 const batTrach = RULE_PROFILES[0]
 const person = (year: number, sex: PersonProfile['sex']): PersonProfile => ({ id: 'p', label: 'A', year, sex })
@@ -71,5 +71,48 @@ describe('readPerson / readDirection', () => {
     const broken: RuleProfile = { ...batTrach, trigrams: batTrach.trigrams.map((item, index) => (index === 0 ? { ...item, stars: { ...item.stars, SINH_KHI: 0 } } : item)) }
     const reading = readPerson(broken, person(1990, 'MALE'))
     expect(reading).toMatchObject({ ok: false })
+  })
+})
+
+describe('bộ luật v1.1.0', () => {
+  const current = CURRENT_RULE_PROFILE
+
+  it('là mục cuối, hợp lệ, bảng sao và cung phi giữ nguyên v1.0.0', () => {
+    expect(current.version).toBe('1.1.0')
+    expect(validateProfile(current)).toBeNull()
+    expect(current.kua).toEqual(batTrach.kua)
+    expect(current.trigrams.map(({ home: _home, ...rest }) => rest)).toEqual(batTrach.trigrams)
+    expect(current.yearBoundary).toBe('TET')
+  })
+
+  it('hướng hậu thiên sai → báo lỗi ở phần theo tuổi', () => {
+    const broken: RuleProfile = { ...current, trigrams: current.trigrams.map((item, index) => (index === 0 ? { ...item, home: 5 } : item)) }
+    expect(validateProfile(broken)).not.toBeNull()
+  })
+})
+
+describe('readHouse', () => {
+  const read = (year: number, sex: PersonProfile['sex']) => {
+    const outcome = readPerson(CURRENT_RULE_PROFILE, person(year, sex))
+    if (!outcome.ok) throw new Error(outcome.reason)
+    return outcome.value
+  }
+
+  it('ảnh mẫu: nam 1986 (Khôn), hướng 178,4° Nam là Lục sát; toạ Bắc là Khảm trạch, không hợp Tây tứ mệnh', () => {
+    const house = readHouse(CURRENT_RULE_PROFILE, read(1986, 'MALE'), 178.4)
+    expect(house.facing).toMatchObject({ segment: 'Nam', star: { name: 'Lục sát', fortune: 'BAD' } })
+    expect(house.house).toMatchObject({ segment: 'Bắc', trigram: { name: 'Khảm' }, group: { id: 'EAST' }, matchesPerson: false })
+  })
+
+  it('hai cách có thể vênh: người Khảm, nhà hướng Đông — sao Thiên y nhưng toạ Tây là Tây tứ trạch', () => {
+    const house = readHouse(CURRENT_RULE_PROFILE, read(1990, 'MALE'), 90)
+    expect(house.facing.star.name).toBe('Thiên y')
+    expect(house.house).toMatchObject({ trigram: { name: 'Đoài' }, matchesPerson: false })
+  })
+
+  it('bộ luật v1.0.0 không có hướng hậu thiên → chỉ có sao tại hướng', () => {
+    const outcome = readPerson(batTrach, person(1986, 'MALE'))
+    if (!outcome.ok) throw new Error(outcome.reason)
+    expect(readHouse(batTrach, outcome.value, 180).house).toBeNull()
   })
 })

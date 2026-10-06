@@ -31,9 +31,21 @@ describe('readSolar + daySide', () => {
   it('Hà Nội: nhà hướng Tây nhận nắng chiều, hướng Đông nhận nắng sáng', () => {
     const reading = readSolar({ ...HANOI, date: '2026-06-21', time: '12:00' })
     expect(reading).not.toBeNull()
-    expect(daySide(270, reading!.day)).toBe('AFTERNOON')
-    expect(daySide(90, reading!.day)).toBe('MORNING')
+    expect(daySide(270, reading!)).toBe('AFTERNOON')
+    expect(daySide(90, reading!)).toBe('MORNING')
     // Hạ chí ở Hà Nội mặt trời mọc lệch Bắc — nhà hướng Bắc nhận cả nắng sớm lẫn nắng muộn.
-    expect(daySide(0, reading!.day)).toBe('BOTH')
+    expect(daySide(0, reading!)).toBe('BOTH')
+  })
+
+  it('xét cả nắng giữa trưa: nhà hướng Nam ngày xuân phân không bị coi là "ít nắng"', () => {
+    const reading = readSolar({ ...HANOI, date: '2026-03-20', time: '12:00' })!
+    expect(daySide(180, reading)).toBe('BOTH')
+    // Câu "ít nắng" và "lúc này đang đón nắng" không bao giờ đi cùng nhau.
+    expect(facesSun(180, reading.now)).toBe(true)
+  })
+
+  it('đông chí ở Hà Nội mặt trời luôn lệch Nam — nhà hướng Bắc ít nắng trực tiếp', () => {
+    const reading = readSolar({ ...HANOI, date: '2026-12-21', time: '12:00' })!
+    expect(daySide(0, reading)).toBe('NONE')
   })
 })

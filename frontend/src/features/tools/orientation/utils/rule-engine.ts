@@ -1,5 +1,6 @@
 import type { PersonProfile, RuleGroup, RuleProfile, RuleStar, RuleTrigram } from '../types/rule.types'
 import { normalizeDeg } from './azimuth'
+import { sittingOf } from './luopan'
 
 export interface PersonReading {
   profile: PersonProfile
@@ -12,6 +13,13 @@ export interface PersonReading {
 export interface DirectionReading {
   segment: string
   star: RuleStar
+}
+
+/** Nhà theo Bát trạch: sao tại HƯỚNG (kết luận chính) + trạch xếp theo TOẠ (dòng phụ). */
+export interface HouseReading {
+  facing: DirectionReading
+  /** Null khi bộ luật không khai hướng hậu thiên của quái (v1.0.0). */
+  house: { segment: string; trigram: RuleTrigram; group: RuleGroup; matchesPerson: boolean } | null
 }
 
 export type RuleOutcome<T> = { ok: true; value: T } | { ok: false; reason: string }
@@ -28,6 +36,10 @@ export function validateProfile(profile: RuleProfile): string | null {
     if (indexes.length !== 8 || indexes.some(([id]) => !starIds.has(id))) return `Quái ${trigram.name} thiếu sao.`
     if (new Set(indexes.map(([, index]) => index)).size !== 8) return `Quái ${trigram.name} có hai sao trùng một hướng.`
     if (!profile.groups.some((group) => group.id === trigram.group)) return `Quái ${trigram.name} không thuộc nhóm nào.`
+  }
+  const homes = profile.trigrams.map((trigram) => trigram.home)
+  if (homes.some((home) => home !== undefined)) {
+    if (homes.some((home) => home === undefined || !Number.isInteger(home) || home < 0 || home > 7) || new Set(homes).size !== homes.length) return 'Hướng hậu thiên của các quái không hợp lệ.'
   }
   return null
 }
@@ -60,11 +72,26 @@ export function readPerson(profile: RuleProfile, person: PersonProfile): RuleOut
   return { ok: true, value: { profile: person, trigram, group, segments } }
 }
 
+const sectorIndex = (azimuth: number) => Math.floor((normalizeDeg(azimuth) + 22.5) / 45) % 8
+
 /** Sao của một hướng (độ) với một người: luôn chia 8 cung 45°, bất kể la bàn đang xem 8 hay 16 cung. */
 export function readDirection(reading: PersonReading, azimuth: number): DirectionReading {
-  const index = Math.floor((normalizeDeg(azimuth) + 22.5) / 45) % 8
-  const segment = reading.segments[index]
+  const segment = reading.segments[sectorIndex(azimuth)]
   return { segment: segment.name, star: segment.star }
+}
+
+/**
+ * Đọc một ngôi nhà cho một người. Hai cách có thể VÊNH nhau (người Khảm, nhà hướng
+ * Đông: sao Thiên y tốt, nhưng toạ Tây là Tây tứ trạch) — giữ cả hai, không gộp.
+ */
+export function readHouse(profile: RuleProfile, reading: PersonReading, facing: number): HouseReading {
+  const segment = sectorIndex(sittingOf(facing))
+  const trigram = profile.trigrams.find((item) => item.home === segment)
+  const group = trigram && profile.groups.find((item) => item.id === trigram.group)
+  return {
+    facing: readDirection(reading, facing),
+    house: trigram && group ? { segment: profile.segments[segment], trigram, group, matchesPerson: group.id === reading.group.id } : null,
+  }
 }
 
 /** Bốn hướng tốt, mạnh nhất trước. */

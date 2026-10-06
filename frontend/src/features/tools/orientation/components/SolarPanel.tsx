@@ -11,6 +11,8 @@ interface SolarPanelProps {
   /** Số độ mặt tiền; null = chưa đo. */
   front: number | null
   frontLabel: string
+  /** Có = không tính được (vd. đang theo Bắc dự án); trang đã không truyền `reading`. */
+  warning?: string | null
   onChange: (input: SolarInput | null) => void
 }
 
@@ -36,7 +38,7 @@ const coordinate = (value: number) => String(Math.round(value * 10_000) / 10_000
  * NẮNG & MẶT TRỜI (P1) — tính tại máy theo vĩ độ / kinh độ; vị trí chỉ hỏi khi
  * bấm và không lưu. Giờ hiện theo múi giờ của máy đang xem.
  */
-export function SolarPanel({ reading, front, frontLabel, onChange }: SolarPanelProps) {
+export function SolarPanel({ reading, front, frontLabel, warning, onChange }: SolarPanelProps) {
   const location = useOneShotLocation()
   const [open, setOpen] = useState(false)
   const [latitude, setLatitude] = useState('')
@@ -76,6 +78,12 @@ export function SolarPanel({ reading, front, frontLabel, onChange }: SolarPanelP
         <p className="erp-orient-muted">Xem mặt trời mọc, lặn ở hướng nào và {frontLabel.toLowerCase()} có bị nắng chiều không.</p>
       ) : (
         <>
+          {warning ? (
+            <p className="erp-orient-note erp-orient-note--warning" role="status">
+              <Icon name="exclamation-triangle" />
+              {warning}
+            </p>
+          ) : null}
           <div className="erp-orient-actions">
             <Button variant="outline-secondary" disabled={location.status === 'asking'} onClick={fillMyLocation}>
               <Icon name="geo-alt" className="me-2" />
@@ -164,7 +172,7 @@ export function SolarPanel({ reading, front, frontLabel, onChange }: SolarPanelP
                 <div>
                   <dt>{frontLabel}</dt>
                   <dd>
-                    {DAY_SIDE[daySide(front, reading.day)]}
+                    {DAY_SIDE[daySide(front, reading)]}
                     {sunUp ? (facesSun(front, reading.now) ? ' · lúc này đang đón nắng' : ' · lúc này không đón nắng') : ''}
                   </dd>
                 </div>

@@ -21,6 +21,14 @@ export function compassPalette(tokens: SemanticTokens): CompassPalette {
     trace: tokens.textPrimary,
     'trace-tag': tokens.construction,
     draft: tokens.actionSecondary,
+    // Vòng sao theo tuổi: cát đỏ / hung xám đậm như la kinh truyền thống — đỏ ở đây là
+    // quy ước văn hoá, không phải "nguy hiểm"; mỗi ô luôn có tên sao nên không chỉ đọc bằng màu.
+    'star-good': tokens.brand,
+    'star-bad': tokens.textPrimary,
+    'star-good-text': tokens.textOnAccent,
+    'star-bad-text': tokens.surface,
+    mountain: tokens.textPrimary,
+    trigram: tokens.textSecondary,
     halo: tokens.surface,
   }
 }

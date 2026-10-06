@@ -45,6 +45,18 @@ export function drawShapes(context: CanvasRenderingContext2D, shapes: CompassSha
         context.fillStyle = color
         context.fill()
         break
+      case 'arc': {
+        // Góc của hình đo từ phía trên theo chiều kim đồng hồ; canvas đo từ trục x.
+        const start = ((shape.start - 90) * Math.PI) / 180
+        const end = ((shape.end - 90) * Math.PI) / 180
+        context.beginPath()
+        context.arc(shape.center.x, shape.center.y, shape.outer, start, end, false)
+        context.arc(shape.center.x, shape.center.y, shape.inner, end, start, true)
+        context.closePath()
+        context.fillStyle = color
+        context.fill()
+        break
+      }
       case 'path':
         tracePath(context, shape.points, shape.closed)
         if (shape.fill) {
@@ -65,16 +77,22 @@ export function drawShapes(context: CanvasRenderingContext2D, shapes: CompassSha
         context.setLineDash([])
         break
       case 'text':
+        context.save()
+        context.translate(shape.at.x, shape.at.y)
+        if (shape.rotate) context.rotate((shape.rotate * Math.PI) / 180)
         context.font = `${shape.weight} ${shape.size}px ${FONT}`
         context.textAlign = 'center'
         context.textBaseline = 'middle'
-        // Viền sáng quanh chữ: nhãn kim nằm ngoài đĩa la bàn, đè thẳng lên ảnh.
-        context.lineJoin = 'round'
-        context.strokeStyle = palette.halo
-        context.lineWidth = shape.size * 0.28
-        context.strokeText(shape.text, shape.at.x, shape.at.y)
+        if (shape.halo !== false) {
+          // Viền sáng quanh chữ: nhãn kim nằm ngoài đĩa la bàn, đè thẳng lên ảnh.
+          context.lineJoin = 'round'
+          context.strokeStyle = palette.halo
+          context.lineWidth = shape.size * 0.28
+          context.strokeText(shape.text, 0, 0)
+        }
         context.fillStyle = color
-        context.fillText(shape.text, shape.at.x, shape.at.y)
+        context.fillText(shape.text, 0, 0)
+        context.restore()
         break
     }
   }

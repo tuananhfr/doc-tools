@@ -3,6 +3,13 @@ import { accuracyOf, circularMean, circularSpread, headingOf, stabilityOf, type 
 
 export type HeadingStatus = 'idle' | 'starting' | 'live' | 'unsupported' | 'insecure' | 'denied' | 'no-signal'
 
+export interface HeadingReading {
+  heading: number
+  spread: number | null
+  stability: Stability | null
+  accuracy: number | null
+}
+
 /** Số lần đọc gần nhất để tính trung bình + độ ổn định (~1 giây ở 60 Hz). */
 const WINDOW = 40
 /** Bấm "Đo ngay" mà chừng này vẫn chưa có lần đọc nào có neo Bắc → coi như máy không có la bàn. */
@@ -21,7 +28,7 @@ function screenAngle(): number {
  */
 export function useDeviceHeading() {
   const [status, setStatus] = useState<HeadingStatus>('idle')
-  const [reading, setReading] = useState<{ heading: number; spread: number | null; stability: Stability | null; accuracy: number | null } | null>(null)
+  const [reading, setReading] = useState<HeadingReading | null>(null)
   const samples = useRef<number[]>([])
   const detach = useRef<(() => void) | null>(null)
 
@@ -60,6 +67,14 @@ export function useDeviceHeading() {
     }
 
     let gotSignal = false
+    let frame = 0
+    let latest: HeadingReading | null = null
+    // Cảm biến bắn 60–100 lần/giây; vẽ lại mặt la bàn mỗi lần là giật trên máy yếu — gộp theo khung hình.
+    const flush = () => {
+      frame = 0
+      setReading(latest)
+      setStatus('live')
+    }
     const onEvent = (event: Event) => {
       const sample = event as DeviceOrientationEvent & HeadingSample
       const heading = headingOf(
@@ -70,8 +85,8 @@ export function useDeviceHeading() {
       gotSignal = true
       samples.current = [...samples.current.slice(-(WINDOW - 1)), heading]
       const spread = circularSpread(samples.current)
-      setReading({ heading: circularMean(samples.current) ?? heading, spread, stability: stabilityOf(spread), accuracy: accuracyOf(sample) })
-      setStatus('live')
+      latest = { heading: circularMean(samples.current) ?? heading, spread, stability: stabilityOf(spread), accuracy: accuracyOf(sample) }
+      if (!frame) frame = window.requestAnimationFrame(flush)
     }
     // Android Chrome: `deviceorientationabsolute` mới neo theo Bắc; `deviceorientation` thường là góc tương đối.
     const absolute = 'ondeviceorientationabsolute' in window
@@ -86,6 +101,7 @@ export function useDeviceHeading() {
     detach.current = () => {
       window.removeEventListener(type, onEvent)
       window.clearTimeout(timer)
+      window.cancelAnimationFrame(frame)
     }
   }, [stop])
 

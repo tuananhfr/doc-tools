@@ -37,6 +37,25 @@ export function rectPoints(a: Point, b: Point): Point[] {
   ]
 }
 
+/**
+ * Kéo đỉnh `index` của khung tới `point`. KHÔNG sắp lại đỉnh như `rectPoints`: kéo qua
+ * cạnh đối diện mà sắp lại thì đỉnh đang kéo đổi chỉ số, lần di chuột sau lấy nhầm
+ * "góc đối diện" và khung sụp thành một đường.
+ */
+export function dragRectCorner(points: Point[], index: number, point: Point): Point[] {
+  const opposite = points[(index + 2) % 4]
+  // Đỉnh 0 và 2 đi sang đỉnh kế theo cạnh ngang; đỉnh 1 và 3 theo cạnh dọc (thứ tự của `rectPoints`).
+  const horizontal = { x: opposite.x, y: point.y }
+  const vertical = { x: point.x, y: opposite.y }
+  const [next, previous] = index % 2 === 0 ? [horizontal, vertical] : [vertical, horizontal]
+  const result = [...points]
+  result[index] = point
+  result[(index + 1) % 4] = next
+  result[(index + 2) % 4] = opposite
+  result[(index + 3) % 4] = previous
+  return result
+}
+
 /** Bám góc theo bước `step` độ (so với trục ảnh), giữ nguyên độ dài. */
 export function snapPoint(from: Point, to: Point, step = 45): Point {
   const angle = axisAngle({ from, to })

@@ -93,6 +93,7 @@ export function imageNorth(anchor: Anchor | null, targets: OrientationTarget[]):
 /** Số độ của một đối tượng: số đã biết của chính nó, hoặc suy từ trục trên ảnh + hướng Bắc trên ảnh. */
 export function targetAzimuth(target: OrientationTarget, anchor: Anchor | null, targets: OrientationTarget[]): number | null {
   if (anchor && anchor.source !== 'DRAWING' && anchor.targetId === target.id) return normalizeDeg(anchor.azimuth)
+  if (target.known !== undefined) return target.known
   const north = imageNorth(anchor, targets)
   const angle = target.axis ? axisAngle(target.axis) : null
   if (north === null || angle === null) return null

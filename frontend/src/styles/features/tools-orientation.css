@@ -616,6 +616,84 @@
   margin-inline: auto;
 }
 
+/* ---------- La ban song (che do gia chu) ---------- */
+
+.erp-orient-dial {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  margin-inline: auto;
+  /* Keo tren mat so la cuon trang tren dien thoai, khong phai thao tac voi la ban. */
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.erp-orient-dial__end {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+}
+
+.erp-orient-facing {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.erp-orient-facing__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.erp-orient-facing__pair > div {
+  padding: 10px 12px;
+  background: var(--erp-surface-secondary);
+  border-radius: var(--erp-radius-md);
+}
+
+/* Huong la ket qua chinh: vien trai mau nhan dien, Toa la dong doi chieu. */
+.erp-orient-facing__pair > div:first-child {
+  box-shadow: inset 3px 0 0 var(--erp-brand);
+}
+
+.erp-orient-facing__pair dt {
+  color: var(--erp-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
+.erp-orient-facing__pair dd {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.erp-orient-facing__pair strong {
+  color: var(--erp-text-primary);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.erp-orient-facing__pair span {
+  color: var(--erp-text-secondary);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-orient-facing__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.erp-orient-facing__empty {
+  text-align: center;
+}
+
 /* ---------- Theo tuoi ---------- */
 
 .erp-orient-person {
@@ -629,7 +707,7 @@
 
 .erp-orient-person__fields {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
   align-items: end;
   gap: 8px;
 }
@@ -738,7 +816,7 @@
   }
 
   .erp-orient-person__fields {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .erp-orient-person__fields .erp-flow-field:first-child {

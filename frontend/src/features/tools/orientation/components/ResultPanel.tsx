@@ -2,7 +2,7 @@ import { Icon } from '@/components/ui'
 import { directionOf, formatDeg } from '../utils/azimuth'
 import { compassShapes } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
-import { standaloneCompass } from '../utils/compass-view'
+import { standaloneCompass, type CompassExtras } from '../utils/compass-view'
 import type { OrientationState } from '../utils/orientation-state'
 import { measurements, provenance, targetLabel } from '../utils/orientation-summary'
 import { ShapeLayer } from './ShapeLayer'
@@ -14,13 +14,13 @@ interface ResultPanelProps {
   missing: string | null
   /** La bàn đứng riêng khi chưa đặt được lên ảnh. */
   showCompass: boolean
-  sun: number | null
+  extras: CompassExtras
 }
 
 const SIDE = 280
 
 /** KẾT QUẢ ĐO (spec v1.1 §15): số độ + hướng + nguồn, tách hẳn khỏi phần theo tuổi. */
-export function ResultPanel({ state, palette, missing, showCompass, sun }: ResultPanelProps) {
+export function ResultPanel({ state, palette, missing, showCompass, extras }: ResultPanelProps) {
   const [main, ...others] = measurements(state)
   const origin = provenance(state)
 
@@ -65,7 +65,7 @@ export function ResultPanel({ state, palette, missing, showCompass, sun }: Resul
 
       {showCompass ? (
         <svg className="erp-orient-result__compass" viewBox={`${-SIDE * 0.04} ${-SIDE * 0.04} ${SIDE * 1.08} ${SIDE * 1.08}`} role="img" aria-label="La bàn, Bắc ở trên">
-          <ShapeLayer shapes={compassShapes(standaloneCompass(state, SIDE, sun))} palette={palette} opacity={1} />
+          <ShapeLayer shapes={compassShapes(standaloneCompass(state, SIDE, extras))} palette={palette} opacity={1} />
         </svg>
       ) : null}
     </section>

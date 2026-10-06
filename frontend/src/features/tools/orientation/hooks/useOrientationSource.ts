@@ -17,10 +17,11 @@ function release(source: OrientationSourceFile | null) {
 
 /**
  * Nguồn đang đo: một ảnh, một trang PDF, hoặc "không ảnh" (la bàn đứng riêng).
- * pdf.js chỉ được nạp khi người dùng thật sự chọn PDF.
+ * pdf.js chỉ được nạp khi người dùng thật sự chọn PDF. Mở ra là "không ảnh": gia chủ
+ * vào thẳng la bàn sống, ảnh / bản vẽ là bước phụ khi cần.
  */
 export function useOrientationSource() {
-  const [source, setSource] = useState<OrientationSourceFile | null>(null)
+  const [source, setSource] = useState<OrientationSourceFile | null>({ kind: 'none' })
   const [loading, setLoading] = useState(false)
   const [rejected, setRejected] = useState<FlowRejected | null>(null)
 
