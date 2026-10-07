@@ -71,7 +71,9 @@
     "mainNav": "主导航",
     "search": "搜索工具",
     "openMenu": "打开菜单",
-    "mobileNav": "手机端导航"
+    "mobileNav": "手机端导航",
+    "signIn": "登录",
+    "account": "账户"
   },
   "footer": {
     "madeBy": "<link>ERPCons & LPC</link> 出品",

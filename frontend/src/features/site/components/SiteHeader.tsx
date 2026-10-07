@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
+import { AccountButton } from '@/features/account'
 import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
 import { MobileNavigation } from './MobileNavigation'
@@ -32,6 +33,7 @@ export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
             <a className="cn-button cn-button--navy" href={PRODUCT_LINKS.erpcons} target="_blank" rel="noopener noreferrer">ERPCons</a>
             <a className="cn-button" href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">TekShot AI</a>
           </div>
+          <AccountButton />
           <button className="cn-icon-button cn-menu-toggle" type="button" aria-label={t('header.openMenu')} aria-expanded={menuOpen} aria-controls="cn-mobile-navigation" onClick={() => setMenuOpen(true)}><Icon name="list" /></button>
         </div>
       </div>

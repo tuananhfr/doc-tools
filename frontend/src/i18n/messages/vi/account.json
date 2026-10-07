@@ -1,0 +1,107 @@
+{
+  "pages": {
+    "dang-nhap": {
+      "title": "Đăng nhập | Chuyện Nhỏ",
+      "description": "Đăng nhập Chuyện Nhỏ bằng email và mã xác nhận, không cần mật khẩu."
+    },
+    "tai-khoan": {
+      "title": "Tài khoản | Chuyện Nhỏ",
+      "description": "Thông tin tài khoản, gói đang dùng và hồ sơ công khai trên Chuyện Nhỏ."
+    }
+  },
+  "login": {
+    "trail": "Đăng nhập",
+    "title": "Đăng nhập bằng <accent>email</accent>",
+    "intro": "Không cần mật khẩu. Nhập email, chúng tôi gửi một mã 6 chữ số để xác nhận đó là bạn.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "ban@vidu.vn",
+    "sendCode": "Gửi mã",
+    "sending": "Đang gửi…",
+    "codeLabel": "Mã xác nhận",
+    "codeSentTo": "Mã đã gửi tới <strong>{{email}}</strong> và có hiệu lực 10 phút.",
+    "codeHint": "Không thấy thư? Xem thư mục Spam hoặc Quảng cáo.",
+    "verify": "Đăng nhập",
+    "verifying": "Đang kiểm tra…",
+    "changeEmail": "Đổi email",
+    "resend": "Gửi lại mã",
+    "resendIn": "Gửi lại sau {{seconds}} giây",
+    "resent": "Đã gửi mã mới. Mã cũ không còn dùng được.",
+    "terms": "Khi đăng nhập, bạn đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Quyền riêng tư</privacy>.",
+    "asideTitle": "Tài khoản để làm gì?",
+    "asideNote": "Mọi công cụ vẫn dùng được khi không đăng nhập. Tệp của bạn vẫn chỉ xử lý trong trình duyệt.",
+    "benefits": {
+      "attributed": {
+        "title": "Đề xuất có ghi tên",
+        "text": "Góp ý quy định hay ý tưởng công cụ dưới tên bạn, thay vì ẩn danh."
+      },
+      "track": {
+        "title": "Theo dõi đề xuất",
+        "text": "Xem đề xuất của mình đang ở bước nào mà không cần giữ mã biên nhận."
+      },
+      "pro": {
+        "title": "Sẵn sàng cho bản Pro",
+        "text": "Trợ lý AI chạy bằng khoá AI của riêng bạn, lưu trữ và đồng bộ giữa các thiết bị."
+      }
+    }
+  },
+  "account": {
+    "trail": "Tài khoản",
+    "title": "Tài khoản <accent>của bạn</accent>",
+    "signedInAs": "Đang đăng nhập bằng <strong>{{email}}</strong>",
+    "loadFailed": "Không tải được thông tin tài khoản.",
+    "retry": "Thử lại",
+    "plan": {
+      "title": "Gói đang dùng",
+      "free": "Tài khoản miễn phí",
+      "pro": "Pro",
+      "proUntil": "Hiệu lực đến hết ngày {{date}}",
+      "freeText": "Dùng mọi công cụ và gửi đề xuất có ghi tên. Nâng cấp Pro để có trợ lý AI riêng.",
+      "included": "Đã có trong gói",
+      "proOnly": "Có trong bản Pro",
+      "soon": "Sắp có"
+    },
+    "capability": {
+      "attributed": "Gửi đề xuất có ghi tên",
+      "track": "Theo dõi các đề xuất đã gửi",
+      "evidence": "Bổ sung nguồn cho đề xuất",
+      "agent": "Trợ lý AI dùng khoá AI của riêng bạn",
+      "cloud": "Lưu dữ liệu công cụ lên đám mây",
+      "sync": "Đồng bộ giữa các thiết bị",
+      "history": "Lịch sử các phiên trợ lý AI"
+    },
+    "pro": {
+      "title": "Bản Pro",
+      "text": "Trợ lý AI riêng chạy bằng khoá của bạn (OpenAI, Gemini, Anthropic…), lưu trữ đám mây, đồng bộ và lịch sử.",
+      "price": "Giá: liên hệ",
+      "contact": "Liên hệ nâng cấp",
+      "mailSubject": "Đăng ký Chuyện Nhỏ Pro",
+      "mailBody": "Email tài khoản: {{email}}"
+    },
+    "profile": {
+      "title": "Hồ sơ công khai",
+      "text": "Chỉ dùng khi đề xuất của bạn được duyệt và công bố.",
+      "displayName": "Tên hiển thị",
+      "displayNameHelp": "Tối đa 80 ký tự. Để trống thì không ghi tên.",
+      "publicAttribution": "Cho phép ghi tên tôi trên đề xuất được công bố",
+      "save": "Lưu thay đổi",
+      "saving": "Đang lưu…",
+      "saved": "Đã lưu."
+    },
+    "signOut": {
+      "title": "Đăng xuất",
+      "text": "Kết thúc phiên đăng nhập trên thiết bị này.",
+      "button": "Đăng xuất",
+      "busy": "Đang đăng xuất…"
+    }
+  },
+  "errors": {
+    "EMAIL_INVALID": "Email chưa đúng định dạng.",
+    "OTP_INVALID": "Mã không đúng hoặc đã hết hạn.",
+    "RATE_LIMITED": "Bạn đã thử quá nhiều lần. Hãy đợi ít phút rồi thử lại.",
+    "ACCOUNT_DISABLED": "Tài khoản này đã bị khoá. Liên hệ contact@lpc.vn.",
+    "UNTRUSTED_REQUEST": "Yêu cầu không hợp lệ. Hãy tải lại trang rồi thử lại.",
+    "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
+    "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
+    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại sau."
+  }
+}

@@ -71,7 +71,9 @@
     "mainNav": "Điều hướng chính",
     "search": "Tìm công cụ",
     "openMenu": "Mở menu",
-    "mobileNav": "Điều hướng trên điện thoại"
+    "mobileNav": "Điều hướng trên điện thoại",
+    "signIn": "Đăng nhập",
+    "account": "Tài khoản"
   },
   "footer": {
     "madeBy": "Một sản phẩm từ <link>ERPCons & LPC</link>",

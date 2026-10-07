@@ -71,7 +71,9 @@
     "mainNav": "メインナビゲーション",
     "search": "ツールを検索",
     "openMenu": "メニューを開く",
-    "mobileNav": "モバイルナビゲーション"
+    "mobileNav": "モバイルナビゲーション",
+    "signIn": "ログイン",
+    "account": "アカウント"
   },
   "footer": {
     "madeBy": "<link>ERPCons & LPC</link> の製品です",

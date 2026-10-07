@@ -1,0 +1,107 @@
+{
+  "pages": {
+    "dang-nhap": {
+      "title": "Sign in | Chuyện Nhỏ",
+      "description": "Sign in to Chuyện Nhỏ with your email and a one-time code, no password needed."
+    },
+    "tai-khoan": {
+      "title": "Account | Chuyện Nhỏ",
+      "description": "Your Chuyện Nhỏ account, current plan and public profile."
+    }
+  },
+  "login": {
+    "trail": "Sign in",
+    "title": "Sign in with <accent>email</accent>",
+    "intro": "No password. Enter your email and we will send a 6-digit code to confirm it is you.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "sendCode": "Send code",
+    "sending": "Sending…",
+    "codeLabel": "Verification code",
+    "codeSentTo": "We sent a code to <strong>{{email}}</strong>. It is valid for 10 minutes.",
+    "codeHint": "No email? Check your Spam or Promotions folder.",
+    "verify": "Sign in",
+    "verifying": "Checking…",
+    "changeEmail": "Use another email",
+    "resend": "Resend code",
+    "resendIn": "Resend in {{seconds}} s",
+    "resent": "A new code is on its way. The previous one no longer works.",
+    "terms": "By signing in you agree to the <terms>Terms of use</terms> and the <privacy>Privacy policy</privacy>.",
+    "asideTitle": "What is an account for?",
+    "asideNote": "Every tool still works without signing in. Your files are still processed only in your browser.",
+    "benefits": {
+      "attributed": {
+        "title": "Proposals under your name",
+        "text": "Suggest rule fixes or tool ideas under your name instead of anonymously."
+      },
+      "track": {
+        "title": "Track your proposals",
+        "text": "See where each proposal stands without keeping receipt codes."
+      },
+      "pro": {
+        "title": "Ready for Pro",
+        "text": "An AI assistant that runs on your own AI key, with cloud storage and sync across devices."
+      }
+    }
+  },
+  "account": {
+    "trail": "Account",
+    "title": "Your <accent>account</accent>",
+    "signedInAs": "Signed in as <strong>{{email}}</strong>",
+    "loadFailed": "Could not load your account.",
+    "retry": "Try again",
+    "plan": {
+      "title": "Current plan",
+      "free": "Free account",
+      "pro": "Pro",
+      "proUntil": "Valid through {{date}}",
+      "freeText": "Use every tool and send proposals under your name. Upgrade to Pro for your own AI assistant.",
+      "included": "Included",
+      "proOnly": "In Pro",
+      "soon": "Coming soon"
+    },
+    "capability": {
+      "attributed": "Send proposals under your name",
+      "track": "Track the proposals you sent",
+      "evidence": "Add sources to a proposal",
+      "agent": "AI assistant on your own AI key",
+      "cloud": "Save tool data to the cloud",
+      "sync": "Sync across devices",
+      "history": "History of your AI assistant sessions"
+    },
+    "pro": {
+      "title": "Pro",
+      "text": "Your own AI assistant running on your key (OpenAI, Gemini, Anthropic…), cloud storage, sync and history.",
+      "price": "Price: on request",
+      "contact": "Contact us to upgrade",
+      "mailSubject": "Chuyện Nhỏ Pro sign-up",
+      "mailBody": "Account email: {{email}}"
+    },
+    "profile": {
+      "title": "Public profile",
+      "text": "Used only when a proposal of yours is approved and published.",
+      "displayName": "Display name",
+      "displayNameHelp": "Up to 80 characters. Leave empty to stay unnamed.",
+      "publicAttribution": "Show my name on published proposals",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Saved."
+    },
+    "signOut": {
+      "title": "Sign out",
+      "text": "End the session on this device.",
+      "button": "Sign out",
+      "busy": "Signing out…"
+    }
+  },
+  "errors": {
+    "EMAIL_INVALID": "That email address does not look right.",
+    "OTP_INVALID": "The code is wrong or has expired.",
+    "RATE_LIMITED": "Too many attempts. Please wait a few minutes and try again.",
+    "ACCOUNT_DISABLED": "This account has been locked. Contact contact@lpc.vn.",
+    "UNTRUSTED_REQUEST": "The request was rejected. Reload the page and try again.",
+    "SIGNED_OUT": "Your session has ended. Please sign in again.",
+    "NETWORK": "Cannot reach the server. Check your connection and try again.",
+    "UNKNOWN": "Something went wrong. Please try again later."
+  }
+}

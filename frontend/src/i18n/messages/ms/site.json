@@ -71,7 +71,9 @@
     "mainNav": "Navigasi utama",
     "search": "Cari alat",
     "openMenu": "Buka menu",
-    "mobileNav": "Navigasi telefon"
+    "mobileNav": "Navigasi telefon",
+    "signIn": "Log masuk",
+    "account": "Akaun"
   },
   "footer": {
     "madeBy": "Satu produk daripada <link>ERPCons & LPC</link>",

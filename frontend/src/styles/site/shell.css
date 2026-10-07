@@ -80,6 +80,8 @@
   .cn-header-content { gap: 16px; }
   .cn-desktop-navigation { gap: 14px; }
   .cn-header-products .cn-button { padding-inline: 12px; }
+  /* The account entry is one item too many at 10px gaps: from 1100px down to 768px the last button ran past the gutter. */
+  .cn-header-actions { gap: 4px; }
   .cn-desktop-navigation a { font-size: 11px; }
 }
 @media (max-width: 1099px) {
@@ -88,6 +90,8 @@
   .cn-header-actions { margin-left: auto; }
   .cn-footer-content { flex-wrap: wrap; gap: 16px; }
 }
+/* Narrow tablets: the full language name no longer fits beside the account entry. */
+@media (min-width: 768px) and (max-width: 819px) { .cn-language__name { display: none; } .cn-language__code { display: inline; } }
 @media (max-width: 1023px) { .cn-container { width: min(100% - 40px, 1320px); } }
 @media (max-width: 767px) {
   .cn-site { --cn-header-height: 60px; }
@@ -108,7 +112,8 @@
   .cn-brand--compact img { width: 32px; height: 32px; }
   .cn-footer nav { gap: 16px; }
 }
-@media (max-width: 359px) {
+/* Up to 399px the full-size brand plus prefs, share, account and menu overflow the row. */
+@media (max-width: 399px) {
   .cn-header .cn-brand { font-size: 18px; }
   .cn-header .cn-brand img { width: 32px; height: 32px; }
   .cn-header-actions { gap: 0; }

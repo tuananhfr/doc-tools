@@ -23,6 +23,7 @@ import type construction from './messages/vi/construction.json'
 import type community from './messages/vi/community.json'
 import type accessibility from './messages/vi/accessibility.json'
 import type rules from './messages/vi/rules.json'
+import type account from './messages/vi/account.json'
 
 // Vietnamese is the source language: keys missing there are type errors everywhere.
 declare module 'i18next' {
@@ -53,6 +54,7 @@ declare module 'i18next' {
       community: typeof community
       accessibility: typeof accessibility
       rules: typeof rules
+      account: typeof account
     }
   }
 }

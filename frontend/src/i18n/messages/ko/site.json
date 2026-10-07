@@ -71,7 +71,9 @@
     "mainNav": "주 메뉴",
     "search": "도구 찾기",
     "openMenu": "메뉴 열기",
-    "mobileNav": "모바일 메뉴"
+    "mobileNav": "모바일 메뉴",
+    "signIn": "로그인",
+    "account": "계정"
   },
   "footer": {
     "madeBy": "<link>ERPCons & LPC</link>의 제품",

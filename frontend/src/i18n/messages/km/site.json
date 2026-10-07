@@ -71,7 +71,9 @@
     "mainNav": "ការរុករកមេ",
     "search": "ស្វែងរកឧបករណ៍",
     "openMenu": "បើកម៉ឺនុយ",
-    "mobileNav": "ការរុករកលើទូរសព្ទ"
+    "mobileNav": "ការរុករកលើទូរសព្ទ",
+    "signIn": "ចូលគណនី",
+    "account": "គណនី"
   },
   "footer": {
     "madeBy": "ផលិតផលមួយពី <link>ERPCons & LPC</link>",

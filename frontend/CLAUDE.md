@@ -125,9 +125,27 @@ OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-im
 
 Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions}/*` sang
-`BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
-Bản Free không có đăng nhập tại chỗ; nút đăng nhập/Pro trỏ về ERPCons.
+`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth}/*` và
+`/api/v1/me` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
+
+### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
+
+Đăng nhập email + mã 6 số, phiên là cookie `cn_session` của backend. Trang `/dang-nhap`,
+`/tai-khoan` nằm trong `ACCOUNT_PAGES` (`site-pages.ts`): vẫn thuộc `SITE_PAGE_SLUGS` để kiểm
+trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
+
+- Request ghi phải kèm `X-CN-Request: 1` (backend chặn CSRF bằng header này + `Origin`) —
+  đi qua `account.service.ts`, đừng `fetch` tay.
+- `useMe()` cố ý trả `data` rỗng **trong lúc hydrate**: trang có namespace i18n nạp lười
+  hydrate sau khi `/me` đã về, vẽ theo kết quả đó là lệch HTML máy chủ (hydration error).
+- Sau đăng nhập không có callback điều hướng: verify ghi phiên vào cache `/me`, `LoginPage`
+  tự `<Navigate>` tới `?next=` (đã lọc bằng `safeNextPath`).
+- Pro hết hạn ở mốc **nửa đêm VN của ngày hôm sau** (loại trừ) — hiển thị phải lùi 1 giây.
+- Kiểm tra code theo capability (`/me` trả `capabilities`), không theo tên gói. Dòng nào trên
+  trang tài khoản chưa có tính năng thật thì `live: false` (chip "Sắp có") trong
+  `config/capabilities.ts`.
+- Header đã chật: thêm nút vào `.cn-header-actions` phải đo lại 360–1440px (nhãn nút tài khoản
+  chỉ hiện từ 1400px, dưới 360px nút tài khoản chuyển vào menu trượt).
 
 ## Thêm một công cụ
 

@@ -71,7 +71,9 @@
     "mainNav": "主要導覽",
     "search": "搜尋工具",
     "openMenu": "開啟選單",
-    "mobileNav": "行動裝置導覽"
+    "mobileNav": "行動裝置導覽",
+    "signIn": "登入",
+    "account": "帳戶"
   },
   "footer": {
     "madeBy": "<link>ERPCons & LPC</link> 出品",

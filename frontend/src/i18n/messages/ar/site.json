@@ -71,7 +71,9 @@
     "mainNav": "التنقل الرئيسي",
     "search": "ابحث عن أداة",
     "openMenu": "فتح القائمة",
-    "mobileNav": "التنقل على الهاتف"
+    "mobileNav": "التنقل على الهاتف",
+    "signIn": "تسجيل الدخول",
+    "account": "الحساب"
   },
   "footer": {
     "madeBy": "منتج من <link>ERPCons & LPC</link>",

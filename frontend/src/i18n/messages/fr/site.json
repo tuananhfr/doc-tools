@@ -71,7 +71,9 @@
     "mainNav": "Navigation principale",
     "search": "Rechercher un outil",
     "openMenu": "Ouvrir le menu",
-    "mobileNav": "Navigation mobile"
+    "mobileNav": "Navigation mobile",
+    "signIn": "Se connecter",
+    "account": "Compte"
   },
   "footer": {
     "madeBy": "Un produit de <link>ERPCons & LPC</link>",

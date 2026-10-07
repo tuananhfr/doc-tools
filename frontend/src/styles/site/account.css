@@ -1,0 +1,107 @@
+/* Header entry */
+.cn-account-button { display: inline-flex; align-items: center; gap: 7px; flex: none; min-height: 38px; padding: 0 12px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); color: var(--cn-ink); font: 700 12px/1 var(--cn-font-family); text-decoration: none; white-space: nowrap; }
+.cn-account-button:hover { border-color: var(--cn-accent); color: var(--cn-accent); }
+.cn-account-button > .bi { font-size: 17px; }
+.cn-account-button.is-pending { width: 38px; padding: 0; border-color: transparent; background: transparent; }
+.cn-account-button.is-member { padding-left: 6px; }
+.cn-account-avatar { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #005be8; color: #fff; font-size: 12px; line-height: 1; }
+.cn-pro-chip, .cn-soon-chip { display: inline-flex; align-items: center; padding: 3px 7px; border-radius: 999px; font: 700 10px/1 var(--cn-font-family); letter-spacing: .2px; white-space: nowrap; }
+.cn-pro-chip { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-soon-chip { background: var(--cn-hero); color: var(--cn-muted); border: 1px solid var(--cn-line); }
+
+.cn-mobile-account { display: grid; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--cn-line); }
+.cn-mobile-account a { padding: 12px; border-radius: var(--cn-radius-button); color: var(--cn-accent); font-weight: 700; text-decoration: none; }
+.cn-mobile-account a:hover { background: var(--cn-tint); }
+.cn-mobile-account__email { padding: 0 12px; font-size: 12px; color: var(--cn-muted); overflow-wrap: anywhere; }
+
+/* Shared form pieces */
+.cn-account { --cn-error: #b4162c; }
+[data-theme='dark'] .cn-account { --cn-error: #ff9aa6; }
+.cn-account-form { display: grid; gap: 8px; }
+.cn-field-label { font-size: 12px; font-weight: 700; color: var(--cn-ink); }
+.cn-account .cn-input { min-height: 46px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); color: var(--cn-ink); font: 400 16px/1.4 var(--cn-font-family); }
+.cn-account .cn-input::placeholder { color: var(--cn-muted); opacity: .75; }
+.cn-account .cn-input:focus { border-color: var(--cn-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cn-focus) 22%, transparent); }
+.cn-account .cn-input[aria-invalid='true'] { border-color: var(--cn-error); }
+.cn-account .cn-code-input { max-width: 240px; font-size: 24px; font-weight: 700; letter-spacing: .45em; font-variant-numeric: tabular-nums; text-indent: .45em; }
+.cn-field-help { margin: 0; font-size: 12px; color: var(--cn-muted); }
+.cn-form-error, .cn-form-notice { display: flex; align-items: flex-start; gap: 7px; margin: 0; font-size: 13px; line-height: 1.5; }
+.cn-form-error { color: var(--cn-error); }
+.cn-form-notice { color: var(--cn-positive); }
+.cn-form-error .bi, .cn-form-notice .bi { margin-top: 2px; }
+.cn-account .cn-button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.cn-account-submit { width: 100%; min-height: 46px; margin-top: 8px; font-size: 14px; }
+.cn-account-fineprint { margin: 6px 0 0; font-size: 12px; line-height: 1.6; color: var(--cn-muted); }
+.cn-account-fineprint a { color: var(--cn-accent); }
+.cn-account-sent { display: flex; gap: 10px; margin: 0 0 6px; padding: 12px 14px; border-radius: var(--cn-radius-button); background: var(--cn-tint); font-size: 13px; line-height: 1.55; color: var(--cn-ink); overflow-wrap: anywhere; }
+.cn-account-sent > .bi { flex: none; margin-top: 1px; color: var(--cn-accent); font-size: 16px; }
+.cn-account-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-top: 4px; }
+.cn-link-button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0; border: 0; background: none; color: var(--cn-accent); font: 700 13px/1.3 var(--cn-font-family); }
+.cn-link-button:hover:not(:disabled) { text-decoration: underline; }
+.cn-link-button:disabled { color: var(--cn-muted); cursor: default; }
+.cn-check { display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--cn-ink); cursor: pointer; }
+.cn-check .form-check-input { flex: none; margin-top: 2px; border-color: var(--cn-muted); background-color: var(--cn-surface); }
+.cn-check .form-check-input:checked { border-color: #005be8; background-color: #005be8; }
+.cn-check .form-check-input:focus { border-color: var(--cn-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cn-focus) 22%, transparent); }
+
+/* Sign-in page */
+.cn-account-layout { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 56px; align-items: start; }
+.cn-account-panel, .cn-account-card { border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); box-shadow: 0 1px 2px rgb(12 37 77 / 6%); }
+.cn-account-panel { padding: 26px; }
+.cn-account-aside { padding-top: 6px; max-width: 460px; }
+.cn-account-aside h2 { margin: 0 0 18px; font-size: 18px; font-weight: 700; letter-spacing: -.4px; }
+.cn-account-benefits { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
+.cn-account-benefits li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 14px; }
+.cn-account-benefits strong { display: block; margin-bottom: 2px; font-size: 14px; }
+.cn-account-benefits li > span:last-child > span { font-size: 13px; line-height: 1.6; color: var(--cn-muted); }
+.cn-account-benefit-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: var(--cn-radius-icon); background: var(--cn-icon); color: var(--cn-accent); font-size: 18px; }
+.cn-account-note { display: flex; gap: 9px; margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--cn-line); font-size: 12px; line-height: 1.6; color: var(--cn-muted); }
+.cn-account-note > .bi { flex: none; margin-top: 1px; color: var(--cn-positive); }
+
+/* Account page */
+.cn-account-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.cn-account-stack { display: grid; gap: 24px; }
+.cn-account-card { padding: 22px 24px; }
+.cn-account-card__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.cn-account-card__head h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.3px; }
+.cn-account-card__text { margin: 6px 0 16px; font-size: 13px; line-height: 1.6; color: var(--cn-muted); }
+.cn-plan-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border: 1px solid var(--cn-line); border-radius: 999px; background: var(--cn-hero); color: var(--cn-ink); font-size: 12px; font-weight: 700; }
+.cn-plan-badge.is-pro { border-color: transparent; background: #005be8; color: #fff; }
+.cn-capability-list { margin: 0; padding: 0; list-style: none; }
+.cn-capability-list li { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--cn-line); font-size: 13px; }
+.cn-capability-list li:first-child { border-top: 0; padding-top: 4px; }
+.cn-capability-name { flex: 1; min-width: 0; }
+.cn-capability-list .is-included > .bi { color: var(--cn-positive); }
+.cn-capability-list .is-locked { color: var(--cn-muted); }
+.cn-pro-offer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 16px; margin-top: 18px; padding: 18px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-hero); }
+.cn-pro-offer h3 { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+.cn-pro-offer p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--cn-muted); }
+.cn-pro-offer .cn-pro-offer__price { margin-top: 6px; color: var(--cn-ink); font-weight: 700; }
+.cn-account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 10px; }
+.cn-account .erp-state { padding-block: 24px; }
+
+/* Below 1400px the desktop nav + product buttons leave no room for the labelled pill (clipped at 1180px). */
+@media (max-width: 1399px) {
+  .cn-account-button { width: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+  .cn-account-button.is-member { padding: 0; }
+  .cn-account-button__label, .cn-account-button .cn-pro-chip { display: none; }
+}
+@media (max-width: 1023px) {
+  .cn-account-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cn-account-panel { max-width: 520px; }
+  .cn-account-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-account-button { width: 34px; min-height: 36px; height: 36px; border-color: transparent; background: transparent; }
+  .cn-account-button > .bi { font-size: 18px; }
+  .cn-account-panel { padding: 20px 18px; }
+  .cn-account-card { padding: 18px; }
+}
+/* Even the compact header has no room left at 320px; the menu drawer carries the account link there. */
+@media (max-width: 359px) {
+  .cn-header .cn-account-button { display: none; }
+}
+@media (max-width: 575px) {
+  .cn-pro-offer { grid-template-columns: minmax(0, 1fr); }
+  .cn-pro-offer .cn-button { width: 100%; }
+}

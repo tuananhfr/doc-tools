@@ -71,7 +71,9 @@
     "mainNav": "Pangunahing navigation",
     "search": "Maghanap ng tool",
     "openMenu": "Buksan ang menu",
-    "mobileNav": "Navigation sa telepono"
+    "mobileNav": "Navigation sa telepono",
+    "signIn": "Mag-sign in",
+    "account": "Account"
   },
   "footer": {
     "madeBy": "Isang produkto ng <link>ERPCons & LPC</link>",
