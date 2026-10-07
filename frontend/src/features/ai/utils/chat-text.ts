@@ -1,4 +1,5 @@
 import type { ChatMessage, ChatSessionSummary } from '../types/ai.types'
+import { toChatMedia } from './attachments'
 
 /** Version 4 UUID from getRandomValues: `crypto.randomUUID` is missing outside secure contexts (plain-http LAN). */
 export function randomUuid(random: (bytes: Uint8Array) => Uint8Array = (bytes) => crypto.getRandomValues(bytes)): string {
@@ -24,26 +25,35 @@ export function stripInternalDirectives(text: string): string {
   return text.split('\n').filter((line) => !/MEDIA:\S+/.test(line) && !line.trim().startsWith('[[audio_as_voice]]')).join('\n')
 }
 
-interface RawHistoryMessage { role?: unknown; content?: unknown; createdAt?: unknown; created_at?: unknown }
+interface RawHistoryMessage { role?: unknown; content?: unknown; media_refs?: unknown; createdAt?: unknown; created_at?: unknown }
 interface RawSession { key?: unknown; label?: unknown; messageCount?: unknown; updated?: unknown }
 
-export function toChatMessages(raw: unknown, nextId: () => string): ChatMessage[] {
+export function toChatMessages(raw: unknown, nextId: () => string, filesUrl = ''): ChatMessage[] {
   if (!Array.isArray(raw)) return []
   return (raw as RawHistoryMessage[])
     .filter((message) => (message?.role === 'user' || message?.role === 'assistant') && String(message.content ?? '') !== '')
-    .map((message) => ({
-      id: nextId(),
-      role: message.role as ChatMessage['role'],
-      content: String(message.content),
-      createdAt: typeof message.createdAt === 'string' ? message.createdAt : typeof message.created_at === 'string' ? message.created_at : undefined,
-    }))
+    .map((message) => {
+      const media = toChatMedia(message.media_refs, filesUrl)
+      return {
+        id: nextId(),
+        role: message.role as ChatMessage['role'],
+        content: String(message.content),
+        ...(media.length ? { media } : {}),
+        createdAt: typeof message.createdAt === 'string' ? message.createdAt : typeof message.created_at === 'string' ? message.created_at : undefined,
+      }
+    })
+}
+
+/** Labels are cut from the first message, so they can hold media tags and the start of a file block. */
+function sessionLabel(raw: string) {
+  return raw.split('```')[0].replace(/<media:[a-z]+\b[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80)
 }
 
 /** GoClaw's `store.SessionInfo`: the timestamp is `updated`, and there is no preview text. */
 export function toSessionSummaries(raw: unknown): ChatSessionSummary[] {
   if (!Array.isArray(raw)) return []
   return (raw as RawSession[])
-    .map((session) => ({ key: String(session?.key ?? ''), label: String(session?.label ?? '').slice(0, 80), messageCount: Number(session?.messageCount ?? 0), updatedAt: typeof session?.updated === 'string' ? session.updated : undefined }))
+    .map((session) => ({ key: String(session?.key ?? ''), label: sessionLabel(String(session?.label ?? '')), messageCount: Number(session?.messageCount ?? 0), updatedAt: typeof session?.updated === 'string' ? session.updated : undefined }))
     .filter((session) => session.key !== '')
 }
 

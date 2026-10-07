@@ -113,6 +113,7 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
   process.env.GOCLAW_URL = fakeUrl
   process.env.GOCLAW_GATEWAY_TOKEN = GATEWAY
   process.env.GOCLAW_PUBLIC_WS_URL = 'wss://ws.example.test/ws'
+  process.env.GOCLAW_PUBLIC_FILES_URL = ''
   process.env.MCP_PUBLIC_URL = 'https://site.test/api/v1/mcp/sse'
   process.env.MCP_ALLOWED_IPS = ''
   process.env.AI_DEV_ALLOW_PRIVATE_API_BASE = '0'
@@ -123,6 +124,7 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
   const { createHttpAdapter } = require('../dist/config/http-adapter')
   const { DatabaseService } = require('../dist/database/database.service')
   const { AccountDeletionService } = require('../dist/accounts/account-deletion.service')
+  const { AiService } = require('../dist/ai/ai.service')
 
   const app = await NestFactory.create(AppModule, createHttpAdapter(), { logger: false, bodyParser: false })
   app.setGlobalPrefix('api/v1')
@@ -207,6 +209,8 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
     assert.equal(agent.status, 'active')
     assert.equal(agent.agent_description, undefined, 'no description, so GoClaw does not run summoning on the user key')
     assert.ok(!agent.tools_config.allow.includes('exec') && agent.tools_config.deny.includes('exec'))
+    // GoClaw routes these by provider NAME across the tenant, not to the member's key.
+    for (const tool of ['read_image', 'read_audio', 'read_document', 'read_video']) assert.ok(!agent.tools_config.allow.includes(tool) && agent.tools_config.deny.includes(tool), tool)
     assert.equal(fake.calls.find((entry) => entry.method === 'POST' && entry.path === '/v1/agents').body.status, 'inactive')
     assert.deepEqual(fake.files.map((file) => file.name).sort(), ['AGENTS.md', 'CAPABILITIES.md', 'IDENTITY.md', 'SOUL.md'])
     assert.ok(fake.files.every((file) => file.agentId === goclawId && file.content.length > 20))
@@ -221,6 +225,7 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
     const ticket = (await call(pro, 'POST', '/ai/session')).json()
     assert.equal(ticket.ok, true)
     assert.equal(ticket.wsUrl, 'wss://ws.example.test/ws')
+    assert.equal(ticket.filesUrl, 'https://ws.example.test', 'without GOCLAW_PUBLIC_FILES_URL, files share the socket host')
     assert.equal(ticket.agentKey, goclawId)
     assert.deepEqual(fake.tickets.at(-1), { user_id: goclawId, agent_key: goclawId, ttl_seconds: 900 })
 
@@ -231,6 +236,17 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
     assert.equal((await call(pro, 'POST', '/ai/provider/verify', { model: 'gpt-test' })).json().provider.status, 'ready')
     assert.equal(agent.status, 'active')
     assert.equal((await call(pro, 'POST', '/ai/session')).json().ok, true)
+
+    // sync-agents: an agent on an older prompt gets the files and the current tool list together.
+    agent.tools_config = { allow: ['read_image'], deny: [] }
+    await database.pool.execute('UPDATE ai_agents SET prompt_version = 1 WHERE user_id = ?', [pro.id])
+    const filesBefore = fake.files.length
+    const synced = await app.get(AiService).syncAgents()
+    // The dev database may hold other agents the fake GoClaw does not know; only ours matters here.
+    assert.ok(!synced.failed.some((entry) => entry.startsWith(`${goclawId}:`)), synced.failed.join('; '))
+    assert.ok(!agent.tools_config.allow.includes('read_image') && agent.tools_config.deny.includes('read_image'))
+    assert.equal(fake.files.length - filesBefore >= 4, true)
+    assert.equal((await call(pro, 'GET', '/ai/setup')).json().agent.upToDate, true)
 
     // MCP over real SSE.
     const sse = (token) => new Promise((resolve, reject) => {

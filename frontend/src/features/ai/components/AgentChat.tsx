@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
@@ -6,12 +6,27 @@ import { Skeleton } from '@/components/ui/Skeleton'
 import { AI_SETTINGS_PATH } from '../config/ai-routes'
 import { useAgentChat } from '../hooks/useAgentChat'
 import { useAgentConnection } from '../hooks/useAgentConnection'
-import { CONNECTION_STATES } from '../types/ai.types'
+import { useChatAttachments } from '../hooks/useChatAttachments'
+import { aiService } from '../services/ai.service'
+import { CONNECTION_STATES, type ChatMedia, type ChatMessage } from '../types/ai.types'
+import { ATTACHMENT_ACCEPT, composeMessage, splitUserMessage } from '../utils/attachments'
+import { ChatAttachments } from './ChatAttachments'
 import { ChatMessageBody } from './ChatMessageBody'
+import { MessageMedia } from './MessageMedia'
 
 const MAX_MESSAGE_LENGTH = 4000
 // Follow new text only while the reader is already at the bottom; scrolling up to reread must not be yanked back.
 const STICKY_BOTTOM_PX = 80
+
+function UserMessage({ message }: { message: ChatMessage }) {
+  const parts = splitUserMessage(message.content)
+  return (
+    <>
+      <MessageMedia media={message.media} files={parts.files} />
+      {parts.text ? <p>{parts.text}</p> : null}
+    </>
+  )
+}
 
 export interface ChatStarter {
   /** A new id sends again; the same id is sent once. */
@@ -39,6 +54,10 @@ export function AgentChat({ storageKey, embedded = false, starter = null, onTurn
   const connection = useAgentConnection(true)
   const chat = useAgentChat(connection.client, connection.connected, { storageKey })
   const [draft, setDraft] = useState('')
+  const attachments = useChatAttachments()
+  // Between pressing send and chat.send: image links are being made.
+  const [linking, setLinking] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const threadRef = useRef<HTMLDivElement>(null)
   const stickRef = useRef(true)
   const startedRef = useRef<number | null>(null)
@@ -63,18 +82,44 @@ export function AgentChat({ storageKey, embedded = false, starter = null, onTurn
     void chat.startWith(starter.text, starter.beforeSend)
   }, [starter, connection.connected, chat.restored, chat.streaming, chat.startWith])
 
-  const submit = (event?: FormEvent) => {
+  const canSend = connection.connected && !chat.streaming && !linking && !attachments.busy && (draft.trim() !== '' || attachments.ready.length > 0)
+
+  const submit = async (event?: FormEvent) => {
     event?.preventDefault()
-    const text = draft.trim()
-    if (!text || chat.streaming || !connection.connected) return
+    if (!canSend) return
+    const images = attachments.ready.flatMap((item) => (item.kind === 'image' && item.uploadId ? [{ ...item, uploadId: item.uploadId }] : []))
+    let media: { path: string }[] = []
+    setLinking(true)
+    try {
+      // No filename on purpose: GoClaw then stores the copy under a UUID, which keeps it out of the
+      // vault that its background model summarises.
+      media = await Promise.all(images.map(async (item) => ({ path: (await aiService.linkUpload(item.uploadId)).url })))
+    } catch {
+      attachments.setError('LINK_FAILED')
+      return
+    } finally {
+      setLinking(false)
+    }
+    const sent = attachments.take()
+    const message = composeMessage(draft, sent.flatMap((item) => (item.kind === 'text' ? [{ name: item.name, content: item.content }] : [])))
+    const localMedia: ChatMedia[] = images.map((item) => ({ kind: 'image', url: item.previewUrl, name: item.name }))
     setDraft('')
     stickRef.current = true
-    void chat.send(text)
+    await chat.send(message, { media, localMedia })
+    // GoClaw keeps its own copy once it has fetched the link; ours is no longer needed.
+    for (const item of images) void aiService.removeUpload(item.uploadId).catch(() => undefined)
+  }
+
+  const pickFiles = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = [...(event.target.files ?? [])]
+    // Cleared so picking the same file again after removing it still fires a change.
+    event.target.value = ''
+    void attachments.add(files)
   }
 
   const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     // Vietnamese IMEs (Telex/VNI) confirm a syllable with Enter; sending mid-composition cuts the word.
-    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) submit(event)
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) void submit(event)
   }
 
   const { state, ticketError } = connection
@@ -144,7 +189,7 @@ export function AgentChat({ storageKey, embedded = false, starter = null, onTurn
         ) : (
           chat.messages.map((message) => (
             <article key={message.id} className={`cn-ai-message is-${message.role}`}>
-              {message.role === 'user' ? <p>{message.content}</p> : <ChatMessageBody content={message.content} />}
+              {message.role === 'user' ? <UserMessage message={message} /> : <><ChatMessageBody content={message.content} /><MessageMedia media={message.media} /></>}
               {message.streaming ? <span className="cn-ai-caret" aria-hidden="true" /> : null}
             </article>
           ))
@@ -156,7 +201,21 @@ export function AgentChat({ storageKey, embedded = false, starter = null, onTurn
 
       {chat.failed ? <p className="cn-form-error" role="alert"><Icon name="exclamation-circle" />{chat.messages.length ? t('chat.sendFailed') : t('chat.loadFailed')}</p> : null}
 
-      <form className="cn-ai-chat__composer" onSubmit={submit}>
+      {attachments.error ? <p className="cn-form-error" role="alert"><Icon name="exclamation-circle" />{t(`chat.attachErrors.${attachments.error}`)}</p> : null}
+
+      <form className="cn-ai-chat__composer" onSubmit={(event) => void submit(event)}>
+        <ChatAttachments items={attachments.items} onRemove={attachments.remove} />
+        <input ref={fileInputRef} type="file" className="visually-hidden" tabIndex={-1} aria-hidden="true" multiple accept={ATTACHMENT_ACCEPT} onChange={pickFiles} />
+        <button
+          type="button"
+          className="cn-button cn-button--ghost cn-ai-chat__attach"
+          aria-label={t('chat.attachLabel')}
+          title={t('chat.attachHint')}
+          disabled={!connection.connected || chat.streaming}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <Icon name="paperclip" /><span className="cn-ai-chat__attach-text">{t('chat.attach')}</span>
+        </button>
         <label className="visually-hidden" htmlFor="cn-ai-draft">{hint}</label>
         <textarea
           id="cn-ai-draft"
@@ -169,9 +228,9 @@ export function AgentChat({ storageKey, embedded = false, starter = null, onTurn
           onKeyDown={onKeyDown}
         />
         {chat.streaming ? (
-          <button type="button" className="cn-button cn-button--navy" onClick={() => void chat.abort().catch(() => undefined)}><Icon name="stop-fill" />{t('chat.stop')}</button>
+          <button type="button" className="cn-button cn-button--navy cn-ai-chat__send" onClick={() => void chat.abort().catch(() => undefined)}><Icon name="stop-fill" />{t('chat.stop')}</button>
         ) : (
-          <button type="submit" className="cn-button" disabled={!connection.connected || !draft.trim()}><Icon name="send" />{t('chat.send')}</button>
+          <button type="submit" className="cn-button cn-ai-chat__send" disabled={!canSend}><Icon name="send" />{t('chat.send')}</button>
         )}
       </form>
       <p className="cn-ai-chat__disclaimer"><Icon name="info-circle" />{t('chat.disclaimer')}</p>

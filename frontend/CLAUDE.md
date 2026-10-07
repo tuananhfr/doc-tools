@@ -185,6 +185,18 @@ chép từ ERPCons, giữ nguyên các luật ở đó (khoá phiên do client s
   `backend/data/tool-catalog.json` cho tool MCP); test `tool-catalog-export.test.ts` canh.
 - Dòng cam kết đầu trang `tro-ly` là `privacyNote` trong catalog (câu hỏi đi tới nhà cung cấp
   AI) — công cụ này không còn "chạy trên máy bạn".
+- **Đính kèm** (`useChatAttachments` + `utils/attachments.ts`): ảnh tải lên `POST /ai/uploads`
+  ngay khi chọn, lúc gửi mới xin link một lần rồi đưa vào `chat.send` **không kèm `filename`**
+  (có tên là vault của GoClaw tóm tắt ảnh bằng khoá nền của tenant — xem `backend/CLAUDE.md`),
+  gửi xong thì xoá upload. Tệp chữ (TXT/MD/CSV/JSON, UTF-8 chặt, ≤ 256 KB / 40.000 ký tự) đọc
+  ở trình duyệt, ghép vào tin nhắn thành khối ```` ```cn-file name="…" ```` với hàng rào dài hơn
+  mọi chuỗi backtick trong nội dung; `splitUserMessage` tách ngược khi hiện lịch sử. PDF / Word /
+  Excel / âm thanh bị từ chối. Lần đầu đính kèm hỏi đồng ý (`cn.ai.attachConsent`).
+- Lịch sử: `media_refs` trong `sessions.preview` là link `/v1/files/...?ft=` đã ký, **tương đối
+  với gốc HTTP của GoClaw** → ghép với `filesUrl` của vé (`toChatMedia`, chỉ nhận đường dẫn bắt
+  đầu `/v1/files/`). Link ký sống vài phút; ảnh hỏng thì `MediaImage` lùi về chip tên tệp.
+  Tải lại trang khi chip còn chưa gửi thì upload thành mồ côi (unmount không chạy) — nằm tới khi
+  hết hạn lưu (mặc định 7 ngày) và vẫn tính vào hạn mức ngày.
 ### Khu quản trị (`features/admin`, `/quan-tri`)
 
 Chỉ tiếng Việt, **không đi qua i18n** (chuỗi viết thẳng trong component — cố ý, không thêm

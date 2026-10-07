@@ -260,6 +260,21 @@ export const SCHEMA = [
     created_at BIGINT UNSIGNED NOT NULL,
     INDEX (user_id, created_at)
   ) ENGINE=InnoDB`,
+  // The file itself lives under AI_UPLOAD_DIR; GoClaw fetches it once through a signed link.
+  `CREATE TABLE IF NOT EXISTS ai_uploads (
+    id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    filename VARCHAR(160) NOT NULL,
+    mime_type VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    size_bytes BIGINT UNSIGNED NOT NULL,
+    link_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    link_expires_at BIGINT UNSIGNED NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    expires_at BIGINT UNSIGNED NOT NULL,
+    -- A removed upload keeps its row until expiry so it still counts toward the daily quota.
+    removed_at BIGINT UNSIGNED NULL,
+    INDEX (user_id, created_at), INDEX (expires_at)
+  ) ENGINE=InnoDB`,
   // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
   `CREATE TABLE IF NOT EXISTS mcp_tokens (
     token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,

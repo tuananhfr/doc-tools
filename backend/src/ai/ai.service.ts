@@ -3,7 +3,7 @@ import { randomBytes, randomUUID } from 'node:crypto'
 import { AccountDeletionService } from '../accounts/account-deletion.service'
 import { configuration } from '../config/configuration'
 import { readyTool } from '../mcp/tool-catalog'
-import { PROMPT_VERSION, agentDefinition, agentFiles, agentKey, goclawUserId, providerName } from './agent-profile'
+import { PROMPT_VERSION, TOOLS_CONFIG, agentDefinition, agentFiles, agentKey, goclawUserId, providerName } from './agent-profile'
 import { AiRepository, type ProviderRow } from './ai.repository'
 import { checkApiBase } from './api-base'
 import { GoclawClient, GoclawError } from './goclaw.client'
@@ -210,7 +210,9 @@ export class AiService implements OnModuleInit {
     const ticket = await this.remote('mint ticket', () => this.goclaw.mintTicket(goclawUserId(userId), agent.agentKey, configuration().ai.ticketTtlSeconds))
     // GoClaw builds ws_url from the Host of OUR request, which the browser cannot reach.
     const wsUrl = configuration().goclaw.publicWsUrl || ticket.wsUrl
-    return { ok: true, token: ticket.token, wsUrl, userId: ticket.userId, agentKey: agent.agentKey, expiresAt: ticket.expiresAt }
+    // Signed media links in chat history are relative to GoClaw's HTTP root, the same host as the socket.
+    const filesUrl = configuration().goclaw.publicFilesUrl.replace(/\/+$/, '') || wsUrl.replace(/^ws/, 'http').replace(/\/ws\/?$/, '')
+    return { ok: true, token: ticket.token, wsUrl, filesUrl, userId: ticket.userId, agentKey: agent.agentKey, expiresAt: ticket.expiresAt }
   }
 
   /** Remembers that a source check started; the chat it names must be one of this person's own sessions. */
@@ -269,6 +271,9 @@ export class AiService implements OnModuleInit {
     const failed: string[] = []
     for (const agent of stale) {
       try {
+        const agentId = agent.goclawAgentId
+        // Tool lists change with the prompt (v3 dropped the read_* media tools), so they travel together.
+        if (agentId) await this.goclaw.updateAgent(agentId, { tools_config: TOOLS_CONFIG })
         await writeAgentFiles(agent.agentKey, files)
         await this.repository.setPromptVersion(agent.userId, PROMPT_VERSION)
       } catch (error) {

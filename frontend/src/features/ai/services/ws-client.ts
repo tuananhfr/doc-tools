@@ -62,6 +62,7 @@ export class AgentWsClient {
 
   get isConnected() { return this.authenticated && this.socket?.readyState === WebSocket.OPEN }
   get agentKey() { return this.ticket?.agentKey ?? '' }
+  get filesUrl() { return this.ticket?.filesUrl ?? '' }
 
   async connect(): Promise<void> {
     if (this.socket || this.connecting) return

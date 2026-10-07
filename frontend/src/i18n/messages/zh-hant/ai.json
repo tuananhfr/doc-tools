@@ -79,7 +79,26 @@
     "notReadyTitle": "The assistant is not ready",
     "notReadyText": "Add an AI key and check it to turn the assistant on.",
     "settings": "Add an AI key",
-    "openTool": "Open {{name}}"
+    "openTool": "Open {{name}}",
+    "attach": "Attach",
+    "attachLabel": "Attach an image or a text file",
+    "attachHint": "PNG, JPG, WebP, GIF images (up to 10 MB) or TXT, MD, CSV, JSON text files.",
+    "attachConsent": "Attachments are sent to the AI provider you set up, using your key. Images are kept on the Chuyện Nhỏ server for up to 7 days so the assistant can fetch them; text files become part of the conversation. Do not attach ID documents, passwords or other sensitive data. Continue?",
+    "attachUploading": "Uploading…",
+    "attachFailed": "Upload failed",
+    "removeAttachment": "Remove {{name}}",
+    "attachedFile": "File {{name}}",
+    "attachedImage": "Attached image: {{name}}",
+    "attachedImageUnnamed": "Attached image",
+    "attachedFileUnnamed": "Attached file",
+    "attachErrors": {
+      "TYPE": "Only images (PNG, JPG, WebP, GIF) and text files (TXT, MD, CSV, JSON) can be attached. For PDF, Word or Excel, paste the text you want to ask about.",
+      "TOO_LARGE": "Images can be up to 10 MB, text files up to 256 KB.",
+      "TEXT_TOO_LONG": "This text file is too long (40,000 characters at most). Keep only the part you want to ask about.",
+      "TOO_MANY": "Up to 4 files per message.",
+      "NOT_TEXT": "This file is not UTF-8 text.",
+      "LINK_FAILED": "The attached image could not be sent. Please try again."
+    }
   },
   "errors": {
     "SIGNED_OUT": "Your session has ended. Please sign in again.",
@@ -98,7 +117,10 @@
     "NOT_FOUND": "This draft is gone (already sent or discarded).",
     "SELECTION_INVALID": "Pick at least one change.",
     "DUPLICATE_CONTRIBUTION": "This proposal is already waiting for review.",
-    "RATE_LIMITED": "You have sent too many proposals. Try again in an hour."
+    "RATE_LIMITED": "You have sent too many proposals. Try again in an hour.",
+    "UPLOAD_TYPE": "Only PNG, JPG, WebP or GIF images can be attached.",
+    "UPLOAD_TOO_LARGE": "The image is larger than allowed (10 MB).",
+    "UPLOAD_QUOTA": "You have used up your attachment allowance for the last 24 hours."
   },
   "sourceCheck": {
     "title": "AI source check",

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { AgentWsClient } from '../services/ws-client'
 import { AGENT_EVENT, AGENT_EVENT_TYPES, WS_METHODS, type AgentEventPayload } from '../services/ws-protocol'
-import type { ChatMessage, ChatSessionSummary } from '../types/ai.types'
+import type { ChatMedia, ChatMessage, ChatSessionSummary } from '../types/ai.types'
 import { belongsToAgent, buildSessionKey, stripInternalDirectives, toChatMessages, toSessionSummaries } from '../utils/chat-text'
 
 /** Only the open session key is stored; the conversation itself stays in GoClaw. */
@@ -15,6 +15,15 @@ function readStoredKey(storageKey: string) {
 }
 
 const settle = (messages: ChatMessage[]) => messages.map((message) => (message.streaming ? { ...message, streaming: false } : message))
+
+export interface SendOptions {
+  /** Names a new session; ignored when continuing an open one. */
+  presetKey?: string
+  /** One-time links GoClaw downloads itself (see aiService.linkUpload). */
+  media?: { path: string; filename?: string }[]
+  /** Shown on the pending message until the server's signed copies replace it. */
+  localMedia?: ChatMedia[]
+}
 
 /**
  * Chat on top of `AgentWsClient`, ported from ERPCons `useAssistantChat`. Three rules hold it together:
@@ -52,7 +61,7 @@ export function useAgentChat(client: AgentWsClient, connected: boolean, { storag
     if (!key) return
     try {
       const payload = await client.call<{ messages?: unknown }>(WS_METHODS.sessionsPreview, { key })
-      const rebuilt = toChatMessages(payload?.messages, nextId)
+      const rebuilt = toChatMessages(payload?.messages, nextId, client.filesUrl)
       if (rebuilt.length) { setMessages(rebuilt); return }
     } catch {
       // Keep what streamed in; it is still readable.
@@ -120,7 +129,7 @@ export function useAgentChat(client: AgentWsClient, connected: boolean, { storag
     setLoadingHistory(true)
     try {
       const payload = await client.call<{ messages?: unknown }>(WS_METHODS.sessionsPreview, { key })
-      const history = toChatMessages(payload?.messages, nextId)
+      const history = toChatMessages(payload?.messages, nextId, client.filesUrl)
       const buffered = bufferRef.current
       bufferRef.current = ''
       historyReadyRef.current = true
@@ -148,12 +157,12 @@ export function useAgentChat(client: AgentWsClient, connected: boolean, { storag
     // Runs on connection changes only; openSession changes with every session switch.
   }, [connected])
 
-  /** `presetKey` names a new session; it is ignored when continuing an open one. */
-  const send = useCallback(async (text: string, presetKey?: string) => {
+  /** Resolves true once the turn ran; false when it could not be sent or failed. */
+  const send = useCallback(async (text: string, { presetKey, media, localMedia }: SendOptions = {}) => {
     const content = text.trim()
-    if (!content || !connected) return
+    if ((!content && !media?.length) || !connected) return false
     setFailed(false)
-    setMessages((previous) => [...previous, { id: nextId(), role: 'user', content }])
+    setMessages((previous) => [...previous, { id: nextId(), role: 'user', content, ...(localMedia?.length ? { media: localMedia } : {}) }])
     setStreaming(true)
     historyReadyRef.current = true
     let key = sessionKeyRef.current
@@ -165,15 +174,17 @@ export function useAgentChat(client: AgentWsClient, connected: boolean, { storag
     }
     try {
       // Without `stream: true` GoClaw calls the provider's non-streaming API and sends one chunk at the end.
-      await client.call(WS_METHODS.chatSend, { agentId: client.agentKey, sessionKey: key, message: content, stream: true })
+      await client.call(WS_METHODS.chatSend, { agentId: client.agentKey, sessionKey: key, message: content, stream: true, ...(media?.length ? { media } : {}) })
       setStreaming(false)
       await syncFromServer(key)
       if (isNew) void refreshSessions()
+      return true
     } catch {
       setStreaming(false)
       // A failed call does not mean a failed run: ask the server before reporting anything.
       await syncFromServer(sessionKeyRef.current)
       setFailed(true)
+      return false
     }
   }, [client, connected, refreshSessions, syncFromServer])
 
@@ -195,7 +206,7 @@ export function useAgentChat(client: AgentWsClient, connected: boolean, { storag
     await openSession('')
     const key = buildSessionKey(client.agentKey)
     await beforeSend?.(key)
-    await send(text, key)
+    await send(text, { presetKey: key })
   }, [client, openSession, send])
 
   return { sessions, sessionKey, messages, streaming, loadingHistory, failed, restored, send, abort, openSession, startNewSession, startWith, refreshSessions }

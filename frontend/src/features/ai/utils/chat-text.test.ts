@@ -29,6 +29,7 @@ describe('chat text', () => {
     expect(messages).toEqual([{ id: 'm1', role: 'user', content: 'hi', createdAt: undefined }, { id: 'm2', role: 'assistant', content: 'ok', createdAt: '2026-10-08' }])
     expect(toChatMessages(null, () => 'x')).toEqual([])
     expect(toSessionSummaries([{ key: 'k', label: 'L', messageCount: 3, updated: 't' }, { label: 'no key' }])).toEqual([{ key: 'k', label: 'L', messageCount: 3, updatedAt: 't' }])
+    expect(toSessionSummaries([{ key: 'k', label: '<media:image>\n\nSo sánh giúp tôi\n\n```cn-file name="a.csv"\nx,y' }])[0].label).toBe('So sánh giúp tôi')
   })
 
   it('splits closed fences and leaves an unfinished one as text', () => {

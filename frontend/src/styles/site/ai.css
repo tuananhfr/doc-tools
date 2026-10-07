@@ -43,9 +43,24 @@
 .cn-ai-chat__empty p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--cn-muted); }
 .cn-ai-chat__connecting, .cn-ai-chat__thinking { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 13px; color: var(--cn-muted); }
 .cn-ai-chat__connecting { margin: auto; }
-.cn-ai-chat__composer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 10px; }
-.cn-ai-chat__composer .cn-input { min-height: 52px; max-height: 220px; resize: vertical; }
+.cn-ai-chat__composer { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: 'files files files' 'attach draft send'; align-items: end; gap: 10px; }
+.cn-ai-chat__composer .cn-input { grid-area: draft; min-height: 52px; max-height: 220px; resize: vertical; }
 .cn-ai-chat__composer .cn-button { min-height: 44px; }
+.cn-ai-chat__attach { grid-area: attach; min-height: 52px; }
+.cn-ai-chat__send { grid-area: send; }
+.cn-ai-attachments { grid-area: files; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.cn-ai-attachment { display: flex; align-items: center; gap: 10px; min-width: 0; max-width: 280px; padding: 6px 6px 6px 6px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); }
+.cn-ai-attachment.is-failed { border-color: color-mix(in srgb, var(--cn-error) 45%, var(--cn-line)); }
+.cn-ai-attachment__thumb { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 6px; object-fit: cover; background: var(--cn-hero); }
+.cn-ai-attachment__thumb.is-text { background: var(--cn-icon); color: var(--cn-accent); font-size: 18px; }
+.cn-ai-attachment.is-uploading .cn-ai-attachment__thumb { opacity: .55; }
+.cn-ai-attachment__meta { display: grid; min-width: 0; line-height: 1.35; }
+.cn-ai-attachment__name { overflow: hidden; font-size: 13px; font-weight: 600; color: var(--cn-ink); text-overflow: ellipsis; white-space: nowrap; }
+.cn-ai-attachment__state { font-size: 12px; color: var(--cn-muted); }
+.cn-ai-attachment.is-failed .cn-ai-attachment__state { color: var(--cn-error); }
+.cn-ai-attachment__remove { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--cn-muted); }
+.cn-ai-attachment__remove:hover { background: var(--cn-hero); color: var(--cn-ink); }
+.cn-ai-attachment__remove:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: 1px; }
 .cn-ai-chat__disclaimer { display: flex; gap: 7px; margin: 0; font-size: 12px; line-height: 1.5; color: var(--cn-muted); }
 .cn-ai-chat__disclaimer > .bi { flex: none; margin-top: 1px; }
 
@@ -60,6 +75,17 @@
 .cn-ai-message a { color: var(--cn-accent); font-weight: 600; }
 .cn-ai-message code { padding: 1px 5px; border-radius: 4px; background: var(--cn-hero); font-size: .92em; color: inherit; }
 .cn-ai-message__heading { font-weight: 700; }
+.cn-ai-media { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.cn-ai-media:last-child { margin-bottom: 0; }
+.cn-ai-message.is-assistant .cn-ai-media { margin: 10px 0 0; }
+.cn-ai-media__image { display: block; width: fit-content; max-width: 100%; overflow: hidden; border-radius: 10px; background: color-mix(in srgb, var(--cn-ink) 8%, transparent); }
+/* A picture sent on its own reads as the message itself, not as content inside a blue bubble. */
+.cn-ai-message.is-user:has(> .cn-ai-media:only-child) { padding: 0; background: none; }
+.cn-ai-message.is-user:has(> .cn-ai-media:only-child) .cn-ai-media__image { border-radius: 14px 14px 4px 14px; }
+/* A vw cap, not %: a percentage of the fit-content link would size the link from the image's natural width. */
+.cn-ai-media__image img { display: block; max-width: min(260px, 64vw); max-height: 220px; object-fit: contain; }
+.cn-ai-file { display: inline-flex; align-items: center; gap: 7px; max-width: 100%; padding: 6px 10px; border-radius: 8px; background: var(--cn-hero); color: var(--cn-ink); font-size: 13px; font-weight: 600; overflow-wrap: anywhere; text-decoration: none; }
+.cn-ai-message.is-user .cn-ai-file { background: rgb(255 255 255 / .16); color: #fff; }
 .cn-ai-message__code { margin: 0 0 10px; padding: 12px 14px; border-radius: var(--cn-radius-button); background: var(--cn-hero); font-size: 13px; line-height: 1.55; white-space: pre-wrap; }
 .cn-ai-message__code code { padding: 0; background: none; }
 .cn-ai-action { display: flex; align-items: center; gap: 12px; margin: 4px 0 10px; padding: 10px 14px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-hero); color: var(--cn-ink); font-weight: 700; text-decoration: none; }
@@ -142,8 +168,10 @@
   .cn-ai-invite .cn-button { width: 100%; }
   .cn-ai-chat__thread { padding: 12px; max-height: 66vh; }
   .cn-ai-message { max-width: 94%; }
-  .cn-ai-chat__composer { grid-template-columns: minmax(0, 1fr); }
-  .cn-ai-chat__composer .cn-button { width: 100%; }
+  .cn-ai-chat__composer { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: 'files files' 'draft draft' 'attach send'; }
+  .cn-ai-chat__composer .cn-ai-chat__send { width: 100%; }
+  .cn-ai-chat__attach { min-height: 44px; }
+  .cn-ai-attachment { max-width: 100%; flex: 1 1 100%; }
   .cn-ai-chat__bar .cn-button { flex: 1 1 auto; }
   .cn-ai-check.is-ready { padding: 18px 16px; }
   .cn-ai-check__head { grid-template-columns: minmax(0, 1fr); gap: 12px; }

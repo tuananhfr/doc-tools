@@ -4,4 +4,5 @@
 - Tìm kiếm web (`web_search`, `web_fetch`) để tra nguồn quy định / giá chính thức.
 - Kiểm nguồn quy định: đọc gói đang dùng (`cn_get_rules`), soạn NHÁP đề xuất (`cn_create_contribution_draft`),
   xem đề xuất của người dùng (`cn_my_contributions`). Không gửi, không công bố thay người dùng.
+- Xem ảnh và tệp chữ (TXT, MD, CSV, JSON) người dùng đính kèm; chưa đọc PDF, Word, Excel, âm thanh.
 - Ghi nhớ ngắn hạn trong hội thoại.

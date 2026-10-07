@@ -1,4 +1,8 @@
+import { join } from 'node:path'
+
 export type MailTransportMode = 'direct' | 'smtp' | 'log'
+
+const MIB = 1024 * 1024
 
 function list(value: string | undefined) {
   return (value ?? '').split(',').map((item) => item.trim()).filter(Boolean)
@@ -46,6 +50,17 @@ export function configuration() {
       // Development only: lets an openai_compat provider point at a local model server.
       allowPrivateApiBase: process.env.AI_DEV_ALLOW_PRIVATE_API_BASE === '1',
       ticketTtlSeconds: Number(process.env.AI_TICKET_TTL_SECONDS ?? 900),
+      uploads: {
+        dir: process.env.AI_UPLOAD_DIR || join(process.cwd(), 'data', 'ai-uploads'),
+        // GoClaw stops reading a media URL at 10 MiB and keeps the truncated file, so larger files
+        // would reach the model cut short without any error.
+        maxBytes: Math.min(Number(process.env.AI_UPLOAD_MAX_BYTES ?? 10 * MIB), 10 * MIB),
+        dailyBytes: Number(process.env.AI_UPLOAD_DAILY_BYTES ?? 2048 * MIB),
+        retentionDays: Number(process.env.AI_UPLOAD_RETENTION_DAYS ?? 7),
+        // Base of /api/v1 as GoClaw reaches it; defaults to the host already given for MCP callbacks.
+        publicApiUrl: (process.env.AI_UPLOAD_PUBLIC_URL || (process.env.MCP_PUBLIC_URL ?? '').replace(/\/mcp\/sse\/?$/, '')).replace(/\/+$/, ''),
+        linkTtlSeconds: 300,
+      },
     },
   }
 }

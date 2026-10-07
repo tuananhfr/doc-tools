@@ -79,7 +79,26 @@
     "notReadyTitle": "Trợ lý chưa sẵn sàng",
     "notReadyText": "Hãy thêm khoá AI và kiểm tra để bật trợ lý.",
     "settings": "Cài khoá AI",
-    "openTool": "Mở {{name}}"
+    "openTool": "Mở {{name}}",
+    "attach": "Đính kèm",
+    "attachLabel": "Đính kèm ảnh hoặc tệp chữ",
+    "attachHint": "Ảnh PNG, JPG, WebP, GIF (tối đa 10 MB) hoặc tệp chữ TXT, MD, CSV, JSON.",
+    "attachConsent": "Tệp đính kèm sẽ được gửi tới nhà cung cấp AI bạn đã cài, bằng khoá của bạn. Ảnh được giữ tạm trên máy chủ Chuyện Nhỏ tối đa 7 ngày để trợ lý tải về; nội dung tệp chữ nằm trong cuộc trò chuyện. Đừng đính kèm giấy tờ tuỳ thân, mật khẩu hay dữ liệu nhạy cảm. Tiếp tục?",
+    "attachUploading": "Đang tải lên…",
+    "attachFailed": "Chưa tải lên được",
+    "removeAttachment": "Bỏ tệp {{name}}",
+    "attachedFile": "Tệp {{name}}",
+    "attachedImage": "Ảnh đính kèm: {{name}}",
+    "attachedImageUnnamed": "Ảnh đính kèm",
+    "attachedFileUnnamed": "Tệp đính kèm",
+    "attachErrors": {
+      "TYPE": "Chỉ đính kèm được ảnh (PNG, JPG, WebP, GIF) hoặc tệp chữ (TXT, MD, CSV, JSON). Với PDF, Word, Excel, hãy dán phần chữ cần hỏi.",
+      "TOO_LARGE": "Ảnh tối đa 10 MB, tệp chữ tối đa 256 KB.",
+      "TEXT_TOO_LONG": "Tệp chữ quá dài (tối đa 40.000 ký tự). Hãy cắt bớt, chỉ giữ phần cần hỏi.",
+      "TOO_MANY": "Mỗi tin nhắn đính kèm tối đa 4 tệp.",
+      "NOT_TEXT": "Tệp này không phải văn bản UTF-8.",
+      "LINK_FAILED": "Chưa gửi được ảnh đính kèm. Hãy thử lại."
+    }
   },
   "errors": {
     "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
@@ -98,7 +117,10 @@
     "NOT_FOUND": "Nháp không còn nữa (đã gửi hoặc đã bỏ).",
     "SELECTION_INVALID": "Hãy chọn ít nhất một thay đổi.",
     "DUPLICATE_CONTRIBUTION": "Đề xuất này đã có trong hàng chờ duyệt.",
-    "RATE_LIMITED": "Bạn đã gửi quá nhiều đề xuất. Hãy thử lại sau một giờ."
+    "RATE_LIMITED": "Bạn đã gửi quá nhiều đề xuất. Hãy thử lại sau một giờ.",
+    "UPLOAD_TYPE": "Chỉ đính kèm được ảnh PNG, JPG, WebP hoặc GIF.",
+    "UPLOAD_TOO_LARGE": "Ảnh vượt quá dung lượng cho phép (10 MB).",
+    "UPLOAD_QUOTA": "Bạn đã dùng hết dung lượng đính kèm trong 24 giờ qua."
   },
   "sourceCheck": {
     "title": "Kiểm nguồn bằng AI",

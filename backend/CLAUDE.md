@@ -93,7 +93,10 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
   thành `null` thay vì 400 ở tầng parser — bắt chước Drupal cũ. Controller tự kiểm và trả
   `{ok:false, message}`.
 - **Trần body toàn cục 1 KiB.** Route cần hơn phải khai `@RouteConfig({ bodyLimit })`
-  (contributions 128 KiB, bổ sung nguồn 22 KiB).
+  (contributions 128 KiB, bổ sung nguồn 22 KiB, ảnh chat 10 MiB). Nest cất giá trị đó vào
+  `config` — chỗ Fastify không đọc; hook `onRoute` trong `http-adapter.ts` chuyển nó sang
+  `route.bodyLimit`. Thiếu hook là mọi route vẫn kẹt 1 KiB (đề xuất > 1 KiB từng ăn 413).
+  Test `contributions.test.cjs` canh việc này.
 - `trustProxy: 'loopback'`: IP thật chỉ lấy từ `X-Forwarded-For` khi proxy nằm trên
   loopback; app mặc định chỉ bind `127.0.0.1`.
 - Visit vượt trần 120/giờ/IP vẫn trả `{ok:true}` (chỉ không cộng). Contributions vượt trần
@@ -132,8 +135,21 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
   "chọn ngẫu nhiên" — app chỉ báo (`npm run ai -- status`, trang admin), không tự sửa.
 - Token MCP (`X-CN-MCP-Token`) đổi mỗi lần verify thành công, thu hồi khi admin khoá / xoá
   tài khoản. GoClaw chặn MCP ở host nội bộ trừ khi có trong `GOCLAW_MCP_ALLOW_PRIVATE_HOSTS`
-  (env của GoClaw, không phải của app). Đổi chỉ dẫn agent (`agent/*.md`) thì tăng
-  `PROMPT_VERSION` (đang là 2) rồi `npm run ai -- sync-agents` — agent cũ không tự đổi.
+  (env của GoClaw, không phải của app). Đổi chỉ dẫn agent (`agent/*.md`) hay `TOOLS_CONFIG`
+  thì tăng `PROMPT_VERSION` (đang là 3) rồi `npm run ai -- sync-agents` — agent cũ không tự đổi.
+- **Đính kèm chat: chỉ ảnh đi qua backend** (`ai-uploads.*`, kiểu nhận bằng magic bytes ở
+  `upload-types.ts`). Link một lần, 5 phút, chỉ IP GoClaw tải được. Trình duyệt đưa link vào
+  `chat.send` **không kèm `filename`**: GoClaw đặt tên bản sao `<uuid>.<ext>` và vault bỏ qua
+  tên kiểu đó. Có tên là vault tóm tắt + embed tệp bằng provider **nền của tenant** (khoá của
+  ERPCons, không phải của thành viên). Tệp chữ ghép thẳng vào tin nhắn ở trình duyệt.
+  `read_image`/`read_audio`/`read_document`/`read_video` bị deny trong `TOOLS_CONFIG` vì chúng
+  chọn provider theo tên trên toàn tenant. Trần 10 MiB là trần tải URL của GoClaw (cắt im lặng).
+- **Chưa chặn được (cần quyết, chưa vá):** GoClaw tóm tắt MỌI lượt chat đã xong
+  (`consolidation/episodic_worker.go`) và mọi tệp `write_file` ghi ra (vault enrich) bằng
+  provider nền của tenant — nội dung chat của thành viên đi qua khoá ERPCons. Muốn tách hẳn
+  phải vá GoClaw bỏ qua agent `cn-` hoặc dựng GoClaw riêng. Nếu tenant cấu hình chuỗi
+  `read_image`, GoClaw không gửi ảnh thẳng cho model nữa → agent `cn-` (bị deny read_image)
+  không thấy ảnh; kiểm trên GoClaw thật.
 - Kiểm nguồn: agent chỉ được **soạn nháp** (`cn_create_contribution_draft` → bảng
   `contribution_drafts`), không có tool nào gửi đề xuất. Người dùng chọn dòng rồi gửi qua
   `/me/contribution-drafts/:id/submit`; nháp bị "claim" trước rồi mới gọi

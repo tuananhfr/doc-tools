@@ -54,6 +54,12 @@ test('anonymous contributions stay in review and expose only receipt status', as
     }
     const bodyLimit = await api.inject({ method: 'POST', url: '/api/v1/tools/visits', payload: { tool: toolId, extra: 'x'.repeat(1100) } })
     assert.equal(bodyLimit.statusCode, 413)
+    // Route limits come from @RouteConfig; before the onRoute lift every route was capped at 1 KiB.
+    const sources = (size) => ({ sourceRefs: [{ url: `https://example.com/${'a'.repeat(size)}`, type: 'OFFICIAL_WEB' }] })
+    const roomy = await api.inject({ method: 'POST', url: `/api/v1/contributions/receipt/${'y'.repeat(32)}/sources`, payload: sources(3000) })
+    assert.notEqual(roomy.statusCode, 413, roomy.payload)
+    const over = await api.inject({ method: 'POST', url: `/api/v1/contributions/receipt/${'y'.repeat(32)}/sources`, payload: sources(23000) })
+    assert.equal(over.statusCode, 413)
   } finally {
     if (database) {
       const [rows] = await database.pool.execute('SELECT id FROM contributions WHERE tool_id = ?', [toolId])

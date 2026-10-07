@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 /** Bump when anything under backend/agent/ changes; `npm run ai -- sync-agents` pushes it to older agents. */
-export const PROMPT_VERSION = 2
+export const PROMPT_VERSION = 3
 
 export const AGENT_FILE_NAMES = ['AGENTS.md', 'SOUL.md', 'IDENTITY.md', 'CAPABILITIES.md'] as const
 
@@ -15,11 +15,14 @@ export function agentFiles() {
  * A per-agent `allow` list intersects with everything else, so it is a real allowlist; MCP tools of
  * granted servers are added back by GoClaw afterwards. The deny list repeats the dangerous ones in case
  * a later GoClaw version widens a group: `exec`/`browser` run things on GoClaw's host, `create_*`/`tts`
- * bill the tenant's provider chain instead of the user's key.
+ * bill the tenant's provider chain instead of the user's key. So do the `read_*` media tools (GoClaw
+ * picks their provider by name across the tenant): images reach the user's own model inline, and text
+ * attachments arrive inside the message.
  */
 export const TOOLS_CONFIG = {
-  allow: ['web_search', 'web_fetch', 'read_document', 'read_image', 'read_audio', 'memory_search', 'memory_get', 'datetime', 'write_file', 'send_file'],
-  deny: ['exec', 'browser', 'spawn', 'delegate', 'cron', 'create_image', 'create_video', 'create_audio', 'tts', 'vault_search', 'vault_read',
+  allow: ['web_search', 'web_fetch', 'memory_search', 'memory_get', 'datetime', 'write_file', 'send_file'],
+  deny: ['exec', 'browser', 'spawn', 'delegate', 'cron', 'create_image', 'create_video', 'create_audio', 'tts',
+    'read_image', 'read_audio', 'read_document', 'read_video', 'vault_search', 'vault_read',
     'team_tasks', 'message', 'sessions_send', 'skill_manage', 'publish_skill', 'facebook_post_with_comments', 'heartbeat'],
 }
 

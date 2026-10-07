@@ -1,7 +1,7 @@
 export const AI_ERROR_CODES = [
   'SIGNED_OUT', 'PRO_REQUIRED', 'UNTRUSTED_REQUEST', 'INVALID_INPUT', 'INVALID_API_BASE', 'AI_UNAVAILABLE', 'AI_UPSTREAM',
   'AI_NO_PROVIDER', 'AI_VERIFY_FAILED', 'AI_NOT_READY', 'AI_DISABLED', 'NOT_FOUND', 'SELECTION_INVALID', 'DUPLICATE_CONTRIBUTION',
-  'RATE_LIMITED', 'NETWORK', 'UNKNOWN',
+  'RATE_LIMITED', 'UPLOAD_TYPE', 'UPLOAD_TOO_LARGE', 'UPLOAD_QUOTA', 'NETWORK', 'UNKNOWN',
 ] as const
 export type AiErrorCode = (typeof AI_ERROR_CODES)[number]
 
@@ -15,12 +15,23 @@ export interface AiSetup {
   agent: { status: 'active' | 'inactive'; upToDate: boolean } | null
 }
 
-export interface AiTicket { token: string; wsUrl: string; userId: string; agentKey: string; expiresAt: number }
+/** `filesUrl` is GoClaw's HTTP root: signed media paths in chat history are relative to it. */
+export interface AiTicket { token: string; wsUrl: string; filesUrl: string; userId: string; agentKey: string; expiresAt: number }
 
 export const CONNECTION_STATES = { idle: 'idle', connecting: 'connecting', connected: 'connected', disconnected: 'disconnected', failed: 'failed' } as const
 export type ConnectionState = (typeof CONNECTION_STATES)[keyof typeof CONNECTION_STATES]
 
-export interface ChatMessage { id: string; role: 'user' | 'assistant'; content: string; streaming?: boolean; createdAt?: string }
+/** `name` is empty when GoClaw kept only a generated file name. */
+export interface ChatMedia { kind: 'image' | 'file'; url: string; name: string }
+
+export interface ChatMessage { id: string; role: 'user' | 'assistant'; content: string; media?: ChatMedia[]; streaming?: boolean; createdAt?: string }
+
+/** A file waiting in the composer. Images go up to our server first; text is read here and sent inline. */
+export type ChatAttachment =
+  | { id: string; kind: 'image'; name: string; size: number; previewUrl: string; status: 'uploading' | 'ready' | 'failed'; uploadId?: string; error?: AiErrorCode }
+  | { id: string; kind: 'text'; name: string; size: number; content: string; status: 'ready' }
+
+export interface AiUpload { id: string; filename: string; mimeType: string; size: number; expiresAt: number }
 
 export interface ChatSessionSummary { key: string; label: string; messageCount: number; updatedAt?: string }
 

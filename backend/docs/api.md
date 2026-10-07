@@ -100,10 +100,21 @@ Each Pro member brings their own AI key. The backend registers it in a shared Go
 | `PUT /ai/provider {type, apiKey, apiBase?}` | Pro, trusted write, 4 KiB | Saves the key (status `verifying`) and answers the setup plus `models` (≤ 300, from the provider) |
 | `POST /ai/provider/verify {model}` | Pro, trusted write | GoClaw sends one short test call. Failure → 422 `AI_VERIFY_FAILED`, status `failed`, provider disabled. Success → status `ready`, agent created/updated, prompt files written, MCP tools granted, agent switched on last |
 | `DELETE /ai/provider` | signed in, trusted write | Agent off, then provider deleted, then MCP credential dropped |
-| `POST /ai/session` | Pro, trusted write | `{token, wsUrl, userId, agentKey, expiresAt}`. Re-checks GoClaw first; a provider or agent that drifted (disabled, renamed, pointed elsewhere) switches the agent off and answers 409 `AI_NOT_READY` |
+| `POST /ai/session` | Pro, trusted write | `{token, wsUrl, filesUrl, userId, agentKey, expiresAt}`. `filesUrl` is GoClaw's HTTP root for signed `/v1/files/...` links in history (`GOCLAW_PUBLIC_FILES_URL`, else derived from `wsUrl`). Re-checks GoClaw first; a provider or agent that drifted (disabled, renamed, pointed elsewhere) switches the agent off and answers 409 `AI_NOT_READY` |
 | `POST /ai/source-checks {toolId, baseSnapshotId, sessionKey}` | Pro, trusted write, 2 KiB | Records that a source check started (table `ai_source_checks`). `toolId` is a ready tool slug, `baseSnapshotId` the package digest or `null`, `sessionKey` must be one of the caller's own agent sessions (`agent:cn-<userId>:ws:direct:<uuid>`); otherwise 400 `INVALID_INPUT`. A draft the agent creates within 6 h for the same tool is linked to the latest check. Returns `{ok,id}` |
 
-Error codes: `SIGNED_OUT` 401, `PRO_REQUIRED` 403, `AI_DISABLED` 403 (staff block), `INVALID_INPUT` / `INVALID_API_BASE` 400, `AI_NO_PROVIDER` / `AI_NOT_READY` 409, `AI_VERIFY_FAILED` 422, `AI_UPSTREAM` 502, `AI_UNAVAILABLE` 503.
+| `POST /ai/uploads` | Pro, trusted write, 10 MiB | Body is the raw file (`Content-Type: application/octet-stream`), name in header `X-CN-Filename` (URI-encoded). Images only (PNG, JPEG, WebP, GIF), recognised by their first bytes, not the name. Returns `{ok, upload:{id, filename, mimeType, size, expiresAt}}` (`expiresAt` in seconds) |
+| `POST /ai/uploads/:id/link` | Pro, trusted write | `{ok, url, expiresAt}`: a single-use link valid 5 minutes, for `media[].path` of GoClaw `chat.send` |
+| `DELETE /ai/uploads/:id` | signed in, trusted write | Removes the file and revokes an unused link. The row stays until expiry so the daily quota still counts it |
+| `GET /ai/uploads/:id/raw/:token/:name` | GoClaw only (`MCP_ALLOWED_IPS`) | Serves the file once (`attachment`, `nosniff`, `no-store`); unknown, used or expired link → 404 |
+
+Error codes: `SIGNED_OUT` 401, `PRO_REQUIRED` 403, `AI_DISABLED` 403 (staff block), `INVALID_INPUT` / `INVALID_API_BASE` 400, `AI_NO_PROVIDER` / `AI_NOT_READY` 409, `UPLOAD_TOO_LARGE` 413, `UPLOAD_TYPE` 415, `AI_VERIFY_FAILED` 422, `UPLOAD_QUOTA` 429, `AI_UPSTREAM` 502, `AI_UNAVAILABLE` 503.
+
+### Attachments in chat
+
+Images go through `/ai/uploads`: the browser uploads, asks for a link, passes it in `chat.send` **without a `filename`**, then deletes the upload once the send settles. GoClaw downloads the link and keeps its own copy; without a filename it names the copy `<uuid>.<ext>`, which its vault enrichment skips (a named copy would be summarised and embedded with the tenant's background provider, i.e. not the member's key). Text files (TXT, MD, CSV, JSON) never reach this API: the browser puts them in the message as ```` ```cn-file name="…" ```` blocks. PDF, Word, Excel and audio are refused on both sides, and the agent's `tools_config` denies `read_image`, `read_audio`, `read_document`, `read_video` because those tools choose their provider across the whole tenant.
+
+Limits: 10 MiB per file (GoClaw cuts a downloaded URL at 10 MiB without an error), `AI_UPLOAD_DAILY_BYTES` per member over a rolling 24 h (default 2 GiB), files removed after `AI_UPLOAD_RETENTION_DAYS` (default 7) by an hourly sweep, and on account deletion. The link host is `AI_UPLOAD_PUBLIC_URL` (default: `MCP_PUBLIC_URL` without `/mcp/sse`); GoClaw's SSRF check refuses private hosts, so it must be public in production.
 
 Ordering is the guard rail: GoClaw runs an agent whose provider is missing or disabled on a random provider of the tenant, possibly another customer's key. So the agent is always switched off BEFORE its provider is touched, and switched on only after a successful check. `apiBase` must be `https://` and resolve to public addresses only (`AI_DEV_ALLOW_PRIVATE_API_BASE=1` lifts this in development; GoClaw has its own SSRF check that this flag does not lift).
 
@@ -111,10 +122,10 @@ Ordering is the guard rail: GoClaw runs an agent whose provider is missing or di
 
 GoClaw calls back `GET /api/v1/mcp/sse` (SSE transport) with header `X-CN-MCP-Token`, a per-member token rotated on every successful check and revoked on disable or deletion. `MCP_ALLOWED_IPS` restricts callers (403 `MCP_FORBIDDEN`); an unknown or revoked token is 401 `MCP_UNAUTHORIZED`; at most 4 open streams per member. Messages go to `POST /api/v1/mcp/messages?sessionId=` (JSON-RPC: `initialize`, `ping`, `tools/list`, `tools/call`). Tools: `cn_find_tools`, `cn_tool_guide`, `cn_open_tool` (returns a ```` ```cn-action ```` block the site turns into an "open tool" button). They read `data/tool-catalog.json`, generated by the frontend's `scripts/export-tool-catalog.mjs`.
 
-Source-check tools (agent prompt `PROMPT_VERSION` 2):
+Source-check tools (since agent prompt `PROMPT_VERSION` 2; it is now 3, which adds the attachment rules and pushes `tools_config`):
 
 - `cn_get_rules {kind, query?}` — `kind` ∈ `electricity`, `vat`, `payroll`, `addresses`. Answers the package in effect `{snapshotId, effectiveFrom, effectiveTo, source, data}` plus a `fieldHint` for draft field paths (`tiers.<i>.price`, `ward`…), or says there is none. Addresses never send the full ward list: `data` holds the provinces, a ward count and up to 30 wards matching `query`.
 - `cn_create_contribution_draft {toolId, domain, baseSnapshotId, changes[], sources[], uncertainties[], jurisdiction}` — validated like a contribution (high-risk domains need a source; at most 20 uncertainties of 1000 characters). It only stores a draft for the member (table `contribution_drafts`, at most 20 open per member); nothing is submitted. The answer tells the agent to say so.
 - `cn_my_contributions {status?}` — the member's latest contributions and open drafts, so the agent does not draft the same change twice.
 
-CLI: `npm run ai -- status` (GoClaw reachability, MCP registration, `background.provider`), `npm run ai -- register-mcp` (creates or updates the `chuyen-nho` MCP server from `MCP_PUBLIC_URL`), `npm run ai -- sync-agents` (pushes the current prompt files to agents below `PROMPT_VERSION`).
+CLI: `npm run ai -- status` (GoClaw reachability, MCP registration, `background.provider`), `npm run ai -- register-mcp` (creates or updates the `chuyen-nho` MCP server from `MCP_PUBLIC_URL`), `npm run ai -- sync-agents` (pushes the current prompt files and `tools_config` to agents below `PROMPT_VERSION`).
