@@ -1,11 +1,12 @@
 {
   "bindingNotice": "The Vietnamese version is the legally binding version.",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "Terms of <accent>use</accent>",
     "breadcrumb": "Terms of use",
-    "intro": "These terms apply when you use the free Chuyện Nhỏ toolkit operated by ERPCons & LPC (“we”). By using the site, you agree to the terms below.",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "Free, no account needed.",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "Your files remain yours and are processed on your device.",
       "reference": "Calculation results are for reference only; check them before use.",
       "lawful": "Don't use the tools for anything unlawful."
@@ -15,14 +16,26 @@
         "heading": "A free service",
         "paragraphs": {
           "free": "Chuyện Nhỏ provides free tools for documents, images, calculations and everyday utilities that run right in your browser, with no sign-up.",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "We may add, change, suspend or discontinue any tool at any time. Tools marked “Coming soon” are plans that may change or never launch."
         }
       },
       "tep-cua-ban": {
         "heading": "Your files and content",
         "paragraphs": {
-          "ownership": "You keep full rights to your files and content. The tools currently available process files right on your device; we do not receive or store your files.",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "You are responsible for making sure you have the right to use and edit the files you put into the tools, and for keeping your own originals before processing."
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "Privacy policy",
     "intro": "This policy explains how Chuyện Nhỏ collects, uses and protects personal data, in accordance with the Law on Personal Data Protection No. 91/2025/QH15 and Decree No. 356/2025/NĐ-CP.",
     "summary": {
-      "device": "Your files are processed on your device and never sent to a server.",
-      "noTracking": "No accounts, no cookies, no advertising or tracking tools.",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "We only count tool opens; IP addresses are hashed and deleted automatically after about 1 hour.",
       "feedback": "Feedback is sent only when you agree and press Send."
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "Our principles",
         "items": {
-          "device": "On-device processing: the tools currently available do not upload your files to a server.",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "Minimal: we only process data needed to operate the service and prevent abuse.",
-          "anonymous": "Anonymous: we don't ask for your name, email, phone number or an account.",
-          "noTracking": "No cookies, and no third-party analytics, advertising or tracking tools."
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "IP address: one-way hashed with a secret key, used only to limit automated submissions, and deleted automatically after about 1 hour.",
           "feedback": "Feedback and suggestions: only when you tick the consent box and press Send, so we can review them and improve the tools. Receipt codes are stored only in hashed form.",
           "logs": "Web server technical logs (IP address, browser type, pages opened): used only for system operation and security, and kept for the short time necessary."
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "Sharing with third parties",
         "paragraphs": {
           "noSale": "We do not sell personal data or share it for advertising purposes. We only provide data to competent state authorities when required by law.",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "The only exception is the dictation (speech-to-text) tool, which uses the speech recognition service built into your browser. The audio is sent by the browser to that browser's provider (for example, Google for Chrome), may be processed abroad under their policies, and does not pass through our servers."
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "Hashed IP addresses: about 1 hour.",
           "counts": "Usage counts: stored as aggregate statistics containing no personal data.",
-          "feedback": "Feedback and suggestions: kept for as long as needed to review and follow up, or until you ask us to delete them."
+          "feedback": "Feedback and suggestions: kept for as long as needed to review and follow up, or until you ask us to delete them.",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "How to exercise your rights",
         "paragraphs": {
-          "request": "Send your request to {{email}}. Since Chuyện Nhỏ has no accounts, please include the receipt code of your feedback so we can find the right content.",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "We confirm receipt of your request within 2 working days and handle it within the time limit set by law, at the latest within 20 days."
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "Children",
         "paragraphs": {
-          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback need the consent of a parent or guardian, as required by law."
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

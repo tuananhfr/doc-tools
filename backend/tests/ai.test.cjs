@@ -125,6 +125,7 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
   const { DatabaseService } = require('../dist/database/database.service')
   const { AccountDeletionService } = require('../dist/accounts/account-deletion.service')
   const { AiService } = require('../dist/ai/ai.service')
+  const { AiReconcileService } = require('../dist/ai/ai-reconcile.service')
 
   const app = await NestFactory.create(AppModule, createHttpAdapter(), { logger: false, bodyParser: false })
   app.setGlobalPrefix('api/v1')
@@ -247,6 +248,39 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
     assert.ok(!agent.tools_config.allow.includes('read_image') && agent.tools_config.deny.includes('read_image'))
     assert.equal(fake.files.length - filesBefore >= 4, true)
     assert.equal((await call(pro, 'GET', '/ai/setup')).json().agent.upToDate, true)
+
+    // Hourly reconciliation, per member only: reconcileAll would also reach real agents in the dev database.
+    const reconcile = app.get(AiReconcileService)
+    const setPlanRevoked = (revoked) => database.pool.execute('UPDATE user_plans SET revoked_at = ? WHERE user_id = ?', [revoked ? Math.floor(Date.now() / 1000) : null, pro.id])
+    assert.equal(await reconcile.reconcileUser(pro.id), 'ok')
+    provider.enabled = false
+    assert.equal(await reconcile.reconcileUser(pro.id), 'drift')
+    assert.equal(agent.status, 'inactive')
+    assert.equal((await call(pro, 'GET', '/ai/setup')).json().provider.status, 'failed', 'drift asks for the key again')
+    assert.equal((await call(pro, 'POST', '/ai/provider/verify', { model: 'gpt-test' })).json().agent.status, 'active')
+    await database.pool.execute("UPDATE ai_agents SET status = 'inactive' WHERE user_id = ?", [pro.id])
+    assert.equal(await reconcile.reconcileUser(pro.id), 'stray')
+    assert.equal(agent.status, 'inactive', 'GoClaw follows our record, never the other way round')
+    assert.equal((await call(pro, 'POST', '/ai/session')).json().ok, true, 'an inactive agent with a ready key resumes on the next ticket')
+    assert.equal(agent.status, 'active')
+    // Pro ends: agent off, verified key kept, so a renewal resumes without asking for the key again.
+    await setPlanRevoked(true)
+    assert.equal(await reconcile.reconcileUser(pro.id), 'expired')
+    assert.equal(agent.status, 'inactive')
+    assert.equal(provider.enabled, true, 'the key stays for a renewal')
+    assert.equal((await call(pro, 'GET', '/ai/setup')).json().provider.status, 'ready')
+    assert.equal((await call(pro, 'POST', '/ai/session')).json().code, 'PRO_REQUIRED')
+    await setPlanRevoked(false)
+    provider.enabled = false
+    assert.equal((await call(pro, 'POST', '/ai/session')).json().code, 'AI_NOT_READY', 'resuming checks the provider first')
+    assert.equal(agent.status, 'inactive')
+    assert.equal((await call(pro, 'POST', '/ai/provider/verify', { model: 'gpt-test' })).json().agent.status, 'active')
+    await setPlanRevoked(true)
+    assert.equal(await reconcile.reconcileUser(pro.id), 'expired')
+    await setPlanRevoked(false)
+    assert.equal((await call(pro, 'POST', '/ai/session')).json().ok, true)
+    assert.equal(agent.status, 'active')
+    assert.equal(await reconcile.reconcileUser(free.id), 'skipped')
 
     // MCP over real SSE.
     const sse = (token) => new Promise((resolve, reject) => {

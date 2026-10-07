@@ -1,11 +1,12 @@
 {
   "bindingNotice": "Bản tiếng Việt là bản có giá trị pháp lý.",
+  "draftNotice": "Phần về tài khoản, bản Pro, trợ lý AI và xoá tài khoản là bản cập nhật đang chờ duyệt pháp lý, có thể còn thay đổi.",
   "dieu-khoan": {
     "title": "Điều khoản <accent>sử dụng</accent>",
     "breadcrumb": "Điều khoản sử dụng",
-    "intro": "Điều khoản này áp dụng khi bạn dùng bộ công cụ miễn phí Chuyện Nhỏ do ERPCons & LPC (“chúng tôi”) vận hành. Dùng trang nghĩa là bạn đồng ý với các điều dưới đây.",
+    "intro": "Điều khoản này áp dụng khi bạn dùng Chuyện Nhỏ do ERPCons & LPC (“chúng tôi”) vận hành: các công cụ miễn phí, tài khoản và bản Pro. Dùng trang nghĩa là bạn đồng ý với các điều dưới đây.",
     "summary": {
-      "free": "Miễn phí, không cần tài khoản.",
+      "free": "Công cụ miễn phí, không cần tài khoản; tài khoản và bản Pro là tuỳ chọn.",
       "yours": "Tệp của bạn vẫn là của bạn và được xử lý trên máy bạn.",
       "reference": "Kết quả tính toán chỉ để tham khảo, hãy đối chiếu trước khi dùng.",
       "lawful": "Không dùng công cụ để làm điều trái pháp luật."
@@ -15,14 +16,26 @@
         "heading": "Dịch vụ miễn phí",
         "paragraphs": {
           "free": "Chuyện Nhỏ cung cấp miễn phí các công cụ xử lý tài liệu, hình ảnh, tính toán và tiện ích hằng ngày, chạy ngay trong trình duyệt, không cần đăng ký.",
+          "accounts": "Bạn có thể tạo tài khoản bằng email để theo dõi đề xuất đã gửi. Bản Pro (trả phí, giá liên hệ) thêm trợ lý AI chạy bằng khoá AI của chính bạn và lưu kết quả lên tài khoản; thời hạn Pro ghi trong trang Tài khoản.",
           "changes": "Chúng tôi có thể thêm, sửa, tạm ngừng hoặc dừng một công cụ bất cứ lúc nào. Công cụ ghi “Sắp có” là dự định, có thể thay đổi hoặc không ra mắt."
         }
       },
       "tep-cua-ban": {
         "heading": "Tệp và nội dung của bạn",
         "paragraphs": {
-          "ownership": "Bạn giữ toàn quyền với tệp và nội dung của mình. Các công cụ đang hoạt động xử lý tệp ngay trên thiết bị; chúng tôi không nhận và không lưu tệp của bạn.",
+          "ownership": "Bạn giữ toàn quyền với tệp và nội dung của mình. Các công cụ miễn phí xử lý tệp ngay trên thiết bị; chúng tôi không nhận và không lưu tệp của bạn. Riêng khi bạn dùng trợ lý AI (Pro) và tự gửi nội dung hay đính kèm ảnh, nội dung đó được gửi đi như mô tả trong Chính sách quyền riêng tư.",
           "responsibility": "Bạn chịu trách nhiệm bảo đảm mình có quyền sử dụng, chỉnh sửa tệp đưa vào công cụ, và tự giữ bản gốc trước khi xử lý."
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Tài khoản và bản Pro",
+        "items": {
+          "security": "Hãy giữ an toàn hộp thư dùng để đăng nhập: ai đọc được mã đăng nhập thì vào được tài khoản.",
+          "aiKey": "Khoá AI là của bạn: chi phí gọi AI do nhà cung cấp tính thẳng cho bạn theo điều khoản của họ. Bạn gỡ khoá được bất cứ lúc nào.",
+          "aiOutput": "Câu trả lời của AI có thể sai. Nháp đề xuất do AI soạn chỉ được gửi khi bạn tự chọn và xác nhận, và vẫn phải qua người kiểm duyệt trước khi thành số liệu chính thức.",
+          "expiry": "Khi Pro hết hạn: trợ lý AI dừng, mục đã lưu chuyển sang chỉ đọc trong 90 ngày rồi bị xoá, có thư báo trước ít nhất 7 ngày. Gia hạn trong thời gian đó thì mọi thứ được giữ nguyên.",
+          "suspend": "Chúng tôi có thể tạm khoá tài khoản hoặc trợ lý AI khi có dấu hiệu lạm dụng hoặc vi phạm điều khoản.",
+          "delete": "Bạn tự xoá được tài khoản trong trang Tài khoản."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "Chính sách quyền riêng tư",
     "intro": "Chính sách này cho biết Chuyện Nhỏ thu thập, sử dụng và bảo vệ dữ liệu cá nhân như thế nào, theo Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 và Nghị định 356/2025/NĐ-CP.",
     "summary": {
-      "device": "Tệp của bạn được xử lý trên máy bạn, không gửi về máy chủ.",
-      "noTracking": "Không tài khoản, không cookie, không công cụ quảng cáo hay theo dõi.",
+      "device": "Công cụ miễn phí xử lý tệp ngay trên máy bạn, không gửi về máy chủ.",
+      "noTracking": "Không công cụ quảng cáo hay theo dõi. Cookie duy nhất là phiên đăng nhập, chỉ có khi bạn đăng nhập.",
+      "account": "Tài khoản là tuỳ chọn: khi đăng nhập, chúng tôi lưu email và phiên đăng nhập; bạn tự xoá tài khoản được bất cứ lúc nào.",
+      "ai": "Trợ lý AI (Pro) chạy bằng khoá AI của chính bạn: nội dung trò chuyện đi tới nhà cung cấp AI bạn chọn.",
       "counting": "Chỉ đếm lượt mở công cụ; địa chỉ IP được băm và tự xoá sau khoảng 1 giờ.",
       "feedback": "Góp ý chỉ được gửi khi bạn đồng ý và bấm Gửi."
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "Nguyên tắc của chúng tôi",
         "items": {
-          "device": "Xử lý trên thiết bị: các công cụ đang hoạt động không tải tệp của bạn lên máy chủ.",
+          "device": "Xử lý trên thiết bị: các công cụ miễn phí không tải tệp của bạn lên máy chủ.",
           "minimal": "Tối thiểu: chỉ xử lý dữ liệu cần cho việc vận hành và chống lạm dụng.",
-          "anonymous": "Không định danh: không yêu cầu tên, email, số điện thoại hay tài khoản.",
-          "noTracking": "Không cookie, không công cụ phân tích, quảng cáo hay theo dõi của bên thứ ba."
+          "anonymous": "Tài khoản là tuỳ chọn: dùng công cụ không cần tên, email hay số điện thoại. Chúng tôi chỉ biết email của bạn khi bạn tự đăng nhập.",
+          "noTracking": "Không công cụ phân tích, quảng cáo hay theo dõi của bên thứ ba. Cookie duy nhất là cookie phiên đăng nhập, chỉ có khi bạn đăng nhập."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "Địa chỉ IP: được băm một chiều bằng khoá bí mật, chỉ để giới hạn gửi tự động, và tự xoá sau khoảng 1 giờ.",
           "feedback": "Nội dung góp ý, đề xuất: chỉ khi bạn đánh dấu đồng ý và bấm Gửi, để xem xét và cải thiện công cụ. Mã biên nhận chỉ được lưu dưới dạng băm.",
           "logs": "Nhật ký kỹ thuật của máy chủ web (địa chỉ IP, loại trình duyệt, trang được mở): chỉ dùng cho vận hành và an ninh hệ thống, lưu trong thời gian ngắn cần thiết."
+        }
+      },
+      "tai-khoan": {
+        "heading": "Khi bạn có tài khoản",
+        "items": {
+          "email": "Email: để gửi mã đăng nhập và thư về tài khoản (gói Pro sắp hết hạn, mục đã lưu sắp bị xoá). Không dùng cho quảng cáo.",
+          "session": "Phiên đăng nhập: cookie cn_session (HttpOnly, chỉ dùng để đăng nhập); máy chủ lưu bản băm của phiên cùng thời điểm tạo và lần dùng gần nhất.",
+          "profile": "Tên hiển thị và lựa chọn ghi tên trên đề xuất được công bố, chỉ khi bạn tự điền.",
+          "contributions": "Đề xuất gửi khi đã đăng nhập được gắn với tài khoản để bạn theo dõi trạng thái và bổ sung nguồn.",
+          "plan": "Gói Pro: ngày bắt đầu, ngày hết hạn và lịch sử cấp, thu hồi."
+        }
+      },
+      "pro": {
+        "heading": "Trợ lý AI và lưu trữ (bản Pro)",
+        "paragraphs": {
+          "intro": "Chỉ áp dụng khi bạn dùng bản Pro và tự bật các tính năng này:"
+        },
+        "items": {
+          "key": "Khoá AI bạn nhập được chuyển thẳng tới máy chủ trợ lý (GoClaw) do chúng tôi vận hành và lưu mã hoá ở đó. Cơ sở dữ liệu Chuyện Nhỏ chỉ lưu loại nhà cung cấp, model và trạng thái, không lưu khoá.",
+          "chat": "Nội dung trò chuyện, kết quả công cụ bạn gửi kèm khi kiểm nguồn và ảnh bạn đính kèm được gửi tới nhà cung cấp AI do bạn chọn (ví dụ OpenAI, Google, Anthropic, OpenRouter), có thể được xử lý ở nước ngoài theo chính sách của họ. Lịch sử trò chuyện lưu trên máy chủ trợ lý để bạn mở lại.",
+          "memory": "Để trợ lý nhớ ngữ cảnh, máy chủ trợ lý có thể tóm tắt các lượt trò chuyện đã xong bằng một mô hình AI do chúng tôi cấu hình, không phải bằng khoá của bạn.",
+          "uploads": "Ảnh đính kèm được lưu tạm trên máy chủ Chuyện Nhỏ để máy chủ trợ lý tải về một lần; bản tạm bị xoá ngay sau khi gửi, chậm nhất sau 7 ngày.",
+          "checks": "Lịch sử kiểm nguồn: công cụ, thời điểm và trạng thái nháp đề xuất. Không lưu câu hỏi.",
+          "saved": "Mục đã lưu: số liệu bạn chủ động bấm lưu ở một số công cụ và các công cụ yêu thích."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "Chia sẻ với bên thứ ba",
         "paragraphs": {
           "noSale": "Chúng tôi không bán và không chia sẻ dữ liệu cá nhân cho mục đích quảng cáo. Chúng tôi chỉ cung cấp dữ liệu cho cơ quan nhà nước có thẩm quyền khi pháp luật yêu cầu.",
+          "ai": "Khi bạn dùng trợ lý AI, nội dung được gửi tới nhà cung cấp AI do bạn chọn, bằng khoá của bạn. Việc nhà cung cấp đó xử lý dữ liệu theo điều khoản giữa bạn và họ.",
           "speech": "Riêng công cụ Ghi âm thành văn bản dùng dịch vụ nhận dạng giọng nói có sẵn trong trình duyệt. Âm thanh được trình duyệt gửi tới nhà cung cấp của trình duyệt đó (ví dụ Google với Chrome), có thể được xử lý ở nước ngoài theo chính sách của họ, và không đi qua máy chủ của chúng tôi."
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "Bản băm địa chỉ IP: khoảng 1 giờ.",
           "counts": "Số đếm lượt dùng: lưu dưới dạng thống kê gộp, không chứa dữ liệu cá nhân.",
-          "feedback": "Góp ý, đề xuất: lưu trong thời gian cần để xem xét và theo dõi, hoặc tới khi bạn yêu cầu xoá."
+          "feedback": "Góp ý, đề xuất: lưu trong thời gian cần để xem xét và theo dõi, hoặc tới khi bạn yêu cầu xoá.",
+          "account": "Tài khoản: tới khi bạn xoá tài khoản. Phiên đăng nhập hết hạn sau 30 ngày không dùng (tài khoản quản trị: 12 giờ).",
+          "saved": "Mục đã lưu: trong thời gian dùng Pro; khi Pro hết, giữ ở chế độ chỉ đọc 90 ngày rồi xoá, có thư báo ít nhất 7 ngày trước.",
+          "uploads": "Ảnh đính kèm cho trợ lý AI: xoá ngay sau khi gửi, chậm nhất sau 7 ngày.",
+          "mail": "Thư gửi cho bạn: nội dung thư (kể cả mã đăng nhập) bị xoá khỏi hàng đợi ngay khi gửi xong; chỉ giữ địa chỉ nhận, loại thư và trạng thái gửi."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "Cách thực hiện quyền",
         "paragraphs": {
-          "request": "Gửi yêu cầu tới {{email}}. Vì Chuyện Nhỏ không có tài khoản, hãy gửi kèm mã biên nhận của góp ý để chúng tôi tìm đúng nội dung của bạn.",
+          "request": "Gửi yêu cầu tới {{email}}. Nếu có tài khoản, bạn tự xem, sửa tên hiển thị và xoá tài khoản ngay trong trang Tài khoản. Với góp ý gửi khi chưa đăng nhập, hãy kèm mã biên nhận để chúng tôi tìm đúng nội dung của bạn.",
           "timeline": "Chúng tôi xác nhận đã nhận yêu cầu trong 2 ngày làm việc và xử lý trong thời hạn pháp luật quy định, chậm nhất 20 ngày."
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Xoá tài khoản",
+        "paragraphs": {
+          "self": "Bạn xoá được tài khoản trong trang Tài khoản bằng cách gõ lại email. Chúng tôi xoá email, phiên đăng nhập, gói Pro, mục đã lưu, lịch sử kiểm nguồn, nháp đề xuất, cùng trợ lý AI và khoá AI của bạn trên máy chủ trợ lý.",
+          "kept": "Đề xuất đã gửi được giữ lại vì có thể đã được công bố, nhưng không còn gắn với bạn. Chúng tôi chỉ giữ một dòng ghi nhận việc xoá theo mã tài khoản, không kèm email."
+        },
+        "link": "Mở trang Tài khoản"
       },
       "tre-em": {
         "heading": "Trẻ em",
         "paragraphs": {
-          "children": "Chuyện Nhỏ không thu thập thông tin để nhận biết trẻ em. Trẻ em muốn gửi góp ý cần có sự đồng ý của cha mẹ hoặc người giám hộ, theo quy định của pháp luật."
+          "children": "Chuyện Nhỏ không thu thập thông tin để nhận biết trẻ em. Trẻ em muốn gửi góp ý hoặc tạo tài khoản cần có sự đồng ý của cha mẹ hoặc người giám hộ, theo quy định của pháp luật."
         }
       },
       "bao-mat": {

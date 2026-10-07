@@ -1,6 +1,7 @@
 import { Controller, Get, HttpCode, Param, Post, Query } from '@nestjs/common'
 import { RouteConfig } from '@nestjs/platform-fastify'
 import { PROMPT_VERSION } from '../ai/agent-profile'
+import { AiReconcileService } from '../ai/ai-reconcile.service'
 import { AiRepository } from '../ai/ai.repository'
 import { AiService } from '../ai/ai.service'
 import { GoclawClient } from '../ai/goclaw.client'
@@ -11,7 +12,8 @@ import { Actor, Staff, type StaffActor } from './admin.guard'
 
 @Controller('admin/ai')
 export class AdminAiController {
-  constructor(private readonly repository: AiRepository, private readonly ai: AiService, private readonly goclaw: GoclawClient, private readonly audit: AdminAuditRepository) {}
+  constructor(private readonly repository: AiRepository, private readonly ai: AiService, private readonly goclaw: GoclawClient, private readonly audit: AdminAuditRepository,
+    private readonly reconcile: AiReconcileService) {}
 
   @Get()
   @Staff('ai.view')
@@ -32,7 +34,8 @@ export class AdminAiController {
   async status() {
     const config = configuration()
     const base = { configured: this.goclaw.configured(), url: config.goclaw.url, publicWsUrl: config.goclaw.publicWsUrl || null,
-      mcpPublicUrl: config.mcp.publicUrl || null, mcpServerName: config.mcp.serverName, allowPrivateApiBase: config.ai.allowPrivateApiBase, promptVersion: PROMPT_VERSION }
+      mcpPublicUrl: config.mcp.publicUrl || null, mcpServerName: config.mcp.serverName, allowPrivateApiBase: config.ai.allowPrivateApiBase, promptVersion: PROMPT_VERSION,
+      reconcile: this.reconcile.lastRun }
     if (!base.configured) return { ok: true, ...base, reachable: false, mcpRegistered: false, backgroundProvider: null, error: null }
     try {
       const [servers, backgroundProvider] = await Promise.all([this.goclaw.listMcpServers(), this.goclaw.systemConfig('background.provider')])

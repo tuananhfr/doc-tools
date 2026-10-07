@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
@@ -7,6 +8,7 @@ import { AiAccountCard } from '@/features/ai'
 import { SavedAccountCard } from '@/features/cloud'
 import { SitePageHero } from '@/features/site/components/SitePageHero'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
+import { DeleteAccountSection } from '../components/DeleteAccountSection'
 import { PlanSection } from '../components/PlanSection'
 import { ProfileForm } from '../components/ProfileForm'
 import { useLogout, useMe } from '../hooks/useAccount'
@@ -21,9 +23,11 @@ export default function AccountPage() {
   const me = useMe()
   const logout = useLogout()
   const user = me.data?.user
+  const [deleted, setDeleted] = useState(false)
 
-  // A sign-out in progress also empties the session; that one goes home, not to the login page.
-  if (me.data && !user && (logout.isIdle || logout.isError)) return <Navigate to={loginPath('/tai-khoan')} replace />
+  // Sign-out and deletion also empty the session; both go home, not to the login page. Router
+  // navigation commits in a transition, after the session reset has already re-rendered this page.
+  if (me.data && !user && !deleted && (logout.isIdle || logout.isError)) return <Navigate to={loginPath('/tai-khoan')} replace />
 
   return (
     <div className="cn-site-page cn-account">
@@ -69,6 +73,7 @@ export default function AccountPage() {
                   <Icon name="box-arrow-right" />{logout.isPending ? t('account.signOut.busy') : t('account.signOut.button')}
                 </button>
               </section>
+              <DeleteAccountSection email={user.email} staff={Boolean(me.data.staff)} onDeleted={() => setDeleted(true)} />
             </div>
           </div>
         )}

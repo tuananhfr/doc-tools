@@ -291,6 +291,15 @@ export const SCHEMA = [
     updated_at BIGINT UNSIGNED NOT NULL,
     UNIQUE KEY (user_id, bookmark_tool), INDEX (user_id, updated_at)
   ) ENGINE=InnoDB`,
+  // One row per reminder actually queued, keyed by the plan end it was about, so a renewal that moves
+  // the end date earns a fresh reminder while the hourly job never mails the same one twice.
+  `CREATE TABLE IF NOT EXISTS plan_notices (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    kind ENUM('pro_expiring', 'cloud_purge') NOT NULL,
+    plan_end BIGINT UNSIGNED NOT NULL,
+    sent_at BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (user_id, kind, plan_end)
+  ) ENGINE=InnoDB`,
   // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
   `CREATE TABLE IF NOT EXISTS mcp_tokens (
     token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,

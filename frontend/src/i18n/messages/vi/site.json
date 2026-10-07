@@ -547,11 +547,12 @@
     "title": "Cách chúng tôi <accent>xử lý dữ liệu</accent>",
     "tagline": "Tệp của bạn ở lại trên máy bạn.",
     "intro": "Chuyện Nhỏ xử lý tệp ngay trong trình duyệt. Trang này nói rõ từng công cụ chạy ở đâu, và những gì thật sự được gửi về máy chủ.",
+    "draftNotice": "Phần tài khoản và bản Pro trên trang này đang chờ duyệt pháp lý, có thể còn thay đổi.",
     "caption": "Minh bạch\ntừng công cụ!",
     "points": {
-      "noCookie": "Không dùng cookie",
+      "noCookie": "Không cookie khi chưa đăng nhập",
       "noTracking": "Không công cụ theo dõi, quảng cáo",
-      "noAccount": "Không cần tài khoản"
+      "noAccount": "Tài khoản là tuỳ chọn"
     },
     "flowLabel": "Dữ liệu đi đâu",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "Gửi tới máy chủ của chúng tôi",
         "lead": "Ít nhất có thể",
         "points": {
-          "visits": "Tên công cụ bạn mở, để đếm tổng lượt dùng. Không cookie, không định danh bạn",
+          "visits": "Tên công cụ bạn mở, để đếm tổng lượt dùng. Không gắn với bạn hay tài khoản của bạn",
           "ip": "Địa chỉ IP chỉ được băm một chiều để chống gửi tự động, tự xoá sau khoảng 1 giờ",
           "feedback": "Góp ý, đề xuất chỉ gửi khi bạn đánh dấu đồng ý và bấm Gửi",
+          "account": "Khi bạn đăng nhập: email, phiên đăng nhập và đề xuất của bạn",
+          "pro": "Bản Pro: mục bạn bấm lưu; trò chuyện AI đi tới nhà cung cấp AI bạn chọn",
           "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ có an toàn không?",
-        "answer": "Trang chạy qua kết nối mã hoá (HTTPS), không dùng cookie, không gắn công cụ quảng cáo hay theo dõi của bên thứ ba. Tệp của bạn không rời thiết bị."
+        "answer": "Trang chạy qua kết nối mã hoá (HTTPS), không gắn công cụ quảng cáo hay theo dõi của bên thứ ba; cookie duy nhất là phiên đăng nhập khi bạn đăng nhập. Các công cụ miễn phí không gửi tệp của bạn đi đâu."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ có thu thập thông tin cá nhân của tôi không?",

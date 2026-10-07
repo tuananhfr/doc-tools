@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui/Icon'
 import { dateTimeFormat } from '@/i18n/intl'
@@ -9,10 +10,15 @@ import type { AccountState } from '../types/account.types'
 // (exclusive), so the last valid day is one second earlier, read in that zone.
 const PLAN_DATE_OPTIONS = { dateStyle: 'long', timeZone: 'Asia/Ho_Chi_Minh' } as const
 const lastPlanDay = (endsAt: string) => dateTimeFormat(PLAN_DATE_OPTIONS).format(new Date(Date.parse(endsAt) - 1000))
+// Matches the backend reminder mail (REMINDER_DAYS), so the page and the inbox warn at the same time.
+const ENDING_SOON_MS = 7 * 86_400_000
 
 export function PlanSection({ account, email }: { account: AccountState; email: string }) {
   const { t } = useTranslation('account')
   const { pro, endsAt } = account.plan
+  // Read once per mount: the warning does not need to appear the very second the window opens.
+  const [now] = useState(Date.now)
+  const endingSoon = pro && endsAt !== null && Date.parse(endsAt) - now <= ENDING_SOON_MS
   const mailto = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(t('account.pro.mailSubject'))}&body=${encodeURIComponent(t('account.pro.mailBody', { email }))}`
 
   return (
@@ -27,6 +33,7 @@ export function PlanSection({ account, email }: { account: AccountState; email: 
       <p className="cn-account-card__text">
         {pro && endsAt ? t('account.plan.proUntil', { date: lastPlanDay(endsAt) }) : t('account.plan.freeText')}
       </p>
+      {endingSoon ? <p className="cn-plan-ending" role="status"><Icon name="hourglass-split" />{t('account.plan.endingSoon')}</p> : null}
       <ul className="cn-capability-list">
         {CAPABILITY_ROWS.map((row) => {
           const has = account.capabilities.includes(row.id)

@@ -59,6 +59,7 @@
       "free": "Tài khoản miễn phí",
       "pro": "Pro",
       "proUntil": "Hiệu lực đến hết ngày {{date}}",
+      "endingSoon": "Gói Pro sắp hết hạn. Gia hạn để giữ trợ lý AI và tiếp tục lưu kết quả.",
       "freeText": "Dùng mọi công cụ và gửi đề xuất có ghi tên. Nâng cấp Pro để có trợ lý AI riêng.",
       "included": "Đã có trong gói",
       "proOnly": "Có trong bản Pro",
@@ -97,6 +98,22 @@
       "button": "Đăng xuất",
       "busy": "Đang đăng xuất…"
     },
+    "delete": {
+      "title": "Xoá tài khoản",
+      "text": "Xoá vĩnh viễn tài khoản này. Không hoàn tác được.",
+      "points": {
+        "data": "Email, phiên đăng nhập, gói Pro, mục đã lưu và lịch sử kiểm nguồn bị xoá.",
+        "ai": "Trợ lý AI và khoá AI của bạn bị gỡ khỏi máy chủ trợ lý.",
+        "contributions": "Đề xuất đã gửi được giữ lại nhưng không còn gắn với bạn."
+      },
+      "start": "Xoá tài khoản…",
+      "confirmLabel": "Gõ lại email {{email}} để xác nhận",
+      "confirm": "Xoá vĩnh viễn",
+      "busy": "Đang xoá…",
+      "cancel": "Thôi",
+      "staff": "Tài khoản quản trị không tự xoá được. Hãy nhờ một owner gỡ vai trò trước.",
+      "done": "Đã xoá tài khoản. Cảm ơn bạn đã dùng Chuyện Nhỏ."
+    },
     "mine": {
       "title": "Đề xuất của tôi",
       "text": "Xem trạng thái các đề xuất đã gửi bằng tài khoản này và bổ sung nguồn khi người kiểm tra cần.",
@@ -116,7 +133,10 @@
     "EVIDENCE_CLOSED": "Đề xuất đã được xét, không bổ sung nguồn được nữa.",
     "TOO_MANY_SOURCES": "Mỗi đề xuất có tối đa 10 nguồn.",
     "SOURCE_INVALID": "Nguồn không hợp lệ. Dùng đường dẫn HTTPS công khai, không chứa khoá hay mã truy cập.",
-    "NOT_FOUND": "Không tìm thấy đề xuất này. Hãy tải lại trang."
+    "NOT_FOUND": "Không tìm thấy đề xuất này. Hãy tải lại trang.",
+    "STAFF_ACCOUNT": "Tài khoản quản trị không tự xoá được. Hãy nhờ một owner gỡ vai trò trước.",
+    "CONFIRM_MISMATCH": "Email chưa khớp với tài khoản đang đăng nhập.",
+    "DELETE_FAILED": "Chưa xoá được tài khoản lúc này. Hãy thử lại sau ít phút."
   },
   "box": {
     "signedInAs": "Gửi bằng tài khoản <strong>{{email}}</strong>, bạn theo dõi được đề xuất này mà không cần mã biên nhận.",

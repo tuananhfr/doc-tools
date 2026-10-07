@@ -5,7 +5,7 @@ import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { SitePageHero } from '../components/SitePageHero'
 import { useLocale } from '@/i18n/I18nProvider'
 import { DEFAULT_LOCALE } from '@/i18n/locales'
-import { LEGAL_DOCUMENTS, LEGAL_UPDATED, type LegalSlug, type LegalText } from '../config/legal'
+import { LEGAL_DOCUMENTS, LEGAL_DRAFT, LEGAL_UPDATED, type LegalSlug, type LegalText } from '../config/legal'
 import { SUPPORT_EMAIL } from '../config/site-navigation'
 import { QualityConsent } from '../components/QualityConsent'
 
@@ -27,6 +27,7 @@ export default function LegalPage({ slug }: { slug: LegalSlug }) {
           <>
             <p>{text.intro}</p>
             <p className="cn-legal-updated"><Icon name="calendar3" />{t('legalPage.updated', { date: LEGAL_UPDATED })}</p>
+            {LEGAL_DRAFT ? <p className="cn-legal-draft"><Icon name="hourglass-split" />{tl('draftNotice')}</p> : null}
             {locale !== DEFAULT_LOCALE ? <p>{tl('bindingNotice')}</p> : null}
           </>
         )}

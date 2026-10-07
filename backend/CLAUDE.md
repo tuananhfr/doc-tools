@@ -25,6 +25,9 @@ npm run build && node --test tests/rules.test.cjs   # một file test
   nối MySQL theo `.env`, tự tạo dữ liệu `qa-*` rồi tự dọn; không có MySQL là test fail.
   Các file test chạy **tuần tự** (`--test-concurrency=1`): `app_settings` là trạng thái
   chung của cả DB, file này đổi trần đề xuất thì file kia chạy song song sẽ vỡ ngẫu nhiên.
+- DB dev có dữ liệu thật (tài khoản Pro kèm agent `cn-` thật trên GoClaw). Job quét cả bảng
+  (hết hạn Pro, đối soát AI) phải test bằng `lifecycle.run(at, only)` / `reconcileUser(id)`,
+  KHÔNG gọi `run()` / `reconcileAll()` trần — chạy với mốc thời gian giả là xoá / tắt đồ của người thật.
 - `configuration()` ném lỗi lúc khởi động nếu `VISIT_HASH_SECRET` trống hoặc
   `DB_PASSWORD` **chưa khai** (được phép là chuỗi rỗng, nhưng phải có dòng đó).
 
@@ -59,12 +62,13 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
 | `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` · `GET /me/contributions` · `POST /me/contributions/:id/evidence` | Nhận đề xuất (khách hoặc có tài khoản), tra trạng thái theo mã biên nhận, "Đề xuất của tôi" + bổ sung nguồn, ý tưởng đã duyệt |
 | `auth` | `POST /auth/otp/{request,verify}` · `POST /auth/logout` | Đăng nhập email + mã 6 số, không mật khẩu |
-| `accounts` | `GET`/`PATCH /me` | Người dùng + gói Pro + danh sách capability |
+| `accounts` | `GET`/`PATCH`/`DELETE /me` | Người dùng + gói Pro + danh sách capability; tự xoá tài khoản (gõ lại email) |
 | `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
 | `admin` | `/admin/*` (bảng đầy đủ ở `docs/api.md`) | Khu quản trị: người dùng, Pro, duyệt đề xuất, email, thống kê công cụ, cài đặt, phân quyền, nhật ký |
 | `roles` · `settings` | — | Vai trò `owner`/`admin`/`reviewer` → permission (`roles/roles.ts`) · công tắc vận hành `app_settings` (`@Global`, cache 30 s) |
 | `ai` | `/ai/{provider-types,setup,provider,provider/verify,session}` · `/admin/ai/*` | Trợ lý AI bản Pro: khoá AI của từng người thành provider + agent `cn-<userId>` trên GoClaw dùng chung; trình duyệt cầm vé nối WS thẳng tới GoClaw |
 | `cloud` | `/me/saved` · `/me/saved/bookmarks/:toolId` | Kết quả đã lưu + công cụ yêu thích của tài khoản Pro (bảng `saved_items`); lịch sử kiểm nguồn ở `GET /ai/history` (module `ai`) |
+| `lifecycle` | — | Job mỗi giờ quanh lúc hết Pro: thư nhắc 7 ngày trước, mục đã lưu chỉ-đọc 90 ngày, thư báo rồi mới xoá (bảng `plan_notices`) |
 | `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
@@ -138,6 +142,7 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
   tài khoản. GoClaw chặn MCP ở host nội bộ trừ khi có trong `GOCLAW_MCP_ALLOW_PRIVATE_HOSTS`
   (env của GoClaw, không phải của app). Đổi chỉ dẫn agent (`agent/*.md`) hay `TOOLS_CONFIG`
   thì tăng `PROMPT_VERSION` (đang là 3) rồi `npm run ai -- sync-agents` — agent cũ không tự đổi.
+  Chạy tay đối soát: `npm run ai -- reconcile`.
 - **Đính kèm chat: chỉ ảnh đi qua backend** (`ai-uploads.*`, kiểu nhận bằng magic bytes ở
   `upload-types.ts`). Link một lần, 5 phút, chỉ IP GoClaw tải được. Trình duyệt đưa link vào
   `chat.send` **không kèm `filename`**: GoClaw đặt tên bản sao `<uuid>.<ext>` và vault bỏ qua
@@ -168,6 +173,14 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
   trần mềm: kiểm trước khi ghi nên hai lần lưu cùng lúc có thể vượt một mục. `payload` là JSON
   tuỳ trang công cụ, backend chỉ kiểm là object ≤ 256 KiB; route ghi khai `bodyLimit` gấp đôi để
   payload quá cỡ vẫn ra mã `CLOUD_ITEM_TOO_LARGE` thay vì 413 trần của Fastify.
+- **Không bao giờ xoá mục đã lưu khi chưa gửi thư `cloud_purge` đủ 7 ngày**, dù Pro hết đã lâu
+  (`purgeAt = max(hết Pro + 90 ngày, ngày gửi thư + 7)`). Hàng `plan_notices` vừa là sổ thư
+  đã gửi vừa là khoá chống gửi trùng: `claimNotice` (INSERT IGNORE) TRƯỚC khi xếp thư, lỗi thì
+  `releaseNotice`. Tài khoản bị khoá thì bỏ qua hẳn. Nội dung thư bị xoá sau khi gửi nên test
+  đọc `plan_notices`, không đọc payload.
+- **Đối soát AI chỉ được TẮT**, không bao giờ bật (`ai-reconcile.service.ts`). Hết Pro thì tắt
+  agent nhưng GIỮ provider; gia hạn xong `/ai/session` tự dựng lại agent (sau khi kiểm provider
+  GoClaw còn bật và đúng tên). Kết quả lần chạy gần nhất chỉ nằm trong RAM (`lastRun`).
 - `data/tool-catalog.json` sinh từ frontend (`node scripts/export-tool-catalog.mjs`); sửa
   danh mục / chữ catalog mà quên xuất lại là test `tool-catalog-export.test.ts` bên frontend đỏ.
 - `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).

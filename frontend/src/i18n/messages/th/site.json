@@ -547,11 +547,12 @@
     "title": "วิธีที่เรา<accent>จัดการข้อมูล</accent>",
     "tagline": "ไฟล์ของคุณอยู่บนเครื่องของคุณ",
     "intro": "Chuyện Nhỏ ประมวลผลไฟล์ในเบราว์เซอร์ทันที หน้านี้อธิบายชัดเจนว่าแต่ละเครื่องมือทำงานที่ใด และอะไรบ้างที่ถูกส่งไปยังเซิร์ฟเวอร์จริง ๆ",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "โปร่งใส\nทุกเครื่องมือ!",
     "points": {
-      "noCookie": "ไม่ใช้คุกกี้",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "ไม่มีเครื่องมือติดตามหรือโฆษณา",
-      "noAccount": "ไม่ต้องมีบัญชี"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "ข้อมูลไปที่ใด",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "ส่งไปยังเซิร์ฟเวอร์ของเรา",
         "lead": "น้อยที่สุดเท่าที่เป็นไปได้",
         "points": {
-          "visits": "ชื่อเครื่องมือที่คุณเปิด เพื่อนับจำนวนการใช้งานทั้งหมด ไม่มีคุกกี้ ไม่ระบุตัวตนคุณ",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "ที่อยู่ IP ถูกแฮชทางเดียวเพื่อป้องกันการส่งอัตโนมัติเท่านั้น และลบอัตโนมัติหลังประมาณ 1 ชั่วโมง",
           "feedback": "ความเห็นและข้อเสนอจะถูกส่งเมื่อคุณทำเครื่องหมายยินยอมและกดส่งเท่านั้น",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} เครื่องมือที่กำลังจะเปิดตัวต้องค้นหาข้อมูลบนเซิร์ฟเวอร์ ซึ่งระบุไว้ชัดเจนบนการ์ด"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ ปลอดภัยหรือไม่",
-        "answer": "เว็บไซต์ทำงานผ่านการเชื่อมต่อที่เข้ารหัส (HTTPS) ไม่ใช้คุกกี้ ไม่ติดตั้งเครื่องมือโฆษณาหรือการติดตามของบุคคลที่สาม ไฟล์ของคุณไม่ออกจากอุปกรณ์"
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ เก็บข้อมูลส่วนบุคคลของฉันหรือไม่",

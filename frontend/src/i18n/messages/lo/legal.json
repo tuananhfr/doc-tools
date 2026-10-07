@@ -1,11 +1,12 @@
 {
   "bindingNotice": "ສະບັບພາສາຫວຽດນາມແມ່ນສະບັບທີ່ມີຜົນທາງກົດໝາຍ.",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "ຂໍ້ກຳນົດ<accent>ການນຳໃຊ້</accent>",
     "breadcrumb": "ຂໍ້ກຳນົດການນຳໃຊ້",
-    "intro": "ຂໍ້ກຳນົດນີ້ນຳໃຊ້ເມື່ອທ່ານໃຊ້ຊຸດເຄື່ອງມືຟຣີ Chuyện Nhỏ ທີ່ດຳເນີນງານໂດຍ ERPCons & LPC (“ພວກເຮົາ”). ການໃຊ້ເວັບໄຊໝາຍຄວາມວ່າທ່ານຍອມຮັບເງື່ອນໄຂຂ້າງລຸ່ມນີ້.",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "ຟຣີ, ບໍ່ຕ້ອງມີບັນຊີ.",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "ໄຟລ໌ຂອງທ່ານຍັງເປັນຂອງທ່ານ ແລະ ຖືກປະມວນຜົນໃນເຄື່ອງຂອງທ່ານ.",
       "reference": "ຜົນການຄິດໄລ່ເປັນພຽງການອ້າງອີງ, ກະລຸນາກວດທຽບກ່ອນນຳໃຊ້.",
       "lawful": "ຫ້າມໃຊ້ເຄື່ອງມືເພື່ອເຮັດສິ່ງທີ່ຜິດກົດໝາຍ."
@@ -15,14 +16,26 @@
         "heading": "ບໍລິການຟຣີ",
         "paragraphs": {
           "free": "Chuyện Nhỏ ໃຫ້ບໍລິການເຄື່ອງມືປະມວນຜົນເອກະສານ, ຮູບພາບ, ການຄິດໄລ່ ແລະ ເຄື່ອງມືປະຈຳວັນໂດຍບໍ່ເສຍຄ່າ, ເຮັດວຽກໃນບຣາວເຊີທັນທີ, ບໍ່ຕ້ອງລົງທະບຽນ.",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "ພວກເຮົາອາດເພີ່ມ, ແກ້ໄຂ, ຢຸດຊົ່ວຄາວ ຫຼື ຢຸດເຄື່ອງມືໃດໜຶ່ງໄດ້ທຸກເວລາ. ເຄື່ອງມືທີ່ຂຽນວ່າ “ໄວໆນີ້” ແມ່ນແຜນການ, ອາດມີການປ່ຽນແປງ ຫຼື ບໍ່ໄດ້ເປີດໃຊ້."
         }
       },
       "tep-cua-ban": {
         "heading": "ໄຟລ໌ ແລະ ເນື້ອໃນຂອງທ່ານ",
         "paragraphs": {
-          "ownership": "ທ່ານມີສິດທັງໝົດຕໍ່ໄຟລ໌ ແລະ ເນື້ອໃນຂອງທ່ານ. ເຄື່ອງມືທີ່ເປີດໃຊ້ຢູ່ປະມວນຜົນໄຟລ໌ໃນອຸປະກອນທັນທີ; ພວກເຮົາບໍ່ໄດ້ຮັບ ແລະ ບໍ່ເກັບໄຟລ໌ຂອງທ່ານ.",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "ທ່ານຮັບຜິດຊອບໃນການຮັບປະກັນວ່າທ່ານມີສິດໃຊ້ ແລະ ແກ້ໄຂໄຟລ໌ທີ່ນຳເຂົ້າເຄື່ອງມື, ແລະ ເກັບຕົ້ນສະບັບໄວ້ເອງກ່ອນປະມວນຜົນ."
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ",
     "intro": "ນະໂຍບາຍນີ້ອະທິບາຍວ່າ Chuyện Nhỏ ເກັບກຳ, ນຳໃຊ້ ແລະ ປົກປ້ອງຂໍ້ມູນສ່ວນບຸກຄົນແນວໃດ, ຕາມກົດໝາຍວ່າດ້ວຍການປົກປ້ອງຂໍ້ມູນສ່ວນບຸກຄົນຂອງຫວຽດນາມ ເລກທີ 91/2025/QH15 ແລະ ດຳລັດເລກທີ 356/2025/NĐ-CP.",
     "summary": {
-      "device": "ໄຟລ໌ຂອງທ່ານຖືກປະມວນຜົນໃນເຄື່ອງຂອງທ່ານ, ບໍ່ສົ່ງໄປຫາເຊີບເວີ.",
-      "noTracking": "ບໍ່ມີບັນຊີ, ບໍ່ມີຄຸກກີ້, ບໍ່ມີເຄື່ອງມືໂຄສະນາ ຫຼື ຕິດຕາມ.",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "ນັບສະເພາະຈຳນວນຄັ້ງທີ່ເປີດເຄື່ອງມື; ທີ່ຢູ່ IP ຖືກແຮຊ (hash) ແລະ ລຶບອັດຕະໂນມັດຫຼັງຈາກປະມານ 1 ຊົ່ວໂມງ.",
       "feedback": "ຄຳເຫັນຈະຖືກສົ່ງກໍ່ຕໍ່ເມື່ອທ່ານຍິນຍອມ ແລະ ກົດ ສົ່ງ."
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "ຫຼັກການຂອງພວກເຮົາ",
         "items": {
-          "device": "ປະມວນຜົນໃນອຸປະກອນ: ເຄື່ອງມືທີ່ເປີດໃຊ້ຢູ່ບໍ່ອັບໂຫຼດໄຟລ໌ຂອງທ່ານຂຶ້ນເຊີບເວີ.",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "ໜ້ອຍທີ່ສຸດ: ປະມວນຜົນສະເພາະຂໍ້ມູນທີ່ຈຳເປັນສຳລັບການດຳເນີນງານ ແລະ ປ້ອງກັນການໃຊ້ໃນທາງທີ່ຜິດ.",
-          "anonymous": "ບໍ່ລະບຸຕົວຕົນ: ບໍ່ຂໍຊື່, ອີເມວ, ເບີໂທລະສັບ ຫຼື ບັນຊີ.",
-          "noTracking": "ບໍ່ມີຄຸກກີ້, ບໍ່ມີເຄື່ອງມືວິເຄາະ, ໂຄສະນາ ຫຼື ຕິດຕາມຂອງບຸກຄົນທີສາມ."
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "ທີ່ຢູ່ IP: ຖືກແຮຊແບບທາງດຽວດ້ວຍກະແຈລັບ, ໃຊ້ສະເພາະເພື່ອຈຳກັດການສົ່ງອັດຕະໂນມັດ, ແລະ ລຶບອັດຕະໂນມັດຫຼັງຈາກປະມານ 1 ຊົ່ວໂມງ.",
           "feedback": "ເນື້ອໃນຄຳເຫັນ, ຂໍ້ສະເໜີ: ສະເພາະເມື່ອທ່ານໝາຍຍິນຍອມ ແລະ ກົດ ສົ່ງ, ເພື່ອພິຈາລະນາ ແລະ ປັບປຸງເຄື່ອງມື. ລະຫັດໃບຮັບຖືກເກັບໄວ້ໃນຮູບແບບແຮຊເທົ່ານັ້ນ.",
           "logs": "ບັນທຶກທາງເຕັກນິກຂອງເຊີບເວີເວັບ (ທີ່ຢູ່ IP, ປະເພດບຣາວເຊີ, ໜ້າທີ່ເປີດ): ໃຊ້ສະເພາະສຳລັບການດຳເນີນງານ ແລະ ຄວາມປອດໄພຂອງລະບົບ, ເກັບໄວ້ໃນໄລຍະສັ້ນທີ່ຈຳເປັນ."
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "ການແບ່ງປັນກັບບຸກຄົນທີສາມ",
         "paragraphs": {
           "noSale": "ພວກເຮົາບໍ່ຂາຍ ແລະ ບໍ່ແບ່ງປັນຂໍ້ມູນສ່ວນບຸກຄົນເພື່ອຈຸດປະສົງໂຄສະນາ. ພວກເຮົາໃຫ້ຂໍ້ມູນແກ່ໜ່ວຍງານລັດທີ່ມີສິດອຳນາດສະເພາະເມື່ອກົດໝາຍກຳນົດ.",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "ສະເພາະເຄື່ອງມືບັນທຶກສຽງເປັນຂໍ້ຄວາມ ໃຊ້ບໍລິການຮັບຮູ້ສຽງເວົ້າທີ່ມີໃນບຣາວເຊີ. ສຽງຖືກບຣາວເຊີສົ່ງໄປຫາຜູ້ໃຫ້ບໍລິການຂອງບຣາວເຊີນັ້ນ (ຕົວຢ່າງ Google ສຳລັບ Chrome), ອາດຖືກປະມວນຜົນຢູ່ຕ່າງປະເທດຕາມນະໂຍບາຍຂອງເຂົາເຈົ້າ, ແລະ ບໍ່ຜ່ານເຊີບເວີຂອງພວກເຮົາ."
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "ຄ່າແຮຊຂອງທີ່ຢູ່ IP: ປະມານ 1 ຊົ່ວໂມງ.",
           "counts": "ຈຳນວນການໃຊ້: ເກັບໄວ້ເປັນສະຖິຕິລວມ, ບໍ່ມີຂໍ້ມູນສ່ວນບຸກຄົນ.",
-          "feedback": "ຄຳເຫັນ, ຂໍ້ສະເໜີ: ເກັບໄວ້ໃນໄລຍະທີ່ຈຳເປັນເພື່ອພິຈາລະນາ ແລະ ຕິດຕາມ, ຫຼື ຈົນກວ່າທ່ານຮ້ອງຂໍໃຫ້ລຶບ."
+          "feedback": "ຄຳເຫັນ, ຂໍ້ສະເໜີ: ເກັບໄວ້ໃນໄລຍະທີ່ຈຳເປັນເພື່ອພິຈາລະນາ ແລະ ຕິດຕາມ, ຫຼື ຈົນກວ່າທ່ານຮ້ອງຂໍໃຫ້ລຶບ.",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "ວິທີໃຊ້ສິດ",
         "paragraphs": {
-          "request": "ສົ່ງຄຳຮ້ອງມາທີ່ {{email}}. ເນື່ອງຈາກ Chuyện Nhỏ ບໍ່ມີບັນຊີ, ກະລຸນາແນບລະຫັດໃບຮັບຂອງຄຳເຫັນມາພ້ອມ ເພື່ອໃຫ້ພວກເຮົາຊອກຫາເນື້ອໃນຂອງທ່ານໄດ້ຖືກຕ້ອງ.",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "ພວກເຮົາຢືນຢັນການໄດ້ຮັບຄຳຮ້ອງພາຍໃນ 2 ວັນເຮັດວຽກ ແລະ ດຳເນີນການພາຍໃນກຳນົດເວລາທີ່ກົດໝາຍກຳນົດ, ຊ້າສຸດ 20 ວັນ."
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "ເດັກນ້ອຍ",
         "paragraphs": {
-          "children": "Chuyện Nhỏ ບໍ່ເກັບກຳຂໍ້ມູນເພື່ອລະບຸຕົວເດັກນ້ອຍ. ເດັກນ້ອຍທີ່ຕ້ອງການສົ່ງຄຳເຫັນຕ້ອງໄດ້ຮັບການຍິນຍອມຈາກພໍ່ແມ່ ຫຼື ຜູ້ປົກຄອງ, ຕາມລະບຽບກົດໝາຍ."
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

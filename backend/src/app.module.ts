@@ -9,5 +9,6 @@ import { AdminModule } from './admin/admin.module'
 import { AiModule } from './ai/ai.module'
 import { McpModule } from './mcp/mcp.module'
 import { CloudModule } from './cloud/cloud.module'
-@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule] })
+import { LifecycleModule } from './lifecycle/lifecycle.module'
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule] })
 export class AppModule {}

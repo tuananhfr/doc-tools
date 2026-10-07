@@ -25,6 +25,8 @@ export interface SavedList {
   usage: { items: number; bytes: number; maxItems: number; maxBytes: number }
   /** False once Pro has ended: items stay readable and deletable, nothing new is saved. */
   writable: boolean
+  /** Unix seconds when read-only items get deleted; null while Pro is active or nothing is left. */
+  purgeAt: number | null
 }
 
 export type DraftState = 'none' | 'open' | 'submitted' | 'discarded'

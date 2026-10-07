@@ -547,11 +547,12 @@
     "title": "Cara kami <accent>memproses data</accent>",
     "tagline": "File Anda tetap di perangkat Anda.",
     "intro": "Chuyện Nhỏ memproses file langsung di browser. Halaman ini menjelaskan di mana setiap alat berjalan, dan apa saja yang benar-benar dikirim ke server.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "Transparan\nuntuk setiap alat!",
     "points": {
-      "noCookie": "Tidak memakai cookie",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "Tanpa alat pelacak dan iklan",
-      "noAccount": "Tidak perlu akun"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "Ke mana data pergi",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "Dikirim ke server kami",
         "lead": "Sesedikit mungkin",
         "points": {
-          "visits": "Nama alat yang Anda buka, untuk menghitung total penggunaan. Tanpa cookie, tanpa mengidentifikasi Anda",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "Alamat IP hanya di-hash satu arah untuk mencegah pengiriman otomatis, terhapus otomatis setelah sekitar 1 jam",
           "feedback": "Masukan dan usulan hanya dikirim jika Anda mencentang persetujuan dan menekan Kirim",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} alat yang segera hadir akan memerlukan pencarian di server; kartunya menandai hal ini dengan jelas"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Apakah Chuyện Nhỏ aman?",
-        "answer": "Situs berjalan melalui koneksi terenkripsi (HTTPS), tidak memakai cookie, dan tidak memasang alat iklan atau pelacakan pihak ketiga. File Anda tidak meninggalkan perangkat."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Apakah Chuyện Nhỏ mengumpulkan informasi pribadi saya?",

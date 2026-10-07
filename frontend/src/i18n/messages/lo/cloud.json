@@ -49,6 +49,7 @@
       "action": "See the Pro plan"
     },
     "readOnly": "Your Pro plan has ended. You can still view, open and delete past items but cannot save new ones.",
+    "purgeOn": "Unless you renew, these items will be deleted from {{date}}.",
     "usageItems": "{{used}} / {{max}} items",
     "usageBytes": "{{used}} / {{max}} of storage",
     "usageLabel": "Storage used",

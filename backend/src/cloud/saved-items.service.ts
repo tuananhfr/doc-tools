@@ -1,5 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common'
 import { randomUUID } from 'node:crypto'
+import { PlanLifecycleService } from '../lifecycle/plan-lifecycle.service'
 import { readyTool } from '../mcp/tool-catalog'
 import { SettingsService } from '../settings/settings.service'
 import { SavedItemsRepository, type SavedItem, type SavedMeta } from './saved-items.repository'
@@ -32,7 +33,7 @@ function encodePayload(value: unknown) {
 
 @Injectable()
 export class SavedItemsService {
-  constructor(private readonly repository: SavedItemsRepository, private readonly settings: SettingsService) {}
+  constructor(private readonly repository: SavedItemsRepository, private readonly settings: SettingsService, private readonly lifecycle: PlanLifecycleService) {}
 
   private async limits() {
     const [maxItems, maxMegabytes] = await Promise.all([this.settings.get('cloud.maxItems'), this.settings.get('cloud.maxMegabytes')])
@@ -51,7 +52,8 @@ export class SavedItemsService {
 
   async list(userId: string, writable: boolean) {
     const [items, usage, limits] = await Promise.all([this.repository.list(userId), this.repository.usage(userId), this.limits()])
-    return { ok: true, items, usage: { ...usage, ...limits }, writable }
+    const purgeAt = !writable && items.length ? await this.lifecycle.purgeAt(userId) : null
+    return { ok: true, items, usage: { ...usage, ...limits }, writable, purgeAt }
   }
 
   async get(userId: string, id: string) {

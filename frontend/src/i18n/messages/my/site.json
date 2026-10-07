@@ -547,11 +547,12 @@
     "title": "ကျွန်ုပ်တို့ <accent>ဒေတာကို ကိုင်တွယ်ပုံ</accent>",
     "tagline": "သင့်ဖိုင်များ သင့်စက်ပေါ်တွင်သာ ကျန်သည်။",
     "intro": "Chuyện Nhỏ သည် ဖိုင်များကို ဘရောက်ဇာထဲတွင် တိုက်ရိုက် လုပ်ဆောင်သည်။ ဤစာမျက်နှာသည် ကိရိယာတစ်ခုစီ မည်သည့်နေရာတွင် အလုပ်လုပ်သည်နှင့် ဆာဗာသို့ အမှန်တကယ် ပို့သော အရာများကို ရှင်းပြသည်။",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "ကိရိယာတိုင်း\nပွင့်လင်းမြင်သာ!",
     "points": {
-      "noCookie": "cookie မသုံးပါ",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "ခြေရာခံကိရိယာ၊ ကြော်ငြာ မရှိပါ",
-      "noAccount": "အကောင့် မလိုပါ"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "ဒေတာ ဘယ်ကို သွားသလဲ",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "ကျွန်ုပ်တို့ ဆာဗာသို့ ပို့သည်",
         "lead": "တတ်နိုင်သမျှ နည်းနည်း",
         "points": {
-          "visits": "စုစုပေါင်း အသုံးပြုမှု ရေတွက်ရန် သင်ဖွင့်သော ကိရိယာ၏ အမည်။ cookie မသုံး၊ သင့်ကို မခွဲခြားပါ",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IP လိပ်စာကို အလိုအလျောက် ပို့ခြင်း ကာကွယ်ရန် တစ်လမ်းသွား hash လုပ်ရုံသာဖြစ်ပြီး 1 နာရီခန့်အကြာတွင် အလိုအလျောက် ဖျက်သည်",
           "feedback": "အကြံပြုချက်၊ တောင်းဆိုချက်များကို သဘောတူကြောင်း အမှတ်ခြစ်ပြီး ပို့ရန် နှိပ်မှသာ ပို့သည်",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "မကြာမီ လာမည့် ကိရိယာ {{count}} ခုသည် ဆာဗာပေါ်တွင် ရှာဖွေရန် လိုမည်ဖြစ်ပြီး ၎င်းတို့၏ ကတ်တွင် ရှင်းရှင်းလင်းလင်း ဖော်ပြထားသည်"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ သည် လုံခြုံပါသလား။",
-        "answer": "ဆိုက်သည် ကုဒ်ဝှက်ထားသော ချိတ်ဆက်မှု (HTTPS) ဖြင့် အလုပ်လုပ်ပြီး cookie မသုံး၊ ပြင်ပအဖွဲ့၏ ကြော်ငြာ သို့မဟုတ် ခြေရာခံကိရိယာ မထည့်ပါ။ သင့်ဖိုင်များ စက်မှ မထွက်ပါ။"
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ သည် ကျွန်ုပ်၏ ကိုယ်ရေးအချက်အလက်ကို စုဆောင်းပါသလား။",

@@ -547,11 +547,12 @@
     "title": "Cara kami <accent>memproses data</accent>",
     "tagline": "Fail anda kekal pada peranti anda.",
     "intro": "Chuyện Nhỏ memproses fail terus dalam pelayar. Halaman ini menerangkan dengan jelas di mana setiap alat berjalan, dan apa yang benar-benar dihantar ke pelayan.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "Telus\nbagi setiap alat!",
     "points": {
-      "noCookie": "Tidak menggunakan kuki",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "Tiada alat penjejakan atau pengiklanan",
-      "noAccount": "Tidak perlu akaun"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "Ke mana data pergi",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "Dihantar ke pelayan kami",
         "lead": "Sesedikit mungkin",
         "points": {
-          "visits": "Nama alat yang anda buka, untuk mengira jumlah penggunaan. Tiada kuki, tidak mengenal pasti anda",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "Alamat IP hanya dicincang sehala untuk mencegah penghantaran automatik, dipadam secara automatik selepas kira-kira 1 jam",
           "feedback": "Maklum balas dan cadangan hanya dihantar apabila anda menanda persetujuan dan menekan Hantar",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} alat akan datang akan memerlukan carian di pelayan, dan kadnya menyatakan perkara ini dengan jelas"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Adakah Chuyện Nhỏ selamat?",
-        "answer": "Laman ini berjalan melalui sambungan yang disulitkan (HTTPS), tidak menggunakan kuki, tidak memasang alat pengiklanan atau penjejakan pihak ketiga. Fail anda tidak meninggalkan peranti."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Adakah Chuyện Nhỏ mengumpul maklumat peribadi saya?",

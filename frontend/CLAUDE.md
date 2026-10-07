@@ -68,7 +68,11 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
   trang nội dung khai tiêu đề/mô tả ở `SITE_PAGE_META`. Bài hướng dẫn (`config/guides.ts`)
   trích nguyên nhãn nút của công cụ — đổi nhãn thì sửa cả bài. `support-faq.ts`, `legal.ts`
   và bảng `/xu-ly-du-lieu` là lời hứa về dữ liệu: đổi luồng gửi dữ liệu (đếm lượt, góp ý,
-  `processing`) phải sửa cả ba trước khi phát hành.
+  `processing`) phải sửa cả ba trước khi phát hành. Phần tài khoản / Pro / AI / xoá tài khoản
+  của trang pháp lý là bản **chờ duyệt pháp lý**: `LEGAL_DRAFT` (`legal.ts`) bật băng báo trên
+  `/dieu-khoan`, `/quyen-rieng-tu` và `/xu-ly-du-lieu`; duyệt xong thì tắt cờ, đổi `LEGAL_UPDATED`.
+  Câu báo của `/xu-ly-du-lieu` nằm ở `site.json` (`data.draftNotice`) vì namespace `legal` nạp
+  lười, trang đó không có. vi + en là bản dịch thật, 13 locale còn lại đang chép en.
 - Route động (`[tool]`, `huong-dan/[guide]`): `redirect()` ở lần render động đầu tiên
   khiến Next 16 trả HAI header `Location`, Chrome gộp thành URL hỏng. Slug lạ của bài
   hướng dẫn vì thế được chuyển hướng phía client (`GuidePage`).
@@ -153,6 +157,11 @@ trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
   chỉ hiện từ 1400px, dưới 360px nút tài khoản chuyển vào menu trượt).
 - `/me` trả `staff` (`null` với tài khoản thường). Staff thấy thêm nút khiên ở header / mục
   "Quản trị" trong menu trượt, và đăng nhập không có `?next=` thì vào thẳng `/quan-tri`.
+- Tự xoá tài khoản (`DeleteAccountSection`): gõ lại đúng email mới bật nút; staff chỉ thấy ghi
+  chú (backend trả 409 `STAFF_ACCOUNT`). Xoá xong `AccountPage` giữ cờ `deleted` để KHÔNG
+  `<Navigate>` sang đăng nhập: React Router v7 commit điều hướng trong transition, còn reset
+  `/me` là cập nhật khẩn nên trang kịp vẽ lại với "khách" trước — `await navigate()` không cứu được.
+- `PlanSection` báo "sắp hết hạn" khi Pro còn ≤ 7 ngày, cùng mốc với thư nhắc của backend.
 
 ### Trợ lý AI (`features/ai`, bản Pro)
 
@@ -216,6 +225,8 @@ xuất xoá sạch.
   Helper đọc payload ở `utils/saved-payload.ts`, không ở `features/cloud`: codec import cloud
   là kéo React vào test node.
 - Link `?saved=<id>` trên trang công cụ mở mục đó một lần rồi tự gỡ tham số (`replace`).
+- Hết Pro, `GET /me/saved` trả `purgeAt` (giây): băng chỉ-đọc ghi ngày bị xoá. Backend chỉ xoá
+  sau khi đã gửi thư báo đủ 7 ngày, nên ngày này có thể lùi về sau mốc 90 ngày.
 - Nút sao gắn vào đầu trang công cụ qua prop `headerAction` của `ToolRoutePage` —
   `runtime/ToolFavourite.tsx` ghép `useMe` với `FavouriteButton` (hub không import feature,
   cloud không import account ở component dùng chung).

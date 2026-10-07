@@ -553,11 +553,12 @@
     "title": "Comment nous <accent>traitons les données</accent>",
     "tagline": "Vos fichiers restent sur votre appareil.",
     "intro": "Chuyện Nhỏ traite les fichiers directement dans le navigateur. Cette page indique où s'exécute chaque outil, et ce qui est réellement envoyé au serveur.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "Transparence\noutil par outil !",
     "points": {
-      "noCookie": "Aucun cookie",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "Aucun outil de suivi ni de publicité",
-      "noAccount": "Aucun compte requis"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "Où vont les données",
     "columns": {
@@ -576,9 +577,11 @@
         "title": "Envoyé à notre serveur",
         "lead": "Le strict minimum",
         "points": {
-          "visits": "Le nom de l'outil ouvert, pour compter le nombre total d'utilisations. Sans cookie, sans vous identifier",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "L'adresse IP est seulement hachée de manière irréversible pour bloquer les envois automatisés, puis supprimée au bout d'environ 1 heure",
           "feedback": "Les avis et suggestions ne sont envoyés que si vous cochez la case de consentement et cliquez sur Envoyer",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} outil à venir devra consulter le serveur ; sa carte l'indique clairement",
           "soon_many": "{{count}} outils à venir devront consulter le serveur ; leurs cartes l'indiquent clairement",
           "soon_other": "{{count}} outils à venir devront consulter le serveur ; leurs cartes l'indiquent clairement"
@@ -877,7 +880,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ est-il sûr ?",
-        "answer": "Le site fonctionne via une connexion chiffrée (HTTPS), n'utilise aucun cookie et n'intègre aucun outil publicitaire ou de suivi tiers. Vos fichiers ne quittent pas votre appareil."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ collecte-t-il mes informations personnelles ?",

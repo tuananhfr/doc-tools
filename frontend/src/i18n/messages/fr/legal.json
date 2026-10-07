@@ -1,11 +1,12 @@
 {
   "bindingNotice": "Seule la version vietnamienne fait foi juridiquement.",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "Conditions <accent>d'utilisation</accent>",
     "breadcrumb": "Conditions d'utilisation",
-    "intro": "Les présentes conditions s'appliquent lorsque vous utilisez la boîte à outils gratuite Chuyện Nhỏ exploitée par ERPCons & LPC (« nous »). En utilisant le site, vous acceptez les conditions ci-dessous.",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "Gratuit, sans compte.",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "Vos fichiers restent les vôtres et sont traités sur votre appareil.",
       "reference": "Les résultats de calcul sont fournis à titre indicatif ; vérifiez-les avant de les utiliser.",
       "lawful": "N'utilisez pas les outils à des fins illégales."
@@ -15,14 +16,26 @@
         "heading": "Un service gratuit",
         "paragraphs": {
           "free": "Chuyện Nhỏ propose gratuitement des outils de traitement de documents et d'images, de calcul et des utilitaires du quotidien, qui fonctionnent directement dans votre navigateur, sans inscription.",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "Nous pouvons ajouter, modifier, suspendre ou arrêter un outil à tout moment. Les outils marqués « Bientôt disponible » sont des projets susceptibles de changer ou de ne jamais voir le jour."
         }
       },
       "tep-cua-ban": {
         "heading": "Vos fichiers et contenus",
         "paragraphs": {
-          "ownership": "Vous conservez l'intégralité des droits sur vos fichiers et contenus. Les outils actuellement disponibles traitent les fichiers directement sur votre appareil ; nous ne recevons ni ne conservons vos fichiers.",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "Il vous appartient de vous assurer que vous avez le droit d'utiliser et de modifier les fichiers que vous confiez aux outils, et de conserver vous-même les originaux avant traitement."
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "Politique de confidentialité",
     "intro": "Cette politique explique comment Chuyện Nhỏ collecte, utilise et protège les données personnelles, conformément à la loi n° 91/2025/QH15 sur la protection des données personnelles et au décret n° 356/2025/NĐ-CP.",
     "summary": {
-      "device": "Vos fichiers sont traités sur votre appareil et ne sont jamais envoyés à un serveur.",
-      "noTracking": "Pas de compte, pas de cookies, aucun outil publicitaire ni de suivi.",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "Nous comptons uniquement les ouvertures d'outils ; les adresses IP sont hachées et supprimées automatiquement après environ 1 heure.",
       "feedback": "Les remarques ne sont envoyées que si vous donnez votre accord et appuyez sur Envoyer."
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "Nos principes",
         "items": {
-          "device": "Traitement sur l'appareil : les outils actuellement disponibles n'envoient pas vos fichiers à un serveur.",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "Minimisation : nous ne traitons que les données nécessaires au fonctionnement du service et à la prévention des abus.",
-          "anonymous": "Anonymat : nous ne demandons ni nom, ni e-mail, ni numéro de téléphone, ni compte.",
-          "noTracking": "Pas de cookies, aucun outil d'analyse, de publicité ou de suivi tiers."
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "Adresse IP : hachée de manière irréversible avec une clé secrète, utilisée uniquement pour limiter les envois automatisés, et supprimée automatiquement après environ 1 heure.",
           "feedback": "Contenu des remarques et propositions : uniquement si vous cochez la case de consentement et appuyez sur Envoyer, afin de les examiner et d'améliorer les outils. Les codes de reçu ne sont conservés que sous forme hachée.",
           "logs": "Journaux techniques du serveur web (adresse IP, type de navigateur, pages consultées) : utilisés uniquement pour le fonctionnement et la sécurité du système, et conservés pendant la courte durée nécessaire."
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "Partage avec des tiers",
         "paragraphs": {
           "noSale": "Nous ne vendons pas les données personnelles et ne les partageons pas à des fins publicitaires. Nous ne communiquons des données aux autorités publiques compétentes que lorsque la loi l'exige.",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "Seul l'outil de dictée (de la voix au texte) utilise le service de reconnaissance vocale intégré à votre navigateur. L'audio est envoyé par le navigateur à son éditeur (par exemple Google pour Chrome), peut être traité à l'étranger selon leurs politiques, et ne transite pas par nos serveurs."
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "Adresses IP hachées : environ 1 heure.",
           "counts": "Compteurs d'utilisation : conservés sous forme de statistiques agrégées, sans données personnelles.",
-          "feedback": "Remarques et propositions : conservées le temps nécessaire à leur examen et à leur suivi, ou jusqu'à ce que vous en demandiez la suppression."
+          "feedback": "Remarques et propositions : conservées le temps nécessaire à leur examen et à leur suivi, ou jusqu'à ce que vous en demandiez la suppression.",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "Comment exercer vos droits",
         "paragraphs": {
-          "request": "Envoyez votre demande à {{email}}. Chuyện Nhỏ n'ayant pas de comptes, joignez le code de reçu de votre remarque pour que nous retrouvions le bon contenu.",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "Nous accusons réception de votre demande sous 2 jours ouvrés et la traitons dans le délai fixé par la loi, au plus tard sous 20 jours."
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "Enfants",
         "paragraphs": {
-          "children": "Chuyện Nhỏ ne collecte pas d'informations permettant d'identifier les enfants. Les enfants qui souhaitent envoyer une remarque doivent avoir l'accord d'un parent ou d'un tuteur, conformément à la loi."
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

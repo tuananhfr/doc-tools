@@ -90,6 +90,20 @@ export default function AdminAiPage() {
             </dd>
             <dt>Địa chỉ API nội bộ</dt>
             <dd>{info.allowPrivateApiBase ? <Pill tone="warning" icon="exclamation-triangle">Đang cho phép (chỉ dùng khi dev)</Pill> : <Pill tone="positive" icon="shield-check">Chặn</Pill>}</dd>
+            <dt>Đối soát mỗi giờ</dt>
+            <dd>
+              {info.reconcile ? (
+                <>
+                  <Pill tone={info.reconcile.errors ? 'warning' : 'positive'} icon={info.reconcile.errors ? 'exclamation-triangle' : 'check2-circle'}>
+                    {info.reconcile.errors ? `${info.reconcile.errors} agent không kiểm được` : 'Khớp'}
+                  </Pill>
+                  <span className="cn-admin-sub">
+                    Lần gần nhất {formatDateTime(info.reconcile.at)}: kiểm {info.reconcile.checked} agent, tắt {info.reconcile.expired} vì hết Pro, {info.reconcile.drift} vì cấu hình lệch, {info.reconcile.stray} đang chạy ngoài ý muốn.
+                  </span>
+                </>
+              ) : !info.configured ? <span className="cn-admin-sub">Không chạy khi chưa cấu hình GoClaw.</span>
+                : <span className="cn-admin-sub">Chưa chạy lần nào kể từ khi máy chủ khởi động (lần đầu sau 5 phút). Chạy tay: <code>npm run ai -- reconcile</code></span>}
+            </dd>
             <dt>Phiên bản chỉ dẫn agent</dt>
             <dd>v{info.promptVersion} · đẩy lại cho agent cũ bằng <code>npm run ai -- sync-agents</code></dd>
           </dl>

@@ -550,11 +550,12 @@
     "title": "How we <accent>handle data</accent>",
     "tagline": "Your files stay on your device.",
     "intro": "Chuyện Nhỏ processes files right in your browser. This page explains where each tool runs and what is actually sent to the server.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "Transparent\nfor every tool!",
     "points": {
-      "noCookie": "No cookies",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "No tracking or advertising tools",
-      "noAccount": "No account needed"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "Where data goes",
     "columns": {
@@ -572,9 +573,11 @@
         "title": "Sent to our server",
         "lead": "As little as possible",
         "points": {
-          "visits": "The name of the tool you open, to count total usage. No cookies, nothing that identifies you",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IP addresses are only one-way hashed to prevent automated submissions, and deleted automatically after about 1 hour",
           "feedback": "Feedback and suggestions are sent only when you tick consent and press Send",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} upcoming tool will need server lookups; its card says so clearly",
           "soon_other": "{{count}} upcoming tools will need server lookups; their cards say so clearly"
         }
@@ -868,7 +871,7 @@
       },
       "an-toan": {
         "question": "Is Chuyện Nhỏ safe?",
-        "answer": "The site runs over an encrypted connection (HTTPS), uses no cookies and has no third-party advertising or tracking tools. Your files never leave your device."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Does Chuyện Nhỏ collect my personal information?",

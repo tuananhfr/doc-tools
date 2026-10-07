@@ -9,7 +9,7 @@ export class AccountError extends Error {
 
 const isKnownCode = (value: unknown): value is AccountErrorCode => (ACCOUNT_ERROR_CODES as readonly unknown[]).includes(value)
 
-async function call<T>(path: string, init?: { method: 'POST' | 'PATCH'; body?: unknown }): Promise<T> {
+async function call<T>(path: string, init?: { method: 'POST' | 'PATCH' | 'DELETE'; body?: unknown }): Promise<T> {
   let response: Response
   try {
     response = await fetch(withBase('/api/v1' + path), init
@@ -35,4 +35,5 @@ export const accountService = {
   myContributions: (page: number) => call<MyContributionsPage>(`/me/contributions?page=${page}`),
   addEvidence: (id: string, sourceRefs: SourceRef[]) =>
     call<Pick<MyContribution, 'status' | 'sourceRefs'>>(`/me/contributions/${encodeURIComponent(id)}/evidence`, { method: 'POST', body: { sourceRefs } }),
+  deleteAccount: (confirmEmail: string) => call<{ ok: true }>('/me', { method: 'DELETE', body: { confirmEmail } }),
 }

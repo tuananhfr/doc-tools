@@ -15,7 +15,7 @@ import { SourceCheckHistory } from '../components/SourceCheckHistory'
 import { SAVED_PAGE_PATH } from '../config/cloud-routes'
 import { useSavedItems, useToggleBookmark } from '../hooks/useSavedItems'
 import { CloudError } from '../services/cloud.service'
-import { savedItemPath } from '../utils/saved-format'
+import { savedDay, savedItemPath } from '../utils/saved-format'
 
 export default function SavedPage() {
   const { t } = useTranslation('cloud')
@@ -63,7 +63,12 @@ export default function SavedPage() {
     const share = Math.min(100, Math.round(Math.max(usage.items / usage.maxItems, usage.bytes / usage.maxBytes) * 100))
     body = (
       <div className="cn-saved">
-        {!writable ? <p className="cn-saved-readonly" role="status"><Icon name="lock" />{t('page.readOnly')}</p> : null}
+        {!writable ? (
+          <p className="cn-saved-readonly" role="status">
+            <Icon name="lock" />
+            <span>{t('page.readOnly')}{saved.data.purgeAt ? <> <strong>{t('page.purgeOn', { date: savedDay(saved.data.purgeAt) })}</strong></> : null}</span>
+          </p>
+        ) : null}
 
         <div className="cn-saved-usage">
           <div className="cn-saved-usage__text">

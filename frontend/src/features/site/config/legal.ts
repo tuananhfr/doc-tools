@@ -22,19 +22,24 @@ export interface LegalText {
   sections: Record<string, { heading: string; paragraphs?: Record<string, string>; items?: Record<string, string>; link?: string }>
 }
 
-export const LEGAL_UPDATED = '07/10/2026'
+export const LEGAL_UPDATED = '08/10/2026'
+
+/** Phần tài khoản / Pro / trợ lý AI là bản nháp chưa qua pháp chế; đổi thành `false` khi đã duyệt. */
+export const LEGAL_DRAFT = true
 
 /**
  * Mục "dữ liệu xử lý" và "thời gian lưu" mô tả đúng code hiện tại (đếm lượt,
- * băm IP, góp ý có đồng ý). Đổi luồng dữ liệu là phải sửa chính sách (`messages/vi/legal.json`)
+ * băm IP, góp ý có đồng ý, tài khoản email, Pro: khoá AI ở GoClaw, ảnh đính kèm 7 ngày,
+ * mục đã lưu chỉ đọc 90 ngày sau khi hết Pro). Đổi luồng dữ liệu là phải sửa chính sách (`messages/vi/legal.json`)
  * trước khi phát hành: Luật 91/2025/QH15 coi thông báo sai là xử lý không hợp pháp.
  */
 export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
   'dieu-khoan': {
     summary: ['free', 'yours', 'reference', 'lawful'],
     sections: [
-      { id: 'dich-vu', paragraphs: ['free', 'changes'] },
+      { id: 'dich-vu', paragraphs: ['free', 'accounts', 'changes'] },
       { id: 'tep-cua-ban', paragraphs: ['ownership', 'responsibility'] },
+      { id: 'tai-khoan-pro', items: ['security', 'aiKey', 'aiOutput', 'expiry', 'suspend', 'delete'] },
       { id: 'tham-khao', paragraphs: ['intro'], items: ['estimates', 'orientation', 'ocr'] },
       { id: 'hanh-vi-cam', items: ['unlawful', 'unauthorized', 'abuse', 'content'] },
       { id: 'gop-y', paragraphs: ['use'] },
@@ -48,16 +53,19 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
     ],
   },
   'quyen-rieng-tu': {
-    summary: ['device', 'noTracking', 'counting', 'feedback'],
+    summary: ['device', 'noTracking', 'account', 'ai', 'counting', 'feedback'],
     sections: [
       { id: 'chung-toi', paragraphs: ['controller'] },
       { id: 'nguyen-tac', items: ['device', 'minimal', 'anonymous', 'noTracking'] },
       { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs'] },
+      { id: 'tai-khoan', items: ['email', 'session', 'profile', 'contributions', 'plan'] },
+      { id: 'pro', paragraphs: ['intro'], items: ['key', 'chat', 'memory', 'uploads', 'checks', 'saved'] },
       { id: 'tren-thiet-bi', paragraphs: ['local'], link: { to: '/xu-ly-du-lieu' } },
-      { id: 'ben-thu-ba', paragraphs: ['noSale', 'speech'] },
-      { id: 'thoi-gian-luu', items: ['ip', 'counts', 'feedback'] },
+      { id: 'ben-thu-ba', paragraphs: ['noSale', 'ai', 'speech'] },
+      { id: 'thoi-gian-luu', items: ['ip', 'counts', 'feedback', 'account', 'saved', 'uploads', 'mail'] },
       { id: 'quyen', paragraphs: ['intro'], items: ['informed', 'consent', 'access', 'complain', 'protection'] },
       { id: 'thuc-hien-quyen', paragraphs: ['request', 'timeline'] },
+      { id: 'xoa-tai-khoan', paragraphs: ['self', 'kept'], link: { to: '/tai-khoan' } },
       { id: 'tre-em', paragraphs: ['children'] },
       { id: 'bao-mat', paragraphs: ['security'] },
       { id: 'thay-doi', paragraphs: ['updates'] },

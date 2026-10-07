@@ -547,11 +547,12 @@
     "title": "我们如何<accent>处理数据</accent>",
     "tagline": "你的文件留在你的设备上。",
     "intro": "Chuyện Nhỏ 直接在浏览器中处理文件。本页清楚说明每个工具在哪里运行，以及真正发送到服务器的内容。",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "每个工具\n都公开透明！",
     "points": {
-      "noCookie": "不使用 Cookie",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "无跟踪、广告工具",
-      "noAccount": "无需账号"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "数据去向",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "发送到我们的服务器",
         "lead": "尽可能少",
         "points": {
-          "visits": "你打开的工具名称，用于统计总使用次数。无 Cookie，不识别你的身份",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IP 地址仅做单向哈希处理以防止自动提交，约 1 小时后自动删除",
           "feedback": "反馈、建议只有在你勾选同意并点击“提交”后才会发送",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} 个即将推出的工具需要在服务器上查询，其卡片会明确标注"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ 安全吗？",
-        "answer": "网站通过加密连接（HTTPS）运行，不使用 Cookie，不嵌入第三方广告或跟踪工具。你的文件不会离开设备。"
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ 会收集我的个人信息吗？",

@@ -6,7 +6,7 @@ import { readyTool } from '../mcp/tool-catalog'
 import { PROMPT_VERSION, TOOLS_CONFIG, agentDefinition, agentFiles, agentKey, goclawUserId, providerName } from './agent-profile'
 import { AiRepository, type ProviderRow } from './ai.repository'
 import { checkApiBase } from './api-base'
-import { GoclawClient, GoclawError } from './goclaw.client'
+import { GoclawClient, GoclawError, type GoclawAgent } from './goclaw.client'
 import { writeAgentFiles } from './goclaw-files'
 import { providerType } from './provider-types'
 
@@ -25,6 +25,12 @@ const API_BASE_MESSAGES = {
 
 const MODEL_PATTERN = /^[\w.:/@+-]{1,128}$/
 const HISTORY_PAGE = 30
+
+/** What GoClaw holds still matches what was verified: the agent runs on this member's own provider. */
+export function setupIntact(provider: ProviderRow, remoteProvider: { name: string; enabled: boolean } | null, remoteAgent: GoclawAgent | null) {
+  return remoteProvider?.enabled === true && remoteProvider.name === provider.goclawName
+    && remoteAgent?.status === 'active' && remoteAgent.provider === provider.goclawName
+}
 
 /**
  * Per-user provider + agent in a GoClaw shared with ERPCons. The ordering rules here are the guard
@@ -157,7 +163,7 @@ export class AiService implements OnModuleInit {
   }
 
   /** Agent off in GoClaw first; the DB follows only once GoClaw has accepted it. */
-  private async deactivateAgent(userId: string) {
+  async deactivateAgent(userId: string) {
     const agent = await this.repository.agent(userId)
     if (!agent?.goclawAgentId || agent.status === 'inactive') return
     const agentId = agent.goclawAgentId
@@ -191,21 +197,21 @@ export class AiService implements OnModuleInit {
    */
   async session(userId: string) {
     this.requireGoclaw()
-    const [provider, agent] = await Promise.all([this.repository.provider(userId), this.repository.agent(userId)])
+    const [provider, current] = await Promise.all([this.repository.provider(userId), this.repository.agent(userId)])
     if (provider?.status === 'disabled') this.refuseIfDisabled(provider)
+    let agent = current
+    // The end of Pro switched the agent off but kept the verified key; renewal brings it back here.
+    if (provider?.status === 'ready' && provider.goclawProviderId && provider.model && agent?.goclawAgentId && agent.status === 'inactive') {
+      agent = await this.resume(userId, provider)
+    }
     if (!provider?.goclawProviderId || provider.status !== 'ready' || !agent?.goclawAgentId || agent.status !== 'active') {
       aiError(409, 'AI_NOT_READY', 'Trợ lý AI chưa sẵn sàng. Hãy thêm và kiểm tra khoá API trước.')
     }
     const providerId = provider.goclawProviderId
     const agentId = agent.goclawAgentId
     const [remoteProvider, remoteAgent] = await this.remote('check setup', () => Promise.all([this.goclaw.getProvider(providerId), this.goclaw.getAgent(agentId)]))
-    const intact = remoteProvider?.enabled === true && remoteProvider.name === provider.goclawName
-      && remoteAgent?.status === 'active' && remoteAgent.provider === provider.goclawName
-    if (!intact) {
-      this.logger.warn(`AI setup drifted for ${userId}; agent switched off`)
-      if (remoteAgent) await this.remote('deactivate drifted agent', () => this.goclaw.updateAgent(agentId, { status: 'inactive' }))
-      await this.repository.setAgentStatus(userId, 'inactive')
-      await this.repository.setProviderStatus(userId, 'failed', { lastError: 'Cấu hình trên máy chủ AI đã thay đổi. Hãy kiểm tra lại khoá.' })
+    if (!setupIntact(provider, remoteProvider, remoteAgent)) {
+      await this.markDrifted(userId, agentId, Boolean(remoteAgent))
       aiError(409, 'AI_NOT_READY', 'Cấu hình trợ lý đã thay đổi. Hãy kiểm tra lại khoá API.')
     }
     const ticket = await this.remote('mint ticket', () => this.goclaw.mintTicket(goclawUserId(userId), agent.agentKey, configuration().ai.ticketTtlSeconds))
@@ -214,6 +220,26 @@ export class AiService implements OnModuleInit {
     // Signed media links in chat history are relative to GoClaw's HTTP root, the same host as the socket.
     const filesUrl = configuration().goclaw.publicFilesUrl.replace(/\/+$/, '') || wsUrl.replace(/^ws/, 'http').replace(/\/ws\/?$/, '')
     return { ok: true, token: ticket.token, wsUrl, filesUrl, userId: ticket.userId, agentKey: agent.agentKey, expiresAt: ticket.expiresAt }
+  }
+
+  /** Re-provisions an agent left inactive with a still-verified key, after checking the provider is untouched. */
+  private async resume(userId: string, provider: ProviderRow) {
+    const providerId = provider.goclawProviderId!
+    const remoteProvider = await this.remote('check provider', () => this.goclaw.getProvider(providerId))
+    if (remoteProvider?.enabled !== true || remoteProvider.name !== provider.goclawName) {
+      await this.repository.setProviderStatus(userId, 'failed', { lastError: 'Cấu hình trên máy chủ AI đã thay đổi. Hãy kiểm tra lại khoá.' })
+      aiError(409, 'AI_NOT_READY', 'Cấu hình trợ lý đã thay đổi. Hãy kiểm tra lại khoá API.')
+    }
+    await this.provisionAgent(userId, provider.model!)
+    return this.repository.agent(userId)
+  }
+
+  /** The agent no longer runs on this member's own provider: off now, and the key must be checked again. */
+  async markDrifted(userId: string, agentId: string, remoteAgentExists: boolean) {
+    this.logger.warn(`AI setup drifted for ${userId}; agent switched off`)
+    if (remoteAgentExists) await this.remote('deactivate drifted agent', () => this.goclaw.updateAgent(agentId, { status: 'inactive' }))
+    await this.repository.setAgentStatus(userId, 'inactive')
+    await this.repository.setProviderStatus(userId, 'failed', { lastError: 'Cấu hình trên máy chủ AI đã thay đổi. Hãy kiểm tra lại khoá.' })
   }
 
   /** Remembers that a source check started; the chat it names must be one of this person's own sessions. */

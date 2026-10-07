@@ -42,13 +42,14 @@ The trusted CLI or a staff account in the admin area (below) transitions `NEEDS_
 
 ## Accounts and email sign-in
 
-Cookie-authenticated writes (`/auth/*`, `PATCH /me`) require header `X-CN-Request: 1`; when `SITE_ORIGINS` is set, a present `Origin` must be in that list. Otherwise 403 `code:UNTRUSTED_REQUEST`. All routes send `Cache-Control: no-store`.
+Cookie-authenticated writes (`/auth/*`, `PATCH /me`, `DELETE /me`) require header `X-CN-Request: 1`; when `SITE_ORIGINS` is set, a present `Origin` must be in that list. Otherwise 403 `code:UNTRUSTED_REQUEST`. All routes send `Cache-Control: no-store`.
 
 - `POST /api/v1/auth/otp/request {email, locale}` → always `{ok:true}` for a valid email (no account enumeration). Emails a 6-digit code valid `OTP_TTL_SECONDS` (600) that voids earlier codes. 3 requests / 15 min / email and 10 / hour / IP, else 429 `code:RATE_LIMITED`. Invalid email → 400 `code:EMAIL_INVALID`.
 - `POST /api/v1/auth/otp/verify {email, code}` → creates the user on first sign-in, sets cookie `cn_session` (HttpOnly, SameSite=Lax, Secure unless `COOKIE_SECURE=0`, `SESSION_DAYS` 30, slid once a day) and returns the `/me` body. Wrong or expired code → 400 `code:OTP_INVALID`; the 5th wrong guess (`OTP_MAX_ATTEMPTS`) kills the code. 30 verifications / hour / IP. Disabled account → 403 `code:ACCOUNT_DISABLED`. When the `auth.signupOpen` setting is off, `request` still answers `{ok:true}` for an unknown email but sends nothing, and `verify` for an unknown email → 403 `code:SIGNUP_CLOSED` (checked after the code, so it reveals nothing to someone without the mailbox).
 - `POST /api/v1/auth/logout` → deletes the session, expires the cookie.
 - `GET /api/v1/me` → `{ok:true, user:{id,email,displayName,publicAttribution}|null, plan:{pro,endsAt}, capabilities[], staff:{role,permissions[]}|null}`. Guests get `user:null` (200, not 401). Capabilities: guest `tool.use`, `contribution.anonymous`; signed in adds `contribution.attributed`, `contribution.track`, `contribution.evidence`; Pro adds `ai.agent`, `cloud.memory`, `sync.basic`, `byoai.history`.
 - `PATCH /api/v1/me {displayName|null, publicAttribution}` → 401 without a session, 400 for names over 80 characters or containing control characters / `<` `>`.
+- `DELETE /api/v1/me {confirmEmail}` → self-service deletion, same cleanup as the staff/CLI path (`AccountDeletionService`, audit `DELETED` by `self`): sessions, plans, saved items, source checks, drafts, plan notices, then the GoClaw agent, provider and MCP credential; submitted contributions stay, unlinked. `confirmEmail` is compared after trimming and lower-casing. 401 `SIGNED_OUT`; 400 `CONFIRM_MISMATCH`; 409 `STAFF_ACCOUNT` (an account with a role must have it removed first); 502 `DELETE_FAILED` when cleanup fails (nothing is reported as deleted). Success clears the cookie and answers `{ok:true}`.
 
 ### Contributions from an account
 
@@ -64,6 +65,10 @@ Codes and session tokens are stored only as hashes (HMAC with `VISIT_HASH_SECRET
 ## Outgoing mail
 
 Mail goes through the `mail_outbox` table and an in-process worker (every 15 s, plus immediately after enqueue). `MAIL_TRANSPORT`: `direct` (resolve the recipient's MX, deliver on port 25 with verified STARTTLS, DKIM-sign), `smtp` (`SMTP_HOST`/`PORT`/`SECURE`/`USER`/`PASS`) or `log` (development: prints the message, sends nothing). Transient failures retry after 1, 5, 30 min, 2 h and 6 h; 5xx rejections fail immediately; one-time codes past their expiry are dropped unsent. The payload is replaced with `{}` once a message is sent or failed. `npm run mail -- dkim-keygen <dir outside repo> [selector]` creates the DKIM key and prints the `.env` lines and DNS records; `npm run mail -- test <email>` sends one message through the configured transport.
+
+### End of Pro
+
+An hourly job (`PlanLifecycleService`, first run 2 minutes after start) mails `pro_expiring` once per plan end when Pro ends within 7 days; a renewal that moves the end earns a fresh reminder. After Pro ends, saved items are read-only for 90 days. The `cloud_purge` warning goes out 7 days before that, and the items are deleted only once the warning is at least 7 days old, so an account whose Pro ended long ago is warned first and never purged in the same run. Renewing before the purge keeps everything. Disabled accounts are neither mailed nor purged. Only `saved_items` are deleted; source-check history stays. Sent notices live in `plan_notices (user_id, kind, plan_end)`, which is also what makes the job idempotent. Both mails are bilingual (Vietnamese, then English; accounts store no language) and link to `SITE_PUBLIC_URL` (default `https://lpc.vn/doc-tools`).
 
 ## Admin area
 
@@ -83,7 +88,7 @@ Every admin route, reads included, requires the trusted-write header and origin 
 | `POST /admin/mail/test {to?}` | `mail.test` | Queues a `test` message to `to` or to the caller |
 | `GET /admin/settings` · `PUT /admin/settings/:key {value}` · `DELETE /admin/settings/:key` | `settings.manage` | Runtime settings in `app_settings` (non-secret only, cached 30 s per process): `auth.signupOpen`, `contributions.guestHourly`, `contributions.accountHourly`, `cloud.maxItems`, `cloud.maxMegabytes`. `system` reports `.env` values as set/unset, never their content |
 | `GET /admin/roles` · `PUT /admin/roles {email, role}` · `DELETE /admin/roles/:userId` | `roles.manage` | The account must already exist; changing a role ends that person's sessions; the last owner cannot be removed or demoted |
-| `GET /admin/ai?q&status` · `GET /admin/ai/status` | `ai.view` | Members' AI keys (provider type, model, status, agent state; never the key). `status` reads GoClaw live: reachable, MCP server registered, `background.provider` (reported, never changed) |
+| `GET /admin/ai?q&status` · `GET /admin/ai/status` | `ai.view` | Members' AI keys (provider type, model, status, agent state; never the key). `status` reads GoClaw live: reachable, MCP server registered, `background.provider` (reported, never changed), plus `reconcile`, the last hourly reconciliation of this process (`{at, checked, expired, drift, stray, errors}` or `null`) |
 | `POST /admin/ai/:userId/disable` · `/enable` | `ai.manage` | Disable turns the agent off, disables the provider and revokes the MCP token; the member cannot undo it. Enable only lifts the block: status becomes `failed` and the member must check the key again |
 | `GET /admin/audit?actor&target` | `audit.view` | `admin_audit`, newest first |
 
@@ -95,7 +100,7 @@ Table `saved_items`: per account, either a saved tool result (`kind: result`, th
 
 | Route | Who | Notes |
 | --- | --- | --- |
-| `GET /me/saved` | signed in | `{ok, items:[{id, kind, toolId, title, size, rev, createdAt, updatedAt}], usage:{items, bytes, maxItems, maxBytes}, writable}`, newest change first, never the payload. `writable` is false once Pro has ended |
+| `GET /me/saved` | signed in | `{ok, items:[{id, kind, toolId, title, size, rev, createdAt, updatedAt}], usage:{items, bytes, maxItems, maxBytes}, writable, purgeAt}`, newest change first, never the payload. `writable` is false once Pro has ended; `purgeAt` (seconds) is when the read-only items will be deleted, `null` while Pro is active or nothing is left |
 | `GET /me/saved/:id` | signed in | `{ok, item}` with `payload` |
 | `POST /me/saved {toolId, title, payload}` | Pro, trusted write | `toolId` must be a ready tool slug, `title` ≤ 120 characters (control characters become spaces), `payload` a plain object ≤ 256 KiB as JSON. Returns `{ok, item}` without payload |
 | `PATCH /me/saved/:id {baseRev, title?, payload?, force?}` | Pro, trusted write | Results only. `baseRev` is the revision the device last read; if the item moved on, 409 `SAVED_CONFLICT` with `item` (the server's current meta) so the person can choose, then resend with `force: true` to overwrite. A lost race between two writes also answers `SAVED_CONFLICT` |
@@ -115,7 +120,7 @@ Each Pro member brings their own AI key. The backend registers it in a shared Go
 | `PUT /ai/provider {type, apiKey, apiBase?}` | Pro, trusted write, 4 KiB | Saves the key (status `verifying`) and answers the setup plus `models` (≤ 300, from the provider) |
 | `POST /ai/provider/verify {model}` | Pro, trusted write | GoClaw sends one short test call. Failure → 422 `AI_VERIFY_FAILED`, status `failed`, provider disabled. Success → status `ready`, agent created/updated, prompt files written, MCP tools granted, agent switched on last |
 | `DELETE /ai/provider` | signed in, trusted write | Agent off, then provider deleted, then MCP credential dropped |
-| `POST /ai/session` | Pro, trusted write | `{token, wsUrl, filesUrl, userId, agentKey, expiresAt}`. `filesUrl` is GoClaw's HTTP root for signed `/v1/files/...` links in history (`GOCLAW_PUBLIC_FILES_URL`, else derived from `wsUrl`). Re-checks GoClaw first; a provider or agent that drifted (disabled, renamed, pointed elsewhere) switches the agent off and answers 409 `AI_NOT_READY` |
+| `POST /ai/session` | Pro, trusted write | `{token, wsUrl, filesUrl, userId, agentKey, expiresAt}`. `filesUrl` is GoClaw's HTTP root for signed `/v1/files/...` links in history (`GOCLAW_PUBLIC_FILES_URL`, else derived from `wsUrl`). Re-checks GoClaw first; a provider or agent that drifted (disabled, renamed, pointed elsewhere) switches the agent off and answers 409 `AI_NOT_READY`. An agent switched off because Pro ended is provisioned again here after a renewal, provided the GoClaw provider is still enabled under the same name |
 | `POST /ai/source-checks {toolId, baseSnapshotId, sessionKey}` | Pro, trusted write, 2 KiB | Records that a source check started (table `ai_source_checks`). `toolId` is a ready tool slug, `baseSnapshotId` the package digest or `null`, `sessionKey` must be one of the caller's own agent sessions (`agent:cn-<userId>:ws:direct:<uuid>`); otherwise 400 `INVALID_INPUT`. A draft the agent creates within 6 h for the same tool is linked to the latest check. Returns `{ok,id}` |
 | `GET /ai/history?before=` | signed in (also after Pro ends) | The caller's source checks, newest first, 30 per page: `{ok, items:[{id, toolId, baseSnapshotId, createdAt, draft, contributionId, contributionStatus}], next}`. `draft` is `none` (no draft linked), `open`, `submitted` or `discarded` (the draft row is gone). `next` is an opaque `<createdAt>.<id>` cursor or `null`; a malformed one is 400 `INVALID_INPUT`. Question text is never stored, so there is nothing more to show |
 
@@ -144,4 +149,6 @@ Source-check tools (since agent prompt `PROMPT_VERSION` 2; it is now 3, which ad
 - `cn_create_contribution_draft {toolId, domain, baseSnapshotId, changes[], sources[], uncertainties[], jurisdiction}` — validated like a contribution (high-risk domains need a source; at most 20 uncertainties of 1000 characters). It only stores a draft for the member (table `contribution_drafts`, at most 20 open per member); nothing is submitted. The answer tells the agent to say so.
 - `cn_my_contributions {status?}` — the member's latest contributions and open drafts, so the agent does not draft the same change twice.
 
-CLI: `npm run ai -- status` (GoClaw reachability, MCP registration, `background.provider`), `npm run ai -- register-mcp` (creates or updates the `chuyen-nho` MCP server from `MCP_PUBLIC_URL`), `npm run ai -- sync-agents` (pushes the current prompt files and `tools_config` to agents below `PROMPT_VERSION`).
+CLI: `npm run ai -- status` (GoClaw reachability, MCP registration, `background.provider`), `npm run ai -- register-mcp` (creates or updates the `chuyen-nho` MCP server from `MCP_PUBLIC_URL`), `npm run ai -- sync-agents` (pushes the current prompt files and `tools_config` to agents below `PROMPT_VERSION`), `npm run ai -- reconcile` (runs the reconciliation below once).
+
+Reconciliation (`AiReconcileService`) runs hourly when GoClaw is configured, first 5 minutes after start. For every agent we created it switches the agent OFF in GoClaw when Pro has ended (`expired`; the provider is kept so a renewal resumes without the key), when the provider or agent drifted (`drift`; provider marked `failed`, as in `/ai/session`), or when our record says inactive but GoClaw runs it (`stray`). It never switches anything on. A GoClaw error skips that member until the next hour (`errors`).

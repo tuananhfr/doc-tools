@@ -547,11 +547,12 @@
     "title": "របៀបដែលយើង<accent>ដំណើរការទិន្នន័យ</accent>",
     "tagline": "ឯកសាររបស់អ្នកនៅលើឧបករណ៍របស់អ្នក។",
     "intro": "Chuyện Nhỏ ដំណើរការឯកសារផ្ទាល់ក្នុងកម្មវិធីរុករក។ ទំព័រនេះបញ្ជាក់យ៉ាងច្បាស់ថាឧបករណ៍នីមួយៗដំណើរការនៅទីណា និងអ្វីខ្លះដែលពិតជាត្រូវបានផ្ញើទៅម៉ាស៊ីនមេ។",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "តម្លាភាព\nគ្រប់ឧបករណ៍!",
     "points": {
-      "noCookie": "មិនប្រើខូគី",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "គ្មានឧបករណ៍តាមដាន ឬផ្សាយពាណិជ្ជកម្ម",
-      "noAccount": "មិនចាំបាច់មានគណនី"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "ទិន្នន័យទៅណា",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "ផ្ញើទៅម៉ាស៊ីនមេរបស់យើង",
         "lead": "តិចបំផុតតាមដែលអាចធ្វើបាន",
         "points": {
-          "visits": "ឈ្មោះឧបករណ៍ដែលអ្នកបើក ដើម្បីរាប់ចំនួនការប្រើសរុប។ គ្មានខូគី មិនកំណត់អត្តសញ្ញាណអ្នកទេ",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "អាសយដ្ឋាន IP ត្រូវបាន hash មួយទិសតែដើម្បីទប់ស្កាត់ការផ្ញើដោយស្វ័យប្រវត្តិ លុបដោយស្វ័យប្រវត្តិក្រោយប្រហែល 1 ម៉ោង",
           "feedback": "មតិ និងសំណើត្រូវបានផ្ញើតែពេលអ្នកគូសធីកយល់ព្រម ហើយចុច «ផ្ញើ» ប៉ុណ្ណោះ",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "ឧបករណ៍ {{count}} ដែលនឹងមកដល់ឆាប់ៗនេះត្រូវការស្វែងរកលើម៉ាស៊ីនមេ កាតរបស់វាបញ្ជាក់ច្បាស់"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "តើ Chuyện Nhỏ មានសុវត្ថិភាពទេ?",
-        "answer": "គេហទំព័រដំណើរការតាមការតភ្ជាប់ដែលបានអ៊ិនគ្រីប (HTTPS) មិនប្រើខូគី មិនភ្ជាប់ឧបករណ៍ផ្សាយពាណិជ្ជកម្ម ឬតាមដានរបស់ភាគីទីបីទេ។ ឯកសាររបស់អ្នកមិនចាកចេញពីឧបករណ៍ទេ។"
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "តើ Chuyện Nhỏ ប្រមូលព័ត៌មានផ្ទាល់ខ្លួនរបស់ខ្ញុំទេ?",

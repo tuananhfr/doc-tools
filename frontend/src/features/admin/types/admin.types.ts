@@ -112,6 +112,8 @@ export interface AiStatus {
   configured: boolean; reachable: boolean; url: string; publicWsUrl: string | null; mcpPublicUrl: string | null; mcpServerName: string
   mcpRegistered: boolean; mcpEnabled?: boolean | null; mcpUrl?: string | null; allowPrivateApiBase: boolean; promptVersion: number
   backgroundProvider: string | null; error: string | null
+  /** Last hourly reconciliation in this server process; null until the first run (5 minutes after start). */
+  reconcile: { at: number; checked: number; expired: number; drift: number; stray: number; errors: number } | null
 }
 
 export interface AuditRow { id: number; actorId: string; actorEmail: string; action: string; targetType: string; targetId: string | null; detail: string | null; createdAt: string }

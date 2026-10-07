@@ -562,11 +562,12 @@
     "title": "كيف <accent>نعالج البيانات</accent>",
     "tagline": "ملفاتك تبقى على جهازك.",
     "intro": "يعالج Chuyện Nhỏ الملفات مباشرة في المتصفح. توضّح هذه الصفحة أين تعمل كل أداة، وما الذي يُرسَل فعلًا إلى الخادم.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "شفافية\nفي كل أداة!",
     "points": {
-      "noCookie": "بلا ملفات تعريف ارتباط (cookies)",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "بلا أدوات تتبّع أو إعلانات",
-      "noAccount": "لا حاجة إلى حساب"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "إلى أين تذهب البيانات",
     "columns": {
@@ -588,9 +589,11 @@
         "title": "يُرسَل إلى خوادمنا",
         "lead": "بأقل قدر ممكن",
         "points": {
-          "visits": "اسم الأداة التي تفتحها، لحساب إجمالي مرات الاستخدام. بلا ملفات تعريف ارتباط، ودون تحديد هويتك",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "يُجزَّأ عنوان IP أحاديًا (hash) فقط لمنع الإرسال الآلي، ويُحذف تلقائيًا بعد نحو ساعة واحدة",
           "feedback": "لا تُرسَل الملاحظات والاقتراحات إلا عند تحديد خانة الموافقة والضغط على «إرسال»",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_zero": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
           "soon_one": "أداة واحدة قادمة ستحتاج إلى البحث على الخادم، وبطاقتها توضّح ذلك",
           "soon_two": "أداتان قادمتان ستحتاجان إلى البحث على الخادم، وبطاقتاهما توضّحان ذلك",
@@ -904,7 +907,7 @@
       },
       "an-toan": {
         "question": "هل Chuyện Nhỏ آمن؟",
-        "answer": "يعمل الموقع عبر اتصال مشفّر (HTTPS)، ولا يستخدم ملفات تعريف الارتباط، ولا يتضمن أدوات إعلانية أو تتبّعًا من جهات خارجية. ملفاتك لا تغادر جهازك."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "هل يجمع Chuyện Nhỏ معلوماتي الشخصية؟",

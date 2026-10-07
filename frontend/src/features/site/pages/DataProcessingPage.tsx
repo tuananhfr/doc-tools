@@ -12,6 +12,7 @@ import { FaqList } from '../components/FaqList'
 import { SitePageHero } from '../components/SitePageHero'
 import { ToolSearch } from '../components/ToolSearch'
 import { QualityConsent } from '../components/QualityConsent'
+import { LEGAL_DRAFT } from '../config/legal'
 import { DATA_FAQ_IDS, FAQ_ITEMS } from '../config/support-faq'
 import { filterProcessingRows, PROCESSING_FILTERS, processingRows, type ProcessingFilter, type ProcessingMode } from '../utils/data-processing'
 import { localizeFaq, pickFaq } from '../utils/faq'
@@ -43,6 +44,8 @@ export default function DataProcessingPage() {
         t('data.columns.server.points.visits'),
         t('data.columns.server.points.ip'),
         t('data.columns.server.points.feedback'),
+        t('data.columns.server.points.account'),
+        t('data.columns.server.points.pro'),
         ...(serverSoon ? [t('data.columns.server.points.soon', { count: serverSoon })] : []),
       ],
     },
@@ -60,7 +63,12 @@ export default function DataProcessingPage() {
         trail={[{ label: t('breadcrumb.home'), to: '/' }, { label: t('data.trail') }]}
         title={<Trans ns="site" i18nKey="data.title" components={{ accent: <span /> }} />}
         tagline={t('data.tagline')}
-        description={<p>{t('data.intro')}</p>}
+        description={(
+          <>
+            <p>{t('data.intro')}</p>
+            {LEGAL_DRAFT ? <p className="cn-legal-draft"><Icon name="hourglass-split" />{t('data.draftNotice')}</p> : null}
+          </>
+        )}
         caption={t('data.caption')}
         art={<span className="cn-page-hero-icon"><Icon name="shield-lock" /></span>}
       >

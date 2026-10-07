@@ -78,6 +78,12 @@ export class AiRepository {
     return rows.map(toAgent)
   }
 
+  /** Every agent GoClaw knows about, for the hourly reconciliation. */
+  async agentsInGoclaw() {
+    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT * FROM ai_agents WHERE goclaw_agent_id IS NOT NULL ORDER BY user_id')
+    return rows.map(toAgent)
+  }
+
   async removeProvider(userId: string) { await this.database.pool.execute('DELETE FROM ai_providers WHERE user_id = ?', [userId]) }
 
   async removeAll(userId: string) {

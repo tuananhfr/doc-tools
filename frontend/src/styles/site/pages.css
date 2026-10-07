@@ -168,6 +168,8 @@
 
 /* Điều khoản, quyền riêng tư */
 .cn-legal-updated { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--cn-ink); }
+.cn-legal-draft { display: flex; align-items: flex-start; gap: 8px; max-width: 68ch; padding: 10px 14px; border-left: 3px solid var(--cn-accent); border-radius: var(--cn-radius-button); background: var(--cn-surface); font-size: 13px; line-height: 1.55; color: var(--cn-ink); }
+.cn-legal-draft .bi { margin-top: 2px; color: var(--cn-accent); }
 .cn-legal-body { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 36px; align-items: start; padding-block: 28px 40px; }
 .cn-legal-toc { position: sticky; top: 16px; padding: 16px 18px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); }
 .cn-legal-toc h2 { font-size: 13px; font-weight: 700; margin: 0 0 8px; }

@@ -547,11 +547,12 @@
     "title": "<accent>データの取り扱い</accent>について",
     "tagline": "あなたのファイルはあなたの端末に残ります。",
     "intro": "Chuyện Nhỏ はファイルをブラウザ内で直接処理します。このページでは、各ツールがどこで動作し、実際に何がサーバーに送られるのかをはっきりお伝えします。",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "ツールごとに\n透明性を！",
     "points": {
-      "noCookie": "Cookie を使いません",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "追跡ツールや広告はありません",
-      "noAccount": "アカウント不要"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "データの行き先",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "当社のサーバーに送信",
         "lead": "必要最小限",
         "points": {
-          "visits": "開いたツールの名前（合計利用回数を数えるため）。Cookie なし、あなたを特定しません",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IPアドレスは自動送信を防ぐため一方向ハッシュ化するだけで、約1時間後に自動削除",
           "feedback": "ご意見・提案は、同意にチェックを入れて「送信」を押したときだけ送信",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "近日公開の {{count}} 個のツールはサーバーでの照会が必要になり、カードにその旨を明記します"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ は安全ですか？",
-        "answer": "本サイトは暗号化された接続（HTTPS）で動作し、Cookie を使わず、第三者の広告ツールや追跡ツールも組み込んでいません。あなたのファイルは端末の外に出ません。"
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ は私の個人情報を収集しますか？",

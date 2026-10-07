@@ -49,6 +49,7 @@
       "action": "Xem gói Pro"
     },
     "readOnly": "Gói Pro đã hết. Bạn vẫn xem, mở và xoá được các mục cũ nhưng chưa lưu thêm được.",
+    "purgeOn": "Nếu không gia hạn, các mục này sẽ bị xoá từ ngày {{date}}.",
     "usageItems": "{{used}} / {{max}} mục",
     "usageBytes": "{{used}} / {{max}} dung lượng",
     "usageLabel": "Phần đã dùng",

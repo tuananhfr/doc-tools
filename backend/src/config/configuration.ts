@@ -39,6 +39,8 @@ export function configuration() {
       // Browsers send Origin on every write; an empty list accepts any origin (local dev only).
       allowedOrigins: list(process.env.SITE_ORIGINS),
     },
+    // Links in account mail; the base path is part of it (the site lives under /doc-tools on lpc.vn).
+    siteUrl: (process.env.SITE_PUBLIC_URL || 'https://lpc.vn/doc-tools').replace(/\/+$/, ''),
     goclaw: {
       url: process.env.GOCLAW_URL ?? 'http://localhost:18790',
       gatewayToken: process.env.GOCLAW_GATEWAY_TOKEN ?? '',

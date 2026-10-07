@@ -60,6 +60,18 @@ export function useAddEvidence() {
   return useMutation({ mutationFn: ({ id, sourceRefs }: { id: string; sourceRefs: SourceRef[] }) => accountService.addEvidence(id, sourceRefs), onSuccess: refresh })
 }
 
+/** Runs `onGone` before the reset so the account page can stop treating the now-guest as someone to send to sign-in. */
+export function useDeleteAccount(onGone: () => void) {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: (confirmEmail: string) => accountService.deleteAccount(confirmEmail),
+    onSuccess: () => {
+      onGone()
+      return client.resetQueries({ queryKey: ['account'] })
+    },
+  })
+}
+
 export function useLogout() {
   const client = useQueryClient()
   return useMutation({

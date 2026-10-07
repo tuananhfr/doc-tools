@@ -1,11 +1,12 @@
 {
   "bindingNotice": "法的効力を持つのはベトナム語版です。",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "<accent>利用</accent>規約",
     "breadcrumb": "利用規約",
-    "intro": "本規約は、ERPCons & LPC（以下「当社」）が運営する無料ツール集 Chuyện Nhỏ をご利用いただく際に適用されます。本サイトを利用することにより、以下の内容に同意したものとみなされます。",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "無料で、アカウントは不要です。",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "あなたのファイルはあなたのものであり、あなたの端末上で処理されます。",
       "reference": "計算結果は参考情報です。使用前に照合してください。",
       "lawful": "法律に反する目的でツールを使用しないでください。"
@@ -15,14 +16,26 @@
         "heading": "無料サービス",
         "paragraphs": {
           "free": "Chuyện Nhỏ は、書類・画像の処理、計算、日常の便利ツールを無料で提供しています。ツールはブラウザ上で直接動作し、登録は不要です。",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "当社は、いつでもツールを追加、変更、一時停止または終了することがあります。「近日公開」と表示されたツールは予定であり、変更される場合や公開されない場合があります。"
         }
       },
       "tep-cua-ban": {
         "heading": "あなたのファイルとコンテンツ",
         "paragraphs": {
-          "ownership": "あなたは、ご自身のファイルとコンテンツに関するすべての権利を保持します。稼働中のツールはファイルを端末上で直接処理し、当社があなたのファイルを受け取ったり保存したりすることはありません。",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "ツールに入れるファイルを使用・編集する権利を有していることを確認する責任、および処理前に原本を自ら保管する責任は、あなたが負うものとします。"
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "プライバシーポリシー",
     "intro": "本ポリシーは、個人データ保護法（第91/2025/QH15号）および政令第356/2025/NĐ-CP号に基づき、Chuyện Nhỏ が個人データをどのように収集、利用、保護するかを説明するものです。",
     "summary": {
-      "device": "あなたのファイルはあなたの端末で処理され、サーバーには送信されません。",
-      "noTracking": "アカウントなし、Cookie なし、広告ツールや追跡ツールもありません。",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "ツールが開かれた回数のみを数えます。IPアドレスはハッシュ化され、約1時間後に自動で削除されます。",
       "feedback": "ご意見は、あなたが同意して「送信」を押したときにのみ送信されます。"
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "当社の原則",
         "items": {
-          "device": "端末上で処理: 稼働中のツールは、あなたのファイルをサーバーにアップロードしません。",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "最小限: 運営と不正利用の防止に必要なデータのみを処理します。",
-          "anonymous": "匿名: 氏名、メールアドレス、電話番号、アカウントを求めません。",
-          "noTracking": "Cookie なし、第三者の分析・広告・追跡ツールもありません。"
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "IPアドレス: 秘密鍵による一方向ハッシュ化を行い、自動送信の制限のみに使用し、約1時間後に自動で削除します。",
           "feedback": "ご意見・提案の内容: あなたが同意にチェックを入れて「送信」を押した場合のみ、ツールの検討と改善のために使用します。受付番号はハッシュ化した形でのみ保存します。",
           "logs": "Webサーバーの技術ログ（IPアドレス、ブラウザの種類、開かれたページ）: システムの運用とセキュリティのためにのみ使用し、必要な短期間だけ保存します。"
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "第三者との共有",
         "paragraphs": {
           "noSale": "当社は個人データを販売せず、広告目的で共有することもありません。法令により求められた場合に限り、権限のある国家機関にデータを提供します。",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "ただし、音声文字起こしツールはブラウザに内蔵された音声認識サービスを使用します。音声はブラウザによってそのブラウザの提供元（例: Chrome の場合は Google）に送信され、その提供元のポリシーに従って国外で処理される場合があり、当社のサーバーは経由しません。"
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "IPアドレスのハッシュ: 約1時間。",
           "counts": "利用回数: 個人データを含まない集計統計として保存します。",
-          "feedback": "ご意見・提案: 検討と追跡に必要な期間、またはあなたが削除を求めるまで保存します。"
+          "feedback": "ご意見・提案: 検討と追跡に必要な期間、またはあなたが削除を求めるまで保存します。",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "権利の行使方法",
         "paragraphs": {
-          "request": "{{email}} まで請求をお送りください。Chuyện Nhỏ にはアカウントがないため、あなたの送信内容を正しく特定できるよう、ご意見の受付番号を添えてください。",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "当社は、請求の受領を2営業日以内に確認し、法令で定められた期限内、遅くとも20日以内に対応します。"
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "子ども",
         "paragraphs": {
-          "children": "Chuyện Nhỏ は、子どもを識別するための情報を収集しません。子どもがご意見を送信する場合は、法令の規定に従い、親または保護者の同意が必要です。"
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

@@ -547,11 +547,12 @@
     "title": "<accent>데이터 처리</accent> 방식",
     "tagline": "파일은 내 기기에 머물러요.",
     "intro": "Chuyện Nhỏ는 브라우저 안에서 바로 파일을 처리해요. 이 페이지에서 각 도구가 어디에서 실행되는지, 실제로 서버로 무엇이 전송되는지 분명히 알려 드려요.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "도구마다\n투명하게!",
     "points": {
-      "noCookie": "쿠키를 쓰지 않아요",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "추적·광고 도구가 없어요",
-      "noAccount": "계정이 필요 없어요"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "데이터가 가는 곳",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "당사 서버로 전송",
         "lead": "가능한 한 최소로",
         "points": {
-          "visits": "전체 이용 횟수를 세기 위한, 내가 연 도구 이름. 쿠키 없음, 개인 식별 없음",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IP 주소는 자동화된 전송을 막기 위해 단방향 해시 처리만 하고, 약 1시간 후 자동 삭제돼요",
           "feedback": "의견·제안은 동의에 체크하고 보내기를 눌렀을 때만 전송돼요",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "출시 예정 도구 {{count}}개는 서버 조회가 필요하며, 카드에 분명히 표시돼요"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ는 안전한가요?",
-        "answer": "사이트는 암호화된 연결(HTTPS)로 운영되고, 쿠키를 쓰지 않으며, 제3자 광고나 추적 도구를 붙이지 않아요. 파일은 기기 밖으로 나가지 않아요."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ가 내 개인 정보를 수집하나요?",

@@ -547,11 +547,12 @@
     "title": "ວິທີທີ່ພວກເຮົາ<accent>ປະມວນຜົນຂໍ້ມູນ</accent>",
     "tagline": "ໄຟລ໌ຂອງທ່ານຍັງຢູ່ໃນເຄື່ອງຂອງທ່ານ.",
     "intro": "Chuyện Nhỏ ປະມວນຜົນໄຟລ໌ໃນບຣາວເຊີທັນທີ. ໜ້ານີ້ບອກຢ່າງຊັດເຈນວ່າແຕ່ລະເຄື່ອງມືເຮັດວຽກຢູ່ໃສ, ແລະ ສິ່ງໃດທີ່ຖືກສົ່ງໄປເຊີບເວີແທ້ໆ.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "ໂປ່ງໃສ\nທຸກເຄື່ອງມື!",
     "points": {
-      "noCookie": "ບໍ່ໃຊ້ cookie",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "ບໍ່ມີເຄື່ອງມືຕິດຕາມ, ໂຄສະນາ",
-      "noAccount": "ບໍ່ຕ້ອງມີບັນຊີ"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "ຂໍ້ມູນໄປໃສ",
     "columns": {
@@ -568,9 +569,11 @@
         "title": "ສົ່ງໄປເຊີບເວີຂອງພວກເຮົາ",
         "lead": "ໜ້ອຍທີ່ສຸດເທົ່າທີ່ເປັນໄປໄດ້",
         "points": {
-          "visits": "ຊື່ເຄື່ອງມືທີ່ທ່ານເປີດ, ເພື່ອນັບຈຳນວນການໃຊ້ທັງໝົດ. ບໍ່ມີ cookie, ບໍ່ລະບຸຕົວຕົນທ່ານ",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "ທີ່ຢູ່ IP ຖືກ hash ແບບທາງດຽວເທົ່ານັ້ນ ເພື່ອປ້ອງກັນການສົ່ງອັດຕະໂນມັດ, ລຶບເອງຫຼັງປະມານ 1 ຊົ່ວໂມງ",
           "feedback": "ຄຳຕິຊົມ, ຂໍ້ສະເໜີ ຈະສົ່ງສະເພາະເມື່ອທ່ານໝາຍຍິນຍອມ ແລະ ກົດສົ່ງ",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} ເຄື່ອງມືທີ່ຈະມາໄວໆນີ້ຈະຕ້ອງຄົ້ນຫາໃນເຊີບເວີ, ບັດຂອງມັນບອກໄວ້ຢ່າງຊັດເຈນ"
         }
       },
@@ -859,7 +862,7 @@
       },
       "an-toan": {
         "question": "Chuyện Nhỏ ປອດໄພບໍ?",
-        "answer": "ເວັບໄຊເຮັດວຽກຜ່ານການເຊື່ອມຕໍ່ທີ່ເຂົ້າລະຫັດ (HTTPS), ບໍ່ໃຊ້ cookie, ບໍ່ຕິດເຄື່ອງມືໂຄສະນາ ຫຼື ຕິດຕາມຂອງພາກສ່ວນທີສາມ. ໄຟລ໌ຂອງທ່ານບໍ່ອອກຈາກອຸປະກອນ."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ ເກັບກຳຂໍ້ມູນສ່ວນບຸກຄົນຂອງຂ້ອຍບໍ?",

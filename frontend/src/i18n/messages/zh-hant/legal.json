@@ -1,11 +1,12 @@
 {
   "bindingNotice": "本文以越南文版本為具法律效力之版本。",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "使用<accent>條款</accent>",
     "breadcrumb": "使用條款",
-    "intro": "當你使用由 ERPCons & LPC（「我們」）營運的免費工具組 Chuyện Nhỏ 時，即適用本條款。使用本網站即表示你同意以下各項規定。",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "免費，不需要帳號。",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "你的檔案仍屬於你，並在你的裝置上處理。",
       "reference": "計算結果僅供參考，使用前請先核對。",
       "lawful": "不得利用工具從事違法行為。"
@@ -15,14 +16,26 @@
         "heading": "免費服務",
         "paragraphs": {
           "free": "Chuyện Nhỏ 免費提供文件處理、影像處理、計算和日常實用工具，直接在瀏覽器中執行，無需註冊。",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "我們可能隨時新增、修改、暫停或停止某項工具。標示「即將推出」的工具僅為規劃，可能變更或不會推出。"
         }
       },
       "tep-cua-ban": {
         "heading": "你的檔案與內容",
         "paragraphs": {
-          "ownership": "你對自己的檔案和內容保有完整權利。現行運作中的工具直接在裝置上處理檔案；我們不會接收，也不會儲存你的檔案。",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "你有責任確保自己有權使用、編輯放入工具的檔案，並在處理前自行保留原始檔。"
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "隱私權政策",
     "intro": "本政策依據越南《個人資料保護法》（第 91/2025/QH15 號）及第 356/2025/NĐ-CP 號議定，說明 Chuyện Nhỏ 如何蒐集、使用和保護個人資料。",
     "summary": {
-      "device": "你的檔案在你的裝置上處理，不會傳回伺服器。",
-      "noTracking": "沒有帳號、沒有 Cookie，也沒有廣告或追蹤工具。",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "只計算工具開啟次數；IP 位址經雜湊處理，約 1 小時後自動刪除。",
       "feedback": "意見只有在你同意並按下「送出」時才會傳送。"
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "我們的原則",
         "items": {
-          "device": "在裝置上處理：現行運作中的工具不會將你的檔案上傳到伺服器。",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "最少化：只處理營運和防止濫用所需的資料。",
-          "anonymous": "不識別身分：不要求姓名、電子郵件、電話號碼或帳號。",
-          "noTracking": "沒有 Cookie，也沒有第三方分析、廣告或追蹤工具。"
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "IP 位址：以祕密金鑰進行單向雜湊，僅用於限制自動化傳送，約 1 小時後自動刪除。",
           "feedback": "意見、建議內容：僅在你勾選同意並按下「送出」時，用於審閱及改進工具。收據編號只以雜湊形式儲存。",
           "logs": "網頁伺服器的技術日誌（IP 位址、瀏覽器類型、開啟的頁面）：僅用於系統營運與安全，保存期間以必要的短時間為限。"
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "與第三方分享",
         "paragraphs": {
           "noSale": "我們不會出售個人資料，也不會為廣告目的分享個人資料。只有在法律要求時，我們才會將資料提供給有權限的政府機關。",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "唯「錄音轉文字」工具使用瀏覽器內建的語音辨識服務。音訊由瀏覽器傳送給該瀏覽器的供應商（例如 Chrome 為 Google），可能依其政策在境外處理，且不會經過我們的伺服器。"
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "IP 位址雜湊值：約 1 小時。",
           "counts": "使用次數：以彙總統計形式保存，不含個人資料。",
-          "feedback": "意見、建議：保存至審閱與追蹤所需的期間，或直到你要求刪除為止。"
+          "feedback": "意見、建議：保存至審閱與追蹤所需的期間，或直到你要求刪除為止。",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "如何行使權利",
         "paragraphs": {
-          "request": "請將請求寄至 {{email}}。由於 Chuyện Nhỏ 沒有帳號機制，請附上意見的收據編號，以便我們找到你的內容。",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "我們會在 2 個工作天內確認收到請求，並在法律規定的期限內處理，最遲不超過 20 天。"
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "兒童",
         "paragraphs": {
-          "children": "Chuyện Nhỏ 不蒐集用於識別兒童的資訊。兒童如欲送出意見，須依法律規定取得父母或監護人的同意。"
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

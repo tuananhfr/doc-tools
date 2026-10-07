@@ -59,6 +59,7 @@
       "free": "Free account",
       "pro": "Pro",
       "proUntil": "Valid through {{date}}",
+      "endingSoon": "Your Pro plan ends soon. Renew to keep the AI assistant and keep saving results.",
       "freeText": "Use every tool and send proposals under your name. Upgrade to Pro for your own AI assistant.",
       "included": "Included",
       "proOnly": "In Pro",
@@ -97,6 +98,22 @@
       "button": "Sign out",
       "busy": "Signing out…"
     },
+    "delete": {
+      "title": "Delete account",
+      "text": "Permanently delete this account. This cannot be undone.",
+      "points": {
+        "data": "Your email, sessions, Pro plan, saved items and source-check history are deleted.",
+        "ai": "Your AI assistant and AI key are removed from the assistant server.",
+        "contributions": "Suggestions you sent are kept but no longer linked to you."
+      },
+      "start": "Delete account…",
+      "confirmLabel": "Type your email {{email}} to confirm",
+      "confirm": "Delete permanently",
+      "busy": "Deleting…",
+      "cancel": "Cancel",
+      "staff": "Staff accounts cannot delete themselves. Ask an owner to remove the role first.",
+      "done": "Your account has been deleted. Thank you for using Chuyện Nhỏ."
+    },
     "mine": {
       "title": "My proposals",
       "text": "See the status of proposals sent with this account and add sources when a reviewer needs them.",
@@ -116,7 +133,10 @@
     "EVIDENCE_CLOSED": "This proposal has been reviewed; sources can no longer be added.",
     "TOO_MANY_SOURCES": "A proposal can have at most 10 sources.",
     "SOURCE_INVALID": "Invalid source. Use a public HTTPS link without keys or access codes.",
-    "NOT_FOUND": "This proposal was not found. Reload the page."
+    "NOT_FOUND": "This proposal was not found. Reload the page.",
+    "STAFF_ACCOUNT": "Staff accounts cannot delete themselves. Ask an owner to remove the role first.",
+    "CONFIRM_MISMATCH": "That email does not match the signed-in account.",
+    "DELETE_FAILED": "Your account could not be deleted right now. Please try again in a few minutes."
   },
   "box": {
     "signedInAs": "Sending as <strong>{{email}}</strong>, so you can follow this proposal without a receipt code.",

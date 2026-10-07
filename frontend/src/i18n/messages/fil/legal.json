@@ -1,11 +1,12 @@
 {
   "bindingNotice": "Ang bersyong Vietnamese ang may legal na bisa.",
+  "draftNotice": "The parts about accounts, the Pro plan, the AI assistant and account deletion are an update awaiting legal review and may still change.",
   "dieu-khoan": {
     "title": "Mga tuntunin ng <accent>paggamit</accent>",
     "breadcrumb": "Mga tuntunin ng paggamit",
-    "intro": "Ang mga tuntuning ito ay ipinapatupad kapag ginamit mo ang libreng koleksyon ng tool na Chuyện Nhỏ na pinapatakbo ng ERPCons & LPC (“kami”). Ang paggamit ng site ay nangangahulugang sumasang-ayon ka sa mga sumusunod.",
+    "intro": "These terms apply when you use Chuyện Nhỏ, operated by ERPCons & LPC (“we”): the free tools, accounts and the Pro plan. By using the site, you agree to the terms below.",
     "summary": {
-      "free": "Libre, hindi kailangan ng account.",
+      "free": "The tools are free with no account needed; accounts and the Pro plan are optional.",
       "yours": "Sa iyo pa rin ang iyong mga file at pinoproseso ang mga ito sa device mo.",
       "reference": "Ang mga resulta ng kalkulasyon ay para sa sanggunian lamang; suriin muna bago gamitin.",
       "lawful": "Huwag gamitin ang mga tool sa anumang labag sa batas."
@@ -15,14 +16,26 @@
         "heading": "Libreng serbisyo",
         "paragraphs": {
           "free": "Nagbibigay ang Chuyện Nhỏ ng libreng mga tool para sa pagproseso ng dokumento, larawan, kalkulasyon at araw-araw na utility, na tumatakbo agad sa browser at hindi kailangang mag-sign up.",
+          "accounts": "You can create an account with your email to follow the suggestions you send. The Pro plan (paid, price on request) adds an AI assistant that runs on your own AI key and saving results to your account; the Pro end date is shown on your Account page.",
           "changes": "Maaari kaming magdagdag, magbago, pansamantalang ihinto o itigil ang isang tool anumang oras. Ang mga tool na may nakasulat na “Malapit na” ay plano pa lamang, at maaaring magbago o hindi ilunsad."
         }
       },
       "tep-cua-ban": {
         "heading": "Ang iyong mga file at nilalaman",
         "paragraphs": {
-          "ownership": "Ikaw ang may buong karapatan sa iyong mga file at nilalaman. Ang mga gumaganang tool ay nagpoproseso ng file mismo sa device; hindi namin natatanggap at hindi namin sine-save ang iyong mga file.",
+          "ownership": "You keep full rights to your files and content. The free tools process files right on your device; we do not receive or store your files. Only when you use the AI assistant (Pro) and choose to send content or attach images is that content sent on, as described in the Privacy policy.",
           "responsibility": "Pananagutan mong tiyakin na may karapatan kang gamitin at i-edit ang mga file na inilalagay mo sa tool, at ikaw mismo ang mag-iingat ng orihinal bago ito iproseso."
+        }
+      },
+      "tai-khoan-pro": {
+        "heading": "Accounts and the Pro plan",
+        "items": {
+          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
+          "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
+          "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
+          "suspend": "We may suspend an account or its AI assistant if there are signs of abuse or a breach of these terms.",
+          "delete": "You can delete your account yourself from the Account page."
         }
       },
       "tham-khao": {
@@ -102,8 +115,10 @@
     "breadcrumb": "Patakaran sa privacy",
     "intro": "Ipinapaliwanag ng patakarang ito kung paano kinokolekta, ginagamit at pinoprotektahan ng Chuyện Nhỏ ang personal na data, alinsunod sa Personal Data Protection Law Blg. 91/2025/QH15 at Decree 356/2025/NĐ-CP ng Vietnam.",
     "summary": {
-      "device": "Pinoproseso ang iyong mga file sa device mo, hindi ipinapadala sa server.",
-      "noTracking": "Walang account, walang cookie, walang advertising o tracking tool.",
+      "device": "The free tools process your files on your device and never send them to a server.",
+      "noTracking": "No advertising or tracking tools. The only cookie is the sign-in session, and only once you sign in.",
+      "account": "Accounts are optional: when you sign in we keep your email and session; you can delete your account at any time.",
+      "ai": "The AI assistant (Pro) runs on your own AI key: conversations go to the AI provider you chose.",
       "counting": "Binibilang lang ang pagbukas ng tool; hina-hash ang IP address at awtomatikong binubura pagkalipas ng mga 1 oras.",
       "feedback": "Ipinapadala lang ang puna kapag pumayag ka at pinindot ang Ipadala."
     },
@@ -117,10 +132,10 @@
       "nguyen-tac": {
         "heading": "Ang aming mga prinsipyo",
         "items": {
-          "device": "Pagproseso sa device: hindi ina-upload sa server ng mga gumaganang tool ang iyong mga file.",
+          "device": "On-device processing: the free tools do not upload your files to a server.",
           "minimal": "Minimal: pinoproseso lang ang data na kailangan para sa operasyon at paglaban sa pang-aabuso.",
-          "anonymous": "Hindi kinikilala ka: hindi hinihingi ang pangalan, email, numero ng telepono o account.",
-          "noTracking": "Walang cookie, walang analytics, advertising o tracking tool ng third party."
+          "anonymous": "Accounts are optional: the tools need no name, email or phone number. We only learn your email when you choose to sign in.",
+          "noTracking": "No third-party analytics, advertising or tracking tools. The only cookie is the sign-in session cookie, set only when you sign in."
         }
       },
       "du-lieu": {
@@ -130,6 +145,30 @@
           "ip": "IP address: one-way na hina-hash gamit ang lihim na key, para lang limitahan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras.",
           "feedback": "Nilalaman ng puna at mungkahi: kapag nag-check ka lang ng pagpayag at pinindot ang Ipadala, para masuri at mapabuti ang mga tool. Sine-save lang ang resibo code bilang hash.",
           "logs": "Teknikal na log ng web server (IP address, uri ng browser, page na binuksan): ginagamit lang para sa operasyon at seguridad ng sistema, at sine-save lang sa maikling panahong kailangan."
+        }
+      },
+      "tai-khoan": {
+        "heading": "If you have an account",
+        "items": {
+          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
+          "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
+          "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
+          "plan": "Pro plan: start date, end date and the history of grants and withdrawals."
+        }
+      },
+      "pro": {
+        "heading": "AI assistant and storage (Pro)",
+        "paragraphs": {
+          "intro": "This applies only when you use the Pro plan and turn these features on yourself:"
+        },
+        "items": {
+          "key": "The AI key you enter is passed straight to the assistant server (GoClaw) that we operate and stored there encrypted. The Chuyện Nhỏ database keeps only the provider type, model and status, never the key.",
+          "chat": "Conversations, tool results you attach for a source check and images you attach are sent to the AI provider you chose (for example OpenAI, Google, Anthropic, OpenRouter) and may be processed abroad under their policies. Chat history is kept on the assistant server so you can reopen it.",
+          "memory": "So the assistant can remember context, the assistant server may summarise finished conversations with an AI model we configure, not with your key.",
+          "uploads": "Attached images are stored briefly on the Chuyện Nhỏ server so the assistant server can download them once; the temporary copy is deleted right after sending, at the latest after 7 days.",
+          "checks": "Source-check history: the tool, the time and the state of the suggestion draft. Questions are not stored.",
+          "saved": "Saved items: figures you choose to save in some tools, and your favourite tools."
         }
       },
       "tren-thiet-bi": {
@@ -143,6 +182,7 @@
         "heading": "Pagbabahagi sa third party",
         "paragraphs": {
           "noSale": "Hindi namin ibinebenta at hindi namin ibinabahagi ang personal na data para sa advertising. Nagbibigay lang kami ng data sa awtoridad ng gobyerno na may kapangyarihan kapag hinihingi ng batas.",
+          "ai": "When you use the AI assistant, content is sent to the AI provider you chose, with your key. How that provider handles the data is governed by the terms between you and them.",
           "speech": "Tanging ang tool na Boses patungong text ang gumagamit ng speech recognition service na nasa browser. Ipinapadala ng browser ang audio sa provider ng browser na iyon (halimbawa, Google para sa Chrome), maaaring iproseso ito sa ibang bansa ayon sa kanilang patakaran, at hindi ito dumadaan sa aming server."
         }
       },
@@ -151,7 +191,11 @@
         "items": {
           "ip": "Hash ng IP address: mga 1 oras.",
           "counts": "Bilang ng paggamit: sine-save bilang pinagsama-samang istatistika, walang personal na data.",
-          "feedback": "Puna at mungkahi: sine-save sa panahong kailangan para masuri at masubaybayan, o hanggang hilingin mong burahin."
+          "feedback": "Puna at mungkahi: sine-save sa panahong kailangan para masuri at masubaybayan, o hanggang hilingin mong burahin.",
+          "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
+          "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
+          "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
+          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {
@@ -170,14 +214,22 @@
       "thuc-hien-quyen": {
         "heading": "Paano gamitin ang iyong mga karapatan",
         "paragraphs": {
-          "request": "Ipadala ang kahilingan sa {{email}}. Dahil walang account ang Chuyện Nhỏ, isama ang resibo code ng iyong puna para mahanap namin ang tamang nilalaman mo.",
+          "request": "Send your request to {{email}}. If you have an account, you can view it, change your display name and delete it yourself on the Account page. For feedback sent without signing in, include the receipt code so we can find the right content.",
           "timeline": "Kukumpirmahin namin na natanggap ang kahilingan sa loob ng 2 araw ng trabaho at ipoproseso ito sa loob ng panahong itinakda ng batas, hindi lalampas sa 20 araw."
         }
+      },
+      "xoa-tai-khoan": {
+        "heading": "Deleting your account",
+        "paragraphs": {
+          "self": "You can delete your account on the Account page by typing your email again. We delete your email, sessions, Pro plan, saved items, source-check history, suggestion drafts, and your AI assistant and AI key on the assistant server.",
+          "kept": "Suggestions you already sent are kept because they may have been published, but they are no longer linked to you. We keep only a record that a deletion happened, by account id and without the email."
+        },
+        "link": "Open the Account page"
       },
       "tre-em": {
         "heading": "Mga bata",
         "paragraphs": {
-          "children": "Hindi nangongolekta ang Chuyện Nhỏ ng impormasyon para makilala ang mga bata. Ang mga batang gustong magpadala ng puna ay kailangang may pahintulot ng magulang o tagapag-alaga, ayon sa batas."
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback or create an account need the consent of a parent or guardian, as required by law."
         }
       },
       "bao-mat": {

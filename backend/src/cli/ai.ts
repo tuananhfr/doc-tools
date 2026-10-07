@@ -1,13 +1,15 @@
 import 'dotenv/config'
 import { AccountDeletionService } from '../accounts/account-deletion.service'
+import { PlansRepository } from '../accounts/plans.repository'
 import { PROMPT_VERSION } from '../ai/agent-profile'
+import { AiReconcileService } from '../ai/ai-reconcile.service'
 import { AiRepository } from '../ai/ai.repository'
 import { AiService } from '../ai/ai.service'
 import { GoclawClient } from '../ai/goclaw.client'
 import { configuration } from '../config/configuration'
 import { DatabaseService } from '../database/database.service'
 
-const USAGE = 'Usage: ai <status | register-mcp | sync-agents>'
+const USAGE = 'Usage: ai <status | register-mcp | sync-agents | reconcile>'
 
 /**
  * `register-mcp` creates or re-points the shared `chuyen-nho` MCP server in GoClaw. It never touches
@@ -15,7 +17,7 @@ const USAGE = 'Usage: ai <status | register-mcp | sync-agents>'
  */
 async function main() {
   const [action] = process.argv.slice(2)
-  if (!['status', 'register-mcp', 'sync-agents'].includes(action)) throw new Error(USAGE)
+  if (!['status', 'register-mcp', 'sync-agents', 'reconcile'].includes(action)) throw new Error(USAGE)
   const goclaw = new GoclawClient()
   if (!goclaw.configured()) throw new Error('GOCLAW_URL and GOCLAW_GATEWAY_TOKEN must be set in .env')
   const config = configuration()
@@ -50,7 +52,15 @@ async function main() {
   const database = new DatabaseService()
   await database.onModuleInit()
   try {
-    const service = new AiService(new AiRepository(database), goclaw, new AccountDeletionService(database))
+    const repository = new AiRepository(database)
+    const service = new AiService(repository, goclaw, new AccountDeletionService(database))
+    if (action === 'reconcile') {
+      const summary = await new AiReconcileService(repository, goclaw, service, new PlansRepository(database)).reconcileAll()
+      process.stdout.write(`${JSON.stringify(summary)}
+`)
+      if (summary?.errors) process.exitCode = 1
+      return
+    }
     const result = await service.syncAgents()
     process.stdout.write(`updated ${result.updated} agent(s) to prompt v${PROMPT_VERSION}\n`)
     for (const line of result.failed) process.stdout.write(`failed ${line}\n`)

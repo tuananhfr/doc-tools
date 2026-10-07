@@ -550,11 +550,12 @@
     "title": "Paano namin <accent>pinoproseso ang data</accent>",
     "tagline": "Nananatili sa device mo ang iyong mga file.",
     "intro": "Pinoproseso ng Chuyện Nhỏ ang mga file mismo sa browser. Ipinapaliwanag ng page na ito kung saan tumatakbo ang bawat tool, at kung ano talaga ang ipinapadala sa server.",
+    "draftNotice": "The account and Pro parts of this page are awaiting legal review and may still change.",
     "caption": "Malinaw\nsa bawat tool!",
     "points": {
-      "noCookie": "Walang cookie",
+      "noCookie": "No cookies unless you sign in",
       "noTracking": "Walang tracking o ad tool",
-      "noAccount": "Hindi kailangan ng account"
+      "noAccount": "Accounts are optional"
     },
     "flowLabel": "Saan napupunta ang data",
     "columns": {
@@ -572,9 +573,11 @@
         "title": "Ipinapadala sa aming server",
         "lead": "Hangga't maaari, kaunti lang",
         "points": {
-          "visits": "Pangalan ng tool na binuksan mo, para mabilang ang kabuuang paggamit. Walang cookie, hindi ka kinikilala",
+          "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "One-way na hina-hash lang ang IP address para labanan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras",
           "feedback": "Ipinapadala lang ang puna at mungkahi kapag nag-check ka ng pagpayag at pinindot ang Ipadala",
+          "account": "If you sign in: your email, sign-in session and your suggestions",
+          "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} paparating na tool ang mangangailangan ng lookup sa server, at malinaw itong nakasulat sa card nito",
           "soon_other": "{{count}} paparating na tool ang mangangailangan ng lookup sa server, at malinaw itong nakasulat sa kanilang card"
         }
@@ -868,7 +871,7 @@
       },
       "an-toan": {
         "question": "Ligtas ba ang Chuyện Nhỏ?",
-        "answer": "Tumatakbo ang site sa naka-encrypt na koneksyon (HTTPS), walang cookie, at walang nakakabit na ad o tracking tool ng third party. Hindi umaalis sa device mo ang iyong mga file."
+        "answer": "The site runs over an encrypted connection (HTTPS) and has no third-party advertising or tracking tools; the only cookie is your sign-in session once you sign in. The free tools never send your files anywhere."
       },
       "thu-thap": {
         "question": "Kinokolekta ba ng Chuyện Nhỏ ang aking personal na impormasyon?",
