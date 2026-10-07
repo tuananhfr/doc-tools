@@ -39,3 +39,19 @@ Tests use a dedicated qa slug and test IP, remove their own rows and verify malf
 `POST /api/v1/contributions/receipt/:code/sources` accepts `{sourceRefs:[{url,type}]}` only while the receipt is in `NEEDS_SOURCE`, changes it to `NEEDS_REVIEW`, and records `SOURCES_ADDED`. It returns 404 for unknown receipts or already progressed submissions. The route has a 22 KiB body limit.
 
 The trusted CLI transitions `NEEDS_REVIEW → VERIFIED → APPROVED → PUBLISHED` and records every transition. Reviewer, approver and publisher identities must differ. High-risk domains require an official-type reference and a human verification note. Publishing a rule contribution requires a staged Ed25519 package of the same kind, that has not expired; if the proposal names a base snapshot digest, it must still be the package in effect. The package activation and contribution audit share a transaction. Idea publication requires the same operator separation but no rule package. Public API clients cannot review, approve, or publish.
+
+## Accounts and email sign-in
+
+Cookie-authenticated writes (`/auth/*`, `PATCH /me`) require header `X-CN-Request: 1`; when `SITE_ORIGINS` is set, a present `Origin` must be in that list. Otherwise 403 `code:UNTRUSTED_REQUEST`. All routes send `Cache-Control: no-store`.
+
+- `POST /api/v1/auth/otp/request {email, locale}` → always `{ok:true}` for a valid email (no account enumeration). Emails a 6-digit code valid `OTP_TTL_SECONDS` (600) that voids earlier codes. 3 requests / 15 min / email and 10 / hour / IP, else 429 `code:RATE_LIMITED`. Invalid email → 400 `code:EMAIL_INVALID`.
+- `POST /api/v1/auth/otp/verify {email, code}` → creates the user on first sign-in, sets cookie `cn_session` (HttpOnly, SameSite=Lax, Secure unless `COOKIE_SECURE=0`, `SESSION_DAYS` 30, slid once a day) and returns the `/me` body. Wrong or expired code → 400 `code:OTP_INVALID`; the 5th wrong guess (`OTP_MAX_ATTEMPTS`) kills the code. 30 verifications / hour / IP. Disabled account → 403 `code:ACCOUNT_DISABLED`.
+- `POST /api/v1/auth/logout` → deletes the session, expires the cookie.
+- `GET /api/v1/me` → `{ok:true, user:{id,email,displayName,publicAttribution}|null, plan:{pro,endsAt}, capabilities[]}`. Guests get `user:null` (200, not 401). Capabilities: guest `tool.use`, `contribution.anonymous`; signed in adds `contribution.attributed`, `contribution.track`, `contribution.evidence`; Pro adds `ai.agent`, `cloud.memory`, `sync.basic`, `byoai.history`.
+- `PATCH /api/v1/me {displayName|null, publicAttribution}` → 401 without a session, 400 for names over 80 characters or containing control characters / `<` `>`.
+
+Codes and session tokens are stored only as hashes (HMAC with `VISIT_HASH_SECRET` / SHA-256). Pro is granted only by the trusted CLI (`npm run accounts -- grant-pro <email> <YYYY-MM-DD> <operator> [note]`, through the end of that Vietnam day; `revoke-pro`, `show`, `list-pro`); every grant, revocation and login is written to `user_audit`.
+
+## Outgoing mail
+
+Mail goes through the `mail_outbox` table and an in-process worker (every 15 s, plus immediately after enqueue). `MAIL_TRANSPORT`: `direct` (resolve the recipient's MX, deliver on port 25 with verified STARTTLS, DKIM-sign), `smtp` (`SMTP_HOST`/`PORT`/`SECURE`/`USER`/`PASS`) or `log` (development: prints the message, sends nothing). Transient failures retry after 1, 5, 30 min, 2 h and 6 h; 5xx rejections fail immediately; one-time codes past their expiry are dropped unsent. The payload is replaced with `{}` once a message is sent or failed. `npm run mail -- dkim-keygen <dir outside repo> [selector]` creates the DKIM key and prints the `.env` lines and DNS records; `npm run mail -- test <email>` sends one message through the configured transport.

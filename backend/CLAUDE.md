@@ -38,13 +38,16 @@ npm run rules -- activate <kind>:<digest> <operator>   # gói ngày tương lai 
 npm run rules -- rollback <kind>:<digest> <operator>   # = rút gói, gói trước tự hiệu lực lại
 npm run contributions -- show <uuid>
 npm run contributions -- verify <uuid> <reviewer> <note>   # rồi approve / publish
+npm run accounts -- grant-pro <email> <YYYY-MM-DD> <operator> [note]   # hết NGÀY đó giờ VN; revoke-pro / show / list-pro
+npm run mail -- dkim-keygen <thư mục ngoài repo> [selector]   # in sẵn .env + bản ghi DNS SPF/DKIM/DMARC
+npm run mail -- test <email>                           # gửi thử qua MAIL_TRANSPORT đang đặt
 ```
 
 ## Kiến trúc
 
 Optional `/api/v1/tools/quality` accepts only fixed aggregate event/tool dimensions; it has no public report endpoint. `QualityRepository` stores daily counters and short-lived daily rotating HMAC hourly rate-limit buckets in two dedicated tables. `cli/quality` exports reports for trusted operators. No raw queries, documents, corrections or user tracking identifiers are accepted.
 
-`src/main.ts` chỉ ghép app (prefix `api/v1`, `bodyParser: false`). Ba module, mỗi module
+`src/main.ts` chỉ ghép app (prefix `api/v1`, `bodyParser: false`). Mỗi module
 chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM):
 
 | Module | Đường dẫn | Việc |
@@ -52,6 +55,12 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `tools` | `POST /tools/visits` · `GET /tools/stats` | Bộ đếm lượt mở công cụ |
 | `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
 | `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` | Nhận đề xuất ẩn danh, tra trạng thái theo mã biên nhận, ý tưởng đã duyệt |
+| `auth` | `POST /auth/otp/{request,verify}` · `POST /auth/logout` | Đăng nhập email + mã 6 số, không mật khẩu |
+| `accounts` | `GET`/`PATCH /me` | Người dùng + gói Pro + danh sách capability |
+| `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
+
+Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
+**capability** (`accounts/capabilities.ts`), không kiểm tên bậc. Pro chỉ cấp bằng CLI.
 
 `src/cli/` là đường ghi DUY NHẤT cho gói quy tắc và việc duyệt đóng góp — không có
 endpoint ghi công khai nào cho hai thứ đó.
@@ -74,6 +83,17 @@ endpoint ghi công khai nào cho hai thứ đó.
   5/giờ/IP thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
 - IP không bao giờ lưu thô: HMAC với `VISIT_HASH_SECRET`, có hạn. Mã biên nhận chỉ lưu
   SHA-256. Endpoint trạng thái không trả nội dung đề xuất hay danh tính người duyệt.
+- **Route ghi có cookie phải gắn `TrustedWriteGuard`** (đòi header `X-CN-Request: 1` + `Origin`
+  trong `SITE_ORIGINS`). Cookie SameSite=Lax không chặn được subdomain cùng site; thiếu guard
+  là CSRF. `SITE_ORIGINS` rỗng = nhận mọi origin — chỉ để dev.
+- `GET /me` của khách trả **200 `user:null`**, không 401 — trang tĩnh gọi nó mỗi lần mở.
+- **Mã OTP nằm thô trong `mail_outbox.payload` cho tới khi gửi xong** (rồi bị thay bằng `{}`);
+  thư OTP quá hạn bị bỏ, không gửi muộn. `MAIL_TRANSPORT` mặc định `log` = in mã ra console,
+  không gửi gì — production phải đặt `direct`/`smtp`.
+- `direct` gửi thẳng cổng 25 tới MX người nhận: cần SPF + DKIM + PTR + cổng 25 mở, thiếu một thứ
+  là Gmail/Outlook vứt vào Spam hoặc từ chối. Máy dev nhà mạng thường chặn cổng 25. STARTTLS
+  luôn kiểm chứng chứng chỉ (MX chứng chỉ sai thì sang MX kế tiếp, không tin bừa).
+- `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).
 
 ## Luật nghiệp vụ không được phá
 

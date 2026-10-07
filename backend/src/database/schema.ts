@@ -93,4 +93,80 @@ export const SCHEMA = [
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX (contribution_id, created_at)
   ) ENGINE=InnoDB`,
+  // Emails are stored lower-cased; the binary collation keeps uniqueness byte-exact.
+  `CREATE TABLE IF NOT EXISTS users (
+    id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    email VARCHAR(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL UNIQUE,
+    display_name VARCHAR(80) NULL,
+    public_attribution TINYINT(1) NOT NULL DEFAULT 0,
+    status ENUM('active', 'disabled') NOT NULL DEFAULT 'active',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    last_login_at TIMESTAMP NULL
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS auth_otps (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    code_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    expires_at BIGINT UNSIGNED NOT NULL,
+    attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    consumed_at BIGINT UNSIGNED NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    INDEX (email_hash, created_at), INDEX (expires_at)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS auth_flood_locks (
+    key_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    seen_at BIGINT UNSIGNED NOT NULL, INDEX (seen_at)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS auth_flood_events (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    key_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    expires BIGINT UNSIGNED NOT NULL, INDEX (key_hash, expires), INDEX (expires)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS user_sessions (
+    token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    expires_at BIGINT UNSIGNED NOT NULL,
+    last_seen_at BIGINT UNSIGNED NOT NULL,
+    INDEX (user_id), INDEX (expires_at)
+  ) ENGINE=InnoDB`,
+  // One row per grant; a user is Pro while any non-revoked row covers "now".
+  `CREATE TABLE IF NOT EXISTS user_plans (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    plan ENUM('pro') NOT NULL,
+    starts_at BIGINT UNSIGNED NOT NULL,
+    ends_at BIGINT UNSIGNED NOT NULL,
+    revoked_at BIGINT UNSIGNED NULL,
+    granted_by VARCHAR(128) NOT NULL,
+    note VARCHAR(500) NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX (user_id, ends_at)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS user_audit (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    action VARCHAR(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    actor VARCHAR(128) NOT NULL,
+    note VARCHAR(500) NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX (user_id, created_at)
+  ) ENGINE=InnoDB`,
+  // payload is scrubbed once a message leaves the queue, so one-time codes do not linger here.
+  `CREATE TABLE IF NOT EXISTS mail_outbox (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    to_email VARCHAR(254) NOT NULL,
+    template VARCHAR(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    payload JSON NOT NULL,
+    status ENUM('pending', 'sending', 'sent', 'failed') NOT NULL DEFAULT 'pending',
+    attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    next_attempt_at BIGINT UNSIGNED NOT NULL,
+    expires_at BIGINT UNSIGNED NULL,
+    claim_token CHAR(32) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    claimed_at BIGINT UNSIGNED NULL,
+    last_error VARCHAR(500) NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    sent_at BIGINT UNSIGNED NULL,
+    INDEX (status, next_attempt_at), INDEX (claim_token)
+  ) ENGINE=InnoDB`,
 ]

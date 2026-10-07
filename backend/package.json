@@ -9,22 +9,25 @@
     "test": "npm run build && node --test tests/*.test.cjs",
     "lint": "tsc --noEmit",
     "rules": "node dist/cli/rules.js",
-    "contributions": "node dist/cli/contributions.js"
+    "contributions": "node dist/cli/contributions.js",
+    "accounts": "node dist/cli/accounts.js",
+    "mail": "node dist/cli/mail.js"
   },
   "dependencies": {
     "@nestjs/common": "12.1.2",
     "@nestjs/core": "12.1.2",
     "@nestjs/platform-fastify": "12.1.2",
+    "dotenv": "^17.0.0",
     "fastify": "^5.0.0",
     "mysql2": "^3.0.0",
+    "nodemailer": "^10.0.16",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2",
-    "dotenv": "^17.0.0"
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "typescript": "~6.0.2",
     "@types/node": "^24.13.3",
-    "tsx": "^4.0.0"
+    "tsx": "^4.0.0",
+    "typescript": "~6.0.2"
   },
   "packageManager": "npm@11.11.0",
   "engines": {
