@@ -4,5 +4,7 @@ import { RulesModule } from './rules/rules.module'
 import { ContributionsModule } from './contributions/contributions.module'
 import { AccountsModule } from './accounts/accounts.module'
 import { AuthModule } from './auth/auth.module'
-@Module({ imports: [ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule] })
+import { SettingsModule } from './settings/settings.module'
+import { AdminModule } from './admin/admin.module'
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule] })
 export class AppModule {}

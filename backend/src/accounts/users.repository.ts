@@ -39,6 +39,10 @@ export class UsersRepository {
     await this.database.pool.execute('UPDATE users SET display_name = ?, public_attribution = ? WHERE id = ?', [profile.displayName, profile.publicAttribution ? 1 : 0, id])
   }
 
+  async setStatus(id: string, status: UserRow['status']) {
+    await this.database.pool.execute('UPDATE users SET status = ? WHERE id = ?', [status, id])
+  }
+
   async audit(userId: string, action: string, actor: string, note: string | null = null) {
     await this.database.pool.execute('INSERT INTO user_audit (user_id, action, actor, note) VALUES (?, ?, ?, ?)', [userId, action, actor, note])
   }

@@ -5,6 +5,8 @@ import { AccountsService } from '../accounts/accounts.service'
 import { UsersRepository } from '../accounts/users.repository'
 import { configuration } from '../config/configuration'
 import { MailService } from '../mail/mail.service'
+import { RolesRepository } from '../roles/roles.repository'
+import { SettingsService } from '../settings/settings.service'
 import type { MailLocale } from '../mail/mail-templates'
 import { SessionService } from '../session/session.service'
 import { AuthFloodRepository } from './auth-flood.repository'
@@ -26,7 +28,14 @@ export class AuthService {
     private readonly users: UsersRepository,
     private readonly sessions: SessionService,
     private readonly accounts: AccountsService,
+    private readonly roles: RolesRepository,
+    private readonly settings: SettingsService,
   ) {}
+
+  /** Closed sign-up keeps existing accounts working; only unknown emails are turned away. */
+  private async mayCreate(email: string) {
+    return await this.settings.get('auth.signupOpen') || Boolean(await this.users.findByEmail(email))
+  }
 
   private async limit(key: string, rule: { limit: number; window: number }, now: number) {
     if (!await this.flood.hit(hmac(key), rule.limit, rule.window, now)) {
@@ -40,6 +49,8 @@ export class AuthService {
     await this.limit(`otp-ip:${ip}`, REQUESTS_PER_IP, now)
     await this.limit(`otp-email:${email}`, REQUESTS_PER_EMAIL, now)
     const { otpTtlSeconds } = configuration().auth
+    // Same answer either way, so a closed sign-up does not reveal which emails have accounts.
+    if (!await this.mayCreate(email)) return { ok: true }
     const code = String(randomInt(0, 1_000_000)).padStart(6, '0')
     await this.otps.issue(hmac(`email:${email}`), hmac(`otp:${email}:${code}`), now, now + otpTtlSeconds)
     await this.mail.enqueue(email, 'otp', { code, locale, ttlMinutes: Math.round(otpTtlSeconds / 60) }, now + otpTtlSeconds)
@@ -53,11 +64,12 @@ export class AuthService {
     if (!await this.otps.consume(hmac(`email:${email}`), hmac(`otp:${email}:${code}`), now, otpMaxAttempts)) {
       throw new BadRequestException({ ok: false, code: 'OTP_INVALID', message: 'Mã không đúng hoặc đã hết hạn.' })
     }
+    if (!await this.mayCreate(email)) throw new ForbiddenException({ ok: false, code: 'SIGNUP_CLOSED', message: 'Chuyện Nhỏ tạm ngừng nhận tài khoản mới.' })
     const user = await this.users.findOrCreate(email)
     if (user.status !== 'active') throw new ForbiddenException({ ok: false, code: 'ACCOUNT_DISABLED', message: 'Tài khoản này đã bị khoá. Liên hệ contact@lpc.vn.' })
     await this.users.markLogin(user.id)
     await this.users.audit(user.id, 'LOGIN', 'self')
     await this.sessions.start(user.id, reply)
-    return this.accounts.me({ id: user.id, email: user.email, displayName: user.displayName, publicAttribution: user.publicAttribution })
+    return this.accounts.me({ id: user.id, email: user.email, displayName: user.displayName, publicAttribution: user.publicAttribution, role: await this.roles.roleOf(user.id) })
   }
 }

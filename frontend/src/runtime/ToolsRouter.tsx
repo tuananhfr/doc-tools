@@ -20,9 +20,12 @@ import LegalPage from '@/features/site/pages/LegalPage'
 import { AccountPage, LoginPage, MyContributionsPage } from '@/features/account'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
+import { ADMIN_ROOT } from '@/features/admin'
 
 const ToolRoutePage = dynamic(() => import('@/features/tools/hub/pages/ToolRoutePage'), { ssr: false, loading: ToolRouteFallback })
-const routes: RouteObject[] = [{ path: ROUTES.docTools, element: <ToolsLayout />, children: [
+// Own chrome outside ToolsLayout, and client-only: every admin screen depends on the staff session.
+const AdminApp = dynamic(() => import('@/features/admin/AdminApp'), { ssr: false, loading: () => <div className="cn-site cn-admin is-gate"><div className="cn-admin-gate-loading" aria-busy="true" /></div> })
+const routes: RouteObject[] = [{ path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
   { index: true, element: <ToolsHubPage /> },
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.

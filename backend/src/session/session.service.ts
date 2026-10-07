@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { createHash, randomBytes } from 'node:crypto'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { configuration } from '../config/configuration'
-import { SessionRepository, type SessionUser } from './session.repository'
+import { RolesRepository } from '../roles/roles.repository'
+import { STAFF_SESSION_SECONDS } from '../roles/roles'
+import { SessionRepository, type SessionRecord, type SessionUser } from './session.repository'
 
 export const SESSION_COOKIE = 'cn_session'
 // Sliding the expiry on every request would write once per API call; once a day is enough.
@@ -25,29 +27,36 @@ function cookie(value: string, maxAge: number) {
 
 @Injectable()
 export class SessionService {
-  constructor(private readonly sessions: SessionRepository) {}
+  constructor(private readonly sessions: SessionRepository, private readonly roles: RolesRepository) {}
 
-  private lifetime() { return configuration().auth.sessionDays * 86400 }
+  /** Staff sessions never slide: EXTEND_AFTER_SECONDS is longer than their whole lifetime. */
+  private lifetime(staff: boolean) { return staff ? STAFF_SESSION_SECONDS : configuration().auth.sessionDays * 86400 }
 
   async start(userId: string, reply: FastifyReply) {
     const token = randomBytes(32).toString('base64url')
     const now = Math.floor(Date.now() / 1000)
-    await this.sessions.create(tokenHash(token), userId, now, now + this.lifetime())
-    reply.header('set-cookie', cookie(token, this.lifetime()))
+    const lifetime = this.lifetime(Boolean(await this.roles.roleOf(userId)))
+    await this.sessions.create(tokenHash(token), userId, now, now + lifetime)
+    reply.header('set-cookie', cookie(token, lifetime))
   }
 
   /** Resolves the signed-in user; pass `reply` to let an active session slide forward. */
   async current(request: FastifyRequest, reply?: FastifyReply): Promise<SessionUser | null> {
+    return (await this.currentSession(request, reply))?.user ?? null
+  }
+
+  async currentSession(request: FastifyRequest, reply?: FastifyReply): Promise<SessionRecord | null> {
     const token = readCookie(request, SESSION_COOKIE)
     if (!token || !/^[A-Za-z0-9_-]{43}$/.test(token)) return null
     const now = Math.floor(Date.now() / 1000)
     const session = await this.sessions.find(tokenHash(token), now)
     if (!session) return null
     if (reply && now - session.lastSeenAt >= EXTEND_AFTER_SECONDS) {
-      await this.sessions.extend(tokenHash(token), now, now + this.lifetime())
-      reply.header('set-cookie', cookie(token, this.lifetime()))
+      const lifetime = this.lifetime(Boolean(session.user.role))
+      await this.sessions.extend(tokenHash(token), now, now + lifetime)
+      reply.header('set-cookie', cookie(token, lifetime))
     }
-    return session.user
+    return session
   }
 
   async end(request: FastifyRequest, reply: FastifyReply) {
@@ -56,5 +65,6 @@ export class SessionService {
     reply.header('set-cookie', cookie('', 0))
   }
 
-  async endAll(userId: string) { await this.sessions.deleteForUser(userId) }
+  async endAll(userId: string) { return this.sessions.deleteForUser(userId) }
+  async list(userId: string) { return this.sessions.listForUser(userId, Math.floor(Date.now() / 1000)) }
 }

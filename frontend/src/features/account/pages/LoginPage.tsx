@@ -6,6 +6,7 @@ import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { LoginForm } from '../components/LoginForm'
 import { useMe } from '../hooks/useAccount'
 import { safeNextPath } from '../utils/next-path'
+import { ADMIN_ROOT } from '@/features/admin'
 
 const BENEFITS = [
   { id: 'attributed', icon: 'person-check' },
@@ -18,11 +19,13 @@ export default function LoginPage() {
   const { t: tSite } = useTranslation('site')
   usePageTitle(t('pages.dang-nhap.title'))
   const [params] = useSearchParams()
-  const next = safeNextPath(params.get('next'))
+  const requested = params.get('next')
+  const next = safeNextPath(requested)
   const { data } = useMe()
 
   // Also the redirect after a successful sign-in: verifying writes the new session into the `/me` cache.
-  if (data?.user) return <Navigate to={next} replace />
+  // Staff land in the admin area unless a link asked for somewhere specific.
+  if (data?.user) return <Navigate to={data.staff && !requested ? ADMIN_ROOT : next} replace />
 
   return (
     <div className="cn-site-page cn-account">

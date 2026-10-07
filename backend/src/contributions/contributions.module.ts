@@ -6,5 +6,5 @@ import { ContributionsRepository } from './contributions.repository'
 import { ContributionsService } from './contributions.service'
 import { MyContributionsController } from './my-contributions.controller'
 
-@Module({ imports: [DatabaseModule, SessionModule], controllers: [ContributionsController, MyContributionsController], providers: [ContributionsRepository, ContributionsService] })
+@Module({ imports: [DatabaseModule, SessionModule], controllers: [ContributionsController, MyContributionsController], providers: [ContributionsRepository, ContributionsService], exports: [ContributionsRepository] })
 export class ContributionsModule {}

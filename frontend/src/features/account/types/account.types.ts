@@ -4,7 +4,7 @@ export type Capability =
   | 'ai.agent' | 'cloud.memory' | 'sync.basic' | 'byoai.history'
 
 export interface AccountUser {
-  id: number
+  id: string
   email: string
   displayName: string | null
   publicAttribution: boolean
@@ -15,6 +15,8 @@ export interface AccountState {
   user: AccountUser | null
   plan: { pro: boolean; endsAt: string | null }
   capabilities: Capability[]
+  /** Set only for accounts with an admin role; ordinary members get `null`. */
+  staff: { role: 'owner' | 'admin' | 'reviewer'; permissions: string[] } | null
 }
 
 export interface ProfileInput {
@@ -50,7 +52,7 @@ export interface MyContributionsPage {
 }
 
 export const ACCOUNT_ERROR_CODES = [
-  'EMAIL_INVALID', 'OTP_INVALID', 'RATE_LIMITED', 'ACCOUNT_DISABLED', 'UNTRUSTED_REQUEST', 'SIGNED_OUT',
+  'EMAIL_INVALID', 'OTP_INVALID', 'RATE_LIMITED', 'ACCOUNT_DISABLED', 'SIGNUP_CLOSED', 'UNTRUSTED_REQUEST', 'SIGNED_OUT',
   'EVIDENCE_CLOSED', 'TOO_MANY_SOURCES', 'SOURCE_INVALID', 'NOT_FOUND', 'NETWORK', 'UNKNOWN',
 ] as const
 export type AccountErrorCode = (typeof ACCOUNT_ERROR_CODES)[number]

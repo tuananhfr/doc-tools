@@ -108,6 +108,7 @@
     "OTP_INVALID": "Mã không đúng hoặc đã hết hạn.",
     "RATE_LIMITED": "Bạn đã thử quá nhiều lần. Hãy đợi ít phút rồi thử lại.",
     "ACCOUNT_DISABLED": "Tài khoản này đã bị khoá. Liên hệ contact@lpc.vn.",
+    "SIGNUP_CLOSED": "Hiện chưa mở đăng ký tài khoản mới. Tài khoản đã có vẫn đăng nhập bình thường.",
     "UNTRUSTED_REQUEST": "Yêu cầu không hợp lệ. Hãy tải lại trang rồi thử lại.",
     "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
     "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",

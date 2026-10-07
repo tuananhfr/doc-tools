@@ -38,7 +38,7 @@ test('email code sign-in, session, profile, Pro capabilities and abuse limits', 
     }
 
     const guest = (await api.inject({ method: 'GET', url: '/api/v1/me' })).json()
-    assert.deepEqual(guest, { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use', 'contribution.anonymous'] })
+    assert.deepEqual(guest, { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use', 'contribution.anonymous'], staff: null })
 
     assert.equal((await post('/auth/otp/request', { email }, { origin: 'https://site.test' })).statusCode, 403, 'custom header required')
     assert.equal((await post('/auth/otp/request', { email }, { ...write, origin: 'https://evil.test' })).statusCode, 403, 'foreign origin refused')

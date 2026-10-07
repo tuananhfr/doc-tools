@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { BASE_PATH, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
 import { legacyToolPath } from '@/features/tools/hub/utils/tool-lookup'
+import { ADMIN_ROOT } from '@/features/admin'
 import { DEFAULT_LOCALE, LOCALE_COOKIE, isLocale, localizePath, splitLocalePath } from '@/i18n/locales'
 
 export function proxy(request: NextRequest) {
@@ -32,6 +33,12 @@ export function proxy(request: NextRequest) {
  */
 function localeRoute(request: NextRequest, url: URL) {
   const { locale, rest, explicit } = splitLocalePath(url.pathname)
+  // The admin area exists in Vietnamese only: a remembered language must not bounce staff to a page that is not there.
+  const admin = rest === ADMIN_ROOT || rest.startsWith(ADMIN_ROOT + '/')
+  if (admin && explicit) {
+    url.pathname = withBase(rest)
+    return NextResponse.redirect(url, 308)
+  }
   if (explicit) {
     if (locale !== DEFAULT_LOCALE) return NextResponse.next()
     url.pathname = withBase(rest)
@@ -40,7 +47,7 @@ function localeRoute(request: NextRequest, url: URL) {
   // Only a language the visitor picked; Accept-Language is ignored so crawlers always get the default page.
   // Top-level navigations only: the service worker precaches unprefixed URLs and must not store a redirect.
   const remembered = request.cookies.get(LOCALE_COOKIE)?.value
-  if (isLocale(remembered) && remembered !== DEFAULT_LOCALE && request.headers.get('sec-fetch-mode') === 'navigate') {
+  if (!admin && isLocale(remembered) && remembered !== DEFAULT_LOCALE && request.headers.get('sec-fetch-mode') === 'navigate') {
     url.pathname = withBase(localizePath(rest, remembered))
     return NextResponse.redirect(url, 307)
   }

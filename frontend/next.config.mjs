@@ -20,6 +20,7 @@ const config = {
       { source: '/api/v1/auth/:path*', destination: backend + '/api/v1/auth/:path*' },
       { source: '/api/v1/me', destination: backend + '/api/v1/me' },
       { source: '/api/v1/me/:path*', destination: backend + '/api/v1/me/:path*' },
+      { source: '/api/v1/admin/:path*', destination: backend + '/api/v1/admin/:path*' },
     ]
   },
   webpack(config, { isServer, webpack }) {

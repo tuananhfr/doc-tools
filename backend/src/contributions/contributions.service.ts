@@ -1,13 +1,11 @@
 import { BadRequestException, ConflictException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common'
 import { createHash, createHmac, randomBytes, randomUUID } from 'node:crypto'
 import { configuration } from '../config/configuration'
+import { SettingsService } from '../settings/settings.service'
 import type { ContributionInput, ProposedChange, SourceRef } from './contribution-input'
 import { contributionRisk } from './contribution-input'
 import { ContributionsRepository, EVIDENCE_OPEN, MAX_SOURCE_REFS } from './contributions.repository'
 
-const GUEST_HOURLY_LIMIT = 5
-// Per account rather than per IP, so an office behind one address does not lock its staff out.
-const ACCOUNT_HOURLY_LIMIT = 10
 export const MINE_PAGE_SIZE = 20
 // A contribution may carry 50 changes of 5000 characters; the list only needs a glimpse of each.
 const PREVIEW_CHANGES = 3
@@ -28,7 +26,7 @@ export interface Submitter { userId: string; attribution: boolean }
 
 @Injectable()
 export class ContributionsService {
-  constructor(private readonly repository: ContributionsRepository) {}
+  constructor(private readonly repository: ContributionsRepository, private readonly settings: SettingsService) {}
 
   async submit(input: ContributionInput, ip: string, submitter: Submitter | null) {
     const secret = configuration().visitHashSecret
@@ -37,7 +35,8 @@ export class ContributionsService {
     const result = await this.repository.submit(input, {
       id: randomUUID(), receiptHash: hash(receiptCode), duplicateHash: hash(stable(input)),
       floodKey: createHmac('sha256', secret).update(submitter ? `contribution-user:${submitter.userId}` : `contribution:${ip}`).digest('hex'),
-      floodLimit: submitter ? ACCOUNT_HOURLY_LIMIT : GUEST_HOURLY_LIMIT,
+      // Per account rather than per IP, so an office behind one address does not lock its staff out.
+      floodLimit: await this.settings.get(submitter ? 'contributions.accountHourly' : 'contributions.guestHourly'),
       risk: contributionRisk(input.domain), status, submitter,
     }, Math.floor(Date.now() / 1000))
     if (result === 'DUPLICATE') throw new ConflictException({ ok: false, code: 'DUPLICATE_CONTRIBUTION', message: 'Đề xuất này đã có trong hàng chờ.' })

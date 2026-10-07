@@ -178,4 +178,35 @@ export const SCHEMA = [
     sent_at BIGINT UNSIGNED NULL,
     INDEX (status, next_attempt_at), INDEX (claim_token)
   ) ENGINE=InnoDB`,
+  // One staff role per account; everyone without a row is an ordinary user.
+  `CREATE TABLE IF NOT EXISTS user_roles (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    role ENUM('owner', 'admin', 'reviewer') NOT NULL,
+    granted_by VARCHAR(128) NOT NULL,
+    granted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS admin_audit (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    actor_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    actor_email VARCHAR(254) NOT NULL,
+    action VARCHAR(48) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    target_type VARCHAR(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    target_id VARCHAR(128) NULL,
+    detail VARCHAR(1000) NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX (created_at), INDEX (actor_id, created_at), INDEX (target_type, target_id)
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS app_settings (
+    setting_key VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    value JSON NOT NULL,
+    updated_by VARCHAR(128) NOT NULL,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB`,
+  // tool_visits only keeps an all-time total; daily rows start counting from the day this table appears.
+  `CREATE TABLE IF NOT EXISTS tool_visit_days (
+    day CHAR(10) CHARACTER SET ascii NOT NULL,
+    tool VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    count BIGINT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (day, tool), INDEX (tool, day)
+  ) ENGINE=InnoDB`,
 ]

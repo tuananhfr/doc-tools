@@ -1,9 +1,7 @@
 import 'dotenv/config'
 import { DatabaseService } from '../database/database.service'
 import { ContributionsRepository } from '../contributions/contributions.repository'
-import { RulesRepository } from '../rules/rules.repository'
-import { verifyRulePackage } from '../rules/rule-package'
-import { vietnamToday } from '../rules/rule-dates'
+import { assertPublishablePackage } from '../contributions/publish-check'
 
 async function main() {
   const [action, id, actor, ...rest] = process.argv.slice(2)
@@ -25,13 +23,8 @@ async function main() {
       const contribution = await repository.getForReview(id)
       if (!contribution) throw new Error('Contribution not found')
       if (contribution.domain !== 'ideas') {
-        if (!/^[0-9a-f]{64}$/.test(note || '')) throw new Error('Publish requires a staged rule package digest')
+        await assertPublishablePackage(database, contribution.domain as string, note || '')
         digest = note
-        const publicKey = process.env.RULE_SIGNING_PUBLIC_KEY_PEM?.replace(/\\n/g, '\n')
-        if (!publicKey) throw new Error('RULE_SIGNING_PUBLIC_KEY_PEM is required')
-        const item = await new RulesRepository(database).getByDigest(contribution.domain as string, note!)
-        if (!item || verifyRulePackage(item, publicKey).digest !== digest) throw new Error('Staged package signature does not verify')
-        if (item.effectiveTo && item.effectiveTo < vietnamToday()) throw new Error('Rule package has already expired')
       }
     }
     const result = await repository.transition(id, action as 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke', actor, action === 'publish' ? null : note, digest)

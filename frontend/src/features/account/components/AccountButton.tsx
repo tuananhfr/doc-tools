@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useMe } from '../hooks/useAccount'
 import { initialOf } from '../utils/initial'
+import { withBase } from '@/utils/url'
+import { ADMIN_ROOT } from '@/features/admin'
 
 /** Header entry: "Sign in" for guests, an initial badge for members. Renders a placeholder until `/me` answers so the label never flips. */
 export function AccountButton() {
@@ -19,10 +21,14 @@ export function AccountButton() {
     )
   }
   return (
-    <Link className="cn-account-button is-member" to="/tai-khoan" title={user.email} aria-label={`${t('header.account')}: ${user.email}`}>
-      <span className="cn-account-avatar" aria-hidden="true">{initialOf(user.displayName || user.email)}</span>
-      <span className="cn-account-button__label">{t('header.account')}</span>
-      {data.plan.pro ? <span className="cn-pro-chip">Pro</span> : null}
-    </Link>
+    <>
+      {/* Full page load on purpose: the admin area is Vietnamese only and lives outside the localized router. */}
+      {data.staff ? <a className="cn-account-button is-staff" href={withBase(ADMIN_ROOT)} title="Quản trị" aria-label="Quản trị"><Icon name="shield-lock" /></a> : null}
+      <Link className="cn-account-button is-member" to="/tai-khoan" title={user.email} aria-label={`${t('header.account')}: ${user.email}`}>
+        <span className="cn-account-avatar" aria-hidden="true">{initialOf(user.displayName || user.email)}</span>
+        <span className="cn-account-button__label">{t('header.account')}</span>
+        {data.plan.pro ? <span className="cn-pro-chip">Pro</span> : null}
+      </Link>
+    </>
   )
 }

@@ -2,6 +2,8 @@ import { Offcanvas } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useMe } from '@/features/account'
+import { ADMIN_ROOT } from '@/features/admin'
+import { withBase } from '@/utils/url'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
 
 interface MobileNavigationProps {
@@ -25,6 +27,7 @@ export function MobileNavigation({ open, onClose }: MobileNavigationProps) {
           <div className="cn-mobile-account">
             <Link to={data.user ? '/tai-khoan' : '/dang-nhap'} onClick={onClose}>{data.user ? t('header.account') : t('header.signIn')}</Link>
             {data.user ? <span className="cn-mobile-account__email">{data.user.email}</span> : null}
+            {data.staff ? <a href={withBase(ADMIN_ROOT)}>Quản trị</a> : null}
           </div>
         ) : null}
         <div className="cn-mobile-products">

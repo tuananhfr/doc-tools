@@ -70,3 +70,17 @@ it('sends a visitor back to the language they picked, never by Accept-Language',
   const precache = proxy(new NextRequest('http://localhost:3002/doc-tools/ghep-pdf', { nextConfig, headers: { cookie: 'cn_locale=ja', 'sec-fetch-mode': 'same-origin' } }))
   expect(precache.headers.get('location')).toBeNull()
 })
+
+it('keeps the Vietnamese-only admin area out of language redirects', async () => {
+  vi.stubEnv('NEXT_PUBLIC_BASE_PATH', '')
+  vi.resetModules()
+  const { proxy } = await import('./proxy')
+  const remembered = proxy(new NextRequest('http://localhost:3002/quan-tri/nguoi-dung', { headers: { cookie: 'cn_locale=ja', 'sec-fetch-mode': 'navigate' } }))
+  expect(remembered.headers.get('location')).toBeNull()
+  expect(remembered.headers.get('x-middleware-rewrite')).toBe('http://localhost:3002/vi/quan-tri/nguoi-dung')
+  const english = proxy(new NextRequest('http://localhost:3002/en/quan-tri?id=1'))
+  expect(english.status).toBe(308)
+  expect(english.headers.get('location')).toBe('http://localhost:3002/quan-tri?id=1')
+  const lookalike = proxy(new NextRequest('http://localhost:3002/quan-tri-x', { headers: { cookie: 'cn_locale=ja', 'sec-fetch-mode': 'navigate' } }))
+  expect(lookalike.headers.get('location')).toBe('http://localhost:3002/ja/quan-tri-x')
+})

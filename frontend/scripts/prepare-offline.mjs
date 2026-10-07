@@ -17,7 +17,8 @@ const build = fs.readFileSync('.next/BUILD_ID', 'utf8').trim()
 const routes = JSON.parse(fs.readFileSync('.next/prerender-manifest.json', 'utf8')).routes
 // Every prerendered page (it has an RSC payload); og images, robots and sitemap do not, and `/_*` are Next internals.
 // Pages live under app/[lang]: precache the default locale only, at the unprefixed URL the proxy serves it from.
-const pages = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && (url === '/vi' || url.startsWith('/vi/'))).map(([url]) => url)
+// The staff-only admin shell is never needed offline and must not ship to every visitor's cache.
+const pages = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && (url === '/vi' || url.startsWith('/vi/')) && !/^\/vi\/quan-tri(\/|$)/.test(url)).map(([url]) => url)
 const optimizedImages = new Set()
 for (const url of pages) {
   const file = path.join('.next/server/app', url.slice(1) + '.html')

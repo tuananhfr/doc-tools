@@ -125,7 +125,7 @@ OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-im
 
 Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth}/*`,
+`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
@@ -151,6 +151,31 @@ trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
   `{{count}}` bắt đủ dạng số nhiều ở mọi locale (test parity), 13 locale đang chép bản en.
 - Header đã chật: thêm nút vào `.cn-header-actions` phải đo lại 360–1440px (nhãn nút tài khoản
   chỉ hiện từ 1400px, dưới 360px nút tài khoản chuyển vào menu trượt).
+- `/me` trả `staff` (`null` với tài khoản thường). Staff thấy thêm nút khiên ở header / mục
+  "Quản trị" trong menu trượt, và đăng nhập không có `?next=` thì vào thẳng `/quan-tri`.
+
+### Khu quản trị (`features/admin`, `/quan-tri`)
+
+Chỉ tiếng Việt, **không đi qua i18n** (chuỗi viết thẳng trong component — cố ý, không thêm
+vào 15 file message). `noindex, nofollow`, không có trong sitemap, HTML không vào precache.
+
+- Route React Router `/quan-tri/*` khai **ngoài** `ToolsLayout` trong `runtime/ToolsRouter.tsx`
+  (khung riêng: sidebar + topbar), nạp `next/dynamic` `ssr:false` — khách không bao giờ tải
+  chunk đó. Trang con dùng `<Routes>` lồng trong `AdminApp.tsx`; chi tiết mở bằng `?id=` để
+  không cần segment động (export tĩnh).
+- Trang Next `app/[lang]/quan-tri/[[...path]]/page.tsx` chỉ sinh cho `vi`.
+  **`generateStaticParams` phải tự trả `lang: 'vi'` và KHÔNG trả `[]` cho locale khác**:
+  Next 16 bỏ cả route khỏi bản build (không lỗi, không cảnh báo) hễ một lần gọi theo
+  locale cha trả mảng rỗng. `proxy.ts` đưa `/<lang>/quan-tri` về `/quan-tri` và không áp
+  ngôn ngữ đã nhớ cho khu này.
+- `html/body` của site không cuộn: `.cn-admin-body` là hộp cuộn của khu quản trị (như
+  `.erp-tools-guest` của site). Đặt `position: sticky` hay đo cuộn thì đo trên hộp đó.
+- Mọi request admin (kể cả GET) gửi `X-CN-Request: 1` — đi qua `admin.service.ts`. Trạng
+  thái cổng vào do `useWhoami()` quyết: `SIGNED_OUT` → thẻ đăng nhập, `NOT_STAFF` → về `/`,
+  `STAFF_REAUTH` (phiên staff quá 12 giờ) → đăng xuất rồi đăng nhập lại.
+- Ẩn mục menu chưa đủ: mỗi trang bọc `RequirePermission`, vì link dán thẳng vẫn vào được.
+- Thêm mục quản trị = một dòng `ADMIN_SECTIONS` (`config/admin-nav.ts`) + một `<Route>` trong
+  `AdminApp.tsx`; slug mới tự có trang tĩnh.
 
 ## Thêm một công cụ
 

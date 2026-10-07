@@ -1,7 +1,8 @@
 export type MailLocale = 'vi' | 'en'
-export type MailTemplate = 'otp'
+export type MailTemplate = 'otp' | 'test'
 
 export interface OtpPayload { code: string; locale: MailLocale; ttlMinutes: number }
+export interface TestPayload { requestedBy: string; at: string }
 
 export interface RenderedMail { subject: string; text: string; html: string }
 
@@ -40,8 +41,15 @@ function renderOtp(payload: OtpPayload): RenderedMail {
   return { subject: copy.subject, text, html }
 }
 
+function renderTest(payload: TestPayload): RenderedMail {
+  const lines = ['Đây là thư thử của Chuyện Nhỏ.', `Người yêu cầu: ${payload.requestedBy}`, `Thời điểm: ${payload.at}`, '', 'Thư đến được hộp thư (không vào Spam) nghĩa là cấu hình gửi thư đang ổn.']
+  const html = `<!doctype html><html lang="vi"><body style="margin:0;padding:24px;font-family:Arial,Helvetica,sans-serif;color:#1d2433">${lines.map((line) => `<p style="margin:0 0 8px">${escapeHtml(line) || '&nbsp;'}</p>`).join('')}</body></html>`
+  return { subject: 'Thư thử Chuyện Nhỏ', text: lines.join('\n'), html }
+}
+
 export function renderMail(template: MailTemplate, payload: unknown): RenderedMail {
   switch (template) {
     case 'otp': return renderOtp(payload as OtpPayload)
+    case 'test': return renderTest(payload as TestPayload)
   }
 }

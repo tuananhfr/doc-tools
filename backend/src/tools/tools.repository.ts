@@ -1,6 +1,7 @@
 import { Injectable, type OnModuleInit, type OnModuleDestroy } from '@nestjs/common'
 import type { RowDataPacket } from 'mysql2/promise'
 import { DatabaseService } from '../database/database.service'
+import { vietnamToday } from '../rules/rule-dates'
 @Injectable()
 export class ToolsRepository implements OnModuleInit, OnModuleDestroy {
   private cleanup?: NodeJS.Timeout
@@ -26,6 +27,7 @@ export class ToolsRepository implements OnModuleInit, OnModuleDestroy {
       if (allowed) {
         await connection.execute('INSERT INTO visit_flood_events (ip_hash, expires) VALUES (?, ?)', [ipHash, now + 3600])
         await connection.execute('INSERT INTO tool_visits (tool, count, changed) VALUES (?, 1, ?) ON DUPLICATE KEY UPDATE count = count + 1, changed = ?', [tool, now, now])
+        await connection.execute('INSERT INTO tool_visit_days (day, tool, count) VALUES (?, ?, 1) ON DUPLICATE KEY UPDATE count = count + 1', [vietnamToday(new Date(now * 1000)), tool])
       }
       await connection.commit()
       return allowed

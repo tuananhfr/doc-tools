@@ -14,7 +14,7 @@ npm ci                 # Node 24+, npm 11.11
 cp .env.example .env   # điền DB_* và VISIT_HASH_SECRET
 npm run dev            # build MỘT lần rồi node --watch dist/main.js — cổng 3003
 npm run build          # tsc -> dist/
-npm test               # build + node --test tests/*.test.cjs, MySQL THẬT
+npm test               # build + node --test --test-concurrency=1 tests/*.test.cjs, MySQL THẬT
 npm run lint           # = tsc --noEmit
 npm run build && node --test tests/rules.test.cjs   # một file test
 ```
@@ -23,6 +23,8 @@ npm run build && node --test tests/rules.test.cjs   # một file test
   xong phải `npm run build` (ở terminal khác) để thấy thay đổi.
 - Test là `.cjs`, `require('../dist/...')` — chạy trên bản build, không phải `src/`. Test
   nối MySQL theo `.env`, tự tạo dữ liệu `qa-*` rồi tự dọn; không có MySQL là test fail.
+  Các file test chạy **tuần tự** (`--test-concurrency=1`): `app_settings` là trạng thái
+  chung của cả DB, file này đổi trần đề xuất thì file kia chạy song song sẽ vỡ ngẫu nhiên.
 - `configuration()` ném lỗi lúc khởi động nếu `VISIT_HASH_SECRET` trống hoặc
   `DB_PASSWORD` **chưa khai** (được phép là chuỗi rỗng, nhưng phải có dòng đó).
 
@@ -39,6 +41,7 @@ npm run rules -- rollback <kind>:<digest> <operator>   # = rút gói, gói trư�
 npm run contributions -- show <uuid>
 npm run contributions -- verify <uuid> <reviewer> <note>   # rồi approve / publish
 npm run accounts -- grant-pro <email> <YYYY-MM-DD> <operator> [note]   # hết NGÀY đó giờ VN; revoke-pro / show / list-pro
+npm run accounts -- grant-role <email> <owner|admin|reviewer> <operator>   # tạo chủ hệ thống đầu tiên; revoke-role / list-roles
 npm run mail -- dkim-keygen <thư mục ngoài repo> [selector]   # in sẵn .env + bản ghi DNS SPF/DKIM/DMARC
 npm run mail -- test <email>                           # gửi thử qua MAIL_TRANSPORT đang đặt
 ```
@@ -58,12 +61,21 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `auth` | `POST /auth/otp/{request,verify}` · `POST /auth/logout` | Đăng nhập email + mã 6 số, không mật khẩu |
 | `accounts` | `GET`/`PATCH /me` | Người dùng + gói Pro + danh sách capability |
 | `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
+| `admin` | `/admin/*` (bảng đầy đủ ở `docs/api.md`) | Khu quản trị: người dùng, Pro, duyệt đề xuất, email, thống kê công cụ, cài đặt, phân quyền, nhật ký |
+| `roles` · `settings` | — | Vai trò `owner`/`admin`/`reviewer` → permission (`roles/roles.ts`) · công tắc vận hành `app_settings` (`@Global`, cache 30 s) |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
-**capability** (`accounts/capabilities.ts`), không kiểm tên bậc. Pro chỉ cấp bằng CLI.
+**capability** (`accounts/capabilities.ts`), không kiểm tên bậc. Pro cấp bằng CLI hoặc
+khu quản trị (`plans.manage`).
 
-`src/cli/` là đường ghi DUY NHẤT cho gói quy tắc và việc duyệt đóng góp — không có
-endpoint ghi công khai nào cho hai thứ đó.
+Gói quy tắc chỉ ký / stage / kích hoạt bằng `src/cli/`. Duyệt đóng góp đi được cả CLI lẫn
+khu quản trị — cùng luật ba người, cùng `assertPublishablePackage()` (`contributions/publish-check.ts`).
+
+Khu quản trị không có đăng nhập riêng: tài khoản có dòng trong `user_roles` đăng nhập bằng
+mã email như mọi người, phiên chỉ sống 12 giờ (`STAFF_SESSION_SECONDS`). Mọi route
+`/admin/*` qua `@Staff(permission)` (`admin/admin.guard.ts`) và **đòi header tin cậy cả
+với GET** — để trang lạ không đọc được dữ liệu quản trị bằng cookie. Mọi lệnh ghi phải
+`AdminAuditRepository.record()`.
 
 ### Bẫy
 
@@ -83,7 +95,16 @@ endpoint ghi công khai nào cho hai thứ đó.
 - `trustProxy: 'loopback'`: IP thật chỉ lấy từ `X-Forwarded-For` khi proxy nằm trên
   loopback; app mặc định chỉ bind `127.0.0.1`.
 - Visit vượt trần 120/giờ/IP vẫn trả `{ok:true}` (chỉ không cộng). Contributions vượt trần
-  5/giờ/IP (khách) hoặc 10/giờ/tài khoản thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
+  (mặc định 5/giờ/IP khách, 10/giờ/tài khoản — đổi được ở `app_settings`, không còn là hằng
+  số) thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
+- **`app_settings` chỉ giữ giá trị không bí mật.** Bí mật (SMTP, DKIM, khoá ký, token GoClaw)
+  ở `.env`; trang quản trị chỉ báo đã đặt / chưa (`admin/system-status.ts`) — đừng trả giá trị.
+  Thêm cài đặt = một mục trong `settings/settings.definitions.ts` (kiểu + khoảng + nhãn tiếng Việt).
+- `auth.signupOpen = false` kiểm SAU khi xác nhận mã (`SIGNUP_CLOSED`), nên không lộ email
+  nào đã có tài khoản. Xoá tài khoản đi qua `AccountDeletionService` — module mới giữ dữ liệu
+  theo người dùng phải `addCleanup()` vào đó, không thì dữ liệu mồ côi.
+- Số lượt mở theo ngày (`tool_visit_days`) chỉ bắt đầu đếm từ khi bảng được tạo; tổng
+  cộng dồn vẫn ở `tool_visits`.
 - `POST /contributions` **không** gắn `TrustedWriteGuard` mà dùng `isTrustedWrite()`: thiếu
   header thì cookie bị lờ đi và đề xuất thành của khách. Cố ý: chặn cứng sẽ làm bundle cũ
   trong cache SW lỗi 403; gắn người gửi chỉ nhờ cookie là CSRF.

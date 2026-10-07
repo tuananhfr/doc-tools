@@ -22,6 +22,7 @@ before(async () => {
 after(async () => {
   if(database) {
     await database.pool.execute('DELETE FROM tool_visits WHERE tool = ?', [slug])
+    await database.pool.execute('DELETE FROM tool_visit_days WHERE tool = ?', [slug])
     await database.pool.execute('DELETE FROM visit_flood_events WHERE ip_hash = ?', [ipHash])
     await database.pool.execute('DELETE FROM visit_flood_locks WHERE ip_hash = ?', [ipHash])
   }
