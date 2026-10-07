@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Req, Res, UseGuards } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Header, HttpCode, Param, Post, Put, Query, Req, Res, UseGuards } from '@nestjs/common'
 import { RouteConfig } from '@nestjs/platform-fastify'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { PlansRepository } from '../accounts/plans.repository'
@@ -76,6 +76,14 @@ export class AiController {
     const user = await this.pro(request)
     const input = (body ?? {}) as Record<string, unknown>
     return this.ai.recordSourceCheck(user.id, { toolId: input.toolId, baseSnapshotId: input.baseSnapshotId, sessionKey: input.sessionKey })
+  }
+
+  /** Readable after Pro ends, like the setup. `before` is the `next` cursor of the previous page. */
+  @Get('history')
+  @Header('Cache-Control', 'no-store')
+  async history(@Req() request: FastifyRequest, @Query('before') before?: string) {
+    const user = await this.signedIn(request)
+    return this.ai.sourceCheckHistory(user.id, before)
   }
 
   @Post('session')

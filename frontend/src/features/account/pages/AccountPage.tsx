@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/Icon'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { StateView } from '@/components/ui/StateView'
 import { AiAccountCard } from '@/features/ai'
+import { SavedAccountCard } from '@/features/cloud'
 import { SitePageHero } from '@/features/site/components/SitePageHero'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { PlanSection } from '../components/PlanSection'
@@ -53,6 +54,7 @@ export default function AccountPage() {
                 <Link className="cn-button cn-button--ghost" to="/de-xuat-cua-toi"><Icon name="list-check" />{t('account.mine.open')}</Link>
               </section>
               {me.data.plan.pro ? <AiAccountCard /> : null}
+              <SavedAccountCard pro={me.data.plan.pro} />
               <ProfileForm key={user.id} user={user} />
               <section className="cn-account-card" aria-labelledby="cn-account-signout">
                 <div className="cn-account-card__head"><h2 id="cn-account-signout">{t('account.signOut.title')}</h2></div>

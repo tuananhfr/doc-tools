@@ -1,0 +1,98 @@
+{
+  "pages": {
+    "tai-khoan-da-luu": {
+      "title": "Đã lưu",
+      "description": "Công cụ yêu thích, kết quả đã lưu và lịch sử kiểm nguồn của tài khoản Chuyện Nhỏ."
+    }
+  },
+  "bar": {
+    "title": "Lưu lên tài khoản",
+    "text": "Lưu số liệu đang nhập để mở lại ở máy khác. Dữ liệu này nằm trên máy chủ Chuyện Nhỏ, gắn với tài khoản của bạn.",
+    "readOnly": "Gói Pro đã hết: bạn vẫn mở được kết quả cũ nhưng chưa lưu thêm được.",
+    "openLabel": "Mở kết quả đã lưu",
+    "openPlaceholder": "Chọn trong {{total}} kết quả…",
+    "overwrite": "Lưu đè",
+    "saveCopy": "Lưu thành mục mới",
+    "save": "Lưu kết quả",
+    "nameLabel": "Tên để nhận ra sau này",
+    "cancel": "Huỷ",
+    "saving": "Đang lưu…",
+    "confirm": "Lưu",
+    "defaultTitle": "{{tool}} · {{date}}",
+    "conflict": "“{{title}}” vừa được sửa ở thiết bị khác lúc {{date}}. Ghi đè bằng số liệu trên màn hình này?",
+    "restoreFailed": "Không mở được mục này: dữ liệu đã lưu không khớp với phiên bản công cụ hiện tại.",
+    "opened": "Đã mở “{{title}}”.",
+    "saved": "Đã lưu “{{title}}”.",
+    "updated": "Đã cập nhật “{{title}}”.",
+    "current": "Đang mở: {{title}}",
+    "all": "Xem mọi mục đã lưu"
+  },
+  "favourite": {
+    "on": "Đã yêu thích",
+    "off": "Yêu thích"
+  },
+  "card": {
+    "title": "Đã lưu",
+    "count": "{{total}} mục",
+    "text": "Công cụ yêu thích, kết quả đã lưu và lịch sử kiểm nguồn, dùng chung trên mọi thiết bị bạn đăng nhập.",
+    "readOnly": "Gói Pro đã hết. Các mục đã lưu vẫn xem và xoá được.",
+    "open": "Mở mục đã lưu"
+  },
+  "page": {
+    "trail": "Đã lưu",
+    "title": "Mục <accent>đã lưu</accent>",
+    "intro": "Công cụ yêu thích, kết quả đã lưu và lịch sử kiểm nguồn của bạn. Mở trên máy nào cũng thấy giống nhau.",
+    "retry": "Thử lại",
+    "invite": {
+      "title": "Lưu và đồng bộ là tính năng Pro",
+      "text": "Với Pro, bạn lưu được kết quả tính tiền điện, lương, đổi địa chỉ, đánh dấu công cụ yêu thích và xem lại các lượt kiểm nguồn trên mọi thiết bị.",
+      "action": "Xem gói Pro"
+    },
+    "readOnly": "Gói Pro đã hết. Bạn vẫn xem, mở và xoá được các mục cũ nhưng chưa lưu thêm được.",
+    "usageItems": "{{used}} / {{max}} mục",
+    "usageBytes": "{{used}} / {{max}} dung lượng",
+    "usageLabel": "Phần đã dùng",
+    "syncNote": "Tự cập nhật khi bạn quay lại trang này hoặc sau mỗi phút.",
+    "favourites": "Công cụ yêu thích",
+    "unstar": "Bỏ yêu thích {{tool}}",
+    "noFavourites": "Chưa có công cụ nào. Bấm “Yêu thích” ở đầu trang công cụ để ghim vào đây.",
+    "noFavouritesReadOnly": "Chưa có công cụ yêu thích nào.",
+    "results": "Kết quả đã lưu",
+    "noResults": "Chưa có kết quả nào. Ở Tiền điện, Lương hoặc Đổi địa chỉ, bấm “Lưu kết quả”.",
+    "unknownTool": "Công cụ không còn",
+    "updated": "sửa {{date}}",
+    "open": "Mở",
+    "rename": "Đổi tên “{{title}}”",
+    "renameLabel": "Đổi tên",
+    "remove": "Xoá “{{title}}”",
+    "removeLabel": "Xoá",
+    "removeConfirm": "Xoá “{{title}}”? Mục này sẽ biến mất trên mọi thiết bị."
+  },
+  "history": {
+    "title": "Lịch sử kiểm nguồn",
+    "text": "Mỗi lần bạn bấm kiểm nguồn bằng AI ở một công cụ. Chuyện Nhỏ chỉ ghi công cụ, thời điểm và kết quả nháp, không lưu nội dung câu hỏi.",
+    "empty": "Chưa có lượt kiểm nguồn nào.",
+    "withPackage": "so với gói đã xác minh",
+    "withoutPackage": "chưa có gói đã xác minh",
+    "draft": {
+      "none": "Không có nháp",
+      "open": "Nháp đang chờ bạn",
+      "submitted": "Đã gửi đề xuất",
+      "discarded": "Đã bỏ nháp"
+    },
+    "loading": "Đang tải…",
+    "more": "Xem lượt cũ hơn"
+  },
+  "errors": {
+    "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
+    "PRO_REQUIRED": "Lưu lên tài khoản dành cho tài khoản Pro.",
+    "UNTRUSTED_REQUEST": "Trình duyệt chặn yêu cầu này. Hãy tải lại trang rồi thử lại.",
+    "INVALID_INPUT": "Dữ liệu cần lưu không hợp lệ.",
+    "NOT_FOUND": "Mục này không còn (có thể đã bị xoá ở thiết bị khác).",
+    "SAVED_CONFLICT": "Mục này vừa được sửa ở thiết bị khác.",
+    "CLOUD_QUOTA": "Phần lưu trữ đã đầy. Hãy xoá bớt mục cũ.",
+    "CLOUD_ITEM_TOO_LARGE": "Kết quả này quá lớn để lưu (tối đa 256 KB).",
+    "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
+    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại sau ít phút."
+  }
+}

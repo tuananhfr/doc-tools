@@ -64,6 +64,7 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `admin` | `/admin/*` (bảng đầy đủ ở `docs/api.md`) | Khu quản trị: người dùng, Pro, duyệt đề xuất, email, thống kê công cụ, cài đặt, phân quyền, nhật ký |
 | `roles` · `settings` | — | Vai trò `owner`/`admin`/`reviewer` → permission (`roles/roles.ts`) · công tắc vận hành `app_settings` (`@Global`, cache 30 s) |
 | `ai` | `/ai/{provider-types,setup,provider,provider/verify,session}` · `/admin/ai/*` | Trợ lý AI bản Pro: khoá AI của từng người thành provider + agent `cn-<userId>` trên GoClaw dùng chung; trình duyệt cầm vé nối WS thẳng tới GoClaw |
+| `cloud` | `/me/saved` · `/me/saved/bookmarks/:toolId` | Kết quả đã lưu + công cụ yêu thích của tài khoản Pro (bảng `saved_items`); lịch sử kiểm nguồn ở `GET /ai/history` (module `ai`) |
 | `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
@@ -159,6 +160,14 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - Tool MCP cần dịch vụ khác (quy tắc, nháp) nằm ở `mcp-tools.service.ts`; tool chỉ đọc
   catalog nằm ở `mcp-tools.ts` (`callCatalogTool`). Lỗi kho quy tắc phải trả câu bảo agent
   đừng đoán số, không ném lỗi JSON-RPC.
+- **Mục đã lưu (`cloud`): đọc + xoá chỉ cần phiên, lưu / sửa / gắn sao mới cần Pro** — hết Pro
+  là chỉ-đọc chứ không mất dữ liệu; kiểm Pro ở MỖI request, đừng cache. Sửa đi kèm `baseRev`;
+  lệch thì 409 `SAVED_CONFLICT` kèm bản trên server, người dùng xác nhận rồi gửi lại `force:true`
+  — đừng đổi thành "ghi sau thắng" im lặng. Xoá là xoá cứng (không `deleted_at`) vì máy khách
+  đọc lại cả danh sách. Trần (`cloud.maxItems` / `cloud.maxMegabytes` trong `app_settings`) là
+  trần mềm: kiểm trước khi ghi nên hai lần lưu cùng lúc có thể vượt một mục. `payload` là JSON
+  tuỳ trang công cụ, backend chỉ kiểm là object ≤ 256 KiB; route ghi khai `bodyLimit` gấp đôi để
+  payload quá cỡ vẫn ra mã `CLOUD_ITEM_TOO_LARGE` thay vì 413 trần của Fastify.
 - `data/tool-catalog.json` sinh từ frontend (`node scripts/export-tool-catalog.mjs`); sửa
   danh mục / chữ catalog mà quên xuất lại là test `tool-catalog-export.test.ts` bên frontend đỏ.
 - `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).

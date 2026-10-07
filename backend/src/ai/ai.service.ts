@@ -24,6 +24,7 @@ const API_BASE_MESSAGES = {
 } as const
 
 const MODEL_PATTERN = /^[\w.:/@+-]{1,128}$/
+const HISTORY_PAGE = 30
 
 /**
  * Per-user provider + agent in a GoClaw shared with ERPCons. The ordering rules here are the guard
@@ -227,6 +228,20 @@ export class AiService implements OnModuleInit {
     const id = randomUUID()
     await this.repository.recordSourceCheck({ id, userId, toolId, baseSnapshotId: snapshot, sessionKey })
     return { ok: true, id }
+  }
+
+  /** Cursor is `<createdAt>.<id>` from the previous page's `next`; a malformed one is a bad request, not page one. */
+  async sourceCheckHistory(userId: string, before: string | undefined) {
+    let cursor: { createdAt: number; id: string } | null = null
+    if (before !== undefined) {
+      const match = /^(\d{1,12})\.([0-9a-f-]{36})$/.exec(before)
+      if (!match) aiError(400, 'INVALID_INPUT', 'Trang lịch sử không hợp lệ.')
+      cursor = { createdAt: Number(match[1]), id: match[2] }
+    }
+    const rows = await this.repository.sourceCheckHistory(userId, cursor, HISTORY_PAGE + 1)
+    const items = rows.slice(0, HISTORY_PAGE)
+    const last = items[items.length - 1]
+    return { ok: true, items, next: rows.length > HISTORY_PAGE ? `${last.createdAt}.${last.id}` : null }
   }
 
   /** Staff switch: blocks the user's AI until staff enable it again; the user cannot undo it by re-verifying. */

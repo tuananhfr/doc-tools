@@ -81,13 +81,28 @@ Every admin route, reads included, requires the trusted-write header and origin 
 | `GET /admin/contributions?status&domain&queue=open` · `GET /:id` · `POST /:id/transition {action, note, digest}` | `contributions.review` | `action`: `verify` (note ≥ 10 chars), `approve`, `reject` (note required), `publish`, `supersede`, `revoke`. Same three-person rule as the CLI (`SAME_PERSON`); publishing rule data checks the staged signed package by `digest` (`PACKAGE_*`, `SIGNING_KEY_MISSING`, `BASE_CHANGED`). Signing and staging packages stay in the CLI |
 | `GET /admin/mail?status` · `GET /admin/mail/dns` | `mail.view` | Outbox rows never include `payload`; `config` reports set/unset only. DNS check looks up MX, SPF, DKIM, DMARC live (5 s timeout) |
 | `POST /admin/mail/test {to?}` | `mail.test` | Queues a `test` message to `to` or to the caller |
-| `GET /admin/settings` · `PUT /admin/settings/:key {value}` · `DELETE /admin/settings/:key` | `settings.manage` | Runtime settings in `app_settings` (non-secret only, cached 30 s per process): `auth.signupOpen`, `contributions.guestHourly`, `contributions.accountHourly`. `system` reports `.env` values as set/unset, never their content |
+| `GET /admin/settings` · `PUT /admin/settings/:key {value}` · `DELETE /admin/settings/:key` | `settings.manage` | Runtime settings in `app_settings` (non-secret only, cached 30 s per process): `auth.signupOpen`, `contributions.guestHourly`, `contributions.accountHourly`, `cloud.maxItems`, `cloud.maxMegabytes`. `system` reports `.env` values as set/unset, never their content |
 | `GET /admin/roles` · `PUT /admin/roles {email, role}` · `DELETE /admin/roles/:userId` | `roles.manage` | The account must already exist; changing a role ends that person's sessions; the last owner cannot be removed or demoted |
 | `GET /admin/ai?q&status` · `GET /admin/ai/status` | `ai.view` | Members' AI keys (provider type, model, status, agent state; never the key). `status` reads GoClaw live: reachable, MCP server registered, `background.provider` (reported, never changed) |
 | `POST /admin/ai/:userId/disable` · `/enable` | `ai.manage` | Disable turns the agent off, disables the provider and revokes the MCP token; the member cannot undo it. Enable only lifts the block: status becomes `failed` and the member must check the key again |
 | `GET /admin/audit?actor&target` | `audit.view` | `admin_audit`, newest first |
 
 Every write is recorded in `admin_audit` (actor id + email, action, target, detail ≤ 1000 chars). Failed mail cannot be resent from the admin area: its payload is wiped when it leaves the queue so one-time codes are not kept.
+
+## Saved items (Pro)
+
+Table `saved_items`: per account, either a saved tool result (`kind: result`, the tool page's own JSON in `payload`) or a favourite tool (`kind: bookmark`, at most one per tool). The server list is the only copy; devices re-read it (on focus and every minute) instead of syncing changes, so a delete is a real `DELETE` with no tombstone.
+
+| Route | Who | Notes |
+| --- | --- | --- |
+| `GET /me/saved` | signed in | `{ok, items:[{id, kind, toolId, title, size, rev, createdAt, updatedAt}], usage:{items, bytes, maxItems, maxBytes}, writable}`, newest change first, never the payload. `writable` is false once Pro has ended |
+| `GET /me/saved/:id` | signed in | `{ok, item}` with `payload` |
+| `POST /me/saved {toolId, title, payload}` | Pro, trusted write | `toolId` must be a ready tool slug, `title` ≤ 120 characters (control characters become spaces), `payload` a plain object ≤ 256 KiB as JSON. Returns `{ok, item}` without payload |
+| `PATCH /me/saved/:id {baseRev, title?, payload?, force?}` | Pro, trusted write | Results only. `baseRev` is the revision the device last read; if the item moved on, 409 `SAVED_CONFLICT` with `item` (the server's current meta) so the person can choose, then resend with `force: true` to overwrite. A lost race between two writes also answers `SAVED_CONFLICT` |
+| `DELETE /me/saved/:id` | signed in, trusted write | Also allowed after Pro ends |
+| `PUT /me/saved/bookmarks/:toolId` · `DELETE /me/saved/bookmarks/:toolId` | Pro / signed in, trusted write | Both idempotent |
+
+Quotas are runtime settings: `cloud.maxItems` (default 500, bookmarks count) and `cloud.maxMegabytes` (default 20). Over quota → 409 `CLOUD_QUOTA`; checked before the write, so two simultaneous saves can overshoot by one item. Making an item smaller is always allowed, even over the cap. Other codes: `SIGNED_OUT` 401, `PRO_REQUIRED` 403, `INVALID_INPUT` 400, `NOT_FOUND` 404 (also for another account's id), `CLOUD_ITEM_TOO_LARGE` 413. Account deletion removes every row.
 
 ## AI assistant (Pro)
 
@@ -102,6 +117,7 @@ Each Pro member brings their own AI key. The backend registers it in a shared Go
 | `DELETE /ai/provider` | signed in, trusted write | Agent off, then provider deleted, then MCP credential dropped |
 | `POST /ai/session` | Pro, trusted write | `{token, wsUrl, filesUrl, userId, agentKey, expiresAt}`. `filesUrl` is GoClaw's HTTP root for signed `/v1/files/...` links in history (`GOCLAW_PUBLIC_FILES_URL`, else derived from `wsUrl`). Re-checks GoClaw first; a provider or agent that drifted (disabled, renamed, pointed elsewhere) switches the agent off and answers 409 `AI_NOT_READY` |
 | `POST /ai/source-checks {toolId, baseSnapshotId, sessionKey}` | Pro, trusted write, 2 KiB | Records that a source check started (table `ai_source_checks`). `toolId` is a ready tool slug, `baseSnapshotId` the package digest or `null`, `sessionKey` must be one of the caller's own agent sessions (`agent:cn-<userId>:ws:direct:<uuid>`); otherwise 400 `INVALID_INPUT`. A draft the agent creates within 6 h for the same tool is linked to the latest check. Returns `{ok,id}` |
+| `GET /ai/history?before=` | signed in (also after Pro ends) | The caller's source checks, newest first, 30 per page: `{ok, items:[{id, toolId, baseSnapshotId, createdAt, draft, contributionId, contributionStatus}], next}`. `draft` is `none` (no draft linked), `open`, `submitted` or `discarded` (the draft row is gone). `next` is an opaque `<createdAt>.<id>` cursor or `null`; a malformed one is 400 `INVALID_INPUT`. Question text is never stored, so there is nothing more to show |
 
 | `POST /ai/uploads` | Pro, trusted write, 10 MiB | Body is the raw file (`Content-Type: application/octet-stream`), name in header `X-CN-Filename` (URI-encoded). Images only (PNG, JPEG, WebP, GIF), recognised by their first bytes, not the name. Returns `{ok, upload:{id, filename, mimeType, size, expiresAt}}` (`expiresAt` in seconds) |
 | `POST /ai/uploads/:id/link` | Pro, trusted write | `{ok, url, expiresAt}`: a single-use link valid 5 minutes, for `media[].path` of GoClaw `chat.send` |

@@ -8,6 +8,8 @@ import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
 import { loginPath, useMe } from '@/features/account'
 import { AiSourceCheckPanel } from '@/features/ai'
+import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
+import { parsePayrollSaved, payrollSnapshot } from '../utils/payroll-saved'
 import { grossToNet, netToGross, validatePayrollRules, type PayrollRules } from '../utils/payroll'
 
 type RuleField = 'selfDeduct' | 'dependentDeduct' | 'referenceSalary' | 'minWage1' | 'minWage2' | 'minWage3' | 'minWage4' | 'employeeSocial' | 'employeeHealth' | 'employeeUnemployment' | 'employerSocial' | 'employerHealth' | 'employerUnemployment'
@@ -67,6 +69,17 @@ export default function PayrollPage() {
     setBracketText(data.brackets.map((bracket) => `${bracket.upTo ?? '*'},${bracket.rate * 100}`).join('\n'))
     setUsingVerified(true)
   }
+  const saveAdapter: SaveAdapter = {
+    snapshot: () => payrollSnapshot({ mode, salary, dependents, region, insuranceBase, exempt, fields, bracketText }),
+    restore: (payload) => {
+      const saved = parsePayrollSaved(payload, RULE_FIELDS)
+      if (!saved) return false
+      setMode(saved.mode); setSalary(saved.salary); setDependents(saved.dependents); setRegion(saved.region)
+      setInsuranceBase(saved.insuranceBase); setExempt(saved.exempt); setFields(saved.fields); setBracketText(saved.bracketText)
+      setUsingVerified(false)
+      return true
+    },
+  }
 
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('payroll.resultLabel')}</p>
@@ -95,6 +108,7 @@ export default function PayrollPage() {
         <label className="erp-flow-field__label mt-3">{t('payroll.brackets')}<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
       </details>
     </ToolPanel>
+    <SaveResultBar member={member} toolId="luong" adapter={saveAdapter} />
     <AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />
   </ToolBoard>
 }

@@ -197,6 +197,32 @@ chép từ ERPCons, giữ nguyên các luật ở đó (khoá phiên do client s
   đầu `/v1/files/`). Link ký sống vài phút; ảnh hỏng thì `MediaImage` lùi về chip tên tệp.
   Tải lại trang khi chip còn chưa gửi thì upload thành mồ côi (unmount không chạy) — nằm tới khi
   hết hạn lưu (mặc định 7 ngày) và vẫn tính vào hạn mức ngày.
+
+### Mục đã lưu (`features/cloud`, bản Pro)
+
+Kết quả đã lưu, công cụ yêu thích và lịch sử kiểm nguồn, trang `/tai-khoan/da-luu`
+(`SAVED_PAGE_PATH`, route React Router như `/tai-khoan/ai`, `noindex`, không có trong sitemap).
+Danh sách trên server là bản duy nhất — không có kho cục bộ, "đồng bộ" là đọc lại
+(`useSavedItems`: khi quay lại tab + mỗi 60 s). Khoá query nằm dưới `['account', …]` để đăng
+xuất xoá sạch.
+
+- Hết Pro là **chỉ-đọc** (`writable: false`): vẫn mở / xoá / bỏ sao, ẩn nút lưu, đổi tên và
+  nút sao trên trang công cụ. Tài khoản thường chưa từng lưu thì không thấy thanh lưu.
+- Lưu đè gửi `baseRev`; 409 `SAVED_CONFLICT` → `window.confirm` hiện tên + giờ bản trên server,
+  đồng ý thì gửi lại `force: true`. Đừng tự ghi đè im lặng.
+- Công cụ muốn lưu được thì truyền một `SaveAdapter` `{snapshot, restore}` vào `SaveResultBar`
+  (hiện có `tien-dien`, `luong`, `doi-dia-chi`). Payload có `v` và được **kiểm lại khi mở**
+  (`*-saved.ts` cạnh utils của công cụ, có test) — payload do server trả về coi như dữ liệu lạ.
+  Helper đọc payload ở `utils/saved-payload.ts`, không ở `features/cloud`: codec import cloud
+  là kéo React vào test node.
+- Link `?saved=<id>` trên trang công cụ mở mục đó một lần rồi tự gỡ tham số (`replace`).
+- Nút sao gắn vào đầu trang công cụ qua prop `headerAction` của `ToolRoutePage` —
+  `runtime/ToolFavourite.tsx` ghép `useMe` với `FavouriteButton` (hub không import feature,
+  cloud không import account ở component dùng chung).
+- **i18next không bắt sai tên biến**: truyền `{count}` cho chuỗi `{{total}}` vẫn type-check
+  và in nguyên `{{total}}` ra màn hình. Chuỗi có số trong `cloud.json` dùng `total` / `used`
+  (tránh `count` vì kéo theo dạng số nhiều ở 15 locale).
+
 ### Khu quản trị (`features/admin`, `/quan-tri`)
 
 Chỉ tiếng Việt, **không đi qua i18n** (chuỗi viết thẳng trong component — cố ý, không thêm

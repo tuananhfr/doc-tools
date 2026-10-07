@@ -1,0 +1,98 @@
+{
+  "pages": {
+    "tai-khoan-da-luu": {
+      "title": "Saved",
+      "description": "Favourite tools, saved results and source-check history of your Chuyện Nhỏ account."
+    }
+  },
+  "bar": {
+    "title": "Save to your account",
+    "text": "Save the figures you entered and reopen them on another device. They are stored on the Chuyện Nhỏ server, tied to your account.",
+    "readOnly": "Your Pro plan has ended: you can still open past results but cannot save new ones.",
+    "openLabel": "Open a saved result",
+    "openPlaceholder": "Choose from {{total}} results…",
+    "overwrite": "Overwrite",
+    "saveCopy": "Save as new",
+    "save": "Save result",
+    "nameLabel": "A name to find it later",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "confirm": "Save",
+    "defaultTitle": "{{tool}} · {{date}}",
+    "conflict": "“{{title}}” was just changed on another device at {{date}}. Overwrite it with the figures on this screen?",
+    "restoreFailed": "This item could not be opened: the saved data does not match the current version of the tool.",
+    "opened": "Opened “{{title}}”.",
+    "saved": "Saved “{{title}}”.",
+    "updated": "Updated “{{title}}”.",
+    "current": "Open: {{title}}",
+    "all": "See all saved items"
+  },
+  "favourite": {
+    "on": "Favourite",
+    "off": "Add to favourites"
+  },
+  "card": {
+    "title": "Saved",
+    "count": "{{total}} items",
+    "text": "Favourite tools, saved results and source-check history, shared across every device you sign in on.",
+    "readOnly": "Your Pro plan has ended. Saved items can still be viewed and deleted.",
+    "open": "Open saved items"
+  },
+  "page": {
+    "trail": "Saved",
+    "title": "<accent>Saved</accent> items",
+    "intro": "Your favourite tools, saved results and source-check history. The same on every device.",
+    "retry": "Try again",
+    "invite": {
+      "title": "Saving and sync are Pro features",
+      "text": "With Pro you can save electricity, payroll and address-conversion results, mark favourite tools and review your source checks on every device.",
+      "action": "See the Pro plan"
+    },
+    "readOnly": "Your Pro plan has ended. You can still view, open and delete past items but cannot save new ones.",
+    "usageItems": "{{used}} / {{max}} items",
+    "usageBytes": "{{used}} / {{max}} of storage",
+    "usageLabel": "Storage used",
+    "syncNote": "Refreshes when you come back to this page and every minute.",
+    "favourites": "Favourite tools",
+    "unstar": "Remove {{tool}} from favourites",
+    "noFavourites": "No tools yet. Press “Add to favourites” at the top of a tool page to pin it here.",
+    "noFavouritesReadOnly": "No favourite tools.",
+    "results": "Saved results",
+    "noResults": "No results yet. In Electricity, Payroll or Address conversion, press “Save result”.",
+    "unknownTool": "Tool no longer available",
+    "updated": "edited {{date}}",
+    "open": "Open",
+    "rename": "Rename “{{title}}”",
+    "renameLabel": "Rename",
+    "remove": "Delete “{{title}}”",
+    "removeLabel": "Delete",
+    "removeConfirm": "Delete “{{title}}”? It will disappear on every device."
+  },
+  "history": {
+    "title": "Source-check history",
+    "text": "Every time you ran an AI source check in a tool. Chuyện Nhỏ keeps only the tool, the time and the draft outcome, never your questions.",
+    "empty": "No source checks yet.",
+    "withPackage": "against the verified package",
+    "withoutPackage": "no verified package yet",
+    "draft": {
+      "none": "No draft",
+      "open": "Draft waiting for you",
+      "submitted": "Proposal sent",
+      "discarded": "Draft discarded"
+    },
+    "loading": "Loading…",
+    "more": "Show older checks"
+  },
+  "errors": {
+    "SIGNED_OUT": "Your session has ended. Please sign in again.",
+    "PRO_REQUIRED": "Saving to your account is a Pro feature.",
+    "UNTRUSTED_REQUEST": "The browser blocked this request. Reload the page and try again.",
+    "INVALID_INPUT": "The data to save is not valid.",
+    "NOT_FOUND": "This item no longer exists (it may have been deleted on another device).",
+    "SAVED_CONFLICT": "This item was just changed on another device.",
+    "CLOUD_QUOTA": "Your storage is full. Delete some older items.",
+    "CLOUD_ITEM_TOO_LARGE": "This result is too large to save (256 KB at most).",
+    "NETWORK": "Could not reach the server. Check your connection and try again.",
+    "UNKNOWN": "Something went wrong. Please try again in a few minutes."
+  }
+}

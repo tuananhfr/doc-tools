@@ -9,7 +9,7 @@ export const CAPABILITY_ROWS = [
   { id: 'contribution.track', label: 'track', icon: 'list-check', pro: false, live: true },
   { id: 'contribution.evidence', label: 'evidence', icon: 'link-45deg', pro: false, live: true },
   { id: 'ai.agent', label: 'agent', icon: 'stars', pro: true, live: true },
-  { id: 'cloud.memory', label: 'cloud', icon: 'cloud-check', pro: true, live: false },
-  { id: 'sync.basic', label: 'sync', icon: 'arrow-repeat', pro: true, live: false },
-  { id: 'byoai.history', label: 'history', icon: 'clock-history', pro: true, live: false },
+  { id: 'cloud.memory', label: 'cloud', icon: 'cloud-check', pro: true, live: true },
+  { id: 'sync.basic', label: 'sync', icon: 'arrow-repeat', pro: true, live: true },
+  { id: 'byoai.history', label: 'history', icon: 'clock-history', pro: true, live: true },
 ] as const satisfies readonly { id: Capability; label: string; icon: string; pro: boolean; live: boolean }[]

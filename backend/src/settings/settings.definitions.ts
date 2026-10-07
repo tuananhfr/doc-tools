@@ -12,6 +12,8 @@ export const SETTINGS = {
   'auth.signupOpen': { type: 'boolean', default: true, label: 'Cho phép tạo tài khoản mới', help: 'Tắt thì email chưa có tài khoản không nhận được mã đăng nhập; tài khoản cũ vẫn đăng nhập bình thường.' },
   'contributions.guestHourly': { type: 'integer', default: 5, min: 1, max: 100, unit: 'đề xuất/giờ', label: 'Trần đề xuất của khách', help: 'Tính theo địa chỉ IP, cửa sổ trượt một giờ.' },
   'contributions.accountHourly': { type: 'integer', default: 10, min: 1, max: 200, unit: 'đề xuất/giờ', label: 'Trần đề xuất của tài khoản', help: 'Tính theo tài khoản, cửa sổ trượt một giờ.' },
+  'cloud.maxItems': { type: 'integer', default: 500, min: 10, max: 5000, unit: 'mục', label: 'Trần mục đã lưu mỗi người', help: 'Gồm cả kết quả đã lưu và công cụ yêu thích. Hạ trần không xoá mục cũ, chỉ chặn lưu thêm.' },
+  'cloud.maxMegabytes': { type: 'integer', default: 20, min: 1, max: 500, unit: 'MB', label: 'Trần dung lượng đã lưu mỗi người', help: 'Tổng kích thước dữ liệu kết quả đã lưu. Hạ trần không xoá mục cũ, chỉ chặn lưu thêm.' },
 } as const satisfies Record<string, SettingDefinition>
 
 export type SettingKey = keyof typeof SETTINGS

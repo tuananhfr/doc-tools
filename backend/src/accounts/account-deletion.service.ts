@@ -26,7 +26,7 @@ export class AccountDeletionService {
     const connection = await this.database.pool.getConnection()
     try {
       await connection.beginTransaction()
-      for (const table of ['user_sessions', 'user_roles', 'contribution_submitters', 'contribution_drafts', 'ai_source_checks', 'user_plans']) {
+      for (const table of ['user_sessions', 'user_roles', 'contribution_submitters', 'contribution_drafts', 'ai_source_checks', 'saved_items', 'user_plans']) {
         await connection.execute(`DELETE FROM ${table} WHERE user_id = ?`, [userId])
       }
       await connection.execute('DELETE FROM users WHERE id = ?', [userId])

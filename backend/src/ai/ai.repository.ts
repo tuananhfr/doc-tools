@@ -107,6 +107,26 @@ export class AiRepository {
       [input.id, input.userId, input.toolId, input.baseSnapshotId, input.sessionKey, now()])
   }
 
+  /** Newest first, paged by `(created_at, id)` so checks started in the same second are neither skipped nor repeated. */
+  async sourceCheckHistory(userId: string, before: { createdAt: number; id: string } | null, limit: number) {
+    const cursor = before ? ' AND (c.created_at < ? OR (c.created_at = ? AND c.id < ?))' : ''
+    const [rows] = await this.database.pool.query<RowDataPacket[]>(
+      `SELECT c.id, c.tool_id, c.base_snapshot_id, c.draft_id, c.created_at, d.id AS draft_row, d.submitted_contribution_id, k.status AS contribution_status
+       FROM ai_source_checks c
+       LEFT JOIN contribution_drafts d ON d.id = c.draft_id AND d.user_id = c.user_id
+       LEFT JOIN contributions k ON k.id = d.submitted_contribution_id
+       WHERE c.user_id = ?${cursor} ORDER BY c.created_at DESC, c.id DESC LIMIT ?`,
+      before ? [userId, before.createdAt, before.createdAt, before.id, limit] : [userId, limit],
+    )
+    return rows.map((row) => ({
+      id: row.id as string, toolId: row.tool_id as string, baseSnapshotId: (row.base_snapshot_id ?? null) as string | null, createdAt: Number(row.created_at),
+      // A sent draft keeps its row; a discarded one is deleted, which is how "discarded" is told apart from "no draft".
+      draft: !row.draft_id ? 'none' as const : !row.draft_row ? 'discarded' as const : row.submitted_contribution_id ? 'submitted' as const : 'open' as const,
+      contributionId: (row.submitted_contribution_id ?? null) as string | null,
+      contributionStatus: (row.contribution_status ?? null) as string | null,
+    }))
+  }
+
   /** MCP calls do not say which chat they came from; the person's latest check of that tool is the best match. */
   async linkSourceCheck(userId: string, toolId: string, draftId: string) {
     await this.database.pool.execute('UPDATE ai_source_checks SET draft_id = ? WHERE user_id = ? AND tool_id = ? AND created_at >= ? ORDER BY created_at DESC LIMIT 1',

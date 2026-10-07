@@ -20,6 +20,8 @@ import { resolveToolRoute, toolPageTitle, toolPath } from '../utils/tool-lookup'
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
   screens: Record<ToolScreen, ComponentType>
+  /** Nút cạnh tiêu đề (yêu thích của Pro) — tầng route truyền vào, cùng lý do như `screens`. */
+  headerAction?: ComponentType<{ toolSlug: string }>
 }
 
 /**
@@ -29,7 +31,7 @@ interface ToolRoutePageProps {
  * chuyển giữa hai công cụ chung một màn (ghép ↔ tách) không dựng lại màn đó —
  * tệp đang làm còn nguyên.
  */
-export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
+export default function ToolRoutePage({ screens, headerAction: HeaderAction }: ToolRoutePageProps) {
   const { tool: slug } = useParams()
   const { base, kind } = useToolsBranch()
   const sessionAction = useGuestSessionAction()
@@ -77,6 +79,7 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
             {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
           </p>
         </div>
+        {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
       </header>
 
       {unsupported ? <ToolUnsupported toolName={tool.name} hubPath={base} /> : <Screen />}

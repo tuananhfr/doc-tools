@@ -8,6 +8,8 @@ import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
 import { loginPath, useMe } from '@/features/account'
 import { AiSourceCheckPanel } from '@/features/ai'
+import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
+import { electricitySnapshot, parseElectricitySaved } from '../utils/electricity-saved'
 import { electricityBill, parseElectricityRules, validateElectricityTiers, waterBill } from '../utils/electricity'
 import { parseVatRule } from '../utils/vat-rule'
 
@@ -51,6 +53,17 @@ export default function ElectricityPage() {
     setUsingVerified(true)
     applyVat()
   }
+  const saveAdapter: SaveAdapter = {
+    snapshot: () => electricitySnapshot({ mode, kwh, households, vat, lines, water }),
+    restore: (payload) => {
+      const saved = parseElectricitySaved(payload)
+      if (!saved) return false
+      // Reopened numbers are the person's own, even if they once came from the verified package.
+      setMode(saved.mode); setKwh(saved.kwh); setHouseholds(saved.households); setVat(saved.vat); setLines(saved.lines); setWater(saved.water)
+      setUsingVerified(false); setAppliedVat(null)
+      return true
+    },
+  }
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
     <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
@@ -75,6 +88,7 @@ export default function ElectricityPage() {
       {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
       </>}
     </ToolPanel>
+    <SaveResultBar member={member} toolId="tien-dien" adapter={saveAdapter} />
     <AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />
   </ToolBoard>
 }

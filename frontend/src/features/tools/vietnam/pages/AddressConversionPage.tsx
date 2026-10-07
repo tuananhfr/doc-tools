@@ -7,6 +7,8 @@ import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
 import { loginPath, useMe } from '@/features/account'
 import { AiSourceCheckPanel } from '@/features/ai'
+import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
+import { addressSnapshot, parseAddressSaved } from '../utils/address-saved'
 import { convertAddress, indexAddressRules, parseAddressMappings, parseAddressRules} from '../utils/address-conversion'
 
 const csvField = (value: string) => `"${(/^[=+\-@\t\r]/.test(value) ? `'${value}` : value).replace(/"/g, '""')}"`
@@ -29,6 +31,17 @@ export default function AddressConversionPage() {
   const results = index ? lines.map((line) => convertAddress(line, index)) : []
   const full = results.filter((item) => item.status === 'full').length
   const statusLabel = (row: (typeof results)[number]) => t(`address.status.${row.status}`, { options: row.options.join(t('address.orSeparator')) })
+  const saveAdapter: SaveAdapter = {
+    snapshot: () => addressSnapshot({ addresses, mappingText, useVerified: usingVerified && Boolean(verified) }),
+    restore: (payload) => {
+      const saved = parseAddressSaved(payload)
+      if (!saved) return false
+      setAddresses(saved.addresses); setMappingText(saved.mappingText)
+      // Saved with the verified package: use whatever package is verified now, if any.
+      setUsingVerified(saved.useVerified && Boolean(verified))
+      return true
+    },
+  }
   const download = () => {
     const header = [t('address.columns.old'), t('address.columns.proposed'), t('address.columns.status'), t('address.columns.droppedDistrict')]
     const csv = '﻿' + [header, ...results.map((row) => [row.input, row.output, statusLabel(row), row.droppedDistrict])].map((row) => row.map(csvField).join(',')).join('\r\n')
@@ -51,6 +64,7 @@ export default function AddressConversionPage() {
       <label className="erp-flow-field__label mt-3">{t('address.manualLabel')}<Form.Control as="textarea" rows={6} maxLength={1000000} value={mappingText} onChange={(event) => { setMappingText(event.target.value); setUsingVerified(false) }} /></label>
       {manualRules === null ? <p role="alert">{t('address.manualInvalid')}</p> : null}
     </ToolPanel>
+    <SaveResultBar member={member} toolId="doi-dia-chi" adapter={saveAdapter} />
     <AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />
   </ToolBoard>
 }

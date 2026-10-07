@@ -275,6 +275,22 @@ export const SCHEMA = [
     removed_at BIGINT UNSIGNED NULL,
     INDEX (user_id, created_at), INDEX (expires_at)
   ) ENGINE=InnoDB`,
+  // `bookmark_tool` is the tool slug for bookmarks and NULL for results, so the unique key allows one
+  // bookmark per tool while results repeat freely (MySQL unique keys ignore NULLs).
+  `CREATE TABLE IF NOT EXISTS saved_items (
+    id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    kind ENUM('result', 'bookmark') NOT NULL,
+    tool_id VARCHAR(48) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    bookmark_tool VARCHAR(48) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    title VARCHAR(160) NOT NULL,
+    payload JSON NULL,
+    size_bytes INT UNSIGNED NOT NULL,
+    rev INT UNSIGNED NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL,
+    UNIQUE KEY (user_id, bookmark_tool), INDEX (user_id, updated_at)
+  ) ENGINE=InnoDB`,
   // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
   `CREATE TABLE IF NOT EXISTS mcp_tokens (
     token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
