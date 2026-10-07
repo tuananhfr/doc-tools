@@ -1,6 +1,6 @@
 import { withBase } from '@/utils/url'
 import type {
-  AuditRow, ContributionDetail, ContributionList, DnsCheck, MailList, Overview, Paged, RoleHolder, Setting, Staff, StaffRole,
+  AiAccountList, AiStatus, AuditRow, ContributionDetail, ContributionList, DnsCheck, MailList, Overview, Paged, RoleHolder, Setting, Staff, StaffRole,
   SystemStatus, ToolsStats, Transition, UserDetail, UserRow,
 } from '../types/admin.types'
 
@@ -41,6 +41,7 @@ function query(params: Record<string, string | number | undefined>) {
 }
 
 export interface UserQuery { q?: string; status?: string; plan?: string; staff?: string; page: number }
+export interface AiQuery { q?: string; status?: string; page: number }
 export interface ContributionQuery { status?: string; domain?: string; queue?: string; page: number }
 
 export const adminService = {
@@ -74,6 +75,11 @@ export const adminService = {
   roles: () => call<{ holders: RoleHolder[] }>('/roles'),
   grantRole: (email: string, role: StaffRole) => call<{ holders: RoleHolder[] }>('/roles', 'PUT', { email, role }),
   revokeRole: (userId: string) => call<{ holders: RoleHolder[] }>(`/roles/${userId}`, 'DELETE'),
+
+  aiAccounts: (params: AiQuery) => call<AiAccountList>(`/ai${query({ ...params })}`),
+  aiStatus: () => call<AiStatus>('/ai/status'),
+  disableAi: (userId: string) => call<{ ok: true }>(`/ai/${userId}/disable`, 'POST'),
+  enableAi: (userId: string) => call<{ ok: true }>(`/ai/${userId}/enable`, 'POST'),
 
   audit: (actor: string | undefined, target: string | undefined, page: number) => call<Paged<AuditRow>>(`/audit${query({ actor, target, page })}`),
 }

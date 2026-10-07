@@ -209,4 +209,35 @@ export const SCHEMA = [
     count BIGINT UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (day, tool), INDEX (tool, day)
   ) ENGINE=InnoDB`,
+  // The API key itself lives only in GoClaw (encrypted there); this row is never enough to call a provider.
+  `CREATE TABLE IF NOT EXISTS ai_providers (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    goclaw_provider_id VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    goclaw_name VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL UNIQUE,
+    provider_type VARCHAR(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    api_base VARCHAR(300) NOT NULL,
+    model VARCHAR(128) NULL,
+    status ENUM('verifying', 'ready', 'failed', 'disabled') NOT NULL DEFAULT 'verifying',
+    last_error VARCHAR(500) NULL,
+    verified_at BIGINT UNSIGNED NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
+  `CREATE TABLE IF NOT EXISTS ai_agents (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    goclaw_agent_id VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    agent_key VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL UNIQUE,
+    prompt_version INT UNSIGNED NOT NULL DEFAULT 0,
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'inactive',
+    created_at BIGINT UNSIGNED NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
+  // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
+  `CREATE TABLE IF NOT EXISTS mcp_tokens (
+    token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    revoked_at BIGINT UNSIGNED NULL,
+    INDEX (user_id)
+  ) ENGINE=InnoDB`,
 ]

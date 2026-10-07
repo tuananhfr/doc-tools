@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "ツール選びアシスタント",
-      "description": "合うツールを探し、内容を確認した質問文で自分のAIに相談",
+      "description": "自分専用のAIアシスタント（Pro）に、使うツールと手順を相談",
+      "privacyNote": "質問は、あなたが設定したAIプロバイダーへあなたのキーで送信されます",
       "synonyms": "aiアシスタント, やり方 質問, ツール 相談"
     },
     "idea-suggestion": {

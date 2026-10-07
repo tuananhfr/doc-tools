@@ -1,0 +1,99 @@
+{
+  "pages": {
+    "tai-khoan-ai": {
+      "title": "AI assistant",
+      "description": "Add your own AI key to use your personal Chuyện Nhỏ assistant."
+    }
+  },
+  "settings": {
+    "trail": "AI assistant",
+    "title": "Your <accent>AI</accent> assistant",
+    "intro": "The assistant runs on your own AI key: usage is billed to your AI account and Chuyện Nhỏ adds no charge. The key is encrypted on the AI server; Chuyện Nhỏ does not keep it.",
+    "unavailable": "AI is not switched on on the server yet. Please come back later.",
+    "openChat": "Open the assistant"
+  },
+  "status": {
+    "none": "Not set up",
+    "verifying": "Needs a check",
+    "ready": "Active",
+    "failed": "Not working yet",
+    "disabled": "Suspended"
+  },
+  "provider": {
+    "title": "AI key",
+    "text": "Pick a provider, paste your API key and choose a model. The assistant sends one short greeting to test the key (a few tokens).",
+    "current": "Using {{provider}} · {{model}}",
+    "type": "Provider",
+    "apiBase": "API address",
+    "apiBaseHelp": "Change it only for another OpenAI-compatible service (must be https://).",
+    "apiKey": "API key",
+    "apiKeyHelp": "The key only goes to the AI server, which stores it encrypted; this page never shows it again.",
+    "apiKeyReplace": "Paste a new key to replace the current one.",
+    "save": "Save key",
+    "saving": "Saving…",
+    "model": "Model",
+    "modelPick": "Choose a model",
+    "modelManual": "Not in the list? Type the model name",
+    "modelHelp": "The list comes from the provider, using your key.",
+    "noModels": "The provider returned no model list. Type the model name.",
+    "verify": "Check and turn on",
+    "verifying": "Checking…",
+    "verified": "The key works. Your assistant is ready.",
+    "remove": "Remove key",
+    "removing": "Removing…",
+    "removeConfirm": "Remove your AI key? The assistant stops at once; your chat history is kept.",
+    "lastError": "Last check: {{message}}",
+    "disabled": "The AI assistant of this account is suspended. Please contact contact@lpc.vn."
+  },
+  "card": {
+    "title": "AI assistant",
+    "text": "A personal assistant that finds the right tool, explains how to use it and looks up official rules — running on your own AI key.",
+    "setup": "Add an AI key",
+    "manage": "Manage AI key"
+  },
+  "invite": {
+    "title": "The AI assistant comes with Pro",
+    "text": "A personal assistant on your own AI key (OpenAI, Gemini, Anthropic…): ask which tool to use, how to do it, and where the official rules are.",
+    "guest": "Sign in to see the Pro plan.",
+    "signIn": "Sign in",
+    "upgrade": "See Pro"
+  },
+  "chat": {
+    "title": "Chuyện Nhỏ assistant",
+    "placeholder": "What do you need to do? For example: shrink a PDF to email it",
+    "send": "Send",
+    "stop": "Stop",
+    "newChat": "New chat",
+    "history": "Conversations",
+    "untitled": "Untitled chat",
+    "connecting": "Connecting…",
+    "offline": "Connection lost, retrying…",
+    "failed": "Could not reach the assistant.",
+    "retry": "Try again",
+    "emptyTitle": "Ask the assistant",
+    "emptyText": "It finds the right Chuyện Nhỏ tool, walks you through it and looks up official sources.",
+    "thinking": "The assistant is replying…",
+    "sendFailed": "Your message was not sent. Please try again.",
+    "loadFailed": "This conversation could not be opened.",
+    "disclaimer": "Answers are AI-generated and unverified. Check the sources before relying on them.",
+    "notReadyTitle": "The assistant is not ready",
+    "notReadyText": "Add an AI key and check it to turn the assistant on.",
+    "settings": "Add an AI key",
+    "openTool": "Open {{name}}"
+  },
+  "errors": {
+    "SIGNED_OUT": "Your session has ended. Please sign in again.",
+    "PRO_REQUIRED": "The AI assistant is part of Pro.",
+    "UNTRUSTED_REQUEST": "Invalid request. Reload the page and try again.",
+    "INVALID_INPUT": "Something is not right. Check the key and the model.",
+    "INVALID_API_BASE": "That API address cannot be used (it must be a public https:// server).",
+    "AI_UNAVAILABLE": "AI is not switched on on the server.",
+    "AI_UPSTREAM": "The AI server is busy or not answering. Try again in a few minutes.",
+    "AI_NO_PROVIDER": "Save an API key first.",
+    "AI_VERIFY_FAILED": "The key or model does not work yet.",
+    "AI_NOT_READY": "The assistant is not ready. Check your AI key again.",
+    "AI_DISABLED": "The AI assistant of this account is suspended.",
+    "NETWORK": "Could not reach the server. Check your connection and try again.",
+    "UNKNOWN": "Something went wrong. Please try again."
+  }
+}

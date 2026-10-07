@@ -9,6 +9,7 @@ export const ADMIN_SECTIONS = [
   { slug: 'de-xuat', label: 'Duyệt đề xuất', icon: 'clipboard-check', permission: 'contributions.review' },
   { slug: 'cong-cu', label: 'Lượt dùng công cụ', icon: 'bar-chart', permission: 'tools.view' },
   { slug: 'email', label: 'Email', icon: 'envelope', permission: 'mail.view' },
+  { slug: 'tai-khoan-ai', label: 'Tài khoản AI', icon: 'stars', permission: 'ai.view' },
   { slug: 'cai-dat', label: 'Cài đặt', icon: 'sliders', permission: 'settings.manage' },
   { slug: 'phan-quyen', label: 'Phân quyền', icon: 'shield-lock', permission: 'roles.manage' },
   { slug: 'nhat-ky', label: 'Nhật ký quản trị', icon: 'journal-text', permission: 'audit.view' },

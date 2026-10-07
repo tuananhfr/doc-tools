@@ -11,7 +11,8 @@
     "rules": "node dist/cli/rules.js",
     "contributions": "node dist/cli/contributions.js",
     "accounts": "node dist/cli/accounts.js",
-    "mail": "node dist/cli/mail.js"
+    "mail": "node dist/cli/mail.js",
+    "ai": "node dist/cli/ai.js"
   },
   "dependencies": {
     "@nestjs/common": "12.1.2",

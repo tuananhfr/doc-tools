@@ -6,5 +6,7 @@ import { AccountsModule } from './accounts/accounts.module'
 import { AuthModule } from './auth/auth.module'
 import { SettingsModule } from './settings/settings.module'
 import { AdminModule } from './admin/admin.module'
-@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule] })
+import { AiModule } from './ai/ai.module'
+import { McpModule } from './mcp/mcp.module'
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule] })
 export class AppModule {}

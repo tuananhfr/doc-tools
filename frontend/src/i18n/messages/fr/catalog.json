@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "Assistant de choix d'outil",
-      "description": "Trouver l'outil adapté et utiliser votre propre IA avec une question prévisualisée",
+      "description": "Demandez à votre assistant IA (Pro) quel outil utiliser et comment",
+      "privacyNote": "Vos questions partent vers le fournisseur d'IA que vous avez configuré, avec votre clé",
       "synonyms": "assistant ia, comment faire, quel outil, aide au choix"
     },
     "idea-suggestion": {

@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "Trợ lý chọn công cụ",
-      "description": "Tìm tiện ích phù hợp và tự dùng AI qua câu hỏi đã xem trước",
+      "description": "Hỏi trợ lý AI riêng (bản Pro) nên dùng công cụ nào và làm thế nào",
+      "privacyNote": "Câu hỏi gửi tới nhà cung cấp AI bạn tự cài, bằng khoá của bạn",
       "synonyms": "trợ lý ai, hỏi cách làm, tư vấn công cụ"
     },
     "idea-suggestion": {

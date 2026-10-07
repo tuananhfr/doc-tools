@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "工具選擇助理",
-      "description": "找出合適的工具，並透過預覽過的提問自行使用 AI",
+      "description": "向你自己的 AI 助理（Pro）詢問該用哪個工具、怎麼用",
+      "privacyNote": "提問會使用你的金鑰傳送到你設定的 AI 服務商",
       "synonyms": "ai助理,怎麼做,推薦工具,assistant"
     },
     "idea-suggestion": {

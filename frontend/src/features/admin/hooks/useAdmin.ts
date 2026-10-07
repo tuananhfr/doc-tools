@@ -1,5 +1,5 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { adminService, type ContributionQuery, type UserQuery } from '../services/admin.service'
+import { adminService, type AiQuery, type ContributionQuery, type UserQuery } from '../services/admin.service'
 import type { StaffRole, Transition, UserDetail } from '../types/admin.types'
 
 const ADMIN = ['admin'] as const
@@ -13,6 +13,7 @@ const key = {
   settings: [...ADMIN, 'settings'] as const,
   roles: [...ADMIN, 'roles'] as const,
   audit: [...ADMIN, 'audit'] as const,
+  ai: [...ADMIN, 'ai'] as const,
 }
 
 // Staff errors (signed out, not staff, stale session) are answers, not glitches: retrying only delays them.
@@ -61,6 +62,20 @@ export function useTransition(id: string) {
     mutationFn: ({ action, note, digest }: { action: Transition; note: string; digest: string }) => adminService.transition(id, action, note, digest),
     // Failures too: a 409 means someone else moved it, and the screen should show where it is now.
     onSettled: () => Promise.all([client.invalidateQueries({ queryKey: key.contributions }), client.invalidateQueries({ queryKey: key.overview })]),
+  })
+}
+
+export function useAiAccounts(params: AiQuery) {
+  return useQuery({ queryKey: [...key.ai, 'list', params], queryFn: () => adminService.aiAccounts(params), placeholderData: keepPreviousData, ...once })
+}
+export function useAiStatus() {
+  return useQuery({ queryKey: [...key.ai, 'status'], queryFn: adminService.aiStatus, staleTime: 30_000, ...once })
+}
+export function useAiSwitch() {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: ({ userId, enable }: { userId: string; enable: boolean }) => enable ? adminService.enableAi(userId) : adminService.disableAi(userId),
+    onSettled: () => Promise.all([client.invalidateQueries({ queryKey: [...key.ai, 'list'] }), client.invalidateQueries({ queryKey: key.audit })]),
   })
 }
 

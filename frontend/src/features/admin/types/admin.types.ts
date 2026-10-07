@@ -97,4 +97,21 @@ export type Setting =
 
 export interface RoleHolder { userId: string; email: string; displayName: string | null; role: StaffRole; grantedBy: string; grantedAt: string }
 
+export type AiProviderStatus = 'verifying' | 'ready' | 'failed' | 'disabled'
+
+export interface AiAccountRow {
+  userId: string; email: string; type: string; apiBase: string; model: string | null; status: AiProviderStatus; lastError: string | null
+  /** Epoch seconds. */
+  verifiedAt: number | null; updatedAt: number
+  agentStatus: 'active' | 'inactive' | null; agentKey: string | null; promptVersion: number | null
+}
+
+export interface AiAccountList extends Paged<AiAccountRow> { promptVersion: number }
+
+export interface AiStatus {
+  configured: boolean; reachable: boolean; url: string; publicWsUrl: string | null; mcpPublicUrl: string | null; mcpServerName: string
+  mcpRegistered: boolean; mcpEnabled?: boolean | null; mcpUrl?: string | null; allowPrivateApiBase: boolean; promptVersion: number
+  backgroundProvider: string | null; error: string | null
+}
+
 export interface AuditRow { id: number; actorId: string; actorEmail: string; action: string; targetType: string; targetId: string | null; detail: string | null; createdAt: string }

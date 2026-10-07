@@ -23,6 +23,8 @@ import { ToolRouteFallback } from './ToolRouteFallback'
 import { ADMIN_ROOT } from '@/features/admin'
 
 const ToolRoutePage = dynamic(() => import('@/features/tools/hub/pages/ToolRoutePage'), { ssr: false, loading: ToolRouteFallback })
+// Client-only: the page is about the signed-in member's AI key, nothing to prerender.
+const AiSettingsPage = dynamic(() => import('@/features/ai/pages/AiSettingsPage'), { ssr: false, loading: ToolRouteFallback })
 // Own chrome outside ToolsLayout, and client-only: every admin screen depends on the staff session.
 const AdminApp = dynamic(() => import('@/features/admin/AdminApp'), { ssr: false, loading: () => <div className="cn-site cn-admin is-gate"><div className="cn-admin-gate-loading" aria-busy="true" /></div> })
 const routes: RouteObject[] = [{ path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
@@ -42,6 +44,7 @@ const routes: RouteObject[] = [{ path: ADMIN_ROOT + '/*', element: <AdminApp /> 
   { path: 'quyen-rieng-tu', element: <LegalPage key="quyen-rieng-tu" slug="quyen-rieng-tu" /> },
   { path: 'dang-nhap', element: <LoginPage /> },
   { path: 'tai-khoan', element: <AccountPage /> },
+  { path: 'tai-khoan/ai', element: <AiSettingsPage /> },
   { path: 'de-xuat-cua-toi', element: <MyContributionsPage /> },
   { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} /> },
 ] }]

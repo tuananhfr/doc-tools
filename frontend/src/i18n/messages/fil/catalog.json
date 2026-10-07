@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "Tagahanap ng tool",
-      "description": "Hanapin ang tamang tool at gamitin ang sarili mong AI gamit ang prompt na na-preview mo",
+      "description": "Tanungin ang sarili mong AI assistant (Pro) kung aling tool ang gagamitin at paano",
+      "privacyNote": "Ipinapadala ang mga tanong sa AI provider na itinakda mo, gamit ang iyong key",
       "synonyms": "ai assistant, paano gawin, tulong sa pagpili ng tool"
     },
     "idea-suggestion": {

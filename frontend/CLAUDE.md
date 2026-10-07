@@ -125,7 +125,7 @@ OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-im
 
 Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin}/*`,
+`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin,ai}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
@@ -154,6 +154,29 @@ trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
 - `/me` trả `staff` (`null` với tài khoản thường). Staff thấy thêm nút khiên ở header / mục
   "Quản trị" trong menu trượt, và đăng nhập không có `?next=` thì vào thẳng `/quan-tri`.
 
+### Trợ lý AI (`features/ai`, bản Pro)
+
+Mỗi thành viên Pro dán khoá AI của mình ở `/tai-khoan/ai`; backend dựng provider + agent
+`cn-<userId>` trên GoClaw dùng chung. Màn chat là công cụ `tro-ly` (`AssistantPage` của
+`byoai` chỉ còn gọi `AiAssistant`). Trình duyệt xin vé `POST /ai/session` rồi nối WebSocket
+**thẳng** tới GoClaw — backend không proxy luồng chat. `ws-client.ts` / `useAgentChat.ts`
+chép từ ERPCons, giữ nguyên các luật ở đó (khoá phiên do client sinh trước khi gửi,
+`sessions.preview` là nguồn sự thật sau mỗi lượt, thứ tự khôi phục sau F5, `stream: true`).
+
+- `ws-client.ts` có bộ đếm `generation`: StrictMode gọi connect → disconnect → connect, connect
+  đầu đang chờ vé mà vẫn mở socket là có HAI socket, socket cũ báo "connected" trước khi socket
+  thật mở xong → `sessions.list`/`preview` hỏng câm, F5 ra khung chat trống. (Bản ERPCons chưa có.)
+- Câu trả lời vẽ bằng React node (`ChatMessageBody`), **không bao giờ** `dangerouslySetInnerHTML`.
+  Khối ```` ```cn-action ```` chỉ thành nút khi đúng shape `parseCnAction` VÀ slug là công cụ
+  `ready` trong danh mục đang chạy — model có thể bị dụ viết bất cứ gì.
+- Enter để gửi phải bỏ qua lúc đang gõ dấu (`isComposing`): Telex/VNI xác nhận âm tiết bằng Enter.
+- `features/ai` không import `features/account` ở component dùng chung (`AiAssistant`,
+  `AiAccountCard`, `ProInvite` nhận props) — `AccountPage` import `@/features/ai`, đi ngược là
+  vòng import. Chỉ `pages/AiSettingsPage` (nạp lười từ `ToolsRouter`) dùng `useMe`.
+- Sửa danh mục / chữ catalog → chạy `node scripts/export-tool-catalog.mjs` (backend đọc
+  `backend/data/tool-catalog.json` cho tool MCP); test `tool-catalog-export.test.ts` canh.
+- Dòng cam kết đầu trang `tro-ly` là `privacyNote` trong catalog (câu hỏi đi tới nhà cung cấp
+  AI) — công cụ này không còn "chạy trên máy bạn".
 ### Khu quản trị (`features/admin`, `/quan-tri`)
 
 Chỉ tiếng Việt, **không đi qua i18n** (chuỗi viết thẳng trong component — cố ý, không thêm

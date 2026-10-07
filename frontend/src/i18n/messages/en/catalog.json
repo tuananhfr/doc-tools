@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "Tool finder",
-      "description": "Find the right tool and use your own AI with a prompt you preview first",
+      "description": "Ask your own AI assistant (Pro) which tool to use and how",
+      "privacyNote": "Questions go to the AI provider you set up, using your key",
       "synonyms": "ai assistant, how to, which tool, help me choose"
     },
     "idea-suggestion": {

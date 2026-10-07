@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "选工具助手",
-      "description": "找到合适的工具，并通过预览过的提问自行使用 AI",
+      "description": "向你自己的 AI 助手（Pro）询问该用哪个工具、怎么用",
+      "privacyNote": "提问会使用你的密钥发送到你设置的 AI 服务商",
       "synonyms": "ai助手,怎么做,工具推荐"
     },
     "idea-suggestion": {

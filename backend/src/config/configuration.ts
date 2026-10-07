@@ -35,13 +35,17 @@ export function configuration() {
       // Browsers send Origin on every write; an empty list accepts any origin (local dev only).
       allowedOrigins: list(process.env.SITE_ORIGINS),
     },
-    // Read by the AI phase (P2); declared now so every deployment knows which keys it must fill.
     goclaw: {
       url: process.env.GOCLAW_URL ?? 'http://localhost:18790',
       gatewayToken: process.env.GOCLAW_GATEWAY_TOKEN ?? '',
       publicWsUrl: process.env.GOCLAW_PUBLIC_WS_URL ?? '',
       publicFilesUrl: process.env.GOCLAW_PUBLIC_FILES_URL ?? '',
     },
-    mcp: { publicUrl: process.env.MCP_PUBLIC_URL ?? '', allowedIps: list(process.env.MCP_ALLOWED_IPS) },
+    mcp: { publicUrl: process.env.MCP_PUBLIC_URL ?? '', allowedIps: list(process.env.MCP_ALLOWED_IPS), serverName: 'chuyen-nho' },
+    ai: {
+      // Development only: lets an openai_compat provider point at a local model server.
+      allowPrivateApiBase: process.env.AI_DEV_ALLOW_PRIVATE_API_BASE === '1',
+      ticketTtlSeconds: Number(process.env.AI_TICKET_TTL_SECONDS ?? 900),
+    },
   }
 }

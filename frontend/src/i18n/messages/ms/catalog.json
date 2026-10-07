@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "Pembantu memilih alat",
-      "description": "Cari alat yang sesuai dan guna AI anda sendiri dengan gesaan yang dipratonton dahulu",
+      "description": "Tanya pembantu AI anda (Pro) alat mana yang patut digunakan dan caranya",
+      "privacyNote": "Soalan dihantar kepada penyedia AI yang anda tetapkan, menggunakan kunci anda",
       "synonyms": "pembantu ai, ai assistant, cara buat, alat mana, bantu pilih"
     },
     "idea-suggestion": {

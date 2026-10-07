@@ -63,6 +63,8 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
 | `admin` | `/admin/*` (bảng đầy đủ ở `docs/api.md`) | Khu quản trị: người dùng, Pro, duyệt đề xuất, email, thống kê công cụ, cài đặt, phân quyền, nhật ký |
 | `roles` · `settings` | — | Vai trò `owner`/`admin`/`reviewer` → permission (`roles/roles.ts`) · công tắc vận hành `app_settings` (`@Global`, cache 30 s) |
+| `ai` | `/ai/{provider-types,setup,provider,provider/verify,session}` · `/admin/ai/*` | Trợ lý AI bản Pro: khoá AI của từng người thành provider + agent `cn-<userId>` trên GoClaw dùng chung; trình duyệt cầm vé nối WS thẳng tới GoClaw |
+| `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
 **capability** (`accounts/capabilities.ts`), không kiểm tên bậc. Pro cấp bằng CLI hoặc
@@ -120,6 +122,20 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - `direct` gửi thẳng cổng 25 tới MX người nhận: cần SPF + DKIM + PTR + cổng 25 mở, thiếu một thứ
   là Gmail/Outlook vứt vào Spam hoặc từ chối. Máy dev nhà mạng thường chặn cổng 25. STARTTLS
   luôn kiểm chứng chứng chỉ (MX chứng chỉ sai thì sang MX kế tiếp, không tin bừa).
+- **GoClaw dùng chung, lỗi thứ tự là lộ khoá của khách.** Agent có provider bị mất / tắt /
+  thiếu key sẽ chạy bằng một provider **ngẫu nhiên** của tenant. Nên: tắt agent TRƯỚC khi đụng
+  provider, chỉ bật agent sau khi verify xong (`ai.service.ts`); `POST /ai/session` kiểm lại
+  GoClaw mỗi lần đúc vé, lệch là tắt agent + 409 `AI_NOT_READY`. Test `ai.test.cjs` khẳng định
+  đúng thứ tự gọi — đừng đảo.
+- Provider được tạo `enabled: true` ngay lúc lưu vì `/verify` của GoClaw chỉ chạy với provider
+  đã đăng ký; verify hỏng thì tắt lại. `background.provider` của GoClaw để trống cũng là
+  "chọn ngẫu nhiên" — app chỉ báo (`npm run ai -- status`, trang admin), không tự sửa.
+- Token MCP (`X-CN-MCP-Token`) đổi mỗi lần verify thành công, thu hồi khi admin khoá / xoá
+  tài khoản. GoClaw chặn MCP ở host nội bộ trừ khi có trong `GOCLAW_MCP_ALLOW_PRIVATE_HOSTS`
+  (env của GoClaw, không phải của app). Đổi chỉ dẫn agent (`agent/*.md`) thì tăng
+  `PROMPT_VERSION` rồi `npm run ai -- sync-agents`.
+- `data/tool-catalog.json` sinh từ frontend (`node scripts/export-tool-catalog.mjs`); sửa
+  danh mục / chữ catalog mà quên xuất lại là test `tool-catalog-export.test.ts` bên frontend đỏ.
 - `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).
 
 ## Luật nghiệp vụ không được phá

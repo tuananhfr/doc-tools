@@ -1,4 +1,4 @@
-import type { ContributionStatus, MailStatus, StaffRole, Transition } from '../types/admin.types'
+import type { AiProviderStatus, ContributionStatus, MailStatus, StaffRole, Transition } from '../types/admin.types'
 
 export type Tone = 'neutral' | 'info' | 'positive' | 'warning' | 'danger'
 
@@ -51,12 +51,20 @@ export const MAIL_TEMPLATE: Record<string, string> = { otp: 'Mã đăng nhập',
 
 export const MAIL_TRANSPORT = { direct: 'Gửi thẳng (MX + DKIM)', smtp: 'Qua máy chủ SMTP', log: 'Chỉ ghi log (không gửi)' } as const
 
+export const AI_STATUS: Record<AiProviderStatus, { label: string; icon: string; tone: Tone }> = {
+  verifying: { label: 'Chờ kiểm tra', icon: 'hourglass-split', tone: 'info' },
+  ready: { label: 'Đang hoạt động', icon: 'check2-circle', tone: 'positive' },
+  failed: { label: 'Chưa dùng được', icon: 'exclamation-triangle', tone: 'warning' },
+  disabled: { label: 'Đã tạm khoá', icon: 'slash-circle', tone: 'danger' },
+}
+
 export const AUDIT_ACTION: Record<string, string> = {
   USER_DISABLED: 'Khoá tài khoản', USER_ENABLED: 'Mở khoá tài khoản', SESSIONS_ENDED: 'Đăng xuất mọi phiên', PROFILE_EDITED: 'Sửa hồ sơ',
   PRO_GRANTED: 'Cấp Pro', PRO_REVOKED: 'Thu hồi Pro', USER_DELETED: 'Xoá tài khoản',
   CONTRIBUTION_VERIFY: 'Xác minh đề xuất', CONTRIBUTION_APPROVE: 'Phê duyệt đề xuất', CONTRIBUTION_PUBLISH: 'Công bố đề xuất',
   CONTRIBUTION_REJECT: 'Từ chối đề xuất', CONTRIBUTION_SUPERSEDE: 'Đánh dấu thay thế', CONTRIBUTION_REVOKE: 'Rút công bố',
   MAIL_TEST: 'Gửi thư thử', SETTING_CHANGED: 'Đổi cài đặt', SETTING_RESET: 'Khôi phục mặc định', ROLE_GRANTED: 'Cấp vai trò', ROLE_REVOKED: 'Thu vai trò',
+  AI_DISABLE: 'Tạm khoá trợ lý AI', AI_ENABLE: 'Mở lại trợ lý AI',
   // Account trail (user_audit) shares this table.
   LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá',
   SUBMITTED: 'Gửi đề xuất', SOURCES_ADDED: 'Thêm nguồn (mã biên nhận)', EVIDENCE_ADDED: 'Bổ sung nguồn', VERIFY: 'Xác minh', APPROVE: 'Phê duyệt',

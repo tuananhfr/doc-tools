@@ -42,7 +42,8 @@
     },
     "assistant": {
       "name": "도구 찾기 도우미",
-      "description": "알맞은 도구를 찾고, 미리 확인한 질문으로 직접 AI 활용",
+      "description": "나만의 AI 도우미(Pro)에게 어떤 도구를 어떻게 쓸지 물어보기",
+      "privacyNote": "질문은 직접 설정한 AI 제공업체로 내 키를 사용해 전송됩니다",
       "synonyms": "ai 도우미, 방법 묻기, 도구 추천"
     },
     "idea-suggestion": {

@@ -1,0 +1,99 @@
+{
+  "pages": {
+    "tai-khoan-ai": {
+      "title": "Trợ lý AI",
+      "description": "Cài khoá AI của bạn để dùng trợ lý riêng của Chuyện Nhỏ."
+    }
+  },
+  "settings": {
+    "trail": "Trợ lý AI",
+    "title": "Trợ lý <accent>AI</accent> của bạn",
+    "intro": "Trợ lý chạy bằng khoá AI của chính bạn: chi phí tính vào tài khoản AI của bạn, Chuyện Nhỏ không thu thêm. Khoá được mã hoá trên máy chủ AI, Chuyện Nhỏ không lưu lại.",
+    "unavailable": "Tính năng AI chưa được bật trên máy chủ. Hãy quay lại sau.",
+    "openChat": "Mở trợ lý"
+  },
+  "status": {
+    "none": "Chưa cài",
+    "verifying": "Chờ kiểm tra",
+    "ready": "Đang hoạt động",
+    "failed": "Chưa dùng được",
+    "disabled": "Bị tạm khoá"
+  },
+  "provider": {
+    "title": "Khoá AI",
+    "text": "Chọn nhà cung cấp, dán khoá API rồi chọn model. Trợ lý gửi một câu chào ngắn để kiểm tra khoá (tốn vài token).",
+    "current": "Đang dùng {{provider}} · {{model}}",
+    "type": "Nhà cung cấp",
+    "apiBase": "Địa chỉ API",
+    "apiBaseHelp": "Chỉ đổi khi bạn dùng dịch vụ tương thích OpenAI khác (phải là https://).",
+    "apiKey": "Khoá API",
+    "apiKeyHelp": "Khoá chỉ được gửi tới máy chủ AI để lưu mã hoá; trang này không hiện lại khoá.",
+    "apiKeyReplace": "Dán khoá mới để thay khoá đang dùng.",
+    "save": "Lưu khoá",
+    "saving": "Đang lưu…",
+    "model": "Model",
+    "modelPick": "Chọn model",
+    "modelManual": "Không thấy trong danh sách? Gõ tên model",
+    "modelHelp": "Danh sách lấy từ nhà cung cấp bằng khoá của bạn.",
+    "noModels": "Nhà cung cấp không trả danh sách model. Hãy gõ tên model.",
+    "verify": "Kiểm tra và bật trợ lý",
+    "verifying": "Đang kiểm tra…",
+    "verified": "Khoá dùng được. Trợ lý đã sẵn sàng.",
+    "remove": "Gỡ khoá",
+    "removing": "Đang gỡ…",
+    "removeConfirm": "Gỡ khoá AI? Trợ lý sẽ tắt ngay; lịch sử trò chuyện vẫn được giữ.",
+    "lastError": "Lần kiểm tra trước: {{message}}",
+    "disabled": "Trợ lý AI của tài khoản này đang bị tạm khoá. Hãy liên hệ contact@lpc.vn."
+  },
+  "card": {
+    "title": "Trợ lý AI",
+    "text": "Trợ lý riêng tìm công cụ, hướng dẫn cách dùng và tra nguồn quy định — chạy bằng khoá AI của bạn.",
+    "setup": "Cài khoá AI",
+    "manage": "Quản lý khoá AI"
+  },
+  "invite": {
+    "title": "Trợ lý AI dành cho bản Pro",
+    "text": "Trợ lý riêng chạy bằng khoá AI của bạn (OpenAI, Gemini, Anthropic…): hỏi nên dùng công cụ nào, cách làm, và tra nguồn quy định chính thức.",
+    "guest": "Đăng nhập để xem gói Pro.",
+    "signIn": "Đăng nhập",
+    "upgrade": "Xem bản Pro"
+  },
+  "chat": {
+    "title": "Trợ lý Chuyện Nhỏ",
+    "placeholder": "Bạn cần làm gì? Ví dụ: nén tệp PDF để gửi email",
+    "send": "Gửi",
+    "stop": "Dừng",
+    "newChat": "Trò chuyện mới",
+    "history": "Cuộc trò chuyện",
+    "untitled": "Trò chuyện chưa đặt tên",
+    "connecting": "Đang kết nối…",
+    "offline": "Mất kết nối, đang thử lại…",
+    "failed": "Không kết nối được tới trợ lý.",
+    "retry": "Thử lại",
+    "emptyTitle": "Hỏi trợ lý",
+    "emptyText": "Trợ lý tìm đúng công cụ của Chuyện Nhỏ, hướng dẫn từng bước và tra nguồn quy định chính thức.",
+    "thinking": "Trợ lý đang trả lời…",
+    "sendFailed": "Tin nhắn chưa gửi được. Hãy thử lại.",
+    "loadFailed": "Không mở được cuộc trò chuyện này.",
+    "disclaimer": "Câu trả lời do AI tạo, chưa được xác minh. Hãy kiểm tra nguồn trước khi dùng.",
+    "notReadyTitle": "Trợ lý chưa sẵn sàng",
+    "notReadyText": "Hãy thêm khoá AI và kiểm tra để bật trợ lý.",
+    "settings": "Cài khoá AI",
+    "openTool": "Mở {{name}}"
+  },
+  "errors": {
+    "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
+    "PRO_REQUIRED": "Trợ lý AI dành cho tài khoản Pro.",
+    "UNTRUSTED_REQUEST": "Yêu cầu không hợp lệ. Hãy tải lại trang rồi thử lại.",
+    "INVALID_INPUT": "Thông tin chưa đúng. Hãy kiểm tra lại khoá và model.",
+    "INVALID_API_BASE": "Địa chỉ API không dùng được (phải là máy chủ công khai, https://).",
+    "AI_UNAVAILABLE": "Tính năng AI chưa được bật trên máy chủ.",
+    "AI_UPSTREAM": "Máy chủ AI đang bận hoặc không trả lời. Hãy thử lại sau ít phút.",
+    "AI_NO_PROVIDER": "Hãy lưu khoá API trước.",
+    "AI_VERIFY_FAILED": "Khoá hoặc model chưa dùng được.",
+    "AI_NOT_READY": "Trợ lý chưa sẵn sàng. Hãy kiểm tra lại khoá AI.",
+    "AI_DISABLED": "Trợ lý AI của tài khoản này đang bị tạm khoá.",
+    "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
+    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại."
+  }
+}
