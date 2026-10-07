@@ -93,6 +93,15 @@ export const SCHEMA = [
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX (contribution_id, created_at)
   ) ENGINE=InnoDB`,
+  // A side table, not columns on `contributions`: the app's MySQL user has CREATE but no ALTER,
+  // and CREATE TABLE IF NOT EXISTS never adds columns to a table that already exists.
+  `CREATE TABLE IF NOT EXISTS contribution_submitters (
+    contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    attribution_consent TINYINT(1) NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX (user_id, created_at)
+  ) ENGINE=InnoDB`,
   // Emails are stored lower-cased; the binary collation keeps uniqueness byte-exact.
   `CREATE TABLE IF NOT EXISTS users (
     id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,

@@ -34,7 +34,7 @@ Tests use a dedicated qa slug and test IP, remove their own rows and verify malf
 
 `POST /api/v1/contributions` accepts JSON `{toolId,domain,baseSnapshotId,proposedChanges:[{field,before,after}],sourceRefs:[{url,type}],jurisdiction}`. Nullable metadata can be omitted. The request body limit is 128 KiB on this route; the visit route keeps its 1 KiB limit. A valid submission returns HTTP 200 `{ok:true,receiptCode,status}` where status is `NEEDS_SOURCE` or `NEEDS_REVIEW`. Invalid or sensitive input returns 400; a duplicate returns 409 with `code:DUPLICATE_CONTRIBUTION`; the sixth distinct submission within a rolling hour for one HMAC IP returns 429. No AI output is trusted or published by this API.
 
-`GET /api/v1/contributions/receipt/:code` returns `{ok:true,contribution:{status,createdAt}|null}` with no proposed content or reviewer identity. The 24-byte random receipt is stored only as a SHA-256 hash. `GET /api/v1/contributions/ideas` returns the latest 50 published ideas. Both GET endpoints send `Cache-Control: no-store`.
+`GET /api/v1/contributions/receipt/:code` returns `{ok:true,contribution:{status,createdAt}|null}` with no proposed content or reviewer identity. The 24-byte random receipt is stored only as a SHA-256 hash. `GET /api/v1/contributions/ideas` returns the latest 50 published ideas as `{id,text,author}`; `author` is the submitter's display name only when the contribution was sent with `attribution:true` and the account currently has `publicAttribution` on, a display name and is active, otherwise `null`. Both GET endpoints send `Cache-Control: no-store`.
 
 `POST /api/v1/contributions/receipt/:code/sources` accepts `{sourceRefs:[{url,type}]}` only while the receipt is in `NEEDS_SOURCE`, changes it to `NEEDS_REVIEW`, and records `SOURCES_ADDED`. It returns 404 for unknown receipts or already progressed submissions. The route has a 22 KiB body limit.
 
@@ -49,6 +49,12 @@ Cookie-authenticated writes (`/auth/*`, `PATCH /me`) require header `X-CN-Reques
 - `POST /api/v1/auth/logout` → deletes the session, expires the cookie.
 - `GET /api/v1/me` → `{ok:true, user:{id,email,displayName,publicAttribution}|null, plan:{pro,endsAt}, capabilities[]}`. Guests get `user:null` (200, not 401). Capabilities: guest `tool.use`, `contribution.anonymous`; signed in adds `contribution.attributed`, `contribution.track`, `contribution.evidence`; Pro adds `ai.agent`, `cloud.memory`, `sync.basic`, `byoai.history`.
 - `PATCH /api/v1/me {displayName|null, publicAttribution}` → 401 without a session, 400 for names over 80 characters or containing control characters / `<` `>`.
+
+### Contributions from an account
+
+- `POST /api/v1/contributions` with a session **and** the trusted-write header/origin records the submitter (table `contribution_submitters`) and takes an extra body field `attribution` (only literal `true` consents to showing the name). The response adds `tracked:true`. The limit is then 10 / rolling hour per account instead of 5 per IP. Without the header the cookie is ignored and the request is a guest's (`tracked:false`) — it never fails, so an old cached frontend keeps working.
+- `GET /api/v1/me/contributions?page=1` → 401 `code:SIGNED_OUT` without a session. `{ok, page, pageSize:20, total, items:[{id,toolId,domain,status,sourceRefs,attribution,createdAt,changes,changeCount,canAddEvidence}]}`, newest first. `changes` holds at most 3 entries, each `before`/`after` clipped to 280 characters. Guest-filed contributions never appear.
+- `POST /api/v1/me/contributions/:id/evidence {sourceRefs:[{url,type}]}` (trusted write, 22 KiB) → appends sources to the caller's own contribution while it is `NEEDS_SOURCE` or `NEEDS_REVIEW`; URLs already present are skipped, `NEEDS_SOURCE` becomes `NEEDS_REVIEW`, audit `EVIDENCE_ADDED` by `user:<id>`. Returns `{ok,status,sourceRefs}`. Someone else's or unknown id → 404; later statuses → 409 `code:EVIDENCE_CLOSED`; more than 10 sources in total → 400 `code:TOO_MANY_SOURCES`; invalid source → 400 `code:SOURCE_INVALID`.
 
 Codes and session tokens are stored only as hashes (HMAC with `VISIT_HASH_SECRET` / SHA-256). Pro is granted only by the trusted CLI (`npm run accounts -- grant-pro <email> <YYYY-MM-DD> <operator> [note]`, through the end of that Vietnam day; `revoke-pro`, `show`, `list-pro`); every grant, revocation and login is written to `user_audit`.
 

@@ -54,7 +54,7 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | --- | --- | --- |
 | `tools` | `POST /tools/visits` · `GET /tools/stats` | Bộ đếm lượt mở công cụ |
 | `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
-| `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` | Nhận đề xuất ẩn danh, tra trạng thái theo mã biên nhận, ý tưởng đã duyệt |
+| `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` · `GET /me/contributions` · `POST /me/contributions/:id/evidence` | Nhận đề xuất (khách hoặc có tài khoản), tra trạng thái theo mã biên nhận, "Đề xuất của tôi" + bổ sung nguồn, ý tưởng đã duyệt |
 | `auth` | `POST /auth/otp/{request,verify}` · `POST /auth/logout` | Đăng nhập email + mã 6 số, không mật khẩu |
 | `accounts` | `GET`/`PATCH /me` | Người dùng + gói Pro + danh sách capability |
 | `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
@@ -72,6 +72,9 @@ endpoint ghi công khai nào cho hai thứ đó.
   phải tự viết `ALTER` và tính đường cho môi trường đang chạy. Chuyển dữ liệu thì viết
   hàm riêng ở `database/migrations.ts` (gọi sau SCHEMA), đừng nhét `INSERT … SELECT` vào
   SCHEMA: server và CLI khởi động cùng lúc sẽ deadlock.
+- **User MySQL của app không có `ALTER`/`DROP`** (chỉ `SELECT, INSERT, UPDATE, DELETE, CREATE,
+  INDEX`). `ALTER` lúc khởi động sẽ làm server sập. Cần thêm dữ liệu cho bảng cũ thì dựng
+  **bảng phụ** (như `contribution_submitters` cho người gửi đề xuất), không thêm cột.
 - **Parser body tự viết** (`config/http-adapter.ts`): nhận mọi content-type, JSON lỗi
   thành `null` thay vì 400 ở tầng parser — bắt chước Drupal cũ. Controller tự kiểm và trả
   `{ok:false, message}`.
@@ -80,7 +83,10 @@ endpoint ghi công khai nào cho hai thứ đó.
 - `trustProxy: 'loopback'`: IP thật chỉ lấy từ `X-Forwarded-For` khi proxy nằm trên
   loopback; app mặc định chỉ bind `127.0.0.1`.
 - Visit vượt trần 120/giờ/IP vẫn trả `{ok:true}` (chỉ không cộng). Contributions vượt trần
-  5/giờ/IP thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
+  5/giờ/IP (khách) hoặc 10/giờ/tài khoản thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
+- `POST /contributions` **không** gắn `TrustedWriteGuard` mà dùng `isTrustedWrite()`: thiếu
+  header thì cookie bị lờ đi và đề xuất thành của khách. Cố ý: chặn cứng sẽ làm bundle cũ
+  trong cache SW lỗi 403; gắn người gửi chỉ nhờ cookie là CSRF.
 - IP không bao giờ lưu thô: HMAC với `VISIT_HASH_SECRET`, có hạn. Mã biên nhận chỉ lưu
   SHA-256. Endpoint trạng thái không trả nội dung đề xuất hay danh tính người duyệt.
 - **Route ghi có cookie phải gắn `TrustedWriteGuard`** (đòi header `X-CN-Request: 1` + `Origin`
