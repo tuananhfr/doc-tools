@@ -1,5 +1,5 @@
 import { withBase } from '@/utils/url'
-import { ACCOUNT_ERROR_CODES, type AccountErrorCode, type AccountState, type ProfileInput } from '../types/account.types'
+import { ACCOUNT_ERROR_CODES, type AccountErrorCode, type AccountState, type MyContribution, type MyContributionsPage, type ProfileInput, type SourceRef } from '../types/account.types'
 
 export class AccountError extends Error {
   constructor(readonly code: AccountErrorCode, readonly status: number) {
@@ -32,4 +32,7 @@ export const accountService = {
   verifyCode: (email: string, code: string) => call<AccountState>('/auth/otp/verify', { method: 'POST', body: { email, code } }),
   logout: () => call<{ ok: true }>('/auth/logout', { method: 'POST' }),
   updateProfile: (input: ProfileInput) => call<AccountState>('/me', { method: 'PATCH', body: input }),
+  myContributions: (page: number) => call<MyContributionsPage>(`/me/contributions?page=${page}`),
+  addEvidence: (id: string, sourceRefs: SourceRef[]) =>
+    call<Pick<MyContribution, 'status' | 'sourceRefs'>>(`/me/contributions/${encodeURIComponent(id)}/evidence`, { method: 'POST', body: { sourceRefs } }),
 }

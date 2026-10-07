@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { withBase } from '@/utils/url'
+import { ContributionAccountBox, defaultAttribution, useMe, useRefreshMyContributions } from '@/features/account'
 
 interface Props { mode: 'idea' | 'regulation' }
 const STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
@@ -9,6 +10,13 @@ const isKnownStatus = (status: string | undefined): status is (typeof STATUSES)[
 
 export function ContributionForm({ mode }: Props) {
   const { t } = useTranslation('community')
+  const { t: tAccount } = useTranslation('account')
+  const user = useMe().data?.user ?? null
+  const refreshMine = useRefreshMyContributions()
+  // null = not touched yet, so the default can follow the profile once `/me` answers.
+  const [attributionChoice, setAttributionChoice] = useState<boolean | null>(null)
+  const attribution = attributionChoice ?? (user ? defaultAttribution(user) : false)
+  const [tracked, setTracked] = useState(false)
   const statusLabel = (status: string | undefined) => isKnownStatus(status) ? t(`contribution.status.${status}`) : String(status)
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
@@ -25,16 +33,19 @@ export function ContributionForm({ mode }: Props) {
     if (!consent || !detail.trim() || busy) return
     setBusy(true); setMessage('')
     try {
-      const response = await fetch(withBase('/api/v1/contributions'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+      // The header lets the backend file it under the signed-in account; without it the cookie is ignored.
+      const response = await fetch(withBase('/api/v1/contributions'), { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-CN-Request': '1' }, body: JSON.stringify({
         toolId: mode === 'idea' ? 'de-xuat-tien-ich' : 'gop-y-quy-dinh', domain: mode === 'idea' ? 'ideas' : 'legal',
         baseSnapshotId: null, jurisdiction: mode === 'idea' ? null : 'VN',
         proposedChanges: [{ field: mode === 'idea' ? 'idea' : 'rule', before: '', after: `${title.trim()}\n${detail.trim()}`.trim() }],
         sourceRefs: sourceUrl.trim() ? [{ url: sourceUrl.trim(), type: sourceType }] : [],
+        ...(user ? { attribution } : {}),
       }) })
-      const value = await response.json() as { ok?: boolean; receiptCode?: string; status?: string; message?: string }
+      const value = await response.json() as { ok?: boolean; receiptCode?: string; status?: string; tracked?: boolean; message?: string }
       if (!response.ok || !value.ok || !value.receiptCode) { setMessage(value.message || t('contribution.sendFailed')); return }
       setReceipt(value.receiptCode); setLookup(value.receiptCode)
-      setMessage(t('contribution.received', { status: statusLabel(value.status) }))
+      if (value.tracked) { setTracked(true); void refreshMine() }
+      setMessage(value.tracked ? tAccount('box.received', { status: statusLabel(value.status) }) : t('contribution.received', { status: statusLabel(value.status) }))
     } catch { setMessage(t('contribution.offlineDraft')) }
     finally { setBusy(false) }
   }
@@ -61,6 +72,7 @@ export function ContributionForm({ mode }: Props) {
     <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaName') : t('contribution.regulationTopic')}<Form.Control maxLength={100} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
     <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaDetail') : t('contribution.regulationDetail')}<Form.Control as="textarea" rows={6} maxLength={4800} value={detail} onChange={(event) => setDetail(event.target.value)} /></label>
     {mode === 'regulation' ? <><label className="erp-flow-field__label mt-3">{t('contribution.sourceUrl')}<Form.Control type="url" maxLength={2048} value={sourceUrl} onChange={(event) => setSourceUrl(event.target.value)} /></label><label className="erp-flow-field__label mt-3">{t('contribution.sourceType')}<Form.Select value={sourceType} onChange={(event) => setSourceType(event.target.value as typeof sourceType)}><option value="OFFICIAL_WEB">{t('contribution.sourceTypes.OFFICIAL_WEB')}</option><option value="OFFICIAL_DOCUMENT">{t('contribution.sourceTypes.OFFICIAL_DOCUMENT')}</option><option value="OFFICIAL_API">{t('contribution.sourceTypes.OFFICIAL_API')}</option><option value="OTHER">{t('contribution.sourceTypes.OTHER')}</option></Form.Select></label></> : null}
+    {user ? <ContributionAccountBox user={user} attribution={attribution} onAttributionChange={setAttributionChoice} tracked={tracked} /> : null}
     <Form.Check className="mt-3" checked={consent} onChange={(event) => setConsent(event.target.checked)} label={t('contribution.consent')} />
     <Button className="mt-3" disabled={!consent || !title.trim() || !detail.trim() || busy || Boolean(receipt)} onClick={() => void submit()}>{busy ? t('contribution.sending') : t('contribution.submit')}</Button>
     {message ? <p role="status" className="mt-3">{message}</p> : null}

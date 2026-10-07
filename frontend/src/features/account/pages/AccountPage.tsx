@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { StateView } from '@/components/ui/StateView'
@@ -46,6 +46,11 @@ export default function AccountPage() {
           <div className="cn-account-grid">
             <PlanSection account={me.data} email={user.email} />
             <div className="cn-account-stack">
+              <section className="cn-account-card" aria-labelledby="cn-account-mine">
+                <div className="cn-account-card__head"><h2 id="cn-account-mine">{t('account.mine.title')}</h2></div>
+                <p className="cn-account-card__text">{t('account.mine.text')}</p>
+                <Link className="cn-button cn-button--ghost" to="/de-xuat-cua-toi"><Icon name="list-check" />{t('account.mine.open')}</Link>
+              </section>
               <ProfileForm key={user.id} user={user} />
               <section className="cn-account-card" aria-labelledby="cn-account-signout">
                 <div className="cn-account-card__head"><h2 id="cn-account-signout">{t('account.signOut.title')}</h2></div>

@@ -19,7 +19,7 @@
 [data-theme='dark'] .cn-account { --cn-error: #ff9aa6; }
 .cn-account-form { display: grid; gap: 8px; }
 .cn-field-label { font-size: 12px; font-weight: 700; color: var(--cn-ink); }
-.cn-account .cn-input { min-height: 46px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); color: var(--cn-ink); font: 400 16px/1.4 var(--cn-font-family); }
+.cn-account .cn-input { min-height: 46px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background-color: var(--cn-surface); color: var(--cn-ink); font: 400 16px/1.4 var(--cn-font-family); }
 .cn-account .cn-input::placeholder { color: var(--cn-muted); opacity: .75; }
 .cn-account .cn-input:focus { border-color: var(--cn-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cn-focus) 22%, transparent); }
 .cn-account .cn-input[aria-invalid='true'] { border-color: var(--cn-error); }
@@ -79,6 +79,55 @@
 .cn-pro-offer .cn-pro-offer__price { margin-top: 6px; color: var(--cn-ink); font-weight: 700; }
 .cn-account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 10px; }
 .cn-account .erp-state { padding-block: 24px; }
+.cn-account-card > .cn-button { margin-top: 2px; }
+
+/* Status: icon + label + tone, never color alone. */
+.cn-status { --cn-status: var(--cn-muted); display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 8px; border-radius: 999px; background: color-mix(in srgb, var(--cn-status) 11%, transparent); color: var(--cn-status); font-size: 12px; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+.cn-status.is-warn { --cn-status: #8a5300; }
+.cn-status.is-info { --cn-status: var(--cn-accent); }
+.cn-status.is-good { --cn-status: var(--cn-positive); }
+.cn-status.is-bad { --cn-status: #b4162c; }
+[data-theme='dark'] .cn-status.is-warn { --cn-status: #f2c46d; }
+[data-theme='dark'] .cn-status.is-bad { --cn-status: #ff9aa6; }
+
+/* My proposals */
+.cn-mine-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.cn-mine-summary { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: var(--cn-muted); }
+.cn-contribution-list { display: grid; gap: 14px; max-width: 880px; }
+.cn-contribution { display: grid; gap: 12px; padding: 18px 22px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); box-shadow: 0 1px 2px rgb(12 37 77 / 6%); }
+.cn-contribution__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.cn-contribution__date { font-size: 12px; color: var(--cn-muted); font-variant-numeric: tabular-nums; }
+.cn-contribution__tool { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.2px; }
+.cn-contribution__tool a { color: var(--cn-ink); text-decoration: none; }
+.cn-contribution__tool a:hover { color: var(--cn-accent); text-decoration: underline; }
+.cn-contribution__changes { display: grid; gap: 6px; }
+.cn-contribution__changes p { display: -webkit-box; margin: 0; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 4; font-size: 14px; line-height: 1.6; white-space: pre-line; overflow-wrap: anywhere; }
+.cn-contribution__changes .cn-contribution__more { font-size: 12px; color: var(--cn-muted); }
+.cn-contribution__sources { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding-top: 12px; border-top: 1px solid var(--cn-line); font-size: 13px; }
+.cn-contribution__label { font-weight: 700; color: var(--cn-muted); }
+.cn-contribution__sources ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.cn-contribution__sources li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; min-width: 0; }
+.cn-contribution__sources a { color: var(--cn-accent); overflow-wrap: anywhere; }
+.cn-contribution__source-type, .cn-contribution__none { font-size: 12px; color: var(--cn-muted); }
+.cn-contribution__hint { display: flex; gap: 7px; margin: 0; font-size: 13px; line-height: 1.5; color: var(--cn-ink); }
+.cn-contribution__hint > .bi { flex: none; margin-top: 2px; color: var(--cn-accent); }
+.cn-contribution__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.cn-contribution__flag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--cn-muted); }
+.cn-contribution__add { min-height: 38px; }
+.cn-evidence-form { display: grid; gap: 8px; padding: 16px; border-radius: var(--cn-radius-button); background: var(--cn-hero); }
+.cn-evidence-form__fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 220px); gap: 12px; }
+.cn-account .cn-evidence-form .cn-input { min-height: 42px; font-size: 15px; }
+.cn-mine-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; max-width: 880px; margin-top: 20px; font-size: 13px; color: var(--cn-muted); }
+.cn-mine-pager .cn-button:disabled { opacity: .45; cursor: not-allowed; }
+
+/* Inside the public contribution form */
+.cn-contribution-box { display: grid; gap: 4px; margin-top: 16px; padding: 14px 16px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-hero); }
+.cn-contribution-box__who, .cn-contribution-box.is-done { display: flex; gap: 9px; margin: 0; font-size: 13px; line-height: 1.55; color: var(--cn-ink); overflow-wrap: anywhere; }
+.cn-contribution-box__who > .bi { flex: none; margin-top: 1px; color: var(--cn-accent); font-size: 16px; }
+.cn-contribution-box.is-done > .bi { flex: none; margin-top: 1px; color: var(--cn-positive); font-size: 16px; }
+.cn-contribution-box a { color: var(--cn-accent); font-weight: 700; }
+.cn-contribution-box .cn-field-help { padding-left: 25px; }
+.cn-idea-author { display: block; margin-top: 2px; font-size: 12px; color: var(--cn-muted); }
 
 /* Below 1400px the desktop nav + product buttons leave no room for the labelled pill (clipped at 1180px). */
 @media (max-width: 1399px) {
@@ -104,4 +153,8 @@
 @media (max-width: 575px) {
   .cn-pro-offer { grid-template-columns: minmax(0, 1fr); }
   .cn-pro-offer .cn-button { width: 100%; }
+  .cn-contribution { padding: 16px; }
+  .cn-contribution__sources { grid-template-columns: minmax(0, 1fr); }
+  .cn-evidence-form__fields { grid-template-columns: minmax(0, 1fr); }
+  .cn-mine-actions .cn-button { flex: 1 1 auto; justify-content: center; }
 }

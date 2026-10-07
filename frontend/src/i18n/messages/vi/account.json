@@ -7,6 +7,10 @@
     "tai-khoan": {
       "title": "Tài khoản | Chuyện Nhỏ",
       "description": "Thông tin tài khoản, gói đang dùng và hồ sơ công khai trên Chuyện Nhỏ."
+    },
+    "de-xuat-cua-toi": {
+      "title": "Đề xuất của tôi | Chuyện Nhỏ",
+      "description": "Theo dõi các đề xuất và góp ý bạn đã gửi bằng tài khoản Chuyện Nhỏ, bổ sung nguồn khi cần."
     }
   },
   "login": {
@@ -92,6 +96,11 @@
       "text": "Kết thúc phiên đăng nhập trên thiết bị này.",
       "button": "Đăng xuất",
       "busy": "Đang đăng xuất…"
+    },
+    "mine": {
+      "title": "Đề xuất của tôi",
+      "text": "Xem trạng thái các đề xuất đã gửi bằng tài khoản này và bổ sung nguồn khi người kiểm tra cần.",
+      "open": "Mở danh sách đề xuất"
     }
   },
   "errors": {
@@ -102,6 +111,51 @@
     "UNTRUSTED_REQUEST": "Yêu cầu không hợp lệ. Hãy tải lại trang rồi thử lại.",
     "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
     "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
-    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại sau."
+    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại sau.",
+    "EVIDENCE_CLOSED": "Đề xuất đã được xét, không bổ sung nguồn được nữa.",
+    "TOO_MANY_SOURCES": "Mỗi đề xuất có tối đa 10 nguồn.",
+    "SOURCE_INVALID": "Nguồn không hợp lệ. Dùng đường dẫn HTTPS công khai, không chứa khoá hay mã truy cập.",
+    "NOT_FOUND": "Không tìm thấy đề xuất này. Hãy tải lại trang."
+  },
+  "box": {
+    "signedInAs": "Gửi bằng tài khoản <strong>{{email}}</strong>, bạn theo dõi được đề xuất này mà không cần mã biên nhận.",
+    "attribution": "Ghi tên tôi khi đề xuất được công bố",
+    "profileHint": "Tên chỉ hiện khi hồ sơ có tên hiển thị và đã bật ghi tên. Chỉnh ở <account>trang tài khoản</account>.",
+    "tracked": "Đã lưu vào <mine>Đề xuất của tôi</mine>.",
+    "received": "Đã nhận đề xuất: {{status}}."
+  },
+  "mine": {
+    "trail": "Đề xuất của tôi",
+    "title": "Đề xuất <accent>của tôi</accent>",
+    "intro": "Các đề xuất và góp ý bạn đã gửi khi đăng nhập. Đề xuất gửi lúc chưa đăng nhập không hiện ở đây, hãy tra bằng mã biên nhận.",
+    "newIdea": "Đề xuất tiện ích",
+    "newRegulation": "Góp ý quy định",
+    "loadFailed": "Không tải được danh sách đề xuất.",
+    "empty": {
+      "title": "Bạn chưa gửi đề xuất nào",
+      "text": "Gửi một ý tưởng công cụ hoặc góp ý dữ liệu quy định, đề xuất sẽ hiện ở đây kèm trạng thái kiểm tra."
+    },
+    "summary": "Đã gửi {{total}} đề xuất",
+    "moreChanges": "+{{more}} thay đổi khác",
+    "sources": "Nguồn",
+    "noSources": "Chưa có nguồn",
+    "needsSourceHint": "Người kiểm tra cần một nguồn chính thức trước khi xem xét đề xuất này.",
+    "attributed": "Ghi tên khi công bố",
+    "unattributed": "Không ghi tên",
+    "addEvidence": "Bổ sung nguồn",
+    "pager": "Phân trang",
+    "prev": "Trang trước",
+    "next": "Trang sau",
+    "pageOf": "Trang {{page}}/{{pages}}",
+    "evidence": {
+      "url": "Đường dẫn nguồn",
+      "type": "Loại nguồn",
+      "help": "Chỉ nhận đường dẫn HTTPS. Mỗi đề xuất có tối đa 10 nguồn.",
+      "httpsOnly": "Đường dẫn phải bắt đầu bằng https://",
+      "submit": "Thêm nguồn",
+      "submitting": "Đang thêm…",
+      "cancel": "Huỷ",
+      "added": "Đã thêm nguồn. Đề xuất đang chờ kiểm tra."
+    }
   }
 }

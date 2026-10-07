@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { accountService } from '../services/account.service'
-import type { AccountState, ProfileInput } from '../types/account.types'
+import type { AccountState, ProfileInput, SourceRef } from '../types/account.types'
 
 export const ACCOUNT_QUERY_KEY = ['account', 'me'] as const
 
@@ -40,6 +40,24 @@ export function useVerifyCode() {
 export function useUpdateProfile() {
   const store = useStoreAccount()
   return useMutation({ mutationFn: (input: ProfileInput) => accountService.updateProfile(input), onSuccess: store })
+}
+
+// Under the `account` prefix so sign-out's reset also drops it.
+const MY_CONTRIBUTIONS_KEY = ['account', 'contributions'] as const
+
+export function useMyContributions(page: number, enabled: boolean) {
+  return useQuery({ queryKey: [...MY_CONTRIBUTIONS_KEY, page], queryFn: () => accountService.myContributions(page), enabled })
+}
+
+/** For forms elsewhere that file a contribution: the list must not show a minute-old snapshot. */
+export function useRefreshMyContributions() {
+  const client = useQueryClient()
+  return () => client.invalidateQueries({ queryKey: MY_CONTRIBUTIONS_KEY })
+}
+
+export function useAddEvidence() {
+  const refresh = useRefreshMyContributions()
+  return useMutation({ mutationFn: ({ id, sourceRefs }: { id: string; sourceRefs: SourceRef[] }) => accountService.addEvidence(id, sourceRefs), onSuccess: refresh })
 }
 
 export function useLogout() {

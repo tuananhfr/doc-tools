@@ -17,7 +17,7 @@ import InstallPage from '@/features/site/pages/InstallPage'
 import GuidesPage from '@/features/site/pages/GuidesPage'
 import GuidePage from '@/features/site/pages/GuidePage'
 import LegalPage from '@/features/site/pages/LegalPage'
-import { AccountPage, LoginPage } from '@/features/account'
+import { AccountPage, LoginPage, MyContributionsPage } from '@/features/account'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
 
@@ -39,6 +39,7 @@ const routes: RouteObject[] = [{ path: ROUTES.docTools, element: <ToolsLayout />
   { path: 'quyen-rieng-tu', element: <LegalPage key="quyen-rieng-tu" slug="quyen-rieng-tu" /> },
   { path: 'dang-nhap', element: <LoginPage /> },
   { path: 'tai-khoan', element: <AccountPage /> },
+  { path: 'de-xuat-cua-toi', element: <MyContributionsPage /> },
   { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} /> },
 ] }]
 

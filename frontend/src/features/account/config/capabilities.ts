@@ -5,9 +5,9 @@ import type { Capability } from '../types/account.types'
  * docs/pro/pro-spec.md); until then the row says "coming soon" instead of promising it.
  */
 export const CAPABILITY_ROWS = [
-  { id: 'contribution.attributed', label: 'attributed', icon: 'person-check', pro: false, live: false },
-  { id: 'contribution.track', label: 'track', icon: 'list-check', pro: false, live: false },
-  { id: 'contribution.evidence', label: 'evidence', icon: 'link-45deg', pro: false, live: false },
+  { id: 'contribution.attributed', label: 'attributed', icon: 'person-check', pro: false, live: true },
+  { id: 'contribution.track', label: 'track', icon: 'list-check', pro: false, live: true },
+  { id: 'contribution.evidence', label: 'evidence', icon: 'link-45deg', pro: false, live: true },
   { id: 'ai.agent', label: 'agent', icon: 'stars', pro: true, live: false },
   { id: 'cloud.memory', label: 'cloud', icon: 'cloud-check', pro: true, live: false },
   { id: 'sync.basic', label: 'sync', icon: 'arrow-repeat', pro: true, live: false },

@@ -1,5 +1,7 @@
 export { default as LoginPage } from './pages/LoginPage'
 export { default as AccountPage } from './pages/AccountPage'
+export { default as MyContributionsPage } from './pages/MyContributionsPage'
+export { ContributionAccountBox, defaultAttribution } from './components/ContributionAccountBox'
 export { AccountButton } from './components/AccountButton'
-export { useMe } from './hooks/useAccount'
+export { useMe, useRefreshMyContributions } from './hooks/useAccount'
 export type { AccountState, AccountUser, Capability } from './types/account.types'

@@ -125,13 +125,13 @@ OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-im
 
 Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth}/*` và
-`/api/v1/me` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
+`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth}/*`,
+`/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
 
 Đăng nhập email + mã 6 số, phiên là cookie `cn_session` của backend. Trang `/dang-nhap`,
-`/tai-khoan` nằm trong `ACCOUNT_PAGES` (`site-pages.ts`): vẫn thuộc `SITE_PAGE_SLUGS` để kiểm
+`/tai-khoan`, `/de-xuat-cua-toi` nằm trong `ACCOUNT_PAGES` (`site-pages.ts`): vẫn thuộc `SITE_PAGE_SLUGS` để kiểm
 trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
 
 - Request ghi phải kèm `X-CN-Request: 1` (backend chặn CSRF bằng header này + `Origin`) —
@@ -144,6 +144,11 @@ trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
 - Kiểm tra code theo capability (`/me` trả `capabilities`), không theo tên gói. Dòng nào trên
   trang tài khoản chưa có tính năng thật thì `live: false` (chip "Sắp có") trong
   `config/capabilities.ts`.
+- `POST /contributions` của `ContributionForm` (community) **phải** kèm `X-CN-Request`:
+  thiếu header thì backend lờ cookie và coi là khách — không lỗi, chỉ là đề xuất không vào
+  "Đề xuất của tôi". Khối ghi tên là `ContributionAccountBox` (public API của account).
+- Chuỗi có con số trong `account.json` dùng biến khác `count` (`{{total}}`, `{{more}}`):
+  `{{count}}` bắt đủ dạng số nhiều ở mọi locale (test parity), 13 locale đang chép bản en.
 - Header đã chật: thêm nút vào `.cn-header-actions` phải đo lại 360–1440px (nhãn nút tài khoản
   chỉ hiện từ 1400px, dưới 360px nút tài khoản chuyển vào menu trượt).
 

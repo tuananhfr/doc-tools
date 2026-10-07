@@ -22,5 +22,35 @@ export interface ProfileInput {
   publicAttribution: boolean
 }
 
-export const ACCOUNT_ERROR_CODES = ['EMAIL_INVALID', 'OTP_INVALID', 'RATE_LIMITED', 'ACCOUNT_DISABLED', 'UNTRUSTED_REQUEST', 'SIGNED_OUT', 'NETWORK', 'UNKNOWN'] as const
+export const CONTRIBUTION_STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
+export type ContributionStatus = (typeof CONTRIBUTION_STATUSES)[number]
+
+export const SOURCE_TYPES = ['OFFICIAL_WEB', 'OFFICIAL_DOCUMENT', 'OFFICIAL_API', 'OTHER'] as const
+export interface SourceRef { url: string; type: (typeof SOURCE_TYPES)[number] }
+
+/** One row of `GET /me/contributions`; `changes` is a clipped preview, `changeCount` the real total. */
+export interface MyContribution {
+  id: string
+  toolId: string
+  domain: string
+  status: ContributionStatus
+  changes: { field: string; before: string; after: string }[]
+  changeCount: number
+  sourceRefs: SourceRef[]
+  attribution: boolean
+  canAddEvidence: boolean
+  createdAt: string
+}
+
+export interface MyContributionsPage {
+  page: number
+  pageSize: number
+  total: number
+  items: MyContribution[]
+}
+
+export const ACCOUNT_ERROR_CODES = [
+  'EMAIL_INVALID', 'OTP_INVALID', 'RATE_LIMITED', 'ACCOUNT_DISABLED', 'UNTRUSTED_REQUEST', 'SIGNED_OUT',
+  'EVIDENCE_CLOSED', 'TOO_MANY_SOURCES', 'SOURCE_INVALID', 'NOT_FOUND', 'NETWORK', 'UNKNOWN',
+] as const
 export type AccountErrorCode = (typeof ACCOUNT_ERROR_CODES)[number]

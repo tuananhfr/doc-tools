@@ -7,6 +7,10 @@
     "tai-khoan": {
       "title": "Account | Chuyện Nhỏ",
       "description": "Your Chuyện Nhỏ account, current plan and public profile."
+    },
+    "de-xuat-cua-toi": {
+      "title": "My proposals | Chuyện Nhỏ",
+      "description": "Track the proposals and feedback you sent with your Chuyện Nhỏ account, and add sources when needed."
     }
   },
   "login": {
@@ -92,6 +96,11 @@
       "text": "End the session on this device.",
       "button": "Sign out",
       "busy": "Signing out…"
+    },
+    "mine": {
+      "title": "My proposals",
+      "text": "See the status of proposals sent with this account and add sources when a reviewer needs them.",
+      "open": "Open my proposals"
     }
   },
   "errors": {
@@ -102,6 +111,51 @@
     "UNTRUSTED_REQUEST": "The request was rejected. Reload the page and try again.",
     "SIGNED_OUT": "Your session has ended. Please sign in again.",
     "NETWORK": "Cannot reach the server. Check your connection and try again.",
-    "UNKNOWN": "Something went wrong. Please try again later."
+    "UNKNOWN": "Something went wrong. Please try again later.",
+    "EVIDENCE_CLOSED": "This proposal has been reviewed; sources can no longer be added.",
+    "TOO_MANY_SOURCES": "A proposal can have at most 10 sources.",
+    "SOURCE_INVALID": "Invalid source. Use a public HTTPS link without keys or access codes.",
+    "NOT_FOUND": "This proposal was not found. Reload the page."
+  },
+  "box": {
+    "signedInAs": "Sending as <strong>{{email}}</strong>, so you can follow this proposal without a receipt code.",
+    "attribution": "Credit me by name when it is published",
+    "profileHint": "Your name only shows if your profile has a display name and credit turned on. Change it on the <account>account page</account>.",
+    "tracked": "Saved to <mine>My proposals</mine>.",
+    "received": "Proposal received: {{status}}."
+  },
+  "mine": {
+    "trail": "My proposals",
+    "title": "My <accent>proposals</accent>",
+    "intro": "Proposals and feedback you sent while signed in. Ones sent while signed out are not listed here; look them up with their receipt code.",
+    "newIdea": "Suggest a tool",
+    "newRegulation": "Regulation feedback",
+    "loadFailed": "Could not load your proposals.",
+    "empty": {
+      "title": "You have not sent any proposals yet",
+      "text": "Suggest a tool or send feedback on regulation data; it will show up here with its review status."
+    },
+    "summary": "Proposals sent: {{total}}",
+    "moreChanges": "+{{more}} more",
+    "sources": "Sources",
+    "noSources": "No sources yet",
+    "needsSourceHint": "The reviewer needs an official source before looking at this proposal.",
+    "attributed": "Credited when published",
+    "unattributed": "Not credited",
+    "addEvidence": "Add a source",
+    "pager": "Pagination",
+    "prev": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{page}} of {{pages}}",
+    "evidence": {
+      "url": "Source link",
+      "type": "Source type",
+      "help": "HTTPS links only. Up to 10 sources per proposal.",
+      "httpsOnly": "The link must start with https://",
+      "submit": "Add source",
+      "submitting": "Adding…",
+      "cancel": "Cancel",
+      "added": "Source added. The proposal is waiting for review."
+    }
   }
 }

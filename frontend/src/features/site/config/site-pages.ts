@@ -6,7 +6,7 @@ export const SITE_PAGES = ['ve-chung-toi', 'ho-tro', 'xu-ly-du-lieu', 'cai-dat',
 export type SitePageSlug = (typeof SITE_PAGES)[number]
 
 /** Trang tài khoản: noindex, sitemap bỏ qua; tiêu đề ở `account:pages.<slug>`. */
-export const ACCOUNT_PAGES = ['dang-nhap', 'tai-khoan'] as const
+export const ACCOUNT_PAGES = ['dang-nhap', 'tai-khoan', 'de-xuat-cua-toi'] as const
 
 export type AccountPageSlug = (typeof ACCOUNT_PAGES)[number]
 
