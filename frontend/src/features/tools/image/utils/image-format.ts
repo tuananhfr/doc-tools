@@ -1,5 +1,6 @@
 import { stem, type CanvasMime } from '@/features/tools/shared'
 import type { ImageFormat, Size } from '../types/image.types'
+import { translate } from '@/i18n/runtime'
 
 export const IMAGE_FORMAT: Record<ImageFormat, { mime: CanvasMime; extension: string; label: string }> = {
   jpeg: { mime: 'image/jpeg', extension: 'jpg', label: 'JPG' },
@@ -7,9 +8,9 @@ export const IMAGE_FORMAT: Record<ImageFormat, { mime: CanvasMime; extension: st
   webp: { mime: 'image/webp', extension: 'webp', label: 'WebP' },
 }
 
-/** "IMG_0012.png" + webp + " - đã nén" → "IMG_0012 - đã nén.webp". */
+/** "IMG_0012.png" + webp + "đã nén" → "IMG_0012 - đã nén.webp". */
 export function outputName(name: string, format: ImageFormat, suffix = ''): string {
-  return `${stem(name) || 'anh'}${suffix}.${IMAGE_FORMAT[format].extension}`
+  return `${stem(name) || translate('image:file.fallback')}${suffix ? ` - ${suffix}` : ''}.${IMAGE_FORMAT[format].extension}`
 }
 
 /** Thu nhỏ cho cạnh dài không vượt `maxEdge`, giữ tỉ lệ; không bao giờ phóng to. */

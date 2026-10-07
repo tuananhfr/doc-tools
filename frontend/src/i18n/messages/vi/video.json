@@ -90,5 +90,11 @@
     "cancelled": "Đã hủy xử lý video.",
     "timedOut": "Tác vụ mất quá nhiều thời gian. Hãy thử video ngắn hơn và kiểm tra kết nối khi tải bộ xử lý.",
     "engineFailed": "Không tải hoặc chạy được bộ xử lý video. Kiểm tra kết nối, đóng bớt tab hoặc thử tệp nhỏ hơn trên máy tính."
+  },
+  "file": {
+    "audio": "am-thanh",
+    "gif": "anh-dong",
+    "trimmed": "da-cat",
+    "compressed": "da-nen"
   }
 }

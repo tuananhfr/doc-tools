@@ -1,3 +1,5 @@
+import { VI_TERMS } from './vi-terms'
+
 export interface SearchIntent {
   id: string
   canonical: string
@@ -10,11 +12,22 @@ export interface SearchIntent {
   risk: 'low' | 'review'
   requiredTerms?: readonly (readonly string[])[]
   excludedTerms?: readonly string[]
+  handoff?: { profile: 'table'; output: 'xlsx' }
 }
 
-export const INTENT_REGISTRY_VERSION = 1
+export const INTENT_REGISTRY_VERSION = 2
 
 export const SEARCH_INTENTS: readonly SearchIntent[] = [
+  {
+    id: 'image.table', canonical: 'Ảnh bảng sang Excel', preferredTool: 'image-to-text', acceptableTools: [], forbiddenTools: ['scan-to-pdf'],
+    requiredTerms: [['ảnh', 'hình'], ['bảng'], ['excel', 'xlsx']], aliases: ['ảnh bảng sang Excel', 'lấy bảng từ ảnh sang Excel'],
+    inputProfiles: ['image-table'], expectedOutcome: 'Bảng Excel sau khi đối chiếu từng ô với ảnh gốc', risk: 'review', handoff: { profile: 'table', output: 'xlsx' },
+  },
+  {
+    id: 'pdf.table', canonical: 'Bảng PDF sang Excel', preferredTool: 'ocr', acceptableTools: [], forbiddenTools: ['pdf-to-image'],
+    requiredTerms: [['pdf', 'scan'], ['bảng'], ['excel', 'xlsx']], aliases: ['đọc bảng PDF sang Excel', 'bảng scan sang Excel'],
+    inputProfiles: ['pdf-table'], expectedOutcome: 'Bảng Excel sau khi đối chiếu từng ô với bản scan', risk: 'review', handoff: { profile: 'table', output: 'xlsx' },
+  },
   {
     id: 'pdf.compress', canonical: 'Nén PDF', preferredTool: 'compress-pdf', acceptableTools: [], forbiddenTools: ['remove-background', 'compress-video'],
     requiredTerms: [['pdf'], ['nén', 'nặng', 'nhẹ', 'giảm dung lượng', 'giảm kích thước']], excludedTerms: ['video', 'ảnh'],
@@ -36,11 +49,11 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   {
     id: 'image.text', canonical: 'Lấy chữ từ ảnh', preferredTool: 'image-to-text', acceptableTools: ['ocr'], forbiddenTools: ['scan-to-pdf', 'dictation'],
     requiredTerms: [['ảnh', 'hình'], ['chữ', 'văn bản', 'ocr'], ['lấy', 'chép', 'đọc', 'trích', 'copy', 'gõ']],
-    aliases: ['lấy chữ trong ảnh', 'chép chữ từ ảnh chụp', 'ảnh sang văn bản', 'đọc chữ trong ảnh', 'không muốn gõ lại chữ trong ảnh', 'lấy chữ viết tay từ ảnh'],
+    aliases: ['lấy chữ trong ảnh', 'chép chữ từ ảnh chụp', 'ảnh sang văn bản', 'đọc chữ trong ảnh', 'không muốn gõ lại chữ trong ảnh'],
     inputProfiles: ['image'], expectedOutcome: 'Văn bản tiếng Việt để kiểm tra, sửa và tải về', risk: 'review',
   },
   {
-    id: 'pdf.ocr', canonical: 'Lấy chữ từ bản scan', preferredTool: 'ocr', acceptableTools: [], forbiddenTools: ['merge-pdf', 'scan-to-pdf'],
+    id: 'pdf.ocr', canonical: VI_TERMS.ocr.label, preferredTool: 'ocr', acceptableTools: [], forbiddenTools: ['merge-pdf', 'scan-to-pdf'],
     requiredTerms: [['pdf', 'scan'], ['chữ', 'ocr'], ['scan', 'copy', 'tìm', 'lấy']],
     aliases: ['OCR PDF', 'PDF scan không copy được chữ', 'tìm chữ trong PDF scan', 'nhận dạng chữ tiếng Việt', 'đọc chữ trong bản scan'],
     inputProfiles: ['pdf-scan', 'image'], expectedOutcome: 'PDF có lớp chữ hoặc TXT; chữ nhận dạng cần được kiểm tra', risk: 'review',
@@ -69,7 +82,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'image.watermark', canonical: 'Đóng dấu ảnh', preferredTool: 'mark-image', acceptableTools: [], forbiddenTools: ['redact-pdf'],
-    aliases: ['thêm chữ vào ảnh', 'đóng watermark ảnh', 'gắn logo lên ảnh', 'đánh dấu ảnh sản phẩm'],
+    aliases: ['thêm chữ vào ảnh', 'thêm chữ lên ảnh', 'đóng watermark ảnh', 'gắn logo lên ảnh', 'đánh dấu ảnh sản phẩm'],
     inputProfiles: ['image'], expectedOutcome: 'Ảnh có chữ hoặc logo đã chọn', risk: 'low',
   },
   {

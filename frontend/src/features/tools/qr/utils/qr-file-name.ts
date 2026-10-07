@@ -1,4 +1,5 @@
 import type { QrForm } from '../types/qr.types'
+import { translate } from '@/i18n/runtime'
 
 const MAX_LABEL = 40
 
@@ -26,13 +27,15 @@ function labelOf(form: QrForm): string {
 /** Tên tệp tải về (chưa có đuôi) — kèm nội dung để mười mã tải liền không thành "Mã QR (9)". */
 export function qrFileName(form: QrForm): string {
   const label = safeLabel(labelOf(form))
-  return label ? `Mã QR - ${label}` : 'Mã QR'
+  const prefix = translate('qr:file.qr')
+  return label ? `${prefix} - ${label}` : prefix
 }
 
 /** Tên tệp của một mã vạch: chính giá trị trong mã — lô 500 mã giải nén ra là tìm được ngay. */
 export function barcodeFileName(value: string): string {
   const label = safeLabel(value)
-  return label ? `Mã vạch - ${label}` : 'Mã vạch'
+  const prefix = translate('qr:file.barcode')
+  return label ? `${prefix} - ${label}` : prefix
 }
 
 function safeLabel(text: string): string {

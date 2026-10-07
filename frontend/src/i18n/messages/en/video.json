@@ -90,5 +90,11 @@
     "cancelled": "Video processing cancelled.",
     "timedOut": "The task took too long. Try a shorter video and check your connection while the processor downloads.",
     "engineFailed": "Couldn't load or run the video processor. Check your connection, close some tabs or try a smaller file on a computer."
+  },
+  "file": {
+    "audio": "audio",
+    "gif": "animated",
+    "trimmed": "trimmed",
+    "compressed": "compressed"
   }
 }

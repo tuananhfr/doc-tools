@@ -15,8 +15,7 @@ export function generateStaticParams() {
 
 export async function GET(_request: Request, { params }: { params: Promise<{ tool: string }> }) {
   const { tool: slug } = await params
-  // Per-locale share images come with the SEO step; until then every locale shares the Vietnamese card.
   const { tool } = resolveToolRoute(slug, await loadToolCatalog(DEFAULT_LOCALE))
   if (!tool) return new Response('Tool not found', { status: 404 })
-  return createToolShareImage(tool)
+  return createToolShareImage(tool, DEFAULT_LOCALE)
 }

@@ -24,6 +24,7 @@ import {
 import { finishCarryover, prepareSource, pruneFormToPages, radioGroupKey } from './pdf-carryover'
 import { drawTextRun } from './pdf-draw'
 import { createFontLoader } from './pdf-fonts'
+import { createTextPreparer } from './pdf-text'
 import { formSummary } from './pdf-form'
 import { loadPdfium, type Pdfium } from './pdfium'
 
@@ -336,13 +337,12 @@ export async function rewriteText(source: PdfSource, page: PageRef, request: Ref
     const lifted = blockShift(block, extra?.lift ?? 0)
     const typed = lines.slice(from, to)
     if (typed.some((text) => text.trim())) {
-      const font = await createFontLoader(doc)(request.font)
-      typed.forEach((text, at) => {
-        if (!text.trim()) return
+      const prepare = createTextPreparer(doc, createFontLoader(doc))
+      for (const [at, text] of typed.entries()) {
+        if (!text.trim()) continue
         const start = reflowLineStart(block, from + at)
         drawTextRun(target, box, rotation, {
-          text,
-          font,
+          content: await prepare(text, request.font, block.size, request.ink),
           size: block.size,
           anchor: { x: start.x + lifted.x, y: start.y + lifted.y },
           align: 'start',
@@ -351,7 +351,7 @@ export async function rewriteText(source: PdfSource, page: PageRef, request: Ref
           color: request.ink,
           opacity: 1,
         })
-      })
+      }
     }
     placeAnnotations(doc, target, probe, request, shift, sheet)
     if (extra) doc.catalog.delete(NAMES)

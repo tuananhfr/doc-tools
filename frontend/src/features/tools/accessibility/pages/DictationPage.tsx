@@ -65,7 +65,7 @@ export default function DictationPage() {
   const download = () => {
     const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }))
     const anchor = document.createElement('a')
-    anchor.href = url; anchor.download = 'ghi-am-thanh-van-ban.txt'; anchor.click()
+    anchor.href = url; anchor.download = `${t('dictation.fileName')}.txt`; anchor.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 

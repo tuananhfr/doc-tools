@@ -48,7 +48,11 @@
       "unreadable": "無法讀取草稿。",
       "cleared": "已刪除裝置上的草稿。"
     },
-    "note": "送出前請仔細檢查資訊。只有在你按「儲存」時，草稿才會儲存在裝置上；照片不會儲存。"
+    "note": "送出前請仔細檢查資訊。只有在你按「儲存」時，草稿才會儲存在裝置上；照片不會儲存。",
+    "print": {
+      "kicker": "個人履歷",
+      "summary": "個人簡介"
+    }
   },
   "formTemplates": {
     "title": "製作文件範本",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "部分事項需經公證或認證。使用前請向受理單位確認。",
     "defaultWarning": "範本僅供參考；提交前請確認受理單位的要求。",
-    "privacy": "資料只存在於目前開啟的頁面中。"
+    "privacy": "資料只存在於目前開啟的頁面中。",
+    "print": {
+      "nation": "越南社會主義共和國",
+      "motto": "獨立 - 自由 - 幸福",
+      "dateLine": "{{place}}，{{year}}年{{month}}月{{day}}日",
+      "initial": {
+        "board": "公司主管"
+      },
+      "leave": {
+        "recipient": "致：{{value}}",
+        "name": "本人姓名：",
+        "department": "職務、部門：{{value}}",
+        "period": "茲申請自 {{from}} 起休假至 {{to}} 止。",
+        "reason": "事由：{{value}}",
+        "handover": "休假期間，本人工作交由 {{value}} 負責。",
+        "closing": "懇請審閱核准。謹致謝意。"
+      },
+      "authorization": {
+        "principal": "委託人：",
+        "attorney": "受託人：",
+        "personalId": "個人身分號碼：{{value}}",
+        "address": "地址：{{value}}",
+        "scope": "委託事項：",
+        "term": "委託期限：",
+        "commitment": "雙方承諾對上述委託內容負責。"
+      },
+      "handover": {
+        "intro": "今日，我們雙方：",
+        "giver": "移交方：",
+        "receiver": "接收方：",
+        "itemsIntro": "共同辦理以下事項的交接：",
+        "number": "項次",
+        "content": "內容",
+        "note": "備註：{{value}}",
+        "copies": "本紀錄一式兩份，雙方各執一份。"
+      },
+      "signatures": {
+        "approver": "核准人",
+        "applicant": "申請人",
+        "attorney": "受託人",
+        "principal": "委託人",
+        "receiver": "接收方",
+        "giver": "移交方"
+      },
+      "signHint": "（簽名並註明姓名）"
+    }
   }
 }

@@ -22,7 +22,7 @@ export interface LegalText {
   sections: Record<string, { heading: string; paragraphs?: Record<string, string>; items?: Record<string, string>; link?: string }>
 }
 
-export const LEGAL_UPDATED = '06/10/2026'
+export const LEGAL_UPDATED = '07/10/2026'
 
 /**
  * Mục "dữ liệu xử lý" và "thời gian lưu" mô tả đúng code hiện tại (đếm lượt,

@@ -60,7 +60,7 @@ export function batchImagesTask(items: ImageItem[], { resize, format, quality, r
 
     return {
       title: items.length === 1 ? translate('image:batch.titleOne') : translate('image:batch.titleMany', { count: items.length }),
-      output: await bundle(files, `${stem(names[0])} - ${items.length} ảnh`),
+      output: await bundle(files, `${stem(names[0])} - ${translate('image:file.imageCount', { count: items.length })}`),
       notes,
     }
   }

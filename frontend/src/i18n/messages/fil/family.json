@@ -103,7 +103,8 @@
     "intro": "Gumamit ng palayaw na madaling makilala. Hindi kailangan ang petsa ng kapanganakan, paaralan o personal na dokumento.",
     "name": "Palayaw",
     "profile": "Profile",
-    "add": "Magdagdag ng miyembro"
+    "add": "Magdagdag ng miyembro",
+    "defaultSelf": "Ako"
   },
   "backup": {
     "invalidFile": "Hindi wasto ang backup file o lampas ito sa 20 MB.",
@@ -150,5 +151,16 @@
     "loadFailed": "Hindi mabuksan ang data sa device. Tingnan ang pahintulot sa storage ng browser.",
     "saveFailed": "Hindi ma-save ang mga pagbabago. Mag-export ng backup at tingnan ang natitirang storage ng device.",
     "restoreFailed": "Hindi ma-restore ang backup."
+  },
+  "print": {
+    "title": "Kalendaryo ng Pamilya · susunod na 30 araw",
+    "from": "Mula {{date}}.",
+    "withSensitive": "Kasama ang mga pribado at sensitibong kaganapan.",
+    "withoutSensitive": "Hindi kasama ang mga pribado at sensitibong kaganapan.",
+    "empty": "Walang kaganapan sa panahong ito."
+  },
+  "file": {
+    "backup": "kalendaryo-ng-pamilya-backup",
+    "ics": "kalendaryo-ng-pamilya"
   }
 }

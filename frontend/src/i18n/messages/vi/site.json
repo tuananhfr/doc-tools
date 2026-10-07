@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — công cụ miễn phí",
     "description": "Công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí. Xử lý trên máy bạn, tệp không tải lên."
   },
+  "shareImage": {
+    "label": "Công cụ miễn phí",
+    "slogan": "Cần là dùng.",
+    "noAccount": "Không cần tài khoản"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "Về Chuyện Nhỏ | Công cụ miễn phí từ ERPCons & LPC",

@@ -5,6 +5,8 @@ import type site from './messages/vi/site.json'
 import type guides from './messages/vi/guides.json'
 import type legal from './messages/vi/legal.json'
 import type pdf from './messages/vi/pdf.json'
+import type ocr from './messages/vi/ocr.json'
+import type quality from './messages/vi/quality.json'
 import type image from './messages/vi/image.json'
 import type qr from './messages/vi/qr.json'
 import type utility from './messages/vi/utility.json'
@@ -33,6 +35,8 @@ declare module 'i18next' {
       guides: typeof guides
       legal: typeof legal
       pdf: typeof pdf
+      ocr: typeof ocr
+      quality: typeof quality
       image: typeof image
       qr: typeof qr
       utility: typeof utility

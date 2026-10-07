@@ -26,6 +26,11 @@ body {
   vertical-align: -0.125em;
 }
 
+/* Mui ten / chevron chi theo chieu doc chu nen phai lat o RTL; dung `scale` de khong de len `transform` hover. */
+[dir='rtl'] :is(.bi-arrow-left, .bi-arrow-right, .bi-chevron-left, .bi-chevron-right) {
+  scale: -1 1;
+}
+
 /* Thanh cuon manh hon cho cac bang du lieu dai cua ERP. */
 ::-webkit-scrollbar {
   width: 8px;

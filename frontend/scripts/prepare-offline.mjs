@@ -33,5 +33,7 @@ const optionalAssets = [
   withBase('/vendor/tesseract/vie.traineddata.gz'),
 ]
 const pageUrls = pages.map(url => withBase(url.slice('/vi'.length) || '/'))
-const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets }
+// Prefixed languages are not precached; the worker sends their unvisited pages to the Vietnamese twin when offline.
+const locales = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && /^\/[a-z][a-z-]*$/.test(url) && url !== '/vi').map(([url]) => url.slice(1))
+const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets, locales }
 fs.writeFileSync('public/offline-manifest.json', JSON.stringify(manifest), 'utf8')

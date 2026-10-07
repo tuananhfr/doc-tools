@@ -12,7 +12,11 @@ import { joinPageTexts, plainText } from '../utils/plain-text'
 import { rangeLabel } from '../utils/split-groups'
 import { buildBatch, buildImages, buildOffice, buildPdf, buildSplit, type BuildContext, type BuiltFile, type OfficeKind } from './doc-build'
 import { recognizePage, stopOcr } from './ocr'
-import { ocrText, saveOcrText } from './ocr-store'
+import { ocrText, saveOcrText, removeOcrText } from './ocr-store'
+import { recognizePipeline, ocrFingerprint } from './ocr-pipeline'
+import { ocrSourceHash } from './ocr-quality'
+import { DEFAULT_OCR_OPTIONS, type OcrPipelineOptions } from '../types/ocr-profile.types'
+import { exportReviewedOcr, reviewedOcrText, type OcrStructuredOutput } from './ocr-export'
 import { loadPageText } from './text-layer'
 
 /**
@@ -23,7 +27,7 @@ import { loadPageText } from './text-layer'
  */
 
 export type ConvertTarget = OfficeKind | ImageFormat
-export type OcrOutput = 'pdf' | 'text'
+export type OcrOutput = 'pdf' | 'text' | OcrStructuredOutput
 export type OcrReviewStep = (items: QuickItem[], signal: AbortSignal) => Promise<void>
 
 export function contextOf(items: QuickItem[]): BuildContext {
@@ -213,13 +217,19 @@ interface Recognized {
   spent: number
 }
 
-async function recognizeMissing(sources: Record<string, SourceFile>, pages: PageRef[], buildUnits: number, step: FlowStep): Promise<Recognized> {
+async function recognizeMissing(sources: Record<string, SourceFile>, pages: PageRef[], buildUnits: number, step: FlowStep, options?: OcrPipelineOptions): Promise<Recognized> {
   const result: Recognized = { pages: 0, words: 0, native: 0, blank: 0, spent: 0 }
   const targets: PageRef[] = []
+  const pageOptions = (page: PageRef) => options && page.id !== pages[0]?.id ? { ...options, perspective: undefined } : options
   for (const page of pages) {
     step.signal.throwIfAborted()
     const source = sources[page.sourceId]
-    const earlier = ocrText(source.id, page)
+    let earlier = ocrText(source.id, page)
+    const currentOptions = pageOptions(page)
+    if (currentOptions && earlier && earlier.ocr?.pipeline?.fingerprint !== ocrFingerprint(await ocrSourceHash(source), page, currentOptions)) {
+      removeOcrText(source.id, page)
+      earlier = undefined
+    }
     if (earlier) {
       result.pages++
       result.words += earlier.ocr?.words.length ?? earlier.runs.length
@@ -241,9 +251,11 @@ async function recognizeMissing(sources: Record<string, SourceFile>, pages: Page
       step.signal.throwIfAborted()
       const label = translate('pdf:quickTask.ocrReading', { page: index + 1, total: targets.length })
       step.onProgress(index * OCR_WEIGHT, total, index === 0 ? translate('pdf:quickTask.ocrLoading') : label)
-      const text = await recognizePage(sources[page.sourceId], page, ({ stage, progress }) => {
+      const progressOf = ({ stage, progress }: import('./ocr').OcrProgress) => {
         if (stage === 'reading') step.onProgress((index + progress) * OCR_WEIGHT, total, label)
-      })
+      }
+      const currentOptions = pageOptions(page)
+      const text = currentOptions ? await recognizePipeline(sources[page.sourceId], page, progressOf, step.signal, currentOptions) : await recognizePage(sources[page.sourceId], page, progressOf)
       step.signal.throwIfAborted()
       saveOcrText(page.sourceId, page, text)
       result.pages++
@@ -273,7 +285,7 @@ async function textOf(items: QuickItem[]): Promise<string> {
   const files: string[] = []
   for (const item of items) {
     const pages: string[] = []
-    for (const page of item.pages) pages.push(plainText(await loadPageText(item.source, page)))
+    for (const page of item.pages) pages.push(reviewedOcrText(await loadPageText(item.source, page)))
     const text = joinPageTexts(pages)
     if (text) files.push(items.length > 1 ? `=== ${item.source.name} ===\n${text}` : text)
   }
@@ -284,13 +296,13 @@ async function textOf(items: QuickItem[]): Promise<string> {
  * Nhận dạng chữ tiếng Việt trên các trang chưa có lớp chữ. `pdf` = tệp PDF tìm,
  * chọn, chép được chữ (hình trang không đổi); `text` = văn bản thường.
  */
-export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewStep): FlowTask {
+export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewStep, options = DEFAULT_OCR_OPTIONS): FlowTask {
   return async (step): Promise<FlowResult> => {
     const context = contextOf(items)
     const pages = pagesOf(items)
     const buildUnits = kind === 'pdf' ? pages.length : 0
-    const found = await recognizeMissing(context.sources, pages, buildUnits, step)
-    if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+    const found = await recognizeMissing(context.sources, pages, buildUnits, step, options)
+    if (found.words === 0 && found.native === 0 && !['table', 'form'].includes(options.profile)) throw new Error(translate('pdf:quickTask.ocrNoText'))
     if (review) {
       step.onProgress(0, 0, translate('pdf:ocrReview.title'))
       await review(items, step.signal)
@@ -301,6 +313,13 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewS
       if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
     }
     const notes = ocrNotes(found)
+
+    if (kind !== 'pdf' && kind !== 'text') {
+      const texts = await Promise.all(pages.map(page => loadPageText(context.sources[page.sourceId], page)))
+      const blob = await exportReviewedOcr(texts, kind, step.signal)
+      const extension = blob.type === 'application/zip' ? 'zip' : kind
+      return { title: translate('ocr:exportDone'), output: { name: `${firstName(items)}.${extension}`, blob }, notes }
+    }
 
     if (kind === 'text') {
       const text = await textOf(items)

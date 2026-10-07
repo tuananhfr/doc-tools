@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — free tools",
     "description": "Free PDF, image, QR code and utility tools. Processed on your device; files are never uploaded."
   },
+  "shareImage": {
+    "label": "Free tools",
+    "slogan": "Ready when you need them.",
+    "noAccount": "No account needed"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "About Chuyện Nhỏ | Free tools from ERPCons & LPC",

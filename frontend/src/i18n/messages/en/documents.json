@@ -48,7 +48,11 @@
       "unreadable": "The draft couldn't be read.",
       "cleared": "Draft deleted from this device."
     },
-    "note": "Check the details carefully before sending. The draft is saved on your device only when you press Save; the photo isn't saved."
+    "note": "Check the details carefully before sending. The draft is saved on your device only when you press Save; the photo isn't saved.",
+    "print": {
+      "kicker": "Curriculum vitae",
+      "summary": "Profile"
+    }
   },
   "formTemplates": {
     "title": "Form templates",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "Some matters require notarization or certification. Check with the receiving office before using it.",
     "defaultWarning": "Reference template; check the receiving office's requirements before submitting.",
-    "privacy": "Your data stays on this open page only."
+    "privacy": "Your data stays on this open page only.",
+    "print": {
+      "nation": "SOCIALIST REPUBLIC OF VIETNAM",
+      "motto": "Independence – Freedom – Happiness",
+      "dateLine": "{{place}}, {{month}}/{{day}}/{{year}}",
+      "initial": {
+        "board": "The Board of Directors"
+      },
+      "leave": {
+        "recipient": "To: {{value}}",
+        "name": "My name is:",
+        "department": "Position, department: {{value}}",
+        "period": "I hereby request leave from {{from}} through {{to}}.",
+        "reason": "Reason: {{value}}",
+        "handover": "During my leave, my work will be handed over to {{value}}.",
+        "closing": "I respectfully ask for your consideration and approval. Thank you very much."
+      },
+      "authorization": {
+        "principal": "Principal:",
+        "attorney": "Authorized person:",
+        "personalId": "Personal ID number: {{value}}",
+        "address": "Address: {{value}}",
+        "scope": "Scope of authorization:",
+        "term": "Term:",
+        "commitment": "Both parties take responsibility for the authorization set out above."
+      },
+      "handover": {
+        "intro": "Today, we the undersigned:",
+        "giver": "Handing over:",
+        "receiver": "Receiving:",
+        "itemsIntro": "have handed over the following:",
+        "number": "No.",
+        "content": "Item",
+        "note": "Notes: {{value}}",
+        "copies": "This record is made in 2 copies; each party keeps 1."
+      },
+      "signatures": {
+        "approver": "Approved by",
+        "applicant": "Applicant",
+        "attorney": "Authorized person",
+        "principal": "Principal",
+        "receiver": "Receiving party",
+        "giver": "Handing-over party"
+      },
+      "signHint": "(Signature and full name)"
+    }
   }
 }

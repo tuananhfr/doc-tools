@@ -413,5 +413,20 @@
     "brushSize": "ブラシのサイズ: {{value}}",
     "undoBrush": "ブラシを元に戻す",
     "note": "画像は端末上で処理されます。細かい背景はブラシでの手直しが必要です。大きな画像は各辺最大 2200 px に縮小されます。"
+  },
+  "file": {
+    "fallback": "画像",
+    "camera": "撮影 {{time}} - {{index}}",
+    "adjusted": "編集済み",
+    "measured": "計測済み",
+    "redacted": "墨消し済み",
+    "stamped": "押印済み",
+    "compressed": "圧縮済み",
+    "idPhoto": "証明写真 {{size}}",
+    "imageCount": "画像 {{count}} 枚",
+    "convertedCount": "{{format}} 画像 {{count}} 枚",
+    "compressedCount": "圧縮画像 {{count}} 枚",
+    "collage": "コラージュ",
+    "measureReference": "基準：{{length}}"
   }
 }

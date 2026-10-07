@@ -163,7 +163,7 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
     const card = await compassCard(request)
     if (view) notes.push({ tone: 'info', text: translate('orientation:export.notes.standalone') })
     const blob = format === 'pdf' ? await imagePdf(card.blob, card.size) : card.blob
-    return { output: { name: `la-ban-huong-nha.${format === 'pdf' ? 'pdf' : 'png'}`, blob, detail: sizeLabel(card.size) }, notes }
+    return { output: { name: `${translate('orientation:file.compass')}.${format === 'pdf' ? 'pdf' : 'png'}`, blob, detail: sizeLabel(card.size) }, notes }
   }
 
   const onImage: OverlayLayers = { scene: sceneShapes(state, view, request.labelOf), compass: compassShapes(spec), opacity: state.compass?.opacity ?? 1 }
@@ -173,11 +173,11 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
     const drawn = await compositeImage(source.item.file, onImage, request, imageFormat)
     if (format === 'pdf') {
       const blob = await imagePdf(drawn.blob, drawn.size)
-      return { output: { name: `${stem(source.item.name)} - huong nha.pdf`, blob, detail: sizeLabel(drawn.size) }, notes }
+      return { output: { name: `${stem(source.item.name)} - ${translate('orientation:file.suffix')}.pdf`, blob, detail: sizeLabel(drawn.size) }, notes }
     }
     // Giữ EXIF của ảnh gốc — quyết định 03/10/2026, kể cả toạ độ GPS (lệch spec v1.1 §17 có chủ đích).
     const { blob, exif } = await carryExif(source.item, drawn.blob, imageFormat, drawn.size)
-    return { output: { name: outputName(source.item.name, imageFormat, ' - huong nha'), blob, detail: sizeLabel(drawn.size) }, notes: [...notes, ...exifNotes([exif])] }
+    return { output: { name: outputName(source.item.name, imageFormat, translate('orientation:file.suffix')), blob, detail: sizeLabel(drawn.size) }, notes: [...notes, ...exifNotes([exif])] }
   }
 
   if (source.kind === 'pdf') {
@@ -187,7 +187,7 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
       const overlay = await overlayLayer(scaleLayers(onImage, factor), size, request)
       try {
         const blob = await vectorPdf(source, overlay)
-        return { output: { name: `${stem(source.name)} - huong nha.pdf`, blob, detail: translate('orientation:export.pageDetail', { page: source.pageIndex + 1 }) }, notes }
+        return { output: { name: `${stem(source.name)} - ${translate('orientation:file.suffix')}.pdf`, blob, detail: translate('orientation:export.pageDetail', { page: source.pageIndex + 1 }) }, notes }
       } catch {
         // PDF có mã hoá quyền / cấu trúc lạ mà pdf-lib không mở được: vẫn trả về bản vẽ lại thay vì báo lỗi.
         notes.push({ tone: 'warning', text: translate('orientation:export.notes.rasterized') })
@@ -198,7 +198,7 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
     const drawn = await compositeImage(page.blob, scaleLayers(onImage, page.width / view.width), request, 'png')
     const blob = format === 'pdf' ? await imagePdf(drawn.blob, drawn.size) : drawn.blob
     return {
-      output: { name: `${stem(source.name)} - trang ${source.pageIndex + 1} - huong nha.${format === 'pdf' ? 'pdf' : 'png'}`, blob, detail: sizeLabel(drawn.size) },
+      output: { name: `${stem(source.name)} - ${translate('orientation:file.page', { page: source.pageIndex + 1 })} - ${translate('orientation:file.suffix')}.${format === 'pdf' ? 'pdf' : 'png'}`, blob, detail: sizeLabel(drawn.size) },
       notes,
     }
   }

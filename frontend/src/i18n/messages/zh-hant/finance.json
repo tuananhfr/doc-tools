@@ -40,7 +40,11 @@
     "applyVat": "套用已簽署的稅率",
     "ruleLabel": "電價表",
     "ruleNone": "系統上目前沒有已簽署且仍有效的電價表。",
-    "vatRuleLabel": "加值稅率"
+    "vatRuleLabel": "加值稅率",
+    "aiResult": {
+      "water": "用水 {{volume}} m³；合計 {{total}} đ",
+      "electricity": "用電 {{kwh}} kWh；合計 {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "轉帳以結清",
@@ -54,7 +58,11 @@
     "choosePerson": "選擇成員",
     "amount": "金額（đ）",
     "participants": "分攤者",
-    "removeExpense": "移除支出"
+    "removeExpense": "移除支出",
+    "samplePeople": {
+      "0": "小明",
+      "1": "小華"
+    }
   },
   "loan": {
     "totalPayment": "應付總額",
@@ -88,7 +96,17 @@
       "annuity": "本息平均攤還",
       "equalPrincipal": "本金平均攤還"
     },
-    "renewals": "續存次數"
+    "renewals": "續存次數",
+    "file": {
+      "name": "還款計畫表",
+      "columns": {
+        "period": "期數",
+        "principal": "本金",
+        "interest": "利息",
+        "payment": "應繳金額",
+        "balance": "剩餘本金"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "薪資計算參數",
     "ruleNone": "系統上目前沒有已簽署且仍有效的薪資規則包。",
     "enterParams": "輸入薪資計算參數",
-    "brackets": "稅率表：「應稅所得級距上限（đ）, 稅率（%）」；最後一行用 *"
+    "brackets": "稅率表：「應稅所得級距上限（đ）, 稅率（%）」；最後一行用 *",
+    "aiResult": "稅前 {{gross}} đ；稅後 {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "依單位比較",

@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { SiteBrand } from './SiteBrand'
 import { FOOTER_LINKS, PRODUCT_LINKS } from '../config/site-navigation'
+import { QualityConsent } from './QualityConsent'
 
 export function SiteFooter() {
   const { t } = useTranslation('site')
@@ -13,6 +14,7 @@ export function SiteFooter() {
           {FOOTER_LINKS.map((item) => <Link key={item.to} to={item.to}>{t(`footer.links.${item.id}`)}</Link>)}
         </nav>
         <span className="cn-footer-motto">{t('footer.motto')}</span>
+        <QualityConsent />
       </div>
     </footer>
   )

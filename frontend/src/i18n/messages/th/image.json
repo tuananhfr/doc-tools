@@ -413,5 +413,20 @@
     "brushSize": "ขนาดแปรง: {{value}}",
     "undoBrush": "เลิกทำแปรง",
     "note": "รูปถูกประมวลผลบนเครื่อง พื้นหลังที่มีรายละเอียดมากต้องใช้แปรงปรับเอง รูปใหญ่จะถูกย่อเหลือไม่เกิน 2200 px ต่อด้าน"
+  },
+  "file": {
+    "fallback": "รูปภาพ",
+    "camera": "ภาพถ่าย {{time}} - {{index}}",
+    "adjusted": "แก้ไขแล้ว",
+    "measured": "วัดแล้ว",
+    "redacted": "ปิดบังแล้ว",
+    "stamped": "ประทับตราแล้ว",
+    "compressed": "บีบอัดแล้ว",
+    "idPhoto": "รูปติดบัตร {{size}}",
+    "imageCount": "{{count}} รูป",
+    "convertedCount": "รูป {{format}} {{count}} รูป",
+    "compressedCount": "รูปที่บีบอัด {{count}} รูป",
+    "collage": "ภาพตัดต่อ",
+    "measureReference": "ค่าอ้างอิง: {{length}}"
   }
 }

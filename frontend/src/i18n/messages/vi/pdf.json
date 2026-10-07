@@ -915,6 +915,7 @@
     },
     "report": {
       "title": "SO SÁNH TÀI LIỆU",
+      "document": "{{name}} ({{count}} trang)",
       "before": "Bản cũ: {{name}}",
       "after": "Bản mới: {{name}}",
       "same": "Không có dòng chữ nào khác nhau.",

@@ -48,7 +48,11 @@
       "unreadable": "초안을 읽을 수 없어요.",
       "cleared": "기기의 초안을 삭제했어요."
     },
-    "note": "보내기 전에 정보를 꼼꼼히 확인하세요. 초안은 저장을 눌렀을 때만 기기에 저장되고, 사진은 저장되지 않아요."
+    "note": "보내기 전에 정보를 꼼꼼히 확인하세요. 초안은 저장을 눌렀을 때만 기기에 저장되고, 사진은 저장되지 않아요.",
+    "print": {
+      "kicker": "이력서",
+      "summary": "자기소개"
+    }
   },
   "formTemplates": {
     "title": "서류 양식 작성",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "일부 업무는 공증이나 인증이 필요해요. 사용하기 전에 제출처에 확인하세요.",
     "defaultWarning": "참고용 양식이에요. 제출하기 전에 제출처의 요구 사항을 확인하세요.",
-    "privacy": "데이터는 열려 있는 이 페이지에만 있어요."
+    "privacy": "데이터는 열려 있는 이 페이지에만 있어요.",
+    "print": {
+      "nation": "베트남 사회주의 공화국",
+      "motto": "독립 - 자유 - 행복",
+      "dateLine": "{{place}}, {{year}}년 {{month}}월 {{day}}일",
+      "initial": {
+        "board": "회사 경영진"
+      },
+      "leave": {
+        "recipient": "수신: {{value}}",
+        "name": "성명:",
+        "department": "직위·부서: {{value}}",
+        "period": "{{from}}부터 {{to}}까지 휴가를 신청합니다.",
+        "reason": "사유: {{value}}",
+        "handover": "휴가 기간 중 업무는 {{value}}에게 인계합니다.",
+        "closing": "검토 후 승인하여 주시기 바랍니다. 감사합니다."
+      },
+      "authorization": {
+        "principal": "위임인:",
+        "attorney": "수임인:",
+        "personalId": "개인 식별 번호: {{value}}",
+        "address": "주소: {{value}}",
+        "scope": "위임 사항:",
+        "term": "위임 기간:",
+        "commitment": "양 당사자는 위 위임 내용에 대해 책임질 것을 약속합니다."
+      },
+      "handover": {
+        "intro": "오늘 아래 양측은:",
+        "giver": "인계자:",
+        "receiver": "인수자:",
+        "itemsIntro": "다음 내용에 대해 인수인계를 진행했습니다:",
+        "number": "번호",
+        "content": "내용",
+        "note": "비고: {{value}}",
+        "copies": "본 확인서는 2부를 작성하여 각자 1부씩 보관한다."
+      },
+      "signatures": {
+        "approver": "승인자",
+        "applicant": "신청인",
+        "attorney": "수임인",
+        "principal": "위임인",
+        "receiver": "인수자",
+        "giver": "인계자"
+      },
+      "signHint": "(서명 및 성명)"
+    }
   }
 }

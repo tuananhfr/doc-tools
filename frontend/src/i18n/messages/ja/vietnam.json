@@ -81,7 +81,8 @@
     "columns": {
       "old": "旧住所",
       "proposed": "提案",
-      "status": "状態"
+      "status": "状態",
+      "droppedDistrict": "廃止された郡"
     },
     "downloadCsv": "CSV をダウンロード",
     "verifiedNote": "署名済みの照合データ（{{date}} から有効）。出典: {{source}}。最終的な住所は書類の提出先に確認してください。",
@@ -95,7 +96,8 @@
     "rulesLabel": "住所照合表",
     "rulesNone": "システム上に、有効な署名済み住所照合データはまだありません。",
     "manualLabel": "または手動で入力（1行ずつ「旧省|旧県|旧社|新省|新社」）",
-    "manualInvalid": "照合表の形式が正しくないか（各行5項目、各項目150文字まで）、同じ旧省が異なる2つの新省に割り当てられています。"
+    "manualInvalid": "照合表の形式が正しくないか（各行5項目、各項目150文字まで）、同じ旧省が異なる2つの新省に割り当てられています。",
+    "csvFileName": "住所変換"
   },
   "invoice": {
     "errors": {
@@ -156,5 +158,200 @@
     "placeholder": "例: 1.234.567",
     "zeroWordLabel": "十の位のゼロの読み方",
     "fourWordLabel": "十の位の後の4の読み方"
+  },
+  "terms": {
+    "stems": {
+      "0": "甲",
+      "1": "乙",
+      "2": "丙",
+      "3": "丁",
+      "4": "戊",
+      "5": "己",
+      "6": "庚",
+      "7": "辛",
+      "8": "壬",
+      "9": "癸"
+    },
+    "branches": {
+      "0": "子",
+      "1": "丑",
+      "2": "寅",
+      "3": "卯",
+      "4": "辰",
+      "5": "巳",
+      "6": "午",
+      "7": "未",
+      "8": "申",
+      "9": "酉",
+      "10": "戌",
+      "11": "亥"
+    },
+    "canChi": "{{stem}}{{branch}}",
+    "spirits": {
+      "THANH_LONG": "青龍",
+      "MINH_DUONG": "明堂",
+      "THIEN_HINH": "天刑",
+      "CHU_TUOC": "朱雀",
+      "KIM_QUY": "金匱",
+      "KIM_DUONG": "金堂",
+      "BACH_HO": "白虎",
+      "NGOC_DUONG": "玉堂",
+      "THIEN_LAO": "天牢",
+      "HUYEN_VU": "玄武",
+      "TU_MENH": "司命",
+      "CAU_TRAN": "勾陳"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "元日",
+      "short": "元日"
+    },
+    "REUNIFICATION": {
+      "name": "南部解放記念日",
+      "short": "南部解放"
+    },
+    "LABOUR": {
+      "name": "国際労働者の日",
+      "short": "メーデー"
+    },
+    "NATIONAL_DAY": {
+      "name": "建国記念日",
+      "short": "建国記念日"
+    },
+    "CULTURE": {
+      "name": "ベトナム文化の日",
+      "short": "文化の日"
+    },
+    "PARTY": {
+      "name": "ベトナム共産党創立記念日",
+      "short": "党創立"
+    },
+    "VALENTINE": {
+      "name": "バレンタインデー",
+      "short": "バレンタイン"
+    },
+    "PHYSICIANS": {
+      "name": "ベトナム医師の日",
+      "short": "医師の日"
+    },
+    "WOMEN_INTL": {
+      "name": "国際女性デー",
+      "short": "女性デー"
+    },
+    "YOUTH_UNION": {
+      "name": "ホーチミン共産青年団創立記念日",
+      "short": "青年団"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "ディエンビエンフー戦勝記念日",
+      "short": "ディエンビエンフー"
+    },
+    "HO_CHI_MINH": {
+      "name": "ホー・チ・ミン主席生誕記念日",
+      "short": "ホー主席生誕"
+    },
+    "CHILDREN": {
+      "name": "国際こどもの日",
+      "short": "こどもの日"
+    },
+    "FAMILY": {
+      "name": "ベトナム家族の日",
+      "short": "家族の日"
+    },
+    "MARTYRS": {
+      "name": "傷病兵・殉国者の日",
+      "short": "殉国者の日"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "八月革命記念日",
+      "short": "八月革命"
+    },
+    "CAPITAL": {
+      "name": "首都解放記念日",
+      "short": "首都解放"
+    },
+    "WOMEN_VN": {
+      "name": "ベトナム女性の日",
+      "short": "ベトナム女性の日"
+    },
+    "TEACHERS": {
+      "name": "ベトナム教師の日",
+      "short": "教師の日"
+    },
+    "ARMY": {
+      "name": "ベトナム人民軍創設記念日",
+      "short": "人民軍"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "クリスマスイブ",
+      "short": "イブ"
+    },
+    "CHRISTMAS": {
+      "name": "クリスマス",
+      "short": "クリスマス"
+    },
+    "TET_1": {
+      "name": "テト（旧正月元日）",
+      "short": "テト元日"
+    },
+    "TET_2": {
+      "name": "テト（旧正月二日）",
+      "short": "テト二日"
+    },
+    "TET_3": {
+      "name": "テト（旧正月三日）",
+      "short": "テト三日"
+    },
+    "HUNG_KINGS": {
+      "name": "フン王の命日",
+      "short": "フン王祭"
+    },
+    "LANTERN": {
+      "name": "元宵節",
+      "short": "元宵"
+    },
+    "COLD_FOOD": {
+      "name": "寒食節",
+      "short": "寒食"
+    },
+    "VESAK": {
+      "name": "仏誕節",
+      "short": "仏誕"
+    },
+    "DOAN_NGO": {
+      "name": "端午節",
+      "short": "端午"
+    },
+    "VU_LAN": {
+      "name": "盂蘭盆",
+      "short": "盂蘭盆"
+    },
+    "MID_AUTUMN": {
+      "name": "中秋節",
+      "short": "中秋"
+    },
+    "KITCHEN_GODS": {
+      "name": "かまど神送りの日",
+      "short": "かまど神"
+    },
+    "MOTHER": {
+      "name": "母の日",
+      "short": "母の日"
+    },
+    "FATHER": {
+      "name": "父の日",
+      "short": "父の日"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "大晦日",
+      "short": "大晦日"
+    },
+    "moon": {
+      "first": "旧暦{{month}}月1日",
+      "firstLeap": "旧暦閏{{month}}月1日",
+      "full": "旧暦{{month}}月15日",
+      "fullLeap": "旧暦閏{{month}}月15日"
+    }
   }
 }

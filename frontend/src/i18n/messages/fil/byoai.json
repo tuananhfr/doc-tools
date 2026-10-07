@@ -44,5 +44,28 @@
     "copyFailed": "Hindi makopya; piliin ang text at kopyahin ito nang mano-mano.",
     "answerLabel": "I-paste rito ang sagot ng AI para basahin (hindi ito sine-save o ipinapadala sa Chuyện Nhỏ)",
     "unverified": "Hindi beripikadong nilalaman"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "Tinutulungan mo ang mga tao na pumili ng tool ng Chuyện Nhỏ. Sumagot nang maikli sa Filipino. Magmungkahi lamang ng mga tool mula sa listahan sa ibaba; huwag mangako ng tampok na hindi binanggit sa paglalarawan nito. Kung tungkol sa batas, pera o kalusugan ang tanong, hilingin sa user na suriin ang kasalukuyang opisyal na mapagkukunan. Huwag kailanman hilingin sa user na mag-upload ng pribadong file sa isang serbisyong AI.",
+      "question": "Tanong: {{question}}",
+      "toolsHeading": "Mga tool na maaaring may kaugnayan:",
+      "noTools": "- Walang tool na malinaw na tumutugma.",
+      "closing": "Magbigay ng hanggang tatlong hakbang at ng link ng tool kung makatutulong."
+    },
+    "package": {
+      "truncated": "[Pinaikli dahil lumampas sa limitasyon ng tanong.]",
+      "noContext": "Suriin ang mga update sa tool na {{toolId}}; walang kasamang personal na datos ng user.",
+      "tasks": {
+        "0": "Unahin ang mga opisyal na dokumento, pahina o API.",
+        "1": "Ihambing sa kasalukuyang datos; banggitin ang petsa ng paglabas at petsa ng bisa.",
+        "2": "Magbigay ng source URL sa bawat pagbabago; sabihin nang malinaw kung ano ang hindi pa tiyak.",
+        "3": "Huwag manghula kapag walang ebidensiya."
+      },
+      "redactedContext": "Awtomatikong tinakpan ang mga kredensiyal, internal URL at email address; kailangang suriin ng user ang preview.",
+      "excludedContext": "Hindi kasama bilang default ang resulta at personal na datos ng user.",
+      "intro": "Ikaw ay assistant na nagsusuri ng mga mapagkukunan. Magmungkahi lamang ng mga pagbabagong mabe-verify; hindi itinuturing na beripikadong datos ang iyong output.",
+      "outro": "Ibalik nang eksakto ang JSON na inilalarawan ng output_schema. Walang Markdown, walang paunang salita. Isulat sa Filipino ang teksto sa loob ng JSON."
+    }
   }
 }

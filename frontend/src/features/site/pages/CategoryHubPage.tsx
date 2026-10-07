@@ -31,7 +31,7 @@ export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
       <HubHero page={page} text={text} />
       <div className="cn-container cn-hub-body">
         <section className="cn-hub-main" aria-label={t('hub.listLabel', { label: text.label.toLowerCase() })}>
-          <ToolSearch id={`tim-${slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultsId)?.focus()} />
+          <ToolSearch qualityTracking id={`tim-${slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultsId)?.focus()} />
           <div className="cn-tool-filters cn-hub-filters" role="group" aria-label={t('hub.subgroupFilter')}>
             {chips.map((chip) => (
               <button key={chip.id} type="button" className={`cn-filter${chip.id === groupId ? ' is-active' : ''}`} aria-pressed={chip.id === groupId} onClick={(event) => { onGroup(chip.id); event.currentTarget.scrollIntoView({ block: 'nearest', inline: 'nearest' }) }}>

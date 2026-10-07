@@ -60,7 +60,7 @@ function CameraView({ onRead, onClose }: QrCameraProps) {
             <p className={`erp-qr-scanner__instruction${detection ? ' is-detected' : ''}`} role="status">
               {detection ? <Icon name="check-circle-fill" /> : null}{t(detection ? 'camera.detected' : 'camera.aim')}
             </p>
-            <div className="erp-qr-scanner__zoom">
+            <div className="erp-qr-scanner__zoom" onPointerDownCapture={scanner.claimZoom} onKeyDownCapture={scanner.claimZoom}>
               <Button variant="link" aria-label={t('camera.zoomOut')} disabled={zoom <= 1} onClick={() => scanner.setZoom(zoom - 0.25)}><Icon name="dash-lg" /></Button>
               <input type="range" min={1} max={maxZoom} step={0.05} value={zoom} aria-label={t('camera.zoom')} onChange={event => scanner.setZoom(Number(event.target.value))} />
               <output aria-label={t('camera.zoom')}>{zoom.toFixed(1)}×</output>

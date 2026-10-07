@@ -83,7 +83,8 @@
     "columns": {
       "old": "Lumang address",
       "proposed": "Mungkahi",
-      "status": "Status"
+      "status": "Status",
+      "droppedDistrict": "Inalis na antas ng distrito"
     },
     "downloadCsv": "I-download ang CSV",
     "verifiedNote": "Signed na talaan ng paghahambing, epektibo mula {{date}}. Source: {{source}}. Kumpirmahin ang huling address sa tatanggap ng iyong dokumento.",
@@ -97,7 +98,8 @@
     "rulesLabel": "talaan ng paghahambing ng address",
     "rulesNone": "Wala pang signed at epektibong talaan ng paghahambing ng address sa system.",
     "manualLabel": "O ilagay ang sarili mo, isa bawat linya: “lumang probinsya|lumang distrito|lumang commune|bagong probinsya|bagong commune”",
-    "manualInvalid": "Mali ang format ng talaan (dapat 5 bahagi bawat linya, hanggang 150 character bawat bahagi) o may lumang probinsyang nakatala sa dalawang magkaibang bagong probinsya."
+    "manualInvalid": "Mali ang format ng talaan (dapat 5 bahagi bawat linya, hanggang 150 character bawat bahagi) o may lumang probinsyang nakatala sa dalawang magkaibang bagong probinsya.",
+    "csvFileName": "conversion-ng-address"
   },
   "invoice": {
     "errors": {
@@ -158,5 +160,200 @@
     "placeholder": "Halimbawa: 1.234.567",
     "zeroWordLabel": "Salita para sa zero sa tens place",
     "fourWordLabel": "Salita para sa apat pagkatapos ng tens"
+  },
+  "terms": {
+    "stems": {
+      "0": "Kahoy na Yang",
+      "1": "Kahoy na Yin",
+      "2": "Apoy na Yang",
+      "3": "Apoy na Yin",
+      "4": "Lupa na Yang",
+      "5": "Lupa na Yin",
+      "6": "Metal na Yang",
+      "7": "Metal na Yin",
+      "8": "Tubig na Yang",
+      "9": "Tubig na Yin"
+    },
+    "branches": {
+      "0": "Daga",
+      "1": "Kalabaw",
+      "2": "Tigre",
+      "3": "Pusa",
+      "4": "Dragon",
+      "5": "Ahas",
+      "6": "Kabayo",
+      "7": "Kambing",
+      "8": "Unggoy",
+      "9": "Tandang",
+      "10": "Aso",
+      "11": "Baboy"
+    },
+    "canChi": "{{branch}} ({{stem}})",
+    "spirits": {
+      "THANH_LONG": "Bughaw na Dragon",
+      "MINH_DUONG": "Maliwanag na Bulwagan",
+      "THIEN_HINH": "Parusa ng Langit",
+      "CHU_TUOC": "Pulang Ibon",
+      "KIM_QUY": "Gintong Kaban",
+      "KIM_DUONG": "Gintong Bulwagan",
+      "BACH_HO": "Puting Tigre",
+      "NGOC_DUONG": "Bulwagang Jade",
+      "THIEN_LAO": "Bilangguan ng Langit",
+      "HUYEN_VU": "Itim na Pagong",
+      "TU_MENH": "Tagapag-ingat ng Buhay",
+      "CAU_TRAN": "Kawit"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "Bagong Taon",
+      "short": "Bagong Taon"
+    },
+    "REUNIFICATION": {
+      "name": "Araw ng Muling Pagkakaisa",
+      "short": "Muling Pagkakaisa"
+    },
+    "LABOUR": {
+      "name": "Pandaigdigang Araw ng Paggawa",
+      "short": "Araw ng Paggawa"
+    },
+    "NATIONAL_DAY": {
+      "name": "Pambansang Araw",
+      "short": "Pambansang Araw"
+    },
+    "CULTURE": {
+      "name": "Araw ng Kulturang Vietnamese",
+      "short": "Araw ng Kultura"
+    },
+    "PARTY": {
+      "name": "Araw ng Pagkatatag ng Partido Komunista",
+      "short": "Araw ng Partido"
+    },
+    "VALENTINE": {
+      "name": "Araw ng mga Puso",
+      "short": "Araw ng mga Puso"
+    },
+    "PHYSICIANS": {
+      "name": "Araw ng mga Doktor sa Vietnam",
+      "short": "Araw ng mga Doktor"
+    },
+    "WOMEN_INTL": {
+      "name": "Pandaigdigang Araw ng Kababaihan",
+      "short": "Araw ng Kababaihan"
+    },
+    "YOUTH_UNION": {
+      "name": "Araw ng Pagkatatag ng Unyon ng Kabataan",
+      "short": "Araw ng Kabataan"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "Araw ng Tagumpay sa Dien Bien Phu",
+      "short": "Dien Bien Phu"
+    },
+    "HO_CHI_MINH": {
+      "name": "Kaarawan ni Pangulong Ho Chi Minh",
+      "short": "Kaarawan ni Ho Chi Minh"
+    },
+    "CHILDREN": {
+      "name": "Pandaigdigang Araw ng mga Bata",
+      "short": "Araw ng mga Bata"
+    },
+    "FAMILY": {
+      "name": "Araw ng Pamilyang Vietnamese",
+      "short": "Araw ng Pamilya"
+    },
+    "MARTYRS": {
+      "name": "Araw ng mga Beteranong May Kapansanan at mga Martir",
+      "short": "Araw ng mga Martir"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "Araw ng Rebolusyon ng Agosto",
+      "short": "Rebolusyon ng Agosto"
+    },
+    "CAPITAL": {
+      "name": "Araw ng Paglaya ng Kabisera",
+      "short": "Paglaya ng Kabisera"
+    },
+    "WOMEN_VN": {
+      "name": "Araw ng Kababaihang Vietnamese",
+      "short": "Kababaihang Vietnamese"
+    },
+    "TEACHERS": {
+      "name": "Araw ng mga Guro sa Vietnam",
+      "short": "Araw ng mga Guro"
+    },
+    "ARMY": {
+      "name": "Araw ng Hukbong Bayan",
+      "short": "Araw ng Hukbo"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "Bisperas ng Pasko",
+      "short": "Bisperas ng Pasko"
+    },
+    "CHRISTMAS": {
+      "name": "Araw ng Pasko",
+      "short": "Pasko"
+    },
+    "TET_1": {
+      "name": "Bagong Taon ng Buwan (unang araw)",
+      "short": "Tet araw 1"
+    },
+    "TET_2": {
+      "name": "Bagong Taon ng Buwan (ikalawang araw)",
+      "short": "Tet araw 2"
+    },
+    "TET_3": {
+      "name": "Bagong Taon ng Buwan (ikatlong araw)",
+      "short": "Tet araw 3"
+    },
+    "HUNG_KINGS": {
+      "name": "Paggunita sa mga Haring Hung",
+      "short": "Mga Haring Hung"
+    },
+    "LANTERN": {
+      "name": "Pista ng mga Parol (unang kabilugan ng buwan)",
+      "short": "Pista ng mga Parol"
+    },
+    "COLD_FOOD": {
+      "name": "Pista ng Malamig na Pagkain",
+      "short": "Malamig na Pagkain"
+    },
+    "VESAK": {
+      "name": "Kaarawan ni Buddha (Vesak)",
+      "short": "Vesak"
+    },
+    "DOAN_NGO": {
+      "name": "Pista ng Ikalimang Buwan (Duanwu)",
+      "short": "Duanwu"
+    },
+    "VU_LAN": {
+      "name": "Pista ng Vu Lan",
+      "short": "Vu Lan"
+    },
+    "MID_AUTUMN": {
+      "name": "Pista ng Kalagitnaan ng Taglagas",
+      "short": "Kalagitnaan ng Taglagas"
+    },
+    "KITCHEN_GODS": {
+      "name": "Araw ng mga Diyos ng Kusina",
+      "short": "Diyos ng Kusina"
+    },
+    "MOTHER": {
+      "name": "Araw ng mga Ina",
+      "short": "Araw ng mga Ina"
+    },
+    "FATHER": {
+      "name": "Araw ng mga Ama",
+      "short": "Araw ng mga Ama"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "Bisperas ng Bagong Taon ng Buwan",
+      "short": "Bisperas ng Bagong Taon"
+    },
+    "moon": {
+      "first": "Unang araw ng ika-{{month}} buwang lunar",
+      "firstLeap": "Unang araw ng ika-{{month}} leap na buwang lunar",
+      "full": "Kabilugan ng ika-{{month}} buwang lunar",
+      "fullLeap": "Kabilugan ng ika-{{month}} leap na buwang lunar"
+    }
   }
 }

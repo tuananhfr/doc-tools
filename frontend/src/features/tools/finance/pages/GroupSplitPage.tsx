@@ -10,8 +10,10 @@ interface ExpenseInput { payer: string; amount: string; participants: string[] }
 export default function GroupSplitPage() {
   const { t } = useTranslation('finance')
   const peopleId = useId()
-  const [peopleText, setPeopleText] = useState('An\nBình')
-  const [expenses, setExpenses] = useState<ExpenseInput[]>([{ payer: 'An', amount: '', participants: ['An', 'Bình'] }])
+  // Tên mẫu theo ngôn ngữ trang — người dùng sẽ gõ đè tên thật.
+  const [sample] = useState(() => [t('groupSplit.samplePeople.0'), t('groupSplit.samplePeople.1')])
+  const [peopleText, setPeopleText] = useState(sample.join('\n'))
+  const [expenses, setExpenses] = useState<ExpenseInput[]>([{ payer: sample[0], amount: '', participants: sample }])
   const people = useMemo(() => peopleText.split(/\r?\n/).map((person) => person.trim()).filter(Boolean), [peopleText])
   const result = expenses.every((expense) => expense.amount !== '') ? settleGroup(people, expenses.map((expense) => ({ payer: expense.payer, amount: Number(expense.amount), participants: expense.participants }))) : null
   const update = (index: number, patch: Partial<ExpenseInput>) => setExpenses((current) => current.map((item, position) => position === index ? { ...item, ...patch } : item))

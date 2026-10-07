@@ -40,7 +40,11 @@
     "applyVat": "Terapkan tarif pajak bertanda tangan",
     "ruleLabel": "tabel tarif listrik",
     "ruleNone": "Saat ini belum ada tabel tarif listrik bertanda tangan yang masih berlaku di sistem.",
-    "vatRuleLabel": "tarif PPN (GTGT)"
+    "vatRuleLabel": "tarif PPN (GTGT)",
+    "aiResult": {
+      "water": "Air {{volume}} m³; total {{total}} đ",
+      "electricity": "Listrik {{kwh}} kWh; total {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Transfer agar seimbang",
@@ -54,7 +58,11 @@
     "choosePerson": "Pilih orang",
     "amount": "Jumlah (đ)",
     "participants": "Yang ikut menanggung",
-    "removeExpense": "Hapus pengeluaran"
+    "removeExpense": "Hapus pengeluaran",
+    "samplePeople": {
+      "0": "Budi",
+      "1": "Sari"
+    }
   },
   "loan": {
     "totalPayment": "Total yang harus dibayar",
@@ -88,7 +96,17 @@
       "annuity": "Cicilan total hampir sama (anuitas)",
       "equalPrincipal": "Pokok sama rata"
     },
-    "renewals": "Jumlah perpanjangan"
+    "renewals": "Jumlah perpanjangan",
+    "file": {
+      "name": "jadwal-angsuran",
+      "columns": {
+        "period": "Periode",
+        "principal": "Pokok",
+        "interest": "Bunga",
+        "payment": "Angsuran",
+        "balance": "Sisa pokok"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "parameter penggajian",
     "ruleNone": "Belum ada paket aturan gaji bertanda tangan yang masih berlaku di sistem.",
     "enterParams": "Masukkan parameter penggajian",
-    "brackets": "Tarif pajak: “batas penghasilan kena pajak (đ), tarif (%)”; baris terakhir memakai *"
+    "brackets": "Tarif pajak: “batas penghasilan kena pajak (đ), tarif (%)”; baris terakhir memakai *",
+    "aiResult": "Bruto {{gross}} đ; Neto {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "Perbandingan per satuan",

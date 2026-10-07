@@ -295,5 +295,12 @@
       "REPLACED": "Cette étiquette a été remplacée : utilisez la nouvelle.",
       "ARCHIVED": "L'objet n'est plus suivi."
     }
+  },
+  "file": {
+    "qr": "Code QR",
+    "barcode": "Code-barres",
+    "barcodeCount_one": "{{count}} code-barres",
+    "barcodeCount_many": "{{count}} codes-barres",
+    "barcodeCount_other": "{{count}} codes-barres"
   }
 }

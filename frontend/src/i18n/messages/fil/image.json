@@ -444,5 +444,23 @@
     "brushSize": "Laki ng brush: {{value}}",
     "undoBrush": "I-undo ang brush",
     "note": "Sa device pinoproseso ang larawan. Kailangang ayusin nang mano-mano gamit ang brush ang background na maraming detalye; pinaliliit ang malaking larawan hanggang 2200 px bawat gilid."
+  },
+  "file": {
+    "fallback": "larawan",
+    "camera": "Kuha {{time}} - {{index}}",
+    "adjusted": "na-edit",
+    "measured": "nasukat",
+    "redacted": "tinakpan",
+    "stamped": "may tatak",
+    "compressed": "pinaliit",
+    "idPhoto": "ID photo {{size}}",
+    "imageCount_one": "{{count}} larawan",
+    "imageCount_other": "{{count}} na larawan",
+    "convertedCount_one": "{{count}} larawang {{format}}",
+    "convertedCount_other": "{{count}} na larawang {{format}}",
+    "compressedCount_one": "{{count}} pinaliit na larawan",
+    "compressedCount_other": "{{count}} na pinaliit na larawan",
+    "collage": "collage",
+    "measureReference": "Batayan: {{length}}"
   }
 }

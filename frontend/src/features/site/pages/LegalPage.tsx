@@ -7,6 +7,7 @@ import { useLocale } from '@/i18n/I18nProvider'
 import { DEFAULT_LOCALE } from '@/i18n/locales'
 import { LEGAL_DOCUMENTS, LEGAL_UPDATED, type LegalSlug, type LegalText } from '../config/legal'
 import { SUPPORT_EMAIL } from '../config/site-navigation'
+import { QualityConsent } from '../components/QualityConsent'
 
 export default function LegalPage({ slug }: { slug: LegalSlug }) {
   const { t } = useTranslation('site')
@@ -37,6 +38,7 @@ export default function LegalPage({ slug }: { slug: LegalSlug }) {
           <ol>{doc.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{text.sections[section.id].heading}</a></li>)}</ol>
         </nav>
         <div className="cn-legal-content">
+          {slug === 'quyen-rieng-tu' ? <QualityConsent disclosure /> : null}
           <section className="cn-legal-summary" aria-labelledby="cn-legal-summary">
             <h2 id="cn-legal-summary">{t('legalPage.summary')}</h2>
             <ul className="cn-hub-checks">{doc.summary.map((point) => <li key={point}><Icon name="check-circle-fill" />{text.summary[point]}</li>)}</ul>

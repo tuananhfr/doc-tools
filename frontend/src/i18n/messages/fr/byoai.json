@@ -44,5 +44,28 @@
     "copyFailed": "Impossible de copier ; sélectionnez le texte et copiez-le manuellement.",
     "answerLabel": "Collez ici la réponse de l'IA pour la lire (ni enregistrée ni envoyée à Chuyện Nhỏ)",
     "unverified": "Contenu non vérifié"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "Tu aides les gens à choisir un outil Chuyện Nhỏ. Réponds brièvement en français. Ne propose que les outils de la liste ci-dessous ; ne promets jamais une fonction que leur description ne mentionne pas. Si la question touche au droit, à l'argent ou à la santé, demande à l'utilisateur de vérifier les sources officielles en vigueur. Ne demande jamais d'envoyer des fichiers privés à un service d'IA.",
+      "question": "Question : {{question}}",
+      "toolsHeading": "Outils peut-être utiles :",
+      "noTools": "- Aucun outil ne correspond clairement.",
+      "closing": "Donne au plus trois étapes et le lien de l'outil si c'est utile."
+    },
+    "package": {
+      "truncated": "[Raccourci car la limite de la question était dépassée.]",
+      "noContext": "Vérifier les mises à jour de l'outil {{toolId}} ; aucune donnée personnelle de l'utilisateur n'est incluse.",
+      "tasks": {
+        "0": "Privilégier les documents, pages ou API officiels.",
+        "1": "Comparer avec les données actuelles ; indiquer la date de publication et la date d'entrée en vigueur.",
+        "2": "Donner une URL source pour chaque changement ; dire clairement ce qui reste incertain.",
+        "3": "Ne pas deviner en l’absence de preuve."
+      },
+      "redactedContext": "Les identifiants, URL internes et adresses e-mail ont été masqués automatiquement ; l'utilisateur doit vérifier l'aperçu.",
+      "excludedContext": "Le résultat et les données personnelles de l'utilisateur sont exclus par défaut.",
+      "intro": "Tu es un assistant de vérification des sources. Ne propose que des changements vérifiables ; ta réponse n'est pas considérée comme une donnée vérifiée.",
+      "outro": "Renvoie exactement le JSON décrit par output_schema. Pas de Markdown, pas d'introduction. Rédige le texte du JSON en français."
+    }
   }
 }

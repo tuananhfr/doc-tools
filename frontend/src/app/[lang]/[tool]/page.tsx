@@ -1,4 +1,3 @@
-import { withBase } from '@/utils/url'
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { loadToolCatalog } from '@/features/site/server/tool-catalog'
@@ -6,6 +5,7 @@ import { TOOL_CATALOG } from '@/features/tools/hub/config/tool-catalog'
 import { resolveToolRoute, toolPageTitle } from '@/features/tools/hub/utils/tool-lookup'
 import { localizePath } from '@/i18n/locales'
 import { localeAlternates, pageLocale } from '@/i18n/server'
+import { toolShareImagePath } from '@/features/site/server/share-image-locale'
 type Props = { params: Promise<{ lang: string; tool: string }> }
 export function generateStaticParams() { return TOOL_CATALOG.filter(tool => tool.status === 'ready').map(tool => ({ tool: tool.slug })) }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -14,15 +14,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tool } = resolveToolRoute(slug, await loadToolCatalog(locale))
   if (!tool) return { robots: { index: false, follow: true } }
   const alternates = localeAlternates('/' + tool.slug, locale)
+  const shareImage = toolShareImagePath(tool.slug, locale)
   return { title: toolPageTitle(tool), description: tool.description,
     alternates,
     openGraph: {
       title: toolPageTitle(tool), description: tool.description, url: alternates.canonical,
-      images: [{ url: withBase('/og/' + tool.slug), width: 1200, height: 630, type: 'image/png', alt: tool.name + ' — Chuyện Nhỏ' }],
+      images: [{ url: shareImage, width: 1200, height: 630, type: 'image/png', alt: tool.name + ' — Chuyện Nhỏ' }],
     },
     twitter: {
       card: 'summary_large_image', title: toolPageTitle(tool), description: tool.description,
-      images: [{ url: withBase('/og/' + tool.slug), alt: tool.name + ' — Chuyện Nhỏ' }],
+      images: [{ url: shareImage, alt: tool.name + ' — Chuyện Nhỏ' }],
     },
   }
 }

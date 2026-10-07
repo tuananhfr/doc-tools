@@ -1,4 +1,12 @@
 import type { PDFDocument, PDFFont } from 'pdf-lib'
+import cjkJpBoldUrl from '@/assets/fonts/NotoSansJP-Bold.ttf?url'
+import cjkJpRegularUrl from '@/assets/fonts/NotoSansJP-Regular.ttf?url'
+import cjkKrBoldUrl from '@/assets/fonts/NotoSansKR-Bold.ttf?url'
+import cjkKrRegularUrl from '@/assets/fonts/NotoSansKR-Regular.ttf?url'
+import cjkScBoldUrl from '@/assets/fonts/NotoSansSC-Bold.ttf?url'
+import cjkScRegularUrl from '@/assets/fonts/NotoSansSC-Regular.ttf?url'
+import cjkTcBoldUrl from '@/assets/fonts/NotoSansTC-Bold.ttf?url'
+import cjkTcRegularUrl from '@/assets/fonts/NotoSansTC-Regular.ttf?url'
 import matchBoldUrl from '@/assets/fonts/Arimo-Bold.ttf?url'
 import matchBoldItalicUrl from '@/assets/fonts/Arimo-BoldItalic.ttf?url'
 import matchItalicUrl from '@/assets/fonts/Arimo-Italic.ttf?url'
@@ -53,15 +61,35 @@ export const FONT_URLS: Record<FontKey, string> = {
   matchSerifBoldItalic: matchSerifBoldItalicUrl,
 }
 
+/**
+ * Noto Sans CJK đã cắt còn chữ thông dụng (`scripts/subset-cjk-fonts.py`), chỉ nạp khi dòng chữ
+ * có Hán / kana / Hangul mà phông Latin không vẽ được. Không có nghiêng: CJK không dùng chữ nghiêng.
+ */
+export const CJK_FONT_URLS = {
+  cjkSc: cjkScRegularUrl,
+  cjkScBold: cjkScBoldUrl,
+  cjkTc: cjkTcRegularUrl,
+  cjkTcBold: cjkTcBoldUrl,
+  cjkJp: cjkJpRegularUrl,
+  cjkJpBold: cjkJpBoldUrl,
+  cjkKr: cjkKrRegularUrl,
+  cjkKrBold: cjkKrBoldUrl,
+} as const
+
+export type CjkFontKey = keyof typeof CJK_FONT_URLS
+type BundledKey = FontKey | CjkFontKey
+
+const BUNDLED_URLS: Record<BundledKey, string> = { ...FONT_URLS, ...CJK_FONT_URLS }
+
 /** Nhận khoá phông đóng sẵn, hoặc kiểu phông của chữ sửa lại (có thể trỏ tới phông trên máy). */
-export type FontLoader = (font: FontKey | FontStyle) => Promise<PDFFont>
+export type FontLoader = (font: BundledKey | FontStyle) => Promise<PDFFont>
 
-const cache = new Map<FontKey, Promise<ArrayBuffer>>()
+const cache = new Map<BundledKey, Promise<ArrayBuffer>>()
 
-function fontBytes(key: FontKey): Promise<ArrayBuffer> {
+function fontBytes(key: BundledKey): Promise<ArrayBuffer> {
   let bytes = cache.get(key)
   if (!bytes) {
-    bytes = fetch(FONT_URLS[key]).then((response) => {
+    bytes = fetch(BUNDLED_URLS[key]).then((response) => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       return response.arrayBuffer()
     })
@@ -83,7 +111,7 @@ export function createFontLoader(doc: PDFDocument, { subset = true }: { subset?:
   const fonts = new Map<string, Promise<PDFFont>>()
   const register = () => (registered ??= import('@pdf-lib/fontkit').then((fontkit) => doc.registerFontkit(fontkit.default)))
 
-  const bundled = (key: FontKey) => {
+  const bundled = (key: BundledKey) => {
     let font = fonts.get(key)
     if (!font) {
       font = Promise.all([register(), fontBytes(key)])

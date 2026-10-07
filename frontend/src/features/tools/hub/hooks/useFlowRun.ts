@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { FlowState, FlowTask } from '../types/flow.types'
 import { describeError } from '../utils/tool-error'
+import { recordQualityEvent } from '../services/quality-events'
+import { qualityToolForPath } from '../services/quality-tool'
 
 const IDLE: FlowState = { phase: 'idle', error: null }
 
@@ -31,6 +33,7 @@ export function useFlowRun() {
       })
       abort.signal.throwIfAborted()
       setState({ phase: 'done', result })
+      recordQualityEvent('completion', qualityToolForPath(window.location.pathname))
       return true
     } catch (error) {
       if (abort.signal.aborted) setState(IDLE)

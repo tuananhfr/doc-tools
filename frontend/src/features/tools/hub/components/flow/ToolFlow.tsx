@@ -34,6 +34,7 @@ interface ToolFlowProps {
   onEdit?: (output: FlowOutput) => void
   onDownloaded?: () => void
   resultExtra?: ReactNode
+  waitingLabel?: string
 }
 
 /**
@@ -61,6 +62,7 @@ export function ToolFlow({
   onEdit,
   onDownloaded,
   resultExtra,
+  waitingLabel,
 }: ToolFlowProps) {
   const { state } = run
   const { t } = useTranslation('common')
@@ -118,7 +120,7 @@ export function ToolFlow({
         ) : null}
 
         {running ? (
-          <FlowProgress progress={state.progress} onCancel={run.cancel} />
+          <FlowProgress progress={state.progress} onCancel={run.cancel} waitingLabel={waitingLabel} />
         ) : (
           <>
             <Button variant="primary" className="erp-flow__run" disabled={blocked !== null || loading !== null} onClick={onRun}>

@@ -30,39 +30,48 @@
   "targets": {
     "HOUSE_FRONTAGE": {
       "label": "House facing",
-      "hint": "Looking straight out through the frontage from inside the house"
+      "hint": "Looking straight out through the frontage from inside the house",
+      "short": "House"
     },
     "MAIN_DOOR": {
       "label": "Main door",
-      "hint": "Looking out through the main door from inside the house"
+      "hint": "Looking out through the main door from inside the house",
+      "short": "Door"
     },
     "BALCONY": {
       "label": "Balcony",
-      "hint": "Looking out to the balcony from inside the room"
+      "hint": "Looking out to the balcony from inside the room",
+      "short": "Balcony"
     },
     "KITCHEN": {
       "label": "Stove",
-      "hint": "The direction of the cook's back — opposite to where the cook faces the stove"
+      "hint": "The direction of the cook's back — opposite to where the cook faces the stove",
+      "short": "Stove"
     },
     "ALTAR": {
       "label": "Altar",
-      "hint": "The direction the front of the altar faces"
+      "hint": "The direction the front of the altar faces",
+      "short": "Altar"
     },
     "BED": {
       "label": "Bed",
-      "hint": "Looking from the head of the bed toward the foot"
+      "hint": "Looking from the head of the bed toward the foot",
+      "short": "Bed"
     },
     "DESK": {
       "label": "Desk",
-      "hint": "The direction the person sitting at the desk faces"
+      "hint": "The direction the person sitting at the desk faces",
+      "short": "Desk"
     },
     "LAND_FRONTAGE": {
       "label": "Plot frontage",
-      "hint": "Looking out to the road from inside the plot"
+      "hint": "Looking out to the road from inside the plot",
+      "short": "Lot"
     },
     "CUSTOM": {
       "label": "Other item",
-      "hint": "Name it yourself; the axis points in the direction to measure"
+      "hint": "Name it yourself; the axis points in the direction to measure",
+      "short": "Other"
     }
   },
   "north": {
@@ -331,7 +340,7 @@
     "yearNoteLunar": "The year starts at Tết (lunar new year) — if born before Tết, use the previous year.",
     "facts": {
       "age": "Age",
-      "napAm": "Element (nạp âm)",
+      "napAm": "Na Yin element",
       "trigram": "Life trigram"
     },
     "beforeTet": "Born before Tết, so the age is counted for the year {{year}} ({{canChi}}).",
@@ -358,5 +367,251 @@
     "homes": "The Later Heaven directions of the trigrams are invalid.",
     "yearRange": "The year of birth must be between {{min}} and {{max}}.",
     "noTrigram": "The rule set has no trigram number {{number}}."
+  },
+  "terms": {
+    "directions8": {
+      "0": {
+        "name": "North",
+        "short": "N"
+      },
+      "1": {
+        "name": "Northeast",
+        "short": "NE"
+      },
+      "2": {
+        "name": "East",
+        "short": "E"
+      },
+      "3": {
+        "name": "Southeast",
+        "short": "SE"
+      },
+      "4": {
+        "name": "South",
+        "short": "S"
+      },
+      "5": {
+        "name": "Southwest",
+        "short": "SW"
+      },
+      "6": {
+        "name": "West",
+        "short": "W"
+      },
+      "7": {
+        "name": "Northwest",
+        "short": "NW"
+      }
+    },
+    "directions16": {
+      "0": {
+        "name": "North",
+        "short": "N"
+      },
+      "1": {
+        "name": "North-northeast",
+        "short": "NNE"
+      },
+      "2": {
+        "name": "Northeast",
+        "short": "NE"
+      },
+      "3": {
+        "name": "East-northeast",
+        "short": "ENE"
+      },
+      "4": {
+        "name": "East",
+        "short": "E"
+      },
+      "5": {
+        "name": "East-southeast",
+        "short": "ESE"
+      },
+      "6": {
+        "name": "Southeast",
+        "short": "SE"
+      },
+      "7": {
+        "name": "South-southeast",
+        "short": "SSE"
+      },
+      "8": {
+        "name": "South",
+        "short": "S"
+      },
+      "9": {
+        "name": "South-southwest",
+        "short": "SSW"
+      },
+      "10": {
+        "name": "Southwest",
+        "short": "SW"
+      },
+      "11": {
+        "name": "West-southwest",
+        "short": "WSW"
+      },
+      "12": {
+        "name": "West",
+        "short": "W"
+      },
+      "13": {
+        "name": "West-northwest",
+        "short": "WNW"
+      },
+      "14": {
+        "name": "Northwest",
+        "short": "NW"
+      },
+      "15": {
+        "name": "North-northwest",
+        "short": "NNW"
+      }
+    },
+    "mountains": {
+      "0": "Zi",
+      "1": "Gui",
+      "2": "Chou",
+      "3": "Gen",
+      "4": "Yin",
+      "5": "Jia",
+      "6": "Mao",
+      "7": "Yi",
+      "8": "Chen",
+      "9": "Xun",
+      "10": "Si",
+      "11": "Bing",
+      "12": "Wu",
+      "13": "Ding",
+      "14": "Wei",
+      "15": "Kun",
+      "16": "Shen",
+      "17": "Geng",
+      "18": "You",
+      "19": "Xin",
+      "20": "Xu",
+      "21": "Qian",
+      "22": "Hai",
+      "23": "Ren"
+    },
+    "trigrams": {
+      "KAN": "Kan",
+      "GEN": "Gen",
+      "ZHEN": "Zhen",
+      "XUN": "Xun",
+      "LI": "Li",
+      "KUN": "Kun",
+      "DUI": "Dui",
+      "QIAN": "Qian"
+    },
+    "elements": {
+      "METAL": "Metal",
+      "WOOD": "Wood",
+      "WATER": "Water",
+      "FIRE": "Fire",
+      "EARTH": "Earth"
+    },
+    "napAm": {
+      "0": "Sea Metal",
+      "1": "Furnace Fire",
+      "2": "Great Forest Wood",
+      "3": "Roadside Earth",
+      "4": "Sword Edge Metal",
+      "5": "Mountain Top Fire",
+      "6": "Ravine Water",
+      "7": "City Wall Earth",
+      "8": "White Wax Metal",
+      "9": "Willow Wood",
+      "10": "Spring Water",
+      "11": "Rooftop Earth",
+      "12": "Thunderbolt Fire",
+      "13": "Pine and Cypress Wood",
+      "14": "Long River Water",
+      "15": "Sand Metal",
+      "16": "Mountain Foot Fire",
+      "17": "Plains Wood",
+      "18": "Wall Earth",
+      "19": "Gold Leaf Metal",
+      "20": "Lamp Fire",
+      "21": "Heavenly River Water",
+      "22": "Great Post Road Earth",
+      "23": "Hairpin Metal",
+      "24": "Mulberry Wood",
+      "25": "Great Stream Water",
+      "26": "Sand Earth",
+      "27": "Heavenly Fire",
+      "28": "Pomegranate Wood",
+      "29": "Great Sea Water"
+    },
+    "voidNote": "Void lines are a folk feng shui convention: a direction that sits right on the border between two directions (major void) or two mountains (minor void), within ±{{window}}°."
+  },
+  "stars": {
+    "SINH_KHI": {
+      "name": "Life Generating",
+      "meaning": "The best — wealth, reputation and advancement"
+    },
+    "THIEN_Y": {
+      "name": "Heavenly Doctor",
+      "meaning": "Good for health, with helpful benefactors"
+    },
+    "DIEN_NIEN": {
+      "name": "Longevity",
+      "meaning": "Family harmony, lasting relationships"
+    },
+    "PHUC_VI": {
+      "name": "Stability",
+      "meaning": "Peace of mind, steadiness, good for study"
+    },
+    "TUYET_MENH": {
+      "name": "Total Loss",
+      "meaning": "The worst — losses and illness"
+    },
+    "NGU_QUY": {
+      "name": "Five Ghosts",
+      "meaning": "Gossip, losses, unexpected trouble"
+    },
+    "LUC_SAT": {
+      "name": "Six Killings",
+      "meaning": "Disrupted relationships, lawsuits"
+    },
+    "HOA_HAI": {
+      "name": "Mishaps",
+      "meaning": "Bad luck, small setbacks"
+    }
+  },
+  "groups": {
+    "EAST": {
+      "name": "East Four group",
+      "house": "East Four"
+    },
+    "WEST": {
+      "name": "West Four group",
+      "house": "West Four"
+    }
+  },
+  "profiles": {
+    "batTrach": {
+      "name": "Eight Mansions (personal trigram by birth year)",
+      "source": "Eight Mansions Bright Mirror — the Wandering Year method; personal trigram from the Luo Shu and the lunar birth year",
+      "interpretationV1": "The personal trigram comes from the lunar birth year and sex. Whichever of the person's 8 sectors the target's direction falls in, it carries that sector's star. If born before Lunar New Year, use the previous lunar year.",
+      "interpretationV1_1": "The personal trigram comes from the lunar birth year (which changes at Lunar New Year) and sex. Whichever of the person's 8 sectors the target's direction falls in, it carries that sector's star. A house is also classed as East Four or West Four by its sitting direction (the back of the house); schools that change the year at the Start of Spring (around 4 February) may give a different trigram for people born between the two dates.",
+      "disclaimer": "This is folk feng shui (the Eight Mansions method) for reference only — not a technical finding or professional advice. Other schools may give different results. The bearing in the Measurement result does not depend on this section."
+    }
+  },
+  "legend": {
+    "target": "{{target}}: {{degree}} · {{direction}}",
+    "luopan": "Facing {{facing}} · Sitting {{sitting}}",
+    "footer": "Chuyện Nhỏ · ERPCons · {{time}}"
+  },
+  "sceneTags": {
+    "FRONTAGE": "Frontage",
+    "ENTRANCE": "Main entrance"
+  },
+  "file": {
+    "compass": "house-orientation-compass",
+    "record": "house-orientation-record",
+    "suffix": "house orientation",
+    "page": "page {{page}}"
   }
 }

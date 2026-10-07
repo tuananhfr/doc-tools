@@ -21,7 +21,7 @@ interface RawItem {
  * về đúng khung gốc mà dấu đang dùng (đã áp CropBox + `/Rotate`) — tự ghép ma
  * trận là lệch ở trang có CropBox không bắt đầu từ 0,0.
  */
-export function loadPageText(source: SourceFile, page: Pick<PageRef, 'pageIndex' | 'sheet'>): Promise<PageText> {
+export function loadPageText(source: SourceFile, page: Pick<PageRef, 'pageIndex' | 'sheet'> & Partial<Pick<PageRef, 'rotation'>>): Promise<PageText> {
   // Chỉ trang không có lớp chữ mới được nhận dạng, nên có kết quả OCR là dùng luôn.
   const recognized = ocrText(source.id, page)
   if (recognized) return Promise.resolve(recognized)

@@ -34,7 +34,7 @@ export function cropTask(item: ImageItem, state: CropState): FlowTask {
     step.signal.throwIfAborted()
     return {
       title: translate('image:crop.title'),
-      output: { name: outputName(item.name, format, ' - đã chỉnh'), blob, detail: sizeLabel(size) },
+      output: { name: outputName(item.name, format, translate('image:file.adjusted')), blob, detail: sizeLabel(size) },
       notes: formatNotes(item, exif),
     }
   }
@@ -65,7 +65,7 @@ export function measureTask(item: ImageItem, state: MeasureState, colors: Measur
     }
     return {
       title: translate('image:measure.title'),
-      output: { name: outputName(item.name, format, ' - đã đo'), blob, detail: sizeLabel(size) },
+      output: { name: outputName(item.name, format, translate('image:file.measured')), blob, detail: sizeLabel(size) },
       notes: [...notes, ...formatNotes(item, exif)],
     }
   }
@@ -88,7 +88,7 @@ export function markTask(item: ImageItem, state: MarkState): FlowTask {
     if (stamped) notes.push({ tone: 'success', text: translate('image:mark.stampNote') })
     return {
       title: state.boxes.length > 0 ? (stamped ? translate('image:mark.titleBoth') : translate('image:mark.titleBoxes')) : translate('image:mark.titleStamp'),
-      output: { name: outputName(item.name, format, state.boxes.length > 0 ? ' - đã che' : ' - đã đóng dấu'), blob, detail: sizeLabel(size) },
+      output: { name: outputName(item.name, format, translate(state.boxes.length > 0 ? 'image:file.redacted' : 'image:file.stamped')), blob, detail: sizeLabel(size) },
       notes: [...notes, ...formatNotes(item, exif)],
     }
   }
@@ -111,7 +111,7 @@ export interface IdPhotoOptions {
 export function idPhotoTask(item: ImageItem, rect: Rect, { output, photo, layout, guides, paperLabel }: IdPhotoOptions): FlowTask {
   return async (step) => {
     step.onProgress(0, 1, output === 'single' ? translate('image:tasks.rendering') : translate('image:idPhoto.renderingSheet'))
-    const base = `${stem(item.name) || 'anh'} - ảnh thẻ ${photo.id}`
+    const base = `${stem(item.name) || translate('image:file.fallback')} - ${translate('image:file.idPhoto', { size: photo.id })}`
     const notes: FlowNote[] = []
     const dpi = printDpi(rect.width, photo.width)
     if (dpi < LOW_DPI) notes.push({ tone: 'warning', text: translate('image:idPhoto.lowDpiNote', { dpi, size: photo.label }) })
@@ -136,10 +136,10 @@ export function idPhotoTask(item: ImageItem, rect: Rect, { output, photo, layout
     if (output === 'pdf') {
       const blob = await renderSheetPdf(item.file, rect, layout, guides, base)
       step.signal.throwIfAborted()
-      return { title: translate('image:idPhoto.titleSheet'), output: { name: `${base} - ${count} ảnh.pdf`, blob, detail }, notes }
+      return { title: translate('image:idPhoto.titleSheet'), output: { name: `${base} - ${translate('image:file.imageCount', { count })}.pdf`, blob, detail }, notes }
     }
     const { blob, size } = await renderSheetImage(item.file, rect, layout, guides)
     step.signal.throwIfAborted()
-    return { title: translate('image:idPhoto.titleSheet'), output: { name: `${base} - ${count} ảnh.jpg`, blob, detail: `${detail} · ${sizeLabel(size)}` }, notes }
+    return { title: translate('image:idPhoto.titleSheet'), output: { name: `${base} - ${translate('image:file.imageCount', { count })}.jpg`, blob, detail: `${detail} · ${sizeLabel(size)}` }, notes }
   }
 }

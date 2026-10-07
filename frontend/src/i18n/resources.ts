@@ -3,8 +3,8 @@ import type { Locale } from './locales'
 
 /** Every message namespace; each one is a JSON file per locale under `messages/<locale>/`. */
 export const NAMESPACES = [
-  'common', 'catalog', 'site', 'guides', 'legal',
-  'pdf', 'image', 'qr', 'utility', 'orientation', 'vietnam', 'finance', 'family', 'documents', 'video',
+  'common', 'catalog', 'site', 'guides', 'legal', 'quality',
+  'pdf', 'ocr', 'image', 'qr', 'utility', 'orientation', 'vietnam', 'finance', 'family', 'documents', 'video',
   'byoai', 'study', 'safety', 'construction', 'community', 'accessibility', 'rules',
 ] as const
 export type Namespace = (typeof NAMESPACES)[number]

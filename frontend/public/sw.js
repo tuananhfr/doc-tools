@@ -5,6 +5,7 @@ const CACHE_PREFIX = 'doctools-' + encodeURIComponent(scopePath) + '-'
 const METADATA_CACHE = CACHE_PREFIX + 'metadata'
 const activeKey = appPath('/__sw-active-cache')
 const pendingKey = appPath('/__sw-pending-cache')
+const localesKey = appPath('/__sw-locales')
 let installedCache
 let activeCache
 async function readCacheName(key) {
@@ -22,7 +23,9 @@ self.addEventListener('install', event => event.waitUntil((async () => {
   installedCache = CACHE_PREFIX + manifest.version
   const cache = await caches.open(installedCache)
   await cache.addAll(manifest.assets)
-  await (await caches.open(METADATA_CACHE)).put(pendingKey, new Response(installedCache))
+  const metadata = await caches.open(METADATA_CACHE)
+  await metadata.put(pendingKey, new Response(installedCache))
+  await metadata.put(localesKey, new Response(JSON.stringify(manifest.locales ?? [])))
 })()))
 self.addEventListener('activate', event => event.waitUntil((async () => {
   const name = installedCache ?? await readCacheName(pendingKey)
@@ -32,6 +35,13 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
   }
   await self.clients.claim()
 })()))
+// Only Vietnamese pages are precached: `/en/lich-am` maps to `/lich-am`, which works offline even if never opened in English.
+async function defaultLocaleTwin(pathname) {
+  const stored = await (await caches.open(METADATA_CACHE)).match(localesKey)
+  const locales = stored ? await stored.json() : []
+  const [, locale, rest] = pathname.slice(basePath.length).match(/^\/([^/]+)(\/.*)?$/) ?? []
+  return locale && locales.includes(locale) ? appPath(rest || '/') : undefined
+}
 self.addEventListener('message', event => {
   if (event.data?.type === 'SKIP_WAITING') void self.skipWaiting()
 })
@@ -58,6 +68,8 @@ self.addEventListener('fetch', event => {
     } catch (error) {
       if (cached) return cached
       if (event.request.mode === 'navigate') {
+        const twin = await defaultLocaleTwin(url.pathname)
+        if (twin && await cache.match(twin)) return Response.redirect(new URL(twin, self.location.origin).href, 302)
         const shell = await cache.match(appPath('/'))
         if (shell) return shell
       }

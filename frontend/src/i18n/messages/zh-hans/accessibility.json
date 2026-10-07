@@ -14,7 +14,8 @@
     "copy": "复制",
     "download": "下载 .txt",
     "interrupted": "语音识别已中断。请检查麦克风权限后重试。",
-    "micFailed": "无法打开麦克风。请检查浏览器的访问权限。"
+    "micFailed": "无法打开麦克风。请检查浏览器的访问权限。",
+    "fileName": "语音转文字"
   },
   "magnifier": {
     "noCamera": "此浏览器不支持摄像头。",

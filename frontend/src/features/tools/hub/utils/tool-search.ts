@@ -1,5 +1,6 @@
 import { normalizeTextSearch } from '@/utils/text-search'
 import { SEARCH_INTENTS, SEARCH_TYPOS } from '../config/intent-registry'
+import { HANDWRITING_RECOGNITION_AVAILABLE } from '../config/tool-capabilities'
 import type { ToolDefinition, ToolFilter } from '../types/tool.types'
 
 const STOPWORDS = new Set('toi minh ban muon can lam cach nao co the giup cho voi mot hai ba cac nhung tep file qua nay duoc khong de thi va tu'.split(' '))
@@ -38,6 +39,7 @@ export function searchTools<T extends ToolDefinition>(catalog: readonly T[], key
   if (!keyword.trim()) return [...available]
   const query = queryTokens(keyword.slice(0, 4000))
   if (!query.length) return []
+  if (!HANDWRITING_RECOGNITION_AVAILABLE && query.includes('tay') && (query.includes('viet') || query.includes('chu'))) return []
   const ready = available.filter(tool => tool.status === 'ready')
   const contains = (words: string[]) => words.every(word => query.includes(word))
   const intents = INTENTS.map(({ intent, phrases, required, excluded }) => {
@@ -49,7 +51,8 @@ export function searchTools<T extends ToolDefinition>(catalog: readonly T[], key
   if (intents.length) {
     const best = intents[0]
     const ids = [best.intent.preferredTool, ...best.intent.acceptableTools]
-    return ids.flatMap(id => ready.filter(tool => tool.id === id && !best.intent.forbiddenTools.includes(id)))
+    const matches = ids.flatMap(id => ready.filter(tool => tool.id === id && !best.intent.forbiddenTools.includes(id)))
+    return best.intent.handoff ? matches.map(tool => ({ ...tool, searchParams: new URLSearchParams({ ocrProfile: best.intent.handoff!.profile, ocrOutput: best.intent.handoff!.output }).toString() })) : matches
   }
   return ready.map((tool, index) => {
     const name = tokensOf(tool.name)

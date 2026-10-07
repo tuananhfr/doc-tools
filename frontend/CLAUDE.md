@@ -41,9 +41,9 @@ chưa đủ.
 
 ## Kiến trúc chạy
 
-**Next.js chỉ là vỏ; UI là một React Router data router.** `app/layout.tsx` mount
-`ToolsProviders` + `ToolsRouter` cho MỌI trang, nên `app/page.tsx`, `app/[tool]/page.tsx`
-chỉ lo metadata / `generateStaticParams` / redirect rồi `return null`. Router được giữ
+**Next.js chỉ là vỏ; UI là một React Router data router.** `app/[lang]/layout.tsx` mount
+`ToolsProviders` + `ToolsRouter` cho MỌI trang, nên `app/[lang]/page.tsx`,
+`app/[lang]/[tool]/page.tsx` chỉ lo metadata / `generateStaticParams` / redirect rồi `return null`. Router được giữ
 nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và cảnh báo rời trang —
 đừng chuyển công cụ sang route của Next.
 
@@ -57,11 +57,12 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
 - `src/proxy.ts` (middleware của Next) xử lý link cũ `/doc-tools/*` và `?tool=` trước SSR,
   và thêm dấu `/` cuối cho trang chủ khi có prefix.
 - Route: `/` trang chủ · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·
-  `/<slug>` một công cụ · `/og/<slug>` ảnh chia sẻ PNG (route Node, prerender cho công cụ
-  `ready`, revalidate theo ngày, font cục bộ — không gọi ra ngoài).
+  `/<slug>` một công cụ · `/og/<slug>` ảnh chia sẻ PNG tiếng Việt (route Node, prerender
+  cho công cụ `ready`, revalidate theo ngày, font cục bộ — không gọi ra ngoài) ·
+  `/og/<slug>/<lang>` bản ngôn ngữ khác (xem mục Đa ngôn ngữ).
 - **Trang site** (`/xay-dung`, `/gia-dinh`, `/tai-lieu-pdf`…) cùng tầng với slug công cụ:
   khai slug ở `features/site/config/site-pages.ts` (test chặn trùng slug công cụ; sitemap
-  đọc từ đây), `app/<slug>/page.tsx` cho metadata, và route tĩnh trong `ToolsRouter.tsx`
+  đọc từ đây), `app/[lang]/<slug>/page.tsx` cho metadata, và route tĩnh trong `ToolsRouter.tsx`
   **trước** `:tool` — thiếu route thì Next prerender được nhưng client rơi vào `:tool` và
   về trang chủ. Trang nhóm dùng chung `CategoryHubPage`, nội dung ở `config/hub-pages.ts`;
   trang nội dung khai tiêu đề/mô tả ở `SITE_PAGE_META`. Bài hướng dẫn (`config/guides.ts`)
@@ -71,6 +72,38 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
 - Route động (`[tool]`, `huong-dan/[guide]`): `redirect()` ở lần render động đầu tiên
   khiến Next 16 trả HAI header `Location`, Chrome gộp thành URL hỏng. Slug lạ của bài
   hướng dẫn vì thế được chuyển hướng phía client (`GuidePage`).
+
+### Đa ngôn ngữ (15 locale, `src/i18n/`)
+
+- Danh sách ở `i18n/locales.ts`. **vi không có tiền tố**: `proxy.ts` rewrite `/x` →
+  `/vi/x` và 308 `/vi/*` về `/x`; ngôn ngữ khác là `/<code>/<slug>`, slug vẫn tiếng Việt.
+  Đổi ngôn ngữ = tải lại trang + cookie `cn_locale`; không đọc `Accept-Language`.
+- Chuỗi ở `i18n/messages/<locale>/<namespace>.json`, kiểu khoá sinh từ bản vi.
+  `messages.test.ts` bắt đủ khoá, placeholder và **dạng số nhiều CLDR** ở cả 15 locale
+  (fr có `many`, ar có 6 dạng) — thêm khoá là thêm cho cả 15. Code ngoài React dùng
+  `translate()` của `@/i18n/runtime` (chỉ client); server dùng `getServerT`.
+- **Đầu ra công cụ theo ngôn ngữ trang** (tên tệp, chữ in lên PDF/ảnh), trừ: chữ người dùng
+  gõ, chuyển font tiếng Việt, đổi địa chỉ (chỉ cột trạng thái + tiêu đề CSV), đọc hoá đơn
+  XML, đọc số thành chữ — vẫn tiếng Việt.
+- Chữ in lên PDF (`createTextPreparer`): font gốc nếu đủ glyph → MỘT font Noto CJK đã cắt
+  sẵn → không thì vẽ dòng đó lên canvas rồi nhúng PNG (ar/th/km/lo/my). Thêm chữ CJK vào
+  messages thì chạy lại `python scripts/subset-cjk-fonts.py <thư mục Noto gốc>`, thiếu
+  glyph là rơi xuống nhánh ảnh (không chọn được chữ).
+- **RTL chỉ có ar**, sinh bằng `postcss-rtlcss` chế độ override (`postcss.config.mjs`, nhắc
+  lại mặc định của Next vì config riêng tắt chúng). Đổi config PostCSS phải xoá
+  `.next/cache/webpack/*-production`, không thì build dùng CSS cũ mà không báo gì. Toạ độ
+  inline `left/top` của lớp phủ trên tài liệu cố ý không lật; icon mũi tên/chevron lật bằng
+  rule `[dir='rtl']` trong `styles/base/reset.css`; cần giữ nguyên một luật thì `/*rtl:ignore*/`.
+- Font UI theo hệ chữ: stack `:lang()` trong `styles/site/tokens.css` (Be Vietnam Pro chỉ
+  phủ Latin).
+- Ảnh OG `/og/<slug>/<lang>` sinh khi có request (ISR). Satori không shape được ar/th/lo/km/my
+  (Ả Rập còn crash) nên các trang đó trỏ sang ảnh `en` — `features/site/server/share-image-locale.ts`.
+- Manifest theo locale là **route** (`app/manifest.webmanifest`, `app/[lang]/manifest.webmanifest`),
+  không phải `app/manifest.ts`: file convention đó đè `metadata.manifest`, mọi locale sẽ
+  link về bản vi. `id`/`scope` chung để vẫn là một app.
+- Offline chỉ precache vi. Trang ngôn ngữ khác chưa mở mà mất mạng thì `sw.js` chuyển sang
+  bản vi cùng slug (danh sách locale lấy từ `offline-manifest.json`); trả shell `/` ở URL
+  `/<lang>/...` là React Router báo 404.
 
 ### Base path
 
@@ -87,6 +120,10 @@ phải build lại.
   (`skipTrailingSlashRedirect` chỉ bật khi có prefix).
 
 ### Gọi backend
+
+OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-image transforms and explicit word/field/table review. Processed cell proposals retain their pass and candidate IDs separately from immutable raw text; export requires confirmation. Manual fields link to their editable text-layer words. `ocr-export` exports reviewed TXT/PDF/DOCX/XLSX/CSV/JSON; rich results and corrections stay in RAM. Cache fingerprints include source hash, page rotation, profile and pipeline version. Handwriting HTR is disabled pending model/license/browser/ground-truth evidence; mixed mode is a Tesseract experiment requiring full review.
+
+Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
 `next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions}/*` sang
 `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.

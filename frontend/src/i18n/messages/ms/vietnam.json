@@ -81,7 +81,8 @@
     "columns": {
       "old": "Alamat lama",
       "proposed": "Cadangan",
-      "status": "Status"
+      "status": "Status",
+      "droppedDistrict": "Peringkat daerah dimansuhkan"
     },
     "downloadCsv": "Muat turun CSV",
     "verifiedNote": "Set padanan yang ditandatangani, berkuat kuasa mulai {{date}}. Sumber: {{source}}. Sahkan alamat akhir dengan pejabat yang menerima dokumen anda.",
@@ -95,7 +96,8 @@
     "rulesLabel": "jadual padanan alamat",
     "rulesNone": "Belum ada set padanan alamat yang ditandatangani dan masih berkuat kuasa dalam sistem.",
     "manualLabel": "Atau masukkan sendiri, satu setiap baris: “wilayah lama|daerah lama|komun lama|wilayah baharu|komun baharu”",
-    "manualInvalid": "Format jadual padanan salah (setiap baris perlu 5 bahagian, setiap bahagian maksimum 150 aksara) atau ada wilayah lama yang dipadankan kepada dua wilayah baharu yang berbeza."
+    "manualInvalid": "Format jadual padanan salah (setiap baris perlu 5 bahagian, setiap bahagian maksimum 150 aksara) atau ada wilayah lama yang dipadankan kepada dua wilayah baharu yang berbeza.",
+    "csvFileName": "penukaran-alamat"
   },
   "invoice": {
     "errors": {
@@ -156,5 +158,200 @@
     "placeholder": "Contoh: 1.234.567",
     "zeroWordLabel": "Perkataan bagi sifar di tempat puluh",
     "fourWordLabel": "Perkataan bagi empat selepas puluh"
+  },
+  "terms": {
+    "stems": {
+      "0": "Kayu Yang",
+      "1": "Kayu Yin",
+      "2": "Api Yang",
+      "3": "Api Yin",
+      "4": "Tanah Yang",
+      "5": "Tanah Yin",
+      "6": "Logam Yang",
+      "7": "Logam Yin",
+      "8": "Air Yang",
+      "9": "Air Yin"
+    },
+    "branches": {
+      "0": "Tikus",
+      "1": "Kerbau",
+      "2": "Harimau",
+      "3": "Kucing",
+      "4": "Naga",
+      "5": "Ular",
+      "6": "Kuda",
+      "7": "Kambing",
+      "8": "Monyet",
+      "9": "Ayam",
+      "10": "Anjing",
+      "11": "Babi"
+    },
+    "canChi": "{{branch}} {{stem}}",
+    "spirits": {
+      "THANH_LONG": "Naga Biru",
+      "MINH_DUONG": "Dewan Terang",
+      "THIEN_HINH": "Hukuman Langit",
+      "CHU_TUOC": "Burung Merah",
+      "KIM_QUY": "Peti Emas",
+      "KIM_DUONG": "Dewan Emas",
+      "BACH_HO": "Harimau Putih",
+      "NGOC_DUONG": "Dewan Jed",
+      "THIEN_LAO": "Penjara Langit",
+      "HUYEN_VU": "Kura-kura Hitam",
+      "TU_MENH": "Penjaga Nyawa",
+      "CAU_TRAN": "Cangkuk"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "Hari Tahun Baharu",
+      "short": "Tahun Baharu"
+    },
+    "REUNIFICATION": {
+      "name": "Hari Penyatuan Semula",
+      "short": "Penyatuan Semula"
+    },
+    "LABOUR": {
+      "name": "Hari Pekerja Antarabangsa",
+      "short": "Hari Pekerja"
+    },
+    "NATIONAL_DAY": {
+      "name": "Hari Kebangsaan",
+      "short": "Hari Kebangsaan"
+    },
+    "CULTURE": {
+      "name": "Hari Kebudayaan Vietnam",
+      "short": "Hari Kebudayaan"
+    },
+    "PARTY": {
+      "name": "Hari Penubuhan Parti Komunis",
+      "short": "Hari Parti"
+    },
+    "VALENTINE": {
+      "name": "Hari Valentine",
+      "short": "Valentine"
+    },
+    "PHYSICIANS": {
+      "name": "Hari Doktor Vietnam",
+      "short": "Hari Doktor"
+    },
+    "WOMEN_INTL": {
+      "name": "Hari Wanita Antarabangsa",
+      "short": "Hari Wanita"
+    },
+    "YOUTH_UNION": {
+      "name": "Hari Penubuhan Kesatuan Belia",
+      "short": "Hari Belia"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "Hari Kemenangan Dien Bien Phu",
+      "short": "Dien Bien Phu"
+    },
+    "HO_CHI_MINH": {
+      "name": "Hari Keputeraan Presiden Ho Chi Minh",
+      "short": "Hari Lahir Ho Chi Minh"
+    },
+    "CHILDREN": {
+      "name": "Hari Kanak-kanak Antarabangsa",
+      "short": "Hari Kanak-kanak"
+    },
+    "FAMILY": {
+      "name": "Hari Keluarga Vietnam",
+      "short": "Hari Keluarga"
+    },
+    "MARTYRS": {
+      "name": "Hari Veteran Cacat dan Pahlawan",
+      "short": "Hari Pahlawan"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "Hari Revolusi Ogos",
+      "short": "Revolusi Ogos"
+    },
+    "CAPITAL": {
+      "name": "Hari Pembebasan Ibu Kota",
+      "short": "Pembebasan Ibu Kota"
+    },
+    "WOMEN_VN": {
+      "name": "Hari Wanita Vietnam",
+      "short": "Wanita Vietnam"
+    },
+    "TEACHERS": {
+      "name": "Hari Guru Vietnam",
+      "short": "Hari Guru"
+    },
+    "ARMY": {
+      "name": "Hari Tentera Rakyat",
+      "short": "Hari Tentera"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "Malam Krismas",
+      "short": "Malam Krismas"
+    },
+    "CHRISTMAS": {
+      "name": "Hari Krismas",
+      "short": "Krismas"
+    },
+    "TET_1": {
+      "name": "Tahun Baharu Cina (hari pertama)",
+      "short": "Tet hari 1"
+    },
+    "TET_2": {
+      "name": "Tahun Baharu Cina (hari kedua)",
+      "short": "Tet hari 2"
+    },
+    "TET_3": {
+      "name": "Tahun Baharu Cina (hari ketiga)",
+      "short": "Tet hari 3"
+    },
+    "HUNG_KINGS": {
+      "name": "Hari Peringatan Raja-raja Hung",
+      "short": "Raja Hung"
+    },
+    "LANTERN": {
+      "name": "Chap Goh Mei (bulan purnama pertama)",
+      "short": "Chap Goh Mei"
+    },
+    "COLD_FOOD": {
+      "name": "Perayaan Makanan Sejuk",
+      "short": "Makanan Sejuk"
+    },
+    "VESAK": {
+      "name": "Hari Wesak",
+      "short": "Wesak"
+    },
+    "DOAN_NGO": {
+      "name": "Perayaan Bulan Lima (Duanwu)",
+      "short": "Duanwu"
+    },
+    "VU_LAN": {
+      "name": "Perayaan Vu Lan",
+      "short": "Vu Lan"
+    },
+    "MID_AUTUMN": {
+      "name": "Perayaan Pertengahan Musim Luruh",
+      "short": "Kuih Bulan"
+    },
+    "KITCHEN_GODS": {
+      "name": "Hari Dewa Dapur",
+      "short": "Dewa Dapur"
+    },
+    "MOTHER": {
+      "name": "Hari Ibu",
+      "short": "Hari Ibu"
+    },
+    "FATHER": {
+      "name": "Hari Bapa",
+      "short": "Hari Bapa"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "Malam Tahun Baharu Cina",
+      "short": "Malam Tahun Baharu"
+    },
+    "moon": {
+      "first": "Hari pertama bulan lunar ke-{{month}}",
+      "firstLeap": "Hari pertama bulan lunar lompat ke-{{month}}",
+      "full": "Bulan purnama bulan lunar ke-{{month}}",
+      "fullLeap": "Bulan purnama bulan lunar lompat ke-{{month}}"
+    }
   }
 }

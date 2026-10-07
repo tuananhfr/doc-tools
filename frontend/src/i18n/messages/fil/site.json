@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — mga libreng tool",
     "description": "Libreng mga tool para sa PDF, larawan, QR code at iba pang utility. Pinoproseso sa device mo, hindi ina-upload ang file."
   },
+  "shareImage": {
+    "label": "Libreng mga tool",
+    "slogan": "Gamitin kapag kailangan.",
+    "noAccount": "Hindi kailangan ng account"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "Tungkol sa Chuyện Nhỏ | Libreng mga tool mula sa ERPCons & LPC",

@@ -90,7 +90,7 @@ export function renameAll(names: string[], extensions: string[], { pattern, star
         .trim()
         // Windows lặng lẽ bỏ dấu chấm / khoảng trắng cuối tên.
         .replace(/[. ]+$/, '')
-      return `${base || 'anh'}.${extensions[index]}`
+      return `${base || translate('image:file.fallback')}.${extensions[index]}`
     }),
   )
 }

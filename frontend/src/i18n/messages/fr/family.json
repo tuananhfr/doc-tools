@@ -103,7 +103,8 @@
     "intro": "Choisissez un nom facile à reconnaître. Inutile de saisir la date de naissance, l'école ou des pièces d'identité.",
     "name": "Nom",
     "profile": "Profil",
-    "add": "Ajouter un membre"
+    "add": "Ajouter un membre",
+    "defaultSelf": "Moi"
   },
   "backup": {
     "invalidFile": "Le fichier de sauvegarde n'est pas valide ou dépasse 20 Mo.",
@@ -151,5 +152,16 @@
     "loadFailed": "Impossible d'ouvrir les données de cet appareil. Vérifiez les autorisations de stockage du navigateur.",
     "saveFailed": "Impossible d'enregistrer les modifications. Exportez une sauvegarde et vérifiez l'espace libre de l'appareil.",
     "restoreFailed": "Impossible de restaurer la sauvegarde."
+  },
+  "print": {
+    "title": "Calendrier familial · 30 prochains jours",
+    "from": "À partir du {{date}}.",
+    "withSensitive": "Inclut les événements privés et sensibles.",
+    "withoutSensitive": "Exclut les événements privés et sensibles.",
+    "empty": "Aucun événement sur cette période."
+  },
+  "file": {
+    "backup": "calendrier-familial-sauvegarde",
+    "ics": "calendrier-familial"
   }
 }

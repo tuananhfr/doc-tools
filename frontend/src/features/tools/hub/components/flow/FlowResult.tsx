@@ -7,6 +7,8 @@ import { megabytes, TOOL_LIMITS } from '../../config/limits'
 import type { FlowNote, FlowOutput, FlowResult as Result, FlowTone } from '../../types/flow.types'
 import { copyText as copyToClipboard } from '../../utils/clipboard'
 import { canPreview, canShare, downloadOutput, outputIcon, previewOutput, shareOutput } from '../../utils/flow-output'
+import { recordQualityEvent } from '../../services/quality-events'
+import { qualityToolForPath } from '../../services/quality-tool'
 
 interface FlowResultProps {
   result: Result
@@ -113,6 +115,7 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
           className="erp-flow-result__download"
           onClick={() => {
             downloadOutput(output)
+            recordQualityEvent('download', qualityToolForPath(window.location.pathname))
             onDownloaded?.()
           }}
         >

@@ -413,5 +413,20 @@
     "brushSize": "ទំហំជក់៖ {{value}}",
     "undoBrush": "មិនធ្វើវិញការជក់",
     "note": "រូបភាពដំណើរការលើឧបករណ៍។ ផ្ទៃខាងក្រោយលម្អិតច្រើនត្រូវកែដោយជក់ដោយដៃ រូបភាពធំត្រូវបានបង្រួមអតិបរមាត្រឹម 2200 px ក្នុងមួយជ្រុង។"
+  },
+  "file": {
+    "fallback": "រូបភាព",
+    "camera": "រូបថត {{time}} - {{index}}",
+    "adjusted": "បានកែ",
+    "measured": "បានវាស់",
+    "redacted": "បានបិទបាំង",
+    "stamped": "បានបោះត្រា",
+    "compressed": "បានបង្ហាប់",
+    "idPhoto": "រូបថតប័ណ្ណ {{size}}",
+    "imageCount": "រូបភាព {{count}}",
+    "convertedCount": "រូបភាព {{format}} {{count}}",
+    "compressedCount": "រូបភាពបានបង្ហាប់ {{count}}",
+    "collage": "រូបផ្គុំ",
+    "measureReference": "គោល៖ {{length}}"
   }
 }

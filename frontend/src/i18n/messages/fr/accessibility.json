@@ -14,7 +14,8 @@
     "copy": "Copier",
     "download": "Télécharger le .txt",
     "interrupted": "La reconnaissance vocale a été interrompue. Vérifiez l'autorisation du micro et réessayez.",
-    "micFailed": "Impossible d'ouvrir le micro. Vérifiez les autorisations de votre navigateur."
+    "micFailed": "Impossible d'ouvrir le micro. Vérifiez les autorisations de votre navigateur.",
+    "fileName": "transcription-dictee"
   },
   "magnifier": {
     "noCamera": "Ce navigateur ne prend pas en charge la caméra.",

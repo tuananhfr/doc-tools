@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — 免费工具",
     "description": "免费的 PDF、图片、二维码和实用工具。在你的设备上处理，文件不上传。"
   },
+  "shareImage": {
+    "label": "免费工具",
+    "slogan": "随用随取。",
+    "noAccount": "无需账号"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "关于 Chuyện Nhỏ | ERPCons & LPC 出品的免费工具",

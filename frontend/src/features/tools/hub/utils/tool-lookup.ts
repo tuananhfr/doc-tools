@@ -3,8 +3,8 @@ import { CATEGORY_TONE, LEGACY_TOOL_QUERY, TOOL_CATALOG } from '../config/tool-c
 import type { ToolDefinition, ToolEntry, ToolFilter, ToolTone } from '../types/tool.types'
 
 /** Build a tool URL within its public or ERPCons branch. */
-export function toolPath(base: string, tool: Pick<ToolEntry, 'slug'>): string {
-  return `${base.replace(/\/+$/, '')}/${tool.slug}`
+export function toolPath(base: string, tool: Pick<ToolEntry, 'slug' | 'searchParams'>): string {
+  return `${base.replace(/\/+$/, '')}/${tool.slug}${tool.searchParams ? `?${tool.searchParams}` : ''}`
 }
 
 /** Đường dẫn theo `id` — cho công cụ này mở công cụ khác mà không chép slug sang chỗ thứ hai. */
@@ -51,7 +51,7 @@ export function resolveToolRoute<T extends ToolEntry = ToolEntry>(slug: string |
  */
 export function leavesToolScreen(base: string, currentPath: string, nextPath: string, catalog: readonly ToolEntry[] = TOOL_CATALOG): boolean {
   const prefix = `${base.replace(/\/+$/, '')}/`
-  const screenAt = (path: string) => (path.startsWith(prefix) ? (resolveToolRoute(path.slice(prefix.length).replace(/\/+$/, ''), catalog).tool?.screen ?? null) : null)
+  const screenAt = (path: string) => (path.startsWith(prefix) ? (resolveToolRoute(path.split(/[?#]/)[0].slice(prefix.length).replace(/\/+$/, ''), catalog).tool?.screen ?? null) : null)
   const current = screenAt(currentPath)
   return current === null || screenAt(nextPath) !== current
 }

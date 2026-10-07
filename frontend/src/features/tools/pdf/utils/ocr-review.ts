@@ -2,6 +2,7 @@ import type { OcrPageResult, OcrWordResult } from '../types/ocr-result.types'
 import type { PageText, Quad } from '../types/text-layer.types'
 import { ocrRuns, type OcrLine } from './ocr-runs'
 import type { Point } from './page-geometry'
+import { validateOcrFields, validateOcrTable } from './ocr-validation'
 
 export function ocrWords(lines: OcrLine[], pxPerPt: number, toBase: (point: Point) => Point, size: { width: number; height: number }): OcrWordResult[] {
   const runs = ocrRuns(lines, pxPerPt, toBase, 0)
@@ -22,7 +23,7 @@ export function ocrWords(lines: OcrLine[], pxPerPt: number, toBase: (point: Poin
   }))
 }
 
-export const needsOcrReview = (word: OcrWordResult): boolean => word.verifiedValue === null && (word.confidenceLevel !== 'HIGH' || word.contentType === 'numeric')
+export const needsOcrReview = (word: OcrWordResult): boolean => word.verifiedValue === null && (word.confidenceLevel !== 'HIGH' || word.contentType === 'numeric' || Boolean(word.reviewReasons?.length) || word.status === 'UNREADABLE')
 
 export function confirmOcrWord(word: OcrWordResult, value: string, at = new Date().toISOString()): OcrWordResult {
   return { ...word, verifiedValue: value.trim().normalize('NFC'), verifiedAt: at, verifiedBy: 'local-user' }
@@ -31,6 +32,7 @@ export function confirmOcrWord(word: OcrWordResult, value: string, at = new Date
 /** Keep provenance while rebuilding the text layer from the reviewed values. */
 export function reviewedPageText(ocr: OcrPageResult): PageText {
   if (ocr.words.some(needsOcrReview)) throw new Error('OCR_REVIEW_REQUIRED')
+  if ([...validateOcrFields(ocr.layout?.fields ?? []), ...(ocr.layout?.tables ?? []).flatMap(validateOcrTable)].some(finding => finding.severity === 'error')) throw new Error('OCR_LAYOUT_REVIEW_REQUIRED')
   const runs = ocr.words.flatMap(word => {
     const text = word.verifiedValue ?? word.normalizedText
     return text ? [{ ...word.run, text, eol: false }] : []

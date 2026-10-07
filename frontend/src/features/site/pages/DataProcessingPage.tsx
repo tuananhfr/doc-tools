@@ -11,6 +11,7 @@ import { toolPath } from '@/features/tools/hub/utils/tool-lookup'
 import { FaqList } from '../components/FaqList'
 import { SitePageHero } from '../components/SitePageHero'
 import { ToolSearch } from '../components/ToolSearch'
+import { QualityConsent } from '../components/QualityConsent'
 import { DATA_FAQ_IDS, FAQ_ITEMS } from '../config/support-faq'
 import { filterProcessingRows, PROCESSING_FILTERS, processingRows, type ProcessingFilter, type ProcessingMode } from '../utils/data-processing'
 import { localizeFaq, pickFaq } from '../utils/faq'
@@ -71,6 +72,7 @@ export default function DataProcessingPage() {
       </SitePageHero>
 
       <section className="cn-container cn-page-section" aria-label={t('data.flowLabel')}>
+        <QualityConsent disclosure />
         <ul className="cn-data-columns">
           {columns.map((column) => (
             <li key={column.tone} className={`cn-data-column cn-data-column--${column.tone}`}>

@@ -277,5 +277,10 @@
       "REPLACED": "Label ini telah diganti — gunakan label baharu.",
       "ARCHIVED": "Objek ini tidak lagi diurus."
     }
+  },
+  "file": {
+    "qr": "Kod QR",
+    "barcode": "Kod bar",
+    "barcodeCount": "{{count}} kod bar"
   }
 }

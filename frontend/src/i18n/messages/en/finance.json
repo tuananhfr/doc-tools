@@ -40,7 +40,11 @@
     "applyVat": "Apply signed tax rate",
     "ruleLabel": "electricity price table",
     "ruleNone": "There's no signed, currently valid electricity price table on the system yet.",
-    "vatRuleLabel": "VAT rate"
+    "vatRuleLabel": "VAT rate",
+    "aiResult": {
+      "water": "Water {{volume}} m³; total {{total}} đ",
+      "electricity": "Electricity {{kwh}} kWh; total {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Transfers to settle up",
@@ -54,7 +58,11 @@
     "choosePerson": "Choose a person",
     "amount": "Amount (đ)",
     "participants": "Split between",
-    "removeExpense": "Remove expense"
+    "removeExpense": "Remove expense",
+    "samplePeople": {
+      "0": "Alex",
+      "1": "Sam"
+    }
   },
   "loan": {
     "totalPayment": "Total to pay",
@@ -88,7 +96,17 @@
       "annuity": "Roughly equal payments",
       "equalPrincipal": "Equal principal"
     },
-    "renewals": "Number of renewals"
+    "renewals": "Number of renewals",
+    "file": {
+      "name": "repayment-schedule",
+      "columns": {
+        "period": "Period",
+        "principal": "Principal",
+        "interest": "Interest",
+        "payment": "Payment",
+        "balance": "Balance"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "payroll parameters",
     "ruleNone": "There's no signed, currently valid payroll rule package on the system yet.",
     "enterParams": "Enter payroll parameters",
-    "brackets": "Tax table: “taxable income threshold (đ), tax rate (%)”; use * on the last line"
+    "brackets": "Tax table: “taxable income threshold (đ), tax rate (%)”; use * on the last line",
+    "aiResult": "Gross {{gross}} đ; Net {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "Unit price comparison",

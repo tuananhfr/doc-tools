@@ -16,7 +16,7 @@ export default function CollagePage() {
     setBusy(true)
     try {
       const blob = await makeImageCollage(files, columns, gap)
-      downloadOutput({ name: 'anh-ghep.png', blob })
+      downloadOutput({ name: `${t('file.collage')}.png`, blob })
       setMessage(t('collage.done'))
     } catch (error) {
       setMessage(error instanceof Error ? error.message : t('collage.failed'))

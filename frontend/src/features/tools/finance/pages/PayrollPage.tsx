@@ -90,6 +90,6 @@ export default function PayrollPage() {
         <label className="erp-flow-field__label mt-3">{t('payroll.brackets')}<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
       </details>
     </ToolPanel>
-    <ByoAiPanel toolId="luong" domain="payroll" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={result ? `Gross ${result.gross} đ; Net ${result.net} đ` : ''} />
+    <ByoAiPanel toolId="luong" domain="payroll" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />
   </ToolBoard>
 }

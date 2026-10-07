@@ -475,5 +475,26 @@
     "brushSize": "Taille du pinceau : {{value}}",
     "undoBrush": "Annuler le pinceau",
     "note": "L'image est traitée sur votre appareil. Un fond détaillé nécessite une retouche manuelle au pinceau ; les grandes images sont réduites à 2200 px maximum par côté."
+  },
+  "file": {
+    "fallback": "image",
+    "camera": "Photo {{time}} - {{index}}",
+    "adjusted": "retouchée",
+    "measured": "mesurée",
+    "redacted": "masquée",
+    "stamped": "tamponnée",
+    "compressed": "compressée",
+    "idPhoto": "Photo d'identité {{size}}",
+    "imageCount_one": "{{count}} image",
+    "imageCount_many": "{{count}} images",
+    "imageCount_other": "{{count}} images",
+    "convertedCount_one": "{{count}} image {{format}}",
+    "convertedCount_many": "{{count}} images {{format}}",
+    "convertedCount_other": "{{count}} images {{format}}",
+    "compressedCount_one": "{{count}} image compressée",
+    "compressedCount_many": "{{count}} images compressées",
+    "compressedCount_other": "{{count}} images compressées",
+    "collage": "collage",
+    "measureReference": "Référence : {{length}}"
   }
 }

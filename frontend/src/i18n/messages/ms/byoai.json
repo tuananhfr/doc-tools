@@ -44,5 +44,28 @@
     "copyFailed": "Tidak dapat menyalin; pilih teks dan salin secara manual.",
     "answerLabel": "Tampal jawapan AI di sini untuk dibaca (tidak disimpan atau dihantar kepada Chuyện Nhỏ)",
     "unverified": "Kandungan belum disahkan"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "Anda membantu orang memilih alat Chuyện Nhỏ. Jawab dengan ringkas dalam bahasa Melayu. Cadangkan hanya alat daripada senarai di bawah; jangan janjikan ciri yang tidak disebut dalam penerangannya. Jika soalan berkaitan undang-undang, kewangan atau kesihatan, minta pengguna menyemak sumber rasmi yang berkuat kuasa. Jangan sekali-kali meminta pengguna memuat naik fail peribadi ke perkhidmatan AI.",
+      "question": "Soalan: {{question}}",
+      "toolsHeading": "Alat yang mungkin berkaitan:",
+      "noTools": "- Tiada alat yang jelas sepadan.",
+      "closing": "Berikan paling banyak tiga langkah dan pautan alat jika membantu."
+    },
+    "package": {
+      "truncated": "[Dipendekkan kerana melebihi had soalan.]",
+      "noContext": "Semak kemas kini bagi alat {{toolId}}; tiada data peribadi pengguna disertakan.",
+      "tasks": {
+        "0": "Utamakan dokumen, halaman atau API rasmi.",
+        "1": "Bandingkan dengan data semasa; nyatakan tarikh terbitan dan tarikh berkuat kuasa.",
+        "2": "Berikan URL sumber bagi setiap perubahan; nyatakan dengan jelas apa yang belum pasti.",
+        "3": "Jangan meneka jika tiada bukti."
+      },
+      "redactedContext": "Kelayakan log masuk, URL dalaman dan alamat e-mel telah disembunyikan secara automatik; pengguna perlu menyemak pratonton.",
+      "excludedContext": "Hasil dan data peribadi pengguna tidak disertakan secara lalai.",
+      "intro": "Anda pembantu penyemak sumber. Cadangkan hanya perubahan yang boleh disahkan; output anda tidak dianggap sebagai data yang disahkan.",
+      "outro": "Pulangkan JSON tepat seperti yang diterangkan oleh output_schema. Tanpa Markdown, tanpa mukadimah. Tulis teks di dalam JSON dalam bahasa Melayu."
+    }
   }
 }

@@ -1,5 +1,7 @@
 import type { Point } from '../types/image.types'
 import type { MeasureReference, MeasureScale, MeasureShape } from '../types/measure.types'
+import { numberFormat } from '@/i18n/intl'
+import { translate } from '@/i18n/runtime'
 
 export function distance(a: Point, b: Point): number {
   return Math.hypot(b.x - a.x, b.y - a.y)
@@ -41,7 +43,7 @@ export function scaleOf(reference: MeasureReference | null): MeasureScale | null
 }
 
 function number(value: number, digits: number): string {
-  return new Intl.NumberFormat('vi-VN', { maximumFractionDigits: digits }).format(value)
+  return numberFormat({ maximumFractionDigits: digits }).format(value)
 }
 
 /** "3,25 m" khi có đoạn chuẩn; chưa có thì ghi theo điểm ảnh — không bịa đơn vị. */
@@ -64,7 +66,7 @@ export function shapeLabel(shape: MeasureShape, shapes: MeasureShape[], scale: M
 
 /** Nhãn của đoạn chuẩn: "Chuẩn: 2 m". */
 export function referenceLabel(reference: MeasureReference, scale: MeasureScale): string {
-  return `Chuẩn: ${formatLength(distance(reference.points[0], reference.points[1]), scale)}`
+  return translate('image:file.measureReference', { length: formatLength(distance(reference.points[0], reference.points[1]), scale) })
 }
 
 /** Chỗ đặt nhãn của một hình (toạ độ ảnh). */

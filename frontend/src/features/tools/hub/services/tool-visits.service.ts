@@ -1,4 +1,6 @@
 import { client } from '@/api'
+import { recordQualityEvent } from './quality-events'
+import { qualityToolForPath } from './quality-tool'
 
 export interface ToolStats {
   total: number
@@ -15,6 +17,7 @@ export interface ToolStats {
  * Chỉ gửi slug công cụ — không có tệp, nội dung hay định danh người dùng.
  */
 export async function recordVisit(tool: string): Promise<void> {
+  recordQualityEvent('tool-opened', qualityToolForPath(`/${tool}`))
   await client.post('tools/visits', { tool }, { skipSessionExpired: true, skipOutbox: true })
 }
 

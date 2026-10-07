@@ -8,13 +8,17 @@ import { sheetKey } from '../utils/image-sheet'
  * thà mất kết quả (nhận dạng lại) còn hơn tô / sửa chữ trật chỗ.
  */
 
-type OcrPage = Pick<PageRef, 'pageIndex' | 'sheet'>
+type OcrPage = Pick<PageRef, 'pageIndex' | 'sheet'> & Partial<Pick<PageRef, 'rotation'>>
 
 const texts = new Map<string, PageText>()
 const listeners = new Set<() => void>()
 let version = 0
 
-const keyOf = (sourceId: string, page: OcrPage) => `${sourceId}:${page.pageIndex}:${sheetKey(page.sheet)}`
+const keyOf = (sourceId: string, page: OcrPage) => `${sourceId}:${page.pageIndex}:${sheetKey(page.sheet)}:${page.rotation ?? 0}`
+
+export function removeOcrText(sourceId: string, page: OcrPage): void {
+  if (texts.delete(keyOf(sourceId, page))) notify()
+}
 
 function notify() {
   version++

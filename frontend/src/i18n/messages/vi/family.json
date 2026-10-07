@@ -103,7 +103,8 @@
     "intro": "Đặt tên gọi dễ nhận biết. Không cần nhập ngày sinh, trường học hoặc giấy tờ cá nhân.",
     "name": "Tên gọi",
     "profile": "Hồ sơ",
-    "add": "Thêm thành viên"
+    "add": "Thêm thành viên",
+    "defaultSelf": "Tôi"
   },
   "backup": {
     "invalidFile": "Tệp sao lưu không hợp lệ hoặc quá 20 MB.",
@@ -149,5 +150,16 @@
     "loadFailed": "Không mở được dữ liệu trên thiết bị. Kiểm tra quyền lưu trữ của trình duyệt.",
     "saveFailed": "Không lưu được thay đổi. Hãy xuất bản sao lưu và kiểm tra dung lượng thiết bị.",
     "restoreFailed": "Không khôi phục được bản sao lưu."
+  },
+  "print": {
+    "title": "Lịch Gia Đình · 30 ngày tới",
+    "from": "Từ {{date}}.",
+    "withSensitive": "Có lịch riêng tư và nhạy cảm.",
+    "withoutSensitive": "Không gồm lịch riêng tư và nhạy cảm.",
+    "empty": "Không có lịch trong khoảng này."
+  },
+  "file": {
+    "backup": "lich-gia-dinh-backup",
+    "ics": "lich-gia-dinh"
   }
 }

@@ -277,5 +277,10 @@
       "REPLACED": "此标签已被替换——请使用新标签。",
       "ARCHIVED": "该对象已停止管理。"
     }
+  },
+  "file": {
+    "qr": "二维码",
+    "barcode": "条形码",
+    "barcodeCount": "{{count}} 个条形码"
   }
 }

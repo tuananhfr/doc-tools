@@ -90,5 +90,11 @@
     "cancelled": "Pemprosesan video dibatalkan.",
     "timedOut": "Tugasan mengambil masa terlalu lama. Cuba video yang lebih pendek dan semak sambungan semasa pemproses dimuat turun.",
     "engineFailed": "Tidak dapat memuatkan atau menjalankan pemproses video. Semak sambungan, tutup beberapa tab atau cuba fail lebih kecil pada komputer."
+  },
+  "file": {
+    "audio": "audio",
+    "gif": "animasi",
+    "trimmed": "dipotong",
+    "compressed": "dimampatkan"
   }
 }

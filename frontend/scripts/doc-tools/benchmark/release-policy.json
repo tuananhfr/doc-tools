@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "requiredP0": ["P0-MERGE", "P0-SPLIT", "P0-PDF-COMPRESS", "P0-IMAGE-PDF", "P0-IMAGE-COMPRESS", "P0-OCR-TXT", "P0-OCR-PDF", "P0-QR"],
+  "minimumSearchStories": 100,
+  "search": {"top1": 1, "top3": 1, "falseMatch": 0, "requiresHumanApproval": true},
+  "ocr": {"cleanPrintedRegressionAllowed": false, "criticalReviewCoverage": 1, "requiresFixedGroundTruth": true},
+  "handwriting": {"requiresHumanApprovedTruth": true, "requiresWriterHoldout": true, "requiresBrowserModelEvidence": true},
+  "outputs": ["text", "pdf", "docx", "xlsx", "csv", "json"],
+  "thresholdPolicy": "Missing or unmeasured evidence is pending, never passing. Handwriting accuracy targets require human-approved real data."
+}

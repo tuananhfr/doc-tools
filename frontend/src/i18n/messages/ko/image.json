@@ -413,5 +413,20 @@
     "brushSize": "브러시 크기: {{value}}",
     "undoBrush": "브러시 실행 취소",
     "note": "이미지는 기기에서 처리돼요. 배경이 복잡하면 브러시로 직접 다듬어야 하며, 큰 이미지는 각 변이 최대 2200 px로 줄어들어요."
+  },
+  "file": {
+    "fallback": "이미지",
+    "camera": "촬영 {{time}} - {{index}}",
+    "adjusted": "편집됨",
+    "measured": "측정됨",
+    "redacted": "가림 처리됨",
+    "stamped": "도장 찍음",
+    "compressed": "압축됨",
+    "idPhoto": "증명사진 {{size}}",
+    "imageCount": "이미지 {{count}}장",
+    "convertedCount": "{{format}} 이미지 {{count}}장",
+    "compressedCount": "압축된 이미지 {{count}}장",
+    "collage": "콜라주",
+    "measureReference": "기준: {{length}}"
   }
 }

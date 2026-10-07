@@ -1,19 +1,21 @@
 import { useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { FormPreview } from '../components/FormPreview'
 import { FORM_TEMPLATES, type FormKind } from '../config/form-templates'
 
-const initial = (kind: FormKind) => Object.fromEntries(FORM_TEMPLATES[kind].fields.map((field) => [field.key, field.initial || '']))
+const initial = (kind: FormKind, t: TFunction<'documents'>) =>
+  Object.fromEntries(FORM_TEMPLATES[kind].fields.map((field) => [field.key, field.initial ? t(`formTemplates.print.initial.${field.initial}`) : '']))
 
 export default function FormTemplatesPage() {
   const { t } = useTranslation('documents')
   const id = useId()
   const [kind, setKind] = useState<FormKind>('leave')
-  const [values, setValues] = useState<Record<string, string>>(() => initial('leave'))
+  const [values, setValues] = useState<Record<string, string>>(() => initial('leave', t))
   const template = FORM_TEMPLATES[kind]
-  const changeKind = (next: FormKind) => { setKind(next); setValues(initial(next)) }
+  const changeKind = (next: FormKind) => { setKind(next); setValues(initial(next, t)) }
   return <>
     <style>{`.cn-form-layout { display: grid; grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr); gap: 24px; align-items: start; } .cn-form-preview { min-width: 0; box-shadow: 0 2px 20px rgba(0,0,0,.06); } @media (max-width: 900px) { .cn-form-layout { grid-template-columns: 1fr; } } @media print { body * { visibility: hidden !important; } .cn-form-print, .cn-form-print * { visibility: visible !important; } .cn-form-print { position: absolute; left: 0; top: 0; width: 100%; padding: 20mm !important; box-shadow: none !important; } @page { size: A4; margin: 0; } }`}</style>
     <ToolBoard>

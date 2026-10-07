@@ -14,7 +14,8 @@
     "copy": "Salin",
     "download": "Unduh .txt",
     "interrupted": "Pengenalan suara terputus. Periksa izin mikrofon lalu coba lagi.",
-    "micFailed": "Mikrofon tidak dapat dibuka. Periksa izin akses browser."
+    "micFailed": "Mikrofon tidak dapat dibuka. Periksa izin akses browser.",
+    "fileName": "transkrip-dikte"
   },
   "magnifier": {
     "noCamera": "Browser ini tidak mendukung kamera.",

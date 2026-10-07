@@ -25,7 +25,7 @@
         },
         "download": {
           "title": "Unduh hasilnya",
-          "detail": "Tekan “Unduh”. Satu file akan bernama “<nama file> - đã nén.pdf” (“đã nén” berarti “sudah dikompres”); beberapa file dikemas dalam satu file .zip. Anda bisa “Pratinjau” atau “Edit lagi” sebelum mengunduh."
+          "detail": "Tekan “Unduh”. Satu file akan bernama “<nama file> - dikompres.pdf”; beberapa file dikemas dalam satu file .zip. Anda bisa “Pratinjau” atau “Edit lagi” sebelum mengunduh."
         }
       },
       "tips": {

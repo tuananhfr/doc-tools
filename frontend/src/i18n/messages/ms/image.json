@@ -413,5 +413,20 @@
     "brushSize": "Saiz berus: {{value}}",
     "undoBrush": "Buat asal berus",
     "note": "Imej diproses pada peranti anda. Latar yang terperinci perlu dibaiki secara manual dengan berus; imej besar dikecilkan kepada maksimum 2200 px setiap sisi."
+  },
+  "file": {
+    "fallback": "imej",
+    "camera": "Foto {{time}} - {{index}}",
+    "adjusted": "disunting",
+    "measured": "diukur",
+    "redacted": "disembunyikan",
+    "stamped": "dicop",
+    "compressed": "dimampatkan",
+    "idPhoto": "foto pasport {{size}}",
+    "imageCount": "{{count}} imej",
+    "convertedCount": "{{count}} imej {{format}}",
+    "compressedCount": "{{count}} imej dimampatkan",
+    "collage": "kolaj",
+    "measureReference": "Rujukan: {{length}}"
   }
 }

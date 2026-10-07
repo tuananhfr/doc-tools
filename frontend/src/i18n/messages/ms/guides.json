@@ -25,7 +25,7 @@
         },
         "download": {
           "title": "Muat turun hasil",
-          "detail": "Tekan “Muat turun”. Satu fail akan dinamakan “<nama fail> - đã nén.pdf” (“đã nén” bermaksud “dimampatkan”); beberapa fail dibungkus dalam satu fail .zip. Anda boleh “Pratonton” atau “Teruskan menyunting” sebelum memuat turun."
+          "detail": "Tekan “Muat turun”. Satu fail akan dinamakan “<nama fail> - dimampatkan.pdf”; beberapa fail dibungkus dalam satu fail .zip. Anda boleh “Pratonton” atau “Teruskan menyunting” sebelum memuat turun."
         }
       },
       "tips": {

@@ -413,5 +413,20 @@
     "brushSize": "စုတ်တံ အရွယ်- {{value}}",
     "undoBrush": "စုတ်တံ နောက်ပြန်ရန်",
     "note": "ပုံကို စက်ပေါ်တွင် လုပ်ဆောင်သည်။ အသေးစိတ်များသော နောက်ခံကို စုတ်တံဖြင့် ကိုယ်တိုင်ပြင်ရန် လိုသည်။ ပုံကြီးများကို တစ်ဖက်လျှင် အများဆုံး 2200 px အထိ ချုံ့သည်။"
+  },
+  "file": {
+    "fallback": "ပုံ",
+    "camera": "ဓာတ်ပုံ {{time}} - {{index}}",
+    "adjusted": "ပြင်ပြီး",
+    "measured": "တိုင်းပြီး",
+    "redacted": "ဖုံးပြီး",
+    "stamped": "တံဆိပ်တုံးထုပြီး",
+    "compressed": "ချုံ့ပြီး",
+    "idPhoto": "မှတ်ပုံတင်ဓာတ်ပုံ {{size}}",
+    "imageCount": "ပုံ {{count}} ပုံ",
+    "convertedCount": "{{format}} ပုံ {{count}} ပုံ",
+    "compressedCount": "ချုံ့ပြီးပုံ {{count}} ပုံ",
+    "collage": "ပုံပေါင်း",
+    "measureReference": "စံ- {{length}}"
   }
 }

@@ -40,7 +40,11 @@
     "applyVat": "서명된 세율 적용",
     "ruleLabel": "전기 요금표",
     "ruleNone": "시스템에 유효한 서명된 전기 요금표가 아직 없어요.",
-    "vatRuleLabel": "부가가치세율"
+    "vatRuleLabel": "부가가치세율",
+    "aiResult": {
+      "water": "수도 {{volume}} m³, 합계 {{total}} đ",
+      "electricity": "전기 {{kwh}} kWh, 합계 {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "정산을 위한 송금",
@@ -54,7 +58,11 @@
     "choosePerson": "사람 선택",
     "amount": "금액 (đ)",
     "participants": "함께 나눌 사람",
-    "removeExpense": "항목 빼기"
+    "removeExpense": "항목 빼기",
+    "samplePeople": {
+      "0": "민준",
+      "1": "서연"
+    }
   },
   "loan": {
     "totalPayment": "총 상환액",
@@ -88,7 +96,17 @@
       "annuity": "원리금 균등",
       "equalPrincipal": "원금 균등"
     },
-    "renewals": "재예치 횟수"
+    "renewals": "재예치 횟수",
+    "file": {
+      "name": "상환-일정표",
+      "columns": {
+        "period": "회차",
+        "principal": "원금",
+        "interest": "이자",
+        "payment": "납입액",
+        "balance": "잔액"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "급여 계산 매개변수",
     "ruleNone": "시스템에 유효한 서명된 급여 규칙 패키지가 아직 없어요.",
     "enterParams": "급여 계산 매개변수 입력",
-    "brackets": "세율표: “과세 소득 구간 상한 (đ), 세율 (%)”; 마지막 줄은 * 사용"
+    "brackets": "세율표: “과세 소득 구간 상한 (đ), 세율 (%)”; 마지막 줄은 * 사용",
+    "aiResult": "세전 {{gross}} đ, 실수령 {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "단위당 가격 비교",

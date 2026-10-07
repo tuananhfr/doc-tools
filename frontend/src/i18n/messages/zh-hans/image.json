@@ -413,5 +413,20 @@
     "brushSize": "画笔大小：{{value}}",
     "undoBrush": "撤销画笔",
     "note": "图片在本机处理。细节较多的背景需要手动用画笔修整；大图的每条边最多缩小到 2200 px。"
+  },
+  "file": {
+    "fallback": "图片",
+    "camera": "拍摄 {{time}} - {{index}}",
+    "adjusted": "已编辑",
+    "measured": "已测量",
+    "redacted": "已遮盖",
+    "stamped": "已加印章",
+    "compressed": "已压缩",
+    "idPhoto": "证件照 {{size}}",
+    "imageCount": "{{count}} 张图片",
+    "convertedCount": "{{count}} 张 {{format}} 图片",
+    "compressedCount": "{{count}} 张已压缩图片",
+    "collage": "拼图",
+    "measureReference": "基准：{{length}}"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "reviewStatus": "candidate-awaiting-BA-QA-review",
+  "scope": "Eight Free task candidates; both Search and Browse entries, output validators; not a full release gate",
+  "cases": [
+    {"id": "P0-MERGE", "query": "Tôi muốn gộp hai tệp PDF", "name": "Ghép PDF", "category": "Tài liệu", "slug": "ghep-pdf", "fixtures": ["pages-a.pdf", "pages-b.pdf"], "validator": "pdf-ordered-pages", "expected": ["P0 PAGE 1", "P0 PAGE 2", "P0 PAGE 3", "P0 PAGE 4", "P0 PAGE 5"]},
+    {"id": "P0-SPLIT", "query": "Lấy vài trang trong PDF", "name": "Tách PDF", "category": "Tài liệu", "slug": "tach-pdf", "fixtures": ["pages-a.pdf"], "validator": "pdf-ordered-pages", "ranges": "2-3", "expected": ["P0 PAGE 2", "P0 PAGE 3"]},
+    {"id": "P0-PDF-COMPRESS", "query": "nen pfd gui zalo", "name": "Nén PDF", "category": "Tài liệu", "slug": "nen-pdf", "fixtures": ["compressible.pdf"], "validator": "smaller-pdf-preserves-page", "expected": {"pages": 1, "width": 800, "height": 500}},
+    {"id": "P0-IMAGE-PDF", "query": "Ghép ảnh thành PDF", "name": "Scan ảnh → PDF", "category": "Tài liệu", "slug": "anh-sang-pdf", "fixtures": ["RECEIPT-CLEAN.png", "PRINT-CLEAN.png"], "validator": "pdf-image-pages", "expected": {"pages": 2}},
+    {"id": "P0-IMAGE-COMPRESS", "query": "Ảnh quá nặng", "name": "Nén ảnh", "category": "Hình ảnh", "slug": "nen-anh", "fixtures": ["compressible-photo.jpg"], "validator": "smaller-image-same-dimensions", "expected": {"width": 1600, "height": 1000}},
+    {"id": "P0-OCR-TXT", "query": "Không muốn gõ lại chữ trong ảnh", "name": "Lấy chữ từ ảnh", "category": "Tài liệu", "slug": "anh-sang-van-ban", "fixtures": ["RECEIPT-CLEAN.png"], "validator": "reviewed-text", "correction": {"from": "1250000", "to": "1280000"}, "expected": "1280000"},
+    {"id": "P0-OCR-PDF", "query": "PDF scan không copy được chữ", "name": "Lấy chữ từ bản scan", "category": "Tài liệu", "slug": "ocr-van-ban", "fixtures": ["receipt-scan.pdf"], "validator": "reviewed-pdf-text", "correction": {"from": "1250000", "to": "1280000"}, "expected": "1280000"},
+    {"id": "P0-QR", "query": "Tạo QR cho đường link", "name": "Tạo QR Code", "category": "Dữ liệu", "slug": "tao-ma-qr", "fixtures": [], "validator": "decode-qr", "expected": "https://example.com/menu?p0=1"}
+  ]
+}

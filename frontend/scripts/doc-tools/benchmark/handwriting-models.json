@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "candidates": [{
+    "id": "vietocr-vgg-seq2seq",
+    "source": "https://github.com/pbcquoc/vietocr",
+    "configuration": "https://github.com/pbcquoc/vietocr/blob/master/config/vgg-seq2seq.yml",
+    "codeLicense": "Apache-2.0",
+    "weightsLicense": null,
+    "weightsSha256": null,
+    "browserArtifact": null,
+    "tokenizerSha256": null,
+    "status": "blocked",
+    "blockers": ["independent weight license review missing", "no pinned browser model and tokenizer artifacts", "no human-approved handwriting ground truth", "no multi-writer holdout", "WASM/WebGPU memory and mobile performance unmeasured"]
+  }]
+}

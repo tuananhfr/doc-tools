@@ -6,6 +6,12 @@ import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { searchTools } from './tool-search'
 
 describe('search intent proposals', () => {
+  it('passes table intent options without changing the shared catalog', () => {
+    const result = searchTools(VI_TOOL_CATALOG, 'Ảnh bảng sang Excel')[0]
+    expect(result.searchParams).toBe('ocrProfile=table&ocrOutput=xlsx')
+    expect(VI_TOOL_CATALOG.find(tool => tool.id === result.id)?.searchParams).toBeUndefined()
+    expect(searchTools(VI_TOOL_CATALOG, 'đọc chữ viết tay từ ảnh')).toEqual([])
+  })
   it.each(SEARCH_STORIES)('$id: $query', story => {
     const results = searchTools(VI_TOOL_CATALOG, story.query)
     if (story.preferredTool) expect(results[0]?.id).toBe(story.preferredTool)

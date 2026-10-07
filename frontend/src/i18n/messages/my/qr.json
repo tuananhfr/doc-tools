@@ -53,7 +53,7 @@
     "emailAddress": "အီးမေးလ် လိပ်စာ",
     "subject": "စာခေါင်းစဉ် (မဖြစ်မနေ မဟုတ်)",
     "contactName": "အမည်အပြည့်အစုံ",
-    "contactNamePlaceholder": "Nguyễn Văn An",
+    "contactNamePlaceholder": "မောင်မောင်",
     "contactEmail": "ဆက်သွယ်ရန် အီးမေးလ်",
     "contactOrg": "ကုမ္ပဏီ (မဖြစ်မနေ မဟုတ်)",
     "contactTitle": "ရာထူး (မဖြစ်မနေ မဟုတ်)",
@@ -277,5 +277,10 @@
       "REPLACED": "ဤတံဆိပ်ကို အစားထိုးပြီးပါပြီ — တံဆိပ်အသစ်ကို သုံးပါ။",
       "ARCHIVED": "အရာဝတ္ထုကို စီမံခန့်ခွဲမှု ရပ်ဆိုင်းထားပြီ။"
     }
+  },
+  "file": {
+    "qr": "QR ကုဒ်",
+    "barcode": "ဘားကုဒ်",
+    "barcodeCount": "ဘားကုဒ် {{count}} ခု"
   }
 }

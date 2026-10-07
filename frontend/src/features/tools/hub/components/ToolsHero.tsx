@@ -26,7 +26,7 @@ export function ToolsHero({ keyword, onKeyword, onSearch }: ToolsHeroProps) {
           <h1 id="erp-tools-hero-title" className="cn-hero-wordmark">Chuyện <span>Nhỏ</span><span className="cn-wordmark-strokes" aria-hidden="true"><b /><b /><b /></span></h1>
           <p className="cn-hero-tagline">{t('home.tagline')}</p>
           <p className="cn-hero-description">{t('home.description')}</p>
-          <ToolSearch id="cn-home-search" keyword={keyword} onKeyword={onKeyword} onSubmit={onSearch} />
+          <ToolSearch qualityTracking id="cn-home-search" keyword={keyword} onKeyword={onKeyword} onSubmit={onSearch} />
           <ul className="cn-hero-promises" aria-label={t('home.promisesLabel')}>{HERO_PROMISES.map((promise) => <li key={promise}><Icon name="check-circle-fill" />{t(`home.promises.${promise}`)}</li>)}</ul>
         </div>
         <div className="cn-hero-art cn-hero-art--skyline">

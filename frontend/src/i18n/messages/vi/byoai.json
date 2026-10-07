@@ -44,5 +44,28 @@
     "copyFailed": "Không sao chép được; hãy chọn văn bản và sao chép thủ công.",
     "answerLabel": "Dán câu trả lời AI để đọc ở đây (không lưu hoặc gửi cho Chuyện Nhỏ)",
     "unverified": "Nội dung chưa xác minh"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "Bạn là trợ lý chọn công cụ Chuyện Nhỏ. Hãy trả lời ngắn gọn bằng tiếng Việt. Chỉ gợi ý các công cụ trong danh sách dưới đây; không hứa tính năng mà mô tả chưa có. Nếu câu hỏi liên quan pháp lý, tài chính hoặc sức khỏe, hãy yêu cầu người dùng đối chiếu nguồn chính thức hiện hành. Không yêu cầu tải tệp riêng tư lên dịch vụ AI.",
+      "question": "Câu hỏi: {{question}}",
+      "toolsHeading": "Công cụ có thể liên quan:",
+      "noTools": "- Chưa tìm thấy công cụ khớp rõ ràng.",
+      "closing": "Nêu tối đa ba bước thực hiện và đường dẫn công cụ khi phù hợp."
+    },
+    "package": {
+      "truncated": "[Đã rút gọn vì vượt giới hạn câu hỏi.]",
+      "noContext": "Kiểm tra cập nhật cho công cụ {{toolId}}; không có dữ liệu cá nhân của người dùng.",
+      "tasks": {
+        "0": "Ưu tiên văn bản, trang hoặc API chính thức.",
+        "1": "So sánh với dữ liệu hiện tại; nêu ngày ban hành và ngày hiệu lực.",
+        "2": "Đưa URL nguồn cho mỗi thay đổi; ghi rõ điều chưa chắc chắn.",
+        "3": "Không suy đoán khi thiếu bằng chứng."
+      },
+      "redactedContext": "Thông tin đăng nhập, URL nội bộ và địa chỉ email đã được tự động che; người dùng cần xem lại bản xem trước.",
+      "excludedContext": "Mặc định không gửi kết quả và dữ liệu cá nhân của người dùng.",
+      "intro": "Bạn là trợ lý đối chiếu nguồn. Chỉ đề xuất thay đổi có thể kiểm chứng; kết quả của bạn chưa được coi là dữ liệu đã xác minh.",
+      "outro": "Trả về đúng JSON theo output_schema. Không thêm Markdown hoặc lời dẫn. Viết phần chữ trong JSON bằng tiếng Việt."
+    }
   }
 }

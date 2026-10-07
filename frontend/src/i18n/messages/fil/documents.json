@@ -48,7 +48,11 @@
       "unreadable": "Hindi mabasa ang draft.",
       "cleared": "Nabura ang draft sa device na ito."
     },
-    "note": "Suriing mabuti ang mga detalye bago ipadala. Sa device mo lang sine-save ang draft kapag pinindot mo ang I-save; hindi sine-save ang larawan."
+    "note": "Suriing mabuti ang mga detalye bago ipadala. Sa device mo lang sine-save ang draft kapag pinindot mo ang I-save; hindi sine-save ang larawan.",
+    "print": {
+      "kicker": "Curriculum vitae",
+      "summary": "Profile"
+    }
   },
   "formTemplates": {
     "title": "Mga template ng form",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "May ilang usapin na nangangailangan ng notaryo o sertipikasyon. Alamin muna sa tatanggap na opisina bago ito gamitin.",
     "defaultWarning": "Sangguniang template; alamin ang mga kinakailangan ng tatanggap na opisina bago magsumite.",
-    "privacy": "Nasa nakabukas na page na ito lang ang iyong data."
+    "privacy": "Nasa nakabukas na page na ito lang ang iyong data.",
+    "print": {
+      "nation": "SOSYALISTANG REPUBLIKA NG VIETNAM",
+      "motto": "Kalayaan – Kasarinlan – Kaligayahan",
+      "dateLine": "{{place}}, {{month}}/{{day}}/{{year}}",
+      "initial": {
+        "board": "Lupon ng mga Direktor"
+      },
+      "leave": {
+        "recipient": "Para kay/sa: {{value}}",
+        "name": "Ang aking pangalan:",
+        "department": "Posisyon, departamento: {{value}}",
+        "period": "Ako po ay humihiling ng leave mula {{from}} hanggang {{to}}.",
+        "reason": "Dahilan: {{value}}",
+        "handover": "Habang naka-leave, ipapasa ko ang aking trabaho kay {{value}}.",
+        "closing": "Magalang ko pong hinihiling ang inyong pagsasaalang-alang at pag-apruba. Maraming salamat po."
+      },
+      "authorization": {
+        "principal": "Nagbibigay ng kapangyarihan:",
+        "attorney": "Pinagkalooban ng kapangyarihan:",
+        "personalId": "Personal ID number: {{value}}",
+        "address": "Address: {{value}}",
+        "scope": "Saklaw ng kapangyarihan:",
+        "term": "Tagal:",
+        "commitment": "Kapwa mananagot ang dalawang panig sa kapangyarihang nakasaad sa itaas."
+      },
+      "handover": {
+        "intro": "Sa araw na ito, kaming lumagda sa ibaba:",
+        "giver": "Panig na nagbibigay:",
+        "receiver": "Panig na tumatanggap:",
+        "itemsIntro": "ay nagsagawa ng pagpapasa ng mga sumusunod:",
+        "number": "Blg.",
+        "content": "Bagay",
+        "note": "Mga tala: {{value}}",
+        "copies": "Ginawa ang talang ito sa 2 kopya; tig-iisa ang bawat panig."
+      },
+      "signatures": {
+        "approver": "Inaprubahan ni",
+        "applicant": "Aplikante",
+        "attorney": "Pinagkalooban ng kapangyarihan",
+        "principal": "Nagbibigay ng kapangyarihan",
+        "receiver": "Panig na tumatanggap",
+        "giver": "Panig na nagbibigay"
+      },
+      "signHint": "(Lagda at buong pangalan)"
+    }
   }
 }

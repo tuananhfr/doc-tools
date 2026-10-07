@@ -90,5 +90,11 @@
     "cancelled": "Pemrosesan video dibatalkan.",
     "timedOut": "Tugas terlalu lama. Coba video yang lebih pendek dan periksa koneksi saat memuat mesin pemroses.",
     "engineFailed": "Mesin pemroses video tidak dapat dimuat atau dijalankan. Periksa koneksi, tutup beberapa tab, atau coba file yang lebih kecil di komputer."
+  },
+  "file": {
+    "audio": "audio",
+    "gif": "animasi",
+    "trimmed": "dipotong",
+    "compressed": "dikompres"
   }
 }

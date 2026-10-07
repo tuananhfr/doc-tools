@@ -40,7 +40,11 @@
     "applyVat": "Áp dụng thuế suất đã ký",
     "ruleLabel": "bảng giá điện",
     "ruleNone": "Hiện chưa có bảng giá điện đã ký, còn hiệu lực trên hệ thống.",
-    "vatRuleLabel": "thuế suất GTGT"
+    "vatRuleLabel": "thuế suất GTGT",
+    "aiResult": {
+      "water": "Nước {{volume}} m³; tổng {{total}} đ",
+      "electricity": "Điện {{kwh}} kWh; tổng {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Chuyển tiền để cân bằng",
@@ -54,7 +58,11 @@
     "choosePerson": "Chọn người",
     "amount": "Số tiền (đ)",
     "participants": "Người cùng chia",
-    "removeExpense": "Bỏ khoản"
+    "removeExpense": "Bỏ khoản",
+    "samplePeople": {
+      "0": "An",
+      "1": "Bình"
+    }
   },
   "loan": {
     "totalPayment": "Tổng phải trả",
@@ -88,7 +96,17 @@
       "annuity": "Tổng trả gần bằng nhau",
       "equalPrincipal": "Gốc bằng nhau"
     },
-    "renewals": "Số lần tái tục"
+    "renewals": "Số lần tái tục",
+    "file": {
+      "name": "bang-tra-no",
+      "columns": {
+        "period": "Kỳ",
+        "principal": "Gốc",
+        "interest": "Lãi",
+        "payment": "Phải trả",
+        "balance": "Dư nợ"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "tham số tính lương",
     "ruleNone": "Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống.",
     "enterParams": "Nhập tham số tính lương",
-    "brackets": "Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *"
+    "brackets": "Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *",
+    "aiResult": "Gross {{gross}} đ; Net {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "So sánh theo đơn vị",

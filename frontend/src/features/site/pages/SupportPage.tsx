@@ -10,6 +10,7 @@ import { ToolSearch } from '../components/ToolSearch'
 import { SUPPORT_EMAIL } from '../config/site-navigation'
 import { FAQ_ITEMS } from '../config/support-faq'
 import { faqJsonLd, localizeFaq, searchFaq } from '../utils/faq'
+import { QualityConsent } from '../components/QualityConsent'
 
 const TOPICS = [
   { id: 'start', icon: 'rocket-takeoff', to: '/huong-dan' },
@@ -68,6 +69,7 @@ export default function SupportPage() {
       </section>
 
       <section id="cn-support-faq" className="cn-container cn-page-section" aria-labelledby="cn-support-faq-title">
+        <QualityConsent disclosure />
         <h2 id="cn-support-faq-title">{t('support.faqTitle')}</h2>
         <p className="cn-section-description" role="status">{keyword ? t('support.faqCountFor', { count: items.length, keyword }) : t('support.faqCount', { count: items.length })}</p>
         {items.length > 0

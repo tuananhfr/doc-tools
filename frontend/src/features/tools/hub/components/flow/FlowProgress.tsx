@@ -6,10 +6,11 @@ import type { FlowProgress as Progress } from '../../types/flow.types'
 interface FlowProgressProps {
   progress: Progress | null
   onCancel: () => void
+  waitingLabel?: string
 }
 
 /** Tiến độ + nút Huỷ của lượt đang chạy. */
-export function FlowProgress({ progress, onCancel }: FlowProgressProps) {
+export function FlowProgress({ progress, onCancel, waitingLabel }: FlowProgressProps) {
   const { t } = useTranslation('common')
   const percent = progress && progress.total > 0 ? Math.min(100, (progress.done / progress.total) * 100) : 0
   const known = !!progress && progress.total > 0
@@ -20,9 +21,9 @@ export function FlowProgress({ progress, onCancel }: FlowProgressProps) {
   return (
     <div className="erp-flow-progress" role="status">
       <span className="erp-flow-progress__text">
-        {finishing ? t('flow.finishing') : known ? t('flow.progressPercent', { label: progress?.label ?? t('flow.processing'), percent: Math.floor(percent) }) : t('flow.progressPending', { label: progress?.label ?? t('flow.processing') })}
+        {waitingLabel ?? (finishing ? t('flow.finishing') : known ? t('flow.progressPercent', { label: progress?.label ?? t('flow.processing'), percent: Math.floor(percent) }) : t('flow.progressPending', { label: progress?.label ?? t('flow.processing') }))}
       </span>
-      <ProgressBar now={known ? percent : 100} animated={!known || finishing} aria-label={t('flow.progressLabel')} className="erp-flow-progress__bar" />
+      {!waitingLabel ? <ProgressBar now={known ? percent : 100} animated={!known || finishing} aria-label={t('flow.progressLabel')} className="erp-flow-progress__bar" /> : null}
       <Button variant="outline-secondary" className="erp-flow-progress__cancel" onClick={onCancel}>
         <Icon name="x-circle" className="me-2" />
         {t('flow.cancel')}

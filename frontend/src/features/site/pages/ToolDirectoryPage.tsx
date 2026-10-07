@@ -25,7 +25,7 @@ export default function ToolDirectoryPage() {
           <Link className="cn-directory-back" to="/"><Icon name="arrow-left" /> Chuyện Nhỏ</Link>
           <h1 id="cn-directory-title">{t('directory.title')}</h1>
           <p>{t('directory.lead', { count: READY_TOOL_COUNT })}</p>
-          <ToolSearch id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
+          <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
         </div>
       </section>
       <section className="cn-container cn-catalog cn-directory-catalog" aria-label={t('directory.catalogLabel')}>

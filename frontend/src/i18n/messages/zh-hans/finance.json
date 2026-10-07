@@ -40,7 +40,11 @@
     "applyVat": "使用已签名的税率",
     "ruleLabel": "电价表",
     "ruleNone": "系统中暂无已签名且仍有效的电价表。",
-    "vatRuleLabel": "增值税税率"
+    "vatRuleLabel": "增值税税率",
+    "aiResult": {
+      "water": "用水 {{volume}} m³；合计 {{total}} đ",
+      "electricity": "用电 {{kwh}} kWh；合计 {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "需要转账以结清",
@@ -54,7 +58,11 @@
     "choosePerson": "选择人员",
     "amount": "金额（đ）",
     "participants": "分摊人",
-    "removeExpense": "移除支出"
+    "removeExpense": "移除支出",
+    "samplePeople": {
+      "0": "小明",
+      "1": "小红"
+    }
   },
   "loan": {
     "totalPayment": "还款总额",
@@ -88,7 +96,17 @@
       "annuity": "等额本息",
       "equalPrincipal": "等额本金"
     },
-    "renewals": "续存次数"
+    "renewals": "续存次数",
+    "file": {
+      "name": "还款计划表",
+      "columns": {
+        "period": "期数",
+        "principal": "本金",
+        "interest": "利息",
+        "payment": "应还金额",
+        "balance": "剩余本金"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "工资计算参数",
     "ruleNone": "系统中暂无已签名且仍有效的工资规则包。",
     "enterParams": "输入工资计算参数",
-    "brackets": "税率表：“应纳税所得额阈值（đ）, 税率（%）”；最后一行用 *"
+    "brackets": "税率表：“应纳税所得额阈值（đ）, 税率（%）”；最后一行用 *",
+    "aiResult": "税前 {{gross}} đ；税后 {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "按单位比较",

@@ -81,7 +81,8 @@
     "columns": {
       "old": "舊地址",
       "proposed": "建議",
-      "status": "狀態"
+      "status": "狀態",
+      "droppedDistrict": "已撤銷的縣級單位"
     },
     "downloadCsv": "下載 CSV",
     "verifiedNote": "對照表已簽署，自 {{date}} 起生效。來源：{{source}}。最終地址請向受理單位確認。",
@@ -95,7 +96,8 @@
     "rulesLabel": "地址對照表",
     "rulesNone": "系統上目前沒有已簽署且仍有效的地址對照表。",
     "manualLabel": "或自行輸入，每行：「舊省|舊縣|舊社|新省|新社」",
-    "manualInvalid": "對照表格式錯誤（每行需有 5 個部分，每部分最多 150 個字元），或有舊省份被對應到兩個不同的新省份。"
+    "manualInvalid": "對照表格式錯誤（每行需有 5 個部分，每部分最多 150 個字元），或有舊省份被對應到兩個不同的新省份。",
+    "csvFileName": "地址轉換"
   },
   "invoice": {
     "errors": {
@@ -156,5 +158,200 @@
     "placeholder": "例如：1.234.567",
     "zeroWordLabel": "十位數為零的讀法",
     "fourWordLabel": "十位數之後「四」的讀法"
+  },
+  "terms": {
+    "stems": {
+      "0": "甲",
+      "1": "乙",
+      "2": "丙",
+      "3": "丁",
+      "4": "戊",
+      "5": "己",
+      "6": "庚",
+      "7": "辛",
+      "8": "壬",
+      "9": "癸"
+    },
+    "branches": {
+      "0": "子",
+      "1": "丑",
+      "2": "寅",
+      "3": "卯",
+      "4": "辰",
+      "5": "巳",
+      "6": "午",
+      "7": "未",
+      "8": "申",
+      "9": "酉",
+      "10": "戌",
+      "11": "亥"
+    },
+    "canChi": "{{stem}}{{branch}}",
+    "spirits": {
+      "THANH_LONG": "青龍",
+      "MINH_DUONG": "明堂",
+      "THIEN_HINH": "天刑",
+      "CHU_TUOC": "朱雀",
+      "KIM_QUY": "金匱",
+      "KIM_DUONG": "金堂",
+      "BACH_HO": "白虎",
+      "NGOC_DUONG": "玉堂",
+      "THIEN_LAO": "天牢",
+      "HUYEN_VU": "玄武",
+      "TU_MENH": "司命",
+      "CAU_TRAN": "勾陳"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "元旦",
+      "short": "元旦"
+    },
+    "REUNIFICATION": {
+      "name": "南方解放日",
+      "short": "南方解放"
+    },
+    "LABOUR": {
+      "name": "國際勞動節",
+      "short": "勞動節"
+    },
+    "NATIONAL_DAY": {
+      "name": "國慶日",
+      "short": "國慶"
+    },
+    "CULTURE": {
+      "name": "越南文化日",
+      "short": "文化日"
+    },
+    "PARTY": {
+      "name": "越南共產黨成立紀念日",
+      "short": "建黨節"
+    },
+    "VALENTINE": {
+      "name": "情人節",
+      "short": "情人節"
+    },
+    "PHYSICIANS": {
+      "name": "越南醫師節",
+      "short": "醫師節"
+    },
+    "WOMEN_INTL": {
+      "name": "國際婦女節",
+      "short": "婦女節"
+    },
+    "YOUTH_UNION": {
+      "name": "胡志明共青團成立紀念日",
+      "short": "共青團節"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "奠邊府大捷紀念日",
+      "short": "奠邊府"
+    },
+    "HO_CHI_MINH": {
+      "name": "胡志明主席誕辰",
+      "short": "胡主席誕辰"
+    },
+    "CHILDREN": {
+      "name": "國際兒童節",
+      "short": "兒童節"
+    },
+    "FAMILY": {
+      "name": "越南家庭日",
+      "short": "家庭日"
+    },
+    "MARTYRS": {
+      "name": "傷殘軍人與烈士紀念日",
+      "short": "烈士紀念日"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "八月革命紀念日",
+      "short": "八月革命"
+    },
+    "CAPITAL": {
+      "name": "首都解放日",
+      "short": "首都解放"
+    },
+    "WOMEN_VN": {
+      "name": "越南婦女節",
+      "short": "越南婦女節"
+    },
+    "TEACHERS": {
+      "name": "越南教師節",
+      "short": "教師節"
+    },
+    "ARMY": {
+      "name": "越南人民軍建軍節",
+      "short": "建軍節"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "平安夜",
+      "short": "平安夜"
+    },
+    "CHRISTMAS": {
+      "name": "聖誕節",
+      "short": "聖誕節"
+    },
+    "TET_1": {
+      "name": "春節（初一）",
+      "short": "正月初一"
+    },
+    "TET_2": {
+      "name": "春節（初二）",
+      "short": "正月初二"
+    },
+    "TET_3": {
+      "name": "春節（初三）",
+      "short": "正月初三"
+    },
+    "HUNG_KINGS": {
+      "name": "雄王祭祖日",
+      "short": "雄王祭"
+    },
+    "LANTERN": {
+      "name": "元宵節",
+      "short": "元宵節"
+    },
+    "COLD_FOOD": {
+      "name": "寒食節",
+      "short": "寒食節"
+    },
+    "VESAK": {
+      "name": "佛誕節",
+      "short": "佛誕節"
+    },
+    "DOAN_NGO": {
+      "name": "端午節",
+      "short": "端午節"
+    },
+    "VU_LAN": {
+      "name": "盂蘭節",
+      "short": "盂蘭節"
+    },
+    "MID_AUTUMN": {
+      "name": "中秋節",
+      "short": "中秋節"
+    },
+    "KITCHEN_GODS": {
+      "name": "送灶神日",
+      "short": "送灶神"
+    },
+    "MOTHER": {
+      "name": "母親節",
+      "short": "母親節"
+    },
+    "FATHER": {
+      "name": "父親節",
+      "short": "父親節"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "除夕",
+      "short": "除夕"
+    },
+    "moon": {
+      "first": "農曆{{month}}月初一",
+      "firstLeap": "農曆閏{{month}}月初一",
+      "full": "農曆{{month}}月十五",
+      "fullLeap": "農曆閏{{month}}月十五"
+    }
   }
 }

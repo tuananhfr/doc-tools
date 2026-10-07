@@ -59,7 +59,7 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
     if (!engine || valid.length === 0) return
     setProgress({ type, done: 0, total: valid.length })
     try {
-      const stem = `${valid.length} mã vạch`
+      const stem = t('file.barcodeCount', { count: valid.length })
       const blob =
         type === 'pdf'
           ? await engine.pdf(valid, look)

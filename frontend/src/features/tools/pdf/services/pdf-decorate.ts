@@ -9,9 +9,11 @@ import {
   stampRects,
   type ResolvedDecorations,
 } from '../utils/decorations'
+import { PLAIN_FONT } from '../utils/font-style'
 import { normalizeRotation, visualSize, visualToUser } from '../utils/page-geometry'
 import { drawTextRun as drawRun } from './pdf-draw'
 import type { FontLoader } from './pdf-fonts'
+import { createTextPreparer } from './pdf-text'
 
 /**
  * Vẽ đầu/chân trang + watermark + dấu ảnh lên tài liệu vừa dựng. `refs[i]` là trang thứ
@@ -31,8 +33,9 @@ export async function decorateDocument(
     watermark: !!watermark?.pageIds.has(ref.id),
     image: !!imageStamp?.pageIds.has(ref.id),
   }))
-  const regular = inFile.some((page) => page.header) ? await fonts('regular') : null
-  const bold = inFile.some((page) => page.watermark) ? await fonts('bold') : null
+  const hasHeader = inFile.some((page) => page.header)
+  const hasWatermark = inFile.some((page) => page.watermark)
+  const prepare = createTextPreparer(doc, fonts)
   // Nhúng MỘT lần, mọi trang trỏ chung một XObject — dấu trên 300 trang không làm tệp phình 300 lần.
   const stamp =
     imageStamp && inFile.some((page) => page.image)
@@ -40,26 +43,26 @@ export async function decorateDocument(
         ? await doc.embedPng(imageStamp.value.bytes)
         : await doc.embedJpg(imageStamp.value.bytes)
       : null
-  if (!regular && !bold && !stamp) return
+  if (!hasHeader && !hasWatermark && !stamp) return
 
   const pages = doc.getPages()
 
-  pages.forEach((page, index) => {
+  for (const [index, page] of pages.entries()) {
     const box = page.getCropBox()
     const rotation = normalizeRotation(page.getRotation().angle)
     const size = visualSize(box, rotation)
 
-    if (watermark && inFile[index].watermark && bold) {
+    if (watermark && inFile[index].watermark) {
       const placement = layoutWatermark(watermark.value, size)
+      const color = DOCUMENT_COLORS[watermark.value.color]
       drawRun(page, box, rotation, {
-        text: placement.text,
-        font: bold,
+        content: await prepare(placement.text, { ...PLAIN_FONT, bold: true }, placement.size, color),
         size: placement.size,
         anchor: placement.center,
         align: 'middle',
         angle: placement.angle,
         baselineShift: placement.baselineShift,
-        color: DOCUMENT_COLORS[watermark.value.color],
+        color,
         opacity: watermark.value.opacity,
       })
     }
@@ -72,12 +75,11 @@ export async function decorateDocument(
       }
     }
 
-    if (headerFooter && inFile[index].header && regular) {
+    if (headerFooter && inFile[index].header) {
       const context = stampContext(index, pages.length, headerFooter.value.startNumber, meta.date, meta.fileName)
       for (const placement of layoutHeaderFooter(headerFooter.value, size, context)) {
         drawRun(page, box, rotation, {
-          text: placement.text,
-          font: regular,
+          content: await prepare(placement.text, PLAIN_FONT, placement.size, DOCUMENT_COLORS.text),
           size: placement.size,
           anchor: placement.anchor,
           align: placement.align,
@@ -88,5 +90,5 @@ export async function decorateDocument(
         })
       }
     }
-  })
+  }
 }

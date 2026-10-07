@@ -21,7 +21,7 @@ function load(relative, overrides = {}) {
     else resolved = path.join(resolved, 'index.ts')
     return load(path.relative(root, resolved))
   }
-  vm.runInNewContext(code, { module, exports: module.exports, require: localRequire }, { filename: file })
+  vm.runInNewContext(code, { module, exports: module.exports, require: localRequire, URLSearchParams }, { filename: file })
   cache.set(file, module.exports)
   return module.exports
 }

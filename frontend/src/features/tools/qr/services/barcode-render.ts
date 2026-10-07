@@ -97,7 +97,7 @@ export async function loadBarcodeEngine() {
         else page.drawSvgPath(path.d, { x: 0, y: page.getHeight(), scale: factor, borderColor: rgb(0, 0, 0), borderWidth: path.strokeWidth })
       }
     }
-    doc.setTitle(items.length === 1 ? barcodeFileName(items[0].value) : `${items.length} mã vạch`)
+    doc.setTitle(items.length === 1 ? barcodeFileName(items[0].value) : translate('qr:file.barcodeCount', { count: items.length }))
     const bytes = await doc.save()
     return new Blob([new Uint8Array(bytes)], { type: 'application/pdf' })
   }

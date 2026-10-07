@@ -413,5 +413,20 @@
     "brushSize": "Ukuran kuas: {{value}}",
     "undoBrush": "Urungkan kuas",
     "note": "Gambar diproses di perangkat. Latar yang rumit perlu dirapikan manual dengan kuas; gambar besar diperkecil hingga maksimal 2200 px per sisi."
+  },
+  "file": {
+    "fallback": "gambar",
+    "camera": "Foto {{time}} - {{index}}",
+    "adjusted": "diedit",
+    "measured": "diukur",
+    "redacted": "disamarkan",
+    "stamped": "distempel",
+    "compressed": "dikompres",
+    "idPhoto": "pasfoto {{size}}",
+    "imageCount": "{{count}} gambar",
+    "convertedCount": "{{count}} gambar {{format}}",
+    "compressedCount": "{{count}} gambar dikompres",
+    "collage": "kolase",
+    "measureReference": "Acuan: {{length}}"
   }
 }

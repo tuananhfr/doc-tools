@@ -32,7 +32,7 @@ export function FamilyPortability({ space, onRestore, onPrint, disabled }: Props
   return <section className="erp-tool-panel">
     <h2 className="h5">{t('backup.title')}</h2>
     <p>{t('backup.intro')}</p>
-    <div className="d-flex flex-wrap gap-2"><Button variant="outline-secondary" onClick={() => download(JSON.stringify(space, null, 2), 'application/json;charset=utf-8', 'lich-gia-dinh-backup.json')}>{t('backup.downloadBackup')}</Button><Button variant="outline-secondary" onClick={() => download(exportFamilyIcs(space, includeSensitive), 'text/calendar;charset=utf-8', 'lich-gia-dinh.ics')}>{t('backup.downloadIcs')}</Button><Button variant="outline-secondary" onClick={() => onPrint(includeSensitive)}>{t('backup.print')}</Button></div>
+    <div className="d-flex flex-wrap gap-2"><Button variant="outline-secondary" onClick={() => download(JSON.stringify(space, null, 2), 'application/json;charset=utf-8', `${t('file.backup')}.json`)}>{t('backup.downloadBackup')}</Button><Button variant="outline-secondary" onClick={() => download(exportFamilyIcs(space, includeSensitive), 'text/calendar;charset=utf-8', `${t('file.ics')}.ics`)}>{t('backup.downloadIcs')}</Button><Button variant="outline-secondary" onClick={() => onPrint(includeSensitive)}>{t('backup.print')}</Button></div>
     <Form.Check className="mt-3" label={t('backup.includeSensitive')} checked={includeSensitive} onChange={(event) => setIncludeSensitive(event.target.checked)} />
     <p className="small">{t('backup.defaultsNote')}</p>
     <label className="erp-flow-field__label mt-3">{t('backup.restoreLabel')}<Form.Control type="file" accept=".json,application/json" onChange={(event) => void inspect((event.target as HTMLInputElement).files?.[0])} /></label>

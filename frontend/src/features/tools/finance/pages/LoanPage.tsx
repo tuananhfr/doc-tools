@@ -21,8 +21,8 @@ export default function LoanPage() {
 
   const downloadSchedule = () => {
     if (!schedule) return
-    const rows = [['Kỳ', 'Gốc', 'Lãi', 'Phải trả', 'Dư nợ'], ...schedule.rows.map((row) => [row.month, row.principal, row.interest, row.payment, row.balance].map(String))]
-    downloadOutput({ name: 'bang-tra-no.csv', blob: new Blob(['\uFEFF', rows.map((row) => row.join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' }) })
+    const rows = [(['period', 'principal', 'interest', 'payment', 'balance'] as const).map((column) => t(`loan.file.columns.${column}`)), ...schedule.rows.map((row) => [row.month, row.principal, row.interest, row.payment, row.balance].map(String))]
+    downloadOutput({ name: `${t('loan.file.name')}.csv`, blob: new Blob(['\uFEFF', rows.map((row) => row.join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' }) })
   }
 
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">

@@ -9,3 +9,4 @@ dist/
 !*.example
 qa-output/
 /docs/
+.pnpm-store/

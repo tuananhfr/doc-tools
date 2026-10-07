@@ -44,5 +44,28 @@
     "copyFailed": "Couldn't copy; select the text and copy it manually.",
     "answerLabel": "Paste the AI's answer here to read it (not saved or sent to Chuyện Nhỏ)",
     "unverified": "Unverified content"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "You help people pick a Chuyện Nhỏ tool. Reply briefly in English. Only suggest tools from the list below; never promise features their descriptions do not mention. If the question touches on legal, financial or health matters, ask the user to check the current official sources. Never ask the user to upload private files to an AI service.",
+      "question": "Question: {{question}}",
+      "toolsHeading": "Possibly relevant tools:",
+      "noTools": "- No clearly matching tool found.",
+      "closing": "Give at most three steps and the tool link where it helps."
+    },
+    "package": {
+      "truncated": "[Shortened because it exceeded the question limit.]",
+      "noContext": "Check for updates to the {{toolId}} tool; no personal data from the user is included.",
+      "tasks": {
+        "0": "Prefer official documents, pages or APIs.",
+        "1": "Compare with the current data; state the issue date and the effective date.",
+        "2": "Give a source URL for every change; say clearly what is uncertain.",
+        "3": "Do not guess when evidence is missing."
+      },
+      "redactedContext": "Credentials, internal URLs and email addresses were redacted automatically; the user must review the preview.",
+      "excludedContext": "The user's result and personal data are excluded by default.",
+      "intro": "You are a source-checking assistant. Only propose changes that can be verified; your output is not treated as verified data.",
+      "outro": "Return exactly the JSON described by output_schema. No Markdown, no preamble. Write the text inside the JSON in English."
+    }
   }
 }

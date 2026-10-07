@@ -85,7 +85,8 @@
     "columns": {
       "old": "Ancienne adresse",
       "proposed": "Proposition",
-      "status": "État"
+      "status": "État",
+      "droppedDistrict": "Niveau district supprimé"
     },
     "downloadCsv": "Télécharger le CSV",
     "verifiedNote": "Table de correspondance signée, en vigueur depuis le {{date}}. Source : {{source}}. Confirmez l'adresse définitive auprès de l'organisme qui reçoit votre dossier.",
@@ -99,7 +100,8 @@
     "rulesLabel": "table de correspondance des adresses",
     "rulesNone": "Aucune table de correspondance d'adresses signée et en vigueur n'est encore disponible sur le système.",
     "manualLabel": "Ou saisissez la vôtre, une ligne par entrée : « ancienne province|ancien district|ancienne commune|nouvelle province|nouvelle commune »",
-    "manualInvalid": "La table de correspondance est mal formée (chaque ligne doit compter 5 parties de 150 caractères au plus) ou une ancienne province est rattachée à deux nouvelles provinces différentes."
+    "manualInvalid": "La table de correspondance est mal formée (chaque ligne doit compter 5 parties de 150 caractères au plus) ou une ancienne province est rattachée à deux nouvelles provinces différentes.",
+    "csvFileName": "conversion-adresses"
   },
   "invoice": {
     "errors": {
@@ -160,5 +162,200 @@
     "placeholder": "Exemple : 1.234.567",
     "zeroWordLabel": "Mot pour le zéro des dizaines",
     "fourWordLabel": "Mot pour le quatre après les dizaines"
+  },
+  "terms": {
+    "stems": {
+      "0": "Bois yang",
+      "1": "Bois yin",
+      "2": "Feu yang",
+      "3": "Feu yin",
+      "4": "Terre yang",
+      "5": "Terre yin",
+      "6": "Métal yang",
+      "7": "Métal yin",
+      "8": "Eau yang",
+      "9": "Eau yin"
+    },
+    "branches": {
+      "0": "Rat",
+      "1": "Buffle",
+      "2": "Tigre",
+      "3": "Chat",
+      "4": "Dragon",
+      "5": "Serpent",
+      "6": "Cheval",
+      "7": "Chèvre",
+      "8": "Singe",
+      "9": "Coq",
+      "10": "Chien",
+      "11": "Cochon"
+    },
+    "canChi": "{{branch}} de {{stem}}",
+    "spirits": {
+      "THANH_LONG": "Dragon d'azur",
+      "MINH_DUONG": "Salle lumineuse",
+      "THIEN_HINH": "Châtiment céleste",
+      "CHU_TUOC": "Oiseau vermillon",
+      "KIM_QUY": "Coffre d'or",
+      "KIM_DUONG": "Salle d'or",
+      "BACH_HO": "Tigre blanc",
+      "NGOC_DUONG": "Salle de jade",
+      "THIEN_LAO": "Prison céleste",
+      "HUYEN_VU": "Tortue noire",
+      "TU_MENH": "Gardien de la vie",
+      "CAU_TRAN": "Crochet"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "Jour de l'An",
+      "short": "Jour de l'An"
+    },
+    "REUNIFICATION": {
+      "name": "Jour de la Réunification",
+      "short": "Réunification"
+    },
+    "LABOUR": {
+      "name": "Fête internationale du travail",
+      "short": "Fête du travail"
+    },
+    "NATIONAL_DAY": {
+      "name": "Fête nationale",
+      "short": "Fête nationale"
+    },
+    "CULTURE": {
+      "name": "Journée de la culture vietnamienne",
+      "short": "Journée de la culture"
+    },
+    "PARTY": {
+      "name": "Fondation du Parti communiste",
+      "short": "Fondation du Parti"
+    },
+    "VALENTINE": {
+      "name": "Saint-Valentin",
+      "short": "Saint-Valentin"
+    },
+    "PHYSICIANS": {
+      "name": "Journée des médecins vietnamiens",
+      "short": "Journée des médecins"
+    },
+    "WOMEN_INTL": {
+      "name": "Journée internationale des femmes",
+      "short": "Journée des femmes"
+    },
+    "YOUTH_UNION": {
+      "name": "Fondation de l'Union de la jeunesse",
+      "short": "Union de la jeunesse"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "Victoire de Diên Biên Phu",
+      "short": "Diên Biên Phu"
+    },
+    "HO_CHI_MINH": {
+      "name": "Anniversaire du président Hô Chi Minh",
+      "short": "Anniversaire de Hô Chi Minh"
+    },
+    "CHILDREN": {
+      "name": "Journée internationale de l'enfance",
+      "short": "Journée de l'enfance"
+    },
+    "FAMILY": {
+      "name": "Journée de la famille vietnamienne",
+      "short": "Journée de la famille"
+    },
+    "MARTYRS": {
+      "name": "Journée des invalides et des martyrs",
+      "short": "Journée des martyrs"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "Révolution d'Août",
+      "short": "Révolution d'Août"
+    },
+    "CAPITAL": {
+      "name": "Libération de la capitale",
+      "short": "Libération de la capitale"
+    },
+    "WOMEN_VN": {
+      "name": "Journée de la femme vietnamienne",
+      "short": "Femme vietnamienne"
+    },
+    "TEACHERS": {
+      "name": "Journée des enseignants vietnamiens",
+      "short": "Journée des enseignants"
+    },
+    "ARMY": {
+      "name": "Journée de l'Armée populaire",
+      "short": "Journée de l'Armée"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "Réveillon de Noël",
+      "short": "Réveillon"
+    },
+    "CHRISTMAS": {
+      "name": "Noël",
+      "short": "Noël"
+    },
+    "TET_1": {
+      "name": "Nouvel An lunaire (1er jour)",
+      "short": "Têt jour 1"
+    },
+    "TET_2": {
+      "name": "Nouvel An lunaire (2e jour)",
+      "short": "Têt jour 2"
+    },
+    "TET_3": {
+      "name": "Nouvel An lunaire (3e jour)",
+      "short": "Têt jour 3"
+    },
+    "HUNG_KINGS": {
+      "name": "Commémoration des rois Hùng",
+      "short": "Rois Hùng"
+    },
+    "LANTERN": {
+      "name": "Fête des lanternes (première pleine lune)",
+      "short": "Fête des lanternes"
+    },
+    "COLD_FOOD": {
+      "name": "Fête des aliments froids",
+      "short": "Aliments froids"
+    },
+    "VESAK": {
+      "name": "Naissance du Bouddha (Vesak)",
+      "short": "Vesak"
+    },
+    "DOAN_NGO": {
+      "name": "Fête du double cinq",
+      "short": "Double cinq"
+    },
+    "VU_LAN": {
+      "name": "Fête de Vu Lan",
+      "short": "Vu Lan"
+    },
+    "MID_AUTUMN": {
+      "name": "Fête de la mi-automne",
+      "short": "Mi-automne"
+    },
+    "KITCHEN_GODS": {
+      "name": "Jour des génies du foyer",
+      "short": "Génies du foyer"
+    },
+    "MOTHER": {
+      "name": "Fête des mères",
+      "short": "Fête des mères"
+    },
+    "FATHER": {
+      "name": "Fête des pères",
+      "short": "Fête des pères"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "Réveillon du Nouvel An lunaire",
+      "short": "Réveillon du Têt"
+    },
+    "moon": {
+      "first": "1er jour du {{month}}e mois lunaire",
+      "firstLeap": "1er jour du {{month}}e mois lunaire intercalaire",
+      "full": "Pleine lune du {{month}}e mois lunaire",
+      "fullLeap": "Pleine lune du {{month}}e mois lunaire intercalaire"
+    }
   }
 }

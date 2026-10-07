@@ -48,7 +48,11 @@
       "unreadable": "Bản nháp không đọc được.",
       "cleared": "Đã xóa bản nháp trên thiết bị."
     },
-    "note": "Xem kỹ thông tin trước khi gửi. Bản nháp chỉ lưu trên thiết bị khi bạn bấm Lưu; ảnh không được lưu."
+    "note": "Xem kỹ thông tin trước khi gửi. Bản nháp chỉ lưu trên thiết bị khi bạn bấm Lưu; ảnh không được lưu.",
+    "print": {
+      "kicker": "Hồ sơ ứng tuyển",
+      "summary": "Giới thiệu"
+    }
   },
   "formTemplates": {
     "title": "Soạn mẫu giấy tờ",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "Một số việc yêu cầu công chứng hoặc chứng thực. Kiểm tra với nơi tiếp nhận trước khi sử dụng.",
     "defaultWarning": "Mẫu tham khảo; hãy kiểm tra yêu cầu của nơi tiếp nhận trước khi nộp.",
-    "privacy": "Dữ liệu chỉ nằm trong trang đang mở."
+    "privacy": "Dữ liệu chỉ nằm trong trang đang mở.",
+    "print": {
+      "nation": "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM",
+      "motto": "Độc lập - Tự do - Hạnh phúc",
+      "dateLine": "{{place}}, ngày {{day}} tháng {{month}} năm {{year}}",
+      "initial": {
+        "board": "Ban Giám đốc"
+      },
+      "leave": {
+        "recipient": "Kính gửi: {{value}}",
+        "name": "Tôi tên là:",
+        "department": "Chức vụ, bộ phận: {{value}}",
+        "period": "Nay tôi làm đơn này xin được nghỉ phép từ ngày {{from}} đến hết ngày {{to}}.",
+        "reason": "Lý do: {{value}}",
+        "handover": "Trong thời gian nghỉ, tôi bàn giao công việc cho {{value}}.",
+        "closing": "Kính mong được xem xét, chấp thuận. Tôi xin chân thành cảm ơn."
+      },
+      "authorization": {
+        "principal": "Bên ủy quyền:",
+        "attorney": "Bên được ủy quyền:",
+        "personalId": "Số định danh cá nhân: {{value}}",
+        "address": "Địa chỉ: {{value}}",
+        "scope": "Nội dung ủy quyền:",
+        "term": "Thời hạn:",
+        "commitment": "Hai bên cam kết chịu trách nhiệm về nội dung ủy quyền đã ghi."
+      },
+      "handover": {
+        "intro": "Hôm nay, chúng tôi gồm:",
+        "giver": "Bên giao:",
+        "receiver": "Bên nhận:",
+        "itemsIntro": "Cùng tiến hành bàn giao các nội dung sau:",
+        "number": "STT",
+        "content": "Nội dung",
+        "note": "Ghi chú: {{value}}",
+        "copies": "Biên bản lập thành 02 bản, mỗi bên giữ 01 bản."
+      },
+      "signatures": {
+        "approver": "Người duyệt",
+        "applicant": "Người làm đơn",
+        "attorney": "Người được ủy quyền",
+        "principal": "Người ủy quyền",
+        "receiver": "Bên nhận",
+        "giver": "Bên giao"
+      },
+      "signHint": "(Ký, ghi rõ họ tên)"
+    }
   }
 }

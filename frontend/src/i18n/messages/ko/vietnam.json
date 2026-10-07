@@ -81,7 +81,8 @@
     "columns": {
       "old": "옛 주소",
       "proposed": "제안",
-      "status": "상태"
+      "status": "상태",
+      "droppedDistrict": "폐지된 군·현"
     },
     "downloadCsv": "CSV 다운로드",
     "verifiedNote": "서명된 대조표로, {{date}}부터 유효해요. 출처: {{source}}. 최종 주소는 서류 접수처에 확인하세요.",
@@ -95,7 +96,8 @@
     "rulesLabel": "주소 대조표",
     "rulesNone": "시스템에 유효한 서명된 주소 대조표가 아직 없어요.",
     "manualLabel": "또는 직접 입력하세요. 한 줄에: “옛 성|옛 군|옛 사|새 성|새 사”",
-    "manualInvalid": "대조표 형식이 잘못됐거나(각 줄 5개 항목, 항목당 최대 150자), 같은 옛 성이 서로 다른 두 새 성에 지정돼 있어요."
+    "manualInvalid": "대조표 형식이 잘못됐거나(각 줄 5개 항목, 항목당 최대 150자), 같은 옛 성이 서로 다른 두 새 성에 지정돼 있어요.",
+    "csvFileName": "주소-변환"
   },
   "invoice": {
     "errors": {
@@ -156,5 +158,200 @@
     "placeholder": "예: 1.234.567",
     "zeroWordLabel": "십의 자리 0 읽는 법",
     "fourWordLabel": "십의 자리 뒤 4 읽는 법"
+  },
+  "terms": {
+    "stems": {
+      "0": "갑",
+      "1": "을",
+      "2": "병",
+      "3": "정",
+      "4": "무",
+      "5": "기",
+      "6": "경",
+      "7": "신",
+      "8": "임",
+      "9": "계"
+    },
+    "branches": {
+      "0": "자",
+      "1": "축",
+      "2": "인",
+      "3": "묘",
+      "4": "진",
+      "5": "사",
+      "6": "오",
+      "7": "미",
+      "8": "신",
+      "9": "유",
+      "10": "술",
+      "11": "해"
+    },
+    "canChi": "{{stem}}{{branch}}",
+    "spirits": {
+      "THANH_LONG": "청룡",
+      "MINH_DUONG": "명당",
+      "THIEN_HINH": "천형",
+      "CHU_TUOC": "주작",
+      "KIM_QUY": "금궤",
+      "KIM_DUONG": "금당",
+      "BACH_HO": "백호",
+      "NGOC_DUONG": "옥당",
+      "THIEN_LAO": "천뢰",
+      "HUYEN_VU": "현무",
+      "TU_MENH": "사명",
+      "CAU_TRAN": "구진"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "신정",
+      "short": "신정"
+    },
+    "REUNIFICATION": {
+      "name": "남부 해방 기념일",
+      "short": "남부 해방"
+    },
+    "LABOUR": {
+      "name": "세계 노동절",
+      "short": "노동절"
+    },
+    "NATIONAL_DAY": {
+      "name": "국경절",
+      "short": "국경절"
+    },
+    "CULTURE": {
+      "name": "베트남 문화의 날",
+      "short": "문화의 날"
+    },
+    "PARTY": {
+      "name": "베트남 공산당 창건 기념일",
+      "short": "공산당 창건"
+    },
+    "VALENTINE": {
+      "name": "밸런타인데이",
+      "short": "밸런타인"
+    },
+    "PHYSICIANS": {
+      "name": "베트남 의사의 날",
+      "short": "의사의 날"
+    },
+    "WOMEN_INTL": {
+      "name": "세계 여성의 날",
+      "short": "여성의 날"
+    },
+    "YOUTH_UNION": {
+      "name": "호찌민 공산청년단 창립 기념일",
+      "short": "청년단"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "디엔비엔푸 전승 기념일",
+      "short": "디엔비엔푸"
+    },
+    "HO_CHI_MINH": {
+      "name": "호찌민 주석 탄신일",
+      "short": "호 주석 탄신"
+    },
+    "CHILDREN": {
+      "name": "세계 어린이날",
+      "short": "어린이날"
+    },
+    "FAMILY": {
+      "name": "베트남 가족의 날",
+      "short": "가족의 날"
+    },
+    "MARTYRS": {
+      "name": "상이군인·순국열사의 날",
+      "short": "순국열사"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "8월 혁명 기념일",
+      "short": "8월 혁명"
+    },
+    "CAPITAL": {
+      "name": "수도 해방 기념일",
+      "short": "수도 해방"
+    },
+    "WOMEN_VN": {
+      "name": "베트남 여성의 날",
+      "short": "베트남 여성의 날"
+    },
+    "TEACHERS": {
+      "name": "베트남 스승의 날",
+      "short": "스승의 날"
+    },
+    "ARMY": {
+      "name": "베트남 인민군 창설 기념일",
+      "short": "인민군"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "크리스마스 이브",
+      "short": "이브"
+    },
+    "CHRISTMAS": {
+      "name": "크리스마스",
+      "short": "크리스마스"
+    },
+    "TET_1": {
+      "name": "뗏 설날 (첫째 날)",
+      "short": "설날 1일"
+    },
+    "TET_2": {
+      "name": "뗏 설날 (둘째 날)",
+      "short": "설날 2일"
+    },
+    "TET_3": {
+      "name": "뗏 설날 (셋째 날)",
+      "short": "설날 3일"
+    },
+    "HUNG_KINGS": {
+      "name": "훙왕 기일",
+      "short": "훙왕 기일"
+    },
+    "LANTERN": {
+      "name": "정월 대보름",
+      "short": "대보름"
+    },
+    "COLD_FOOD": {
+      "name": "한식",
+      "short": "한식"
+    },
+    "VESAK": {
+      "name": "석가탄신일",
+      "short": "석가탄신일"
+    },
+    "DOAN_NGO": {
+      "name": "단오",
+      "short": "단오"
+    },
+    "VU_LAN": {
+      "name": "우란분절",
+      "short": "우란분"
+    },
+    "MID_AUTUMN": {
+      "name": "추석",
+      "short": "추석"
+    },
+    "KITCHEN_GODS": {
+      "name": "조왕신 배웅의 날",
+      "short": "조왕신"
+    },
+    "MOTHER": {
+      "name": "어머니의 날",
+      "short": "어머니의 날"
+    },
+    "FATHER": {
+      "name": "아버지의 날",
+      "short": "아버지의 날"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "섣달그믐",
+      "short": "섣달그믐"
+    },
+    "moon": {
+      "first": "음력 {{month}}월 1일",
+      "firstLeap": "음력 윤{{month}}월 1일",
+      "full": "음력 {{month}}월 15일",
+      "fullLeap": "음력 윤{{month}}월 15일"
+    }
   }
 }

@@ -413,5 +413,20 @@
     "brushSize": "筆刷大小：{{value}}",
     "undoBrush": "復原筆刷",
     "note": "圖片在裝置上處理。細節多的背景需要用筆刷手動修整；大圖片每邊最多縮小到 2200 px。"
+  },
+  "file": {
+    "fallback": "圖片",
+    "camera": "拍攝 {{time}} - {{index}}",
+    "adjusted": "已編輯",
+    "measured": "已測量",
+    "redacted": "已遮蔽",
+    "stamped": "已加印章",
+    "compressed": "已壓縮",
+    "idPhoto": "證件照 {{size}}",
+    "imageCount": "{{count}} 張圖片",
+    "convertedCount": "{{count}} 張 {{format}} 圖片",
+    "compressedCount": "{{count}} 張已壓縮圖片",
+    "collage": "拼貼",
+    "measureReference": "基準：{{length}}"
   }
 }

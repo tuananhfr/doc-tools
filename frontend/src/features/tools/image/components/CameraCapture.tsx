@@ -93,7 +93,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
       for (const [index, shot] of shots.entries()) {
         const cropped = shot.rect && !isFullRect(shot.rect, shot)
         const blob = cropped && shot.rect ? (await renderCrop(shot.blob, { ...NEUTRAL_ADJUST, rotation: 0, rect: shot.rect }, 'jpeg')).blob : shot.blob
-        files.push(new File([blob], `Ảnh chụp ${stamp} - ${pad(index + 1)}.jpg`, { type: 'image/jpeg' }))
+        files.push(new File([blob], `${t('file.camera', { time: stamp, index: pad(index + 1) })}.jpg`, { type: 'image/jpeg' }))
       }
       onDone(files)
       onClose()

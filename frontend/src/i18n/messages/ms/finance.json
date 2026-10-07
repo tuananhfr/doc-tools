@@ -40,7 +40,11 @@
     "applyVat": "Gunakan kadar cukai yang ditandatangani",
     "ruleLabel": "jadual harga elektrik",
     "ruleNone": "Belum ada jadual harga elektrik yang ditandatangani dan masih berkuat kuasa dalam sistem.",
-    "vatRuleLabel": "kadar VAT"
+    "vatRuleLabel": "kadar VAT",
+    "aiResult": {
+      "water": "Air {{volume}} m³; jumlah {{total}} đ",
+      "electricity": "Elektrik {{kwh}} kWh; jumlah {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Pindahan wang untuk menyelesaikan baki",
@@ -54,7 +58,11 @@
     "choosePerson": "Pilih orang",
     "amount": "Jumlah (đ)",
     "participants": "Dikongsi bersama",
-    "removeExpense": "Buang perbelanjaan"
+    "removeExpense": "Buang perbelanjaan",
+    "samplePeople": {
+      "0": "Aiman",
+      "1": "Nurul"
+    }
   },
   "loan": {
     "totalPayment": "Jumlah perlu dibayar",
@@ -88,7 +96,17 @@
       "annuity": "Bayaran hampir sama rata",
       "equalPrincipal": "Pokok sama rata"
     },
-    "renewals": "Bilangan pembaharuan"
+    "renewals": "Bilangan pembaharuan",
+    "file": {
+      "name": "jadual-bayaran-balik",
+      "columns": {
+        "period": "Tempoh",
+        "principal": "Prinsipal",
+        "interest": "Faedah",
+        "payment": "Bayaran",
+        "balance": "Baki"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "parameter penggajian",
     "ruleNone": "Belum ada pakej peraturan gaji yang ditandatangani dan masih berkuat kuasa dalam sistem.",
     "enterParams": "Masukkan parameter penggajian",
-    "brackets": "Jadual cukai: “had pendapatan bercukai (đ), kadar cukai (%)”; gunakan * pada baris terakhir"
+    "brackets": "Jadual cukai: “had pendapatan bercukai (đ), kadar cukai (%)”; gunakan * pada baris terakhir",
+    "aiResult": "Kasar {{gross}} đ; Bersih {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "Perbandingan harga seunit",

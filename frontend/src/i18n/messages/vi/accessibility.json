@@ -14,7 +14,8 @@
     "copy": "Sao chép",
     "download": "Tải .txt",
     "interrupted": "Nhận dạng giọng nói bị gián đoạn. Kiểm tra quyền micro và thử lại.",
-    "micFailed": "Không mở được micro. Kiểm tra quyền truy cập của trình duyệt."
+    "micFailed": "Không mở được micro. Kiểm tra quyền truy cập của trình duyệt.",
+    "fileName": "ghi-am-thanh-van-ban"
   },
   "magnifier": {
     "noCamera": "Trình duyệt này không hỗ trợ camera.",

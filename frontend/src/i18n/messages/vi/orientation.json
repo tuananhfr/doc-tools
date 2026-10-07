@@ -606,5 +606,11 @@
   "sceneTags": {
     "FRONTAGE": "Mặt tiền",
     "ENTRANCE": "Cửa chính"
+  },
+  "file": {
+    "compass": "la-ban-huong-nha",
+    "record": "so-do-huong-nha",
+    "suffix": "huong nha",
+    "page": "trang {{page}}"
   }
 }

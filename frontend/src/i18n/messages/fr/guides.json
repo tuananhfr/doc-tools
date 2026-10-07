@@ -25,7 +25,7 @@
         },
         "download": {
           "title": "Télécharger le résultat",
-          "detail": "Cliquez sur « Télécharger ». Un seul fichier est nommé « <nom du fichier> - đã nén.pdf » (« đã nén » signifie « compressé ») ; plusieurs fichiers sont regroupés dans un .zip. Vous pouvez utiliser « Aperçu » ou « Continuer à modifier » avant de télécharger."
+          "detail": "Cliquez sur « Télécharger ». Un seul fichier est nommé « <nom du fichier> - compressé.pdf » ; plusieurs fichiers sont regroupés dans un .zip. Vous pouvez utiliser « Aperçu » ou « Continuer à modifier » avant de télécharger."
         }
       },
       "tips": {

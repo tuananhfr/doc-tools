@@ -48,7 +48,11 @@
       "unreadable": "Le brouillon est illisible.",
       "cleared": "Brouillon supprimé de cet appareil."
     },
-    "note": "Vérifiez bien les informations avant l'envoi. Le brouillon n'est enregistré sur votre appareil que lorsque vous appuyez sur Enregistrer ; la photo n'est pas enregistrée."
+    "note": "Vérifiez bien les informations avant l'envoi. Le brouillon n'est enregistré sur votre appareil que lorsque vous appuyez sur Enregistrer ; la photo n'est pas enregistrée.",
+    "print": {
+      "kicker": "Curriculum vitae",
+      "summary": "Profil"
+    }
   },
   "formTemplates": {
     "title": "Modèles de documents",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "Certaines démarches exigent une légalisation ou une certification. Renseignez-vous auprès de l'organisme destinataire avant utilisation.",
     "defaultWarning": "Modèle de référence ; vérifiez les exigences de l'organisme destinataire avant de le déposer.",
-    "privacy": "Vos données restent uniquement dans la page ouverte."
+    "privacy": "Vos données restent uniquement dans la page ouverte.",
+    "print": {
+      "nation": "RÉPUBLIQUE SOCIALISTE DU VIET NAM",
+      "motto": "Indépendance – Liberté – Bonheur",
+      "dateLine": "{{place}}, le {{day}}/{{month}}/{{year}}",
+      "initial": {
+        "board": "La Direction"
+      },
+      "leave": {
+        "recipient": "À : {{value}}",
+        "name": "Je soussigné(e) :",
+        "department": "Poste, service : {{value}}",
+        "period": "J'ai l'honneur de solliciter un congé du {{from}} au {{to}}.",
+        "reason": "Motif : {{value}}",
+        "handover": "Pendant mon absence, mon travail sera confié à {{value}}.",
+        "closing": "Je vous prie de bien vouloir examiner et approuver ma demande. Avec mes remerciements."
+      },
+      "authorization": {
+        "principal": "Mandant :",
+        "attorney": "Mandataire :",
+        "personalId": "Numéro d'identification personnel : {{value}}",
+        "address": "Adresse : {{value}}",
+        "scope": "Objet du mandat :",
+        "term": "Durée :",
+        "commitment": "Les deux parties s'engagent à répondre du mandat ci-dessus."
+      },
+      "handover": {
+        "intro": "Ce jour, nous soussignés :",
+        "giver": "Partie remettante :",
+        "receiver": "Partie réceptrice :",
+        "itemsIntro": "avons procédé à la remise des éléments suivants :",
+        "number": "N°",
+        "content": "Élément",
+        "note": "Remarques : {{value}}",
+        "copies": "Le présent procès-verbal est établi en 2 exemplaires, un pour chaque partie."
+      },
+      "signatures": {
+        "approver": "Approuvé par",
+        "applicant": "Demandeur",
+        "attorney": "Mandataire",
+        "principal": "Mandant",
+        "receiver": "Partie réceptrice",
+        "giver": "Partie remettante"
+      },
+      "signHint": "(Signature et nom complet)"
+    }
   }
 }

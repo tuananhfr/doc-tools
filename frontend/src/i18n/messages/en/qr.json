@@ -286,5 +286,11 @@
       "REPLACED": "This label has been replaced — use the new label.",
       "ARCHIVED": "The item is no longer managed."
     }
+  },
+  "file": {
+    "qr": "QR code",
+    "barcode": "Barcode",
+    "barcodeCount_one": "{{count}} barcode",
+    "barcodeCount_other": "{{count}} barcodes"
   }
 }

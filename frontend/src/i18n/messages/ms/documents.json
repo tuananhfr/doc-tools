@@ -48,7 +48,11 @@
       "unreadable": "Draf tidak dapat dibaca.",
       "cleared": "Draf dipadam daripada peranti ini."
     },
-    "note": "Semak maklumat dengan teliti sebelum menghantar. Draf hanya disimpan pada peranti apabila anda menekan Simpan; foto tidak disimpan."
+    "note": "Semak maklumat dengan teliti sebelum menghantar. Draf hanya disimpan pada peranti apabila anda menekan Simpan; foto tidak disimpan.",
+    "print": {
+      "kicker": "Resume",
+      "summary": "Profil"
+    }
   },
   "formTemplates": {
     "title": "Templat borang",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "Sesetengah urusan memerlukan notari atau pengesahan. Semak dengan pihak penerima sebelum menggunakannya.",
     "defaultWarning": "Templat rujukan; semak keperluan pihak penerima sebelum menyerahkannya.",
-    "privacy": "Data anda hanya berada dalam halaman yang sedang dibuka."
+    "privacy": "Data anda hanya berada dalam halaman yang sedang dibuka.",
+    "print": {
+      "nation": "REPUBLIK SOSIALIS VIETNAM",
+      "motto": "Kemerdekaan – Kebebasan – Kebahagiaan",
+      "dateLine": "{{place}}, {{day}}/{{month}}/{{year}}",
+      "initial": {
+        "board": "Lembaga Pengarah"
+      },
+      "leave": {
+        "recipient": "Kepada: {{value}}",
+        "name": "Nama saya:",
+        "department": "Jawatan, jabatan: {{value}}",
+        "period": "Dengan ini saya memohon cuti dari {{from}} hingga {{to}}.",
+        "reason": "Sebab: {{value}}",
+        "handover": "Sepanjang cuti, tugas saya diserahkan kepada {{value}}.",
+        "closing": "Saya memohon pertimbangan dan kelulusan pihak tuan/puan. Terima kasih."
+      },
+      "authorization": {
+        "principal": "Pemberi kuasa:",
+        "attorney": "Penerima kuasa:",
+        "personalId": "Nombor pengenalan diri: {{value}}",
+        "address": "Alamat: {{value}}",
+        "scope": "Skop kuasa:",
+        "term": "Tempoh:",
+        "commitment": "Kedua-dua pihak bertanggungjawab atas kuasa yang dinyatakan di atas."
+      },
+      "handover": {
+        "intro": "Pada hari ini, kami yang bertandatangan di bawah:",
+        "giver": "Pihak yang menyerahkan:",
+        "receiver": "Pihak yang menerima:",
+        "itemsIntro": "telah melaksanakan serahan perkara berikut:",
+        "number": "Bil.",
+        "content": "Perkara",
+        "note": "Catatan: {{value}}",
+        "copies": "Rekod ini dibuat dalam 2 salinan; setiap pihak menyimpan 1."
+      },
+      "signatures": {
+        "approver": "Diluluskan oleh",
+        "applicant": "Pemohon",
+        "attorney": "Penerima kuasa",
+        "principal": "Pemberi kuasa",
+        "receiver": "Pihak yang menerima",
+        "giver": "Pihak yang menyerahkan"
+      },
+      "signHint": "(Tandatangan dan nama penuh)"
+    }
   }
 }

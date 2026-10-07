@@ -103,7 +103,8 @@
     "intro": "Beri nama panggilan yang mudah dikenali. Tidak perlu memasukkan tanggal lahir, sekolah, atau dokumen pribadi.",
     "name": "Nama panggilan",
     "profile": "Profil",
-    "add": "Tambah anggota"
+    "add": "Tambah anggota",
+    "defaultSelf": "Saya"
   },
   "backup": {
     "invalidFile": "File cadangan tidak valid atau lebih dari 20 MB.",
@@ -149,5 +150,16 @@
     "loadFailed": "Data di perangkat tidak dapat dibuka. Periksa izin penyimpanan browser.",
     "saveFailed": "Perubahan tidak dapat disimpan. Ekspor cadangan dan periksa ruang penyimpanan perangkat.",
     "restoreFailed": "Cadangan tidak dapat dipulihkan."
+  },
+  "print": {
+    "title": "Kalender Keluarga · 30 hari ke depan",
+    "from": "Mulai {{date}}.",
+    "withSensitive": "Termasuk acara pribadi dan sensitif.",
+    "withoutSensitive": "Tidak termasuk acara pribadi dan sensitif.",
+    "empty": "Tidak ada acara pada periode ini."
+  },
+  "file": {
+    "backup": "kalender-keluarga-cadangan",
+    "ics": "kalender-keluarga"
   }
 }

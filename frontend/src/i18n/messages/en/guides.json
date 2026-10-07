@@ -25,7 +25,7 @@
         },
         "download": {
           "title": "Download the result",
-          "detail": "Press “Download”. A single file is named “<file name> - đã nén.pdf” (“đã nén” means “compressed”); several files are bundled into one .zip file. You can “Preview” or “Keep editing” before downloading."
+          "detail": "Press “Download”. A single file is named “<file name> - compressed.pdf”; several files are bundled into one .zip file. You can “Preview” or “Keep editing” before downloading."
         }
       },
       "tips": {

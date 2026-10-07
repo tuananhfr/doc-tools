@@ -25,7 +25,7 @@
         },
         "download": {
           "title": "I-download ang resulta",
-          "detail": "Pindutin ang “I-download”. Ang isang file ay papangalanang “<pangalan ng file> - đã nén.pdf” (ang “đã nén” ay nangangahulugang “na-compress”); ang maraming file ay naka-bundle sa isang .zip. Puwede mo itong i-“Preview” o “Ituloy ang pag-edit” bago i-download."
+          "detail": "Pindutin ang “I-download”. Ang isang file ay papangalanang “<pangalan ng file> - pinaliit.pdf”; ang maraming file ay naka-bundle sa isang .zip. Puwede mo itong i-“Preview” o “Ituloy ang pag-edit” bago i-download."
         }
       },
       "tips": {

@@ -1,0 +1,1 @@
+export const HANDWRITING_RECOGNITION_AVAILABLE = false

@@ -30,39 +30,48 @@
   "targets": {
     "HOUSE_FRONTAGE": {
       "label": "Arah rumah",
-      "hint": "Dari dalam rumah memandang terus ke luar melalui muka hadapan"
+      "hint": "Dari dalam rumah memandang terus ke luar melalui muka hadapan",
+      "short": "Rumah"
     },
     "MAIN_DOOR": {
       "label": "Pintu utama",
-      "hint": "Dari dalam rumah memandang ke luar melalui pintu utama"
+      "hint": "Dari dalam rumah memandang ke luar melalui pintu utama",
+      "short": "Pintu"
     },
     "BALCONY": {
       "label": "Balkoni",
-      "hint": "Dari dalam bilik memandang ke luar ke arah balkoni"
+      "hint": "Dari dalam bilik memandang ke luar ke arah balkoni",
+      "short": "Balkoni"
     },
     "KITCHEN": {
       "label": "Dapur",
-      "hint": "Arah belakang orang yang memasak — bertentangan dengan arah orang itu menghadap dapur"
+      "hint": "Arah belakang orang yang memasak — bertentangan dengan arah orang itu menghadap dapur",
+      "short": "Dapur"
     },
     "ALTAR": {
       "label": "Altar",
-      "hint": "Arah yang dihadap oleh bahagian depan altar"
+      "hint": "Arah yang dihadap oleh bahagian depan altar",
+      "short": "Altar"
     },
     "BED": {
       "label": "Katil",
-      "hint": "Dari kepala katil memandang ke hujung katil"
+      "hint": "Dari kepala katil memandang ke hujung katil",
+      "short": "Katil"
     },
     "DESK": {
       "label": "Meja kerja",
-      "hint": "Arah yang dihadap oleh orang yang duduk bekerja"
+      "hint": "Arah yang dihadap oleh orang yang duduk bekerja",
+      "short": "Meja"
     },
     "LAND_FRONTAGE": {
       "label": "Muka hadapan tanah",
-      "hint": "Dari dalam lot tanah memandang ke jalan"
+      "hint": "Dari dalam lot tanah memandang ke jalan",
+      "short": "Tanah"
     },
     "CUSTOM": {
       "label": "Objek lain",
-      "hint": "Namakan sendiri; paksi menunjuk ke arah yang hendak diukur"
+      "hint": "Namakan sendiri; paksi menunjuk ke arah yang hendak diukur",
+      "short": "Lain"
     }
   },
   "north": {
@@ -330,7 +339,7 @@
     "yearNoteLunar": "Tahun bermula pada Tết (Tahun Baharu qamari) — jika lahir sebelum Tết, gunakan tahun sebelumnya.",
     "facts": {
       "age": "Umur",
-      "napAm": "Unsur (nạp âm)",
+      "napAm": "Unsur Na Yin",
       "trigram": "Trigram hayat"
     },
     "beforeTet": "Lahir sebelum Tết, jadi umur dikira bagi tahun {{year}} ({{canChi}}).",
@@ -354,8 +363,254 @@
     "missingStars": "Trigram {{trigram}} kekurangan bintang.",
     "duplicateStars": "Trigram {{trigram}} mempunyai dua bintang pada arah yang sama.",
     "noGroup": "Trigram {{trigram}} tidak tergolong dalam mana-mana kumpulan.",
-    "homes": "Arah Hậu Thiên (Langit Kemudian) bagi trigram tidak sah.",
+    "homes": "Arah Langit Kemudian bagi trigram tidak sah.",
     "yearRange": "Tahun lahir mesti antara {{min}} dan {{max}}.",
     "noTrigram": "Set peraturan tiada trigram nombor {{number}}."
+  },
+  "terms": {
+    "directions8": {
+      "0": {
+        "name": "Utara",
+        "short": "U"
+      },
+      "1": {
+        "name": "Timur laut",
+        "short": "TL"
+      },
+      "2": {
+        "name": "Timur",
+        "short": "T"
+      },
+      "3": {
+        "name": "Tenggara",
+        "short": "Tg"
+      },
+      "4": {
+        "name": "Selatan",
+        "short": "S"
+      },
+      "5": {
+        "name": "Barat daya",
+        "short": "BD"
+      },
+      "6": {
+        "name": "Barat",
+        "short": "B"
+      },
+      "7": {
+        "name": "Barat laut",
+        "short": "BL"
+      }
+    },
+    "directions16": {
+      "0": {
+        "name": "Utara",
+        "short": "U"
+      },
+      "1": {
+        "name": "Utara-timur laut",
+        "short": "UTL"
+      },
+      "2": {
+        "name": "Timur laut",
+        "short": "TL"
+      },
+      "3": {
+        "name": "Timur-timur laut",
+        "short": "TTL"
+      },
+      "4": {
+        "name": "Timur",
+        "short": "T"
+      },
+      "5": {
+        "name": "Timur-tenggara",
+        "short": "TTg"
+      },
+      "6": {
+        "name": "Tenggara",
+        "short": "Tg"
+      },
+      "7": {
+        "name": "Selatan-tenggara",
+        "short": "STg"
+      },
+      "8": {
+        "name": "Selatan",
+        "short": "S"
+      },
+      "9": {
+        "name": "Selatan-barat daya",
+        "short": "SBD"
+      },
+      "10": {
+        "name": "Barat daya",
+        "short": "BD"
+      },
+      "11": {
+        "name": "Barat-barat daya",
+        "short": "BBD"
+      },
+      "12": {
+        "name": "Barat",
+        "short": "B"
+      },
+      "13": {
+        "name": "Barat-barat laut",
+        "short": "BBL"
+      },
+      "14": {
+        "name": "Barat laut",
+        "short": "BL"
+      },
+      "15": {
+        "name": "Utara-barat laut",
+        "short": "UBL"
+      }
+    },
+    "mountains": {
+      "0": "Zi",
+      "1": "Gui",
+      "2": "Chou",
+      "3": "Gen",
+      "4": "Yin",
+      "5": "Jia",
+      "6": "Mao",
+      "7": "Yi",
+      "8": "Chen",
+      "9": "Xun",
+      "10": "Si",
+      "11": "Bing",
+      "12": "Wu",
+      "13": "Ding",
+      "14": "Wei",
+      "15": "Kun",
+      "16": "Shen",
+      "17": "Geng",
+      "18": "You",
+      "19": "Xin",
+      "20": "Xu",
+      "21": "Qian",
+      "22": "Hai",
+      "23": "Ren"
+    },
+    "trigrams": {
+      "KAN": "Kan",
+      "GEN": "Gen",
+      "ZHEN": "Zhen",
+      "XUN": "Xun",
+      "LI": "Li",
+      "KUN": "Kun",
+      "DUI": "Dui",
+      "QIAN": "Qian"
+    },
+    "elements": {
+      "METAL": "Logam",
+      "WOOD": "Kayu",
+      "WATER": "Air",
+      "FIRE": "Api",
+      "EARTH": "Tanah"
+    },
+    "napAm": {
+      "0": "Logam Laut",
+      "1": "Api Relau",
+      "2": "Kayu Hutan Besar",
+      "3": "Tanah Tepi Jalan",
+      "4": "Logam Mata Pedang",
+      "5": "Api Puncak Gunung",
+      "6": "Air Gaung",
+      "7": "Tanah Tembok Kota",
+      "8": "Logam Lilin Putih",
+      "9": "Kayu Pokok Willow",
+      "10": "Air Mata Air",
+      "11": "Tanah Bumbung",
+      "12": "Api Petir",
+      "13": "Kayu Pain",
+      "14": "Air Sungai Panjang",
+      "15": "Logam dalam Pasir",
+      "16": "Api Kaki Gunung",
+      "17": "Kayu Tanah Rata",
+      "18": "Tanah Dinding",
+      "19": "Logam Kerajang Emas",
+      "20": "Api Pelita",
+      "21": "Air Sungai Langit",
+      "22": "Tanah Jalan Besar",
+      "23": "Logam Cucuk Sanggul",
+      "24": "Kayu Murbei",
+      "25": "Air Anak Sungai Besar",
+      "26": "Tanah dalam Pasir",
+      "27": "Api Langit",
+      "28": "Kayu Delima",
+      "29": "Air Lautan"
+    },
+    "voidNote": "Garis kosong ialah konvensyen feng shui rakyat: arah yang terletak tepat di sempadan antara dua arah (kosong besar) atau dua gunung (kosong kecil), dalam lingkungan ±{{window}}°."
+  },
+  "stars": {
+    "SINH_KHI": {
+      "name": "Nafas Kehidupan",
+      "meaning": "Terbaik — rezeki, nama baik, kenaikan pangkat"
+    },
+    "THIEN_Y": {
+      "name": "Tabib Langit",
+      "meaning": "Baik untuk kesihatan, ramai yang membantu"
+    },
+    "DIEN_NIEN": {
+      "name": "Panjang Umur",
+      "meaning": "Keluarga harmoni, hubungan berkekalan"
+    },
+    "PHUC_VI": {
+      "name": "Kestabilan",
+      "meaning": "Tenang, teguh, baik untuk belajar"
+    },
+    "TUYET_MENH": {
+      "name": "Kehilangan Total",
+      "meaning": "Terburuk — kerugian dan penyakit"
+    },
+    "NGU_QUY": {
+      "name": "Lima Hantu",
+      "meaning": "Umpatan, kerugian, masalah tidak dijangka"
+    },
+    "LUC_SAT": {
+      "name": "Enam Pembunuh",
+      "meaning": "Hubungan bercelaru, tindakan mahkamah"
+    },
+    "HOA_HAI": {
+      "name": "Celaka",
+      "meaning": "Nasib malang, halangan kecil"
+    }
+  },
+  "groups": {
+    "EAST": {
+      "name": "Kumpulan Empat Timur",
+      "house": "Empat Timur"
+    },
+    "WEST": {
+      "name": "Kumpulan Empat Barat",
+      "house": "Empat Barat"
+    }
+  },
+  "profiles": {
+    "batTrach": {
+      "name": "Lapan Rumah (trigram peribadi mengikut tahun lahir)",
+      "source": "Cermin Terang Lapan Rumah — kaedah Tahun Mengembara; trigram peribadi daripada Luo Shu dan tahun lahir lunar",
+      "interpretationV1": "Trigram peribadi dikira daripada tahun lahir lunar dan jantina. Arah objek jatuh dalam sektor mana antara 8 sektor orang itu, objek membawa bintang sektor tersebut. Jika lahir sebelum Tahun Baharu Cina, gunakan tahun lunar sebelumnya.",
+      "interpretationV1_1": "Trigram peribadi dikira daripada tahun lahir lunar (bertukar pada Tahun Baharu Cina) dan jantina. Arah objek jatuh dalam sektor mana antara 8 sektor orang itu, objek membawa bintang sektor tersebut. Rumah juga dikelaskan sebagai Empat Timur atau Empat Barat mengikut arah duduknya (belakang rumah); aliran yang menukar tahun pada Permulaan Musim Bunga (sekitar 4 Februari) mungkin memberi trigram berbeza bagi orang yang lahir antara kedua-dua tarikh itu.",
+      "disclaimer": "Ini feng shui rakyat (kaedah Lapan Rumah) sebagai rujukan sahaja — bukan dapatan teknikal atau nasihat profesional. Aliran lain mungkin memberi hasil berbeza. Bacaan arah dalam Hasil pengukuran tidak bergantung pada bahagian ini."
+    }
+  },
+  "legend": {
+    "target": "{{target}}: {{degree}} · {{direction}}",
+    "luopan": "Menghadap {{facing}} · Duduk {{sitting}}",
+    "footer": "Chuyện Nhỏ · ERPCons · {{time}}"
+  },
+  "sceneTags": {
+    "FRONTAGE": "Muka rumah",
+    "ENTRANCE": "Pintu masuk utama"
+  },
+  "file": {
+    "compass": "kompas-arah-rumah",
+    "record": "rekod-arah-rumah",
+    "suffix": "arah rumah",
+    "page": "halaman {{page}}"
   }
 }

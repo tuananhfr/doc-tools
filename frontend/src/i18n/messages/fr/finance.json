@@ -40,7 +40,11 @@
     "applyVat": "Appliquer le taux signé",
     "ruleLabel": "grille tarifaire de l'électricité",
     "ruleNone": "Aucune grille tarifaire d'électricité signée et en vigueur n'est encore disponible sur le système.",
-    "vatRuleLabel": "taux de TVA"
+    "vatRuleLabel": "taux de TVA",
+    "aiResult": {
+      "water": "Eau {{volume}} m³ ; total {{total}} đ",
+      "electricity": "Électricité {{kwh}} kWh ; total {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Virements pour équilibrer les comptes",
@@ -54,7 +58,11 @@
     "choosePerson": "Choisir une personne",
     "amount": "Montant (đ)",
     "participants": "Partagé entre",
-    "removeExpense": "Retirer la dépense"
+    "removeExpense": "Retirer la dépense",
+    "samplePeople": {
+      "0": "Léa",
+      "1": "Hugo"
+    }
   },
   "loan": {
     "totalPayment": "Total à payer",
@@ -88,7 +96,17 @@
       "annuity": "Échéances quasi constantes",
       "equalPrincipal": "Capital constant"
     },
-    "renewals": "Nombre de renouvellements"
+    "renewals": "Nombre de renouvellements",
+    "file": {
+      "name": "echeancier-remboursement",
+      "columns": {
+        "period": "Échéance",
+        "principal": "Capital",
+        "interest": "Intérêts",
+        "payment": "Mensualité",
+        "balance": "Capital restant"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "paramètres de paie",
     "ruleNone": "Aucun paquet de règles de paie signé et en vigueur n'est encore disponible sur le système.",
     "enterParams": "Saisir les paramètres de paie",
-    "brackets": "Barème : « seuil de revenu imposable (đ), taux (%) » ; utilisez * sur la dernière ligne"
+    "brackets": "Barème : « seuil de revenu imposable (đ), taux (%) » ; utilisez * sur la dernière ligne",
+    "aiResult": "Brut {{gross}} đ ; Net {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "Comparaison au prix unitaire",

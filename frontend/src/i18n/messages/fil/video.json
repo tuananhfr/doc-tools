@@ -90,5 +90,11 @@
     "cancelled": "Kinansela ang pagproseso ng video.",
     "timedOut": "Masyadong natagalan ang task. Subukan ang mas maikling video at tingnan ang koneksyon habang dina-download ang processor.",
     "engineFailed": "Hindi ma-load o mapatakbo ang video processor. Tingnan ang koneksyon, magsara ng ilang tab o subukan ang mas maliit na file sa computer."
+  },
+  "file": {
+    "audio": "audio",
+    "gif": "animated",
+    "trimmed": "pinutol",
+    "compressed": "pinaliit"
   }
 }

@@ -27,7 +27,7 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
 
   const saveRecord = () => {
     const record = orientationRecord(state, source, new Date())
-    downloadOutput({ name: 'so-do-huong-nha.json', blob: new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' }) })
+    downloadOutput({ name: `${t('file.record')}.json`, blob: new Blob([JSON.stringify(record, null, 2)], { type: 'application/json' }) })
   }
 
   return (

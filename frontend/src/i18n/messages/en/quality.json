@@ -1,0 +1,6 @@
+{
+  "consent":"Allow quality statistics during this session",
+  "notice":"Optional and off by default. Sends only event types (no results, query reformulation, tool opened, completion, download click) and fixed tool IDs. Never sends queries, filenames, OCR text, corrections or files. This choice resets after reloading the page.",
+  "retention":"The server stores daily counters. A daily rotating IP hash is used only for rate limits and removed after at most approximately 2 hours; raw IPs and user tracking profiles are not stored.",
+  "disabled":"Quality statistics collection is currently disabled."
+}

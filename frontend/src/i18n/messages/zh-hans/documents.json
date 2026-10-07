@@ -48,7 +48,11 @@
       "unreadable": "无法读取草稿。",
       "cleared": "已删除设备上的草稿。"
     },
-    "note": "发送前请仔细检查信息。只有在你点击“保存”时草稿才会保存在设备上；照片不会保存。"
+    "note": "发送前请仔细检查信息。只有在你点击“保存”时草稿才会保存在设备上；照片不会保存。",
+    "print": {
+      "kicker": "个人简历",
+      "summary": "个人简介"
+    }
   },
   "formTemplates": {
     "title": "制作文书模板",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "部分事项需要公证或认证。使用前请向受理单位确认。",
     "defaultWarning": "参考模板；提交前请确认受理单位的要求。",
-    "privacy": "数据只保留在当前打开的页面中。"
+    "privacy": "数据只保留在当前打开的页面中。",
+    "print": {
+      "nation": "越南社会主义共和国",
+      "motto": "独立 - 自由 - 幸福",
+      "dateLine": "{{place}}，{{year}}年{{month}}月{{day}}日",
+      "initial": {
+        "board": "公司领导"
+      },
+      "leave": {
+        "recipient": "致：{{value}}",
+        "name": "本人姓名：",
+        "department": "职务、部门：{{value}}",
+        "period": "现申请自 {{from}} 起休假至 {{to}} 止。",
+        "reason": "事由：{{value}}",
+        "handover": "休假期间，本人工作交由 {{value}} 负责。",
+        "closing": "恳请审阅批准。谨致谢意。"
+      },
+      "authorization": {
+        "principal": "委托人：",
+        "attorney": "受托人：",
+        "personalId": "个人身份号码：{{value}}",
+        "address": "地址：{{value}}",
+        "scope": "委托事项：",
+        "term": "委托期限：",
+        "commitment": "双方承诺对上述委托内容负责。"
+      },
+      "handover": {
+        "intro": "今日，我们双方：",
+        "giver": "移交方：",
+        "receiver": "接收方：",
+        "itemsIntro": "共同办理以下事项的交接：",
+        "number": "序号",
+        "content": "内容",
+        "note": "备注：{{value}}",
+        "copies": "本记录一式两份，双方各执一份。"
+      },
+      "signatures": {
+        "approver": "审批人",
+        "applicant": "申请人",
+        "attorney": "受托人",
+        "principal": "委托人",
+        "receiver": "接收方",
+        "giver": "移交方"
+      },
+      "signHint": "（签字并注明姓名）"
+    }
   }
 }

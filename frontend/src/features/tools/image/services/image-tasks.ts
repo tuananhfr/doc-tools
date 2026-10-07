@@ -93,7 +93,7 @@ export function convertImagesTask(items: ImageItem[], { format, quality }: Conve
     if (flattened) notes.push({ tone: 'info', text: translate('image:tasks.jpegFlatten') })
     notes.push(...exifNotes(results.map((result) => result.exif)))
 
-    const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh ${label}`)
+    const output = await bundle(files, `${stem(items[0].name)} - ${translate('image:file.convertedCount', { count: items.length, format: label })}`)
     return {
       title: items.length === 1 ? translate('image:convert.titleOne', { format: label }) : translate('image:convert.titleMany', { count: items.length, format: label }),
       output: items.length === 1 ? { ...output, detail: sizeLabel(items[0]) } : output,
@@ -123,7 +123,7 @@ export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: Com
     // Ảnh giữ nguyên tệp gốc thì EXIF (nếu có) vẫn còn, bất kể bản nén có mang được hay không.
     const exif = results.map((result, index): ExifOutcome => (replaced[index] || result.exif === 'none' ? result.exif : 'kept'))
     const files = items.map((item, index) =>
-      replaced[index] ? { name: outputName(item.name, writableFormat(item.format), ' - đã nén'), blob: blobs[index] } : { name: item.name, blob: item.file as Blob },
+      replaced[index] ? { name: outputName(item.name, writableFormat(item.format), translate('image:file.compressed')), blob: blobs[index] } : { name: item.name, blob: item.file as Blob },
     )
     const changed = items.filter((_, index) => replaced[index])
     const unchanged = items.length - changed.length
@@ -146,7 +146,7 @@ export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: Com
       notes.push({ tone: 'info', text: translate('image:tasks.webpAsPng') })
     }
 
-    const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh đã nén`)
+    const output = await bundle(files, `${stem(items[0].name)} - ${translate('image:file.compressedCount', { count: items.length })}`)
     return {
       title: smaller ? translate('image:compress.titleDone') : translate('image:compress.titleNone'),
       tone: smaller ? 'success' : 'warning',

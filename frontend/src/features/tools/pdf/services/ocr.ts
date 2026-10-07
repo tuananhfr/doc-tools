@@ -10,6 +10,8 @@ import { PDF_CSS_SCALE, renderPreview } from './page-preview'
 import { basePageSize } from './page-size'
 import { ocrWords } from '../utils/ocr-review'
 import { inspectOcrImage, ocrSourceHash } from './ocr-quality'
+import { awaitOcrJob } from './ocr-abort'
+import { translate } from '@/i18n/runtime'
 
 /**
  * Nhận dạng chữ ngay trên trình duyệt (tesseract.js, tiếng Việt) — tệp không
@@ -36,26 +38,42 @@ let listener: ((progress: OcrProgress) => void) | null = null
 
 const absolute = (url: string) => new URL(url, window.location.href).href
 
-function getWorker(): Promise<TesseractWorker> {
+function getWorker(signal?: AbortSignal): Promise<TesseractWorker> {
   if (!worker) {
-    worker = (async () => {
+    const pending = (async () => {
       const { createWorker, OEM } = await import('tesseract.js')
-      return createWorker('vie', OEM.LSTM_ONLY, {
+      const response = await fetch(absolute(withBase('/vendor/tesseract/vie.traineddata.gz')), { signal })
+      if (!response.ok) throw new Error(translate('ocr:modelUnavailable'))
+      await response.arrayBuffer()
+      signal?.throwIfAborted()
+      return new Promise<TesseractWorker>((resolve, reject) => { void createWorker('vie', OEM.LSTM_ONLY, {
         workerPath: absolute(workerUrl),
         corePath: absolute(coreUrl),
         langPath: absolute(withBase('/vendor/tesseract')),
         // Không ghi bộ dữ liệu vào IndexedDB — trình duyệt đã cache HTTP, và phiên này hứa không lưu gì.
         cacheMethod: 'none',
+        errorHandler: error => reject(new Error(String(error))),
         logger: (message) => {
-          listener?.({ stage: message.status === 'recognizing text' ? 'reading' : 'loading', progress: message.progress ?? 0 })
+          if (worker === pending) listener?.({ stage: message.status === 'recognizing text' ? 'reading' : 'loading', progress: message.progress ?? 0 })
         },
-      })
+      }).then(resolve, reject) })
     })()
-    worker.catch(() => {
-      worker = null
+    worker = pending
+    pending.catch(() => {
+      if (worker === pending) worker = null
     })
   }
   return worker
+}
+
+export async function recognizeCanvas(canvas: HTMLCanvasElement, onProgress: (progress: OcrProgress) => void, numeric = false, signal?: AbortSignal): Promise<OcrLine[]> {
+  listener = onProgress
+  try {
+    const instance = await awaitOcrJob(getWorker(signal), signal)
+    const options: Partial<import('tesseract.js').RecognizeOptions & import('tesseract.js').WorkerParams> = numeric ? { tessedit_char_whitelist: '0123456789.,/-+ ', tessedit_pageseg_mode: '7' as import('tesseract.js').PSM } : {}
+    const { data } = await awaitOcrJob(instance.recognize(canvas, options, { blocks: true }), signal)
+    return (data.blocks ?? []).flatMap(block => block.paragraphs.flatMap(paragraph => paragraph.lines))
+  } finally { listener = null }
 }
 
 /** Dừng ngay việc đang chạy (tesseract không huỷ được giữa chừng) — lần sau tạo lại worker. */

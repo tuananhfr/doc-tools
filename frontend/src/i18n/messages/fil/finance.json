@@ -40,7 +40,11 @@
     "applyVat": "Gamitin ang signed na tax rate",
     "ruleLabel": "rate table ng kuryente",
     "ruleNone": "Wala pang signed at epektibong rate table ng kuryente sa system.",
-    "vatRuleLabel": "VAT rate"
+    "vatRuleLabel": "VAT rate",
+    "aiResult": {
+      "water": "Tubig {{volume}} m³; kabuuan {{total}} đ",
+      "electricity": "Kuryente {{kwh}} kWh; kabuuan {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "Mga padala para magpantay",
@@ -54,7 +58,11 @@
     "choosePerson": "Pumili ng tao",
     "amount": "Halaga (đ)",
     "participants": "Mga kahati",
-    "removeExpense": "Alisin ang gastos"
+    "removeExpense": "Alisin ang gastos",
+    "samplePeople": {
+      "0": "Juan",
+      "1": "Maria"
+    }
   },
   "loan": {
     "totalPayment": "Kabuuang babayaran",
@@ -88,7 +96,17 @@
       "annuity": "Halos pantay na kabuuang hulog",
       "equalPrincipal": "Pantay na prinsipal"
     },
-    "renewals": "Bilang ng renewal"
+    "renewals": "Bilang ng renewal",
+    "file": {
+      "name": "iskedyul-ng-pagbabayad",
+      "columns": {
+        "period": "Hulog",
+        "principal": "Prinsipal",
+        "interest": "Interes",
+        "payment": "Bayad",
+        "balance": "Natitirang balanse"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "mga parameter ng payroll",
     "ruleNone": "Wala pang signed at epektibong payroll rule package sa system.",
     "enterParams": "Ilagay ang mga parameter ng payroll",
-    "brackets": "Tax table: “limit ng taxable income (đ), tax rate (%)”; gamitin ang * sa huling linya"
+    "brackets": "Tax table: “limit ng taxable income (đ), tax rate (%)”; gamitin ang * sa huling linya",
+    "aiResult": "Gross {{gross}} đ; Net {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "Paghahambing kada yunit",

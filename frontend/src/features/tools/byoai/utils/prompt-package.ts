@@ -1,3 +1,5 @@
+import { translate, translateKey } from '@/i18n/runtime'
+
 export interface PromptPackage {
   context: string
   current_snapshot: string | null
@@ -8,6 +10,8 @@ export interface PromptPackage {
   privacy_redactions: string[]
   output_schema: string
 }
+
+const VERIFICATION_TASKS = [0, 1, 2, 3]
 
 export function redactPromptText(value: string): string {
   return value
@@ -23,17 +27,17 @@ export function buildPromptPackage(input: { toolId: string; snapshot: string | n
   const limit = Number.isInteger(configuredLimit) && configuredLimit >= 1000 && configuredLimit <= 100000 ? configuredLimit : 12000
   const context = redactPromptText(input.context ?? '')
   return {
-    context: input.includeContext ? context.length > limit ? `${context.slice(0, limit)}\n[Đã rút gọn vì vượt giới hạn câu hỏi.]` : context : `Kiểm tra cập nhật cho công cụ ${input.toolId}; không có dữ liệu cá nhân của người dùng.`,
+    context: input.includeContext ? context.length > limit ? `${context.slice(0, limit)}\n${translate('byoai:prompt.package.truncated')}` : context : translate('byoai:prompt.package.noContext', { toolId: input.toolId }),
     current_snapshot: input.snapshot,
     source_checked_at: input.checkedAt,
     jurisdiction: input.jurisdiction,
     known_sources: input.sources,
-    verification_tasks: ['Ưu tiên văn bản, trang hoặc API chính thức.', 'So sánh với dữ liệu hiện tại; nêu ngày ban hành và ngày hiệu lực.', 'Đưa URL nguồn cho mỗi thay đổi; ghi rõ điều chưa chắc chắn.', 'Không suy đoán khi thiếu bằng chứng.'],
-    privacy_redactions: input.includeContext ? ['Credentials, internal URLs and email addresses redacted automatically; user must review the preview.'] : ['User result and personal context excluded by default.'],
+    verification_tasks: VERIFICATION_TASKS.map((index) => translateKey(`byoai:prompt.package.tasks.${index}`)),
+    privacy_redactions: input.includeContext ? [translate('byoai:prompt.package.redactedContext')] : [translate('byoai:prompt.package.excludedContext')],
     output_schema: '{"changes":[{"field":"string","before":"string","after":"string"}],"sources":[{"url":"https://...","type":"OFFICIAL_WEB|OFFICIAL_DOCUMENT|OFFICIAL_API|OTHER"}],"uncertainties":["string"]}',
   }
 }
 
 export function promptText(input: PromptPackage): string {
-  return ['Bạn là trợ lý đối chiếu nguồn. Chỉ đề xuất thay đổi có thể kiểm chứng; kết quả của bạn chưa được coi là dữ liệu đã xác minh.', JSON.stringify(input, null, 2), 'Trả về đúng JSON theo output_schema. Không thêm Markdown hoặc lời dẫn.'].join('\n\n')
+  return [translate('byoai:prompt.package.intro'), JSON.stringify(input, null, 2), translate('byoai:prompt.package.outro')].join('\n\n')
 }

@@ -14,7 +14,8 @@
     "copy": "Kopyahin",
     "download": "I-download ang .txt",
     "interrupted": "Naputol ang speech recognition. Tingnan ang pahintulot sa mikropono at subukan ulit.",
-    "micFailed": "Hindi mabuksan ang mikropono. Tingnan ang mga pahintulot ng iyong browser."
+    "micFailed": "Hindi mabuksan ang mikropono. Tingnan ang mga pahintulot ng iyong browser.",
+    "fileName": "transkripsiyon-ng-diktasyon"
   },
   "magnifier": {
     "noCamera": "Hindi sinusuportahan ng browser na ito ang camera.",

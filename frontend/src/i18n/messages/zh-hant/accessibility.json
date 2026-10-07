@@ -14,7 +14,8 @@
     "copy": "複製",
     "download": "下載 .txt",
     "interrupted": "語音辨識中斷了。請檢查麥克風權限後再試一次。",
-    "micFailed": "無法開啟麥克風。請檢查瀏覽器的存取權限。"
+    "micFailed": "無法開啟麥克風。請檢查瀏覽器的存取權限。",
+    "fileName": "語音轉文字"
   },
   "magnifier": {
     "noCamera": "此瀏覽器不支援相機。",

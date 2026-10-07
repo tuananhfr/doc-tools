@@ -4,7 +4,7 @@ import { fitWithin, outputName, sizeLabel } from './image-format'
 describe('outputName', () => {
   it('đổi đuôi theo định dạng ra, giữ dấu tiếng Việt', () => {
     expect(outputName('Biên bản nghiệm thu.JPEG', 'webp')).toBe('Biên bản nghiệm thu.webp')
-    expect(outputName('IMG_0012.png', 'jpeg', ' - đã nén')).toBe('IMG_0012 - đã nén.jpg')
+    expect(outputName('IMG_0012.png', 'jpeg', 'đã nén')).toBe('IMG_0012 - đã nén.jpg')
   })
 
   it('tên không có đuôi hoặc chỉ có đuôi', () => {

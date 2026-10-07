@@ -29,6 +29,7 @@ interface QuickToolShellProps {
   /** Vùng làm việc trên trang (lưới trang, khung che) — có thì thay cho danh sách tệp. Nhận cờ "đang chạy" để khoá thao tác. */
   stage?: (running: boolean) => ReactNode
   options?: ReactNode
+  waitingLabel?: string
   runLabel: string
   runIcon: string
   /** Vì sao chưa chạy được với tệp / tuỳ chọn hiện tại; null = chạy được. */
@@ -51,7 +52,7 @@ const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept'> & { hin
  * tải, và "Sửa tiếp" sang trình chỉnh sửa. Trang công cụ chỉ còn khai tuỳ chọn
  * và việc cần chạy.
  */
-export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, runLabel, runIcon, blocked, task }: QuickToolShellProps) {
+export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, waitingLabel, runLabel, runIcon, blocked, task }: QuickToolShellProps) {
   const { t } = useTranslation('pdf')
   const navigate = useNavigate()
   const { base } = useToolsBranch()
@@ -110,6 +111,7 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
         }}
         stage={quick.items.length > 0 ? stage?.(run.state.phase === 'running') : undefined}
         options={options}
+        waitingLabel={waitingLabel}
         runLabel={runLabel}
         runIcon={runIcon}
         blocked={quick.items.length === 0 ? t('picker.noFiles') : blocked}

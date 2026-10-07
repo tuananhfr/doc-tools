@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "reviewStatus": "draft",
+  "scope": "Synthetic Vietnamese printed baseline; not a handwriting or real-photo accuracy claim",
+  "missingCoverage": ["real handwriting", "authorized phone photos", "mixed handwritten forms", "perspective and curved paper", "structured cell output"],
+  "documents": {
+    "printed": {"lines": ["THÔNG BÁO", "Hồ sơ đã được tiếp nhận.", "Vui lòng kiểm tra thông tin trước khi gửi.", "Địa chỉ: Thành phố Hồ Chí Minh."], "fields": []},
+    "receipt": {"lines": ["BIÊN NHẬN", "Người nhận: Nguyễn Văn An", "Số tiền: 1250000 đồng", "Ngày: 07/10/2026"], "fields": [
+      {"id": "name", "kind": "text", "pattern": "Người nhận\\s*:\\s*(.*?)\\s*Số tiền", "expected": "Nguyễn Văn An"},
+      {"id": "amount", "kind": "money", "pattern": "Số tiền\\s*:\\s*([0-9., ]+)\\s*đồng", "expected": "1250000"},
+      {"id": "date", "kind": "date", "pattern": "Ngày\\s*:\\s*([0-9/.-]+)", "expected": "07/10/2026"}
+    ]},
+    "table": {"lines": ["BẢNG KÊ VẬT TƯ", "Vật tư | Số lượng | Thành tiền", "Xi măng | 2 | 160000", "Gạch | 10 | 20000", "Tổng | 12 | 180000"], "fields": [
+      {"id": "total", "kind": "money", "pattern": "Tổng\\s*[|lI]?\\s*12\\s*[|lI]?\\s*([0-9.,]+)", "expected": "180000"}
+    ]}
+  },
+  "cases": [
+    {"id": "PRINT-CLEAN", "document": "printed", "variant": "clean", "tags": ["printed", "diacritics"]},
+    {"id": "RECEIPT-CLEAN", "document": "receipt", "variant": "clean", "tags": ["finance", "name", "money", "date"]},
+    {"id": "RECEIPT-BLUR", "document": "receipt", "variant": "blur", "tags": ["finance", "blur"]},
+    {"id": "RECEIPT-SKEW", "document": "receipt", "variant": "skew", "tags": ["finance", "skew"]},
+    {"id": "RECEIPT-GLARE", "document": "receipt", "variant": "glare", "tags": ["finance", "glare"]},
+    {"id": "RECEIPT-SMALL", "document": "receipt", "variant": "small", "tags": ["finance", "low-resolution"]},
+    {"id": "TABLE-CLEAN", "document": "table", "variant": "clean", "tags": ["table", "printed"]},
+    {"id": "TABLE-LOW-CONTRAST", "document": "table", "variant": "low-contrast", "tags": ["table", "low-contrast"]}
+  ]
+}

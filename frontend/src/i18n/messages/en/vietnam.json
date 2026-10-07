@@ -83,7 +83,8 @@
     "columns": {
       "old": "Old address",
       "proposed": "Suggested",
-      "status": "Status"
+      "status": "Status",
+      "droppedDistrict": "District level removed"
     },
     "downloadCsv": "Download CSV",
     "verifiedNote": "Signed mapping set, effective from {{date}}. Source: {{source}}. Confirm the final address with the office receiving your documents.",
@@ -97,7 +98,8 @@
     "rulesLabel": "address mapping table",
     "rulesNone": "There's no signed, currently valid address mapping set on the system yet.",
     "manualLabel": "Or enter your own, one per line: “old province|old district|old commune|new province|new commune”",
-    "manualInvalid": "The mapping table has the wrong format (each line needs 5 parts, each up to 150 characters) or an old province is mapped to two different new provinces."
+    "manualInvalid": "The mapping table has the wrong format (each line needs 5 parts, each up to 150 characters) or an old province is mapped to two different new provinces.",
+    "csvFileName": "address-conversion"
   },
   "invoice": {
     "errors": {
@@ -158,5 +160,200 @@
     "placeholder": "Example: 1.234.567",
     "zeroWordLabel": "Word for zero in the tens place",
     "fourWordLabel": "Word for four after the tens"
+  },
+  "terms": {
+    "stems": {
+      "0": "Yang Wood",
+      "1": "Yin Wood",
+      "2": "Yang Fire",
+      "3": "Yin Fire",
+      "4": "Yang Earth",
+      "5": "Yin Earth",
+      "6": "Yang Metal",
+      "7": "Yin Metal",
+      "8": "Yang Water",
+      "9": "Yin Water"
+    },
+    "branches": {
+      "0": "Rat",
+      "1": "Buffalo",
+      "2": "Tiger",
+      "3": "Cat",
+      "4": "Dragon",
+      "5": "Snake",
+      "6": "Horse",
+      "7": "Goat",
+      "8": "Monkey",
+      "9": "Rooster",
+      "10": "Dog",
+      "11": "Pig"
+    },
+    "canChi": "{{stem}} {{branch}}",
+    "spirits": {
+      "THANH_LONG": "Azure Dragon",
+      "MINH_DUONG": "Bright Hall",
+      "THIEN_HINH": "Heavenly Punishment",
+      "CHU_TUOC": "Vermilion Bird",
+      "KIM_QUY": "Golden Coffer",
+      "KIM_DUONG": "Golden Hall",
+      "BACH_HO": "White Tiger",
+      "NGOC_DUONG": "Jade Hall",
+      "THIEN_LAO": "Heavenly Prison",
+      "HUYEN_VU": "Black Tortoise",
+      "TU_MENH": "Life Keeper",
+      "CAU_TRAN": "Hook Array"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "New Year's Day",
+      "short": "New Year's Day"
+    },
+    "REUNIFICATION": {
+      "name": "Reunification Day",
+      "short": "Reunification Day"
+    },
+    "LABOUR": {
+      "name": "International Labour Day",
+      "short": "Labour Day"
+    },
+    "NATIONAL_DAY": {
+      "name": "National Day",
+      "short": "National Day"
+    },
+    "CULTURE": {
+      "name": "Vietnamese Culture Day",
+      "short": "Culture Day"
+    },
+    "PARTY": {
+      "name": "Communist Party Founding Day",
+      "short": "Party Founding"
+    },
+    "VALENTINE": {
+      "name": "Valentine's Day",
+      "short": "Valentine's Day"
+    },
+    "PHYSICIANS": {
+      "name": "Vietnamese Doctors' Day",
+      "short": "Doctors' Day"
+    },
+    "WOMEN_INTL": {
+      "name": "International Women's Day",
+      "short": "Women's Day"
+    },
+    "YOUTH_UNION": {
+      "name": "Youth Union Founding Day",
+      "short": "Youth Union Day"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "Dien Bien Phu Victory Day",
+      "short": "Dien Bien Phu"
+    },
+    "HO_CHI_MINH": {
+      "name": "President Ho Chi Minh's Birthday",
+      "short": "Ho Chi Minh's Birthday"
+    },
+    "CHILDREN": {
+      "name": "International Children's Day",
+      "short": "Children's Day"
+    },
+    "FAMILY": {
+      "name": "Vietnamese Family Day",
+      "short": "Family Day"
+    },
+    "MARTYRS": {
+      "name": "War Invalids and Martyrs Day",
+      "short": "Martyrs Day"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "August Revolution Day",
+      "short": "August Revolution"
+    },
+    "CAPITAL": {
+      "name": "Capital Liberation Day",
+      "short": "Capital Liberation"
+    },
+    "WOMEN_VN": {
+      "name": "Vietnamese Women's Day",
+      "short": "VN Women's Day"
+    },
+    "TEACHERS": {
+      "name": "Vietnamese Teachers' Day",
+      "short": "Teachers' Day"
+    },
+    "ARMY": {
+      "name": "People's Army Day",
+      "short": "Army Day"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "Christmas Eve",
+      "short": "Christmas Eve"
+    },
+    "CHRISTMAS": {
+      "name": "Christmas Day",
+      "short": "Christmas"
+    },
+    "TET_1": {
+      "name": "Lunar New Year (day 1)",
+      "short": "Tet day 1"
+    },
+    "TET_2": {
+      "name": "Lunar New Year (day 2)",
+      "short": "Tet day 2"
+    },
+    "TET_3": {
+      "name": "Lunar New Year (day 3)",
+      "short": "Tet day 3"
+    },
+    "HUNG_KINGS": {
+      "name": "Hung Kings' Commemoration Day",
+      "short": "Hung Kings Day"
+    },
+    "LANTERN": {
+      "name": "Lantern Festival (first full moon)",
+      "short": "Lantern Festival"
+    },
+    "COLD_FOOD": {
+      "name": "Cold Food Festival",
+      "short": "Cold Food Festival"
+    },
+    "VESAK": {
+      "name": "Buddha's Birthday (Vesak)",
+      "short": "Vesak"
+    },
+    "DOAN_NGO": {
+      "name": "Double Fifth Festival",
+      "short": "Double Fifth"
+    },
+    "VU_LAN": {
+      "name": "Vu Lan (Ghost) Festival",
+      "short": "Vu Lan"
+    },
+    "MID_AUTUMN": {
+      "name": "Mid-Autumn Festival",
+      "short": "Mid-Autumn"
+    },
+    "KITCHEN_GODS": {
+      "name": "Kitchen Gods' Day",
+      "short": "Kitchen Gods"
+    },
+    "MOTHER": {
+      "name": "Mother's Day",
+      "short": "Mother's Day"
+    },
+    "FATHER": {
+      "name": "Father's Day",
+      "short": "Father's Day"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "Lunar New Year's Eve",
+      "short": "New Year's Eve"
+    },
+    "moon": {
+      "first": "1st of lunar month {{month}}",
+      "firstLeap": "1st of leap lunar month {{month}}",
+      "full": "Full moon of lunar month {{month}}",
+      "fullLeap": "Full moon of leap lunar month {{month}}"
+    }
   }
 }

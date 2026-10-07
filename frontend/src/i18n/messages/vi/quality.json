@@ -1,0 +1,6 @@
+{
+  "consent":"Cho phép gửi số liệu chất lượng trong phiên này",
+  "notice":"Tùy chọn, mặc định tắt. Chỉ gửi loại sự kiện (không có kết quả, đổi câu tìm kiếm, mở công cụ, hoàn tất, bấm tải) và ID công cụ cố định. Không gửi câu tìm kiếm, tên tệp, chữ OCR, giá trị đã sửa hay tệp của bạn. Không lưu lựa chọn này sau khi tải lại trang.",
+  "retention":"Máy chủ lưu bộ đếm theo ngày. Dấu IP băm đổi theo ngày chỉ dùng chống gửi quá nhiều, được dọn sau tối đa khoảng 2 giờ; không lưu IP gốc và không tạo hồ sơ theo dõi người dùng.",
+  "disabled":"Chức năng gửi số liệu chất lượng hiện đang tắt."
+}

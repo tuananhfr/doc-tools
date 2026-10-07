@@ -286,5 +286,11 @@
       "REPLACED": "Napalitan na ang label na ito — gamitin ang bagong label.",
       "ARCHIVED": "Hindi na pinamamahalaan ang object."
     }
+  },
+  "file": {
+    "qr": "QR code",
+    "barcode": "Barcode",
+    "barcodeCount_one": "{{count}} barcode",
+    "barcodeCount_other": "{{count}} na barcode"
   }
 }

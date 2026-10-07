@@ -277,5 +277,10 @@
       "REPLACED": "Nhãn này đã được thay — dùng nhãn mới.",
       "ARCHIVED": "Đối tượng đã ngừng quản lý."
     }
+  },
+  "file": {
+    "qr": "Mã QR",
+    "barcode": "Mã vạch",
+    "barcodeCount": "{{count}} mã vạch"
   }
 }

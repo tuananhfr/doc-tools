@@ -413,5 +413,20 @@
     "brushSize": "ຂະໜາດແປງ: {{value}}",
     "undoBrush": "ຍົກເລີກແປງ",
     "note": "ຮູບຖືກປະມວນຜົນໃນເຄື່ອງ. ພື້ນຫຼັງທີ່ມີລາຍລະອຽດຫຼາຍຕ້ອງປັບດ້ວຍແປງ; ຮູບໃຫຍ່ຈະຖືກຫຍໍ້ລົງສູງສຸດ 2200 px ຕໍ່ດ້ານ."
+  },
+  "file": {
+    "fallback": "ຮູບ",
+    "camera": "ຮູບຖ່າຍ {{time}} - {{index}}",
+    "adjusted": "ແກ້ໄຂແລ້ວ",
+    "measured": "ວັດແລ້ວ",
+    "redacted": "ປິດບັງແລ້ວ",
+    "stamped": "ປະທັບຕາແລ້ວ",
+    "compressed": "ບີບອັດແລ້ວ",
+    "idPhoto": "ຮູບຕິດບັດ {{size}}",
+    "imageCount": "{{count}} ຮູບ",
+    "convertedCount": "ຮູບ {{format}} {{count}} ຮູບ",
+    "compressedCount": "ຮູບທີ່ບີບອັດ {{count}} ຮູບ",
+    "collage": "ຮູບປະສົມ",
+    "measureReference": "ຄ່າອ້າງອີງ: {{length}}"
   }
 }

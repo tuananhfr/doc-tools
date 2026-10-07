@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 export type FamilyScope = 'FAMILY_ALL' | 'PARENTS_SENIORS' | 'PARENTS_CHILDREN' | 'PRIVATE'
 export type FamilyDataClass = 'NORMAL' | 'PRIVATE' | 'SENSITIVE'
 export type FamilyCategory = 'school' | 'appointment' | 'deadline' | 'medication' | 'payment' | 'task' | 'other'
@@ -36,7 +38,7 @@ export interface FamilySpace {
 }
 
 export function createFamilySpace(id = crypto.randomUUID(), now = new Date().toISOString()): FamilySpace {
-  return { schemaVersion: 1, familyId: id, mode: 'LOCAL_ONLY', members: [{ id: crypto.randomUUID(), name: 'Tôi', profile: 'PARENT' }], events: [], reminders: [], emergencyContacts: [], sosQueue: [], updatedAt: now }
+  return { schemaVersion: 1, familyId: id, mode: 'LOCAL_ONLY', members: [{ id: crypto.randomUUID(), name: translate('family:members.defaultSelf'), profile: 'PARENT' }], events: [], reminders: [], emergencyContacts: [], sosQueue: [], updatedAt: now }
 }
 
 function parseDay(date: string): number | null {

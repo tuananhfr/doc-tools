@@ -103,7 +103,8 @@
     "intro": "Gunakan nama panggilan yang mudah dikenali. Tidak perlu memasukkan tarikh lahir, sekolah atau dokumen peribadi.",
     "name": "Nama panggilan",
     "profile": "Profil",
-    "add": "Tambah ahli"
+    "add": "Tambah ahli",
+    "defaultSelf": "Saya"
   },
   "backup": {
     "invalidFile": "Fail sandaran tidak sah atau melebihi 20 MB.",
@@ -149,5 +150,16 @@
     "loadFailed": "Tidak dapat membuka data pada peranti ini. Semak kebenaran storan pelayar anda.",
     "saveFailed": "Tidak dapat menyimpan perubahan. Eksport sandaran dan semak ruang storan peranti.",
     "restoreFailed": "Tidak dapat memulihkan sandaran."
+  },
+  "print": {
+    "title": "Kalendar Keluarga · 30 hari akan datang",
+    "from": "Mulai {{date}}.",
+    "withSensitive": "Termasuk acara peribadi dan sensitif.",
+    "withoutSensitive": "Tidak termasuk acara peribadi dan sensitif.",
+    "empty": "Tiada acara dalam tempoh ini."
+  },
+  "file": {
+    "backup": "kalendar-keluarga-sandaran",
+    "ics": "kalendar-keluarga"
   }
 }

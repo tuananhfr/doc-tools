@@ -30,39 +30,48 @@
   "targets": {
     "HOUSE_FRONTAGE": {
       "label": "Direksyon ng bahay",
-      "hint": "Mula sa loob ng bahay, nakatingin nang diretso sa harapan"
+      "hint": "Mula sa loob ng bahay, nakatingin nang diretso sa harapan",
+      "short": "Bahay"
     },
     "MAIN_DOOR": {
       "label": "Pangunahing pinto",
-      "hint": "Mula sa loob ng bahay, nakatingin palabas sa pangunahing pinto"
+      "hint": "Mula sa loob ng bahay, nakatingin palabas sa pangunahing pinto",
+      "short": "Pinto"
     },
     "BALCONY": {
       "label": "Balkonahe",
-      "hint": "Mula sa loob ng kuwarto, nakatingin palabas sa balkonahe"
+      "hint": "Mula sa loob ng kuwarto, nakatingin palabas sa balkonahe",
+      "short": "Balkonahe"
     },
     "KITCHEN": {
       "label": "Kusina",
-      "hint": "Direksyon ng likod ng nagluluto — kabaligtaran ng tinitingnan ng nagluluto sa kalan"
+      "hint": "Direksyon ng likod ng nagluluto — kabaligtaran ng tinitingnan ng nagluluto sa kalan",
+      "short": "Kalan"
     },
     "ALTAR": {
       "label": "Altar",
-      "hint": "Direksyong hinaharap ng altar"
+      "hint": "Direksyong hinaharap ng altar",
+      "short": "Altar"
     },
     "BED": {
       "label": "Kama",
-      "hint": "Mula sa ulunan, nakatingin sa paanan ng kama"
+      "hint": "Mula sa ulunan, nakatingin sa paanan ng kama",
+      "short": "Kama"
     },
     "DESK": {
       "label": "Mesa sa trabaho",
-      "hint": "Direksyong tinitingnan ng nakaupong nagtatrabaho"
+      "hint": "Direksyong tinitingnan ng nakaupong nagtatrabaho",
+      "short": "Mesa"
     },
     "LAND_FRONTAGE": {
       "label": "Harapan ng lote",
-      "hint": "Mula sa loob ng lote, nakatingin sa kalsada"
+      "hint": "Mula sa loob ng lote, nakatingin sa kalsada",
+      "short": "Lote"
     },
     "CUSTOM": {
       "label": "Ibang bagay",
-      "hint": "Ikaw ang magpapangalan; nakaturo ang axis sa direksyong susukatin"
+      "hint": "Ikaw ang magpapangalan; nakaturo ang axis sa direksyong susukatin",
+      "short": "Iba pa"
     }
   },
   "north": {
@@ -331,7 +340,7 @@
     "yearNoteLunar": "Nagsisimula ang taon sa Tết (lunar new year) — kung ipinanganak bago ang Tết, gamitin ang naunang taon.",
     "facts": {
       "age": "Edad",
-      "napAm": "Elemento (nạp âm)",
+      "napAm": "Elementong Na Yin",
       "trigram": "Life trigram"
     },
     "beforeTet": "Ipinanganak bago ang Tết kaya binibilang ang edad para sa taong {{year}} ({{canChi}}).",
@@ -358,5 +367,251 @@
     "homes": "Hindi wasto ang Later Heaven na direksyon ng mga trigram.",
     "yearRange": "Dapat nasa pagitan ng {{min}} at {{max}} ang taon ng kapanganakan.",
     "noTrigram": "Walang trigram na numero {{number}} sa rule set."
+  },
+  "terms": {
+    "directions8": {
+      "0": {
+        "name": "Hilaga",
+        "short": "H"
+      },
+      "1": {
+        "name": "Hilagang-silangan",
+        "short": "HS"
+      },
+      "2": {
+        "name": "Silangan",
+        "short": "S"
+      },
+      "3": {
+        "name": "Timog-silangan",
+        "short": "TS"
+      },
+      "4": {
+        "name": "Timog",
+        "short": "T"
+      },
+      "5": {
+        "name": "Timog-kanluran",
+        "short": "TK"
+      },
+      "6": {
+        "name": "Kanluran",
+        "short": "K"
+      },
+      "7": {
+        "name": "Hilagang-kanluran",
+        "short": "HK"
+      }
+    },
+    "directions16": {
+      "0": {
+        "name": "Hilaga",
+        "short": "H"
+      },
+      "1": {
+        "name": "Hilaga-hilagang-silangan",
+        "short": "HHS"
+      },
+      "2": {
+        "name": "Hilagang-silangan",
+        "short": "HS"
+      },
+      "3": {
+        "name": "Silangan-hilagang-silangan",
+        "short": "SHS"
+      },
+      "4": {
+        "name": "Silangan",
+        "short": "S"
+      },
+      "5": {
+        "name": "Silangan-timog-silangan",
+        "short": "STS"
+      },
+      "6": {
+        "name": "Timog-silangan",
+        "short": "TS"
+      },
+      "7": {
+        "name": "Timog-timog-silangan",
+        "short": "TTS"
+      },
+      "8": {
+        "name": "Timog",
+        "short": "T"
+      },
+      "9": {
+        "name": "Timog-timog-kanluran",
+        "short": "TTK"
+      },
+      "10": {
+        "name": "Timog-kanluran",
+        "short": "TK"
+      },
+      "11": {
+        "name": "Kanluran-timog-kanluran",
+        "short": "KTK"
+      },
+      "12": {
+        "name": "Kanluran",
+        "short": "K"
+      },
+      "13": {
+        "name": "Kanluran-hilagang-kanluran",
+        "short": "KHK"
+      },
+      "14": {
+        "name": "Hilagang-kanluran",
+        "short": "HK"
+      },
+      "15": {
+        "name": "Hilaga-hilagang-kanluran",
+        "short": "HHK"
+      }
+    },
+    "mountains": {
+      "0": "Zi",
+      "1": "Gui",
+      "2": "Chou",
+      "3": "Gen",
+      "4": "Yin",
+      "5": "Jia",
+      "6": "Mao",
+      "7": "Yi",
+      "8": "Chen",
+      "9": "Xun",
+      "10": "Si",
+      "11": "Bing",
+      "12": "Wu",
+      "13": "Ding",
+      "14": "Wei",
+      "15": "Kun",
+      "16": "Shen",
+      "17": "Geng",
+      "18": "You",
+      "19": "Xin",
+      "20": "Xu",
+      "21": "Qian",
+      "22": "Hai",
+      "23": "Ren"
+    },
+    "trigrams": {
+      "KAN": "Kan",
+      "GEN": "Gen",
+      "ZHEN": "Zhen",
+      "XUN": "Xun",
+      "LI": "Li",
+      "KUN": "Kun",
+      "DUI": "Dui",
+      "QIAN": "Qian"
+    },
+    "elements": {
+      "METAL": "Metal",
+      "WOOD": "Kahoy",
+      "WATER": "Tubig",
+      "FIRE": "Apoy",
+      "EARTH": "Lupa"
+    },
+    "napAm": {
+      "0": "Metal ng Dagat",
+      "1": "Apoy ng Pugon",
+      "2": "Kahoy ng Malaking Gubat",
+      "3": "Lupa sa Tabi ng Daan",
+      "4": "Metal ng Talim ng Espada",
+      "5": "Apoy sa Tuktok ng Bundok",
+      "6": "Tubig ng Bangin",
+      "7": "Lupa ng Pader ng Lungsod",
+      "8": "Metal ng Puting Pagkit",
+      "9": "Kahoy ng Willow",
+      "10": "Tubig ng Bukal",
+      "11": "Lupa sa Bubong",
+      "12": "Apoy ng Kidlat",
+      "13": "Kahoy ng Pino",
+      "14": "Tubig ng Mahabang Ilog",
+      "15": "Metal sa Buhangin",
+      "16": "Apoy sa Paanan ng Bundok",
+      "17": "Kahoy ng Kapatagan",
+      "18": "Lupa ng Pader",
+      "19": "Metal ng Gintong Dahon",
+      "20": "Apoy ng Lampara",
+      "21": "Tubig ng Ilog sa Langit",
+      "22": "Lupa ng Malaking Daan",
+      "23": "Metal ng Ipit sa Buhok",
+      "24": "Kahoy ng Mulberry",
+      "25": "Tubig ng Malaking Sapa",
+      "26": "Lupa sa Buhangin",
+      "27": "Apoy ng Langit",
+      "28": "Kahoy ng Granada",
+      "29": "Tubig ng Karagatan"
+    },
+    "voidNote": "Ang void line ay kumbensiyon ng katutubong feng shui: direksiyong nasa mismong hangganan ng dalawang direksiyon (major void) o dalawang bundok (minor void), sa loob ng ±{{window}}°."
+  },
+  "stars": {
+    "SINH_KHI": {
+      "name": "Hininga ng Buhay",
+      "meaning": "Pinakamaganda — yaman, pangalan at pag-angat"
+    },
+    "THIEN_Y": {
+      "name": "Doktor ng Langit",
+      "meaning": "Mabuti sa kalusugan, maraming tutulong"
+    },
+    "DIEN_NIEN": {
+      "name": "Mahabang Buhay",
+      "meaning": "Magkasundong pamilya, pangmatagalang samahan"
+    },
+    "PHUC_VI": {
+      "name": "Katatagan",
+      "meaning": "Payapang isip, tatag, mabuti sa pag-aaral"
+    },
+    "TUYET_MENH": {
+      "name": "Lubos na Pagkawala",
+      "meaning": "Pinakamasama — pagkalugi at sakit"
+    },
+    "NGU_QUY": {
+      "name": "Limang Multo",
+      "meaning": "Tsismis, pagkalugi, di-inaasahang gulo"
+    },
+    "LUC_SAT": {
+      "name": "Anim na Pagpatay",
+      "meaning": "Gulong samahan, kaso sa korte"
+    },
+    "HOA_HAI": {
+      "name": "Kapahamakan",
+      "meaning": "Malas, maliliit na sagabal"
+    }
+  },
+  "groups": {
+    "EAST": {
+      "name": "Grupong Apat na Silangan",
+      "house": "Apat na Silangan"
+    },
+    "WEST": {
+      "name": "Grupong Apat na Kanluran",
+      "house": "Apat na Kanluran"
+    }
+  },
+  "profiles": {
+    "batTrach": {
+      "name": "Walong Mansiyon (personal na trigram ayon sa taon ng kapanganakan)",
+      "source": "Maliwanag na Salamin ng Walong Mansiyon — paraang Gumagalang Taon; personal na trigram mula sa Luo Shu at sa taong lunar ng kapanganakan",
+      "interpretationV1": "Kinukuwenta ang personal na trigram mula sa taong lunar ng kapanganakan at kasarian. Kung saan sa 8 sektor ng tao bumagsak ang direksiyon ng bagay, dala nito ang bituin ng sektor na iyon. Kung ipinanganak bago ang Bagong Taon ng Buwan, gamitin ang naunang taong lunar.",
+      "interpretationV1_1": "Kinukuwenta ang personal na trigram mula sa taong lunar ng kapanganakan (nagbabago sa Bagong Taon ng Buwan) at kasarian. Kung saan sa 8 sektor ng tao bumagsak ang direksiyon ng bagay, dala nito ang bituin ng sektor na iyon. Inuuri rin ang bahay bilang Apat na Silangan o Apat na Kanluran ayon sa direksiyong inuupuan nito (likod ng bahay); ang mga paaralang nagpapalit ng taon sa Simula ng Tagsibol (mga 4 Pebrero) ay maaaring magbigay ng ibang trigram sa mga ipinanganak sa pagitan ng dalawang petsa.",
+      "disclaimer": "Ito ay katutubong feng shui (paraang Walong Mansiyon) para sa sanggunian lamang — hindi teknikal na konklusyon o propesyonal na payo. Maaaring iba ang resulta ng ibang paaralan. Hindi nakadepende sa seksiyong ito ang pagbasa ng direksiyon sa Resulta ng pagsukat."
+    }
+  },
+  "legend": {
+    "target": "{{target}}: {{degree}} · {{direction}}",
+    "luopan": "Nakaharap {{facing}} · Nakaupo {{sitting}}",
+    "footer": "Chuyện Nhỏ · ERPCons · {{time}}"
+  },
+  "sceneTags": {
+    "FRONTAGE": "Harapan",
+    "ENTRANCE": "Pangunahing pasukan"
+  },
+  "file": {
+    "compass": "kompas-direksiyon-ng-bahay",
+    "record": "tala-direksiyon-ng-bahay",
+    "suffix": "direksiyon ng bahay",
+    "page": "pahina {{page}}"
   }
 }

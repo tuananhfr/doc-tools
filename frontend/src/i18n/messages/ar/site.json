@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — أدوات مجانية",
     "description": "أدوات مجانية لملفات PDF والصور ورموز QR وغيرها. تُعالَج على جهازك، ولا تُرفع الملفات."
   },
+  "shareImage": {
+    "label": "أدوات مجانية",
+    "slogan": "تحتاجها؟ استخدمها.",
+    "noAccount": "لا حاجة إلى حساب"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "عن Chuyện Nhỏ | أدوات مجانية من ERPCons & LPC",

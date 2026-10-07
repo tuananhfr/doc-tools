@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — alat gratis",
     "description": "Alat PDF, gambar, kode QR, dan utilitas gratis. Diproses di perangkat Anda, file tidak diunggah."
   },
+  "shareImage": {
+    "label": "Alat gratis",
+    "slogan": "Butuh, langsung pakai.",
+    "noAccount": "Tidak perlu akun"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "Tentang Chuyện Nhỏ | Alat gratis dari ERPCons & LPC",

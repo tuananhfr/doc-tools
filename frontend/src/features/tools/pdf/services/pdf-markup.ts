@@ -4,6 +4,7 @@ import { markupPrimitives } from '../utils/markup-geometry'
 import { normalizeRotation } from '../utils/page-geometry'
 import { drawPathPrim, drawTextRun } from './pdf-draw'
 import type { FontLoader } from './pdf-fonts'
+import { createTextPreparer } from './pdf-text'
 
 /**
  * Vẽ phẳng dấu vào nội dung trang. PHẢI gọi trước khi áp xoay thêm của người
@@ -11,6 +12,7 @@ import type { FontLoader } from './pdf-fonts'
  * xoay của trang đúng bằng khung ấy.
  */
 export async function drawMarkups(page: PDFPage, markups: Markup[], fonts: FontLoader): Promise<void> {
+  const prepare = createTextPreparer(page.doc, fonts)
   const box = page.getCropBox()
   const rotation = normalizeRotation(page.getRotation().angle)
 
@@ -21,8 +23,7 @@ export async function drawMarkups(page: PDFPage, markups: Markup[], fonts: FontL
     }
     if (!prim.text.trim()) continue
     drawTextRun(page, box, rotation, {
-      text: prim.text,
-      font: await fonts({ bold: prim.bold, italic: prim.italic ?? false, serif: prim.serif ?? false, match: prim.match, local: prim.local }),
+      content: await prepare(prim.text, { bold: prim.bold, italic: prim.italic ?? false, serif: prim.serif ?? false, match: prim.match, local: prim.local }, prim.size, prim.color),
       size: prim.size,
       anchor: prim.at,
       align: prim.align,

@@ -277,5 +277,10 @@
       "REPLACED": "교체된 라벨이에요 — 새 라벨을 사용하세요.",
       "ARCHIVED": "더 이상 관리하지 않는 대상이에요."
     }
+  },
+  "file": {
+    "qr": "QR코드",
+    "barcode": "바코드",
+    "barcodeCount": "바코드 {{count}}개"
   }
 }

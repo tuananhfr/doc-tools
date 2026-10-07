@@ -22,6 +22,16 @@
   --cn-radius-button: 8px;
   --cn-header-height: 64px;
 }
+/* Be Vietnam Pro only covers Latin; name each script's system face so every weight falls back to the same one (Chrome mixed Tahoma and Arial for Arabic). */
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(ar) { --cn-font-family: 'CN Be Vietnam Pro', 'Segoe UI', 'Geeza Pro', 'Noto Sans Arabic', Tahoma, sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(th) { --cn-font-family: 'CN Be Vietnam Pro', 'Leelawadee UI', Thonburi, 'Noto Sans Thai', Tahoma, sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(lo) { --cn-font-family: 'CN Be Vietnam Pro', 'Leelawadee UI', 'Lao Sangam MN', 'Noto Sans Lao', 'Lao UI', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(km) { --cn-font-family: 'CN Be Vietnam Pro', 'Leelawadee UI', 'Khmer Sangam MN', 'Noto Sans Khmer', 'Khmer UI', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(my) { --cn-font-family: 'CN Be Vietnam Pro', 'Myanmar Text', 'Myanmar Sangam MN', 'Noto Sans Myanmar', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(ja) { --cn-font-family: 'CN Be Vietnam Pro', 'Yu Gothic UI', 'Hiragino Sans', 'Noto Sans JP', 'Noto Sans CJK JP', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(ko) { --cn-font-family: 'CN Be Vietnam Pro', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(zh-Hans) { --cn-font-family: 'CN Be Vietnam Pro', 'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans SC', 'Noto Sans CJK SC', sans-serif; }
+:is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal):lang(zh-Hant) { --cn-font-family: 'CN Be Vietnam Pro', 'Microsoft JhengHei UI', 'PingFang TC', 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif; }
 [data-theme='dark'] :is(.cn-site, .cn-mobile-navigation, body:has(.cn-shell--tool) > .modal) {
   --cn-surface: #101e33;
   --cn-ink: #eff5ff;

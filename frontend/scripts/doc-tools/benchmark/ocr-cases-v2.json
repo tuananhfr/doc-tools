@@ -1,0 +1,229 @@
+{
+  "version": 2,
+  "reviewStatus": "draft",
+  "baseline": "ocr-cases.json",
+  "missingCoverage": [
+    "human-approved handwriting transcription",
+    "multiple writers",
+    "real-photo holdout",
+    "curved paper"
+  ],
+  "cases": [
+    {
+      "id": "GRID-CLEAN",
+      "source": "synthetic",
+      "split": "tuning",
+      "permission": "generated",
+      "variant": "clean",
+      "tags": [
+        "table",
+        "blank",
+        "merged",
+        "identifier",
+        "money",
+        "date"
+      ],
+      "groundTruth": {
+        "status": "generated",
+        "text": "BẢNG KÊ VẬT TƯ\nMã Vật tư Số lượng Thành tiền\n0012 Xi măng 2 160.000\n0007 Gạch 10 20.000\nTổng 180.000\nNgày 29/02/2024",
+        "cells": [
+          {
+            "row": 0,
+            "column": 0,
+            "columnSpan": 4,
+            "rowSpan": 1,
+            "text": "BẢNG KÊ VẬT TƯ"
+          },
+          {
+            "row": 1,
+            "column": 0,
+            "text": "Mã"
+          },
+          {
+            "row": 1,
+            "column": 1,
+            "text": "Vật tư"
+          },
+          {
+            "row": 1,
+            "column": 2,
+            "text": "Số lượng"
+          },
+          {
+            "row": 1,
+            "column": 3,
+            "text": "Thành tiền"
+          },
+          {
+            "row": 2,
+            "column": 0,
+            "text": "0012"
+          },
+          {
+            "row": 2,
+            "column": 1,
+            "text": "Xi măng"
+          },
+          {
+            "row": 2,
+            "column": 2,
+            "text": "2"
+          },
+          {
+            "row": 2,
+            "column": 3,
+            "text": "160.000"
+          },
+          {
+            "row": 3,
+            "column": 0,
+            "text": "0007"
+          },
+          {
+            "row": 3,
+            "column": 1,
+            "text": "Gạch"
+          },
+          {
+            "row": 3,
+            "column": 2,
+            "text": "10"
+          },
+          {
+            "row": 3,
+            "column": 3,
+            "text": "20.000"
+          },
+          {
+            "row": 4,
+            "column": 0,
+            "columnSpan": 3,
+            "rowSpan": 1,
+            "text": "Tổng"
+          },
+          {
+            "row": 4,
+            "column": 3,
+            "text": "180.000"
+          },
+          {
+            "row": 5,
+            "column": 0,
+            "text": "Ngày"
+          },
+          {
+            "row": 5,
+            "column": 1,
+            "text": "29/02/2024"
+          },
+          {
+            "row": 5,
+            "column": 2,
+            "text": ""
+          },
+          {
+            "row": 5,
+            "column": 3,
+            "text": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "GRID-SKEW",
+      "source": "synthetic",
+      "split": "holdout",
+      "permission": "generated",
+      "variant": "skew",
+      "copyTruth": "GRID-CLEAN",
+      "tags": [
+        "table",
+        "skew"
+      ],
+      "groundTruth": {
+        "status": "generated"
+      }
+    },
+    {
+      "id": "GRID-PERSPECTIVE",
+      "source": "synthetic",
+      "split": "holdout",
+      "permission": "generated",
+      "variant": "perspective",
+      "copyTruth": "GRID-CLEAN",
+      "tags": [
+        "table",
+        "perspective"
+      ],
+      "groundTruth": {
+        "status": "generated"
+      }
+    },
+    {
+      "id": "GRID-GLARE",
+      "source": "synthetic",
+      "split": "holdout",
+      "permission": "generated",
+      "variant": "glare",
+      "copyTruth": "GRID-CLEAN",
+      "tags": [
+        "table",
+        "glare"
+      ],
+      "groundTruth": {
+        "status": "generated"
+      }
+    },
+    {
+      "id": "GRID-COLOR",
+      "source": "synthetic",
+      "split": "holdout",
+      "permission": "generated",
+      "variant": "color",
+      "copyTruth": "GRID-CLEAN",
+      "tags": [
+        "table",
+        "colored-ink"
+      ],
+      "groundTruth": {
+        "status": "generated"
+      }
+    },
+    {
+      "id": "GRID-ROWSPAN",
+      "source": "synthetic",
+      "split": "holdout",
+      "permission": "generated",
+      "variant": "rowspan",
+      "copyTruth": "GRID-CLEAN",
+      "tags": [
+        "table",
+        "vertical-merge"
+      ],
+      "groundTruth": {
+        "status": "generated"
+      }
+    },
+    {
+      "id": "HAND-LOCAL-001",
+      "source": "real",
+      "split": "unassigned",
+      "permission": "user-authorized-local",
+      "writerId": "writer-unknown-001",
+      "tags": [
+        "handwriting",
+        "mixed",
+        "colored-ink",
+        "ruled",
+        "money",
+        "names"
+      ],
+      "groundTruth": {
+        "status": "pending",
+        "regions": [],
+        "fields": [],
+        "cells": []
+      }
+    }
+  ]
+}

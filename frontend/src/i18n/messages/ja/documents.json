@@ -48,7 +48,11 @@
       "unreadable": "下書きを読み込めません。",
       "cleared": "端末の下書きを削除しました。"
     },
-    "note": "送る前に内容をよく確認してください。下書きは「保存」を押したときだけ端末に保存されます。写真は保存されません。"
+    "note": "送る前に内容をよく確認してください。下書きは「保存」を押したときだけ端末に保存されます。写真は保存されません。",
+    "print": {
+      "kicker": "履歴書",
+      "summary": "自己紹介"
+    }
   },
   "formTemplates": {
     "title": "書類テンプレートを作成",
@@ -83,6 +87,51 @@
     },
     "authorizationWarning": "公証や認証が必要な手続きもあります。使用前に提出先に確認してください。",
     "defaultWarning": "参考用のテンプレートです。提出前に提出先の要件を確認してください。",
-    "privacy": "データは開いているこのページの中にだけあります。"
+    "privacy": "データは開いているこのページの中にだけあります。",
+    "print": {
+      "nation": "ベトナム社会主義共和国",
+      "motto": "独立 - 自由 - 幸福",
+      "dateLine": "{{place}}、{{year}}年{{month}}月{{day}}日",
+      "initial": {
+        "board": "会社役員"
+      },
+      "leave": {
+        "recipient": "宛先：{{value}}",
+        "name": "氏名：",
+        "department": "役職・部署：{{value}}",
+        "period": "{{from}} から {{to}} まで休暇を取得したく、申請いたします。",
+        "reason": "理由：{{value}}",
+        "handover": "休暇中の業務は {{value}} に引き継ぎます。",
+        "closing": "ご検討のほど、よろしくお願いいたします。"
+      },
+      "authorization": {
+        "principal": "委任者：",
+        "attorney": "受任者：",
+        "personalId": "個人識別番号：{{value}}",
+        "address": "住所：{{value}}",
+        "scope": "委任事項：",
+        "term": "委任期間：",
+        "commitment": "両当事者は上記の委任内容について責任を負います。"
+      },
+      "handover": {
+        "intro": "本日、下記の両者は：",
+        "giver": "引渡者：",
+        "receiver": "受領者：",
+        "itemsIntro": "以下の内容について引き継ぎを行いました：",
+        "number": "No.",
+        "content": "内容",
+        "note": "備考：{{value}}",
+        "copies": "本書は 2 通作成し、各自 1 通を保管する。"
+      },
+      "signatures": {
+        "approver": "承認者",
+        "applicant": "申請者",
+        "attorney": "受任者",
+        "principal": "委任者",
+        "receiver": "受領者",
+        "giver": "引渡者"
+      },
+      "signHint": "（署名・氏名）"
+    }
   }
 }

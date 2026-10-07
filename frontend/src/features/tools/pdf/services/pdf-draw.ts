@@ -7,12 +7,12 @@ import {
   pushGraphicsState,
   rgb,
   setLineJoin,
-  type PDFFont,
   type PDFPage,
 } from 'pdf-lib'
 import type { Rgb } from '../utils/decorations'
 import type { PathPrim } from '../utils/markup-geometry'
 import { textStart, userAngle, visualToUser, type PageBox, type Point, type QuarterTurn, type TextAlign } from '../utils/page-geometry'
+import type { PreparedText } from './pdf-text'
 
 /**
  * Vẽ lên trang pdf-lib bằng toạ độ NHÌN THẤY (gốc trên-trái, y xuống) của
@@ -20,8 +20,7 @@ import { textStart, userAngle, visualToUser, type PageBox, type Point, type Quar
  */
 
 export interface TextRun {
-  text: string
-  font: PDFFont
+  content: PreparedText
   size: number
   anchor: Point
   align: TextAlign
@@ -32,17 +31,29 @@ export interface TextRun {
 }
 
 export function drawTextRun(page: PDFPage, box: PageBox, rotation: QuarterTurn, run: TextRun) {
-  const width = run.font.widthOfTextAtSize(run.text, run.size)
-  const start = visualToUser(textStart(run.anchor, width, run.align, run.angle, run.baselineShift), box, rotation)
-  page.drawText(run.text, {
-    x: start.x,
-    y: start.y,
-    size: run.size,
-    font: run.font,
-    color: rgb(...run.color),
-    opacity: run.opacity,
-    rotate: degrees(userAngle(run.angle, rotation)),
-  })
+  const start = visualToUser(textStart(run.anchor, run.content.width, run.align, run.angle, run.baselineShift), box, rotation)
+  const angle = userAngle(run.angle, rotation)
+  const radians = (angle * Math.PI) / 180
+  const [cos, sin] = [Math.cos(radians), Math.sin(radians)]
+  let advance = 0
+  for (const piece of run.content.pieces) {
+    const x = start.x + cos * advance
+    const y = start.y + sin * advance
+    if (piece.kind === 'glyphs') {
+      page.drawText(piece.text, { x, y, size: run.size, font: piece.font, color: rgb(...run.color), opacity: run.opacity, rotate: degrees(angle) })
+    } else {
+      // Ảnh neo ở góc dưới-trái rồi xoay quanh đó: lùi xuống phần chân chữ (descent) theo phương vuông góc dòng.
+      page.drawImage(piece.image, {
+        x: x + sin * piece.descent,
+        y: y - cos * piece.descent,
+        width: piece.width,
+        height: piece.ascent + piece.descent,
+        rotate: degrees(angle),
+        opacity: run.opacity,
+      })
+    }
+    advance += piece.width
+  }
 }
 
 function format(value: number): string {

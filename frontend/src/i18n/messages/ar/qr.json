@@ -322,5 +322,15 @@
       "REPLACED": "استُبدل هذا الملصق — استخدم الملصق الجديد.",
       "ARCHIVED": "توقفت إدارة هذا العنصر."
     }
+  },
+  "file": {
+    "qr": "رمز QR",
+    "barcode": "باركود",
+    "barcodeCount_zero": "{{count}} باركود",
+    "barcodeCount_one": "باركود واحد",
+    "barcodeCount_two": "باركودان",
+    "barcodeCount_few": "{{count}} باركودات",
+    "barcodeCount_many": "{{count}} باركودًا",
+    "barcodeCount_other": "{{count}} باركود"
   }
 }

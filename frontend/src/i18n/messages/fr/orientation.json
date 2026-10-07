@@ -30,39 +30,48 @@
   "targets": {
     "HOUSE_FRONTAGE": {
       "label": "Orientation de la maison",
-      "hint": "De l'intérieur, en regardant droit vers la façade"
+      "hint": "De l'intérieur, en regardant droit vers la façade",
+      "short": "Maison"
     },
     "MAIN_DOOR": {
       "label": "Porte d'entrée",
-      "hint": "De l'intérieur, en regardant dehors par la porte d'entrée"
+      "hint": "De l'intérieur, en regardant dehors par la porte d'entrée",
+      "short": "Porte"
     },
     "BALCONY": {
       "label": "Balcon",
-      "hint": "De la pièce, en regardant vers le balcon"
+      "hint": "De la pièce, en regardant vers le balcon",
+      "short": "Balcon"
     },
     "KITCHEN": {
       "label": "Cuisinière",
-      "hint": "La direction du dos de la personne qui cuisine, à l'opposé de son regard vers la cuisinière"
+      "hint": "La direction du dos de la personne qui cuisine, à l'opposé de son regard vers la cuisinière",
+      "short": "Cuisinière"
     },
     "ALTAR": {
       "label": "Autel",
-      "hint": "La direction vers laquelle fait face l'autel"
+      "hint": "La direction vers laquelle fait face l'autel",
+      "short": "Autel"
     },
     "BED": {
       "label": "Lit",
-      "hint": "De la tête du lit vers le pied du lit"
+      "hint": "De la tête du lit vers le pied du lit",
+      "short": "Lit"
     },
     "DESK": {
       "label": "Bureau",
-      "hint": "La direction vers laquelle regarde la personne assise au bureau"
+      "hint": "La direction vers laquelle regarde la personne assise au bureau",
+      "short": "Bureau"
     },
     "LAND_FRONTAGE": {
       "label": "Façade du terrain",
-      "hint": "Depuis le terrain, en regardant vers la rue"
+      "hint": "Depuis le terrain, en regardant vers la rue",
+      "short": "Terrain"
     },
     "CUSTOM": {
       "label": "Autre élément",
-      "hint": "Nommez-le vous-même ; l'axe pointe dans la direction à mesurer"
+      "hint": "Nommez-le vous-même ; l'axe pointe dans la direction à mesurer",
+      "short": "Autre"
     }
   },
   "north": {
@@ -332,7 +341,7 @@
     "yearNoteLunar": "L'année commence au Tết (Nouvel An lunaire) : si vous êtes né avant le Tết, prenez l'année précédente.",
     "facts": {
       "age": "Âge",
-      "napAm": "Élément (nạp âm)",
+      "napAm": "Élément Na Yin",
       "trigram": "Trigramme de vie"
     },
     "beforeTet": "Né avant le Tết : l'âge est donc calculé pour l'année {{year}} ({{canChi}}).",
@@ -359,5 +368,251 @@
     "homes": "Les directions du Ciel postérieur des trigrammes ne sont pas valides.",
     "yearRange": "L'année de naissance doit être comprise entre {{min}} et {{max}}.",
     "noTrigram": "Le jeu de règles ne contient pas de trigramme numéro {{number}}."
+  },
+  "terms": {
+    "directions8": {
+      "0": {
+        "name": "Nord",
+        "short": "N"
+      },
+      "1": {
+        "name": "Nord-est",
+        "short": "NE"
+      },
+      "2": {
+        "name": "Est",
+        "short": "E"
+      },
+      "3": {
+        "name": "Sud-est",
+        "short": "SE"
+      },
+      "4": {
+        "name": "Sud",
+        "short": "S"
+      },
+      "5": {
+        "name": "Sud-ouest",
+        "short": "SO"
+      },
+      "6": {
+        "name": "Ouest",
+        "short": "O"
+      },
+      "7": {
+        "name": "Nord-ouest",
+        "short": "NO"
+      }
+    },
+    "directions16": {
+      "0": {
+        "name": "Nord",
+        "short": "N"
+      },
+      "1": {
+        "name": "Nord-nord-est",
+        "short": "NNE"
+      },
+      "2": {
+        "name": "Nord-est",
+        "short": "NE"
+      },
+      "3": {
+        "name": "Est-nord-est",
+        "short": "ENE"
+      },
+      "4": {
+        "name": "Est",
+        "short": "E"
+      },
+      "5": {
+        "name": "Est-sud-est",
+        "short": "ESE"
+      },
+      "6": {
+        "name": "Sud-est",
+        "short": "SE"
+      },
+      "7": {
+        "name": "Sud-sud-est",
+        "short": "SSE"
+      },
+      "8": {
+        "name": "Sud",
+        "short": "S"
+      },
+      "9": {
+        "name": "Sud-sud-ouest",
+        "short": "SSO"
+      },
+      "10": {
+        "name": "Sud-ouest",
+        "short": "SO"
+      },
+      "11": {
+        "name": "Ouest-sud-ouest",
+        "short": "OSO"
+      },
+      "12": {
+        "name": "Ouest",
+        "short": "O"
+      },
+      "13": {
+        "name": "Ouest-nord-ouest",
+        "short": "ONO"
+      },
+      "14": {
+        "name": "Nord-ouest",
+        "short": "NO"
+      },
+      "15": {
+        "name": "Nord-nord-ouest",
+        "short": "NNO"
+      }
+    },
+    "mountains": {
+      "0": "Zi",
+      "1": "Gui",
+      "2": "Chou",
+      "3": "Gen",
+      "4": "Yin",
+      "5": "Jia",
+      "6": "Mao",
+      "7": "Yi",
+      "8": "Chen",
+      "9": "Xun",
+      "10": "Si",
+      "11": "Bing",
+      "12": "Wu",
+      "13": "Ding",
+      "14": "Wei",
+      "15": "Kun",
+      "16": "Shen",
+      "17": "Geng",
+      "18": "You",
+      "19": "Xin",
+      "20": "Xu",
+      "21": "Qian",
+      "22": "Hai",
+      "23": "Ren"
+    },
+    "trigrams": {
+      "KAN": "Kan",
+      "GEN": "Gen",
+      "ZHEN": "Zhen",
+      "XUN": "Xun",
+      "LI": "Li",
+      "KUN": "Kun",
+      "DUI": "Dui",
+      "QIAN": "Qian"
+    },
+    "elements": {
+      "METAL": "Métal",
+      "WOOD": "Bois",
+      "WATER": "Eau",
+      "FIRE": "Feu",
+      "EARTH": "Terre"
+    },
+    "napAm": {
+      "0": "Métal de la mer",
+      "1": "Feu du fourneau",
+      "2": "Bois de la grande forêt",
+      "3": "Terre du bord de route",
+      "4": "Métal du fil de l'épée",
+      "5": "Feu du sommet",
+      "6": "Eau du torrent",
+      "7": "Terre des remparts",
+      "8": "Métal de cire blanche",
+      "9": "Bois de saule",
+      "10": "Eau de source",
+      "11": "Terre du toit",
+      "12": "Feu de la foudre",
+      "13": "Bois de pin et de cyprès",
+      "14": "Eau du long fleuve",
+      "15": "Métal dans le sable",
+      "16": "Feu au pied de la montagne",
+      "17": "Bois de la plaine",
+      "18": "Terre du mur",
+      "19": "Métal de la feuille d'or",
+      "20": "Feu de la lampe",
+      "21": "Eau du fleuve céleste",
+      "22": "Terre de la grand-route",
+      "23": "Métal de l'épingle",
+      "24": "Bois de mûrier",
+      "25": "Eau du grand ruisseau",
+      "26": "Terre dans le sable",
+      "27": "Feu céleste",
+      "28": "Bois de grenadier",
+      "29": "Eau du grand océan"
+    },
+    "voidNote": "Les lignes de vide sont une convention du feng shui populaire : une direction placée juste à la limite entre deux directions (vide majeur) ou deux montagnes (vide mineur), à ±{{window}}° près."
+  },
+  "stars": {
+    "SINH_KHI": {
+      "name": "Souffle de vie",
+      "meaning": "Le meilleur — richesse, renommée, promotion"
+    },
+    "THIEN_Y": {
+      "name": "Médecin céleste",
+      "meaning": "Bon pour la santé, avec des appuis bienveillants"
+    },
+    "DIEN_NIEN": {
+      "name": "Longévité",
+      "meaning": "Harmonie familiale, relations durables"
+    },
+    "PHUC_VI": {
+      "name": "Stabilité",
+      "meaning": "Paix de l'esprit, équilibre, favorable aux études"
+    },
+    "TUYET_MENH": {
+      "name": "Perte totale",
+      "meaning": "Le pire — pertes et maladie"
+    },
+    "NGU_QUY": {
+      "name": "Cinq fantômes",
+      "meaning": "Commérages, pertes, ennuis imprévus"
+    },
+    "LUC_SAT": {
+      "name": "Six meurtres",
+      "meaning": "Relations perturbées, procès"
+    },
+    "HOA_HAI": {
+      "name": "Contrariétés",
+      "meaning": "Malchance, petits revers"
+    }
+  },
+  "groups": {
+    "EAST": {
+      "name": "Groupe des Quatre Est",
+      "house": "Quatre Est"
+    },
+    "WEST": {
+      "name": "Groupe des Quatre Ouest",
+      "house": "Quatre Ouest"
+    }
+  },
+  "profiles": {
+    "batTrach": {
+      "name": "Huit Demeures (trigramme personnel selon l’année de naissance)",
+      "source": "Miroir lumineux des Huit Demeures — méthode de l’année errante ; trigramme personnel tiré du Luo Shu et de l’année lunaire de naissance",
+      "interpretationV1": "Le trigramme personnel se calcule d'après l'année lunaire de naissance et le sexe. Selon le secteur de la personne (parmi 8) où tombe la direction de l'élément, celui-ci porte l'étoile de ce secteur. Pour une naissance avant le Nouvel An lunaire, prendre l'année lunaire précédente.",
+      "interpretationV1_1": "Le trigramme personnel se calcule d'après l'année lunaire de naissance (qui change au Nouvel An lunaire) et le sexe. Selon le secteur de la personne (parmi 8) où tombe la direction de l'élément, celui-ci porte l'étoile de ce secteur. Une maison est aussi classée Quatre Est ou Quatre Ouest selon son assise (le dos de la maison) ; les écoles qui changent d'année au Début du printemps (vers le 4 février) peuvent donner un autre trigramme aux personnes nées entre les deux dates.",
+      "disclaimer": "Il s'agit de feng shui populaire (méthode des Huit Demeures), à titre indicatif seulement — ni une conclusion technique ni un conseil professionnel. D'autres écoles peuvent donner des résultats différents. Le relevé du Résultat de mesure ne dépend pas de cette section."
+    }
+  },
+  "legend": {
+    "target": "{{target}} : {{degree}} · {{direction}}",
+    "luopan": "Façade {{facing}} · Assise {{sitting}}",
+    "footer": "Chuyện Nhỏ · ERPCons · {{time}}"
+  },
+  "sceneTags": {
+    "FRONTAGE": "Façade",
+    "ENTRANCE": "Entrée principale"
+  },
+  "file": {
+    "compass": "boussole-orientation-maison",
+    "record": "releve-orientation-maison",
+    "suffix": "orientation maison",
+    "page": "page {{page}}"
   }
 }

@@ -103,7 +103,8 @@
     "intro": "Use an easy-to-recognize name. No need to enter birthdays, schools or personal documents.",
     "name": "Name",
     "profile": "Profile",
-    "add": "Add member"
+    "add": "Add member",
+    "defaultSelf": "Me"
   },
   "backup": {
     "invalidFile": "The backup file is invalid or larger than 20 MB.",
@@ -150,5 +151,16 @@
     "loadFailed": "Couldn't open the data on this device. Check your browser's storage permissions.",
     "saveFailed": "Couldn't save changes. Export a backup and check your device's free space.",
     "restoreFailed": "Couldn't restore the backup."
+  },
+  "print": {
+    "title": "Family Calendar · next 30 days",
+    "from": "From {{date}}.",
+    "withSensitive": "Includes private and sensitive events.",
+    "withoutSensitive": "Excludes private and sensitive events.",
+    "empty": "No events in this period."
+  },
+  "file": {
+    "backup": "family-calendar-backup",
+    "ics": "family-calendar"
   }
 }

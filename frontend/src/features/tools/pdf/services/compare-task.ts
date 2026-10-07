@@ -49,7 +49,7 @@ export function compareTask(before: QuickItem, after: QuickItem, options: Compar
 
     const result = compareLines(old.lines, next.lines, options)
     step.signal.throwIfAborted()
-    const report = formatComparison(result, { before: `${before.source.name} (${before.pages.length} trang)`, after: `${after.source.name} (${after.pages.length} trang)` })
+    const report = formatComparison(result, { before: translate('pdf:file.report.document', { name: before.source.name, count: before.pages.length }), after: translate('pdf:file.report.document', { name: after.source.name, count: after.pages.length }) })
     const same = result.hunks.length === 0
 
     const notes: FlowNote[] = []

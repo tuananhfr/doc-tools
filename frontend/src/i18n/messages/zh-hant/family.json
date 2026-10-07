@@ -103,7 +103,8 @@
     "intro": "設定容易辨認的稱呼。不需要輸入生日、學校或個人證件。",
     "name": "稱呼",
     "profile": "身分",
-    "add": "新增成員"
+    "add": "新增成員",
+    "defaultSelf": "我"
   },
   "backup": {
     "invalidFile": "備份檔無效或超過 20 MB。",
@@ -149,5 +150,16 @@
     "loadFailed": "無法開啟裝置上的資料。請檢查瀏覽器的儲存權限。",
     "saveFailed": "無法儲存變更。請匯出備份並檢查裝置儲存空間。",
     "restoreFailed": "無法還原備份。"
+  },
+  "print": {
+    "title": "家庭行事曆 · 未來 30 天",
+    "from": "自 {{date}} 起。",
+    "withSensitive": "包含私人與敏感行程。",
+    "withoutSensitive": "不包含私人與敏感行程。",
+    "empty": "這段期間沒有行程。"
+  },
+  "file": {
+    "backup": "家庭行事曆-備份",
+    "ics": "家庭行事曆"
   }
 }

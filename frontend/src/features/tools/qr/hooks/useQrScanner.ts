@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { cameraAvailable, cameraErrorMessage } from '@/features/tools/hub'
 import { readOf, type ScanRead } from '../services/qr-scan'
 import { cameraCrop, type CameraPoint } from '../utils/camera-geometry'
+import { locateQr } from '../services/qr-locate'
+import { autoZoomStep, initialAutoZoomState } from '../utils/auto-zoom'
 
 export type ScannerState = { phase: 'starting' } | { phase: 'live' } | { phase: 'error'; message: string }
 export interface CameraDetection {
@@ -39,6 +41,10 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
   const nativeZoom = useRef<{ base: number; step: number } | null>(null)
   const zoomRequest = useRef(0)
   const zoomQueue = useRef(Promise.resolve())
+  const zoomValue = useRef(1)
+  const zoomLimit = useRef(3)
+  const manualZoom = useRef(false)
+  const autoZoom = useRef(initialAutoZoomState())
 
   useEffect(() => { handler.current = onRead }, [onRead])
   const supported = cameraAvailable()
@@ -46,10 +52,12 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
   const resume = useCallback(() => {
     paused.current = false
     setDetection(null)
+    autoZoom.current = { ...autoZoom.current, candidate: null, streak: 0 }
   }, [])
 
-  const setZoom = useCallback((value: number) => {
-    const desired = Math.max(1, Math.min(maxZoom, value))
+  const applyZoom = useCallback((value: number) => {
+    const desired = Math.max(1, Math.min(zoomLimit.current, value))
+    zoomValue.current = desired
     setZoomValue(desired)
     resume()
     const currentTrack = track.current
@@ -74,7 +82,13 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
         setDigitalZoom(desired)
       }
     })
-  }, [maxZoom, resume])
+  }, [resume])
+
+  const claimZoom = useCallback(() => { manualZoom.current = true }, [])
+  const setZoom = useCallback((value: number) => {
+    claimZoom()
+    applyZoom(value)
+  }, [claimZoom, applyZoom])
 
   useEffect(() => {
     const element = video.current
@@ -86,6 +100,7 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
     const canvas = document.createElement('canvas')
     const snapshot = document.createElement('canvas')
     const context = canvas.getContext('2d', { willReadFrequently: true })
+    let lastLocateAt = 0
 
     const scan = () => {
       if (!alive) return
@@ -99,7 +114,32 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
         canvas.width = Math.max(1, Math.round(crop.width * scale))
         canvas.height = Math.max(1, Math.round(crop.height * scale))
         context.drawImage(element, crop.x, crop.y, crop.width, crop.height, 0, 0, canvas.width, canvas.height)
-        const result = reader.decodeFromCanvas(canvas)
+        let result
+        try {
+          result = reader.decodeFromCanvas(canvas)
+        } catch {
+          const now = performance.now()
+          if (!manualZoom.current && zoomValue.current < Math.min(3, zoomLimit.current) && now - lastLocateAt >= 800) {
+            lastLocateAt = now
+            let pixels = context.getImageData(0, 0, canvas.width, canvas.height)
+            if (scale < 1) {
+              // Detection needs the narrow finder bars that the faster decode resize can blur.
+              const locateScale = Math.min(1, 1920 / Math.max(crop.width, crop.height))
+              snapshot.width = Math.max(1, Math.round(crop.width * locateScale))
+              snapshot.height = Math.max(1, Math.round(crop.height * locateScale))
+              const locateContext = snapshot.getContext('2d', { willReadFrequently: true })
+              if (locateContext) {
+                locateContext.drawImage(element, crop.x, crop.y, crop.width, crop.height, 0, 0, snapshot.width, snapshot.height)
+                pixels = locateContext.getImageData(0, 0, snapshot.width, snapshot.height)
+              }
+            }
+            const candidate = locateQr(pixels)
+            const suggestion = autoZoomStep(autoZoom.current, candidate, now, zoomValue.current, zoomLimit.current)
+            autoZoom.current = suggestion.state
+            if (suggestion.zoom !== null) applyZoom(suggestion.zoom)
+          }
+          return
+        }
         const read = readOf(result)
         const points = (result.getResultPoints() ?? []).map(point => ({
           x: (crop.x + point.getX() * crop.width / canvas.width) / element.videoWidth,
@@ -128,7 +168,8 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
         const capability = cameraTrack?.getCapabilities?.().zoom
         const base = cameraTrack?.getSettings?.().zoom ?? Math.max(1, capability?.min ?? 1)
         nativeZoom.current = capability && capability.max > base ? { base, step: capability.step } : null
-        setMaxZoom(nativeZoom.current && capability ? Math.min(4, capability.max / base) : 3)
+        zoomLimit.current = nativeZoom.current && capability ? Math.min(4, capability.max / base) : 3
+        setMaxZoom(zoomLimit.current)
         element.srcObject = media
         await element.play()
         if (!alive) return
@@ -152,11 +193,14 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
       zoomRequest.current++
       canvas.width = canvas.height = snapshot.width = snapshot.height = 0
     }
-  }, [supported, attempt])
+  }, [supported, attempt, applyZoom])
 
   const retry = useCallback(() => {
     resume()
     softwareZoom.current = 1
+    zoomValue.current = 1
+    manualZoom.current = false
+    autoZoom.current = initialAutoZoomState()
     setDigitalZoom(1)
     setZoomValue(1)
     setState({ phase: 'starting' })
@@ -164,7 +208,7 @@ export function useQrScanner(onRead: (read: ScanRead) => void) {
   }, [resume])
 
   return {
-    video, detection, zoom, digitalZoom, maxZoom, setZoom, resume, retry, canRetry: supported,
+    video, detection, zoom, digitalZoom, maxZoom, setZoom, claimZoom, resume, retry, canRetry: supported,
     state: supported ? state : ({ phase: 'error', message: t('camera.insecure', { reason: t('common:camera.insecure') }) } as ScannerState),
   }
 }

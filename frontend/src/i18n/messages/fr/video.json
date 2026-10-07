@@ -90,5 +90,11 @@
     "cancelled": "Traitement vidéo annulé.",
     "timedOut": "La tâche a pris trop de temps. Essayez une vidéo plus courte et vérifiez votre connexion pendant le téléchargement du module.",
     "engineFailed": "Impossible de charger ou d'exécuter le module vidéo. Vérifiez votre connexion, fermez quelques onglets ou essayez un fichier plus léger sur ordinateur."
+  },
+  "file": {
+    "audio": "audio",
+    "gif": "anime",
+    "trimmed": "coupee",
+    "compressed": "compressee"
   }
 }

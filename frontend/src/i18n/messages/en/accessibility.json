@@ -14,7 +14,8 @@
     "copy": "Copy",
     "download": "Download .txt",
     "interrupted": "Speech recognition was interrupted. Check microphone permission and try again.",
-    "micFailed": "Couldn't open the microphone. Check your browser's permissions."
+    "micFailed": "Couldn't open the microphone. Check your browser's permissions.",
+    "fileName": "dictation-transcript"
   },
   "magnifier": {
     "noCamera": "This browser doesn't support the camera.",

@@ -444,5 +444,23 @@
     "brushSize": "Brush size: {{value}}",
     "undoBrush": "Undo brush",
     "note": "The image is processed on your device. Detailed backgrounds need manual brush touch-ups; large images are scaled down to at most 2200 px per side."
+  },
+  "file": {
+    "fallback": "image",
+    "camera": "Photo {{time}} - {{index}}",
+    "adjusted": "edited",
+    "measured": "measured",
+    "redacted": "redacted",
+    "stamped": "stamped",
+    "compressed": "compressed",
+    "idPhoto": "ID photo {{size}}",
+    "imageCount_one": "{{count}} image",
+    "imageCount_other": "{{count}} images",
+    "convertedCount_one": "{{count}} {{format}} image",
+    "convertedCount_other": "{{count}} {{format}} images",
+    "compressedCount_one": "{{count}} compressed image",
+    "compressedCount_other": "{{count}} compressed images",
+    "collage": "collage",
+    "measureReference": "Reference: {{length}}"
   }
 }

@@ -40,7 +40,11 @@
     "applyVat": "署名済みの税率を適用",
     "ruleLabel": "電気料金表",
     "ruleNone": "システム上に、有効な署名済み電気料金表はまだありません。",
-    "vatRuleLabel": "付加価値税率"
+    "vatRuleLabel": "付加価値税率",
+    "aiResult": {
+      "water": "水道 {{volume}} m³、合計 {{total}} đ",
+      "electricity": "電気 {{kwh}} kWh、合計 {{total}} đ"
+    }
   },
   "groupSplit": {
     "resultLabel": "精算のための送金",
@@ -54,7 +58,11 @@
     "choosePerson": "人を選択",
     "amount": "金額（đ）",
     "participants": "割り勘する人",
-    "removeExpense": "支出を削除"
+    "removeExpense": "支出を削除",
+    "samplePeople": {
+      "0": "ハルト",
+      "1": "ユイ"
+    }
   },
   "loan": {
     "totalPayment": "支払総額",
@@ -88,7 +96,17 @@
       "annuity": "元利均等（毎回ほぼ同額）",
       "equalPrincipal": "元金均等"
     },
-    "renewals": "継続回数"
+    "renewals": "継続回数",
+    "file": {
+      "name": "返済スケジュール",
+      "columns": {
+        "period": "回",
+        "principal": "元金",
+        "interest": "利息",
+        "payment": "返済額",
+        "balance": "残高"
+      }
+    }
   },
   "payroll": {
     "fields": {
@@ -142,7 +160,8 @@
     "ruleLabel": "給与計算パラメーター",
     "ruleNone": "システム上に、有効な署名済み給与ルールはまだありません。",
     "enterParams": "給与計算パラメーターを入力",
-    "brackets": "税率表: 「課税所得の上限（đ）, 税率（%）」。最終行は * を使います"
+    "brackets": "税率表: 「課税所得の上限（đ）, 税率（%）」。最終行は * を使います",
+    "aiResult": "額面 {{gross}} đ、手取り {{net}} đ"
   },
   "unitPrice": {
     "resultLabel": "単位あたりの比較",

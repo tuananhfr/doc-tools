@@ -24,6 +24,11 @@
     "title": "Chuyện Nhỏ — 無料ツール",
     "description": "PDF、画像、QRコード、便利ツールが無料。あなたの端末上で処理し、ファイルはアップロードされません。"
   },
+  "shareImage": {
+    "label": "無料ツール",
+    "slogan": "必要なときにすぐ使える。",
+    "noAccount": "アカウント不要"
+  },
   "pages": {
     "ve-chung-toi": {
       "title": "Chuyện Nhỏ について | ERPCons & LPC の無料ツール",

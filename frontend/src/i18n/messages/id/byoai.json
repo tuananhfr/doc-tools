@@ -44,5 +44,28 @@
     "copyFailed": "Tidak dapat menyalin; pilih teks dan salin secara manual.",
     "answerLabel": "Tempel jawaban AI untuk dibaca di sini (tidak disimpan atau dikirim ke Chuyện Nhỏ)",
     "unverified": "Konten belum diverifikasi"
+  },
+  "prompt": {
+    "assistant": {
+      "intro": "Kamu membantu orang memilih alat Chuyện Nhỏ. Jawab singkat dalam bahasa Indonesia. Hanya sarankan alat dari daftar di bawah; jangan menjanjikan fitur yang tidak disebut dalam deskripsinya. Jika pertanyaan menyangkut hukum, keuangan, atau kesehatan, minta pengguna memeriksa sumber resmi yang berlaku. Jangan pernah meminta pengguna mengunggah file pribadi ke layanan AI.",
+      "question": "Pertanyaan: {{question}}",
+      "toolsHeading": "Alat yang mungkin relevan:",
+      "noTools": "- Tidak ada alat yang jelas cocok.",
+      "closing": "Berikan paling banyak tiga langkah dan tautan alat bila membantu."
+    },
+    "package": {
+      "truncated": "[Dipersingkat karena melebihi batas pertanyaan.]",
+      "noContext": "Periksa pembaruan untuk alat {{toolId}}; tidak menyertakan data pribadi pengguna.",
+      "tasks": {
+        "0": "Utamakan dokumen, halaman, atau API resmi.",
+        "1": "Bandingkan dengan data saat ini; sebutkan tanggal terbit dan tanggal berlaku.",
+        "2": "Berikan URL sumber untuk setiap perubahan; nyatakan dengan jelas apa yang belum pasti.",
+        "3": "Jangan menebak bila bukti tidak ada."
+      },
+      "redactedContext": "Kredensial, URL internal, dan alamat email disamarkan otomatis; pengguna perlu memeriksa pratinjau.",
+      "excludedContext": "Hasil dan data pribadi pengguna tidak disertakan secara bawaan.",
+      "intro": "Kamu adalah asisten pemeriksa sumber. Usulkan hanya perubahan yang dapat diverifikasi; keluaranmu tidak dianggap sebagai data terverifikasi.",
+      "outro": "Kembalikan JSON persis seperti yang dijelaskan output_schema. Tanpa Markdown, tanpa pembuka. Tulis teks di dalam JSON dalam bahasa Indonesia."
+    }
   }
 }

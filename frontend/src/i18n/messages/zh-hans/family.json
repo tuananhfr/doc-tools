@@ -103,7 +103,8 @@
     "intro": "起一个好认的称呼即可。无需填写出生日期、学校或个人证件。",
     "name": "称呼",
     "profile": "身份",
-    "add": "添加成员"
+    "add": "添加成员",
+    "defaultSelf": "我"
   },
   "backup": {
     "invalidFile": "备份文件无效或超过 20 MB。",
@@ -149,5 +150,16 @@
     "loadFailed": "无法打开设备上的数据。请检查浏览器的存储权限。",
     "saveFailed": "无法保存修改。请导出备份并检查设备存储空间。",
     "restoreFailed": "无法恢复备份。"
+  },
+  "print": {
+    "title": "家庭日历 · 未来 30 天",
+    "from": "自 {{date}} 起。",
+    "withSensitive": "包含私人和敏感日程。",
+    "withoutSensitive": "不包含私人和敏感日程。",
+    "empty": "这段时间没有日程。"
+  },
+  "file": {
+    "backup": "家庭日历-备份",
+    "ics": "家庭日历"
   }
 }

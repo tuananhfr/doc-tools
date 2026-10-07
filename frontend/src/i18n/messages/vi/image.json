@@ -413,5 +413,20 @@
     "brushSize": "Cỡ cọ: {{value}}",
     "undoBrush": "Hoàn tác cọ",
     "note": "Ảnh xử lý trên máy. Nền nhiều chi tiết cần cọ chỉnh tay; ảnh lớn được thu tối đa còn 2200 px mỗi cạnh."
+  },
+  "file": {
+    "fallback": "anh",
+    "camera": "Ảnh chụp {{time}} - {{index}}",
+    "adjusted": "đã chỉnh",
+    "measured": "đã đo",
+    "redacted": "đã che",
+    "stamped": "đã đóng dấu",
+    "compressed": "đã nén",
+    "idPhoto": "ảnh thẻ {{size}}",
+    "imageCount": "{{count}} ảnh",
+    "convertedCount": "{{count}} ảnh {{format}}",
+    "compressedCount": "{{count}} ảnh đã nén",
+    "collage": "anh-ghep",
+    "measureReference": "Chuẩn: {{length}}"
   }
 }

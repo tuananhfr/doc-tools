@@ -14,7 +14,8 @@
     "copy": "Salin",
     "download": "Muat turun .txt",
     "interrupted": "Pengecaman suara terganggu. Semak kebenaran mikrofon dan cuba lagi.",
-    "micFailed": "Tidak dapat membuka mikrofon. Semak kebenaran akses pelayar anda."
+    "micFailed": "Tidak dapat membuka mikrofon. Semak kebenaran akses pelayar anda.",
+    "fileName": "transkrip-imlak"
   },
   "magnifier": {
     "noCamera": "Pelayar ini tidak menyokong kamera.",

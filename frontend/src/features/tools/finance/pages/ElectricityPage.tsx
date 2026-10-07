@@ -69,6 +69,6 @@ export default function ElectricityPage() {
       {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
       </>}
     </ToolPanel>
-    <ByoAiPanel toolId="tien-dien" domain="electricity" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={mode === 'water' ? waterResult ? `Nước ${water.cubicMeters} m³; tổng ${waterResult.total} đ` : '' : result ? `Điện ${kwh} kWh; tổng ${result.total} đ` : ''} />
+    <ByoAiPanel toolId="tien-dien" domain="electricity" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />
   </ToolBoard>
 }
