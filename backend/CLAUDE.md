@@ -42,6 +42,8 @@ npm run contributions -- verify <uuid> <reviewer> <note>   # rồi approve / pub
 
 ## Kiến trúc
 
+Optional `/api/v1/tools/quality` accepts only fixed aggregate event/tool dimensions; it has no public report endpoint. `QualityRepository` stores daily counters and short-lived daily rotating HMAC hourly rate-limit buckets in two dedicated tables. `cli/quality` exports reports for trusted operators. No raw queries, documents, corrections or user tracking identifiers are accepted.
+
 `src/main.ts` chỉ ghép app (prefix `api/v1`, `bodyParser: false`). Ba module, mỗi module
 chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM):
 
