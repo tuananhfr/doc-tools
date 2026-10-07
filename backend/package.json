@@ -5,6 +5,7 @@
     "dev": "npm run build && node --watch dist/main.js",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/main.js",
+    "deploy": "npm run build && sudo systemctl restart doc-tools-backend",
     "test": "npm run build && node --test tests/*.test.cjs",
     "lint": "tsc --noEmit",
     "rules": "node dist/cli/rules.js",

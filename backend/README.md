@@ -17,6 +17,26 @@ npm run dev build TypeScript trước rồi theo dõi dist/main.js; sau khi sử
 
 Repo có package-lock.json, node_modules và Git riêng. Chạy npm ci trong từng repo để cài đúng phiên bản đã khóa; không khai báo npm workspace hoặc liên kết package sang repo còn lại.
 
+## Deploy
+
+Trên server, backend chạy bằng service systemd `doc-tools-backend` (cổng 3003):
+
+```sh
+cd /var/www/doc-tools
+git pull --ff-only origin main
+cd backend
+npm run deploy
+```
+
+Lệnh deploy chạy npm run build rồi gọi sudo systemctl restart doc-tools-backend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong backend trước khi deploy. Bảng mới được tạo khi service khởi động, không cần migrate tay. Build ghi đè dist đang chạy; API gián đoạn ngắn khi restart. Kiểm tra sau deploy:
+
+```sh
+sudo systemctl status doc-tools-backend --no-pager -l
+curl --retry 10 --retry-connrefused --retry-delay 1 -s http://127.0.0.1:3003/api/v1/tools/stats
+```
+
+Nếu service lỗi, xem log bằng `sudo journalctl -u doc-tools-backend -n 100 --no-pager`.
+
 ## Kho quy tắc có chữ ký
 
 `GET /api/v1/rules/:kind` chỉ trả gói đang được kích hoạt, còn hiệu lực và xác minh được bằng khóa Ed25519 trong `RULE_SIGNING_PUBLIC_KEY_PEM`. Khi chưa cấu hình khóa, endpoint trả 503; khi chưa có gói cho loại đó, trả `{ "ok": true, "package": null }`. Dữ liệu trong kho không tự động được coi là văn bản hiện hành hay nguồn chính thức; người vận hành phải kiểm tra nguồn và ngày hiệu lực trước khi ký.
