@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { BrandLogo } from '@/components/common'
 import { Icon } from '@/components/ui'
@@ -9,9 +10,8 @@ import { alpha } from '@/styles/tokens'
 type Tone = 'trust' | 'intelligence' | 'progress' | 'construction'
 
 interface BrandFeature {
+  id: 'security' | 'connectivity' | 'singleSource' | 'performance' | 'analytics' | 'anywhere'
   icon: string
-  title: string
-  lines: [string, string]
   tone: Tone
 }
 
@@ -21,39 +21,33 @@ interface BrandFeature {
  */
 const FEATURES: BrandFeature[] = [
   {
+    id: 'security',
     icon: 'shield-check',
-    title: 'Bảo mật tối đa',
-    lines: ['ISO 27001 & SOC 2', 'Enterprise Grade'],
     tone: 'trust',
   },
   {
+    id: 'connectivity',
     icon: 'diagram-3',
-    title: 'Kết nối toàn diện',
-    lines: ['AI • IoT • OCR • API', 'Real-time Sync'],
     tone: 'intelligence',
   },
   {
+    id: 'singleSource',
     icon: 'database',
-    title: 'Dữ liệu duy nhất',
-    lines: ['One Object – One Source', 'of Truth'],
     tone: 'trust',
   },
   {
+    id: 'performance',
     icon: 'lightning-charge',
-    title: 'Hiệu suất vượt trội',
-    lines: ['Tối ưu tốc độ', 'và khả năng mở rộng'],
     tone: 'construction',
   },
   {
+    id: 'analytics',
     icon: 'graph-up-arrow',
-    title: 'Phân tích thông minh',
-    lines: ['Dashboard trực quan', '& Insightful'],
     tone: 'progress',
   },
   {
+    id: 'anywhere',
     icon: 'people',
-    title: 'Làm việc mọi nơi',
-    lines: ['Web • Mobile • Offline', 'All-in-one Experience'],
     tone: 'intelligence',
   },
 ]
@@ -79,6 +73,7 @@ interface AuthBrandPanelProps {
 export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBrandPanelProps = {}) {
   const t = useThemeTokens()
   const { mode } = useThemeMode()
+  const { t: tr } = useTranslation('common')
 
   const onDark = mode !== 'field'
   const titleColor = onDark ? t.textOnAccent : t.textPrimary
@@ -131,7 +126,7 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
       {photo ? null : <div className="erp-auth__brand-grid" aria-hidden />}
 
       {homeTo ? (
-        <Link to={homeTo} className="erp-auth__brand-home" aria-label={`Về trang chủ ${appConfig.name}`}>
+        <Link to={homeTo} className="erp-auth__brand-home" aria-label={tr('authBrand.home', { name: appConfig.name })}>
           <BrandLogo size={48} inverse={onDark} />
         </Link>
       ) : (
@@ -141,17 +136,11 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
       <div className="flex-grow-1 d-flex flex-column justify-content-center gap-4">
         <div>
           <Headline className="erp-auth__headline" style={{ color: titleColor }}>
-            Một nền tảng
-            <br />
-            Mọi dự án
-            <br />
-            Kiểm soát hoàn toàn
+            <Trans ns="common" i18nKey="authBrand.headline" components={{ br: <br /> }} />
           </Headline>
 
           <p className="erp-auth__lead" style={{ color: bodyColor }}>
-            {appConfig.name} Construction OS – Nền tảng quản trị doanh nghiệp xây dựng toàn diện,
-            tích hợp AI, IoT và dữ liệu thời gian thực để tối ưu hiệu suất, quản trị rủi ro và ra
-            quyết định thông minh.
+            {tr('authBrand.lead', { name: appConfig.name })}
           </p>
 
           {/* Vach Crimson: dau nhan dien duy nhat tren panel (~2% visual). */}
@@ -160,7 +149,7 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
 
         <div className="erp-auth__features">
           {FEATURES.map((feature) => (
-            <div key={feature.title} className="erp-auth__feature">
+            <div key={feature.id} className="erp-auth__feature">
               <span
                 className="erp-icon-tile erp-icon-tile--lg"
                 style={{
@@ -174,11 +163,11 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
 
               <div>
                 <div className="erp-auth__feature-title" style={{ color: titleColor }}>
-                  {feature.title}
+                  {tr(`authBrand.features.${feature.id}.title`)}
                 </div>
-                {feature.lines.map((line) => (
+                {(['line1', 'line2'] as const).map((line) => (
                   <div key={line} className="erp-auth__feature-line" style={{ color: captionColor }}>
-                    {line}
+                    {tr(`authBrand.features.${feature.id}.${line}`)}
                   </div>
                 ))}
               </div>
@@ -191,7 +180,7 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
       <div className="erp-auth__status" style={{ borderTop: `1px solid ${hairline}` }}>
         <span className="d-inline-flex align-items-center gap-2" style={{ color: bodyColor }}>
           <Icon name="check-circle-fill" style={{ color: t.success }} />
-          Tất cả hệ thống đang hoạt động bình thường
+          {tr('authBrand.status')}
         </span>
 
         <a
@@ -201,7 +190,7 @@ export function AuthBrandPanel({ headlineTag: Headline = 'h1', homeTo }: AuthBra
           rel="noreferrer"
           style={{ color: onDark ? t.info : t.actionSecondary }}
         >
-          Xem trạng thái hệ thống <Icon name="arrow-right" size={10} />
+          {tr('authBrand.statusLink')} <Icon name="arrow-right" size={10} />
         </a>
       </div>
     </aside>

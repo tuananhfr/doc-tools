@@ -1,0 +1,293 @@
+{
+  "groups": {
+    "tai-lieu": "Dokumen & PDF",
+    "hinh-anh-qr": "Kode QR & barcode",
+    "xay-dung": "Konstruksi",
+    "gia-dinh": "Keluarga"
+  },
+  "items": {
+    "nen-pdf": {
+      "title": "Kompres PDF agar ringan untuk dikirim lewat email",
+      "summary": "Kecilkan ukuran file hasil scan atau foto dari ponsel tanpa mengurangi keterbacaan.",
+      "intro": "Kompres PDF memperkecil ukuran file dengan mengompres ulang foto dan hasil scan di dalamnya. File diproses langsung di perangkat Anda, tidak diunggah ke mana pun.",
+      "steps": {
+        "pick": {
+          "title": "Pilih file PDF",
+          "detail": "Buka Kompres PDF, tekan “Pilih file” atau seret file ke dalam bingkai. Anda bisa memilih beberapa file sekaligus, masing-masing maksimal 100 MB."
+        },
+        "level": {
+          "title": "Pilih tingkat kompresi",
+          "detail": "“Sedang” menjaga gambar cukup tajam untuk dicetak A4. “Kuat” menghasilkan file paling ringan, cocok untuk email atau dilihat di layar."
+        },
+        "compress": {
+          "title": "Tekan “Kompres PDF”",
+          "detail": "Jika memilih beberapa file, tombol menampilkan jumlahnya, misalnya “Kompres 3 file”. Bilah progres akan muncul; tekan “Batal” jika ingin berhenti."
+        },
+        "download": {
+          "title": "Unduh hasilnya",
+          "detail": "Tekan “Unduh”. Satu file akan bernama “<nama file> - đã nén.pdf” (“đã nén” berarti “sudah dikompres”); beberapa file dikemas dalam satu file .zip. Anda bisa “Pratinjau” atau “Edit lagi” sebelum mengunduh."
+        }
+      },
+      "tips": {
+        "scans": "File hasil scan dan foto dari ponsel paling banyak berkurang ukurannya.",
+        "email": "Untuk email pilih “Kuat”, untuk dicetak pilih “Sedang”.",
+        "password": "File berkata sandi: alat akan meminta kata sandi untuk membukanya sebelum dikompres."
+      },
+      "notes": {
+        "textOnly": "File yang isinya teks saja, seperti hasil ekspor dari Word, biasanya tidak bisa lebih kecil. Dalam hal ini layar menampilkan “Tidak bisa dikompres lagi” dan sebaiknya Anda menyimpan file aslinya.",
+        "png": "Gambar PNG dan gambar hitam-putih dibiarkan apa adanya agar teks tidak buram.",
+        "limits": "Setiap proses menerima maksimal 100 file, 500 halaman, dan total 300 MB."
+      }
+    },
+    "scan-anh-sang-pdf": {
+      "title": "Pindai dokumen dengan ponsel menjadi PDF",
+      "summary": "Foto atau pilih gambar, potong bingkainya, gabungkan menjadi satu file PDF berhalaman banyak.",
+      "intro": "Tidak perlu mesin scan: foto dokumen dengan kamera ponsel, potong agar rapi, lalu gabungkan menjadi satu file PDF. Gambar hanya ada di perangkat Anda.",
+      "steps": {
+        "pick": {
+          "title": "Pilih atau ambil foto",
+          "detail": "Buka Pindai gambar → PDF. Tekan “Pilih file” untuk memakai gambar yang sudah ada (JPG, PNG), atau “Ambil foto” untuk memotret dengan kamera belakang."
+        },
+        "capture": {
+          "title": "Potret dan potong bingkai",
+          "detail": "Setiap sesi bisa memotret hingga 50 foto. Sentuh gambar kecil untuk memotong atau menghapusnya; di tempat gelap tekan “Nyalakan lampu”. Setelah selesai tekan tombol “Pakai” beserta jumlah fotonya."
+        },
+        "order": {
+          "title": "Atur urutan",
+          "detail": "Setiap foto menjadi satu halaman. Atur urutan halaman dengan benar sebelum membuat PDF."
+        },
+        "paper": {
+          "title": "Pilih ukuran kertas dan margin",
+          "detail": "Di bagian “Halaman gambar”, pilih “Ukuran kertas” (A4, A3, Letter, atau “Pas gambar”) dan “Margin” (tanpa margin, 10 mm, atau 20 mm)."
+        },
+        "create": {
+          "title": "Buat dan unduh PDF",
+          "detail": "Tekan “Buat PDF” lalu “Unduh”. Foto ponsel yang miring akan diluruskan otomatis."
+        }
+      },
+      "tips": {
+        "shoot": "Potret lurus dari atas, letakkan kertas di atas latar gelap dengan cahaya cukup.",
+        "fit": "Pilih “Pas gambar” untuk mempertahankan rasio foto tanpa tambahan tepi putih.",
+        "next": "Agar file lebih ringan, lanjutkan dengan Kompres PDF. Agar teksnya bisa dicari, lanjutkan dengan OCR teks."
+      },
+      "notes": {
+        "https": "Kamera hanya berjalan jika halaman dibuka lewat HTTPS. Jika browser memblokir kamera, klik ikon gembok di bilah alamat untuk mengizinkannya, lalu coba lagi.",
+        "formats": "Saat ini hanya menerima gambar JPG dan PNG."
+      }
+    },
+    "tach-pdf": {
+      "title": "Pisah PDF atau ambil beberapa halaman saja",
+      "summary": "Potong satu file PDF menjadi beberapa file menurut rentang halaman atau jumlah halaman.",
+      "intro": "Pisah PDF membantu mengambil lampiran, beberapa halaman yang perlu dikirim, atau membagi file panjang menjadi beberapa bagian yang sama besar.",
+      "steps": {
+        "pick": {
+          "title": "Pilih file PDF",
+          "detail": "Buka Pisah PDF dan pilih satu file PDF."
+        },
+        "mode": {
+          "title": "Pilih cara memisah",
+          "detail": "“Menurut rentang halaman”: ketik misalnya 1-3, 5, 8-10; setiap kelompok yang dipisahkan koma menjadi satu file. “Setiap N halaman satu file”: ketik jumlah halaman untuk setiap file."
+        },
+        "split": {
+          "title": "Tekan pisah",
+          "detail": "Tombolnya berubah sesuai pilihan: “Ambil halaman ke file terpisah” jika hanya ada satu kelompok, atau “Pisah menjadi” beserta jumlah file jika ada beberapa kelompok."
+        },
+        "download": {
+          "title": "Unduh",
+          "detail": "Satu kelompok menghasilkan satu file PDF. Beberapa kelompok dikemas dalam satu file .zip, dan nama setiap bagian mencantumkan nomor halamannya."
+        }
+      },
+      "tips": {
+        "single": "Hanya perlu halaman 5: ketik “5”.",
+        "appendix": "Memisah kontrak menurut lampiran: ketik rentang halaman setiap lampiran, dipisahkan koma.",
+        "edit": "Perlu menghapus, memutar, atau mengurutkan ulang halaman: tekan “Edit lagi” untuk membuka editor PDF."
+      },
+      "notes": {
+        "onePage": "File yang hanya satu halaman tidak punya apa pun untuk dipisah.",
+        "outOfRange": "Nomor halaman di luar file akan langsung diberi tahu di bawah kolom isian."
+      }
+    },
+    "ocr-van-ban": {
+      "title": "Kenali teks bahasa Vietnam dari hasil scan (OCR)",
+      "summary": "Ubah hasil scan menjadi PDF yang teksnya bisa dicari, atau ambil teksnya untuk disalin.",
+      "intro": "OCR membaca teks di dalam gambar dan hasil scan. Model pengenal teks bahasa Vietnam berjalan langsung di perangkat Anda; file tidak dikirim ke mana pun.",
+      "steps": {
+        "pick": {
+          "title": "Pilih hasil scan atau gambar",
+          "detail": "Buka OCR teks, pilih file PDF hasil scan atau gambar JPG, PNG. Anda bisa memilih beberapa file dan mengubah urutannya."
+        },
+        "output": {
+          "title": "Pilih jenis hasil",
+          "detail": "“PDF yang bisa dicari” mempertahankan tampilan halaman dan menambahkan lapisan teks untuk dicari (Ctrl+F) dan disalin. “Teks (.txt)” hanya mengambil teksnya."
+        },
+        "run": {
+          "title": "Tekan “Kenali teks”",
+          "detail": "Pertama kali, alat mengunduh model pengenal teks bahasa Vietnam (sekitar 1,4 MB) dari situs ini sendiri. Setelah itu setiap halaman butuh beberapa detik."
+        },
+        "download": {
+          "title": "Unduh atau salin",
+          "detail": "PDF yang diunduh bernama “<nama file> - OCR.pdf”. Versi teks muncul di kotak “Isi teks”; tekan “Salin” untuk menempelkannya di tempat lain."
+        }
+      },
+      "tips": {
+        "quality": "Foto yang lurus, tajam, dan berhuruf cukup besar memberi hasil terbaik.",
+        "existing": "Halaman yang sudah memiliki lapisan teks dilewati, tidak dibaca ulang.",
+        "image": "Hanya perlu mengambil teks dari satu foto: pakai Gambar → Teks, lebih cepat."
+      },
+      "notes": {
+        "language": "Saat ini hanya mengenali bahasa Vietnam.",
+        "accuracy": "OCR bisa salah baca, terutama pada foto buram atau tulisan tangan. Periksa kembali sebelum dipakai.",
+        "network": "Pertama kali perlu koneksi internet untuk mengunduh model pengenal teks."
+      }
+    },
+    "tao-va-doc-ma-qr": {
+      "title": "Buat kode QR, barcode, dan pindai kode",
+      "summary": "Buat QR Wi-Fi, kartu nama, barcode cetak massal, dan baca kode dari gambar atau kamera.",
+      "intro": "Tiga alat dalam satu set tab: “Buat kode QR”, “Buat barcode”, dan “Pindai kode”. Semuanya berjalan di perangkat Anda.",
+      "steps": {
+        "qr": {
+          "title": "Buat kode QR",
+          "detail": "Buka Buat kode QR, pilih “Jenis kode”: tautan, teks, Wi-Fi, nomor telepon, email, atau kartu nama. Kode langsung digambar ulang saat Anda mengetik."
+        },
+        "colors": {
+          "title": "Pilih warna dan unduh",
+          "detail": "Pilih warna di bagian “Warna”, lalu tekan “Unduh kode QR” untuk mendapatkan gambar PNG, atau “Unduh SVG untuk dicetak” untuk hasil cetak yang tajam."
+        },
+        "barcode": {
+          "title": "Buat barcode",
+          "detail": "Buka Buat barcode, pilih jenisnya (Code 128, Code 39, EAN-13, EAN-8, ITF-14) dan isi “Nilai”. Perlu banyak kode: pilih “Massal” lalu muat file CSV atau Excel, maksimal 500 baris."
+        },
+        "scan": {
+          "title": "Pindai kode",
+          "detail": "Buka Baca kode QR/Barcode, pilih gambar berisi kode, tempel gambar dengan Ctrl+V, atau tekan “Pindai dengan kamera”. Kode dibaca otomatis, tanpa perlu menekan apa pun."
+        },
+        "use": {
+          "title": "Pakai hasilnya",
+          "detail": "Tekan “Salin”, buka tautannya, atau “Salin kata sandi” untuk kode Wi-Fi."
+        }
+      },
+      "tips": {
+        "wifi": "QR Wi-Fi yang ditempel di meja kasir: tamu cukup memindai untuk terhubung, tanpa perlu membacakan kata sandi.",
+        "print": "Mencetak barcode ukuran kecil: cetak satu label uji coba sebelum mencetak semuanya.",
+        "ean": "Saat memindai kode EAN, alat juga memeriksa digit terakhir untuk mendeteksi kode yang tercetak rusak."
+      },
+      "notes": {
+        "gs1": "Nomor EAN dan ITF-14 untuk barang ritel harus diterbitkan oleh GS1 (di Vietnam: GS1 Việt Nam).",
+        "links": "Periksa tautan dengan saksama sebelum membukanya: siapa pun bisa mencetak kode QR lalu menempelkannya di atas kode asli.",
+        "wifiPassword": "Kata sandi Wi-Fi WPA minimal 8 karakter."
+      }
+    },
+    "xem-huong-nha": {
+      "title": "Lihat arah rumah dengan kompas ponsel",
+      "summary": "Ukur arah rumah menurut 24 gunung, lihat arah yang cocok dengan usia pemilik rumah, dan simpan sebagai gambar atau PDF.",
+      "intro": "Arah rumah & kompas langsung membuka kompas hidup: piringan berputar mengikuti ponsel, langsung membaca arah hadap dan arah duduk menurut 24 gunung. Kompas bisa diletakkan di atas foto rumah atau gambar denah. Data hanya ada di tab yang sedang terbuka.",
+      "steps": {
+        "position": {
+          "title": "Berdiri di tempat yang tepat",
+          "detail": "Berdiri di pintu utama, punggung menghadap rumah, pegang ponsel mendatar dengan ujung atasnya menunjuk lurus ke luar. Jauhi tiang baja, mobil, pintu gulung. Jika berdiri di luar memandang ke rumah, centang “Saya berdiri di luar, memandang ke rumah”."
+        },
+        "measure": {
+          "title": "Ukur dan kunci arah",
+          "detail": "Tekan “Mulai mengukur”. Piringan kompas berputar mengikuti ponsel; garis merah menunjuk HADAP, ujung lainnya DUDUK. Tunggu label “Stabil” lalu tekan “Kunci arah”. Jika tidak ada sensor, tekan “Masukkan derajat”."
+        },
+        "read": {
+          "title": "Baca hasilnya",
+          "detail": "Di bawah kompas tampil nama gunung untuk Hadap dan Duduk, derajatnya, serta selisihnya dari pusat gunung. Jika arahnya tepat di batas dua gunung, akan ada peringatan garis kosong; sebaiknya ukur ulang."
+        },
+        "age": {
+          "title": "Lihat menurut usia (opsional)",
+          "detail": "Aktifkan “Lihat menurut usia pemilik rumah”, isi tanggal lahir Masehi atau tahun lahir kalender lunar dan jenis kelamin. Kompas menampilkan cincin bintang cocok / pantang orang tersebut, beserta kesimpulan untuk arah yang baru dikunci."
+        },
+        "save": {
+          "title": "Simpan hasil",
+          "detail": "Di “Simpan hasil”, pilih gambar atau PDF lalu tekan simpan. Jika ingin kompas berada di atas foto rumah atau gambar denah, tekan “Letakkan di foto rumah / gambar denah”."
+        }
+      },
+      "tips": {
+        "repeat": "Ukur dua atau tiga kali di titik yang berbeda lalu bandingkan.",
+        "expert": "Mode “Profesional” dapat mengukur banyak posisi (pintu utama, dapur, altar…), melihat sinar dan posisi matahari, serta data teknis.",
+        "iphone": "iPhone meminta izin membaca sensor setelah Anda menekan “Mulai mengukur”: pilih Izinkan."
+      },
+      "notes": {
+        "sensor": "Komputer dan banyak browser tidak memiliki sensor kompas; dalam hal ini tekan “Masukkan derajat”.",
+        "https": "Kompas hanya berjalan jika halaman dibuka lewat HTTPS.",
+        "reference": "Bagian menurut usia menghitung tahun berdasarkan Tết (Tahun Baru Imlek) dan merupakan acuan menurut fengsui tradisional (Bát trạch / Delapan Rumah), bukan kesimpulan teknis.",
+        "save": "Hasil tidak disimpan otomatis: menutup tab berarti hasil hilang jika belum disimpan."
+      }
+    },
+    "khai-toan-xay-nha": {
+      "title": "Perkiraan biaya membangun rumah toko",
+      "summary": "Perkirakan biaya dari luas dan harga satuan penawaran kontraktor, langsung diperbarui saat mengetik.",
+      "intro": "Perkiraan ini mengonversi luas setiap bagian (fondasi, lantai, ruang atap, teras atap, atap) dengan koefisien lalu mengalikannya dengan harga satuan yang Anda masukkan. Hasilnya hanya sebagai acuan.",
+      "steps": {
+        "area": {
+          "title": "Masukkan luas",
+          "detail": "Isi “Luas lantai dasar”, “Jumlah lantai atas (tanpa lantai dasar)”, luas ruang atap, teras atap terbuka, serta halaman depan dan belakang."
+        },
+        "price": {
+          "title": "Masukkan harga satuan",
+          "detail": "Isi “Harga satuan struktur” dan “Harga satuan finishing atau borongan” sesuai penawaran yang Anda miliki. Jika harga satuan kedua sudah termasuk struktur, centang kotak yang sesuai."
+        },
+        "ratios": {
+          "title": "Ubah koefisien jika perlu",
+          "detail": "Buka “Ubah koefisien sesuai penawaran kontraktor” untuk mengganti rasio perhitungan luas. Bawaannya fondasi 50%, setiap lantai 100%, teras atap dan atap 50%."
+        },
+        "result": {
+          "title": "Baca hasilnya",
+          "detail": "Kotak “Perkiraan biaya acuan” langsung diperbarui saat Anda mengetik: luas konversi, biaya setiap pekerjaan, dan totalnya."
+        }
+      },
+      "tips": {
+        "quotes": "Minta penawaran dari dua atau tiga kontraktor agar harga satuannya mendekati kenyataan.",
+        "deposit": "Jika ada biaya tiang pancang, isi di “Biaya tiang pancang” agar total terlihat lengkap.",
+        "noSave": "Alat ini tidak menyimpan angka: ambil tangkapan layar jika ingin menyimpannya."
+      },
+      "notes": {
+        "ratios": "Koefisien adalah kebiasaan acuan, bukan norma resmi pemerintah.",
+        "excluded": "Belum termasuk desain, izin, perabot lepas, atau biaya tambahan akibat kondisi tanah.",
+        "prices": "Alat ini tidak menyediakan harga satuan; semua angka Anda masukkan sendiri."
+      }
+    },
+    "lich-gia-dinh": {
+      "title": "Memakai Kalender Keluarga: tambah kegiatan, pengingat, cadangan",
+      "summary": "Catat jadwal untuk seluruh keluarga, simpan nomor darurat, dan buat cadangan, tanpa perlu akun.",
+      "intro": "Kalender Keluarga disimpan langsung di perangkat ini, tanpa perlu akun. Belum ada fitur berbagi atau sinkronisasi lewat internet, jadi buatlah cadangan secara berkala.",
+      "steps": {
+        "members": {
+          "title": "Tambah anggota",
+          "detail": "Di tab “Anggota”, isi “Nama panggilan”, pilih profil Orang tua, Kakek nenek, atau Anak, lalu tekan “Tambah anggota”. Profil Kakek nenek memakai huruf besar dan lebih sedikit menu."
+        },
+        "add": {
+          "title": "Tambah kegiatan",
+          "detail": "Di tab “Tambah”, isi “Nama kegiatan”, tanggal, jam, pilih jenis kegiatan, pola pengulangan, dan anggota, lalu tekan “Simpan jadwal di perangkat”."
+        },
+        "remind": {
+          "title": "Aktifkan pengingat",
+          "detail": "Isi berapa menit sebelumnya pengingat muncul (kegiatan harus punya jam tertentu), lalu tekan “Aktifkan notifikasi selama halaman terbuka” dan izinkan notifikasi."
+        },
+        "view": {
+          "title": "Lihat jadwal",
+          "detail": "Tab “Kalender” punya tiga mode: Hari ini, 7 hari ke depan, dan 30 hari ke depan. Tekan “Selesai” saat kegiatan sudah selesai."
+        },
+        "sos": {
+          "title": "Simpan kontak darurat",
+          "detail": "Tab “SOS & kontak” menyimpan nama dan nomor telepon keluarga untuk dihubungi cepat, beserta tombol untuk menelepon 113 (polisi) dan 115 (ambulans) di Vietnam."
+        },
+        "backup": {
+          "title": "Cadangan",
+          "detail": "Tab “Cadangan” berisi “Unduh cadangan” (file lengkap untuk pemulihan), “Unduh ICS” untuk diimpor ke kalender ponsel, serta cetak jadwal 30 hari ke depan."
+        }
+      },
+      "tips": {
+        "viewing": "Pakai kolom “Melihat untuk” untuk melihat jadwal masing-masing orang.",
+        "backupFirst": "Buat cadangan sebelum menghapus data browser atau berganti perangkat.",
+        "ics": "File ICS bisa dibuka dengan Google Calendar dan kalender di iPhone."
+      },
+      "notes": {
+        "openPage": "Pengingat hanya muncul selama halaman terbuka.",
+        "sos": "Sinyal SOS hanya disimpan di perangkat, belum dikirim ke keluarga.",
+        "clearData": "Menghapus data browser akan menghilangkan kalender jika Anda belum mengunduh cadangan."
+      }
+    }
+  }
+}

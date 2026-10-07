@@ -6,39 +6,32 @@ import { readyFirst } from './hub-tools'
 export type ProcessingMode = 'device' | 'model' | 'server'
 export type ProcessingFilter = ProcessingMode | 'all'
 
-export const PROCESSING_LABEL: Record<ProcessingMode, string> = {
-  device: 'Trên thiết bị',
-  model: 'Trên thiết bị, có tải bộ nhận dạng',
-  server: 'Cần máy chủ',
-}
+export const PROCESSING_FILTERS: readonly ProcessingFilter[] = ['all', 'device', 'model', 'server']
 
-export const PROCESSING_FILTERS: readonly { value: ProcessingFilter; label: string }[] = [
-  { value: 'all', label: 'Tất cả' },
-  { value: 'device', label: PROCESSING_LABEL.device },
-  { value: 'model', label: 'Có tải bộ nhận dạng' },
-  { value: 'server', label: PROCESSING_LABEL.server },
-]
+/** Ghi chú mặc định khi danh mục không có `privacyNote`; chữ ở `site:data.notes.<id>`. */
+export type ProcessingNote = 'server' | 'model' | 'noFile' | 'device'
 
 export interface ProcessingRow {
   tool: ToolDefinition
   group: string
   mode: ProcessingMode
-  note: string
+  /** `privacyNote` của danh mục; không có thì hiện `defaultNote`. */
+  note?: string
+  defaultNote: ProcessingNote
 }
 
 const MODE_OF = { browser: 'device', 'browser-model': 'model', server: 'server' } as const
 
-function defaultNote(tool: ToolDefinition, mode: ProcessingMode): string {
-  if (mode === 'server') return 'Sắp có. Cần tra cứu dữ liệu trên máy chủ; sẽ ghi rõ dữ liệu gửi đi trước khi ra mắt.'
-  if (mode === 'model') return 'Tải bộ nhận dạng một lần từ chính trang này, rồi nhận dạng ngay trên máy.'
-  return tool.noFile ? 'Chạy ngay trên máy bạn, không gửi dữ liệu đi.' : 'Tệp không rời thiết bị.'
+function defaultNote(tool: ToolDefinition, mode: ProcessingMode): ProcessingNote {
+  if (mode === 'server' || mode === 'model') return mode
+  return tool.noFile ? 'noFile' : 'device'
 }
 
 /** Một dòng / công cụ; ghi chú lấy `privacyNote` của danh mục khi có, để lời hứa trên thẻ và trên bảng là một. */
 export function processingRows(catalog: readonly ToolDefinition[], groupLabels: ReadonlyMap<string, string>): ProcessingRow[] {
   return readyFirst([...catalog]).map((tool) => {
     const mode = MODE_OF[toolProcessing(tool)]
-    return { tool, group: groupLabels.get(tool.categories[0]) ?? '', mode, note: tool.privacyNote ?? defaultNote(tool, mode) }
+    return { tool, group: groupLabels.get(tool.categories[0]) ?? '', mode, note: tool.privacyNote, defaultNote: defaultNote(tool, mode) }
   })
 }
 

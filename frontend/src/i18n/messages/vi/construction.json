@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Móng",
+      "basement": "Tầng hầm",
+      "ground": "Tầng trệt",
+      "upper": "Mỗi lầu",
+      "floor": "Lầu {{floor}}",
+      "rooftopRoom": "Tum",
+      "terrace": "Sân thượng không mái",
+      "roof": "Mái",
+      "yard": "Sân trước/sau"
+    },
+    "result": "Khái toán tham khảo",
+    "money": "{{amount}} đ",
+    "enterPrice": "Nhập đơn giá",
+    "convertedArea": "Diện tích quy đổi: {{area}} m²",
+    "costs": "Phần thô: {{base}} đ · Hoàn thiện hoặc trọn gói: {{finishing}} đ · Cọc: {{pile}} đ",
+    "columns": {
+      "item": "Hạng mục",
+      "area": "Diện tích",
+      "factor": "Hệ số",
+      "converted": "Quy đổi"
+    },
+    "checkInput": "Kiểm tra số liệu đã nhập.",
+    "disclaimer": "Hệ số là quy ước tham khảo trong tài liệu lưu trữ, không phải định mức nhà nước. Đối chiếu thiết kế và báo giá nhà thầu; chưa gồm thiết kế, giấy phép, nội thất rời hoặc phát sinh địa chất.",
+    "title": "Diện tích và đơn giá của bạn",
+    "fields": {
+      "floorArea": "Diện tích sàn trệt (m²)",
+      "upperFloors": "Số lầu (không tính trệt)",
+      "rooftopRoomArea": "Diện tích tum (m²)",
+      "terraceArea": "Sân thượng không mái (m²)",
+      "yardArea": "Sân trước/sau (m²)",
+      "basePrice": "Đơn giá phần thô (đ/m²)",
+      "finishingPrice": "Đơn giá hoàn thiện hoặc trọn gói (đ/m²)",
+      "pileCost": "Chi phí cọc (đ)"
+    },
+    "turnkey": "Đơn giá thứ hai là trọn gói, đã gồm phần thô",
+    "editFactors": "Sửa hệ số theo báo giá nhà thầu",
+    "factorLabel": "{{label}} (%)"
+  }
+}

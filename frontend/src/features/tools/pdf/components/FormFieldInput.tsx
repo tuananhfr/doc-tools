@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import type { FormField, FormValue } from '../types/form.types'
 
 interface FormFieldInputProps {
@@ -12,11 +13,12 @@ interface FormFieldInputProps {
 }
 
 function FieldLabel({ field, position, htmlFor }: { field: FormField; position: number; htmlFor?: string }) {
+  const { t } = useTranslation('pdf')
   const text = (
     <>
       {field.label}
       {field.required ? (
-        <span className="erp-doc-form__required" title="Bắt buộc">
+        <span className="erp-doc-form__required" title={t('form.required')}>
           {' '}*
         </span>
       ) : null}
@@ -31,7 +33,7 @@ function FieldLabel({ field, position, htmlFor }: { field: FormField; position: 
       ) : (
         <span className="erp-doc-export__label mb-0">{text}</span>
       )}
-      <span className="erp-doc-form__page">tr. {position}</span>
+      <span className="erp-doc-form__page">{t('form.page', { page: position })}</span>
     </div>
   )
 }
@@ -40,16 +42,17 @@ const asList = (value: FormValue) => (Array.isArray(value) ? value : [])
 
 /** Một trường form theo đúng loại ô của PDF: chữ, ô chọn, nhóm radio, danh sách. */
 export function FormFieldInput({ field, value, position, disabled, onChange }: FormFieldInputProps) {
+  const { t } = useTranslation('pdf')
   const id = useId()
   const locked = disabled || field.readOnly
-  const readOnlyNote = field.readOnly ? <p className="erp-doc-export__note mb-0">Chỉ đọc — người soạn form đã khoá ô này.</p> : null
+  const readOnlyNote = field.readOnly ? <p className="erp-doc-export__note mb-0">{t('form.readOnly')}</p> : null
 
   if (field.kind === 'checkbox') {
     return (
       <div className="erp-doc-form__field">
         <div className="erp-doc-form__label-row">
           <Form.Check id={id} type="checkbox" checked={value === true} disabled={locked} label={field.label} onChange={(event) => onChange(event.target.checked)} />
-          <span className="erp-doc-form__page">tr. {position}</span>
+          <span className="erp-doc-form__page">{t('form.page', { page: position })}</span>
         </div>
         {readOnlyNote}
       </div>
@@ -110,7 +113,7 @@ export function FormFieldInput({ field, value, position, disabled, onChange }: F
           </>
         ) : (
           <Form.Select id={id} value={current} disabled={locked} onChange={(event) => onChange(event.target.value ? [event.target.value] : [])}>
-            <option value="">— Chưa chọn —</option>
+            <option value="">{t('form.notChosen')}</option>
             {field.options.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -135,7 +138,7 @@ export function FormFieldInput({ field, value, position, disabled, onChange }: F
       )}
       {field.maxLength ? (
         <p className="erp-doc-export__note mb-0">
-          {text.length}/{field.maxLength} ký tự
+          {t('form.chars', { length: text.length, max: field.maxLength })}
         </p>
       ) : null}
       {readOnlyNote}

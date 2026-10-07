@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { parseDecimal } from '@/features/tools/hub'
 
 interface ManualDegreeProps {
@@ -11,6 +12,7 @@ interface ManualDegreeProps {
 
 /** Ô nhập số độ đã biết. Giá trị ngoài vào chỉ đọc lúc dựng — đổi đối tượng thì đổi `key`. */
 export function ManualDegree({ label, value, disabled, onChange }: ManualDegreeProps) {
+  const { t } = useTranslation('orientation')
   const [text, setText] = useState(value === null ? '' : String(value).replace('.', ','))
   const read = (raw: string) => (raw.trim() === '' ? null : parseDecimal(raw))
   const parsed = read(text)
@@ -25,12 +27,12 @@ export function ManualDegree({ label, value, disabled, onChange }: ManualDegreeP
 
   return (
     <Form.Group controlId="orient-manual" className="erp-flow-field">
-      <Form.Label className="erp-flow-field__label">Số độ của {label.toLowerCase()}</Form.Label>
+      <Form.Label className="erp-flow-field__label">{t('manual.label', { target: label.toLowerCase() })}</Form.Label>
       <div className="erp-orient-degree">
         <Form.Control
           inputMode="decimal"
           value={text}
-          placeholder="Ví dụ 132"
+          placeholder={t('manual.placeholder')}
           isInvalid={invalid}
           disabled={disabled}
           onChange={(event) => update(event.target.value)}
@@ -39,8 +41,8 @@ export function ManualDegree({ label, value, disabled, onChange }: ManualDegreeP
           °
         </span>
       </div>
-      <Form.Text className="erp-flow-field__hint">Đo theo chiều kim đồng hồ từ Bắc: Đông 90°, Nam 180°, Tây 270°.</Form.Text>
-      {invalid ? <Form.Control.Feedback type="invalid" className="d-block">Nhập một số, ví dụ 132 hoặc 132,5.</Form.Control.Feedback> : null}
+      <Form.Text className="erp-flow-field__hint">{t('manual.hint')}</Form.Text>
+      {invalid ? <Form.Control.Feedback type="invalid" className="d-block">{t('manual.invalid')}</Form.Control.Feedback> : null}
     </Form.Group>
   )
 }

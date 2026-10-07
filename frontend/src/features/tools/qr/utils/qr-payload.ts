@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { QrForm, QrPayload } from '../types/qr.types'
 
 export const INITIAL_QR_FORM: QrForm = {
@@ -30,7 +31,7 @@ export function escapeWifi(value: string): string {
 function urlPayload(input: string): QrPayload {
   const url = input.trim()
   if (!url) return EMPTY
-  if (/\s/.test(url)) return fail('Đường dẫn không được có khoảng trắng.')
+  if (/\s/.test(url)) return fail(translate('qr:payload.urlSpaces'))
   // Thiếu "https://" thì nhiều máy quét coi là chữ thường, không mời mở trang.
   return { ok: true, text: /^[a-z][a-z0-9+.-]*:/i.test(url) ? url : `https://${url}` }
 }
@@ -40,21 +41,20 @@ function wifiPayload(form: QrForm): QrPayload {
   if (!ssid) return EMPTY
   const hidden = form.hidden ? 'H:true;' : ''
   if (form.security === 'nopass') return { ok: true, text: `WIFI:T:nopass;S:${escapeWifi(ssid)};${hidden};` }
-  if (!form.password) return fail('Nhập mật khẩu Wi-Fi, hoặc chọn "Không mật khẩu".')
-  if (form.security === 'WPA' && form.password.length < 8) return fail('Mật khẩu WPA/WPA2 có ít nhất 8 ký tự.')
+  if (!form.password) return fail(translate('qr:payload.wifiPassword'))
+  if (form.security === 'WPA' && form.password.length < 8) return fail(translate('qr:payload.wpaShort'))
   return { ok: true, text: `WIFI:T:${form.security};S:${escapeWifi(ssid)};P:${escapeWifi(form.password)};${hidden};` }
 }
 
 /** Số đã gọt còn chữ số (và dấu + đầu); `reason` khi không phải số điện thoại. */
 function readPhone(raw: string): { number: string } | { reason: string } {
-  if (!/^\+?[\d\s().-]+$/.test(raw)) return { reason: 'Số điện thoại chỉ gồm chữ số, có thể bắt đầu bằng dấu +.' }
+  if (!/^\+?[\d\s().-]+$/.test(raw)) return { reason: translate('qr:payload.phoneChars') }
   const digits = raw.replace(/[^\d]/g, '')
-  if (digits.length < 3) return { reason: 'Số điện thoại quá ngắn.' }
+  if (digits.length < 3) return { reason: translate('qr:payload.phoneShort') }
   return { number: `${raw.startsWith('+') ? '+' : ''}${digits}` }
 }
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const EMAIL_HINT = 'Địa chỉ email chưa đúng dạng ten@congty.vn.'
 
 function phonePayload(input: string): QrPayload {
   const raw = input.trim()
@@ -78,8 +78,8 @@ function vcardPayload(form: QrForm): QrPayload {
   const rawPhone = form.contactPhone.trim()
   const email = form.contactEmail.trim()
   if (!name && !rawPhone && !email) return EMPTY
-  if (!name) return fail('Nhập họ tên của liên hệ.')
-  if (!rawPhone && !email) return fail('Nhập số điện thoại hoặc email của liên hệ.')
+  if (!name) return fail(translate('qr:payload.contactName'))
+  if (!rawPhone && !email) return fail(translate('qr:payload.contactReach'))
 
   const lines = ['BEGIN:VCARD', 'VERSION:3.0', `N:${escapeVcard(name)};;;;`, `FN:${escapeVcard(name)}`]
   const org = form.contactOrg.trim()
@@ -92,7 +92,7 @@ function vcardPayload(form: QrForm): QrPayload {
     lines.push(`TEL;TYPE=CELL:${phone.number}`)
   }
   if (email) {
-    if (!EMAIL.test(email)) return fail(EMAIL_HINT)
+    if (!EMAIL.test(email)) return fail(translate('qr:payload.email'))
     lines.push(`EMAIL:${email}`)
   }
   lines.push('END:VCARD')
@@ -102,7 +102,7 @@ function vcardPayload(form: QrForm): QrPayload {
 function emailPayload(form: QrForm): QrPayload {
   const address = form.email.trim()
   if (!address) return EMPTY
-  if (!EMAIL.test(address)) return fail(EMAIL_HINT)
+  if (!EMAIL.test(address)) return fail(translate('qr:payload.email'))
   const subject = form.subject.trim()
   return { ok: true, text: `mailto:${address}${subject ? `?subject=${encodeURIComponent(subject)}` : ''}` }
 }

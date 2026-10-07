@@ -1,0 +1,47 @@
+{
+  "flashcard": {
+    "reviewDue": "復習 · 期限が来たカード {{count}} 枚",
+    "noneDue": "期限が来たカードはありません",
+    "flip": "カードをめくる",
+    "forgot": "まだ覚えていない",
+    "remembered": "覚えた",
+    "schedule": "覚えたカードは 1・3・7・14・30 日後に再び出てきます。",
+    "stored": "この端末に {{count}} 枚のカードを保存しています。ブラウザのデータを消去するとカードも消えます。",
+    "title": "暗記カードを作成",
+    "front": "表",
+    "back": "裏",
+    "add": "カードを追加",
+    "remove": "削除"
+  },
+  "pomodoro": {
+    "focus": "集中",
+    "break": "休憩",
+    "start": "開始",
+    "pause": "一時停止",
+    "reset": "リセット",
+    "switch": "セッションを切り替え",
+    "note": "タイマーはページを開いている間だけ動きます。00:00 になったら「セッションを切り替え」を押して次の回を始めてください。",
+    "title": "時間設定",
+    "focusMinutes": "集中（分）",
+    "breakMinutes": "休憩（分）",
+    "invalid": "集中は 1〜180 分、休憩は 1〜60 分で設定してください。"
+  },
+  "grades": {
+    "gradeResult": "参考換算",
+    "admissionResult": "入試合計点",
+    "breakdown": "素点 {{raw}} + 調整後の加点 {{bonus}}",
+    "note": "換算方法や優先加点の規定は、学校や入試年度によって異なる場合があります。使用前に適用先の規定を確認してください。",
+    "title": "成績",
+    "mode": "モード",
+    "modeGrade": "10点満点を4点満点に換算",
+    "modeAdmission": "入試の点数",
+    "fields": {
+      "score10": "10点満点の点数",
+      "subject1": "科目1",
+      "subject2": "科目2",
+      "subject3": "科目3",
+      "regionBonus": "地域による加点",
+      "categoryBonus": "対象者区分による加点"
+    }
+  }
+}

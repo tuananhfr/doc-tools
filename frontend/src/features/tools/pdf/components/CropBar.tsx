@@ -1,4 +1,5 @@
 import { Button, Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { Rect } from '../types/markup.types'
 import { MIN_CROP } from '../services/page-edit'
@@ -13,22 +14,23 @@ interface CropBarProps {
 }
 
 export function CropBar({ rect, busy, onApply, onCancel }: CropBarProps) {
+  const { t } = useTranslation('pdf')
   const usable = !!rect && rect.width >= MIN_CROP && rect.height >= MIN_CROP
   return (
-    <div className="erp-doc-markbar erp-doc-cropbar" role="toolbar" aria-label="Cắt trang">
+    <div className="erp-doc-markbar erp-doc-cropbar" role="toolbar" aria-label={t('crop.toolbar')}>
       <p className="erp-doc-markbar__notice" aria-live="polite">
         <Icon name="crop" />
         {usable
-          ? `Giữ lại ${Math.round(rect.width * MM_PER_PT)} × ${Math.round(rect.height * MM_PER_PT)} mm — kéo trong khung để dời.`
-          : 'Kéo trên trang để chọn phần giữ lại.'}
+          ? t('crop.keep', { width: Math.round(rect.width * MM_PER_PT), height: Math.round(rect.height * MM_PER_PT) })
+          : t('crop.hint')}
       </p>
       <div className="erp-doc-markbar__actions erp-doc-cropbar__actions">
         <Button size="sm" variant="outline-secondary" disabled={busy} onClick={onCancel}>
-          Huỷ
+          {t('shared.cancel')}
         </Button>
         <Button size="sm" variant="primary" disabled={!usable || busy} onClick={onApply}>
           {busy ? <Spinner size="sm" as="span" className="me-2" /> : <Icon name="check2" className="me-2" />}
-          Cắt trang
+          {t('crop.apply')}
         </Button>
       </div>
     </div>

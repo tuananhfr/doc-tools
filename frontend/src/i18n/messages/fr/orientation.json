@@ -1,0 +1,363 @@
+{
+  "shared": {
+    "on": "Activé",
+    "off": "Désactivé",
+    "remove": "Retirer {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "Propriétaire",
+    "PROFESSIONAL": "Professionnel"
+  },
+  "page": {
+    "projectNorthWarning": "Mesure par rapport au nord du projet, qui n'est pas une direction réelle : la compatibilité selon l'âge et l'ensoleillement ne peuvent donc pas être calculés. Passez au nord géographique ou au nord magnétique dans la partie technique.",
+    "missing": {
+      "drawing": "Touchez le symbole du nord sur le plan pour commencer.",
+      "device": "Appuyez sur « Commencer la mesure », restez immobile puis validez la mesure.",
+      "manual": "Saisissez l'angle que vous connaissez déjà.",
+      "placeAxis": "Placez l'axe {{target}} sur l'image.",
+      "pickMeasured": "Choisissez un élément qui a déjà une mesure."
+    },
+    "noSource": "Aucune source pour l'instant.",
+    "modeLabel": "Mode d'affichage",
+    "back": "Retour",
+    "changeSource": "Changer d'image / de source",
+    "placeOnImage": "Placer sur une photo de la maison / un plan",
+    "nothingToSave": "Aucune mesure à enregistrer pour l'instant.",
+    "frontageFallback": "Façade",
+    "houseFrontageFallback": "Façade de la maison",
+    "sideAge": "Selon l'âge et enregistrement"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "Orientation de la maison",
+      "hint": "De l'intérieur, en regardant droit vers la façade"
+    },
+    "MAIN_DOOR": {
+      "label": "Porte d'entrée",
+      "hint": "De l'intérieur, en regardant dehors par la porte d'entrée"
+    },
+    "BALCONY": {
+      "label": "Balcon",
+      "hint": "De la pièce, en regardant vers le balcon"
+    },
+    "KITCHEN": {
+      "label": "Cuisinière",
+      "hint": "La direction du dos de la personne qui cuisine, à l'opposé de son regard vers la cuisinière"
+    },
+    "ALTAR": {
+      "label": "Autel",
+      "hint": "La direction vers laquelle fait face l'autel"
+    },
+    "BED": {
+      "label": "Lit",
+      "hint": "De la tête du lit vers le pied du lit"
+    },
+    "DESK": {
+      "label": "Bureau",
+      "hint": "La direction vers laquelle regarde la personne assise au bureau"
+    },
+    "LAND_FRONTAGE": {
+      "label": "Façade du terrain",
+      "hint": "Depuis le terrain, en regardant vers la rue"
+    },
+    "CUSTOM": {
+      "label": "Autre élément",
+      "hint": "Nommez-le vous-même ; l'axe pointe dans la direction à mesurer"
+    }
+  },
+  "north": {
+    "TRUE": "Nord géographique",
+    "MAGNETIC": "Nord magnétique",
+    "PROJECT": "Nord du projet"
+  },
+  "sources": {
+    "DRAWING": "placé sur un plan",
+    "MANUAL": "saisi manuellement",
+    "DEVICE": "boussole du téléphone",
+    "SURVEY": "relevé topographique"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · précision ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "Ce navigateur ne peut pas lire la boussole de l'appareil.",
+      "insecure": "La boussole ne fonctionne que si la page est ouverte en HTTPS.",
+      "denied": "Vous n'avez pas autorisé l'accès au capteur d'orientation. Autorisez-le dans les paramètres du navigateur et réessayez.",
+      "noSignal": "Aucun signal de boussole : les ordinateurs et de nombreux navigateurs n'ont pas ce capteur."
+    },
+    "stability": {
+      "STABLE": "Stable",
+      "WOBBLY": "Encore instable",
+      "UNSTABLE": "Instable"
+    },
+    "accuracy": "L'appareil indique une précision de ±{{value}}°",
+    "noAccuracy": "L'appareil n'indique pas de précision",
+    "starting": "Ouverture de la boussole…",
+    "retry": "Réessayer",
+    "start": "Commencer la mesure",
+    "stop": "Arrêter",
+    "outside": "Je suis dehors et je regarde la maison",
+    "magnetWarning": "Éloignez-vous des poteaux en acier, voitures, rideaux métalliques, aimants et appareils électriques : ils faussent la boussole."
+  },
+  "device": {
+    "steps": {
+      "stand": "Placez-vous à la porte d'entrée, dos à la maison, en regardant droit devant vous vers l'extérieur.",
+      "hold": "Tenez le téléphone à plat (parallèle au sol), le haut de l'appareil pointé dans la direction de votre regard.",
+      "wait": "Restez immobile quelques secondes jusqu'à ce que la valeur se stabilise, puis appuyez sur « Valider la mesure »."
+    },
+    "lock": "Valider la mesure pour {{target}}",
+    "manual": "Saisir l'angle à la place",
+    "unstable": "La valeur varie beaucoup. Restez immobile, décrivez un 8 avec le téléphone plusieurs fois pour qu'il se recalibre, puis mesurez à nouveau."
+  },
+  "live": {
+    "title": "Boussole d'orientation de la maison",
+    "intro": "Placez-vous à la porte d'entrée, dos à la maison, téléphone à plat, le haut de l'appareil pointé droit vers l'extérieur.",
+    "dialAria": "Cadran de la boussole, nord en haut",
+    "dialAriaFacing": "Cadran de la boussole, maison orientée à {{degree}}",
+    "facingEnd": "FAÇADE",
+    "sittingEnd": "ASSISE",
+    "empty": "Appuyez sur « Commencer la mesure » ou saisissez un angle pour lire l'orientation de la maison.",
+    "failureManual": "{{failure}} Vous pouvez saisir un angle mesuré avec une autre boussole.",
+    "locked": "Verrouillé à {{degree}}",
+    "remeasure": "Mesurer à nouveau",
+    "lock": "Verrouiller la direction",
+    "useDevice": "Utiliser la boussole de l'appareil",
+    "enterDegree": "Saisir l'angle",
+    "unstable": "La valeur varie trop pour être verrouillée. Restez immobile et décrivez un 8 avec le téléphone plusieurs fois pour qu'il se recalibre.",
+    "facing": "Façade",
+    "sitting": "Assise",
+    "offset": "Décalé de {{degree}} par rapport au centre de {{mountain}}, vers {{toward}}.",
+    "centered": "Exactement au centre de la montagne {{mountain}}.",
+    "void": {
+      "MAJOR": "Grande ligne de vide",
+      "MINOR": "Petite ligne de vide"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> : la direction se trouve juste à la limite entre {{mountain}} et {{toward}}. {{note}}"
+  },
+  "manual": {
+    "label": "Angle de {{target}}",
+    "placeholder": "Exemple : 132",
+    "hint": "Mesuré dans le sens des aiguilles d'une montre à partir du nord : est 90°, sud 180°, ouest 270°.",
+    "invalid": "Saisissez un nombre, par exemple 132 ou 132,5."
+  },
+  "method": {
+    "title": "Comment obtenir la direction ?",
+    "label": "Méthode",
+    "options": {
+      "DEVICE": "Mesurer maintenant",
+      "MANUAL": "Je connais l'angle",
+      "DRAWING": "D'après un plan"
+    },
+    "locked": "{{degree}} validé pour {{target}}.",
+    "drawingNote": "Aucun capteur nécessaire : il suffit d'un plan comportant le symbole du nord. Placez la flèche du nord sur l'image, puis l'axe de l'élément à mesurer."
+  },
+  "canvas": {
+    "imageAlt": "Image / plan en cours de mesure",
+    "traceGrip": "Point {{index}} du tracé : touchez pour sélectionner le tracé, faites glisser ou utilisez les flèches du clavier pour ajuster",
+    "closeAria": "Fermer la forme au premier point",
+    "closeTitle": "Fermer la forme",
+    "northHead": "Pointe de la flèche du nord : faites glisser pour l'aligner sur le symbole du nord du plan",
+    "northTail": "Queue de la flèche du nord : faites glisser pour la déplacer",
+    "axisHead": "Pointe de l'axe {{target}} : faites glisser pour le faire pivoter",
+    "axisTail": "Queue de l'axe {{target}} : faites glisser pour le déplacer",
+    "compassCenter": "Centre de la boussole : faites glisser pour la déplacer",
+    "compassEdge": "Bord de la boussole : faites glisser pour agrandir / réduire"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "Ligne de mur",
+      "polygon": "Polygone",
+      "rect": "Rectangle"
+    },
+    "traceHints": {
+      "line": "Touchez deux points pour tracer un pan de mur. Touchez l'extrémité d'un segment tracé pour l'étiqueter comme façade / porte d'entrée.",
+      "polygon": "Touchez chaque angle tour à tour, puis touchez de nouveau le premier point (cercle vide) pour fermer la forme.",
+      "rect": "Touchez deux coins opposés pour tracer un rectangle."
+    },
+    "northStep": "Nord",
+    "hints": {
+      "north": "Touchez le symbole du nord sur le plan pour placer la flèche du nord, puis faites glisser sa pointe pour l'aligner sur le symbole.",
+      "door": "Touchez la porte d'entrée pour ajouter un axe de porte (facultatif). Faites glisser la pointe de la flèche vers l'extérieur.",
+      "drawing": "Touchez l'endroit à mesurer pour placer l'axe {{target}}. Faites glisser la pointe de la flèche VERS L'EXTÉRIEUR : la vue de l'intérieur vers le dehors.",
+      "overlay": "Pour placer la boussole sur l'image : touchez l'endroit à mesurer et faites glisser la pointe de la flèche vers l'extérieur, dans la direction {{target}}."
+    },
+    "aria": "Image en cours de mesure",
+    "tabsAria": "Tâche en cours sur l'image",
+    "placeTab": "Placer la direction",
+    "traceTab": "Retracer le plan",
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "traceKindsAria": "Type de tracé",
+    "snap": "Aimanter à 45°",
+    "stepsAria": "Étapes sur l'image",
+    "done": "(placé)",
+    "pageAria": "Page PDF en cours de mesure",
+    "pageOption": "Page {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "Résultat de la mesure",
+    "fine": "16 directions : {{direction}}",
+    "empty": "Aucune mesure pour l'instant.",
+    "compassAria": "Boussole, nord en haut"
+  },
+  "solar": {
+    "title": "Ensoleillement et course du soleil",
+    "locationFailure": {
+      "denied": "Vous n'avez pas autorisé l'accès à la localisation. Saisissez la latitude et la longitude manuellement.",
+      "unavailable": "L'appareil n'a pas pu obtenir votre position. Saisissez la latitude et la longitude manuellement."
+    },
+    "daySide": {
+      "MORNING": "reçoit le soleil du matin",
+      "AFTERNOON": "reçoit le soleil de l'après-midi (fort, chauffe la maison)",
+      "BOTH": "reçoit le soleil le matin et l'après-midi",
+      "NONE": "reçoit peu de soleil direct dans la journée"
+    },
+    "intro": "Voyez où le soleil se lève et se couche, et si {{target}} reçoit le soleil de l'après-midi.",
+    "locating": "Localisation en cours…",
+    "useLocation": "Utiliser ma position",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "date": "Date",
+    "time": "Heure",
+    "sunAt": "Soleil à {{time}}",
+    "sunPosition": "{{degree}} · {{direction}} · hauteur {{elevation}}",
+    "belowHorizon": "Sous l'horizon",
+    "sunrise": "Lever",
+    "sunset": "Coucher",
+    "facingSun": "{{side}} · face au soleil en ce moment",
+    "awayFromSun": "{{side}} · pas face au soleil en ce moment",
+    "needCoordinates": "Saisissez la latitude et la longitude (ou appuyez sur « Utiliser ma position ») pour calculer.",
+    "note": "La direction du soleil est calculée à partir du nord géographique ; au Vietnam, l'écart avec le nord magnétique est inférieur à 1°. L'ombre des bâtiments voisins n'est pas prise en compte."
+  },
+  "source": {
+    "title": "De quoi disposez-vous ?",
+    "pickTitle": "Choisissez une image de plan, une photo de la maison ou un plan en PDF",
+    "pickHint": "JPG, PNG, WebP, PDF · 100 Mo au maximum · les fichiers ne s'ouvrent que sur votre appareil",
+    "camera": "Prendre une photo",
+    "rejectedTitle": "Impossible d'ouvrir le fichier",
+    "dismiss": "Masquer l'avis",
+    "none": "Pas d'image, boussole seule",
+    "noneHint": "Mesurez avec la boussole du téléphone ou saisissez un angle que vous connaissez déjà.",
+    "tooLarge": "Le fichier dépasse {{size}}.",
+    "openFailed": "Impossible d'ouvrir ce fichier.",
+    "pageFailed": "Impossible de dessiner cette page."
+  },
+  "targetsPanel": {
+    "title": "Mesurer la direction de",
+    "noAxis": "Aucun axe placé",
+    "noMeasure": "Aucune mesure",
+    "hint": "{{hint}}.",
+    "customName": "Nom de l'élément",
+    "customPlaceholder": "Exemple : portail latéral",
+    "addAria": "Élément à ajouter",
+    "add": "Ajouter",
+    "axisAngle": "Angle de l'axe sur l'image",
+    "axisAngleHint": "0° = pointé vers le bord supérieur de l'image, dans le sens des aiguilles d'une montre."
+  },
+  "tech": {
+    "title": "Paramètres techniques",
+    "reference": "Angles mesurés par rapport au",
+    "referenceHint": "Simple étiquette, sans conversion automatique. Au Vietnam, le nord magnétique s'écarte de moins de 1° du nord géographique ; le nord du projet suit la grille de coordonnées du plan.",
+    "divisionsLabel": "Divisions de la boussole",
+    "divisionsAria": "Nombre de secteurs de la boussole",
+    "divisions_one": "{{count}} direction",
+    "divisions_many": "{{count}} directions",
+    "divisions_other": "{{count}} directions",
+    "size": "Taille de la boussole sur l'image · {{percent}} %",
+    "opacity": "Opacité de la boussole · {{percent}} %",
+    "saveRecord": "Télécharger le relevé des mesures (JSON)"
+  },
+  "traceActions": {
+    "aria": "Tracé sélectionné",
+    "tags": {
+      "FRONTAGE": "C'est la façade",
+      "ENTRANCE": "C'est la porte d'entrée"
+    },
+    "flip": "Inverser le côté extérieur",
+    "delete": "Supprimer ce tracé"
+  },
+  "export": {
+    "title": "Enregistrer le résultat",
+    "legend": "Enregistrer en",
+    "image": "Image",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "Conserve les informations de prise de vue (EXIF) de la photo d'origine",
+      "pdf": "La page du plan est redessinée en image PNG",
+      "none": "Image de la boussole avec les mesures"
+    },
+    "pdfHintVector": "Conserve la page du plan d'origine en vectoriel",
+    "pdfHintPage": "Une page, imprimable",
+    "buildFailed": "Impossible de générer le fichier de résultat.",
+    "shareFailed": "Partage impossible. Enregistrez le fichier puis envoyez-le.",
+    "building": "Génération du fichier…",
+    "savePdf": "Enregistrer en PDF",
+    "saveImage": "Enregistrer l'image",
+    "share": "Partager",
+    "saved": "{{name}} enregistré",
+    "savedDetail": "{{name}} enregistré · {{detail}}",
+    "notes": {
+      "standalone": "Le nord n'a pas pu être déterminé sur l'image : la boussole a donc été exportée seule, sans être dessinée sur l'image.",
+      "rasterized": "La page PDF d'origine n'a pas pu être conservée en vectoriel : elle a été redessinée en image, et son texte n'est plus sélectionnable."
+    },
+    "pageDetail": "Page {{page}}",
+    "noSource": "Rien à exporter."
+  },
+  "pdf": {
+    "password": "Ce PDF est protégé par un mot de passe d'ouverture : retirez-le avec l'outil « Ajouter / retirer un mot de passe PDF », puis choisissez-le à nouveau.",
+    "unreadable": "Impossible de lire ce fichier PDF.",
+    "noCanvas": "Le navigateur n'a pas pu fournir de zone de dessin.",
+    "renderFailed": "Impossible de dessiner la page PDF."
+  },
+  "age": {
+    "title": "Interprétation selon l'âge du propriétaire",
+    "intro": "Facultatif. Activez-le pour afficher sur la boussole l'anneau des étoiles favorables / défavorables selon l'âge, et voir si l'orientation de la maison convient selon {{method}}.",
+    "addPerson": "Comparer une autre personne",
+    "method": "Méthode : {{name}} · jeu de règles v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "Date de naissance (calendrier solaire)",
+      "LUNAR_YEAR": "Année de naissance (calendrier lunaire)"
+    },
+    "name": "Nom",
+    "sex": "Sexe",
+    "sexes": {
+      "MALE": "Homme",
+      "FEMALE": "Femme"
+    },
+    "inputBy": "Saisir par",
+    "yearPlaceholder": "Exemple : 1986",
+    "yearNote": "L'année commence au Tết (Nouvel An lunaire).",
+    "yearNoteLunar": "L'année commence au Tết (Nouvel An lunaire) : si vous êtes né avant le Tết, prenez l'année précédente.",
+    "facts": {
+      "age": "Âge",
+      "napAm": "Élément (nạp âm)",
+      "trigram": "Trigramme de vie"
+    },
+    "beforeTet": "Né avant le Tết : l'âge est donc calculé pour l'année {{year}} ({{canChi}}).",
+    "facingGood": "{{target}} : {{segment}} ({{degree}}) — <strong>{{star}}</strong>, favorable. {{meaning}}.",
+    "facingBad": "{{target}} : {{segment}} ({{degree}}) — <strong>{{star}}</strong>, défavorable. {{meaning}}.",
+    "houseSame": "Selon l'assise : une maison assise en {{segment}} est une maison {{trigram}} (groupe {{houseGroup}}), du même groupe que {{personGroup}}.",
+    "houseOther": "Selon l'assise : une maison assise en {{segment}} est une maison {{trigram}} (groupe {{houseGroup}}), d'un groupe différent de {{personGroup}}.",
+    "lockFirst": "Verrouillez la mesure {{target}} pour voir si elle est favorable ou défavorable.",
+    "goodDirections": "Quatre directions favorables : {{list}}",
+    "drivesDial": "L'anneau des étoiles sur la boussole est calculé pour {{name}}.",
+    "thisPerson": "cette personne",
+    "defaultName": "Personne {{index}}",
+    "errors": {
+      "yearFormat": "Saisissez une année à quatre chiffres, par exemple 1986.",
+      "invalidDate": "Date de naissance non valide.",
+      "outOfRange": "Cette date n'existe pas ou se trouve hors de la plage du calendrier lunaire prise en charge (1800–2199)."
+    }
+  },
+  "rules": {
+    "segments": "Le jeu de règles doit comporter les 8 secteurs.",
+    "missingStars": "Il manque des étoiles au trigramme {{trigram}}.",
+    "duplicateStars": "Le trigramme {{trigram}} a deux étoiles dans la même direction.",
+    "noGroup": "Le trigramme {{trigram}} n'appartient à aucun groupe.",
+    "homes": "Les directions du Ciel postérieur des trigrammes ne sont pas valides.",
+    "yearRange": "L'année de naissance doit être comprise entre {{min}} et {{max}}.",
+    "noTrigram": "Le jeu de règles ne contient pas de trigramme numéro {{number}}."
+  }
+}

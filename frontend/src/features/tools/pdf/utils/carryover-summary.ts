@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 /** Phần "cấp tài liệu" đã giữ / bỏ khi dựng tệp PDF mới — xem `services/pdf-carryover.ts`. */
 export interface CarryoverReport {
   /** Trường form gốc còn dùng được trong tệp ra. */
@@ -52,23 +54,23 @@ export interface CarryoverSummary {
  */
 export function carryoverSummary(report: CarryoverReport): CarryoverSummary | null {
   const kept = [
-    report.fields && `${report.fields} trường form`,
-    report.attachments && `${report.attachments} tệp đính kèm`,
-    report.layers && `${report.layers} lớp (layer) cùng trạng thái bật/tắt`,
+    report.fields && translate('pdf:carryover.fields', { count: report.fields }),
+    report.attachments && translate('pdf:carryover.attachments', { count: report.attachments }),
+    report.layers && translate('pdf:carryover.layers', { count: report.layers }),
   ].filter(Boolean)
   const dropped = [
-    report.droppedLinks && `${report.droppedLinks} liên kết trỏ tới trang không xuất`,
-    report.removedScripts && `${report.removedScripts} lệnh tự chạy (JavaScript…)`,
+    report.droppedLinks && translate('pdf:carryover.droppedLinks', { count: report.droppedLinks }),
+    report.removedScripts && translate('pdf:carryover.removedScripts', { count: report.removedScripts }),
   ].filter(Boolean)
   const warnings = [
-    report.signatures > 0 && `${report.signatures} chữ ký số không còn hiệu lực ở tệp mới — cần ký lại nếu nộp đi.`,
-    report.xfaForms > 0 && 'Form dạng XFA không giữ được, chỉ còn phần in sẵn.',
+    report.signatures > 0 && translate('pdf:carryover.signatures', { count: report.signatures }),
+    report.xfaForms > 0 && translate('pdf:carryover.xfa'),
   ].filter(Boolean)
 
   const parts: string[] = []
-  if (kept.length) parts.push(`Đã giữ ${kept.join(', ')}.`)
-  if (report.renamedFields) parts.push(`Đổi tên ${report.renamedFields} trường trùng (trang nhân bản) để không dính giá trị nhau.`)
-  if (dropped.length) parts.push(`Bỏ ${dropped.join(', ')}.`)
+  if (kept.length) parts.push(translate('pdf:carryover.kept', { items: kept.join(', ') }))
+  if (report.renamedFields) parts.push(translate('pdf:carryover.renamed', { count: report.renamedFields }))
+  if (dropped.length) parts.push(translate('pdf:carryover.dropped', { items: dropped.join(', ') }))
   parts.push(...(warnings as string[]))
   if (parts.length === 0) return null
   return { tone: warnings.length || report.renamedFields ? 'warning' : 'info', text: parts.join(' ') }

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { FlowRun } from '../../hooks/useFlowRun'
 import type { FlowFile, FlowOutput, FlowRejected } from '../../types/flow.types'
@@ -62,6 +63,7 @@ export function ToolFlow({
   resultExtra,
 }: ToolFlowProps) {
   const { state } = run
+  const { t } = useTranslation('common')
 
   if (state.phase === 'done') {
     return <FlowResult result={state.result} onRestart={run.reset} onEdit={onEdit} onDownloaded={onDownloaded} extra={resultExtra} />
@@ -78,17 +80,17 @@ export function ToolFlow({
           <div className="erp-flow-rejected" role="alert">
             <Icon name="exclamation-triangle" className="erp-flow-rejected__icon" />
             <div className="erp-flow-rejected__body">
-              <p className="erp-flow-rejected__title">Bỏ qua {rejected.length} tệp</p>
+              <p className="erp-flow-rejected__title">{t('flow.rejected', { count: rejected.length })}</p>
               <ul className="erp-flow-rejected__list">
                 {rejected.slice(0, 5).map((item, index) => (
                   <li key={`${item.name}-${index}`} data-code={item.code}>
                     <strong>{item.name}</strong> — {item.reason}
                   </li>
                 ))}
-                {rejected.length > 5 ? <li>… và {rejected.length - 5} tệp khác</li> : null}
+                {rejected.length > 5 ? <li>{t('flow.rejectedMore', { count: rejected.length - 5 })}</li> : null}
               </ul>
             </div>
-            <button type="button" className="btn erp-flow-rejected__close" aria-label="Ẩn thông báo" onClick={onDismissRejected}>
+            <button type="button" className="btn erp-flow-rejected__close" aria-label={t('flow.dismiss')} onClick={onDismissRejected}>
               <Icon name="x-lg" />
             </button>
           </div>
@@ -97,10 +99,10 @@ export function ToolFlow({
         {stage ?? (files.length > 0 ? <FileList files={files} disabled={running} onRemove={onRemove} onMove={onMove} onClear={onClear} /> : null)}
       </div>
 
-      <aside className="erp-flow__side" aria-label="Tuỳ chọn và chạy">
+      <aside className="erp-flow__side" aria-label={t('flow.side')}>
         {options ? (
           <fieldset className="erp-flow-options" disabled={running}>
-            <legend className="erp-flow-options__title">Tuỳ chọn</legend>
+            <legend className="erp-flow-options__title">{t('flow.options')}</legend>
             {options}
           </fieldset>
         ) : null}
@@ -109,8 +111,8 @@ export function ToolFlow({
           <p className="erp-flow-error" role="alert" data-code={state.error.code}>
             <Icon name="x-octagon" />
             <span>
-              Không xử lý được: {state.error.message}
-              <small className="erp-flow-error__code">Mã lỗi: {state.error.code}</small>
+              {t('flow.error', { message: state.error.message })}
+              <small className="erp-flow-error__code">{t('flow.errorCode', { code: state.error.code })}</small>
             </span>
           </p>
         ) : null}

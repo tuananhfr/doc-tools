@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { FilePicker, ToolBoard } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
@@ -15,9 +16,6 @@ interface ScanMiss {
   reason: string
 }
 
-const NO_CODE = 'không thấy mã nào. Thử ảnh chụp thẳng, đủ sáng, mã chiếm phần lớn khung hình.'
-const UNREADABLE = 'không mở được. Chỉ đọc được ảnh JPG, PNG, WebP.'
-
 const ACCEPT = 'image/*'
 
 /**
@@ -25,6 +23,7 @@ const ACCEPT = 'image/*'
  * mã chỉ được đọc ra chữ, người dùng xem rồi tự quyết định mở hay chép.
  */
 export default function QrReadPage() {
+  const { t } = useTranslation('qr')
   const [hits, setHits] = useState<ScanHit[]>([])
   const [misses, setMisses] = useState<ScanMiss[]>([])
   const [loading, setLoading] = useState<{ done: number; total: number } | null>(null)
@@ -48,7 +47,7 @@ export default function QrReadPage() {
       try {
         for (const [index, file] of files.entries()) {
           setLoading({ done: index, total: files.length })
-          const name = file.name || 'Ảnh vừa dán'
+          const name = file.name || t('read.pastedImage')
           try {
             const blocked = await scanLimitReason(file)
             if (blocked) {
@@ -57,9 +56,9 @@ export default function QrReadPage() {
             }
             const read = await scanImage(file)
             if (read) addRead(read)
-            else missed.push({ name, reason: NO_CODE })
+            else missed.push({ name, reason: t('read.noCode') })
           } catch {
-            missed.push({ name, reason: UNREADABLE })
+            missed.push({ name, reason: t('read.unreadable') })
           }
         }
       } finally {
@@ -68,7 +67,7 @@ export default function QrReadPage() {
         setMisses(missed)
       }
     },
-    [addRead],
+    [addRead, t],
   )
 
   // Dán ảnh chụp màn hình (Ctrl+V) — đường nhanh nhất khi mã nằm trong một trang web / tin nhắn.
@@ -85,23 +84,23 @@ export default function QrReadPage() {
 
   return (
     <ToolBoard
-      sideLabel="Kết quả"
+      sideLabel={t('read.results')}
       side={
         <>
           <div className="erp-tool-side-head">
-            <h2 className="erp-flow-options__title">Kết quả{hits.length > 0 ? ` (${hits.length})` : ''}</h2>
+            <h2 className="erp-flow-options__title">{hits.length > 0 ? t('read.resultsCount', { count: hits.length }) : t('read.results')}</h2>
             {hits.length > 0 ? (
               <Button variant="link" size="sm" className="erp-flow-files__clear" onClick={() => setHits([])}>
-                Xoá hết
+                {t('read.clearAll')}
               </Button>
             ) : null}
           </div>
           {hits.length === 0 ? (
-            <p className="erp-flow-field__hint">Chưa đọc mã nào. Chọn ảnh có mã, dán ảnh chụp màn hình, hoặc quét bằng camera.</p>
+            <p className="erp-flow-field__hint">{t('read.empty')}</p>
           ) : (
             <ScanResultList hits={hits} onRemove={(id) => setHits((current) => current.filter((hit) => hit.id !== id))} />
           )}
-          <p className="erp-flow-field__hint">Xem kỹ đường dẫn trước khi mở: ai cũng in được một mã QR rồi dán đè lên mã thật.</p>
+          <p className="erp-flow-field__hint">{t('read.safety')}</p>
         </>
       }
     >
@@ -110,8 +109,8 @@ export default function QrReadPage() {
       <FilePicker
         accept={ACCEPT}
         multiple
-        title="Chọn ảnh có mã QR hoặc mã vạch"
-        hint="JPG, PNG, WebP · dán ảnh bằng Ctrl+V cũng được"
+        title={t('read.pickTitle')}
+        hint={t('read.pickHint')}
         compact={hits.length > 0 || camera}
         loading={loading}
         disabled={false}
@@ -120,7 +119,7 @@ export default function QrReadPage() {
           camera ? null : (
             <Button variant="outline-secondary" className="erp-flow-picker__pick" onClick={() => setCamera(true)}>
               <Icon name="camera" className="me-2" />
-              Quét bằng camera
+              {t('read.camera')}
             </Button>
           )
         }
@@ -130,17 +129,17 @@ export default function QrReadPage() {
         <div className="erp-flow-rejected" role="alert">
           <Icon name="exclamation-triangle" className="erp-flow-rejected__icon" />
           <div className="erp-flow-rejected__body">
-            <p className="erp-flow-rejected__title">Không đọc được {misses.length} ảnh</p>
+            <p className="erp-flow-rejected__title">{t('read.missTitle', { count: misses.length })}</p>
             <ul className="erp-flow-rejected__list">
               {misses.slice(0, 5).map((miss, index) => (
                 <li key={`${miss.name}-${index}`}>
                   <strong>{miss.name}</strong> — {miss.reason}
                 </li>
               ))}
-              {misses.length > 5 ? <li>… và {misses.length - 5} ảnh khác</li> : null}
+              {misses.length > 5 ? <li>{t('read.moreMisses', { count: misses.length - 5 })}</li> : null}
             </ul>
           </div>
-          <button type="button" className="btn erp-flow-rejected__close" aria-label="Ẩn thông báo" onClick={() => setMisses([])}>
+          <button type="button" className="btn erp-flow-rejected__close" aria-label={t('read.hideNotice')} onClick={() => setMisses([])}>
             <Icon name="x-lg" />
           </button>
         </div>

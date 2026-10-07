@@ -1,0 +1,203 @@
+{
+  "bindingNotice": "The Vietnamese version is the legally binding version.",
+  "dieu-khoan": {
+    "title": "Terms of <accent>use</accent>",
+    "breadcrumb": "Terms of use",
+    "intro": "These terms apply when you use the free Chuyện Nhỏ toolkit operated by ERPCons & LPC (“we”). By using the site, you agree to the terms below.",
+    "summary": {
+      "free": "Free, no account needed.",
+      "yours": "Your files remain yours and are processed on your device.",
+      "reference": "Calculation results are for reference only; check them before use.",
+      "lawful": "Don't use the tools for anything unlawful."
+    },
+    "sections": {
+      "dich-vu": {
+        "heading": "A free service",
+        "paragraphs": {
+          "free": "Chuyện Nhỏ provides free tools for documents, images, calculations and everyday utilities that run right in your browser, with no sign-up.",
+          "changes": "We may add, change, suspend or discontinue any tool at any time. Tools marked “Coming soon” are plans that may change or never launch."
+        }
+      },
+      "tep-cua-ban": {
+        "heading": "Your files and content",
+        "paragraphs": {
+          "ownership": "You keep full rights to your files and content. The tools currently available process files right on your device; we do not receive or store your files.",
+          "responsibility": "You are responsible for making sure you have the right to use and edit the files you put into the tools, and for keeping your own originals before processing."
+        }
+      },
+      "tham-khao": {
+        "heading": "Results are for reference only",
+        "paragraphs": {
+          "intro": "Some tools produce figures or conclusions based on the data you enter and common conventions, for example:"
+        },
+        "items": {
+          "estimates": "House construction cost estimates, salary and electricity bill calculations: these do not replace official quotes, payslips or invoices.",
+          "orientation": "House orientation and readings by age: for reference according to folk feng shui, not technical conclusions.",
+          "ocr": "Text recognition (OCR), address conversion and regulation lookups: may contain errors and should be checked against the original documents."
+        }
+      },
+      "hanh-vi-cam": {
+        "heading": "What you must not do",
+        "items": {
+          "unlawful": "Use the tools for unlawful purposes, such as forging documents or creating fraudulent QR codes.",
+          "unauthorized": "Remove passwords from, or edit, files you have no rights to.",
+          "abuse": "Send automated bulk requests, scan, attack or disrupt the system.",
+          "content": "Submit content through the feedback feature that breaks the law, insults others or contains other people's personal information."
+        }
+      },
+      "gop-y": {
+        "heading": "Feedback and suggestions",
+        "paragraphs": {
+          "use": "When you send feedback or a suggestion, you agree that we may use the idea to improve the product without any obligation to pay. Approved suggestions may be shown publicly on the suggestions page. Please do not include personal information in what you send."
+        }
+      },
+      "so-huu-tri-tue": {
+        "heading": "Intellectual property",
+        "paragraphs": {
+          "ownership": "The name, logo, interface and source code of Chuyện Nhỏ belong to ERPCons & LPC. Bundled open-source libraries are governed by their own licenses."
+        }
+      },
+      "lien-ket": {
+        "heading": "External links",
+        "paragraphs": {
+          "external": "The site links to ERPCons, TekShot AI and other sites. The content and policies of those sites are the responsibility of their respective operators."
+        }
+      },
+      "trach-nhiem": {
+        "heading": "Limitation of liability",
+        "paragraphs": {
+          "asIs": "The tools are provided free of charge, as is. To the extent permitted by law, we are not liable for damages arising from the use of the tools' results or from the tools being temporarily unavailable.",
+          "consumer": "These terms do not exclude any rights you have under consumer protection law."
+        }
+      },
+      "quyen-rieng-tu": {
+        "heading": "Privacy",
+        "paragraphs": {
+          "policy": "How we handle data is explained in the Privacy Policy."
+        },
+        "link": "Read the Privacy Policy"
+      },
+      "thay-doi": {
+        "heading": "Changes to these terms",
+        "paragraphs": {
+          "updates": "We may update these terms. The update date is shown at the top of the page; important changes will be announced on the site. Continuing to use the site after an update means you accept the new version."
+        }
+      },
+      "luat-ap-dung": {
+        "heading": "Governing law",
+        "paragraphs": {
+          "law": "These terms are governed by the laws of Vietnam. Disputes will preferably be resolved through negotiation; failing that, they will be brought before the competent authority as prescribed by law."
+        }
+      },
+      "lien-he": {
+        "heading": "Contact",
+        "paragraphs": {
+          "contact": "For any questions about these terms, please email {{email}}."
+        }
+      }
+    }
+  },
+  "quyen-rieng-tu": {
+    "title": "Privacy <accent>policy</accent>",
+    "breadcrumb": "Privacy policy",
+    "intro": "This policy explains how Chuyện Nhỏ collects, uses and protects personal data, in accordance with the Law on Personal Data Protection No. 91/2025/QH15 and Decree No. 356/2025/NĐ-CP.",
+    "summary": {
+      "device": "Your files are processed on your device and never sent to a server.",
+      "noTracking": "No accounts, no cookies, no advertising or tracking tools.",
+      "counting": "We only count tool opens; IP addresses are hashed and deleted automatically after about 1 hour.",
+      "feedback": "Feedback is sent only when you agree and press Send."
+    },
+    "sections": {
+      "chung-toi": {
+        "heading": "Who we are",
+        "paragraphs": {
+          "controller": "Chuyện Nhỏ is operated by ERPCons & LPC, which is the controller of personal data processed through this site. Contact for personal data matters: {{email}}."
+        }
+      },
+      "nguyen-tac": {
+        "heading": "Our principles",
+        "items": {
+          "device": "On-device processing: the tools currently available do not upload your files to a server.",
+          "minimal": "Minimal: we only process data needed to operate the service and prevent abuse.",
+          "anonymous": "Anonymous: we don't ask for your name, email, phone number or an account.",
+          "noTracking": "No cookies, and no third-party analytics, advertising or tracking tools."
+        }
+      },
+      "du-lieu": {
+        "heading": "Data we process and why",
+        "items": {
+          "visits": "Tool opens: the tool name and time, to count total usage. Only aggregate counts are stored, not linked to any user.",
+          "ip": "IP address: one-way hashed with a secret key, used only to limit automated submissions, and deleted automatically after about 1 hour.",
+          "feedback": "Feedback and suggestions: only when you tick the consent box and press Send, so we can review them and improve the tools. Receipt codes are stored only in hashed form.",
+          "logs": "Web server technical logs (IP address, browser type, pages opened): used only for system operation and security, and kept for the short time necessary."
+        }
+      },
+      "tren-thiet-bi": {
+        "heading": "Data stored on your device",
+        "paragraphs": {
+          "local": "Some tools store data right in your browser so you can reuse it: recently used tools, light/dark mode, Family Calendar, notes, CV drafts and flashcards. This data is not sent to us; you can delete it inside the tool or by clearing site data in your browser settings."
+        },
+        "link": "See where each tool processes data"
+      },
+      "ben-thu-ba": {
+        "heading": "Sharing with third parties",
+        "paragraphs": {
+          "noSale": "We do not sell personal data or share it for advertising purposes. We only provide data to competent state authorities when required by law.",
+          "speech": "The only exception is the dictation (speech-to-text) tool, which uses the speech recognition service built into your browser. The audio is sent by the browser to that browser's provider (for example, Google for Chrome), may be processed abroad under their policies, and does not pass through our servers."
+        }
+      },
+      "thoi-gian-luu": {
+        "heading": "Retention periods",
+        "items": {
+          "ip": "Hashed IP addresses: about 1 hour.",
+          "counts": "Usage counts: stored as aggregate statistics containing no personal data.",
+          "feedback": "Feedback and suggestions: kept for as long as needed to review and follow up, or until you ask us to delete them."
+        }
+      },
+      "quyen": {
+        "heading": "Your rights",
+        "paragraphs": {
+          "intro": "Under the Law on Personal Data Protection, you have the right to:"
+        },
+        "items": {
+          "informed": "Be informed about the processing of your personal data.",
+          "consent": "Give or withdraw consent.",
+          "access": "View, correct, request deletion of, or restrict the processing of your data.",
+          "complain": "File complaints, denunciations or lawsuits as prescribed by law.",
+          "protection": "Ask competent authorities to protect your personal data rights."
+        }
+      },
+      "thuc-hien-quyen": {
+        "heading": "How to exercise your rights",
+        "paragraphs": {
+          "request": "Send your request to {{email}}. Since Chuyện Nhỏ has no accounts, please include the receipt code of your feedback so we can find the right content.",
+          "timeline": "We confirm receipt of your request within 2 working days and handle it within the time limit set by law, at the latest within 20 days."
+        }
+      },
+      "tre-em": {
+        "heading": "Children",
+        "paragraphs": {
+          "children": "Chuyện Nhỏ does not collect information to identify children. Children who want to send feedback need the consent of a parent or guardian, as required by law."
+        }
+      },
+      "bao-mat": {
+        "heading": "Security",
+        "paragraphs": {
+          "security": "The site runs over an encrypted HTTPS connection. Data we receive is minimized and hashed where possible. No system is completely secure; if an incident affects personal data, we will notify you as required by law."
+        }
+      },
+      "thay-doi": {
+        "heading": "Changes to this policy",
+        "paragraphs": {
+          "updates": "When the policy changes, we update the date at the top of the page and announce important changes on the site."
+        }
+      },
+      "lien-he": {
+        "heading": "Contact",
+        "paragraphs": {
+          "contact": "For any questions about personal data, please email {{email}}."
+        }
+      }
+    }
+  }
+}

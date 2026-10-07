@@ -1,0 +1,153 @@
+{
+  "shared": {
+    "members": "成員",
+    "phone": "電話號碼",
+    "notes": "備註"
+  },
+  "recurrence": {
+    "once": "一次",
+    "daily": "每天",
+    "weekly": "每週",
+    "monthly": "每月",
+    "yearly": "每年"
+  },
+  "dataClasses": {
+    "NORMAL": "一般",
+    "PRIVATE": "私人",
+    "SENSITIVE": "敏感"
+  },
+  "profiles": {
+    "PARENT": "父母",
+    "SENIOR": "祖父母",
+    "CHILD": "孩子"
+  },
+  "page": {
+    "views": {
+      "calendar": "行事曆",
+      "list": "清單",
+      "members": "成員",
+      "backup": "備份",
+      "safety": "SOS 與聯絡人"
+    },
+    "lunarHint": "農曆日期每年對應的國曆日期都不同。行事曆目前還無法依農曆重複，因此這則提醒只適用於今年。",
+    "loading": "正在開啟儲存在裝置上的行事曆...",
+    "storage": "<strong>儲存在此裝置上</strong> · {{events}} 個行程 · {{members}} 位成員。不需要帳號。如果還沒下載備份，清除瀏覽器資料會讓行事曆遺失。尚未啟用網路分享或同步。",
+    "enableNotifications": "在頁面開啟時啟用通知",
+    "remindersTitle": "頁面開啟時的提醒",
+    "seen": "已讀",
+    "viewModes": "檢視模式",
+    "viewingFor": "目前檢視對象"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "今天",
+      "week": "未來 7 天",
+      "upcoming": "未來 30 天"
+    },
+    "rangeLabel": "時間範圍",
+    "empty": "這段期間沒有行程或節日。",
+    "upcomingNote": "顯示從今天起 30 天內的內容。重複行程在此範圍之後仍會繼續。"
+  },
+  "day": {
+    "lunar": "農曆：{{month}} 月 {{day}} 日",
+    "lunarLeap": "農曆：閏 {{month}} 月 {{day}} 日",
+    "byLunar": "依農曆",
+    "bySolar": "依國曆",
+    "addReminder": "新增提醒",
+    "empty": "這一天還沒有家庭行程。",
+    "addToDay": "加入這一天"
+  },
+  "form": {
+    "categories": {
+      "task": "家務",
+      "school": "學業",
+      "appointment": "約會",
+      "deadline": "證件期限",
+      "medication": "用藥提醒",
+      "payment": "繳費",
+      "other": "其他"
+    },
+    "scopes": {
+      "FAMILY_ALL": "全家",
+      "PARENTS_SENIORS": "父母和祖父母",
+      "PARENTS_CHILDREN": "父母和孩子",
+      "PRIVATE": "僅限此裝置"
+    },
+    "reminderInvalid": "提醒需要指定時間，提前時間需介於 0 到 1,440 分鐘。",
+    "saveFailed": "無法儲存行程。請檢查日期與輸入的資料。",
+    "editTitle": "編輯行程",
+    "addTitle": "新增家庭行程",
+    "title": "事項名稱",
+    "date": "日期",
+    "time": "時間（選填）",
+    "category": "事項類型",
+    "recurrence": "重複",
+    "scope": "範圍",
+    "privacy": "隱私等級",
+    "reminder": "提前提醒（分鐘，最多 1 天；需輸入時間）",
+    "medicationNote": "用藥提醒只依據你輸入的資料，並非醫療建議。敏感內容預設會在通知中隱藏。",
+    "reminderNote": "提醒只會在頁面開啟或瀏覽器允許通知時出現；作業系統可能會暫停頁面。",
+    "saveChanges": "儲存變更",
+    "saveNew": "儲存行程到裝置",
+    "cancel": "取消"
+  },
+  "event": {
+    "undo": "取消完成",
+    "done": "完成",
+    "edit": "編輯",
+    "delete": "刪除",
+    "confirmDelete": "要刪除裝置上的這個行程及所有重複項目嗎？"
+  },
+  "members": {
+    "saveFailed": "無法儲存成員。",
+    "intro": "設定容易辨認的稱呼。不需要輸入生日、學校或個人證件。",
+    "name": "稱呼",
+    "profile": "身分",
+    "add": "新增成員"
+  },
+  "backup": {
+    "invalidFile": "備份檔無效或超過 20 MB。",
+    "wrongVersion": "無法讀取正確版本的備份。",
+    "confirmRestore": "要還原家庭 {{id}}，共 {{count}} 個行程嗎？目前使用中的資料仍會保留在裝置記憶體中，之後可以再開啟。",
+    "restoreFailed": "無法還原。目前使用中的資料仍在。",
+    "title": "備份與匯出行事曆",
+    "intro": "JSON 備份會保存成員、行程、提醒和 SOS 訊號。ICS 檔只用於把行程匯入其他應用程式，不能取代備份。",
+    "downloadBackup": "下載備份",
+    "downloadIcs": "下載 ICS",
+    "print": "列印／儲存未來 30 天為 PDF",
+    "includeSensitive": "在 ICS/PDF 中包含私人與敏感行程",
+    "defaultsNote": "ICS 和 PDF 預設不含私人、敏感行程。備份一律包含完整資料；請將檔案存放在你信任的地方。",
+    "restoreLabel": "從 JSON 備份還原",
+    "inspected": "已讀取：{{members}} 位成員、{{events}} 個行程、{{reminders}} 則提醒。家庭代碼：{{id}}。",
+    "restoreThis": "還原此備份"
+  },
+  "safety": {
+    "invalidContact": "請輸入有效的姓名和電話號碼。",
+    "contactFailed": "無法儲存聯絡人。",
+    "sosFailed": "無法在裝置上儲存 SOS 訊號。",
+    "noGeolocation": "裝置不支援定位。",
+    "locationSaveFailed": "無法儲存位置。",
+    "locateFailed": "無法取得位置。已儲存的 SOS 訊號仍在。",
+    "title": "家庭安全",
+    "intro": "目前模式只會儲存在裝置上。這裡的 SOS 訊號<strong>不會傳送給家人</strong>。需要協助時，請直接撥打緊急電話或已儲存的聯絡人。",
+    "contactName": "緊急聯絡人姓名",
+    "saveContact": "儲存聯絡人",
+    "saveSos": "在裝置上儲存 SOS 訊號",
+    "call": "撥打 {{number}}",
+    "pendingTitle": "儲存在本機的訊號",
+    "notSent": "{{time}} · 尚未透過網路傳送",
+    "lastLocation": "最後位置：{{latitude}}, {{longitude}}，時間 {{time}}",
+    "locateOnce": "取得一次位置",
+    "imSafe": "我很安全"
+  },
+  "reminders": {
+    "sensitiveTitle": "有家庭行程需要查看",
+    "notificationTitle": "家庭行事曆",
+    "notificationBody": "開啟應用程式查看詳情。"
+  },
+  "space": {
+    "loadFailed": "無法開啟裝置上的資料。請檢查瀏覽器的儲存權限。",
+    "saveFailed": "無法儲存變更。請匯出備份並檢查裝置儲存空間。",
+    "restoreFailed": "無法還原備份。"
+  }
+}

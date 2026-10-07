@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Mulai (detik)",
+    "end": "Selesai (detik)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Memuat mesin pemroses…",
+      "reading": "Membaca video…",
+      "processing": "Memproses video…",
+      "saving": "Menyiapkan hasil…"
+    },
+    "chooseFailed": "Video tidak dapat dipilih.",
+    "result": "Hasil",
+    "noOutput": "Belum ada file baru",
+    "idle": "Pilih video, atur pengaturan, lalu tekan proses.",
+    "progressLabel": "Progres pemrosesan video",
+    "progressEstimate": "{{percent}}% · Perkiraan progres",
+    "processing": "Memproses…",
+    "cancel": "Batalkan proses",
+    "smaller": "{{percent}}% lebih kecil dari aslinya.",
+    "notSmaller": "File baru tidak lebih kecil dari aslinya. Video yang sudah terkompresi bisa jadi lebih besar; coba tingkat kompresi yang lebih kuat.",
+    "outputVideo": "Video hasil",
+    "outputAudio": "Audio hasil",
+    "outputGif": "GIF hasil",
+    "download": "Unduh hasil",
+    "panelTitle": "Video Anda",
+    "chooseVideo": "Pilih video",
+    "limits": "Maksimal 100 MB, 10 menit, dan 4K. Di ponsel, sebaiknya pakai potongan pendek di bawah 30 MB. File tidak diunggah ke server.",
+    "unsupported": "Browser belum mendukung pemrosesan video. Coba browser terbaru di komputer.",
+    "seconds": "{{seconds}} detik",
+    "sourceVideo": "Video asli",
+    "playbackHint": "Jika browser tidak bisa memutar video asli, Anda tetap bisa mencoba memprosesnya. Mesin pemroses akan memeriksa codec dan durasinya.",
+    "settingsLegend": "Pengaturan pemrosesan video",
+    "engineNote": "Saat pertama kali menekan proses, mesin pemroses sekitar 32 MB akan diunduh. Tugas bisa lambat atau kehabisan memori di ponsel. Hasil tidak menyimpan metadata file asli.",
+    "license": "Lisensi dan kode sumber FFmpeg GPL"
+  },
+  "task": {
+    "done": "File baru sudah dibuat. Pratinjau dan unduh hasilnya di bawah.",
+    "failed": "Video tidak dapat diproses."
+  },
+  "compress": {
+    "action": "Kompres video",
+    "note": "Ekspor MP4 H.264/AAC. Kompresi menurunkan kualitas; ukuran akhir bergantung pada isi dan tingkat kompresi video asli.",
+    "level": "Tingkat kompresi",
+    "light": "Ringan · utamakan gambar",
+    "medium": "Sedang · seimbang",
+    "strong": "Kuat · utamakan ukuran",
+    "maxEdge": "Sisi panjang maksimal"
+  },
+  "audio": {
+    "action": "Ambil audio",
+    "note": "Mengekspor seluruh aliran audio pertama. MP3/M4A hemat ukuran; WAV biasanya lebih besar. Video tanpa audio akan diberi tahu dengan jelas.",
+    "format": "Format audio",
+    "mp3": "MP3 · paling umum",
+    "wav": "WAV · tanpa kompresi"
+  },
+  "trim": {
+    "action": "Potong video",
+    "note": "Masukkan waktu dalam detik. Potongan dienkode ulang agar terpotong tepat per bingkai, diekspor ke MP4; sisi panjang maksimal 1080 px."
+  },
+  "gif": {
+    "action": "Buat GIF",
+    "note": "GIF tidak bersuara dan berputar terus. Pilih potongan maksimal 20 detik; kurangi lebar atau jumlah bingkai untuk memperkecil ukuran.",
+    "width": "Lebar",
+    "fps": "Bingkai/detik",
+    "fpsSmall": "8 · file kecil",
+    "fpsBalanced": "12 · seimbang",
+    "fpsSmooth": "15 · gerakan lebih halus"
+  },
+  "errors": {
+    "emptyFile": "File kosong. Pilih video lain.",
+    "tooLarge": "Video melebihi 100 MB. Pilih file yang lebih kecil.",
+    "notVideo": "Pilih file video MP4, MOV, WebM, MKV, atau AVI.",
+    "unreadableInfo": "Informasi video tidak dapat dibaca.",
+    "noVideoStream": "File tidak memiliki aliran video yang valid atau durasinya tidak dapat ditentukan.",
+    "tooLong": "Video lebih dari 10 menit. Pilih potongan yang lebih pendek.",
+    "tooHighRes": "Resolusi video melebihi 4K. Pilih versi dengan resolusi lebih rendah.",
+    "badCompress": "Pengaturan kompresi tidak valid.",
+    "badAudioFormat": "Format audio tidak valid.",
+    "badRange": "Waktu selesai harus lebih besar dari waktu mulai, dan keduanya harus berupa detik yang valid.",
+    "endPastDuration": "Video hanya berdurasi {{seconds}} detik. Kurangi waktu selesai.",
+    "gifLimits": "GIF maksimal 20 detik, lebar 640 px, dan 15 bingkai/detik.",
+    "noAudio": "Video ini tidak memiliki audio untuk diambil.",
+    "unsupported": "Browser ini belum mendukung pemrosesan video. Coba Chrome, Edge, Firefox, atau Safari versi terbaru di komputer.",
+    "busy": "Video lain sedang diproses. Tunggu atau batalkan tugas itu.",
+    "unreadable": "Video tidak dapat dibaca. File mungkin rusak atau memakai codec yang belum didukung.",
+    "processFailed": "Video tidak dapat diproses atau waktunya habis. Coba potongan yang lebih pendek atau kualitas lebih rendah.",
+    "noOutput": "File hasil tidak dapat dibuat. Coba video lain.",
+    "cancelled": "Pemrosesan video dibatalkan.",
+    "timedOut": "Tugas terlalu lama. Coba video yang lebih pendek dan periksa koneksi saat memuat mesin pemroses.",
+    "engineFailed": "Mesin pemroses video tidak dapat dimuat atau dijalankan. Periksa koneksi, tutup beberapa tab, atau coba file yang lebih kecil di komputer."
+  }
+}

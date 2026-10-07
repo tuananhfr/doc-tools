@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "列印／儲存為 PDF"
+  },
+  "cv": {
+    "title": "製作履歷",
+    "saveDraft": "儲存草稿",
+    "openDraft": "開啟草稿",
+    "clearDraft": "刪除草稿",
+    "template": "履歷範本",
+    "templates": {
+      "classic": "經典",
+      "modern": "現代"
+    },
+    "fields": {
+      "name": "姓名",
+      "role": "應徵職位",
+      "phone": "電話號碼",
+      "email": "電子郵件",
+      "location": "居住地",
+      "link": "作品集或 LinkedIn"
+    },
+    "photo": "大頭照（僅限本次工作階段）",
+    "photoAlt": "履歷中的大頭照",
+    "summary": "簡短自我介紹",
+    "sections": {
+      "experience": "工作經歷",
+      "education": "學歷",
+      "skills": "技能",
+      "languages": "外語能力",
+      "certificates": "證照"
+    },
+    "entry": {
+      "period": "期間",
+      "company": "公司",
+      "school": "學校",
+      "position": "職位",
+      "degree": "科系／學位",
+      "description": "說明／成就",
+      "remove": "刪除項目",
+      "add": "新增項目"
+    },
+    "messages": {
+      "saved": "草稿已儲存在此裝置上；照片不會儲存。",
+      "saveFailed": "無法將草稿儲存在裝置上。",
+      "noDraft": "還沒有有效的草稿。",
+      "opened": "已開啟草稿。",
+      "unreadable": "無法讀取草稿。",
+      "cleared": "已刪除裝置上的草稿。"
+    },
+    "note": "送出前請仔細檢查資訊。只有在你按「儲存」時，草稿才會儲存在裝置上；照片不會儲存。"
+  },
+  "formTemplates": {
+    "title": "製作文件範本",
+    "kind": "文件類型",
+    "names": {
+      "leave": "請假單",
+      "authorization": "委託書",
+      "handover": "移交紀錄"
+    },
+    "fields": {
+      "recipient": "敬致",
+      "name": "姓名",
+      "department": "職稱、部門",
+      "from": "請假開始日",
+      "to": "請假結束日",
+      "reason": "事由",
+      "handover": "職務代理人",
+      "placeWritten": "填寫地點",
+      "fromName": "委託人",
+      "fromId": "委託人身分證號碼",
+      "fromAddress": "委託人地址",
+      "toName": "受託人",
+      "toId": "受託人身分證號碼",
+      "toAddress": "受託人地址",
+      "scope": "委託事項",
+      "term": "期限",
+      "giver": "移交方（姓名、職稱）",
+      "receiver": "接收方（姓名、職稱）",
+      "items": "移交清單（每行一項）",
+      "note": "備註",
+      "placeDrawn": "製作地點"
+    },
+    "authorizationWarning": "部分事項需經公證或認證。使用前請向受理單位確認。",
+    "defaultWarning": "範本僅供參考；提交前請確認受理單位的要求。",
+    "privacy": "資料只存在於目前開啟的頁面中。"
+  }
+}

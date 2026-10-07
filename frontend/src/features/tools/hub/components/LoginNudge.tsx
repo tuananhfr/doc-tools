@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { ROUTES } from '@/constants/routes'
 import { withBase } from '@/utils/url'
@@ -14,20 +15,21 @@ interface LoginNudgeProps {
  * trang là mất sạch những gì đang làm.
  */
 export function LoginNudge({ onDismiss }: LoginNudgeProps) {
+  const { t } = useTranslation('common')
   return (
     <div className="erp-doc-nudge" role="note">
       <p className="erp-doc-nudge__text">
         <Icon name="check-circle" className="erp-doc-nudge__icon me-2" />
-        Đã tải xong. Cần lưu bản này vào hồ sơ dự án, chia sẻ và duyệt cùng cả đội? Có trong ERPCons Pro.
+        {t('nudge.text')}
       </p>
       <div className="erp-doc-nudge__actions">
         <ProContactButton className="btn-sm" />
         <a className="btn btn-outline-secondary btn-sm" href={withBase(ROUTES.login)} target="_blank" rel="noopener">
-          Đăng nhập ERPCons
+          {t('nudge.login')}
           <Icon name="box-arrow-up-right" className="ms-2" />
         </a>
         <Button variant="link" size="sm" onClick={onDismiss}>
-          Để sau
+          {t('nudge.later')}
         </Button>
       </div>
     </div>

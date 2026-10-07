@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { appConfig } from '@/config/app.config'
+import { numberFormat } from '@/i18n/intl'
 
 export function formatDate(value?: string | number | Date | null, fallback = '—') {
   if (!value) return fallback
@@ -13,24 +14,8 @@ export function formatDateTime(value?: string | number | Date | null, fallback =
   return d.isValid() ? d.format(appConfig.dateTimeFormat) : fallback
 }
 
-/**
- * `Intl.NumberFormat` dùng LẠI theo (locale, tuỳ chọn).
- *
- * Dựng một formatter đắt gấp hàng chục lần một lần `.format()`, mà các hàm dưới
- * đây được gọi cho TỪNG ô của bảng và TỪNG thẻ kanban: đo 03/10/2026 ở màn Phiếu
- * xuất (1.700 thẻ) một lượt vẽ dựng hơn 7.500 formatter, `formatMoney` chiếm
- * hàng trăm ms. Kết quả định dạng không đổi — chỉ thôi dựng lại cùng một thứ.
- */
-const numberFormatters = new Map<string, Intl.NumberFormat>()
-
 function numberFormatter(options?: Intl.NumberFormatOptions): Intl.NumberFormat {
-  const key = `${appConfig.locale}|${options ? JSON.stringify(options) : ''}`
-  let formatter = numberFormatters.get(key)
-  if (!formatter) {
-    formatter = new Intl.NumberFormat(appConfig.locale, options)
-    numberFormatters.set(key, formatter)
-  }
-  return formatter
+  return numberFormat(options)
 }
 
 export function formatNumber(value?: number | null, fallback = '—') {
@@ -134,5 +119,5 @@ export function formatFileSize(bytes?: number | null, fallback = '—') {
     unit += 1
   }
 
-  return `${new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 1 }).format(value)} ${units[unit]}`
+  return `${numberFormat({ maximumFractionDigits: 1 }).format(value)} ${units[unit]}`
 }

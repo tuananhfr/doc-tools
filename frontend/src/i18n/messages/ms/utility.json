@@ -1,0 +1,432 @@
+{
+  "shared": {
+    "copyResult": "Salin hasil",
+    "days": "hari",
+    "daysValue": "{{count}} <unit>hari</unit>"
+  },
+  "weekdays": {
+    "sun": "Ahad",
+    "mon": "Isnin",
+    "tue": "Selasa",
+    "wed": "Rabu",
+    "thu": "Khamis",
+    "fri": "Jumaat",
+    "sat": "Sabtu"
+  },
+  "duration": {
+    "weeks": "{{count}} minggu",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days": "{{count}} hari"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "Keluasan",
+      "volume": "Isi padu",
+      "mass": "Berat"
+    },
+    "formulas": {
+      "rectangle": "Segi empat tepat",
+      "triangle": "Segi tiga",
+      "trapezoid": "Trapezium",
+      "circle": "Bulatan",
+      "box": "Kuboid (asas, rasuk, papak)",
+      "cylinder": "Silinder (tiang bulat, cerucuk)",
+      "rebar": "Bar bulat (besi tetulang)",
+      "plate": "Plat keluli",
+      "density": "Isi padu × ketumpatan"
+    },
+    "inputs": {
+      "length": "Panjang",
+      "width": "Lebar",
+      "base": "Tapak",
+      "height": "Tinggi",
+      "bigBase": "Tapak panjang",
+      "smallBase": "Tapak pendek",
+      "diameter": "Diameter",
+      "heightThickness": "Tinggi / tebal",
+      "heightLength": "Tinggi / panjang",
+      "thickness": "Ketebalan",
+      "volume": "Isi padu",
+      "density": "Ketumpatan"
+    },
+    "presets": {
+      "steel": "Keluli",
+      "reinforcedConcrete": "Konkrit bertetulang",
+      "water": "Air"
+    },
+    "tonnes": "= {{value}} tan",
+    "perPiece": "Setiap komponen: {{value}} {{unit}}",
+    "invalid": "Dimensi dan kuantiti mesti nombor lebih besar daripada 0.",
+    "missing": "Masukkan semua dimensi untuk mengira.",
+    "groupLabel": "Kuantiti yang hendak dikira",
+    "panelTitle": "Dimensi",
+    "material": "Bahan / cara pengiraan",
+    "shape": "Bentuk",
+    "quantity": "Kuantiti",
+    "pieces": "unit",
+    "densityPresets": "Ketumpatan sedia ada",
+    "decimalHint": "Titik perpuluhan boleh ditaip sebagai koma atau titik: 2,5 dan 2.5 adalah sama. Nombor yang anda taip dipaparkan semula dalam pengiraan di sebelah."
+  },
+  "money": {
+    "groups": {
+      "percent": "Peratus",
+      "tax": "Cukai & diskaun",
+      "profit": "Margin kasar",
+      "split": "Bahagi bil"
+    },
+    "presets": {
+      "percentOf": "X% daripada satu nombor",
+      "percentRatio": "A ialah berapa % daripada B",
+      "percentChange": "Peratus kenaikan / penurunan",
+      "vatAdd": "Tambah cukai pada harga sebelum cukai",
+      "vatExtract": "Asingkan cukai daripada harga termasuk cukai",
+      "discount": "Diskaun / potongan harga",
+      "margin": "Margin kasar daripada kos dan harga jualan",
+      "priceFromMargin": "Harga jualan daripada kos dan margin",
+      "priceFromMarkup": "Harga jualan daripada kos dan markup",
+      "split": "Bahagi sejumlah wang sama rata"
+    },
+    "inputs": {
+      "rate": "Kadar",
+      "ofNumber": "Daripada nombor",
+      "numberA": "Nombor A",
+      "numberB": "Nombor B",
+      "oldValue": "Nilai lama",
+      "newValue": "Nilai baharu",
+      "netPrice": "Harga sebelum cukai",
+      "taxRate": "Kadar cukai",
+      "grossPrice": "Harga termasuk cukai",
+      "originalPrice": "Harga asal",
+      "discount": "Diskaun",
+      "cost": "Kos",
+      "price": "Harga jualan",
+      "targetMargin": "Margin sasaran",
+      "targetMarkup": "Markup sasaran",
+      "total": "Jumlah wang",
+      "people": "Bilangan orang",
+      "extra": "Caj tambahan / tip"
+    },
+    "placeholders": {
+      "manual": "Masukkan sendiri",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "Hasil",
+      "aVsB": "A berbanding B",
+      "increase": "Kenaikan",
+      "decrease": "Penurunan",
+      "difference": "Perbezaan",
+      "grossPrice": "Harga termasuk cukai",
+      "tax": "Jumlah cukai",
+      "netPrice": "Harga sebelum cukai",
+      "discounted": "Harga selepas diskaun",
+      "discountAmount": "Jumlah penjimatan",
+      "margin": "Margin keuntungan (atas harga jualan)",
+      "markup": "Markup (atas kos)",
+      "grossProfit": "Untung kasar",
+      "price": "Harga jualan",
+      "impliedMarkup": "Markup setara",
+      "impliedMargin": "Margin setara",
+      "each": "Setiap orang",
+      "totalDue": "Jumlah perlu dibayar",
+      "eachRounded": "Setiap orang, dibundarkan ke atas kepada ribu terdekat",
+      "surplus": "Lebihan akibat pembundaran"
+    },
+    "errors": {
+      "bNonZero": "Nombor B tidak boleh 0.",
+      "oldNonZero": "Nilai lama tidak boleh 0.",
+      "discountMax": "Diskaun tidak boleh melebihi 100%.",
+      "pricePositive": "Harga jualan mesti lebih besar daripada 0.",
+      "costPositive": "Kos mesti lebih besar daripada 0.",
+      "marginMax": "Margin mesti kurang daripada 100%.",
+      "tooLarge": "Nombor terlalu besar untuk dikira."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "orang"
+    },
+    "copyRow": "Salin {{label}}",
+    "invalid": "Ruangan yang ditanda belum berisi nombor yang sah (tidak negatif; bilangan orang mesti nombor bulat bermula dari 1).",
+    "missing": "Isi semua ruangan untuk mengira.",
+    "formulaCode": "Kod formula: {{code}}",
+    "groupLabel": "Jenis pengiraan",
+    "panelTitle": "Angka",
+    "operation": "Pengiraan",
+    "taxHint": "Anda sendiri yang memasukkan kadar cukai: kadar berbeza mengikut barangan dan tempoh masa, jadi alat ini tidak menetapkan sebarang angka.",
+    "profitHint": "Margin dikira atas harga jualan, markup atas kos — keuntungan yang sama menghasilkan dua angka yang berbeza.",
+    "inputHint": "Jumlah wang: 150.000 dan 150,000 kedua-duanya bermaksud seratus lima puluh ribu; untuk perpuluhan, taip 1500.5. Nombor yang difahami dipaparkan semula dalam pengiraan di sebelah. Hasil dipaparkan hingga dua tempat perpuluhan dan tidak dibundarkan mengikut mana-mana peraturan perakaunan."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "Panjang",
+      "area": "Keluasan",
+      "mass": "Berat"
+    },
+    "units": {
+      "mm": {
+        "name": "Milimeter",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "Sentimeter",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "Meter",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "Kilometer",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "Inci",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "Kaki",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "Ela",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "Batu",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "Milimeter persegi",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "Sentimeter persegi",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "Meter persegi",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "Hektar",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "Kilometer persegi",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "Kaki persegi",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "Ekar",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "Gram",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "Kilogram",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến (10 kg, unit Vietnam)",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ (100 kg, unit Vietnam)",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "Tan",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "Auns",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "Paun",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "Dalam semua unit",
+    "equalsHeading": "{{value}} {{unit}} bersamaan",
+    "notNumber": "Nilai belum berupa nombor.",
+    "notNumberExample": "Nilai belum berupa nombor. Contoh: 2.5 atau 1200.",
+    "enterValue": "Masukkan nilai yang hendak ditukar.",
+    "copyIn": "Salin nilai dalam {{unit}}",
+    "groupLabel": "Jenis unit",
+    "panelTitle": "Tukar unit",
+    "value": "Nilai",
+    "from": "Daripada unit",
+    "to": "Kepada unit",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "Tukar ganti dua unit",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "Aksara",
+      "charactersNoSpaces": "Aksara tanpa ruang kosong",
+      "words": "Perkataan",
+      "lines": "Baris",
+      "paragraphs": "Perenggan"
+    },
+    "hints": {
+      "characters": "termasuk ruang kosong dan baris baharu",
+      "words": "kumpulan huruf yang dipisahkan oleh ruang kosong",
+      "paragraphs": "dipisahkan oleh baris kosong"
+    },
+    "counts": "Kiraan",
+    "panelTitle": "Teks",
+    "clear": "Kosongkan semua",
+    "textLabel": "Teks untuk dikira",
+    "placeholder": "Taip atau tampal teks di sini…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "Sangat jelas (AAA)",
+      "aa": "Mudah dibaca (AA)",
+      "large": "Sesuai untuk teks besar sahaja",
+      "fail": "Sukar dibaca"
+    },
+    "pickFailed": "Tidak dapat mengambil warna daripada skrin.",
+    "preview": "Pratonton",
+    "swatch": "Warna {{hex}}",
+    "textOnColor": "Teks di atas warna ini",
+    "whiteText": "Teks putih",
+    "blackText": "Teks hitam",
+    "contrastHint": "Nisbah kontras WCAG: 4.5 : 1 ke atas boleh dibaca untuk teks biasa; 3 : 1 ke atas hanya cukup untuk teks besar dan ikon.",
+    "panelTitle": "Pilih warna",
+    "picker": "Pemilih warna",
+    "pickerHint": "Klik petak warna untuk membuka pemilih, atau taip kod di bawah.",
+    "eyedropper": "Ambil warna daripada skrin",
+    "copyCode": "Salin kod {{label}}"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "Antara dua tarikh",
+      "add": "Tambah / tolak hari"
+    },
+    "weekendOnly": "Hari bekerja di sini hanya mengecualikan hari Sabtu dan Ahad. Cuti umum disenaraikan dalam hasil tetapi TIDAK ditolak secara automatik; cuti ganti dan jadual kerja hari Sabtu setiap tempat juga tidak dikira — jika ada cuti dalam tempoh tarikh akhir, tambahkan sendiri.",
+    "distance": "Jarak masa",
+    "countingBack": "Tarikh tamat sebelum tarikh mula — sedang mengira ke belakang.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "Salin bilangan hari",
+    "workdays": "Hari bekerja (Isnin – Jumaat)",
+    "weekendDays": "Sabtu, Ahad",
+    "startIncluded": "Tarikh mula (dikira)",
+    "startExcluded": "Tarikh mula (tidak dikira)",
+    "endIncluded": "Tarikh tamat (dikira)",
+    "pickBoth": "Pilih kedua-dua tarikh untuk mengira.",
+    "landsOn": "Jatuh pada",
+    "addedCalendar": "= {{start}} {{sign}} {{count}} hari",
+    "addedWorkdays": "= {{start}} {{sign}} {{count}} hari bekerja",
+    "calendarEquivalent": "Iaitu {{count}} hari kalendar.",
+    "copyDate": "Salin tarikh",
+    "countInvalid": "Bilangan hari mesti nombor bulat dari 0 hingga {{max}}.",
+    "pickStart": "Pilih tarikh mula dan masukkan bilangan hari.",
+    "modeLabel": "Cara pengiraan",
+    "betweenTitle": "Dua tarikh",
+    "fromDate": "Dari tarikh",
+    "toDate": "Hingga tarikh",
+    "includeStart": "Kira tarikh mula sekali",
+    "includeStartHint": "Tanpa mengira tarikh mula: Isnin hingga Jumaat ialah 4 hari (cara mengira tarikh akhir). Dengan mengiranya: 5 hari (cara mengira hari bekerja).",
+    "addTitle": "Tarikh mula dan bilangan hari",
+    "startDate": "Tarikh mula",
+    "dayCount": "Bilangan hari",
+    "direction": "Arah",
+    "forward": "Tambah (ke hadapan)",
+    "back": "Tolak (ke belakang)",
+    "dayKind": "Jenis hari",
+    "calendar": "Hari kalendar",
+    "addHint": "Tarikh mula tidak dikira: menambah 1 hari pada hari Jumaat memberi hari Sabtu (hari kalendar) atau Isnin (hari bekerja)."
+  },
+  "holidays": {
+    "tooLong": "Julat lebih panjang daripada {{count}} hari, jadi cuti tidak disenaraikan.",
+    "none": "Tiada cuti umum dalam julat ini.",
+    "count": "Ada {{count}} hari cuti dalam julat ini",
+    "more": "dan {{count}} hari lagi",
+    "hint": "Alat ini tidak menolak hari cuti secara automatik. Jika pejabat bercuti pada hari-hari ini, tambahkan sendiri pada tarikh akhir."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "Kata laluan",
+      "code": "Kod pesanan, kod baucar"
+    },
+    "classes": {
+      "upper": "Huruf besar (A–Z)",
+      "lower": "Huruf kecil (a–z)",
+      "digits": "Digit (0–9)",
+      "symbols": "Simbol (!@#$…)"
+    },
+    "strengths": {
+      "weak": "Lemah",
+      "fair": "Sederhana",
+      "strong": "Kuat",
+      "excellent": "Sangat kuat"
+    },
+    "results": "Hasil",
+    "resultsCount": "Hasil ({{count}})",
+    "copyAll": "Salin semua",
+    "noClass": "Hidupkan sekurang-kurangnya satu kumpulan aksara untuk menjana kata laluan.",
+    "copyValue": "Salin {{value}}",
+    "regenerate": "Jana semula",
+    "modeLabel": "Jenis kod",
+    "panelTitle": "Pilihan",
+    "length": "Panjang",
+    "chars": "{{count}} aksara",
+    "classGroups": "Kumpulan aksara yang digunakan",
+    "plain": "Elakkan aksara yang mudah tersalah baca (0 O o 1 l I)",
+    "strength": "Kekuatan: <strong>{{label}}</strong> · kira-kira {{bits}} bit",
+    "prefix": "Awalan (pilihan)",
+    "prefixPlaceholder": "Contoh: PX-",
+    "charset": "Bahagian rawak terdiri daripada",
+    "alnum": "Huruf besar dan digit",
+    "digitsOnly": "Digit sahaja",
+    "codeLength": "Bilangan aksara rawak",
+    "alnumHint": "Tidak menggunakan I, O, 0, 1 — supaya kod yang dibaca melalui telefon atau disalin dengan tangan tidak tersalah.",
+    "count": "Bilangan setiap pusingan (maksimum {{max}})"
+  },
+  "notes": {
+    "untitled": "Nota tanpa kandungan",
+    "limitReached": "Sudah mencapai {{count}} nota. Padam nota lama untuk menambah yang baharu.",
+    "listLabel": "Senarai nota",
+    "title": "Nota",
+    "titleCount": "Nota ({{count}})",
+    "newNote": "Nota baharu",
+    "empty": "Belum ada nota pada peranti ini.",
+    "notice": "Nota disimpan dalam pelayar ini, bukan dalam akaun: sesiapa yang berkongsi peranti ini boleh membacanya, dan memadam data pelayaran akan menghapuskannya.",
+    "clearAllTitle": "Padam kesemua {{count}} nota?",
+    "localOnly": "Nota hanya ada pada peranti ini; setelah dipadam, ia tidak dapat dipulihkan.",
+    "clearAllConfirm": "Padam semua",
+    "clearAll": "Padam semua nota",
+    "editorLabel": "Sunting nota",
+    "emptyStart": "Catat perkara yang perlu diingat dan buat senarai tugasan.",
+    "emptyPick": "Pilih nota daripada senarai untuk melihat dan menyuntingnya.",
+    "backToList": "Senarai nota",
+    "titleLabel": "Tajuk",
+    "titlePlaceholder": "Contoh: Tugasan di tapak pada hari Isnin",
+    "body": "Kandungan",
+    "bodyPlaceholder": "Catat dengan pantas perkara yang perlu diingat…",
+    "saveFailed": "Tidak dapat menyimpan pada peranti ini. Salin kandungan ke tempat lain sebelum menutup halaman.",
+    "savedAt": "Disimpan pada peranti ini · {{time}}",
+    "deleteTitle": "Padam nota ini?",
+    "deleteConfirm": "Padam",
+    "delete": "Padam nota",
+    "tasks": "Senarai tugasan",
+    "taskDone": "Selesai: {{task}}",
+    "taskFallback": "tugasan {{number}}",
+    "task": "Tugasan {{number}}",
+    "removeTask": "Buang tugasan {{number}}",
+    "removeTaskTitle": "Buang tugasan ini",
+    "newTask": "Tugasan baharu",
+    "tasksFull": "Sudah mencapai {{count}} tugasan",
+    "addTaskPlaceholder": "Tambah tugasan, tekan Enter",
+    "addTask": "Tambah"
+  }
+}

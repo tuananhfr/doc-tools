@@ -1,0 +1,448 @@
+{
+  "pageTitle": "無料の{{name}}",
+  "groups": {
+    "all": "すべて",
+    "document": "書類",
+    "image": "画像",
+    "calc": "計算",
+    "money": "お金",
+    "date": "日付・期限",
+    "data": "データ",
+    "construction": "建設",
+    "home": "住まい・暮らし",
+    "tech": "技術",
+    "other": "その他の便利ツール"
+  },
+  "tips": {
+    "insertPages": "ページ一覧の途中にファイルをドロップすると、最初から結合し直さなくても狙った位置に挿入できます。",
+    "findInScan": "OCR を実行すると、Ctrl+F でスキャン画像内の文字も検索できます。",
+    "undo": "Ctrl+Z でページ上のあらゆる操作（削除・回転・切り抜き・文字の編集）を元に戻せます。",
+    "rangeSelect": "Shift を押しながら2つ目のページを押すと、間のページをまとめて選択できます。"
+  },
+  "tools": {
+    "compress-video": {
+      "name": "動画圧縮",
+      "description": "ブラウザ上で容量を減らし、MP4 で書き出し",
+      "synonyms": "動画 圧縮, 動画 軽く, 容量 削減, compress video, mp4"
+    },
+    "trim-video": {
+      "name": "動画カット",
+      "description": "秒単位で区間を選び、新しい MP4 動画に",
+      "synonyms": "動画 切り取り, トリミング, クリップ, trim video, mp4"
+    },
+    "video-gif": {
+      "name": "動画からGIF作成",
+      "description": "短い動画をループするアニメーション画像に",
+      "synonyms": "gif, アニメーション, 動く画像, 動画 gif 変換"
+    },
+    "extract-audio": {
+      "name": "動画から音声抽出",
+      "description": "端末上で音声を取り出し、MP3・M4A・WAV で書き出し",
+      "synonyms": "動画 mp3 変換, 音楽 抜き出し, 音声 抽出, extract audio"
+    },
+    "assistant": {
+      "name": "ツール選びアシスタント",
+      "description": "合うツールを探し、内容を確認した質問文で自分のAIに相談",
+      "synonyms": "aiアシスタント, やり方 質問, ツール 相談"
+    },
+    "idea-suggestion": {
+      "name": "ツールの提案",
+      "description": "アイデアを送り、受付番号で審査状況を確認",
+      "privacyNote": "「提案を送信」を押したときだけ内容が送信されます",
+      "synonyms": "ツール 要望, 新しいアイデア, ロードマップ, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "規定への意見",
+      "description": "内容と出典URLを送り、運営者が確認",
+      "privacyNote": "「提案を送信」を押したときだけ内容が送信されます",
+      "synonyms": "法令 更新, 新しい文書, データ 修正 依頼"
+    },
+    "remove-background": {
+      "name": "画像の背景削除",
+      "description": "単色の背景を自動で消し、ブラシで手直し",
+      "synonyms": "背景 透過, 切り抜き, 商品写真, remove background"
+    },
+    "cv": {
+      "name": "履歴書作成",
+      "description": "履歴書を作り、テンプレートを選んで端末で印刷・PDF保存",
+      "synonyms": "履歴書, 職務経歴書, cv, resume, 応募書類"
+    },
+    "pdf-password": {
+      "name": "PDFパスワード設定・解除",
+      "description": "AES-256 で暗号化、または正しいパスワードでロック解除",
+      "synonyms": "pdf ロック, pdf 保護, pdf 解除, パスワード"
+    },
+    "family-calendar": {
+      "name": "家族カレンダー",
+      "description": "予定・用事・緊急連絡先を端末に保存。バックアップと ICS 書き出し",
+      "synonyms": "家族 カレンダー, リマインダー, sos, 時間割"
+    },
+    "address-conversion": {
+      "name": "合併後の住所変換",
+      "description": "社・坊レベルまでの対照表で旧住所を照合",
+      "privacyNote": "照合は端末内で行い、意見は同意した場合のみ送信されます",
+      "synonyms": "新住所, 省 合併, 住所 変更, ベトナム 住所"
+    },
+    "payroll": {
+      "name": "給与 Gross – Net",
+      "description": "入力したパラメーターまたは署名済みデータで手取りを試算",
+      "privacyNote": "計算は端末内で行い、意見は同意した場合のみ送信されます",
+      "synonyms": "手取り, 給与 計算, 個人所得税, 社会保険, net"
+    },
+    "lunar-calendar": {
+      "name": "旧暦・新暦カレンダー",
+      "description": "祝日、干支、吉時入りの旧暦・新暦月間カレンダー。日付の相互変換と命日の確認",
+      "synonyms": "旧暦, 陰暦, テト, 旧正月, 命日"
+    },
+    "electricity": {
+      "name": "電気代・水道代",
+      "description": "段階料金で電気代を、入力した単価で水道代を試算",
+      "privacyNote": "計算は端末内で行い、意見は同意した場合のみ送信されます",
+      "synonyms": "電気料金, kwh 単価, 水道料金, 請求書"
+    },
+    "form-templates": {
+      "name": "届出・書類テンプレート",
+      "description": "休暇届、委任状、引継書を作成して印刷",
+      "synonyms": "休暇届, 委任状, 引継書, 書式, テンプレート"
+    },
+    "dictation": {
+      "name": "音声文字起こし",
+      "description": "ブラウザの音声認識でベトナム語を音声入力",
+      "privacyNote": "音声はブラウザによって、その提供元の音声認識サービスに送信される場合があります",
+      "synonyms": "音声入力, ディクテーション, マイク, speech to text"
+    },
+    "magnifier": {
+      "name": "拡大鏡",
+      "description": "カメラ映像を拡大して小さな文字を読む",
+      "synonyms": "ルーペ, カメラ 拡大, 小さい文字"
+    },
+    "house-estimate": {
+      "name": "住宅建築費の概算",
+      "description": "面積を換算し、施工業者の単価を入れて費用を試算",
+      "synonyms": "建築面積, 住宅 見積もり, 建築 単価, 建築費"
+    },
+    "number-words": {
+      "name": "数字をベトナム語の文字に",
+      "description": "証憑や契約書用に金額を文字で表記",
+      "synonyms": "金額 文字, 数字 文字 変換, ベトナム語 数字"
+    },
+    "loan": {
+      "name": "ローン返済・預金",
+      "description": "返済スケジュールや自動継続の定期預金を計算",
+      "synonyms": "銀行 ローン, 元金均等, 元利均等, 金利"
+    },
+    "unit-price": {
+      "name": "単位あたりの価格比較",
+      "description": "2つの商品を同じ量にそろえて価格を比較",
+      "synonyms": "kg 単価, リットル 単価, 買い物, お得"
+    },
+    "study": {
+      "name": "成績換算・入試点数",
+      "description": "参考用に成績を換算し、入試の加点を計算",
+      "synonyms": "4点満点, 10点満点, gpa, 加点"
+    },
+    "pomodoro": {
+      "name": "集中タイマー",
+      "description": "集中と休憩の時間をセッションごとに区切る",
+      "synonyms": "タイマー, 集中, ポモドーロ, pomodoro"
+    },
+    "group-split": {
+      "name": "グループの割り勘",
+      "description": "共同の支出の後、誰が誰にいくら送ればよいかを計算",
+      "synonyms": "割り勘, 精算, 旅行 費用, 立て替え"
+    },
+    "legacy-font": {
+      "name": "ベトナム語フォント・声調記号の変換",
+      "description": "TCVN3・VNI を Unicode に変換し、声調記号を正規化",
+      "synonyms": "vni unicode, tcvn3 unicode, 文字化け, 声調記号 除去"
+    },
+    "read-aloud": {
+      "name": "テキスト読み上げ",
+      "description": "端末の音声でテキストを聞く",
+      "synonyms": "text to speech, 読み上げ, 音声"
+    },
+    "vietqr": {
+      "name": "VietQR 振込",
+      "description": "BIN コードと口座番号から振込用QRコードを作成",
+      "synonyms": "銀行 qr, napas, 振込 コード, ベトナム 銀行"
+    },
+    "invoice-xml": {
+      "name": "電子請求書 XML の読み取り",
+      "description": "XML から項目を表示し、商品明細を書き出し",
+      "synonyms": "請求書 xml, インボイス, 明細, tt78"
+    },
+    "remove-metadata": {
+      "name": "画像の位置情報を削除",
+      "description": "画像を描き直して EXIF・GPS・カメラ情報を除去",
+      "synonyms": "exif 削除, gps 削除, 位置情報 消す"
+    },
+    "collage": {
+      "name": "画像を結合",
+      "description": "2〜9枚の画像をグリッドの PNG に",
+      "synonyms": "コラージュ, collage, グリッド, 画像 つなげる"
+    },
+    "message-risk": {
+      "name": "怪しいメッセージ・リンクのチェック",
+      "description": "リンクを開かずに詐欺の兆候をチェック",
+      "synonyms": "詐欺, フィッシング, phishing, 偽 sms"
+    },
+    "flashcards": {
+      "name": "暗記カード",
+      "description": "端末上でライトナー方式のカードを作って復習",
+      "synonyms": "フラッシュカード, flashcard, 単語 暗記, ライトナー"
+    },
+    "scan-to-pdf": {
+      "name": "画像スキャン → PDF",
+      "description": "撮影した画像を1つの PDF ファイルにまとめる",
+      "pageTitle": "画像を PDF に無料で変換",
+      "synonyms": "jpg pdf 変換, 画像 pdf, 書類 撮影, image to pdf, スキャン"
+    },
+    "merge-pdf": {
+      "name": "PDF結合",
+      "description": "複数の PDF ファイルを1つにまとめる",
+      "synonyms": "pdf 結合, pdf まとめる, 合体, merge"
+    },
+    "split-pdf": {
+      "name": "PDF分割",
+      "description": "ページを分割し、別ファイルとして抽出",
+      "synonyms": "pdf 分割, pdf 分ける, ページ 抽出, split"
+    },
+    "compress-pdf": {
+      "name": "PDF圧縮",
+      "description": "PDF ファイルの容量を減らす",
+      "synonyms": "pdf 軽く, pdf 縮小, 容量 削減, compress"
+    },
+    "convert-file": {
+      "name": "ファイル変換",
+      "description": "PDF を Word、Excel、画像に",
+      "pageTitle": "PDF を Word に無料で変換",
+      "synonyms": "pdf to word, docx, xlsx, pdf excel 変換, pdf jpg 変換, pdf 画像 変換"
+    },
+    "pdf-to-image": {
+      "name": "PDF → 画像",
+      "description": "PDF の各ページを JPG・PNG 画像に",
+      "synonyms": "pdf jpg 変換, pdf png 変換, pdf to jpg, 画像 書き出し"
+    },
+    "organize-pdf": {
+      "name": "PDFページ整理",
+      "description": "並べ替え、回転、ページ削除",
+      "synonyms": "ページ 並べ替え, ページ 回転, ページ 削除, ページ 整理"
+    },
+    "page-numbers": {
+      "name": "ページ番号",
+      "description": "PDF ファイルにページ番号を追加",
+      "synonyms": "ページ番号, page number, フッター, ノンブル"
+    },
+    "stamp-pdf": {
+      "name": "PDFスタンプ",
+      "description": "文字やロゴのスタンプを各ページに",
+      "synonyms": "透かし, watermark, ロゴ, 写し, スタンプ"
+    },
+    "redact-pdf": {
+      "name": "PDFの墨消し",
+      "description": "機密部分をファイルから完全に消去",
+      "synonyms": "黒塗り, 墨消し, redact, 情報 隠す, 文字 削除"
+    },
+    "view-pdf": {
+      "name": "PDFビューアー",
+      "description": "ページの閲覧、文字検索、注釈",
+      "synonyms": "pdf 閲覧, pdf 開く, pdf 読む"
+    },
+    "ocr": {
+      "name": "テキストOCR",
+      "description": "スキャン画像のベトナム語を文字認識",
+      "synonyms": "文字認識, 検索可能 pdf, searchable, ocr"
+    },
+    "compare": {
+      "name": "文書比較",
+      "description": "2つの PDF の文字を比べ、異なる行を表示",
+      "synonyms": "比較, 照合, diff, pdf 比較, 差分, 新旧 比較"
+    },
+    "sign": {
+      "name": "署名の挿入",
+      "description": "手書きまたは署名画像をページに挿入",
+      "synonyms": "署名, サイン, 書類 署名, pdf 署名, sign"
+    },
+    "edit-pdf": {
+      "name": "PDF編集",
+      "description": "文字の修正、マーク付け、ページ整理",
+      "synonyms": "pdf 編集, ページ 回転, ページ 削除, 文字 追加"
+    },
+    "image-to-text": {
+      "name": "画像 → テキスト",
+      "description": "写真からベトナム語の文字を取り出す",
+      "synonyms": "画像 ocr, 画像 文字 コピー, 文字 抽出, image to text"
+    },
+    "measure-image": {
+      "name": "画像上の寸法測定",
+      "description": "画像上の長さや面積を測る",
+      "synonyms": "定規, 図面 測定, 縮尺"
+    },
+    "convert-image": {
+      "name": "画像変換",
+      "description": "JPG・PNG・WebP を相互に変換",
+      "synonyms": "拡張子 変更, png jpg 変換, jpg png 変換, webp jpg 変換"
+    },
+    "compress-image": {
+      "name": "画像圧縮",
+      "description": "画像の容量を減らす",
+      "synonyms": "画像 縮小, 画像 軽く, resize, リサイズ"
+    },
+    "crop-image": {
+      "name": "画像の切り抜き・調整",
+      "description": "切り抜き、回転、明るさ調整",
+      "synonyms": "crop, トリミング, 画像 回転, 反転, 明るさ"
+    },
+    "batch-image": {
+      "name": "画像の一括処理",
+      "description": "まとめてサイズ変更、名前変更、形式変換",
+      "synonyms": "画像 リサイズ, 名前 変更, 一括, batch, 複数 画像"
+    },
+    "mark-image": {
+      "name": "画像の墨消し・スタンプ",
+      "description": "情報を隠し、文字のスタンプを画像に",
+      "synonyms": "透かし, watermark, 黒塗り, 顔 隠す, 番号 隠す, 著作権"
+    },
+    "id-photo": {
+      "name": "証明写真・プリント",
+      "description": "証明写真を切り抜き、印刷用紙に複数枚並べる",
+      "synonyms": "証明写真, 3x4, 4x6, パスポート 写真, passport"
+    },
+    "qr-create": {
+      "name": "QRコード作成",
+      "description": "文字やリンクからQRコードを作成",
+      "synonyms": "qrコード, qr リンク, qr 作成"
+    },
+    "barcode-create": {
+      "name": "バーコード作成",
+      "description": "EAN-13、Code 128、ITF-14 — 1つずつでも一括でも",
+      "synonyms": "barcode, バーコード, ean, jan, code 128, code 39, itf, ラベル 印刷, 資材 コード"
+    },
+    "qr-read": {
+      "name": "QR/バーコード読み取り",
+      "description": "画像やカメラからコードを読み取る",
+      "synonyms": "qr 読み取り, scan qr, バーコード, スキャン"
+    },
+    "quick-calc": {
+      "name": "クイック計算",
+      "description": "面積、体積、重量",
+      "synonyms": "計算機, m2, m3, コンクリート"
+    },
+    "money-calc": {
+      "name": "お金・税金の計算",
+      "description": "パーセント、VAT、割引、粗利、割り勘",
+      "synonyms": "vat, 付加価値税, 消費税, パーセント, 割引, margin, markup, 割り勘, 利益"
+    },
+    "date-calc": {
+      "name": "日付・期限の計算",
+      "description": "日数、営業日、日付の加算・減算",
+      "synonyms": "日数 計算, 締め切り, deadline, 営業日, 何日"
+    },
+    "house-orientation": {
+      "name": "家の向き＆コンパス",
+      "description": "家の向きを測り、写真や図面にコンパスを重ねる",
+      "synonyms": "コンパス, 方位磁石, 家の向き, 玄関 方角, 風水, 八宅, 正面 方角, 西日"
+    },
+    "quick-note": {
+      "name": "クイックメモ",
+      "description": "端末に保存するメモとやることリスト",
+      "synonyms": "メモ, note, todo, やること"
+    },
+    "char-count": {
+      "name": "文字数カウント",
+      "description": "文字・単語・行を数える",
+      "synonyms": "文字数, 単語数, word count"
+    },
+    "unit-convert": {
+      "name": "単位変換",
+      "description": "長さ、面積、重量",
+      "synonyms": "単位 換算, インチ, フィート, メートル"
+    },
+    "color": {
+      "name": "カラー",
+      "description": "色を選び、カラーコードを変換",
+      "synonyms": "カラーパレット, 色見本, hex, rgb"
+    },
+    "random-code": {
+      "name": "ランダムコード生成",
+      "description": "パスワード、注文番号、伝票番号",
+      "synonyms": "password, パスワード, コード 生成, ランダム"
+    },
+    "construction-price": {
+      "name": "建設単価",
+      "description": "地域ごとの単価、資材、人件費を調べる"
+    },
+    "planning-lookup": {
+      "name": "都市計画",
+      "description": "都市計画情報や土地利用の指標を調べる"
+    },
+    "construction-law": {
+      "name": "建設の法務",
+      "description": "手続き、法令文書、書式を調べる"
+    },
+    "construction-standards": {
+      "name": "建設基準",
+      "description": "基準・規準を検索してすばやく確認"
+    },
+    "dossier-check": {
+      "name": "書類チェック",
+      "description": "設計書類や図面によくある誤りを確認"
+    },
+    "structure-calc": {
+      "name": "簡易構造計算",
+      "description": "断面や基本的な荷重を計算"
+    },
+    "drawing-convert": {
+      "name": "図面変換",
+      "description": "DWG・DXF を PDF に変換し、寸法を測る"
+    },
+    "drawing-area": {
+      "name": "図面上の面積測定",
+      "description": "PDF 図面上で面積と周長を測る"
+    },
+    "site-diary": {
+      "name": "現場日誌",
+      "description": "現場でその場で写真・メモ・マークを記録"
+    },
+    "supplier-lookup": {
+      "name": "仕入れ先検索",
+      "description": "建設資材や機器の仕入れ先を探す"
+    },
+    "family-reminders": {
+      "name": "リマインダー",
+      "description": "服薬、送り迎え、家事、タイマーのお知らせ"
+    },
+    "family-share": {
+      "name": "家族と共有",
+      "description": "家族を招待して共有カレンダーを一緒に閲覧・更新"
+    },
+    "family-health": {
+      "name": "家族の健康",
+      "description": "一人ひとりの受診予定と服薬リマインダー"
+    },
+    "house-chores": {
+      "name": "家事リスト",
+      "description": "家事を分担し、終わった家事を記録"
+    },
+    "family-budget": {
+      "name": "家計簿",
+      "description": "収支を記録し、シンプルに予算を管理"
+    },
+    "family-album": {
+      "name": "家族アルバム",
+      "description": "家族の思い出の写真や動画を保存"
+    },
+    "special-days": {
+      "name": "記念日",
+      "description": "誕生日、記念日、命日、祝日をお知らせ"
+    },
+    "honor-board": {
+      "name": "貢献者ボード",
+      "description": "確認済みのデータを提供してくれた人を紹介"
+    },
+    "code-manager": {
+      "name": "コード管理",
+      "description": "QRコードやバーコードのリストを作成してファイルに書き出し"
+    }
+  }
+}

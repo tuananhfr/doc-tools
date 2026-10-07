@@ -1,0 +1,448 @@
+{
+  "pageTitle": "免費{{name}}",
+  "groups": {
+    "all": "全部",
+    "document": "文件",
+    "image": "影像",
+    "calc": "計算",
+    "money": "金錢",
+    "date": "日期與期限",
+    "data": "資料",
+    "construction": "營建",
+    "home": "居家與生活",
+    "tech": "技術",
+    "other": "其他實用工具"
+  },
+  "tips": {
+    "insertPages": "將更多檔案拖放到頁面網格中間，就能插入到正確位置，不必從頭重新合併。",
+    "findInScan": "執行 OCR 之後，Ctrl+F 也能搜尋掃描檔中的文字。",
+    "undo": "Ctrl+Z 可復原頁面上的所有操作：刪除、旋轉、裁切、編輯文字。",
+    "rangeSelect": "按住 Shift 再點第二個頁面，即可選取中間的整段頁面。"
+  },
+  "tools": {
+    "compress-video": {
+      "name": "壓縮影片",
+      "description": "直接在瀏覽器中縮小檔案、匯出 MP4",
+      "synonyms": "影片壓縮,縮小影片,compress video,mp4"
+    },
+    "trim-video": {
+      "name": "剪輯影片",
+      "description": "依秒數選取片段，匯出新的 MP4 影片",
+      "synonyms": "剪影片,影片剪輯,trim video,mp4"
+    },
+    "video-gif": {
+      "name": "影片轉 GIF",
+      "description": "把一小段影片變成循環播放的動畫圖",
+      "synonyms": "gif,動圖,影片轉gif,video to gif"
+    },
+    "extract-audio": {
+      "name": "從影片擷取音訊",
+      "description": "取出聲音，在裝置上匯出 MP3、M4A 或 WAV",
+      "synonyms": "影片轉mp3,擷取音樂,抽取聲音,extract audio"
+    },
+    "assistant": {
+      "name": "工具選擇助理",
+      "description": "找出合適的工具，並透過預覽過的提問自行使用 AI",
+      "synonyms": "ai助理,怎麼做,推薦工具,assistant"
+    },
+    "idea-suggestion": {
+      "name": "建議新工具",
+      "description": "送出點子，並用收據編號追蹤審核進度",
+      "privacyNote": "只有在你按「送出建議」時才會傳送內容",
+      "synonyms": "工具建議,新點子,許願,roadmap"
+    },
+    "regulation-feedback": {
+      "name": "回報法規",
+      "description": "送出內容與來源網址，供營運人員審核",
+      "privacyNote": "只有在你按「送出建議」時才會傳送內容",
+      "synonyms": "法規更新,新法令,資料回報"
+    },
+    "remove-background": {
+      "name": "移除圖片背景",
+      "description": "自動移除純色背景，並用筆刷手動修整",
+      "synonyms": "去背,透明背景,商品圖,remove background"
+    },
+    "cv": {
+      "name": "製作求職履歷",
+      "description": "撰寫履歷、選擇範本，在裝置上列印或儲存為 PDF",
+      "synonyms": "履歷,簡歷,自傳,resume,cv"
+    },
+    "pdf-password": {
+      "name": "設定、移除 PDF 密碼",
+      "description": "以 AES-256 加密，或用正確密碼解除鎖定",
+      "synonyms": "pdf加密,pdf保護,pdf解鎖,pdf密碼"
+    },
+    "family-calendar": {
+      "name": "家庭行事曆",
+      "description": "在裝置上儲存行程、待辦和緊急聯絡人；可備份並匯出 ICS",
+      "synonyms": "家庭行事曆,提醒,sos,課表,calendar"
+    },
+    "address-conversion": {
+      "name": "合併後地址轉換",
+      "description": "依完整的社／坊對照表核對越南舊地址",
+      "privacyNote": "在裝置上核對；只有在你同意時才會送出意見",
+      "synonyms": "越南新地址,省份合併,地址轉換"
+    },
+    "payroll": {
+      "name": "薪資 Gross – Net",
+      "description": "依你輸入的參數或已簽署的資料包估算實領薪資",
+      "privacyNote": "在裝置上計算；只有在你同意時才會送出意見",
+      "synonyms": "實領薪資,個人所得稅,保險,net salary"
+    },
+    "lunar-calendar": {
+      "name": "農曆國曆對照",
+      "description": "含節日、干支、黃道吉時的農曆國曆月曆；雙向換算日期並查詢忌日",
+      "synonyms": "農曆,陰曆,春節,忌日,lunar calendar"
+    },
+    "electricity": {
+      "name": "電費、水費",
+      "description": "依級距估算電費，並依你輸入的價格估算水費",
+      "privacyNote": "在裝置上計算；只有在你同意時才會送出意見",
+      "synonyms": "電費帳單,電價kwh,水費"
+    },
+    "form-templates": {
+      "name": "申請書、紀錄範本",
+      "description": "撰寫請假單、委託書和移交紀錄以供列印",
+      "synonyms": "請假單,委託書,授權書,移交紀錄"
+    },
+    "dictation": {
+      "name": "語音轉文字",
+      "description": "用瀏覽器的語音辨識聽寫越南語",
+      "privacyNote": "瀏覽器可能會將音訊傳送到其語音辨識服務",
+      "synonyms": "聽寫,麥克風,語音輸入,speech to text"
+    },
+    "magnifier": {
+      "name": "放大鏡",
+      "description": "放大相機畫面以閱讀小字",
+      "synonyms": "相機放大,看小字,magnifier"
+    },
+    "house-estimate": {
+      "name": "建屋費用概算",
+      "description": "換算面積、輸入承包商單價以估算費用",
+      "synonyms": "建築面積,蓋房預算,營建單價"
+    },
+    "number-words": {
+      "name": "數字轉越南語文字",
+      "description": "為單據和合約以越南語文字寫出金額",
+      "synonyms": "金額大寫,數字轉文字,越南語讀數"
+    },
+    "loan": {
+      "name": "分期貸款與儲蓄",
+      "description": "計算還款時程或定存續存",
+      "synonyms": "銀行貸款,本金遞減,貸款利息,房貸"
+    },
+    "unit-price": {
+      "name": "依單位比價",
+      "description": "把兩項商品換算為相同數量來比較價格",
+      "synonyms": "每公斤價格,每公升價格,購物比價,單價"
+    },
+    "study": {
+      "name": "成績換算與入學分數",
+      "description": "換算成績並計算入學加分，供參考",
+      "synonyms": "4分制,10分制,gpa,加分"
+    },
+    "pomodoro": {
+      "name": "專注計時器",
+      "description": "依階段分配專注與休息時間",
+      "synonyms": "計時器,專注,番茄鐘,pomodoro"
+    },
+    "group-split": {
+      "name": "團體分帳",
+      "description": "計算共同支出後誰該轉帳給誰",
+      "synonyms": "分帳,旅遊費用,拆帳,split bill"
+    },
+    "legacy-font": {
+      "name": "越南語字型與聲調轉換",
+      "description": "將 TCVN3、VNI 轉換並標準化聲調符號為 Unicode",
+      "synonyms": "vni轉unicode,tcvn3轉unicode,去除聲調,越南語字型"
+    },
+    "read-aloud": {
+      "name": "朗讀文字",
+      "description": "用裝置的語音朗讀文字",
+      "synonyms": "文字轉語音,text to speech,朗讀"
+    },
+    "vietqr": {
+      "name": "VietQR 轉帳",
+      "description": "以 BIN 碼和帳號產生轉帳 QR 碼",
+      "synonyms": "銀行qr,napas,轉帳碼,vietqr"
+    },
+    "invoice-xml": {
+      "name": "讀取 XML 電子發票",
+      "description": "查看欄位，並從 XML 匯出商品明細",
+      "synonyms": "xml發票,發票明細,電子發票,tt78"
+    },
+    "remove-metadata": {
+      "name": "移除照片中的位置",
+      "description": "重新繪製圖片以移除 EXIF、GPS 和原始相機資訊",
+      "synonyms": "刪除exif,移除gps,隱藏照片位置"
+    },
+    "collage": {
+      "name": "拼貼圖片",
+      "description": "將 2–9 張圖片拼成 PNG 網格",
+      "synonyms": "拼圖,collage,圖片網格,合併圖片"
+    },
+    "message-risk": {
+      "name": "檢查可疑訊息、連結",
+      "description": "不開啟連結即可篩檢詐騙跡象",
+      "synonyms": "詐騙,釣魚,phishing,假簡訊"
+    },
+    "flashcards": {
+      "name": "記憶卡",
+      "description": "在裝置上以萊特納盒製作和複習卡片",
+      "synonyms": "flashcard,背單字,字卡,萊特納"
+    },
+    "scan-to-pdf": {
+      "name": "掃描圖片 → PDF",
+      "description": "將照片合併成一個 PDF 檔案",
+      "pageTitle": "免費圖片轉 PDF",
+      "synonyms": "jpg轉pdf,圖片轉pdf,掃描文件,image to pdf,合併圖片"
+    },
+    "merge-pdf": {
+      "name": "合併 PDF",
+      "description": "將多個 PDF 檔案合併為一個",
+      "synonyms": "pdf合併,串接pdf,結合,merge"
+    },
+    "split-pdf": {
+      "name": "分割 PDF",
+      "description": "分割頁面，將頁面擷取成獨立檔案",
+      "synonyms": "pdf分割,拆分pdf,擷取頁面,split"
+    },
+    "compress-pdf": {
+      "name": "壓縮 PDF",
+      "description": "縮小 PDF 檔案大小",
+      "synonyms": "pdf壓縮,縮小pdf,pdf變小,compress"
+    },
+    "convert-file": {
+      "name": "檔案轉換",
+      "description": "PDF 轉 Word、Excel、圖片",
+      "pageTitle": "免費 PDF 轉 Word",
+      "synonyms": "pdf to word,docx,xlsx,pdf轉excel,pdf轉jpg,pdf轉圖片"
+    },
+    "pdf-to-image": {
+      "name": "PDF → 圖片",
+      "description": "將每一頁 PDF 轉成一張 JPG、PNG 圖片",
+      "synonyms": "pdf轉jpg,pdf轉png,pdf to jpg,匯出圖片"
+    },
+    "organize-pdf": {
+      "name": "整理 PDF",
+      "description": "調整順序、旋轉、刪除頁面",
+      "synonyms": "調整頁序,旋轉頁面,刪除頁面,重排頁面"
+    },
+    "page-numbers": {
+      "name": "加上頁碼",
+      "description": "在 PDF 檔案中加入頁碼",
+      "synonyms": "頁碼,page number,頁尾"
+    },
+    "stamp-pdf": {
+      "name": "PDF 蓋章",
+      "description": "在頁面上加上文字章或標誌",
+      "synonyms": "浮水印,watermark,logo,副本,蓋章"
+    },
+    "redact-pdf": {
+      "name": "PDF 資訊遮蔽",
+      "description": "從檔案中徹底移除敏感區域",
+      "synonyms": "塗黑,redact,隱藏資訊,刪除文字,遮蔽"
+    },
+    "view-pdf": {
+      "name": "檢視 PDF",
+      "description": "檢視、搜尋文字、在頁面上加註",
+      "synonyms": "閱讀pdf,開啟pdf,pdf閱讀器"
+    },
+    "ocr": {
+      "name": "OCR 文字辨識",
+      "description": "辨識掃描檔中的越南語文字",
+      "synonyms": "文字辨識,可搜尋pdf,searchable,ocr"
+    },
+    "compare": {
+      "name": "比較文件",
+      "description": "比較兩份 PDF 的文字，標出不同的行",
+      "synonyms": "對照,diff,比較pdf,差異,新舊版本"
+    },
+    "sign": {
+      "name": "插入簽名",
+      "description": "在頁面上手寫或插入簽名圖片",
+      "synonyms": "簽署文件,簽名,簽章,pdf簽名,sign"
+    },
+    "edit-pdf": {
+      "name": "編輯 PDF",
+      "description": "修改文字、標記、整理頁面",
+      "synonyms": "修改pdf,旋轉頁面,刪除頁面,加入文字,pdf編輯"
+    },
+    "image-to-text": {
+      "name": "圖片 → 文字",
+      "description": "從照片中擷取越南語文字",
+      "synonyms": "圖片ocr,從圖片複製文字,擷取文字,image to text"
+    },
+    "measure-image": {
+      "name": "測量圖片尺寸",
+      "description": "在圖片上測量長度、面積",
+      "synonyms": "量尺,測量圖面,比例尺"
+    },
+    "convert-image": {
+      "name": "圖片轉換",
+      "description": "在 JPG、PNG、WebP 之間轉換",
+      "synonyms": "更改圖片格式,png轉jpg,jpg轉png,webp轉jpg"
+    },
+    "compress-image": {
+      "name": "壓縮圖片",
+      "description": "縮小圖片檔案大小",
+      "synonyms": "縮小圖片,圖片變小,resize,壓縮照片"
+    },
+    "crop-image": {
+      "name": "裁切與調整圖片",
+      "description": "裁切、旋轉、調整亮度",
+      "synonyms": "crop,旋轉圖片,翻轉圖片,亮度"
+    },
+    "batch-image": {
+      "name": "批次處理圖片",
+      "description": "整批調整尺寸、重新命名、轉換格式",
+      "synonyms": "批次縮圖,圖片重新命名,縮小圖片,batch,多張圖片"
+    },
+    "mark-image": {
+      "name": "圖片遮蔽與加印",
+      "description": "遮蔽資訊、在圖片上加文字章",
+      "synonyms": "浮水印,watermark,塗黑,遮臉,遮號碼,版權標記"
+    },
+    "id-photo": {
+      "name": "證件照與相片列印",
+      "description": "裁切證件照，在一張紙上排列多張",
+      "synonyms": "大頭照,證件照,護照照片,列印證件照,passport"
+    },
+    "qr-create": {
+      "name": "產生 QR Code",
+      "description": "以文字或連結產生 QR 碼",
+      "synonyms": "qr碼,qr code,連結qr"
+    },
+    "barcode-create": {
+      "name": "產生條碼",
+      "description": "EAN-13、Code 128、ITF-14——單一條碼或整批",
+      "synonyms": "barcode,條碼,ean,code 128,code 39,itf,列印標籤,物料編號"
+    },
+    "qr-read": {
+      "name": "讀取 QR 碼／條碼",
+      "description": "從圖片或相機掃描條碼",
+      "synonyms": "掃描qr,scan qr,條碼,掃碼"
+    },
+    "quick-calc": {
+      "name": "快速計算",
+      "description": "面積、體積、重量",
+      "synonyms": "計算機,m2,m3,混凝土"
+    },
+    "money-calc": {
+      "name": "金額與稅計算",
+      "description": "百分比、VAT、折扣、毛利、分帳",
+      "synonyms": "vat,加值稅,營業稅,百分比,折扣,margin,markup,分帳,利潤"
+    },
+    "date-calc": {
+      "name": "日期與期限計算",
+      "description": "計算天數、工作日、加減日期",
+      "synonyms": "計算天數,截止日,deadline,工作日,幾天"
+    },
+    "house-orientation": {
+      "name": "房屋座向與指南針",
+      "description": "測量房屋座向，把指南針放到照片、圖面上",
+      "synonyms": "指南針,羅盤,看房屋座向,大門方位,風水,八宅,正面方位,西曬"
+    },
+    "quick-note": {
+      "name": "快速筆記",
+      "description": "儲存在裝置上的筆記、待辦清單",
+      "synonyms": "筆記,note,todo,待辦事項"
+    },
+    "char-count": {
+      "name": "字數統計",
+      "description": "計算字元、字詞、行數",
+      "synonyms": "字數,word count,字元數"
+    },
+    "unit-convert": {
+      "name": "單位換算",
+      "description": "長度、面積、重量",
+      "synonyms": "換算單位,英寸,英尺,公尺,inch,feet"
+    },
+    "color": {
+      "name": "色彩",
+      "description": "選擇顏色、轉換色碼",
+      "synonyms": "調色盤,hex,rgb,色碼"
+    },
+    "random-code": {
+      "name": "產生隨機碼",
+      "description": "密碼、訂單編號、單據編號",
+      "synonyms": "password,密碼產生器,產生編號,隨機"
+    },
+    "construction-price": {
+      "name": "營建價格",
+      "description": "依地區查詢單價、材料、人工"
+    },
+    "planning-lookup": {
+      "name": "都市計畫",
+      "description": "查詢都市計畫資訊、土地使用指標"
+    },
+    "construction-law": {
+      "name": "營建法規",
+      "description": "查詢法定程序、文件、表單範本"
+    },
+    "construction-standards": {
+      "name": "營建標準",
+      "description": "查詢並快速瀏覽標準、規範"
+    },
+    "dossier-check": {
+      "name": "文件檢查",
+      "description": "檢查設計文件、圖面中常見的錯誤"
+    },
+    "structure-calc": {
+      "name": "快速結構計算",
+      "description": "計算斷面、基本載重"
+    },
+    "drawing-convert": {
+      "name": "圖面轉換",
+      "description": "將 DWG、DXF 轉成 PDF 並測量尺寸"
+    },
+    "drawing-area": {
+      "name": "圖面面積測量",
+      "description": "在 PDF 圖面上測量面積、周長"
+    },
+    "site-diary": {
+      "name": "工地日誌",
+      "description": "在工地現場拍照、記錄、標記"
+    },
+    "supplier-lookup": {
+      "name": "查詢供應商",
+      "description": "尋找營建材料、設備供應商"
+    },
+    "family-reminders": {
+      "name": "提醒事項",
+      "description": "提醒吃藥、接送、家務、定時"
+    },
+    "family-share": {
+      "name": "與家人分享",
+      "description": "邀請家人一起查看並更新共用行事曆"
+    },
+    "family-health": {
+      "name": "家庭健康",
+      "description": "為每個人記錄就診時間、用藥提醒"
+    },
+    "house-chores": {
+      "name": "家務清單",
+      "description": "分配家務，追蹤已完成的工作"
+    },
+    "family-budget": {
+      "name": "家庭開支",
+      "description": "記錄收支，簡單追蹤預算"
+    },
+    "family-album": {
+      "name": "家庭相簿",
+      "description": "保存家庭時光的照片和影片"
+    },
+    "special-days": {
+      "name": "特別的日子",
+      "description": "提醒生日、紀念日、忌日、節日"
+    },
+    "honor-board": {
+      "name": "榮譽榜",
+      "description": "表揚提供已驗證資料的貢獻者"
+    },
+    "code-manager": {
+      "name": "條碼管理",
+      "description": "建立 QR 碼、條碼清單並匯出檔案"
+    }
+  }
+}

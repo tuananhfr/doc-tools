@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "Tingnan ang source ng data",
+    "vatPercent": "Buwis (%)"
+  },
+  "electricity": {
+    "resultLabel": "Tantiyang bill",
+    "waterBreakdown": "Bayad sa tubig: {{subtotal}} đ · Fee: {{fee}} đ · Buwis: {{vat}} đ. Hiwalay na kinukuwenta ang bawat isa mula sa orihinal na bayad sa tubig.",
+    "waterHint": "Ilagay ang dami ng tubig at presyo kada yunit mula sa pinakahuling bill.",
+    "electricityBreakdown": "Bayad sa kuryente bago ang buwis: {{subtotal}} đ · Buwis na {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "Tier hanggang kWh",
+      "units": "kWh",
+      "price": "Presyo/kWh",
+      "amount": "Halaga",
+      "rest": "Natitira"
+    },
+    "electricityHint": "Ilagay ang nakonsumong kuryente at ang rate table ayon sa bill o kontrata. Gamitin ang * sa huling linya para sa natitira.",
+    "tariffVerified": "Signed na rate table, epektibo mula {{date}}. Source: {{source}}.",
+    "tariffManual": "Ikaw ang naglagay ng rate table; hindi kinukumpirma ng tool na ito ang kasalukuyang presyo ng kuryente.",
+    "vatVerified": "Signed na tax rate na {{percent}}%, epektibo mula {{date}}. Source: {{source}}.",
+    "vatManual": "Ikaw ang naglagay ng tax rate.",
+    "notIncluded": "Hindi pa kasama ang ibang fee o paraan ng pag-round off ng provider.",
+    "panelTitle": "Bill sa kuryente at tubig",
+    "billType": "Uri ng bill",
+    "modes": {
+      "electricity": "Kuryente",
+      "water": "Tubig"
+    },
+    "water": {
+      "cubicMeters": "Tubig (m³)",
+      "price": "Presyo kada yunit (đ/m³)",
+      "fee": "Drainage / environmental fee (%)"
+    },
+    "kwh": "Nakonsumong kuryente (kWh)",
+    "households": "Bilang ng household quota na naghahati sa metro",
+    "tiers": "Rate table: bawat linya ay “limit ng kWh, presyo đ/kWh”",
+    "applyTariff": "Gamitin ang signed na rate table",
+    "applyVat": "Gamitin ang signed na tax rate",
+    "ruleLabel": "rate table ng kuryente",
+    "ruleNone": "Wala pang signed at epektibong rate table ng kuryente sa system.",
+    "vatRuleLabel": "VAT rate"
+  },
+  "groupSplit": {
+    "resultLabel": "Mga padala para magpantay",
+    "balanced": "Pantay na",
+    "note": "Pantay na hinahati ang bawat gastos sa mga kasali rito. Ini-round off sa pinakamalapit na đồng ang mga halagang ipapadala.",
+    "membersTitle": "Mga miyembro",
+    "onePerLine": "Isang tao bawat linya",
+    "expensesTitle": "Mga gastos",
+    "addExpense": "Magdagdag ng gastos",
+    "payer": "Nagbayad",
+    "choosePerson": "Pumili ng tao",
+    "amount": "Halaga (đ)",
+    "participants": "Mga kahati",
+    "removeExpense": "Alisin ang gastos"
+  },
+  "loan": {
+    "totalPayment": "Kabuuang babayaran",
+    "finalBalance": "Huling balanse",
+    "interest": "Interes: {{amount}} đ",
+    "firstPayment": "Unang hulog: {{amount}} đ",
+    "downloadCsv": "I-download ang talaan bilang CSV",
+    "table": {
+      "period": "Panahon",
+      "principal": "Prinsipal",
+      "interest": "Interes",
+      "balance": "Natitirang utang"
+    },
+    "savingsNote": "Interes na {{amount}} đ pagkalipas ng {{months}} buwan. Simple interest bawat term, at idinadagdag sa prinsipal sa dulo ng term kapag nire-renew.",
+    "hint": "Maglagay ng positibong halaga, interest rate na hindi negatibo at wastong tagal.",
+    "disclaimer": "Sangguniang resulta; nakadepende ang aktuwal na iskedyul sa kontrata at sa paraan ng pag-round off ng nagpapautang.",
+    "loanTitle": "Loan",
+    "savingsTitle": "Deposito",
+    "mode": "Mode",
+    "modes": {
+      "loan": "Hulugang loan",
+      "savings": "Time deposit na nire-renew"
+    },
+    "loanAmount": "Halaga ng loan (đ)",
+    "savingsAmount": "Halaga ng deposito (đ)",
+    "rate": "Taunang interest rate (%)",
+    "loanTerm": "Tagal (buwan)",
+    "savingsTerm": "Term (buwan)",
+    "method": "Paraan ng pagbayad ng prinsipal",
+    "methods": {
+      "annuity": "Halos pantay na kabuuang hulog",
+      "equalPrincipal": "Pantay na prinsipal"
+    },
+    "renewals": "Bilang ng renewal"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Personal na deduction (đ)",
+      "dependentDeduct": "Deduction bawat dependent (đ)",
+      "referenceSalary": "Reference salary para sa cap ng insurance (đ)",
+      "minWage1": "Regional minimum wage, rehiyon I (đ)",
+      "minWage2": "Regional minimum wage, rehiyon II (đ)",
+      "minWage3": "Regional minimum wage, rehiyon III (đ)",
+      "minWage4": "Regional minimum wage, rehiyon IV (đ)",
+      "employeeSocial": "Empleyado: social insurance (%)",
+      "employeeHealth": "Empleyado: health insurance (%)",
+      "employeeUnemployment": "Empleyado: unemployment insurance (%)",
+      "employerSocial": "Employer: social insurance (%)",
+      "employerHealth": "Employer: health insurance (%)",
+      "employerUnemployment": "Employer: unemployment insurance (%)"
+    },
+    "resultLabel": "Sangguniang resulta",
+    "net": "Take-home pay {{amount}} đ",
+    "missingParams": "Kulang pa ang mga parameter",
+    "rows": {
+      "gross": "Gross",
+      "employeeSocial": "Social insurance ng empleyado",
+      "employeeHealth": "Health insurance ng empleyado",
+      "employeeUnemployment": "Unemployment insurance ng empleyado",
+      "deduction": "Mga deduction",
+      "taxable": "Taxable income",
+      "bracket": "Bracket {{level}} · {{rate}}%",
+      "tax": "Personal income tax",
+      "employerTotal": "Dagdag na hulog ng employer",
+      "employerCost": "Kabuuang gastos ng employer"
+    },
+    "hint": "Kumpletuhin ang mga parameter mula sa signed na rule set, o mula sa payroll, kontrata at gabay ng accountant.",
+    "paramsVerified": "Signed na parameter package, epektibo mula {{date}}. Source: {{source}}.",
+    "paramsManual": "Ikaw ang naglagay ng mga parameter; hindi kinukumpirma ng tool na ito na kasalukuyang regulasyon ang mga ito.",
+    "notSettlement": "Hindi pinapalitan ng resulta ang aktuwal na tax settlement.",
+    "panelTitle": "Kalkulasyon ng sahod Gross – Net",
+    "direction": "Direksyon",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "Gross na sahod (đ/buwan)",
+    "netSalary": "Gustong Net na sahod (đ/buwan)",
+    "dependents": "Mga dependent",
+    "region": "Rehiyon",
+    "regionOption": "Rehiyon {{region}}",
+    "insuranceBase": "Sahod na batayan ng insurance (đ, iwanang blangko = Gross)",
+    "exempt": "Tax-exempt na allowance sa Gross (đ)",
+    "applyParams": "Gamitin ang signed na mga parameter",
+    "ruleLabel": "mga parameter ng payroll",
+    "ruleNone": "Wala pang signed at epektibong payroll rule package sa system.",
+    "enterParams": "Ilagay ang mga parameter ng payroll",
+    "brackets": "Tax table: “limit ng taxable income (đ), tax rate (%)”; gamitin ang * sa huling linya"
+  },
+  "unitPrice": {
+    "resultLabel": "Paghahambing kada yunit",
+    "equal": "Pareho ang presyo",
+    "cheaper": "Mas mura ang produkto {{index}}",
+    "perUnit": "Produkto {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "{{percent}}% ang diperensya kumpara sa mas mahal.",
+    "hint": "Maglagay ng presyong hindi negatibo at positibong dami para sa dalawang produkto, sa parehong yunit.",
+    "panelTitle": "Dalawang produkto",
+    "price": "Presyo ng produkto {{index}} (đ)",
+    "quantity": "Dami ng produkto {{index}} ({{unit}})",
+    "unit": "Yunit ng dami",
+    "units": {
+      "kg": "kg",
+      "liter": "litro",
+      "piece": "piraso"
+    }
+  }
+}

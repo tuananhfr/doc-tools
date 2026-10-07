@@ -1,0 +1,160 @@
+{
+  "holidayLayers": {
+    "major": "Hari raya besar",
+    "lunar": "Hari raya tradisional",
+    "moon": "Tanggal 1 & 15 (bulan purnama)",
+    "memorial": "Hari peringatan"
+  },
+  "calendar": {
+    "layersAria": "Tampilkan hari libur di kalender",
+    "monthAria": "Kalender bulan {{month}}/{{year}}",
+    "monthTitle": "Bulan {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Bulan sebelumnya",
+    "nextMonth": "Bulan berikutnya",
+    "today": "Hari ini",
+    "weekdays": {
+      "mon": "Sen",
+      "tue": "Sel",
+      "wed": "Rab",
+      "thu": "Kam",
+      "fri": "Jum",
+      "sat": "Sab",
+      "sun": "Min"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}K",
+    "dayLunar": "kalender lunar {{day}}/{{month}}",
+    "dayLunarLeap": "kalender lunar {{day}}/{{month}} kabisat",
+    "dayEvents": "{{count}} acara"
+  },
+  "day": {
+    "outOfRange": "Tanggal berada di luar rentang 1800–2199 yang didukung algoritma.",
+    "solar": "Kalender Masehi",
+    "lunarMonthYear": "Bulan {{month}} tahun {{year}}",
+    "lunarMonthYearLeap": "Bulan kabisat {{month}} tahun {{year}}",
+    "lunarDate": "Kalender lunar {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Kalender lunar {{day}}/{{month}} kabisat/{{year}}",
+    "facts": {
+      "day": "Hari",
+      "month": "Bulan",
+      "year": "Tahun"
+    },
+    "goodDay": "Hari baik (hoàng đạo)",
+    "badDay": "Hari buruk (hắc đạo)",
+    "byLunar": "menurut kalender lunar",
+    "bySolar": "menurut kalender Masehi",
+    "goodHours": "Jam baik (hoàng đạo)",
+    "nextTet": "Tết (Tahun Baru Imlek) {{year}}: <strong>{{date}}</strong> · {{count}} hari lagi",
+    "note": "Algoritma astronomi untuk zona waktu Vietnam UTC+7, cocok sebagai acuan sehari-hari; untuk keperluan resmi, cocokkan dengan kalender yang diumumkan lembaga berwenang. Hari baik / hari buruk dihitung menurut kepercayaan rakyat, hanya sebagai acuan. <link>Sumber algoritma Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Ke tanggal",
+    "convertTitle": "Ubah lunar → Masehi",
+    "fields": {
+      "day": "Tanggal lunar",
+      "month": "Bulan lunar",
+      "year": "Tahun lunar"
+    },
+    "leapMonth": "Bulan kabisat",
+    "solarResult": "Kalender Masehi <strong>{{date}}</strong>",
+    "showOnCalendar": "Lihat di kalender",
+    "noSuchDay": "Tanggal ini tidak ada.",
+    "noSuchDayLeap": "Tanggal ini tidak ada (tahun itu tidak memiliki bulan kabisat ini).",
+    "anniversaryTitle": "Hari peringatan wafat menurut kalender lunar",
+    "anniversaryFields": {
+      "day": "Tanggal",
+      "month": "Bulan"
+    },
+    "anniversaryYear": "Tahun lunar {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "tanggal ini tidak ada"
+  },
+  "address": {
+    "status": {
+      "full": "Diubah lengkap",
+      "province": "Hanya provinsi diubah",
+      "ambiguous": "Perlu dipilih manual: {{options}}",
+      "none": "Provinsi tidak dikenali"
+    },
+    "orSeparator": " atau ",
+    "resultLabel": "Pencocokan alamat",
+    "resultValue": "{{full}}/{{total}} diubah lengkap",
+    "resultNote": "Provinsi dikenali di bagian mana pun, termasuk singkatan (TP.HCM, HN…). Tingkat distrik (huyện) dihapus. Kelurahan/desa hanya diubah jika data menunjuk tepat satu kelurahan/desa baru; jika kelurahan/desa lama dipecah, pilihannya ditampilkan agar Anda memilih.",
+    "columns": {
+      "old": "Alamat lama",
+      "proposed": "Usulan",
+      "status": "Status"
+    },
+    "downloadCsv": "Unduh CSV",
+    "verifiedNote": "Tabel pencocokan bertanda tangan, berlaku sejak {{date}}. Sumber: {{source}}. Pastikan alamat akhir dengan instansi penerima berkas.",
+    "manualNote": "Tabel pencocokan ini Anda masukkan sendiri; belum diverifikasi sistem. Pastikan alamat akhir dengan instansi penerima berkas.",
+    "viewSource": "Lihat sumber data",
+    "panelTitle": "Alamat lama dan tabel pencocokan",
+    "addressesLabel": "Satu alamat per baris, tiap tingkat dipisahkan koma",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Memakai tabel pencocokan bertanda tangan",
+    "applyVerified": "Terapkan tabel pencocokan bertanda tangan",
+    "rulesLabel": "tabel pencocokan alamat",
+    "rulesNone": "Belum ada tabel pencocokan alamat bertanda tangan yang masih berlaku di sistem.",
+    "manualLabel": "Atau masukkan sendiri, satu per baris: “provinsi lama|distrik lama|kelurahan lama|provinsi baru|kelurahan baru”",
+    "manualInvalid": "Format tabel pencocokan salah (tiap baris harus 5 bagian, tiap bagian maksimal 150 karakter) atau ada provinsi lama yang dipetakan ke dua provinsi baru yang berbeda."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "File XML melebihi 5 MB.",
+      "unreadable": "File XML tidak dapat dibaca.",
+      "doctype": "XML berisi deklarasi entitas atau DOCTYPE yang tidak didukung.",
+      "invalid": "File XML tidak valid.",
+      "noCommon": "Blok informasi umum faktur tidak ditemukan."
+    },
+    "resultLabel": "Faktur",
+    "noNumber": "Tanpa nomor",
+    "series": "Seri: {{series}} · Tanggal: {{date}}",
+    "seller": "Penjual: {{name}} ({{taxCode}})",
+    "buyer": "Pembeli: {{name}} ({{taxCode}})",
+    "noTaxCode": "tanpa kode pajak (MST)",
+    "amounts": "Sebelum pajak: {{subtotal}} đ · Pajak: {{vat}} đ",
+    "total": "Total pembayaran: {{total}} đ",
+    "signature": "Tag tanda tangan XML: {{signature}} · Kode otoritas pajak: {{authority}}",
+    "present": "ada",
+    "notFound": "tidak ditemukan",
+    "downloadCsv": "Unduh daftar rincian CSV",
+    "empty": "Pilih file XML untuk melihat data faktur.",
+    "disclaimer": "Alat ini hanya membaca isi XML; tidak memverifikasi tanda tangan digital atau status hukum faktur. Cek di portal resmi sebelum dipakai.",
+    "panelTitle": "File faktur",
+    "pickFile": "Pilih file XML",
+    "columns": {
+      "ordinal": "No.",
+      "name": "Barang, jasa",
+      "quantity": "Jml",
+      "amount": "Jumlah harga"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Teks setelah dikonversi",
+    "copy": "Salin teks",
+    "note": "Pilih tabel kode yang sesuai dengan teks asli; nama font yang tampil tidak bisa menentukan kode karakternya.",
+    "panelTitle": "Teks asli",
+    "conversionLabel": "Jenis konversi",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 huruf kapital → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Gabungkan diakritik Unicode (NFC)",
+      "strip": "Hapus diakritik bahasa Vietnam",
+      "lower": "huruf kecil",
+      "upper": "HURUF KAPITAL"
+    },
+    "contentLabel": "Isi",
+    "placeholder": "Tempel teks yang akan dikonversi…"
+  },
+  "numberWords": {
+    "resultLabel": "Terbilang",
+    "invalid": "Masukkan bilangan bulat saja, maksimal 36 digit.",
+    "note": "Membaca angka dalam kata-kata bahasa Vietnam untuk kuitansi dan kontrak; periksa ketentuan pihak penerima.",
+    "copy": "Salin hasil",
+    "panelTitle": "Angka yang akan dibaca",
+    "inputLabel": "Bilangan bulat",
+    "placeholder": "Contoh: 1.234.567",
+    "zeroWordLabel": "Kata untuk nol di posisi puluhan",
+    "fourWordLabel": "Kata untuk empat setelah puluhan"
+  }
+}

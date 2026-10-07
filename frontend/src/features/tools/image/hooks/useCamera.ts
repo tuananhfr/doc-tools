@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { CAMERA_INSECURE, cameraAvailable, cameraErrorMessage } from '@/features/tools/hub'
+import { cameraAvailable, cameraErrorMessage } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { createCanvas, encodeCanvas, releaseCanvas } from '../services/image-codec'
 
 type CameraState = { phase: 'starting' } | { phase: 'live' } | { phase: 'error'; message: string }
 
 /** `torch` chưa có trong kiểu DOM của TypeScript; chỉ Chrome trên Android hỗ trợ. */
 type TorchCapabilities = MediaTrackCapabilities & { torch?: boolean }
-
-const INSECURE = `${CAMERA_INSECURE} Chụp bằng ứng dụng máy ảnh rồi chọn ảnh từ máy.`
 
 function stop(stream: MediaStream | null) {
   stream?.getTracks().forEach((track) => track.stop())
@@ -76,7 +75,7 @@ export function useCamera() {
   /** Chụp khung hình đang hiện ở độ phân giải thật của camera, không phải cỡ ô xem. */
   const capture = useCallback(async (): Promise<{ blob: Blob; width: number; height: number }> => {
     const element = video.current
-    if (!element || element.videoWidth === 0) throw new Error('camera chưa sẵn sàng.')
+    if (!element || element.videoWidth === 0) throw new Error(translate('image:camera.notReady'))
     const { canvas, context } = createCanvas({ width: element.videoWidth, height: element.videoHeight })
     try {
       context.drawImage(element, 0, 0)
@@ -86,5 +85,5 @@ export function useCamera() {
     }
   }, [])
 
-  return { video, state: supported ? state : ({ phase: 'error', message: INSECURE } as CameraState), canRetry: supported, torch, toggleTorch, retry, capture }
+  return { video, state: supported ? state : ({ phase: 'error', message: translate('image:camera.insecure', { reason: translate('common:camera.insecure') }) } as CameraState), canRetry: supported, torch, toggleTorch, retry, capture }
 }

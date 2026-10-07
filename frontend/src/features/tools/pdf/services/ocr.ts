@@ -8,6 +8,8 @@ import { ocrRuns, type OcrLine } from '../utils/ocr-runs'
 import { normalizeRotation, visualSize, visualToBase } from '../utils/page-geometry'
 import { PDF_CSS_SCALE, renderPreview } from './page-preview'
 import { basePageSize } from './page-size'
+import { ocrWords } from '../utils/ocr-review'
+import { inspectOcrImage, ocrSourceHash } from './ocr-quality'
 
 /**
  * Nhận dạng chữ ngay trên trình duyệt (tesseract.js, tiếng Việt) — tệp không
@@ -73,7 +75,13 @@ export async function recognizePage(source: SourceFile, page: PageRef, onProgres
   // Trang rất lớn bị kẹp diện tích khi vẽ — tính lại tỉ lệ thật từ canvas.
   const pxPerPt = canvas.width / visualSize(base, turn).width
   const instance = await getWorker()
+  const [qualityFlags, sourceHash] = await Promise.all([inspectOcrImage(canvas, source), ocrSourceHash(source)])
   const { data } = await instance.recognize(canvas, {}, { blocks: true })
   const lines: OcrLine[] = (data.blocks ?? []).flatMap((block) => block.paragraphs.flatMap((paragraph) => paragraph.lines))
-  return { runs: ocrRuns(lines, pxPerPt, (point) => visualToBase(point, base, turn)) }
+  const toBase = (point: { x: number; y: number }) => visualToBase(point, base, turn)
+  return {
+    runs: ocrRuns(lines, pxPerPt, toBase),
+    ocr: { sourceId: source.id, pageIndex: page.pageIndex, sourceHash, engine: 'tesseract', engineVersion: '7.0.0/vie-4.0.0_best_int', pass: 'original', qualityFlags,
+      words: ocrWords(lines, pxPerPt, toBase, canvas) },
+  }
 }

@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "この画像のプレビューを描画できませんでした。",
+    "opening": "画像を開いています…",
+    "saveImage": "画像を保存",
+    "noImageSelected": "画像が選択されていません。",
+    "keepSize": "サイズを維持",
+    "maxEdge": "長辺の最大値",
+    "result": "結果",
+    "processing": "処理中…",
+    "processFailed": "画像を処理できませんでした。",
+    "imageCount": "{{count}} 枚の画像"
+  },
+  "shell": {
+    "hint": "JPG、PNG、WebP · 1枚最大 100 MB",
+    "noImages": "画像が選択されていません。"
+  },
+  "files": {
+    "batchLimit": "1回の上限 {{limit}} 枚を超えています。",
+    "singleOnly": "このツールは1回に1枚の画像を処理します。"
+  },
+  "intake": {
+    "tooLarge": "画像が {{size}} を超えています。",
+    "heic": "HEIC 画像（iPhone）にはまだ対応していません — JPG に変換してからもう一度お試しください。",
+    "unsupported": "このツールは JPG、PNG、WebP 画像のみ対応しています。",
+    "pixelLimit": "{{width}} × {{height}} の画像（{{millions}} メガピクセル）は上限の {{limit}} メガピクセルを超えています。",
+    "corrupt": "画像を読み込めません — ファイルが壊れているか、ブラウザで開けません。"
+  },
+  "codec": {
+    "corrupt": "画像を読み込めません — ファイルが壊れているか、ブラウザがこの形式を開けません。",
+    "tooLarge": "{{size}} の画像はこのブラウザには大きすぎます。",
+    "exportUnsupported": "このブラウザは {{format}} で書き出せません。",
+    "tooLargeRetry": "{{size}} の画像はこのブラウザには大きすぎます — 長辺を小さくしてからもう一度お試しください。"
+  },
+  "exif": {
+    "keptOne": "出力画像にはカメラの情報（撮影日、GPS位置情報）が残っています。",
+    "keptSome": "出力画像 {{count}}/{{total}} 枚にカメラの情報（撮影日、GPS位置情報）が残っています。",
+    "lostOne": "出力画像にはカメラの情報（撮影日、GPS位置情報）が残っていません — この情報を保持できるのは JPG または PNG で出力した画像だけです。",
+    "lostSome": "出力画像 {{count}}/{{total}} 枚にカメラの情報（撮影日、GPS位置情報）が残っていません — この情報を保持できるのは JPG または PNG で出力した画像だけです。"
+  },
+  "tasks": {
+    "progress": {
+      "process": "画像を処理中 {{current}}/{{total}}",
+      "convert": "画像を変換中 {{current}}/{{total}}",
+      "compress": "画像を圧縮中 {{current}}/{{total}}"
+    },
+    "imageFailed": "画像を処理できませんでした。",
+    "jpegFlatten": "JPG は透明な背景を持てません: 透明な部分（ある場合）は白で塗りつぶしました。",
+    "webpAsPng": "このブラウザは WebP を書き出せません: WebP 画像は PNG として保存しました。",
+    "rendering": "画像を作成しています",
+    "formatFallback": "このブラウザは {{from}} を書き出せません: 画像は {{to}} として保存しました。"
+  },
+  "convert": {
+    "pickerTitle": "形式を変換する画像を選択",
+    "runOne": "{{format}} に変換",
+    "runMany": "{{count}} 枚の画像を {{format}} に変換",
+    "blockedOne": "選択した画像はすでに {{format}} です。",
+    "blockedMany": "選択した画像はすべてすでに {{format}} です。",
+    "targetLegend": "変換先",
+    "qualityLegend": "画質",
+    "target": {
+      "jpeg": "軽く、どこでも開けます。透明な背景は保持されません。",
+      "png": "すべてのピクセルと透明な背景をそのまま保持します。ファイルは重くなります。",
+      "webp": "同じ画質なら JPG より軽く、透明な背景も保持できます。"
+    },
+    "quality": {
+      "high": {
+        "label": "高",
+        "hint": "元の画像とほとんど変わりません。"
+      },
+      "medium": {
+        "label": "中",
+        "hint": "鮮明さと容量のバランス型。"
+      },
+      "small": {
+        "label": "コンパクト",
+        "hint": "最も軽くなりますが、拡大すると粗さが目立ちます。"
+      }
+    },
+    "noWebp": "このブラウザは WebP で書き出せません。",
+    "keptNote": "{{count}} 枚の画像はすでに {{format}} です — そのままにし、再エンコードはしていません。",
+    "titleOne": "{{format}} に変換しました",
+    "titleMany": "{{count}} 枚の画像を {{format}} に変換しました"
+  },
+  "compress": {
+    "pickerTitle": "圧縮する画像を選択",
+    "runOne": "画像を圧縮",
+    "runMany": "{{count}} 枚の画像を圧縮",
+    "levelLegend": "圧縮レベル",
+    "level": {
+      "light": {
+        "label": "弱",
+        "hint": "元の画像とほとんど違いがわかりません。"
+      },
+      "medium": {
+        "label": "中",
+        "hint": "メール送信や Web 掲載向け。"
+      },
+      "strong": {
+        "label": "強",
+        "hint": "最も軽くなりますが、拡大すると粗さが目立ちます。"
+      }
+    },
+    "hint": "圧縮レベルは JPG と WebP に適用されます。PNG は可逆形式のため、サイズを縮小したときだけ軽くなります。",
+    "smaller": "{{sizes}}（{{percent}}% 軽量化）。",
+    "unchangedOne": "出力画像は元の画像より軽くなりませんでした — 元のファイルをそのまま使います。{{hint}}",
+    "unchangedSome": "{{count}}/{{total}} 枚の画像は軽くできませんでした — 元のファイルをそのまま使います。{{hint}}",
+    "shrunk": "{{count}} 枚の画像を長辺 {{edge}} px に縮小しました。",
+    "hintPng": "PNG は可逆形式のため小さくなりにくい形式です。大幅に軽くしたい場合は「画像変換」で JPG か WebP に変換してください。",
+    "hintMaxed": "画像はすでにほぼ限界まで圧縮されています。",
+    "hintTryEdge": "画像はすでにほぼ限界まで圧縮されています — 「長辺の最大値」を指定して縮小してみてください。",
+    "titleDone": "圧縮が完了しました",
+    "titleNone": "これ以上圧縮できません"
+  },
+  "batch": {
+    "pickerTitle": "処理する画像を選択",
+    "runOne": "画像を処理",
+    "runMany": "{{count}} 枚の画像を処理",
+    "resize": {
+      "keep": "サイズを維持",
+      "edge": "長辺の最大値",
+      "width": "幅",
+      "height": "高さ",
+      "percent": "パーセントで指定"
+    },
+    "sizeRange": "サイズは {{min}} から {{max}} までの整数にしてください。",
+    "startInvalid": "開始番号は 0 以上の整数にしてください。",
+    "resizeLabel": "サイズ変更",
+    "resizeHint": "画像の縦横比を保ちます。このサイズより小さい画像はそのままにし、拡大はしません。",
+    "formatLabel": "出力形式",
+    "keepFormat": "各画像の形式を維持",
+    "qualityLabel": "JPG / WebP の画質",
+    "quality": {
+      "high": "高 — 元の画像とほとんど変わらない",
+      "medium": "中 — 鮮明さと容量のバランス",
+      "small": "コンパクト — 最も軽い"
+    },
+    "patternLabel": "ファイル名のパターン",
+    "patternHint": "<code>{name}</code> = 元の名前、<code>{n}</code> = 連番。例: <code>genba-{n}</code>",
+    "startLabel": "開始番号",
+    "sample": "出力名: <strong>{{names}}</strong>",
+    "patternEmpty": "ファイル名のパターンを入力してください（例: {name} や photo-{n}）。",
+    "patternIllegal": "ファイル名に \\ / : * ? \" < > | は使えません",
+    "patternTokens": "差し込める項目は {name}（元の名前）と {n}（連番）の2つだけです。",
+    "resizedAll": "{{count}}/{{total}} 枚の画像を縮小しました。",
+    "resizedPartial": "{{count}}/{{total}} 枚の画像を縮小しました。目標サイズより小さい画像はそのままのサイズです — ツールは拡大しません。",
+    "keptBytes": "{{count}} 枚の画像はサイズも形式も変更不要だったため、データをそのまま保持し、名前だけ変更しました。",
+    "titleOne": "画像を処理しました",
+    "titleMany": "{{count}} 枚の画像を処理しました"
+  },
+  "crop": {
+    "pickerTitle": "切り抜き・調整する画像を選択",
+    "blocked": "切り抜き、回転、調整がまだありません — 出力画像は元の画像と同じになります。",
+    "stageLabel": "編集中の画像",
+    "aspectLabel": "切り抜き枠の比率",
+    "aspect": {
+      "free": "自由",
+      "square": "1:1 — 正方形",
+      "landscape": "4:3 — 横長",
+      "portrait": "3:4 — 縦長",
+      "wide": "16:9 — ワイド",
+      "tall": "9:16 — 縦長ワイド"
+    },
+    "rotate": "画像を回転",
+    "rotateLeft": "左に回転",
+    "rotateRight": "右に回転",
+    "brightness": "明るさ",
+    "contrast": "コントラスト",
+    "output": "出力画像: <strong>{{size}}</strong>",
+    "reset": "元の画像に戻す",
+    "box": "切り抜き枠 — ドラッグまたは矢印キーで移動",
+    "handleAria": "{{handle}} — ドラッグまたは矢印キーでサイズ変更",
+    "handle": {
+      "nw": "左上の角",
+      "n": "上辺",
+      "ne": "右上の角",
+      "e": "右辺",
+      "se": "右下の角",
+      "s": "下辺",
+      "sw": "左下の角",
+      "w": "左辺"
+    },
+    "title": "編集した画像を保存しました"
+  },
+  "mark": {
+    "pickerTitle": "墨消し・スタンプする画像を選択",
+    "blocked": "墨消し枠もスタンプの文字もまだありません — 出力画像は元の画像と同じになります。",
+    "stageLabel": "墨消し・スタンプ中の画像",
+    "boxCount": "墨消し枠 {{count}} 個",
+    "stageHint": "画像上をドラッグして隠す範囲を囲みます。描いた枠を押すとその枠を消せます。",
+    "overlayBoxes": "画像上の墨消し枠 {{count}} 個",
+    "overlayEmpty": "画像上に墨消し枠はありません",
+    "boxesLabel": "墨消し枠",
+    "boxesSummary": "{{count}} 個の枠 — 下の部分は出力ファイルで黒いブロックに置き換えられ、復元できません。",
+    "boxesEmpty": "枠はまだありません。画像上をドラッグして描いてください。",
+    "clearBoxes": "すべての墨消し枠を消す",
+    "textLabel": "スタンプの文字（任意）",
+    "textPlaceholder": "例: 下書き — 複製禁止",
+    "tile": "画像全体に斜めに繰り返す",
+    "anchorLabel": "スタンプの位置",
+    "colorLabel": "文字の色",
+    "sizeLabel": "文字サイズ",
+    "opacityLabel": "濃さ",
+    "color": {
+      "red": "赤",
+      "black": "黒",
+      "white": "白"
+    },
+    "anchor": {
+      "topLeft": "上 — 左",
+      "topCenter": "上 — 中央",
+      "topRight": "上 — 右",
+      "middleLeft": "中段 — 左",
+      "center": "中央",
+      "middleRight": "中段 — 右",
+      "bottomLeft": "下 — 左",
+      "bottomCenter": "下 — 中央",
+      "bottomRight": "下 — 右"
+    },
+    "boxesNote": "{{count}} か所をピクセル自体で黒いブロックに置き換えました — 下に剥がせるレイヤーは残っていません。",
+    "stampNote": "文字のスタンプを画像に書き込みました。",
+    "titleBoth": "画像を墨消しし、スタンプを押しました",
+    "titleBoxes": "画像を墨消ししました",
+    "titleStamp": "画像にスタンプを押しました"
+  },
+  "measure": {
+    "pickerTitle": "測定する画像を選択",
+    "run": "測定値入りの画像を保存",
+    "blocked": "画像上に測定値がまだありません。",
+    "stageLabel": "測定中の画像",
+    "modesLabel": "測定の種類",
+    "tab": {
+      "distance": "距離を測る",
+      "area": "面積を測る",
+      "count": "数を数える"
+    },
+    "hint": {
+      "distance": "画像上の2点を押して線分を測ります。線分の端をドラッグして調整できます。",
+      "area": "範囲の角を順に押し、最後に始点をもう一度押して範囲を閉じます。",
+      "count": "数えたいものを1つずつ押します。もう一度押すとその点を消せます。",
+      "reference": "長さがわかっているもの（ドア、レンガ、定規など）の両端を押します。"
+    },
+    "closeArea": "範囲を閉じる",
+    "undo": "元に戻す",
+    "clearAll": "すべて消去",
+    "imageAlt": "測定中の画像: {{name}}",
+    "referenceGrip": "基準線の端 {{index}} — ドラッグまたは矢印キーで調整",
+    "countGrip": "カウント点 {{number}} — 押すと削除、ドラッグで移動",
+    "distanceGrip": "線分 {{index}} の点 {{point}} — ドラッグまたは矢印キーで調整、Delete で削除",
+    "areaGrip": "範囲 {{index}} の点 {{point}} — ドラッグまたは矢印キーで調整、Delete で削除",
+    "closeAtStart": "始点で範囲を閉じる",
+    "lengthLabel": "基準線の実際の長さ",
+    "lengthPlaceholder": "例: 2,1",
+    "unit": "単位",
+    "clearReference": "基準線を消す",
+    "referenceLabel": "基準線",
+    "referenceHint": "長さがわかっているものに印を付けると、測定値を実際の単位に換算できます。",
+    "placing": "設定中 — 画像上の2点を押してください",
+    "resetReference": "基準線を設定し直す",
+    "setReference": "基準線を設定",
+    "scaleHint": "測定値が正しいのは、正面から撮った写真で基準線と同じ平面上にあるものだけです。",
+    "noLength": "実際の長さが未入力です — 測定値はピクセル（px）で計算しています。",
+    "noReference": "基準線がありません — 測定値はピクセル（px）で計算しています。",
+    "results": "測定値",
+    "noResults": "測定値はまだありません。",
+    "distanceName": "線分 {{index}}",
+    "areaName": "範囲 {{index}}",
+    "removeDistance": "線分 {{index}} を削除",
+    "removeArea": "範囲 {{index}} を削除",
+    "remove": "削除",
+    "perimeter": "周長 {{length}}",
+    "counted": "カウント数",
+    "summaryDistances": "線分 {{count}} 本",
+    "summaryAreas": "範囲 {{count}} 個",
+    "summaryCounts": "カウント点 {{count}} 個",
+    "recorded": "画像に {{summary}} を記録しました。",
+    "pixelWarning": "基準線がないため、測定値は実際の寸法ではなくピクセル（px）で記録されています。",
+    "title": "測定値入りの画像を保存しました"
+  },
+  "idPhoto": {
+    "pickerTitle": "顔写真を選択",
+    "gapRange": "間隔は {{min}} から {{max}} mm の範囲にしてください。",
+    "copiesInvalid": "枚数は1以上の整数にしてください。",
+    "tooBig": "このサイズの証明写真は、選択した用紙に収まりません。",
+    "overCapacity": "{{paper}} 1枚に収まるのは、このサイズで {{count}} 枚までです。",
+    "runSingle": "証明写真を作成",
+    "runSheet": "{{count}} 枚入りの印刷シートを作成",
+    "photoSize": "証明写真のサイズ",
+    "photoHint": "提出先の要件に合わせて選んでください — ツールは書類ごとの写真の規定を把握しておらず、背景や顔の位置もチェックしません。",
+    "lowDpi": "選択した範囲はこのサイズで {{dpi}} DPI しかありません（{{min}} 以上を推奨）— 印刷するとぼやけます。枠を広げるか、より鮮明な写真を使ってください。",
+    "outputLegend": "出力ファイル",
+    "output": {
+      "pdf": {
+        "label": "PDF 印刷シート",
+        "hint": "「実際のサイズ / 100%」で印刷すると、ミリ単位で正確なサイズになります。"
+      },
+      "sheet": {
+        "label": "JPG 印刷シート",
+        "hint": "300 DPI — 写真用プリンターや、画像ファイルしか受け付けないプリントショップ向け。"
+      },
+      "single": {
+        "label": "証明写真1枚",
+        "hint": "正しい比率で切り抜いた写真のみ — オンライン申請用。"
+      }
+    },
+    "paperLabel": "用紙サイズ",
+    "paper": {
+      "a4": "A4（21 × 29.7 cm）",
+      "a5": "A5（14.8 × 21 cm）",
+      "10x15": "写真用紙 10 × 15 cm",
+      "13x18": "写真用紙 13 × 18 cm"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "写真用紙 10 × 15 cm",
+      "13x18": "写真用紙 13 × 18 cm"
+    },
+    "fill": "用紙いっぱいに並べる（{{count}} 枚）",
+    "copies": "枚数",
+    "gap": "間隔",
+    "guides": "各写真の周りに切り取り線を描く",
+    "layoutHint": "{{columns}} 列 × {{rows}} 行、用紙の余白 {{margin}} mm。印刷時は「実際のサイズ」（Actual size / 100%）を選び、「用紙に合わせる」は選ばないでください — 写真のサイズがずれてしまいます。",
+    "sheetAria": "印刷シート: {{count}} 枚",
+    "renderingSheet": "印刷シートを作成しています",
+    "lowDpiNote": "切り抜いた範囲は {{size}} サイズで {{dpi}} DPI しかありません — 印刷するとぼやける可能性があります。",
+    "titleSingle": "証明写真を作成しました",
+    "sheetDetail": "{{paper}} に {{photo}} を {{count}} 枚",
+    "noExif": "印刷シートには元の写真のカメラ情報（撮影日、GPS位置情報）は含まれません。",
+    "actualSize": "印刷時は「実際のサイズ」（Actual size / 100%）を選び、「用紙に合わせる」は選ばないでください。",
+    "titleSheet": "証明写真の印刷シートを作成しました"
+  },
+  "camera": {
+    "insecure": "{{reason}} カメラアプリで撮影し、端末から画像を選んでください。",
+    "notReady": "カメラの準備ができていません。",
+    "shootFailed": "撮影できませんでした。もう一度お試しください。",
+    "cropFailed": "切り抜いた画像を作成できませんでした。切り抜き枠を外して、もう一度お試しください。",
+    "titleReview": "画像を切り抜き {{index}}/{{total}}",
+    "title": "写真を撮る",
+    "viewfinder": "カメラのファインダー",
+    "shotAlt": "撮影した画像 {{index}}",
+    "starting": "カメラを起動しています… ブラウザからカメラの使用許可を求められることがあります。",
+    "retry": "再試行",
+    "backToShoot": "撮影を続ける",
+    "clearCrop": "切り抜き枠を外す",
+    "deleteShot": "この画像を削除",
+    "strip": "撮影した画像",
+    "thumbAria": "画像 {{index}} を表示して切り抜き",
+    "thumbTitle": "この画像を表示、切り抜き、削除",
+    "shutter": "撮影",
+    "full": "{{count}} 枚に達しました",
+    "torch": "ライト",
+    "torchOff": "ライトをオフ",
+    "torchOn": "ライトをオン",
+    "reviewHint": "枠をドラッグして残したい部分を選びます。何もしなければ画像全体を残します。",
+    "none": "まだ撮影していません。",
+    "fullStatus": "1回の上限 {{count}} 枚に達しました。",
+    "shotCount": "{{count}} 枚撮影しました。サムネイルを押すと切り抜きや削除ができます。",
+    "discardClose": "{{count}} 枚を破棄して閉じる",
+    "close": "閉じる",
+    "useShots": "{{count}} 枚を使う",
+    "useNone": "画像を使う"
+  },
+  "collage": {
+    "invalid": "画像は 2〜9 枚、列は 1〜3、間隔は 0〜100 px で選んでください。",
+    "tooLarge": "{{name}}: 画像がファイルサイズの上限を超えています。",
+    "unsupported": "{{name}}: 対応しているのは JPG、PNG、WebP のみです。",
+    "pixelLimit": "{{name}}: 画像がピクセル数の上限を超えています。",
+    "failed": "結合画像を作成できませんでした。",
+    "done": "結合した PNG 画像をダウンロードしました。使う前にレイアウトを確認してください。",
+    "resultLabel": "結合画像",
+    "idle": "画像は選んだ順に並べられ、正方形のマスに合わせて切り抜かれ、PNG で書き出されます。元の画像のメタデータは保持されません。",
+    "busy": "結合しています…",
+    "run": "結合してダウンロード",
+    "panel": "結合する画像",
+    "choose": "2〜9 枚の画像を選択",
+    "columns": "列数",
+    "gap": "間隔（px）"
+  },
+  "removeMeta": {
+    "tooLarge": "画像がファイルサイズの上限を超えています。",
+    "unsupported": "対応しているのは JPG、PNG、WebP 画像のみです。",
+    "pixelLimit": "画像がピクセル数の上限を超えています。",
+    "done": "{{width}} × {{height}} の画像を作成してダウンロードしました。共有する前に画像を確認してください。",
+    "outputLabel": "出力ファイル",
+    "idle": "端末上で画像を描き直し、GPS位置情報、カメラ、撮影日を含む元の EXIF を削除します。JPG 画像は再エンコードされるため、画質が変わる場合があります。",
+    "run": "EXIF を削除してダウンロード",
+    "panel": "クリーンにする画像",
+    "choose": "JPG、PNG、WebP 画像を選択",
+    "note": "このツールは意図的に EXIF を削除します。その他の画像ツールは、プロジェクトの現在の方針に従い撮影現場の情報を保持します。"
+  },
+  "removeBg": {
+    "invalidFile": "20 MB 未満の JPG、PNG、WebP 画像を選んでください。",
+    "invalidSize": "画像のサイズが正しくありません。",
+    "processed": "{{width}} × {{height}} の画像を処理しました。多色の背景はブラシで修正してください。",
+    "openFailed": "画像を開けませんでした。",
+    "exportFailed": "画像を書き出せませんでした。",
+    "done": "PNG を作成しました。使う前に被写体の輪郭をよく確認してください。",
+    "noImage": "画像が選択されていません",
+    "idle": "画像の縁から背景色を自動で判別します。単色の背景に向いており、「残す / 消す」ブラシで誤った部分を修正できます。",
+    "download": "PNG 画像をダウンロード",
+    "panel": "単色の背景を削除",
+    "choose": "画像を選択",
+    "tolerance": "背景色の感度: {{value}}",
+    "background": "新しい背景",
+    "backgroundTransparent": "透明",
+    "backgroundWhite": "白",
+    "backgroundIdBlue": "証明写真の青",
+    "brush": "ブラシで修正",
+    "brushOff": "使わない",
+    "brushErase": "さらに消す",
+    "brushKeep": "残す",
+    "brushSize": "ブラシのサイズ: {{value}}",
+    "undoBrush": "ブラシを元に戻す",
+    "note": "画像は端末上で処理されます。細かい背景はブラシでの手直しが必要です。大きな画像は各辺最大 2200 px に縮小されます。"
+  }
+}

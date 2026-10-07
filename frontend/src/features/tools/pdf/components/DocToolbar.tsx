@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, type ReactNode } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { ConfirmAction, Icon } from '@/components/ui'
 import type { InsertPosition } from '../types/doc-tools.types'
 import type { LoadingProgress } from '../hooks/useDocWorkspace'
@@ -85,12 +86,13 @@ export function DocToolbar({
   onRedo,
   onReset,
 }: DocToolbarProps) {
+  const { t } = useTranslation('pdf')
   const root = useRef<HTMLDivElement>(null)
   const none = selectedCount === 0
   const notSingle = selectedCount !== 1
-  const needOne = 'Chọn đúng một trang làm mốc'
+  const needOne = t('toolbar.needOne')
   const cannotCombine = combinable < 2
-  const needImages = 'Chọn từ hai trang ảnh trở lên (ảnh chưa đánh dấu)'
+  const needImages = t('toolbar.needImages')
 
   // Thanh công cụ xuống 1–3 dòng tuỳ bề ngang; bảng xuất dính ngay dưới nó
   // phải biết chiều cao THẬT, đoán số cố định là bị che mất phần đầu.
@@ -106,60 +108,60 @@ export function DocToolbar({
   }, [])
 
   return (
-    <div ref={root} className="erp-doc-toolbar" role="toolbar" aria-label="Thao tác trang">
-      <ToolGroup label="Tệp">
-        <ToolButton icon="plus-lg" label="Thêm tệp" hint="Thêm tệp vào cuối tài liệu" disabled={!!loading} onClick={onAddFiles} />
-        <ToolButton icon="box-arrow-in-left" label="Chèn trước" hint={notSingle ? needOne : 'Chèn tệp trước trang đang chọn'} disabled={notSingle || !!loading} onClick={() => onInsert('before')} />
-        <ToolButton icon="box-arrow-in-right" label="Chèn sau" hint={notSingle ? needOne : 'Chèn tệp sau trang đang chọn'} disabled={notSingle || !!loading} onClick={() => onInsert('after')} />
-        <ToolButton icon="arrow-left-right" label="Thay trang" hint={notSingle ? needOne : 'Thay trang đang chọn bằng trang của tệp khác'} disabled={notSingle || !!loading} onClick={onReplace} />
+    <div ref={root} className="erp-doc-toolbar" role="toolbar" aria-label={t('toolbar.label')}>
+      <ToolGroup label={t('toolbar.files')}>
+        <ToolButton icon="plus-lg" label={t('toolbar.addFiles')} hint={t('toolbar.addFilesHint')} disabled={!!loading} onClick={onAddFiles} />
+        <ToolButton icon="box-arrow-in-left" label={t('toolbar.insertBefore')} hint={notSingle ? needOne : t('toolbar.insertBeforeHint')} disabled={notSingle || !!loading} onClick={() => onInsert('before')} />
+        <ToolButton icon="box-arrow-in-right" label={t('toolbar.insertAfter')} hint={notSingle ? needOne : t('toolbar.insertAfterHint')} disabled={notSingle || !!loading} onClick={() => onInsert('after')} />
+        <ToolButton icon="arrow-left-right" label={t('toolbar.replace')} hint={notSingle ? needOne : t('toolbar.replaceHint')} disabled={notSingle || !!loading} onClick={onReplace} />
       </ToolGroup>
 
-      <ToolGroup label="Trang đã chọn">
-        <ToolButton icon="arrow-counterclockwise" label="Xoay trái" disabled={none} onClick={() => onRotate(-90)} />
-        <ToolButton icon="arrow-clockwise" label="Xoay phải" disabled={none} onClick={() => onRotate(90)} />
-        <ToolButton icon="copy" label="Nhân bản" disabled={none} onClick={onDuplicate} />
-        <ToolButton icon="layout-split" label="Gộp 2 ảnh" hint={cannotCombine ? needImages : 'Đặt các ảnh đang chọn lên chung trang, 2 ảnh một trang'} disabled={cannotCombine} onClick={() => onCombine(2)} />
-        <ToolButton icon="grid" label="Gộp 4 ảnh" hint={cannotCombine ? needImages : 'Đặt các ảnh đang chọn lên chung trang, 4 ảnh một trang'} disabled={cannotCombine} onClick={() => onCombine(4)} />
+      <ToolGroup label={t('toolbar.selection')}>
+        <ToolButton icon="arrow-counterclockwise" label={t('toolbar.rotateLeft')} disabled={none} onClick={() => onRotate(-90)} />
+        <ToolButton icon="arrow-clockwise" label={t('toolbar.rotateRight')} disabled={none} onClick={() => onRotate(90)} />
+        <ToolButton icon="copy" label={t('toolbar.duplicate')} disabled={none} onClick={onDuplicate} />
+        <ToolButton icon="layout-split" label={t('toolbar.combine', { size: 2 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 2 })} disabled={cannotCombine} onClick={() => onCombine(2)} />
+        <ToolButton icon="grid" label={t('toolbar.combine', { size: 4 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 4 })} disabled={cannotCombine} onClick={() => onCombine(4)} />
         <ToolButton
           icon="magic"
-          label="Dọn scan"
-          hint={`Tìm trang trắng, trang nghiêng, viền tối — ${none ? 'cả tài liệu' : 'trong các trang đang chọn'}`}
+          label={t('toolbar.cleanScan')}
+          hint={none ? t('toolbar.cleanScanAll') : t('toolbar.cleanScanSelected')}
           disabled={!!loading}
           onClick={onCleanScan}
         />
-        <ToolButton icon="trash3" label="Xoá" danger disabled={none} onClick={onRemove} />
+        <ToolButton icon="trash3" label={t('toolbar.remove')} danger disabled={none} onClick={onRemove} />
       </ToolGroup>
 
-      <ToolGroup label="Lịch sử">
-        <ToolButton icon="arrow-90deg-left" label="Hoàn tác" hint="Hoàn tác (Ctrl+Z)" disabled={!canUndo} onClick={onUndo} />
-        <ToolButton icon="arrow-90deg-right" label="Làm lại" hint="Làm lại (Ctrl+Y)" disabled={!canRedo} onClick={onRedo} />
+      <ToolGroup label={t('toolbar.history')}>
+        <ToolButton icon="arrow-90deg-left" label={t('toolbar.undo')} hint={t('toolbar.undoHint')} disabled={!canUndo} onClick={onUndo} />
+        <ToolButton icon="arrow-90deg-right" label={t('toolbar.redo')} hint={t('toolbar.redoHint')} disabled={!canRedo} onClick={onRedo} />
       </ToolGroup>
 
       <div className="erp-doc-toolbar__status" aria-live="polite">
         {loading ? (
           <span>
             <Spinner size="sm" className="me-2" />
-            Đang đọc tệp {Math.min(loading.done + 1, loading.total)}/{loading.total}…
+            {t('toolbar.loading', { done: Math.min(loading.done + 1, loading.total), total: loading.total })}
           </span>
         ) : (
           <span className="erp-doc-toolbar__count">
-            Đã chọn <strong>{selectedCount}</strong>/{pageCount} trang
+            <Trans ns="pdf" i18nKey="toolbar.selected" values={{ selected: selectedCount, total: pageCount }} components={{ strong: <strong /> }} />
           </span>
         )}
         <button type="button" className="btn btn-link btn-sm" onClick={none ? onSelectAll : onClearSelection}>
-          {none ? 'Chọn tất cả' : 'Bỏ chọn'}
+          {none ? t('toolbar.selectAll') : t('toolbar.clearSelection')}
         </button>
         <ConfirmAction
-          title="Làm lại từ đầu?"
-          description="Mọi trang và tệp đang mở sẽ bị gỡ khỏi phiên này. Tệp gốc trên máy bạn không bị ảnh hưởng."
-          confirmLabel="Gỡ hết"
+          title={t('toolbar.resetTitle')}
+          description={t('toolbar.resetDescription')}
+          confirmLabel={t('toolbar.resetConfirm')}
           danger
           onConfirm={onReset}
         >
           {({ onClick }) => (
-            <button type="button" className="btn btn-link btn-sm erp-doc-toolbar__reset" title="Làm lại từ đầu" onClick={onClick}>
+            <button type="button" className="btn btn-link btn-sm erp-doc-toolbar__reset" title={t('toolbar.reset')} onClick={onClick}>
               <Icon name="x-circle" />
-              <span className="erp-doc-toolbar__reset-label">Làm lại từ đầu</span>
+              <span className="erp-doc-toolbar__reset-label">{t('toolbar.reset')}</span>
             </button>
           )}
         </ConfirmAction>

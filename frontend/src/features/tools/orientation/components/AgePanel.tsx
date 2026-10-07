@@ -1,12 +1,15 @@
 import { Button, Form } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { ToolPanel, ToolSegments } from '@/features/tools/hub'
+import { translateKey } from '@/i18n/runtime'
 import { CURRENT_RULE_PROFILE } from '../config/rule-profiles'
 import { MAX_OWNERS, type Owners } from '../hooks/useOwners'
 import type { Sex } from '../types/rule.types'
 import { formatDeg } from '../utils/azimuth'
 import type { BirthKind, OwnerDraft, OwnerReading } from '../utils/owner'
 import { goodDirections, readHouse } from '../utils/rule-engine'
+import { elementName, groupHouseName, groupName, starMeaning, starName, trigramName } from '../utils/terms'
 
 interface AgePanelProps {
   owners: Owners
@@ -17,36 +20,31 @@ interface AgePanelProps {
   warning?: string | null
 }
 
-const BIRTH_KINDS: { value: BirthKind; label: string }[] = [
-  { value: 'SOLAR_DATE', label: 'Ngày sinh dương lịch' },
-  { value: 'LUNAR_YEAR', label: 'Năm sinh âm lịch' },
-]
-
-/** "Đông tứ mệnh" → "Đông tứ": nhóm của người gọi là mệnh, của nhà gọi là trạch. */
-const groupStem = (name: string) => name.replace(/\s*mệnh$/, '')
+const BIRTH_KINDS: BirthKind[] = ['SOLAR_DATE', 'LUNAR_YEAR']
 
 /**
  * THEO TUỔI (spec v1.1 §13–14) — tách hẳn khỏi số đo, mặc định tắt. Luật là dữ liệu
  * trong `RULE_PROFILES`; ở đây chỉ hiển thị. Người thứ nhất quyết định vòng sao trên la bàn.
  */
 export function AgePanel({ owners, azimuth, targetLabel, warning }: AgePanelProps) {
+  const { t } = useTranslation('orientation')
   const profile = CURRENT_RULE_PROFILE
 
   return (
     <ToolPanel
-      title="Xem theo tuổi gia chủ"
+      title={t('age.title')}
       actions={
         <Form.Check
           type="switch"
           id="orient-age-toggle"
-          label={owners.open ? 'Đang bật' : 'Đang tắt'}
+          label={t(owners.open ? 'shared.on' : 'shared.off')}
           checked={owners.open}
           onChange={(event) => owners.setOpen(event.target.checked)}
         />
       }
     >
       {!owners.open ? (
-        <p className="erp-orient-muted">Không bắt buộc. Bật để hiện vòng sao hợp / kỵ theo tuổi trên la bàn và xem hướng nhà hợp hay kỵ theo {profile.name.toLowerCase()}.</p>
+        <p className="erp-orient-muted">{t('age.intro', { method: translateKey(profile.text.name).toLowerCase() })}</p>
       ) : (
         <>
           {warning ? (
@@ -73,17 +71,17 @@ export function AgePanel({ owners, azimuth, targetLabel, warning }: AgePanelProp
           {owners.drafts.length < MAX_OWNERS ? (
             <Button variant="outline-secondary" className="align-self-start" onClick={owners.add}>
               <Icon name="person-plus" className="me-2" />
-              So thêm một người
+              {t('age.addPerson')}
             </Button>
           ) : null}
 
           <div className="erp-orient-disclaimer" role="note">
             <Icon name="info-circle" />
             <div>
-              <p>{profile.disclaimer}</p>
-              <p>{profile.interpretation}</p>
+              <p>{translateKey(profile.text.disclaimer)}</p>
+              <p>{translateKey(profile.text.interpretation)}</p>
               <p className="erp-orient-muted">
-                Phương pháp: {profile.name} · bộ luật v{profile.version} · {profile.sourceReference}
+                {t('age.method', { name: translateKey(profile.text.name), version: profile.version, source: translateKey(profile.text.source) })}
               </p>
             </div>
           </div>
@@ -109,42 +107,43 @@ function OwnerCard({ draft, result, drivesDial, azimuth, targetLabel, removable,
   const reading = result?.ok ? result.reading : null
   const house = reading && azimuth !== null ? readHouse(CURRENT_RULE_PROFILE, reading, azimuth) : null
   const good = house?.facing.star.fortune === 'GOOD'
+  const { t } = useTranslation('orientation')
 
   return (
     <div className="erp-orient-person">
       <div className="erp-orient-person__fields">
         <Form.Group controlId={`orient-${draft.id}-label`} className="erp-flow-field">
-          <Form.Label className="erp-flow-field__label">Gọi là</Form.Label>
+          <Form.Label className="erp-flow-field__label">{t('age.name')}</Form.Label>
           <Form.Control value={draft.label} maxLength={20} onChange={(event) => onChange({ label: event.target.value })} />
         </Form.Group>
         <Form.Group controlId={`orient-${draft.id}-sex`} className="erp-flow-field">
-          <Form.Label className="erp-flow-field__label">Giới tính</Form.Label>
+          <Form.Label className="erp-flow-field__label">{t('age.sex')}</Form.Label>
           <Form.Select value={draft.sex} onChange={(event) => onChange({ sex: event.target.value as Sex })}>
-            <option value="MALE">Nam</option>
-            <option value="FEMALE">Nữ</option>
+            <option value="MALE">{t('age.sexes.MALE')}</option>
+            <option value="FEMALE">{t('age.sexes.FEMALE')}</option>
           </Form.Select>
         </Form.Group>
         {removable ? (
-          <button type="button" className="btn erp-orient-person__remove" aria-label={`Bỏ ${draft.label}`} onClick={onRemove}>
+          <button type="button" className="btn erp-orient-person__remove" aria-label={t('shared.remove', { name: draft.label })} onClick={onRemove}>
             <Icon name="x-lg" />
           </button>
         ) : null}
       </div>
 
-      <ToolSegments label="Nhập theo" value={draft.kind} options={BIRTH_KINDS} onChange={(kind) => onChange({ kind })} />
+      <ToolSegments label={t('age.inputBy')} value={draft.kind} options={BIRTH_KINDS.map((kind) => ({ value: kind, label: t(`age.birthKinds.${kind}`) }))} onChange={(kind) => onChange({ kind })} />
       {draft.kind === 'SOLAR_DATE' ? (
         <Form.Group controlId={`orient-${draft.id}-date`} className="erp-flow-field">
-          <Form.Label className="visually-hidden">Ngày sinh dương lịch</Form.Label>
+          <Form.Label className="visually-hidden">{t('age.birthKinds.SOLAR_DATE')}</Form.Label>
           <Form.Control type="date" min="1900-01-01" max="2100-12-31" value={draft.date} isInvalid={result?.ok === false && !birth} onChange={(event) => onChange({ date: event.target.value })} />
         </Form.Group>
       ) : (
         <Form.Group controlId={`orient-${draft.id}-year`} className="erp-flow-field">
-          <Form.Label className="visually-hidden">Năm sinh âm lịch</Form.Label>
-          <Form.Control inputMode="numeric" placeholder="Ví dụ 1986" maxLength={4} value={draft.year} isInvalid={result?.ok === false} onChange={(event) => onChange({ year: event.target.value })} />
+          <Form.Label className="visually-hidden">{t('age.birthKinds.LUNAR_YEAR')}</Form.Label>
+          <Form.Control inputMode="numeric" placeholder={t('age.yearPlaceholder')} maxLength={4} value={draft.year} isInvalid={result?.ok === false} onChange={(event) => onChange({ year: event.target.value })} />
         </Form.Group>
       )}
       <p className="erp-orient-muted erp-orient-person__lunar">
-        Năm tính theo Tết âm lịch{draft.kind === 'LUNAR_YEAR' ? ' — sinh trước Tết thì lấy năm trước đó.' : '.'}
+        {t(draft.kind === 'LUNAR_YEAR' ? 'age.yearNoteLunar' : 'age.yearNote')}
       </p>
 
       {result && !result.ok ? (
@@ -157,20 +156,20 @@ function OwnerCard({ draft, result, drivesDial, azimuth, targetLabel, removable,
       {birth ? (
         <dl className="erp-orient-facts">
           <div>
-            <dt>Tuổi</dt>
+            <dt>{t('age.facts.age')}</dt>
             <dd>
               {birth.canChi} ({birth.lunarYear})
             </dd>
           </div>
           <div>
-            <dt>Mệnh (nạp âm)</dt>
+            <dt>{t('age.facts.napAm')}</dt>
             <dd>{birth.napAm.name}</dd>
           </div>
           {reading ? (
             <div>
-              <dt>Cung mệnh</dt>
+              <dt>{t('age.facts.trigram')}</dt>
               <dd>
-                {reading.trigram.name} ({reading.trigram.element}) · {reading.group.name}
+                {trigramName(reading.trigram.id)} ({elementName(reading.trigram.element)}) · {groupName(reading.group.id)}
               </dd>
             </div>
           ) : null}
@@ -178,7 +177,7 @@ function OwnerCard({ draft, result, drivesDial, azimuth, targetLabel, removable,
       ) : null}
       {birth?.beforeNewYear ? (
         <p className="erp-orient-muted">
-          Sinh trước Tết nên tính tuổi năm {birth.lunarYear} ({birth.canChi}).
+          {t('age.beforeTet', { year: birth.lunarYear, canChi: birth.canChi })}
         </p>
       ) : null}
 
@@ -189,26 +188,36 @@ function OwnerCard({ draft, result, drivesDial, azimuth, targetLabel, removable,
               <p className={`erp-orient-note erp-orient-note--${good ? 'success' : 'warning'}`}>
                 <Icon name={good ? 'check-circle' : 'exclamation-circle'} />
                 <span>
-                  {targetLabel}: {house.facing.segment} ({formatDeg(azimuth ?? 0)}) — <strong>{house.facing.star.name}</strong>, {good ? 'hợp' : 'kỵ'}. {house.facing.star.meaning}.
+                  <Trans
+                    ns="orientation"
+                    i18nKey={good ? 'age.facingGood' : 'age.facingBad'}
+                    values={{ target: targetLabel, segment: house.facing.segment, degree: formatDeg(azimuth ?? 0), star: starName(house.facing.star.id), meaning: starMeaning(house.facing.star.id) }}
+                    components={{ strong: <strong /> }}
+                  />
                 </span>
               </p>
               {house.house ? (
                 <p className="erp-orient-muted">
-                  Xét theo toạ: nhà toạ {house.house.segment} là {house.house.trigram.name} trạch ({groupStem(house.house.group.name)} trạch),{' '}
-                  {house.house.matchesPerson ? 'cùng nhóm' : 'khác nhóm'} với {reading.group.name}.
+                  {t(house.house.matchesPerson ? 'age.houseSame' : 'age.houseOther', {
+                    segment: house.house.segment,
+                    trigram: trigramName(house.house.trigram.id),
+                    houseGroup: groupHouseName(house.house.group.id),
+                    personGroup: groupName(reading.group.id),
+                  })}
                 </p>
               ) : null}
             </>
           ) : (
-            <p className="erp-orient-muted">Khoá số đo {targetLabel.toLowerCase()} để xem hợp hay kỵ.</p>
+            <p className="erp-orient-muted">{t('age.lockFirst', { target: targetLabel.toLowerCase() })}</p>
           )}
           <p className="erp-orient-reading__good">
-            Bốn hướng hợp:{' '}
-            {goodDirections(reading)
-              .map((segment) => `${segment.name} (${segment.star.name})`)
-              .join(' · ')}
+            {t('age.goodDirections', {
+              list: goodDirections(reading)
+                .map((segment) => `${segment.name} (${starName(segment.star.id)})`)
+                .join(' · '),
+            })}
           </p>
-          {drivesDial ? <p className="erp-orient-muted">Vòng sao trên la bàn tính theo {draft.label || 'người này'}.</p> : null}
+          {drivesDial ? <p className="erp-orient-muted">{t('age.drivesDial', { name: draft.label || t('age.thisPerson') })}</p> : null}
         </div>
       ) : null}
     </div>

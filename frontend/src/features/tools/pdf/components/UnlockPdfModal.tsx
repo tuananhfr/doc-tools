@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import type { TFunction } from 'i18next'
 import { Button, Form, InputGroup, Modal, Spinner } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { LockedFile } from '../hooks/useDocWorkspace'
 import type { UnlockError } from '../hooks/useUnlockQueue'
@@ -13,15 +15,16 @@ interface UnlockPdfModalProps {
   onSkip: () => void
 }
 
-const ERROR_TEXT: Record<UnlockError, (owner: boolean) => string> = {
-  'wrong-password': (owner) => (owner ? 'Sai mật khẩu chủ. Thử lại.' : 'Sai mật khẩu. Thử lại.'),
-  restricted: () => 'Đây là mật khẩu mở tệp. Tệp cấm sửa nên cần thêm mật khẩu chủ (owner) để dùng công cụ.',
-  failed: () => 'Không mở khoá được tệp này.',
-  unavailable: () => 'Không tải được bộ mở khoá PDF. Kiểm tra kết nối mạng rồi thử lại.',
+const ERROR_TEXT: Record<UnlockError, (owner: boolean, t: TFunction<'pdf'>) => string> = {
+  'wrong-password': (owner, t) => (owner ? t('unlock.wrongOwner') : t('unlock.wrong')),
+  restricted: (_owner, t) => t('unlock.restricted'),
+  failed: (_owner, t) => t('unlock.failed'),
+  unavailable: (_owner, t) => t('unlock.unavailable'),
 }
 
 /** Hỏi mật khẩu cho tệp PDF có khoá — giải mã ngay trên máy, mật khẩu không gửi đi đâu. */
 export function UnlockPdfModal({ file, remaining, busy, onSubmit, onSkip }: UnlockPdfModalProps) {
+  const { t } = useTranslation('pdf')
   const [password, setPassword] = useState('')
   const [visible, setVisible] = useState(false)
   const [error, setError] = useState<UnlockError | null>(null)
@@ -44,18 +47,15 @@ export function UnlockPdfModal({ file, remaining, busy, onSubmit, onSkip }: Unlo
         <Modal.Header closeButton={!busy}>
           <Modal.Title as="h2" className="fs-5">
             <Icon name="lock" className="me-2" />
-            {owner ? 'Tệp bị khoá quyền sửa' : 'Tệp có mật khẩu'}
+            {owner ? t('unlock.ownerTitle') : t('unlock.title')}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p className="mb-3">
-            <strong>{file.name}</strong>{' '}
-            {owner
-              ? 'mở xem được nhưng người tạo đã cấm sửa, ghép trang. Nhập mật khẩu chủ (owner) để dùng công cụ — không có mật khẩu thì không gỡ được hạn chế.'
-              : 'cần mật khẩu để mở.'}
+            <Trans ns="pdf" i18nKey={owner ? 'unlock.ownerBody' : 'unlock.body'} values={{ name: file.name }} components={{ strong: <strong /> }} />
           </p>
           <Form.Group controlId="doc-unlock-password">
-            <Form.Label>{owner ? 'Mật khẩu chủ' : 'Mật khẩu'}</Form.Label>
+            <Form.Label>{owner ? t('unlock.ownerPassword') : t('unlock.password')}</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
                 type={visible ? 'text' : 'password'}
@@ -66,24 +66,24 @@ export function UnlockPdfModal({ file, remaining, busy, onSubmit, onSkip }: Unlo
                 autoFocus
                 onChange={(event) => setPassword(event.target.value)}
               />
-              <Button variant="outline-secondary" onClick={() => setVisible((value) => !value)} aria-label={visible ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}>
+              <Button variant="outline-secondary" onClick={() => setVisible((value) => !value)} aria-label={visible ? t('unlock.hide') : t('unlock.show')}>
                 <Icon name={visible ? 'eye-slash' : 'eye'} />
               </Button>
-              <Form.Control.Feedback type="invalid">{error ? ERROR_TEXT[error](owner) : null}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">{error ? ERROR_TEXT[error](owner, t) : null}</Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
           <p className="erp-doc-export__note mt-2 mb-0">
-            Giải mã ngay trên máy bạn, mật khẩu không gửi đi. Tệp tải về sau đó sẽ không còn mật khẩu.
-            {remaining > 1 ? ` Còn ${remaining - 1} tệp nữa cần mật khẩu.` : ''}
+            {t('unlock.note')}
+            {remaining > 1 ? t('unlock.remaining', { count: remaining - 1 }) : ''}
           </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" disabled={busy} onClick={onSkip}>
-            Bỏ qua tệp này
+            {t('unlock.skip')}
           </Button>
           <Button type="submit" disabled={busy || password === ''}>
             {busy ? <Spinner as="span" size="sm" className="me-2" aria-hidden /> : <Icon name="unlock" className="me-2" />}
-            Mở khoá
+            {t('unlock.submit')}
           </Button>
         </Modal.Footer>
       </Form>

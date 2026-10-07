@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { HOLIDAY_RANGE_MAX_DAYS, holidaysInRange } from '@/features/tools/vietnam'
 import { formatDay, fromDay, toDay } from '../utils/date-calc'
 
@@ -10,16 +11,18 @@ const SHOWN = 8
  * công bố từng năm và mỗi cơ quan áp khác nhau — đó là dữ liệu pháp lý, không đoán.
  */
 export function HolidaysInRange({ from, to }: Props) {
+  // `vietnam` chứa tên ngày lễ mà holidaysInRange đọc qua translateKey.
+  const { t } = useTranslation(['utility', 'vietnam'])
   const [first, last] = from <= to ? [from, to] : [to, from]
-  if (last - first > HOLIDAY_RANGE_MAX_DAYS) return <p className="erp-tool-result__note">Khoảng dài hơn {HOLIDAY_RANGE_MAX_DAYS} ngày nên không liệt kê ngày lễ.</p>
+  if (last - first > HOLIDAY_RANGE_MAX_DAYS) return <p className="erp-tool-result__note">{t('holidays.tooLong', { count: HOLIDAY_RANGE_MAX_DAYS })}</p>
   const holidays = holidaysInRange(fromDay(first), fromDay(last)).filter((holiday) => holiday.layer === 'major')
-  if (!holidays.length) return <p className="erp-tool-result__note">Không có ngày lễ lớn nào trong khoảng này.</p>
+  if (!holidays.length) return <p className="erp-tool-result__note">{t('holidays.none')}</p>
   return <div className="erp-date-holidays">
-    <p className="erp-date-holidays__title">Có {holidays.length} ngày lễ trong khoảng</p>
+    <p className="erp-date-holidays__title">{t('holidays.count', { count: holidays.length })}</p>
     <ul>
       {holidays.slice(0, SHOWN).map((holiday) => <li key={holiday.id}><span>{holiday.name}</span><small>{formatDay(toDay(holiday.date) ?? first)}</small></li>)}
-      {holidays.length > SHOWN ? <li className="erp-date-holidays__more">và {holidays.length - SHOWN} ngày khác</li> : null}
+      {holidays.length > SHOWN ? <li className="erp-date-holidays__more">{t('holidays.more', { count: holidays.length - SHOWN })}</li> : null}
     </ul>
-    <p className="erp-date-holidays__hint">Công cụ không tự trừ ngày nghỉ. Nếu cơ quan nghỉ những ngày này, hãy tự cộng thêm vào thời hạn.</p>
+    <p className="erp-date-holidays__hint">{t('holidays.hint')}</p>
   </div>
 }

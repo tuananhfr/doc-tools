@@ -31,9 +31,11 @@ export interface QrMatrix {
   dark: (column: number, row: number) => boolean
 }
 
+/** Khoá màu — tên hiển thị nằm ở `qr:colors.names.<id>`. */
+export type QrColorId = 'ink' | 'steel' | 'blue' | 'crimson' | 'teal' | 'green' | 'white' | 'mist' | 'blue-soft' | 'teal-soft' | 'amber-soft' | 'rose-soft'
+
 export interface QrColor {
-  id: string
-  label: string
+  id: QrColorId
   value: string
 }
 

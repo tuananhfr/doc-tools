@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { translate } from '@/i18n/runtime'
 import type { ErpErrorResponse } from './types'
 
 export const API_ERROR_KIND = {
@@ -75,16 +76,8 @@ export class ApiError extends Error {
   }
 }
 
-const MESSAGES: Record<ApiErrorKind, string> = {
-  network: 'Không kết nối được máy chủ. Vui lòng kiểm tra đường truyền.',
-  timeout: 'Máy chủ phản hồi quá lâu. Vui lòng thử lại.',
-  unauthorized: 'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.',
-  forbidden: 'Bạn không có quyền thực hiện thao tác này.',
-  notFound: 'Không tìm thấy dữ liệu.',
-  validation: 'Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại.',
-  rateLimited: 'Bạn thao tác quá nhanh. Vui lòng thử lại sau.',
-  server: 'Máy chủ gặp sự cố. Vui lòng thử lại sau.',
-  unknown: 'Đã có lỗi xảy ra.',
+function messageOf(kind: ApiErrorKind): string {
+  return translate(`common:apiErrors.${kind}`)
 }
 
 function kindFromStatus(status: number): ApiErrorKind {
@@ -136,7 +129,7 @@ export function toApiError(error: unknown): ApiError {
 
     if (error.code === 'ECONNABORTED') {
       return new ApiError({
-        message: MESSAGES.timeout,
+        message: messageOf(API_ERROR_KIND.timeout),
         kind: API_ERROR_KIND.timeout,
         raw: error,
         correlationId,
@@ -145,7 +138,7 @@ export function toApiError(error: unknown): ApiError {
 
     if (!error.response) {
       return new ApiError({
-        message: MESSAGES.network,
+        message: messageOf(API_ERROR_KIND.network),
         kind: API_ERROR_KIND.network,
         raw: error,
         correlationId,
@@ -162,7 +155,7 @@ export function toApiError(error: unknown): ApiError {
       : null
 
     return new ApiError({
-      message: (typeof body?.message === 'string' && body.message) || MESSAGES[kind],
+      message: (typeof body?.message === 'string' && body.message) || messageOf(kind),
       kind,
       status,
       fieldErrors: toFieldErrors(body?.errors),
@@ -174,7 +167,7 @@ export function toApiError(error: unknown): ApiError {
   }
 
   return new ApiError({
-    message: error instanceof Error ? error.message : MESSAGES.unknown,
+    message: error instanceof Error ? error.message : messageOf(API_ERROR_KIND.unknown),
     kind: API_ERROR_KIND.unknown,
     raw: error,
   })

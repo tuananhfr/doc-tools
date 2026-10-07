@@ -1,0 +1,293 @@
+{
+  "groups": {
+    "tai-lieu": "Dokumen & PDF",
+    "hinh-anh-qr": "Kod QR & kod bar",
+    "xay-dung": "Pembinaan",
+    "gia-dinh": "Keluarga"
+  },
+  "items": {
+    "nen-pdf": {
+      "title": "Mampatkan PDF supaya ringan untuk dihantar melalui e-mel",
+      "summary": "Kecilkan saiz fail imbasan dan fail foto dari telefon sambil kekal jelas dibaca.",
+      "intro": "Mampatkan PDF mengecilkan saiz dengan memampatkan semula foto dan imej imbasan di dalam fail. Fail diproses terus pada peranti anda, tidak dimuat naik ke mana-mana.",
+      "steps": {
+        "pick": {
+          "title": "Pilih fail PDF",
+          "detail": "Buka Mampatkan PDF, tekan “Pilih fail” atau seret dan lepas fail ke dalam kotak. Anda boleh memilih beberapa fail sekali gus, setiap fail maksimum 100 MB."
+        },
+        "level": {
+          "title": "Pilih tahap mampatan",
+          "detail": "“Sederhana” mengekalkan imej cukup tajam untuk dicetak pada A4. “Kuat” menghasilkan fail paling ringan, sesuai untuk e-mel atau tontonan skrin."
+        },
+        "compress": {
+          "title": "Tekan “Mampatkan PDF”",
+          "detail": "Jika memilih beberapa fail, butang menunjukkan bilangan fail, contohnya “Mampatkan 3 fail”. Bar kemajuan akan muncul; tekan “Batal” jika mahu berhenti."
+        },
+        "download": {
+          "title": "Muat turun hasil",
+          "detail": "Tekan “Muat turun”. Satu fail akan dinamakan “<nama fail> - đã nén.pdf” (“đã nén” bermaksud “dimampatkan”); beberapa fail dibungkus dalam satu fail .zip. Anda boleh “Pratonton” atau “Teruskan menyunting” sebelum memuat turun."
+        }
+      },
+      "tips": {
+        "scans": "Fail imbasan dan fail foto dari telefon paling banyak dapat dimampatkan.",
+        "email": "Untuk e-mel pilih “Kuat”, untuk cetakan pilih “Sederhana”.",
+        "password": "Fail yang mempunyai kata laluan: alat akan meminta kata laluan untuk membukanya sebelum dimampatkan."
+      },
+      "notes": {
+        "textOnly": "Fail yang penuh teks, seperti fail yang dieksport dari Word, biasanya tidak dapat dikecilkan. Dalam keadaan itu skrin memaparkan “Tidak dapat dimampatkan lagi” dan sebaiknya anda mengekalkan fail asal.",
+        "png": "Imej PNG dan imej hitam putih dikekalkan supaya teks tidak kabur.",
+        "limits": "Setiap pusingan menerima maksimum 100 fail, 500 halaman dan jumlah 300 MB."
+      }
+    },
+    "scan-anh-sang-pdf": {
+      "title": "Imbas dokumen dengan telefon menjadi PDF",
+      "summary": "Ambil atau pilih foto, pangkas bingkai, gabungkan menjadi satu fail PDF berbilang halaman.",
+      "intro": "Tidak perlu pengimbas: ambil foto dokumen dengan kamera telefon, pangkas supaya kemas, kemudian gabungkan menjadi satu fail PDF. Foto hanya berada pada peranti anda.",
+      "steps": {
+        "pick": {
+          "title": "Pilih atau ambil foto",
+          "detail": "Buka Imbas imej → PDF. Tekan “Pilih fail” untuk mengambil imej sedia ada (JPG, PNG), atau “Ambil foto” untuk mengambil gambar dengan kamera belakang."
+        },
+        "capture": {
+          "title": "Ambil foto dan pangkas bingkai",
+          "detail": "Setiap kali boleh mengambil maksimum 50 foto. Sentuh imej kecil untuk memangkas bingkai atau memadamnya; di tempat gelap tekan “Hidupkan lampu suluh”. Setelah selesai, tekan butang “Gunakan” bersama bilangan foto."
+        },
+        "order": {
+          "title": "Susun semula urutan",
+          "detail": "Setiap imej ialah satu halaman. Betulkan urutan halaman sebelum mencipta fail."
+        },
+        "paper": {
+          "title": "Pilih saiz kertas dan jidar",
+          "detail": "Di bahagian “Halaman imej”, pilih “Saiz kertas” (A4, A3, Letter atau “Muat imej”) dan “Jidar” (tiada jidar, 10 mm atau 20 mm)."
+        },
+        "create": {
+          "title": "Cipta dan muat turun PDF",
+          "detail": "Tekan “Cipta PDF” kemudian “Muat turun”. Foto telefon yang terputar akan diluruskan secara automatik."
+        }
+      },
+      "tips": {
+        "shoot": "Ambil foto lurus dari atas, letakkan kertas di atas latar gelap dengan cahaya yang mencukupi.",
+        "fit": "Pilih “Muat imej” untuk mengekalkan nisbah imej asal tanpa menambah bingkai putih.",
+        "next": "Mahu fail lebih ringan, jalankan Mampatkan PDF seterusnya. Mahu teks boleh dicari, jalankan OCR teks seterusnya."
+      },
+      "notes": {
+        "https": "Kamera hanya berfungsi apabila halaman dibuka melalui HTTPS. Jika pelayar menyekat kamera, tekan ikon mangga pada bar alamat untuk membenarkannya, kemudian cuba lagi.",
+        "formats": "Buat masa ini hanya imej JPG dan PNG diterima."
+      }
+    },
+    "tach-pdf": {
+      "title": "Pisah PDF atau ambil beberapa halaman sahaja",
+      "summary": "Pecahkan satu fail PDF kepada beberapa fail mengikut julat halaman atau bilangan halaman.",
+      "intro": "Pisah PDF membantu mengambil lampiran, beberapa halaman yang perlu dihantar, atau membahagikan fail panjang kepada beberapa bahagian yang sama rata.",
+      "steps": {
+        "pick": {
+          "title": "Pilih fail PDF",
+          "detail": "Buka Pisah PDF dan pilih satu fail PDF."
+        },
+        "mode": {
+          "title": "Pilih cara memisahkan",
+          "detail": "“Mengikut julat halaman”: masukkan contohnya 1-3, 5, 8-10; setiap kumpulan yang dipisahkan dengan koma menjadi satu fail. “Setiap N halaman satu fail”: masukkan bilangan halaman bagi setiap fail."
+        },
+        "split": {
+          "title": "Tekan untuk memisahkan",
+          "detail": "Butang berubah mengikut pilihan: “Ekstrak halaman ke fail baharu” jika hanya ada satu kumpulan, atau “Pisahkan kepada” bersama bilangan fail jika ada beberapa kumpulan."
+        },
+        "download": {
+          "title": "Muat turun",
+          "detail": "Satu kumpulan menghasilkan satu fail PDF. Beberapa kumpulan dibungkus dalam satu fail .zip, dan nama setiap bahagian menyatakan nombor halamannya dengan jelas."
+        }
+      },
+      "tips": {
+        "single": "Hanya perlukan halaman 5: masukkan “5”.",
+        "appendix": "Memisahkan kontrak mengikut lampiran: masukkan julat halaman setiap lampiran, dipisahkan dengan koma.",
+        "edit": "Perlu memadam, memutar atau menyusun semula halaman: tekan “Teruskan menyunting” untuk membuka penyunting PDF."
+      },
+      "notes": {
+        "onePage": "Fail yang hanya ada satu halaman tidak mempunyai apa-apa untuk dipisahkan.",
+        "outOfRange": "Nombor halaman yang berada di luar fail akan dimaklumkan serta-merta di bawah kotak input."
+      }
+    },
+    "ocr-van-ban": {
+      "title": "Kenal pasti teks bahasa Vietnam daripada imbasan (OCR)",
+      "summary": "Jadikan imbasan PDF yang boleh dicari, atau ambil teksnya untuk disalin.",
+      "intro": "OCR membaca teks dalam imej dan imbasan. Pengecam bahasa Vietnam berjalan terus pada peranti anda; fail tidak dihantar ke mana-mana.",
+      "steps": {
+        "pick": {
+          "title": "Pilih imbasan atau imej",
+          "detail": "Buka OCR teks, pilih fail PDF imbasan atau imej JPG, PNG. Anda boleh memilih beberapa fail dan menukar urutannya."
+        },
+        "output": {
+          "title": "Pilih jenis hasil",
+          "detail": "“PDF boleh dicari” mengekalkan rupa halaman dan menambah lapisan teks untuk dicari (Ctrl+F) dan disalin. “Teks (.txt)” hanya mengambil bahagian teks."
+        },
+        "run": {
+          "title": "Tekan “Kenal pasti teks”",
+          "detail": "Kali pertama, alat ini memuat turun pengecam bahasa Vietnam (kira-kira 1.4 MB) daripada laman ini sendiri. Selepas itu setiap halaman mengambil beberapa saat."
+        },
+        "download": {
+          "title": "Muat turun atau salin",
+          "detail": "Fail PDF yang dimuat turun dinamakan “<nama fail> - OCR.pdf”. Versi teks dipaparkan dalam kotak “Kandungan teks”; tekan “Salin” untuk menampalnya di tempat lain."
+        }
+      },
+      "tips": {
+        "quality": "Foto yang lurus, tajam dan bertulisan cukup besar memberi hasil terbaik.",
+        "existing": "Halaman yang sudah mempunyai lapisan teks dilangkau, tidak dibaca semula.",
+        "image": "Hanya perlu mengambil teks daripada satu imej: gunakan Imej → Teks, lebih pantas."
+      },
+      "notes": {
+        "language": "Buat masa ini hanya bahasa Vietnam dikenal pasti.",
+        "accuracy": "OCR mungkin tersilap baca, terutamanya imej kabur atau tulisan tangan. Semak semula sebelum digunakan.",
+        "network": "Kali pertama memerlukan internet untuk memuat turun pengecam."
+      }
+    },
+    "tao-va-doc-ma-qr": {
+      "title": "Cipta kod QR, kod bar dan imbas kod",
+      "summary": "Cipta QR Wi-Fi, kad nama, kod bar untuk cetakan pukal, dan baca kod daripada imej atau kamera.",
+      "intro": "Tiga alat berkongsi satu set tab: “Cipta kod QR”, “Cipta kod bar” dan “Imbas kod”. Semuanya berjalan pada peranti anda.",
+      "steps": {
+        "qr": {
+          "title": "Cipta kod QR",
+          "detail": "Buka Penjana kod QR, pilih “Jenis kod”: pautan, teks, Wi-Fi, nombor telefon, e-mel atau kad nama. Kod dilukis semula serta-merta semasa anda menaip."
+        },
+        "colors": {
+          "title": "Pilih warna dan muat turun",
+          "detail": "Pilih warna di “Warna kod QR”, kemudian tekan “Muat turun kod QR” untuk mendapatkan imej PNG, atau “Muat turun SVG untuk dicetak” untuk cetakan yang tajam."
+        },
+        "barcode": {
+          "title": "Cipta kod bar",
+          "detail": "Buka Penjana kod bar, pilih jenis (Code 128, Code 39, EAN-13, EAN-8, ITF-14) dan masukkan “Nilai”. Perlukan banyak kod: pilih “Pukal” kemudian muatkan fail CSV atau Excel, maksimum 500 baris."
+        },
+        "scan": {
+          "title": "Imbas kod",
+          "detail": "Buka Pembaca kod QR / kod bar, pilih imej yang mengandungi kod, tampal imej dengan Ctrl+V, atau tekan “Imbas dengan kamera”. Kod dibaca secara automatik, tidak perlu menekan apa-apa."
+        },
+        "use": {
+          "title": "Gunakan hasil",
+          "detail": "Tekan “Salin”, buka pautan, atau “Salin kata laluan” untuk kod Wi-Fi."
+        }
+      },
+      "tips": {
+        "wifi": "QR Wi-Fi yang ditampal di kaunter: pelanggan imbas terus masuk ke rangkaian, tidak perlu membacakan kata laluan.",
+        "print": "Mencetak kod bar bersaiz kecil: cetak satu label percubaan dahulu sebelum mencetak seluruh kelompok.",
+        "ean": "Semasa mengimbas kod EAN, alat ini turut menyemak digit terakhir untuk mengesan kod yang rosak cetakannya."
+      },
+      "notes": {
+        "gs1": "Nombor EAN dan ITF-14 untuk barangan runcit mesti dikeluarkan oleh GS1 Việt Nam.",
+        "links": "Semak pautan dengan teliti sebelum membukanya: sesiapa sahaja boleh mencetak kod QR lalu menampalnya di atas kod yang sebenar.",
+        "wifiPassword": "Kata laluan Wi-Fi WPA memerlukan sekurang-kurangnya 8 aksara."
+      }
+    },
+    "xem-huong-nha": {
+      "title": "Lihat arah rumah dengan kompas telefon",
+      "summary": "Ukur arah rumah mengikut 24 gunung, lihat arah yang serasi dengan umur pemilik rumah dan simpan sebagai imej atau PDF.",
+      "intro": "Arah rumah & kompas dibuka sebagai kompas langsung: muka dail berputar mengikut telefon, terus membaca arah Hadap dan Duduk mengikut 24 gunung. Kompas boleh diletakkan pada foto rumah atau lukisan. Data hanya berada dalam tab yang sedang dibuka.",
+      "steps": {
+        "position": {
+          "title": "Berdiri di tempat yang betul",
+          "detail": "Berdiri di pintu utama, membelakangi rumah, pegang telefon mendatar dengan hujung telefon menghala terus ke luar. Jauhkan diri daripada tiang besi, kereta dan pintu gulung. Jika berdiri di luar memandang ke arah rumah, tandakan kotak “Saya berdiri di luar, memandang ke arah rumah”."
+        },
+        "measure": {
+          "title": "Ukur dan kunci arah",
+          "detail": "Tekan “Mula mengukur”. Muka kompas berputar mengikut telefon; garis merah menunjuk HADAP, hujung yang satu lagi ialah DUDUK. Tunggu label “Stabil” kemudian tekan “Kunci arah”. Jika tiada penderia, tekan “Masukkan bearing”."
+        },
+        "read": {
+          "title": "Baca hasil",
+          "detail": "Di bawah kompas dipaparkan nama gunung bagi Hadap dan Duduk, bacaan darjah dan sisihan daripada pusat gunung. Jika arah terlalu hampir dengan sempadan dua gunung, amaran garis kosong akan muncul; sebaiknya ukur semula."
+        },
+        "age": {
+          "title": "Bacaan mengikut umur (tidak wajib)",
+          "detail": "Hidupkan “Bacaan mengikut umur pemilik rumah”, masukkan tarikh lahir kalendar suria atau tahun lahir kalendar qamari serta jantina. Kompas memaparkan gelang bintang serasi / pantang bagi orang itu, bersama kesimpulan untuk arah yang baru dikunci."
+        },
+        "save": {
+          "title": "Simpan hasil",
+          "detail": "Di “Simpan hasil”, pilih imej atau PDF kemudian tekan simpan. Untuk meletakkan kompas di atas foto rumah atau lukisan, tekan “Letakkan pada foto rumah / lukisan”."
+        }
+      },
+      "tips": {
+        "repeat": "Ukur dua, tiga kali di beberapa titik berbeza kemudian bandingkan.",
+        "expert": "Mod “Profesional” boleh mengukur beberapa lokasi (pintu utama, dapur, altar…), melihat cahaya matahari dan kedudukan matahari, serta data teknikal.",
+        "iphone": "iPhone meminta kebenaran membaca penderia selepas anda menekan “Mula mengukur”: pilih Benarkan."
+      },
+      "notes": {
+        "sensor": "Komputer dan banyak pelayar tidak mempunyai penderia kompas; dalam keadaan itu tekan “Masukkan bearing”.",
+        "https": "Kompas hanya berfungsi apabila halaman dibuka melalui HTTPS.",
+        "reference": "Bahagian mengikut umur mengira tahun berdasarkan Tết (Tahun Baharu qamari) dan hanya rujukan mengikut feng shui rakyat (Bát trạch), bukan kesimpulan teknikal.",
+        "save": "Hasil tidak disimpan secara automatik: jika tab ditutup sebelum menekan simpan, hasil akan hilang."
+      }
+    },
+    "khai-toan-xay-nha": {
+      "title": "Anggaran kasar kos membina rumah teres",
+      "summary": "Anggarkan kos daripada keluasan dan harga seunit yang disebut oleh kontraktor, dikemas kini serta-merta semasa menaip.",
+      "intro": "Anggaran ini menukar keluasan setiap bahagian (asas, lantai, bumbung tingkat atas, teres bumbung, bumbung) mengikut faktor, kemudian mendarabkannya dengan harga seunit yang anda masukkan. Hasilnya hanya untuk rujukan.",
+      "steps": {
+        "area": {
+          "title": "Masukkan keluasan",
+          "detail": "Isi “Keluasan tingkat bawah (m²)”, “Bilangan tingkat atas (tidak termasuk tingkat bawah)”, keluasan bilik bumbung, teres bumbung tanpa atap serta halaman hadapan dan belakang."
+        },
+        "price": {
+          "title": "Masukkan harga seunit",
+          "detail": "Isi “Harga seunit struktur” dan “Harga seunit kemasan atau pakej penuh” mengikut sebut harga yang anda ada. Jika harga seunit kedua sudah termasuk struktur, tandakan kotak yang berkaitan."
+        },
+        "ratios": {
+          "title": "Laraskan faktor jika perlu",
+          "detail": "Buka “Laraskan faktor mengikut sebut harga kontraktor” untuk menukar nisbah pengiraan keluasan. Secara lalai asas 50%, setiap tingkat 100%, teres bumbung dan bumbung 50%."
+        },
+        "result": {
+          "title": "Baca hasil",
+          "detail": "Kotak “Anggaran kasar” dikemas kini serta-merta semasa anda menaip: keluasan setara, kos setiap item dan jumlah keseluruhan."
+        }
+      },
+      "tips": {
+        "quotes": "Minta sebut harga daripada dua, tiga kontraktor untuk mendapatkan harga seunit yang hampir dengan realiti.",
+        "deposit": "Jika ada kerja cerucuk, masukkan dalam “Kos cerucuk” untuk melihat jumlah yang lengkap.",
+        "noSave": "Alat ini tidak menyimpan data: ambil tangkapan skrin jika mahu menyimpannya."
+      },
+      "notes": {
+        "ratios": "Faktor ialah konvensyen rujukan, bukan norma rasmi kerajaan.",
+        "excluded": "Belum termasuk reka bentuk, permit, perabot lepas atau kos tambahan akibat keadaan tanah.",
+        "prices": "Alat ini tidak mempunyai harga seunit sedia ada; semua angka dimasukkan oleh anda."
+      }
+    },
+    "lich-gia-dinh": {
+      "title": "Menggunakan Kalendar Keluarga: tambah acara, peringatan, sandaran",
+      "summary": "Catat jadual untuk seisi keluarga, simpan nombor kecemasan dan buat sandaran, tanpa perlu akaun.",
+      "intro": "Kalendar Keluarga disimpan terus pada peranti ini, tanpa perlu akaun. Belum ada perkongsian atau penyegerakan melalui internet, jadi buatlah sandaran secara berkala.",
+      "steps": {
+        "members": {
+          "title": "Tambah ahli",
+          "detail": "Di tab “Ahli”, masukkan “Nama panggilan”, pilih profil Ibu bapa, Datuk nenek atau Anak, kemudian tekan “Tambah ahli”. Profil Datuk nenek mempunyai tulisan besar dan lebih sedikit item."
+        },
+        "add": {
+          "title": "Tambah acara",
+          "detail": "Di tab “Tambah”, masukkan “Nama acara”, tarikh, masa, pilih jenis acara, corak ulangan dan ahli, kemudian tekan “Simpan acara pada peranti”."
+        },
+        "remind": {
+          "title": "Hidupkan peringatan",
+          "detail": "Masukkan bilangan minit untuk peringatan awal (acara perlu mempunyai masa tertentu), kemudian tekan “Hidupkan pemberitahuan semasa halaman dibuka” dan benarkan pemberitahuan."
+        },
+        "view": {
+          "title": "Lihat kalendar",
+          "detail": "Tab “Kalendar” mempunyai tiga mod: Hari ini, 7 hari akan datang dan 30 hari akan datang. Tekan “Selesai” apabila acara sudah selesai."
+        },
+        "sos": {
+          "title": "Simpan kenalan kecemasan",
+          "detail": "Tab “SOS & kenalan” menyimpan nama dan nombor telefon saudara-mara untuk panggilan pantas, bersama butang panggilan ke 113 dan 115 (talian kecemasan Vietnam)."
+        },
+        "backup": {
+          "title": "Sandaran",
+          "detail": "Tab “Sandaran” mempunyai “Muat turun sandaran” (fail lengkap untuk pemulihan), “Muat turun ICS” untuk diimport ke kalendar telefon, dan cetakan jadual 30 hari akan datang."
+        }
+      },
+      "tips": {
+        "viewing": "Gunakan kotak “Melihat untuk” untuk melihat jadual setiap orang.",
+        "backupFirst": "Buat sandaran sebelum mengosongkan data pelayar atau menukar peranti.",
+        "ics": "Fail ICS boleh dibuka dengan Google Calendar dan kalendar pada iPhone."
+      },
+      "notes": {
+        "openPage": "Peringatan hanya muncul apabila halaman sedang dibuka.",
+        "sos": "Isyarat SOS hanya disimpan pada peranti, belum dihantar kepada saudara-mara.",
+        "clearData": "Mengosongkan data pelayar akan menghilangkan jadual jika anda belum memuat turun sandaran."
+      }
+    }
+  }
+}

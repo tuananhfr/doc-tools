@@ -1,0 +1,49 @@
+{
+  "flashcard": {
+    "reviewDue_one": "Review · {{count}} card due",
+    "reviewDue_other": "Review · {{count}} cards due",
+    "noneDue": "No cards due",
+    "flip": "Flip card",
+    "forgot": "Not yet",
+    "remembered": "Got it",
+    "schedule": "Cards you remember come back after 1, 3, 7, 14 or 30 days.",
+    "stored_one": "{{count}} card saved on this device. Clearing browser data will delete your cards.",
+    "stored_other": "{{count}} cards saved on this device. Clearing browser data will delete your cards.",
+    "title": "Create flashcards",
+    "front": "Front",
+    "back": "Back",
+    "add": "Add card",
+    "remove": "Delete"
+  },
+  "pomodoro": {
+    "focus": "Focus",
+    "break": "Break",
+    "start": "Start",
+    "pause": "Pause",
+    "reset": "Reset",
+    "switch": "Switch session",
+    "note": "The timer only runs while this page is open. When it reaches 00:00, choose Switch session to start the next round.",
+    "title": "Duration",
+    "focusMinutes": "Focus (minutes)",
+    "breakMinutes": "Break (minutes)",
+    "invalid": "Focus 1–180 minutes; break 1–60 minutes."
+  },
+  "grades": {
+    "gradeResult": "Reference conversion",
+    "admissionResult": "Total admission score",
+    "breakdown": "Raw score {{raw}} + adjusted priority points {{bonus}}",
+    "note": "Conversion scales and priority rules may vary by school and admission year. Check the rules of the institution before using this.",
+    "title": "Academic scores",
+    "mode": "Mode",
+    "modeGrade": "10-point to 4-point scale",
+    "modeAdmission": "Admission score",
+    "fields": {
+      "score10": "Score (10-point scale)",
+      "subject1": "Subject 1",
+      "subject2": "Subject 2",
+      "subject3": "Subject 3",
+      "regionBonus": "Regional priority",
+      "categoryBonus": "Category priority"
+    }
+  }
+}

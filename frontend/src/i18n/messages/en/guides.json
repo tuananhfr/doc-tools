@@ -1,0 +1,293 @@
+{
+  "groups": {
+    "tai-lieu": "Documents & PDF",
+    "hinh-anh-qr": "QR codes & barcodes",
+    "xay-dung": "Construction",
+    "gia-dinh": "Family"
+  },
+  "items": {
+    "nen-pdf": {
+      "title": "Compress a PDF so it's small enough to email",
+      "summary": "Shrink scanned files and phone photos while keeping them readable.",
+      "intro": "Compress PDF reduces file size by recompressing the photos and scanned images inside the file. The file is processed right on your device and never uploaded anywhere.",
+      "steps": {
+        "pick": {
+          "title": "Choose a PDF file",
+          "detail": "Open Compress PDF and press “Choose files” or drag and drop files into the box. You can choose several files at once, up to 100 MB each."
+        },
+        "level": {
+          "title": "Choose a compression level",
+          "detail": "“Medium” keeps images sharp enough to print on A4. “Strong” gives the smallest file, good for email or on-screen viewing."
+        },
+        "compress": {
+          "title": "Press “Compress PDF”",
+          "detail": "With several files, the button shows the number, e.g. “Compress 3 files”. A progress bar appears; press “Cancel” if you want to stop."
+        },
+        "download": {
+          "title": "Download the result",
+          "detail": "Press “Download”. A single file is named “<file name> - đã nén.pdf” (“đã nén” means “compressed”); several files are bundled into one .zip file. You can “Preview” or “Keep editing” before downloading."
+        }
+      },
+      "tips": {
+        "scans": "Scanned files and phone photos compress the most.",
+        "email": "For email choose “Strong”; for printing choose “Medium”.",
+        "password": "Password-protected files: the tool asks for the password to open them before compressing."
+      },
+      "notes": {
+        "textOnly": "Text-only files, such as those exported from Word, usually can't get smaller. In that case the screen says “Couldn't compress any further” and you should keep the original.",
+        "png": "PNG and black-and-white images are kept as is so text doesn't blur.",
+        "limits": "Each run accepts up to 100 files, 500 pages and 300 MB in total."
+      }
+    },
+    "scan-anh-sang-pdf": {
+      "title": "Scan documents into a PDF with your phone",
+      "summary": "Take or choose photos, crop them, and combine them into one multi-page PDF.",
+      "intro": "No scanner needed: photograph documents with your phone camera, crop them neatly and combine them into one PDF file. The photos stay only on your device.",
+      "steps": {
+        "pick": {
+          "title": "Choose or take photos",
+          "detail": "Open Scan images → PDF. Press “Choose files” to use existing photos (JPG, PNG), or “Take photo” to shoot with the rear camera."
+        },
+        "capture": {
+          "title": "Shoot and crop",
+          "detail": "You can take up to 50 photos per session. Tap a thumbnail to crop or delete it; in dim light press “Turn on flashlight”. When you're done, press the “Use” button with the number of photos."
+        },
+        "order": {
+          "title": "Reorder",
+          "detail": "Each photo is one page. Put the pages in the right order before creating the PDF."
+        },
+        "paper": {
+          "title": "Choose paper size and margins",
+          "detail": "In the “Image pages” section, choose a “Paper size” (A4, A3, Letter or “Fit image”) and a “Margin” (no margin, 10 mm or 20 mm)."
+        },
+        "create": {
+          "title": "Create and download the PDF",
+          "detail": "Press “Create PDF”, then “Download”. Rotated phone photos are straightened automatically."
+        }
+      },
+      "tips": {
+        "shoot": "Shoot straight down from above, with the paper on a dark background and good lighting.",
+        "fit": "Choose “Fit image” to keep the photo's proportions without adding white borders.",
+        "next": "For a smaller file, run Compress PDF next. To make the text searchable, run OCR text next."
+      },
+      "notes": {
+        "https": "The camera only works when the page is opened over HTTPS. If your browser blocks the camera, click the lock icon in the address bar to allow it, then try again.",
+        "formats": "Only JPG and PNG images are accepted for now."
+      }
+    },
+    "tach-pdf": {
+      "title": "Split a PDF or extract a few pages",
+      "summary": "Cut one PDF into several files by page ranges or by number of pages.",
+      "intro": "Split PDF lets you pull out an appendix or a few pages you need to send, or divide a long file into equal parts.",
+      "steps": {
+        "pick": {
+          "title": "Choose a PDF file",
+          "detail": "Open Split PDF and choose one PDF file."
+        },
+        "mode": {
+          "title": "Choose how to split",
+          "detail": "“By page range”: enter e.g. 1-3, 5, 8-10; each comma-separated group becomes one file. “Every N pages”: enter the number of pages per file."
+        },
+        "split": {
+          "title": "Press split",
+          "detail": "The button changes with your choice: “Extract pages to a new file” when there's only one group, or “Split into” with the number of files when there are several."
+        },
+        "download": {
+          "title": "Download",
+          "detail": "One group gives one PDF file. Several groups are bundled into one .zip file, with each part's name showing its pages."
+        }
+      },
+      "tips": {
+        "single": "Need only page 5: enter “5”.",
+        "appendix": "To split a contract by appendix: enter each appendix's page range, separated by commas.",
+        "edit": "Need to delete, rotate or reorder pages: press “Keep editing” to open the PDF editor."
+      },
+      "notes": {
+        "onePage": "A file with only one page has nothing to split.",
+        "outOfRange": "Page numbers outside the file are flagged right below the input box."
+      }
+    },
+    "ocr-van-ban": {
+      "title": "Recognize Vietnamese text in scans (OCR)",
+      "summary": "Turn scans into searchable PDFs, or pull out the text to copy.",
+      "intro": "OCR reads the text in images and scans. The Vietnamese text recognition model runs right on your device; files are never sent anywhere.",
+      "steps": {
+        "pick": {
+          "title": "Choose scans or images",
+          "detail": "Open OCR text and choose a scanned PDF or JPG, PNG images. You can choose several files and reorder them."
+        },
+        "output": {
+          "title": "Choose the output type",
+          "detail": "“Searchable PDF” keeps the pages as they look and adds a text layer you can search (Ctrl+F) and copy. “Text (.txt)” takes only the text."
+        },
+        "run": {
+          "title": "Press “Recognize text”",
+          "detail": "The first time, the tool downloads the Vietnamese text recognition model (about 1.4 MB) from this site itself. After that, each page takes a few seconds."
+        },
+        "download": {
+          "title": "Download or copy",
+          "detail": "The downloaded PDF is named “<file name> - OCR.pdf”. The text version appears in the “Text content” box; press “Copy” to paste it elsewhere."
+        }
+      },
+      "tips": {
+        "quality": "Straight, sharp photos with reasonably large text give the best results.",
+        "existing": "Pages that already have a text layer are skipped, not read again.",
+        "image": "Need text from just one photo: use Image → Text, it's faster."
+      },
+      "notes": {
+        "language": "Only Vietnamese is recognized for now.",
+        "accuracy": "OCR can misread text, especially blurry photos or handwriting. Check the result before using it.",
+        "network": "The first time, you need a connection to download the recognition model."
+      }
+    },
+    "tao-va-doc-ma-qr": {
+      "title": "Create QR codes and barcodes, and scan codes",
+      "summary": "Create Wi-Fi QR codes, business cards and batch-printed barcodes, and read codes from images or the camera.",
+      "intro": "Three tools share one set of tabs: “Create QR code”, “Create barcode” and “Scan code”. Everything runs on your device.",
+      "steps": {
+        "qr": {
+          "title": "Create a QR code",
+          "detail": "Open QR code generator and choose a “Code type”: link, text, Wi-Fi, phone number, email or business card. The code redraws instantly as you type."
+        },
+        "colors": {
+          "title": "Choose colors and download",
+          "detail": "Choose colors under “QR code color”, then press “Download QR code” for a PNG image, or “Download SVG for printing” for a crisp print version."
+        },
+        "barcode": {
+          "title": "Create a barcode",
+          "detail": "Open Barcode generator, choose a type (Code 128, Code 39, EAN-13, EAN-8, ITF-14) and enter the “Value”. Need many codes: choose “Batch” and load a CSV or Excel file, up to 500 rows."
+        },
+        "scan": {
+          "title": "Scan codes",
+          "detail": "Open QR / barcode reader, choose an image with a code, paste an image with Ctrl+V, or press “Scan with camera”. Codes are read automatically, no button needed."
+        },
+        "use": {
+          "title": "Use the result",
+          "detail": "Press “Copy”, open the link, or “Copy password” for Wi-Fi codes."
+        }
+      },
+      "tips": {
+        "wifi": "A Wi-Fi QR code at the counter: guests scan it to connect, no need to read out the password.",
+        "print": "Printing small barcodes: print one test label before printing the whole batch.",
+        "ean": "When scanning EAN codes, the tool also checks the last digit to catch misprinted codes."
+      },
+      "notes": {
+        "gs1": "EAN and ITF-14 numbers for retail goods must be issued by GS1 Vietnam.",
+        "links": "Check links carefully before opening them: anyone can print a QR code and stick it over a real one.",
+        "wifiPassword": "WPA Wi-Fi passwords need at least 8 characters."
+      }
+    },
+    "xem-huong-nha": {
+      "title": "Find your house's orientation with your phone's compass",
+      "summary": "Measure the house direction on the 24 mountains, see which directions suit the homeowner's age, and save the result as an image or PDF.",
+      "intro": "House orientation & compass opens as a live compass: the dial turns with your phone and instantly reads the facing and sitting directions on the 24 mountains. You can also place the compass over a photo of the house or a drawing. Data stays only in the open tab.",
+      "steps": {
+        "position": {
+          "title": "Stand in the right spot",
+          "detail": "Stand at the main door with your back to the house, hold the phone flat, with its top pointing straight out. Stay away from steel columns, cars and roller doors. If you're standing outside looking at the house, tick “I'm standing outside, looking at the house”."
+        },
+        "measure": {
+          "title": "Measure and lock the direction",
+          "detail": "Press “Start measuring”. The compass dial turns with the phone; the red line points to FACING, the other end is SITTING. Wait for the “Stable” label, then press “Lock direction”. No sensor? Press “Enter bearing”."
+        },
+        "read": {
+          "title": "Read the result",
+          "detail": "Below the compass you'll see the mountain names for Facing and Sitting, the bearing and how far it is from the center of the mountain. If the direction is right on the boundary of two mountains, you'll get a void-line warning and should measure again."
+        },
+        "age": {
+          "title": "Readings by age (optional)",
+          "detail": "Turn on “Readings by the homeowner's age” and enter the solar date of birth or lunar year of birth and sex. The compass shows that person's ring of favorable / unfavorable stars, with a verdict for the locked direction."
+        },
+        "save": {
+          "title": "Save the result",
+          "detail": "Under “Save results”, choose image or PDF and press save. To put the compass on a photo of the house or a drawing, press “Place on a house photo / drawing”."
+        }
+      },
+      "tips": {
+        "repeat": "Measure two or three times at different spots and compare.",
+        "expert": "“Professional” mode can measure several spots (main door, stove, altar…), show sunlight and the sun's path, and technical data.",
+        "iphone": "On iPhone, you're asked for sensor permission after pressing “Start measuring”: choose Allow."
+      },
+      "notes": {
+        "sensor": "Computers and many browsers have no compass sensor; in that case press “Enter bearing”.",
+        "https": "The compass only works when the page is opened over HTTPS.",
+        "reference": "The age-based part counts years from Tết (lunar new year) and is a reference according to folk feng shui (Eight Mansions), not a technical conclusion.",
+        "save": "Results aren't saved automatically: if you close the tab without saving, they're gone."
+      }
+    },
+    "khai-toan-xay-nha": {
+      "title": "Estimate the cost of building a townhouse",
+      "summary": "Estimate costs from floor areas and contractor prices, updated as you type.",
+      "intro": "The estimate converts the area of each part (foundation, floors, rooftop stair room, roof terrace, roof) using factors, then multiplies by the unit prices you enter. The result is for reference only.",
+      "steps": {
+        "area": {
+          "title": "Enter the areas",
+          "detail": "Fill in “Ground floor area”, “Upper floors (excluding ground)”, and the areas of the rooftop stair room, open roof terrace and front/back yard."
+        },
+        "price": {
+          "title": "Enter unit prices",
+          "detail": "Fill in “Structure unit price” and “Finishing or turnkey unit price” from your quotes. If the second price already includes the structure, tick the matching box."
+        },
+        "ratios": {
+          "title": "Adjust factors if needed",
+          "detail": "Open “Adjust factors to match the contractor's quote” to change how areas are counted. By default: foundation 50%, each floor 100%, roof terrace and roof 50%."
+        },
+        "result": {
+          "title": "Read the result",
+          "detail": "The “Rough estimate” box updates as you type: converted area, cost of each item and the total."
+        }
+      },
+      "tips": {
+        "quotes": "Ask two or three contractors for realistic unit prices.",
+        "deposit": "If there's a pile cost, enter it in “Pile cost” to see the full total.",
+        "noSave": "The tool doesn't save your figures: take a screenshot if you want to keep them."
+      },
+      "notes": {
+        "ratios": "The factors are reference conventions, not government norms.",
+        "excluded": "Excludes design, permits, loose furniture and ground-condition extras.",
+        "prices": "The tool has no built-in prices; every number is entered by you."
+      }
+    },
+    "lich-gia-dinh": {
+      "title": "Using Family Calendar: add events, reminders, backups",
+      "summary": "Keep a calendar for the whole family, save emergency numbers and back up — no account needed.",
+      "intro": "Family Calendar is saved right on this device, with no account needed. There's no sharing or online sync yet, so back up regularly.",
+      "steps": {
+        "members": {
+          "title": "Add members",
+          "detail": "In the “Members” tab, enter a “Name”, choose the Parent, Grandparent or Child profile, then press “Add member”. The Grandparent profile has larger text and fewer items."
+        },
+        "add": {
+          "title": "Add an event",
+          "detail": "In the “Add” tab, enter the “Event name”, date and time, choose the type, repeat pattern and members, then press “Save event on this device”."
+        },
+        "remind": {
+          "title": "Turn on reminders",
+          "detail": "Enter how many minutes before to remind you (the event needs a specific time), then press “Turn on notifications while the page is open” and allow notifications."
+        },
+        "view": {
+          "title": "View the calendar",
+          "detail": "The “Calendar” tab has three views: Today, Next 7 days and Next 30 days. Press “Done” when a task is finished."
+        },
+        "sos": {
+          "title": "Save emergency contacts",
+          "detail": "The “SOS & contacts” tab saves relatives' names and phone numbers for quick calls, plus buttons to call 113 and 115."
+        },
+        "backup": {
+          "title": "Back up",
+          "detail": "The “Backup” tab has “Download backup” (a full file for restoring), “Download ICS” to import into your phone calendar, and printing the next 30 days."
+        }
+      },
+      "tips": {
+        "viewing": "Use the “Viewing for” box to see each person's calendar.",
+        "backupFirst": "Back up before clearing browser data or switching devices.",
+        "ics": "ICS files open in Google Calendar and the iPhone Calendar."
+      },
+      "notes": {
+        "openPage": "Reminders only appear while the page is open.",
+        "sos": "SOS signals are saved on the device only and aren't sent to your family yet.",
+        "clearData": "Clearing browser data will erase the calendar if you haven't downloaded a backup."
+      }
+    }
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "Alat kode QR",
+    "qrCreate": "Buat kode QR",
+    "barcodeCreate": "Buat barcode",
+    "qrRead": "Pindai kode"
+  },
+  "shared": {
+    "codeContent": "Isi dalam kode",
+    "enterToCreate": "Masukkan isi untuk membuat kode",
+    "contentPanel": "Isi kode",
+    "kind": "Jenis kode",
+    "phone": "Nomor telepon",
+    "security": "Keamanan",
+    "password": "Kata sandi",
+    "noPassword": "Tanpa kata sandi",
+    "retry": "Coba lagi",
+    "downloadPng": "Unduh PNG",
+    "value": "Nilai",
+    "emailPlaceholder": "nama@perusahaan.co.id"
+  },
+  "qrCreate": {
+    "side": "Kode QR",
+    "tooLong": "Isinya terlalu panjang untuk satu kode QR. Persingkat, atau pakai tautan ke tempat isi tersebut disimpan.",
+    "renderFailed": "Gambar kode QR tidak dapat dibuat. Coba lagi.",
+    "notCreated": "Kode belum dapat dibuat",
+    "downloadPng": "Unduh kode QR",
+    "downloadSvg": "Unduh SVG untuk dicetak",
+    "downloadPdf": "Unduh PDF",
+    "transparentHint": "Saat ditempel di atas gambar, pilih area yang cukup terang dan warnanya seragam agar kode mudah dipindai.",
+    "lowContrast": "Warna kode dan warna latar terlalu mirip; tingkatkan kontras agar mudah dipindai.",
+    "previewLabel": "Kode QR dari isi yang sedang diketik"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (tautan)",
+      "text": "Teks",
+      "wifi": "Wi-Fi",
+      "phone": "Nomor telepon",
+      "email": "Email",
+      "vcard": "Kartu nama (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "Tanpa kata sandi"
+    },
+    "enterContent": "Masukkan isi",
+    "textPlaceholder": "Contoh: Gudang B — rak 12, tingkat 3",
+    "ssid": "Nama jaringan Wi-Fi",
+    "ssidPlaceholder": "Contoh: Kantor-Proyek",
+    "hidden": "Jaringan tersembunyi (nama tidak disiarkan)",
+    "emailAddress": "Alamat email",
+    "subject": "Subjek email (opsional)",
+    "contactName": "Nama lengkap",
+    "contactNamePlaceholder": "Budi Santoso",
+    "contactEmail": "Email kontak",
+    "contactOrg": "Perusahaan (opsional)",
+    "contactTitle": "Jabatan (opsional)",
+    "vcardHint": "Perlu nama lengkap dan setidaknya salah satu: nomor telepon atau email. Saat dipindai dengan kamera ponsel, akan muncul tawaran untuk menambahkannya ke kontak."
+  },
+  "payload": {
+    "urlSpaces": "Tautan tidak boleh berisi spasi.",
+    "wifiPassword": "Masukkan kata sandi Wi-Fi, atau pilih \"Tanpa kata sandi\".",
+    "wpaShort": "Kata sandi WPA/WPA2 minimal 8 karakter.",
+    "phoneChars": "Nomor telepon hanya berisi angka, boleh diawali tanda +.",
+    "phoneShort": "Nomor telepon terlalu pendek.",
+    "email": "Alamat email belum sesuai format nama@perusahaan.co.id.",
+    "contactName": "Masukkan nama lengkap kontak.",
+    "contactReach": "Masukkan nomor telepon atau email kontak."
+  },
+  "colors": {
+    "legend": "Warna kode QR",
+    "background": "Latar kode QR",
+    "backgroundModes": {
+      "white": "Latar putih",
+      "transparent": "Tanpa latar",
+      "custom": "Pilih warna"
+    },
+    "presetBackgrounds": "Warna latar siap pakai",
+    "customColor": "Warna bebas",
+    "names": {
+      "ink": "Hitam",
+      "steel": "Abu-abu baja",
+      "blue": "Biru",
+      "crimson": "Merah",
+      "teal": "Hijau toska",
+      "green": "Hijau",
+      "white": "Putih",
+      "mist": "Abu-abu muda",
+      "blue-soft": "Biru muda",
+      "teal-soft": "Toska muda",
+      "amber-soft": "Krem",
+      "rose-soft": "Merah muda"
+    }
+  },
+  "barcode": {
+    "side": "Barcode",
+    "modeLabel": "Cara membuat",
+    "modes": {
+      "single": "Satu kode",
+      "batch": "Massal"
+    },
+    "files": {
+      "png": "Unduh PNG",
+      "svg": "SVG untuk dicetak",
+      "pdf": "PDF ukuran asli"
+    },
+    "drawFailed": "Kode ini tidak dapat digambar.",
+    "fileFailed": "File barcode tidak dapat dibuat.",
+    "engineFailed": "Mesin penggambar kode tidak dapat dimuat. Muat ulang halaman.",
+    "engineLoading": "Memuat mesin penggambar kode…",
+    "previewLabel": "Barcode {{kind}} untuk {{value}}",
+    "styleTitle": "Jenis kode",
+    "listTitle": "Daftar kode"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Kode internal: material, aset, gudang — huruf, angka, simbol",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Kode internal untuk pemindai lama — huruf kapital, angka, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Kode produk ritel, 13 digit dari GS1",
+      "placeholder": "12 digit, digit periksa ditambahkan otomatis"
+    },
+    "ean8": {
+      "hint": "Kode produk ukuran kecil, 8 digit dari GS1",
+      "placeholder": "7 digit, digit periksa ditambahkan otomatis"
+    },
+    "itf14": {
+      "hint": "Kode karton / kemasan, 14 digit sesuai GS1",
+      "placeholder": "13 digit, digit periksa ditambahkan otomatis"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Ukuran cetak",
+    "sizeStandard": "{{percent}}% (standar)",
+    "height": "Tinggi batang",
+    "includeText": "Cetak deret angka / huruf di bawah kode",
+    "sizeWarning": "Di bawah 80%, banyak pemindai genggam tidak bisa membacanya; cetak satu label uji coba sebelum mencetak semuanya."
+  },
+  "gs1Notice": "Nomor EAN / ITF-14 harus diterbitkan GS1 untuk perusahaan Anda — alat ini tidak membuat nomor, hanya menggambar nomor yang sudah Anda miliki. Untuk kode internal (material, aset, gudang), pilih <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "File lebih besar dari {{size}}.",
+    "readFailed": "File ini tidak dapat dibaca.",
+    "buildFailed": "File tidak dapat dibuat.",
+    "pickTitle": "Pilih file CSV atau Excel (.xlsx)",
+    "pickHint": "Satu kode per baris, diambil dari kolom pertama · maksimal {{limit}} baris",
+    "valid": "{{count}} kode valid",
+    "invalid": "{{count}} baris salah — dikeluarkan",
+    "header": "Lewati baris judul “{{header}}”",
+    "dropped": "{{count}} baris melebihi batas {{limit}} dilewati",
+    "line": "Baris",
+    "reason": "Alasan",
+    "moreErrors": "… dan {{count}} baris salah lainnya.",
+    "building": "Membuat {{done}}/{{total}}…",
+    "pdf": "PDF ({{count}} halaman)",
+    "zip": "Paket {{type}} (.zip)",
+    "unsupported": "Hanya file .csv atau .xlsx yang dapat dibaca."
+  },
+  "check": {
+    "digitsOnly": "Hanya boleh berisi angka.",
+    "checkDigitAdded": "Digit periksa {{digit}} sudah ditambahkan.",
+    "wrongLength": "Perlu {{short}} digit (digit periksa ditambahkan otomatis) atau lengkap {{full}} digit — saat ini {{count}}.",
+    "wrongCheckDigit": "Digit periksa salah: digit terakhir harus {{expected}}, bukan {{actual}}. Periksa lagi angka yang disalin.",
+    "empty": "Belum ada isi.",
+    "tooLong": "Lebih dari {{max}} karakter — kode akan melebihi lebar pemindai.",
+    "code39Chars": "Code 39 hanya menerima huruf tanpa diakritik, angka, dan - . $ / + % spasi.",
+    "code39Upper": "Code 39 tidak punya huruf kecil — sudah diubah ke huruf kapital.",
+    "code128Chars": "Code 128 tidak dapat mengodekan huruf berdiakritik atau karakter khusus. Pakai huruf tanpa diakritik.",
+    "prefix893": "Prefiks 893: kode terdaftar di GS1 Việt Nam (tempat penerbitan kode, bukan tempat produksi).",
+    "prefixIsbn": "Prefiks 978/979: kode buku (ISBN).",
+    "prefixIssn": "Prefiks 977: kode terbitan berkala (ISSN).",
+    "prefixInternal": "Prefiks 20–29: kode internal toko / perusahaan, tidak bisa dipakai di luar sistem sendiri."
+  },
+  "render": {
+    "barcodeFailed": "kode {{value}} tidak dapat dibuat.",
+    "imageFailed": "browser tidak dapat membuat gambar."
+  },
+  "read": {
+    "results": "Hasil",
+    "resultsCount": "Hasil ({{count}})",
+    "clearAll": "Hapus semua",
+    "empty": "Belum ada kode yang terbaca. Pilih gambar berisi kode, tempel tangkapan layar, atau pindai dengan kamera.",
+    "safety": "Periksa tautan dengan saksama sebelum membukanya: siapa pun bisa mencetak kode QR lalu menempelkannya di atas kode asli.",
+    "pickTitle": "Pilih gambar berisi kode QR atau barcode",
+    "pickHint": "JPG, PNG, WebP · bisa juga tempel gambar dengan Ctrl+V",
+    "camera": "Pindai dengan kamera",
+    "missTitle": "{{count}} gambar tidak dapat dibaca",
+    "moreMisses": "… dan {{count}} gambar lainnya",
+    "hideNotice": "Sembunyikan notifikasi",
+    "pastedImage": "Gambar yang baru ditempel",
+    "noCode": "tidak ada kode yang ditemukan. Coba foto yang diambil lurus, cukup terang, dan kodenya memenuhi sebagian besar bingkai.",
+    "unreadable": "tidak dapat dibuka. Hanya gambar JPG, PNG, WebP yang dapat dibaca.",
+    "tooLarge": "lebih besar dari {{size}}.",
+    "tooManyPixels": "terlalu besar ({{pixels}} juta piksel, batas {{limit}} juta). Potong bagian yang berisi kode lalu coba lagi."
+  },
+  "camera": {
+    "scanTitle": "Pindai QR / Barcode",
+    "aim": "Arahkan kode ke dalam bingkai",
+    "searching": "Mencari kode…",
+    "detected": "Kode terbaca",
+    "scanNext": "Pindai lagi",
+    "openLink": "Buka tautan",
+    "zoom": "Zoom",
+    "zoomIn": "Perbesar",
+    "zoomOut": "Perkecil",
+    "captured": "Gambar kode yang terbaca",
+    "title": "Kamera",
+    "off": "Matikan kamera",
+    "viewfinder": "Jendela bidik kamera",
+    "starting": "Membuka kamera… Browser mungkin meminta izin memakai kamera.",
+    "hint": "Arahkan kode ke tengah bingkai dan tahan sebentar. Begitu terbaca, hasil langsung muncul; pindai kode berikutnya tanpa perlu menekan apa pun.",
+    "insecure": "{{reason}} Foto kodenya dengan aplikasi kamera lalu pilih gambar dari perangkat."
+  },
+  "scanResult": {
+    "qrCode": "Kode QR",
+    "remove": "Hapus hasil ini",
+    "removeShort": "Hapus",
+    "ssid": "Nama jaringan",
+    "unknown": "Tidak diketahui",
+    "checkOk": "Digit periksa benar.",
+    "checkBad": "Digit periksa SALAH — kode tercetak rusak atau telah diubah.",
+    "open": "Buka {{host}}",
+    "copyPassword": "Salin kata sandi",
+    "copyNumber": "Salin nomor",
+    "copyAddress": "Salin alamat",
+    "copy": "Salin",
+    "copyRaw": "Salin teks asli"
+  },
+  "vietqr": {
+    "side": "Kode transfer",
+    "placeholder": "Masukkan kode BIN dan nomor rekening untuk membuat kode",
+    "copy": "Salin string QR",
+    "downloadSvg": "Unduh SVG",
+    "checkNote": "Coba pindai dengan aplikasi bank dan periksa nama penerima, nomor rekening, serta jumlahnya sebelum dipakai.",
+    "panel": "Informasi transfer",
+    "bin": "Kode BIN bank (6 digit)",
+    "account": "Nomor rekening",
+    "amount": "Jumlah (đ), boleh dikosongkan",
+    "note": "Berita transfer",
+    "privacy": "Kode dibuat di perangkat Anda; informasi rekening tidak dikirim ke server Chuyện Nhỏ.",
+    "fieldTooLong": "Kolom QR terlalu panjang"
+  },
+  "trace": {
+    "title": "Pelacakan ERPCons",
+    "label": "Cari di ERPCons",
+    "object": "Objek",
+    "code": "Kode internal",
+    "serial": "Nomor seri",
+    "noEvents": "Belum ada peristiwa pelacakan.",
+    "recentEvents": "Peristiwa terbaru",
+    "loading": "Mencari di ERPCons…",
+    "accountForbidden": "Akun Anda belum diizinkan mencari data pelacakan.",
+    "failed": "Tidak dapat dicari: {{message}}",
+    "legacy": "Kode lama objek — belum dipasangi kode pelacakan.",
+    "forbidden": "Kode ada di daftar, tetapi Anda tidak berhak melihat objeknya.",
+    "broken": "Kode menunjuk ke objek yang sudah tidak ada.",
+    "unknown": "Kode terbaca, tetapi belum ada data pelacakan di ERPCons.",
+    "status": {
+      "DRAFT": "Belum diterbitkan",
+      "ACTIVE": "Aktif",
+      "EXPIRED": "Kedaluwarsa",
+      "SUSPENDED": "Dibekukan sementara",
+      "REVOKED": "Dicabut",
+      "REPLACED": "Kode sudah diganti",
+      "ARCHIVED": "Diarsipkan"
+    },
+    "notes": {
+      "EXPIRED": "Kode sudah kedaluwarsa — hanya untuk melihat riwayat, tidak bisa diproses.",
+      "SUSPENDED": "Kode sedang dibekukan — jangan dipakai untuk transaksi.",
+      "REVOKED": "Kode sudah dicabut — label ini tidak berlaku lagi.",
+      "REPLACED": "Label ini sudah diganti — pakai label yang baru.",
+      "ARCHIVED": "Objek tidak lagi dikelola."
+    }
+  }
+}

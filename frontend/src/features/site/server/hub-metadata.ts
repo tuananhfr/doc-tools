@@ -1,15 +1,19 @@
 import type { Metadata } from 'next'
-import { withBase } from '@/utils/url'
-import { HUB_PAGES } from '../config/hub-pages'
+import { getServerT, localeAlternates, pageLocale, type LangParams } from '@/i18n/server'
 import type { HubPageSlug } from '../types/hub-page.types'
 
-export function hubMetadata(slug: HubPageSlug): Metadata {
-  const page = HUB_PAGES[slug]
-  const url = withBase('/' + slug)
-  return {
-    title: page.metaTitle,
-    description: page.metaDescription,
-    alternates: { canonical: url },
-    openGraph: { title: page.metaTitle, description: page.metaDescription, url },
+export function hubMetadata(slug: HubPageSlug) {
+  return async function generateMetadata({ params }: LangParams): Promise<Metadata> {
+    const locale = await pageLocale(params)
+    const t = await getServerT(locale, 'site')
+    const title = t(`hubs.${slug}.metaTitle`)
+    const description = t(`hubs.${slug}.metaDescription`)
+    const alternates = localeAlternates('/' + slug, locale)
+    return {
+      title,
+      description,
+      alternates,
+      openGraph: { title, description, url: alternates.canonical },
+    }
   }
 }

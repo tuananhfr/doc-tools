@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { MarkOptions } from '../components/MarkOptions'
@@ -9,6 +10,7 @@ import { hasMarks } from '../utils/mark'
 
 /** CHE & ĐÓNG DẤU ẢNH — một ảnh mỗi lượt: khối đen che thông tin, dòng chữ đóng dấu; cả hai ghi thẳng vào điểm ảnh. */
 export default function MarkImagePage() {
+  const { t } = useTranslation('image')
   const images = useImageFiles({ multiple: false })
   const run = useFlowRun()
   const item = images.items[0] ?? null
@@ -24,14 +26,14 @@ export default function MarkImagePage() {
         images={images}
         run={run}
         multiple={false}
-        pickerTitle="Chọn ảnh cần che hoặc đóng dấu"
+        pickerTitle={t('mark.pickerTitle')}
         stage={ready ? <MarkStage item={item} state={state} disabled={run.state.phase === 'running'} onBoxesChange={(boxes) => mark.update((current) => ({ ...current, boxes }))} /> : undefined}
         options={ready ? <MarkOptions state={state} onChange={mark.update} /> : undefined}
-        runLabel="Lưu ảnh"
+        runLabel={t('shared.saveImage')}
         runIcon="check2-circle"
-        blocked={ready && !hasMarks(state) ? 'Chưa vẽ khung che hay nhập chữ đóng dấu — ảnh ra sẽ giống hệt ảnh gốc.' : null}
+        blocked={ready && !hasMarks(state) ? t('mark.blocked') : null}
         task={() => {
-          if (!ready) throw new Error('chưa chọn ảnh.')
+          if (!ready) throw new Error(t('shared.noImageSelected'))
           return markTask(item, state)
         }}
       />

@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { ScanContent } from '../types/qr.types'
 
 /** Tách một chuỗi `WIFI:` thành các trường, gỡ `\` đứng trước ký tự đặc biệt. */
@@ -59,7 +60,6 @@ export function readScanContent(text: string): ScanContent {
 }
 
 const FORMAT_LABEL: Record<string, string> = {
-  QR_CODE: 'Mã QR',
   DATA_MATRIX: 'Data Matrix',
   AZTEC: 'Aztec',
   PDF_417: 'PDF417',
@@ -76,5 +76,6 @@ const FORMAT_LABEL: Record<string, string> = {
 
 /** Tên loại mã cho người đọc; loại lạ thì in nguyên tên của thư viện. */
 export function formatLabel(format: string): string {
+  if (format === 'QR_CODE') return translate('qr:scanResult.qrCode')
   return FORMAT_LABEL[format] ?? format.replaceAll('_', ' ')
 }

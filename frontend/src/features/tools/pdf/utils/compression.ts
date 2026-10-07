@@ -1,3 +1,6 @@
+import { translate } from '@/i18n/runtime'
+import { numberFormat } from '@/i18n/intl'
+
 /**
  * Nén khi xuất PDF — chỉ nén lại ẢNH JPEG (DCT) trong tệp: đó là thứ chiếm
  * dung lượng ở hồ sơ scan và ảnh chụp hiện trường. Ảnh nén Flate (PNG, ảnh
@@ -78,15 +81,15 @@ export const NO_COMPRESSION_STATS: CompressionStats = { recompressed: 0, flate: 
 export function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`
-  return `${(bytes / 1024 / 1024).toLocaleString('vi-VN', { maximumFractionDigits: 1 })} MB`
+  return `${numberFormat({ maximumFractionDigits: 1 }).format(bytes / 1024 / 1024)} MB`
 }
 
 /** "nhỏ hơn 42%" / "lớn hơn 8%" / "" khi gần như không đổi. */
 export function sizeChange(before: number, after: number): string {
   if (before <= 0) return ''
   const percent = Math.round((1 - after / before) * 100)
-  if (percent >= 1) return `nhỏ hơn ${percent}%`
-  if (percent <= -1) return `lớn hơn ${-percent}%`
+  if (percent >= 1) return translate('pdf:compression.smaller', { percent })
+  if (percent <= -1) return translate('pdf:compression.larger', { percent: -percent })
   return ''
 }
 
@@ -99,14 +102,15 @@ export function addStats(a: CompressionStats, b: CompressionStats): CompressionS
  * xuất 2 trang của tệp 50 MB thì so với tệp gốc lúc nào cũng "nhỏ hơn 90%".
  */
 export function compressionSummary(stats: CompressionStats, finalBytes: number): { tone: 'success' | 'info'; text: string } {
-  const kept = stats.flate ? ` Giữ nguyên ${stats.flate} ảnh PNG / trắng đen để chữ không bị nhoè.` : ''
+  const kept = stats.flate ? translate('pdf:compression.kept', { count: stats.flate }) : ''
   if (stats.recompressed === 0) {
-    return { tone: 'info', text: `Không nén thêm được: tệp không có ảnh JPEG đủ lớn để nén lại.${kept}` }
+    return { tone: 'info', text: translate('pdf:compression.nothing', { kept }) }
   }
   const before = finalBytes + stats.savedBytes
   const change = sizeChange(before, finalBytes)
+  const vars = { count: stats.recompressed, before: formatBytes(before), after: formatBytes(finalBytes), kept }
   return {
     tone: 'success',
-    text: `Đã nén ${stats.recompressed} ảnh: ${formatBytes(before)} → ${formatBytes(finalBytes)}${change ? ` (${change})` : ''}.${kept}`,
+    text: change ? translate('pdf:compression.doneChange', { ...vars, change }) : translate('pdf:compression.done', vars),
   }
 }

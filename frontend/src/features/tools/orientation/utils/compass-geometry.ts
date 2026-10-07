@@ -1,6 +1,8 @@
 import { MOUNTAINS, TRIGRAM_BY_SECTOR } from '../config/luopan'
 import type { Divisions, Point } from '../types/orientation.types'
+import { intlLocale } from '@/i18n/intl'
 import { directionNames, normalizeDeg, pointAt } from './azimuth'
+import { mountainName, trigramName } from './terms'
 
 /** Vai trò quyết định màu — màu thật lấy từ token của theme lúc vẽ, ở đây không chọn màu. */
 export type CompassRole =
@@ -102,7 +104,7 @@ export function compassShapes(spec: CompassSpec): CompassShape[] {
   }
 
   // Tên hướng: 8 cung ghi tắt ở vòng trong; 16 cung chỉ ghi 8 hướng chính để chữ không chồng nhau.
-  directionNames(8).forEach(([, short], index) => {
+  directionNames(8).forEach(({ short }, index) => {
     const main = index % 2 === 0
     shapes.push({
       kind: 'text',
@@ -148,7 +150,6 @@ const DEGREE_BAND = 0.86
 const CORE = 0.24
 /** Bề rộng trung bình một ký tự / cỡ chữ của font giao diện có dấu (đo trên "Nhâm"), cộng chút dư. */
 const GLYPH_WIDTH = 0.78
-const LONGEST_MOUNTAIN = Math.max(...MOUNTAINS.map((mountain) => mountain.name.length))
 
 /**
  * Mặt la kinh như la bàn phong thuỷ: từ ngoài vào là vòng độ, vòng sao theo tuổi
@@ -192,7 +193,7 @@ function luopanShapes(spec: CompassSpec, rings: CompassRings): CompassShape[] {
         shapes.push({
           kind: 'text',
           at: at(deg, middle),
-          text: star.label.toLocaleUpperCase('vi'),
+          text: star.label.toLocaleUpperCase(intlLocale()),
           role: star.good ? 'star-good-text' : 'star-bad-text',
           size: Math.min(thickness * 0.4, 11 * unit),
           weight: 700,
@@ -209,22 +210,24 @@ function luopanShapes(spec: CompassSpec, rings: CompassRings): CompassShape[] {
     if (band === 'mountains') {
       // Chữ chạy theo cung: tên dài nhất phải vừa một ô 15°, giới hạn theo độ dày vòng thôi thì "Khôn" chồng lên "Thân".
       const cell = (2 * Math.PI * radius * middle) / MOUNTAINS.length
-      const mountainSize = Math.min(thickness * 0.36, 8.5 * unit, cell / (LONGEST_MOUNTAIN * GLYPH_WIDTH))
+      const names = MOUNTAINS.map((mountain) => mountainName(mountain.index))
+      const longest = Math.max(...names.map((name) => name.length))
+      const mountainSize = Math.min(thickness * 0.36, 8.5 * unit, cell / (longest * GLYPH_WIDTH))
       for (const mountain of MOUNTAINS) {
         const edge = mountain.center + 7.5
         // Ranh giữa hai hướng đậm hơn ranh giữa hai sơn trong một hướng.
         const sectorEdge = (edge - 22.5) % 45 === 0
         shapes.push({ kind: 'line', from: at(edge, inner), to: at(edge, outer), role: sectorEdge ? 'tick-major' : 'sector', width: (sectorEdge ? 1.2 : 0.7) * unit })
-        shapes.push({ kind: 'text', at: at(mountain.center, middle), text: mountain.name, role: 'mountain', size: mountainSize, weight: 600, rotate: turn(mountain.center), halo: false })
+        shapes.push({ kind: 'text', at: at(mountain.center, middle), text: names[mountain.index], role: 'mountain', size: mountainSize, weight: 600, rotate: turn(mountain.center), halo: false })
       }
     }
 
     if (band === 'directions') {
-      directionNames(8).forEach(([name], index) => {
+      directionNames(8).forEach(({ name }, index) => {
         shapes.push({
           kind: 'text',
           at: at(index * 45, middle),
-          text: name.toLocaleUpperCase('vi'),
+          text: name.toLocaleUpperCase(intlLocale()),
           role: index === 0 ? 'label-north' : 'label',
           size: Math.min(thickness * 0.34, 9 * unit),
           weight: 700,
@@ -235,8 +238,8 @@ function luopanShapes(spec: CompassSpec, rings: CompassRings): CompassShape[] {
     }
 
     if (band === 'trigrams') {
-      TRIGRAM_BY_SECTOR.forEach((name, index) => {
-        shapes.push({ kind: 'text', at: at(index * 45, middle), text: name, role: 'trigram', size: Math.min(thickness * 0.36, 8 * unit), weight: 600, rotate: turn(index * 45), halo: false })
+      TRIGRAM_BY_SECTOR.forEach((id, index) => {
+        shapes.push({ kind: 'text', at: at(index * 45, middle), text: trigramName(id), role: 'trigram', size: Math.min(thickness * 0.36, 8 * unit), weight: 600, rotate: turn(index * 45), halo: false })
       })
     }
 

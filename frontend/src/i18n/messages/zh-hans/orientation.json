@@ -1,0 +1,361 @@
+{
+  "shared": {
+    "on": "已开启",
+    "off": "已关闭",
+    "remove": "移除 {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "屋主",
+    "PROFESSIONAL": "专业"
+  },
+  "page": {
+    "projectNorthWarning": "当前按项目北测量——不是真实方位，因此无法按年龄判断宜忌，也无法计算日照。请在技术参数中切换为真北或磁北。",
+    "missing": {
+      "drawing": "点击图纸上的指北符号开始。",
+      "device": "点击“开始测量”，站稳后锁定读数。",
+      "manual": "输入已知的度数。",
+      "placeAxis": "在图片上放置{{target}}的轴线。",
+      "pickMeasured": "选择一个已有读数的对象。"
+    },
+    "noSource": "还没有来源。",
+    "modeLabel": "显示模式",
+    "back": "返回",
+    "changeSource": "更换图片 / 来源",
+    "placeOnImage": "放到房屋照片 / 图纸上",
+    "nothingToSave": "还没有可保存的读数。",
+    "frontageFallback": "正面",
+    "houseFrontageFallback": "房屋正面",
+    "sideAge": "按年龄查看并保存结果"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "房屋朝向",
+      "hint": "从屋内正对着房屋正面向外看"
+    },
+    "MAIN_DOOR": {
+      "label": "大门",
+      "hint": "从屋内透过大门向外看"
+    },
+    "BALCONY": {
+      "label": "阳台",
+      "hint": "从房间内向阳台外看"
+    },
+    "KITCHEN": {
+      "label": "灶台",
+      "hint": "做饭者背后的方向——与做饭者面向灶台的方向相反"
+    },
+    "ALTAR": {
+      "label": "神台",
+      "hint": "神台正面朝外的方向"
+    },
+    "BED": {
+      "label": "床",
+      "hint": "从床头看向床尾"
+    },
+    "DESK": {
+      "label": "办公桌",
+      "hint": "坐着工作时面朝的方向"
+    },
+    "LAND_FRONTAGE": {
+      "label": "地块正面",
+      "hint": "从地块内向外看向道路"
+    },
+    "CUSTOM": {
+      "label": "其他对象",
+      "hint": "自行命名，轴线指向需要测量的方向"
+    }
+  },
+  "north": {
+    "TRUE": "真北",
+    "MAGNETIC": "磁北",
+    "PROJECT": "项目北"
+  },
+  "sources": {
+    "DRAWING": "在图纸上放置",
+    "MANUAL": "手动输入",
+    "DEVICE": "手机罗盘",
+    "SURVEY": "测绘数据"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · 误差 ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "此浏览器无法读取设备的罗盘。",
+      "insecure": "罗盘只有在通过 HTTPS 打开页面时才能使用。",
+      "denied": "你还没有允许读取方向传感器。请在浏览器设置中允许后重试。",
+      "noSignal": "收不到罗盘信号——电脑和许多浏览器没有这种传感器。"
+    },
+    "stability": {
+      "STABLE": "稳定",
+      "WOBBLY": "仍有波动",
+      "UNSTABLE": "不稳定"
+    },
+    "accuracy": "设备报告误差 ±{{value}}°",
+    "noAccuracy": "设备未报告误差",
+    "starting": "正在打开罗盘…",
+    "retry": "重试",
+    "start": "开始测量",
+    "stop": "停止",
+    "outside": "我站在屋外，面向房屋",
+    "magnetWarning": "请远离钢柱、汽车、卷帘门、磁铁和电器——它们会使罗盘产生偏差。"
+  },
+  "device": {
+    "steps": {
+      "stand": "站在大门口，背对屋内，直视外面。",
+      "hold": "将手机水平放置（与地面平行），机身顶部指向你看的方向。",
+      "wait": "站稳几秒等读数稳定，然后点击“锁定读数”。"
+    },
+    "lock": "锁定{{target}}的读数",
+    "manual": "改为输入度数",
+    "unstable": "读数跳动较大。请站稳，把手机按“8”字形转几圈让它自动校准，然后重新测量。"
+  },
+  "live": {
+    "title": "房屋朝向罗盘",
+    "intro": "站在大门口，背对屋内，水平拿着手机，机身顶部笔直指向外面。",
+    "dialAria": "罗盘盘面，北在上方",
+    "dialAriaFacing": "罗盘盘面，房屋朝向 {{degree}}",
+    "facingEnd": "向",
+    "sittingEnd": "坐",
+    "empty": "点击“开始测量”或输入度数来读取房屋朝向。",
+    "failureManual": "{{failure}} 你可以输入用其他罗盘测得的度数。",
+    "locked": "已锁定 {{degree}}",
+    "remeasure": "重新测量",
+    "lock": "锁定朝向",
+    "useDevice": "使用设备罗盘",
+    "enterDegree": "输入度数",
+    "unstable": "读数跳动较大，暂时无法锁定。请站稳，把手机按“8”字形转几圈让它自动校准。",
+    "facing": "向",
+    "sitting": "坐",
+    "offset": "偏离 {{mountain}} 山中线 {{degree}}，偏向 {{toward}}。",
+    "centered": "正对 {{mountain}} 山中线。",
+    "void": {
+      "MAJOR": "大空亡",
+      "MINOR": "小空亡"
+    },
+    "voidWarning": "<strong>{{kind}}</strong>——朝向紧贴 {{mountain}} / {{toward}} 的分界线。{{note}}"
+  },
+  "manual": {
+    "label": "{{target}}的度数",
+    "placeholder": "例如 132",
+    "hint": "从北开始按顺时针方向计：东 90°，南 180°，西 270°。",
+    "invalid": "请输入一个数字，例如 132 或 132,5。"
+  },
+  "method": {
+    "title": "用什么方式获取朝向？",
+    "label": "获取朝向的方式",
+    "options": {
+      "DEVICE": "现在测量",
+      "MANUAL": "我知道度数",
+      "DRAWING": "按图纸"
+    },
+    "locked": "已为{{target}}锁定 {{degree}}。",
+    "drawingNote": "不需要传感器：只要图纸上有指北符号即可。先在图片上放置北向箭头，再放置要测量对象的轴线。"
+  },
+  "canvas": {
+    "imageAlt": "正在测量朝向的照片 / 图纸",
+    "traceGrip": "线条的第 {{index}} 个点——点击选中线条，拖动或用方向键调整",
+    "closeAria": "在起点闭合图形",
+    "closeTitle": "闭合图形",
+    "northHead": "北向箭头头部——拖动以对准图纸的指北符号",
+    "northTail": "北向箭头尾部——拖动以移动",
+    "axisHead": "{{target}}轴线头部——拖动以旋转",
+    "axisTail": "{{target}}轴线尾部——拖动以移动",
+    "compassCenter": "罗盘中心——拖动以移动罗盘",
+    "compassEdge": "罗盘边缘——拖动以放大 / 缩小"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "墙线",
+      "polygon": "多边形",
+      "rect": "矩形框"
+    },
+    "traceHints": {
+      "line": "点击两个点画一段墙。点击已画线段的端点，可标记为正面 / 大门。",
+      "polygon": "依次点击各个角，再点击起点（空心圆）闭合图形。",
+      "rect": "点击两个对角画一个矩形框。"
+    },
+    "northStep": "北向",
+    "hints": {
+      "north": "点击图纸上的指北符号放置北向箭头，然后拖动箭头头部，使其与符号方向一致。",
+      "door": "点击大门添加大门轴线（选填）。拖动箭头头部使其指向外面。",
+      "drawing": "点击要测量的位置放置{{target}}轴线。拖动箭头头部指向外面——即从里往外看的方向。",
+      "overlay": "想让罗盘显示在图片上：点击要测量的位置，按{{target}}的正确方向把箭头头部拖向外面。"
+    },
+    "aria": "正在测量朝向的图片",
+    "tabsAria": "在图片上进行的操作",
+    "placeTab": "放置朝向",
+    "traceTab": "重绘平面图",
+    "undo": "撤销",
+    "redo": "重做",
+    "traceKindsAria": "线条类型",
+    "snap": "吸附 45° 角",
+    "stepsAria": "图片上的步骤",
+    "done": "（已放置）",
+    "pageAria": "正在测量的 PDF 页面",
+    "pageOption": "第 {{page}} 页 / 共 {{total}} 页"
+  },
+  "result": {
+    "title": "测量结果",
+    "fine": "16 方位：{{direction}}",
+    "empty": "还没有读数。",
+    "compassAria": "罗盘，北在上方"
+  },
+  "solar": {
+    "title": "日照与太阳",
+    "locationFailure": {
+      "denied": "你还没有允许获取位置。请手动输入纬度、经度。",
+      "unavailable": "设备无法获取位置。请手动输入纬度、经度。"
+    },
+    "daySide": {
+      "MORNING": "受上午阳光照射",
+      "AFTERNOON": "受下午阳光照射（西晒强烈，房屋较热）",
+      "BOTH": "上午和下午都有阳光照射",
+      "NONE": "全天直射阳光较少"
+    },
+    "intro": "查看太阳从哪个方向升起、落下，以及{{target}}是否会受西晒。",
+    "locating": "正在获取位置…",
+    "useLocation": "使用我的位置",
+    "latitude": "纬度",
+    "longitude": "经度",
+    "date": "日期",
+    "time": "时间",
+    "sunAt": "{{time}} 的太阳",
+    "sunPosition": "{{degree}} · {{direction}} · 高度角 {{elevation}}",
+    "belowHorizon": "在地平线以下",
+    "sunrise": "日出",
+    "sunset": "日落",
+    "facingSun": "{{side}} · 此刻正迎着阳光",
+    "awayFromSun": "{{side}} · 此刻未迎着阳光",
+    "needCoordinates": "请输入纬度、经度（或点击“使用我的位置”）进行计算。",
+    "note": "太阳方位按真北计算；在越南，真北与磁北相差不到 1°。未计入相邻房屋的遮挡。"
+  },
+  "source": {
+    "title": "你手上有什么？",
+    "pickTitle": "选择平面图、房屋照片或 PDF 图纸",
+    "pickHint": "JPG、PNG、WebP、PDF · 最大 100 MB · 文件只在你的设备上打开",
+    "camera": "拍照",
+    "rejectedTitle": "无法打开文件",
+    "dismiss": "隐藏通知",
+    "none": "没有图片——只用罗盘",
+    "noneHint": "用手机罗盘测量，或输入已知的度数。",
+    "tooLarge": "文件超过 {{size}}。",
+    "openFailed": "无法打开此文件。",
+    "pageFailed": "无法绘制此页面。"
+  },
+  "targetsPanel": {
+    "title": "测量对象",
+    "noAxis": "未放置轴线",
+    "noMeasure": "还没有读数",
+    "hint": "{{hint}}。",
+    "customName": "对象名称",
+    "customPlaceholder": "例如：侧门",
+    "addAria": "要添加的对象",
+    "add": "添加",
+    "axisAngle": "图片上的轴线角度",
+    "axisAngleHint": "0° = 指向图片上边缘，按顺时针方向计。"
+  },
+  "tech": {
+    "title": "技术参数",
+    "reference": "度数基准",
+    "referenceHint": "仅作标记，不自动换算。在越南，磁北与真北相差不到 1°；项目北以图纸的坐标网格为准。",
+    "divisionsLabel": "罗盘分区",
+    "divisionsAria": "罗盘的分区数",
+    "divisions": "{{count}} 个方位",
+    "size": "罗盘在图片上的大小 · {{percent}}%",
+    "opacity": "罗盘不透明度 · {{percent}}%",
+    "saveRecord": "下载测量记录（JSON）"
+  },
+  "traceActions": {
+    "aria": "当前选中的线条",
+    "tags": {
+      "FRONTAGE": "这是正面",
+      "ENTRANCE": "这是大门"
+    },
+    "flip": "翻转朝外的一侧",
+    "delete": "删除此线条"
+  },
+  "export": {
+    "title": "保存结果",
+    "legend": "保存为",
+    "image": "图片",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "保留原图的拍摄信息（EXIF）",
+      "pdf": "图纸页面会重新绘制为 PNG 图片",
+      "none": "附带读数的罗盘图片"
+    },
+    "pdfHintVector": "保留原始图纸页面的矢量格式",
+    "pdfHintPage": "单页，可打印",
+    "buildFailed": "无法生成结果文件。",
+    "shareFailed": "无法分享。请保存文件后再发送。",
+    "building": "正在生成文件…",
+    "savePdf": "保存 PDF",
+    "saveImage": "保存图片",
+    "share": "分享",
+    "saved": "已保存 {{name}}",
+    "savedDetail": "已保存 {{name}} · {{detail}}",
+    "notes": {
+      "standalone": "尚未确定图片上的北向，因此罗盘单独导出，不绘制在图片上。",
+      "rasterized": "无法保留原始 PDF 页面的矢量格式——页面已重新绘制为图片，页面中的文字无法选中。"
+    },
+    "pageDetail": "第 {{page}} 页",
+    "noSource": "没有可导出的来源。"
+  },
+  "pdf": {
+    "password": "PDF 设有打开密码——请用“解锁 PDF”工具移除密码后重新选择。",
+    "unreadable": "无法读取此 PDF 文件。",
+    "noCanvas": "浏览器无法提供绘图区域。",
+    "renderFailed": "无法绘制 PDF 页面。"
+  },
+  "age": {
+    "title": "按屋主年龄查看",
+    "intro": "选填。开启后会在罗盘上显示按年龄的吉凶星环，并按{{method}}查看房屋朝向是吉还是凶。",
+    "addPerson": "再比较一个人",
+    "method": "方法：{{name}} · 规则集 v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "公历出生日期",
+      "LUNAR_YEAR": "农历出生年份"
+    },
+    "name": "称呼",
+    "sex": "性别",
+    "sexes": {
+      "MALE": "男",
+      "FEMALE": "女"
+    },
+    "inputBy": "输入方式",
+    "yearPlaceholder": "例如 1986",
+    "yearNote": "年份以农历春节为界。",
+    "yearNoteLunar": "年份以农历春节为界——春节前出生的按前一年算。",
+    "facts": {
+      "age": "干支年",
+      "napAm": "命（纳音）",
+      "trigram": "命卦"
+    },
+    "beforeTet": "春节前出生，因此按 {{year}} 年（{{canChi}}）计算。",
+    "facingGood": "{{target}}：{{segment}}（{{degree}}）——<strong>{{star}}</strong>，吉。{{meaning}}。",
+    "facingBad": "{{target}}：{{segment}}（{{degree}}）——<strong>{{star}}</strong>，凶。{{meaning}}。",
+    "houseSame": "按坐向看：坐 {{segment}} 的房屋为{{trigram}}宅（{{houseGroup}}宅），与{{personGroup}}同组。",
+    "houseOther": "按坐向看：坐 {{segment}} 的房屋为{{trigram}}宅（{{houseGroup}}宅），与{{personGroup}}不同组。",
+    "lockFirst": "锁定{{target}}的读数后即可查看吉凶。",
+    "goodDirections": "四个吉方：{{list}}",
+    "drivesDial": "罗盘上的星环按{{name}}计算。",
+    "thisPerson": "此人",
+    "defaultName": "第 {{index}} 人",
+    "errors": {
+      "yearFormat": "请输入四位数年份，例如 1986。",
+      "invalidDate": "出生日期无效。",
+      "outOfRange": "这一天不存在，或超出支持的农历范围（1800–2199）。"
+    }
+  },
+  "rules": {
+    "segments": "规则集必须包含全部 8 个宫位。",
+    "missingStars": "{{trigram}}卦缺少星。",
+    "duplicateStars": "{{trigram}}卦有两颗星落在同一方向。",
+    "noGroup": "{{trigram}}卦不属于任何组。",
+    "homes": "各卦的后天方位无效。",
+    "yearRange": "出生年份必须在 {{min}}–{{max}} 之间。",
+    "noTrigram": "规则集中没有第 {{number}} 卦。"
+  }
+}

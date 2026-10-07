@@ -1,0 +1,362 @@
+{
+  "shared": {
+    "on": "On",
+    "off": "Off",
+    "remove": "Remove {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "Homeowner",
+    "PROFESSIONAL": "Professional"
+  },
+  "page": {
+    "projectNorthWarning": "Measuring against project north — not a real direction, so age-based compatibility and sunlight can't be calculated. Switch to true north or magnetic north in the technical section.",
+    "missing": {
+      "drawing": "Tap the north symbol on the drawing to start.",
+      "device": "Press “Start measuring”, hold still, then lock in the reading.",
+      "manual": "Enter the bearing you already know.",
+      "placeAxis": "Place the {{target}} axis on the image.",
+      "pickMeasured": "Choose an item that already has a reading."
+    },
+    "noSource": "No source yet.",
+    "modeLabel": "Display mode",
+    "back": "Back",
+    "changeSource": "Change image / source",
+    "placeOnImage": "Place on a house photo / drawing",
+    "nothingToSave": "No readings to save yet.",
+    "frontageFallback": "Frontage",
+    "houseFrontageFallback": "House frontage",
+    "sideAge": "By age and save results"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "House facing",
+      "hint": "Looking straight out through the frontage from inside the house"
+    },
+    "MAIN_DOOR": {
+      "label": "Main door",
+      "hint": "Looking out through the main door from inside the house"
+    },
+    "BALCONY": {
+      "label": "Balcony",
+      "hint": "Looking out to the balcony from inside the room"
+    },
+    "KITCHEN": {
+      "label": "Stove",
+      "hint": "The direction of the cook's back — opposite to where the cook faces the stove"
+    },
+    "ALTAR": {
+      "label": "Altar",
+      "hint": "The direction the front of the altar faces"
+    },
+    "BED": {
+      "label": "Bed",
+      "hint": "Looking from the head of the bed toward the foot"
+    },
+    "DESK": {
+      "label": "Desk",
+      "hint": "The direction the person sitting at the desk faces"
+    },
+    "LAND_FRONTAGE": {
+      "label": "Plot frontage",
+      "hint": "Looking out to the road from inside the plot"
+    },
+    "CUSTOM": {
+      "label": "Other item",
+      "hint": "Name it yourself; the axis points in the direction to measure"
+    }
+  },
+  "north": {
+    "TRUE": "True north",
+    "MAGNETIC": "Magnetic north",
+    "PROJECT": "Project north"
+  },
+  "sources": {
+    "DRAWING": "placed on a drawing",
+    "MANUAL": "entered manually",
+    "DEVICE": "phone compass",
+    "SURVEY": "survey measurement"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · accuracy ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "This browser can't read the device's compass.",
+      "insecure": "The compass only works when the page is opened over HTTPS.",
+      "denied": "You haven't allowed access to the orientation sensor. Allow it in your browser settings and try again.",
+      "noSignal": "No compass signal — computers and many browsers don't have this sensor."
+    },
+    "stability": {
+      "STABLE": "Stable",
+      "WOBBLY": "Still wobbling",
+      "UNSTABLE": "Unstable"
+    },
+    "accuracy": "Device reports ±{{value}}° accuracy",
+    "noAccuracy": "Device doesn't report accuracy",
+    "starting": "Opening the compass…",
+    "retry": "Try again",
+    "start": "Start measuring",
+    "stop": "Stop",
+    "outside": "I'm standing outside, looking at the house",
+    "magnetWarning": "Stay away from steel columns, cars, roller doors, magnets and electrical equipment — they throw off the compass."
+  },
+  "device": {
+    "steps": {
+      "stand": "Stand at the main door with your back to the house, looking straight out.",
+      "hold": "Hold the phone flat (parallel to the ground), with its top pointing where you're looking.",
+      "wait": "Hold still for a few seconds until the reading settles, then press “Lock reading”."
+    },
+    "lock": "Lock reading for {{target}}",
+    "manual": "Enter the bearing instead",
+    "unstable": "The reading is jumping a lot. Hold still, move the phone in a figure 8 a few times so it recalibrates, then measure again."
+  },
+  "live": {
+    "title": "House orientation compass",
+    "intro": "Stand at the main door with your back to the house, hold the phone flat with its top pointing straight out.",
+    "dialAria": "Compass dial, north at the top",
+    "dialAriaFacing": "Compass dial, house facing {{degree}}",
+    "facingEnd": "FACING",
+    "sittingEnd": "SITTING",
+    "empty": "Press “Start measuring” or enter a bearing to read the house orientation.",
+    "failureManual": "{{failure}} You can enter a bearing measured with another compass.",
+    "locked": "Locked at {{degree}}",
+    "remeasure": "Measure again",
+    "lock": "Lock direction",
+    "useDevice": "Use the device compass",
+    "enterDegree": "Enter bearing",
+    "unstable": "The reading is jumping too much to lock. Hold still and move the phone in a figure 8 a few times so it recalibrates.",
+    "facing": "Facing",
+    "sitting": "Sitting",
+    "offset": "{{degree}} off the center of {{mountain}}, toward {{toward}}.",
+    "centered": "Right at the center of the {{mountain}} mountain.",
+    "void": {
+      "MAJOR": "Major void line",
+      "MINOR": "Minor void line"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — the direction is right on the boundary of {{mountain}} / {{toward}}. {{note}}"
+  },
+  "manual": {
+    "label": "Bearing of {{target}}",
+    "placeholder": "Example: 132",
+    "hint": "Measured clockwise from north: east 90°, south 180°, west 270°.",
+    "invalid": "Enter a number, e.g. 132 or 132.5."
+  },
+  "method": {
+    "title": "How do you want to get the direction?",
+    "label": "Method",
+    "options": {
+      "DEVICE": "Measure now",
+      "MANUAL": "I know the bearing",
+      "DRAWING": "From a drawing"
+    },
+    "locked": "Locked {{degree}} for {{target}}.",
+    "drawingNote": "No sensor needed: you just need a drawing with a north symbol. Place the north arrow on the image, then place the axis of the item to measure."
+  },
+  "canvas": {
+    "imageAlt": "Image / drawing being measured",
+    "traceGrip": "Point {{index}} of the trace — tap to select the trace, drag or use the arrow keys to adjust",
+    "closeAria": "Close the shape at the first point",
+    "closeTitle": "Close shape",
+    "northHead": "North arrow head — drag to rotate it to the drawing's north symbol",
+    "northTail": "North arrow tail — drag to move",
+    "axisHead": "{{target}} axis head — drag to rotate",
+    "axisTail": "{{target}} axis tail — drag to move",
+    "compassCenter": "Compass center — drag to move the compass",
+    "compassEdge": "Compass edge — drag to enlarge / shrink"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "Wall line",
+      "polygon": "Polygon",
+      "rect": "Rectangle"
+    },
+    "traceHints": {
+      "line": "Tap two points to draw a wall segment. Tap the end of a drawn segment to label it as frontage / main door.",
+      "polygon": "Tap each corner in turn, then tap the first point (hollow circle) again to close the shape.",
+      "rect": "Tap two opposite corners to draw a rectangle."
+    },
+    "northStep": "North",
+    "hints": {
+      "north": "Tap the north symbol on the drawing to place the north arrow, then drag the arrowhead to match the symbol's direction.",
+      "door": "Tap the main door to add a door axis (optional). Drag the arrowhead to point outward.",
+      "drawing": "Tap the spot to measure to place the {{target}} axis. Drag the arrowhead to point OUTWARD — the view from inside looking out.",
+      "overlay": "To put the compass on the image: tap the spot to measure and drag the arrowhead outward along the {{target}} direction."
+    },
+    "aria": "Image being measured",
+    "tabsAria": "Current task on the image",
+    "placeTab": "Set direction",
+    "traceTab": "Trace the plan",
+    "undo": "Undo",
+    "redo": "Redo",
+    "traceKindsAria": "Trace type",
+    "snap": "Snap to 45°",
+    "stepsAria": "Steps on the image",
+    "done": "(placed)",
+    "pageAria": "PDF page being measured",
+    "pageOption": "Page {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "Reading",
+    "fine": "16-point: {{direction}}",
+    "empty": "No reading yet.",
+    "compassAria": "Compass, north at the top"
+  },
+  "solar": {
+    "title": "Sunlight & sun path",
+    "locationFailure": {
+      "denied": "You haven't allowed location access. Enter the latitude and longitude manually.",
+      "unavailable": "The device couldn't get your location. Enter the latitude and longitude manually."
+    },
+    "daySide": {
+      "MORNING": "gets morning sun",
+      "AFTERNOON": "gets afternoon sun (harsh, heats the house)",
+      "BOTH": "gets both morning and afternoon sun",
+      "NONE": "gets little direct sun during the day"
+    },
+    "intro": "See where the sun rises and sets, and whether the {{target}} gets afternoon sun.",
+    "locating": "Getting your location…",
+    "useLocation": "Use my location",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "date": "Date",
+    "time": "Time",
+    "sunAt": "Sun at {{time}}",
+    "sunPosition": "{{degree}} · {{direction}} · altitude {{elevation}}",
+    "belowHorizon": "Below the horizon",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "facingSun": "{{side}} · facing the sun right now",
+    "awayFromSun": "{{side}} · not facing the sun right now",
+    "needCoordinates": "Enter the latitude and longitude (or press “Use my location”) to calculate.",
+    "note": "The sun's direction is calculated from true north; in Vietnam it differs from magnetic north by less than 1°. Shadows from neighboring buildings aren't taken into account."
+  },
+  "source": {
+    "title": "What do you have on hand?",
+    "pickTitle": "Choose a floor plan image, a photo of the house or a PDF drawing",
+    "pickHint": "JPG, PNG, WebP, PDF · up to 100 MB · files open only on your device",
+    "camera": "Take photo",
+    "rejectedTitle": "Couldn't open the file",
+    "dismiss": "Dismiss",
+    "none": "No image — compass only",
+    "noneHint": "Measure with the phone compass or enter a bearing you already know.",
+    "tooLarge": "The file is over {{size}}.",
+    "openFailed": "Couldn't open this file.",
+    "pageFailed": "Couldn't draw this page."
+  },
+  "targetsPanel": {
+    "title": "Measure the direction of",
+    "noAxis": "No axis placed",
+    "noMeasure": "No reading yet",
+    "hint": "{{hint}}.",
+    "customName": "Item name",
+    "customPlaceholder": "Example: Side gate",
+    "addAria": "Item to add",
+    "add": "Add",
+    "axisAngle": "Axis angle on the image",
+    "axisAngleHint": "0° = pointing to the top edge of the image, clockwise."
+  },
+  "tech": {
+    "title": "Technical settings",
+    "reference": "Bearings measured from",
+    "referenceHint": "Label only, no automatic conversion. In Vietnam, magnetic north differs from true north by less than 1°; project north follows the drawing's coordinate grid.",
+    "divisionsLabel": "Compass divisions",
+    "divisionsAria": "Number of compass sectors",
+    "divisions_one": "{{count}} direction",
+    "divisions_other": "{{count}} directions",
+    "size": "Compass size on the image · {{percent}}%",
+    "opacity": "Compass opacity · {{percent}}%",
+    "saveRecord": "Download reading record (JSON)"
+  },
+  "traceActions": {
+    "aria": "Selected trace",
+    "tags": {
+      "FRONTAGE": "This is the frontage",
+      "ENTRANCE": "This is the main door"
+    },
+    "flip": "Flip the outward side",
+    "delete": "Delete this trace"
+  },
+  "export": {
+    "title": "Save results",
+    "legend": "Save as",
+    "image": "Image",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "Keeps the original photo's capture information (EXIF)",
+      "pdf": "The drawing page is redrawn as a PNG image",
+      "none": "Compass image with readings"
+    },
+    "pdfHintVector": "Keeps the original drawing page as vectors",
+    "pdfHintPage": "One page, printable",
+    "buildFailed": "Couldn't build the result file.",
+    "shareFailed": "Couldn't share. Save the file and send it instead.",
+    "building": "Building file…",
+    "savePdf": "Save PDF",
+    "saveImage": "Save image",
+    "share": "Share",
+    "saved": "Saved {{name}}",
+    "savedDetail": "Saved {{name}} · {{detail}}",
+    "notes": {
+      "standalone": "North couldn't be determined on the image, so the compass was exported on its own instead of drawn on the image.",
+      "rasterized": "The original PDF page couldn't be kept as vectors — it was redrawn as an image, so its text can't be selected."
+    },
+    "pageDetail": "Page {{page}}",
+    "noSource": "Nothing to export."
+  },
+  "pdf": {
+    "password": "The PDF has an open password — remove it with the \"PDF password\" tool, then choose it again.",
+    "unreadable": "Couldn't read this PDF file.",
+    "noCanvas": "The browser couldn't provide a drawing area.",
+    "renderFailed": "Couldn't draw the PDF page."
+  },
+  "age": {
+    "title": "Readings by the homeowner's age",
+    "intro": "Optional. Turn it on to show the ring of favorable / unfavorable stars for a person's age on the compass and see whether the house direction suits them according to {{method}}.",
+    "addPerson": "Compare another person",
+    "method": "Method: {{name}} · rule set v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "Solar date of birth",
+      "LUNAR_YEAR": "Lunar year of birth"
+    },
+    "name": "Name",
+    "sex": "Sex",
+    "sexes": {
+      "MALE": "Male",
+      "FEMALE": "Female"
+    },
+    "inputBy": "Enter by",
+    "yearPlaceholder": "Example: 1986",
+    "yearNote": "The year starts at Tết (lunar new year).",
+    "yearNoteLunar": "The year starts at Tết (lunar new year) — if born before Tết, use the previous year.",
+    "facts": {
+      "age": "Age",
+      "napAm": "Element (nạp âm)",
+      "trigram": "Life trigram"
+    },
+    "beforeTet": "Born before Tết, so the age is counted for the year {{year}} ({{canChi}}).",
+    "facingGood": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, favorable. {{meaning}}.",
+    "facingBad": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, unfavorable. {{meaning}}.",
+    "houseSame": "By sitting direction: a house sitting in {{segment}} is a {{trigram}} house ({{houseGroup}} group), the same group as {{personGroup}}.",
+    "houseOther": "By sitting direction: a house sitting in {{segment}} is a {{trigram}} house ({{houseGroup}} group), a different group from {{personGroup}}.",
+    "lockFirst": "Lock the {{target}} reading to see whether it's favorable or unfavorable.",
+    "goodDirections": "Four favorable directions: {{list}}",
+    "drivesDial": "The star ring on the compass is calculated for {{name}}.",
+    "thisPerson": "this person",
+    "defaultName": "Person {{index}}",
+    "errors": {
+      "yearFormat": "Enter a four-digit year, e.g. 1986.",
+      "invalidDate": "Invalid date of birth.",
+      "outOfRange": "This date doesn't exist or is outside the supported lunar calendar range (1800–2199)."
+    }
+  },
+  "rules": {
+    "segments": "The rule set must have all 8 sectors.",
+    "missingStars": "Trigram {{trigram}} is missing stars.",
+    "duplicateStars": "Trigram {{trigram}} has two stars in the same direction.",
+    "noGroup": "Trigram {{trigram}} doesn't belong to any group.",
+    "homes": "The Later Heaven directions of the trigrams are invalid.",
+    "yearRange": "The year of birth must be between {{min}} and {{max}}.",
+    "noTrigram": "The rule set has no trigram number {{number}}."
+  }
+}

@@ -1,10 +1,12 @@
 import { useEffect, useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 
 type Session = 'focus' | 'break'
 
 export default function PomodoroPage() {
+  const { t } = useTranslation('study')
   const focusId = useId()
   const breakId = useId()
   const [focusMinutes, setFocusMinutes] = useState(25)
@@ -39,25 +41,25 @@ export default function PomodoroPage() {
   const display = `${String(Math.floor(remaining / 60)).padStart(2, '0')}:${String(remaining % 60).padStart(2, '0')}`
 
   return <ToolBoard side={<div className="erp-tool-result" role="timer" aria-live={remaining === 0 ? 'assertive' : 'off'}>
-    <p className="erp-tool-result__label">{session === 'focus' ? 'Tập trung' : 'Nghỉ'}</p>
+    <p className="erp-tool-result__label">{session === 'focus' ? t('pomodoro.focus') : t('pomodoro.break')}</p>
     <p className="erp-tool-result__value">{display}</p>
     <div className="d-flex flex-wrap gap-2 mt-3">
-      {deadline === null ? <Button disabled={!valid || remaining === 0} onClick={start}>Bắt đầu</Button> : <Button onClick={pause}>Tạm dừng</Button>}
-      <Button variant="outline-secondary" onClick={() => reset(session, session === 'focus' ? focusMinutes : breakMinutes)}>Đặt lại</Button>
-      <Button variant="outline-secondary" onClick={() => reset(session === 'focus' ? 'break' : 'focus', session === 'focus' ? breakMinutes : focusMinutes)}>Chuyển phiên</Button>
+      {deadline === null ? <Button disabled={!valid || remaining === 0} onClick={start}>{t('pomodoro.start')}</Button> : <Button onClick={pause}>{t('pomodoro.pause')}</Button>}
+      <Button variant="outline-secondary" onClick={() => reset(session, session === 'focus' ? focusMinutes : breakMinutes)}>{t('pomodoro.reset')}</Button>
+      <Button variant="outline-secondary" onClick={() => reset(session === 'focus' ? 'break' : 'focus', session === 'focus' ? breakMinutes : focusMinutes)}>{t('pomodoro.switch')}</Button>
     </div>
-    <p className="erp-tool-result__note mt-3">Bộ hẹn giờ chỉ chạy khi trang còn mở. Khi về 00:00, chọn chuyển phiên để bắt đầu lượt tiếp theo.</p>
+    <p className="erp-tool-result__note mt-3">{t('pomodoro.note')}</p>
   </div>}>
-    <ToolPanel title="Thời lượng">
+    <ToolPanel title={t('pomodoro.title')}>
       <div className="erp-tool-form__grid">
-        <label className="erp-flow-field__label" htmlFor={focusId}>Tập trung (phút)
+        <label className="erp-flow-field__label" htmlFor={focusId}>{t('pomodoro.focusMinutes')}
           <Form.Control id={focusId} type="number" min="1" max="180" value={focusMinutes} onChange={(event) => setFocusMinutes(Number(event.target.value))} />
         </label>
-        <label className="erp-flow-field__label" htmlFor={breakId}>Nghỉ (phút)
+        <label className="erp-flow-field__label" htmlFor={breakId}>{t('pomodoro.breakMinutes')}
           <Form.Control id={breakId} type="number" min="1" max="60" value={breakMinutes} onChange={(event) => setBreakMinutes(Number(event.target.value))} />
         </label>
       </div>
-      {!valid ? <p className="text-danger mt-2">Tập trung 1–180 phút; nghỉ 1–60 phút.</p> : null}
+      {!valid ? <p className="text-danger mt-2">{t('pomodoro.invalid')}</p> : null}
     </ToolPanel>
   </ToolBoard>
 }

@@ -1,5 +1,6 @@
 import { Fragment, useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FlowChoice, ToolLeaveGuard, type FlowChoiceOption } from '@/features/tools/hub'
 import { RangeField } from '../../components/decoration-fields'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
@@ -16,12 +17,7 @@ const ACCEPT: readonly QuickKind[] = ['pdf']
 
 type SignSource = 'draw' | 'image'
 
-const SOURCES: FlowChoiceOption<SignSource>[] = [
-  { value: 'draw', label: 'Vẽ tay', hint: 'Ký bằng chuột, ngón tay hoặc bút ngay trên màn hình.' },
-  { value: 'image', label: 'Ảnh có sẵn', hint: 'Ảnh chụp / scan chữ ký. PNG nền trong suốt cho kết quả đẹp nhất.' },
-]
-
-const INK_LABEL: Record<SignatureInk, string> = { black: 'Đen', blue: 'Xanh' }
+const SOURCES: readonly SignSource[] = ['draw', 'image']
 
 interface Placed {
   sourceId: string
@@ -30,9 +26,11 @@ interface Placed {
 
 /** CHÈN CHỮ KÝ — vẽ tay hoặc chọn ảnh chữ ký rồi đặt lên trang. Là HÌNH chữ ký, không phải chữ ký số. */
 export default function SignPdfPage() {
+  const { t } = useTranslation('pdf')
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: false })
   const stamp = useStampImage()
+  const sources: FlowChoiceOption<SignSource>[] = SOURCES.map((value) => ({ value, label: t(`sign.source.${value}`), hint: t(`sign.source.${value}Hint`) }))
   const [source, setSource] = useState<SignSource>('draw')
   const [strokes, setStrokes] = useState<Stroke[]>([])
   const [ink, setInk] = useState<SignatureInk>('blue')
@@ -62,10 +60,10 @@ export default function SignPdfPage() {
 
   const blocked = !image
     ? source === 'draw'
-      ? 'Chưa có chữ ký — vẽ vào ô ký trước.'
-      : 'Chưa chọn ảnh chữ ký.'
+      ? t('sign.blockedNoDrawing')
+      : t('sign.blockedNoImage')
     : pages === 0
-      ? 'Chưa đặt chữ ký — bấm lên trang ở chỗ cần ký.'
+      ? t('sign.blockedNotPlaced')
       : null
 
   return (
@@ -76,7 +74,7 @@ export default function SignPdfPage() {
         quick={quick}
         accept={ACCEPT}
         multiple={false}
-        pickerTitle="Chọn tệp PDF cần chèn chữ ký"
+        pickerTitle={t('sign.pickerTitle')}
         stage={(running) =>
           item ? (
             <SignStage
@@ -91,29 +89,29 @@ export default function SignPdfPage() {
             />
           ) : null
         }
-        runLabel={pages > 0 ? `Chèn chữ ký vào ${pages} trang` : 'Chèn chữ ký'}
+        runLabel={pages > 0 ? t('sign.runMany', { count: pages }) : t('sign.run')}
         runIcon="pen"
         blocked={blocked}
         task={() => {
-          if (!image) throw new Error('chưa có chữ ký.')
+          if (!image) throw new Error(t('sign.missing'))
           return signTask(item, { bytes: image.bytes, mime: image.mime, aspect: image.aspect, widthRatio }, spots)
         }}
         options={
           <>
-            <FlowChoice legend="Chữ ký" value={source} options={SOURCES} onChange={pickSource} />
+            <FlowChoice legend={t('sign.legend')} value={source} options={sources} onChange={pickSource} />
 
             {/* Khoá riêng cho từng nhánh: không có thì React tái dùng ô chọn màu làm ô chọn tệp. */}
             {source === 'draw' ? (
               <Fragment key="draw">
                 <div className="erp-flow-field">
-                  <span className="erp-flow-field__label">Ô ký</span>
+                  <span className="erp-flow-field__label">{t('sign.pad')}</span>
                   <SignaturePad strokes={strokes} ink={ink} disabled={false} onChange={(next) => draw(next, ink)} />
                   <div className="erp-sign-pad__actions">
                     <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={strokes.length === 0} onClick={() => draw(strokes.slice(0, -1), ink)}>
-                      Bỏ nét cuối
+                      {t('sign.undo')}
                     </button>
                     <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={strokes.length === 0} onClick={() => draw([], ink)}>
-                      Ký lại
+                      {t('sign.clear')}
                     </button>
                   </div>
                   {stamp.error ? (
@@ -123,11 +121,11 @@ export default function SignPdfPage() {
                   ) : null}
                 </div>
                 <Form.Group controlId={`${ids}-ink`} className="erp-flow-field">
-                  <Form.Label className="erp-flow-field__label">Màu mực</Form.Label>
+                  <Form.Label className="erp-flow-field__label">{t('sign.ink')}</Form.Label>
                   <Form.Select value={ink} onChange={(event) => draw(strokes, event.target.value as SignatureInk)}>
                     {Object.values(SIGNATURE_INK).map((value) => (
                       <option key={value} value={value}>
-                        {INK_LABEL[value]}
+                        {t(`color.${value}`)}
                       </option>
                     ))}
                   </Form.Select>
@@ -135,7 +133,7 @@ export default function SignPdfPage() {
               </Fragment>
             ) : (
               <Form.Group key="image" controlId={`${ids}-image`} className="erp-flow-field">
-                <Form.Label className="erp-flow-field__label">Ảnh chữ ký</Form.Label>
+                <Form.Label className="erp-flow-field__label">{t('sign.image')}</Form.Label>
                 <Form.Control
                   type="file"
                   accept=".png,.jpg,.jpeg,image/png,image/jpeg"
@@ -152,15 +150,13 @@ export default function SignPdfPage() {
                   </Form.Control.Feedback>
                 ) : null}
                 <Form.Text id={`${ids}-image-help`} className="erp-flow-field__hint">
-                  {stamp.loading ? 'Đang mở ảnh…' : image ? `Đang dùng: ${image.name}` : 'PNG hoặc JPG. Ảnh chỉ nằm trên máy bạn. Ảnh JPG nền trắng sẽ che mất chữ bên dưới.'}
+                  {stamp.loading ? t('shared.openingImage') : image ? t('shared.usingImage', { name: image.name }) : t('sign.imageHint')}
                 </Form.Text>
               </Form.Group>
             )}
 
-            <RangeField label="Bề rộng chữ ký" value={Math.round(widthRatio * 100)} min={5} max={60} step={1} format={(percent) => `${percent}% trang`} onChange={(percent) => setWidthRatio(percent / 100)} />
-            <p className="erp-flow-field__hint">
-              Đây là HÌNH chữ ký vẽ đè lên trang, không phải chữ ký số: không có chứng thư, không xác thực được người ký và không chứng minh tệp chưa bị sửa. Chữ ký không được lưu lại sau khi rời màn này.
-            </p>
+            <RangeField label={t('sign.width')} value={Math.round(widthRatio * 100)} min={5} max={60} step={1} format={(percent) => t('shared.percentOfPage', { percent })} onChange={(percent) => setWidthRatio(percent / 100)} />
+            <p className="erp-flow-field__hint">{t('sign.disclaimer')}</p>
           </>
         }
       />

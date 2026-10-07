@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui'
 import { useToolsBranch } from '../hooks/tools-branch'
@@ -11,6 +12,7 @@ import { ToolTile } from './ToolTile'
  */
 export function ToolCard({ tool }: { tool: ToolDefinition }) {
   const { base } = useToolsBranch()
+  const { t } = useTranslation('common')
   const body = (
     <>
       <ToolTile tool={tool} />
@@ -27,7 +29,7 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
         {body}
         <span className="erp-tool-card__soon">
           <Icon name="clock" />
-          Sắp có
+          {t('toolCard.soon')}
         </span>
       </div>
     )

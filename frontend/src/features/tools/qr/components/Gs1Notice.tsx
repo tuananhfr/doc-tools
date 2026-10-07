@@ -1,3 +1,4 @@
+import { Trans } from 'react-i18next'
 import { Icon } from '@/components/ui'
 
 /**
@@ -9,8 +10,7 @@ export function Gs1Notice() {
     <p className="erp-barcode-note" role="note">
       <Icon name="info-circle" />
       <span>
-        Số EAN / ITF-14 phải do GS1 Việt Nam cấp cho doanh nghiệp của bạn — công cụ không tạo số, chỉ vẽ số bạn đã có. Mã dùng trong nội bộ (vật tư,
-        tài sản, kho) thì chọn <strong>Code 128</strong>.
+        <Trans ns="qr" i18nKey="gs1Notice" components={{ strong: <strong /> }} />
       </span>
     </p>
   )

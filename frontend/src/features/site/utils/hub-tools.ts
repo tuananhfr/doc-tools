@@ -4,7 +4,6 @@ import type { HubPage } from '../types/hub-page.types'
 
 export interface HubToolGroup {
   id: string
-  label: string
   tools: ToolDefinition[]
 }
 
@@ -27,7 +26,6 @@ export function resolveHubTools(page: HubPage, catalog: readonly ToolDefinition[
   const groups = page.subgroups
     .map((group) => ({
       id: group.id,
-      label: group.label,
       tools: readyFirst(group.toolIds.flatMap((id) => byId.get(id) ?? [])),
     }))
     .filter((group) => group.tools.length > 0)

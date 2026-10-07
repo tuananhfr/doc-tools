@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { parseDecimal, ToolPanel } from '@/features/tools/hub'
 import { useOneShotLocation, type LocationStatus } from '../hooks/useOneShotLocation'
 import { directionOf, formatDeg } from '../utils/azimuth'
-import { daySide, facesSun, type DaySide, type SolarInput, type SolarReading } from '../utils/sun-exposure'
+import { daySide, facesSun, type SolarInput, type SolarReading } from '../utils/sun-exposure'
 
 interface SolarPanelProps {
   reading: SolarReading | null
@@ -16,16 +17,9 @@ interface SolarPanelProps {
   onChange: (input: SolarInput | null) => void
 }
 
-const LOCATION_FAILURE: Partial<Record<LocationStatus, string>> = {
-  denied: 'Bạn chưa cho phép lấy vị trí. Nhập vĩ độ, kinh độ bằng tay.',
-  unavailable: 'Máy không lấy được vị trí. Nhập vĩ độ, kinh độ bằng tay.',
-}
-
-const DAY_SIDE: Record<DaySide, string> = {
-  MORNING: 'nhận nắng buổi sáng',
-  AFTERNOON: 'nhận nắng buổi chiều (nắng gắt, nóng nhà)',
-  BOTH: 'nhận nắng cả sáng lẫn chiều',
-  NONE: 'ít nắng trực tiếp trong ngày',
+const LOCATION_FAILURE: Partial<Record<LocationStatus, 'denied' | 'unavailable'>> = {
+  denied: 'denied',
+  unavailable: 'unavailable',
 }
 
 const pad = (value: number) => String(value).padStart(2, '0')
@@ -39,6 +33,7 @@ const coordinate = (value: number) => String(Math.round(value * 10_000) / 10_000
  * bấm và không lưu. Giờ hiện theo múi giờ của máy đang xem.
  */
 export function SolarPanel({ reading, front, frontLabel, warning, onChange }: SolarPanelProps) {
+  const { t } = useTranslation('orientation')
   const location = useOneShotLocation()
   const [open, setOpen] = useState(false)
   const [latitude, setLatitude] = useState('')
@@ -66,16 +61,17 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
       publish(next)
     })
 
-  const failure = LOCATION_FAILURE[location.status]
+  const failureKey = LOCATION_FAILURE[location.status]
+  const failure = failureKey ? t(`solar.locationFailure.${failureKey}`) : null
   const sunUp = reading ? reading.now.elevation > 0 : false
 
   return (
     <ToolPanel
-      title="Nắng & mặt trời"
-      actions={<Form.Check type="switch" id="orient-sun-toggle" label={open ? 'Đang bật' : 'Đang tắt'} checked={open} onChange={(event) => toggle(event.target.checked)} />}
+      title={t('solar.title')}
+      actions={<Form.Check type="switch" id="orient-sun-toggle" label={t(open ? 'shared.on' : 'shared.off')} checked={open} onChange={(event) => toggle(event.target.checked)} />}
     >
       {!open ? (
-        <p className="erp-orient-muted">Xem mặt trời mọc, lặn ở hướng nào và {frontLabel.toLowerCase()} có bị nắng chiều không.</p>
+        <p className="erp-orient-muted">{t('solar.intro', { target: frontLabel.toLowerCase() })}</p>
       ) : (
         <>
           {warning ? (
@@ -87,7 +83,7 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
           <div className="erp-orient-actions">
             <Button variant="outline-secondary" disabled={location.status === 'asking'} onClick={fillMyLocation}>
               <Icon name="geo-alt" className="me-2" />
-              {location.status === 'asking' ? 'Đang lấy vị trí…' : 'Dùng vị trí của tôi'}
+              {t(location.status === 'asking' ? 'solar.locating' : 'solar.useLocation')}
             </Button>
           </div>
           {failure ? (
@@ -99,7 +95,7 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
 
           <div className="erp-orient-grid">
             <Form.Group controlId="orient-lat" className="erp-flow-field">
-              <Form.Label className="erp-flow-field__label">Vĩ độ</Form.Label>
+              <Form.Label className="erp-flow-field__label">{t('solar.latitude')}</Form.Label>
               <Form.Control
                 inputMode="decimal"
                 placeholder="21,0285"
@@ -111,7 +107,7 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
               />
             </Form.Group>
             <Form.Group controlId="orient-lon" className="erp-flow-field">
-              <Form.Label className="erp-flow-field__label">Kinh độ</Form.Label>
+              <Form.Label className="erp-flow-field__label">{t('solar.longitude')}</Form.Label>
               <Form.Control
                 inputMode="decimal"
                 placeholder="105,8542"
@@ -123,7 +119,7 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
               />
             </Form.Group>
             <Form.Group controlId="orient-date" className="erp-flow-field">
-              <Form.Label className="erp-flow-field__label">Ngày</Form.Label>
+              <Form.Label className="erp-flow-field__label">{t('solar.date')}</Form.Label>
               <Form.Control
                 type="date"
                 value={date}
@@ -134,7 +130,7 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
               />
             </Form.Group>
             <Form.Group controlId="orient-time" className="erp-flow-field">
-              <Form.Label className="erp-flow-field__label">Giờ</Form.Label>
+              <Form.Label className="erp-flow-field__label">{t('solar.time')}</Form.Label>
               <Form.Control
                 type="time"
                 value={time}
@@ -149,20 +145,26 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
           {reading ? (
             <dl className="erp-orient-facts">
               <div>
-                <dt>Mặt trời lúc {time}</dt>
+                <dt>{t('solar.sunAt', { time })}</dt>
                 <dd>
-                  {sunUp ? `${formatDeg(reading.now.azimuth)} · ${directionOf(reading.now.azimuth).name} · cao ${formatDeg(reading.now.elevation)}` : 'Dưới đường chân trời'}
+                  {sunUp
+                    ? t('solar.sunPosition', {
+                        degree: formatDeg(reading.now.azimuth),
+                        direction: directionOf(reading.now.azimuth).name,
+                        elevation: formatDeg(reading.now.elevation),
+                      })
+                    : t('solar.belowHorizon')}
                 </dd>
               </div>
               <div>
-                <dt>Mọc</dt>
+                <dt>{t('solar.sunrise')}</dt>
                 <dd>
                   {timeOf(reading.day.sunrise)}
                   {reading.day.riseAzimuth !== null ? ` · ${formatDeg(reading.day.riseAzimuth)} ${directionOf(reading.day.riseAzimuth, 16).name}` : ''}
                 </dd>
               </div>
               <div>
-                <dt>Lặn</dt>
+                <dt>{t('solar.sunset')}</dt>
                 <dd>
                   {timeOf(reading.day.sunset)}
                   {reading.day.setAzimuth !== null ? ` · ${formatDeg(reading.day.setAzimuth)} ${directionOf(reading.day.setAzimuth, 16).name}` : ''}
@@ -172,16 +174,17 @@ export function SolarPanel({ reading, front, frontLabel, warning, onChange }: So
                 <div>
                   <dt>{frontLabel}</dt>
                   <dd>
-                    {DAY_SIDE[daySide(front, reading)]}
-                    {sunUp ? (facesSun(front, reading.now) ? ' · lúc này đang đón nắng' : ' · lúc này không đón nắng') : ''}
+                    {sunUp
+                      ? t(facesSun(front, reading.now) ? 'solar.facingSun' : 'solar.awayFromSun', { side: t(`solar.daySide.${daySide(front, reading)}`) })
+                      : t(`solar.daySide.${daySide(front, reading)}`)}
                   </dd>
                 </div>
               ) : null}
             </dl>
           ) : (
-            <p className="erp-orient-muted">Nhập vĩ độ, kinh độ (hoặc bấm “Dùng vị trí của tôi”) để tính.</p>
+            <p className="erp-orient-muted">{t('solar.needCoordinates')}</p>
           )}
-          <p className="erp-orient-muted">Hướng mặt trời tính theo Bắc thật; ở Việt Nam chênh với Bắc từ dưới 1°. Không tính bóng nhà bên cạnh.</p>
+          <p className="erp-orient-muted">{t('solar.note')}</p>
         </>
       )}
     </ToolPanel>

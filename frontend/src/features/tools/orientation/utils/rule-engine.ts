@@ -1,6 +1,8 @@
+import { translate } from '@/i18n/runtime'
 import type { PersonProfile, RuleGroup, RuleProfile, RuleStar, RuleTrigram } from '../types/rule.types'
 import { normalizeDeg } from './azimuth'
 import { sittingOf } from './luopan'
+import { directionLabel, trigramName } from './terms'
 
 export interface PersonReading {
   profile: PersonProfile
@@ -29,17 +31,17 @@ export type RuleOutcome<T> = { ok: true; value: T } | { ok: false; reason: strin
  * KHÔNG được làm hỏng phần số đo (spec v1.1 §14, ORI-010).
  */
 export function validateProfile(profile: RuleProfile): string | null {
-  if (profile.segments.length !== 8) return 'Bộ luật phải có đủ 8 cung.'
+  if (profile.segments.length !== 8) return translate('orientation:rules.segments')
   const starIds = new Set(profile.stars.map((star) => star.id))
   for (const trigram of profile.trigrams) {
     const indexes = Object.entries(trigram.stars)
-    if (indexes.length !== 8 || indexes.some(([id]) => !starIds.has(id))) return `Quái ${trigram.name} thiếu sao.`
-    if (new Set(indexes.map(([, index]) => index)).size !== 8) return `Quái ${trigram.name} có hai sao trùng một hướng.`
-    if (!profile.groups.some((group) => group.id === trigram.group)) return `Quái ${trigram.name} không thuộc nhóm nào.`
+    if (indexes.length !== 8 || indexes.some(([id]) => !starIds.has(id))) return translate('orientation:rules.missingStars', { trigram: trigramName(trigram.id) })
+    if (new Set(indexes.map(([, index]) => index)).size !== 8) return translate('orientation:rules.duplicateStars', { trigram: trigramName(trigram.id) })
+    if (!profile.groups.some((group) => group.id === trigram.group)) return translate('orientation:rules.noGroup', { trigram: trigramName(trigram.id) })
   }
   const homes = profile.trigrams.map((trigram) => trigram.home)
   if (homes.some((home) => home !== undefined)) {
-    if (homes.some((home) => home === undefined || !Number.isInteger(home) || home < 0 || home > 7) || new Set(homes).size !== homes.length) return 'Hướng hậu thiên của các quái không hợp lệ.'
+    if (homes.some((home) => home === undefined || !Number.isInteger(home) || home < 0 || home > 7) || new Set(homes).size !== homes.length) return translate('orientation:rules.homes')
   }
   return null
 }
@@ -58,16 +60,16 @@ export function readPerson(profile: RuleProfile, person: PersonProfile): RuleOut
   const broken = validateProfile(profile)
   if (broken) return { ok: false, reason: broken }
   const { min, max } = profile.inputSchema.year
-  if (!Number.isInteger(person.year) || person.year < min || person.year > max) return { ok: false, reason: `Năm sinh phải trong khoảng ${min}–${max}.` }
+  if (!Number.isInteger(person.year) || person.year < min || person.year > max) return { ok: false, reason: translate('orientation:rules.yearRange', { min, max }) }
 
   const number = kuaNumber(profile, person.year, person.sex)
   const trigram = profile.trigrams.find((item) => item.number === number)
   const group = trigram && profile.groups.find((item) => item.id === trigram.group)
-  if (!trigram || !group) return { ok: false, reason: `Bộ luật không có quái số ${number}.` }
+  if (!trigram || !group) return { ok: false, reason: translate('orientation:rules.noTrigram', { number }) }
 
-  const segments = profile.segments.map((name, index) => {
+  const segments = profile.segments.map((_, index) => {
     const starId = Object.entries(trigram.stars).find(([, at]) => at === index)?.[0]
-    return { index, name, star: profile.stars.find((star) => star.id === starId)! }
+    return { index, name: directionLabel(8, index).name, star: profile.stars.find((star) => star.id === starId)! }
   })
   return { ok: true, value: { profile: person, trigram, group, segments } }
 }
@@ -90,7 +92,7 @@ export function readHouse(profile: RuleProfile, reading: PersonReading, facing: 
   const group = trigram && profile.groups.find((item) => item.id === trigram.group)
   return {
     facing: readDirection(reading, facing),
-    house: trigram && group ? { segment: profile.segments[segment], trigram, group, matchesPerson: group.id === reading.group.id } : null,
+    house: trigram && group ? { segment: directionLabel(8, segment).name, trigram, group, matchesPerson: group.id === reading.group.id } : null,
   }
 }
 

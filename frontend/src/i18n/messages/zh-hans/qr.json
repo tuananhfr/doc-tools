@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "二维码工具",
+    "qrCreate": "生成二维码",
+    "barcodeCreate": "生成条形码",
+    "qrRead": "扫码"
+  },
+  "shared": {
+    "codeContent": "码中的内容",
+    "enterToCreate": "输入内容以生成码",
+    "contentPanel": "码的内容",
+    "kind": "码的类型",
+    "phone": "电话号码",
+    "security": "加密方式",
+    "password": "密码",
+    "noPassword": "无密码",
+    "retry": "重试",
+    "downloadPng": "下载 PNG",
+    "value": "值",
+    "emailPlaceholder": "name@company.com"
+  },
+  "qrCreate": {
+    "side": "二维码",
+    "tooLong": "内容超出了一个二维码的容量。请精简内容，或改用指向内容存放位置的链接。",
+    "renderFailed": "无法生成二维码图片。请重试。",
+    "notCreated": "尚未生成码",
+    "downloadPng": "下载二维码",
+    "downloadSvg": "下载 SVG 打印版",
+    "downloadPdf": "下载 PDF 版",
+    "transparentHint": "叠加到图片上时，请选择足够明亮且颜色均匀的区域，以便扫码。",
+    "lowContrast": "码的颜色和背景色太接近；请提高对比度以便扫码。",
+    "previewLabel": "当前输入内容的二维码"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL（链接）",
+      "text": "文字",
+      "wifi": "Wi-Fi",
+      "phone": "电话号码",
+      "email": "邮箱",
+      "vcard": "名片（vCard）"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "无密码"
+    },
+    "enterContent": "输入内容",
+    "textPlaceholder": "例如：B 仓库——12 号货架，第 3 层",
+    "ssid": "Wi-Fi 网络名称",
+    "ssidPlaceholder": "例如：Office-Main",
+    "hidden": "隐藏网络（不广播名称）",
+    "emailAddress": "邮箱地址",
+    "subject": "邮件主题（选填）",
+    "contactName": "姓名",
+    "contactNamePlaceholder": "张伟",
+    "contactEmail": "联系邮箱",
+    "contactOrg": "公司（选填）",
+    "contactTitle": "职务（选填）",
+    "vcardHint": "需要姓名，以及电话号码、邮箱中的至少一项。用手机相机扫码时会提示添加到通讯录。"
+  },
+  "payload": {
+    "urlSpaces": "链接中不能有空格。",
+    "wifiPassword": "请输入 Wi-Fi 密码，或选择“无密码”。",
+    "wpaShort": "WPA/WPA2 密码至少 8 个字符。",
+    "phoneChars": "电话号码只能包含数字，可以以 + 开头。",
+    "phoneShort": "电话号码太短。",
+    "email": "邮箱地址格式不正确，应类似 name@company.com。",
+    "contactName": "请输入联系人姓名。",
+    "contactReach": "请输入联系人的电话号码或邮箱。"
+  },
+  "colors": {
+    "legend": "二维码颜色",
+    "background": "二维码背景",
+    "backgroundModes": {
+      "white": "白色背景",
+      "transparent": "无背景",
+      "custom": "自选颜色"
+    },
+    "presetBackgrounds": "预设背景色",
+    "customColor": "自定义颜色",
+    "names": {
+      "ink": "黑色",
+      "steel": "钢灰色",
+      "blue": "蓝色",
+      "crimson": "红色",
+      "teal": "青绿色",
+      "green": "绿色",
+      "white": "白色",
+      "mist": "浅灰色",
+      "blue-soft": "浅蓝色",
+      "teal-soft": "浅青绿色",
+      "amber-soft": "奶油色",
+      "rose-soft": "浅粉色"
+    }
+  },
+  "barcode": {
+    "side": "条形码",
+    "modeLabel": "生成方式",
+    "modes": {
+      "single": "单个",
+      "batch": "批量"
+    },
+    "files": {
+      "png": "下载 PNG",
+      "svg": "SVG 打印版",
+      "pdf": "实际尺寸 PDF"
+    },
+    "drawFailed": "无法绘制此码。",
+    "fileFailed": "无法生成条形码文件。",
+    "engineFailed": "无法加载绘码组件。请刷新页面。",
+    "engineLoading": "正在加载绘码组件…",
+    "previewLabel": "{{value}} 的 {{kind}} 条形码",
+    "styleTitle": "码制",
+    "listTitle": "码列表"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "内部编码：物料、资产、仓库——字母、数字、符号",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "适用于老式扫码枪的内部编码——大写字母、数字、- . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "零售商品码，由 GS1 分配的 13 位数字",
+      "placeholder": "12 位数字，校验位自动添加"
+    },
+    "ean8": {
+      "hint": "小件商品码，由 GS1 分配的 8 位数字",
+      "placeholder": "7 位数字，校验位自动添加"
+    },
+    "itf14": {
+      "hint": "箱 / 包装件码，符合 GS1 的 14 位数字",
+      "placeholder": "13 位数字，校验位自动添加"
+    }
+  },
+  "barcodeOptions": {
+    "size": "打印尺寸",
+    "sizeStandard": "{{percent}}%（标准）",
+    "height": "条高",
+    "includeText": "在码下方打印数字 / 字符",
+    "sizeWarning": "尺寸低于 80% 时，许多手持扫码枪无法识别；整批打印前请先试印一张标签。"
+  },
+  "gs1Notice": "EAN / ITF-14 号码必须由 GS1 越南（GS1 Việt Nam）分配给你的企业——本工具不生成号码，只绘制你已有的号码。内部使用的编码（物料、资产、仓库）请选择 <strong>Code 128</strong>。",
+  "batch": {
+    "fileTooLarge": "文件大于 {{size}}。",
+    "readFailed": "无法读取此文件。",
+    "buildFailed": "无法生成文件。",
+    "pickTitle": "选择 CSV 或 Excel（.xlsx）文件",
+    "pickHint": "每行一个码，读取第一列 · 最多 {{limit}} 行",
+    "valid": "{{count}} 个有效码",
+    "invalid": "{{count}} 行错误——已排除",
+    "header": "跳过标题行“{{header}}”",
+    "dropped": "跳过超出上限 {{limit}} 的 {{count}} 行",
+    "line": "行",
+    "reason": "原因",
+    "moreErrors": "… 还有 {{count}} 行错误。",
+    "building": "正在生成 {{done}}/{{total}}…",
+    "pdf": "PDF（{{count}} 页）",
+    "zip": "{{type}} 压缩包（.zip）",
+    "unsupported": "只能读取 .csv 或 .xlsx 文件。"
+  },
+  "check": {
+    "digitsOnly": "只能包含数字。",
+    "checkDigitAdded": "已添加校验位 {{digit}}。",
+    "wrongLength": "需要 {{short}} 位数字（自动添加校验位）或完整的 {{full}} 位——当前为 {{count}} 位。",
+    "wrongCheckDigit": "校验位错误：最后一位应为 {{expected}}，而不是 {{actual}}。请检查抄写的号码。",
+    "empty": "还没有内容。",
+    "tooLong": "超过 {{max}} 个字符——码会长到超出扫码枪的范围。",
+    "code39Chars": "Code 39 只接受不带声调的字母、数字以及 - . $ / + % 和空格。",
+    "code39Upper": "Code 39 没有小写字母——已转换为大写。",
+    "code128Chars": "Code 128 无法编码带声调的字母或特殊字符。请使用不带声调的字母。",
+    "prefix893": "前缀 893：在 GS1 越南注册的码（表示发码地，而非生产地）。",
+    "prefixIsbn": "前缀 978/979：图书码（ISBN）。",
+    "prefixIssn": "前缀 977：连续出版物码（ISSN）。",
+    "prefixInternal": "前缀 20–29：商店 / 企业内部使用的码，不能在自己的系统之外使用。"
+  },
+  "render": {
+    "barcodeFailed": "无法生成码 {{value}}。",
+    "imageFailed": "浏览器无法生成图片。"
+  },
+  "read": {
+    "results": "结果",
+    "resultsCount": "结果（{{count}}）",
+    "clearAll": "全部清除",
+    "empty": "还没有识别任何码。请选择含有码的图片、粘贴截图，或用摄像头扫描。",
+    "safety": "打开前请仔细查看链接：任何人都能打印一个二维码贴在真码上面。",
+    "pickTitle": "选择含有二维码或条形码的图片",
+    "pickHint": "JPG、PNG、WebP · 也可以用 Ctrl+V 粘贴图片",
+    "camera": "用摄像头扫描",
+    "missTitle": "有 {{count}} 张图片无法识别",
+    "moreMisses": "… 还有 {{count}} 张图片",
+    "hideNotice": "隐藏通知",
+    "pastedImage": "刚粘贴的图片",
+    "noCode": "未发现任何码。请尝试正面拍摄、光线充足、码占画面大部分的照片。",
+    "unreadable": "无法打开。只能读取 JPG、PNG、WebP 图片。",
+    "tooLarge": "大于 {{size}}。",
+    "tooManyPixels": "图片过大（{{pixels}} 百万像素，上限 {{limit}} 百万）。请裁剪出含码的区域后重试。"
+  },
+  "camera": {
+    "scanTitle": "扫描 QR / 条形码",
+    "aim": "将码放入取景框",
+    "searching": "正在查找码…",
+    "detected": "已读取",
+    "scanNext": "继续扫描",
+    "openLink": "打开链接",
+    "zoom": "缩放",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "captured": "已读取的码图像",
+    "title": "摄像头",
+    "off": "关闭摄像头",
+    "viewfinder": "摄像头取景框",
+    "starting": "正在打开摄像头… 浏览器可能会请求摄像头权限。",
+    "hint": "把码放在画面中央，保持稍稳。识别成功后结果会立即显示，接着扫下一个码无需任何操作。",
+    "insecure": "{{reason}} 请用相机应用拍下码，再从设备中选择图片。"
+  },
+  "scanResult": {
+    "qrCode": "二维码",
+    "remove": "移除此结果",
+    "removeShort": "移除",
+    "ssid": "网络名称",
+    "unknown": "未知",
+    "checkOk": "校验位正确。",
+    "checkBad": "校验位错误——码印刷损坏或被篡改。",
+    "open": "打开 {{host}}",
+    "copyPassword": "复制密码",
+    "copyNumber": "复制号码",
+    "copyAddress": "复制地址",
+    "copy": "复制",
+    "copyRaw": "复制原文"
+  },
+  "vietqr": {
+    "side": "转账二维码",
+    "placeholder": "输入银行 BIN 码和账号以生成二维码",
+    "copy": "复制 QR 字符串",
+    "downloadSvg": "下载 SVG",
+    "checkNote": "使用前请用银行 App 试扫，并核对收款人姓名、账号和金额。",
+    "panel": "转账信息",
+    "bin": "银行 BIN 码（6 位数字）",
+    "account": "账号",
+    "amount": "金额（đ），可留空",
+    "note": "转账附言",
+    "privacy": "二维码在你的设备上生成；账户信息不会发送到 Chuyện Nhỏ 的服务器。",
+    "fieldTooLong": "QR 字段过长"
+  },
+  "trace": {
+    "title": "ERPCons 追溯",
+    "label": "在 ERPCons 中查询",
+    "object": "对象",
+    "code": "内部编码",
+    "serial": "序列号",
+    "noEvents": "还没有任何追溯事件。",
+    "recentEvents": "最近事件",
+    "loading": "正在 ERPCons 中查询…",
+    "accountForbidden": "你的账号还没有追溯查询权限。",
+    "failed": "查询失败：{{message}}",
+    "legacy": "对象的旧编码——尚未关联追溯码。",
+    "forbidden": "该码在台账中存在，但你无权查看其对应的对象。",
+    "broken": "该码指向的对象已不存在。",
+    "unknown": "已识别该码，但 ERPCons 中还没有追溯数据。",
+    "status": {
+      "DRAFT": "未发布",
+      "ACTIVE": "使用中",
+      "EXPIRED": "已过期",
+      "SUSPENDED": "已暂停",
+      "REVOKED": "已撤销",
+      "REPLACED": "已换码",
+      "ARCHIVED": "已归档"
+    },
+    "notes": {
+      "EXPIRED": "该码已过期——只能查看历史，不能操作。",
+      "SUSPENDED": "该码已暂停——不可用于业务。",
+      "REVOKED": "该码已撤销——此标签不再有效。",
+      "REPLACED": "此标签已被替换——请使用新标签。",
+      "ARCHIVED": "该对象已停止管理。"
+    }
+  }
+}

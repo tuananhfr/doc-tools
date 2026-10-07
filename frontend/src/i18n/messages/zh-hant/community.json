@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "需要補充來源",
+      "NEEDS_REVIEW": "等待審核",
+      "VERIFIED": "已驗證",
+      "REJECTED": "未獲採納",
+      "APPROVED": "已核准",
+      "PUBLISHED": "已發布",
+      "SUPERSEDED": "已有新版",
+      "REVOKED": "已撤回"
+    },
+    "sendFailed": "無法送出建議。",
+    "received": "已收到建議：{{status}}。請保留收據編號以便追蹤。",
+    "offlineDraft": "無法連線到伺服器。內容仍保留在此頁面。",
+    "invalidReceipt": "收據編號無效。",
+    "statusLine": "狀態：{{status}}",
+    "receiptNotFound": "找不到此收據編號。",
+    "lookupFailed": "目前無法查詢狀態。",
+    "addSourceFailed": "無法補充來源。",
+    "sourceAdded": "已補充來源。建議正在等待審核。",
+    "offline": "無法連線到伺服器。",
+    "ideaTitle": "建議新工具",
+    "regulationTitle": "回報法規資料",
+    "ideaIntro": "描述實際遇到的問題以及你希望有的工具。點子需經審核後才會發布。",
+    "regulationIntro": "說明需要修正的內容和來源連結。這是提供給負責人審核的意見，不會直接變更工具資料。",
+    "ideaName": "點子名稱",
+    "regulationTopic": "文件或主題",
+    "ideaDetail": "問題與建議的解決方式",
+    "regulationDetail": "需要核對／調整的內容",
+    "sourceUrl": "HTTPS 來源網址（如有）",
+    "sourceType": "你建議的來源類型",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "機關網站",
+      "OFFICIAL_DOCUMENT": "正式文件",
+      "OFFICIAL_API": "官方 API",
+      "OTHER": "其他來源"
+    },
+    "consent": "我已移除個人資訊和機密金鑰，並同意送出此內容供營運人員審核",
+    "sending": "傳送中…",
+    "submit": "送出建議",
+    "receipt": "收據編號：",
+    "lookupTitle": "查詢狀態",
+    "receiptLabel": "收據編號",
+    "lookup": "查詢",
+    "needsSource": "請在上方來源欄輸入 HTTPS 網址，再用此收據編號補充。",
+    "addSource": "補充來源"
+  },
+  "ideas": {
+    "published": "已發布的點子",
+    "empty": "目前還沒有通過審核並發布的點子。"
+  }
+}

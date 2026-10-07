@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "기초",
+      "basement": "지하층",
+      "ground": "1층",
+      "upper": "위층 (층당)",
+      "floor": "위층 {{floor}}",
+      "rooftopRoom": "옥탑",
+      "terrace": "지붕 없는 옥상",
+      "roof": "지붕",
+      "yard": "앞마당/뒷마당"
+    },
+    "result": "참고용 개략 견적",
+    "money": "{{amount}} đ",
+    "enterPrice": "단가를 입력하세요",
+    "convertedArea": "환산 면적: {{area}} m²",
+    "costs": "골조: {{base}} đ · 마감 또는 일괄: {{finishing}} đ · 파일: {{pile}} đ",
+    "columns": {
+      "item": "항목",
+      "area": "면적",
+      "factor": "계수",
+      "converted": "환산"
+    },
+    "checkInput": "입력한 수치를 확인해 주세요.",
+    "disclaimer": "계수는 보관 자료에 있는 참고용 관례이며 정부 기준이 아니에요. 설계와 시공사 견적을 대조하세요. 설계, 인허가, 별도 가구, 지반 관련 추가 비용은 포함되지 않아요.",
+    "title": "내 면적과 단가",
+    "fields": {
+      "floorArea": "1층 바닥 면적 (m²)",
+      "upperFloors": "위층 수 (1층 제외)",
+      "rooftopRoomArea": "옥탑 면적 (m²)",
+      "terraceArea": "지붕 없는 옥상 (m²)",
+      "yardArea": "앞마당/뒷마당 (m²)",
+      "basePrice": "골조 단가 (đ/m²)",
+      "finishingPrice": "마감 또는 일괄 단가 (đ/m²)",
+      "pileCost": "파일 비용 (đ)"
+    },
+    "turnkey": "두 번째 단가는 골조를 포함한 일괄 단가예요",
+    "editFactors": "시공사 견적에 맞게 계수 수정",
+    "factorLabel": "{{label}} (%)"
+  }
+}

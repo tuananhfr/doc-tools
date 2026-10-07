@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "Komitmen penggunaan",
+    "items": {
+      "free": {
+        "title": "Sepenuhnya gratis",
+        "description": "Langsung pakai, tanpa biaya tersembunyi"
+      },
+      "noAccount": {
+        "title": "Tidak perlu akun",
+        "description": "Buka situs, pilih alat, dan pakai"
+      },
+      "noInstall": {
+        "title": "Tidak perlu instalasi",
+        "description": "Langsung berjalan di browser"
+      },
+      "onDevice": {
+        "title": "File tetap di perangkat",
+        "description": "File Anda tidak diunggah ke server"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — alat gratis",
+    "description": "Alat PDF, gambar, kode QR, dan utilitas gratis. Diproses di perangkat Anda, file tidak diunggah."
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "Tentang Chuyện Nhỏ | Alat gratis dari ERPCons & LPC",
+      "description": "Chuyện Nhỏ adalah kumpulan alat gratis dari ERPCons & LPC untuk menyelesaikan urusan kecil dengan cepat dalam pekerjaan, konstruksi, dan kehidupan sehari-hari."
+    },
+    "ho-tro": {
+      "title": "Bantuan & pertanyaan umum | Chuyện Nhỏ",
+      "description": "Jawaban atas pertanyaan yang sering muncul saat memakai Chuyện Nhỏ, dan cara menghubungi kami."
+    },
+    "xu-ly-du-lieu": {
+      "title": "Cara kami memproses data | Chuyện Nhỏ",
+      "description": "Alat mana yang diproses langsung di perangkat, alat mana yang memerlukan server, dan data apa yang disimpan. Transparan untuk setiap alat."
+    },
+    "cai-dat": {
+      "title": "Pasang Chuyện Nhỏ di ponsel dan komputer | Chuyện Nhỏ",
+      "description": "Tambahkan Chuyện Nhỏ ke layar utama Android, iPhone, iPad, atau pasang di Windows dan macOS agar bisa dibuka cepat seperti aplikasi."
+    },
+    "huong-dan": {
+      "title": "Panduan penggunaan | Chuyện Nhỏ",
+      "description": "Panduan langkah demi langkah untuk alat populer: kompres PDF, pindai gambar ke PDF, OCR, kode QR, arah rumah, perkiraan biaya, Kalender Keluarga."
+    },
+    "dieu-khoan": {
+      "title": "Ketentuan penggunaan | Chuyện Nhỏ",
+      "description": "Ketentuan penggunaan kumpulan alat gratis Chuyện Nhỏ."
+    },
+    "quyen-rieng-tu": {
+      "title": "Kebijakan privasi | Chuyện Nhỏ",
+      "description": "Bagaimana Chuyện Nhỏ mengumpulkan, menggunakan, dan melindungi data pribadi, sesuai Undang-Undang Perlindungan Data Pribadi Vietnam 2025."
+    }
+  },
+  "nav": {
+    "tools": "Alat",
+    "construction": "Konstruksi",
+    "family": "Keluarga",
+    "guides": "Panduan",
+    "about": "Tentang kami"
+  },
+  "header": {
+    "skipLink": "Langsung ke konten",
+    "mainNav": "Navigasi utama",
+    "search": "Cari alat",
+    "openMenu": "Buka menu",
+    "mobileNav": "Navigasi ponsel"
+  },
+  "footer": {
+    "madeBy": "Sebuah produk dari <link>ERPCons & LPC</link>",
+    "navLabel": "Navigasi kaki halaman",
+    "motto": "Selalu menemani Anda.",
+    "links": {
+      "about": "Tentang",
+      "guides": "Panduan",
+      "data": "Pemrosesan data",
+      "support": "Bantuan",
+      "terms": "Ketentuan",
+      "privacy": "Privasi"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ, beranda"
+  },
+  "share": {
+    "button": "Bagikan",
+    "title": "Bagikan tautan",
+    "description": "Kirim halaman ini ke teman atau rekan kerja.",
+    "urlLabel": "Tautan halaman yang sedang dibuka",
+    "copy": "Salin tautan",
+    "native": "Bagikan lewat aplikasi",
+    "copied": "Tautan sudah disalin.",
+    "copyFailed": "Tidak dapat menyalin. Pilih dan salin tautan di atas.",
+    "shareFailed": "Panel berbagi tidak dapat dibuka. Salin tautannya untuk dikirim.",
+    "unsupported": "Browser ini belum mendukung berbagi lewat aplikasi. Anda bisa menyalin tautan untuk dikirim lewat WhatsApp atau aplikasi lain."
+  },
+  "breadcrumb": {
+    "label": "Anda berada di",
+    "home": "Beranda",
+    "tools": "Alat",
+    "guides": "Panduan"
+  },
+  "search": {
+    "label": "Cari alat",
+    "placeholder": "Cari alat… (misalnya: gabung PDF, QR, OCR)",
+    "clear": "Hapus kata kunci",
+    "submit": "Cari"
+  },
+  "filters": {
+    "all": "Semua"
+  },
+  "results": {
+    "count": "{{count}} alat",
+    "countFor": "{{count}} alat untuk “{{keyword}}”",
+    "empty": "Tidak ada alat yang ditemukan",
+    "emptyHint": "Coba kata kunci lain atau kurangi filter.",
+    "showAll": "Lihat semua alat"
+  },
+  "toolCard": {
+    "useNow": "Pakai sekarang",
+    "soon": "Segera hadir"
+  },
+  "processing": {
+    "server": "Diproses di server",
+    "device": "Di perangkat"
+  },
+  "recent": {
+    "title": "Baru dipakai"
+  },
+  "products": {
+    "learnMore": "Pelajari {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | Alat gratis. Butuh, langsung pakai.",
+    "captionStart": "Hal-hal kecil\nmenciptakan nilai besar.",
+    "tagline": "Alat gratis. Butuh, langsung pakai.",
+    "description": "Utilitas sederhana dan praktis untuk pekerjaan sehari-hari.",
+    "promisesLabel": "Langsung pakai",
+    "promises": {
+      "noAccount": "Tidak perlu akun",
+      "noInstall": "Tidak perlu instalasi",
+      "onDevice": "File diproses di perangkat"
+    },
+    "captionEnd": "Sederhana hari ini.\nBerkelanjutan esok hari.",
+    "catalogTitle": "Apa yang perlu Anda kerjakan hari ini?",
+    "featuredLabel": "Alat populer",
+    "resultsLabel": "Alat"
+  },
+  "directory": {
+    "metaTitle": "Semua alat gratis | Chuyện Nhỏ",
+    "metaDescription": "Semua alat PDF, gambar, kode QR, dan utilitas gratis dari Chuyện Nhỏ. Tidak perlu akun, diproses langsung di perangkat.",
+    "title": "Semua alat",
+    "lead": "{{count}} alat gratis. Pilih yang Anda perlukan, langsung pakai di browser.",
+    "catalogLabel": "Katalog alat"
+  },
+  "ecosystem": {
+    "title": "Saat satu alat belum cukup…",
+    "description": "Dari urusan kecil hari ini, sampai pekerjaan yang lebih besar esok hari.",
+    "erpcons": {
+      "heading": "Kelola pekerjaan, proyek, dan perusahaan konstruksi dalam satu platform.",
+      "modules": "Pekerjaan · Kontrak · Proyek\nBiaya · Pembelian · Gudang · Keuangan",
+      "trial": "Coba"
+    },
+    "tekshot": {
+      "heading": "Platform AI & Software yang membantu perusahaan melihat, memahami lebih dalam, mengotomatiskan, dan bertumbuh.",
+      "modules": "Kamera AI · Penjualan & POS · Marketing AI\nResearch AI · Satu platform, semua data",
+      "trial": "Coba gratis",
+      "demo": "Lihat demo"
+    },
+    "storyTitle": "Satu ekosistem. Lebih banyak nilai.",
+    "story": "Chuyện Nhỏ adalah kumpulan alat gratis dari ERPCons & LPC untuk membantu Anda menyelesaikan urusan kecil sehari-hari dengan cepat.",
+    "steps": {
+      "chuyenNho": "Butuh satu hal kecil.\nLangsung pakai.",
+      "erpcons": "Kelola pekerjaan,\nproyek, dan perusahaan.",
+      "tekshot": "AI yang melihat, memahami, bekerja, dan belajar\nuntuk perusahaan."
+    },
+    "motto": "Bekerja lebih ringan.\nSetiap hari lebih baik."
+  },
+  "hub": {
+    "highlightsLabel": "Dalam kelompok ini",
+    "listLabel": "Daftar {{label}}",
+    "subgroupFilter": "Saring menurut subkelompok",
+    "emptyHint": "Coba kata kunci lain atau hapus filter subkelompok.",
+    "showGroup": "Lihat seluruh kelompok",
+    "asideLabel": "Saran lainnya",
+    "privacy": {
+      "title": "File Anda dihormati",
+      "description": "Sebagian besar alat memproses langsung di perangkat. Alat yang memerlukan server selalu ditandai jelas di kartunya.",
+      "link": "Lihat cara kami memproses data"
+    },
+    "support": {
+      "title": "Butuh bantuan?",
+      "description": "Lihat panduan langkah demi langkah atau kirim email kepada kami.",
+      "guides": "Lihat panduan"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "Alat konstruksi",
+      "title": "Alat <accent>konstruksi</accent>",
+      "tagline": "Cari. Hitung. Periksa. Sederhana tapi efektif.",
+      "description": "Kumpulan alat gratis untuk insinyur, arsitek, kontraktor, dan pemilik rumah, dari tahap ide hingga pelaksanaan dan serah terima.",
+      "metaTitle": "Alat konstruksi gratis | Chuyện Nhỏ",
+      "metaDescription": "Perkiraan biaya bangun rumah, menentukan arah rumah, mengukur di foto, dan alat pencarian konstruksi yang segera hadir. Gratis, tidak perlu akun.",
+      "caption": "Pekerjaan konstruksi\nsemakin mudah setiap hari!",
+      "searchPlaceholder": "Cari alat konstruksi… (misalnya: perkiraan biaya, arah rumah, tata ruang)",
+      "highlights": {
+        "estimate": "Perkiraan biaya",
+        "planning": "Tata ruang",
+        "prices": "Harga konstruksi",
+        "legal": "Legalitas",
+        "standards": "Standar",
+        "dossier": "Periksa berkas",
+        "site": "Lapangan"
+      },
+      "trust": {
+        "free": {
+          "title": "Gratis",
+          "detail": "Langsung pakai, tanpa biaya tersembunyi"
+        },
+        "noInstall": {
+          "title": "Tidak perlu instalasi",
+          "detail": "Langsung berjalan di browser"
+        },
+        "onDevice": {
+          "title": "Dihitung di perangkat Anda",
+          "detail": "Angka yang dimasukkan tidak meninggalkan perangkat"
+        },
+        "practical": {
+          "title": "Untuk pekerjaan nyata",
+          "detail": "Dari pemilik rumah hingga kontraktor"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "Perkiraan biaya & perhitungan",
+        "quy-hoach": "Tata ruang & arah rumah",
+        "gia-vat-lieu": "Harga & material",
+        "phap-ly": "Legalitas & standar",
+        "ban-ve": "Gambar kerja & berkas",
+        "hien-truong": "Lapangan"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Butuh lebih dari satu alat?",
+          "description": "Kelola seluruh proyek, biaya, kontrak, berkas, dan pembelian dalam satu platform.",
+          "points": {
+            "work": "Pekerjaan · Proyek · Kontrak",
+            "cost": "Biaya · Anggaran · Pembelian",
+            "documents": "Berkas · Dokumen · Persetujuan",
+            "ai": "Asisten AI untuk tanya jawab data"
+          }
+        },
+        "tekshot": {
+          "title": "Pencatatan lapangan yang lebih cerdas?",
+          "description": "Kamera, foto lapangan, dan pengenalan AI, terhubung langsung ke proyek.",
+          "points": {
+            "vision": "Vision · Kamera · Lapangan",
+            "studio": "Studio · Konten · Laporan",
+            "insight": "Insight · Pasar",
+            "central": "Central · Rekap & operasional"
+          }
+        }
+      },
+      "journey": {
+        "title": "Dari ide hingga bangunan. Kami selalu menemani.",
+        "motto": "Alat kecil.\nNilai besar!",
+        "steps": {
+          "idea": {
+            "title": "Ide",
+            "detail": "Tata ruang · Arah rumah"
+          },
+          "design": {
+            "title": "Desain",
+            "detail": "Standar · Periksa berkas"
+          },
+          "estimate": {
+            "title": "Anggaran",
+            "detail": "Perkiraan biaya · Harga konstruksi"
+          },
+          "build": {
+            "title": "Pelaksanaan",
+            "detail": "Buku harian lapangan"
+          },
+          "handover": {
+            "title": "Serah terima",
+            "detail": "Berkas · Arsip"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "Alat keluarga",
+      "title": "Alat untuk <accent>keluarga</accent>",
+      "tagline": "Hal-hal kecil, kebahagiaan besar.",
+      "description": "Utilitas sederhana untuk mengatur jadwal bersama, mengingatkan kegiatan, dan menghitung pengeluaran rumah tangga. Agar seluruh keluarga seirama dan bahagia setiap hari.",
+      "metaTitle": "Alat gratis untuk keluarga | Chuyện Nhỏ",
+      "metaDescription": "Kalender Keluarga, kalender lunar-Masehi, tagihan listrik dan air, bagi uang kelompok, arah rumah, dan utilitas keluarga yang segera hadir. Gratis, data disimpan di perangkat Anda.",
+      "caption": "Ada kabar gembira apa\ndi rumah hari ini?",
+      "searchPlaceholder": "Cari alat keluarga… (misalnya: kalender, pengingat, tagihan listrik)",
+      "highlights": {
+        "calendar": "Atur jadwal bersama",
+        "reminders": "Pengingat & perhatian",
+        "spending": "Hitung pengeluaran rumah",
+        "together": "Seluruh keluarga seirama"
+      },
+      "trust": {
+        "free": {
+          "title": "Gratis",
+          "detail": "Langsung pakai, tanpa biaya tersembunyi"
+        },
+        "noInstall": {
+          "title": "Tidak perlu instalasi",
+          "detail": "Langsung berjalan di browser"
+        },
+        "private": {
+          "title": "Privat",
+          "detail": "Data disimpan di perangkat Anda"
+        },
+        "devices": {
+          "title": "Nyaman dipakai di",
+          "detail": "Ponsel dan komputer"
+        }
+      },
+      "subgroups": {
+        "lich": "Kalender & pengingat",
+        "chi-tieu": "Pengeluaran",
+        "nha-cua": "Rumah",
+        "hoc-tap": "Belajar",
+        "suc-khoe": "Kesehatan",
+        "ket-noi": "Terhubung"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "Kalender Keluarga",
+          "subtitle": "Ada apa di rumah hari ini?",
+          "points": {
+            "schedules": "Jadwal sekolah, jadwal kerja, jadwal keluarga",
+            "contacts": "Daftar kegiatan dan kontak darurat",
+            "backup": "Disimpan di perangkat, cadangkan saat perlu",
+            "ics": "Ekspor jadwal ke ponsel (ICS)"
+          }
+        },
+        "houseOrientation": {
+          "title": "Arah rumah & kompas",
+          "subtitle": "Pilih arah yang baik, lebih tenang",
+          "points": {
+            "direction": "Tentukan arah rumah dan arah tanah",
+            "compass": "Kompas langsung di ponsel",
+            "lookup": "Cepat dicek, mudah dipakai"
+          }
+        }
+      },
+      "journey": {
+        "title": "Demi keluarga yang bahagia setiap hari",
+        "motto": "Hal kecil.\nMenciptakan kebahagiaan besar!",
+        "steps": {
+          "organized": {
+            "title": "Lebih teratur",
+            "detail": "Waktu, pekerjaan, kehidupan"
+          },
+          "connected": {
+            "title": "Lebih dekat",
+            "detail": "Seluruh keluarga saling berbagi"
+          },
+          "caring": {
+            "title": "Lebih peduli",
+            "detail": "Kesehatan, belajar, kegiatan sehari-hari"
+          },
+          "happy": {
+            "title": "Lebih bahagia",
+            "detail": "Dari hal-hal kecil setiap hari"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "Dokumen & PDF",
+      "title": "Alat <accent>Dokumen & PDF</accent>",
+      "tagline": "Edit. Konversi. Gabung & pisah. Tanda tangan. Kompres. Cepat dan gratis.",
+      "description": "Olah dokumen teks, PDF, dan foto dokumen dengan mudah. Langsung pakai di browser, tanpa instalasi, file tidak meninggalkan perangkat.",
+      "metaTitle": "Alat PDF gratis: gabung, pisah, kompres, OCR, tanda tangan | Chuyện Nhỏ",
+      "metaDescription": "Gabung, pisah, kompres, edit, tanda tangani, ubah PDF ke Word, dan kenali teks bahasa Vietnam. Gratis, tidak perlu akun, file diproses langsung di perangkat.",
+      "caption": "Urusan dokumen\nkini benar-benar mudah!",
+      "searchPlaceholder": "Cari alat dokumen… (misalnya: kompres PDF, gabung PDF, OCR, tanda tangan)",
+      "highlights": {
+        "edit": "Edit isi PDF",
+        "mergeSplit": "Gabung, pisah, kompres",
+        "convert": "Konversi format",
+        "sign": "Tanda tangani dokumen",
+        "ocr": "OCR teks",
+        "compare": "Bandingkan dokumen",
+        "redact": "Sensor informasi sensitif"
+      },
+      "trust": {
+        "free": {
+          "title": "Gratis",
+          "detail": "Langsung pakai, tanpa biaya tersembunyi"
+        },
+        "noInstall": {
+          "title": "Tidak perlu instalasi",
+          "detail": "Langsung berjalan di browser"
+        },
+        "secure": {
+          "title": "Aman dan privat",
+          "detail": "File diproses langsung di perangkat"
+        },
+        "formats": {
+          "title": "Banyak format",
+          "detail": "PDF, Word, Excel, gambar"
+        }
+      },
+      "subgroups": {
+        "sua": "Edit & atur",
+        "gop-tach": "Gabung, pisah, kompres",
+        "chuyen-doi": "Konversi",
+        "ocr": "OCR & perbandingan",
+        "ky-bao-mat": "Tanda tangan & keamanan",
+        "soan-thao": "Susun dokumen"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Olah dokumen lebih cepat dengan ERPCons",
+          "description": "Kelola berkas, dokumen, kontrak, versi, dan persetujuan dalam satu platform.",
+          "points": {
+            "storage": "Penyimpanan terpusat",
+            "permissions": "Hak akses & berbagi",
+            "versions": "Pelacakan versi",
+            "linked": "Terhubung dengan pekerjaan & proyek"
+          }
+        },
+        "tips": {
+          "title": "Tips cepat",
+          "items": {
+            "drop": "Seret dan letakkan file ke area alat.",
+            "options": "Pilih opsi yang sesuai.",
+            "download": "Unduh hasilnya ke perangkat.",
+            "closeTab": "Menutup tab berarti file hilang dari browser."
+          }
+        }
+      },
+      "journey": {
+        "title": "Dari dokumen ke pekerjaan. Kami selalu menemani.",
+        "motto": "Hal besar dimulai\ndari hal-hal kecil!",
+        "steps": {
+          "documents": {
+            "title": "Dokumen",
+            "detail": "PDF, Word, Excel"
+          },
+          "storage": {
+            "title": "Penyimpanan",
+            "detail": "Berkas terpusat"
+          },
+          "share": {
+            "title": "Berbagi",
+            "detail": "Dengan rekan kerja"
+          },
+          "approve": {
+            "title": "Persetujuan",
+            "detail": "Cepat"
+          },
+          "track": {
+            "title": "Pelacakan",
+            "detail": "Versi, riwayat"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "Tentang Chuyện Nhỏ",
+    "title": "Tentang <accent>Chuyện Nhỏ</accent>",
+    "tagline": "Hal-hal kecil menciptakan nilai besar.",
+    "intro": "Chuyện Nhỏ adalah kumpulan alat gratis dari ERPCons & LPC untuk membantu Anda menyelesaikan urusan kecil dengan cepat dalam pekerjaan, konstruksi, dan kehidupan sehari-hari.",
+    "introMore": "Butuh, langsung pakai. Sederhana. Efektif. Tanpa instalasi, tanpa akun.",
+    "caption": "Butuh sesuatu,\nlangsung pakai!",
+    "explore": "Jelajahi alat",
+    "guides": "Lihat panduan",
+    "valuesLabel": "Komitmen Chuyện Nhỏ",
+    "values": {
+      "free": {
+        "title": "Gratis",
+        "detail": "Langsung pakai, tanpa biaya tersembunyi"
+      },
+      "noInstall": {
+        "title": "Tidak perlu instalasi",
+        "detail": "Langsung berjalan di browser"
+      },
+      "onDevice": {
+        "title": "Utamakan pemrosesan di perangkat",
+        "detail": "File Anda tetap di perangkat"
+      },
+      "domains": {
+        "title": "Beragam bidang",
+        "detail": "Pekerjaan · Konstruksi · Keluarga"
+      }
+    },
+    "ecosystemTitle": "Satu ekosistem, lebih banyak nilai",
+    "ecosystemDescription": "Chuyện Nhỏ adalah bagian dari ekosistem produk ERPCons & LPC.",
+    "products": {
+      "chuyen-nho": {
+        "role": "Menyelesaikan satu urusan",
+        "points": {
+          "free": "Alat gratis",
+          "noAccount": "Langsung pakai, tanpa akun",
+          "noInstall": "Tidak perlu instalasi",
+          "domains": "Untuk pekerjaan, konstruksi, dan keluarga"
+        }
+      },
+      "erpcons": {
+        "role": "Mengelola pekerjaan, proyek, dan perusahaan",
+        "points": {
+          "work": "Pekerjaan · Kontrak · Proyek",
+          "cost": "Biaya · Pembelian · Gudang",
+          "finance": "Keuangan · Berkas · SDM",
+          "ai": "Asisten AI untuk tanya jawab data"
+        }
+      },
+      "tekshot": {
+        "role": "AI yang melihat, memahami, bekerja, dan belajar untuk perusahaan",
+        "points": {
+          "vision": "Kamera AI · TekShot Vision",
+          "pos": "POS & Penjualan · TekShot POS",
+          "studio": "Marketing AI · TekShot Studio",
+          "research": "Research AI · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "Dari urusan kecil hari ini\nhingga pekerjaan besar esok hari.",
+    "story": "Chuyện Nhỏ membantu Anda memulai dari hal-hal kecil. Saat pekerjaan menjadi lebih rumit, ERPCons dan TekShot AI adalah tempat Anda mengelola, menghubungkan, dan memperluas nilai.",
+    "statsLabel": "Chuyện Nhỏ dalam angka",
+    "stats": {
+      "tools": "alat gratis, langsung pakai",
+      "groups": "kelompok urusan: dokumen, gambar, perhitungan, konstruksi, keluarga…"
+    }
+  },
+  "data": {
+    "trail": "Cara memproses data",
+    "title": "Cara kami <accent>memproses data</accent>",
+    "tagline": "File Anda tetap di perangkat Anda.",
+    "intro": "Chuyện Nhỏ memproses file langsung di browser. Halaman ini menjelaskan di mana setiap alat berjalan, dan apa saja yang benar-benar dikirim ke server.",
+    "caption": "Transparan\nuntuk setiap alat!",
+    "points": {
+      "noCookie": "Tidak memakai cookie",
+      "noTracking": "Tanpa alat pelacak dan iklan",
+      "noAccount": "Tidak perlu akun"
+    },
+    "flowLabel": "Ke mana data pergi",
+    "columns": {
+      "device": {
+        "title": "Diproses langsung di perangkat",
+        "lead": "{{count}} alat yang bisa dipakai sekarang",
+        "points": {
+          "tab": "File PDF, gambar, dan video hanya dibuka di tab browser",
+          "download": "Hasil hanya ada saat Anda menekan unduh",
+          "model": "Model pengenal teks diunduh dari situs ini sendiri, tidak melalui pihak ketiga"
+        }
+      },
+      "server": {
+        "title": "Dikirim ke server kami",
+        "lead": "Sesedikit mungkin",
+        "points": {
+          "visits": "Nama alat yang Anda buka, untuk menghitung total penggunaan. Tanpa cookie, tanpa mengidentifikasi Anda",
+          "ip": "Alamat IP hanya di-hash satu arah untuk mencegah pengiriman otomatis, terhapus otomatis setelah sekitar 1 jam",
+          "feedback": "Masukan dan usulan hanya dikirim jika Anda mencentang persetujuan dan menekan Kirim",
+          "soon": "{{count}} alat yang segera hadir akan memerlukan pencarian di server; kartunya menandai hal ini dengan jelas"
+        }
+      },
+      "local": {
+        "title": "Disimpan di browser Anda",
+        "lead": "Hanya di perangkat ini",
+        "points": {
+          "prefs": "Alat yang baru dipakai dan tampilan terang/gelap",
+          "saved": "Data yang Anda simpan sendiri: Kalender Keluarga, catatan, draf CV, kartu hafalan",
+          "clear": "Hapus kapan saja di dalam alat atau di pengaturan browser"
+        }
+      }
+    },
+    "tableTitle": "Di mana setiap alat memproses data",
+    "tableDescription": "Tabel ini dibuat langsung dari katalog alat, sehingga selalu sesuai dengan label di setiap kartu.",
+    "searchPlaceholder": "Cari alat… (misalnya: OCR, gaji, QR)",
+    "filterLabel": "Saring menurut tempat pemrosesan",
+    "modelFilter": "Mengunduh model pengenal",
+    "head": {
+      "tool": "Alat",
+      "group": "Kelompok",
+      "where": "Diproses di mana",
+      "note": "Catatan"
+    },
+    "modes": {
+      "device": "Di perangkat",
+      "model": "Di perangkat, mengunduh model pengenal",
+      "server": "Memerlukan server"
+    },
+    "notes": {
+      "server": "Segera hadir. Perlu mencari data di server; data yang dikirim akan dijelaskan sebelum dirilis.",
+      "model": "Mengunduh model pengenal sekali dari situs ini sendiri, lalu mengenali langsung di perangkat.",
+      "noFile": "Berjalan langsung di perangkat Anda, tidak mengirim data.",
+      "device": "File tidak meninggalkan perangkat."
+    },
+    "emptyHint": "Coba kata kunci lain atau hapus filter.",
+    "showAll": "Lihat semua",
+    "faqTitle": "Pertanyaan tentang data",
+    "faqDescription": "Baca selengkapnya di <link>Kebijakan privasi</link>."
+  },
+  "guidesPage": {
+    "title": "Panduan <accent>penggunaan</accent>",
+    "tagline": "Langkah singkat, sesuai teks di layar.",
+    "intro": "Setiap artikel hanya butuh beberapa menit untuk dibaca. Ikuti langkah demi langkah sampai selesai, lengkap dengan tips dan hal yang perlu diperhatikan.",
+    "caption": "Baca 2 menit,\nlangsung kerjakan!",
+    "listTitle": "Daftar panduan",
+    "filterLabel": "Saring menurut kelompok",
+    "missingTitle": "Belum menemukan panduan yang Anda perlukan?",
+    "missing": "Lihat <faq>pertanyaan umum</faq>, cara <install>memasang Chuyện Nhỏ di perangkat</install>, atau kirim usulan panduan baru lewat <suggest>Usulkan alat baru</suggest>."
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Panduan Chuyện Nhỏ",
+    "fallbackTitle": "Panduan | Chuyện Nhỏ",
+    "minutes": "{{count}} menit",
+    "steps": "{{count}} langkah",
+    "open": "Buka {{name}}",
+    "stepsTitle": "Langkah-langkah",
+    "tipsTitle": "Tips",
+    "notesTitle": "Perlu diperhatikan",
+    "asideLabel": "Terkait",
+    "toolsTitle": "Alat dalam artikel",
+    "othersTitle": "Artikel lain",
+    "all": "Lihat semua panduan"
+  },
+  "install": {
+    "trail": "Pasang di perangkat",
+    "title": "Pasang Chuyện Nhỏ <accent>di perangkat</accent>",
+    "tagline": "Pakai seperti aplikasi. Buka dengan cepat. Lebih praktis setiap hari.",
+    "intro": "Chuyện Nhỏ adalah aplikasi web: tambahkan ke layar utama atau Dock agar bisa langsung dibuka, tanpa perlu mencari halamannya lagi di browser.",
+    "caption": "Pasang sekali,\npraktis setiap hari!",
+    "benefits": {
+      "fast": "Buka cepat dari layar utama",
+      "fullscreen": "Layar penuh, tanpa bilah alamat",
+      "noStore": "Tidak perlu lewat toko aplikasi",
+      "free": "Gratis"
+    },
+    "cta": "Pasang aplikasi",
+    "ctaHint": "Sekali sentuh, tanpa toko aplikasi.",
+    "installed": "Chuyện Nhỏ sudah terpasang di perangkat ini.",
+    "chooseTitle": "Pilih perangkat Anda",
+    "chooseDescription": "Setiap browser meletakkan tombol pasang di tempat yang berbeda.",
+    "tabsLabel": "Perangkat",
+    "panelTitle": "Pasang di {{platform}} ({{browser}})",
+    "stepWithAddress": "{{detail}} Alamat: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Buka Chuyện Nhỏ dengan Chrome",
+            "detail": "Ketik alamat situs di bilah alamat Chrome."
+          },
+          "menu": {
+            "title": "Ketuk menu ⋮ (tiga titik)",
+            "detail": "Di sudut kanan atas layar."
+          },
+          "add": {
+            "title": "Pilih “Tambahkan ke layar utama”",
+            "detail": "Di beberapa ponsel tertulis “Instal aplikasi”."
+          },
+          "install": {
+            "title": "Ketuk “Instal”",
+            "detail": "Ikon Chuyện Nhỏ akan muncul di layar utama dan terbuka seperti aplikasi."
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Buka Chuyện Nhỏ dengan Safari",
+            "detail": "Ketik alamat situs di bilah alamat Safari."
+          },
+          "share": {
+            "title": "Ketuk tombol Bagikan",
+            "detail": "Kotak dengan panah ke atas. Di iOS terbaru, tombol ini ada di menu ⋯ pada bilah bawah."
+          },
+          "add": {
+            "title": "Pilih “Tambah ke Layar Utama”",
+            "detail": "Gulir daftar ke bawah jika belum terlihat."
+          },
+          "confirm": {
+            "title": "Ketuk “Tambah”",
+            "detail": "Di sudut kanan atas. Ikon Chuyện Nhỏ akan muncul di layar utama."
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Buka Chuyện Nhỏ dengan Chrome atau Edge",
+            "detail": "Browser harus versi terbaru."
+          },
+          "icon": {
+            "title": "Klik ikon pasang di bilah alamat",
+            "detail": "Ikon layar dengan panah ke bawah, di ujung bilah alamat."
+          },
+          "menu": {
+            "title": "Ikon tidak terlihat? Pakai menu",
+            "detail": "Chrome: menu ⋮, pilih “Transmisikan, simpan, dan bagikan”, lalu “Instal halaman sebagai aplikasi”. Edge: menu ⋯, pilih “Aplikasi”, lalu “Instal situs ini sebagai aplikasi”."
+          },
+          "install": {
+            "title": "Klik “Instal”",
+            "detail": "Chuyện Nhỏ terbuka di jendela tersendiri dan muncul di menu Start."
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Buka Chuyện Nhỏ dengan Safari",
+            "detail": "Memerlukan macOS Sonoma (14) atau lebih baru."
+          },
+          "dock": {
+            "title": "Buka menu File, pilih “Tambah ke Dock”",
+            "detail": "Di bilah menu bagian atas layar."
+          },
+          "confirm": {
+            "title": "Klik “Tambah”",
+            "detail": "Chuyện Nhỏ muncul di Dock dan terbuka di jendela tersendiri."
+          },
+          "chrome": {
+            "title": "Memakai Chrome atau Edge?",
+            "detail": "Lakukan seperti di Windows: klik ikon pasang di ujung bilah alamat."
+          }
+        }
+      },
+      "other": {
+        "label": "Browser lain",
+        "browser": "Firefox, Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "Ketuk menu ≡, pilih “Tambahkan halaman ke”, lalu “Layar Utama”."
+          },
+          "firefox": {
+            "title": "Firefox di komputer",
+            "detail": "Belum mendukung pemasangan situs sebagai aplikasi. Anda tetap bisa memakai semua alat seperti biasa di tab."
+          },
+          "install": {
+            "title": "Ingin memasang sebagai aplikasi?",
+            "detail": "Buka Chuyện Nhỏ dengan Chrome, Edge, atau Safari, lalu ikuti tab yang sesuai."
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "Opsi pasang belum muncul?",
+    "troubleshooting": {
+      "update": "Perbarui browser ke versi terbaru.",
+      "address": "Pastikan Anda membuka alamat Chuyện Nhỏ yang benar, bukan halaman yang dibagikan ulang.",
+      "incognito": "Mode penyamaran tidak mengizinkan pemasangan. Buka tab biasa.",
+      "installed": "Jika sudah terpasang, browser tidak akan menampilkan opsi pasang lagi."
+    },
+    "stillStuck": "Masih belum berhasil? Lihat <link>halaman bantuan</link> atau kirim email kepada kami."
+  },
+  "support": {
+    "trail": "Bantuan",
+    "title": "Apa yang bisa kami <accent>bantu</accent>?",
+    "intro": "Temukan jawaban cepat di pertanyaan umum, atau kirim email kepada kami.",
+    "caption": "Tanya cepat,\njawab ringkas!",
+    "searchLabel": "Cari pertanyaan",
+    "searchPlaceholder": "Cari pertanyaan… (misalnya: pasang, simpan file, hapus data)",
+    "topicsTitle": "Topik bantuan",
+    "topics": {
+      "start": {
+        "title": "Mulai menggunakan",
+        "detail": "Panduan langkah demi langkah"
+      },
+      "documents": {
+        "title": "Dokumen & PDF",
+        "detail": "Gabung, pisah, kompres, OCR"
+      },
+      "image": {
+        "title": "Gambar",
+        "detail": "Kompres, ubah ukuran, hapus latar"
+      },
+      "qr": {
+        "title": "QR & Barcode",
+        "detail": "Buat, baca, cetak massal"
+      },
+      "construction": {
+        "title": "Konstruksi",
+        "detail": "Perkiraan biaya, arah rumah"
+      },
+      "family": {
+        "title": "Keluarga",
+        "detail": "Kalender, pengingat, SOS"
+      },
+      "install": {
+        "title": "Pasang di perangkat",
+        "detail": "Android, iPhone, komputer"
+      },
+      "privacy": {
+        "title": "Data & privasi",
+        "detail": "Di mana file diproses"
+      }
+    },
+    "faqTitle": "Pertanyaan umum",
+    "faqCount": "{{count}} pertanyaan",
+    "faqCountFor": "{{count}} pertanyaan untuk “{{keyword}}”",
+    "emptyTitle": "Belum ada pertanyaan yang cocok",
+    "emptyHint": "Coba kata kunci lain, atau kirim email untuk bertanya langsung.",
+    "showAll": "Lihat semua pertanyaan",
+    "contactTitle": "Masih butuh bantuan?",
+    "mailTitle": "Kirim email kepada kami",
+    "mailBody": "Sebutkan nama alat, browser yang Anda pakai, dan jelaskan masalahnya. Jangan lampirkan file yang berisi informasi pribadi.",
+    "suggestTitle": "Masukan dan usulan alat",
+    "suggestBody": "Butuh alat yang belum ada, atau ingin memberi masukan untuk alat yang sudah ada? Kirim usulan dan dapatkan kode tanda terima untuk memantaunya.",
+    "suggestAction": "Kirim usulan"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Apakah Chuyện Nhỏ gratis?",
+        "answer": "Ya. Semua alat yang sudah berjalan gratis, tanpa batas penggunaan, dan tanpa akun. Saat tim perlu menyimpan, berbagi, dan menyetujui dokumen dalam jangka panjang, ERPCons adalah versi berbayar untuk keperluan itu."
+      },
+      "tai-khoan": {
+        "question": "Apakah saya perlu membuat akun?",
+        "answer": "Tidak. Anda cukup membuka situs, memilih alat, dan langsung memakainya. Chuyện Nhỏ tidak memiliki pendaftaran dan tidak menanyakan nama, email, atau nomor telepon."
+      },
+      "luu-tep": {
+        "question": "Apakah file saya diunggah atau disimpan?",
+        "answer": "Tidak. File PDF, gambar, dan video yang Anda buka hanya ada di tab browser dan diproses langsung di perangkat Anda. Kami tidak menerima file. Menutup tab berarti file hilang dari browser; hasil hanya ada saat Anda mengunduhnya."
+      },
+      "may-chu": {
+        "question": "Mengapa beberapa alat bertanda “Diproses di server”?",
+        "answer": "Beberapa alat yang segera hadir memerlukan data besar atau pembaruan terus-menerus, seperti harga konstruksi atau tata ruang, sehingga harus dicari di server. Kartunya menandai hal ini dengan jelas agar Anda tahu sebelumnya. Semua alat yang bisa dipakai saat ini memproses di perangkat."
+      },
+      "cai-dat": {
+        "question": "Bagaimana cara memasang Chuyện Nhỏ di ponsel?",
+        "answer": "Buka Chuyện Nhỏ dengan Chrome (Android) atau Safari (iPhone, iPad), lalu pilih “Tambahkan ke layar utama”. Di komputer, klik ikon pasang di bilah alamat Chrome atau Edge."
+      },
+      "offline": {
+        "question": "Bisakah saya memakai Chuyện Nhỏ tanpa internet?",
+        "answer": "Setelah dibuka pertama kali dengan koneksi internet, browser menyimpan halaman dan kode alat sehingga biasanya tetap bisa dibuka saat koneksi tidak stabil. Bagian yang berat seperti pengenalan teks atau pemrosesan video diunduh saat pertama kali dipakai, jadi cobalah sekali saat ada koneksi."
+      },
+      "loi": {
+        "question": "Saya mengalami galat, apa yang harus dilakukan?",
+        "answer": "Muat ulang halaman dan pakai versi terbaru Chrome, Edge, atau Safari. File yang terlalu besar atau dikunci kata sandi juga bisa membuat alat berhenti; alat akan menampilkan alasannya langsung di layar. Jika masih bermasalah, kirim email ke {{email}} dengan menyebutkan nama alat, browser yang Anda pakai, dan penjelasan galatnya."
+      },
+      "an-toan": {
+        "question": "Apakah Chuyện Nhỏ aman?",
+        "answer": "Situs berjalan melalui koneksi terenkripsi (HTTPS), tidak memakai cookie, dan tidak memasang alat iklan atau pelacakan pihak ketiga. File Anda tidak meninggalkan perangkat."
+      },
+      "thu-thap": {
+        "question": "Apakah Chuyện Nhỏ mengumpulkan informasi pribadi saya?",
+        "answer": "Hampir tidak. Saat Anda membuka sebuah alat, browser mengirim nama alat agar kami dapat menghitung total penggunaan; alamat IP hanya di-hash satu arah untuk mencegah pengiriman otomatis dan terhapus otomatis setelah sekitar 1 jam. Isi masukan hanya dikirim jika Anda mencentang persetujuan dan menekan Kirim."
+      },
+      "xoa-du-lieu": {
+        "question": "Bagaimana cara menghapus data saya?",
+        "answer": "Data yang Anda simpan di alat (Kalender Keluarga, catatan, draf CV, kartu hafalan) ada di perangkat Anda: hapus langsung di alat, atau hapus data situs di pengaturan browser. Untuk menghapus masukan yang sudah dikirim, kirim email ke {{email}} beserta kode tanda terimanya."
+      },
+      "ben-thu-ba": {
+        "question": "Apakah data dibagikan kepada pihak ketiga?",
+        "answer": "Tidak. Kami tidak menjual dan tidak membagikan data untuk iklan. Khusus alat Rekam suara jadi teks memakai fitur pengenalan suara bawaan browser, sehingga audio dikirim ke penyedia browser (misalnya Google untuk Chrome), tidak melalui server kami."
+      },
+      "de-xuat": {
+        "question": "Saya ingin mengusulkan alat baru?",
+        "answer": "Dengan senang hati. Pakai alat Usulkan alat baru: Anda akan mendapat kode tanda terima untuk mengecek status peninjauannya nanti."
+      }
+    },
+    "links": {
+      "processingPerTool": "Lihat di mana setiap alat memproses data",
+      "installPerDevice": "Panduan pemasangan untuk setiap perangkat",
+      "dataHandling": "Cara kami memproses data",
+      "privacyPolicy": "Baca kebijakan privasi",
+      "suggest": "Buka Usulkan alat baru"
+    }
+  },
+  "legalPage": {
+    "updated": "Terakhir diperbarui: {{date}}",
+    "toc": "Daftar isi",
+    "summary": "Ringkasan"
+  }
+}

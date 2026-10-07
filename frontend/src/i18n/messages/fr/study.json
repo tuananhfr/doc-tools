@@ -1,0 +1,51 @@
+{
+  "flashcard": {
+    "reviewDue_one": "Révision · {{count}} carte à revoir",
+    "reviewDue_many": "Révision · {{count}} cartes à revoir",
+    "reviewDue_other": "Révision · {{count}} cartes à revoir",
+    "noneDue": "Aucune carte à revoir",
+    "flip": "Retourner la carte",
+    "forgot": "Pas encore",
+    "remembered": "Je sais",
+    "schedule": "Les cartes retenues reviennent après 1, 3, 7, 14 ou 30 jours.",
+    "stored_one": "{{count}} carte enregistrée sur cet appareil. Effacer les données du navigateur supprimera vos cartes.",
+    "stored_many": "{{count}} cartes enregistrées sur cet appareil. Effacer les données du navigateur supprimera vos cartes.",
+    "stored_other": "{{count}} cartes enregistrées sur cet appareil. Effacer les données du navigateur supprimera vos cartes.",
+    "title": "Créer des cartes mémoire",
+    "front": "Recto",
+    "back": "Verso",
+    "add": "Ajouter une carte",
+    "remove": "Supprimer"
+  },
+  "pomodoro": {
+    "focus": "Concentration",
+    "break": "Pause",
+    "start": "Démarrer",
+    "pause": "Mettre en pause",
+    "reset": "Réinitialiser",
+    "switch": "Changer de séance",
+    "note": "Le minuteur ne fonctionne que tant que la page reste ouverte. Arrivé à 00:00, choisissez Changer de séance pour lancer le tour suivant.",
+    "title": "Durée",
+    "focusMinutes": "Concentration (minutes)",
+    "breakMinutes": "Pause (minutes)",
+    "invalid": "Concentration : 1–180 minutes ; pause : 1–60 minutes."
+  },
+  "grades": {
+    "gradeResult": "Conversion indicative",
+    "admissionResult": "Total pour l'admission",
+    "breakdown": "Note brute {{raw}} + points de priorité ajustés {{bonus}}",
+    "note": "Le barème de conversion et les règles de priorité peuvent varier selon l'établissement et l'année d'admission. Vérifiez le règlement applicable avant utilisation.",
+    "title": "Notes scolaires",
+    "mode": "Mode",
+    "modeGrade": "Note sur 10 vers barème sur 4",
+    "modeAdmission": "Note d'admission",
+    "fields": {
+      "score10": "Note sur 10",
+      "subject1": "Matière 1",
+      "subject2": "Matière 2",
+      "subject3": "Matière 3",
+      "regionBonus": "Priorité régionale",
+      "categoryBonus": "Priorité par catégorie"
+    }
+  }
+}

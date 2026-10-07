@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { VideoWorkspace } from '../components/VideoWorkspace'
 
 export default function ExtractAudioPage() {
+  const { t } = useTranslation('video')
   const [format, setFormat] = useState<'mp3' | 'm4a' | 'wav'>('mp3')
-  return <VideoWorkspace options={{ action: 'audio', format }} actionLabel="Tách âm thanh" note="Xuất toàn bộ luồng âm thanh đầu tiên. MP3/M4A tiết kiệm dung lượng; WAV thường lớn hơn. Video không có âm thanh sẽ được báo rõ.">
-    <label className="erp-flow-field__label">Định dạng âm thanh<Form.Select value={format} onChange={(event) => setFormat(event.target.value as typeof format)}><option value="mp3">MP3 · dùng phổ biến</option><option value="m4a">M4A · AAC</option><option value="wav">WAV · không nén</option></Form.Select></label>
+  return <VideoWorkspace options={{ action: 'audio', format }} actionLabel={t('audio.action')} note={t('audio.note')}>
+    <label className="erp-flow-field__label">{t('audio.format')}<Form.Select value={format} onChange={(event) => setFormat(event.target.value as typeof format)}><option value="mp3">{t('audio.mp3')}</option><option value="m4a">M4A · AAC</option><option value="wav">{t('audio.wav')}</option></Form.Select></label>
   </VideoWorkspace>
 }

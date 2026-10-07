@@ -1,10 +1,12 @@
 import { useId, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
 import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { calculateLoan, calculateSavings, type LoanMethod } from '../utils/loan'
 
 export default function LoanPage() {
+  const { t } = useTranslation('finance')
   const principalId = useId()
   const rateId = useId()
   const monthsId = useId()
@@ -24,39 +26,39 @@ export default function LoanPage() {
   }
 
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{mode === 'loan' ? 'Tổng phải trả' : 'Số dư cuối kỳ'}</p>
-    <p className="erp-tool-result__value">{schedule ? `${formatNumber(Math.round(schedule.totalPayment))} đ` : savings ? `${formatNumber(Math.round(savings.total))} đ` : '—'}</p>
+    <p className="erp-tool-result__label">{mode === 'loan' ? t('loan.totalPayment') : t('loan.finalBalance')}</p>
+    <p className="erp-tool-result__value">{schedule ? t('shared.amount', { amount: formatNumber(Math.round(schedule.totalPayment)) }) : savings ? t('shared.amount', { amount: formatNumber(Math.round(savings.total)) }) : '—'}</p>
     {schedule ? <>
-      <p className="erp-tool-result__note">Lãi: {formatNumber(Math.round(schedule.totalInterest))} đ</p>
-      <p className="erp-tool-result__note">Kỳ đầu: {formatNumber(Math.round(schedule.rows[0].payment))} đ</p>
-      <button type="button" className="btn btn-outline-secondary btn-sm mt-2" onClick={downloadSchedule}>Tải bảng CSV</button>
-      <div className="table-responsive mt-3"><table className="table table-sm"><thead><tr><th>Kỳ</th><th>Gốc</th><th>Lãi</th><th>Còn nợ</th></tr></thead><tbody>
+      <p className="erp-tool-result__note">{t('loan.interest', { amount: formatNumber(Math.round(schedule.totalInterest)) })}</p>
+      <p className="erp-tool-result__note">{t('loan.firstPayment', { amount: formatNumber(Math.round(schedule.rows[0].payment)) })}</p>
+      <button type="button" className="btn btn-outline-secondary btn-sm mt-2" onClick={downloadSchedule}>{t('loan.downloadCsv')}</button>
+      <div className="table-responsive mt-3"><table className="table table-sm"><thead><tr><th>{t('loan.table.period')}</th><th>{t('loan.table.principal')}</th><th>{t('loan.table.interest')}</th><th>{t('loan.table.balance')}</th></tr></thead><tbody>
         {schedule.rows.map((row) => <tr key={row.month}><td>{row.month}</td><td>{formatNumber(Math.round(row.principal))}</td><td>{formatNumber(Math.round(row.interest))}</td><td>{formatNumber(Math.round(row.balance))}</td></tr>)}
       </tbody></table></div>
-    </> : savings ? <p className="erp-tool-result__note">Lãi {formatNumber(Math.round(savings.interest))} đ sau {savings.months} tháng. Mỗi kỳ tính lãi đơn, cuối kỳ nhập lãi vào gốc khi tái tục.</p> : <p className="erp-tool-result__note">Nhập số tiền dương, lãi suất không âm và thời hạn hợp lệ.</p>}
-    <p className="erp-tool-result__note">Kết quả tham khảo; lịch thực tế phụ thuộc hợp đồng và cách làm tròn của bên cho vay.</p>
+    </> : savings ? <p className="erp-tool-result__note">{t('loan.savingsNote', { amount: formatNumber(Math.round(savings.interest)), months: savings.months })}</p> : <p className="erp-tool-result__note">{t('loan.hint')}</p>}
+    <p className="erp-tool-result__note">{t('loan.disclaimer')}</p>
   </div>}>
-    <ToolPanel title={mode === 'loan' ? 'Khoản vay' : 'Tiền gửi'}>
-      <label className="erp-flow-field__label">Chế độ
+    <ToolPanel title={mode === 'loan' ? t('loan.loanTitle') : t('loan.savingsTitle')}>
+      <label className="erp-flow-field__label">{t('loan.mode')}
         <Form.Select value={mode} onChange={(event) => setMode(event.target.value as 'loan' | 'savings')}>
-          <option value="loan">Vay trả góp</option><option value="savings">Tiết kiệm tái tục</option>
+          <option value="loan">{t('loan.modes.loan')}</option><option value="savings">{t('loan.modes.savings')}</option>
         </Form.Select>
       </label>
       <div className="erp-tool-form__grid">
-        <label className="erp-flow-field__label" htmlFor={principalId}>{mode === 'loan' ? 'Số tiền vay' : 'Số tiền gửi'} (đ)
+        <label className="erp-flow-field__label" htmlFor={principalId}>{mode === 'loan' ? t('loan.loanAmount') : t('loan.savingsAmount')}
           <Form.Control id={principalId} inputMode="decimal" type="number" min="1" value={principal} onChange={(event) => setPrincipal(event.target.value)} />
         </label>
-        <label className="erp-flow-field__label" htmlFor={rateId}>Lãi suất năm (%)
+        <label className="erp-flow-field__label" htmlFor={rateId}>{t('loan.rate')}
           <Form.Control id={rateId} inputMode="decimal" type="number" min="0" step="any" value={rate} onChange={(event) => setRate(event.target.value)} />
         </label>
-        <label className="erp-flow-field__label" htmlFor={monthsId}>{mode === 'loan' ? 'Thời hạn' : 'Kỳ hạn'} (tháng)
+        <label className="erp-flow-field__label" htmlFor={monthsId}>{mode === 'loan' ? t('loan.loanTerm') : t('loan.savingsTerm')}
           <Form.Control id={monthsId} inputMode="numeric" type="number" min="1" max={mode === 'loan' ? 600 : 120} value={months} onChange={(event) => setMonths(event.target.value)} />
         </label>
-        {mode === 'loan' ? <label className="erp-flow-field__label">Cách trả gốc
+        {mode === 'loan' ? <label className="erp-flow-field__label">{t('loan.method')}
           <Form.Select value={method} onChange={(event) => setMethod(event.target.value as LoanMethod)}>
-            <option value="annuity">Tổng trả gần bằng nhau</option><option value="equal-principal">Gốc bằng nhau</option>
+            <option value="annuity">{t('loan.methods.annuity')}</option><option value="equal-principal">{t('loan.methods.equalPrincipal')}</option>
           </Form.Select>
-        </label> : <label className="erp-flow-field__label">Số lần tái tục
+        </label> : <label className="erp-flow-field__label">{t('loan.renewals')}
           <Form.Control type="number" min="1" max="100" value={renewals} onChange={(event) => setRenewals(event.target.value)} />
         </label>}
       </div>

@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "查看数据来源",
+    "vatPercent": "税率（%）"
+  },
+  "electricity": {
+    "resultLabel": "账单估算",
+    "waterBreakdown": "水费：{{subtotal}} đ · 附加费：{{fee}} đ · 税：{{vat}} đ。各项均按原始水费分别计算。",
+    "waterHint": "请输入最近一张账单上的用水量和单价。",
+    "electricityBreakdown": "税前电费：{{subtotal}} đ · 税 {{percent}}%：{{vat}} đ",
+    "table": {
+      "upTo": "阶梯上限（kWh）",
+      "units": "度数（kWh）",
+      "price": "单价/kWh",
+      "amount": "金额",
+      "rest": "其余"
+    },
+    "electricityHint": "按账单或合同输入用电量和电价表。最后一行用 * 表示其余部分。",
+    "tariffVerified": "电价表已签名，自 {{date}} 起生效。来源：{{source}}。",
+    "tariffManual": "电价表由你自行输入；本工具不确认这是现行电价。",
+    "vatVerified": "税率 {{percent}}% 已签名，自 {{date}} 起生效。来源：{{source}}。",
+    "vatManual": "税率由你自行输入。",
+    "notIncluded": "未计入其他费用或供应商的取整方式。",
+    "panelTitle": "电费、水费",
+    "billType": "账单类型",
+    "modes": {
+      "electricity": "电费",
+      "water": "水费"
+    },
+    "water": {
+      "cubicMeters": "用水量（m³）",
+      "price": "单价（đ/m³）",
+      "fee": "排水费 / 环保费（%）"
+    },
+    "kwh": "用电量（kWh）",
+    "households": "共用电表的户数定额",
+    "tiers": "电价表：每行为“kWh 阈值, 单价 đ/kWh”",
+    "applyTariff": "使用已签名的电价表",
+    "applyVat": "使用已签名的税率",
+    "ruleLabel": "电价表",
+    "ruleNone": "系统中暂无已签名且仍有效的电价表。",
+    "vatRuleLabel": "增值税税率"
+  },
+  "groupSplit": {
+    "resultLabel": "需要转账以结清",
+    "balanced": "已结清",
+    "note": "每笔费用在参与的人之间平均分摊。转账金额四舍五入到 1 đ。",
+    "membersTitle": "成员",
+    "onePerLine": "每行一人",
+    "expensesTitle": "支出",
+    "addExpense": "添加支出",
+    "payer": "付款人",
+    "choosePerson": "选择人员",
+    "amount": "金额（đ）",
+    "participants": "分摊人",
+    "removeExpense": "移除支出"
+  },
+  "loan": {
+    "totalPayment": "还款总额",
+    "finalBalance": "期末余额",
+    "interest": "利息：{{amount}} đ",
+    "firstPayment": "首期：{{amount}} đ",
+    "downloadCsv": "下载 CSV 表格",
+    "table": {
+      "period": "期数",
+      "principal": "本金",
+      "interest": "利息",
+      "balance": "剩余欠款"
+    },
+    "savingsNote": "{{months}} 个月后利息 {{amount}} đ。每期按单利计息，续存时期末利息转入本金。",
+    "hint": "请输入正数金额、非负利率和有效期限。",
+    "disclaimer": "结果仅供参考；实际还款计划取决于合同和贷款方的取整方式。",
+    "loanTitle": "贷款",
+    "savingsTitle": "存款",
+    "mode": "模式",
+    "modes": {
+      "loan": "分期贷款",
+      "savings": "自动续存储蓄"
+    },
+    "loanAmount": "贷款金额（đ）",
+    "savingsAmount": "存款金额（đ）",
+    "rate": "年利率（%）",
+    "loanTerm": "期限（月）",
+    "savingsTerm": "存期（月）",
+    "method": "还本方式",
+    "methods": {
+      "annuity": "等额本息",
+      "equalPrincipal": "等额本金"
+    },
+    "renewals": "续存次数"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "本人扣除额（đ）",
+      "dependentDeduct": "每位受抚养人扣除额（đ）",
+      "referenceSalary": "用于计算保险上限的参考工资（đ）",
+      "minWage1": "I 类地区最低工资（đ）",
+      "minWage2": "II 类地区最低工资（đ）",
+      "minWage3": "III 类地区最低工资（đ）",
+      "minWage4": "IV 类地区最低工资（đ）",
+      "employeeSocial": "员工：社会保险 BHXH（%）",
+      "employeeHealth": "员工：医疗保险 BHYT（%）",
+      "employeeUnemployment": "员工：失业保险 BHTN（%）",
+      "employerSocial": "企业：社会保险 BHXH（%）",
+      "employerHealth": "企业：医疗保险 BHYT（%）",
+      "employerUnemployment": "企业：失业保险 BHTN（%）"
+    },
+    "resultLabel": "参考结果",
+    "net": "实发 {{amount}} đ",
+    "missingParams": "参数不完整",
+    "rows": {
+      "gross": "税前工资（Gross）",
+      "employeeSocial": "员工社会保险",
+      "employeeHealth": "员工医疗保险",
+      "employeeUnemployment": "员工失业保险",
+      "deduction": "扣除额",
+      "taxable": "应纳税所得额",
+      "bracket": "第 {{level}} 级 · {{rate}}%",
+      "tax": "个人所得税",
+      "employerTotal": "企业另缴",
+      "employerCost": "企业总成本"
+    },
+    "hint": "请根据已签名的规则包，或工资表、合同和会计的指引填写全部参数。",
+    "paramsVerified": "参数包已签名，自 {{date}} 起生效。来源：{{source}}。",
+    "paramsManual": "参数由你自行输入；本工具不确认这是现行规定。",
+    "notSettlement": "结果不能代替实际的税务汇算清缴。",
+    "panelTitle": "Gross – Net 工资计算",
+    "direction": "计算方向",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "税前工资 Gross（đ/月）",
+    "netSalary": "期望的实发工资 Net（đ/月）",
+    "dependents": "受抚养人",
+    "region": "地区",
+    "regionOption": "{{region}} 类地区",
+    "insuranceBase": "社保缴费工资（đ，留空 = Gross）",
+    "exempt": "Gross 中的免税津贴（đ）",
+    "applyParams": "使用已签名的参数",
+    "ruleLabel": "工资计算参数",
+    "ruleNone": "系统中暂无已签名且仍有效的工资规则包。",
+    "enterParams": "输入工资计算参数",
+    "brackets": "税率表：“应纳税所得额阈值（đ）, 税率（%）”；最后一行用 *"
+  },
+  "unitPrice": {
+    "resultLabel": "按单位比较",
+    "equal": "价格相同",
+    "cheaper": "商品 {{index}} 更便宜",
+    "perUnit": "商品 {{index}}：{{amount}} đ/{{unit}}",
+    "difference": "与较高价格相差 {{percent}}%。",
+    "hint": "请为两件商品输入非负价格和正数数量，并使用同一单位。",
+    "panelTitle": "两件商品",
+    "price": "商品 {{index}} 价格（đ）",
+    "quantity": "商品 {{index}} 数量（{{unit}}）",
+    "unit": "数量单位",
+    "units": {
+      "kg": "kg",
+      "liter": "升",
+      "piece": "个"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Siap",
+    "stop": "Berhenti"
+  },
+  "dictation": {
+    "status": "Status",
+    "listening": "Mendengarkan",
+    "unsupported": "Belum didukung",
+    "privacy": "Pengenalan suara memakai layanan browser; audio bisa dikirim ke penyedia browser. Teks yang Anda edit di sini tidak dikirim ke server Chuyện Nhỏ.",
+    "title": "Dikte bahasa Vietnam",
+    "start": "Mulai dikte",
+    "text": "Teks",
+    "copy": "Salin",
+    "download": "Unduh .txt",
+    "interrupted": "Pengenalan suara terputus. Periksa izin mikrofon lalu coba lagi.",
+    "micFailed": "Mikrofon tidak dapat dibuka. Periksa izin akses browser."
+  },
+  "magnifier": {
+    "noCamera": "Browser ini tidak mendukung kamera.",
+    "cameraFailed": "Kamera tidak dapat dibuka. Periksa izin akses dan kamera yang sedang dipakai.",
+    "preview": "Gambar kamera",
+    "frozen": "Gambar dibekukan",
+    "live": "Tampilan langsung",
+    "hint": "Tekan Buka kamera untuk memulai.",
+    "privacy": "Gambar hanya ditampilkan di perangkat, tidak direkam atau dikirim.",
+    "title": "Kaca pembesar",
+    "zoom": "Perbesar: {{zoom}}×",
+    "switchCamera": "Ganti kamera",
+    "openCamera": "Buka kamera",
+    "resume": "Lanjutkan",
+    "freeze": "Bekukan gambar",
+    "contrastOff": "Matikan kontras",
+    "contrastOn": "Tingkatkan kontras",
+    "closeCamera": "Matikan kamera"
+  },
+  "readAloud": {
+    "device": "Dibacakan di perangkat",
+    "speaking": "Sedang membaca",
+    "read": "Bacakan teks",
+    "voiceNote": "Suara pembaca bergantung pada suara bahasa Vietnam yang terpasang di perangkat dan browser.",
+    "unsupported": "Browser ini tidak mendukung pembacaan teks.",
+    "title": "Teks yang akan dibacakan",
+    "content": "Isi",
+    "rate": "Kecepatan: {{rate}}×"
+  }
+}

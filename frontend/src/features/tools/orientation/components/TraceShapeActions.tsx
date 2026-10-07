@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { OrientationAction } from '../utils/orientation-state'
 import type { TraceShape, TraceTag } from '../utils/trace'
@@ -10,9 +11,9 @@ interface TraceShapeActionsProps {
   onDone: () => void
 }
 
-const TAGS: { tag: TraceTag; label: string; icon: string }[] = [
-  { tag: 'FRONTAGE', label: 'Đây là mặt tiền', icon: 'house-door' },
-  { tag: 'ENTRANCE', label: 'Đây là cửa chính', icon: 'door-open' },
+const TAGS: { tag: TraceTag; icon: string }[] = [
+  { tag: 'FRONTAGE', icon: 'house-door' },
+  { tag: 'ENTRANCE', icon: 'door-open' },
 ]
 
 /**
@@ -21,10 +22,11 @@ const TAGS: { tag: TraceTag; label: string; icon: string }[] = [
  * để vuông góc.
  */
 export function TraceShapeActions({ shape, disabled, dispatch, onDone }: TraceShapeActionsProps) {
+  const { t } = useTranslation('orientation')
   if (!shape) return null
 
   return (
-    <div className="erp-orient-shape" role="group" aria-label="Nét vẽ đang chọn">
+    <div className="erp-orient-shape" role="group" aria-label={t('traceActions.aria')}>
       {shape.kind === 'line'
         ? TAGS.map((item) => (
             <Button
@@ -36,14 +38,14 @@ export function TraceShapeActions({ shape, disabled, dispatch, onDone }: TraceSh
               onClick={() => dispatch({ type: 'trace-tag', id: shape.id, tag: shape.tag === item.tag ? null : item.tag })}
             >
               <Icon name={item.icon} className="me-2" />
-              {item.label}
+              {t(`traceActions.tags.${item.tag}`)}
             </Button>
           ))
         : null}
       {shape.kind === 'line' && shape.tag ? (
         <Button variant="outline-secondary" size="sm" disabled={disabled} onClick={() => dispatch({ type: 'trace-flip', id: shape.id })}>
           <Icon name="arrow-left-right" className="me-2" />
-          Đổi phía ra ngoài
+          {t('traceActions.flip')}
         </Button>
       ) : null}
       <Button
@@ -56,7 +58,7 @@ export function TraceShapeActions({ shape, disabled, dispatch, onDone }: TraceSh
         }}
       >
         <Icon name="trash3" className="me-2" />
-        Xoá nét này
+        {t('traceActions.delete')}
       </Button>
     </div>
   )

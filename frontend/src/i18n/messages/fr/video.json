@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Début (secondes)",
+    "end": "Fin (secondes)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Chargement du module de traitement…",
+      "reading": "Lecture de la vidéo…",
+      "processing": "Traitement de la vidéo…",
+      "saving": "Préparation du résultat…"
+    },
+    "chooseFailed": "Impossible de sélectionner la vidéo.",
+    "result": "Résultat",
+    "noOutput": "Pas encore de nouveau fichier",
+    "idle": "Choisissez une vidéo, réglez les paramètres puis lancez le traitement.",
+    "progressLabel": "Progression du traitement vidéo",
+    "progressEstimate": "{{percent}} % · Progression estimée",
+    "processing": "Traitement en cours…",
+    "cancel": "Annuler le traitement",
+    "smaller": "{{percent}} % plus léger que l'original.",
+    "notSmaller": "Le nouveau fichier n'est pas plus léger que l'original. Une vidéo déjà compressée peut grossir ; essayez un niveau de compression plus fort.",
+    "outputVideo": "Vidéo obtenue",
+    "outputAudio": "Audio obtenu",
+    "outputGif": "GIF obtenu",
+    "download": "Télécharger le résultat",
+    "panelTitle": "Votre vidéo",
+    "chooseVideo": "Choisir une vidéo",
+    "limits": "100 Mo, 10 minutes et 4K au maximum. Sur téléphone, privilégiez des extraits courts de moins de 30 Mo. Aucun fichier n'est envoyé à un serveur.",
+    "unsupported": "Votre navigateur ne prend pas encore en charge le traitement vidéo. Essayez un navigateur récent sur ordinateur.",
+    "seconds": "{{seconds}} s",
+    "sourceVideo": "Vidéo d'origine",
+    "playbackHint": "Si votre navigateur ne peut pas lire l'original, vous pouvez quand même tenter le traitement. Le module vérifiera le codec et la durée.",
+    "settingsLegend": "Paramètres du traitement vidéo",
+    "engineNote": "Au premier traitement, un module d'environ 32 Mo est téléchargé. Les tâches peuvent être lentes ou manquer de mémoire sur téléphone. Le résultat ne conserve pas les métadonnées du fichier d'origine.",
+    "license": "Licence et code source de FFmpeg (GPL)"
+  },
+  "task": {
+    "done": "Nouveau fichier créé. Prévisualisez et téléchargez le résultat ci-dessous.",
+    "failed": "Impossible de traiter la vidéo."
+  },
+  "compress": {
+    "action": "Compresser la vidéo",
+    "note": "Export en MP4 H.264/AAC. La compression réduit la qualité ; la taille finale dépend du contenu et de la compression de l'original.",
+    "level": "Niveau de compression",
+    "light": "Légère · priorité à l'image",
+    "medium": "Moyenne · équilibrée",
+    "strong": "Forte · priorité à la taille",
+    "maxEdge": "Grand côté maximal"
+  },
+  "audio": {
+    "action": "Extraire l'audio",
+    "note": "Exporte toute la première piste audio. MP3/M4A sont plus légers ; le WAV est généralement plus lourd. Si la vidéo n'a pas de son, vous en serez clairement averti.",
+    "format": "Format audio",
+    "mp3": "MP3 · le plus courant",
+    "wav": "WAV · non compressé"
+  },
+  "trim": {
+    "action": "Couper la vidéo",
+    "note": "Saisissez les temps en secondes. L'extrait est réencodé pour couper à l'image près et exporté en MP4 ; grand côté de 1080 px au maximum."
+  },
+  "gif": {
+    "action": "Créer un GIF",
+    "note": "Un GIF n'a pas de son et tourne en boucle. Choisissez un extrait de 20 secondes au maximum ; réduisez la largeur ou le nombre d'images par seconde pour alléger le fichier.",
+    "width": "Largeur",
+    "fps": "Images par seconde",
+    "fpsSmall": "8 · fichier léger",
+    "fpsBalanced": "12 · équilibré",
+    "fpsSmooth": "15 · mouvement plus fluide"
+  },
+  "errors": {
+    "emptyFile": "Le fichier est vide. Choisissez une autre vidéo.",
+    "tooLarge": "La vidéo dépasse 100 Mo. Choisissez un fichier plus léger.",
+    "notVideo": "Choisissez un fichier vidéo MP4, MOV, WebM, MKV ou AVI.",
+    "unreadableInfo": "Impossible de lire les informations de la vidéo.",
+    "noVideoStream": "Le fichier ne contient pas de piste vidéo valide ou sa durée est indéterminable.",
+    "tooLong": "La vidéo dure plus de 10 minutes. Choisissez un extrait plus court.",
+    "tooHighRes": "La résolution de la vidéo dépasse la 4K. Choisissez une version de plus faible résolution.",
+    "badCompress": "Paramètres de compression non valides.",
+    "badAudioFormat": "Format audio non valide.",
+    "badRange": "La fin doit être postérieure au début, et les deux doivent être des nombres de secondes valides.",
+    "endPastDuration": "La vidéo ne dure que {{seconds}} secondes. Réduisez le temps de fin.",
+    "gifLimits": "Un GIF est limité à 20 secondes, 640 px de large et 15 images par seconde.",
+    "noAudio": "Cette vidéo n'a pas de son à extraire.",
+    "unsupported": "Ce navigateur ne prend pas encore en charge le traitement vidéo. Essayez une version récente de Chrome, Edge, Firefox ou Safari sur ordinateur.",
+    "busy": "Une autre vidéo est en cours de traitement. Attendez ou annulez cette tâche.",
+    "unreadable": "Impossible de lire la vidéo. Le fichier est peut-être endommagé ou utilise un codec non pris en charge.",
+    "processFailed": "Impossible de traiter la vidéo, ou le délai a été dépassé. Essayez un extrait plus court ou une qualité plus basse.",
+    "noOutput": "Impossible de créer le fichier de résultat. Essayez une autre vidéo.",
+    "cancelled": "Traitement vidéo annulé.",
+    "timedOut": "La tâche a pris trop de temps. Essayez une vidéo plus courte et vérifiez votre connexion pendant le téléchargement du module.",
+    "engineFailed": "Impossible de charger ou d'exécuter le module vidéo. Vérifiez votre connexion, fermez quelques onglets ou essayez un fichier plus léger sur ordinateur."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Banyak tanda yang perlu diperiksa",
+    "levelMedium": "Ada tanda yang perlu diperiksa",
+    "levelLow": "Belum ada tanda menurut aturan yang dipakai",
+    "result": "Hasil penyaringan",
+    "note": "Ini hanya pemeriksaan tanda berdasarkan aturan, bukan bukti bahwa tautan atau pesan aman. Jangan masukkan OTP atau kata sandi di halaman yang dibuka dari pesan; hubungi lembaga terkait lewat saluran yang Anda cari sendiri.",
+    "title": "Konten yang akan diperiksa",
+    "kind": "Jenis konten",
+    "kindMessage": "Pesan",
+    "kindLink": "Tautan",
+    "messageLabel": "Isi pesan",
+    "linkPlaceholder": "Tempel tautan, tidak perlu dibuka…",
+    "messagePlaceholder": "Tempel pesan yang mencurigakan…",
+    "privacy": "Konten dianalisis di perangkat; alat ini tidak membuka tautan yang Anda tempel."
+  },
+  "flags": {
+    "unreadable": "Tautan tidak dapat dibaca.",
+    "noHttps": "Tidak memakai HTTPS.",
+    "ipHost": "Memakai alamat IP, bukan nama domain.",
+    "punycode": "Nama domain memakai kode punycode, perlu dicocokkan dengan nama aslinya.",
+    "shortener": "Tautan pendek menyembunyikan tujuan sebenarnya.",
+    "riskyTld": "Akhiran domain yang sering muncul di tautan berisiko.",
+    "fakeGov": "Mengandung kata gov tetapi bukan domain .gov.vn.",
+    "brand": "Nama domain mengandung kata {{brand}}; perlu dicocokkan dengan alamat resminya.",
+    "loginPath": "Tautan mengarah ke tindakan login atau verifikasi.",
+    "otp": "Meminta kode OTP atau kode verifikasi.",
+    "lockThreat": "Menekan dengan ancaman pemblokiran akun.",
+    "prize": "Menjanjikan hadiah atau bonus.",
+    "easyJob": "Menawarkan kerja ringan bergaji tinggi atau tugas online.",
+    "urgentTransfer": "Mendesak transfer atau isi saldo segera.",
+    "installApp": "Meminta memasang aplikasi dari pesan.",
+    "link": "Tautan {{link}}: {{flags}}"
+  }
+}

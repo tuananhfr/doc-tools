@@ -1,0 +1,212 @@
+{
+  "language": {
+    "label": "Wika",
+    "current": "Wika: {{name}}"
+  },
+  "theme": {
+    "current": "Tema: {{name}}",
+    "light": "Maliwanag (opisina)",
+    "dark": "Madilim (control room)",
+    "field": "Outdoor (sa site)",
+    "lightShort": "Maliwanag",
+    "darkShort": "Madilim",
+    "fieldShort": "Outdoor"
+  },
+  "ui": {
+    "confirm": "Kumpirmahin",
+    "cancel": "Kanselahin",
+    "loadingData": "Nilo-load ang data",
+    "loading": "Naglo-load...",
+    "toastRegion": "Mga abiso ng system",
+    "toastClose": "Isara ang abiso",
+    "toastTone": {
+      "success": "Tagumpay",
+      "info": "Impormasyon",
+      "warning": "Babala",
+      "danger": "Error"
+    }
+  },
+  "apiErrors": {
+    "network": "Hindi makakonekta sa server. Pakitingnan ang iyong koneksyon.",
+    "timeout": "Masyadong matagal sumagot ang server. Pakisubukan ulit.",
+    "unauthorized": "Nag-expire na ang iyong session. Pakimag-log in ulit.",
+    "forbidden": "Wala kang pahintulot na gawin ito.",
+    "notFound": "Walang nahanap na data.",
+    "validation": "Hindi wasto ang data. Pakisuri ulit.",
+    "rateLimited": "Masyado kang mabilis. Pakisubukan ulit mamaya.",
+    "server": "May problema ang server. Pakisubukan ulit mamaya.",
+    "unknown": "May nangyaring error."
+  },
+  "crumb": {
+    "label": "Kinaroroonan"
+  },
+  "tool": {
+    "privacyNoFile": "Tumatakbo sa device mo, walang ipinapadalang nilalaman",
+    "privacyFile": "Pinoproseso sa device mo, hindi ina-upload ang file"
+  },
+  "session": {
+    "openInApp": "Buksan sa ERPcons",
+    "login": "Mag-log in"
+  },
+  "board": {
+    "result": "Resulta"
+  },
+  "copy": {
+    "label": "Kopyahin",
+    "copied": "Nakopya",
+    "done": "Nakopya sa clipboard.",
+    "blocked": "Hindi pinapayagan ng browser ang pagkopya. I-highlight ang text at pindutin ang Ctrl+C."
+  },
+  "fileList": {
+    "title": "Mga napiling file",
+    "clearAll": "Alisin lahat",
+    "moveUp": "Itaas",
+    "moveUpLabel": "Itaas ang {{name}}",
+    "moveDown": "Ibaba",
+    "moveDownLabel": "Ibaba ang {{name}}",
+    "remove": "Alisin ang file na ito",
+    "removeLabel": "Alisin ang {{name}}"
+  },
+  "filePicker": {
+    "pick": "Pumili ng file",
+    "add": "Magdagdag ng file",
+    "pickOther": "Pumili ng ibang file",
+    "reading": "Binabasa ang file {{current}}/{{total}}…",
+    "dropMore": "I-drop dito ang iba pang file",
+    "dropOther": "I-drop dito ang ibang file"
+  },
+  "flow": {
+    "finishing": "Tinatapos…",
+    "processing": "Pinoproseso",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Progreso ng pagproseso",
+    "cancel": "Kanselahin",
+    "rejected_one": "Nilaktawan ang {{count}} file",
+    "rejected_other": "Nilaktawan ang {{count}} file",
+    "rejectedMore_one": "… at {{count}} pang file",
+    "rejectedMore_other": "… at {{count}} pang file",
+    "dismiss": "Itago ang abiso",
+    "side": "Mga opsyon at pagpapatakbo",
+    "options": "Mga opsyon",
+    "error": "Hindi maproseso: {{message}}",
+    "errorCode": "Error code: {{code}}",
+    "runFailed": "Hindi maproseso ang file. Subukan ulit."
+  },
+  "result": {
+    "textLabel": "Nilalamang text",
+    "tooLarge": "Mas malaki sa {{limit}} ang file: hindi na ito mabubuksan ulit sa mga tool dito, at maraming email inbox ang hindi tumatanggap ng ganitong laki.",
+    "shareFailed": "Hindi maibahagi ang file. I-download ito at ipadala nang mano-mano.",
+    "download": "I-download",
+    "preview": "Preview",
+    "share": "Ibahagi",
+    "edit": "Ituloy ang pag-edit",
+    "restart": "Ulitin"
+  },
+  "leave": {
+    "title": "Aalis sa page na ito?",
+    "body": "Nasa tab na ito lang ang file na ginagawa mo at hindi pa naka-save kahit saan. Kapag umalis ka, mawawala ito at hindi na maibabalik — i-download muna ang file kung gusto mo itong itago.",
+    "stay": "Manatili",
+    "leave": "Umalis"
+  },
+  "unsupported": {
+    "title": "Masyadong luma ang browser na ito para magproseso ng PDF",
+    "description": "Kailangan ng {{tool}} ang pinakabagong Chrome, Edge, Firefox o Safari. I-update ang iyong browser at buksan ulit ang page na ito. Magagamit pa rin sa device na ito ang mga tool para sa larawan, QR code at iba pang utility.",
+    "back": "Pumili ng ibang tool"
+  },
+  "camera": {
+    "insecure": "Magagamit lang ang camera kapag binuksan ang page gamit ang HTTPS (o localhost).",
+    "blocked": "Bina-block ng browser ang camera para sa page na ito. I-tap ang icon ng kandado sa address bar para payagan ito, saka subukan ulit.",
+    "notFound": "Walang nahanap na camera sa device na ito.",
+    "busy": "Ginagamit ng ibang app ang camera. Isara ang app na iyon at subukan ulit.",
+    "failed": "Hindi mabuksan ang camera."
+  },
+  "canvas": {
+    "tooLarge": "Masyadong malaki ang larawan para sa browser na ito.",
+    "unsupported": "Hindi kayang i-export ng browser na ito ang napiling format ng larawan."
+  },
+  "hero": {
+    "statTools": "libreng tool",
+    "statFree": "libreng gamitin",
+    "statInstall": "pag-install",
+    "trialErpcons": "Subukan ang ERPcons",
+    "trialTekshot": "Subukan ang TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "paggamit ng tool",
+    "unlimited": "Walang limitasyon",
+    "visits": "paggamit",
+    "readyTools": "tool na handang gamitin",
+    "groups": "grupo ng tool",
+    "proOffer": "mag-imbak, magbahagi at mag-review kasama ang buong team"
+  },
+  "aside": {
+    "label": "Karagdagang impormasyon",
+    "recent": "Kamakailang ginamit",
+    "recentEmpty": "Wala ka pang nagamit na tool sa device na ito. Lalabas dito ang mga tool na bubuksan mo.",
+    "proIntro": "Kapag ang maliit na gawain ay naging project file na:",
+    "about": "Tungkol sa Chuyện Nhỏ",
+    "aboutText": "Libreng mga tool mula sa ERPCons para mabilis mong matapos ang maliliit na gawain sa araw-araw na trabaho. Pinoproseso ang mga file mismo sa device mo, hindi ina-upload sa server.",
+    "tips": "Mabilis na tip"
+  },
+  "pro": {
+    "signup": "Mag-sign up para sa trial",
+    "soon": "Tinatapos pa ang form para sa trial ng {{product}} — malapit na.",
+    "features": {
+      "storage": "Pangmatagalang storage, mga bersyon at revision R00, R01…",
+      "sharing": "Pagbabahagi, pahintulot, puna at pag-apruba",
+      "linking": "I-link ang mga file sa proyekto, kontrata at gawain",
+      "ai": "Binabasa, binubuod at kinukuhanan ng data ng AI ang mga dokumento"
+    }
+  },
+  "nudge": {
+    "text": "Tapos na ang pag-download. Kailangan mo bang i-save ito sa project file, ibahagi at i-review kasama ang buong team? Nasa ERPCons Pro iyan.",
+    "login": "Mag-log in sa ERPCons",
+    "later": "Mamaya na"
+  },
+  "toolCard": {
+    "soon": "Malapit na"
+  },
+  "filters": {
+    "label": "I-filter ayon sa grupo ng tool"
+  },
+  "authBrand": {
+    "home": "Bumalik sa home page ng {{name}}",
+    "headline": "Isang platform<br/>Bawat proyekto<br/>Buong kontrol",
+    "lead": "{{name}} Construction OS – isang kumpletong platform sa pamamahala ng negosyo sa konstruksyon, may AI, IoT at real-time na data para mapahusay ang performance, mapamahalaan ang panganib at makagawa ng mas matalinong desisyon.",
+    "status": "Normal na gumagana ang lahat ng system",
+    "statusLink": "Tingnan ang status ng system",
+    "features": {
+      "security": {
+        "title": "Pinakamataas na seguridad",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "Buong koneksyon",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "Iisang pinagmumulan ng data",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "Mahusay na performance",
+        "line1": "Mabilis",
+        "line2": "at madaling palakihin"
+      },
+      "analytics": {
+        "title": "Matalinong analytics",
+        "line1": "Malinaw na dashboard",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "Magtrabaho kahit saan",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "shared": {
+    "copyResult": "複製結果",
+    "days": "天",
+    "daysValue": "{{count}} <unit>天</unit>"
+  },
+  "weekdays": {
+    "sun": "星期日",
+    "mon": "星期一",
+    "tue": "星期二",
+    "wed": "星期三",
+    "thu": "星期四",
+    "fri": "星期五",
+    "sat": "星期六"
+  },
+  "duration": {
+    "weeks": "{{count}} 週",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days": "{{count}} 天"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "面積",
+      "volume": "體積",
+      "mass": "重量"
+    },
+    "formulas": {
+      "rectangle": "長方形",
+      "triangle": "三角形",
+      "trapezoid": "梯形",
+      "circle": "圓形",
+      "box": "長方體（基礎、梁、樓板）",
+      "cylinder": "圓柱體（圓柱、基樁）",
+      "rebar": "圓鋼（鋼筋）",
+      "plate": "鋼板",
+      "density": "體積 × 密度"
+    },
+    "inputs": {
+      "length": "長度",
+      "width": "寬度",
+      "base": "底邊",
+      "height": "高度",
+      "bigBase": "下底",
+      "smallBase": "上底",
+      "diameter": "直徑",
+      "heightThickness": "高度／厚度",
+      "heightLength": "高度／長度",
+      "thickness": "厚度",
+      "volume": "體積",
+      "density": "密度"
+    },
+    "presets": {
+      "steel": "鋼",
+      "reinforcedConcrete": "鋼筋混凝土",
+      "water": "水"
+    },
+    "tonnes": "= {{value}} 公噸",
+    "perPiece": "每件構件：{{value}} {{unit}}",
+    "invalid": "尺寸和數量必須是大於 0 的數字。",
+    "missing": "請輸入完整尺寸以進行計算。",
+    "groupLabel": "要計算的量",
+    "panelTitle": "尺寸",
+    "material": "材料／計算方式",
+    "shape": "形狀",
+    "quantity": "數量",
+    "pieces": "件",
+    "densityPresets": "預設密度",
+    "decimalHint": "小數點輸入逗號或句點都可以：2,5 和 2.5 是一樣的。輸入的數字會重新顯示在旁邊的算式中。"
+  },
+  "money": {
+    "groups": {
+      "percent": "百分比",
+      "tax": "稅與折扣",
+      "profit": "毛利",
+      "split": "分攤金額"
+    },
+    "presets": {
+      "percentOf": "某數的 X%",
+      "percentRatio": "A 是 B 的百分之幾",
+      "percentChange": "增加／減少了多少 %",
+      "vatAdd": "未稅價加上稅額",
+      "vatExtract": "從含稅價拆出稅額",
+      "discount": "折扣／降價",
+      "margin": "由成本和售價計算毛利",
+      "priceFromMargin": "由成本和毛利率計算售價",
+      "priceFromMarkup": "由成本和加成率計算售價",
+      "split": "平均分攤一筆金額"
+    },
+    "inputs": {
+      "rate": "比率",
+      "ofNumber": "某數",
+      "numberA": "數字 A",
+      "numberB": "數字 B",
+      "oldValue": "原值",
+      "newValue": "新值",
+      "netPrice": "未稅價",
+      "taxRate": "稅率",
+      "grossPrice": "含稅價",
+      "originalPrice": "原價",
+      "discount": "折扣",
+      "cost": "成本",
+      "price": "售價",
+      "targetMargin": "目標毛利率",
+      "targetMarkup": "目標加成率",
+      "total": "總金額",
+      "people": "人數",
+      "extra": "附加費／小費"
+    },
+    "placeholders": {
+      "manual": "自行輸入",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "結果",
+      "aVsB": "A 相對於 B",
+      "increase": "增加",
+      "decrease": "減少",
+      "difference": "差額",
+      "grossPrice": "含稅價",
+      "tax": "稅額",
+      "netPrice": "未稅價",
+      "discounted": "折扣後價格",
+      "discountAmount": "折抵金額",
+      "margin": "毛利率（margin，以售價為基準）",
+      "markup": "加成率（markup，以成本為基準）",
+      "grossProfit": "毛利",
+      "price": "售價",
+      "impliedMarkup": "對應加成率",
+      "impliedMargin": "對應毛利率",
+      "each": "每人",
+      "totalDue": "應付總額",
+      "eachRounded": "每人，無條件進位到千",
+      "surplus": "取整收款後的餘額"
+    },
+    "errors": {
+      "bNonZero": "數字 B 不能為 0。",
+      "oldNonZero": "原值不能為 0。",
+      "discountMax": "折扣不能超過 100%。",
+      "pricePositive": "售價必須大於 0。",
+      "costPositive": "成本必須大於 0。",
+      "marginMax": "毛利率必須小於 100%。",
+      "tooLarge": "數字太大，無法計算。"
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "人"
+    },
+    "copyRow": "複製{{label}}",
+    "invalid": "標示的欄位不是有效數字（不能為負；人數須為 1 以上的整數）。",
+    "missing": "請填寫所有欄位以進行計算。",
+    "formulaCode": "公式代碼：{{code}}",
+    "groupLabel": "計算類型",
+    "panelTitle": "數據",
+    "operation": "計算",
+    "taxHint": "稅率由你自行輸入：稅率因商品和時期而異，本工具不內建任何數字。",
+    "profitHint": "毛利率以售價為基準，加成率以成本為基準——同一筆利潤會得出兩個不同的數字。",
+    "inputHint": "金額：150.000 和 150,000 都是十五萬；小數請輸入 1500,5。系統解讀的數字會重新顯示在旁邊的算式中。結果顯示到小數點後兩位，不會依任何會計規定自動進位。"
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "長度",
+      "area": "面積",
+      "mass": "重量"
+    },
+    "units": {
+      "mm": {
+        "name": "毫米",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "公分",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "公尺",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "公里",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "英寸",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "英尺",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "碼",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "英里",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "平方毫米",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "平方公分",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "平方公尺",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "公頃",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "平方公里",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "平方英尺",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "英畝（acre）",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "公克",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "公斤",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến（越南單位，10 公斤）",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ（越南單位，100 公斤）",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "公噸",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "盎司",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "磅",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "所有單位",
+    "equalsHeading": "{{value}} {{unit}} 等於",
+    "notNumber": "值不是有效數字。",
+    "notNumberExample": "值不是有效數字。例如：2,5 或 1200。",
+    "enterValue": "輸入要換算的值。",
+    "copyIn": "複製以 {{unit}} 表示的值",
+    "groupLabel": "單位類型",
+    "panelTitle": "單位換算",
+    "value": "值",
+    "from": "從單位",
+    "to": "換成單位",
+    "unitOption": "{{name}}（{{symbol}}）",
+    "swap": "對調兩個單位",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "字元數",
+      "charactersNoSpaces": "字元數（不含空白）",
+      "words": "字數",
+      "lines": "行數",
+      "paragraphs": "段落數"
+    },
+    "hints": {
+      "characters": "包含空白和換行",
+      "words": "以空白分隔的字詞",
+      "paragraphs": "以空行分隔"
+    },
+    "counts": "統計",
+    "panelTitle": "文字",
+    "clear": "全部清除",
+    "textLabel": "要計算的文字",
+    "placeholder": "在此輸入或貼上文字…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "非常清楚（AAA）",
+      "aa": "易於閱讀（AA）",
+      "large": "僅適合大字",
+      "fail": "不易閱讀"
+    },
+    "pickFailed": "無法從螢幕吸取顏色。",
+    "preview": "預覽",
+    "swatch": "顏色 {{hex}}",
+    "textOnColor": "放在此顏色上的文字",
+    "whiteText": "白色文字",
+    "blackText": "黑色文字",
+    "contrastHint": "依 WCAG 的對比度：4.5 : 1 以上一般文字可清楚閱讀，3 : 1 以上只適用於大字和圖示。",
+    "panelTitle": "選擇顏色",
+    "picker": "調色盤",
+    "pickerHint": "點色塊開啟調色盤，或在下方輸入色碼。",
+    "eyedropper": "從螢幕吸取顏色",
+    "copyCode": "複製 {{label}} 色碼"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "兩個日期之間",
+      "add": "加／減天數"
+    },
+    "weekendOnly": "這裡的工作日只排除星期六和星期日。重要節日會列在結果中，但「不會」自動扣除；補假或各單位的星期六上班安排也不計入——期限中有節日的話，請自行加上。",
+    "distance": "間隔",
+    "countingBack": "結束日早於開始日——正在倒數計算。",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "複製天數",
+    "workdays": "工作日（星期一至星期五）",
+    "weekendDays": "星期六、星期日",
+    "startIncluded": "開始日（計入）",
+    "startExcluded": "開始日（不計入）",
+    "endIncluded": "結束日（計入）",
+    "pickBoth": "請選擇兩個日期以進行計算。",
+    "landsOn": "落在",
+    "addedCalendar": "= {{start}} {{sign}} {{count}} 天",
+    "addedWorkdays": "= {{start}} {{sign}} {{count}} 個工作日",
+    "calendarEquivalent": "即 {{count}} 個日曆天。",
+    "copyDate": "複製日期",
+    "countInvalid": "天數必須是 0 到 {{max}} 之間的整數。",
+    "pickStart": "請選擇開始日並輸入天數。",
+    "modeLabel": "計算方式",
+    "betweenTitle": "兩個日期",
+    "fromDate": "從",
+    "toDate": "到",
+    "includeStart": "計入開始日",
+    "includeStartHint": "不計入開始日：星期一到星期五是 4 天（計算期限的方式）。計入：5 天（計算工作天數的方式）。",
+    "addTitle": "起點與天數",
+    "startDate": "開始日",
+    "dayCount": "天數",
+    "direction": "方向",
+    "forward": "加（往後）",
+    "back": "減（往前）",
+    "dayKind": "日期類型",
+    "calendar": "日曆天",
+    "addHint": "開始日不計入：從星期五加 1 天會落在星期六（日曆天）或星期一（工作日）。"
+  },
+  "holidays": {
+    "tooLong": "期間超過 {{count}} 天，因此不列出節日。",
+    "none": "這段期間沒有重要節日。",
+    "count": "期間內有 {{count}} 個節日",
+    "more": "以及其他 {{count}} 天",
+    "hint": "本工具不會自動扣除假日。如果機關在這些日子放假，請自行加到期限中。"
+  },
+  "randomCode": {
+    "modes": {
+      "password": "密碼",
+      "code": "訂單編號、單據編號"
+    },
+    "classes": {
+      "upper": "大寫字母（A–Z）",
+      "lower": "小寫字母（a–z）",
+      "digits": "數字（0–9）",
+      "symbols": "符號（!@#$…）"
+    },
+    "strengths": {
+      "weak": "弱",
+      "fair": "尚可",
+      "strong": "強",
+      "excellent": "非常強"
+    },
+    "results": "結果",
+    "resultsCount": "結果（{{count}}）",
+    "copyAll": "全部複製",
+    "noClass": "請至少啟用一組字元以產生密碼。",
+    "copyValue": "複製 {{value}}",
+    "regenerate": "重新產生",
+    "modeLabel": "類型",
+    "panelTitle": "選項",
+    "length": "長度",
+    "chars": "{{count}} 個字元",
+    "classGroups": "使用的字元組",
+    "plain": "排除容易看錯的字元（0 O o 1 l I）",
+    "strength": "強度：<strong>{{label}}</strong> · 約 {{bits}} 位元",
+    "prefix": "前綴（選填）",
+    "prefixPlaceholder": "例如 PX-",
+    "charset": "隨機部分包含",
+    "alnum": "大寫字母和數字",
+    "digitsOnly": "只有數字",
+    "codeLength": "隨機字元數",
+    "alnumHint": "不使用 I、O、0、1——透過電話唸出或手抄時不會弄錯。",
+    "count": "每次產生數量（最多 {{max}}）"
+  },
+  "notes": {
+    "untitled": "空白筆記",
+    "limitReached": "筆記已達 {{count}} 則上限。請刪除舊筆記後再新增。",
+    "listLabel": "筆記清單",
+    "title": "筆記",
+    "titleCount": "筆記（{{count}}）",
+    "newNote": "新筆記",
+    "empty": "這台裝置上還沒有任何筆記。",
+    "notice": "筆記存在此瀏覽器中，不跟隨帳號：共用這台裝置的人都能讀到，清除瀏覽資料就會遺失。",
+    "clearAllTitle": "要刪除全部 {{count}} 則筆記嗎？",
+    "localOnly": "筆記只存在這台裝置上，刪除後無法復原。",
+    "clearAllConfirm": "全部刪除",
+    "clearAll": "刪除所有筆記",
+    "editorLabel": "編輯筆記",
+    "emptyStart": "記下需要記住的事，列出待辦清單。",
+    "emptyPick": "從清單中選擇一則筆記來查看和編輯。",
+    "backToList": "筆記清單",
+    "titleLabel": "標題",
+    "titlePlaceholder": "例如：星期一工地待辦事項",
+    "body": "內容",
+    "bodyPlaceholder": "快速記下要記住的事…",
+    "saveFailed": "無法寫入這台裝置。關閉頁面前請將內容複製到別處。",
+    "savedAt": "已儲存在此裝置 · {{time}}",
+    "deleteTitle": "要刪除這則筆記嗎？",
+    "deleteConfirm": "刪除",
+    "delete": "刪除筆記",
+    "tasks": "待辦清單",
+    "taskDone": "已完成：{{task}}",
+    "taskFallback": "待辦 {{number}}",
+    "task": "待辦 {{number}}",
+    "removeTask": "移除待辦 {{number}}",
+    "removeTaskTitle": "移除此待辦",
+    "newTask": "新待辦",
+    "tasksFull": "待辦已達 {{count}} 項",
+    "addTaskPlaceholder": "新增待辦，按 Enter",
+    "addTask": "新增"
+  }
+}

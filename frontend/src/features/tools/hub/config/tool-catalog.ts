@@ -1,5 +1,5 @@
 import { appConfig } from '@/config/app.config'
-import type { ToolCategory, ToolDefinition, ToolFilter, ToolScreen, ToolTone } from '../types/tool.types'
+import type { ToolCategory, ToolEntry, ToolFilter, ToolScreen, ToolTone } from '../types/tool.types'
 import { enabledTools } from '../utils/tool-registry'
 import { ALL_TOOLS } from './tool-list'
 
@@ -7,8 +7,10 @@ import { ALL_TOOLS } from './tool-list'
  * Danh mục đang chạy = mọi công cụ trừ những cái bị tắt bằng cờ
  * (`VITE_TOOLS_OFF=ocr,qr-read`). Công cụ bị tắt mất cả thẻ lẫn đường vào — gỡ
  * được một công cụ đang lỗi khỏi bản production mà không phải sửa code.
+ *
+ * Chưa có chữ: màn hiển thị lấy danh mục đã gắn ngôn ngữ qua `useToolCatalog()`.
  */
-export const TOOL_CATALOG: ToolDefinition[] = enabledTools(ALL_TOOLS, appConfig.toolsOff)
+export const TOOL_CATALOG: ToolEntry[] = enabledTools(ALL_TOOLS, appConfig.toolsOff)
 
 /**
  * Màn nào chạy bằng pdf.js — khai theo MÀN chứ không theo công cụ, vì hai công
@@ -38,27 +40,16 @@ export const PDF_ENGINE_SCREENS: ReadonlySet<ToolScreen> = new Set<ToolScreen>([
   'images-to-pdf',
 ])
 
-/** Mọi nhóm, theo thứ tự trên hàng lọc. */
-const TOOL_GROUPS: { value: ToolCategory; label: string }[] = [
-  { value: 'document', label: 'Tài liệu' },
-  { value: 'image', label: 'Hình ảnh' },
-  { value: 'calc', label: 'Tính toán' },
-  { value: 'money', label: 'Tiền' },
-  { value: 'date', label: 'Ngày & thời hạn' },
-  { value: 'data', label: 'Dữ liệu' },
-  { value: 'construction', label: 'Xây dựng' },
-  { value: 'home', label: 'Nhà & đời sống' },
-  { value: 'tech', label: 'Kỹ thuật' },
-  { value: 'other', label: 'Tiện ích khác' },
-]
+/** Mọi nhóm, theo thứ tự trên hàng lọc; nhãn ở `catalog:groups.<nhóm>`. */
+const TOOL_GROUPS: readonly ToolCategory[] = ['document', 'image', 'calc', 'money', 'date', 'data', 'construction', 'home', 'tech', 'other']
 
 /**
  * Chip của hàng lọc: chỉ nhóm đã có công cụ (kể cả "Sắp có"). Chip dẫn tới lưới
  * trống trông như lỗi — gắn công cụ đầu tiên vào nhóm nào thì chip nhóm đó tự hiện.
  */
-export const TOOL_FILTERS: { value: ToolFilter; label: string }[] = [
-  { value: 'all', label: 'Tất cả' },
-  ...TOOL_GROUPS.filter((group) => TOOL_CATALOG.some((tool) => tool.categories.includes(group.value))),
+export const TOOL_FILTERS: readonly ToolFilter[] = [
+  'all',
+  ...TOOL_GROUPS.filter((group) => TOOL_CATALOG.some((tool) => tool.categories.includes(group))),
 ]
 
 /**
@@ -92,10 +83,5 @@ export const LEGACY_TOOL_QUERY: Record<string, string> = {
   'pdf-to-word': 'pdf-sang-word',
 }
 
-/** Mẹo ở cột phải — chỉ viết việc trình chỉnh sửa làm được thật. */
-export const HUB_TIPS: string[] = [
-  'Thả thêm tệp vào giữa lưới trang để chèn đúng chỗ, không cần ghép lại từ đầu.',
-  'Ctrl+F tìm được cả chữ trong bản scan, sau khi chạy OCR.',
-  'Ctrl+Z hoàn tác mọi thao tác trên trang: xoá, xoay, cắt, sửa chữ.',
-  'Giữ Shift rồi bấm trang thứ hai để chọn cả dải trang ở giữa.',
-]
+/** Mẹo ở cột phải (`catalog:tips.<khoá>`) — chỉ viết việc trình chỉnh sửa làm được thật. */
+export const HUB_TIP_KEYS = ['insertPages', 'findInScan', 'undo', 'rangeSelect'] as const

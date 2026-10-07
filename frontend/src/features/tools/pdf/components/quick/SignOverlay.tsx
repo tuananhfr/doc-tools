@@ -1,4 +1,5 @@
 import { useRef, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { ImageStamp } from '../../types/decorations.types'
 import type { Rect } from '../../types/markup.types'
 import { layoutStampAt } from '../../utils/decorations'
@@ -35,6 +36,7 @@ const percent = (value: number, whole: number) => `${(value / whole) * 100}%`
 
 /** Bấm lên trang để đặt chữ ký, kéo để dời, bấm vào chữ ký đã đặt để bỏ. */
 export function SignOverlay({ size, spots, stamp, url, disabled, onChange }: SignOverlayProps) {
+  const { t } = useTranslation('pdf')
   const gesture = useRef<Gesture | null>(null)
   const rects = spots.map((spot) => layoutStampAt(stamp, size, spot))
 
@@ -81,7 +83,7 @@ export function SignOverlay({ size, spots, stamp, url, disabled, onChange }: Sig
     <div
       className={`erp-sign${disabled ? ' is-disabled' : ''}`}
       role="img"
-      aria-label={spots.length > 0 ? `${spots.length} chữ ký trên trang này` : 'Chưa đặt chữ ký trên trang này'}
+      aria-label={spots.length > 0 ? t('signStage.overlay', { count: spots.length }) : t('signStage.overlayEmpty')}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}

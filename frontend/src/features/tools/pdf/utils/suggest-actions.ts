@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 export type SuggestionId = 'merge' | 'image-to-pdf' | 'split' | 'pdf-to-word' | 'pdf-to-image'
 
 export interface Suggestion {
@@ -19,13 +21,17 @@ export function suggestActions({ pdfFiles, imageFiles, pageCount }: SuggestInput
   const files = pdfFiles + imageFiles
   const all: Suggestion[] = []
 
-  if (pdfFiles > 0 && files > 1) all.push({ id: 'merge', label: `Ghép thành 1 PDF (${pageCount} trang)`, icon: 'files' })
+  if (pdfFiles > 0 && files > 1) all.push({ id: 'merge', label: translate('pdf:suggest.merge', { count: pageCount }), icon: 'files' })
   if (imageFiles > 0 && pdfFiles === 0) {
-    all.push({ id: 'image-to-pdf', label: imageFiles === 1 ? 'Tải ảnh thành PDF' : `Tải ${imageFiles} ảnh thành 1 PDF`, icon: 'file-earmark-pdf' })
+    all.push({
+      id: 'image-to-pdf',
+      label: imageFiles === 1 ? translate('pdf:suggest.imageToPdfOne') : translate('pdf:suggest.imageToPdfMany', { count: imageFiles }),
+      icon: 'file-earmark-pdf',
+    })
   }
-  if (pdfFiles === 1 && imageFiles === 0 && pageCount > 1) all.push({ id: 'split', label: 'Tách trang', icon: 'scissors' })
-  if (pdfFiles > 0) all.push({ id: 'pdf-to-word', label: 'Chuyển sang Word', icon: 'file-earmark-word' })
-  if (pdfFiles > 0) all.push({ id: 'pdf-to-image', label: 'Xuất ảnh từng trang', icon: 'file-earmark-image' })
+  if (pdfFiles === 1 && imageFiles === 0 && pageCount > 1) all.push({ id: 'split', label: translate('pdf:suggest.split'), icon: 'scissors' })
+  if (pdfFiles > 0) all.push({ id: 'pdf-to-word', label: translate('pdf:suggest.pdfToWord'), icon: 'file-earmark-word' })
+  if (pdfFiles > 0) all.push({ id: 'pdf-to-image', label: translate('pdf:suggest.pdfToImage'), icon: 'file-earmark-image' })
 
   return all.slice(0, MAX_SUGGESTIONS)
 }

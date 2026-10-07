@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Mula (saat)",
+    "end": "Tamat (saat)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Memuatkan pemproses…",
+      "reading": "Membaca video…",
+      "processing": "Memproses video…",
+      "saving": "Menyediakan hasil…"
+    },
+    "chooseFailed": "Tidak dapat memilih video.",
+    "result": "Hasil",
+    "noOutput": "Belum ada fail baharu",
+    "idle": "Pilih video, laraskan tetapan, kemudian tekan proses.",
+    "progressLabel": "Kemajuan pemprosesan video",
+    "progressEstimate": "{{percent}}% · Anggaran kemajuan",
+    "processing": "Memproses…",
+    "cancel": "Batalkan pemprosesan",
+    "smaller": "{{percent}}% lebih kecil daripada asal.",
+    "notSmaller": "Fail baharu tidak lebih kecil daripada asal. Video yang sudah dimampatkan boleh menjadi lebih besar; cuba tahap mampatan yang lebih kuat.",
+    "outputVideo": "Video hasil",
+    "outputAudio": "Audio hasil",
+    "outputGif": "GIF hasil",
+    "download": "Muat turun hasil",
+    "panelTitle": "Video anda",
+    "chooseVideo": "Pilih video",
+    "limits": "Maksimum 100 MB, 10 minit dan 4K. Pada telefon, klip pendek di bawah 30 MB paling sesuai. Fail tidak dimuat naik ke pelayan.",
+    "unsupported": "Pelayar anda belum menyokong pemprosesan video. Cuba pelayar terkini pada komputer.",
+    "seconds": "{{seconds}} saat",
+    "sourceVideo": "Video asal",
+    "playbackHint": "Jika pelayar tidak dapat memainkan video asal, anda masih boleh cuba memprosesnya. Pemproses akan menyemak codec dan tempoh.",
+    "settingsLegend": "Tetapan pemprosesan video",
+    "engineNote": "Kali pertama anda memproses, pemproses tambahan sekitar 32 MB akan dimuat turun. Tugasan mungkin perlahan atau kehabisan memori pada telefon. Hasil tidak menyimpan metadata fail asal.",
+    "license": "Lesen dan kod sumber FFmpeg GPL"
+  },
+  "task": {
+    "done": "Fail baharu telah dicipta. Pratonton dan muat turun hasil di bawah.",
+    "failed": "Tidak dapat memproses video."
+  },
+  "compress": {
+    "action": "Mampatkan video",
+    "note": "Mengeksport MP4 H.264/AAC. Mampatan mengurangkan kualiti; saiz akhir bergantung pada kandungan dan tahap mampatan video asal.",
+    "level": "Tahap mampatan",
+    "light": "Ringan · utamakan gambar",
+    "medium": "Sederhana · seimbang",
+    "strong": "Kuat · utamakan saiz",
+    "maxEdge": "Sisi panjang maksimum"
+  },
+  "audio": {
+    "action": "Ekstrak audio",
+    "note": "Mengeksport keseluruhan trek audio pertama. MP3/M4A menjimatkan ruang; WAV biasanya lebih besar. Anda akan dimaklumkan dengan jelas jika video tiada audio.",
+    "format": "Format audio",
+    "mp3": "MP3 · paling biasa",
+    "wav": "WAV · tanpa mampatan"
+  },
+  "trim": {
+    "action": "Potong video",
+    "note": "Masukkan masa dalam saat. Klip dikodkan semula supaya dipotong tepat pada bingkai dan dieksport sebagai MP4; sisi panjang maksimum 1080 px."
+  },
+  "gif": {
+    "action": "Buat GIF",
+    "note": "GIF tiada bunyi dan berulang tanpa henti. Pilih klip sehingga 20 saat; kurangkan lebar atau bilangan bingkai untuk mengecilkan fail.",
+    "width": "Lebar",
+    "fps": "Bingkai sesaat",
+    "fpsSmall": "8 · fail kecil",
+    "fpsBalanced": "12 · seimbang",
+    "fpsSmooth": "15 · pergerakan lebih lancar"
+  },
+  "errors": {
+    "emptyFile": "Fail kosong. Pilih video lain.",
+    "tooLarge": "Video melebihi 100 MB. Pilih fail yang lebih kecil.",
+    "notVideo": "Pilih fail video MP4, MOV, WebM, MKV atau AVI.",
+    "unreadableInfo": "Tidak dapat membaca maklumat video.",
+    "noVideoStream": "Fail tiada trek video yang sah atau tempohnya tidak dapat ditentukan.",
+    "tooLong": "Video lebih panjang daripada 10 minit. Pilih klip yang lebih pendek.",
+    "tooHighRes": "Resolusi video melebihi 4K. Pilih versi beresolusi lebih rendah.",
+    "badCompress": "Tetapan mampatan tidak sah.",
+    "badAudioFormat": "Format audio tidak sah.",
+    "badRange": "Masa tamat mesti selepas masa mula, dan kedua-duanya mesti nombor saat yang sah.",
+    "endPastDuration": "Video ini hanya {{seconds}} saat. Kurangkan masa tamat.",
+    "gifLimits": "GIF maksimum 20 saat, lebar 640 px dan 15 bingkai sesaat.",
+    "noAudio": "Video ini tiada audio untuk diekstrak.",
+    "unsupported": "Pelayar ini belum menyokong pemprosesan video. Cuba Chrome, Edge, Firefox atau Safari versi terkini pada komputer.",
+    "busy": "Video lain sedang diproses. Tunggu atau batalkan tugasan itu.",
+    "unreadable": "Tidak dapat membaca video. Fail mungkin rosak atau menggunakan codec yang tidak disokong.",
+    "processFailed": "Tidak dapat memproses video atau masa telah tamat. Cuba klip yang lebih pendek atau kualiti lebih rendah.",
+    "noOutput": "Tidak dapat mencipta fail hasil. Cuba video lain.",
+    "cancelled": "Pemprosesan video dibatalkan.",
+    "timedOut": "Tugasan mengambil masa terlalu lama. Cuba video yang lebih pendek dan semak sambungan semasa pemproses dimuat turun.",
+    "engineFailed": "Tidak dapat memuatkan atau menjalankan pemproses video. Semak sambungan, tutup beberapa tab atau cuba fail lebih kecil pada komputer."
+  }
+}

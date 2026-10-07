@@ -3,6 +3,8 @@
  * chữ xác định, không AI). Cùng hai tệp vào thì luôn ra cùng một kết quả.
  */
 
+import { translate } from '@/i18n/runtime'
+
 /** Một dòng chữ của tài liệu và trang chứa nó (đếm từ 1). */
 export interface DocLine {
   text: string
@@ -161,19 +163,21 @@ export function compareLines(before: DocLine[], after: DocLine[], options: Compa
 const MARK: Record<Edit['kind'], string> = { same: '  ', remove: '- ', add: '+ ' }
 
 function hunkTitle(hunk: Hunk): string {
-  if (hunk.oldPage === null) return `Bản mới trang ${hunk.newPage}`
-  if (hunk.newPage === null) return `Bản cũ trang ${hunk.oldPage}`
-  return `Bản cũ trang ${hunk.oldPage} · Bản mới trang ${hunk.newPage}`
+  if (hunk.oldPage === null) return translate('pdf:file.report.newPage', { page: hunk.newPage })
+  if (hunk.newPage === null) return translate('pdf:file.report.oldPage', { page: hunk.oldPage })
+  return translate('pdf:file.report.bothPages', { old: hunk.oldPage, new: hunk.newPage })
 }
 
 /** Báo cáo dạng chữ: "-" là dòng chỉ có ở bản cũ, "+" là dòng chỉ có ở bản mới. */
 export function formatComparison(result: Comparison, names: { before: string; after: string }): string {
   const head = [
-    'SO SÁNH TÀI LIỆU',
-    `Bản cũ: ${names.before}`,
-    `Bản mới: ${names.after}`,
-    result.hunks.length === 0 ? 'Không có dòng chữ nào khác nhau.' : `${result.hunks.length} chỗ khác · bỏ ${result.removed} dòng (-) · thêm ${result.added} dòng (+)`,
+    translate('pdf:file.report.title'),
+    translate('pdf:file.report.before', { name: names.before }),
+    translate('pdf:file.report.after', { name: names.after }),
+    result.hunks.length === 0
+      ? translate('pdf:file.report.same')
+      : translate('pdf:file.report.summary', { count: result.hunks.length, removed: result.removed, added: result.added }),
   ]
-  const body = result.hunks.map((hunk, index) => [`@@ Chỗ ${index + 1} — ${hunkTitle(hunk)} @@`, ...hunk.lines.map((line) => MARK[line.kind] + line.text)].join('\n'))
+  const body = result.hunks.map((hunk, index) => [translate('pdf:file.report.hunk', { index: index + 1, where: hunkTitle(hunk) }), ...hunk.lines.map((line) => MARK[line.kind] + line.text)].join('\n'))
   return [head.join('\n'), ...body].join('\n\n')
 }

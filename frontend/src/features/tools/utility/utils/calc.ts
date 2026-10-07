@@ -1,5 +1,6 @@
 import { formatQuantity, parseDecimal } from '@/features/tools/hub'
 import type { CalcFormula } from '../config/calc-formulas'
+import { numberFormat } from '@/i18n/intl'
 
 export type CalcOutcome =
   /** `single` = kết quả cho MỘT cấu kiện, `value` = đã nhân số lượng. */
@@ -7,8 +8,8 @@ export type CalcOutcome =
   /** `invalid` = ô có chữ nhưng không phải số dương; ô còn trống không tính là lỗi. */
   | { ok: false; invalid: string[] }
 
-const WHOLE = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 3 })
-const SMALL = new Intl.NumberFormat('vi-VN', { maximumSignificantDigits: 4 })
+const WHOLE: Intl.NumberFormatOptions = { maximumFractionDigits: 3 }
+const SMALL: Intl.NumberFormatOptions = { maximumSignificantDigits: 4 }
 
 /**
  * In một KẾT QUẢ tính: ba chữ số thập phân (tới gam, tới lít) — mười chữ số của
@@ -17,7 +18,7 @@ const SMALL = new Intl.NumberFormat('vi-VN', { maximumSignificantDigits: 4 })
  */
 export function formatResult(value: number): string {
   if (!Number.isFinite(value)) return '—'
-  return (Math.abs(value) >= 1 ? WHOLE : SMALL).format(value === 0 ? 0 : value)
+  return numberFormat(Math.abs(value) >= 1 ? WHOLE : SMALL).format(value === 0 ? 0 : value)
 }
 
 /** Ô số lượng nằm ngoài danh sách ô của công thức nên có khoá riêng. */

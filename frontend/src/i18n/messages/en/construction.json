@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Foundation",
+      "basement": "Basement",
+      "ground": "Ground floor",
+      "upper": "Each upper floor",
+      "floor": "Floor {{floor}}",
+      "rooftopRoom": "Rooftop stair room",
+      "terrace": "Open roof terrace",
+      "roof": "Roof",
+      "yard": "Front/back yard"
+    },
+    "result": "Rough estimate",
+    "money": "{{amount}} đ",
+    "enterPrice": "Enter unit prices",
+    "convertedArea": "Converted area: {{area}} m²",
+    "costs": "Structure: {{base}} đ · Finishing or turnkey: {{finishing}} đ · Piles: {{pile}} đ",
+    "columns": {
+      "item": "Item",
+      "area": "Area",
+      "factor": "Factor",
+      "converted": "Converted"
+    },
+    "checkInput": "Check the numbers you entered.",
+    "disclaimer": "The factors are reference conventions from archived documents, not government norms. Compare with the design and contractor quotes; excludes design, permits, loose furniture and ground-condition extras.",
+    "title": "Your areas and unit prices",
+    "fields": {
+      "floorArea": "Ground floor area (m²)",
+      "upperFloors": "Upper floors (excluding ground)",
+      "rooftopRoomArea": "Rooftop stair room area (m²)",
+      "terraceArea": "Open roof terrace (m²)",
+      "yardArea": "Front/back yard (m²)",
+      "basePrice": "Structure unit price (đ/m²)",
+      "finishingPrice": "Finishing or turnkey unit price (đ/m²)",
+      "pileCost": "Pile cost (đ)"
+    },
+    "turnkey": "The second price is turnkey and already includes the structure",
+    "editFactors": "Adjust factors to match the contractor's quote",
+    "factorLabel": "{{label}} (%)"
+  }
+}

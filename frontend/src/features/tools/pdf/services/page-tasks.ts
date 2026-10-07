@@ -1,4 +1,5 @@
 import type { FlowNote, FlowTask } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { newId } from '@/utils/id'
 import type { QuickItem } from '../hooks/useQuickSources'
 import type { Decorations, ImageStamp } from '../types/decorations.types'
@@ -20,20 +21,20 @@ import { carryoverNotes, contextOf, firstName, output } from './quick-tasks'
 export function organizeTask(items: QuickItem[], pages: PageRef[]): FlowTask {
   return async (step) => {
     const total = items.reduce((sum, item) => sum + item.pages.length, 0)
-    const name = items.length === 1 ? `${firstName(items)} - đã sắp xếp` : `${firstName(items)} - đã ghép và sắp xếp`
+    const name = `${firstName(items)} - ${translate(items.length === 1 ? 'pdf:file.sorted' : 'pdf:file.mergedSorted')}`
     const built = await buildPdf(contextOf(items), pages, name, DEFAULT_PDF_OUTPUT, step)
     const notes: FlowNote[] = []
-    if (pages.length < total) notes.push({ tone: 'info', text: `Đã bỏ ${total - pages.length} trang so với tệp gốc. Tệp gốc trên máy bạn không bị đụng tới.` })
+    if (pages.length < total) notes.push({ tone: 'info', text: translate('pdf:quickTask.removedPages', { count: total - pages.length }) })
     return {
-      title: `Đã tạo PDF ${pages.length} trang`,
-      output: output(built.file, `${pages.length} trang`),
+      title: translate('pdf:quickTask.pdfPages', { count: pages.length }),
+      output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
       notes: [...notes, ...carryoverNotes(built.carryover)],
     }
   }
 }
 
 export interface DecorateCopy {
-  /** Đuôi tên tệp ra: "đã đánh số". */
+  /** Đuôi tên tệp ra, đã dịch: "đã đánh số". */
   suffix: string
   /** Tiêu đề màn kết quả. */
   title: string
@@ -51,12 +52,12 @@ export function decorateTask(item: QuickItem, decorations: Decorations, copy: De
 
     const stamped = new Set([...(resolved.headerFooter?.pageIds ?? []), ...(resolved.watermark?.pageIds ?? []), ...(resolved.imageStamp?.pageIds ?? [])])
     // Phạm vi hợp lệ mà không trúng trang nào (bỏ trang đầu của tệp 1 trang): tệp ra sẽ y hệt tệp gốc.
-    if (stamped.size === 0) throw new Error('phạm vi đã chọn không có trang nào.')
+    if (stamped.size === 0) throw new Error(translate('pdf:quickTask.scopeNoPages'))
 
     const built = await buildPdf({ ...contextOf([item]), decorations: resolved }, item.pages, `${baseName(item.source.name)} - ${copy.suffix}`, DEFAULT_PDF_OUTPUT, step)
     const notes: FlowNote[] = []
-    if (stamped.size < item.pages.length) notes.push({ tone: 'info', text: `Áp lên ${stamped.size}/${item.pages.length} trang theo phạm vi đã chọn.` })
-    return { title: copy.title, output: output(built.file, `${item.pages.length} trang`), notes: [...notes, ...carryoverNotes(built.carryover)] }
+    if (stamped.size < item.pages.length) notes.push({ tone: 'info', text: translate('pdf:quickTask.appliedTo', { stamped: stamped.size, total: item.pages.length }) })
+    return { title: copy.title, output: output(built.file, translate('pdf:stage.pageCount', { count: item.pages.length })), notes: [...notes, ...carryoverNotes(built.carryover)] }
   }
 }
 
@@ -69,14 +70,14 @@ export function signTask(item: QuickItem, image: Pick<ImageStamp, 'bytes' | 'mim
       item.pages.map((page) => page.id),
     )
     const signed = resolved.imageStamp?.pageIds.size ?? 0
-    if (signed === 0) throw new Error('chưa đặt chữ ký lên trang nào.')
+    if (signed === 0) throw new Error(translate('pdf:quickTask.noSignature'))
 
-    const built = await buildPdf({ ...contextOf([item]), decorations: resolved }, item.pages, `${baseName(item.source.name)} - đã chèn chữ ký`, DEFAULT_PDF_OUTPUT, step)
+    const built = await buildPdf({ ...contextOf([item]), decorations: resolved }, item.pages, `${baseName(item.source.name)} - ${translate('pdf:file.signed')}`, DEFAULT_PDF_OUTPUT, step)
     return {
-      title: `Đã chèn chữ ký vào ${signed} trang`,
-      output: output(built.file, `${item.pages.length} trang`),
+      title: translate('pdf:quickTask.signed', { count: signed }),
+      output: output(built.file, translate('pdf:stage.pageCount', { count: item.pages.length })),
       notes: [
-        { tone: 'info', text: 'Đây là HÌNH chữ ký vẽ đè lên trang, không phải chữ ký số: tệp không mang chứng thư và không tự chứng minh được ai đã ký.' },
+        { tone: 'info', text: translate('pdf:quickTask.signNote') },
         ...carryoverNotes(built.carryover),
       ],
     }
@@ -95,16 +96,16 @@ export function redactTask(item: QuickItem, boxes: Readonly<Record<string, Rect[
       return marked.length > 0 ? { ...page, markups: marked.map((box) => ({ id: newId(), kind: 'redact', box })) } : page
     })
     const redacted = pages.filter((page) => page.markups?.length).length
-    if (redacted === 0) throw new Error('chưa có khung che nào.')
+    if (redacted === 0) throw new Error(translate('pdf:quickTask.noRedaction'))
 
-    const built = await buildPdf(contextOf([item]), pages, `${baseName(item.source.name)} - đã che`, DEFAULT_PDF_OUTPUT, step)
+    const built = await buildPdf(contextOf([item]), pages, `${baseName(item.source.name)} - ${translate('pdf:file.redacted')}`, DEFAULT_PDF_OUTPUT, step)
     return {
-      title: `Đã che thông tin trên ${redacted} trang`,
-      output: output(built.file, `${pages.length} trang`),
+      title: translate('pdf:quickTask.redacted', { count: redacted }),
+      output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
       notes: [
-        { tone: 'success', text: 'Nội dung dưới khung đã bị XOÁ khỏi tệp, không chỉ che: bôi đen, tìm kiếm hay chép chữ đều không ra.' },
-        { tone: 'info', text: `${redacted} trang có khung che được dựng lại thành ảnh 200 DPI — chữ ngoài khung vẫn tìm và chép được, nhưng liên kết, ô nhập liệu trên các trang đó không còn.` },
-        { tone: 'warning', text: 'Mở tệp ra xem lại từng trang trước khi gửi đi — công cụ chỉ xoá đúng vùng bạn đã khoanh.' },
+        { tone: 'success', text: translate('pdf:quickTask.redactRemoved') },
+        { tone: 'info', text: translate('pdf:quickTask.redactRebuilt', { count: redacted }) },
+        { tone: 'warning', text: translate('pdf:quickTask.redactReview') },
         ...carryoverNotes(built.carryover),
       ],
     }

@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "언어",
+    "current": "언어: {{name}}"
+  },
+  "theme": {
+    "current": "화면 테마: {{name}}",
+    "light": "밝게 (사무실)",
+    "dark": "어둡게 (관제실)",
+    "field": "야외 (현장)",
+    "lightShort": "밝게",
+    "darkShort": "어둡게",
+    "fieldShort": "야외"
+  },
+  "ui": {
+    "confirm": "확인",
+    "cancel": "취소",
+    "loadingData": "데이터를 불러오는 중",
+    "loading": "불러오는 중...",
+    "toastRegion": "시스템 알림",
+    "toastClose": "알림 닫기",
+    "toastTone": {
+      "success": "성공",
+      "info": "정보",
+      "warning": "경고",
+      "danger": "오류"
+    }
+  },
+  "apiErrors": {
+    "network": "서버에 연결할 수 없어요. 네트워크 연결을 확인해 주세요.",
+    "timeout": "서버 응답이 너무 늦어요. 다시 시도해 주세요.",
+    "unauthorized": "로그인 세션이 만료됐어요. 다시 로그인해 주세요.",
+    "forbidden": "이 작업을 할 권한이 없어요.",
+    "notFound": "데이터를 찾을 수 없어요.",
+    "validation": "입력한 데이터가 올바르지 않아요. 다시 확인해 주세요.",
+    "rateLimited": "요청이 너무 빨라요. 잠시 후 다시 시도해 주세요.",
+    "server": "서버에 문제가 생겼어요. 잠시 후 다시 시도해 주세요.",
+    "unknown": "오류가 발생했어요."
+  },
+  "crumb": {
+    "label": "현재 위치"
+  },
+  "tool": {
+    "privacyNoFile": "내 기기에서 실행, 내용을 외부로 보내지 않아요",
+    "privacyFile": "내 기기에서 처리, 파일을 업로드하지 않아요"
+  },
+  "session": {
+    "openInApp": "ERPcons에서 열기",
+    "login": "로그인"
+  },
+  "board": {
+    "result": "결과"
+  },
+  "copy": {
+    "label": "복사",
+    "copied": "복사됨",
+    "done": "클립보드에 복사했어요.",
+    "blocked": "브라우저가 복사를 허용하지 않아요. 텍스트를 선택한 뒤 Ctrl+C를 눌러 주세요."
+  },
+  "fileList": {
+    "title": "선택한 파일",
+    "clearAll": "모두 빼기",
+    "moveUp": "위로",
+    "moveUpLabel": "{{name}} 위로 이동",
+    "moveDown": "아래로",
+    "moveDownLabel": "{{name}} 아래로 이동",
+    "remove": "이 파일 빼기",
+    "removeLabel": "{{name}} 빼기"
+  },
+  "filePicker": {
+    "pick": "파일 선택",
+    "add": "파일 추가",
+    "pickOther": "다른 파일 선택",
+    "reading": "파일 읽는 중 {{current}}/{{total}}…",
+    "dropMore": "파일을 여기에 더 끌어다 놓으세요",
+    "dropOther": "다른 파일을 여기에 끌어다 놓으세요"
+  },
+  "flow": {
+    "finishing": "마무리하는 중…",
+    "processing": "처리 중",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "처리 진행률",
+    "cancel": "취소",
+    "rejected": "파일 {{count}}개 건너뜀",
+    "rejectedMore": "… 외 파일 {{count}}개",
+    "dismiss": "알림 숨기기",
+    "side": "옵션 및 실행",
+    "options": "옵션",
+    "error": "처리하지 못했어요: {{message}}",
+    "errorCode": "오류 코드: {{code}}",
+    "runFailed": "파일을 처리하지 못했어요. 다시 시도해 주세요."
+  },
+  "result": {
+    "textLabel": "텍스트 내용",
+    "tooLarge": "파일이 {{limit}}보다 커요. 여기 있는 도구로 다시 불러올 수 없고, 이 크기의 파일을 받지 않는 메일함도 많아요.",
+    "shareFailed": "파일을 공유하지 못했어요. 다운로드한 뒤 직접 보내 주세요.",
+    "download": "다운로드",
+    "preview": "미리 보기",
+    "share": "공유",
+    "edit": "계속 편집",
+    "restart": "다시 하기"
+  },
+  "leave": {
+    "title": "이 페이지를 떠날까요?",
+    "body": "작업 중인 파일은 이 탭에만 있고 다른 곳에 저장되지 않았어요. 떠나면 사라지고 복구할 수 없어요. 보관하려면 먼저 파일을 다운로드하세요.",
+    "stay": "머무르기",
+    "leave": "떠나기"
+  },
+  "unsupported": {
+    "title": "이 브라우저는 너무 오래돼서 PDF를 처리할 수 없어요",
+    "description": "{{tool}}에는 최신 버전의 Chrome, Edge, Firefox 또는 Safari가 필요해요. 브라우저를 업데이트한 뒤 이 페이지를 다시 열어 주세요. 이미지, QR 코드 및 기타 유틸리티 도구는 이 기기에서도 계속 쓸 수 있어요.",
+    "back": "다른 도구 선택"
+  },
+  "camera": {
+    "insecure": "카메라는 HTTPS(또는 localhost)로 페이지를 열었을 때만 쓸 수 있어요.",
+    "blocked": "브라우저가 이 페이지의 카메라를 차단하고 있어요. 주소창의 자물쇠 아이콘을 눌러 허용한 뒤 다시 시도해 주세요.",
+    "notFound": "이 기기에서 카메라를 찾을 수 없어요.",
+    "busy": "다른 앱이 카메라를 쓰고 있어요. 그 앱을 닫고 다시 시도해 주세요.",
+    "failed": "카메라를 열 수 없어요."
+  },
+  "canvas": {
+    "tooLarge": "이 브라우저에서 처리하기에는 이미지가 너무 커요.",
+    "unsupported": "이 브라우저는 선택한 이미지 형식으로 내보낼 수 없어요."
+  },
+  "hero": {
+    "statTools": "무료 도구",
+    "statFree": "무료 사용",
+    "statInstall": "설치",
+    "trialErpcons": "ERPcons 체험하기",
+    "trialTekshot": "TekShot AI 체험하기"
+  },
+  "stats": {
+    "toolVisits": "도구 사용 횟수",
+    "unlimited": "무제한",
+    "visits": "사용 횟수",
+    "readyTools": "바로 쓸 수 있는 도구",
+    "groups": "도구 그룹",
+    "proOffer": "저장, 공유, 팀 전체 승인"
+  },
+  "aside": {
+    "label": "추가 정보",
+    "recent": "최근 사용",
+    "recentEmpty": "이 기기에서 아직 사용한 도구가 없어요. 연 도구가 여기에 표시돼요.",
+    "proIntro": "작은 일이 프로젝트 문서가 될 때:",
+    "about": "Chuyện Nhỏ 소개",
+    "aboutText": "ERPCons가 제공하는 무료 도구 모음으로, 매일 하는 업무 속 작은 일을 빠르게 처리하도록 도와줘요. 파일은 내 기기에서 바로 처리되고 서버에 업로드되지 않아요.",
+    "tips": "빠른 팁"
+  },
+  "pro": {
+    "signup": "체험 신청",
+    "soon": "{{product}} 체험 신청 양식을 준비하고 있어요. 곧 공개돼요.",
+    "features": {
+      "storage": "장기 보관, 버전 및 리비전 R00, R01…",
+      "sharing": "공유, 권한 설정, 의견 및 승인",
+      "linking": "문서를 프로젝트, 계약, 업무와 연결",
+      "ai": "AI로 문서 읽기, 요약, 추출"
+    }
+  },
+  "nudge": {
+    "text": "다운로드가 끝났어요. 이 파일을 프로젝트 문서에 저장하고 팀과 공유·승인해야 하나요? ERPCons Pro에서 할 수 있어요.",
+    "login": "ERPCons 로그인",
+    "later": "나중에"
+  },
+  "toolCard": {
+    "soon": "출시 예정"
+  },
+  "filters": {
+    "label": "도구 그룹별 필터"
+  },
+  "authBrand": {
+    "home": "{{name}} 홈으로",
+    "headline": "하나의 플랫폼<br/>모든 프로젝트<br/>완벽한 통제",
+    "lead": "{{name}} Construction OS – AI, IoT, 실시간 데이터를 통합해 성과를 최적화하고 리스크를 관리하며 스마트한 의사결정을 돕는 건설 기업 통합 관리 플랫폼이에요.",
+    "status": "모든 시스템이 정상 작동 중이에요",
+    "statusLink": "시스템 상태 보기",
+    "features": {
+      "security": {
+        "title": "최고 수준의 보안",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "폭넓은 연결",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "단일 데이터",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "뛰어난 성능",
+        "line1": "속도 최적화",
+        "line2": "및 확장성"
+      },
+      "analytics": {
+        "title": "스마트 분석",
+        "line1": "직관적인 대시보드",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "어디서나 작업",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

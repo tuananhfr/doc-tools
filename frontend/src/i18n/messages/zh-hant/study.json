@@ -1,0 +1,47 @@
+{
+  "flashcard": {
+    "reviewDue": "複習 · {{count}} 張卡片到期",
+    "noneDue": "目前沒有到期的卡片",
+    "flip": "翻面",
+    "forgot": "還沒記住",
+    "remembered": "記住了",
+    "schedule": "已記住的卡片會在 1、3、7、14 或 30 天後再出現。",
+    "stored": "此裝置上儲存了 {{count}} 張卡片。清除瀏覽器資料會刪除這些卡片。",
+    "title": "製作記憶卡",
+    "front": "正面",
+    "back": "背面",
+    "add": "新增卡片",
+    "remove": "刪除"
+  },
+  "pomodoro": {
+    "focus": "專注",
+    "break": "休息",
+    "start": "開始",
+    "pause": "暫停",
+    "reset": "重設",
+    "switch": "切換階段",
+    "note": "計時器只在頁面開啟時運作。倒數到 00:00 時，選擇切換階段即可開始下一輪。",
+    "title": "時長",
+    "focusMinutes": "專注（分鐘）",
+    "breakMinutes": "休息（分鐘）",
+    "invalid": "專注 1–180 分鐘；休息 1–60 分鐘。"
+  },
+  "grades": {
+    "gradeResult": "參考換算",
+    "admissionResult": "入學總分",
+    "breakdown": "原始分數 {{raw}} + 調整後加分 {{bonus}}",
+    "note": "換算標準與加分規定可能因學校、招生年度而異。使用前請對照適用單位的規定。",
+    "title": "學業成績",
+    "mode": "模式",
+    "modeGrade": "10 分制轉 4 分制",
+    "modeAdmission": "入學分數",
+    "fields": {
+      "score10": "10 分制成績",
+      "subject1": "科目 1",
+      "subject2": "科目 2",
+      "subject3": "科目 3",
+      "regionBonus": "地區加分",
+      "categoryBonus": "身分類別加分"
+    }
+  }
+}

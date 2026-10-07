@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { FlowChoice, parseDecimal, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
 import { CropStage } from '../components/CropStage'
 import { ImageToolShell } from '../components/ImageToolShell'
@@ -11,14 +12,12 @@ import { idPhotoTask, type PhotoOutput } from '../services/edit-tasks'
 import { initialCrop } from '../utils/crop-state'
 import { layoutSheet, LOW_DPI, printDpi } from '../utils/photo-layout'
 
-const OUTPUTS: FlowChoiceOption<PhotoOutput>[] = [
-  { value: 'pdf', label: 'Tờ in PDF', hint: 'In ở "Kích thước thật / 100%" là ra đúng milimét.' },
-  { value: 'sheet', label: 'Tờ in JPG', hint: '300 DPI — cho máy in ảnh hoặc tiệm in chỉ nhận tệp ảnh.' },
-  { value: 'single', label: 'Một ảnh thẻ', hint: 'Chỉ ảnh đã cắt đúng tỉ lệ — để nộp trực tuyến.' },
-]
+const OUTPUT_IDS: PhotoOutput[] = ['pdf', 'sheet', 'single']
 
 /** ẢNH THẺ & IN ẢNH — cắt một ảnh về đúng cỡ ảnh thẻ rồi xếp nhiều bản lên một tờ giấy in. */
 export default function IdPhotoPage() {
+  const { t } = useTranslation('image')
+  const outputs: FlowChoiceOption<PhotoOutput>[] = OUTPUT_IDS.map((value) => ({ value, label: t(`idPhoto.output.${value}.label`), hint: t(`idPhoto.output.${value}.hint`) }))
   const ids = useId()
   const images = useImageFiles({ multiple: false })
   const run = useFlowRun()
@@ -43,43 +42,47 @@ export default function IdPhotoPage() {
   const layout = layoutSheet(paper, photo, gapOk ? gap : 0, SHEET_MARGIN, fill || !copiesOk ? null : copies)
   const sheet = output !== 'single'
   const dpi = crop.rect ? printDpi(crop.rect.width, photo.width) : null
+  const paperLabel = t(`idPhoto.paperName.${paper.id}`)
+  const overCapacity = !fill && copies !== null && copies > layout.capacity
 
   const blocked = !sheet
     ? null
     : !gapOk
-      ? `Khoảng cách phải từ ${GAP_LIMIT.min} đến ${GAP_LIMIT.max} mm.`
+      ? t('idPhoto.gapRange', { min: GAP_LIMIT.min, max: GAP_LIMIT.max })
       : !copiesOk
-        ? 'Số bản phải là số nguyên từ 1.'
+        ? t('idPhoto.copiesInvalid')
         : layout.capacity === 0
-          ? 'Ảnh thẻ cỡ này không vừa khổ giấy đã chọn.'
-          : !fill && copies !== null && copies > layout.capacity
-            ? `Một tờ ${paper.label.split(' (')[0]} chỉ chứa được ${layout.capacity} ảnh cỡ này.`
+          ? t('idPhoto.tooBig')
+          : overCapacity
+            ? t('idPhoto.overCapacity', { paper: paperLabel, count: layout.capacity })
             : null
+  // Trước đây dò chữ "chỉ chứa" trong thông báo — đổi ngôn ngữ là mất viền đỏ, nên tính thẳng điều kiện.
+  const capacityBlocked = sheet && gapOk && copiesOk && layout.capacity > 0 && overCapacity
 
   return (
     <ImageToolShell
       images={images}
       run={run}
       multiple={false}
-      pickerTitle="Chọn ảnh chân dung"
+      pickerTitle={t('idPhoto.pickerTitle')}
       stage={
         ready && crop.rect ? (
           <CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={run.state.phase === 'running'} onRectChange={crop.setRect} />
         ) : undefined
       }
-      runLabel={output === 'single' ? 'Tạo ảnh thẻ' : `Tạo tờ in ${layout.cells.length} ảnh`}
+      runLabel={output === 'single' ? t('idPhoto.runSingle') : t('idPhoto.runSheet', { count: layout.cells.length })}
       runIcon="person-badge"
       blocked={blocked}
       task={() => {
-        if (!ready || !crop.rect) throw new Error('chưa chọn ảnh.')
-        return idPhotoTask(item, crop.rect, { output, photo, layout, guides, paperLabel: paper.label.split(' (')[0] })
+        if (!ready || !crop.rect) throw new Error(t('shared.noImageSelected'))
+        return idPhotoTask(item, crop.rect, { output, photo, layout, guides, paperLabel })
       }}
       options={
         ready ? (
           <>
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-photo`}>
-                Cỡ ảnh thẻ
+                {t('idPhoto.photoSize')}
               </label>
               <Form.Select id={`${ids}-photo`} value={photo.id} onChange={(event) => setPhotoId(event.target.value)}>
                 {PHOTO_SIZES.map((size) => (
@@ -88,45 +91,45 @@ export default function IdPhotoPage() {
                   </option>
                 ))}
               </Form.Select>
-              <p className="erp-flow-field__hint">Chọn theo yêu cầu của nơi nhận hồ sơ — công cụ không biết quy định ảnh của từng loại giấy tờ, và không kiểm nền hay vị trí khuôn mặt.</p>
+              <p className="erp-flow-field__hint">{t('idPhoto.photoHint')}</p>
               {dpi !== null && dpi < LOW_DPI ? (
                 <p className="erp-tool-form__error" role="alert">
-                  Vùng đã chọn chỉ đạt {dpi} DPI ở cỡ này (nên từ {LOW_DPI}) — in ra sẽ nhoè. Kéo khung rộng hơn hoặc dùng ảnh nét hơn.
+                  {t('idPhoto.lowDpi', { dpi, min: LOW_DPI })}
                 </p>
               ) : null}
             </div>
 
-            <FlowChoice legend="Tệp ra" value={output} options={OUTPUTS} onChange={setOutput} />
+            <FlowChoice legend={t('idPhoto.outputLegend')} value={output} options={outputs} onChange={setOutput} />
 
             {sheet ? (
               <>
                 <div className="erp-flow-field">
                   <label className="erp-flow-field__label" htmlFor={`${ids}-paper`}>
-                    Khổ giấy
+                    {t('idPhoto.paperLabel')}
                   </label>
                   <Form.Select id={`${ids}-paper`} value={paper.id} onChange={(event) => setPaperId(event.target.value)}>
                     {PAPER_SIZES.map((size) => (
                       <option key={size.id} value={size.id}>
-                        {size.label}
+                        {t(`idPhoto.paper.${size.id}`)}
                       </option>
                     ))}
                   </Form.Select>
                 </div>
 
-                <Form.Check id={`${ids}-fill`} type="checkbox" label={`Xếp kín tờ (${layout.capacity} ảnh)`} checked={fill} onChange={(event) => setFill(event.target.checked)} />
+                <Form.Check id={`${ids}-fill`} type="checkbox" label={t('idPhoto.fill', { count: layout.capacity })} checked={fill} onChange={(event) => setFill(event.target.checked)} />
 
                 <div className="erp-flow-pair">
                   {fill ? null : (
                     <div className="erp-flow-field">
                       <label className="erp-flow-field__label" htmlFor={`${ids}-copies`}>
-                        Số bản
+                        {t('idPhoto.copies')}
                       </label>
-                      <Form.Control id={`${ids}-copies`} type="text" inputMode="numeric" autoComplete="off" value={copiesText} isInvalid={!copiesOk || blocked?.includes('chỉ chứa') === true} onChange={(event) => setCopiesText(event.target.value)} />
+                      <Form.Control id={`${ids}-copies`} type="text" inputMode="numeric" autoComplete="off" value={copiesText} isInvalid={!copiesOk || capacityBlocked} onChange={(event) => setCopiesText(event.target.value)} />
                     </div>
                   )}
                   <div className="erp-flow-field">
                     <label className="erp-flow-field__label" htmlFor={`${ids}-gap`}>
-                      Khoảng cách
+                      {t('idPhoto.gap')}
                     </label>
                     <InputGroup hasValidation={false}>
                       <Form.Control id={`${ids}-gap`} type="text" inputMode="decimal" autoComplete="off" value={gapText} isInvalid={!gapOk} onChange={(event) => setGapText(event.target.value)} />
@@ -135,11 +138,11 @@ export default function IdPhotoPage() {
                   </div>
                 </div>
 
-                <Form.Check id={`${ids}-guides`} type="checkbox" label="Vẽ viền cắt quanh từng ảnh" checked={guides} onChange={(event) => setGuides(event.target.checked)} />
+                <Form.Check id={`${ids}-guides`} type="checkbox" label={t('idPhoto.guides')} checked={guides} onChange={(event) => setGuides(event.target.checked)} />
 
                 {layout.capacity > 0 ? <PhotoSheetPreview layout={layout} /> : null}
                 <p className="erp-flow-field__hint">
-                  {layout.columns} cột × {layout.rows} hàng, lề giấy {SHEET_MARGIN} mm. Khi in chọn "Kích thước thật" (Actual size / 100%), không chọn "Vừa trang giấy" — không thì ảnh ra sai cỡ.
+                  {t('idPhoto.layoutHint', { columns: layout.columns, rows: layout.rows, margin: SHEET_MARGIN })}
                 </p>
               </>
             ) : null}

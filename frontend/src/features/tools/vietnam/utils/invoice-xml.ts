@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 export interface InvoiceItem {
   ordinal: string
   name: string
@@ -40,12 +42,12 @@ function number(element: Element | null, name: string): number {
 }
 
 export function parseInvoiceXml(xml: string): InvoiceSummary {
-  if (/<!DOCTYPE|<!ENTITY/i.test(xml)) throw new Error('XML có khai báo thực thể hoặc DOCTYPE không được hỗ trợ.')
+  if (/<!DOCTYPE|<!ENTITY/i.test(xml)) throw new Error(translate('vietnam:invoice.errors.doctype'))
   const document = new DOMParser().parseFromString(xml, 'text/xml')
   const root = document.documentElement
-  if (!root || root.localName === 'parsererror' || descendants(root, 'parsererror').length) throw new Error('Tệp XML không hợp lệ.')
+  if (!root || root.localName === 'parsererror' || descendants(root, 'parsererror').length) throw new Error(translate('vietnam:invoice.errors.invalid'))
   const common = first(root, 'TTChung')
-  if (!common) throw new Error('Không thấy khối thông tin chung của hóa đơn.')
+  if (!common) throw new Error(translate('vietnam:invoice.errors.noCommon'))
   const seller = first(root, 'NBan')
   const buyer = first(root, 'NMua')
   const payment = first(root, 'TToan')

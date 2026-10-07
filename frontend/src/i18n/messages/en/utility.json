@@ -1,0 +1,447 @@
+{
+  "shared": {
+    "copyResult": "Copy result",
+    "days": "days",
+    "daysValue_one": "{{count}} <unit>day</unit>",
+    "daysValue_other": "{{count}} <unit>days</unit>"
+  },
+  "weekdays": {
+    "sun": "Sunday",
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday"
+  },
+  "duration": {
+    "weeks_one": "{{count}} week",
+    "weeks_other": "{{count}} weeks",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "Area",
+      "volume": "Volume",
+      "mass": "Weight"
+    },
+    "formulas": {
+      "rectangle": "Rectangle",
+      "triangle": "Triangle",
+      "trapezoid": "Trapezoid",
+      "circle": "Circle",
+      "box": "Box (footing, beam, slab)",
+      "cylinder": "Cylinder (round column, pile)",
+      "rebar": "Round bar (rebar)",
+      "plate": "Steel plate",
+      "density": "Volume × density"
+    },
+    "inputs": {
+      "length": "Length",
+      "width": "Width",
+      "base": "Base",
+      "height": "Height",
+      "bigBase": "Long base",
+      "smallBase": "Short base",
+      "diameter": "Diameter",
+      "heightThickness": "Height / thickness",
+      "heightLength": "Height / length",
+      "thickness": "Thickness",
+      "volume": "Volume",
+      "density": "Density"
+    },
+    "presets": {
+      "steel": "Steel",
+      "reinforcedConcrete": "Reinforced concrete",
+      "water": "Water"
+    },
+    "tonnes": "= {{value}} tonnes",
+    "perPiece": "Per piece: {{value}} {{unit}}",
+    "invalid": "Dimensions and quantity must be numbers greater than 0.",
+    "missing": "Enter all dimensions to calculate.",
+    "groupLabel": "Quantity to calculate",
+    "panelTitle": "Dimensions",
+    "material": "Material / method",
+    "shape": "Shape",
+    "quantity": "Quantity",
+    "pieces": "pcs",
+    "densityPresets": "Preset densities",
+    "decimalHint": "You can type the decimal point as a comma or a dot: 2,5 and 2.5 are the same. The numbers you type are repeated in the calculation alongside."
+  },
+  "money": {
+    "groups": {
+      "percent": "Percent",
+      "tax": "Tax & discounts",
+      "profit": "Gross margin",
+      "split": "Split a bill"
+    },
+    "presets": {
+      "percentOf": "X% of a number",
+      "percentRatio": "A is what % of B",
+      "percentChange": "Percent increase / decrease",
+      "vatAdd": "Add tax to a pre-tax price",
+      "vatExtract": "Extract tax from a tax-inclusive price",
+      "discount": "Discount / price reduction",
+      "margin": "Gross margin from cost and selling price",
+      "priceFromMargin": "Selling price from cost and margin",
+      "priceFromMarkup": "Selling price from cost and markup",
+      "split": "Split an amount evenly"
+    },
+    "inputs": {
+      "rate": "Rate",
+      "ofNumber": "Of",
+      "numberA": "Number A",
+      "numberB": "Number B",
+      "oldValue": "Old value",
+      "newValue": "New value",
+      "netPrice": "Pre-tax price",
+      "taxRate": "Tax rate",
+      "grossPrice": "Tax-inclusive price",
+      "originalPrice": "Original price",
+      "discount": "Discount",
+      "cost": "Cost",
+      "price": "Selling price",
+      "targetMargin": "Target margin",
+      "targetMarkup": "Target markup",
+      "total": "Total amount",
+      "people": "People",
+      "extra": "Extra fee / tip"
+    },
+    "placeholders": {
+      "manual": "Enter manually",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "Result",
+      "aVsB": "A compared with B",
+      "increase": "Increase",
+      "decrease": "Decrease",
+      "difference": "Difference",
+      "grossPrice": "Tax-inclusive price",
+      "tax": "Tax amount",
+      "netPrice": "Pre-tax price",
+      "discounted": "Price after discount",
+      "discountAmount": "Amount saved",
+      "margin": "Profit margin (on selling price)",
+      "markup": "Markup (on cost)",
+      "grossProfit": "Gross profit",
+      "price": "Selling price",
+      "impliedMarkup": "Equivalent markup",
+      "impliedMargin": "Equivalent margin",
+      "each": "Per person",
+      "totalDue": "Total due",
+      "eachRounded": "Per person, rounded up to the thousand",
+      "surplus": "Surplus from rounding up"
+    },
+    "errors": {
+      "bNonZero": "Number B can't be 0.",
+      "oldNonZero": "The old value can't be 0.",
+      "discountMax": "The discount can't exceed 100%.",
+      "pricePositive": "The selling price must be greater than 0.",
+      "costPositive": "The cost must be greater than 0.",
+      "marginMax": "The margin must be less than 100%.",
+      "tooLarge": "The number is too large to calculate."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "people"
+    },
+    "copyRow": "Copy {{label}}",
+    "invalid": "The highlighted box isn't a valid number yet (non-negative; the number of people must be a whole number from 1).",
+    "missing": "Fill in all the boxes to calculate.",
+    "formulaCode": "Formula code: {{code}}",
+    "groupLabel": "Calculation type",
+    "panelTitle": "Figures",
+    "operation": "Calculation",
+    "taxHint": "You enter the tax rate yourself: rates differ by product and over time, so the tool doesn't build in any number.",
+    "profitHint": "Margin is based on the selling price, markup on the cost — the same profit gives two different numbers.",
+    "inputHint": "Amounts: 150.000 and 150,000 both mean one hundred fifty thousand; for decimals, type 1500.5. The number as understood is repeated in the calculation alongside. Results show up to two decimal places and aren't rounded according to any accounting rule."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "Length",
+      "area": "Area",
+      "mass": "Weight"
+    },
+    "units": {
+      "mm": {
+        "name": "Millimeter",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "Centimeter",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "Meter",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "Kilometer",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "Inch",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "Foot (feet)",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "Yard",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "Mile",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "Square millimeter",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "Square centimeter",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "Square meter",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "Hectare",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "Square kilometer",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "Square foot",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "Acre",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "Gram",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "Kilogram",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến (10 kg, Vietnamese unit)",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ (100 kg, Vietnamese unit)",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "Tonne",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "Ounce",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "Pound",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "In every unit",
+    "equalsHeading": "{{value}} {{unit}} equals",
+    "notNumber": "The value isn't a number yet.",
+    "notNumberExample": "The value isn't a number yet. Example: 2.5 or 1200.",
+    "enterValue": "Enter a value to convert.",
+    "copyIn": "Copy the value in {{unit}}",
+    "groupLabel": "Unit type",
+    "panelTitle": "Convert units",
+    "value": "Value",
+    "from": "From",
+    "to": "To",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "Swap units",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "Characters",
+      "charactersNoSpaces": "Characters excluding spaces",
+      "words": "Words",
+      "lines": "Lines",
+      "paragraphs": "Paragraphs"
+    },
+    "hints": {
+      "characters": "including spaces and line breaks",
+      "words": "groups of letters separated by spaces",
+      "paragraphs": "separated by blank lines"
+    },
+    "counts": "Counts",
+    "panelTitle": "Text",
+    "clear": "Clear all",
+    "textLabel": "Text to count",
+    "placeholder": "Type or paste text here…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "Very clear (AAA)",
+      "aa": "Readable (AA)",
+      "large": "Large text only",
+      "fail": "Hard to read"
+    },
+    "pickFailed": "Couldn't pick a color from the screen.",
+    "preview": "Preview",
+    "swatch": "Color {{hex}}",
+    "textOnColor": "Text on this color",
+    "whiteText": "White text",
+    "blackText": "Black text",
+    "contrastHint": "WCAG contrast ratio: 4.5 : 1 or more is readable for normal text; 3 : 1 or more is only enough for large text and icons.",
+    "panelTitle": "Pick a color",
+    "picker": "Color picker",
+    "pickerHint": "Click the color swatch to open the picker, or type a code below.",
+    "eyedropper": "Pick a color from the screen",
+    "copyCode": "Copy {{label}} code"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "Between two dates",
+      "add": "Add / subtract days"
+    },
+    "weekendOnly": "Working days here only exclude Saturdays and Sundays. Public holidays are listed in the results but NOT subtracted automatically; compensatory days off and local Saturday work schedules aren't counted either — if a holiday falls within the deadline, add it yourself.",
+    "distance": "Time between",
+    "countingBack": "The end date is before the start date — counting backwards.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "Copy number of days",
+    "workdays": "Working days (Monday – Friday)",
+    "weekendDays": "Saturdays, Sundays",
+    "startIncluded": "Start date (included)",
+    "startExcluded": "Start date (not included)",
+    "endIncluded": "End date (included)",
+    "pickBoth": "Choose both dates to calculate.",
+    "landsOn": "Falls on",
+    "addedCalendar_one": "= {{start}} {{sign}} {{count}} day",
+    "addedCalendar_other": "= {{start}} {{sign}} {{count}} days",
+    "addedWorkdays_one": "= {{start}} {{sign}} {{count}} working day",
+    "addedWorkdays_other": "= {{start}} {{sign}} {{count}} working days",
+    "calendarEquivalent_one": "That's {{count}} calendar day.",
+    "calendarEquivalent_other": "That's {{count}} calendar days.",
+    "copyDate": "Copy date",
+    "countInvalid": "The number of days must be a whole number from 0 to {{max}}.",
+    "pickStart": "Choose a start date and enter the number of days.",
+    "modeLabel": "Calculation",
+    "betweenTitle": "Two dates",
+    "fromDate": "From",
+    "toDate": "To",
+    "includeStart": "Include the start date",
+    "includeStartHint": "Excluding the start date: Monday to Friday is 4 days (how deadlines are counted). Including it: 5 days (how days worked are counted).",
+    "addTitle": "Start date and number of days",
+    "startDate": "Start date",
+    "dayCount": "Number of days",
+    "direction": "Direction",
+    "forward": "Add (later)",
+    "back": "Subtract (earlier)",
+    "dayKind": "Day type",
+    "calendar": "Calendar days",
+    "addHint": "The start date isn't counted: adding 1 day to a Friday gives Saturday (calendar days) or Monday (working days)."
+  },
+  "holidays": {
+    "tooLong_one": "The range is longer than {{count}} day, so holidays aren't listed.",
+    "tooLong_other": "The range is longer than {{count}} days, so holidays aren't listed.",
+    "none": "No public holidays in this range.",
+    "count_one": "{{count}} holiday in this range",
+    "count_other": "{{count}} holidays in this range",
+    "more_one": "and {{count}} more day",
+    "more_other": "and {{count}} more days",
+    "hint": "The tool doesn't subtract days off automatically. If the office is closed on these days, add them to the deadline yourself."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "Password",
+      "code": "Order / voucher codes"
+    },
+    "classes": {
+      "upper": "Uppercase (A–Z)",
+      "lower": "Lowercase (a–z)",
+      "digits": "Digits (0–9)",
+      "symbols": "Symbols (!@#$…)"
+    },
+    "strengths": {
+      "weak": "Weak",
+      "fair": "Fair",
+      "strong": "Strong",
+      "excellent": "Very strong"
+    },
+    "results": "Results",
+    "resultsCount_one": "Results ({{count}})",
+    "resultsCount_other": "Results ({{count}})",
+    "copyAll": "Copy all",
+    "noClass": "Turn on at least one character group to generate a password.",
+    "copyValue": "Copy {{value}}",
+    "regenerate": "Regenerate",
+    "modeLabel": "Code type",
+    "panelTitle": "Options",
+    "length": "Length",
+    "chars_one": "{{count}} character",
+    "chars_other": "{{count}} characters",
+    "classGroups": "Character groups",
+    "plain": "Avoid look-alike characters (0 O o 1 l I)",
+    "strength": "Strength: <strong>{{label}}</strong> · about {{bits}} bits",
+    "prefix": "Prefix (optional)",
+    "prefixPlaceholder": "Example: PX-",
+    "charset": "Random part uses",
+    "alnum": "Uppercase letters and digits",
+    "digitsOnly": "Digits only",
+    "codeLength": "Random characters",
+    "alnumHint": "Skips I, O, 0, 1 — so codes read over the phone or copied by hand aren't mixed up.",
+    "count": "How many per run (up to {{max}})"
+  },
+  "notes": {
+    "untitled": "Empty note",
+    "limitReached_one": "You've reached {{count}} note. Delete old notes to add new ones.",
+    "limitReached_other": "You've reached {{count}} notes. Delete old notes to add new ones.",
+    "listLabel": "Note list",
+    "title": "Notes",
+    "titleCount_one": "Notes ({{count}})",
+    "titleCount_other": "Notes ({{count}})",
+    "newNote": "New note",
+    "empty": "No notes on this device yet.",
+    "notice": "Notes live in this browser, not in an account: anyone sharing this device can read them, and clearing browsing data deletes them.",
+    "clearAllTitle_one": "Delete {{count}} note?",
+    "clearAllTitle_other": "Delete all {{count}} notes?",
+    "localOnly": "Notes exist only on this device; once deleted, they can't be recovered.",
+    "clearAllConfirm": "Delete all",
+    "clearAll": "Delete all notes",
+    "editorLabel": "Edit note",
+    "emptyStart": "Write down things to remember and make to-do lists.",
+    "emptyPick": "Choose a note from the list to view and edit it.",
+    "backToList": "Note list",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Example: Monday site to-dos",
+    "body": "Content",
+    "bodyPlaceholder": "Jot down something to remember…",
+    "saveFailed": "Couldn't save to this device. Copy the content somewhere else before closing the page.",
+    "savedAt": "Saved on this device · {{time}}",
+    "deleteTitle": "Delete this note?",
+    "deleteConfirm": "Delete",
+    "delete": "Delete note",
+    "tasks": "To-do list",
+    "taskDone": "Done: {{task}}",
+    "taskFallback": "task {{number}}",
+    "task": "Task {{number}}",
+    "removeTask": "Remove task {{number}}",
+    "removeTaskTitle": "Remove this task",
+    "newTask": "New task",
+    "tasksFull_one": "Reached {{count}} task",
+    "tasksFull_other": "Reached {{count}} tasks",
+    "addTaskPlaceholder": "Add a task, press Enter",
+    "addTask": "Add"
+  }
+}

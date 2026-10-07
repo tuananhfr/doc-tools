@@ -1,0 +1,290 @@
+{
+  "modes": {
+    "label": "QR code tools",
+    "qrCreate": "Create QR code",
+    "barcodeCreate": "Create barcode",
+    "qrRead": "Scan code"
+  },
+  "shared": {
+    "codeContent": "Code content",
+    "enterToCreate": "Enter content to create a code",
+    "contentPanel": "Code content",
+    "kind": "Code type",
+    "phone": "Phone number",
+    "security": "Security",
+    "password": "Password",
+    "noPassword": "No password",
+    "retry": "Try again",
+    "downloadPng": "Download PNG",
+    "value": "Value",
+    "emailPlaceholder": "name@company.com"
+  },
+  "qrCreate": {
+    "side": "QR code",
+    "tooLong": "The content is too long to fit in one QR code. Shorten it, or use a link to where the content lives.",
+    "renderFailed": "Couldn't draw the QR code image. Try again.",
+    "notCreated": "No code created yet",
+    "downloadPng": "Download QR code",
+    "downloadSvg": "Download SVG for printing",
+    "downloadPdf": "Download PDF",
+    "transparentHint": "When placing it on a photo, pick a bright, even-colored area so the code scans easily.",
+    "lowContrast": "The code color and background are too similar; increase the contrast so it scans easily.",
+    "previewLabel": "QR code for the content you entered"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (link)",
+      "text": "Text",
+      "wifi": "Wi-Fi",
+      "phone": "Phone number",
+      "email": "Email",
+      "vcard": "Business card (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "No password"
+    },
+    "enterContent": "Enter content",
+    "textPlaceholder": "Example: Warehouse B — shelf 12, level 3",
+    "ssid": "Wi-Fi network name",
+    "ssidPlaceholder": "Example: Office-WiFi",
+    "hidden": "Hidden network (name not broadcast)",
+    "emailAddress": "Email address",
+    "subject": "Subject (optional)",
+    "contactName": "Full name",
+    "contactNamePlaceholder": "Jane Doe",
+    "contactEmail": "Contact email",
+    "contactOrg": "Company (optional)",
+    "contactTitle": "Job title (optional)",
+    "vcardHint": "Needs a full name and at least a phone number or an email. Scanning with a phone camera will offer to add it to contacts."
+  },
+  "payload": {
+    "urlSpaces": "Links can't contain spaces.",
+    "wifiPassword": "Enter the Wi-Fi password, or choose \"No password\".",
+    "wpaShort": "WPA/WPA2 passwords have at least 8 characters.",
+    "phoneChars": "Phone numbers can only contain digits and may start with +.",
+    "phoneShort": "The phone number is too short.",
+    "email": "The email address isn't in the form name@company.com.",
+    "contactName": "Enter the contact's full name.",
+    "contactReach": "Enter the contact's phone number or email."
+  },
+  "colors": {
+    "legend": "QR code color",
+    "background": "QR code background",
+    "backgroundModes": {
+      "white": "White background",
+      "transparent": "No background",
+      "custom": "Choose a color"
+    },
+    "presetBackgrounds": "Preset backgrounds",
+    "customColor": "Custom color",
+    "names": {
+      "ink": "Black",
+      "steel": "Steel gray",
+      "blue": "Blue",
+      "crimson": "Red",
+      "teal": "Teal",
+      "green": "Green",
+      "white": "White",
+      "mist": "Light gray",
+      "blue-soft": "Light blue",
+      "teal-soft": "Light teal",
+      "amber-soft": "Cream",
+      "rose-soft": "Light pink"
+    }
+  },
+  "barcode": {
+    "side": "Barcode",
+    "modeLabel": "Mode",
+    "modes": {
+      "single": "Single code",
+      "batch": "Batch"
+    },
+    "files": {
+      "png": "Download PNG",
+      "svg": "SVG for printing",
+      "pdf": "True-size PDF"
+    },
+    "drawFailed": "Couldn't draw this code.",
+    "fileFailed": "Couldn't build the barcode file.",
+    "engineFailed": "Couldn't load the barcode engine. Reload the page.",
+    "engineLoading": "Loading the barcode engine…",
+    "previewLabel": "{{kind}} barcode for {{value}}",
+    "styleTitle": "Code style",
+    "listTitle": "Code list"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Internal codes: supplies, assets, warehouse — letters, digits, symbols",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Internal codes for older scanners — uppercase, digits, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Retail product code, 13 digits issued by GS1",
+      "placeholder": "12 digits, check digit added automatically"
+    },
+    "ean8": {
+      "hint": "Small product code, 8 digits issued by GS1",
+      "placeholder": "7 digits, check digit added automatically"
+    },
+    "itf14": {
+      "hint": "Carton / case code, 14 digits per GS1",
+      "placeholder": "13 digits, check digit added automatically"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Print size",
+    "sizeStandard": "{{percent}}% (standard)",
+    "height": "Bar height",
+    "includeText": "Print the digits / text below the code",
+    "sizeWarning": "Below 80%, many handheld scanners can't read the code; print a test label before printing the whole batch."
+  },
+  "gs1Notice": "EAN / ITF-14 numbers must be issued to your business by GS1 Vietnam — this tool doesn't create numbers, it only draws the ones you already have. For internal codes (supplies, assets, warehouse), choose <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "The file is larger than {{size}}.",
+    "readFailed": "Couldn't read this file.",
+    "buildFailed": "Couldn't build the file.",
+    "pickTitle": "Choose a CSV or Excel (.xlsx) file",
+    "pickHint": "One code per row, taken from the first column · up to {{limit}} rows",
+    "valid_one": "{{count}} valid code",
+    "valid_other": "{{count}} valid codes",
+    "invalid_one": "{{count}} invalid row — skipped",
+    "invalid_other": "{{count}} invalid rows — skipped",
+    "header": "Skipped header row “{{header}}”",
+    "dropped_one": "Dropped {{count}} row over the {{limit}} limit",
+    "dropped_other": "Dropped {{count}} rows over the {{limit}} limit",
+    "line": "Row",
+    "reason": "Reason",
+    "moreErrors_one": "… and {{count}} more invalid row.",
+    "moreErrors_other": "… and {{count}} more invalid rows.",
+    "building": "Building {{done}}/{{total}}…",
+    "pdf_one": "PDF ({{count}} page)",
+    "pdf_other": "PDF ({{count}} pages)",
+    "zip": "{{type}} bundle (.zip)",
+    "unsupported": "Only .csv or .xlsx files can be read."
+  },
+  "check": {
+    "digitsOnly": "Digits only.",
+    "checkDigitAdded": "Check digit {{digit}} added.",
+    "wrongLength_one": "Needs {{short}} digits (check digit added automatically) or all {{full}} digits — you have {{count}}.",
+    "wrongLength_other": "Needs {{short}} digits (check digit added automatically) or all {{full}} digits — you have {{count}}.",
+    "wrongCheckDigit": "Wrong check digit: the last digit should be {{expected}}, not {{actual}}. Double-check the number you copied.",
+    "empty": "No content yet.",
+    "tooLong": "Longer than {{max}} characters — the code would be too wide for scanners.",
+    "code39Chars": "Code 39 only accepts unaccented letters, digits and - . $ / + % space.",
+    "code39Upper": "Code 39 has no lowercase — converted to uppercase.",
+    "code128Chars": "Code 128 can't encode accented letters or special characters. Use unaccented letters.",
+    "prefix893": "Prefix 893: registered with GS1 Vietnam (where the code was issued, not where the product was made).",
+    "prefixIsbn": "Prefix 978/979: book code (ISBN).",
+    "prefixIssn": "Prefix 977: periodical code (ISSN).",
+    "prefixInternal": "Prefix 20–29: for internal store / company use only; not valid outside your own system."
+  },
+  "render": {
+    "barcodeFailed": "couldn't build the code {{value}}.",
+    "imageFailed": "the browser couldn't render the image."
+  },
+  "read": {
+    "results": "Results",
+    "resultsCount_one": "Results ({{count}})",
+    "resultsCount_other": "Results ({{count}})",
+    "clearAll": "Clear all",
+    "empty": "No codes read yet. Choose an image with a code, paste a screenshot, or scan with the camera.",
+    "safety": "Check the link carefully before opening it: anyone can print a QR code and stick it over a real one.",
+    "pickTitle": "Choose an image with a QR code or barcode",
+    "pickHint": "JPG, PNG, WebP · you can also paste an image with Ctrl+V",
+    "camera": "Scan with camera",
+    "missTitle_one": "Couldn't read {{count}} image",
+    "missTitle_other": "Couldn't read {{count}} images",
+    "moreMisses_one": "… and {{count}} more image",
+    "moreMisses_other": "… and {{count}} more images",
+    "hideNotice": "Hide notice",
+    "pastedImage": "Pasted image",
+    "noCode": "no code found. Try a straight-on, well-lit photo where the code fills most of the frame.",
+    "unreadable": "couldn't be opened. Only JPG, PNG and WebP images can be read.",
+    "tooLarge": "is larger than {{size}}.",
+    "tooManyPixels": "is too large ({{pixels}} megapixels, limit {{limit}}). Crop to the area with the code and try again."
+  },
+  "camera": {
+    "scanTitle": "Scan QR / Barcode",
+    "aim": "Place the code in the frame",
+    "searching": "Looking for a code…",
+    "detected": "Code scanned",
+    "scanNext": "Scan next",
+    "openLink": "Open link",
+    "zoom": "Zoom",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "captured": "Captured code",
+    "title": "Camera",
+    "off": "Turn off camera",
+    "viewfinder": "Camera viewfinder",
+    "starting": "Opening the camera… Your browser may ask for camera permission.",
+    "hint": "Center the code in the frame and hold still for a moment. Results appear as soon as a code is read; keep scanning other codes without pressing anything.",
+    "insecure": "{{reason}} Take a photo of the code with your camera app, then choose the image from your device."
+  },
+  "scanResult": {
+    "qrCode": "QR code",
+    "remove": "Remove this result",
+    "removeShort": "Remove",
+    "ssid": "Network name",
+    "unknown": "Unknown",
+    "checkOk": "Check digit is correct.",
+    "checkBad": "Check digit is WRONG — the code is misprinted or has been altered.",
+    "open": "Open {{host}}",
+    "copyPassword": "Copy password",
+    "copyNumber": "Copy number",
+    "copyAddress": "Copy address",
+    "copy": "Copy",
+    "copyRaw": "Copy raw text"
+  },
+  "vietqr": {
+    "side": "Bank transfer code",
+    "placeholder": "Enter the BIN and account number to create a code",
+    "copy": "Copy QR string",
+    "downloadSvg": "Download SVG",
+    "checkNote": "Test-scan it with a banking app and check the recipient name, account number and amount before using it.",
+    "panel": "Transfer details",
+    "bin": "Bank BIN (6 digits)",
+    "account": "Account number",
+    "amount": "Amount (đ), optional",
+    "note": "Transfer message",
+    "privacy": "The code is created on your device; account details are not sent to the Chuyện Nhỏ server.",
+    "fieldTooLong": "QR field is too long"
+  },
+  "trace": {
+    "title": "ERPCons traceability",
+    "label": "Look up in ERPCons",
+    "object": "Item",
+    "code": "Internal code",
+    "serial": "Serial number",
+    "noEvents": "No trace events yet.",
+    "recentEvents": "Recent events",
+    "loading": "Looking up in ERPCons…",
+    "accountForbidden": "Your account isn't allowed to look up traceability yet.",
+    "failed": "Couldn't look up: {{message}}",
+    "legacy": "The item's old code — no trace code attached yet.",
+    "forbidden": "The code is in the registry, but you're not allowed to view its item.",
+    "broken": "The code points to an item that no longer exists.",
+    "unknown": "The code was read, but there's no trace data in ERPCons yet.",
+    "status": {
+      "DRAFT": "Not issued",
+      "ACTIVE": "Active",
+      "EXPIRED": "Expired",
+      "SUSPENDED": "Suspended",
+      "REVOKED": "Revoked",
+      "REPLACED": "Replaced",
+      "ARCHIVED": "Archived"
+    },
+    "notes": {
+      "EXPIRED": "The code has expired — history only, no actions.",
+      "SUSPENDED": "The code is suspended — don't use it for operations.",
+      "REVOKED": "The code has been revoked — this label is no longer valid.",
+      "REPLACED": "This label has been replaced — use the new label.",
+      "ARCHIVED": "The item is no longer managed."
+    }
+  }
+}

@@ -1,4 +1,8 @@
+import { numberFormat } from '@/i18n/intl'
 import type { Anchor, Axis, Divisions, OrientationTarget } from '../types/orientation.types'
+import { directionLabel } from './terms'
+
+const DEGREE_FORMAT: Intl.NumberFormatOptions = { maximumFractionDigits: 1, useGrouping: false }
 
 /** Đưa mọi góc về [0, 360) — kể cả số âm và số lớn hơn một vòng (spec v1.1 §7). */
 export function normalizeDeg(deg: number): number {
@@ -25,38 +29,9 @@ export interface Direction {
   short: string
 }
 
-const NAMES_8: [string, string][] = [
-  ['Bắc', 'B'],
-  ['Đông Bắc', 'ĐB'],
-  ['Đông', 'Đ'],
-  ['Đông Nam', 'ĐN'],
-  ['Nam', 'N'],
-  ['Tây Nam', 'TN'],
-  ['Tây', 'T'],
-  ['Tây Bắc', 'TB'],
-]
-
-const NAMES_16: [string, string][] = [
-  ['Bắc', 'B'],
-  ['Bắc Đông Bắc', 'BĐB'],
-  ['Đông Bắc', 'ĐB'],
-  ['Đông Đông Bắc', 'ĐĐB'],
-  ['Đông', 'Đ'],
-  ['Đông Đông Nam', 'ĐĐN'],
-  ['Đông Nam', 'ĐN'],
-  ['Nam Đông Nam', 'NĐN'],
-  ['Nam', 'N'],
-  ['Nam Tây Nam', 'NTN'],
-  ['Tây Nam', 'TN'],
-  ['Tây Tây Nam', 'TTN'],
-  ['Tây', 'T'],
-  ['Tây Tây Bắc', 'TTB'],
-  ['Tây Bắc', 'TB'],
-  ['Bắc Tây Bắc', 'BTB'],
-]
-
-export function directionNames(divisions: Divisions): [string, string][] {
-  return divisions === 16 ? NAMES_16 : NAMES_8
+/** Tên hướng theo ngôn ngữ trang, thứ tự chỉ số (0 = Bắc). */
+export function directionNames(divisions: Divisions): Direction[] {
+  return Array.from({ length: divisions }, (_, index) => ({ index, ...directionLabel(divisions, index) }))
 }
 
 /**
@@ -66,15 +41,14 @@ export function directionNames(divisions: Divisions): [string, string][] {
 export function directionOf(azimuth: number, divisions: Divisions = 8): Direction {
   const width = 360 / divisions
   const index = Math.floor((normalizeDeg(azimuth) + width / 2) / width) % divisions
-  const [name, short] = directionNames(divisions)[index]
-  return { index, name, short }
+  return { index, ...directionLabel(divisions, index) }
 }
 
-/** "132°" / "132,5°" — một chữ số thập phân khi có, dấu phẩy kiểu Việt. */
+/** "132°" / "132,5°" — một chữ số thập phân khi có, dấu thập phân theo ngôn ngữ trang. */
 export function formatDeg(deg: number): string {
   // 359,96° làm tròn ra 360 → phải hiện 0°.
   const rounded = (Math.round(normalizeDeg(deg) * 10) / 10) % 360
-  return `${Number.isInteger(rounded) ? rounded : rounded.toFixed(1).replace('.', ',')}°`
+  return `${numberFormat(DEGREE_FORMAT).format(rounded)}°`
 }
 
 /**

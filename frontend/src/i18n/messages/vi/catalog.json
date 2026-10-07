@@ -1,0 +1,448 @@
+{
+  "pageTitle": "{{name}} miễn phí",
+  "groups": {
+    "all": "Tất cả",
+    "document": "Tài liệu",
+    "image": "Hình ảnh",
+    "calc": "Tính toán",
+    "money": "Tiền",
+    "date": "Ngày & thời hạn",
+    "data": "Dữ liệu",
+    "construction": "Xây dựng",
+    "home": "Nhà & đời sống",
+    "tech": "Kỹ thuật",
+    "other": "Tiện ích khác"
+  },
+  "tips": {
+    "insertPages": "Thả thêm tệp vào giữa lưới trang để chèn đúng chỗ, không cần ghép lại từ đầu.",
+    "findInScan": "Ctrl+F tìm được cả chữ trong bản scan, sau khi chạy OCR.",
+    "undo": "Ctrl+Z hoàn tác mọi thao tác trên trang: xoá, xoay, cắt, sửa chữ.",
+    "rangeSelect": "Giữ Shift rồi bấm trang thứ hai để chọn cả dải trang ở giữa."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "Nén video",
+      "description": "Giảm dung lượng, xuất MP4 ngay trong trình duyệt",
+      "synonyms": "giảm dung lượng video, compress video, mp4"
+    },
+    "trim-video": {
+      "name": "Cắt video",
+      "description": "Chọn đoạn theo giây, xuất video MP4 mới",
+      "synonyms": "trim video, cắt clip, mp4"
+    },
+    "video-gif": {
+      "name": "Tạo GIF từ video",
+      "description": "Biến một đoạn video ngắn thành ảnh động lặp lại",
+      "synonyms": "gif, ảnh động, video sang gif"
+    },
+    "extract-audio": {
+      "name": "Tách âm thanh từ video",
+      "description": "Lấy âm thanh, xuất MP3, M4A hoặc WAV trên máy",
+      "synonyms": "video sang mp3, nhạc từ video, extract audio"
+    },
+    "assistant": {
+      "name": "Trợ lý chọn công cụ",
+      "description": "Tìm tiện ích phù hợp và tự dùng AI qua câu hỏi đã xem trước",
+      "synonyms": "trợ lý ai, hỏi cách làm, tư vấn công cụ"
+    },
+    "idea-suggestion": {
+      "name": "Đề xuất tiện ích",
+      "description": "Gửi ý tưởng và theo dõi duyệt bằng mã biên nhận",
+      "privacyNote": "Nội dung chỉ gửi khi bạn bấm Gửi đề xuất",
+      "synonyms": "góp ý công cụ, ý tưởng mới, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "Góp ý quy định",
+      "description": "Gửi nội dung và URL nguồn để người vận hành kiểm tra",
+      "privacyNote": "Nội dung chỉ gửi khi bạn bấm Gửi đề xuất",
+      "synonyms": "cập nhật pháp luật, văn bản mới, góp ý dữ liệu"
+    },
+    "remove-background": {
+      "name": "Xóa phông nền ảnh",
+      "description": "Xóa nền màu trơn tự động và chỉnh tay bằng cọ",
+      "synonyms": "tách nền, nền trong suốt, ảnh sản phẩm"
+    },
+    "cv": {
+      "name": "Tạo CV xin việc",
+      "description": "Soạn CV, chọn mẫu và in hoặc lưu PDF trên thiết bị",
+      "synonyms": "hồ sơ ứng tuyển, sơ yếu lý lịch, resume"
+    },
+    "pdf-password": {
+      "name": "Đặt, gỡ mật khẩu PDF",
+      "description": "Mã hóa AES-256 hoặc gỡ khóa bằng mật khẩu hợp lệ",
+      "synonyms": "khóa pdf, bảo vệ pdf, mở pdf"
+    },
+    "family-calendar": {
+      "name": "Lịch Gia Đình",
+      "description": "Lưu lịch, việc và liên hệ khẩn cấp trên thiết bị; sao lưu và xuất ICS",
+      "synonyms": "lịch gia đình, nhắc việc, sos, lịch học"
+    },
+    "address-conversion": {
+      "name": "Đổi địa chỉ sau sáp nhập",
+      "description": "Đối chiếu địa chỉ cũ theo bảng xã/phường đủ cấp",
+      "privacyNote": "Đối chiếu trên máy; góp ý chỉ gửi khi bạn đồng ý",
+      "synonyms": "địa chỉ mới, sáp nhập tỉnh, đổi tên xã"
+    },
+    "payroll": {
+      "name": "Lương Gross – Net",
+      "description": "Ước tính thực nhận theo tham số bạn nhập hoặc gói đã ký",
+      "privacyNote": "Tính trên máy; góp ý chỉ gửi khi bạn đồng ý",
+      "synonyms": "lương net, thuế thu nhập cá nhân, bảo hiểm"
+    },
+    "lunar-calendar": {
+      "name": "Lịch âm – dương",
+      "description": "Lịch tháng âm – dương có ngày lễ, can chi, giờ hoàng đạo; đổi ngày hai chiều và tra ngày giỗ",
+      "synonyms": "âm lịch, tết, ngày giỗ"
+    },
+    "electricity": {
+      "name": "Tiền điện, nước",
+      "description": "Ước tính tiền điện theo bậc và tiền nước theo giá bạn nhập",
+      "privacyNote": "Tính trên máy; góp ý chỉ gửi khi bạn đồng ý",
+      "synonyms": "hóa đơn điện, giá điện kwh, tiền nước"
+    },
+    "form-templates": {
+      "name": "Mẫu đơn, biên bản",
+      "description": "Soạn đơn nghỉ phép, giấy ủy quyền và biên bản bàn giao để in",
+      "synonyms": "đơn xin nghỉ, giấy ủy quyền, biên bản bàn giao"
+    },
+    "dictation": {
+      "name": "Ghi âm thành văn bản",
+      "description": "Đọc chính tả tiếng Việt bằng nhận dạng giọng nói của trình duyệt",
+      "privacyNote": "Âm thanh có thể được trình duyệt gửi tới dịch vụ nhận dạng giọng nói của họ",
+      "synonyms": "đọc chính tả, micro, speech to text"
+    },
+    "magnifier": {
+      "name": "Kính lúp",
+      "description": "Phóng to hình camera để đọc chữ nhỏ",
+      "synonyms": "phóng to camera, đọc chữ nhỏ"
+    },
+    "house-estimate": {
+      "name": "Khái toán chi phí xây nhà",
+      "description": "Quy đổi diện tích, nhập đơn giá nhà thầu để ước tính chi phí",
+      "synonyms": "diện tích xây dựng, dự toán nhà, đơn giá xây dựng"
+    },
+    "number-words": {
+      "name": "Đọc số thành chữ",
+      "description": "Viết số tiền bằng chữ cho chứng từ và hợp đồng",
+      "synonyms": "số tiền bằng chữ, viết số thành chữ, đọc tiền"
+    },
+    "loan": {
+      "name": "Vay trả góp & tiết kiệm",
+      "description": "Tính lịch trả nợ hoặc tiền gửi tái tục",
+      "synonyms": "vay ngân hàng, dư nợ giảm dần, lãi vay"
+    },
+    "unit-price": {
+      "name": "So sánh giá theo đơn vị",
+      "description": "Quy hai sản phẩm về cùng lượng để so giá",
+      "synonyms": "giá mỗi kg, giá mỗi lít, mua sắm"
+    },
+    "study": {
+      "name": "Quy đổi điểm & xét tuyển",
+      "description": "Quy đổi điểm và tính ưu tiên xét tuyển để tham khảo",
+      "synonyms": "điểm hệ 4, điểm hệ 10, điểm ưu tiên"
+    },
+    "pomodoro": {
+      "name": "Hẹn giờ tập trung",
+      "description": "Chia thời gian tập trung và nghỉ theo từng phiên",
+      "synonyms": "hẹn giờ, tập trung, pomodoro"
+    },
+    "group-split": {
+      "name": "Chia tiền nhóm",
+      "description": "Tính ai cần chuyển cho ai sau các khoản chi chung",
+      "synonyms": "chia hóa đơn, tiền đi chơi, cân bằng chi phí"
+    },
+    "legacy-font": {
+      "name": "Chuyển font & dấu tiếng Việt",
+      "description": "Đổi TCVN3, VNI và chuẩn hóa dấu sang Unicode",
+      "synonyms": "vni sang unicode, tcvn3 sang unicode, bỏ dấu"
+    },
+    "read-aloud": {
+      "name": "Đọc to văn bản",
+      "description": "Dùng giọng đọc của thiết bị để nghe văn bản",
+      "synonyms": "text to speech, nghe chữ, đọc văn bản"
+    },
+    "vietqr": {
+      "name": "VietQR chuyển khoản",
+      "description": "Tạo mã QR chuyển khoản từ mã BIN và số tài khoản",
+      "synonyms": "qr ngân hàng, napas, mã chuyển khoản"
+    },
+    "invoice-xml": {
+      "name": "Đọc hóa đơn điện tử XML",
+      "description": "Xem các trường và xuất bảng kê hàng hóa từ XML",
+      "synonyms": "hóa đơn xml, bảng kê hóa đơn, tt78"
+    },
+    "remove-metadata": {
+      "name": "Xóa vị trí trong ảnh",
+      "description": "Vẽ lại ảnh để bỏ EXIF, GPS và thông tin máy ảnh gốc",
+      "synonyms": "xóa exif, bỏ gps, ẩn vị trí ảnh"
+    },
+    "collage": {
+      "name": "Ghép ảnh",
+      "description": "Ghép 2–9 ảnh thành lưới PNG",
+      "synonyms": "collage, lưới ảnh, nối ảnh"
+    },
+    "message-risk": {
+      "name": "Kiểm tra tin nhắn, link lạ",
+      "description": "Sàng lọc dấu hiệu lừa đảo mà không mở đường dẫn",
+      "synonyms": "lừa đảo, phishing, sms giả mạo"
+    },
+    "flashcards": {
+      "name": "Thẻ ghi nhớ",
+      "description": "Tạo và ôn tập thẻ theo hộp Leitner trên thiết bị",
+      "synonyms": "flashcard, ôn từ vựng, hộp leitner"
+    },
+    "scan-to-pdf": {
+      "name": "Scan ảnh → PDF",
+      "description": "Gộp ảnh chụp thành một tệp PDF",
+      "pageTitle": "Chuyển ảnh sang PDF miễn phí",
+      "synonyms": "jpg sang pdf, ảnh thành pdf, chụp tài liệu, image to pdf, ghép ảnh"
+    },
+    "merge-pdf": {
+      "name": "Ghép PDF",
+      "description": "Gộp nhiều tệp PDF thành một",
+      "synonyms": "nối pdf, gộp pdf, kết hợp, merge"
+    },
+    "split-pdf": {
+      "name": "Tách PDF",
+      "description": "Tách trang, trích trang ra tệp riêng",
+      "synonyms": "cắt pdf, chia pdf, lấy trang, split"
+    },
+    "compress-pdf": {
+      "name": "Nén PDF",
+      "description": "Giảm dung lượng tệp PDF",
+      "synonyms": "thu nhỏ pdf, pdf nhẹ, compress"
+    },
+    "convert-file": {
+      "name": "Chuyển đổi file",
+      "description": "PDF sang Word, Excel, ảnh",
+      "pageTitle": "Chuyển PDF sang Word miễn phí",
+      "synonyms": "pdf to word, docx, xlsx, pdf sang excel, pdf sang jpg, pdf sang ảnh"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Ảnh",
+      "description": "Mỗi trang PDF thành một ảnh JPG, PNG",
+      "synonyms": "pdf sang jpg, pdf sang png, pdf to jpg, xuất ảnh"
+    },
+    "organize-pdf": {
+      "name": "Sắp xếp PDF",
+      "description": "Đổi thứ tự, xoay, bỏ trang",
+      "synonyms": "đảo trang, xoay trang, xoá trang, sắp lại trang"
+    },
+    "page-numbers": {
+      "name": "Đánh số trang",
+      "description": "Thêm số trang vào tệp PDF",
+      "synonyms": "số trang, page number, chân trang"
+    },
+    "stamp-pdf": {
+      "name": "Đóng dấu PDF",
+      "description": "Dấu chữ hoặc logo lên các trang",
+      "synonyms": "watermark, logo, bản sao, chèn dấu"
+    },
+    "redact-pdf": {
+      "name": "Che thông tin PDF",
+      "description": "Xoá hẳn vùng nhạy cảm khỏi tệp",
+      "synonyms": "bôi đen, redact, ẩn thông tin, xoá chữ"
+    },
+    "view-pdf": {
+      "name": "Xem PDF",
+      "description": "Xem, tìm chữ, ghi chú trên trang",
+      "synonyms": "đọc pdf, mở pdf"
+    },
+    "ocr": {
+      "name": "Lấy chữ từ bản scan",
+      "description": "Nhận dạng chữ tiếng Việt trên bản scan",
+      "synonyms": "nhận diện chữ, pdf tìm được chữ, searchable"
+    },
+    "compare": {
+      "name": "So sánh tài liệu",
+      "description": "So chữ hai bản PDF, chỉ ra dòng khác",
+      "synonyms": "đối chiếu, diff, so sánh pdf, khác nhau, bản cũ bản mới"
+    },
+    "sign": {
+      "name": "Chèn chữ ký",
+      "description": "Vẽ tay hoặc chèn ảnh chữ ký lên trang",
+      "synonyms": "ký tài liệu, ký tên, chữ ký, ký pdf, sign"
+    },
+    "edit-pdf": {
+      "name": "Chỉnh sửa PDF",
+      "description": "Sửa chữ, đánh dấu, sắp xếp trang",
+      "synonyms": "sửa pdf, xoay trang, xoá trang, thêm chữ"
+    },
+    "image-to-text": {
+      "name": "Lấy chữ từ ảnh",
+      "description": "Lấy chữ tiếng Việt từ ảnh chụp",
+      "synonyms": "ocr ảnh, chép chữ từ ảnh, trích chữ, image to text"
+    },
+    "measure-image": {
+      "name": "Đo kích thước ảnh",
+      "description": "Đo chiều dài, diện tích trên ảnh",
+      "synonyms": "thước đo, đo bản vẽ, tỉ lệ"
+    },
+    "convert-image": {
+      "name": "Chuyển đổi ảnh",
+      "description": "Đổi giữa JPG, PNG, WebP",
+      "synonyms": "đổi đuôi ảnh, png sang jpg, jpg sang png, webp sang jpg"
+    },
+    "compress-image": {
+      "name": "Nén ảnh",
+      "description": "Giảm dung lượng ảnh",
+      "synonyms": "thu nhỏ ảnh, ảnh nhẹ, resize"
+    },
+    "crop-image": {
+      "name": "Cắt & chỉnh ảnh",
+      "description": "Cắt, xoay, chỉnh sáng tối",
+      "synonyms": "crop, xoay ảnh, lật ảnh, độ sáng"
+    },
+    "batch-image": {
+      "name": "Ảnh hàng loạt",
+      "description": "Đổi cỡ, đổi tên, đổi định dạng cả lô",
+      "synonyms": "resize ảnh, đổi tên ảnh, thu nhỏ ảnh, batch, nhiều ảnh"
+    },
+    "mark-image": {
+      "name": "Che & đóng dấu ảnh",
+      "description": "Che thông tin, đóng dấu chữ lên ảnh",
+      "synonyms": "watermark, bôi đen, che mặt, che số, đóng dấu bản quyền"
+    },
+    "id-photo": {
+      "name": "Ảnh thẻ & In ảnh",
+      "description": "Cắt ảnh thẻ, xếp nhiều bản lên tờ in",
+      "synonyms": "ảnh 3x4, ảnh 4x6, ảnh hộ chiếu, in ảnh thẻ, passport"
+    },
+    "qr-create": {
+      "name": "Tạo QR Code",
+      "description": "Tạo mã QR từ chữ hoặc đường dẫn",
+      "synonyms": "mã qr, qr link"
+    },
+    "barcode-create": {
+      "name": "Tạo mã vạch",
+      "description": "EAN-13, Code 128, ITF-14 — một mã hoặc cả lô",
+      "synonyms": "barcode, mã vạch, ean, code 128, code 39, itf, in tem, mã vật tư"
+    },
+    "qr-read": {
+      "name": "Đọc mã QR/Barcode",
+      "description": "Quét mã từ ảnh hoặc camera",
+      "synonyms": "quét qr, scan qr, mã vạch"
+    },
+    "quick-calc": {
+      "name": "Tính toán nhanh",
+      "description": "Diện tích, thể tích, khối lượng",
+      "synonyms": "máy tính, m2, m3, bê tông"
+    },
+    "money-calc": {
+      "name": "Tính tiền & thuế",
+      "description": "Phần trăm, VAT, chiết khấu, lãi gộp, chia tiền",
+      "synonyms": "vat, thuế gtgt, phần trăm, giảm giá, margin, markup, chia hoá đơn, lợi nhuận"
+    },
+    "date-calc": {
+      "name": "Tính ngày & thời hạn",
+      "description": "Đếm ngày, ngày làm việc, cộng trừ ngày",
+      "synonyms": "đếm ngày, hạn chót, deadline, ngày làm việc, bao nhiêu ngày"
+    },
+    "house-orientation": {
+      "name": "Hướng nhà & la bàn",
+      "description": "Đo hướng nhà, đặt la bàn lên ảnh, bản vẽ",
+      "synonyms": "la bàn, xem hướng nhà, hướng cửa, phong thuỷ, bát trạch, hướng mặt tiền, nắng chiều"
+    },
+    "quick-note": {
+      "name": "Ghi chú nhanh",
+      "description": "Ghi chú, danh sách việc lưu trên máy",
+      "synonyms": "note, todo, việc cần làm"
+    },
+    "char-count": {
+      "name": "Đếm ký tự",
+      "description": "Đếm chữ, từ, dòng",
+      "synonyms": "đếm từ, word count, số chữ"
+    },
+    "unit-convert": {
+      "name": "Chuyển đổi đơn vị",
+      "description": "Chiều dài, diện tích, khối lượng",
+      "synonyms": "đổi đơn vị, inch, feet, mét"
+    },
+    "color": {
+      "name": "Màu sắc",
+      "description": "Chọn màu, đổi mã màu",
+      "synonyms": "bảng màu, hex, rgb"
+    },
+    "random-code": {
+      "name": "Tạo mã ngẫu nhiên",
+      "description": "Mật khẩu, mã đơn, mã phiếu",
+      "synonyms": "password, sinh mã, ngẫu nhiên"
+    },
+    "construction-price": {
+      "name": "Giá xây dựng",
+      "description": "Tra cứu đơn giá, vật liệu, nhân công theo địa phương"
+    },
+    "planning-lookup": {
+      "name": "Quy hoạch",
+      "description": "Tra cứu thông tin quy hoạch, chỉ tiêu sử dụng đất"
+    },
+    "construction-law": {
+      "name": "Pháp lý xây dựng",
+      "description": "Tra cứu thủ tục, văn bản, biểu mẫu pháp lý"
+    },
+    "construction-standards": {
+      "name": "Tiêu chuẩn xây dựng",
+      "description": "Tra cứu và xem nhanh tiêu chuẩn, quy chuẩn"
+    },
+    "dossier-check": {
+      "name": "Kiểm hồ sơ",
+      "description": "Soát lỗi thường gặp trong hồ sơ thiết kế, bản vẽ"
+    },
+    "structure-calc": {
+      "name": "Tính kết cấu nhanh",
+      "description": "Tính toán tiết diện, tải trọng cơ bản"
+    },
+    "drawing-convert": {
+      "name": "Chuyển đổi bản vẽ",
+      "description": "Chuyển DWG, DXF sang PDF và đo kích thước"
+    },
+    "drawing-area": {
+      "name": "Đo diện tích trên bản vẽ",
+      "description": "Đo diện tích, chu vi trên bản vẽ PDF"
+    },
+    "site-diary": {
+      "name": "Nhật ký hiện trường",
+      "description": "Chụp ảnh, ghi chú, đánh dấu ngay tại công trình"
+    },
+    "supplier-lookup": {
+      "name": "Tra cứu nhà cung cấp",
+      "description": "Tìm nhà cung cấp vật liệu, thiết bị xây dựng"
+    },
+    "family-reminders": {
+      "name": "Nhắc việc",
+      "description": "Nhắc uống thuốc, đưa đón, việc nhà, hẹn giờ"
+    },
+    "family-share": {
+      "name": "Chia sẻ với gia đình",
+      "description": "Mời người thân cùng xem và cập nhật lịch chung"
+    },
+    "family-health": {
+      "name": "Sức khỏe gia đình",
+      "description": "Ghi lịch khám, nhắc thuốc cho từng người"
+    },
+    "house-chores": {
+      "name": "Danh sách việc nhà",
+      "description": "Phân công việc nhà, theo dõi việc đã xong"
+    },
+    "family-budget": {
+      "name": "Chi tiêu gia đình",
+      "description": "Ghi thu chi, theo dõi ngân sách đơn giản"
+    },
+    "family-album": {
+      "name": "Album gia đình",
+      "description": "Lưu giữ ảnh và video khoảnh khắc gia đình"
+    },
+    "special-days": {
+      "name": "Ngày đặc biệt",
+      "description": "Nhắc sinh nhật, kỷ niệm, ngày giỗ, ngày lễ"
+    },
+    "honor-board": {
+      "name": "Bảng vinh danh",
+      "description": "Ghi nhận người góp dữ liệu đã được xác minh"
+    },
+    "code-manager": {
+      "name": "Quản lý mã",
+      "description": "Tạo danh sách mã QR, mã vạch và xuất tệp"
+    }
+  }
+}

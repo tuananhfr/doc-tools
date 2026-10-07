@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "인쇄 / PDF로 저장"
+  },
+  "cv": {
+    "title": "이력서 작성",
+    "saveDraft": "초안 저장",
+    "openDraft": "초안 열기",
+    "clearDraft": "초안 삭제",
+    "template": "이력서 양식",
+    "templates": {
+      "classic": "클래식",
+      "modern": "모던"
+    },
+    "fields": {
+      "name": "이름",
+      "role": "지원 직무",
+      "phone": "전화번호",
+      "email": "이메일",
+      "location": "거주지",
+      "link": "포트폴리오 또는 LinkedIn"
+    },
+    "photo": "증명사진 (현재 세션에서만)",
+    "photoAlt": "이력서 증명사진",
+    "summary": "짧은 자기소개",
+    "sections": {
+      "experience": "경력",
+      "education": "학력",
+      "skills": "기술",
+      "languages": "외국어",
+      "certificates": "자격증"
+    },
+    "entry": {
+      "period": "기간",
+      "company": "회사",
+      "school": "학교",
+      "position": "직책",
+      "degree": "전공 / 학위",
+      "description": "설명 / 성과",
+      "remove": "항목 삭제",
+      "add": "항목 추가"
+    },
+    "messages": {
+      "saved": "이 기기에 초안을 저장했어요. 사진은 저장되지 않아요.",
+      "saveFailed": "기기에 초안을 저장하지 못했어요.",
+      "noDraft": "올바른 초안이 없어요.",
+      "opened": "초안을 열었어요.",
+      "unreadable": "초안을 읽을 수 없어요.",
+      "cleared": "기기의 초안을 삭제했어요."
+    },
+    "note": "보내기 전에 정보를 꼼꼼히 확인하세요. 초안은 저장을 눌렀을 때만 기기에 저장되고, 사진은 저장되지 않아요."
+  },
+  "formTemplates": {
+    "title": "서류 양식 작성",
+    "kind": "서류 종류",
+    "names": {
+      "leave": "휴가 신청서",
+      "authorization": "위임장",
+      "handover": "인수인계서"
+    },
+    "fields": {
+      "recipient": "수신",
+      "name": "이름",
+      "department": "직위, 부서",
+      "from": "휴가 시작일",
+      "to": "휴가 종료일",
+      "reason": "사유",
+      "handover": "업무 인수자",
+      "placeWritten": "작성 장소",
+      "fromName": "위임인",
+      "fromId": "위임인 신분증 번호",
+      "fromAddress": "위임인 주소",
+      "toName": "수임인",
+      "toId": "수임인 신분증 번호",
+      "toAddress": "수임인 주소",
+      "scope": "위임 내용",
+      "term": "기간",
+      "giver": "인계자 (이름, 직위)",
+      "receiver": "인수자 (이름, 직위)",
+      "items": "인계 목록 (한 줄에 한 항목)",
+      "note": "비고",
+      "placeDrawn": "작성 장소"
+    },
+    "authorizationWarning": "일부 업무는 공증이나 인증이 필요해요. 사용하기 전에 제출처에 확인하세요.",
+    "defaultWarning": "참고용 양식이에요. 제출하기 전에 제출처의 요구 사항을 확인하세요.",
+    "privacy": "데이터는 열려 있는 이 페이지에만 있어요."
+  }
+}

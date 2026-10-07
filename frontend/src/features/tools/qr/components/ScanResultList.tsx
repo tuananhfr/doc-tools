@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { TraceScanCard } from '@/features/inventory/trace'
 import { CopyButton, useToolsBranch } from '@/features/tools/hub'
@@ -10,8 +11,6 @@ interface ScanResultListProps {
   onRemove: (id: string) => void
 }
 
-const SECURITY_LABEL: Record<string, string> = { WPA: 'WPA / WPA2', WEP: 'WEP', nopass: 'Không mật khẩu', '': 'Không rõ' }
-
 /** Loại mã GS1 có số kiểm tra mod 10 — zxing đã kiểm lúc đọc, ở đây NÓI RA cho người dùng biết. */
 const GS1_FORMATS = new Set(['EAN_13', 'EAN_8', 'UPC_A', 'ITF'])
 
@@ -19,6 +18,7 @@ const GS1_FORMATS = new Set(['EAN_13', 'EAN_8', 'UPC_A', 'ITF'])
 const TRACEABLE = new Set(['text', 'url'])
 
 function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
+  const { t } = useTranslation('qr')
   const content = readScanContent(hit.text)
   // Chỉ nhánh trong app mới có phiên để tra sổ truy xuất; nhánh khách không gọi API nào.
   const inApp = useToolsBranch().kind === 'app'
@@ -27,6 +27,8 @@ function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
     GS1_FORMATS.has(hit.format) && /^\d+$/.test(hit.text) && (hit.format !== 'ITF' || hit.text.length === 14)
       ? { valid: gs1Valid(hit.text), prefix: gs1PrefixNote(hit.format === 'UPC_A' ? `0${hit.text}` : hit.text) }
       : null
+  const securityLabel = (security: string) =>
+    security === 'nopass' ? t('shared.noPassword') : security === '' ? t('scanResult.unknown') : security === 'WPA' ? 'WPA / WPA2' : security
 
   return (
     <li className="erp-scan-hit">
@@ -35,20 +37,20 @@ function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
           <Icon name={hit.format === 'QR_CODE' ? 'qr-code' : 'upc'} />
           {formatLabel(hit.format)}
         </span>
-        <button type="button" className="btn erp-flow-file__button" aria-label="Bỏ kết quả này" title="Bỏ" onClick={onRemove}>
+        <button type="button" className="btn erp-flow-file__button" aria-label={t('scanResult.remove')} title={t('scanResult.removeShort')} onClick={onRemove}>
           <Icon name="x-lg" />
         </button>
       </div>
 
       {content.kind === 'wifi' ? (
         <dl className="erp-scan-hit__fields">
-          <dt>Tên mạng</dt>
+          <dt>{t('scanResult.ssid')}</dt>
           <dd>{content.ssid}</dd>
-          <dt>Bảo mật</dt>
-          <dd>{SECURITY_LABEL[content.security] ?? content.security}</dd>
+          <dt>{t('shared.security')}</dt>
+          <dd>{securityLabel(content.security)}</dd>
           {content.password ? (
             <>
-              <dt>Mật khẩu</dt>
+              <dt>{t('shared.password')}</dt>
               <dd>{content.password}</dd>
             </>
           ) : null}
@@ -61,7 +63,7 @@ function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
         <p className={`erp-scan-hit__gs1 erp-scan-hit__gs1--${gs1.valid ? 'ok' : 'bad'}`}>
           <Icon name={gs1.valid ? 'check-circle' : 'exclamation-triangle'} />
           <span>
-            {gs1.valid ? 'Số kiểm tra đúng.' : 'Số kiểm tra SAI — mã in hỏng hoặc bị sửa.'}
+            {gs1.valid ? t('scanResult.checkOk') : t('scanResult.checkBad')}
             {gs1.prefix ? ` ${gs1.prefix}` : ''}
           </span>
         </p>
@@ -74,13 +76,13 @@ function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
           // noreferrer: trang lạ trong mã không được biết người dùng tới từ đâu, cũng không với được `window.opener`.
           <a className="btn btn-secondary btn-sm" href={content.href} target="_blank" rel="noopener noreferrer">
             <Icon name="box-arrow-up-right" className="me-2" />
-            Mở {content.host}
+            {t('scanResult.open', { host: content.host })}
           </a>
         ) : null}
-        {content.kind === 'wifi' && content.password ? <CopyButton text={content.password} label="Chép mật khẩu" size="sm" /> : null}
-        {content.kind === 'phone' ? <CopyButton text={content.number} label="Chép số" size="sm" /> : null}
-        {content.kind === 'email' ? <CopyButton text={content.address} label="Chép địa chỉ" size="sm" /> : null}
-        <CopyButton text={hit.text} label={content.kind === 'text' || content.kind === 'url' ? 'Sao chép' : 'Chép nguyên văn'} size="sm" />
+        {content.kind === 'wifi' && content.password ? <CopyButton text={content.password} label={t('scanResult.copyPassword')} size="sm" /> : null}
+        {content.kind === 'phone' ? <CopyButton text={content.number} label={t('scanResult.copyNumber')} size="sm" /> : null}
+        {content.kind === 'email' ? <CopyButton text={content.address} label={t('scanResult.copyAddress')} size="sm" /> : null}
+        <CopyButton text={hit.text} label={content.kind === 'text' || content.kind === 'url' ? t('scanResult.copy') : t('scanResult.copyRaw')} size="sm" />
       </div>
     </li>
   )

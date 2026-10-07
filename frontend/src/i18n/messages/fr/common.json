@@ -1,0 +1,214 @@
+{
+  "language": {
+    "label": "Langue",
+    "current": "Langue : {{name}}"
+  },
+  "theme": {
+    "current": "Thème : {{name}}",
+    "light": "Clair (bureau)",
+    "dark": "Sombre (salle de pilotage)",
+    "field": "Extérieur (chantier)",
+    "lightShort": "Clair",
+    "darkShort": "Sombre",
+    "fieldShort": "Extérieur"
+  },
+  "ui": {
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "loadingData": "Chargement des données",
+    "loading": "Chargement...",
+    "toastRegion": "Notifications du système",
+    "toastClose": "Fermer la notification",
+    "toastTone": {
+      "success": "Succès",
+      "info": "Information",
+      "warning": "Avertissement",
+      "danger": "Erreur"
+    }
+  },
+  "apiErrors": {
+    "network": "Impossible de joindre le serveur. Vérifiez votre connexion.",
+    "timeout": "Le serveur met trop de temps à répondre. Veuillez réessayer.",
+    "unauthorized": "Votre session a expiré. Veuillez vous reconnecter.",
+    "forbidden": "Vous n'avez pas l'autorisation d'effectuer cette action.",
+    "notFound": "Données introuvables.",
+    "validation": "Certaines données ne sont pas valides. Veuillez vérifier.",
+    "rateLimited": "Vous allez trop vite. Veuillez réessayer plus tard.",
+    "server": "Le serveur a rencontré un problème. Veuillez réessayer plus tard.",
+    "unknown": "Une erreur s'est produite."
+  },
+  "crumb": {
+    "label": "Fil d'Ariane"
+  },
+  "tool": {
+    "privacyNoFile": "Fonctionne sur votre appareil, rien n'est envoyé",
+    "privacyFile": "Traité sur votre appareil, aucun fichier n'est envoyé"
+  },
+  "session": {
+    "openInApp": "Ouvrir dans ERPcons",
+    "login": "Se connecter"
+  },
+  "board": {
+    "result": "Résultat"
+  },
+  "copy": {
+    "label": "Copier",
+    "copied": "Copié",
+    "done": "Copié dans le presse-papiers.",
+    "blocked": "Votre navigateur bloque la copie. Sélectionnez le texte puis appuyez sur Ctrl+C."
+  },
+  "fileList": {
+    "title": "Fichiers sélectionnés",
+    "clearAll": "Tout retirer",
+    "moveUp": "Monter",
+    "moveUpLabel": "Monter {{name}}",
+    "moveDown": "Descendre",
+    "moveDownLabel": "Descendre {{name}}",
+    "remove": "Retirer ce fichier",
+    "removeLabel": "Retirer {{name}}"
+  },
+  "filePicker": {
+    "pick": "Choisir des fichiers",
+    "add": "Ajouter des fichiers",
+    "pickOther": "Choisir d'autres fichiers",
+    "reading": "Lecture du fichier {{current}}/{{total}}…",
+    "dropMore": "Déposez d'autres fichiers ici",
+    "dropOther": "Déposez un autre fichier ici"
+  },
+  "flow": {
+    "finishing": "Finalisation…",
+    "processing": "Traitement en cours",
+    "progressPercent": "{{label}} — {{percent}} %",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Progression du traitement",
+    "cancel": "Annuler",
+    "rejected_one": "{{count}} fichier ignoré",
+    "rejected_many": "{{count}} fichiers ignorés",
+    "rejected_other": "{{count}} fichiers ignorés",
+    "rejectedMore_one": "… et {{count}} autre fichier",
+    "rejectedMore_many": "… et {{count}} autres fichiers",
+    "rejectedMore_other": "… et {{count}} autres fichiers",
+    "dismiss": "Masquer",
+    "side": "Options et lancement",
+    "options": "Options",
+    "error": "Traitement impossible : {{message}}",
+    "errorCode": "Code d'erreur : {{code}}",
+    "runFailed": "Impossible de traiter le fichier. Réessayez."
+  },
+  "result": {
+    "textLabel": "Contenu texte",
+    "tooLarge": "Le fichier dépasse {{limit}} : il ne pourra pas être rechargé dans les outils d'ici, et de nombreuses messageries refusent les fichiers de cette taille.",
+    "shareFailed": "Impossible de partager le fichier. Téléchargez-le puis envoyez-le manuellement.",
+    "download": "Télécharger",
+    "preview": "Aperçu",
+    "share": "Partager",
+    "edit": "Continuer à modifier",
+    "restart": "Recommencer"
+  },
+  "leave": {
+    "title": "Quitter cette page ?",
+    "body": "Les fichiers en cours n'existent que dans cet onglet et ne sont enregistrés nulle part ailleurs. Si vous partez, ils seront perdus définitivement : téléchargez-les d'abord si vous voulez les garder.",
+    "stay": "Rester",
+    "leave": "Quitter la page"
+  },
+  "unsupported": {
+    "title": "Ce navigateur est trop ancien pour traiter les PDF",
+    "description": "{{tool}} nécessite la dernière version de Chrome, Edge, Firefox ou Safari. Mettez à jour votre navigateur puis rouvrez cette page. Les outils d'image, de QR code et les autres utilitaires restent utilisables sur cet appareil.",
+    "back": "Choisir un autre outil"
+  },
+  "camera": {
+    "insecure": "La caméra ne fonctionne que si la page est ouverte en HTTPS (ou sur localhost).",
+    "blocked": "Votre navigateur bloque la caméra pour cette page. Cliquez sur l'icône de cadenas dans la barre d'adresse pour l'autoriser, puis réessayez.",
+    "notFound": "Aucune caméra trouvée sur cet appareil.",
+    "busy": "La caméra est utilisée par une autre application. Fermez-la puis réessayez.",
+    "failed": "Impossible d'ouvrir la caméra."
+  },
+  "canvas": {
+    "tooLarge": "L'image est trop grande pour ce navigateur.",
+    "unsupported": "Ce navigateur ne peut pas exporter le format d'image choisi."
+  },
+  "hero": {
+    "statTools": "outils gratuits",
+    "statFree": "gratuit",
+    "statInstall": "installation",
+    "trialErpcons": "Essayer ERPcons",
+    "trialTekshot": "Essayer TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "utilisations d'outils",
+    "unlimited": "Illimité",
+    "visits": "utilisations",
+    "readyTools": "outils prêts à l'emploi",
+    "groups": "groupes d'outils",
+    "proOffer": "stocker, partager et valider avec toute l'équipe"
+  },
+  "aside": {
+    "label": "Plus d'informations",
+    "recent": "Utilisés récemment",
+    "recentEmpty": "Vous n'avez encore utilisé aucun outil sur cet appareil. Les outils que vous ouvrez apparaîtront ici.",
+    "proIntro": "Quand les petites tâches deviennent des dossiers de projet :",
+    "about": "À propos de Chuyện Nhỏ",
+    "aboutText": "Une boîte à outils gratuite d'ERPCons pour régler rapidement les petites tâches du travail quotidien. Les fichiers sont traités directement sur votre appareil, sans être envoyés à un serveur.",
+    "tips": "Astuces rapides"
+  },
+  "pro": {
+    "signup": "Demander un essai",
+    "soon": "Le formulaire d'essai de {{product}} est en cours de finalisation : bientôt disponible.",
+    "features": {
+      "storage": "Stockage à long terme, versions et révisions R00, R01…",
+      "sharing": "Partage, droits d'accès, commentaires et validation",
+      "linking": "Rattacher les dossiers aux projets, contrats et tâches",
+      "ai": "Une IA qui lit, résume et extrait les documents"
+    }
+  },
+  "nudge": {
+    "text": "Téléchargement terminé. Besoin de ranger ce fichier dans un dossier de projet, de le partager et de le valider avec l'équipe ? C'est possible avec ERPCons Pro.",
+    "login": "Se connecter à ERPCons",
+    "later": "Plus tard"
+  },
+  "toolCard": {
+    "soon": "Bientôt disponible"
+  },
+  "filters": {
+    "label": "Filtrer par groupe d'outils"
+  },
+  "authBrand": {
+    "home": "Retour à l'accueil de {{name}}",
+    "headline": "Une plateforme<br/>Tous vos projets<br/>Un contrôle total",
+    "lead": "{{name}} Construction OS – une plateforme de gestion complète pour les entreprises du bâtiment, qui intègre IA, IoT et données en temps réel pour optimiser la performance, maîtriser les risques et décider plus intelligemment.",
+    "status": "Tous les systèmes fonctionnent normalement",
+    "statusLink": "Voir l'état des systèmes",
+    "features": {
+      "security": {
+        "title": "Sécurité maximale",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Niveau entreprise"
+      },
+      "connectivity": {
+        "title": "Connectivité complète",
+        "line1": "IA • IoT • OCR • API",
+        "line2": "Synchronisation en temps réel"
+      },
+      "singleSource": {
+        "title": "Une seule source de données",
+        "line1": "Un objet – une seule source",
+        "line2": "de vérité"
+      },
+      "performance": {
+        "title": "Performance supérieure",
+        "line1": "Optimisée pour la vitesse",
+        "line2": "et l'évolutivité"
+      },
+      "analytics": {
+        "title": "Analyse intelligente",
+        "line1": "Tableaux de bord visuels",
+        "line2": "et riches en enseignements"
+      },
+      "anywhere": {
+        "title": "Travaillez partout",
+        "line1": "Web • Mobile • Hors ligne",
+        "line2": "Une expérience tout-en-un"
+      }
+    }
+  }
+}

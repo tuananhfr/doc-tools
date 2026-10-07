@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { translate } from '@/i18n/runtime'
 import type { PageRef, RejectedFile, SourceFile } from '../types/doc-tools.types'
 import { ingestFile } from '../services/ingest'
 import { clearPageSizes } from '../services/page-size'
@@ -26,10 +27,7 @@ interface QuickOptions {
   multiple: boolean
 }
 
-const KIND_REASON: Record<string, string> = {
-  pdf: 'Công cụ này chỉ nhận tệp PDF.',
-  image: 'Công cụ này chỉ nhận ảnh JPG, PNG.',
-}
+const kindReason = (kind: QuickKind) => translate(kind === 'pdf' ? 'pdf:limits.onlyPdf' : 'pdf:limits.onlyImage')
 
 /** Bộ nhớ đệm của engine là biến module dùng chung với trình chỉnh sửa — rời công cụ phải trả lại sạch. */
 function releaseCaches() {
@@ -94,17 +92,17 @@ export function useQuickSources({ accept, multiple }: QuickOptions) {
 
           if (!result.ok && 'locked' in result) {
             if (accept.includes('pdf')) locked.push({ name: file.name, bytes: result.bytes, kind: result.locked })
-            else refused.push({ name: file.name, code: TOOL_ERROR.unsupportedFormat, reason: KIND_REASON[accept[0]] })
+            else refused.push({ name: file.name, code: TOOL_ERROR.unsupportedFormat, reason: kindReason(accept[0]) })
           } else if (!result.ok) {
             refused.push({ name: file.name, code: result.code, reason: result.reason })
           } else if (!accept.includes(result.source.kind === 'pdf' ? 'pdf' : 'image')) {
-            refused.push({ name: file.name, code: TOOL_ERROR.unsupportedFormat, reason: KIND_REASON[accept[0]] })
+            refused.push({ name: file.name, code: TOOL_ERROR.unsupportedFormat, reason: kindReason(accept[0]) })
           } else if (kept + added.reduce((sum, item) => sum + item.pages.length, 0) + result.pages.length > TOOL_LIMITS.totalPages) {
-            refused.push({ name: file.name, code: TOOL_ERROR.pageLimit, reason: `Vượt trần ${TOOL_LIMITS.totalPages} trang cho một lượt.` })
+            refused.push({ name: file.name, code: TOOL_ERROR.pageLimit, reason: translate('pdf:limits.batchPages', { max: TOOL_LIMITS.totalPages }) })
           } else if (current.length + added.length >= TOOL_LIMITS.batchFiles) {
-            refused.push({ name: file.name, code: TOOL_ERROR.quota, reason: `Vượt trần ${TOOL_LIMITS.batchFiles} tệp cho một lượt.` })
+            refused.push({ name: file.name, code: TOOL_ERROR.quota, reason: translate('pdf:limits.batchFiles', { max: TOOL_LIMITS.batchFiles }) })
           } else if (held + result.source.size > TOOL_LIMITS.heldBytes) {
-            refused.push({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: `Tổng dung lượng vượt ${megabytes(TOOL_LIMITS.heldBytes)} cho một lượt.` })
+            refused.push({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: translate('pdf:limits.batchBytes', { size: megabytes(TOOL_LIMITS.heldBytes) }) })
           } else {
             added.push({ source: result.source, pages: result.pages })
             held += result.source.size
@@ -115,7 +113,7 @@ export function useQuickSources({ accept, multiple }: QuickOptions) {
       }
 
       if (!multiple && files.length > 1) {
-        refused.push(...files.slice(1).map((file) => ({ name: file.name, code: TOOL_ERROR.quota, reason: 'Công cụ này làm trên một tệp mỗi lượt.' })))
+        refused.push(...files.slice(1).map((file) => ({ name: file.name, code: TOOL_ERROR.quota, reason: translate('pdf:limits.singleFile') })))
       }
       setRejected(refused)
       if (added.length > 0) {

@@ -1,0 +1,153 @@
+{
+  "shared": {
+    "members": "Anggota",
+    "phone": "Nomor telepon",
+    "notes": "Catatan"
+  },
+  "recurrence": {
+    "once": "Sekali",
+    "daily": "Setiap hari",
+    "weekly": "Setiap minggu",
+    "monthly": "Setiap bulan",
+    "yearly": "Setiap tahun"
+  },
+  "dataClasses": {
+    "NORMAL": "Biasa",
+    "PRIVATE": "Pribadi",
+    "SENSITIVE": "Sensitif"
+  },
+  "profiles": {
+    "PARENT": "Orang tua",
+    "SENIOR": "Kakek nenek",
+    "CHILD": "Anak"
+  },
+  "page": {
+    "views": {
+      "calendar": "Kalender",
+      "list": "Daftar",
+      "members": "Anggota",
+      "backup": "Cadangan",
+      "safety": "SOS & kontak"
+    },
+    "lunarHint": "Tanggal kalender lunar jatuh pada tanggal Masehi yang berbeda setiap tahun. Kalender belum bisa mengulang menurut kalender lunar, jadi pengingat ini hanya berlaku untuk tahun ini.",
+    "loading": "Membuka kalender yang tersimpan di perangkat...",
+    "storage": "<strong>Disimpan di perangkat ini</strong> · {{events}} jadwal · {{members}} anggota. Tidak perlu akun. Menghapus data browser akan menghilangkan kalender jika Anda belum mengunduh cadangan. Berbagi atau sinkronisasi lewat internet belum aktif.",
+    "enableNotifications": "Aktifkan notifikasi selama halaman terbuka",
+    "remindersTitle": "Pengingat selama halaman terbuka",
+    "seen": "Sudah dilihat",
+    "viewModes": "Mode tampilan",
+    "viewingFor": "Melihat untuk"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Hari ini",
+      "week": "7 hari ke depan",
+      "upcoming": "30 hari ke depan"
+    },
+    "rangeLabel": "Rentang waktu",
+    "empty": "Belum ada jadwal atau hari libur dalam rentang ini.",
+    "upcomingNote": "Menampilkan 30 hari mulai hari ini. Jadwal berulang tetap berlanjut setelah rentang ini."
+  },
+  "day": {
+    "lunar": "Kalender lunar: tanggal {{day}} bulan {{month}}",
+    "lunarLeap": "Kalender lunar: tanggal {{day}} bulan kabisat {{month}}",
+    "byLunar": "menurut kalender lunar",
+    "bySolar": "menurut kalender Masehi",
+    "addReminder": "Tambah pengingat",
+    "empty": "Belum ada jadwal keluarga pada hari ini.",
+    "addToDay": "Tambahkan ke hari ini"
+  },
+  "form": {
+    "categories": {
+      "task": "Urusan rumah",
+      "school": "Sekolah",
+      "appointment": "Janji temu",
+      "deadline": "Batas waktu dokumen",
+      "medication": "Pengingat obat",
+      "payment": "Pembayaran",
+      "other": "Lainnya"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Seluruh keluarga",
+      "PARENTS_SENIORS": "Orang tua dan kakek nenek",
+      "PARENTS_CHILDREN": "Orang tua dan anak",
+      "PRIVATE": "Hanya di perangkat ini"
+    },
+    "reminderInvalid": "Pengingat memerlukan jam tertentu dan jarak pengingat antara 0 dan 1.440 menit.",
+    "saveFailed": "Jadwal tidak dapat disimpan. Periksa tanggal dan data yang dimasukkan.",
+    "editTitle": "Edit jadwal",
+    "addTitle": "Tambah jadwal keluarga",
+    "title": "Nama kegiatan",
+    "date": "Tanggal",
+    "time": "Jam (opsional)",
+    "category": "Jenis kegiatan",
+    "recurrence": "Ulangi",
+    "scope": "Cakupan",
+    "privacy": "Tingkat privasi",
+    "reminder": "Ingatkan sebelumnya (menit, maksimal 1 hari; jam harus diisi)",
+    "medicationNote": "Pengingat obat hanya berdasarkan data yang Anda masukkan; bukan saran medis. Konten sensitif disembunyikan di notifikasi secara default.",
+    "reminderNote": "Pengingat hanya muncul selama halaman terbuka atau jika browser mengizinkan notifikasi; sistem operasi bisa menjeda halaman.",
+    "saveChanges": "Simpan perubahan",
+    "saveNew": "Simpan jadwal di perangkat",
+    "cancel": "Batal"
+  },
+  "event": {
+    "undo": "Batalkan selesai",
+    "done": "Selesai",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "confirmDelete": "Hapus jadwal ini beserta semua pengulangannya di perangkat?"
+  },
+  "members": {
+    "saveFailed": "Anggota tidak dapat disimpan.",
+    "intro": "Beri nama panggilan yang mudah dikenali. Tidak perlu memasukkan tanggal lahir, sekolah, atau dokumen pribadi.",
+    "name": "Nama panggilan",
+    "profile": "Profil",
+    "add": "Tambah anggota"
+  },
+  "backup": {
+    "invalidFile": "File cadangan tidak valid atau lebih dari 20 MB.",
+    "wrongVersion": "Versi file cadangan tidak dapat dibaca.",
+    "confirmRestore": "Pulihkan keluarga {{id}} dengan {{count}} jadwal? Data yang sedang dipakai tetap disimpan di memori perangkat agar bisa dibuka lagi.",
+    "restoreFailed": "Tidak dapat dipulihkan. Data yang sedang dipakai masih ada.",
+    "title": "Cadangkan dan ekspor kalender",
+    "intro": "Cadangan JSON menyimpan anggota, jadwal, pengingat, dan sinyal SOS. File ICS hanya untuk memindahkan kalender ke aplikasi lain; bukan pengganti cadangan.",
+    "downloadBackup": "Unduh cadangan",
+    "downloadIcs": "Unduh ICS",
+    "print": "Cetak / Simpan PDF 30 hari ke depan",
+    "includeSensitive": "Sertakan jadwal pribadi dan sensitif di ICS/PDF",
+    "defaultsNote": "Secara default, ICS dan PDF tidak menyertakan jadwal pribadi dan sensitif. Cadangan selalu berisi data lengkap; simpan file di tempat yang Anda percayai.",
+    "restoreLabel": "Pulihkan dari cadangan JSON",
+    "inspected": "Terbaca: {{members}} anggota, {{events}} jadwal, {{reminders}} pengingat. Kode keluarga: {{id}}.",
+    "restoreThis": "Pulihkan cadangan ini"
+  },
+  "safety": {
+    "invalidContact": "Masukkan nama dan nomor telepon yang valid.",
+    "contactFailed": "Kontak tidak dapat disimpan.",
+    "sosFailed": "Sinyal SOS tidak dapat disimpan di perangkat.",
+    "noGeolocation": "Perangkat tidak mendukung lokasi.",
+    "locationSaveFailed": "Lokasi tidak dapat disimpan.",
+    "locateFailed": "Lokasi tidak dapat diambil. Sinyal SOS yang tersimpan masih ada.",
+    "title": "Keamanan keluarga",
+    "intro": "Mode saat ini hanya menyimpan di perangkat. Sinyal SOS di sini <strong>belum dikirim ke keluarga</strong>. Saat butuh bantuan, langsung telepon nomor darurat atau kontak yang tersimpan.",
+    "contactName": "Nama kontak darurat",
+    "saveContact": "Simpan kontak",
+    "saveSos": "Simpan sinyal SOS di perangkat",
+    "call": "Telepon {{number}}",
+    "pendingTitle": "Sinyal tersimpan secara lokal",
+    "notSent": "{{time}} · Belum dikirim lewat internet",
+    "lastLocation": "Lokasi terakhir: {{latitude}}, {{longitude}} pada {{time}}",
+    "locateOnce": "Ambil lokasi sekali",
+    "imSafe": "Saya aman"
+  },
+  "reminders": {
+    "sensitiveTitle": "Ada jadwal keluarga yang perlu dilihat",
+    "notificationTitle": "Kalender Keluarga",
+    "notificationBody": "Buka aplikasi untuk melihat detailnya."
+  },
+  "space": {
+    "loadFailed": "Data di perangkat tidak dapat dibuka. Periksa izin penyimpanan browser.",
+    "saveFailed": "Perubahan tidak dapat disimpan. Ekspor cadangan dan periksa ruang penyimpanan perangkat.",
+    "restoreFailed": "Cadangan tidak dapat dipulihkan."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "开始（秒）",
+    "end": "结束（秒）"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "正在加载处理器…",
+      "reading": "正在读取视频…",
+      "processing": "正在处理视频…",
+      "saving": "正在准备结果…"
+    },
+    "chooseFailed": "无法选择视频。",
+    "result": "结果",
+    "noOutput": "还没有新文件",
+    "idle": "选择视频，调整设置后点击处理。",
+    "progressLabel": "视频处理进度",
+    "progressEstimate": "{{percent}}% · 预估进度",
+    "processing": "正在处理…",
+    "cancel": "取消处理",
+    "smaller": "比原文件小 {{percent}}%。",
+    "notSmaller": "新文件并不比原文件小。已压缩过的视频再压缩可能反而变大；可以试试更强的压缩级别。",
+    "outputVideo": "结果视频",
+    "outputAudio": "结果音频",
+    "outputGif": "结果 GIF 图片",
+    "download": "下载结果",
+    "panelTitle": "你的视频",
+    "chooseVideo": "选择一个视频",
+    "limits": "最大 100 MB、10 分钟、4K。在手机上建议使用 30 MB 以下的短片段。文件不会上传到服务器。",
+    "unsupported": "浏览器暂不支持视频处理。请在电脑上使用新版浏览器试试。",
+    "seconds": "{{seconds}} 秒",
+    "sourceVideo": "原视频",
+    "playbackHint": "即使浏览器无法播放原视频，你仍可尝试处理。处理器会检查编码格式和时长。",
+    "settingsLegend": "视频处理设置",
+    "engineNote": "第一次点击处理时会额外下载约 32 MB 的处理器。在手机上可能较慢或内存不足。结果不会保留原文件的元数据。",
+    "license": "FFmpeg GPL 许可证和源代码"
+  },
+  "task": {
+    "done": "已生成新文件。可在下方预览并下载结果。",
+    "failed": "无法处理视频。"
+  },
+  "compress": {
+    "action": "压缩视频",
+    "note": "导出 MP4 H.264/AAC。压缩会降低画质；最终大小取决于内容和原视频的压缩程度。",
+    "level": "压缩级别",
+    "light": "轻度 · 画质优先",
+    "medium": "中等 · 均衡",
+    "strong": "强力 · 体积优先",
+    "maxEdge": "最大长边"
+  },
+  "audio": {
+    "action": "提取音频",
+    "note": "导出第一条完整音轨。MP3/M4A 体积较小；WAV 通常更大。没有音频的视频会明确提示。",
+    "format": "音频格式",
+    "mp3": "MP3 · 最常用",
+    "wav": "WAV · 无压缩"
+  },
+  "trim": {
+    "action": "剪辑视频",
+    "note": "按秒输入时间。片段会重新编码以便按帧剪切，导出 MP4；最大长边 1080 px。"
+  },
+  "gif": {
+    "action": "制作 GIF",
+    "note": "GIF 没有声音并会循环播放。片段最长 20 秒；降低宽度或帧率可以减小体积。",
+    "width": "宽度",
+    "fps": "帧/秒",
+    "fpsSmall": "8 · 文件小",
+    "fpsBalanced": "12 · 均衡",
+    "fpsSmooth": "15 · 动作更流畅"
+  },
+  "errors": {
+    "emptyFile": "文件为空。请选择其他视频。",
+    "tooLarge": "视频超过 100 MB。请选择更小的文件。",
+    "notVideo": "请选择 MP4、MOV、WebM、MKV 或 AVI 视频文件。",
+    "unreadableInfo": "无法读取视频信息。",
+    "noVideoStream": "文件中没有有效的视频流，或无法确定时长。",
+    "tooLong": "视频超过 10 分钟。请选择更短的片段。",
+    "tooHighRes": "视频分辨率超过 4K。请选择分辨率更低的版本。",
+    "badCompress": "压缩设置无效。",
+    "badAudioFormat": "音频格式无效。",
+    "badRange": "结束时间必须大于开始时间，且两者都必须是有效的秒数。",
+    "endPastDuration": "视频只有 {{seconds}} 秒。请缩短结束时间。",
+    "gifLimits": "GIF 最长 20 秒，宽度最大 640 px，最高 15 帧/秒。",
+    "noAudio": "这个视频没有可提取的音频。",
+    "unsupported": "此浏览器暂不支持视频处理。请在电脑上使用新版 Chrome、Edge、Firefox 或 Safari 试试。",
+    "busy": "另一个视频正在处理中。请等待或取消该任务。",
+    "unreadable": "无法读取视频。文件可能已损坏，或使用了不受支持的编码格式。",
+    "processFailed": "无法处理视频或已超时。请尝试更短的片段或更低的画质。",
+    "noOutput": "无法生成结果文件。请换一个视频试试。",
+    "cancelled": "已取消视频处理。",
+    "timedOut": "任务耗时过长。请尝试更短的视频，并在下载处理器时检查网络连接。",
+    "engineFailed": "无法下载或运行视频处理器。请检查网络连接、关闭部分标签页，或在电脑上尝试更小的文件。"
+  }
+}

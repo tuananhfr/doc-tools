@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "Xem nguồn dữ liệu",
+    "vatPercent": "Thuế (%)"
+  },
+  "electricity": {
+    "resultLabel": "Ước tính hóa đơn",
+    "waterBreakdown": "Tiền nước: {{subtotal}} đ · Phí: {{fee}} đ · Thuế: {{vat}} đ. Các khoản tính riêng trên tiền nước gốc.",
+    "waterHint": "Nhập lượng nước và đơn giá trên hóa đơn gần nhất.",
+    "electricityBreakdown": "Tiền điện trước thuế: {{subtotal}} đ · Thuế {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "Bậc đến kWh",
+      "units": "Số kWh",
+      "price": "Giá/kWh",
+      "amount": "Thành tiền",
+      "rest": "Còn lại"
+    },
+    "electricityHint": "Nhập số điện và bảng giá theo hóa đơn hoặc hợp đồng. Dòng cuối dùng dấu * cho phần còn lại.",
+    "tariffVerified": "Bảng giá có chữ ký, hiệu lực từ {{date}}. Nguồn: {{source}}.",
+    "tariffManual": "Bảng giá do bạn nhập; công cụ không xác nhận đây là giá bán điện hiện hành.",
+    "vatVerified": "Thuế suất {{percent}}% có chữ ký, hiệu lực từ {{date}}. Nguồn: {{source}}.",
+    "vatManual": "Thuế suất do bạn nhập.",
+    "notIncluded": "Chưa tính phí khác hoặc cách làm tròn của nhà cung cấp.",
+    "panelTitle": "Tiền điện, nước",
+    "billType": "Loại hóa đơn",
+    "modes": {
+      "electricity": "Tiền điện",
+      "water": "Tiền nước"
+    },
+    "water": {
+      "cubicMeters": "Số m³ nước",
+      "price": "Đơn giá (đ/m³)",
+      "fee": "Phí thoát nước / môi trường (%)"
+    },
+    "kwh": "Điện tiêu thụ (kWh)",
+    "households": "Số định mức hộ dùng chung công tơ",
+    "tiers": "Bảng giá: mỗi dòng là “ngưỡng kWh, đơn giá đ/kWh”",
+    "applyTariff": "Áp dụng bảng giá đã ký",
+    "applyVat": "Áp dụng thuế suất đã ký",
+    "ruleLabel": "bảng giá điện",
+    "ruleNone": "Hiện chưa có bảng giá điện đã ký, còn hiệu lực trên hệ thống.",
+    "vatRuleLabel": "thuế suất GTGT"
+  },
+  "groupSplit": {
+    "resultLabel": "Chuyển tiền để cân bằng",
+    "balanced": "Đã cân bằng",
+    "note": "Các khoản chia đều trong từng nhóm người tham gia. Số tiền chuyển được làm tròn đến đồng.",
+    "membersTitle": "Thành viên",
+    "onePerLine": "Mỗi người một dòng",
+    "expensesTitle": "Khoản chi",
+    "addExpense": "Thêm khoản",
+    "payer": "Người trả",
+    "choosePerson": "Chọn người",
+    "amount": "Số tiền (đ)",
+    "participants": "Người cùng chia",
+    "removeExpense": "Bỏ khoản"
+  },
+  "loan": {
+    "totalPayment": "Tổng phải trả",
+    "finalBalance": "Số dư cuối kỳ",
+    "interest": "Lãi: {{amount}} đ",
+    "firstPayment": "Kỳ đầu: {{amount}} đ",
+    "downloadCsv": "Tải bảng CSV",
+    "table": {
+      "period": "Kỳ",
+      "principal": "Gốc",
+      "interest": "Lãi",
+      "balance": "Còn nợ"
+    },
+    "savingsNote": "Lãi {{amount}} đ sau {{months}} tháng. Mỗi kỳ tính lãi đơn, cuối kỳ nhập lãi vào gốc khi tái tục.",
+    "hint": "Nhập số tiền dương, lãi suất không âm và thời hạn hợp lệ.",
+    "disclaimer": "Kết quả tham khảo; lịch thực tế phụ thuộc hợp đồng và cách làm tròn của bên cho vay.",
+    "loanTitle": "Khoản vay",
+    "savingsTitle": "Tiền gửi",
+    "mode": "Chế độ",
+    "modes": {
+      "loan": "Vay trả góp",
+      "savings": "Tiết kiệm tái tục"
+    },
+    "loanAmount": "Số tiền vay (đ)",
+    "savingsAmount": "Số tiền gửi (đ)",
+    "rate": "Lãi suất năm (%)",
+    "loanTerm": "Thời hạn (tháng)",
+    "savingsTerm": "Kỳ hạn (tháng)",
+    "method": "Cách trả gốc",
+    "methods": {
+      "annuity": "Tổng trả gần bằng nhau",
+      "equalPrincipal": "Gốc bằng nhau"
+    },
+    "renewals": "Số lần tái tục"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Giảm trừ bản thân (đ)",
+      "dependentDeduct": "Giảm trừ mỗi người phụ thuộc (đ)",
+      "referenceSalary": "Lương tham chiếu để tính trần bảo hiểm (đ)",
+      "minWage1": "Lương tối thiểu vùng I (đ)",
+      "minWage2": "Lương tối thiểu vùng II (đ)",
+      "minWage3": "Lương tối thiểu vùng III (đ)",
+      "minWage4": "Lương tối thiểu vùng IV (đ)",
+      "employeeSocial": "Người lao động: BHXH (%)",
+      "employeeHealth": "Người lao động: BHYT (%)",
+      "employeeUnemployment": "Người lao động: BHTN (%)",
+      "employerSocial": "Doanh nghiệp: BHXH (%)",
+      "employerHealth": "Doanh nghiệp: BHYT (%)",
+      "employerUnemployment": "Doanh nghiệp: BHTN (%)"
+    },
+    "resultLabel": "Kết quả tham khảo",
+    "net": "Thực nhận {{amount}} đ",
+    "missingParams": "Chưa đủ tham số",
+    "rows": {
+      "gross": "Gross",
+      "employeeSocial": "BHXH người lao động",
+      "employeeHealth": "BHYT người lao động",
+      "employeeUnemployment": "BHTN người lao động",
+      "deduction": "Giảm trừ",
+      "taxable": "Thu nhập tính thuế",
+      "bracket": "Bậc {{level}} · {{rate}}%",
+      "tax": "Thuế TNCN",
+      "employerTotal": "Doanh nghiệp đóng thêm",
+      "employerCost": "Tổng chi phí doanh nghiệp"
+    },
+    "hint": "Điền đầy đủ tham số từ bộ quy tắc đã ký hoặc bảng lương, hợp đồng và hướng dẫn của kế toán.",
+    "paramsVerified": "Gói tham số có chữ ký, hiệu lực từ {{date}}. Nguồn: {{source}}.",
+    "paramsManual": "Thông số do bạn nhập; công cụ không xác nhận đây là quy định hiện hành.",
+    "notSettlement": "Kết quả chưa thay thế quyết toán thuế thực tế.",
+    "panelTitle": "Tính lương Gross – Net",
+    "direction": "Chiều tính",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "Lương Gross (đ/tháng)",
+    "netSalary": "Lương Net mong muốn (đ/tháng)",
+    "dependents": "Người phụ thuộc",
+    "region": "Vùng",
+    "regionOption": "Vùng {{region}}",
+    "insuranceBase": "Lương đóng bảo hiểm (đ, để trống = Gross)",
+    "exempt": "Phụ cấp miễn thuế trong Gross (đ)",
+    "applyParams": "Áp dụng tham số đã ký",
+    "ruleLabel": "tham số tính lương",
+    "ruleNone": "Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống.",
+    "enterParams": "Nhập tham số tính lương",
+    "brackets": "Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *"
+  },
+  "unitPrice": {
+    "resultLabel": "So sánh theo đơn vị",
+    "equal": "Giá bằng nhau",
+    "cheaper": "Sản phẩm {{index}} rẻ hơn",
+    "perUnit": "Sản phẩm {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "Chênh lệch {{percent}}% so với giá cao hơn.",
+    "hint": "Nhập giá không âm và lượng dương cho cả hai sản phẩm, cùng một đơn vị.",
+    "panelTitle": "Hai sản phẩm",
+    "price": "Giá sản phẩm {{index}} (đ)",
+    "quantity": "Lượng sản phẩm {{index}} ({{unit}})",
+    "unit": "Đơn vị lượng",
+    "units": {
+      "kg": "kg",
+      "liter": "lít",
+      "piece": "cái"
+    }
+  }
+}

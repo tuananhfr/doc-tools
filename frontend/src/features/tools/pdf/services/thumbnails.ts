@@ -1,4 +1,5 @@
 import { canvasToBlob } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import { isDefaultSheet, sheetKey } from '../utils/image-sheet'
 import { sheetLayoutOf } from './page-size'
@@ -27,7 +28,7 @@ async function withSlot<T>(task: () => Promise<T>): Promise<T> {
 
 async function canvasUrl(canvas: HTMLCanvasElement): Promise<string> {
   const blob = await canvasToBlob(canvas, 'image/jpeg', 0.8).catch(() => null)
-  if (!blob) throw new Error('Không vẽ được trang.')
+  if (!blob) throw new Error(translate('pdf:errors.drawPage'))
   return URL.createObjectURL(blob)
 }
 

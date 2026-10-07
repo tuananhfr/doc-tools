@@ -18,22 +18,23 @@ export type ThemeMode = 'light' | 'dark' | 'field'
 
 export const THEME_MODES: ThemeMode[] = ['light', 'dark', 'field']
 
-export const THEME_LABEL: Record<ThemeMode, string> = {
-  light: 'Sáng (văn phòng)',
-  dark: 'Tối (điều hành)',
-  field: 'Ngoài trời (công trường)',
-}
+// Khoá i18n trong namespace `common`, dịch lúc vẽ.
+export const THEME_LABEL = {
+  light: 'theme.light',
+  dark: 'theme.dark',
+  field: 'theme.field',
+} as const satisfies Record<ThemeMode, string>
 
 /**
  * Nhãn HIỆN RA ở mọi chỗ chọn giao diện (menu header, màn đăng nhập, hàng chip
  * của màn Tôi) — một bộ chữ cho cả điện thoại lẫn máy tính. Nhãn đầy đủ
  * (`THEME_LABEL`) chỉ còn ở `title`/`aria-label`.
  */
-export const THEME_SHORT_LABEL: Record<ThemeMode, string> = {
-  light: 'Sáng',
-  dark: 'Tối',
-  field: 'Ngoài trời',
-}
+export const THEME_SHORT_LABEL = {
+  light: 'theme.lightShort',
+  dark: 'theme.darkShort',
+  field: 'theme.fieldShort',
+} as const satisfies Record<ThemeMode, string>
 
 /* -------------------------------------------------------------------------- */
 /* Lop 1 - Primitive                                                          */

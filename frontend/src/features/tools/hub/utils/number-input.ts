@@ -1,3 +1,5 @@
+import { numberFormat } from '@/i18n/intl'
+
 /**
  * Đọc con số người dùng gõ tay. Nhận dấu thập phân là phẩy lẫn chấm ("2,5" /
  * "2.5") và cách viết nhóm nghìn của cả hai kiểu ("1.234,5" / "1,234.5").
@@ -34,11 +36,11 @@ export function parseDecimal(input: string): number | null {
 }
 
 // 10 chữ số có nghĩa: đủ cho mọi phép đổi đơn vị, và gọt được đuôi nhiễu của số thực (0,30000000000000004).
-const QUANTITY = new Intl.NumberFormat('vi-VN', { maximumSignificantDigits: 10 })
+const QUANTITY: Intl.NumberFormatOptions = { maximumSignificantDigits: 10 }
 
-/** In một đại lượng theo kiểu Việt: "1.234,5". */
+/** In một đại lượng theo ngôn ngữ trang ("1.234,5" ở bản tiếng Việt). */
 export function formatQuantity(value: number): string {
   if (!Number.isFinite(value)) return '—'
   // `-0` in ra "-0".
-  return QUANTITY.format(value === 0 ? 0 : value)
+  return numberFormat(QUANTITY).format(value === 0 ? 0 : value)
 }

@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "就緒",
+    "stop": "停止"
+  },
+  "dictation": {
+    "status": "狀態",
+    "listening": "正在聆聽",
+    "unsupported": "尚不支援",
+    "privacy": "語音辨識使用瀏覽器提供的服務；音訊可能會傳送給瀏覽器供應商。你在這裡編輯的文字不會傳送到 Chuyện Nhỏ 的伺服器。",
+    "title": "越南語聽寫",
+    "start": "開始聽寫",
+    "text": "文字",
+    "copy": "複製",
+    "download": "下載 .txt",
+    "interrupted": "語音辨識中斷了。請檢查麥克風權限後再試一次。",
+    "micFailed": "無法開啟麥克風。請檢查瀏覽器的存取權限。"
+  },
+  "magnifier": {
+    "noCamera": "此瀏覽器不支援相機。",
+    "cameraFailed": "無法開啟相機。請檢查存取權限，以及相機是否正被其他程式使用。",
+    "preview": "相機畫面",
+    "frozen": "畫面已定格",
+    "live": "即時檢視中",
+    "hint": "按「開啟相機」開始。",
+    "privacy": "影像只顯示在你的裝置上，不會錄下或傳送出去。",
+    "title": "放大鏡",
+    "zoom": "放大：{{zoom}}×",
+    "switchCamera": "切換相機",
+    "openCamera": "開啟相機",
+    "resume": "繼續",
+    "freeze": "定格畫面",
+    "contrastOff": "關閉高對比",
+    "contrastOn": "提高對比",
+    "closeCamera": "關閉相機"
+  },
+  "readAloud": {
+    "device": "在裝置上朗讀",
+    "speaking": "正在朗讀",
+    "read": "朗讀文字",
+    "voiceNote": "朗讀語音取決於裝置和瀏覽器已安裝的越南語語音。",
+    "unsupported": "此瀏覽器不支援文字朗讀。",
+    "title": "要朗讀的文字",
+    "content": "內容",
+    "rate": "速度：{{rate}}×"
+  }
+}

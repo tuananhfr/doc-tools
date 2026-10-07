@@ -1,0 +1,154 @@
+{
+  "shared": {
+    "members": "Members",
+    "phone": "Phone number",
+    "notes": "Notes"
+  },
+  "recurrence": {
+    "once": "Once",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+  "dataClasses": {
+    "NORMAL": "Normal",
+    "PRIVATE": "Private",
+    "SENSITIVE": "Sensitive"
+  },
+  "profiles": {
+    "PARENT": "Parent",
+    "SENIOR": "Grandparent",
+    "CHILD": "Child"
+  },
+  "page": {
+    "views": {
+      "calendar": "Calendar",
+      "list": "List",
+      "members": "Members",
+      "backup": "Backup",
+      "safety": "SOS & contacts"
+    },
+    "lunarHint": "A lunar date falls on a different solar date each year. Events can't repeat by the lunar calendar yet, so this reminder only applies to this year.",
+    "loading": "Opening the calendar saved on this device...",
+    "storage": "<strong>Saved on this device</strong> · {{events}} events · {{members}} members. No account needed. Clearing browser data will erase the calendar if you haven't downloaded a backup. Sharing and online sync aren't turned on.",
+    "enableNotifications": "Turn on notifications while the page is open",
+    "remindersTitle": "Reminders while the page is open",
+    "seen": "Seen",
+    "viewModes": "View mode",
+    "viewingFor": "Viewing for"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Today",
+      "week": "Next 7 days",
+      "upcoming": "Next 30 days"
+    },
+    "rangeLabel": "Time range",
+    "empty": "No events or holidays in this range.",
+    "upcomingNote": "Showing 30 days from today. Repeating events continue after this range."
+  },
+  "day": {
+    "lunar": "Lunar calendar: day {{day}}, month {{month}}",
+    "lunarLeap": "Lunar calendar: day {{day}}, leap month {{month}}",
+    "byLunar": "by lunar calendar",
+    "bySolar": "by solar calendar",
+    "addReminder": "Add reminder",
+    "empty": "No family events on this day.",
+    "addToDay": "Add to this day"
+  },
+  "form": {
+    "categories": {
+      "task": "Household task",
+      "school": "School",
+      "appointment": "Appointment",
+      "deadline": "Paperwork deadline",
+      "medication": "Medication reminder",
+      "payment": "Payment",
+      "other": "Other"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Whole family",
+      "PARENTS_SENIORS": "Parents and grandparents",
+      "PARENTS_CHILDREN": "Parents and children",
+      "PRIVATE": "This device only"
+    },
+    "reminderInvalid": "Reminders need a specific time and a lead time of 0 to 1,440 minutes.",
+    "saveFailed": "Couldn't save the event. Check the date and the data you entered.",
+    "editTitle": "Edit event",
+    "addTitle": "Add family event",
+    "title": "Event name",
+    "date": "Date",
+    "time": "Time (optional)",
+    "category": "Type",
+    "recurrence": "Repeat",
+    "scope": "Shared with",
+    "privacy": "Privacy",
+    "reminder": "Remind before (minutes, up to 1 day; needs a time)",
+    "medicationNote": "Medication reminders follow only the data you enter; this is not medical advice. Sensitive content is hidden in notifications by default.",
+    "reminderNote": "Reminders only appear while the page is open or when the browser allows notifications; your operating system may pause the page.",
+    "saveChanges": "Save changes",
+    "saveNew": "Save event on this device",
+    "cancel": "Cancel"
+  },
+  "event": {
+    "undo": "Mark as not done",
+    "done": "Done",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Delete this event and all its repeats from this device?"
+  },
+  "members": {
+    "saveFailed": "Couldn't save the member.",
+    "intro": "Use an easy-to-recognize name. No need to enter birthdays, schools or personal documents.",
+    "name": "Name",
+    "profile": "Profile",
+    "add": "Add member"
+  },
+  "backup": {
+    "invalidFile": "The backup file is invalid or larger than 20 MB.",
+    "wrongVersion": "Couldn't read a backup of the right version.",
+    "confirmRestore_one": "Restore family {{id}} with {{count}} event? Your current data stays in device storage so you can reopen it.",
+    "confirmRestore_other": "Restore family {{id}} with {{count}} events? Your current data stays in device storage so you can reopen it.",
+    "restoreFailed": "Couldn't restore. Your current data is still there.",
+    "title": "Back up and export",
+    "intro": "The JSON backup keeps members, events, reminders and SOS signals. The ICS file is only for moving events into another app; it doesn't replace the backup.",
+    "downloadBackup": "Download backup",
+    "downloadIcs": "Download ICS",
+    "print": "Print / Save next 30 days as PDF",
+    "includeSensitive": "Include private and sensitive events in ICS/PDF",
+    "defaultsNote": "ICS and PDF leave out private and sensitive events by default. The backup always includes all data; keep the file somewhere you trust.",
+    "restoreLabel": "Restore from a JSON backup",
+    "inspected": "Read: {{members}} members, {{events}} events, {{reminders}} reminders. Family code: {{id}}.",
+    "restoreThis": "Restore this backup"
+  },
+  "safety": {
+    "invalidContact": "Enter a valid name and phone number.",
+    "contactFailed": "Couldn't save the contact.",
+    "sosFailed": "Couldn't save the SOS signal on this device.",
+    "noGeolocation": "This device doesn't support location.",
+    "locationSaveFailed": "Couldn't save the location.",
+    "locateFailed": "Couldn't get your location. The saved SOS signal is still there.",
+    "title": "Family safety",
+    "intro": "The current mode saves on this device only. SOS signals here <strong>are not sent to your family yet</strong>. When you need help, call the emergency number or a saved contact directly.",
+    "contactName": "Emergency contact name",
+    "saveContact": "Save contact",
+    "saveSos": "Save SOS signal on this device",
+    "call": "Call {{number}}",
+    "pendingTitle": "Signals saved locally",
+    "notSent": "{{time}} · Not sent over the network",
+    "lastLocation": "Last location: {{latitude}}, {{longitude}} at {{time}}",
+    "locateOnce": "Get location once",
+    "imSafe": "I'm safe"
+  },
+  "reminders": {
+    "sensitiveTitle": "You have a family event to check",
+    "notificationTitle": "Family Calendar",
+    "notificationBody": "Open the app to see details."
+  },
+  "space": {
+    "loadFailed": "Couldn't open the data on this device. Check your browser's storage permissions.",
+    "saveFailed": "Couldn't save changes. Export a backup and check your device's free space.",
+    "restoreFailed": "Couldn't restore the backup."
+  }
+}

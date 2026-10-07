@@ -1,3 +1,5 @@
+import type { ElementId, TrigramId } from '../utils/terms'
+
 /** Giới tính chỉ hỏi khi phương pháp cần (spec v1.1 §13). */
 export type Sex = 'MALE' | 'FEMALE'
 
@@ -12,25 +14,24 @@ export interface PersonProfile {
 
 export type Fortune = 'GOOD' | 'BAD'
 
+/** Tên và ý nghĩa sao ở `orientation:stars.<id>`. */
 export interface RuleStar {
   id: string
-  name: string
   fortune: Fortune
   /** Thứ hạng trong nhóm, 1 = mạnh nhất. */
   rank: number
-  meaning: string
 }
 
+/** Tên nhóm ở `orientation:groups.<id>`. */
 export interface RuleGroup {
   id: string
-  name: string
 }
 
 export interface RuleTrigram {
   /** Số quái (cung phi) 1–9, không có 5. */
   number: number
-  name: string
-  element: string
+  id: TrigramId
+  element: ElementId
   group: string
   /** Chỉ số hướng của chính quái theo hậu thiên (Khảm = 0 Bắc…) — để xếp trạch theo toạ. Bộ luật v1.0.0 không có. */
   home?: number
@@ -58,10 +59,10 @@ export interface RuleProfile {
   method: string
   /** Không sửa một phiên bản đã phát hành — sửa luật là ra phiên bản mới. */
   version: string
-  name: string
-  sourceReference: string
+  /** Khoá i18n của phần chữ — luật là dữ liệu, lời giải thích hiện theo ngôn ngữ trang. */
+  text: { name: string; source: string; interpretation: string; disclaimer: string }
   inputSchema: { year: { min: number; max: number; calendar: 'LUNAR' }; sex: true }
-  /** Tên 8 cung theo thứ tự chỉ số, 45° mỗi cung, Bắc = 0. */
+  /** Mã 8 cung theo thứ tự chỉ số, 45° mỗi cung, Bắc = 0; tên lấy theo tên hướng 8 cung. */
   segments: string[]
   kua: KuaFormula
   /** Bộ luật v1.0.0 không khai — khi đó coi như Tết. */
@@ -69,7 +70,4 @@ export interface RuleProfile {
   groups: RuleGroup[]
   stars: RuleStar[]
   trigrams: RuleTrigram[]
-  /** Lời giải thích cách dùng — bắt buộc hiện kèm kết quả. */
-  interpretation: string
-  disclaimer: string
 }

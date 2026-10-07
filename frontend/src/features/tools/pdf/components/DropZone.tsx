@@ -1,5 +1,6 @@
 import { useId, useState, type DragEvent } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { LoadingProgress } from '../hooks/useDocWorkspace'
 import { megabytes, TOOL_LIMITS } from '@/features/tools/hub'
@@ -11,15 +12,16 @@ interface DropZoneProps {
 }
 
 const CAPABILITIES = [
-  { icon: 'files', label: 'Ghép nhiều PDF' },
-  { icon: 'scissors', label: 'Tách, trích trang' },
-  { icon: 'grid-3x3-gap', label: 'Sắp xếp, xoay, xoá trang' },
-  { icon: 'images', label: 'Ảnh → PDF' },
-  { icon: 'file-earmark-image', label: 'PDF → ảnh' },
-]
+  { icon: 'files', id: 'merge' },
+  { icon: 'scissors', id: 'split' },
+  { icon: 'grid-3x3-gap', id: 'organize' },
+  { icon: 'images', id: 'imageToPdf' },
+  { icon: 'file-earmark-image', id: 'pdfToImage' },
+] as const
 
 /** Màn đầu khi phiên còn trống: một vùng thả duy nhất (spec 10 — "một drop zone"). */
 export function DropZone({ loading, onFiles }: DropZoneProps) {
+  const { t } = useTranslation('pdf')
   const inputId = useId()
   const [over, setOver] = useState(false)
 
@@ -33,7 +35,7 @@ export function DropZone({ loading, onFiles }: DropZoneProps) {
   return (
     <section
       className={`erp-doc-drop${over ? ' is-over' : ''}`}
-      aria-label="Thêm tệp"
+      aria-label={t('drop.label')}
       onDragOver={(event) => {
         event.preventDefault()
         setOver(true)
@@ -50,17 +52,15 @@ export function DropZone({ loading, onFiles }: DropZoneProps) {
       {loading ? (
         <p className="erp-doc-drop__title" role="status">
           <Spinner as="span" size="sm" className="me-2" />
-          Đang đọc tệp {Math.min(loading.done + 1, loading.total)}/{loading.total}…
+          {t('toolbar.loading', { done: Math.min(loading.done + 1, loading.total), total: loading.total })}
         </p>
       ) : (
         <>
-          <h2 className="erp-doc-drop__title">Thả tệp PDF hoặc ảnh vào đây</h2>
-          <p className="erp-doc-drop__hint">
-            PDF, JPG, PNG · tối đa {megabytes(TOOL_LIMITS.fileBytes)} mỗi tệp, {TOOL_LIMITS.totalPages} trang mỗi phiên
-          </p>
+          <h2 className="erp-doc-drop__title">{t('drop.title')}</h2>
+          <p className="erp-doc-drop__hint">{t('drop.hint', { size: megabytes(TOOL_LIMITS.fileBytes), pages: TOOL_LIMITS.totalPages })}</p>
           <label htmlFor={inputId} className="btn btn-primary erp-doc-drop__pick">
             <Icon name="folder2-open" className="me-2" />
-            Chọn tệp
+            {t('drop.pick')}
           </label>
           <input
             id={inputId}
@@ -79,9 +79,9 @@ export function DropZone({ loading, onFiles }: DropZoneProps) {
 
       <ul className="erp-doc-drop__caps">
         {CAPABILITIES.map((item) => (
-          <li key={item.label}>
+          <li key={item.id}>
             <Icon name={item.icon} className="me-1" />
-            {item.label}
+            {t(`drop.cap.${item.id}`)}
           </li>
         ))}
       </ul>

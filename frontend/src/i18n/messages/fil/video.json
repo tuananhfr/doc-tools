@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Simula (segundo)",
+    "end": "Katapusan (segundo)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Nilo-load ang processor…",
+      "reading": "Binabasa ang video…",
+      "processing": "Pinoproseso ang video…",
+      "saving": "Inihahanda ang resulta…"
+    },
+    "chooseFailed": "Hindi mapili ang video.",
+    "result": "Resulta",
+    "noOutput": "Wala pang bagong file",
+    "idle": "Pumili ng video, ayusin ang settings, saka pindutin ang iproseso.",
+    "progressLabel": "Progreso ng pagproseso ng video",
+    "progressEstimate": "{{percent}}% · Tantiyang progreso",
+    "processing": "Pinoproseso…",
+    "cancel": "Kanselahin ang pagproseso",
+    "smaller": "Mas maliit nang {{percent}}% kaysa sa orihinal.",
+    "notSmaller": "Hindi mas maliit ang bagong bersyon kaysa sa orihinal. Puwedeng lumaki ang video na naka-compress na; subukan ang mas malakas na compression.",
+    "outputVideo": "Resultang video",
+    "outputAudio": "Resultang audio",
+    "outputGif": "Resultang GIF",
+    "download": "I-download ang resulta",
+    "panelTitle": "Ang iyong video",
+    "chooseVideo": "Pumili ng video",
+    "limits": "Hanggang 100 MB, 10 minuto at 4K. Sa telepono, mas mainam ang maikling clip na wala pang 30 MB. Hindi ina-upload sa server ang file.",
+    "unsupported": "Hindi pa sinusuportahan ng browser ang pagproseso ng video. Subukan ang bagong browser sa computer.",
+    "seconds": "{{seconds}} segundo",
+    "sourceVideo": "Orihinal na video",
+    "playbackHint": "Kahit hindi ma-play ng browser ang orihinal, puwede mo pa ring subukang iproseso ito. Susuriin ng processor ang codec at haba.",
+    "settingsLegend": "Settings sa pagproseso ng video",
+    "engineNote": "Sa unang pagpindot ng iproseso, magda-download ng processor na mga 32 MB. Puwedeng mabagal o kulangin sa memory ang task sa telepono. Hindi pinapanatili ng resulta ang metadata ng orihinal na file.",
+    "license": "Lisensya at source code ng FFmpeg GPL"
+  },
+  "task": {
+    "done": "Nakagawa ng bagong file. I-preview at i-download ang resulta sa ibaba.",
+    "failed": "Hindi maproseso ang video."
+  },
+  "compress": {
+    "action": "I-compress ang video",
+    "note": "Nag-e-export ng MP4 H.264/AAC. Bumababa ang kalidad kapag nag-compress; nakadepende ang huling laki sa nilalaman at compression ng orihinal.",
+    "level": "Antas ng compression",
+    "light": "Magaan · uunahin ang kalidad",
+    "medium": "Katamtaman · balanse",
+    "strong": "Malakas · uunahin ang laki",
+    "maxEdge": "Pinakamahabang gilid"
+  },
+  "audio": {
+    "action": "Kunin ang audio",
+    "note": "Ine-export ang buong unang audio stream. Mas tipid sa laki ang MP3/M4A; kadalasang mas malaki ang WAV. Malinaw na sasabihin kung walang audio ang video.",
+    "format": "Format ng audio",
+    "mp3": "MP3 · karaniwang gamit",
+    "wav": "WAV · hindi naka-compress"
+  },
+  "trim": {
+    "action": "I-trim ang video",
+    "note": "Ilagay ang oras sa segundo. Ine-encode ulit ang clip para eksakto ang pag-trim kada frame, at ine-export bilang MP4; hanggang 1080 px ang pinakamahabang gilid."
+  },
+  "gif": {
+    "action": "Gumawa ng GIF",
+    "note": "Walang audio ang GIF at paulit-ulit itong tumutugtog. Pumili ng clip na hanggang 20 segundo; bawasan ang lapad o frame rate para lumiit ang file.",
+    "width": "Lapad",
+    "fps": "Frame bawat segundo",
+    "fpsSmall": "8 · maliit na file",
+    "fpsBalanced": "12 · balanse",
+    "fpsSmooth": "15 · mas makinis na galaw"
+  },
+  "errors": {
+    "emptyFile": "Walang laman ang file. Pumili ng ibang video.",
+    "tooLarge": "Lampas sa 100 MB ang video. Pumili ng mas maliit na file.",
+    "notVideo": "Pumili ng MP4, MOV, WebM, MKV o AVI na video file.",
+    "unreadableInfo": "Hindi mabasa ang impormasyon ng video.",
+    "noVideoStream": "Walang wastong video stream ang file o hindi matukoy ang haba nito.",
+    "tooLong": "Mas mahaba sa 10 minuto ang video. Pumili ng mas maikling clip.",
+    "tooHighRes": "Lampas sa 4K ang resolution ng video. Pumili ng bersyong may mas mababang resolution.",
+    "badCompress": "Hindi wasto ang settings ng compression.",
+    "badAudioFormat": "Hindi wasto ang format ng audio.",
+    "badRange": "Dapat mas malaki ang oras ng katapusan kaysa sa simula, at dapat parehong wastong bilang ng segundo.",
+    "endPastDuration": "{{seconds}} segundo lang ang haba ng video. Bawasan ang oras ng katapusan.",
+    "gifLimits": "Hanggang 20 segundo, 640 px ang lapad at 15 frame bawat segundo lang ang GIF.",
+    "noAudio": "Walang audio na makukuha sa video na ito.",
+    "unsupported": "Hindi pa sinusuportahan ng browser na ito ang pagproseso ng video. Subukan ang bagong bersyon ng Chrome, Edge, Firefox o Safari sa computer.",
+    "busy": "May ibang video na pinoproseso. Maghintay o kanselahin ang task na iyon.",
+    "unreadable": "Hindi mabasa ang video. Maaaring sira ang file o gumagamit ito ng codec na hindi pa suportado.",
+    "processFailed": "Hindi naproseso ang video o naubos ang oras. Subukan ang mas maikling clip o mas mababang kalidad.",
+    "noOutput": "Hindi makagawa ng resultang file. Subukan ang ibang video.",
+    "cancelled": "Kinansela ang pagproseso ng video.",
+    "timedOut": "Masyadong natagalan ang task. Subukan ang mas maikling video at tingnan ang koneksyon habang dina-download ang processor.",
+    "engineFailed": "Hindi ma-load o mapatakbo ang video processor. Tingnan ang koneksyon, magsara ng ilang tab o subukan ang mas maliit na file sa computer."
+  }
+}

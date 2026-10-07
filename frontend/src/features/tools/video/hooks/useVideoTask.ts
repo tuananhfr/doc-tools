@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { translate } from '@/i18n/runtime'
 import { runVideoTask } from '../services/video-engine'
 import type { VideoOptions, VideoOutput, VideoProgress } from '../types/video.types'
 
@@ -24,9 +25,9 @@ export function useVideoTask() {
     setOutput(null)
     try {
       const result = await runVideoTask(file, options, current.signal, (state) => { if (mounted.current) setProgress(state) })
-      if (mounted.current) { setOutput(result); setMessage('Đã tạo tệp mới. Xem trước và tải kết quả bên dưới.') }
+      if (mounted.current) { setOutput(result); setMessage(translate('video:task.done')) }
     } catch (error) {
-      if (mounted.current) setMessage(error instanceof Error ? error.message : 'Không xử lý được video.')
+      if (mounted.current) setMessage(error instanceof Error ? error.message : translate('video:task.failed'))
     } finally {
       controller.current = null
       if (mounted.current) { setBusy(false); setProgress(null) }

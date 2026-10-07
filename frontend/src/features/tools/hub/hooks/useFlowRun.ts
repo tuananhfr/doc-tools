@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { FlowState, FlowTask } from '../types/flow.types'
 import { describeError } from '../utils/tool-error'
 
@@ -7,6 +8,7 @@ const IDLE: FlowState = { phase: 'idle', error: null }
 /** Máy trạng thái của một lượt chạy: chờ → đang chạy (tiến độ, huỷ được) → xong hoặc lỗi. */
 export function useFlowRun() {
   const [state, setState] = useState<FlowState>(IDLE)
+  const { t } = useTranslation('common')
   const controller = useRef<AbortController | null>(null)
 
   useEffect(() => () => controller.current?.abort(), [])
@@ -32,12 +34,12 @@ export function useFlowRun() {
       return true
     } catch (error) {
       if (abort.signal.aborted) setState(IDLE)
-      else setState({ phase: 'idle', error: describeError(error, 'Không xử lý được tệp. Thử lại.') })
+      else setState({ phase: 'idle', error: describeError(error, t('flow.runFailed')) })
       return false
     } finally {
       if (controller.current === abort) controller.current = null
     }
-  }, [])
+  }, [t])
 
   const cancel = useCallback(() => controller.current?.abort(), [])
 

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface ToolBoardProps {
   /** Cột chính: nơi nhập liệu. */
@@ -14,12 +15,13 @@ interface ToolBoardProps {
  * trái, kết quả bên phải, kết quả đổi theo từng phím gõ. Dùng lại lưới hai cột
  * của luồng ba bước để mọi công cụ của "Chuyện Nhỏ" cùng một trục.
  */
-export function ToolBoard({ children, side, sideLabel = 'Kết quả' }: ToolBoardProps) {
+export function ToolBoard({ children, side, sideLabel }: ToolBoardProps) {
+  const { t } = useTranslation('common')
   return (
     <div className={`erp-flow${side ? '' : ' erp-flow--single'}`}>
       <div className="erp-flow__main">{children}</div>
       {side ? (
-        <aside className="erp-flow__side" aria-label={sideLabel}>
+        <aside className="erp-flow__side" aria-label={sideLabel ?? t('board.result')}>
           {side}
         </aside>
       ) : null}

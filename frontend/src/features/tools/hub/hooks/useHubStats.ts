@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { queryKeys } from '@/constants/query-keys'
 import { useAuthStore } from '@/store/auth.store'
 import { formatNumber } from '@/utils/format'
@@ -30,6 +31,7 @@ export function useHubStats(): HubStat[] {
   const status = useAuthStore((state) => state.status)
   // Tính cả `idle`: khách là số đông ở đây, chờ `/me` rồi mới đổi ô thì ai cũng thấy nháy.
   const signedIn = status === 'authenticated' || status === 'offline'
+  const { t } = useTranslation('common')
   const { data } = useQuery({
     queryKey: queryKeys.tools.stats(),
     queryFn: fetchToolStats,
@@ -40,14 +42,14 @@ export function useHubStats(): HubStat[] {
   const total = data?.total ?? 0
   const usage: HubStat =
     total >= VISIT_DISPLAY_THRESHOLD
-      ? { value: formatNumber(total), label: 'lượt dùng công cụ' }
-      : { value: 'Không giới hạn', label: 'lượt dùng' }
+      ? { value: formatNumber(total), label: t('stats.toolVisits') }
+      : { value: t('stats.unlimited'), label: t('stats.visits') }
 
   return [
-    { value: String(READY_COUNT), label: 'công cụ sẵn dùng' },
+    { value: String(READY_COUNT), label: t('stats.readyTools') },
     usage,
     signedIn
-      ? { value: String(GROUP_COUNT), label: 'nhóm công cụ' }
-      : { value: 'ERPCons Pro', label: 'lưu trữ, chia sẻ, duyệt cùng cả đội', proOffer: true },
+      ? { value: String(GROUP_COUNT), label: t('stats.groups') }
+      : { value: 'ERPCons Pro', label: t('stats.proOffer'), proOffer: true },
   ]
 }

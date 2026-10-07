@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "Salin gesaan",
+    "copied": "Gesaan disalin."
+  },
+  "panel": {
+    "hasSecrets": "Perubahan ini mengandungi e-mel, token atau URL dalaman. Buang data ini sebelum menghantar.",
+    "sendFailed": "Tidak dapat menghantar cadangan.",
+    "sent": "Cadangan anda telah masuk ke barisan semakan sumber. Simpan kod resit untuk menyemak statusnya.",
+    "offline": "Tidak dapat menyambung ke pelayan. Draf anda masih ada di halaman ini.",
+    "close": "Tutup semakan sumber",
+    "open": "Semak sumber baharu dengan AI anda sendiri",
+    "intro": "Chuyện Nhỏ tidak memanggil mana-mana AI atau menyimpan kunci AI anda. Semak dengan teliti kandungan di bawah sebelum menyalinnya ke perkhidmatan AI pilihan anda. Hasil AI hanyalah cadangan.",
+    "includeResult": "Tambah hasil semasa ke dalam gesaan (mungkin mengandungi maklumat peribadi)",
+    "packageLabel": "Kandungan yang akan disalin",
+    "copyFailed": "Tidak dapat menyalin; pilih dan salin teks secara manual.",
+    "pasteTitle": "Tampal hasil AI untuk menyemak perubahan",
+    "aiJson": "JSON yang dipulangkan oleh AI",
+    "invalidJson": "Struktur JSON tidak betul atau melebihi had. Semak medan changes, sources dan uncertainties.",
+    "unverified": "Data ini belum disahkan. Semak setiap URL sumber dan pilih bahagian yang ingin anda cadangkan.",
+    "columns": {
+      "select": "Pilih",
+      "field": "Medan",
+      "current": "Semasa",
+      "proposed": "Cadangan AI"
+    },
+    "selectField": "Pilih {{field}}",
+    "sources": "Sumber yang dicadangkan oleh AI (penghantar perlu menyemaknya sendiri): {{sources}}",
+    "noSources": "Belum ada",
+    "uncertainties": "Perkara yang belum pasti: {{items}}",
+    "consent": "Saya telah menyemak setiap perubahan, memeriksa data peribadi dan bersetuju menghantar kandungan yang dipilih untuk disemak oleh pentadbir",
+    "submit": "Hantar cadangan kemas kini",
+    "receipt": "Kod resit:"
+  },
+  "assistant": {
+    "suggestions": "Cadangan pada peranti",
+    "intro": "Terangkan perkara yang anda perlu lakukan untuk mencari alat yang sesuai. Jika anda mahu AI menerangkannya, pratonton kandungan yang tepat, kemudian salin sendiri ke perkhidmatan pilihan anda.",
+    "noMatch": "Tiada alat yang benar-benar sepadan ditemui.",
+    "title": "Pembantu memilih alat",
+    "question": "Apakah yang anda mahu lakukan?",
+    "placeholder": "Contoh: Saya mahu menggabungkan dua fail PDF dan menambah nombor halaman",
+    "copyNote": "Gesaan di bawah hanya disalin apabila anda menekan butang. E-mel, token dan URL dalaman disembunyikan secara automatik; semak sendiri sebelum memberikannya kepada AI.",
+    "promptLabel": "Kandungan untuk AI",
+    "copyFailed": "Tidak dapat menyalin; pilih teks dan salin secara manual.",
+    "answerLabel": "Tampal jawapan AI di sini untuk dibaca (tidak disimpan atau dihantar kepada Chuyện Nhỏ)",
+    "unverified": "Kandungan belum disahkan"
+  }
+}

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { Point } from '../types/orientation.types'
 import type { OrientationSourceFile } from '../types/source.types'
 import type { CompassPalette } from '../utils/compass-palette'
 import type { CompassExtras } from '../utils/compass-view'
 import type { OrientationAction, OrientationState, OrientationStep } from '../utils/orientation-state'
+import { targetLabel } from '../utils/orientation-summary'
 import type { TraceTool } from '../utils/trace'
 import { OrientationCanvas } from './OrientationCanvas'
 import { TraceShapeActions } from './TraceShapeActions'
@@ -27,47 +29,43 @@ interface OrientationStageProps {
   onPage: (index: number) => void
 }
 
-const TRACE_TOOLS: { tool: TraceTool; label: string; icon: string }[] = [
-  { tool: 'line', label: 'Đường tường', icon: 'slash-lg' },
-  { tool: 'polygon', label: 'Đa giác', icon: 'pentagon' },
-  { tool: 'rect', label: 'Khung', icon: 'square' },
+const TRACE_TOOLS: { tool: TraceTool; icon: string }[] = [
+  { tool: 'line', icon: 'slash-lg' },
+  { tool: 'polygon', icon: 'pentagon' },
+  { tool: 'rect', icon: 'square' },
 ]
-
-const TRACE_HINT: Record<TraceTool, string> = {
-  line: 'Chạm hai điểm để vẽ một đoạn tường. Chạm vào đầu một đoạn đã vẽ để gắn nhãn mặt tiền / cửa chính.',
-  polygon: 'Chạm lần lượt các góc, chạm lại điểm đầu (vòng tròn rỗng) để khép hình.',
-  rect: 'Chạm hai góc đối nhau để vẽ một khung.',
-}
 
 /** Vùng làm việc trên ảnh: bước "3 chạm" hoặc công cụ vẽ lại sơ đồ, hoàn tác, và chính ảnh. */
 export function OrientationStage(props: OrientationStageProps) {
+  const { t } = useTranslation('orientation')
   const { source, state, busy, canUndo, canRedo, dispatch, undo, redo, labelOf } = props
   const [selected, setSelected] = useState<string | null>(null)
   const tracing = state.trace.tool !== null
   const drawing = state.method === 'DRAWING'
-  const active = labelOf(state.activeId)
+  const activeTarget = state.targets.find((target) => target.id === state.activeId)
+  const active = activeTarget ? targetLabel(activeTarget) : ''
   const hasDoor = state.targets.some((target) => target.type === 'MAIN_DOOR' && target.axis)
 
   const steps: { step: OrientationStep; label: string; done: boolean }[] = [
-    ...(drawing ? [{ step: 'north' as const, label: 'Hướng Bắc', done: state.anchor?.source === 'DRAWING' }] : []),
-    { step: 'target', label: active, done: Boolean(state.targets.find((target) => target.id === state.activeId)?.axis) },
-    { step: 'door', label: 'Cửa chính', done: hasDoor },
+    ...(drawing ? [{ step: 'north' as const, label: t('stage.northStep'), done: state.anchor?.source === 'DRAWING' }] : []),
+    { step: 'target', label: active, done: Boolean(activeTarget?.axis) },
+    { step: 'door', label: t('targets.MAIN_DOOR.label'), done: hasDoor },
   ]
 
   const hint = tracing
-    ? TRACE_HINT[state.trace.tool!]
+    ? t(`stage.traceHints.${state.trace.tool!}`)
     : state.step === 'north' && drawing
-      ? 'Chạm vào ký hiệu Bắc trên bản vẽ để đặt mũi tên Bắc, rồi kéo đầu mũi tên cho trùng hướng ký hiệu.'
+      ? t('stage.hints.north')
       : state.step === 'door'
-        ? 'Chạm vào cửa chính để thêm trục cửa (không bắt buộc). Kéo đầu mũi tên chĩa ra ngoài.'
+        ? t('stage.hints.door')
         : drawing
-          ? `Chạm vào chỗ cần đo để đặt trục ${active.toLowerCase()}. Kéo đầu mũi tên chĩa RA ngoài — hướng nhìn từ trong ra.`
-          : `Muốn la bàn nằm trên ảnh: chạm vào chỗ cần đo và kéo đầu mũi tên chĩa ra ngoài theo đúng hướng ${active.toLowerCase()}.`
+          ? t('stage.hints.drawing', { target: active.toLowerCase() })
+          : t('stage.hints.overlay', { target: active.toLowerCase() })
 
   return (
-    <section className="erp-image-stage erp-orient-stage" aria-label="Ảnh đang đo hướng">
+    <section className="erp-image-stage erp-orient-stage" aria-label={t('stage.aria')}>
       <div className="erp-orient-bar">
-        <div className="erp-orient-tabs" role="group" aria-label="Việc đang làm trên ảnh">
+        <div className="erp-orient-tabs" role="group" aria-label={t('stage.tabsAria')}>
           <button
             type="button"
             className={`btn erp-orient-tab${!tracing ? ' is-active' : ''}`}
@@ -76,7 +74,7 @@ export function OrientationStage(props: OrientationStageProps) {
             onClick={() => dispatch({ type: 'trace-tool', tool: null })}
           >
             <Icon name="compass" />
-            Đặt hướng
+            {t('stage.placeTab')}
           </button>
           <button
             type="button"
@@ -86,14 +84,14 @@ export function OrientationStage(props: OrientationStageProps) {
             onClick={() => dispatch({ type: 'trace-tool', tool: tracing ? null : 'line' })}
           >
             <Icon name="pencil" />
-            Vẽ lại sơ đồ
+            {t('stage.traceTab')}
           </button>
         </div>
         <div className="erp-orient-bar__actions">
-          <Button variant="outline-secondary" size="sm" disabled={busy || !canUndo} onClick={undo} aria-label="Hoàn tác" title="Hoàn tác">
+          <Button variant="outline-secondary" size="sm" disabled={busy || !canUndo} onClick={undo} aria-label={t('stage.undo')} title={t('stage.undo')}>
             <Icon name="arrow-counterclockwise" />
           </Button>
-          <Button variant="outline-secondary" size="sm" disabled={busy || !canRedo} onClick={redo} aria-label="Làm lại" title="Làm lại">
+          <Button variant="outline-secondary" size="sm" disabled={busy || !canRedo} onClick={redo} aria-label={t('stage.redo')} title={t('stage.redo')}>
             <Icon name="arrow-clockwise" />
           </Button>
         </div>
@@ -101,7 +99,7 @@ export function OrientationStage(props: OrientationStageProps) {
 
       {tracing ? (
         <div className="erp-orient-bar">
-          <div className="erp-orient-tabs erp-orient-tabs--sub" role="group" aria-label="Kiểu nét vẽ">
+          <div className="erp-orient-tabs erp-orient-tabs--sub" role="group" aria-label={t('stage.traceKindsAria')}>
             {TRACE_TOOLS.map((item) => (
               <button
                 key={item.tool}
@@ -112,7 +110,7 @@ export function OrientationStage(props: OrientationStageProps) {
                 onClick={() => dispatch({ type: 'trace-tool', tool: item.tool })}
               >
                 <Icon name={item.icon} />
-                {item.label}
+                {t(`stage.traceTools.${item.tool}`)}
               </button>
             ))}
           </div>
@@ -120,14 +118,14 @@ export function OrientationStage(props: OrientationStageProps) {
             type="switch"
             id="orient-snap"
             className="erp-orient-snap"
-            label="Bám góc 45°"
+            label={t('stage.snap')}
             checked={state.trace.snap}
             disabled={busy || state.trace.tool === 'rect'}
             onChange={(event) => dispatch({ type: 'trace-snap', snap: event.target.checked })}
           />
         </div>
       ) : (
-        <ol className="erp-orient-steps" aria-label="Các bước trên ảnh">
+        <ol className="erp-orient-steps" aria-label={t('stage.stepsAria')}>
           {steps.map((item, index) => (
             <li key={item.step}>
               <button
@@ -141,7 +139,7 @@ export function OrientationStage(props: OrientationStageProps) {
                   {item.done ? <Icon name="check-lg" /> : index + 1}
                 </span>
                 <span className="erp-orient-step__label">{item.label}</span>
-                {item.done ? <span className="visually-hidden">(đã đặt)</span> : null}
+                {item.done ? <span className="visually-hidden">{t('stage.done')}</span> : null}
               </button>
             </li>
           ))}
@@ -184,14 +182,14 @@ export function OrientationStage(props: OrientationStageProps) {
           <Form.Select
             size="sm"
             className="erp-orient-page"
-            aria-label="Trang PDF đang đo"
+            aria-label={t('stage.pageAria')}
             value={source.pageIndex}
             disabled={busy}
             onChange={(event) => props.onPage(Number(event.target.value))}
           >
             {Array.from({ length: source.pageCount }, (_, index) => (
               <option key={index} value={index}>
-                Trang {index + 1} / {source.pageCount}
+                {t('stage.pageOption', { page: index + 1, total: source.pageCount })}
               </option>
             ))}
           </Form.Select>

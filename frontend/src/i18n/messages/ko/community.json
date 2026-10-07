@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "출처 보충 필요",
+      "NEEDS_REVIEW": "검토 대기 중",
+      "VERIFIED": "검증됨",
+      "REJECTED": "반려됨",
+      "APPROVED": "승인됨",
+      "PUBLISHED": "공개됨",
+      "SUPERSEDED": "새 버전으로 대체됨",
+      "REVOKED": "철회됨"
+    },
+    "sendFailed": "제안을 보내지 못했어요.",
+    "received": "제안을 받았어요: {{status}}. 진행 상황을 보려면 접수 번호를 보관하세요.",
+    "offlineDraft": "서버에 연결할 수 없어요. 내용은 이 페이지에 그대로 있어요.",
+    "invalidReceipt": "접수 번호가 올바르지 않아요.",
+    "statusLine": "상태: {{status}}",
+    "receiptNotFound": "접수 번호를 찾을 수 없어요.",
+    "lookupFailed": "지금은 상태를 조회할 수 없어요.",
+    "addSourceFailed": "출처를 보충하지 못했어요.",
+    "sourceAdded": "출처를 보충했어요. 제안이 검토를 기다리고 있어요.",
+    "offline": "서버에 연결할 수 없어요.",
+    "ideaTitle": "도구 제안",
+    "regulationTitle": "규정 데이터 의견 보내기",
+    "ideaIntro": "실제로 겪는 문제와 원하는 도구를 설명해 주세요. 아이디어는 공개 전에 검토를 거쳐요.",
+    "regulationIntro": "고쳐야 할 내용과 출처 링크를 적어 주세요. 담당자가 검토할 의견이며, 도구 데이터가 바로 바뀌지는 않아요.",
+    "ideaName": "아이디어 이름",
+    "regulationTopic": "문서 또는 주제",
+    "ideaDetail": "문제와 제안하는 해결 방법",
+    "regulationDetail": "대조·수정이 필요한 내용",
+    "sourceUrl": "HTTPS 출처 URL (있는 경우)",
+    "sourceType": "제안하는 출처 유형",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "기관 웹사이트",
+      "OFFICIAL_DOCUMENT": "공식 문서",
+      "OFFICIAL_API": "공식 API",
+      "OTHER": "기타 출처"
+    },
+    "consent": "개인 정보와 비밀 키를 지웠으며, 운영자 검토를 위해 이 내용을 보내는 데 동의해요",
+    "sending": "보내는 중…",
+    "submit": "제안 보내기",
+    "receipt": "접수 번호:",
+    "lookupTitle": "상태 조회",
+    "receiptLabel": "접수 번호",
+    "lookup": "조회",
+    "needsSource": "위쪽 출처 칸에 HTTPS URL을 입력한 뒤 이 접수 번호로 보충하세요.",
+    "addSource": "출처 보충"
+  },
+  "ideas": {
+    "published": "공개된 아이디어",
+    "empty": "아직 승인되어 공개된 아이디어가 없어요."
+  }
+}

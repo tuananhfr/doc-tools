@@ -1,0 +1,293 @@
+{
+  "groups": {
+    "tai-lieu": "Dokumento at PDF",
+    "hinh-anh-qr": "QR code at barcode",
+    "xay-dung": "Konstruksyon",
+    "gia-dinh": "Pamilya"
+  },
+  "items": {
+    "nen-pdf": {
+      "title": "I-compress ang PDF para gumaan bago i-email",
+      "summary": "Paliitin ang mga scan at kuhang file mula sa telepono habang malinaw pa ring mabasa.",
+      "intro": "Pinapaliit ng pag-compress ng PDF ang file sa pamamagitan ng pag-compress ulit ng mga larawan at scan sa loob nito. Mismong sa device mo pinoproseso ang file at hindi ito ina-upload kahit saan.",
+      "steps": {
+        "pick": {
+          "title": "Pumili ng PDF file",
+          "detail": "Buksan ang I-compress ang PDF, pindutin ang “Pumili ng file” o i-drag ang file sa kahon. Puwedeng pumili ng maraming file nang sabay, hanggang 100 MB bawat file."
+        },
+        "level": {
+          "title": "Piliin ang antas ng compression",
+          "detail": "Pinapanatili ng “Katamtaman” na sapat ang linaw ng larawan para sa A4 na print. Ang “Malakas” ang pinakamagaan, bagay sa email o pagtingin sa screen."
+        },
+        "compress": {
+          "title": "Pindutin ang “I-compress ang PDF”",
+          "detail": "Kapag maraming file ang napili, ipinapakita ng button ang bilang, halimbawa “I-compress ang 3 file”. Lalabas ang progress bar; pindutin ang “Kanselahin” kung gusto mong ihinto."
+        },
+        "download": {
+          "title": "I-download ang resulta",
+          "detail": "Pindutin ang “I-download”. Ang isang file ay papangalanang “<pangalan ng file> - đã nén.pdf” (ang “đã nén” ay nangangahulugang “na-compress”); ang maraming file ay naka-bundle sa isang .zip. Puwede mo itong i-“Preview” o “Ituloy ang pag-edit” bago i-download."
+        }
+      },
+      "tips": {
+        "scans": "Ang mga scan at kuhang file mula sa telepono ang pinakamalaki ang lumiliit.",
+        "email": "Para sa email, piliin ang “Malakas”; para i-print, piliin ang “Katamtaman”.",
+        "password": "File na may password: hihingin ng tool ang password para mabuksan ito bago i-compress."
+      },
+      "notes": {
+        "textOnly": "Ang file na puro text, gaya ng na-export mula sa Word, ay kadalasang hindi na lumiliit. Sa ganoong kaso, “Hindi na ma-compress pa” ang lalabas sa screen at mas mabuting itabi ang orihinal na file.",
+        "png": "Hindi binabago ang PNG at black-and-white na larawan para hindi lumabo ang text.",
+        "limits": "Bawat round ay tumatanggap ng hanggang 100 file, 500 page at 300 MB sa kabuuan."
+      }
+    },
+    "scan-anh-sang-pdf": {
+      "title": "I-scan ang dokumento gamit ang telepono at gawing PDF",
+      "summary": "Kumuha o pumili ng larawan, i-crop, at pagsamahin sa isang PDF na maraming page.",
+      "intro": "Hindi kailangan ng scanner: kunan ng larawan ang dokumento gamit ang camera ng telepono, i-crop nang maayos, saka pagsamahin sa isang PDF file. Sa device mo lang nananatili ang mga larawan.",
+      "steps": {
+        "pick": {
+          "title": "Pumili o kumuha ng larawan",
+          "detail": "Buksan ang Scan larawan → PDF. Pindutin ang “Pumili ng file” para gamitin ang kasalukuyang larawan (JPG, PNG), o “Kumuha ng larawan” para kumuha gamit ang likurang camera."
+        },
+        "capture": {
+          "title": "Kumuha at mag-crop",
+          "detail": "Hanggang 50 larawan bawat pagkuha. I-tap ang thumbnail para i-crop o burahin; kapag madilim, pindutin ang “Buksan ang flash”. Kapag tapos, pindutin ang “Gamitin” na may kasamang bilang ng larawan."
+        },
+        "order": {
+          "title": "Ayusin ang pagkakasunod",
+          "detail": "Isang page ang bawat larawan. Ayusin ang pagkakasunod ng mga page bago gumawa ng PDF."
+        },
+        "paper": {
+          "title": "Piliin ang laki ng papel at margin",
+          "detail": "Sa bahaging “Page ng larawan”, piliin ang “Laki ng papel” (A4, A3, Letter o “Kasya sa larawan”) at “Margin” (walang margin, 10 mm o 20 mm)."
+        },
+        "create": {
+          "title": "Gumawa at i-download ang PDF",
+          "detail": "Pindutin ang “Gumawa ng PDF” saka “I-download”. Awtomatikong itinutuwid ang mga larawang naka-rotate mula sa telepono."
+        }
+      },
+      "tips": {
+        "shoot": "Kunan nang diretso mula sa itaas, ilagay ang papel sa madilim na background at siguraduhing maliwanag.",
+        "fit": "Piliin ang “Kasya sa larawan” para mapanatili ang proporsyon ng larawan nang walang dagdag na puting gilid.",
+        "next": "Para mas gumaan ang file, patakbuhin pagkatapos ang I-compress ang PDF. Para mahanap ang text, patakbuhin pagkatapos ang OCR ng text."
+      },
+      "notes": {
+        "https": "Gumagana lang ang camera kapag binuksan ang page gamit ang HTTPS. Kung bina-block ng browser ang camera, i-tap ang icon ng kandado sa address bar para payagan ito at subukan ulit.",
+        "formats": "Sa ngayon, JPG at PNG na larawan lang ang tinatanggap."
+      }
+    },
+    "tach-pdf": {
+      "title": "Hatiin ang PDF o kunin ang ilang page lang",
+      "summary": "Hatiin ang isang PDF file sa maraming file ayon sa saklaw ng page o sa bilang ng page.",
+      "intro": "Nakatutulong ang Hatiin ang PDF para makuha ang isang annex, ang ilang page na kailangang ipadala, o hatiin ang mahabang file sa magkakapantay na bahagi.",
+      "steps": {
+        "pick": {
+          "title": "Pumili ng PDF file",
+          "detail": "Buksan ang Hatiin ang PDF at pumili ng isang PDF file."
+        },
+        "mode": {
+          "title": "Piliin ang paraan ng paghati",
+          "detail": "“Ayon sa saklaw ng page”: maglagay halimbawa ng 1-3, 5, 8-10; bawat grupong pinaghihiwalay ng kuwit ay magiging isang file. “Isang file bawat N page”: ilagay ang bilang ng page bawat file."
+        },
+        "split": {
+          "title": "Pindutin ang hatiin",
+          "detail": "Nagbabago ang button ayon sa pinili mo: “Kunin ang mga page bilang hiwalay na file” kapag iisa ang grupo, o “Hatiin sa” na may bilang ng file kapag maraming grupo."
+        },
+        "download": {
+          "title": "I-download",
+          "detail": "Isang PDF file bawat grupo. Ang maraming grupo ay naka-bundle sa isang .zip, at nakasulat sa pangalan ng bawat bahagi ang mga page number."
+        }
+      },
+      "tips": {
+        "single": "Page 5 lang ang kailangan: ilagay ang “5”.",
+        "appendix": "Paghahati ng kontrata ayon sa annex: ilagay ang saklaw ng page ng bawat annex, pinaghihiwalay ng kuwit.",
+        "edit": "Kailangang magbura, mag-rotate o mag-ayos ng page: pindutin ang “Ituloy ang pag-edit” para buksan ang PDF editor."
+      },
+      "notes": {
+        "onePage": "Kung iisa lang ang page ng file, walang mahahati.",
+        "outOfRange": "Agad na iuulat sa ilalim ng kahon ang page number na wala sa file."
+      }
+    },
+    "ocr-van-ban": {
+      "title": "Kilalanin ang Vietnamese na text mula sa scan (OCR)",
+      "summary": "Gawing searchable na PDF ang scan, o kunin ang text para kopyahin.",
+      "intro": "Binabasa ng OCR ang text sa mga larawan at scan. Mismong sa device mo tumatakbo ang Vietnamese text recognition model; hindi ipinapadala ang file.",
+      "steps": {
+        "pick": {
+          "title": "Pumili ng scan o larawan",
+          "detail": "Buksan ang OCR ng text, pumili ng scan na PDF o JPG, PNG na larawan. Puwedeng pumili ng maraming file at baguhin ang pagkakasunod."
+        },
+        "output": {
+          "title": "Piliin ang uri ng resulta",
+          "detail": "Pinapanatili ng “Searchable na PDF” ang itsura ng page at nagdadagdag ng text layer para mahanap (Ctrl+F) at makopya. Text lang ang kinukuha ng “Text (.txt)”."
+        },
+        "run": {
+          "title": "Pindutin ang “Kilalanin ang text”",
+          "detail": "Sa unang beses, dina-download ng tool ang Vietnamese text recognition model (mga 1.4 MB) mula sa page ding ito. Pagkatapos noon, ilang segundo lang bawat page."
+        },
+        "download": {
+          "title": "I-download o kopyahin",
+          "detail": "Ang na-download na PDF ay papangalanang “<pangalan ng file> - OCR.pdf”. Lalabas ang text na bersyon sa kahong “Nilalamang text”; pindutin ang “Kopyahin” para i-paste sa ibang lugar."
+        }
+      },
+      "tips": {
+        "quality": "Pinakamaganda ang resulta sa larawang kinunan nang diretso, malinaw, at sapat ang laki ng text.",
+        "existing": "Nilalaktawan ang mga page na may text layer na; hindi na binabasa ulit.",
+        "image": "Kung text lang mula sa isang larawan ang kailangan: gamitin ang Larawan → Text, mas mabilis."
+      },
+      "notes": {
+        "language": "Sa ngayon, Vietnamese lang ang kinikilala.",
+        "accuracy": "Puwedeng magkamali ang OCR, lalo na sa malabong larawan o sulat-kamay. Suriin ulit bago gamitin.",
+        "network": "Kailangan ng internet sa unang beses para i-download ang text recognition model."
+      }
+    },
+    "tao-va-doc-ma-qr": {
+      "title": "Gumawa ng QR code at barcode, at mag-scan ng code",
+      "summary": "Gumawa ng Wi-Fi QR, business card, maramihang barcode para i-print, at basahin ang code mula sa larawan o camera.",
+      "intro": "Tatlong tool sa iisang hanay ng tab: “Gumawa ng QR code”, “Gumawa ng barcode” at “I-scan ang code”. Lahat ay tumatakbo sa device mo.",
+      "steps": {
+        "qr": {
+          "title": "Gumawa ng QR code",
+          "detail": "Buksan ang Gumawa ng QR code at piliin ang “Uri ng code”: link, text, Wi-Fi, numero ng telepono, email o business card. Agad na iginuguhit ulit ang code habang nagta-type ka."
+        },
+        "colors": {
+          "title": "Pumili ng kulay at i-download",
+          "detail": "Pumili ng kulay sa “Kulay ng QR code”, saka pindutin ang “I-download ang QR code” para sa PNG na larawan, o “I-download ang SVG para i-print” para sa malinaw na print."
+        },
+        "barcode": {
+          "title": "Gumawa ng barcode",
+          "detail": "Buksan ang Gumawa ng barcode, piliin ang uri (Code 128, Code 39, EAN-13, EAN-8, ITF-14) at ilagay ang “Value”. Maraming code ang kailangan: piliin ang “Maramihan” at mag-load ng CSV o Excel file, hanggang 500 linya."
+        },
+        "scan": {
+          "title": "I-scan ang code",
+          "detail": "Buksan ang Basahin ang QR code/barcode, pumili ng larawang may code, mag-paste ng larawan gamit ang Ctrl+V, o pindutin ang “I-scan gamit ang camera”. Awtomatikong binabasa ang code, hindi na kailangang pumindot."
+        },
+        "use": {
+          "title": "Gamitin ang resulta",
+          "detail": "Pindutin ang “Kopyahin”, buksan ang link, o “Kopyahin ang password” para sa Wi-Fi code."
+        }
+      },
+      "tips": {
+        "wifi": "Wi-Fi QR na nakadikit sa counter: ii-scan lang ito ng bisita para makakonekta, hindi na kailangang basahin ang password.",
+        "print": "Pag-print ng maliit na barcode: mag-print muna ng isang label bago ang buong batch.",
+        "ean": "Kapag nag-scan ng EAN code, sinusuri rin ng tool ang huling digit para matukoy ang sirang pagkaka-print."
+      },
+      "notes": {
+        "gs1": "Ang mga numerong EAN at ITF-14 para sa retail na produkto ay dapat ibigay ng GS1 Vietnam.",
+        "links": "Suriing mabuti ang link bago buksan: kahit sino ay puwedeng mag-print ng QR code at idikit ito sa ibabaw ng totoong code.",
+        "wifiPassword": "Kailangan ng hindi bababa sa 8 character ang password ng WPA Wi-Fi."
+      }
+    },
+    "xem-huong-nha": {
+      "title": "Alamin ang direksyon ng bahay gamit ang compass ng telepono",
+      "summary": "Sukatin ang direksyon ng bahay sa 24 na mountain, tingnan kung aling direksyon ang bagay sa edad ng may-ari, at i-save ang resulta bilang larawan o PDF.",
+      "intro": "Pagbukas ng Direksyon ng bahay at compass, isang live na compass ang makikita mo: umiikot ang mukha nito kasabay ng telepono at agad na binabasa ang harap (facing) at likod (sitting) ayon sa 24 na mountain. Puwede ring ilagay ang compass sa larawan ng bahay o sa drawing. Nasa nakabukas na tab lang ang data.",
+      "steps": {
+        "position": {
+          "title": "Tumayo sa tamang lugar",
+          "detail": "Tumayo sa pangunahing pinto, nakatalikod sa bahay, hawakan nang pahiga ang telepono, nakaturo ang itaas nito nang diretso palabas. Lumayo sa poste na bakal, kotse at roll-up door. Kung nasa labas ka at nakatingin sa bahay, i-check ang “Nasa labas ako, nakaharap sa bahay”."
+        },
+        "measure": {
+          "title": "Sukatin at i-lock ang direksyon",
+          "detail": "Pindutin ang “Simulan ang pagsukat”. Umiikot ang mukha ng compass kasabay ng telepono; ang pulang linya ay tumuturo sa HARAP, ang kabilang dulo ay LIKOD. Hintayin ang label na “Stable”, saka pindutin ang “I-lock ang direksyon”. Walang sensor? Pindutin ang “Ilagay ang digri”."
+        },
+        "read": {
+          "title": "Basahin ang resulta",
+          "detail": "Sa ilalim ng compass makikita ang pangalan ng mountain ng Harap at Likod, ang digri, at ang layo mula sa gitna ng mountain. Kapag nasa mismong hangganan ng dalawang mountain ang direksyon, may babala ng void line — mas mabuting sukatin ulit."
+        },
+        "age": {
+          "title": "Basahin ayon sa edad (opsyonal)",
+          "detail": "I-on ang “Basahin ayon sa edad ng may-ari ng bahay”, ilagay ang solar na petsa ng kapanganakan o lunar na taon ng kapanganakan at ang kasarian. Ipapakita ng compass ang singsing ng mabubuti / masasamang bituin para sa taong iyon, kasama ang konklusyon para sa na-lock na direksyon."
+        },
+        "save": {
+          "title": "I-save ang resulta",
+          "detail": "Sa “I-save ang resulta”, piliin ang larawan o PDF at pindutin ang i-save. Para mailagay ang compass sa larawan ng bahay o sa drawing, pindutin ang “Ilagay sa larawan ng bahay / drawing”."
+        }
+      },
+      "tips": {
+        "repeat": "Sukatin nang dalawa o tatlong beses sa iba't ibang punto at ihambing.",
+        "expert": "Sa mode na “Propesyonal”, puwedeng sukatin ang maraming lugar (pangunahing pinto, kusina, altar…), tingnan ang sikat at posisyon ng araw, at ang teknikal na detalye.",
+        "iphone": "Hihingi ang iPhone ng pahintulot na basahin ang sensor pagkatapos mong pindutin ang “Simulan ang pagsukat”: piliin ang Payagan."
+      },
+      "notes": {
+        "sensor": "Walang compass sensor ang computer at maraming browser; sa ganoong kaso, pindutin ang “Ilagay ang digri”.",
+        "https": "Gumagana lang ang compass kapag binuksan ang page gamit ang HTTPS.",
+        "reference": "Binibilang ang taon sa bahaging ayon sa edad mula sa Tết (lunar new year), at sanggunian lang ito ayon sa tradisyonal na feng shui (Eight Mansions), hindi teknikal na konklusyon.",
+        "save": "Hindi awtomatikong sine-save ang resulta: mawawala ito kapag isinara ang tab nang hindi pa sine-save."
+      }
+    },
+    "khai-toan-xay-nha": {
+      "title": "Tantiyang gastos sa pagpapatayo ng townhouse",
+      "summary": "Tantiyahin ang gastos mula sa sukat at presyo kada yunit ng kontratista, na agad nag-a-update habang nagta-type ka.",
+      "intro": "Kino-convert ng tantiya ang sukat ng bawat bahagi (pundasyon, sahig, kuwarto ng hagdan sa bubungan, roof deck, bubong) ayon sa factor, saka pinararami sa presyong inilagay mo. Sanggunian lang ang resulta.",
+      "steps": {
+        "area": {
+          "title": "Ilagay ang sukat",
+          "detail": "Punan ang “Sukat ng ground floor”, “Bilang ng itaas na palapag (hindi kasama ang ground)”, ang sukat ng kuwarto ng hagdan sa bubungan, bukas na roof deck at bakuran sa harap at likod."
+        },
+        "price": {
+          "title": "Ilagay ang presyo kada yunit",
+          "detail": "Punan ang “Presyo ng estruktura kada yunit” at “Presyo ng finishing o turnkey kada yunit” ayon sa quotation mo. Kung kasama na ang estruktura sa ikalawang presyo, i-check ang katumbas na kahon."
+        },
+        "ratios": {
+          "title": "Ayusin ang factor kung kailangan",
+          "detail": "Buksan ang “Iayon ang mga factor sa quotation ng kontratista” para baguhin ang ratio ng pagkuwenta ng sukat. Default: pundasyon 50%, bawat palapag 100%, roof deck at bubong 50%."
+        },
+        "result": {
+          "title": "Basahin ang resulta",
+          "detail": "Agad na nag-a-update ang kahong “Tantiyang sanggunian” habang nagta-type ka: na-convert na sukat, gastos sa bawat bahagi at kabuuan."
+        }
+      },
+      "tips": {
+        "quotes": "Magtanong sa dalawa o tatlong kontratista para makuha ang presyong malapit sa totoo.",
+        "deposit": "Kung may gastos sa pile, ilagay ito sa “Gastos sa pile” para makita ang buong kabuuan.",
+        "noSave": "Hindi sine-save ng tool ang mga numero: mag-screenshot kung gusto mong itabi."
+      },
+      "notes": {
+        "ratios": "Ang mga factor ay sangguniang kombensyon, hindi pamantayan ng gobyerno.",
+        "excluded": "Hindi kasama ang disenyo, permit, hiwalay na muwebles o dagdag-gastos dahil sa kondisyon ng lupa.",
+        "prices": "Walang nakahandang presyo ang tool; ikaw ang naglalagay ng lahat ng numero."
+      }
+    },
+    "lich-gia-dinh": {
+      "title": "Paggamit ng Kalendaryo ng Pamilya: magdagdag ng gawain, paalala, backup",
+      "summary": "Itala ang iskedyul ng buong pamilya, i-save ang mga emergency number at mag-backup — hindi kailangan ng account.",
+      "intro": "Mismong sa device na ito sine-save ng Kalendaryo ng Pamilya ang data, hindi kailangan ng account. Wala pang pagbabahagi o online sync, kaya regular na mag-backup.",
+      "steps": {
+        "members": {
+          "title": "Magdagdag ng miyembro",
+          "detail": "Sa tab na “Mga miyembro”, ilagay ang “Palayaw”, pumili ng profile na Magulang, Lolo at lola o Anak, saka pindutin ang “Magdagdag ng miyembro”. Mas malaki ang text at mas kaunti ang item sa profile na Lolo at lola."
+        },
+        "add": {
+          "title": "Magdagdag ng gawain",
+          "detail": "Sa tab na “Idagdag”, ilagay ang “Pangalan ng gawain”, petsa at oras, piliin ang uri ng gawain, kung paano uulitin at ang miyembro, saka pindutin ang “I-save ang event sa device”."
+        },
+        "remind": {
+          "title": "I-on ang paalala",
+          "detail": "Ilagay kung ilang minuto bago magpapaalala (kailangan ng tiyak na oras ang gawain), saka pindutin ang “I-on ang notification habang bukas ang page” at payagan ang notification."
+        },
+        "view": {
+          "title": "Tingnan ang kalendaryo",
+          "detail": "May tatlong mode ang tab na “Kalendaryo”: Ngayon, Susunod na 7 araw at Susunod na 30 araw. Pindutin ang “Tapos na” kapag natapos ang gawain."
+        },
+        "sos": {
+          "title": "I-save ang emergency contact",
+          "detail": "Sine-save ng tab na “SOS at mga contact” ang pangalan at numero ng telepono ng mga mahal sa buhay para mabilis tawagan, kasama ang mga button para tumawag sa 113 (pulis) at 115 (ambulansya) sa Vietnam."
+        },
+        "backup": {
+          "title": "Mag-backup",
+          "detail": "Sa tab na “Backup” may “I-download ang backup” (kumpletong file para sa pag-restore), “I-download ang ICS” para i-import sa kalendaryo ng telepono, at pag-print ng susunod na 30 araw."
+        }
+      },
+      "tips": {
+        "viewing": "Gamitin ang kahong “Tinitingnan para kay” para makita ang kalendaryo ng bawat tao.",
+        "backupFirst": "Mag-backup bago burahin ang data ng browser o lumipat ng device.",
+        "ics": "Nabubuksan ang ICS file sa Google Calendar at sa kalendaryo ng iPhone."
+      },
+      "notes": {
+        "openPage": "Lumalabas lang ang paalala habang bukas ang page.",
+        "sos": "Sa device lang naka-save ang SOS signal at hindi pa ito ipinapadala sa mga mahal sa buhay.",
+        "clearData": "Mabubura ang kalendaryo kapag binura ang data ng browser kung hindi ka pa nakapag-download ng backup."
+      }
+    }
+  }
+}

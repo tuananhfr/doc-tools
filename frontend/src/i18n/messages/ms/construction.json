@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Asas",
+      "basement": "Ruang bawah tanah",
+      "ground": "Tingkat bawah",
+      "upper": "Setiap tingkat atas",
+      "floor": "Tingkat {{floor}}",
+      "rooftopRoom": "Bilik tangga bumbung",
+      "terrace": "Teres bumbung terbuka",
+      "roof": "Bumbung",
+      "yard": "Halaman depan/belakang"
+    },
+    "result": "Anggaran kasar",
+    "money": "{{amount}} đ",
+    "enterPrice": "Masukkan harga seunit",
+    "convertedArea": "Keluasan setara: {{area}} m²",
+    "costs": "Struktur: {{base}} đ · Kemasan atau pakej penuh: {{finishing}} đ · Cerucuk: {{pile}} đ",
+    "columns": {
+      "item": "Item",
+      "area": "Keluasan",
+      "factor": "Faktor",
+      "converted": "Setara"
+    },
+    "checkInput": "Semak nombor yang anda masukkan.",
+    "disclaimer": "Faktor ini ialah konvensyen rujukan daripada dokumen arkib, bukan norma kerajaan. Bandingkan dengan reka bentuk dan sebut harga kontraktor; tidak termasuk reka bentuk, permit, perabot lepas atau kos tambahan akibat keadaan tanah.",
+    "title": "Keluasan dan harga seunit anda",
+    "fields": {
+      "floorArea": "Keluasan tingkat bawah (m²)",
+      "upperFloors": "Bilangan tingkat atas (tidak termasuk tingkat bawah)",
+      "rooftopRoomArea": "Keluasan bilik tangga bumbung (m²)",
+      "terraceArea": "Teres bumbung terbuka (m²)",
+      "yardArea": "Halaman depan/belakang (m²)",
+      "basePrice": "Harga seunit struktur (đ/m²)",
+      "finishingPrice": "Harga seunit kemasan atau pakej penuh (đ/m²)",
+      "pileCost": "Kos cerucuk (đ)"
+    },
+    "turnkey": "Harga kedua ialah pakej penuh dan sudah termasuk struktur",
+    "editFactors": "Laraskan faktor mengikut sebut harga kontraktor",
+    "factorLabel": "{{label}} (%)"
+  }
+}

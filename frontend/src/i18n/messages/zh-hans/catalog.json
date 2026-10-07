@@ -1,0 +1,448 @@
+{
+  "pageTitle": "免费{{name}}",
+  "groups": {
+    "all": "全部",
+    "document": "文档",
+    "image": "图片",
+    "calc": "计算",
+    "money": "金钱",
+    "date": "日期与期限",
+    "data": "数据",
+    "construction": "建筑",
+    "home": "家居与生活",
+    "tech": "技术",
+    "other": "其他实用工具"
+  },
+  "tips": {
+    "insertPages": "把更多文件拖到页面网格中间即可插入到正确位置，无需从头重新合并。",
+    "findInScan": "运行 OCR 后，用 Ctrl+F 也能搜索扫描件里的文字。",
+    "undo": "Ctrl+Z 可撤销页面上的所有操作：删除、旋转、裁剪、改字。",
+    "rangeSelect": "按住 Shift 再点击第二页，可以选中中间的整段页面。"
+  },
+  "tools": {
+    "compress-video": {
+      "name": "压缩视频",
+      "description": "减小体积，直接在浏览器中导出 MP4",
+      "synonyms": "视频压缩,减小视频大小,compress video,mp4"
+    },
+    "trim-video": {
+      "name": "剪辑视频",
+      "description": "按秒选取片段，导出新的 MP4 视频",
+      "synonyms": "视频剪切,截取视频,trim video,mp4"
+    },
+    "video-gif": {
+      "name": "视频转 GIF",
+      "description": "把一段短视频变成循环播放的动图",
+      "synonyms": "gif,动图,视频转gif"
+    },
+    "extract-audio": {
+      "name": "从视频提取音频",
+      "description": "提取音频，在本机导出 MP3、M4A 或 WAV",
+      "synonyms": "视频转mp3,提取音乐,音频提取,extract audio"
+    },
+    "assistant": {
+      "name": "选工具助手",
+      "description": "找到合适的工具，并通过预览过的提问自行使用 AI",
+      "synonyms": "ai助手,怎么做,工具推荐"
+    },
+    "idea-suggestion": {
+      "name": "工具建议",
+      "description": "提交想法，并凭回执编号跟进审核",
+      "privacyNote": "只有在你点击“提交建议”时才会发送内容",
+      "synonyms": "工具反馈,新想法,路线图,roadmap"
+    },
+    "regulation-feedback": {
+      "name": "规定反馈",
+      "description": "提交内容和来源网址，供运营人员核查",
+      "privacyNote": "只有在你点击“提交建议”时才会发送内容",
+      "synonyms": "法规更新,新文件,数据反馈"
+    },
+    "remove-background": {
+      "name": "去除图片背景",
+      "description": "自动去除纯色背景，并可用画笔手动修整",
+      "synonyms": "抠图,透明背景,去背景,产品图"
+    },
+    "cv": {
+      "name": "制作求职简历",
+      "description": "编写简历、选择模板，并在设备上打印或保存为 PDF",
+      "synonyms": "简历,个人简历,求职,resume,cv"
+    },
+    "pdf-password": {
+      "name": "PDF 加密、解密",
+      "description": "使用 AES-256 加密，或凭正确密码解除保护",
+      "synonyms": "pdf加密,pdf密码,保护pdf,解锁pdf"
+    },
+    "family-calendar": {
+      "name": "家庭日历",
+      "description": "在设备上保存日程、事项和紧急联系人；可备份并导出 ICS",
+      "synonyms": "家庭日历,提醒,sos,课程表"
+    },
+    "address-conversion": {
+      "name": "合并后地址转换",
+      "description": "按完整的乡/坊对照表核对旧地址",
+      "privacyNote": "在本机核对；只有在你同意时才会发送反馈",
+      "synonyms": "新地址,省份合并,乡名变更,越南地址"
+    },
+    "payroll": {
+      "name": "Gross – Net 工资",
+      "description": "按你输入的参数或已签名的参数包估算实发工资",
+      "privacyNote": "在本机计算；只有在你同意时才会发送反馈",
+      "synonyms": "税后工资,个人所得税,社保,工资计算"
+    },
+    "lunar-calendar": {
+      "name": "农历 – 公历",
+      "description": "含节日、干支、黄道吉时的农历公历月历；双向换算日期并查询忌日",
+      "synonyms": "农历,阴历,春节,忌日,万年历"
+    },
+    "electricity": {
+      "name": "电费、水费",
+      "description": "按阶梯估算电费，按你输入的单价估算水费",
+      "privacyNote": "在本机计算；只有在你同意时才会发送反馈",
+      "synonyms": "电费单,电价kwh,水费,阶梯电价"
+    },
+    "form-templates": {
+      "name": "申请书、记录模板",
+      "description": "编写请假申请、授权委托书和交接记录以便打印",
+      "synonyms": "请假条,授权委托书,交接单,文书模板"
+    },
+    "dictation": {
+      "name": "语音转文字",
+      "description": "使用浏览器的语音识别进行越南语听写",
+      "privacyNote": "音频可能会被浏览器发送到其语音识别服务",
+      "synonyms": "听写,麦克风,语音输入,speech to text"
+    },
+    "magnifier": {
+      "name": "放大镜",
+      "description": "放大摄像头画面以阅读小字",
+      "synonyms": "摄像头放大,看小字,放大镜"
+    },
+    "house-estimate": {
+      "name": "建房费用估算",
+      "description": "折算面积，输入施工方单价来估算费用",
+      "synonyms": "建筑面积,房屋预算,建筑单价,建房成本"
+    },
+    "number-words": {
+      "name": "数字转越南语大写",
+      "description": "为单据和合同用越南语文字书写金额",
+      "synonyms": "金额大写,数字转文字,越南语读数"
+    },
+    "loan": {
+      "name": "分期贷款与储蓄",
+      "description": "计算还款计划或续存存款",
+      "synonyms": "银行贷款,等额本金,贷款利息,房贷计算"
+    },
+    "unit-price": {
+      "name": "按单位比价",
+      "description": "把两件商品换算到相同数量来比较价格",
+      "synonyms": "每公斤价格,每升价格,购物比价"
+    },
+    "study": {
+      "name": "成绩换算与录取",
+      "description": "换算成绩并计算录取加分，仅供参考",
+      "synonyms": "4分制,10分制,加分,绩点"
+    },
+    "pomodoro": {
+      "name": "专注计时器",
+      "description": "按阶段分配专注和休息时间",
+      "synonyms": "计时器,专注,番茄钟,pomodoro"
+    },
+    "group-split": {
+      "name": "多人分账",
+      "description": "根据共同支出计算谁该转给谁多少钱",
+      "synonyms": "aa制,分账,旅游费用,平摊费用"
+    },
+    "legacy-font": {
+      "name": "越南语字体与声调转换",
+      "description": "将 TCVN3、VNI 转换为 Unicode 并规范声调符号",
+      "synonyms": "vni转unicode,tcvn3转unicode,去除声调"
+    },
+    "read-aloud": {
+      "name": "文字朗读",
+      "description": "使用设备自带的语音朗读文字",
+      "synonyms": "text to speech,文字转语音,朗读"
+    },
+    "vietqr": {
+      "name": "VietQR 转账码",
+      "description": "根据银行 BIN 码和账号生成转账二维码",
+      "synonyms": "银行二维码,napas,转账码,收款码"
+    },
+    "invoice-xml": {
+      "name": "读取 XML 电子发票",
+      "description": "查看 XML 中的字段并导出商品明细表",
+      "synonyms": "xml发票,发票明细,电子发票,tt78"
+    },
+    "remove-metadata": {
+      "name": "删除照片中的位置信息",
+      "description": "重新绘制图片以去除 EXIF、GPS 和原始相机信息",
+      "synonyms": "删除exif,去除gps,隐藏照片位置"
+    },
+    "collage": {
+      "name": "拼图",
+      "description": "把 2–9 张图片拼成 PNG 网格",
+      "synonyms": "拼图,图片拼接,collage,九宫格"
+    },
+    "message-risk": {
+      "name": "检查可疑短信、链接",
+      "description": "无需打开链接即可筛查诈骗迹象",
+      "synonyms": "诈骗,钓鱼,phishing,假冒短信"
+    },
+    "flashcards": {
+      "name": "记忆卡片",
+      "description": "在设备上按莱特纳盒（Leitner）制作和复习卡片",
+      "synonyms": "flashcard,背单词,闪卡,leitner"
+    },
+    "scan-to-pdf": {
+      "name": "扫描图片 → PDF",
+      "description": "把拍摄的照片合成一个 PDF 文件",
+      "pageTitle": "免费图片转 PDF",
+      "synonyms": "jpg转pdf,图片转pdf,拍照扫描,image to pdf,合成pdf"
+    },
+    "merge-pdf": {
+      "name": "合并 PDF",
+      "description": "把多个 PDF 文件合并为一个",
+      "synonyms": "pdf合并,合并pdf,拼接pdf,merge"
+    },
+    "split-pdf": {
+      "name": "拆分 PDF",
+      "description": "拆分页面，把页面提取为单独文件",
+      "synonyms": "pdf拆分,分割pdf,提取页面,split"
+    },
+    "compress-pdf": {
+      "name": "压缩 PDF",
+      "description": "减小 PDF 文件体积",
+      "synonyms": "pdf压缩,缩小pdf,compress"
+    },
+    "convert-file": {
+      "name": "文件转换",
+      "description": "PDF 转 Word、Excel、图片",
+      "pageTitle": "免费 PDF 转 Word",
+      "synonyms": "pdf转word,docx,xlsx,pdf转excel,pdf转jpg,pdf转图片"
+    },
+    "pdf-to-image": {
+      "name": "PDF → 图片",
+      "description": "把每个 PDF 页面转为一张 JPG、PNG 图片",
+      "synonyms": "pdf转jpg,pdf转png,pdf to jpg,导出图片"
+    },
+    "organize-pdf": {
+      "name": "整理 PDF",
+      "description": "调整顺序、旋转、删除页面",
+      "synonyms": "调整页面顺序,旋转页面,删除页面,重新排页"
+    },
+    "page-numbers": {
+      "name": "添加页码",
+      "description": "为 PDF 文件添加页码",
+      "synonyms": "页码,page number,页脚"
+    },
+    "stamp-pdf": {
+      "name": "PDF 加盖印章",
+      "description": "在页面上加盖文字或标志印章",
+      "synonyms": "水印,watermark,logo,副本,加印章"
+    },
+    "redact-pdf": {
+      "name": "PDF 信息遮盖",
+      "description": "从文件中彻底删除敏感区域",
+      "synonyms": "涂黑,redact,隐藏信息,删除文字,脱敏"
+    },
+    "view-pdf": {
+      "name": "查看 PDF",
+      "description": "查看、搜索文字、在页面上添加批注",
+      "synonyms": "阅读pdf,打开pdf,pdf阅读器"
+    },
+    "ocr": {
+      "name": "OCR 文字识别",
+      "description": "识别扫描件上的越南语文字",
+      "synonyms": "文字识别,可搜索pdf,searchable,ocr"
+    },
+    "compare": {
+      "name": "文档比较",
+      "description": "比较两份 PDF 的文字，标出不同的行",
+      "synonyms": "对比,diff,比较pdf,差异,新旧版本"
+    },
+    "sign": {
+      "name": "插入签名",
+      "description": "手写签名或把签名图片插入页面",
+      "synonyms": "签署文件,签名,电子签名,pdf签名,sign"
+    },
+    "edit-pdf": {
+      "name": "编辑 PDF",
+      "description": "修改文字、标注、整理页面",
+      "synonyms": "pdf编辑,旋转页面,删除页面,添加文字"
+    },
+    "image-to-text": {
+      "name": "图片 → 文字",
+      "description": "从照片中提取越南语文字",
+      "synonyms": "图片ocr,图片转文字,提取文字,image to text"
+    },
+    "measure-image": {
+      "name": "图片测量",
+      "description": "在图片上测量长度、面积",
+      "synonyms": "测量尺,图纸测量,比例尺"
+    },
+    "convert-image": {
+      "name": "图片格式转换",
+      "description": "在 JPG、PNG、WebP 之间转换",
+      "synonyms": "图片格式,png转jpg,jpg转png,webp转jpg"
+    },
+    "compress-image": {
+      "name": "压缩图片",
+      "description": "减小图片体积",
+      "synonyms": "图片压缩,缩小图片,resize"
+    },
+    "crop-image": {
+      "name": "裁剪与调整图片",
+      "description": "裁剪、旋转、调节明暗",
+      "synonyms": "裁剪,crop,旋转图片,翻转图片,亮度"
+    },
+    "batch-image": {
+      "name": "批量处理图片",
+      "description": "批量调整尺寸、重命名、转换格式",
+      "synonyms": "批量改尺寸,批量重命名,缩小图片,batch,多张图片"
+    },
+    "mark-image": {
+      "name": "图片遮盖与水印",
+      "description": "遮盖信息，在图片上加盖文字水印",
+      "synonyms": "水印,watermark,打码,遮脸,遮号码,版权水印"
+    },
+    "id-photo": {
+      "name": "证件照与冲印",
+      "description": "裁剪证件照，把多张排版到一张打印纸上",
+      "synonyms": "证件照,一寸照,3x4,4x6,护照照片,passport"
+    },
+    "qr-create": {
+      "name": "生成二维码",
+      "description": "用文字或链接生成二维码",
+      "synonyms": "二维码,qr码,qr code,链接二维码"
+    },
+    "barcode-create": {
+      "name": "生成条形码",
+      "description": "EAN-13、Code 128、ITF-14——单个或批量",
+      "synonyms": "条形码,条码,barcode,ean,code 128,code 39,itf,打印标签,物料编码"
+    },
+    "qr-read": {
+      "name": "识别二维码/条形码",
+      "description": "从图片或摄像头扫码",
+      "synonyms": "扫二维码,扫码,scan qr,条形码识别"
+    },
+    "quick-calc": {
+      "name": "快速计算",
+      "description": "面积、体积、重量",
+      "synonyms": "计算器,m2,m3,混凝土,平方米"
+    },
+    "money-calc": {
+      "name": "金额与税费计算",
+      "description": "百分比、增值税、折扣、毛利、分摊费用",
+      "synonyms": "vat,增值税,百分比,折扣,毛利率,加成率,分账,利润"
+    },
+    "date-calc": {
+      "name": "日期与期限计算",
+      "description": "计算天数、工作日，加减日期",
+      "synonyms": "计算天数,截止日期,deadline,工作日,相隔几天"
+    },
+    "house-orientation": {
+      "name": "房屋朝向与罗盘",
+      "description": "测量房屋朝向，把罗盘放到照片、图纸上",
+      "synonyms": "罗盘,指南针,房屋朝向,大门朝向,风水,八宅,正面朝向,西晒"
+    },
+    "quick-note": {
+      "name": "快速笔记",
+      "description": "保存在本机的笔记和待办清单",
+      "synonyms": "笔记,note,todo,待办事项"
+    },
+    "char-count": {
+      "name": "字数统计",
+      "description": "统计字符、词数、行数",
+      "synonyms": "字数,word count,字符数"
+    },
+    "unit-convert": {
+      "name": "单位换算",
+      "description": "长度、面积、重量",
+      "synonyms": "换算单位,英寸,英尺,米,inch,feet"
+    },
+    "color": {
+      "name": "颜色",
+      "description": "选取颜色，转换色值",
+      "synonyms": "调色板,hex,rgb,取色"
+    },
+    "random-code": {
+      "name": "随机码生成",
+      "description": "密码、订单号、单据号",
+      "synonyms": "password,密码生成,随机数,生成编码"
+    },
+    "construction-price": {
+      "name": "建筑价格",
+      "description": "按地区查询单价、材料和人工费用"
+    },
+    "planning-lookup": {
+      "name": "规划",
+      "description": "查询规划信息和土地使用指标"
+    },
+    "construction-law": {
+      "name": "建筑法规",
+      "description": "查询手续、法规文件和法定表格"
+    },
+    "construction-standards": {
+      "name": "建筑标准",
+      "description": "查询并快速浏览标准、规范"
+    },
+    "dossier-check": {
+      "name": "资料检查",
+      "description": "检查设计资料、图纸中的常见错误"
+    },
+    "structure-calc": {
+      "name": "快速结构计算",
+      "description": "计算截面、基本荷载"
+    },
+    "drawing-convert": {
+      "name": "图纸转换",
+      "description": "将 DWG、DXF 转为 PDF 并测量尺寸"
+    },
+    "drawing-area": {
+      "name": "图纸面积测量",
+      "description": "在 PDF 图纸上测量面积、周长"
+    },
+    "site-diary": {
+      "name": "现场日志",
+      "description": "在工地现场拍照、记录、标注"
+    },
+    "supplier-lookup": {
+      "name": "供应商查询",
+      "description": "查找建筑材料、设备供应商"
+    },
+    "family-reminders": {
+      "name": "事项提醒",
+      "description": "提醒吃药、接送、家务、定时"
+    },
+    "family-share": {
+      "name": "与家人共享",
+      "description": "邀请家人一起查看和更新共享日历"
+    },
+    "family-health": {
+      "name": "家庭健康",
+      "description": "为每个人记录就诊日程、吃药提醒"
+    },
+    "house-chores": {
+      "name": "家务清单",
+      "description": "分配家务，跟踪已完成的事项"
+    },
+    "family-budget": {
+      "name": "家庭开支",
+      "description": "记录收支，简单跟踪预算"
+    },
+    "family-album": {
+      "name": "家庭相册",
+      "description": "保存家庭时刻的照片和视频"
+    },
+    "special-days": {
+      "name": "特别日子",
+      "description": "提醒生日、纪念日、忌日、节日"
+    },
+    "honor-board": {
+      "name": "荣誉榜",
+      "description": "表彰贡献了已核实数据的人"
+    },
+    "code-manager": {
+      "name": "编码管理",
+      "description": "创建二维码、条形码列表并导出文件"
+    }
+  }
+}

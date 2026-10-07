@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
@@ -9,31 +10,30 @@ const ACCEPT: readonly QuickKind[] = ['pdf']
 
 type Level = Exclude<Compression, 'none'>
 
-const LEVELS: FlowChoiceOption<Level>[] = [
-  { value: 'medium', label: 'Vừa', hint: 'Ảnh vẫn đủ nét để in A4.' },
-  { value: 'strong', label: 'Mạnh', hint: 'Tệp nhẹ nhất — hợp gửi email, xem trên màn hình.' },
-]
+const LEVELS: readonly Level[] = ['medium', 'strong']
 
 /** NÉN PDF — nén lại ảnh JPEG trong tệp; chữ và ảnh PNG giữ nguyên. */
 export default function CompressPdfPage() {
+  const { t } = useTranslation('pdf')
   const quick = useQuickSources({ accept: ACCEPT, multiple: true })
   const [level, setLevel] = useState<Level>('medium')
   const count = quick.items.length
+  const levels: FlowChoiceOption<Level>[] = LEVELS.map((value) => ({ value, label: t(`compress.level.${value}`), hint: t(`compress.level.${value}Hint`) }))
 
   return (
     <QuickToolShell
       quick={quick}
       accept={ACCEPT}
       multiple
-      pickerTitle="Chọn tệp PDF cần nén"
-      runLabel={count > 1 ? `Nén ${count} tệp` : 'Nén PDF'}
+      pickerTitle={t('compress.pickerTitle')}
+      runLabel={count > 1 ? t('compress.runMany', { count }) : t('compress.run')}
       runIcon="file-earmark-zip"
       blocked={null}
       task={() => compressTask(quick.items, level)}
       options={
         <>
-          <FlowChoice legend="Mức nén" value={level} options={LEVELS} onChange={setLevel} />
-          <p className="erp-flow-field__hint">Chỉ nén ảnh chụp, ảnh scan trong tệp. Tệp toàn chữ thường không nhỏ hơn được.</p>
+          <FlowChoice legend={t('compress.levelLegend')} value={level} options={levels} onChange={setLevel} />
+          <p className="erp-flow-field__hint">{t('compress.note')}</p>
         </>
       }
     />

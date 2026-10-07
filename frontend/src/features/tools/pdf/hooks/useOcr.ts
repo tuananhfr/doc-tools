@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useToast } from '@/components/ui'
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import { recognizePage, stopOcr, type OcrStage } from '../services/ocr'
 import { saveOcrText } from '../services/ocr-store'
@@ -40,7 +41,7 @@ export function useOcr(sources: Record<string, SourceFile>) {
       }
       if (targets.length === 0) {
         setState(null)
-        toast.info('Các trang này đã có lớp chữ — không cần nhận dạng.')
+        toast.info(translate('pdf:ocr.alreadyText'))
         return
       }
 
@@ -63,17 +64,21 @@ export function useOcr(sources: Record<string, SourceFile>) {
         if (!cancelled.current) {
           await stopOcr()
           setState(null)
-          toast.error(error instanceof Error && error.message ? `Không nhận dạng được: ${error.message}` : 'Không nhận dạng được. Thử lại.')
+          toast.error(
+            error instanceof Error && error.message
+              ? translate('pdf:ocr.failedWith', { message: error.message })
+              : translate('pdf:ocr.failed'),
+          )
           return
         }
       }
       setState(null)
       if (cancelled.current) {
-        toast.info(done > 0 ? `Đã dừng — giữ kết quả ${done} trang đã nhận dạng xong.` : 'Đã dừng nhận dạng.')
+        toast.info(done > 0 ? translate('pdf:ocr.stoppedKept', { count: done }) : translate('pdf:ocr.stopped'))
       } else if (words === 0) {
-        toast.info('Không đọc được chữ nào — ảnh có thể quá mờ, quá nhỏ hoặc không có chữ.')
+        toast.info(translate('pdf:ocr.noText'))
       } else {
-        toast.success(`Đã nhận dạng ${done} trang (${words.toLocaleString('vi-VN')} từ) — giờ tìm, tô, sửa chữ được trên các trang này.`)
+        toast.success(translate('pdf:ocr.done', { count: done, words }))
       }
     },
     [sources, toast],

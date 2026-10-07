@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { Button, Overlay, Popover } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 interface ConfirmActionProps {
   title: string
@@ -22,12 +23,13 @@ interface ConfirmActionProps {
 export function ConfirmAction({
   title,
   description,
-  confirmLabel = 'Xác nhận',
-  cancelLabel = 'Hủy',
+  confirmLabel,
+  cancelLabel,
   danger,
   onConfirm,
   children,
 }: ConfirmActionProps) {
+  const { t } = useTranslation('common')
   const [open, setOpen] = useState(false)
   // Ref dang state: Overlay can doc phan tu neo NGAY trong lan render co show.
   const [anchor, setAnchor] = useState<HTMLSpanElement | null>(null)
@@ -45,7 +47,7 @@ export function ConfirmAction({
             {description}
             <div className="erp-confirm__actions">
               <Button size="sm" variant="outline-secondary" onClick={() => setOpen(false)}>
-                {cancelLabel}
+                {cancelLabel ?? t('ui.cancel')}
               </Button>
               <Button
                 size="sm"
@@ -55,7 +57,7 @@ export function ConfirmAction({
                   onConfirm()
                 }}
               >
-                {confirmLabel}
+                {confirmLabel ?? t('ui.confirm')}
               </Button>
             </div>
           </Popover.Body>

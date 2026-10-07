@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
@@ -9,17 +10,17 @@ import { ByoAiPanel } from '@/features/tools/byoai/components/ByoAiPanel'
 import { grossToNet, netToGross, validatePayrollRules, type PayrollRules } from '../utils/payroll'
 
 type RuleField = 'selfDeduct' | 'dependentDeduct' | 'referenceSalary' | 'minWage1' | 'minWage2' | 'minWage3' | 'minWage4' | 'employeeSocial' | 'employeeHealth' | 'employeeUnemployment' | 'employerSocial' | 'employerHealth' | 'employerUnemployment'
-const RULE_FIELDS: { key: RuleField; label: string }[] = [
-  { key: 'selfDeduct', label: 'Giảm trừ bản thân (đ)' }, { key: 'dependentDeduct', label: 'Giảm trừ mỗi người phụ thuộc (đ)' }, { key: 'referenceSalary', label: 'Lương tham chiếu để tính trần bảo hiểm (đ)' },
-  { key: 'minWage1', label: 'Lương tối thiểu vùng I (đ)' }, { key: 'minWage2', label: 'Lương tối thiểu vùng II (đ)' }, { key: 'minWage3', label: 'Lương tối thiểu vùng III (đ)' }, { key: 'minWage4', label: 'Lương tối thiểu vùng IV (đ)' },
-  { key: 'employeeSocial', label: 'Người lao động: BHXH (%)' }, { key: 'employeeHealth', label: 'Người lao động: BHYT (%)' }, { key: 'employeeUnemployment', label: 'Người lao động: BHTN (%)' },
-  { key: 'employerSocial', label: 'Doanh nghiệp: BHXH (%)' }, { key: 'employerHealth', label: 'Doanh nghiệp: BHYT (%)' }, { key: 'employerUnemployment', label: 'Doanh nghiệp: BHTN (%)' },
+const RULE_FIELDS: RuleField[] = [
+  'selfDeduct', 'dependentDeduct', 'referenceSalary',
+  'minWage1', 'minWage2', 'minWage3', 'minWage4',
+  'employeeSocial', 'employeeHealth', 'employeeUnemployment',
+  'employerSocial', 'employerHealth', 'employerUnemployment',
 ]
-const EMPTY_FIELDS = Object.fromEntries(RULE_FIELDS.map(({ key }) => [key, ''])) as Record<RuleField, string>
+const EMPTY_FIELDS = Object.fromEntries(RULE_FIELDS.map((key) => [key, ''])) as Record<RuleField, string>
 const percent = (value: string) => Number(value) / 100
 
 function parseRules(fields: Record<RuleField, string>, bracketText: string): PayrollRules | null {
-  if (RULE_FIELDS.some(({ key }) => fields[key].trim() === '')) return null
+  if (RULE_FIELDS.some((key) => fields[key].trim() === '')) return null
   const brackets = bracketText.trim().split('\n').filter(Boolean).map((line) => {
     const [cap, rate] = line.split(',').map((part) => part.trim())
     return { upTo: cap === '*' ? null : /^\d+$/.test(cap) ? Number(cap) : Number.NaN, rate: rate ? percent(rate) : Number.NaN }
@@ -33,6 +34,7 @@ function parseRules(fields: Record<RuleField, string>, bracketText: string): Pay
 }
 
 export default function PayrollPage() {
+  const { t } = useTranslation('finance')
   const [mode, setMode] = useState<'gross' | 'net'>('gross')
   const [salary, setSalary] = useState('')
   const [dependents, setDependents] = useState('0')
@@ -62,30 +64,30 @@ export default function PayrollPage() {
   }
 
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">Kết quả tham khảo</p>
-    <p className="erp-tool-result__value">{result ? `Thực nhận ${formatNumber(result.net)} đ` : 'Chưa đủ tham số'}</p>
+    <p className="erp-tool-result__label">{t('payroll.resultLabel')}</p>
+    <p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : t('payroll.missingParams')}</p>
     {result ? <div className="table-responsive"><table className="table table-sm"><tbody>
-      <tr><th>Gross</th><td>{formatNumber(result.gross)} đ</td></tr><tr><th>BHXH người lao động</th><td>{formatNumber(result.employee.social)} đ</td></tr><tr><th>BHYT người lao động</th><td>{formatNumber(result.employee.health)} đ</td></tr><tr><th>BHTN người lao động</th><td>{formatNumber(result.employee.unemployment)} đ</td></tr>
-      <tr><th>Giảm trừ</th><td>{formatNumber(result.deduction)} đ</td></tr><tr><th>Thu nhập tính thuế</th><td>{formatNumber(result.taxable)} đ</td></tr>
-      {result.taxRows.map((row) => <tr key={row.level}><th>Bậc {row.level} · {formatNumber(row.rate * 100)}%</th><td>{formatNumber(row.amount)} đ</td></tr>)}
-      <tr><th>Thuế TNCN</th><td>{formatNumber(result.tax)} đ</td></tr><tr><th>Doanh nghiệp đóng thêm</th><td>{formatNumber(result.employerTotal)} đ</td></tr><tr><th>Tổng chi phí doanh nghiệp</th><td>{formatNumber(result.employerCost)} đ</td></tr>
-    </tbody></table></div> : <p className="erp-tool-result__note">Điền đầy đủ tham số từ bộ quy tắc đã ký hoặc bảng lương, hợp đồng và hướng dẫn của kế toán.</p>}
-    <p className="erp-tool-result__note">{usingVerified && verified ? `Gói tham số có chữ ký, hiệu lực từ ${formatRuleDate(verified.effectiveFrom)}. Nguồn: ${verified.source.title}.` : 'Thông số do bạn nhập; công cụ không xác nhận đây là quy định hiện hành.'} Kết quả chưa thay thế quyết toán thuế thực tế.</p>
-    {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">Xem nguồn dữ liệu</a> : null}
+      <tr><th>{t('payroll.rows.gross')}</th><td>{t('shared.amount', { amount: formatNumber(result.gross) })}</td></tr><tr><th>{t('payroll.rows.employeeSocial')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.social) })}</td></tr><tr><th>{t('payroll.rows.employeeHealth')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.health) })}</td></tr><tr><th>{t('payroll.rows.employeeUnemployment')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.unemployment) })}</td></tr>
+      <tr><th>{t('payroll.rows.deduction')}</th><td>{t('shared.amount', { amount: formatNumber(result.deduction) })}</td></tr><tr><th>{t('payroll.rows.taxable')}</th><td>{t('shared.amount', { amount: formatNumber(result.taxable) })}</td></tr>
+      {result.taxRows.map((row) => <tr key={row.level}><th>{t('payroll.rows.bracket', { level: row.level, rate: formatNumber(row.rate * 100) })}</th><td>{t('shared.amount', { amount: formatNumber(row.amount) })}</td></tr>)}
+      <tr><th>{t('payroll.rows.tax')}</th><td>{t('shared.amount', { amount: formatNumber(result.tax) })}</td></tr><tr><th>{t('payroll.rows.employerTotal')}</th><td>{t('shared.amount', { amount: formatNumber(result.employerTotal) })}</td></tr><tr><th>{t('payroll.rows.employerCost')}</th><td>{t('shared.amount', { amount: formatNumber(result.employerCost) })}</td></tr>
+    </tbody></table></div> : <p className="erp-tool-result__note">{t('payroll.hint')}</p>}
+    <p className="erp-tool-result__note">{usingVerified && verified ? t('payroll.paramsVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('payroll.paramsManual')} {t('payroll.notSettlement')}</p>
+    {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}
   </div>}>
-    <ToolPanel title="Tính lương Gross – Net">
-      <label className="erp-flow-field__label">Chiều tính<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="gross">Gross → Net</option><option value="net">Net → Gross</option></Form.Select></label>
-      <label className="erp-flow-field__label mt-3">{mode === 'gross' ? 'Lương Gross (đ/tháng)' : 'Lương Net mong muốn (đ/tháng)'}<Form.Control type="number" min="0" step="1" value={salary} onChange={(event) => setSalary(event.target.value)} /></label>
+    <ToolPanel title={t('payroll.panelTitle')}>
+      <label className="erp-flow-field__label">{t('payroll.direction')}<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="gross">{t('payroll.directions.gross')}</option><option value="net">{t('payroll.directions.net')}</option></Form.Select></label>
+      <label className="erp-flow-field__label mt-3">{mode === 'gross' ? t('payroll.grossSalary') : t('payroll.netSalary')}<Form.Control type="number" min="0" step="1" value={salary} onChange={(event) => setSalary(event.target.value)} /></label>
       <div className="erp-tool-form__grid mt-3">
-        <label className="erp-flow-field__label">Người phụ thuộc<Form.Control type="number" min="0" step="1" value={dependents} onChange={(event) => setDependents(event.target.value)} /></label>
-        <label className="erp-flow-field__label">Vùng<Form.Select value={region} onChange={(event) => setRegion(Number(event.target.value) as typeof region)}>{[1, 2, 3, 4].map((value) => <option value={value} key={value}>Vùng {value}</option>)}</Form.Select></label>
-        <label className="erp-flow-field__label">Lương đóng bảo hiểm (đ, để trống = Gross)<Form.Control type="number" min="0" step="1" value={insuranceBase} onChange={(event) => setInsuranceBase(event.target.value)} /></label>
-        <label className="erp-flow-field__label">Phụ cấp miễn thuế trong Gross (đ)<Form.Control type="number" min="0" step="1" value={exempt} onChange={(event) => setExempt(event.target.value)} /></label>
+        <label className="erp-flow-field__label">{t('payroll.dependents')}<Form.Control type="number" min="0" step="1" value={dependents} onChange={(event) => setDependents(event.target.value)} /></label>
+        <label className="erp-flow-field__label">{t('payroll.region')}<Form.Select value={region} onChange={(event) => setRegion(Number(event.target.value) as typeof region)}>{[1, 2, 3, 4].map((value) => <option value={value} key={value}>{t('payroll.regionOption', { region: value })}</option>)}</Form.Select></label>
+        <label className="erp-flow-field__label">{t('payroll.insuranceBase')}<Form.Control type="number" min="0" step="1" value={insuranceBase} onChange={(event) => setInsuranceBase(event.target.value)} /></label>
+        <label className="erp-flow-field__label">{t('payroll.exempt')}<Form.Control type="number" min="0" step="1" value={exempt} onChange={(event) => setExempt(event.target.value)} /></label>
       </div>
-      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>Áp dụng tham số đã ký</Button> : null}
-      <RuleStatus rules={payrollRules} label="tham số tính lương" noneText="Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống." />
-      <details className="mt-3"><summary>Nhập tham số tính lương</summary><div className="erp-tool-form__grid mt-3">{RULE_FIELDS.map(({ key, label }) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min="0" step="any" value={fields[key]} onChange={(event) => updateField(key, event.target.value)} /></label>)}</div>
-        <label className="erp-flow-field__label mt-3">Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
+      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('payroll.applyParams')}</Button> : null}
+      <RuleStatus rules={payrollRules} label={t('payroll.ruleLabel')} noneText={t('payroll.ruleNone')} />
+      <details className="mt-3"><summary>{t('payroll.enterParams')}</summary><div className="erp-tool-form__grid mt-3">{RULE_FIELDS.map((key) => <label className="erp-flow-field__label" key={key}>{t(`payroll.fields.${key}`)}<Form.Control type="number" min="0" step="any" value={fields[key]} onChange={(event) => updateField(key, event.target.value)} /></label>)}</div>
+        <label className="erp-flow-field__label mt-3">{t('payroll.brackets')}<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
       </details>
     </ToolPanel>
     <ByoAiPanel toolId="luong" domain="payroll" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={result ? `Gross ${result.gross} đ; Net ${result.net} đ` : ''} />

@@ -1,5 +1,6 @@
 import type { FlowNote, FlowOutput, FlowStep, FlowTask } from '@/features/tools/hub'
 import { createZipWriter, stem } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { formatFileSize } from '@/utils/format'
 import type { ImageFormat, ImageItem, Size } from '../types/image.types'
 import { fitWithin, IMAGE_FORMAT, outputName, sizeLabel } from '../utils/image-format'
@@ -44,16 +45,18 @@ export async function reencode(item: ImageItem, format: ImageFormat, quality: nu
   }
 }
 
-export async function eachImage(items: ImageItem[], step: FlowStep, verb: string, work: (item: ImageItem) => Promise<Redrawn>): Promise<Redrawn[]> {
+export type ProgressVerb = 'process' | 'convert' | 'compress'
+
+export async function eachImage(items: ImageItem[], step: FlowStep, verb: ProgressVerb, work: (item: ImageItem) => Promise<Redrawn>): Promise<Redrawn[]> {
   const blobs: Redrawn[] = []
   for (const [index, item] of items.entries()) {
     step.signal.throwIfAborted()
-    step.onProgress(index, items.length, items.length > 1 ? `${verb} ảnh ${index + 1}/${items.length}` : undefined)
+    step.onProgress(index, items.length, items.length > 1 ? translate(`image:tasks.progress.${verb}`, { current: index + 1, total: items.length }) : undefined)
     try {
       blobs.push(await work(item))
     } catch (error) {
       // Lô nhiều ảnh: nói rõ ảnh nào hỏng, không thì người dùng phải thử từng tệp.
-      const reason = error instanceof Error ? error.message : 'không xử lý được ảnh.'
+      const reason = error instanceof Error ? error.message : translate('image:tasks.imageFailed')
       throw new Error(items.length > 1 ? `"${item.name}": ${reason}` : reason, { cause: error })
     }
   }
@@ -67,7 +70,7 @@ export async function bundle(files: Encoded[], zipName: string): Promise<FlowOut
   if (files.length === 1) return { name: files[0].name, blob: files[0].blob }
   const zip = createZipWriter()
   for (const file of files) zip.add(file.name, new Uint8Array(await file.blob.arrayBuffer()))
-  return { name: `${zipName}.zip`, blob: zip.finish(), detail: `${files.length} ảnh` }
+  return { name: `${zipName}.zip`, blob: zip.finish(), detail: translate('image:shared.imageCount', { count: files.length }) }
 }
 
 export interface ConvertOptions {
@@ -80,19 +83,19 @@ export interface ConvertOptions {
 export function convertImagesTask(items: ImageItem[], { format, quality }: ConvertOptions): FlowTask {
   return async (step) => {
     const label = IMAGE_FORMAT[format].label
-    const results = await eachImage(items, step, 'Đang chuyển', async (item) => (item.format === format ? { blob: item.file, exif: await originalExif(item) } : reencode(item, format, quality, (size) => size)))
+    const results = await eachImage(items, step, 'convert', async (item) => (item.format === format ? { blob: item.file, exif: await originalExif(item) } : reencode(item, format, quality, (size) => size)))
     const files = items.map((item, index) => ({ name: outputName(item.name, format), blob: results[index].blob }))
 
     const kept = items.filter((item) => item.format === format).length
     const flattened = format === 'jpeg' && items.some((item) => item.format !== 'jpeg')
     const notes: FlowNote[] = []
-    if (kept > 0) notes.push({ tone: 'info', text: `${kept} ảnh đã là ${label} sẵn — giữ nguyên, không mã hoá lại.` })
-    if (flattened) notes.push({ tone: 'info', text: 'JPG không có nền trong suốt: vùng trong suốt (nếu có) được tô trắng.' })
+    if (kept > 0) notes.push({ tone: 'info', text: translate('image:convert.keptNote', { count: kept, format: label }) })
+    if (flattened) notes.push({ tone: 'info', text: translate('image:tasks.jpegFlatten') })
     notes.push(...exifNotes(results.map((result) => result.exif)))
 
     const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh ${label}`)
     return {
-      title: items.length === 1 ? `Đã chuyển sang ${label}` : `Đã chuyển ${items.length} ảnh sang ${label}`,
+      title: items.length === 1 ? translate('image:convert.titleOne', { format: label }) : translate('image:convert.titleMany', { count: items.length, format: label }),
       output: items.length === 1 ? { ...output, detail: sizeLabel(items[0]) } : output,
       notes,
     }
@@ -112,7 +115,7 @@ export interface CompressOptions {
  */
 export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: CompressOptions): FlowTask {
   return async (step) => {
-    const results = await eachImage(items, step, 'Đang nén', (item) => reencode(item, writableFormat(item.format), quality, (size) => fitWithin(size, maxEdge)))
+    const results = await eachImage(items, step, 'compress', (item) => reencode(item, writableFormat(item.format), quality, (size) => fitWithin(size, maxEdge)))
     const blobs = results.map((result) => result.blob)
 
     // Ảnh nào thật sự được thay bằng bản nén (bản nén nhẹ hơn tệp gốc).
@@ -132,20 +135,20 @@ export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: Com
     const sizes = `${formatFileSize(before)} → ${formatFileSize(after)}`
     const notes: FlowNote[] = []
 
-    if (smaller) notes.push({ tone: 'success', text: `${sizes} (nhẹ hơn ${Math.round((1 - after / before) * 100)}%).` })
+    if (smaller) notes.push({ tone: 'success', text: translate('image:compress.smaller', { sizes, percent: Math.round((1 - after / before) * 100) }) })
     if (unchanged > 0) {
-      const which = items.length === 1 ? 'Ảnh ra không nhẹ hơn ảnh gốc' : `${unchanged}/${items.length} ảnh không nhẹ hơn được`
-      notes.push({ tone: 'warning', text: `${which} — giữ nguyên tệp gốc. ${hintFor(items, maxEdge)}` })
+      const hint = hintFor(items, maxEdge)
+      notes.push({ tone: 'warning', text: items.length === 1 ? translate('image:compress.unchangedOne', { hint }) : translate('image:compress.unchangedSome', { count: unchanged, total: items.length, hint }) })
     }
-    if (shrunk > 0) notes.push({ tone: 'info', text: `${shrunk} ảnh được thu nhỏ về cạnh dài ${maxEdge} px.` })
+    if (shrunk > 0) notes.push({ tone: 'info', text: translate('image:compress.shrunk', { count: shrunk, edge: maxEdge }) })
     notes.push(...exifNotes(exif))
     if (changed.some((item) => item.format === 'webp') && writableFormat('webp') !== 'webp') {
-      notes.push({ tone: 'info', text: 'Trình duyệt này không ghi được WebP: ảnh WebP được lưu thành PNG.' })
+      notes.push({ tone: 'info', text: translate('image:tasks.webpAsPng') })
     }
 
     const output = await bundle(files, `${stem(items[0].name)} - ${items.length} ảnh đã nén`)
     return {
-      title: smaller ? 'Đã nén xong' : 'Không nén thêm được',
+      title: smaller ? translate('image:compress.titleDone') : translate('image:compress.titleNone'),
       tone: smaller ? 'success' : 'warning',
       output: items.length === 1 ? { ...output, detail: sizeLabel(replaced[0] ? fitWithin(items[0], maxEdge) : items[0]) } : output,
       notes,
@@ -155,7 +158,7 @@ export function compressImagesTask(items: ImageItem[], { quality, maxEdge }: Com
 
 function hintFor(items: ImageItem[], maxEdge: number | null): string {
   if (items.some((item) => item.format === 'png')) {
-    return 'PNG không mất dữ liệu nên khó nhỏ hơn; muốn nhẹ hẳn thì dùng "Chuyển đổi ảnh" sang JPG hoặc WebP.'
+    return translate('image:compress.hintPng')
   }
-  return maxEdge ? 'Ảnh đã được nén gần hết mức từ trước.' : 'Ảnh đã được nén gần hết mức từ trước — thử thêm "Cạnh dài tối đa" để thu nhỏ.'
+  return maxEdge ? translate('image:compress.hintMaxed') : translate('image:compress.hintTryEdge')
 }

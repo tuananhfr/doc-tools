@@ -27,7 +27,30 @@
 .cn-button--outline:hover { background: rgb(255 255 255 / 12%); }
 .cn-icon-button { display: inline-grid; place-items: center; flex: none; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: var(--cn-ink); font-size: 20px; text-decoration: none; }
 .cn-icon-button:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-share-toggle::after { display: none; }
+.cn-share-toggle[aria-expanded="true"] { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-header .cn-share-panel { width: 320px; max-width: calc(100vw - 48px); padding: 20px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); color: var(--cn-ink); box-shadow: 0 12px 32px rgb(12 37 77 / 12%); }
+.cn-share-title { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+.cn-share-description, .cn-share-hint { margin: 0 0 14px; color: var(--cn-muted); font-size: 12px; line-height: 1.6; }
+.cn-share-url { width: 100%; min-width: 0; height: 40px; margin-bottom: 12px; padding: 8px 10px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-hero); color: var(--cn-ink); font: 12px/1.5 var(--cn-font-family); }
+.cn-share-options { display: grid; gap: 8px; }
+.cn-share-option { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); color: var(--cn-ink); font: 700 12px/1.5 var(--cn-font-family); text-decoration: none; }
+.cn-share-option:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-share-option--primary { border-color: #005be8; background: #005be8; color: var(--cn-on-accent); }
+.cn-share-option--primary:hover { background: var(--cn-accent-hover); color: var(--cn-on-accent); }
+.cn-share-option:disabled { opacity: .6; cursor: not-allowed; }
+.cn-share-platforms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.cn-share-hint { margin: 12px 0 0; }
+.cn-share-status { margin: 10px 0 0; color: var(--cn-ink); font-size: 12px; line-height: 1.6; }
+.cn-share-status:empty { margin: 0; }
 .cn-language { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: inherit; }
+.cn-language__toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 0 10px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 14px; font-weight: 500; }
+.cn-language__toggle:hover, .cn-language__toggle[aria-expanded="true"] { background: var(--cn-tint); color: var(--cn-ink); }
+.cn-language__toggle .bi { font-size: 17px; }
+.cn-language__code { display: none; }
+.cn-language__menu { max-height: min(80vh, 640px); overflow-y: auto; }
+.cn-language__menu .dropdown-item { padding-block: 8px; }
+.cn-language__menu .dropdown-item.active { background: var(--cn-tint); color: var(--cn-accent); font-weight: 600; }
 .cn-header .erp-tools-prefs { gap: 10px; }
 .cn-header .erp-tools-prefs__toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; padding: 0; color: var(--cn-ink); background: transparent; border: 0; border-radius: 50%; font-size: 19px; }
 .cn-header .erp-tools-prefs__toggle::after { display: none; }
@@ -77,8 +100,17 @@
   .cn-header .erp-tools-prefs { gap: 4px; }
   .cn-icon-button, .cn-header .erp-tools-prefs__toggle { width: 34px; height: 36px; font-size: 18px; }
   .cn-language { font-size: 11px; gap: 3px; }
+  .cn-language__toggle { min-height: 36px; padding: 0 6px; gap: 3px; font-size: 12px; }
+  .cn-language__name { display: none; }
+  .cn-language__code { display: inline; }
   .cn-footer-content, .cn-footer-brand { flex-direction: column; align-items: flex-start; gap: 12px; }
   .cn-brand--compact { font-size: 16px; }
   .cn-brand--compact img { width: 32px; height: 32px; }
   .cn-footer nav { gap: 16px; }
+}
+@media (max-width: 359px) {
+  .cn-header .cn-brand { font-size: 18px; }
+  .cn-header .cn-brand img { width: 32px; height: 32px; }
+  .cn-header-actions { gap: 0; }
+  .cn-header .erp-tools-prefs { gap: 2px; }
 }

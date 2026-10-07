@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Nhiều dấu hiệu cần kiểm tra",
+    "levelMedium": "Có dấu hiệu cần kiểm tra",
+    "levelLow": "Chưa thấy dấu hiệu trong bộ quy tắc",
+    "result": "Kết quả sàng lọc",
+    "note": "Đây chỉ là kiểm tra dấu hiệu bằng quy tắc, không chứng minh đường dẫn hay tin nhắn an toàn. Không nhập OTP hoặc mật khẩu vào trang mở từ tin nhắn; liên hệ tổ chức qua kênh bạn tự tìm.",
+    "title": "Nội dung cần kiểm tra",
+    "kind": "Loại nội dung",
+    "kindMessage": "Tin nhắn",
+    "kindLink": "Đường dẫn",
+    "messageLabel": "Nội dung tin nhắn",
+    "linkPlaceholder": "Dán đường dẫn, không cần mở…",
+    "messagePlaceholder": "Dán tin nhắn nghi ngờ…",
+    "privacy": "Nội dung được phân tích trên máy; công cụ không truy cập đường dẫn bạn dán."
+  },
+  "flags": {
+    "unreadable": "Không đọc được đường dẫn.",
+    "noHttps": "Không dùng HTTPS.",
+    "ipHost": "Dùng địa chỉ IP thay tên miền.",
+    "punycode": "Tên miền có mã punycode, cần đối chiếu tên thật.",
+    "shortener": "Link rút gọn che khuất đích đến.",
+    "riskyTld": "Đuôi tên miền thường gặp trong các đường dẫn rủi ro.",
+    "fakeGov": "Có chữ gov nhưng không thuộc miền .gov.vn.",
+    "brand": "Tên miền có chữ {{brand}}; cần đối chiếu địa chỉ chính thức.",
+    "loginPath": "Đường dẫn gợi thao tác đăng nhập hoặc xác thực.",
+    "otp": "Yêu cầu mã OTP hoặc mã xác thực.",
+    "lockThreat": "Gây áp lực bằng nguy cơ khóa tài khoản.",
+    "prize": "Hứa thưởng hoặc quà tặng.",
+    "easyJob": "Mời việc nhẹ lương cao hoặc nhiệm vụ trực tuyến.",
+    "urgentTransfer": "Giục chuyển hoặc nạp tiền gấp.",
+    "installApp": "Yêu cầu cài ứng dụng từ tin nhắn.",
+    "link": "Link {{link}}: {{flags}}"
+  }
+}

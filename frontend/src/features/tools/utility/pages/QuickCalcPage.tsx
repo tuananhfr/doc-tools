@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
 import { NumberField } from '../components/NumberField'
@@ -15,6 +16,7 @@ const NO_VALUES: Record<string, string> = {}
  * dùng soát được máy hiểu con số mình gõ thế nào.
  */
 export default function QuickCalcPage() {
+  const { t } = useTranslation('utility')
   const formulaSelect = useId()
   const [group, setGroup] = useState<CalcGroup>('area')
   const [chosen, setChosen] = useState(FIRST_FORMULA)
@@ -35,42 +37,42 @@ export default function QuickCalcPage() {
     <ToolBoard
       side={
         <div className="erp-tool-result" role="status">
-          <p className="erp-tool-result__label">{groupInfo.label}</p>
+          <p className="erp-tool-result__label">{t(groupInfo.label)}</p>
           {outcome.ok ? (
             <>
               <p className="erp-tool-result__value">
                 {formatResult(outcome.value)} <span className="erp-tool-result__unit">{groupInfo.unit}</span>
               </p>
               <p className="erp-tool-result__note">= {outcome.expression}</p>
-              {group === 'mass' && outcome.value >= 1000 ? <p className="erp-tool-result__note">= {formatResult(outcome.value / 1000)} tấn</p> : null}
+              {group === 'mass' && outcome.value >= 1000 ? <p className="erp-tool-result__note">{t('quickCalc.tonnes', { value: formatResult(outcome.value / 1000) })}</p> : null}
               {outcome.quantity !== 1 ? (
                 <p className="erp-tool-result__note">
-                  Mỗi cấu kiện: {formatResult(outcome.single)} {groupInfo.unit}
+                  {t('quickCalc.perPiece', { value: formatResult(outcome.single), unit: groupInfo.unit })}
                 </p>
               ) : null}
-              <CopyButton text={formatResult(outcome.value)} label="Chép kết quả" className="align-self-start" />
+              <CopyButton text={formatResult(outcome.value)} label={t('shared.copyResult')} className="align-self-start" />
             </>
           ) : (
             <>
               <p className="erp-tool-result__value erp-tool-result__value--empty">—</p>
-              <p className="erp-tool-result__note">{invalid.length > 0 ? 'Kích thước và số lượng phải là số lớn hơn 0.' : 'Nhập đủ kích thước để tính.'}</p>
+              <p className="erp-tool-result__note">{invalid.length > 0 ? t('quickCalc.invalid') : t('quickCalc.missing')}</p>
             </>
           )}
         </div>
       }
     >
-      <ToolSegments label="Đại lượng cần tính" value={group} options={CALC_GROUPS} onChange={setGroup} />
+      <ToolSegments label={t('quickCalc.groupLabel')} value={group} options={CALC_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title="Kích thước">
+      <ToolPanel title={t('quickCalc.panelTitle')}>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={formulaSelect}>
-              {group === 'mass' ? 'Vật liệu / cách tính' : 'Hình'}
+              {group === 'mass' ? t('quickCalc.material') : t('quickCalc.shape')}
             </label>
             <Form.Select id={formulaSelect} value={formula.id} onChange={(event) => setChosen((current) => ({ ...current, [group]: event.target.value }))}>
               {formulas.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {item.label}
+                  {t(item.label)}
                 </option>
               ))}
             </Form.Select>
@@ -80,27 +82,27 @@ export default function QuickCalcPage() {
             {formula.inputs.map((input) => (
               <NumberField
                 key={`${formula.id}.${input.key}`}
-                label={input.label}
+                label={t(input.label)}
                 unit={input.unit}
                 value={values[input.key] ?? ''}
                 invalid={invalid.includes(input.key)}
                 onChange={(value) => setValues({ [input.key]: value })}
               />
             ))}
-            <NumberField label="Số lượng" unit="cái" placeholder="1" value={quantity} invalid={invalid.includes(QUANTITY_KEY)} onChange={setQuantity} />
+            <NumberField label={t('quickCalc.quantity')} unit={t('quickCalc.pieces')} placeholder="1" value={quantity} invalid={invalid.includes(QUANTITY_KEY)} onChange={setQuantity} />
           </div>
 
           {formula.presets ? (
-            <div className="erp-tool-presets" role="group" aria-label="Khối lượng riêng có sẵn">
+            <div className="erp-tool-presets" role="group" aria-label={t('quickCalc.densityPresets')}>
               {formula.presets.map((preset) => (
                 <Button key={preset.label} variant="outline-secondary" size="sm" onClick={() => setValues(preset.values)}>
-                  {preset.label}
+                  {t(preset.label)}
                 </Button>
               ))}
             </div>
           ) : null}
 
-          <p className="erp-flow-field__hint">Dấu thập phân gõ phẩy hay chấm đều được: 2,5 và 2.5 là một. Số gõ vào được in lại trong phép tính bên cạnh.</p>
+          <p className="erp-flow-field__hint">{t('quickCalc.decimalHint')}</p>
         </div>
       </ToolPanel>
     </ToolBoard>

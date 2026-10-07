@@ -1,17 +1,21 @@
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { ToolPanel } from '@/features/tools/hub'
+import { numberFormat } from '@/i18n/intl'
 import { HEADING_FAILURE, STABILITY_BADGE } from '../config/heading-status'
 import { LUOPAN_CONVENTION } from '../config/luopan'
 import { useDeviceHeading } from '../hooks/useDeviceHeading'
-import type { VoidKind } from '../types/luopan.types'
 import { directionOf, formatDeg, normalizeDeg } from '../utils/azimuth'
 import { compassShapes, type StarSegment } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
 import { mountainOf, sittingOf } from '../utils/luopan'
+import { mountainName } from '../utils/terms'
 import { ManualDegree } from './ManualDegree'
 import { ShapeLayer } from './ShapeLayer'
+
+const VOID_FORMAT: Intl.NumberFormatOptions = { maximumFractionDigits: 1 }
 
 export interface LockedFacing {
   azimuth: number
@@ -35,31 +39,31 @@ const RADIUS = SIDE * 0.45
 /** Chỗ trên / dưới mặt số cho chữ HƯỚNG, TOẠ. */
 const PAD = 30
 
-const VOID_LABEL: Record<VoidKind, string> = { MAJOR: 'Đại không vong', MINOR: 'Tiểu không vong' }
-
 /**
  * La bàn sống của chế độ Gia chủ: mặt la kinh xoay theo đầu máy như la bàn thật,
  * dây Hướng – Toạ cố định theo thân máy, khoá lại thì mặt số đứng yên. Không có
  * cảm biến (máy tính, quyền bị chặn) vẫn nhập tay được số độ — không bao giờ kẹt.
  */
 export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock }: LiveCompassProps) {
+  const { t } = useTranslation('orientation')
   const { status, reading, start, stop } = useDeviceHeading()
   const [outside, setOutside] = useState(false)
   const [manual, setManual] = useState(false)
-  const failure = HEADING_FAILURE[status]
+  const failureKey = HEADING_FAILURE[status]
+  const failure = failureKey ? t(`heading.failure.${failureKey}`) : null
   const live = status === 'live' ? reading : null
   // Đứng ngoài nhìn vào nhà thì đầu máy chĩa vào TOẠ — hướng nhà ở sau lưng máy.
   const flipped = outside && !manual
   const liveFacing = live ? normalizeDeg(live.heading + (flipped ? 180 : 0)) : null
   const facing = locked?.azimuth ?? liveFacing
   const pointing = facing === null ? 0 : normalizeDeg(facing + (flipped ? 180 : 0))
-  const stability = live?.stability ? STABILITY_BADGE[live.stability] : null
+  const stability = live?.stability ? { ...STABILITY_BADGE[live.stability], label: t(`heading.stability.${live.stability}`) } : null
 
   const shapes = useMemo(
     () => compassShapes({ center: { x: CENTER, y: CENTER }, radius: RADIUS, north: 0, divisions: 8, degrees: false, needles: [], rings: { stars } }),
     [stars],
   )
-  const [top, bottom] = flipped ? ['TOẠ', 'HƯỚNG'] : ['HƯỚNG', 'TOẠ']
+  const [top, bottom] = flipped ? [t('live.sittingEnd'), t('live.facingEnd')] : [t('live.facingEnd'), t('live.sittingEnd')]
   const [topColor, bottomColor] = flipped ? [palette.ring, palette.north] : [palette.north, palette.ring]
 
   const toggleManual = () => {
@@ -70,14 +74,14 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
   }
 
   return (
-    <ToolPanel title="La bàn hướng nhà">
-      {!manual && !locked ? <p className="erp-orient-muted">Đứng ở cửa chính, quay lưng vào nhà, cầm máy nằm ngang, đầu máy chĩa thẳng ra ngoài.</p> : null}
+    <ToolPanel title={t('live.title')}>
+      {!manual && !locked ? <p className="erp-orient-muted">{t('live.intro')}</p> : null}
 
       <svg
         className="erp-orient-dial"
         viewBox={`0 ${-PAD} ${SIDE} ${SIDE + PAD * 2}`}
         role="img"
-        aria-label={facing === null ? 'Mặt la bàn, Bắc ở trên' : `Mặt la bàn, hướng nhà ${formatDeg(facing)}`}
+        aria-label={facing === null ? t('live.dialAria') : t('live.dialAriaFacing', { degree: formatDeg(facing) })}
       >
         <g transform={`rotate(${-pointing} ${CENTER} ${CENTER})`}>
           <ShapeLayer shapes={shapes} palette={palette} opacity={1} />
@@ -94,7 +98,7 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
         </text>
       </svg>
 
-      {facing !== null ? <FacingReadout facing={facing} /> : <p className="erp-orient-muted erp-orient-facing__empty">Bấm “Bắt đầu đo” hoặc nhập số độ để đọc hướng nhà.</p>}
+      {facing !== null ? <FacingReadout facing={facing} /> : <p className="erp-orient-muted erp-orient-facing__empty">{t('live.empty')}</p>}
 
       {live ? (
         <div className="erp-orient-facing__meta">
@@ -104,20 +108,20 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
               {stability.label}
             </span>
           ) : null}
-          <span className="erp-orient-muted">{live.accuracy !== null ? `Máy báo sai số ±${Math.round(live.accuracy)}°` : 'Máy không báo sai số'}</span>
+          <span className="erp-orient-muted">{live.accuracy !== null ? t('heading.accuracy', { value: Math.round(live.accuracy) }) : t('heading.noAccuracy')}</span>
         </div>
       ) : null}
 
       {failure && !manual ? (
         <p className="erp-orient-note erp-orient-note--danger" role="alert">
           <Icon name="x-octagon" />
-          {failure} Có thể nhập số độ đo bằng la bàn khác.
+          {t('live.failureManual', { failure })}
         </p>
       ) : null}
 
       {manual ? (
         <ManualDegree
-          label="Hướng nhà"
+          label={t('targets.HOUSE_FRONTAGE.label')}
           value={locked?.source === 'MANUAL' ? locked.azimuth : null}
           disabled={disabled}
           onChange={(azimuth) => (azimuth === null ? onUnlock() : onLock(azimuth, 'MANUAL', null))}
@@ -128,7 +132,7 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
         <Form.Check
           type="checkbox"
           id="orient-live-outside"
-          label="Tôi đang đứng ngoài, nhìn vào nhà"
+          label={t('heading.outside')}
           checked={outside}
           disabled={disabled}
           onChange={(event) => setOutside(event.target.checked)}
@@ -140,7 +144,7 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
           <>
             <span className="erp-orient-badge erp-orient-badge--success">
               <Icon name="lock" />
-              Đã khoá {formatDeg(locked.azimuth)}
+              {t('live.locked', { degree: formatDeg(locked.azimuth) })}
             </span>
             <Button
               variant="outline-secondary"
@@ -151,7 +155,7 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
               }}
             >
               <Icon name="unlock" className="me-2" />
-              Đo lại
+              {t('live.remeasure')}
             </Button>
           </>
         ) : live && liveFacing !== null ? (
@@ -165,33 +169,33 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
               }}
             >
               <Icon name="lock" className="me-2" />
-              Khoá hướng
+              {t('live.lock')}
             </Button>
             <Button variant="outline-secondary" disabled={disabled} onClick={stop}>
-              Dừng
+              {t('heading.stop')}
             </Button>
           </>
         ) : (
           <Button variant="primary" disabled={disabled || status === 'starting'} onClick={() => void start()}>
             <Icon name="compass" className="me-2" />
-            {status === 'starting' ? 'Đang mở la bàn…' : failure ? 'Thử lại' : 'Bắt đầu đo'}
+            {t(status === 'starting' ? 'heading.starting' : failure ? 'heading.retry' : 'heading.start')}
           </Button>
         )}
         <Button variant="link" className="erp-orient-actions__link" disabled={disabled} onClick={toggleManual}>
-          {manual ? 'Dùng la bàn của máy' : 'Nhập số độ'}
+          {t(manual ? 'live.useDevice' : 'live.enterDegree')}
         </Button>
       </div>
 
       {live?.stability === 'UNSTABLE' ? (
         <p className="erp-orient-note erp-orient-note--warning">
           <Icon name="arrow-repeat" />
-          Số đang nhảy nhiều nên chưa khoá được. Đứng yên, xoay máy hình số 8 vài lần để máy tự hiệu chỉnh.
+          {t('live.unstable')}
         </p>
       ) : null}
       {!manual && !locked ? (
         <p className="erp-orient-note erp-orient-note--warning">
           <Icon name="magnet" />
-          Đứng xa cột thép, ô tô, cửa cuốn, nam châm và thiết bị điện — chúng làm lệch la bàn.
+          {t('heading.magnetWarning')}
         </p>
       ) : null}
     </ToolPanel>
@@ -200,6 +204,7 @@ export function LiveCompass({ palette, stars, locked, disabled, onLock, onUnlock
 
 /** Hướng / toạ đọc theo 24 sơn, độ lệch tâm sơn và cảnh báo không vong. */
 function FacingReadout({ facing }: { facing: number }) {
+  const { t } = useTranslation('orientation')
   const sitting = sittingOf(facing)
   const front = mountainOf(facing)
   const back = mountainOf(sitting)
@@ -208,18 +213,18 @@ function FacingReadout({ facing }: { facing: number }) {
     <div className="erp-orient-facing" aria-live="polite">
       <dl className="erp-orient-facing__pair">
         <div>
-          <dt>Hướng</dt>
+          <dt>{t('live.facing')}</dt>
           <dd>
-            <strong>{front.mountain.name}</strong>
+            <strong>{mountainName(front.mountain.index)}</strong>
             <span>
               {formatDeg(facing)} · {directionOf(facing).name}
             </span>
           </dd>
         </div>
         <div>
-          <dt>Toạ</dt>
+          <dt>{t('live.sitting')}</dt>
           <dd>
-            <strong>{back.mountain.name}</strong>
+            <strong>{mountainName(back.mountain.index)}</strong>
             <span>
               {formatDeg(sitting)} · {directionOf(sitting).name}
             </span>
@@ -228,14 +233,19 @@ function FacingReadout({ facing }: { facing: number }) {
       </dl>
       <p className="erp-orient-muted">
         {front.toward
-          ? `Lệch tâm ${front.mountain.name} ${formatDeg(Math.abs(front.offset))} về phía ${front.toward.name}.`
-          : `Đúng tâm sơn ${front.mountain.name}.`}
+          ? t('live.offset', { mountain: mountainName(front.mountain.index), degree: formatDeg(Math.abs(front.offset)), toward: mountainName(front.toward.index) })
+          : t('live.centered', { mountain: mountainName(front.mountain.index) })}
       </p>
       {front.void && front.toward ? (
         <div className="erp-orient-note erp-orient-note--warning" role="status">
           <Icon name="exclamation-triangle" />
           <span>
-            <strong>{VOID_LABEL[front.void]}</strong> — hướng nằm sát ranh {front.mountain.name} / {front.toward.name}. {LUOPAN_CONVENTION.note}
+            <Trans
+              ns="orientation"
+              i18nKey="live.voidWarning"
+              values={{ kind: t(`live.void.${front.void}`), mountain: mountainName(front.mountain.index), toward: mountainName(front.toward.index), note: t('terms.voidNote', { window: numberFormat(VOID_FORMAT).format(LUOPAN_CONVENTION.voidWindow) }) }}
+              components={{ strong: <strong /> }}
+            />
           </span>
         </div>
       ) : null}

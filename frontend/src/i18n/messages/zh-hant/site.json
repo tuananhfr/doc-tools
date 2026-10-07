@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "使用承諾",
+    "items": {
+      "free": {
+        "title": "完全免費",
+        "description": "立即使用，沒有隱藏費用"
+      },
+      "noAccount": {
+        "title": "不需要帳號",
+        "description": "開啟網頁，選擇工具就能用"
+      },
+      "noInstall": {
+        "title": "不需要安裝",
+        "description": "直接在瀏覽器中執行"
+      },
+      "onDevice": {
+        "title": "檔案留在裝置上",
+        "description": "你的檔案不會上傳到伺服器"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — 免費工具",
+    "description": "免費的 PDF、影像、QR 碼和實用工具。在你的裝置上處理，檔案不會上傳。"
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "關於 Chuyện Nhỏ | ERPCons & LPC 的免費工具",
+      "description": "Chuyện Nhỏ 是 ERPCons & LPC 提供的免費工具組，幫你快速處理工作、營建和日常生活中的小事。"
+    },
+    "ho-tro": {
+      "title": "說明與常見問題 | Chuyện Nhỏ",
+      "description": "使用 Chuyện Nhỏ 時常見問題的解答，以及聯絡我們的方式。"
+    },
+    "xu-ly-du-lieu": {
+      "title": "我們如何處理資料 | Chuyện Nhỏ",
+      "description": "哪些工具直接在裝置上處理、哪些需要伺服器，以及會儲存哪些資料。每項工具都公開透明。"
+    },
+    "cai-dat": {
+      "title": "在手機和電腦上安裝 Chuyện Nhỏ | Chuyện Nhỏ",
+      "description": "將 Chuyện Nhỏ 加到 Android、iPhone、iPad 的主畫面，或安裝在 Windows、macOS 上，像應用程式一樣快速開啟。"
+    },
+    "huong-dan": {
+      "title": "使用指南 | Chuyện Nhỏ",
+      "description": "常用工具的逐步指南：壓縮 PDF、掃描圖片轉 PDF、OCR、QR 碼、房屋座向、建屋概算、家庭行事曆。"
+    },
+    "dieu-khoan": {
+      "title": "使用條款 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ 免費工具組的使用條款。"
+    },
+    "quyen-rieng-tu": {
+      "title": "隱私權政策 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ 如何依據越南 2025 年《個人資料保護法》蒐集、使用和保護個人資料。"
+    }
+  },
+  "nav": {
+    "tools": "工具",
+    "construction": "營建",
+    "family": "家庭",
+    "guides": "指南",
+    "about": "關於我們"
+  },
+  "header": {
+    "skipLink": "跳至內容",
+    "mainNav": "主要導覽",
+    "search": "搜尋工具",
+    "openMenu": "開啟選單",
+    "mobileNav": "行動裝置導覽"
+  },
+  "footer": {
+    "madeBy": "<link>ERPCons & LPC</link> 出品",
+    "navLabel": "頁尾導覽",
+    "motto": "一路與你同行。",
+    "links": {
+      "about": "簡介",
+      "guides": "指南",
+      "data": "資料處理",
+      "support": "說明",
+      "terms": "條款",
+      "privacy": "隱私權"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ，首頁"
+  },
+  "share": {
+    "button": "分享",
+    "title": "分享連結",
+    "description": "把這個頁面傳給朋友或同事。",
+    "urlLabel": "目前頁面的連結",
+    "copy": "複製連結",
+    "native": "透過應用程式分享",
+    "copied": "已複製連結。",
+    "copyFailed": "無法複製。請選取並複製上方的連結。",
+    "shareFailed": "無法開啟分享面板。請複製連結後傳送。",
+    "unsupported": "此瀏覽器尚不支援透過應用程式分享。你可以複製連結，透過 LINE、Zalo 或其他應用程式傳送。"
+  },
+  "breadcrumb": {
+    "label": "目前位置",
+    "home": "首頁",
+    "tools": "工具",
+    "guides": "指南"
+  },
+  "search": {
+    "label": "搜尋工具",
+    "placeholder": "搜尋工具…（例如：合併 PDF、QR、OCR）",
+    "clear": "清除關鍵字",
+    "submit": "搜尋"
+  },
+  "filters": {
+    "all": "全部"
+  },
+  "results": {
+    "count": "{{count}} 個工具",
+    "countFor": "「{{keyword}}」共有 {{count}} 個工具",
+    "empty": "找不到任何工具",
+    "emptyHint": "試試其他關鍵字，或減少篩選條件。",
+    "showAll": "查看所有工具"
+  },
+  "toolCard": {
+    "useNow": "立即使用",
+    "soon": "即將推出"
+  },
+  "processing": {
+    "server": "在伺服器上處理",
+    "device": "在裝置上"
+  },
+  "recent": {
+    "title": "最近使用"
+  },
+  "products": {
+    "learnMore": "了解 {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | 免費工具，需要就用。",
+    "captionStart": "小小的事\n成就大大的價值。",
+    "tagline": "免費工具，需要就用。",
+    "description": "簡單實用的小工具，幫你搞定日常工作。",
+    "promisesLabel": "立即使用",
+    "promises": {
+      "noAccount": "不需要帳號",
+      "noInstall": "不需要安裝",
+      "onDevice": "檔案在裝置上處理"
+    },
+    "captionEnd": "今天更簡單。\n明天更長久。",
+    "catalogTitle": "今天需要做什麼？",
+    "featuredLabel": "熱門工具",
+    "resultsLabel": "工具"
+  },
+  "directory": {
+    "metaTitle": "所有免費工具 | Chuyện Nhỏ",
+    "metaDescription": "Chuyện Nhỏ 所有免費的 PDF、影像、QR 碼和實用工具。不需要帳號，直接在裝置上處理。",
+    "title": "所有工具",
+    "lead": "{{count}} 個免費工具。選擇你要做的事，直接在瀏覽器中使用。",
+    "catalogLabel": "工具目錄"
+  },
+  "ecosystem": {
+    "title": "當一個工具不夠用時…",
+    "description": "從今天的小事，到明天更大的工作。",
+    "erpcons": {
+      "heading": "在同一個平台上管理營建工作、專案和企業。",
+      "modules": "工作 · 合約 · 專案\n成本 · 採購 · 倉庫 · 財務",
+      "trial": "試用"
+    },
+    "tekshot": {
+      "heading": "AI 與軟體平台，協助企業看見、深入理解、自動化並成長。",
+      "modules": "AI 攝影機 · 銷售與 POS · AI 行銷\nAI 研究 · 一個平台，所有資料",
+      "trial": "免費試用",
+      "demo": "觀看展示"
+    },
+    "storyTitle": "同一個生態系。更多價值。",
+    "story": "Chuyện Nhỏ 是 ERPCons & LPC 提供的免費工具組，幫你快速處理每天的小事。",
+    "steps": {
+      "chuyenNho": "需要做一件小事。\n立即使用。",
+      "erpcons": "管理工作、\n專案和企業。",
+      "tekshot": "為企業看、懂、做、學的\nAI。"
+    },
+    "motto": "工作更輕鬆。\n每天更美好。"
+  },
+  "hub": {
+    "highlightsLabel": "此類別包含",
+    "listLabel": "{{label}}清單",
+    "subgroupFilter": "依子類別篩選",
+    "emptyHint": "試試其他關鍵字，或取消子類別篩選。",
+    "showGroup": "查看整個類別",
+    "asideLabel": "更多建議",
+    "privacy": {
+      "title": "尊重你的檔案",
+      "description": "大部分工具直接在裝置上處理。需要伺服器的工具都會在卡片上清楚標示。",
+      "link": "查看我們如何處理資料"
+    },
+    "support": {
+      "title": "需要協助嗎？",
+      "description": "查看逐步指南，或寫信給我們。",
+      "guides": "查看指南"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "營建工具",
+      "title": "<accent>營建</accent>工具",
+      "tagline": "查詢。計算。檢查。簡單又有效。",
+      "description": "提供給工程師、建築師、承包商和屋主的免費工具組，從構想階段到施工與竣工。",
+      "metaTitle": "免費營建工具 | Chuyện Nhỏ",
+      "metaDescription": "建屋費用概算、判斷房屋座向、在圖片上測量尺寸，以及即將推出的營建查詢工具。免費，不需要帳號。",
+      "caption": "營建工作\n每天都更簡單！",
+      "searchPlaceholder": "搜尋營建工具…（例如：概算、房屋座向、都市計畫）",
+      "highlights": {
+        "estimate": "概算",
+        "planning": "都市計畫",
+        "prices": "營建價格",
+        "legal": "法規",
+        "standards": "標準",
+        "dossier": "文件檢查",
+        "site": "工地現場"
+      },
+      "trust": {
+        "free": {
+          "title": "免費",
+          "detail": "立即使用，沒有隱藏費用"
+        },
+        "noInstall": {
+          "title": "不需要安裝",
+          "detail": "直接在瀏覽器中執行"
+        },
+        "onDevice": {
+          "title": "在你的裝置上計算",
+          "detail": "輸入的數據不會離開裝置"
+        },
+        "practical": {
+          "title": "為實務而生",
+          "detail": "從屋主到承包商"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "概算與計算",
+        "quy-hoach": "都市計畫與房屋座向",
+        "gia-vat-lieu": "價格與材料",
+        "phap-ly": "法規與標準",
+        "ban-ve": "圖面與文件",
+        "hien-truong": "工地現場"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "需要的不只是一個工具？",
+          "description": "在同一個平台上管理整個專案、成本、合約、文件和採購。",
+          "points": {
+            "work": "工作 · 專案 · 合約",
+            "cost": "成本 · 預算 · 採購",
+            "documents": "文件 · 資料 · 審核",
+            "ai": "AI 助理資料問答"
+          }
+        },
+        "tekshot": {
+          "title": "想更聰明地記錄工地現場？",
+          "description": "攝影機、現場照片和 AI 辨識，直接與專案連結。",
+          "points": {
+            "vision": "Vision · 攝影機 · 工地現場",
+            "studio": "Studio · 內容 · 報告",
+            "insight": "Insight · 市場",
+            "central": "Central · 彙整與營運"
+          }
+        }
+      },
+      "journey": {
+        "title": "從構想到完工。我們一路同行。",
+        "motto": "小工具。\n大價值！",
+        "steps": {
+          "idea": {
+            "title": "構想",
+            "detail": "都市計畫 · 房屋座向"
+          },
+          "design": {
+            "title": "設計",
+            "detail": "標準 · 文件檢查"
+          },
+          "estimate": {
+            "title": "預算",
+            "detail": "概算 · 營建價格"
+          },
+          "build": {
+            "title": "施工",
+            "detail": "工地日誌"
+          },
+          "handover": {
+            "title": "竣工",
+            "detail": "文件 · 存檔"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "家庭工具",
+      "title": "<accent>家庭</accent>工具",
+      "tagline": "小小的事，大大的幸福。",
+      "description": "簡單的小工具，幫你安排共同行程、提醒事項、計算家庭開支。讓全家步調一致，每天都開心。",
+      "metaTitle": "免費家庭工具 | Chuyện Nhỏ",
+      "metaDescription": "家庭行事曆、農曆國曆、電費水費、團體分帳、房屋座向，以及即將推出的家庭小工具。免費，資料儲存在你的裝置上。",
+      "caption": "今天我們家\n有什麼開心事？",
+      "searchPlaceholder": "搜尋家庭工具…（例如：行事曆、提醒、電費）",
+      "highlights": {
+        "calendar": "安排共同行程",
+        "reminders": "提醒與關懷",
+        "spending": "計算家庭開支",
+        "together": "全家步調一致"
+      },
+      "trust": {
+        "free": {
+          "title": "免費",
+          "detail": "立即使用，沒有隱藏費用"
+        },
+        "noInstall": {
+          "title": "不需要安裝",
+          "detail": "直接在瀏覽器中執行"
+        },
+        "private": {
+          "title": "私密",
+          "detail": "資料儲存在你的裝置上"
+        },
+        "devices": {
+          "title": "適用於",
+          "detail": "手機和電腦"
+        }
+      },
+      "subgroups": {
+        "lich": "行事曆與提醒",
+        "chi-tieu": "開支",
+        "nha-cua": "居家",
+        "hoc-tap": "學習",
+        "suc-khoe": "健康",
+        "ket-noi": "連結"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "家庭行事曆",
+          "subtitle": "今天我們家有什麼事？",
+          "points": {
+            "schedules": "課表、工作行程、家庭行程",
+            "contacts": "待辦清單和緊急聯絡人",
+            "backup": "儲存在裝置上，需要時備份",
+            "ics": "將行事曆匯出到手機（ICS）"
+          }
+        },
+        "houseOrientation": {
+          "title": "房屋座向與指南針",
+          "subtitle": "選好方位，更安心",
+          "points": {
+            "direction": "判斷房屋、土地座向",
+            "compass": "手機上的指南針",
+            "lookup": "快速查詢，簡單好用"
+          }
+        }
+      },
+      "journey": {
+        "title": "為了每天都幸福的家庭",
+        "motto": "小事情。\n創造大幸福！",
+        "steps": {
+          "organized": {
+            "title": "安排得更好",
+            "detail": "時間、工作、生活"
+          },
+          "connected": {
+            "title": "更加緊密",
+            "detail": "全家一起分享"
+          },
+          "caring": {
+            "title": "更多關懷",
+            "detail": "健康、學業、日常起居"
+          },
+          "happy": {
+            "title": "更加幸福",
+            "detail": "來自每天的小事"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "文件與 PDF",
+      "title": "<accent>文件與 PDF</accent> 工具",
+      "tagline": "編輯。轉換。合併分割。簽名。壓縮。快速又免費。",
+      "description": "輕鬆處理文件、PDF 和文件照片。直接在瀏覽器中使用，不需要安裝，檔案不會離開裝置。",
+      "metaTitle": "免費 PDF 工具：合併、分割、壓縮、OCR、簽名 | Chuyện Nhỏ",
+      "metaDescription": "合併、分割、壓縮、編輯、簽署 PDF，將 PDF 轉成 Word，並辨識越南語文字。免費，不需要帳號，檔案直接在裝置上處理。",
+      "caption": "文件工作\n現在超簡單！",
+      "searchPlaceholder": "搜尋文件工具…（例如：壓縮 PDF、合併 PDF、OCR、簽名）",
+      "highlights": {
+        "edit": "編輯 PDF 內容",
+        "mergeSplit": "合併、分割、壓縮",
+        "convert": "轉換格式",
+        "sign": "簽署文件",
+        "ocr": "OCR 文字辨識",
+        "compare": "比較文件",
+        "redact": "遮蔽敏感資訊"
+      },
+      "trust": {
+        "free": {
+          "title": "免費",
+          "detail": "立即使用，沒有隱藏費用"
+        },
+        "noInstall": {
+          "title": "不需要安裝",
+          "detail": "直接在瀏覽器中執行"
+        },
+        "secure": {
+          "title": "安全、私密",
+          "detail": "檔案直接在裝置上處理"
+        },
+        "formats": {
+          "title": "多種格式",
+          "detail": "PDF、Word、Excel、圖片"
+        }
+      },
+      "subgroups": {
+        "sua": "編輯與整理",
+        "gop-tach": "合併、分割、壓縮",
+        "chuyen-doi": "轉換",
+        "ocr": "OCR 與比較",
+        "ky-bao-mat": "簽名與安全",
+        "soan-thao": "撰寫文件"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "用 ERPCons 更快處理文件",
+          "description": "在同一個平台上管理檔案、文件、合約、版本和審核。",
+          "points": {
+            "storage": "集中儲存",
+            "permissions": "權限設定與分享",
+            "versions": "版本追蹤",
+            "linked": "與工作和專案連結"
+          }
+        },
+        "tips": {
+          "title": "小撇步",
+          "items": {
+            "drop": "將檔案拖放到工具區域。",
+            "options": "選擇合適的選項。",
+            "download": "將結果下載到裝置。",
+            "closeTab": "關閉分頁後，檔案就會從瀏覽器中消失。"
+          }
+        }
+      },
+      "journey": {
+        "title": "從文件到工作。我們一路同行。",
+        "motto": "大事業始於\n小事情！",
+        "steps": {
+          "documents": {
+            "title": "文件",
+            "detail": "PDF、Word、Excel"
+          },
+          "storage": {
+            "title": "儲存",
+            "detail": "集中管理檔案"
+          },
+          "share": {
+            "title": "分享",
+            "detail": "與同事分享"
+          },
+          "approve": {
+            "title": "審核",
+            "detail": "快速完成"
+          },
+          "track": {
+            "title": "追蹤",
+            "detail": "版本、歷程"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "關於 Chuyện Nhỏ",
+    "title": "關於 <accent>Chuyện Nhỏ</accent>",
+    "tagline": "小小的事成就大大的價值。",
+    "intro": "Chuyện Nhỏ 是 ERPCons & LPC 提供的免費工具組，幫你快速處理工作、營建和日常生活中的小事。",
+    "introMore": "需要就用。簡單。有效。不需要安裝，不需要帳號。",
+    "caption": "需要做一件事，\n立即使用！",
+    "explore": "探索工具",
+    "guides": "查看指南",
+    "valuesLabel": "Chuyện Nhỏ 的承諾",
+    "values": {
+      "free": {
+        "title": "免費",
+        "detail": "立即使用，沒有隱藏費用"
+      },
+      "noInstall": {
+        "title": "不需要安裝",
+        "detail": "直接在瀏覽器中執行"
+      },
+      "onDevice": {
+        "title": "優先在裝置上處理",
+        "detail": "你的檔案留在你的裝置上"
+      },
+      "domains": {
+        "title": "多元領域",
+        "detail": "工作 · 營建 · 家庭"
+      }
+    },
+    "ecosystemTitle": "一個生態系，更多價值",
+    "ecosystemDescription": "Chuyện Nhỏ 是 ERPCons & LPC 產品生態系的一部分。",
+    "products": {
+      "chuyen-nho": {
+        "role": "處理一件事",
+        "points": {
+          "free": "免費工具",
+          "noAccount": "立即使用，不需要帳號",
+          "noInstall": "不需要安裝",
+          "domains": "適用於工作、營建和家庭"
+        }
+      },
+      "erpcons": {
+        "role": "管理工作、專案和企業",
+        "points": {
+          "work": "工作 · 合約 · 專案",
+          "cost": "成本 · 採購 · 倉庫",
+          "finance": "財務 · 文件 · 人事",
+          "ai": "AI 助理資料問答"
+        }
+      },
+      "tekshot": {
+        "role": "為企業看、懂、做、學的 AI",
+        "points": {
+          "vision": "AI 攝影機 · TekShot Vision",
+          "pos": "POS 與銷售 · TekShot POS",
+          "studio": "AI 行銷 · TekShot Studio",
+          "research": "AI 研究 · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "從今天的小事\n到明天的大事。",
+    "story": "Chuyện Nhỏ 幫你從小事開始。當工作變得更複雜時，ERPCons 和 TekShot AI 就是你管理、連結和擴展價值的地方。",
+    "statsLabel": "數字看 Chuyện Nhỏ",
+    "stats": {
+      "tools": "個免費工具，立即可用",
+      "groups": "個工作類別：文件、影像、計算、營建、家庭…"
+    }
+  },
+  "data": {
+    "trail": "資料處理方式",
+    "title": "我們如何<accent>處理資料</accent>",
+    "tagline": "你的檔案留在你的裝置上。",
+    "intro": "Chuyện Nhỏ 直接在瀏覽器中處理檔案。本頁清楚說明每項工具在哪裡執行，以及哪些內容真的會傳送到伺服器。",
+    "caption": "每項工具\n都公開透明！",
+    "points": {
+      "noCookie": "不使用 Cookie",
+      "noTracking": "沒有追蹤、廣告工具",
+      "noAccount": "不需要帳號"
+    },
+    "flowLabel": "資料去了哪裡",
+    "columns": {
+      "device": {
+        "title": "直接在裝置上處理",
+        "lead": "{{count}} 個可用工具",
+        "points": {
+          "tab": "PDF、圖片、影片檔案只在瀏覽器分頁中開啟",
+          "download": "只有在你按下載時才會產生結果",
+          "model": "文字辨識模型從本網站下載，不經過第三方"
+        }
+      },
+      "server": {
+        "title": "傳送到我們的伺服器",
+        "lead": "盡可能最少",
+        "points": {
+          "visits": "你開啟的工具名稱，用於計算總使用次數。不使用 Cookie，不識別你的身分",
+          "ip": "IP 位址只經單向雜湊以防止自動化傳送，約 1 小時後自動刪除",
+          "feedback": "意見、建議只有在你勾選同意並按下「送出」時才會傳送",
+          "soon": "{{count}} 個即將推出的工具需要在伺服器上查詢，其卡片上會清楚標示"
+        }
+      },
+      "local": {
+        "title": "儲存在你的瀏覽器中",
+        "lead": "只在這台裝置上",
+        "points": {
+          "prefs": "最近使用的工具和淺色、深色介面",
+          "saved": "你自行儲存的資料：家庭行事曆、筆記、履歷草稿、記憶卡",
+          "clear": "隨時可在工具中或瀏覽器設定中刪除"
+        }
+      }
+    },
+    "tableTitle": "每項工具在哪裡處理",
+    "tableDescription": "此表直接由工具目錄產生，因此一定與每張卡片上的標籤一致。",
+    "searchPlaceholder": "搜尋工具…（例如：OCR、薪資、QR）",
+    "filterLabel": "依處理位置篩選",
+    "modelFilter": "需下載辨識模型",
+    "head": {
+      "tool": "工具",
+      "group": "類別",
+      "where": "處理位置",
+      "note": "備註"
+    },
+    "modes": {
+      "device": "在裝置上",
+      "model": "在裝置上，需下載辨識模型",
+      "server": "需要伺服器"
+    },
+    "notes": {
+      "server": "即將推出。需要在伺服器上查詢資料；推出前會清楚說明傳送的資料。",
+      "model": "從本網站下載一次辨識模型，之後直接在裝置上辨識。",
+      "noFile": "直接在你的裝置上執行，不會傳送資料。",
+      "device": "檔案不會離開裝置。"
+    },
+    "emptyHint": "試試其他關鍵字，或取消篩選。",
+    "showAll": "查看全部",
+    "faqTitle": "資料相關問題",
+    "faqDescription": "完整內容請參閱<link>隱私權政策</link>。"
+  },
+  "guidesPage": {
+    "title": "使用<accent>指南</accent>",
+    "tagline": "簡短的步驟，與螢幕上的文字一致。",
+    "intro": "每篇只需幾分鐘閱讀。照著步驟做就能完成，並附上小撇步和注意事項。",
+    "caption": "讀 2 分鐘，\n馬上做！",
+    "listTitle": "指南列表",
+    "filterLabel": "依類別篩選",
+    "missingTitle": "找不到你需要的指南？",
+    "missing": "查看<faq>常見問題</faq>、如何<install>在裝置上安裝 Chuyện Nhỏ</install>，或透過<suggest>建議新工具</suggest>提出新指南的建議。"
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Chuyện Nhỏ 指南",
+    "fallbackTitle": "指南 | Chuyện Nhỏ",
+    "minutes": "{{count}} 分鐘",
+    "steps": "{{count}} 個步驟",
+    "open": "開啟{{name}}",
+    "stepsTitle": "步驟",
+    "tipsTitle": "小撇步",
+    "notesTitle": "注意事項",
+    "asideLabel": "相關內容",
+    "toolsTitle": "本篇使用的工具",
+    "othersTitle": "其他文章",
+    "all": "查看所有指南"
+  },
+  "install": {
+    "trail": "安裝到裝置",
+    "title": "將 Chuyện Nhỏ 安裝<accent>到裝置上</accent>",
+    "tagline": "像應用程式一樣使用。快速開啟。每天更方便。",
+    "intro": "Chuyện Nhỏ 是網頁應用程式：加到主畫面或 Dock 後即可立即開啟，不必再到瀏覽器裡找網頁。",
+    "caption": "安裝一次，\n每天都方便！",
+    "benefits": {
+      "fast": "從主畫面快速開啟",
+      "fullscreen": "全螢幕，沒有網址列",
+      "noStore": "不需要進入應用程式商店",
+      "free": "免費"
+    },
+    "cta": "安裝應用程式",
+    "ctaHint": "一鍵完成，不經過應用程式商店。",
+    "installed": "Chuyện Nhỏ 已安裝在這台裝置上。",
+    "chooseTitle": "選擇你的裝置",
+    "chooseDescription": "每種瀏覽器的安裝按鈕位置都不一樣。",
+    "tabsLabel": "裝置",
+    "panelTitle": "在 {{platform}}（{{browser}}）上安裝",
+    "stepWithAddress": "{{detail}}網址：{{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "用 Chrome 開啟 Chuyện Nhỏ",
+            "detail": "在 Chrome 的網址列輸入網址。"
+          },
+          "menu": {
+            "title": "點選選單 ⋮（三個點）",
+            "detail": "位於螢幕右上角。"
+          },
+          "add": {
+            "title": "選擇「加到主畫面」",
+            "detail": "有些裝置顯示為「安裝應用程式」。"
+          },
+          "install": {
+            "title": "點選「安裝」",
+            "detail": "Chuyện Nhỏ 圖示會出現在主畫面上，可以像應用程式一樣開啟。"
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "用 Safari 開啟 Chuyện Nhỏ",
+            "detail": "在 Safari 的網址列輸入網址。"
+          },
+          "share": {
+            "title": "點選「分享」按鈕",
+            "detail": "方框加上向上箭頭的圖示。在新版 iOS 中，這個按鈕位於底部列的 ⋯ 選單裡。"
+          },
+          "add": {
+            "title": "選擇「加入主畫面」",
+            "detail": "如果沒看到這一項，請將清單往下捲動。"
+          },
+          "confirm": {
+            "title": "點選「新增」",
+            "detail": "位於右上角。Chuyện Nhỏ 圖示會出現在主畫面上。"
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "用 Chrome 或 Edge 開啟 Chuyện Nhỏ",
+            "detail": "瀏覽器必須是新版。"
+          },
+          "icon": {
+            "title": "點選網址列上的安裝圖示",
+            "detail": "螢幕加上向下箭頭的圖示，位於網址列的最右側。"
+          },
+          "menu": {
+            "title": "沒看到圖示？使用選單",
+            "detail": "Chrome：選單 ⋮，選擇「投放、儲存及分享」，再選「將網頁安裝為應用程式」。Edge：選單 ⋯，選擇「應用程式」，再選「將此網站安裝為應用程式」。"
+          },
+          "install": {
+            "title": "點選「安裝」",
+            "detail": "Chuyện Nhỏ 會在獨立視窗中開啟，並出現在「開始」功能表中。"
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "用 Safari 開啟 Chuyện Nhỏ",
+            "detail": "需要 macOS Sonoma（14）或以上版本。"
+          },
+          "dock": {
+            "title": "進入「檔案」選單，選擇「加入 Dock」",
+            "detail": "位於螢幕頂端的選單列。"
+          },
+          "confirm": {
+            "title": "點選「加入」",
+            "detail": "Chuyện Nhỏ 會出現在 Dock 上，並在獨立視窗中開啟。"
+          },
+          "chrome": {
+            "title": "使用 Chrome 或 Edge？",
+            "detail": "做法與 Windows 相同：點選網址列最右側的安裝圖示。"
+          }
+        }
+      },
+      "other": {
+        "label": "其他瀏覽器",
+        "browser": "Firefox、Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "點選選單 ≡，選擇「新增頁面至」，再選「主螢幕」。"
+          },
+          "firefox": {
+            "title": "電腦版 Firefox",
+            "detail": "尚不支援將網頁安裝為應用程式。你仍可在分頁中正常使用所有工具。"
+          },
+          "install": {
+            "title": "想像應用程式一樣安裝？",
+            "detail": "用 Chrome、Edge 或 Safari 開啟 Chuyện Nhỏ，再依照對應的分頁操作。"
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "沒看到安裝選項？",
+    "troubleshooting": {
+      "update": "將瀏覽器更新到最新版本。",
+      "address": "確認你開啟的是 Chuyện Nhỏ 的正確網址，而不是轉分享的頁面。",
+      "incognito": "無痕模式無法安裝。請開啟一般分頁。",
+      "installed": "如果已經安裝，瀏覽器就不會再顯示安裝選項。"
+    },
+    "stillStuck": "還是不行嗎？請查看<link>說明頁面</link>或寫信給我們。"
+  },
+  "support": {
+    "trail": "說明",
+    "title": "我們可以<accent>幫你什麼</accent>？",
+    "intro": "在常見問題中快速找到答案，或寫信給我們。",
+    "caption": "快速提問，\n簡潔回答！",
+    "searchLabel": "搜尋問題",
+    "searchPlaceholder": "搜尋問題…（例如：安裝、儲存檔案、刪除資料）",
+    "topicsTitle": "說明主題",
+    "topics": {
+      "start": {
+        "title": "開始使用",
+        "detail": "逐步指南"
+      },
+      "documents": {
+        "title": "文件與 PDF",
+        "detail": "合併、分割、壓縮、OCR"
+      },
+      "image": {
+        "title": "影像",
+        "detail": "壓縮、調整尺寸、去背"
+      },
+      "qr": {
+        "title": "QR 碼與條碼",
+        "detail": "產生、讀取、批次列印"
+      },
+      "construction": {
+        "title": "營建",
+        "detail": "概算、房屋座向"
+      },
+      "family": {
+        "title": "家庭",
+        "detail": "行事曆、提醒、SOS"
+      },
+      "install": {
+        "title": "安裝到裝置",
+        "detail": "Android、iPhone、電腦"
+      },
+      "privacy": {
+        "title": "資料與隱私權",
+        "detail": "檔案在哪裡處理"
+      }
+    },
+    "faqTitle": "常見問題",
+    "faqCount": "{{count}} 個問題",
+    "faqCountFor": "「{{keyword}}」共有 {{count}} 個問題",
+    "emptyTitle": "沒有符合的問題",
+    "emptyHint": "試試其他關鍵字，或寫信直接詢問。",
+    "showAll": "查看所有問題",
+    "contactTitle": "還需要協助嗎？",
+    "mailTitle": "寫信給我們",
+    "mailBody": "請寫明工具名稱、你使用的瀏覽器，並描述遇到的情況。請勿附上含有個人資訊的檔案。",
+    "suggestTitle": "意見與工具建議",
+    "suggestBody": "需要一個還沒有的工具，或想對現有工具提出意見？送出建議並取得收據編號以便追蹤。",
+    "suggestAction": "送出建議"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Chuyện Nhỏ 是免費的嗎？",
+        "answer": "是的。所有運作中的工具都免費，不限使用次數，也不需要帳號。當團隊需要長期儲存、分享和審核文件時，ERPCons 是為此設計的付費版本。"
+      },
+      "tai-khoan": {
+        "question": "我需要建立帳號嗎？",
+        "answer": "不需要。開啟網頁、選擇工具就能立即使用。Chuyện Nhỏ 沒有註冊流程，不會詢問姓名、電子郵件或電話號碼。"
+      },
+      "luu-tep": {
+        "question": "我的檔案會被上傳或儲存嗎？",
+        "answer": "不會。你開啟的 PDF、圖片、影片檔案只存在瀏覽器分頁中，並直接在你的裝置上處理。我們不會接收檔案。關閉分頁後，檔案就會從瀏覽器中消失；只有在你下載時才會留下結果。"
+      },
+      "may-chu": {
+        "question": "為什麼有些工具標示「在伺服器上處理」？",
+        "answer": "一些即將推出的工具需要龐大或持續更新的資料，例如營建價格或都市計畫，因此必須在伺服器上查詢。這些工具的卡片會清楚標示，讓你事先知道。目前可用的工具都在裝置上處理。"
+      },
+      "cai-dat": {
+        "question": "如何在手機上安裝 Chuyện Nhỏ？",
+        "answer": "用 Chrome（Android）或 Safari（iPhone、iPad）開啟 Chuyện Nhỏ，然後選擇「加到主畫面」。在電腦上，點選 Chrome 或 Edge 網址列上的安裝圖示。"
+      },
+      "offline": {
+        "question": "沒有網路時可以使用 Chuyện Nhỏ 嗎？",
+        "answer": "第一次在有網路時開啟後，瀏覽器會預先儲存網頁和工具程式碼，因此網路不穩時通常仍可重新開啟。文字辨識或影片處理等較大的元件會在第一次使用時下載，所以請在有網路時先試用一次。"
+      },
+      "loi": {
+        "question": "遇到錯誤怎麼辦？",
+        "answer": "請重新整理頁面，並使用新版的 Chrome、Edge 或 Safari。檔案太大或有密碼鎖定也可能讓工具停止；工具會直接在畫面上說明原因。如果仍然出錯，請寫信至 {{email}}，附上工具名稱、你使用的瀏覽器和錯誤描述。"
+      },
+      "an-toan": {
+        "question": "Chuyện Nhỏ 安全嗎？",
+        "answer": "本網站透過加密連線（HTTPS）運作，不使用 Cookie，也沒有嵌入第三方的廣告或追蹤工具。你的檔案不會離開裝置。"
+      },
+      "thu-thap": {
+        "question": "Chuyện Nhỏ 會蒐集我的個人資訊嗎？",
+        "answer": "幾乎不會。當你開啟某個工具時，瀏覽器會回報工具名稱，讓我們計算總使用次數；IP 位址只經單向雜湊以防止自動化傳送，約 1 小時後自動刪除。意見內容只有在你勾選同意並按下「送出」時才會傳送。"
+      },
+      "xoa-du-lieu": {
+        "question": "如何刪除我的資料？",
+        "answer": "你在工具中儲存的資料（家庭行事曆、筆記、履歷草稿、記憶卡）都在你的裝置上：可直接在工具中刪除，或在瀏覽器設定中清除網站資料。如要刪除已送出的意見，請附上收據編號寫信至 {{email}}。"
+      },
+      "ben-thu-ba": {
+        "question": "資料會與第三方分享嗎？",
+        "answer": "不會。我們不會出售資料，也不會為廣告分享資料。唯「錄音轉文字」工具使用瀏覽器本身的語音辨識功能，因此音訊會傳送給瀏覽器供應商（例如 Chrome 為 Google），不會經過我們的伺服器。"
+      },
+      "de-xuat": {
+        "question": "我想建議一個新工具？",
+        "answer": "非常歡迎。請使用「建議新工具」：你會取得一組收據編號，之後可用來查詢審核進度。"
+      }
+    },
+    "links": {
+      "processingPerTool": "查看每項工具在哪裡處理",
+      "installPerDevice": "各裝置的安裝指南",
+      "dataHandling": "我們如何處理資料",
+      "privacyPolicy": "閱讀隱私權政策",
+      "suggest": "開啟「建議新工具」"
+    }
+  },
+  "legalPage": {
+    "updated": "最後更新：{{date}}",
+    "toc": "目錄",
+    "summary": "摘要"
+  }
+}

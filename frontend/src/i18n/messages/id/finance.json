@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "Lihat sumber data",
+    "vatPercent": "Pajak (%)"
+  },
+  "electricity": {
+    "resultLabel": "Perkiraan tagihan",
+    "waterBreakdown": "Biaya air: {{subtotal}} đ · Biaya tambahan: {{fee}} đ · Pajak: {{vat}} đ. Masing-masing dihitung terpisah dari biaya air pokok.",
+    "waterHint": "Masukkan pemakaian air dan harga satuan dari tagihan terakhir.",
+    "electricityBreakdown": "Biaya listrik sebelum pajak: {{subtotal}} đ · Pajak {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "Blok sampai kWh",
+      "units": "Jumlah kWh",
+      "price": "Harga/kWh",
+      "amount": "Jumlah",
+      "rest": "Sisanya"
+    },
+    "electricityHint": "Masukkan pemakaian listrik dan tabel tarif sesuai tagihan atau kontrak. Baris terakhir memakai tanda * untuk sisanya.",
+    "tariffVerified": "Tabel tarif bertanda tangan, berlaku sejak {{date}}. Sumber: {{source}}.",
+    "tariffManual": "Tabel tarif ini Anda masukkan sendiri; alat ini tidak memastikan bahwa ini tarif listrik yang berlaku.",
+    "vatVerified": "Tarif pajak {{percent}}% bertanda tangan, berlaku sejak {{date}}. Sumber: {{source}}.",
+    "vatManual": "Tarif pajak Anda masukkan sendiri.",
+    "notIncluded": "Belum termasuk biaya lain atau cara pembulatan penyedia.",
+    "panelTitle": "Tagihan listrik, air",
+    "billType": "Jenis tagihan",
+    "modes": {
+      "electricity": "Listrik",
+      "water": "Air"
+    },
+    "water": {
+      "cubicMeters": "Pemakaian air (m³)",
+      "price": "Harga satuan (đ/m³)",
+      "fee": "Biaya drainase / lingkungan (%)"
+    },
+    "kwh": "Pemakaian listrik (kWh)",
+    "households": "Jumlah kuota rumah tangga yang berbagi satu meteran",
+    "tiers": "Tabel tarif: tiap baris berisi “batas kWh, harga satuan đ/kWh”",
+    "applyTariff": "Terapkan tabel tarif bertanda tangan",
+    "applyVat": "Terapkan tarif pajak bertanda tangan",
+    "ruleLabel": "tabel tarif listrik",
+    "ruleNone": "Saat ini belum ada tabel tarif listrik bertanda tangan yang masih berlaku di sistem.",
+    "vatRuleLabel": "tarif PPN (GTGT)"
+  },
+  "groupSplit": {
+    "resultLabel": "Transfer agar seimbang",
+    "balanced": "Sudah seimbang",
+    "note": "Setiap pengeluaran dibagi rata di antara orang yang ikut menanggungnya. Jumlah transfer dibulatkan ke đồng terdekat.",
+    "membersTitle": "Anggota",
+    "onePerLine": "Satu orang per baris",
+    "expensesTitle": "Pengeluaran",
+    "addExpense": "Tambah pengeluaran",
+    "payer": "Yang membayar",
+    "choosePerson": "Pilih orang",
+    "amount": "Jumlah (đ)",
+    "participants": "Yang ikut menanggung",
+    "removeExpense": "Hapus pengeluaran"
+  },
+  "loan": {
+    "totalPayment": "Total yang harus dibayar",
+    "finalBalance": "Saldo akhir",
+    "interest": "Bunga: {{amount}} đ",
+    "firstPayment": "Cicilan pertama: {{amount}} đ",
+    "downloadCsv": "Unduh tabel CSV",
+    "table": {
+      "period": "Periode",
+      "principal": "Pokok",
+      "interest": "Bunga",
+      "balance": "Sisa utang"
+    },
+    "savingsNote": "Bunga {{amount}} đ setelah {{months}} bulan. Tiap periode memakai bunga sederhana; di akhir periode bunga ditambahkan ke pokok saat diperpanjang.",
+    "hint": "Masukkan jumlah positif, suku bunga tidak negatif, dan jangka waktu yang valid.",
+    "disclaimer": "Hasil hanya acuan; jadwal sebenarnya bergantung pada kontrak dan cara pembulatan pemberi pinjaman.",
+    "loanTitle": "Pinjaman",
+    "savingsTitle": "Simpanan",
+    "mode": "Mode",
+    "modes": {
+      "loan": "Pinjaman cicilan",
+      "savings": "Deposito diperpanjang otomatis"
+    },
+    "loanAmount": "Jumlah pinjaman (đ)",
+    "savingsAmount": "Jumlah simpanan (đ)",
+    "rate": "Suku bunga per tahun (%)",
+    "loanTerm": "Jangka waktu (bulan)",
+    "savingsTerm": "Tenor (bulan)",
+    "method": "Cara bayar pokok",
+    "methods": {
+      "annuity": "Cicilan total hampir sama (anuitas)",
+      "equalPrincipal": "Pokok sama rata"
+    },
+    "renewals": "Jumlah perpanjangan"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Pengurang untuk diri sendiri (đ)",
+      "dependentDeduct": "Pengurang per tanggungan (đ)",
+      "referenceSalary": "Gaji acuan untuk batas atas asuransi (đ)",
+      "minWage1": "Upah minimum wilayah I (đ)",
+      "minWage2": "Upah minimum wilayah II (đ)",
+      "minWage3": "Upah minimum wilayah III (đ)",
+      "minWage4": "Upah minimum wilayah IV (đ)",
+      "employeeSocial": "Karyawan: asuransi sosial BHXH (%)",
+      "employeeHealth": "Karyawan: asuransi kesehatan BHYT (%)",
+      "employeeUnemployment": "Karyawan: asuransi pengangguran BHTN (%)",
+      "employerSocial": "Perusahaan: asuransi sosial BHXH (%)",
+      "employerHealth": "Perusahaan: asuransi kesehatan BHYT (%)",
+      "employerUnemployment": "Perusahaan: asuransi pengangguran BHTN (%)"
+    },
+    "resultLabel": "Hasil acuan",
+    "net": "Diterima bersih {{amount}} đ",
+    "missingParams": "Parameter belum lengkap",
+    "rows": {
+      "gross": "Gross",
+      "employeeSocial": "BHXH karyawan",
+      "employeeHealth": "BHYT karyawan",
+      "employeeUnemployment": "BHTN karyawan",
+      "deduction": "Pengurang",
+      "taxable": "Penghasilan kena pajak",
+      "bracket": "Lapisan {{level}} · {{rate}}%",
+      "tax": "Pajak penghasilan pribadi (TNCN)",
+      "employerTotal": "Tambahan yang dibayar perusahaan",
+      "employerCost": "Total biaya perusahaan"
+    },
+    "hint": "Isi semua parameter dari aturan bertanda tangan atau dari slip gaji, kontrak, dan petunjuk bagian akuntansi.",
+    "paramsVerified": "Paket parameter bertanda tangan, berlaku sejak {{date}}. Sumber: {{source}}.",
+    "paramsManual": "Parameter ini Anda masukkan sendiri; alat ini tidak memastikan bahwa ini aturan yang berlaku.",
+    "notSettlement": "Hasil ini tidak menggantikan penyelesaian pajak yang sebenarnya.",
+    "panelTitle": "Hitung gaji Gross – Net",
+    "direction": "Arah perhitungan",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "Gaji Gross (đ/bulan)",
+    "netSalary": "Gaji Net yang diinginkan (đ/bulan)",
+    "dependents": "Tanggungan",
+    "region": "Wilayah",
+    "regionOption": "Wilayah {{region}}",
+    "insuranceBase": "Gaji dasar asuransi (đ, kosongkan = Gross)",
+    "exempt": "Tunjangan bebas pajak dalam Gross (đ)",
+    "applyParams": "Terapkan parameter bertanda tangan",
+    "ruleLabel": "parameter penggajian",
+    "ruleNone": "Belum ada paket aturan gaji bertanda tangan yang masih berlaku di sistem.",
+    "enterParams": "Masukkan parameter penggajian",
+    "brackets": "Tarif pajak: “batas penghasilan kena pajak (đ), tarif (%)”; baris terakhir memakai *"
+  },
+  "unitPrice": {
+    "resultLabel": "Perbandingan per satuan",
+    "equal": "Harganya sama",
+    "cheaper": "Produk {{index}} lebih murah",
+    "perUnit": "Produk {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "Selisih {{percent}}% dibanding harga yang lebih tinggi.",
+    "hint": "Masukkan harga tidak negatif dan jumlah positif untuk kedua produk, dengan satuan yang sama.",
+    "panelTitle": "Dua produk",
+    "price": "Harga produk {{index}} (đ)",
+    "quantity": "Jumlah produk {{index}} ({{unit}})",
+    "unit": "Satuan jumlah",
+    "units": {
+      "kg": "kg",
+      "liter": "liter",
+      "piece": "buah"
+    }
+  }
+}

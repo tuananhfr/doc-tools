@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlowChoice, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { useImageFiles } from '../hooks/useImageFiles'
@@ -7,24 +8,23 @@ import { convertImagesTask } from '../services/image-tasks'
 import type { ImageFormat } from '../types/image.types'
 import { IMAGE_FORMAT } from '../utils/image-format'
 
-const TARGETS: FlowChoiceOption<ImageFormat>[] = [
-  { value: 'jpeg', label: 'JPG', hint: 'Nhẹ, mở được ở mọi nơi. Không giữ nền trong suốt.' },
-  { value: 'png', label: 'PNG', hint: 'Giữ nguyên từng điểm ảnh và nền trong suốt; tệp nặng hơn.' },
-  { value: 'webp', label: 'WebP', hint: 'Nhẹ hơn JPG ở cùng chất lượng, giữ được nền trong suốt.' },
+const TARGETS: { value: ImageFormat; label: string }[] = [
+  { value: 'jpeg', label: 'JPG' },
+  { value: 'png', label: 'PNG' },
+  { value: 'webp', label: 'WebP' },
 ]
 
 type Quality = 'high' | 'medium' | 'small'
 
 const QUALITY_VALUE: Record<Quality, number> = { high: 0.92, medium: 0.8, small: 0.6 }
 
-const QUALITIES: FlowChoiceOption<Quality>[] = [
-  { value: 'high', label: 'Cao', hint: 'Gần như không khác ảnh gốc.' },
-  { value: 'medium', label: 'Vừa', hint: 'Cân giữa độ nét và dung lượng.' },
-  { value: 'small', label: 'Nhỏ gọn', hint: 'Nhẹ nhất; phóng to sẽ thấy vỡ nét.' },
-]
+const QUALITY_IDS: Quality[] = ['high', 'medium', 'small']
 
 /** CHUYỂN ĐỔI ẢNH — đổi cả lô giữa JPG, PNG và WebP. */
 export default function ConvertImagePage() {
+  const { t } = useTranslation('image')
+  const targets: FlowChoiceOption<ImageFormat>[] = TARGETS.map((target) => ({ ...target, hint: t(`convert.target.${target.value}`) }))
+  const qualities: FlowChoiceOption<Quality>[] = QUALITY_IDS.map((value) => ({ value, label: t(`convert.quality.${value}.label`), hint: t(`convert.quality.${value}.hint`) }))
   const images = useImageFiles({ multiple: true })
   const run = useFlowRun()
   const [format, setFormat] = useState<ImageFormat>('jpeg')
@@ -41,16 +41,16 @@ export default function ConvertImagePage() {
       images={images}
       run={run}
       multiple
-      pickerTitle="Chọn ảnh cần đổi định dạng"
-      runLabel={count > 1 ? `Chuyển ${count} ảnh sang ${label}` : `Chuyển sang ${label}`}
+      pickerTitle={t('convert.pickerTitle')}
+      runLabel={count > 1 ? t('convert.runMany', { count, format: label }) : t('convert.runOne', { format: label })}
       runIcon="arrow-left-right"
-      blocked={allSame ? `${count > 1 ? 'Các ảnh' : 'Ảnh'} đã chọn là ${label} sẵn.` : null}
+      blocked={allSame ? (count > 1 ? t('convert.blockedMany', { format: label }) : t('convert.blockedOne', { format: label })) : null}
       task={() => convertImagesTask(images.items, { format, quality: QUALITY_VALUE[quality] })}
       options={
         <>
-          <FlowChoice legend="Chuyển sang" value={format} options={webp ? TARGETS : TARGETS.filter((target) => target.value !== 'webp')} onChange={setFormat} />
-          {format === 'png' ? null : <FlowChoice legend="Chất lượng" value={quality} options={QUALITIES} onChange={setQuality} />}
-          {webp ? null : <p className="erp-flow-field__hint">Trình duyệt này không xuất được WebP.</p>}
+          <FlowChoice legend={t('convert.targetLegend')} value={format} options={webp ? targets : targets.filter((target) => target.value !== 'webp')} onChange={setFormat} />
+          {format === 'png' ? null : <FlowChoice legend={t('convert.qualityLegend')} value={quality} options={qualities} onChange={setQuality} />}
+          {webp ? null : <p className="erp-flow-field__hint">{t('convert.noWebp')}</p>}
         </>
       }
     />

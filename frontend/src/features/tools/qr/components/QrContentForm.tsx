@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import type { QrForm, QrKind, WifiSecurity } from '../types/qr.types'
 
 interface QrContentFormProps {
@@ -9,23 +10,13 @@ interface QrContentFormProps {
   onChange: (patch: Partial<QrForm>) => void
 }
 
-const KINDS: { value: QrKind; label: string }[] = [
-  { value: 'url', label: 'URL (đường dẫn)' },
-  { value: 'text', label: 'Văn bản' },
-  { value: 'wifi', label: 'Wi-Fi' },
-  { value: 'phone', label: 'Số điện thoại' },
-  { value: 'email', label: 'Email' },
-  { value: 'vcard', label: 'Danh thiếp (vCard)' },
-]
+const KINDS: QrKind[] = ['url', 'text', 'wifi', 'phone', 'email', 'vcard']
 
-const SECURITIES: { value: WifiSecurity; label: string }[] = [
-  { value: 'WPA', label: 'WPA / WPA2 / WPA3' },
-  { value: 'WEP', label: 'WEP' },
-  { value: 'nopass', label: 'Không mật khẩu' },
-]
+const SECURITIES: WifiSecurity[] = ['WPA', 'WEP', 'nopass']
 
 /** Ô nhập của màn tạo mã: loại mã quyết định các ô phía dưới. */
 export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
+  const { t } = useTranslation('qr')
   const ids = useId()
   const errorId = `${ids}-error`
   const described = error ? errorId : undefined
@@ -34,12 +25,12 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
     <div className="erp-tool-form">
       <div className="erp-flow-field">
         <label className="erp-flow-field__label" htmlFor={`${ids}-kind`}>
-          Loại mã
+          {t('shared.kind')}
         </label>
         <Form.Select id={`${ids}-kind`} value={form.kind} onChange={(event) => onChange({ kind: event.target.value as QrKind })}>
           {KINDS.map((kind) => (
-            <option key={kind.value} value={kind.value}>
-              {kind.label}
+            <option key={kind} value={kind}>
+              {t(`content.kinds.${kind}`)}
             </option>
           ))}
         </Form.Select>
@@ -48,7 +39,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
       {form.kind === 'url' ? (
         <div className="erp-flow-field">
           <label className="erp-flow-field__label" htmlFor={`${ids}-url`}>
-            Nhập nội dung
+            {t('content.enterContent')}
           </label>
           <Form.Control
             id={`${ids}-url`}
@@ -69,13 +60,13 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
       {form.kind === 'text' ? (
         <div className="erp-flow-field">
           <label className="erp-flow-field__label" htmlFor={`${ids}-text`}>
-            Nhập nội dung
+            {t('content.enterContent')}
           </label>
           <Form.Control
             id={`${ids}-text`}
             as="textarea"
             rows={5}
-            placeholder="Ví dụ: Kho B — kệ 12, tầng 3"
+            placeholder={t('content.textPlaceholder')}
             value={form.text}
             isInvalid={error !== null}
             aria-describedby={described}
@@ -88,7 +79,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
         <>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-ssid`}>
-              Tên mạng Wi-Fi
+              {t('content.ssid')}
             </label>
             <Form.Control
               id={`${ids}-ssid`}
@@ -96,19 +87,19 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
               autoComplete="off"
               autoCapitalize="none"
               spellCheck={false}
-              placeholder="Ví dụ: VanPhong-BCH"
+              placeholder={t('content.ssidPlaceholder')}
               value={form.ssid}
               onChange={(event) => onChange({ ssid: event.target.value })}
             />
           </div>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-security`}>
-              Bảo mật
+              {t('shared.security')}
             </label>
             <Form.Select id={`${ids}-security`} value={form.security} onChange={(event) => onChange({ security: event.target.value as WifiSecurity })}>
               {SECURITIES.map((security) => (
-                <option key={security.value} value={security.value}>
-                  {security.label}
+                <option key={security} value={security}>
+                  {t(`content.securities.${security}`)}
                 </option>
               ))}
             </Form.Select>
@@ -116,7 +107,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
           {form.security !== 'nopass' ? (
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-password`}>
-                Mật khẩu
+                {t('shared.password')}
               </label>
               {/* Ô chữ thường, không phải type="password": người tạo mã cần soát từng ký tự, và trình duyệt không mời lưu mật khẩu. */}
               <Form.Control
@@ -135,7 +126,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
           <Form.Check
             id={`${ids}-hidden`}
             type="checkbox"
-            label="Mạng ẩn (không phát tên)"
+            label={t('content.hidden')}
             checked={form.hidden}
             onChange={(event) => onChange({ hidden: event.target.checked })}
           />
@@ -145,7 +136,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
       {form.kind === 'phone' ? (
         <div className="erp-flow-field">
           <label className="erp-flow-field__label" htmlFor={`${ids}-phone`}>
-            Số điện thoại
+            {t('shared.phone')}
           </label>
           <Form.Control
             id={`${ids}-phone`}
@@ -165,7 +156,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
         <>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-email`}>
-              Địa chỉ email
+              {t('content.emailAddress')}
             </label>
             <Form.Control
               id={`${ids}-email`}
@@ -174,7 +165,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
               autoComplete="off"
               autoCapitalize="none"
               spellCheck={false}
-              placeholder="ten@congty.vn"
+              placeholder={t('shared.emailPlaceholder')}
               value={form.email}
               isInvalid={error !== null}
               aria-describedby={described}
@@ -183,7 +174,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
           </div>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-subject`}>
-              Tiêu đề thư (không bắt buộc)
+              {t('content.subject')}
             </label>
             <Form.Control id={`${ids}-subject`} type="text" autoComplete="off" value={form.subject} onChange={(event) => onChange({ subject: event.target.value })} />
           </div>
@@ -194,13 +185,13 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
         <>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-contact-name`}>
-              Họ tên
+              {t('content.contactName')}
             </label>
             <Form.Control
               id={`${ids}-contact-name`}
               type="text"
               autoComplete="off"
-              placeholder="Nguyễn Văn An"
+              placeholder={t('content.contactNamePlaceholder')}
               value={form.contactName}
               aria-describedby={described}
               onChange={(event) => onChange({ contactName: event.target.value })}
@@ -209,7 +200,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
           <div className="erp-tool-form__grid">
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-contact-phone`}>
-                Số điện thoại
+                {t('shared.phone')}
               </label>
               <Form.Control
                 id={`${ids}-contact-phone`}
@@ -224,7 +215,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
             </div>
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-contact-email`}>
-                Email liên hệ
+                {t('content.contactEmail')}
               </label>
               <Form.Control
                 id={`${ids}-contact-email`}
@@ -233,7 +224,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
                 autoComplete="off"
                 autoCapitalize="none"
                 spellCheck={false}
-                placeholder="ten@congty.vn"
+                placeholder={t('shared.emailPlaceholder')}
                 value={form.contactEmail}
                 aria-describedby={described}
                 onChange={(event) => onChange({ contactEmail: event.target.value })}
@@ -241,18 +232,18 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
             </div>
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-contact-org`}>
-                Công ty (không bắt buộc)
+                {t('content.contactOrg')}
               </label>
               <Form.Control id={`${ids}-contact-org`} type="text" autoComplete="off" value={form.contactOrg} onChange={(event) => onChange({ contactOrg: event.target.value })} />
             </div>
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-contact-title`}>
-                Chức danh (không bắt buộc)
+                {t('content.contactTitle')}
               </label>
               <Form.Control id={`${ids}-contact-title`} type="text" autoComplete="off" value={form.contactTitle} onChange={(event) => onChange({ contactTitle: event.target.value })} />
             </div>
           </div>
-          <p className="erp-flow-field__hint">Cần họ tên và ít nhất một trong hai: số điện thoại, email. Quét bằng camera điện thoại sẽ được mời thêm vào danh bạ.</p>
+          <p className="erp-flow-field__hint">{t('content.vcardHint')}</p>
         </>
       ) : null}
 

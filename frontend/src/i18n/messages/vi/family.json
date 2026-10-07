@@ -1,0 +1,153 @@
+{
+  "shared": {
+    "members": "Thành viên",
+    "phone": "Số điện thoại",
+    "notes": "Ghi chú"
+  },
+  "recurrence": {
+    "once": "Một lần",
+    "daily": "Hằng ngày",
+    "weekly": "Hằng tuần",
+    "monthly": "Hằng tháng",
+    "yearly": "Hằng năm"
+  },
+  "dataClasses": {
+    "NORMAL": "Thông thường",
+    "PRIVATE": "Riêng tư",
+    "SENSITIVE": "Nhạy cảm"
+  },
+  "profiles": {
+    "PARENT": "Bố mẹ",
+    "SENIOR": "Ông bà",
+    "CHILD": "Con"
+  },
+  "page": {
+    "views": {
+      "calendar": "Lịch",
+      "list": "Danh sách",
+      "members": "Thành viên",
+      "backup": "Sao lưu",
+      "safety": "SOS & liên hệ"
+    },
+    "lunarHint": "Ngày âm lịch rơi vào ngày dương khác nhau mỗi năm. Lịch chưa lặp được theo âm lịch nên nhắc này chỉ áp dụng cho năm nay.",
+    "loading": "Đang mở lịch lưu trên thiết bị...",
+    "storage": "<strong>Lưu trên thiết bị này</strong> · {{events}} lịch · {{members}} thành viên. Không cần tài khoản. Xóa dữ liệu trình duyệt sẽ mất lịch nếu bạn chưa tải bản sao lưu. Chưa bật chia sẻ hoặc đồng bộ qua mạng.",
+    "enableNotifications": "Bật thông báo khi trang đang mở",
+    "remindersTitle": "Nhắc việc khi trang đang mở",
+    "seen": "Đã xem",
+    "viewModes": "Chế độ xem",
+    "viewingFor": "Đang xem cho"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Hôm nay",
+      "week": "7 ngày tới",
+      "upcoming": "30 ngày tới"
+    },
+    "rangeLabel": "Khoảng thời gian",
+    "empty": "Chưa có lịch hoặc ngày lễ trong khoảng này.",
+    "upcomingNote": "Hiển thị 30 ngày kể từ hôm nay. Lịch lặp vẫn còn sau khoảng này."
+  },
+  "day": {
+    "lunar": "Âm lịch: ngày {{day}} tháng {{month}}",
+    "lunarLeap": "Âm lịch: ngày {{day}} tháng {{month}} nhuận",
+    "byLunar": "theo âm lịch",
+    "bySolar": "theo dương lịch",
+    "addReminder": "Thêm nhắc",
+    "empty": "Chưa có lịch của gia đình trong ngày này.",
+    "addToDay": "Thêm vào ngày này"
+  },
+  "form": {
+    "categories": {
+      "task": "Việc gia đình",
+      "school": "Học tập",
+      "appointment": "Lịch hẹn",
+      "deadline": "Hạn giấy tờ",
+      "medication": "Nhắc thuốc",
+      "payment": "Thanh toán",
+      "other": "Khác"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Cả gia đình",
+      "PARENTS_SENIORS": "Bố mẹ và ông bà",
+      "PARENTS_CHILDREN": "Bố mẹ và con",
+      "PRIVATE": "Chỉ trên thiết bị này"
+    },
+    "reminderInvalid": "Nhắc việc cần giờ cụ thể và khoảng nhắc từ 0 đến 1.440 phút.",
+    "saveFailed": "Không lưu được lịch. Kiểm tra ngày và dữ liệu đã nhập.",
+    "editTitle": "Sửa lịch",
+    "addTitle": "Thêm lịch gia đình",
+    "title": "Tên việc",
+    "date": "Ngày",
+    "time": "Giờ (không bắt buộc)",
+    "category": "Loại việc",
+    "recurrence": "Lặp lại",
+    "scope": "Phạm vi",
+    "privacy": "Độ riêng tư",
+    "reminder": "Nhắc trước (phút, tối đa 1 ngày; cần nhập giờ)",
+    "medicationNote": "Nhắc thuốc chỉ theo dữ liệu bạn nhập; không phải tư vấn y tế. Nội dung nhạy cảm được ẩn trên thông báo mặc định.",
+    "reminderNote": "Nhắc việc chỉ hiện khi trang đang mở hoặc trình duyệt cho phép thông báo; hệ điều hành có thể tạm dừng trang.",
+    "saveChanges": "Lưu thay đổi",
+    "saveNew": "Lưu lịch trên thiết bị",
+    "cancel": "Hủy"
+  },
+  "event": {
+    "undo": "Bỏ hoàn tất",
+    "done": "Đã xong",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "confirmDelete": "Xóa lịch này và mọi lần lặp lại trên thiết bị?"
+  },
+  "members": {
+    "saveFailed": "Không lưu được thành viên.",
+    "intro": "Đặt tên gọi dễ nhận biết. Không cần nhập ngày sinh, trường học hoặc giấy tờ cá nhân.",
+    "name": "Tên gọi",
+    "profile": "Hồ sơ",
+    "add": "Thêm thành viên"
+  },
+  "backup": {
+    "invalidFile": "Tệp sao lưu không hợp lệ hoặc quá 20 MB.",
+    "wrongVersion": "Không đọc được bản sao lưu đúng phiên bản.",
+    "confirmRestore": "Khôi phục gia đình {{id}} với {{count}} lịch? Dữ liệu đang dùng vẫn được giữ trong bộ nhớ thiết bị để có thể mở lại.",
+    "restoreFailed": "Không khôi phục được. Dữ liệu đang dùng vẫn còn.",
+    "title": "Sao lưu và xuất lịch",
+    "intro": "Bản sao lưu JSON giữ thành viên, lịch, nhắc việc và tín hiệu SOS. Tệp ICS chỉ dùng để đưa lịch sang ứng dụng khác; không thay bản sao lưu.",
+    "downloadBackup": "Tải bản sao lưu",
+    "downloadIcs": "Tải ICS",
+    "print": "In / Lưu PDF 30 ngày tới",
+    "includeSensitive": "Gồm cả lịch riêng tư và nhạy cảm trong ICS/PDF",
+    "defaultsNote": "ICS và PDF mặc định bỏ lịch riêng tư, nhạy cảm. Bản sao lưu luôn gồm đầy đủ dữ liệu; giữ tệp ở nơi bạn tin cậy.",
+    "restoreLabel": "Khôi phục từ bản sao lưu JSON",
+    "inspected": "Đã đọc: {{members}} thành viên, {{events}} lịch, {{reminders}} nhắc việc. Mã gia đình: {{id}}.",
+    "restoreThis": "Khôi phục bản này"
+  },
+  "safety": {
+    "invalidContact": "Nhập tên và số điện thoại hợp lệ.",
+    "contactFailed": "Không lưu được liên hệ.",
+    "sosFailed": "Không lưu được tín hiệu SOS trên thiết bị.",
+    "noGeolocation": "Thiết bị không hỗ trợ vị trí.",
+    "locationSaveFailed": "Không lưu được vị trí.",
+    "locateFailed": "Không lấy được vị trí. Tín hiệu SOS đã lưu vẫn còn.",
+    "title": "An toàn gia đình",
+    "intro": "Chế độ hiện tại chỉ lưu trên thiết bị. Tín hiệu SOS ở đây <strong>chưa được gửi cho người thân</strong>. Khi cần trợ giúp, hãy gọi trực tiếp số khẩn cấp hoặc liên hệ đã lưu.",
+    "contactName": "Tên liên hệ khẩn cấp",
+    "saveContact": "Lưu liên hệ",
+    "saveSos": "Lưu tín hiệu SOS trên thiết bị",
+    "call": "Gọi {{number}}",
+    "pendingTitle": "Tín hiệu đang lưu cục bộ",
+    "notSent": "{{time}} · Chưa gửi qua mạng",
+    "lastLocation": "Vị trí cuối: {{latitude}}, {{longitude}} lúc {{time}}",
+    "locateOnce": "Lấy vị trí một lần",
+    "imSafe": "Tôi an toàn"
+  },
+  "reminders": {
+    "sensitiveTitle": "Có lịch gia đình cần xem",
+    "notificationTitle": "Lịch Gia Đình",
+    "notificationBody": "Mở ứng dụng để xem chi tiết."
+  },
+  "space": {
+    "loadFailed": "Không mở được dữ liệu trên thiết bị. Kiểm tra quyền lưu trữ của trình duyệt.",
+    "saveFailed": "Không lưu được thay đổi. Hãy xuất bản sao lưu và kiểm tra dung lượng thiết bị.",
+    "restoreFailed": "Không khôi phục được bản sao lưu."
+  }
+}

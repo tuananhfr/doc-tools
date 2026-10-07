@@ -1,0 +1,160 @@
+{
+  "holidayLayers": {
+    "major": "重要節日",
+    "lunar": "傳統節日",
+    "moon": "初一與十五",
+    "memorial": "紀念日"
+  },
+  "calendar": {
+    "layersAria": "在行事曆上顯示節日",
+    "monthAria": "{{year}} 年 {{month}} 月行事曆",
+    "monthTitle": "{{month}} 月<year>／{{year}}</year>",
+    "prevMonth": "上個月",
+    "nextMonth": "下個月",
+    "today": "今天",
+    "weekdays": {
+      "mon": "一",
+      "tue": "二",
+      "wed": "三",
+      "thu": "四",
+      "fri": "五",
+      "sat": "六",
+      "sun": "日"
+    },
+    "lunarFirstLeap": "閏{{month}}/{{day}}",
+    "dayLunar": "農曆 {{month}}/{{day}}",
+    "dayLunarLeap": "農曆閏 {{month}}/{{day}}",
+    "dayEvents": "{{count}} 個行程"
+  },
+  "day": {
+    "outOfRange": "日期超出演算法支援的 1800–2199 年範圍。",
+    "solar": "國曆",
+    "lunarMonthYear": "{{year}} 年 {{month}} 月",
+    "lunarMonthYearLeap": "{{year}} 年閏 {{month}} 月",
+    "lunarDate": "農曆 {{year}}/{{month}}/{{day}}",
+    "lunarDateLeap": "農曆 {{year}}/閏{{month}}/{{day}}",
+    "facts": {
+      "day": "日",
+      "month": "月",
+      "year": "年"
+    },
+    "goodDay": "黃道吉日",
+    "badDay": "黑道日",
+    "byLunar": "依農曆",
+    "bySolar": "依國曆",
+    "goodHours": "黃道吉時",
+    "nextTet": "{{year}} 年春節：<strong>{{date}}</strong> · 還有 {{count}} 天",
+    "note": "天文演算法採用越南時區 UTC+7，適合日常參考；用於正式用途時，請對照主管機關公布的曆法。黃道／黑道依民間算法，僅供參考。<link>演算法來源：Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "前往日期",
+    "convertTitle": "農曆 → 國曆",
+    "fields": {
+      "day": "農曆日",
+      "month": "農曆月",
+      "year": "農曆年"
+    },
+    "leapMonth": "閏月",
+    "solarResult": "國曆 <strong>{{date}}</strong>",
+    "showOnCalendar": "在行事曆上查看",
+    "noSuchDay": "沒有這一天。",
+    "noSuchDayLeap": "沒有這一天（該年這個月沒有閏月）。",
+    "anniversaryTitle": "依農曆計算忌日",
+    "anniversaryFields": {
+      "day": "日",
+      "month": "月"
+    },
+    "anniversaryYear": "農曆 {{year}} 年：<strong>{{date}}</strong>",
+    "noSuchDayShort": "沒有這一天"
+  },
+  "address": {
+    "status": {
+      "full": "完整轉換",
+      "province": "僅轉換省份",
+      "ambiguous": "需手動選擇：{{options}}",
+      "none": "無法辨識省份"
+    },
+    "orSeparator": " 或 ",
+    "resultLabel": "地址對照",
+    "resultValue": "{{full}}/{{total}} 完整轉換",
+    "resultNote": "無論省份出現在哪一段都能辨識，包括縮寫（TP.HCM、HN…）。縣級會被刪除。只有在資料明確指向唯一新社／坊時才會轉換社／坊；舊社被拆分時會列出選項讓你選擇。",
+    "columns": {
+      "old": "舊地址",
+      "proposed": "建議",
+      "status": "狀態"
+    },
+    "downloadCsv": "下載 CSV",
+    "verifiedNote": "對照表已簽署，自 {{date}} 起生效。來源：{{source}}。最終地址請向受理單位確認。",
+    "manualNote": "對照表由你輸入，尚未經系統驗證。最終地址請向受理單位確認。",
+    "viewSource": "查看資料來源",
+    "panelTitle": "舊地址與對照表",
+    "addressesLabel": "每行一個地址，各層級以逗號分隔",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "正在使用已簽署的對照表",
+    "applyVerified": "套用已簽署的對照表",
+    "rulesLabel": "地址對照表",
+    "rulesNone": "系統上目前沒有已簽署且仍有效的地址對照表。",
+    "manualLabel": "或自行輸入，每行：「舊省|舊縣|舊社|新省|新社」",
+    "manualInvalid": "對照表格式錯誤（每行需有 5 個部分，每部分最多 150 個字元），或有舊省份被對應到兩個不同的新省份。"
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "XML 檔案超過 5 MB。",
+      "unreadable": "無法讀取 XML 檔案。",
+      "doctype": "XML 含有不支援的實體宣告或 DOCTYPE。",
+      "invalid": "XML 檔案無效。",
+      "noCommon": "找不到發票的一般資訊區塊。"
+    },
+    "resultLabel": "發票",
+    "noNumber": "無號碼",
+    "series": "字軌：{{series}} · 日期：{{date}}",
+    "seller": "賣方：{{name}}（{{taxCode}}）",
+    "buyer": "買方：{{name}}（{{taxCode}}）",
+    "noTaxCode": "無稅號",
+    "amounts": "稅前：{{subtotal}} đ · 稅額：{{vat}} đ",
+    "total": "應付總額：{{total}} đ",
+    "signature": "XML 簽章標籤：{{signature}} · 稅務機關代碼：{{authority}}",
+    "present": "有",
+    "notFound": "未找到",
+    "downloadCsv": "下載 CSV 明細",
+    "empty": "選擇 XML 檔案以查看發票資料。",
+    "disclaimer": "本工具只讀取 XML 內容，不驗證數位簽章或發票的法律狀態。使用前請到官方入口網站查詢。",
+    "panelTitle": "發票檔案",
+    "pickFile": "選擇 XML 檔案",
+    "columns": {
+      "ordinal": "序號",
+      "name": "商品、服務",
+      "quantity": "數量",
+      "amount": "金額"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "轉換後的文字",
+    "copy": "複製文字",
+    "note": "請選擇原始文字正確的編碼；顯示的字型名稱無法自動判斷字元編碼。",
+    "panelTitle": "原始文字",
+    "conversionLabel": "轉換方式",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 大寫 → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "合併 Unicode 聲調符號（NFC）",
+      "strip": "移除越南語聲調符號",
+      "lower": "小寫",
+      "upper": "大寫"
+    },
+    "contentLabel": "內容",
+    "placeholder": "貼上要轉換的文字…"
+  },
+  "numberWords": {
+    "resultLabel": "越南語大寫",
+    "invalid": "只能輸入整數，最多 36 位數。",
+    "note": "用於單據和合約的數字讀法；請確認受理單位的慣例。",
+    "copy": "複製結果",
+    "panelTitle": "要讀出的數字",
+    "inputLabel": "整數",
+    "placeholder": "例如：1.234.567",
+    "zeroWordLabel": "十位數為零的讀法",
+    "fourWordLabel": "十位數之後「四」的讀法"
+  }
+}

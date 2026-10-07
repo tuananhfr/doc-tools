@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import type { SourceFile } from '../types/doc-tools.types'
 
 interface ReplacePageModalProps {
@@ -11,6 +12,7 @@ interface ReplacePageModalProps {
 
 /** Tệp thay thế có nhiều trang → hỏi lấy trang nào, không tự chọn trang 1. */
 export function ReplacePageModal({ source, targetPosition, onCancel, onConfirm }: ReplacePageModalProps) {
+  const { t } = useTranslation('pdf')
   const [value, setValue] = useState('1')
   const page = Number(value)
   const valid = Number.isInteger(page) && page >= 1 && page <= source.pageCount
@@ -25,15 +27,15 @@ export function ReplacePageModal({ source, targetPosition, onCancel, onConfirm }
       >
         <Modal.Header closeButton>
           <Modal.Title as="h2" className="fs-5">
-            Thay trang {targetPosition}
+            {t('replacePage.title', { position: targetPosition })}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p className="mb-3">
-            <strong>{source.name}</strong> có {source.pageCount} trang. Chọn trang dùng để thay.
+            <Trans ns="pdf" i18nKey="replacePage.body" count={source.pageCount} values={{ name: source.name }} components={{ strong: <strong /> }} />
           </p>
           <Form.Group controlId="doc-replace-page">
-            <Form.Label>Trang của tệp mới</Form.Label>
+            <Form.Label>{t('replacePage.label')}</Form.Label>
             <Form.Control
               type="number"
               inputMode="numeric"
@@ -44,15 +46,15 @@ export function ReplacePageModal({ source, targetPosition, onCancel, onConfirm }
               autoFocus
               onChange={(event) => setValue(event.target.value)}
             />
-            <Form.Control.Feedback type="invalid">Nhập số từ 1 đến {source.pageCount}.</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{t('replacePage.invalid', { max: source.pageCount })}</Form.Control.Feedback>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" onClick={onCancel}>
-            Huỷ
+            {t('shared.cancel')}
           </Button>
           <Button type="submit" disabled={!valid}>
-            Thay trang
+            {t('toolbar.replace')}
           </Button>
         </Modal.Footer>
       </Form>

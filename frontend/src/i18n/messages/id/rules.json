@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Memuat paket data bertanda tangan…",
+    "invalid": "Paket data di sistem tidak lolos pemeriksaan (tanda tangan, masa berlaku, atau format) sehingga tidak dipakai. Laporkan ke admin.",
+    "unavailable": "Paket data bertanda tangan tidak dapat dimuat dari server. Anda tetap bisa mengisi sendiri.",
+    "upcoming": "Mulai {{date}} berlaku {{label}} baru menurut {{source}}."
+  }
+}

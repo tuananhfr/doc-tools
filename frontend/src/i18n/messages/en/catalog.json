@@ -1,0 +1,448 @@
+{
+  "pageTitle": "Free {{name}}",
+  "groups": {
+    "all": "All",
+    "document": "Documents",
+    "image": "Images",
+    "calc": "Calculators",
+    "money": "Money",
+    "date": "Dates & deadlines",
+    "data": "Data",
+    "construction": "Construction",
+    "home": "Home & life",
+    "tech": "Technical",
+    "other": "Other utilities"
+  },
+  "tips": {
+    "insertPages": "Drop more files into the middle of the page grid to insert them exactly where you want — no need to merge again from scratch.",
+    "findInScan": "After running OCR, Ctrl+F can find text even in scans.",
+    "undo": "Ctrl+Z undoes any page action: delete, rotate, crop, text edits.",
+    "rangeSelect": "Hold Shift and click a second page to select every page in between."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "Compress video",
+      "description": "Reduce file size and export MP4 right in your browser",
+      "synonyms": "compress video, reduce video size, shrink video, mp4"
+    },
+    "trim-video": {
+      "name": "Trim video",
+      "description": "Pick a clip by seconds and export a new MP4",
+      "synonyms": "trim video, cut video, cut clip, mp4"
+    },
+    "video-gif": {
+      "name": "Video to GIF",
+      "description": "Turn a short video clip into a looping animation",
+      "synonyms": "gif, animated gif, video to gif, gif maker"
+    },
+    "extract-audio": {
+      "name": "Extract audio from video",
+      "description": "Get the audio and export MP3, M4A or WAV on your device",
+      "synonyms": "video to mp3, extract audio, music from video, rip audio"
+    },
+    "assistant": {
+      "name": "Tool finder",
+      "description": "Find the right tool and use your own AI with a prompt you preview first",
+      "synonyms": "ai assistant, how to, which tool, help me choose"
+    },
+    "idea-suggestion": {
+      "name": "Suggest a tool",
+      "description": "Send an idea and track its review with a receipt code",
+      "privacyNote": "Content is sent only when you press Send suggestion",
+      "synonyms": "tool feedback, new idea, feature request, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "Regulation feedback",
+      "description": "Send content and a source URL for the operators to check",
+      "privacyNote": "Content is sent only when you press Send suggestion",
+      "synonyms": "law update, new regulation, data feedback, correction"
+    },
+    "remove-background": {
+      "name": "Remove image background",
+      "description": "Remove plain-colored backgrounds automatically and refine with a brush",
+      "synonyms": "remove background, transparent background, background eraser, product photo"
+    },
+    "cv": {
+      "name": "CV builder",
+      "description": "Write a CV, pick a template, then print or save as PDF on your device",
+      "synonyms": "resume, cv, job application, curriculum vitae"
+    },
+    "pdf-password": {
+      "name": "Add / remove PDF password",
+      "description": "Encrypt with AES-256 or unlock with the correct password",
+      "synonyms": "lock pdf, protect pdf, unlock pdf, encrypt pdf, pdf password"
+    },
+    "family-calendar": {
+      "name": "Family Calendar",
+      "description": "Keep events, tasks and emergency contacts on your device; back up and export ICS",
+      "synonyms": "family calendar, reminders, sos, school schedule"
+    },
+    "address-conversion": {
+      "name": "Address conversion after mergers",
+      "description": "Match old addresses against the full commune/ward mapping table",
+      "privacyNote": "Matching happens on your device; feedback is sent only with your consent",
+      "synonyms": "new address, province merger, commune rename, vietnam address"
+    },
+    "payroll": {
+      "name": "Gross – net salary",
+      "description": "Estimate take-home pay from parameters you enter or a signed package",
+      "privacyNote": "Calculated on your device; feedback is sent only with your consent",
+      "synonyms": "net salary, gross to net, personal income tax, social insurance, payroll"
+    },
+    "lunar-calendar": {
+      "name": "Lunar – solar calendar",
+      "description": "Monthly lunar–solar calendar with holidays, can chi and auspicious hours; convert dates both ways and look up death anniversaries",
+      "synonyms": "lunar calendar, tet, lunar new year, death anniversary, date converter"
+    },
+    "electricity": {
+      "name": "Electricity & water bill",
+      "description": "Estimate tiered electricity bills and water bills at the prices you enter",
+      "privacyNote": "Calculated on your device; feedback is sent only with your consent",
+      "synonyms": "electricity bill, kwh price, water bill, utility bill"
+    },
+    "form-templates": {
+      "name": "Forms & records",
+      "description": "Write leave requests, authorization letters and handover records to print",
+      "synonyms": "leave request, letter of authorization, handover record, form template"
+    },
+    "dictation": {
+      "name": "Speech to text",
+      "description": "Vietnamese dictation using your browser's speech recognition",
+      "privacyNote": "Audio may be sent by your browser to its speech recognition service",
+      "synonyms": "dictation, microphone, speech to text, voice typing"
+    },
+    "magnifier": {
+      "name": "Magnifier",
+      "description": "Zoom in with the camera to read small print",
+      "synonyms": "camera zoom, read small text, magnifying glass"
+    },
+    "house-estimate": {
+      "name": "House construction cost estimate",
+      "description": "Convert floor areas and enter contractor prices to estimate costs",
+      "synonyms": "construction area, house cost, building cost estimate, price per m2"
+    },
+    "number-words": {
+      "name": "Number to words",
+      "description": "Write amounts in words for receipts and contracts",
+      "synonyms": "amount in words, number to words, spell out number"
+    },
+    "loan": {
+      "name": "Loans & savings",
+      "description": "Work out a repayment schedule or renewing deposits",
+      "synonyms": "bank loan, declining balance, loan interest, mortgage, savings"
+    },
+    "unit-price": {
+      "name": "Unit price comparison",
+      "description": "Scale two products to the same quantity to compare prices",
+      "synonyms": "price per kg, price per liter, shopping, unit price"
+    },
+    "study": {
+      "name": "Grade conversion & admission",
+      "description": "Convert grades and calculate admission priority points for reference",
+      "synonyms": "gpa, 4-point scale, 10-point scale, priority points, admission score"
+    },
+    "pomodoro": {
+      "name": "Focus timer",
+      "description": "Split your time into focus and break sessions",
+      "synonyms": "timer, focus, pomodoro, study timer"
+    },
+    "group-split": {
+      "name": "Group expense split",
+      "description": "Work out who owes whom after shared expenses",
+      "synonyms": "split bill, trip expenses, settle up, shared costs"
+    },
+    "legacy-font": {
+      "name": "Vietnamese font & accent converter",
+      "description": "Convert TCVN3 and VNI and normalize accents to Unicode",
+      "synonyms": "vni to unicode, tcvn3 to unicode, remove accents, vietnamese font"
+    },
+    "read-aloud": {
+      "name": "Read text aloud",
+      "description": "Listen to text using your device's voice",
+      "synonyms": "text to speech, tts, listen to text, read aloud"
+    },
+    "vietqr": {
+      "name": "VietQR bank transfer",
+      "description": "Create a transfer QR code from a bank BIN and account number",
+      "synonyms": "bank qr, napas, transfer qr, payment qr"
+    },
+    "invoice-xml": {
+      "name": "E-invoice XML reader",
+      "description": "View the fields and export the goods list from XML",
+      "synonyms": "xml invoice, e-invoice, invoice list, tt78"
+    },
+    "remove-metadata": {
+      "name": "Remove location from photos",
+      "description": "Redraw the image to strip EXIF, GPS and original camera info",
+      "synonyms": "remove exif, strip gps, hide photo location, metadata"
+    },
+    "collage": {
+      "name": "Photo collage",
+      "description": "Combine 2–9 images into a PNG grid",
+      "synonyms": "collage, photo grid, combine images, join photos"
+    },
+    "message-risk": {
+      "name": "Check suspicious messages & links",
+      "description": "Screen for scam signs without opening the link",
+      "synonyms": "scam, phishing, fake sms, fraud check"
+    },
+    "flashcards": {
+      "name": "Flashcards",
+      "description": "Create and review cards with a Leitner box on your device",
+      "synonyms": "flashcard, vocabulary, leitner box, study cards"
+    },
+    "scan-to-pdf": {
+      "name": "Scan images → PDF",
+      "description": "Combine photos into one PDF file",
+      "pageTitle": "Convert images to PDF for free",
+      "synonyms": "jpg to pdf, image to pdf, photo to pdf, scan document, combine images"
+    },
+    "merge-pdf": {
+      "name": "Merge PDF",
+      "description": "Combine several PDF files into one",
+      "synonyms": "merge pdf, combine pdf, join pdf, merge"
+    },
+    "split-pdf": {
+      "name": "Split PDF",
+      "description": "Split pages or extract pages into separate files",
+      "synonyms": "split pdf, cut pdf, extract pages, separate pdf, split"
+    },
+    "compress-pdf": {
+      "name": "Compress PDF",
+      "description": "Reduce PDF file size",
+      "synonyms": "shrink pdf, smaller pdf, reduce pdf size, compress"
+    },
+    "convert-file": {
+      "name": "Convert files",
+      "description": "PDF to Word, Excel, images",
+      "pageTitle": "Convert PDF to Word for free",
+      "synonyms": "pdf to word, docx, xlsx, pdf to excel, pdf to jpg, pdf to image"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Images",
+      "description": "Turn each PDF page into a JPG or PNG image",
+      "synonyms": "pdf to jpg, pdf to png, pdf to image, export images"
+    },
+    "organize-pdf": {
+      "name": "Organize PDF",
+      "description": "Reorder, rotate and remove pages",
+      "synonyms": "reorder pages, rotate pages, delete pages, rearrange pdf"
+    },
+    "page-numbers": {
+      "name": "Add page numbers",
+      "description": "Add page numbers to a PDF file",
+      "synonyms": "page numbers, page number, footer, number pages"
+    },
+    "stamp-pdf": {
+      "name": "Stamp PDF",
+      "description": "Add a text or logo stamp to pages",
+      "synonyms": "watermark, logo, copy stamp, add stamp"
+    },
+    "redact-pdf": {
+      "name": "Redact PDF",
+      "description": "Permanently remove sensitive areas from the file",
+      "synonyms": "black out, redact, hide information, remove text"
+    },
+    "view-pdf": {
+      "name": "View PDF",
+      "description": "View, search text and annotate pages",
+      "synonyms": "pdf reader, open pdf, pdf viewer"
+    },
+    "ocr": {
+      "name": "OCR text",
+      "description": "Recognize Vietnamese text in scans",
+      "synonyms": "text recognition, searchable pdf, ocr, scan to text"
+    },
+    "compare": {
+      "name": "Compare documents",
+      "description": "Compare the text of two PDFs and highlight the lines that differ",
+      "synonyms": "compare, diff, compare pdf, differences, old vs new version"
+    },
+    "sign": {
+      "name": "Add signature",
+      "description": "Draw a signature or insert a signature image on a page",
+      "synonyms": "sign document, signature, e-sign, sign pdf, sign"
+    },
+    "edit-pdf": {
+      "name": "Edit PDF",
+      "description": "Edit text, mark up and organize pages",
+      "synonyms": "edit pdf, rotate pages, delete pages, add text"
+    },
+    "image-to-text": {
+      "name": "Image → Text",
+      "description": "Extract Vietnamese text from photos",
+      "synonyms": "image ocr, copy text from image, extract text, image to text"
+    },
+    "measure-image": {
+      "name": "Measure on image",
+      "description": "Measure lengths and areas on an image",
+      "synonyms": "ruler, measure drawing, scale, measure photo"
+    },
+    "convert-image": {
+      "name": "Convert images",
+      "description": "Convert between JPG, PNG and WebP",
+      "synonyms": "change image format, png to jpg, jpg to png, webp to jpg, heic to jpg"
+    },
+    "compress-image": {
+      "name": "Compress images",
+      "description": "Reduce image file size",
+      "synonyms": "shrink image, smaller image, reduce photo size, resize"
+    },
+    "crop-image": {
+      "name": "Crop & adjust image",
+      "description": "Crop, rotate and adjust brightness",
+      "synonyms": "crop, rotate image, flip image, brightness"
+    },
+    "batch-image": {
+      "name": "Batch images",
+      "description": "Resize, rename and convert a whole batch",
+      "synonyms": "resize images, rename images, bulk resize, batch, many images"
+    },
+    "mark-image": {
+      "name": "Redact & watermark images",
+      "description": "Hide information and stamp text on images",
+      "synonyms": "watermark, black out, blur face, hide numbers, copyright stamp"
+    },
+    "id-photo": {
+      "name": "ID photos & printing",
+      "description": "Crop ID photos and lay out several copies on a print sheet",
+      "synonyms": "3x4 photo, 4x6 photo, passport photo, print id photo, passport"
+    },
+    "qr-create": {
+      "name": "QR code generator",
+      "description": "Create a QR code from text or a link",
+      "synonyms": "qr code, qr link, qr generator"
+    },
+    "barcode-create": {
+      "name": "Barcode generator",
+      "description": "EAN-13, Code 128, ITF-14 — one code or a whole batch",
+      "synonyms": "barcode, barcode generator, ean, code 128, code 39, itf, print labels, item code"
+    },
+    "qr-read": {
+      "name": "QR / barcode reader",
+      "description": "Scan codes from an image or the camera",
+      "synonyms": "scan qr, qr scanner, read barcode, barcode"
+    },
+    "quick-calc": {
+      "name": "Quick calculator",
+      "description": "Area, volume, weight",
+      "synonyms": "calculator, m2, m3, concrete"
+    },
+    "money-calc": {
+      "name": "Money & tax calculator",
+      "description": "Percentages, VAT, discounts, gross margin, splitting bills",
+      "synonyms": "vat, sales tax, percentage, discount, margin, markup, split bill, profit"
+    },
+    "date-calc": {
+      "name": "Date & deadline calculator",
+      "description": "Count days and working days, add or subtract days",
+      "synonyms": "count days, due date, deadline, working days, how many days"
+    },
+    "house-orientation": {
+      "name": "House orientation & compass",
+      "description": "Measure which way your house faces; overlay the compass on a photo or drawing",
+      "synonyms": "compass, house direction, door direction, feng shui, bat trach, facade direction, afternoon sun"
+    },
+    "quick-note": {
+      "name": "Quick notes",
+      "description": "Notes and to-do lists saved on your device",
+      "synonyms": "note, todo, to-do list, notepad"
+    },
+    "char-count": {
+      "name": "Character counter",
+      "description": "Count characters, words and lines",
+      "synonyms": "word count, character count, letter count"
+    },
+    "unit-convert": {
+      "name": "Unit converter",
+      "description": "Length, area, weight",
+      "synonyms": "convert units, inch, feet, meter"
+    },
+    "color": {
+      "name": "Colors",
+      "description": "Pick colors and convert color codes",
+      "synonyms": "color palette, color picker, hex, rgb"
+    },
+    "random-code": {
+      "name": "Random code generator",
+      "description": "Passwords, order codes, voucher codes",
+      "synonyms": "password, generate code, random, password generator"
+    },
+    "construction-price": {
+      "name": "Construction prices",
+      "description": "Look up unit prices, materials and labor by locality"
+    },
+    "planning-lookup": {
+      "name": "Zoning",
+      "description": "Look up zoning information and land-use indicators"
+    },
+    "construction-law": {
+      "name": "Construction law",
+      "description": "Look up procedures, legal documents and forms"
+    },
+    "construction-standards": {
+      "name": "Construction standards",
+      "description": "Look up and quickly view standards and codes"
+    },
+    "dossier-check": {
+      "name": "Dossier check",
+      "description": "Check design dossiers and drawings for common mistakes"
+    },
+    "structure-calc": {
+      "name": "Quick structural calc",
+      "description": "Calculate basic cross-sections and loads"
+    },
+    "drawing-convert": {
+      "name": "Drawing converter",
+      "description": "Convert DWG and DXF to PDF and measure dimensions"
+    },
+    "drawing-area": {
+      "name": "Measure area on drawings",
+      "description": "Measure area and perimeter on PDF drawings"
+    },
+    "site-diary": {
+      "name": "Site diary",
+      "description": "Take photos, write notes and mark things up right on site"
+    },
+    "supplier-lookup": {
+      "name": "Supplier lookup",
+      "description": "Find suppliers of construction materials and equipment"
+    },
+    "family-reminders": {
+      "name": "Reminders",
+      "description": "Reminders for medicine, school runs, chores and appointments"
+    },
+    "family-share": {
+      "name": "Share with family",
+      "description": "Invite relatives to view and update a shared calendar"
+    },
+    "family-health": {
+      "name": "Family health",
+      "description": "Track checkups and medication reminders for each person"
+    },
+    "house-chores": {
+      "name": "Chore list",
+      "description": "Assign chores and track what's done"
+    },
+    "family-budget": {
+      "name": "Family spending",
+      "description": "Record income and expenses and track a simple budget"
+    },
+    "family-album": {
+      "name": "Family album",
+      "description": "Keep photos and videos of family moments"
+    },
+    "special-days": {
+      "name": "Special days",
+      "description": "Reminders for birthdays, anniversaries, death anniversaries and holidays"
+    },
+    "honor-board": {
+      "name": "Honor board",
+      "description": "Recognizing people whose data contributions have been verified"
+    },
+    "code-manager": {
+      "name": "Code manager",
+      "description": "Create lists of QR codes and barcodes and export files"
+    }
+  }
+}

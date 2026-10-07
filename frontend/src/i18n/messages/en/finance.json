@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "View data source",
+    "vatPercent": "Tax (%)"
+  },
+  "electricity": {
+    "resultLabel": "Estimated bill",
+    "waterBreakdown": "Water: {{subtotal}} đ · Fee: {{fee}} đ · Tax: {{vat}} đ. Each is calculated separately on the base water charge.",
+    "waterHint": "Enter the water usage and unit price from your latest bill.",
+    "electricityBreakdown": "Electricity before tax: {{subtotal}} đ · Tax {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "Tier up to kWh",
+      "units": "kWh",
+      "price": "Price/kWh",
+      "amount": "Amount",
+      "rest": "Remainder"
+    },
+    "electricityHint": "Enter the meter reading and price table from your bill or contract. Use * on the last line for the remainder.",
+    "tariffVerified": "Signed price table, effective from {{date}}. Source: {{source}}.",
+    "tariffManual": "Price table entered by you; the tool doesn't confirm it's the current electricity price.",
+    "vatVerified": "Signed {{percent}}% tax rate, effective from {{date}}. Source: {{source}}.",
+    "vatManual": "Tax rate entered by you.",
+    "notIncluded": "Doesn't include other fees or the provider's rounding.",
+    "panelTitle": "Electricity and water bills",
+    "billType": "Bill type",
+    "modes": {
+      "electricity": "Electricity",
+      "water": "Water"
+    },
+    "water": {
+      "cubicMeters": "Water used (m³)",
+      "price": "Unit price (đ/m³)",
+      "fee": "Drainage / environmental fee (%)"
+    },
+    "kwh": "Electricity used (kWh)",
+    "households": "Number of household quotas sharing the meter",
+    "tiers": "Price table: each line is “kWh threshold, price đ/kWh”",
+    "applyTariff": "Apply signed price table",
+    "applyVat": "Apply signed tax rate",
+    "ruleLabel": "electricity price table",
+    "ruleNone": "There's no signed, currently valid electricity price table on the system yet.",
+    "vatRuleLabel": "VAT rate"
+  },
+  "groupSplit": {
+    "resultLabel": "Transfers to settle up",
+    "balanced": "All settled",
+    "note": "Each expense is split equally among its participants. Transfer amounts are rounded to the nearest đồng.",
+    "membersTitle": "Members",
+    "onePerLine": "One person per line",
+    "expensesTitle": "Expenses",
+    "addExpense": "Add expense",
+    "payer": "Paid by",
+    "choosePerson": "Choose a person",
+    "amount": "Amount (đ)",
+    "participants": "Split between",
+    "removeExpense": "Remove expense"
+  },
+  "loan": {
+    "totalPayment": "Total to pay",
+    "finalBalance": "Final balance",
+    "interest": "Interest: {{amount}} đ",
+    "firstPayment": "First payment: {{amount}} đ",
+    "downloadCsv": "Download CSV",
+    "table": {
+      "period": "Period",
+      "principal": "Principal",
+      "interest": "Interest",
+      "balance": "Balance"
+    },
+    "savingsNote": "Interest of {{amount}} đ after {{months}} months. Each term earns simple interest, added to the principal at the end of the term when it renews.",
+    "hint": "Enter a positive amount, a non-negative interest rate and a valid term.",
+    "disclaimer": "For reference only; the actual schedule depends on the contract and the lender's rounding.",
+    "loanTitle": "Loan",
+    "savingsTitle": "Deposit",
+    "mode": "Mode",
+    "modes": {
+      "loan": "Installment loan",
+      "savings": "Renewing savings"
+    },
+    "loanAmount": "Loan amount (đ)",
+    "savingsAmount": "Deposit amount (đ)",
+    "rate": "Annual interest rate (%)",
+    "loanTerm": "Term (months)",
+    "savingsTerm": "Term length (months)",
+    "method": "Repayment method",
+    "methods": {
+      "annuity": "Roughly equal payments",
+      "equalPrincipal": "Equal principal"
+    },
+    "renewals": "Number of renewals"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Personal deduction (đ)",
+      "dependentDeduct": "Deduction per dependent (đ)",
+      "referenceSalary": "Reference salary for the insurance cap (đ)",
+      "minWage1": "Regional minimum wage, region I (đ)",
+      "minWage2": "Regional minimum wage, region II (đ)",
+      "minWage3": "Regional minimum wage, region III (đ)",
+      "minWage4": "Regional minimum wage, region IV (đ)",
+      "employeeSocial": "Employee: social insurance (%)",
+      "employeeHealth": "Employee: health insurance (%)",
+      "employeeUnemployment": "Employee: unemployment insurance (%)",
+      "employerSocial": "Employer: social insurance (%)",
+      "employerHealth": "Employer: health insurance (%)",
+      "employerUnemployment": "Employer: unemployment insurance (%)"
+    },
+    "resultLabel": "Reference result",
+    "net": "Take-home {{amount}} đ",
+    "missingParams": "Missing parameters",
+    "rows": {
+      "gross": "Gross",
+      "employeeSocial": "Employee social insurance",
+      "employeeHealth": "Employee health insurance",
+      "employeeUnemployment": "Employee unemployment insurance",
+      "deduction": "Deductions",
+      "taxable": "Taxable income",
+      "bracket": "Bracket {{level}} · {{rate}}%",
+      "tax": "Personal income tax",
+      "employerTotal": "Employer contributions",
+      "employerCost": "Total employer cost"
+    },
+    "hint": "Fill in every parameter from the signed rule set or from your payslip, contract and accountant's guidance.",
+    "paramsVerified": "Signed parameter package, effective from {{date}}. Source: {{source}}.",
+    "paramsManual": "Parameters entered by you; the tool doesn't confirm they're the current regulations.",
+    "notSettlement": "This result doesn't replace your actual tax finalization.",
+    "panelTitle": "Gross – net salary calculator",
+    "direction": "Direction",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "Gross salary (đ/month)",
+    "netSalary": "Desired net salary (đ/month)",
+    "dependents": "Dependents",
+    "region": "Region",
+    "regionOption": "Region {{region}}",
+    "insuranceBase": "Salary for insurance (đ, leave blank = gross)",
+    "exempt": "Tax-exempt allowances in gross (đ)",
+    "applyParams": "Apply signed parameters",
+    "ruleLabel": "payroll parameters",
+    "ruleNone": "There's no signed, currently valid payroll rule package on the system yet.",
+    "enterParams": "Enter payroll parameters",
+    "brackets": "Tax table: “taxable income threshold (đ), tax rate (%)”; use * on the last line"
+  },
+  "unitPrice": {
+    "resultLabel": "Unit price comparison",
+    "equal": "Same price",
+    "cheaper": "Product {{index}} is cheaper",
+    "perUnit": "Product {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "{{percent}}% difference from the higher price.",
+    "hint": "Enter a non-negative price and a positive quantity for both products, in the same unit.",
+    "panelTitle": "Two products",
+    "price": "Price of product {{index}} (đ)",
+    "quantity": "Quantity of product {{index}} ({{unit}})",
+    "unit": "Quantity unit",
+    "units": {
+      "kg": "kg",
+      "liter": "liter",
+      "piece": "piece"
+    }
+  }
+}

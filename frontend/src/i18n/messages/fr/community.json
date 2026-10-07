@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Source à compléter",
+      "NEEDS_REVIEW": "En attente de vérification",
+      "VERIFIED": "Vérifié",
+      "REJECTED": "Non accepté",
+      "APPROVED": "Approuvé",
+      "PUBLISHED": "Publié",
+      "SUPERSEDED": "Remplacé par une version plus récente",
+      "REVOKED": "Retiré"
+    },
+    "sendFailed": "Impossible d'envoyer la proposition.",
+    "received": "Proposition reçue : {{status}}. Conservez le code de reçu pour en suivre l'état.",
+    "offlineDraft": "Impossible de joindre le serveur. Votre contenu reste sur cette page.",
+    "invalidReceipt": "Code de reçu non valide.",
+    "statusLine": "État : {{status}}",
+    "receiptNotFound": "Code de reçu introuvable.",
+    "lookupFailed": "Impossible de consulter l'état pour le moment.",
+    "addSourceFailed": "Impossible d'ajouter la source.",
+    "sourceAdded": "Source ajoutée. La proposition est en attente de vérification.",
+    "offline": "Impossible de joindre le serveur.",
+    "ideaTitle": "Proposer un outil",
+    "regulationTitle": "Signaler une donnée réglementaire",
+    "ideaIntro": "Décrivez un problème concret et l'outil que vous aimeriez avoir. Les idées sont vérifiées avant d'être publiées.",
+    "regulationIntro": "Indiquez ce qui doit être corrigé et le lien vers la source. Il s'agit d'une remarque que les responsables vérifieront ; les données de l'outil ne changent pas encore.",
+    "ideaName": "Nom de l'idée",
+    "regulationTopic": "Texte ou sujet",
+    "ideaDetail": "Le problème et la solution proposée",
+    "regulationDetail": "Ce qu'il faut vérifier / corriger",
+    "sourceUrl": "URL source en HTTPS (le cas échéant)",
+    "sourceType": "Type de source proposé",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Site d'un organisme public",
+      "OFFICIAL_DOCUMENT": "Document officiel",
+      "OFFICIAL_API": "API officielle",
+      "OTHER": "Autre source"
+    },
+    "consent": "J'ai retiré les informations personnelles et les clés secrètes, et j'accepte d'envoyer ce contenu pour vérification par l'équipe",
+    "sending": "Envoi en cours…",
+    "submit": "Envoyer la proposition",
+    "receipt": "Code de reçu :",
+    "lookupTitle": "Consulter l'état",
+    "receiptLabel": "Code de reçu",
+    "lookup": "Consulter",
+    "needsSource": "Saisissez une URL HTTPS dans le champ source ci-dessus, puis ajoutez-la avec ce code de reçu.",
+    "addSource": "Ajouter une source"
+  },
+  "ideas": {
+    "published": "Idées publiées",
+    "empty": "Aucune idée n'a encore été approuvée et publiée."
+  }
+}

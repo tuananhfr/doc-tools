@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
 import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
 import { NumberField } from '../components/NumberField'
@@ -9,7 +10,7 @@ const FIRST_PRESET: Record<MoneyGroup, string> = { percent: 'percent-of', tax: '
 
 const NO_VALUES: Record<string, string> = {}
 
-const UNIT_SUFFIX: Record<MoneyUnit, string | undefined> = { money: 'đ', percent: '%', count: 'người' }
+const UNIT_SUFFIX = { money: 'money.suffix.money', percent: 'money.suffix.percent', count: 'money.suffix.count' } as const satisfies Record<MoneyUnit, string>
 
 /**
  * TÍNH TIỀN & THUẾ — phần trăm, thuế, chiết khấu, lãi gộp, chia tiền. Kết quả
@@ -17,6 +18,7 @@ const UNIT_SUFFIX: Record<MoneyUnit, string | undefined> = { money: 'đ', percen
  * nghìn) và mã công thức + phiên bản, để đối chiếu khi cách tính thay đổi.
  */
 export default function MoneyCalcPage() {
+  const { t } = useTranslation('utility')
   const presetSelect = useId()
   const [group, setGroup] = useState<MoneyGroup>('percent')
   const [chosen, setChosen] = useState(FIRST_PRESET)
@@ -40,20 +42,20 @@ export default function MoneyCalcPage() {
               <p className="erp-tool-result__label">{outcome.rows[0].label}</p>
               <p className="erp-tool-result__value">
                 {formatMoneyValue(outcome.rows[0].value, outcome.rows[0].unit)}
-                {outcome.rows[0].unit === 'money' ? <span className="erp-tool-result__unit"> đ</span> : null}
+                {outcome.rows[0].unit === 'money' ? <span className="erp-tool-result__unit"> {t('money.suffix.money')}</span> : null}
               </p>
               <p className="erp-tool-result__note">= {outcome.expression}</p>
-              <CopyButton text={formatMoneyValue(outcome.rows[0].value, outcome.rows[0].unit)} label="Chép kết quả" className="align-self-start" />
+              <CopyButton text={formatMoneyValue(outcome.rows[0].value, outcome.rows[0].unit)} label={t('shared.copyResult')} className="align-self-start" />
               {outcome.rows.length > 1 ? (
                 <ul className="erp-tool-rows mt-3">
                   {outcome.rows.slice(1).map((row) => (
                     <li key={row.label} className="erp-tool-row">
                       <span className="erp-tool-row__value">
                         {formatMoneyValue(row.value, row.unit)}
-                        {row.unit === 'money' ? <span className="erp-tool-row__unit"> đ</span> : null}
+                        {row.unit === 'money' ? <span className="erp-tool-row__unit"> {t('money.suffix.money')}</span> : null}
                       </span>
                       <span className="erp-tool-row__label">{row.label}</span>
-                      <CopyButton text={formatMoneyValue(row.value, row.unit)} label={`Chép ${row.label.toLowerCase()}`} iconOnly variant="link" />
+                      <CopyButton text={formatMoneyValue(row.value, row.unit)} label={t('money.copyRow', { label: row.label.toLowerCase() })} iconOnly variant="link" />
                     </li>
                   ))}
                 </ul>
@@ -61,27 +63,27 @@ export default function MoneyCalcPage() {
             </>
           ) : (
             <>
-              <p className="erp-tool-result__label">{preset.label}</p>
+              <p className="erp-tool-result__label">{t(preset.label)}</p>
               <p className="erp-tool-result__value erp-tool-result__value--empty">—</p>
-              <p className="erp-tool-result__note">{outcome.reason ?? (invalid.length > 0 ? 'Ô được đánh dấu chưa phải một con số hợp lệ (không âm; số người là số nguyên từ 1).' : 'Nhập đủ các ô để tính.')}</p>
+              <p className="erp-tool-result__note">{outcome.reason ?? (invalid.length > 0 ? t('money.invalid') : t('money.missing'))}</p>
             </>
           )}
-          <p className="erp-tool-result__note mt-2">Mã công thức: {presetCode(preset)}</p>
+          <p className="erp-tool-result__note mt-2">{t('money.formulaCode', { code: presetCode(preset) })}</p>
         </div>
       }
     >
-      <ToolSegments label="Loại phép tính" value={group} options={MONEY_GROUPS} onChange={setGroup} />
+      <ToolSegments label={t('money.groupLabel')} value={group} options={MONEY_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title="Số liệu">
+      <ToolPanel title={t('money.panelTitle')}>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={presetSelect}>
-              Phép tính
+              {t('money.operation')}
             </label>
             <Form.Select id={presetSelect} value={preset.id} onChange={(event) => setChosen((current) => ({ ...current, [group]: event.target.value }))}>
               {presets.map((item) => (
                 <option key={item.id} value={item.id}>
-                  {item.label}
+                  {t(item.label)}
                 </option>
               ))}
             </Form.Select>
@@ -91,9 +93,9 @@ export default function MoneyCalcPage() {
             {preset.inputs.map((input) => (
               <NumberField
                 key={`${preset.id}.${input.key}`}
-                label={input.label}
-                unit={UNIT_SUFFIX[input.unit]}
-                placeholder={input.placeholder}
+                label={t(input.label)}
+                unit={t(UNIT_SUFFIX[input.unit])}
+                placeholder={input.placeholder ? t(input.placeholder) : undefined}
                 value={values[input.key] ?? ''}
                 invalid={invalid.includes(input.key)}
                 onChange={(value) => setValue(input.key, value)}
@@ -101,10 +103,10 @@ export default function MoneyCalcPage() {
             ))}
           </div>
 
-          {group === 'tax' ? <p className="erp-flow-field__hint">Thuế suất do bạn tự nhập: mức thuế khác nhau theo mặt hàng và theo từng thời kỳ, công cụ không gắn sẵn con số nào.</p> : null}
-          {group === 'profit' ? <p className="erp-flow-field__hint">Margin tính trên giá bán, markup tính trên giá vốn — cùng một khoản lãi cho hai con số khác nhau.</p> : null}
+          {group === 'tax' ? <p className="erp-flow-field__hint">{t('money.taxHint')}</p> : null}
+          {group === 'profit' ? <p className="erp-flow-field__hint">{t('money.profitHint')}</p> : null}
           <p className="erp-flow-field__hint">
-            Số tiền: 150.000 và 150,000 đều là một trăm năm mươi nghìn; phần lẻ gõ 1500,5. Số đã hiểu được in lại trong phép tính bên cạnh. Kết quả hiện tới hai số lẻ, không tự làm tròn theo quy định kế toán nào.
+            {t('money.inputHint')}
           </p>
         </div>
       </ToolPanel>

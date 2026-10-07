@@ -1,4 +1,5 @@
 import { useRef, useState, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Point, Rect, Size } from '../types/image.types'
 
 interface MarkOverlayProps {
@@ -22,6 +23,7 @@ const between = (a: Point, b: Point): Rect => ({ x: Math.min(a.x, b.x), y: Math.
 
 /** Kéo trên ảnh để khoanh vùng cần che; bấm vào khung đã vẽ để bỏ khung đó. */
 export function MarkOverlay({ size, boxes, disabled, onChange }: MarkOverlayProps) {
+  const { t } = useTranslation('image')
   const gesture = useRef<Gesture | null>(null)
   const [draft, setDraft] = useState<Rect | null>(null)
 
@@ -79,7 +81,7 @@ export function MarkOverlay({ size, boxes, disabled, onChange }: MarkOverlayProp
       viewBox={`0 0 ${size.width} ${size.height}`}
       preserveAspectRatio="none"
       role="img"
-      aria-label={boxes.length > 0 ? `${boxes.length} khung che trên ảnh` : 'Chưa có khung che trên ảnh'}
+      aria-label={boxes.length > 0 ? t('mark.overlayBoxes', { count: boxes.length }) : t('mark.overlayEmpty')}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}

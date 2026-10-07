@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Kailangan ng source",
+      "NEEDS_REVIEW": "Naghihintay ng pagsusuri",
+      "VERIFIED": "Beripikado",
+      "REJECTED": "Hindi tinanggap",
+      "APPROVED": "Aprubado",
+      "PUBLISHED": "Nailathala",
+      "SUPERSEDED": "May mas bagong bersyon",
+      "REVOKED": "Binawi"
+    },
+    "sendFailed": "Hindi maipadala ang mungkahi.",
+    "received": "Natanggap ang mungkahi: {{status}}. Itago ang resibo code para masubaybayan ito.",
+    "offlineDraft": "Hindi makakonekta sa server. Nasa page na ito pa rin ang iyong nilalaman.",
+    "invalidReceipt": "Hindi wasto ang resibo code.",
+    "statusLine": "Status: {{status}}",
+    "receiptNotFound": "Hindi nahanap ang resibo code.",
+    "lookupFailed": "Hindi matingnan ang status sa ngayon.",
+    "addSourceFailed": "Hindi maidagdag ang source.",
+    "sourceAdded": "Naidagdag na ang source. Naghihintay ng pagsusuri ang mungkahi.",
+    "offline": "Hindi makakonekta sa server.",
+    "ideaTitle": "Magmungkahi ng tool",
+    "regulationTitle": "Puna sa data ng regulasyon",
+    "ideaIntro": "Ilarawan ang totoong problema at ang tool na gusto mo. Sinusuri muna ang mga ideya bago ilathala.",
+    "regulationIntro": "Ilarawan ang dapat ayusin at ilagay ang link ng source. Puna ito para suriin ng mga tagapamahala; hindi pa nito binabago ang data ng tool.",
+    "ideaName": "Pangalan ng ideya",
+    "regulationTopic": "Dokumento o paksa",
+    "ideaDetail": "Ang problema at ang iminumungkahi mong solusyon",
+    "regulationDetail": "Ang dapat suriin / itama",
+    "sourceUrl": "HTTPS na source URL (kung mayroon)",
+    "sourceType": "Uri ng source na iminumungkahi mo",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Website ng ahensya",
+      "OFFICIAL_DOCUMENT": "Opisyal na dokumento",
+      "OFFICIAL_API": "Opisyal na API",
+      "OTHER": "Ibang source"
+    },
+    "consent": "Inalis ko na ang personal na impormasyon at mga lihim na key, at pumapayag akong ipadala ang nilalamang ito para suriin ng mga operator",
+    "sending": "Ipinapadala…",
+    "submit": "Ipadala ang mungkahi",
+    "receipt": "Resibo code:",
+    "lookupTitle": "Tingnan ang status",
+    "receiptLabel": "Resibo code",
+    "lookup": "Hanapin",
+    "needsSource": "Maglagay ng HTTPS URL sa kahon ng source sa itaas, saka ito idagdag gamit ang resibo code na ito.",
+    "addSource": "Magdagdag ng source"
+  },
+  "ideas": {
+    "published": "Mga nailathalang ideya",
+    "empty": "Wala pang ideyang naaprubahan at nailathala."
+  }
+}

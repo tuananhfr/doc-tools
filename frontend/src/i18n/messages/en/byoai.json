@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "Copy prompt",
+    "copied": "Prompt copied."
+  },
+  "panel": {
+    "hasSecrets": "The changes contain an email, token or internal URL. Remove this data before sending.",
+    "sendFailed": "Couldn't send the suggestion.",
+    "sent": "Your suggestion is in the source-review queue. Keep the receipt code to check its status.",
+    "offline": "Couldn't reach the server. Your draft is still on this page.",
+    "close": "Close source check",
+    "open": "Check for new sources with your own AI",
+    "intro": "Chuyện Nhỏ doesn't call any AI or store your AI keys. Review exactly what's below before copying it into the AI service of your choice. AI output is only a suggestion.",
+    "includeResult": "Add the current result to the prompt (may contain personal information)",
+    "packageLabel": "Content to copy",
+    "copyFailed": "Couldn't copy; select the text and copy it manually.",
+    "pasteTitle": "Paste the AI result to review changes",
+    "aiJson": "JSON returned by the AI",
+    "invalidJson": "The JSON has the wrong structure or exceeds the limit. Check the changes, sources and uncertainties fields.",
+    "unverified": "This data is unverified. Check each source URL and choose what you want to suggest.",
+    "columns": {
+      "select": "Select",
+      "field": "Field",
+      "current": "Current",
+      "proposed": "AI suggestion"
+    },
+    "selectField": "Select {{field}}",
+    "sources": "Sources suggested by the AI (the sender must check them): {{sources}}",
+    "noSources": "None yet",
+    "uncertainties": "Uncertain points: {{items}}",
+    "consent": "I've reviewed every change, checked for private data and agree to send the selected content for an administrator to review",
+    "submit": "Send update suggestion",
+    "receipt": "Receipt code:"
+  },
+  "assistant": {
+    "suggestions": "On-device suggestions",
+    "intro": "Describe what you need to do to find the right tool. If you'd like an AI to explain, preview exactly what will be shared, then copy it into the service of your choice yourself.",
+    "noMatch": "No clearly matching tool found.",
+    "title": "Tool finder",
+    "question": "What do you want to do?",
+    "placeholder": "Example: I want to merge two PDF files and add page numbers",
+    "copyNote": "The prompt below is copied only when you press the button. Emails, tokens and internal URLs are masked automatically; review it yourself before giving it to an AI.",
+    "promptLabel": "Content for the AI",
+    "copyFailed": "Couldn't copy; select the text and copy it manually.",
+    "answerLabel": "Paste the AI's answer here to read it (not saved or sent to Chuyện Nhỏ)",
+    "unverified": "Unverified content"
+  }
+}

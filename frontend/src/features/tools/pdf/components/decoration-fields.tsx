@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { SCOPE_MODE, type PageScope, type ScopeMode } from '../types/decorations.types'
 
 interface NumberFieldProps {
@@ -15,6 +16,7 @@ interface NumberFieldProps {
  * trả về giá trị đang áp. Ô số "controlled" thẳng thì xoá chữ số cuối là bị điền lại ngay.
  */
 export function NumberField({ label, value, min, max, onChange }: NumberFieldProps) {
+  const { t } = useTranslation('pdf')
   const id = useId()
   const [draft, setDraft] = useState<{ text: string; value: number } | null>(null)
   // Giá trị đổi từ ngoài (hoàn tác) thì bỏ bản nháp cũ.
@@ -44,7 +46,7 @@ export function NumberField({ label, value, min, max, onChange }: NumberFieldPro
         onBlur={() => setDraft(null)}
       />
       <Form.Control.Feedback type="invalid">
-        Từ {min} đến {max}.
+        {t('scope.between', { min, max })}
       </Form.Control.Feedback>
     </Form.Group>
   )
@@ -75,12 +77,6 @@ export function RangeField({ label, value, min, max, step, format, onChange }: R
   )
 }
 
-const SCOPE_LABEL: Record<ScopeMode, string> = {
-  all: 'Mọi trang',
-  skipFirst: 'Bỏ trang đầu (trang bìa)',
-  range: 'Theo khoảng trang',
-}
-
 interface ScopeFieldProps {
   value: PageScope
   error: string | undefined
@@ -90,25 +86,26 @@ interface ScopeFieldProps {
 
 /** Áp lên trang nào — số trang là vị trí HIỆN TẠI trên lưới, như ô "Tách PDF". */
 export function ScopeField({ value, error, onChange, mergeKey }: ScopeFieldProps) {
+  const { t } = useTranslation('pdf')
   const id = useId()
   return (
     <div className="erp-doc-scope">
       <Form.Group controlId={`${id}-mode`}>
-        <Form.Label className="erp-doc-export__label">Áp lên</Form.Label>
+        <Form.Label className="erp-doc-export__label">{t('scope.applyTo')}</Form.Label>
         <Form.Select value={value.mode} onChange={(event) => onChange({ ...value, mode: event.target.value as ScopeMode })}>
           {Object.values(SCOPE_MODE).map((mode) => (
             <option key={mode} value={mode}>
-              {SCOPE_LABEL[mode]}
+              {t(`scope.mode.${mode}`)}
             </option>
           ))}
         </Form.Select>
       </Form.Group>
       {value.mode === 'range' ? (
         <Form.Group controlId={`${id}-range`}>
-          <Form.Label visuallyHidden>Khoảng trang áp dụng</Form.Label>
+          <Form.Label visuallyHidden>{t('scope.range')}</Form.Label>
           <Form.Control
             value={value.range}
-            placeholder="Ví dụ: 2-10, 12"
+            placeholder={t('scope.placeholder')}
             isInvalid={!!error}
             onChange={(event) => onChange({ ...value, range: event.target.value }, mergeKey)}
           />

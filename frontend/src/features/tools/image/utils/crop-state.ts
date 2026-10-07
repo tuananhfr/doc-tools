@@ -14,13 +14,14 @@ export const ASPECT_RATIO: Record<AspectKey, number | null> = {
   '9:16': 9 / 16,
 }
 
-export const ASPECT_OPTIONS: { value: AspectKey; label: string }[] = [
-  { value: 'free', label: 'Tự do' },
-  { value: '1:1', label: '1:1 — vuông' },
-  { value: '4:3', label: '4:3 — ngang' },
-  { value: '3:4', label: '3:4 — dọc' },
-  { value: '16:9', label: '16:9 — ngang rộng' },
-  { value: '9:16', label: '9:16 — dọc dài' },
+// Khoá nhãn riêng: tỉ lệ "1:1" có dấu hai chấm, i18next đọc nhầm thành tên namespace.
+export const ASPECT_OPTIONS: { value: AspectKey; labelKey: 'free' | 'square' | 'landscape' | 'portrait' | 'wide' | 'tall' }[] = [
+  { value: 'free', labelKey: 'free' },
+  { value: '1:1', labelKey: 'square' },
+  { value: '4:3', labelKey: 'landscape' },
+  { value: '3:4', labelKey: 'portrait' },
+  { value: '16:9', labelKey: 'wide' },
+  { value: '9:16', labelKey: 'tall' },
 ]
 
 // Ảnh xoay 90° thì khung 4:3 đang kéo thành 3:4 — đổi tỉ lệ theo để khung khỏi nhảy.

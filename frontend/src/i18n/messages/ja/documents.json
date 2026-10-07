@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "印刷 / PDFで保存"
+  },
+  "cv": {
+    "title": "履歴書を作成",
+    "saveDraft": "下書きを保存",
+    "openDraft": "下書きを開く",
+    "clearDraft": "下書きを削除",
+    "template": "テンプレート",
+    "templates": {
+      "classic": "クラシック",
+      "modern": "モダン"
+    },
+    "fields": {
+      "name": "氏名",
+      "role": "応募職種",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "location": "居住地",
+      "link": "ポートフォリオまたは LinkedIn"
+    },
+    "photo": "顔写真（このセッション中のみ）",
+    "photoAlt": "履歴書の顔写真",
+    "summary": "自己紹介",
+    "sections": {
+      "experience": "職歴",
+      "education": "学歴",
+      "skills": "スキル",
+      "languages": "語学",
+      "certificates": "資格"
+    },
+    "entry": {
+      "period": "期間",
+      "company": "会社",
+      "school": "学校",
+      "position": "役職",
+      "degree": "専攻 / 学位",
+      "description": "内容 / 実績",
+      "remove": "項目を削除",
+      "add": "項目を追加"
+    },
+    "messages": {
+      "saved": "この端末に下書きを保存しました。写真は保存されません。",
+      "saveFailed": "端末に下書きを保存できませんでした。",
+      "noDraft": "有効な下書きがありません。",
+      "opened": "下書きを開きました。",
+      "unreadable": "下書きを読み込めません。",
+      "cleared": "端末の下書きを削除しました。"
+    },
+    "note": "送る前に内容をよく確認してください。下書きは「保存」を押したときだけ端末に保存されます。写真は保存されません。"
+  },
+  "formTemplates": {
+    "title": "書類テンプレートを作成",
+    "kind": "書類の種類",
+    "names": {
+      "leave": "休暇届",
+      "authorization": "委任状",
+      "handover": "引継書"
+    },
+    "fields": {
+      "recipient": "宛先",
+      "name": "氏名",
+      "department": "役職・部署",
+      "from": "休暇開始日",
+      "to": "休暇終了日",
+      "reason": "理由",
+      "handover": "引継ぎ先",
+      "placeWritten": "作成地",
+      "fromName": "委任者",
+      "fromId": "委任者の身分番号",
+      "fromAddress": "委任者の住所",
+      "toName": "受任者",
+      "toId": "受任者の身分番号",
+      "toAddress": "受任者の住所",
+      "scope": "委任内容",
+      "term": "期間",
+      "giver": "引渡し側（氏名・役職）",
+      "receiver": "受取り側（氏名・役職）",
+      "items": "引継ぎ項目（1行に1項目）",
+      "note": "備考",
+      "placeDrawn": "作成地"
+    },
+    "authorizationWarning": "公証や認証が必要な手続きもあります。使用前に提出先に確認してください。",
+    "defaultWarning": "参考用のテンプレートです。提出前に提出先の要件を確認してください。",
+    "privacy": "データは開いているこのページの中にだけあります。"
+  }
+}

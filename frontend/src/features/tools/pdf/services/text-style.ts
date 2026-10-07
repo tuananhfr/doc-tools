@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import type { Rect } from '../types/markup.types'
 import type { TextRun } from '../types/text-layer.types'
@@ -38,7 +39,7 @@ function pagePixels(source: SourceFile, page: SampledPage): Promise<PagePixels> 
     const base = await basePageSize(source, page)
     const canvas = await renderPreview(source, { ...page, id: key, sourceId: source.id, rotation: 0 }, SAMPLE_SCALE / PDF_CSS_SCALE)
     const context = canvas.getContext('2d', { willReadFrequently: true })
-    if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+    if (!context) throw new Error(translate('pdf:errors.noCanvas'))
     return { data: context.getImageData(0, 0, canvas.width, canvas.height).data, width: canvas.width, scale: canvas.width / base.width }
   })()
   entry.catch(() => pixels.delete(key))

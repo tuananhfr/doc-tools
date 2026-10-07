@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { newId } from '@/utils/id'
+import { translate } from '@/i18n/runtime'
 import type { Decorations } from '../types/decorations.types'
 import type { FormValues } from '../types/form.types'
 import type { ImageSheet, ImageSource, InsertPosition, PageRef, RejectedFile, SourceFile } from '../types/doc-tools.types'
@@ -111,9 +112,9 @@ export function useDocWorkspace() {
           } else if (!result.ok) {
             rejected.push({ name: file.name, code: result.code, reason: result.reason })
           } else if (latest.current.pages.length + pages.length + result.pages.length > TOOL_LIMITS.totalPages) {
-            rejected.push({ name: file.name, code: TOOL_ERROR.pageLimit, reason: `Vượt trần ${TOOL_LIMITS.totalPages} trang cho một phiên.` })
+            rejected.push({ name: file.name, code: TOOL_ERROR.pageLimit, reason: translate('pdf:limits.sessionPages', { max: TOOL_LIMITS.totalPages }) })
           } else if (held + result.source.size > TOOL_LIMITS.heldBytes) {
-            rejected.push({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: `Tổng dung lượng vượt ${megabytes(TOOL_LIMITS.heldBytes)} cho một phiên.` })
+            rejected.push({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: translate('pdf:limits.sessionBytes', { size: megabytes(TOOL_LIMITS.heldBytes) }) })
           } else {
             sources.push(result.source)
             pages.push(...result.pages)

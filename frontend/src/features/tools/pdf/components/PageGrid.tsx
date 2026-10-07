@@ -1,4 +1,5 @@
 import { useRef, useState, type DragEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { InsertPosition, PageRef, SourceFile } from '../types/doc-tools.types'
 import type { Placement } from '../hooks/useDocWorkspace'
 import type { SelectMode } from '../utils/workspace-reducer'
@@ -32,6 +33,7 @@ const hasFiles = (event: DragEvent) => Array.from(event.dataTransfer.types).incl
  * ứng — trên điện thoại dùng nút ←/→ của từng thẻ.
  */
 export function PageGrid({ pages, sources, stamp, hitCounts, selected, onSelect, onPreview, onShift, onMove, onDropFiles }: PageGridProps) {
+  const { t } = useTranslation('pdf')
   const selectedSet = new Set(selected)
   // `dataTransfer.getData` không đọc được lúc dragover — giữ danh sách đang kéo ở ref.
   const dragging = useRef<string[] | null>(null)
@@ -49,7 +51,7 @@ export function PageGrid({ pages, sources, stamp, hitCounts, selected, onSelect,
     dragging.current = ids
     setDraggingIds(ids)
     event.dataTransfer.effectAllowed = 'move'
-    event.dataTransfer.setData('text/plain', `${ids.length} trang`)
+    event.dataTransfer.setData('text/plain', t('stage.pageCount', { count: ids.length }))
   }
 
   const handleDragOver = (event: DragEvent<HTMLElement>, id: string) => {
@@ -80,7 +82,7 @@ export function PageGrid({ pages, sources, stamp, hitCounts, selected, onSelect,
   return (
     <ol
       className="erp-doc-grid"
-      aria-label="Các trang của tài liệu"
+      aria-label={t('thumb.grid')}
       onDragOver={(event) => {
         if (!dragging.current && !hasFiles(event)) return
         event.preventDefault()

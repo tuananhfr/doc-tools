@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "无法绘制这张图片的预览。",
+    "opening": "正在打开图片…",
+    "saveImage": "保存图片",
+    "noImageSelected": "尚未选择图片。",
+    "keepSize": "保持尺寸",
+    "maxEdge": "最大长边",
+    "result": "结果",
+    "processing": "正在处理…",
+    "processFailed": "无法处理图片。",
+    "imageCount": "{{count}} 张图片"
+  },
+  "shell": {
+    "hint": "JPG、PNG、WebP · 每张图片最大 100 MB",
+    "noImages": "还没有选择任何图片。"
+  },
+  "files": {
+    "batchLimit": "超出每批 {{limit}} 张图片的上限。",
+    "singleOnly": "此工具每次只处理一张图片。"
+  },
+  "intake": {
+    "tooLarge": "图片大于 {{size}}。",
+    "heic": "暂不支持 HEIC 图片（iPhone）——请转换为 JPG 后重试。",
+    "unsupported": "此工具只接受 JPG、PNG、WebP 图片。",
+    "pixelLimit": "图片 {{width}} × {{height}}（{{millions}} 百万像素）超出 {{limit}} 百万像素的上限。",
+    "corrupt": "无法读取图片——文件已损坏或浏览器无法打开。"
+  },
+  "codec": {
+    "corrupt": "无法读取图片——文件已损坏或浏览器无法打开此格式。",
+    "tooLarge": "{{size}} 的图片对此浏览器来说过大。",
+    "exportUnsupported": "此浏览器无法导出 {{format}}。",
+    "tooLargeRetry": "{{size}} 的图片对此浏览器来说过大——请缩小长边后重试。"
+  },
+  "exif": {
+    "keptOne": "输出图片仍保留相机信息（拍摄日期、GPS 位置）。",
+    "keptSome": "{{count}}/{{total}} 张输出图片仍保留相机信息（拍摄日期、GPS 位置）。",
+    "lostOne": "输出图片不再含有相机信息（拍摄日期、GPS 位置）——只有输出为 JPG 或 PNG 才能携带这些信息。",
+    "lostSome": "{{count}}/{{total}} 张输出图片不再含有相机信息（拍摄日期、GPS 位置）——只有输出为 JPG 或 PNG 才能携带这些信息。"
+  },
+  "tasks": {
+    "progress": {
+      "process": "正在处理图片 {{current}}/{{total}}",
+      "convert": "正在转换图片 {{current}}/{{total}}",
+      "compress": "正在压缩图片 {{current}}/{{total}}"
+    },
+    "imageFailed": "无法处理图片。",
+    "jpegFlatten": "JPG 不支持透明背景：透明区域（如有）将被填充为白色。",
+    "webpAsPng": "此浏览器无法写入 WebP：WebP 图片已保存为 PNG。",
+    "rendering": "正在生成图片",
+    "formatFallback": "此浏览器无法写入 {{from}}：图片已保存为 {{to}}。"
+  },
+  "convert": {
+    "pickerTitle": "选择要转换格式的图片",
+    "runOne": "转换为 {{format}}",
+    "runMany": "将 {{count}} 张图片转换为 {{format}}",
+    "blockedOne": "所选图片已经是 {{format}}。",
+    "blockedMany": "所选图片已经都是 {{format}}。",
+    "targetLegend": "转换为",
+    "qualityLegend": "质量",
+    "target": {
+      "jpeg": "体积小，到处都能打开。不保留透明背景。",
+      "png": "保留每个像素和透明背景；文件更大。",
+      "webp": "同等质量下比 JPG 更小，可保留透明背景。"
+    },
+    "quality": {
+      "high": {
+        "label": "高",
+        "hint": "与原图几乎没有区别。"
+      },
+      "medium": {
+        "label": "中",
+        "hint": "兼顾清晰度和文件大小。"
+      },
+      "small": {
+        "label": "精简",
+        "hint": "体积最小；放大后会看到失真。"
+      }
+    },
+    "noWebp": "此浏览器无法导出 WebP。",
+    "keptNote": "{{count}} 张图片已经是 {{format}}——保持原样，不重新编码。",
+    "titleOne": "已转换为 {{format}}",
+    "titleMany": "已将 {{count}} 张图片转换为 {{format}}"
+  },
+  "compress": {
+    "pickerTitle": "选择要压缩的图片",
+    "runOne": "压缩图片",
+    "runMany": "压缩 {{count}} 张图片",
+    "levelLegend": "压缩级别",
+    "level": {
+      "light": {
+        "label": "轻度",
+        "hint": "与原图几乎看不出区别。"
+      },
+      "medium": {
+        "label": "中等",
+        "hint": "适合发邮件、发布到网上。"
+      },
+      "strong": {
+        "label": "强力",
+        "hint": "体积最小；放大后会看到失真。"
+      }
+    },
+    "hint": "压缩级别适用于 JPG 和 WebP。PNG 是无损格式，只有缩小尺寸时才会变小。",
+    "smaller": "{{sizes}}（缩小 {{percent}}%）。",
+    "unchangedOne": "输出图片并不比原图小——保留原文件。{{hint}}",
+    "unchangedSome": "{{count}}/{{total}} 张图片无法变小——保留原文件。{{hint}}",
+    "shrunk": "{{count}} 张图片的长边已缩小到 {{edge}} px。",
+    "hintPng": "PNG 是无损格式，很难变小；想明显减小体积，请用“图片格式转换”转为 JPG 或 WebP。",
+    "hintMaxed": "图片之前已经压缩得接近极限了。",
+    "hintTryEdge": "图片之前已经压缩得接近极限了——试试设置“最大长边”来缩小尺寸。",
+    "titleDone": "压缩完成",
+    "titleNone": "无法进一步压缩"
+  },
+  "batch": {
+    "pickerTitle": "选择要处理的图片",
+    "runOne": "处理图片",
+    "runMany": "处理 {{count}} 张图片",
+    "resize": {
+      "keep": "保持尺寸",
+      "edge": "最大长边",
+      "width": "宽度",
+      "height": "高度",
+      "percent": "按百分比"
+    },
+    "sizeRange": "尺寸必须是 {{min}} 到 {{max}} 之间的整数。",
+    "startInvalid": "起始编号必须是从 0 开始的整数。",
+    "resizeLabel": "调整尺寸",
+    "resizeHint": "保持图片比例。比此尺寸更小的图片保持原样——不会放大。",
+    "formatLabel": "输出格式",
+    "keepFormat": "保留每张图片的原格式",
+    "qualityLabel": "JPG / WebP 质量",
+    "quality": {
+      "high": "高——与原图几乎没有区别",
+      "medium": "中——兼顾清晰度和文件大小",
+      "small": "精简——体积最小"
+    },
+    "patternLabel": "文件名模板",
+    "patternHint": "<code>{name}</code> = 原文件名，<code>{n}</code> = 序号。例如：<code>gongdi-{n}</code>",
+    "startLabel": "起始编号",
+    "sample": "输出文件名：<strong>{{names}}</strong>",
+    "patternEmpty": "请输入文件名模板，例如 {name} 或 photo-{n}。",
+    "patternIllegal": "文件名不能包含 \\ / : * ? \" < > |",
+    "patternTokens": "只有两个可填字段：{name}（原文件名）和 {n}（序号）。",
+    "resizedAll": "{{count}}/{{total}} 张图片已缩小。",
+    "resizedPartial": "{{count}}/{{total}} 张图片已缩小。比目标尺寸更小的图片保持原尺寸——本工具不会放大。",
+    "keptBytes": "{{count}} 张图片无需调整尺寸或格式——逐字节保持原样，只重命名。",
+    "titleOne": "已处理图片",
+    "titleMany": "已处理 {{count}} 张图片"
+  },
+  "crop": {
+    "pickerTitle": "选择要裁剪或调整的图片",
+    "blocked": "还没有裁剪、旋转或调整——输出图片会与原图完全相同。",
+    "stageLabel": "正在调整的图片",
+    "aspectLabel": "裁剪比例",
+    "aspect": {
+      "free": "自由",
+      "square": "1:1——正方形",
+      "landscape": "4:3——横向",
+      "portrait": "3:4——纵向",
+      "wide": "16:9——宽屏",
+      "tall": "9:16——竖屏"
+    },
+    "rotate": "旋转图片",
+    "rotateLeft": "向左旋转",
+    "rotateRight": "向右旋转",
+    "brightness": "亮度",
+    "contrast": "对比度",
+    "output": "输出图片：<strong>{{size}}</strong>",
+    "reset": "恢复为原图",
+    "box": "裁剪框——拖动或用方向键移动",
+    "handleAria": "{{handle}}——拖动或用方向键调整大小",
+    "handle": {
+      "nw": "左上角",
+      "n": "上边",
+      "ne": "右上角",
+      "e": "右边",
+      "se": "右下角",
+      "s": "下边",
+      "sw": "左下角",
+      "w": "左边"
+    },
+    "title": "已保存调整后的图片"
+  },
+  "mark": {
+    "pickerTitle": "选择要遮盖或加水印的图片",
+    "blocked": "还没有画遮盖框或输入水印文字——输出图片会与原图完全相同。",
+    "stageLabel": "正在遮盖和加水印的图片",
+    "boxCount": "{{count}} 个遮盖框",
+    "stageHint": "在图片上拖动以框选要遮盖的区域。点击已画的框可将其删除。",
+    "overlayBoxes": "图片上有 {{count}} 个遮盖框",
+    "overlayEmpty": "图片上还没有遮盖框",
+    "boxesLabel": "遮盖框",
+    "boxesSummary": "{{count}} 个框——框下的区域在输出文件中会被替换为黑块，无法恢复。",
+    "boxesEmpty": "还没有任何框。在图片上拖动即可绘制。",
+    "clearBoxes": "清除所有遮盖框",
+    "textLabel": "水印文字（选填）",
+    "textPlaceholder": "例如：草稿——禁止复制",
+    "tile": "斜向平铺整张图片",
+    "anchorLabel": "水印位置",
+    "colorLabel": "文字颜色",
+    "sizeLabel": "字号",
+    "opacityLabel": "不透明度",
+    "color": {
+      "red": "红色",
+      "black": "黑色",
+      "white": "白色"
+    },
+    "anchor": {
+      "topLeft": "顶部——左侧",
+      "topCenter": "顶部——居中",
+      "topRight": "顶部——右侧",
+      "middleLeft": "中部——左侧",
+      "center": "正中",
+      "middleRight": "中部——右侧",
+      "bottomLeft": "底部——左侧",
+      "bottomCenter": "底部——居中",
+      "bottomRight": "底部——右侧"
+    },
+    "boxesNote": "{{count}} 个区域已在像素层面替换为黑块——下面没有任何图层可以剥离。",
+    "stampNote": "文字水印已写入图片。",
+    "titleBoth": "已遮盖并加水印",
+    "titleBoxes": "已遮盖图片",
+    "titleStamp": "已为图片加水印"
+  },
+  "measure": {
+    "pickerTitle": "选择要测量的图片",
+    "run": "保存带测量数据的图片",
+    "blocked": "图片上还没有任何测量。",
+    "stageLabel": "正在测量的图片",
+    "modesLabel": "测量方式",
+    "tab": {
+      "distance": "测量距离",
+      "area": "测量面积",
+      "count": "计数"
+    },
+    "hint": {
+      "distance": "在图片上点击两个点测量一段距离。拖动端点可调整。",
+      "area": "依次点击区域的各个角，再点击起点闭合区域。",
+      "count": "逐个点击物体进行计数。再次点击某个点可将其删除。",
+      "reference": "点击一个已知长度物体的两端：门扇、砖块、尺子。"
+    },
+    "closeArea": "闭合区域",
+    "undo": "撤销",
+    "clearAll": "全部清除",
+    "imageAlt": "正在测量的图片：{{name}}",
+    "referenceGrip": "基准线段的第 {{index}} 个端点——拖动或用方向键调整",
+    "countGrip": "计数点 {{number}}——点击删除，拖动移动",
+    "distanceGrip": "第 {{index}} 段的第 {{point}} 个点——拖动或用方向键调整，按 Delete 删除",
+    "areaGrip": "第 {{index}} 个区域的第 {{point}} 个点——拖动或用方向键调整，按 Delete 删除",
+    "closeAtStart": "在起点闭合区域",
+    "lengthLabel": "基准线段的实际长度",
+    "lengthPlaceholder": "例如 2,1",
+    "unit": "单位",
+    "clearReference": "移除基准线段",
+    "referenceLabel": "基准线段",
+    "referenceHint": "标记一个已知长度的物体，把测量值换算成实际单位。",
+    "placing": "正在放置——在图片上点击两个点",
+    "resetReference": "重新设置基准线段",
+    "setReference": "设置基准线段",
+    "scaleHint": "测量值只对与基准线段处于同一平面、且正面拍摄的物体准确。",
+    "noLength": "尚未输入实际长度——测量值以像素（px）计算。",
+    "noReference": "还没有基准线段——测量值以像素（px）计算。",
+    "results": "测量值",
+    "noResults": "还没有任何测量值。",
+    "distanceName": "第 {{index}} 段",
+    "areaName": "区域 {{index}}",
+    "removeDistance": "删除第 {{index}} 段",
+    "removeArea": "删除区域 {{index}}",
+    "remove": "删除",
+    "perimeter": "周长 {{length}}",
+    "counted": "已计数",
+    "summaryDistances": "{{count}} 段测量",
+    "summaryAreas": "{{count}} 个测量区域",
+    "summaryCounts": "{{count}} 个计数点",
+    "recorded": "图片已记录 {{summary}}。",
+    "pixelWarning": "没有基准线段，因此测量值按像素（px）记录，而非实际尺寸。",
+    "title": "已保存带测量数据的图片"
+  },
+  "idPhoto": {
+    "pickerTitle": "选择人像照片",
+    "gapRange": "间距必须在 {{min}} 到 {{max}} mm 之间。",
+    "copiesInvalid": "份数必须是从 1 开始的整数。",
+    "tooBig": "这个尺寸的证件照放不进所选的纸张。",
+    "overCapacity": "一张 {{paper}} 只能放下 {{count}} 张这个尺寸的照片。",
+    "runSingle": "生成证件照",
+    "runSheet": "生成含 {{count}} 张照片的打印页",
+    "photoSize": "证件照尺寸",
+    "photoHint": "请按受理单位的要求选择——本工具不了解各类证件的照片规定，也不检查背景或脸部位置。",
+    "lowDpi": "所选区域在此尺寸下只有 {{dpi}} DPI（建议不低于 {{min}}）——打印出来会模糊。请把框拉大一些或使用更清晰的照片。",
+    "outputLegend": "输出文件",
+    "output": {
+      "pdf": {
+        "label": "PDF 打印页",
+        "hint": "以“实际大小 / 100%”打印即可得到准确的毫米尺寸。"
+      },
+      "sheet": {
+        "label": "JPG 打印页",
+        "hint": "300 DPI——适用于照片打印机或只接收图片文件的冲印店。"
+      },
+      "single": {
+        "label": "单张证件照",
+        "hint": "只包含按正确比例裁剪的照片——用于网上提交。"
+      }
+    },
+    "paperLabel": "纸张尺寸",
+    "paper": {
+      "a4": "A4（21 × 29.7 cm）",
+      "a5": "A5（14.8 × 21 cm）",
+      "10x15": "10 × 15 cm 相纸",
+      "13x18": "13 × 18 cm 相纸"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "10 × 15 cm 相纸",
+      "13x18": "13 × 18 cm 相纸"
+    },
+    "fill": "铺满整页（{{count}} 张）",
+    "copies": "份数",
+    "gap": "间距",
+    "guides": "在每张照片周围画裁切线",
+    "layoutHint": "{{columns}} 列 × {{rows}} 行，纸张边距 {{margin}} mm。打印时请选择“实际大小”（Actual size / 100%），不要选“适应纸张”——否则照片尺寸会不对。",
+    "sheetAria": "打印页：{{count}} 张照片",
+    "renderingSheet": "正在生成打印页",
+    "lowDpiNote": "裁剪区域在 {{size}} 尺寸下只有 {{dpi}} DPI——打印出来可能会模糊。",
+    "titleSingle": "已生成证件照",
+    "sheetDetail": "{{paper}} 上 {{count}} 张 {{photo}} 照片",
+    "noExif": "打印页不带原图的相机信息（拍摄日期、GPS 位置）。",
+    "actualSize": "打印时请选择“实际大小”（Actual size / 100%），不要选“适应纸张”。",
+    "titleSheet": "已生成证件照打印页"
+  },
+  "camera": {
+    "insecure": "{{reason}} 请用相机应用拍照，再从设备中选择图片。",
+    "notReady": "摄像头尚未就绪。",
+    "shootFailed": "拍摄失败。请重试。",
+    "cropFailed": "无法生成裁剪后的图片。请移除裁剪框后重试。",
+    "titleReview": "裁剪第 {{index}}/{{total}} 张",
+    "title": "拍照",
+    "viewfinder": "摄像头取景框",
+    "shotAlt": "第 {{index}} 张照片",
+    "starting": "正在打开摄像头… 浏览器可能会请求摄像头权限。",
+    "retry": "重试",
+    "backToShoot": "继续拍摄",
+    "clearCrop": "移除裁剪框",
+    "deleteShot": "删除这张照片",
+    "strip": "已拍摄的照片",
+    "thumbAria": "查看并裁剪第 {{index}} 张",
+    "thumbTitle": "查看、裁剪或删除这张照片",
+    "shutter": "拍摄",
+    "full": "已拍满 {{count}} 张",
+    "torch": "闪光灯",
+    "torchOff": "关闭闪光灯",
+    "torchOn": "打开闪光灯",
+    "reviewHint": "拖动框以保留需要的部分。不拖动则保留整张照片。",
+    "none": "还没有拍摄任何照片。",
+    "fullStatus": "本批次已拍满 {{count}} 张。",
+    "shotCount": "已拍摄 {{count}} 张。点击缩略图可裁剪或删除。",
+    "discardClose": "放弃 {{count}} 张照片并关闭",
+    "close": "关闭",
+    "useShots": "使用 {{count}} 张照片",
+    "useNone": "使用照片"
+  },
+  "collage": {
+    "invalid": "请选择 2–9 张图片、1–3 列，间距 0–100 px。",
+    "tooLarge": "{{name}}：图片超出大小限制。",
+    "unsupported": "{{name}}：只支持 JPG、PNG 和 WebP。",
+    "pixelLimit": "{{name}}：图片超出像素限制。",
+    "failed": "无法生成拼图。",
+    "done": "已下载 PNG 拼图。使用前请检查排版。",
+    "resultLabel": "拼图",
+    "idle": "图片按选择顺序排列，裁剪为正方形格子并导出 PNG。不保留原图的元数据。",
+    "busy": "正在拼图…",
+    "run": "拼图并下载",
+    "panel": "要拼接的图片",
+    "choose": "选择 2 到 9 张图片",
+    "columns": "列数",
+    "gap": "间距（px）"
+  },
+  "removeMeta": {
+    "tooLarge": "图片超出大小限制。",
+    "unsupported": "只支持 JPG、PNG 和 WebP 图片。",
+    "pixelLimit": "图片超出像素限制。",
+    "done": "已生成 {{width}} × {{height}} 的图片并下载。分享前请检查图片。",
+    "outputLabel": "输出文件",
+    "idle": "在本机重新绘制图片以去除原始 EXIF，包括 GPS 位置、相机和拍摄日期。JPG 图片会重新编码，画质可能有所变化。",
+    "run": "删除 EXIF 并下载图片",
+    "panel": "需要清理的图片",
+    "choose": "选择 JPG、PNG 或 WebP 图片",
+    "note": "此工具会主动删除 EXIF。其他图片工具按项目当前的设定，仍会保留现场拍摄信息。"
+  },
+  "removeBg": {
+    "invalidFile": "请选择 20 MB 以下的 JPG、PNG 或 WebP 图片。",
+    "invalidSize": "图片尺寸无效。",
+    "processed": "已处理 {{width}} × {{height}} 的图片。多色背景需要用画笔修整。",
+    "openFailed": "无法打开图片。",
+    "exportFailed": "无法导出图片。",
+    "done": "已生成 PNG。使用前请仔细检查物体边缘。",
+    "noImage": "尚未选择图片",
+    "idle": "根据图片边缘自动识别背景色。适合纯色背景；可用保留/擦除画笔修正错误区域。",
+    "download": "下载 PNG 图片",
+    "panel": "去除纯色背景",
+    "choose": "选择图片",
+    "tolerance": "背景色灵敏度：{{value}}",
+    "background": "新背景",
+    "backgroundTransparent": "透明",
+    "backgroundWhite": "白色",
+    "backgroundIdBlue": "证件照蓝",
+    "brush": "用画笔修整",
+    "brushOff": "不使用",
+    "brushErase": "擦除更多",
+    "brushKeep": "保留",
+    "brushSize": "画笔大小：{{value}}",
+    "undoBrush": "撤销画笔",
+    "note": "图片在本机处理。细节较多的背景需要手动用画笔修整；大图的每条边最多缩小到 2200 px。"
+  }
+}

@@ -1,3 +1,6 @@
-import type { Guide } from '../config/guides'
+import type { TFunction } from 'i18next'
+import type { GuideSlug, GuideText } from '../config/guides'
 
-export const guideTitle = (guide: Pick<Guide, 'title'>): string => `${guide.title} | Hướng dẫn Chuyện Nhỏ`
+export function guideText(t: TFunction<'guides'>, slug: GuideSlug): GuideText {
+  return t(`items.${slug}`, { returnObjects: true })
+}

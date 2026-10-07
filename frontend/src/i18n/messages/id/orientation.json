@@ -1,0 +1,361 @@
+{
+  "shared": {
+    "on": "Aktif",
+    "off": "Nonaktif",
+    "remove": "Hapus {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "Pemilik rumah",
+    "PROFESSIONAL": "Profesional"
+  },
+  "page": {
+    "projectNorthWarning": "Pengukuran memakai Utara proyek — bukan arah sebenarnya, jadi kecocokan / pantangan menurut usia dan sinar matahari tidak bisa dihitung. Ganti ke Utara sejati atau Utara magnetik di bagian teknis.",
+    "missing": {
+      "drawing": "Sentuh simbol Utara pada gambar untuk memulai.",
+      "device": "Tekan “Mulai mengukur”, diam sejenak, lalu kunci hasil ukurnya.",
+      "manual": "Masukkan derajat yang sudah diketahui.",
+      "placeAxis": "Letakkan sumbu {{target}} pada gambar.",
+      "pickMeasured": "Pilih objek yang sudah memiliki hasil ukur."
+    },
+    "noSource": "Belum ada sumber.",
+    "modeLabel": "Mode tampilan",
+    "back": "Kembali",
+    "changeSource": "Ganti gambar / sumber",
+    "placeOnImage": "Letakkan di foto rumah / gambar denah",
+    "nothingToSave": "Belum ada hasil ukur untuk disimpan.",
+    "frontageFallback": "Muka depan",
+    "houseFrontageFallback": "Muka depan rumah",
+    "sideAge": "Menurut usia dan simpan hasil"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "Arah rumah",
+      "hint": "Dari dalam rumah memandang lurus ke muka depan"
+    },
+    "MAIN_DOOR": {
+      "label": "Pintu utama",
+      "hint": "Dari dalam rumah memandang keluar lewat pintu utama"
+    },
+    "BALCONY": {
+      "label": "Balkon",
+      "hint": "Dari dalam kamar memandang ke balkon"
+    },
+    "KITCHEN": {
+      "label": "Dapur",
+      "hint": "Arah punggung orang yang memasak — berlawanan dengan arah pandang orang yang memasak ke kompor"
+    },
+    "ALTAR": {
+      "label": "Altar",
+      "hint": "Arah yang dihadap muka altar"
+    },
+    "BED": {
+      "label": "Tempat tidur",
+      "hint": "Dari kepala tempat tidur memandang ke ujung kaki"
+    },
+    "DESK": {
+      "label": "Meja kerja",
+      "hint": "Arah pandang orang yang duduk bekerja"
+    },
+    "LAND_FRONTAGE": {
+      "label": "Muka depan tanah",
+      "hint": "Dari dalam kaveling memandang ke jalan"
+    },
+    "CUSTOM": {
+      "label": "Objek lain",
+      "hint": "Beri nama sendiri, sumbu menunjuk ke arah yang diukur"
+    }
+  },
+  "north": {
+    "TRUE": "Utara sejati",
+    "MAGNETIC": "Utara magnetik",
+    "PROJECT": "Utara proyek"
+  },
+  "sources": {
+    "DRAWING": "diletakkan di gambar",
+    "MANUAL": "diisi manual",
+    "DEVICE": "kompas ponsel",
+    "SURVEY": "hasil survei"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · galat ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "Browser ini tidak dapat membaca kompas perangkat.",
+      "insecure": "Kompas hanya berjalan jika halaman dibuka lewat HTTPS.",
+      "denied": "Anda belum mengizinkan pembacaan sensor arah. Izinkan di pengaturan browser lalu coba lagi.",
+      "noSignal": "Tidak ada sinyal kompas — komputer dan banyak browser tidak memiliki sensor ini."
+    },
+    "stability": {
+      "STABLE": "Stabil",
+      "WOBBLY": "Masih bergoyang",
+      "UNSTABLE": "Tidak stabil"
+    },
+    "accuracy": "Perangkat melaporkan galat ±{{value}}°",
+    "noAccuracy": "Perangkat tidak melaporkan galat",
+    "starting": "Membuka kompas…",
+    "retry": "Coba lagi",
+    "start": "Mulai mengukur",
+    "stop": "Berhenti",
+    "outside": "Saya berdiri di luar, memandang ke rumah",
+    "magnetWarning": "Jauhi tiang baja, mobil, pintu gulung, magnet, dan perangkat listrik — semuanya dapat membelokkan kompas."
+  },
+  "device": {
+    "steps": {
+      "stand": "Berdiri di pintu utama, punggung menghadap rumah, pandang lurus ke luar.",
+      "hold": "Pegang ponsel mendatar (sejajar tanah), dengan ujung atas ponsel menunjuk ke arah pandang.",
+      "wait": "Diam beberapa detik sampai angkanya stabil, lalu tekan “Kunci hasil ukur”."
+    },
+    "lock": "Kunci hasil ukur untuk {{target}}",
+    "manual": "Masukkan derajat sebagai gantinya",
+    "unstable": "Angkanya masih banyak melompat. Diam, gerakkan ponsel membentuk angka 8 beberapa kali agar terkalibrasi, lalu ukur lagi."
+  },
+  "live": {
+    "title": "Kompas arah rumah",
+    "intro": "Berdiri di pintu utama dengan punggung menghadap rumah, pegang ponsel mendatar, ujung atasnya menunjuk lurus ke luar.",
+    "dialAria": "Piringan kompas, Utara di atas",
+    "dialAriaFacing": "Piringan kompas, arah rumah {{degree}}",
+    "facingEnd": "HADAP",
+    "sittingEnd": "DUDUK",
+    "empty": "Tekan “Mulai mengukur” atau masukkan derajat untuk membaca arah rumah.",
+    "failureManual": "{{failure}} Anda bisa memasukkan derajat yang diukur dengan kompas lain.",
+    "locked": "Terkunci di {{degree}}",
+    "remeasure": "Ukur lagi",
+    "lock": "Kunci arah",
+    "useDevice": "Pakai kompas perangkat",
+    "enterDegree": "Masukkan derajat",
+    "unstable": "Angkanya banyak melompat sehingga belum bisa dikunci. Diam, gerakkan ponsel membentuk angka 8 beberapa kali agar terkalibrasi.",
+    "facing": "Hadap",
+    "sitting": "Duduk",
+    "offset": "Bergeser {{degree}} dari pusat {{mountain}} ke arah {{toward}}.",
+    "centered": "Tepat di pusat gunung {{mountain}}.",
+    "void": {
+      "MAJOR": "Garis kosong besar",
+      "MINOR": "Garis kosong kecil"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — arahnya tepat di batas {{mountain}} / {{toward}}. {{note}}"
+  },
+  "manual": {
+    "label": "Derajat {{target}}",
+    "placeholder": "Contoh 132",
+    "hint": "Diukur searah jarum jam dari Utara: Timur 90°, Selatan 180°, Barat 270°.",
+    "invalid": "Masukkan angka, misalnya 132 atau 132,5."
+  },
+  "method": {
+    "title": "Bagaimana cara mengambil arah?",
+    "label": "Cara mengambil arah",
+    "options": {
+      "DEVICE": "Ukur sekarang",
+      "MANUAL": "Saya tahu derajatnya",
+      "DRAWING": "Dari gambar denah"
+    },
+    "locked": "Sudah dikunci {{degree}} untuk {{target}}.",
+    "drawingNote": "Tidak perlu sensor: cukup gambar denah yang memiliki simbol Utara. Letakkan panah Utara pada gambar, lalu letakkan sumbu objek yang diukur."
+  },
+  "canvas": {
+    "imageAlt": "Foto / gambar yang sedang diukur arahnya",
+    "traceGrip": "Titik {{index}} dari garis — sentuh untuk memilih garis, seret atau pakai tombol panah untuk menyesuaikan",
+    "closeAria": "Tutup bentuk di titik awal",
+    "closeTitle": "Tutup bentuk",
+    "northHead": "Ujung panah Utara — seret untuk memutar sesuai simbol Utara pada gambar",
+    "northTail": "Pangkal panah Utara — seret untuk memindahkan",
+    "axisHead": "Ujung sumbu {{target}} — seret untuk memutar",
+    "axisTail": "Pangkal sumbu {{target}} — seret untuk memindahkan",
+    "compassCenter": "Pusat kompas — seret untuk memindahkan kompas",
+    "compassEdge": "Tepi kompas — seret untuk memperbesar / memperkecil"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "Garis dinding",
+      "polygon": "Poligon",
+      "rect": "Kotak"
+    },
+    "traceHints": {
+      "line": "Sentuh dua titik untuk menggambar satu ruas dinding. Sentuh ujung ruas yang sudah digambar untuk menandainya sebagai muka depan / pintu utama.",
+      "polygon": "Sentuh sudut-sudutnya berurutan, lalu sentuh lagi titik awal (lingkaran kosong) untuk menutup bentuk.",
+      "rect": "Sentuh dua sudut yang berseberangan untuk menggambar kotak."
+    },
+    "northStep": "Arah Utara",
+    "hints": {
+      "north": "Sentuh simbol Utara pada gambar untuk meletakkan panah Utara, lalu seret ujung panah agar searah dengan simbol.",
+      "door": "Sentuh pintu utama untuk menambah sumbu pintu (opsional). Seret ujung panah agar menunjuk ke luar.",
+      "drawing": "Sentuh bagian yang diukur untuk meletakkan sumbu {{target}}. Seret ujung panah agar menunjuk KE LUAR — arah pandang dari dalam ke luar.",
+      "overlay": "Ingin kompas berada di atas foto: sentuh bagian yang diukur dan seret ujung panah ke luar sesuai arah {{target}}."
+    },
+    "aria": "Foto yang sedang diukur arahnya",
+    "tabsAria": "Pekerjaan pada gambar",
+    "placeTab": "Atur arah",
+    "traceTab": "Gambar ulang denah",
+    "undo": "Urungkan",
+    "redo": "Ulangi",
+    "traceKindsAria": "Jenis garis",
+    "snap": "Kunci sudut 45°",
+    "stepsAria": "Langkah pada gambar",
+    "done": "(sudah diatur)",
+    "pageAria": "Halaman PDF yang sedang diukur",
+    "pageOption": "Halaman {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "Hasil ukur",
+    "fine": "16 arah: {{direction}}",
+    "empty": "Belum ada hasil ukur.",
+    "compassAria": "Kompas, Utara di atas"
+  },
+  "solar": {
+    "title": "Sinar & matahari",
+    "locationFailure": {
+      "denied": "Anda belum mengizinkan akses lokasi. Masukkan lintang dan bujur secara manual.",
+      "unavailable": "Perangkat tidak bisa mengambil lokasi. Masukkan lintang dan bujur secara manual."
+    },
+    "daySide": {
+      "MORNING": "terkena sinar pagi",
+      "AFTERNOON": "terkena sinar sore (terik, rumah jadi panas)",
+      "BOTH": "terkena sinar pagi dan sore",
+      "NONE": "sedikit terkena sinar langsung sepanjang hari"
+    },
+    "intro": "Lihat ke arah mana matahari terbit dan terbenam, dan apakah {{target}} terkena sinar sore.",
+    "locating": "Mengambil lokasi…",
+    "useLocation": "Pakai lokasi saya",
+    "latitude": "Lintang",
+    "longitude": "Bujur",
+    "date": "Tanggal",
+    "time": "Jam",
+    "sunAt": "Matahari pukul {{time}}",
+    "sunPosition": "{{degree}} · {{direction}} · ketinggian {{elevation}}",
+    "belowHorizon": "Di bawah cakrawala",
+    "sunrise": "Terbit",
+    "sunset": "Terbenam",
+    "facingSun": "{{side}} · saat ini terkena sinar matahari",
+    "awayFromSun": "{{side}} · saat ini tidak terkena sinar matahari",
+    "needCoordinates": "Masukkan lintang dan bujur (atau tekan “Pakai lokasi saya”) untuk menghitung.",
+    "note": "Arah matahari dihitung dari Utara sejati; di Vietnam selisihnya dengan Utara magnetik kurang dari 1°. Bayangan rumah di sebelah tidak dihitung."
+  },
+  "source": {
+    "title": "Apa yang Anda punya?",
+    "pickTitle": "Pilih gambar denah, foto rumah, atau PDF gambar kerja",
+    "pickHint": "JPG, PNG, WebP, PDF · maksimal 100 MB · file hanya dibuka di perangkat Anda",
+    "camera": "Ambil foto",
+    "rejectedTitle": "File tidak dapat dibuka",
+    "dismiss": "Sembunyikan notifikasi",
+    "none": "Tanpa gambar — hanya pakai kompas",
+    "noneHint": "Ukur dengan kompas ponsel atau masukkan derajat yang sudah diketahui.",
+    "tooLarge": "File melebihi {{size}}.",
+    "openFailed": "File ini tidak dapat dibuka.",
+    "pageFailed": "Halaman ini tidak dapat digambar."
+  },
+  "targetsPanel": {
+    "title": "Ukur arah",
+    "noAxis": "Sumbu belum diletakkan",
+    "noMeasure": "Belum ada hasil ukur",
+    "hint": "{{hint}}.",
+    "customName": "Nama objek",
+    "customPlaceholder": "Contoh: Gerbang samping",
+    "addAria": "Objek yang ingin ditambahkan",
+    "add": "Tambah",
+    "axisAngle": "Sudut sumbu pada gambar",
+    "axisAngleHint": "0° = menunjuk ke tepi atas gambar, searah jarum jam."
+  },
+  "tech": {
+    "title": "Parameter teknis",
+    "reference": "Derajat dihitung dari",
+    "referenceHint": "Hanya label, tidak dikonversi otomatis. Di Vietnam, Utara magnetik berselisih kurang dari 1° dari Utara sejati; Utara proyek mengikuti grid koordinat gambar.",
+    "divisionsLabel": "Pembagian kompas",
+    "divisionsAria": "Jumlah sektor kompas",
+    "divisions": "{{count}} arah",
+    "size": "Ukuran kompas pada gambar · {{percent}}%",
+    "opacity": "Ketebalan kompas · {{percent}}%",
+    "saveRecord": "Unduh catatan hasil ukur (JSON)"
+  },
+  "traceActions": {
+    "aria": "Garis yang dipilih",
+    "tags": {
+      "FRONTAGE": "Ini muka depan",
+      "ENTRANCE": "Ini pintu utama"
+    },
+    "flip": "Balik sisi luar",
+    "delete": "Hapus garis ini"
+  },
+  "export": {
+    "title": "Simpan hasil",
+    "legend": "Simpan sebagai",
+    "image": "Gambar",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "Mempertahankan info pemotretan (EXIF) dari foto asli",
+      "pdf": "Halaman gambar kerja digambar ulang menjadi gambar PNG",
+      "none": "Gambar kompas beserta hasil ukur"
+    },
+    "pdfHintVector": "Mempertahankan halaman gambar kerja asli dalam bentuk vektor",
+    "pdfHintPage": "Satu halaman, siap cetak",
+    "buildFailed": "File hasil tidak dapat dibuat.",
+    "shareFailed": "Tidak dapat dibagikan. Simpan file lalu kirim.",
+    "building": "Membuat file…",
+    "savePdf": "Simpan PDF",
+    "saveImage": "Simpan gambar",
+    "share": "Bagikan",
+    "saved": "{{name}} tersimpan",
+    "savedDetail": "{{name}} tersimpan · {{detail}}",
+    "notes": {
+      "standalone": "Arah Utara pada gambar belum ditentukan, jadi kompas diekspor terpisah dan tidak digambar di atas gambar.",
+      "rasterized": "Halaman PDF asli tidak bisa dipertahankan sebagai vektor — halaman digambar ulang menjadi gambar, teks di dalamnya tidak bisa dipilih."
+    },
+    "pageDetail": "Halaman {{page}}",
+    "noSource": "Tidak ada sumber untuk diekspor."
+  },
+  "pdf": {
+    "password": "PDF memiliki kata sandi pembuka — hapus kata sandinya dengan alat \"Buka kunci PDF\" lalu pilih lagi.",
+    "unreadable": "File PDF ini tidak dapat dibaca.",
+    "noCanvas": "Browser tidak dapat menyediakan area gambar.",
+    "renderFailed": "Halaman PDF tidak dapat digambar."
+  },
+  "age": {
+    "title": "Lihat menurut usia pemilik rumah",
+    "intro": "Opsional. Aktifkan untuk menampilkan cincin bintang cocok / pantang menurut usia di kompas dan melihat apakah arah rumah cocok atau pantang menurut {{method}}.",
+    "addPerson": "Bandingkan satu orang lagi",
+    "method": "Metode: {{name}} · aturan v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "Tanggal lahir Masehi",
+      "LUNAR_YEAR": "Tahun lahir kalender lunar"
+    },
+    "name": "Panggilan",
+    "sex": "Jenis kelamin",
+    "sexes": {
+      "MALE": "Laki-laki",
+      "FEMALE": "Perempuan"
+    },
+    "inputBy": "Isi menurut",
+    "yearPlaceholder": "Contoh 1986",
+    "yearNote": "Tahun dihitung menurut Tết (Tahun Baru Imlek).",
+    "yearNoteLunar": "Tahun dihitung menurut Tết (Tahun Baru Imlek) — lahir sebelum Tết berarti memakai tahun sebelumnya.",
+    "facts": {
+      "age": "Usia",
+      "napAm": "Elemen (nạp âm)",
+      "trigram": "Trigram kelahiran"
+    },
+    "beforeTet": "Lahir sebelum Tết, jadi usia dihitung untuk tahun {{year}} ({{canChi}}).",
+    "facingGood": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, cocok. {{meaning}}.",
+    "facingBad": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, pantang. {{meaning}}.",
+    "houseSame": "Menurut arah duduk: rumah yang duduk di {{segment}} adalah rumah {{trigram}} (kelompok {{houseGroup}}), satu kelompok dengan {{personGroup}}.",
+    "houseOther": "Menurut arah duduk: rumah yang duduk di {{segment}} adalah rumah {{trigram}} (kelompok {{houseGroup}}), berbeda kelompok dengan {{personGroup}}.",
+    "lockFirst": "Kunci hasil ukur {{target}} untuk melihat cocok atau pantang.",
+    "goodDirections": "Empat arah yang cocok: {{list}}",
+    "drivesDial": "Cincin bintang di kompas dihitung menurut {{name}}.",
+    "thisPerson": "orang ini",
+    "defaultName": "Orang {{index}}",
+    "errors": {
+      "yearFormat": "Masukkan tahun empat digit, misalnya 1986.",
+      "invalidDate": "Tanggal lahir tidak valid.",
+      "outOfRange": "Tanggal ini tidak ada atau berada di luar rentang kalender lunar yang didukung (1800–2199)."
+    }
+  },
+  "rules": {
+    "segments": "Aturan harus memiliki lengkap 8 sektor.",
+    "missingStars": "Trigram {{trigram}} kekurangan bintang.",
+    "duplicateStars": "Trigram {{trigram}} memiliki dua bintang di arah yang sama.",
+    "noGroup": "Trigram {{trigram}} tidak termasuk kelompok mana pun.",
+    "homes": "Arah Langit Akhir (Later Heaven) dari trigram tidak valid.",
+    "yearRange": "Tahun lahir harus antara {{min}}–{{max}}.",
+    "noTrigram": "Aturan tidak memiliki trigram nomor {{number}}."
+  }
+}

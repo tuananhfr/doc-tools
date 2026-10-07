@@ -1,5 +1,6 @@
 import { useId, useState, type DragEvent, type ReactNode } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 
 export interface PickerCopy {
@@ -25,6 +26,7 @@ interface FilePickerProps extends PickerCopy {
 /** Vùng thả + nút chọn tệp của bước 1. */
 export function FilePicker({ accept, multiple, title, hint, compact, loading, disabled, onFiles, extra }: FilePickerProps) {
   const inputId = useId()
+  const { t } = useTranslation('common')
   const [over, setOver] = useState(false)
 
   const handleDrop = (event: DragEvent<HTMLElement>) => {
@@ -35,12 +37,12 @@ export function FilePicker({ accept, multiple, title, hint, compact, loading, di
     if (files.length > 0) onFiles(multiple ? files : files.slice(0, 1))
   }
 
-  const pickLabel = compact ? (multiple ? 'Thêm tệp' : 'Chọn tệp khác') : 'Chọn tệp'
+  const pickLabel = compact ? (multiple ? t('filePicker.add') : t('filePicker.pickOther')) : t('filePicker.pick')
 
   return (
     <section
       className={`erp-flow-picker${compact ? ' erp-flow-picker--compact' : ''}${over ? ' is-over' : ''}`}
-      aria-label="Chọn tệp"
+      aria-label={t('filePicker.pick')}
       onDragOver={(event) => {
         event.preventDefault()
         if (!disabled) setOver(true)
@@ -58,10 +60,10 @@ export function FilePicker({ accept, multiple, title, hint, compact, loading, di
         {loading ? (
           <p className="erp-flow-picker__title" role="status">
             <Spinner as="span" size="sm" className="me-2" />
-            Đang đọc tệp {Math.min(loading.done + 1, loading.total)}/{loading.total}…
+            {t('filePicker.reading', { current: Math.min(loading.done + 1, loading.total), total: loading.total })}
           </p>
         ) : (
-          <h2 className="erp-flow-picker__title">{compact ? (multiple ? 'Thả thêm tệp vào đây' : 'Thả tệp khác vào đây') : title}</h2>
+          <h2 className="erp-flow-picker__title">{compact ? (multiple ? t('filePicker.dropMore') : t('filePicker.dropOther')) : title}</h2>
         )}
         <p className="erp-flow-picker__hint">{hint}</p>
       </div>

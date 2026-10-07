@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { usePathname } from 'next/navigation'
 import { ROUTER_BASENAME, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
+import { localePrefix, localizePath, splitLocalePath, type Locale } from '@/i18n/locales'
 import { createBrowserRouter, createMemoryRouter, RouterProvider, type RouteObject } from 'react-router-dom'
 import { ToolsLayout } from '@/layouts/ToolsLayout'
 import ToolsHubPage from '@/features/tools/hub/pages/ToolsHubPage'
@@ -38,11 +39,17 @@ const routes: RouteObject[] = [{ path: ROUTES.docTools, element: <ToolsLayout />
   { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} /> },
 ] }]
 
-export function ToolsRouter() {
+export function ToolsRouter({ locale }: { locale: Locale }) {
   const pathname = usePathname()
   // Retain the data router so file handoff, screen identity and leave guards keep their behavior.
-  const [router] = useState(() => typeof window === 'undefined'
-    ? createMemoryRouter(routes, { basename: ROUTER_BASENAME, initialEntries: [withBase(pathname ?? ROUTES.docTools)] })
-    : createBrowserRouter(routes, { basename: ROUTER_BASENAME }))
+  const [router] = useState(() => {
+    // The locale lives in the basename, so every locale-free `ROUTES` link and `<Link to>` keeps its language.
+    const prefix = localePrefix(locale)
+    const basename = prefix ? withBase(prefix) : ROUTER_BASENAME
+    if (typeof window !== 'undefined') return createBrowserRouter(routes, { basename })
+    // On the server the pathname is the prerendered one (`/vi/...` for the unprefixed default locale).
+    const { rest } = splitLocalePath(pathname ?? ROUTES.docTools)
+    return createMemoryRouter(routes, { basename, initialEntries: [withBase(localizePath(rest, locale))] })
+  })
   return <RouterProvider router={router} />
 }

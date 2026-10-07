@@ -1,4 +1,6 @@
 import { useId, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import type { ParseKeys } from 'i18next'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
 import { CopyButton, ToolBoard, ToolPanel, ToolSegments, type ToolSegment } from '@/features/tools/hub'
@@ -31,27 +33,29 @@ interface Settings {
   count: Record<Mode, number>
 }
 
-const MODES: ToolSegment<Mode>[] = [
-  { value: 'password', label: 'Mật khẩu', icon: 'key' },
-  { value: 'code', label: 'Mã đơn, mã phiếu', icon: 'upc-scan' },
+type UtilityKey = ParseKeys<'utility'>
+
+const MODES: (Omit<ToolSegment<Mode>, 'label'> & { label: UtilityKey })[] = [
+  { value: 'password', label: 'randomCode.modes.password', icon: 'key' },
+  { value: 'code', label: 'randomCode.modes.code', icon: 'upc-scan' },
 ]
 
 const COUNT_MAX: Record<Mode, number> = { password: 20, code: 100 }
 
 const FIRST: Settings = { mode: 'password', password: DEFAULT_PASSWORD, code: DEFAULT_CODE, count: { password: 1, code: 10 } }
 
-const CLASSES: { key: 'lower' | 'upper' | 'digits' | 'symbols'; label: string }[] = [
-  { key: 'upper', label: 'Chữ hoa (A–Z)' },
-  { key: 'lower', label: 'Chữ thường (a–z)' },
-  { key: 'digits', label: 'Chữ số (0–9)' },
-  { key: 'symbols', label: 'Ký hiệu (!@#$…)' },
+const CLASSES: { key: 'lower' | 'upper' | 'digits' | 'symbols'; label: UtilityKey }[] = [
+  { key: 'upper', label: 'randomCode.classes.upper' },
+  { key: 'lower', label: 'randomCode.classes.lower' },
+  { key: 'digits', label: 'randomCode.classes.digits' },
+  { key: 'symbols', label: 'randomCode.classes.symbols' },
 ]
 
-const STRENGTH: Record<PasswordStrength, { label: string; icon: string; tone: string }> = {
-  weak: { label: 'Yếu', icon: 'shield-exclamation', tone: 'danger' },
-  fair: { label: 'Tạm được', icon: 'shield', tone: 'warning' },
-  strong: { label: 'Mạnh', icon: 'shield-check', tone: 'success' },
-  excellent: { label: 'Rất mạnh', icon: 'shield-fill-check', tone: 'success' },
+const STRENGTH: Record<PasswordStrength, { label: UtilityKey; icon: string; tone: string }> = {
+  weak: { label: 'randomCode.strengths.weak', icon: 'shield-exclamation', tone: 'danger' },
+  fair: { label: 'randomCode.strengths.fair', icon: 'shield', tone: 'warning' },
+  strong: { label: 'randomCode.strengths.strong', icon: 'shield-check', tone: 'success' },
+  excellent: { label: 'randomCode.strengths.excellent', icon: 'shield-fill-check', tone: 'success' },
 }
 
 const rng = secureRng()
@@ -72,6 +76,7 @@ const clampInt = (text: string, min: number, max: number, fallback: number) => {
  * nào là sinh lại ngay, không có trạng thái "tuỳ chọn một đằng, kết quả một nẻo".
  */
 export default function RandomCodePage() {
+  const { t } = useTranslation('utility')
   const ids = useId()
   const [settings, setSettings] = useState(FIRST)
   const [results, setResults] = useState(() => generate(FIRST))
@@ -95,18 +100,18 @@ export default function RandomCodePage() {
       side={
         <>
           <div className="erp-tool-side-head">
-            <h2 className="erp-flow-options__title">Kết quả{results.length > 1 ? ` (${results.length})` : ''}</h2>
-            {results.length > 1 ? <CopyButton text={results.join('\n')} label="Chép tất cả" size="sm" /> : null}
+            <h2 className="erp-flow-options__title">{results.length > 1 ? t('randomCode.resultsCount', { count: results.length }) : t('randomCode.results')}</h2>
+            {results.length > 1 ? <CopyButton text={results.join('\n')} label={t('randomCode.copyAll')} size="sm" /> : null}
           </div>
 
           {noClass ? (
-            <p className="erp-flow-field__hint">Bật ít nhất một nhóm ký tự để tạo mật khẩu.</p>
+            <p className="erp-flow-field__hint">{t('randomCode.noClass')}</p>
           ) : (
             <ul className="erp-tool-rows" aria-live="polite">
               {results.map((value) => (
                 <li key={value} className="erp-tool-row erp-tool-row--code">
                   <code className="erp-tool-row__code">{value}</code>
-                  <CopyButton text={value} label={`Chép ${value}`} iconOnly variant="link" />
+                  <CopyButton text={value} label={t('randomCode.copyValue', { value })} iconOnly variant="link" />
                 </li>
               ))}
             </ul>
@@ -114,21 +119,21 @@ export default function RandomCodePage() {
 
           <Button variant="primary" className="erp-flow__run" disabled={noClass} onClick={() => setResults(generate(settings))}>
             <Icon name="arrow-repeat" className="me-2" />
-            Tạo lại
+            {t('randomCode.regenerate')}
           </Button>
         </>
       }
     >
-      <ToolSegments label="Loại mã" value={mode} options={MODES} onChange={(next) => apply({ ...settings, mode: next })} />
+      <ToolSegments label={t('randomCode.modeLabel')} value={mode} options={MODES.map((item) => ({ ...item, label: t(item.label) }))} onChange={(next) => apply({ ...settings, mode: next })} />
 
-      <ToolPanel title="Tuỳ chọn">
+      <ToolPanel title={t('randomCode.panelTitle')}>
         <div className="erp-tool-form">
           {mode === 'password' ? (
             <>
               <div className="erp-flow-field">
                 <label className="erp-flow-field__label erp-image-range__label" htmlFor={`${ids}-length`}>
-                  Độ dài
-                  <span className="erp-image-range__value">{password.length} ký tự</span>
+                  {t('randomCode.length')}
+                  <span className="erp-image-range__value">{t('randomCode.chars', { count: password.length })}</span>
                 </label>
                 <Form.Range
                   id={`${ids}-length`}
@@ -140,14 +145,14 @@ export default function RandomCodePage() {
               </div>
 
               <fieldset className="erp-flow-options">
-                <legend className="erp-flow-field__label">Dùng các nhóm ký tự</legend>
+                <legend className="erp-flow-field__label">{t('randomCode.classGroups')}</legend>
                 <div className="erp-tool-checks">
                   {CLASSES.map((item) => (
                     <Form.Check
                       key={item.key}
                       id={`${ids}-${item.key}`}
                       type="checkbox"
-                      label={item.label}
+                      label={t(item.label)}
                       checked={password[item.key]}
                       onChange={(event) => setPassword({ [item.key]: event.target.checked })}
                     />
@@ -158,7 +163,7 @@ export default function RandomCodePage() {
               <Form.Check
                 id={`${ids}-plain`}
                 type="checkbox"
-                label="Bỏ ký tự dễ nhìn nhầm (0 O o 1 l I)"
+                label={t('randomCode.plain')}
                 checked={password.plain}
                 onChange={(event) => setPassword({ plain: event.target.checked })}
               />
@@ -167,7 +172,7 @@ export default function RandomCodePage() {
                 <p className={`erp-code-strength erp-code-strength--${strength.tone}`}>
                   <Icon name={strength.icon} />
                   <span>
-                    Độ mạnh: <strong>{strength.label}</strong> · khoảng {Math.round(passwordBits(password))} bit
+                    <Trans ns="utility" i18nKey="randomCode.strength" values={{ label: t(strength.label), bits: Math.round(passwordBits(password)) }} components={{ strong: <strong /> }} />
                   </span>
                 </p>
               )}
@@ -177,7 +182,7 @@ export default function RandomCodePage() {
               <div className="erp-tool-form__grid">
                 <div className="erp-flow-field">
                   <label className="erp-flow-field__label" htmlFor={`${ids}-prefix`}>
-                    Tiền tố (không bắt buộc)
+                    {t('randomCode.prefix')}
                   </label>
                   <Form.Control
                     id={`${ids}-prefix`}
@@ -186,37 +191,37 @@ export default function RandomCodePage() {
                     autoCapitalize="characters"
                     spellCheck={false}
                     maxLength={CODE_PREFIX_MAX}
-                    placeholder="Ví dụ PX-"
+                    placeholder={t('randomCode.prefixPlaceholder')}
                     value={code.prefix}
                     onChange={(event) => setCode({ prefix: event.target.value.slice(0, CODE_PREFIX_MAX) })}
                   />
                 </div>
                 <div className="erp-flow-field">
                   <label className="erp-flow-field__label" htmlFor={`${ids}-charset`}>
-                    Phần ngẫu nhiên gồm
+                    {t('randomCode.charset')}
                   </label>
                   <Form.Select id={`${ids}-charset`} value={code.charset} onChange={(event) => setCode({ charset: event.target.value as CodeCharset })}>
-                    <option value="alnum">Chữ hoa và số</option>
-                    <option value="digits">Chỉ chữ số</option>
+                    <option value="alnum">{t('randomCode.alnum')}</option>
+                    <option value="digits">{t('randomCode.digitsOnly')}</option>
                   </Form.Select>
                 </div>
               </div>
 
               <div className="erp-flow-field">
                 <label className="erp-flow-field__label erp-image-range__label" htmlFor={`${ids}-code-length`}>
-                  Số ký tự ngẫu nhiên
-                  <span className="erp-image-range__value">{code.length} ký tự</span>
+                  {t('randomCode.codeLength')}
+                  <span className="erp-image-range__value">{t('randomCode.chars', { count: code.length })}</span>
                 </label>
                 <Form.Range id={`${ids}-code-length`} min={CODE_LENGTH.min} max={CODE_LENGTH.max} value={code.length} onChange={(event) => setCode({ length: Number(event.target.value) })} />
               </div>
 
-              {code.charset === 'alnum' ? <p className="erp-flow-field__hint">Không dùng I, O, 0, 1 — mã đọc qua điện thoại hay chép tay không bị nhầm.</p> : null}
+              {code.charset === 'alnum' ? <p className="erp-flow-field__hint">{t('randomCode.alnumHint')}</p> : null}
             </>
           )}
 
           <div className="erp-flow-field erp-tool-count">
             <label className="erp-flow-field__label" htmlFor={`${ids}-count`}>
-              Số lượng mỗi lượt (tối đa {COUNT_MAX[mode]})
+              {t('randomCode.count', { max: COUNT_MAX[mode] })}
             </label>
             <Form.Control
               id={`${ids}-count`}

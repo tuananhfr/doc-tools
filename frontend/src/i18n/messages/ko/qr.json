@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "QR 코드 도구",
+    "qrCreate": "QR 코드 만들기",
+    "barcodeCreate": "바코드 만들기",
+    "qrRead": "코드 스캔"
+  },
+  "shared": {
+    "codeContent": "코드 안의 내용",
+    "enterToCreate": "코드를 만들 내용을 입력하세요",
+    "contentPanel": "코드 내용",
+    "kind": "코드 종류",
+    "phone": "전화번호",
+    "security": "보안",
+    "password": "비밀번호",
+    "noPassword": "비밀번호 없음",
+    "retry": "다시 시도",
+    "downloadPng": "PNG 다운로드",
+    "value": "값",
+    "emailPlaceholder": "name@company.com"
+  },
+  "qrCreate": {
+    "side": "QR 코드",
+    "tooLong": "내용이 QR 코드 하나에 담기에는 너무 길어요. 줄이거나, 내용이 있는 곳의 링크를 사용하세요.",
+    "renderFailed": "QR 코드 이미지를 만들지 못했어요. 다시 시도해 주세요.",
+    "notCreated": "아직 코드를 만들지 못했어요",
+    "downloadPng": "QR 코드 다운로드",
+    "downloadSvg": "인쇄용 SVG 다운로드",
+    "downloadPdf": "PDF 다운로드",
+    "transparentHint": "사진 위에 얹을 때는 충분히 밝고 색이 고른 영역을 골라야 스캔이 잘 돼요.",
+    "lowContrast": "코드 색과 배경색이 너무 비슷해요. 스캔이 잘 되도록 대비를 높이세요.",
+    "previewLabel": "입력 중인 내용의 QR 코드"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (링크)",
+      "text": "텍스트",
+      "wifi": "Wi-Fi",
+      "phone": "전화번호",
+      "email": "이메일",
+      "vcard": "명함 (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "비밀번호 없음"
+    },
+    "enterContent": "내용을 입력하세요",
+    "textPlaceholder": "예: B 창고 — 12번 선반, 3단",
+    "ssid": "Wi-Fi 네트워크 이름",
+    "ssidPlaceholder": "예: Office-WiFi",
+    "hidden": "숨겨진 네트워크 (이름을 브로드캐스트하지 않음)",
+    "emailAddress": "이메일 주소",
+    "subject": "메일 제목 (선택)",
+    "contactName": "이름",
+    "contactNamePlaceholder": "홍길동",
+    "contactEmail": "연락용 이메일",
+    "contactOrg": "회사 (선택)",
+    "contactTitle": "직함 (선택)",
+    "vcardHint": "이름과 함께 전화번호나 이메일 중 하나 이상이 필요해요. 휴대폰 카메라로 스캔하면 연락처에 추가하라는 안내가 떠요."
+  },
+  "payload": {
+    "urlSpaces": "링크에 공백이 있으면 안 돼요.",
+    "wifiPassword": "Wi-Fi 비밀번호를 입력하거나 \"비밀번호 없음\"을 선택하세요.",
+    "wpaShort": "WPA/WPA2 비밀번호는 8자 이상이에요.",
+    "phoneChars": "전화번호는 숫자만 쓸 수 있고, + 기호로 시작할 수 있어요.",
+    "phoneShort": "전화번호가 너무 짧아요.",
+    "email": "이메일 주소가 name@company.com 형식이 아니에요.",
+    "contactName": "연락처 이름을 입력하세요.",
+    "contactReach": "연락처의 전화번호나 이메일을 입력하세요."
+  },
+  "colors": {
+    "legend": "QR 코드 색",
+    "background": "QR 코드 배경",
+    "backgroundModes": {
+      "white": "흰색 배경",
+      "transparent": "배경 없음",
+      "custom": "색 선택"
+    },
+    "presetBackgrounds": "기본 배경색",
+    "customColor": "원하는 색",
+    "names": {
+      "ink": "검정",
+      "steel": "스틸 그레이",
+      "blue": "파랑",
+      "crimson": "빨강",
+      "teal": "청록",
+      "green": "초록",
+      "white": "흰색",
+      "mist": "연회색",
+      "blue-soft": "연파랑",
+      "teal-soft": "연청록",
+      "amber-soft": "크림",
+      "rose-soft": "연분홍"
+    }
+  },
+  "barcode": {
+    "side": "바코드",
+    "modeLabel": "만드는 방식",
+    "modes": {
+      "single": "하나씩",
+      "batch": "일괄"
+    },
+    "files": {
+      "png": "PNG 다운로드",
+      "svg": "인쇄용 SVG",
+      "pdf": "실제 크기 PDF"
+    },
+    "drawFailed": "이 코드를 그리지 못했어요.",
+    "fileFailed": "바코드 파일을 만들지 못했어요.",
+    "engineFailed": "코드 생성기를 불러오지 못했어요. 페이지를 새로 고치세요.",
+    "engineLoading": "코드 생성기를 불러오는 중…",
+    "previewLabel": "{{value}}의 {{kind}} 바코드",
+    "styleTitle": "코드 형식",
+    "listTitle": "코드 목록"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "내부용 코드: 자재, 자산, 창고 — 문자, 숫자, 기호",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "구형 스캐너용 내부 코드 — 대문자, 숫자, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "소매 상품 코드, GS1이 발급한 13자리",
+      "placeholder": "12자리, 검사 숫자는 자동 추가"
+    },
+    "ean8": {
+      "hint": "소형 상품 코드, GS1이 발급한 8자리",
+      "placeholder": "7자리, 검사 숫자는 자동 추가"
+    },
+    "itf14": {
+      "hint": "박스 / 포장 단위 코드, GS1 기준 14자리",
+      "placeholder": "13자리, 검사 숫자는 자동 추가"
+    }
+  },
+  "barcodeOptions": {
+    "size": "인쇄 크기",
+    "sizeStandard": "{{percent}}% (표준)",
+    "height": "바 높이",
+    "includeText": "코드 아래에 숫자 / 문자 인쇄",
+    "sizeWarning": "80% 미만이면 많은 핸드 스캐너가 읽지 못해요. 전체를 인쇄하기 전에 라벨 하나를 시험 인쇄하세요."
+  },
+  "gs1Notice": "EAN / ITF-14 번호는 GS1 베트남이 회사에 발급한 번호여야 해요. 이 도구는 번호를 만들지 않고, 이미 가진 번호를 그리기만 해요. 내부용 코드(자재, 자산, 창고)는 <strong>Code 128</strong>을 선택하세요.",
+  "batch": {
+    "fileTooLarge": "파일이 {{size}}보다 커요.",
+    "readFailed": "이 파일을 읽을 수 없어요.",
+    "buildFailed": "파일을 만들지 못했어요.",
+    "pickTitle": "CSV 또는 Excel(.xlsx) 파일 선택",
+    "pickHint": "한 줄에 코드 하나, 첫 번째 열을 사용 · 최대 {{limit}}줄",
+    "valid": "올바른 코드 {{count}}개",
+    "invalid": "잘못된 줄 {{count}}개 — 제외됨",
+    "header": "제목 줄 “{{header}}” 건너뜀",
+    "dropped": "한도 {{limit}}줄을 넘는 {{count}}줄 건너뜀",
+    "line": "줄",
+    "reason": "이유",
+    "moreErrors": "… 외 잘못된 줄 {{count}}개.",
+    "building": "만드는 중 {{done}}/{{total}}…",
+    "pdf": "PDF ({{count}}페이지)",
+    "zip": "{{type}} 묶음 (.zip)",
+    "unsupported": ".csv 또는 .xlsx 파일만 읽을 수 있어요."
+  },
+  "check": {
+    "digitsOnly": "숫자만 입력할 수 있어요.",
+    "checkDigitAdded": "검사 숫자 {{digit}}을(를) 추가했어요.",
+    "wrongLength": "{{short}}자리(검사 숫자 자동 추가) 또는 {{full}}자리 전체가 필요해요. 지금은 {{count}}자리예요.",
+    "wrongCheckDigit": "검사 숫자가 틀렸어요. 마지막 숫자는 {{actual}}이 아니라 {{expected}}여야 해요. 옮겨 적은 번호를 다시 확인하세요.",
+    "empty": "내용이 없어요.",
+    "tooLong": "{{max}}자를 넘어요. 코드가 스캐너 폭보다 길어져요.",
+    "code39Chars": "Code 39는 성조 없는 문자, 숫자, - . $ / + % 및 공백만 받아요.",
+    "code39Upper": "Code 39에는 소문자가 없어서 대문자로 바꿨어요.",
+    "code128Chars": "Code 128은 성조가 있는 문자나 특수 문자를 인코딩할 수 없어요. 성조 없는 문자를 쓰세요.",
+    "prefix893": "접두어 893: GS1 베트남에 등록된 코드예요 (코드 발급처이지 생산지가 아니에요).",
+    "prefixIsbn": "접두어 978/979: 도서 코드(ISBN)예요.",
+    "prefixIssn": "접두어 977: 정기 간행물 코드(ISSN)예요.",
+    "prefixInternal": "접두어 20–29: 매장 / 회사 내부용 코드로, 자체 시스템 밖에서는 쓸 수 없어요."
+  },
+  "render": {
+    "barcodeFailed": "{{value}} 코드를 만들지 못했어요.",
+    "imageFailed": "브라우저가 이미지를 만들지 못했어요."
+  },
+  "read": {
+    "results": "결과",
+    "resultsCount": "결과 ({{count}})",
+    "clearAll": "모두 지우기",
+    "empty": "아직 읽은 코드가 없어요. 코드가 있는 이미지를 선택하거나, 스크린샷을 붙여 넣거나, 카메라로 스캔하세요.",
+    "safety": "열기 전에 링크를 꼼꼼히 확인하세요. 누구나 QR 코드를 인쇄해 진짜 코드 위에 붙일 수 있어요.",
+    "pickTitle": "QR 코드나 바코드가 있는 이미지 선택",
+    "pickHint": "JPG, PNG, WebP · Ctrl+V로 이미지를 붙여 넣어도 돼요",
+    "camera": "카메라로 스캔",
+    "missTitle": "이미지 {{count}}개를 읽지 못했어요",
+    "moreMisses": "… 외 이미지 {{count}}개",
+    "hideNotice": "알림 숨기기",
+    "pastedImage": "붙여 넣은 이미지",
+    "noCode": "코드를 찾지 못했어요. 정면에서, 밝게, 코드가 화면 대부분을 차지하도록 찍은 사진으로 시도해 보세요.",
+    "unreadable": "열 수 없어요. JPG, PNG, WebP 이미지만 읽을 수 있어요.",
+    "tooLarge": "{{size}}보다 커요.",
+    "tooManyPixels": "너무 커요 ({{pixels}}백만 화소, 한도 {{limit}}백만). 코드가 있는 부분만 잘라서 다시 시도하세요."
+  },
+  "camera": {
+    "scanTitle": "QR / 바코드 스캔",
+    "aim": "코드를 프레임 안에 맞추세요",
+    "searching": "코드를 찾는 중…",
+    "detected": "코드를 읽었어요",
+    "scanNext": "다음 스캔",
+    "openLink": "링크 열기",
+    "zoom": "확대/축소",
+    "zoomIn": "확대",
+    "zoomOut": "축소",
+    "captured": "읽은 코드 이미지",
+    "title": "카메라",
+    "off": "카메라 끄기",
+    "viewfinder": "카메라 뷰파인더",
+    "starting": "카메라를 여는 중… 브라우저가 카메라 사용 권한을 물어볼 수 있어요.",
+    "hint": "코드를 화면 가운데에 두고 잠시 멈추세요. 읽히면 결과가 바로 나타나고, 아무것도 누르지 않고 다음 코드를 계속 스캔할 수 있어요.",
+    "insecure": "{{reason}} 카메라 앱으로 코드를 찍은 뒤 기기에서 사진을 선택하세요."
+  },
+  "scanResult": {
+    "qrCode": "QR 코드",
+    "remove": "이 결과 빼기",
+    "removeShort": "빼기",
+    "ssid": "네트워크 이름",
+    "unknown": "알 수 없음",
+    "checkOk": "검사 숫자가 맞아요.",
+    "checkBad": "검사 숫자가 틀려요 — 코드가 잘못 인쇄됐거나 변조됐어요.",
+    "open": "{{host}} 열기",
+    "copyPassword": "비밀번호 복사",
+    "copyNumber": "번호 복사",
+    "copyAddress": "주소 복사",
+    "copy": "복사",
+    "copyRaw": "원문 그대로 복사"
+  },
+  "vietqr": {
+    "side": "송금 코드",
+    "placeholder": "BIN 코드와 계좌번호를 입력하면 코드가 만들어져요",
+    "copy": "QR 문자열 복사",
+    "downloadSvg": "SVG 다운로드",
+    "checkNote": "사용하기 전에 은행 앱으로 시험 스캔해서 받는 사람 이름, 계좌번호, 금액을 확인하세요.",
+    "panel": "송금 정보",
+    "bin": "은행 BIN 코드 (6자리)",
+    "account": "계좌번호",
+    "amount": "금액 (đ), 비워 둬도 돼요",
+    "note": "송금 메모",
+    "privacy": "코드는 내 기기에서 만들어지며, 계좌 정보는 Chuyện Nhỏ 서버로 보내지 않아요.",
+    "fieldTooLong": "QR 필드가 너무 길어요"
+  },
+  "trace": {
+    "title": "ERPCons 추적 조회",
+    "label": "ERPCons에서 조회",
+    "object": "대상",
+    "code": "내부 코드",
+    "serial": "일련번호",
+    "noEvents": "아직 추적 이벤트가 없어요.",
+    "recentEvents": "최근 이벤트",
+    "loading": "ERPCons에서 조회하는 중…",
+    "accountForbidden": "내 계정에는 추적 조회 권한이 없어요.",
+    "failed": "조회하지 못했어요: {{message}}",
+    "legacy": "대상의 옛 코드예요 — 아직 추적 코드가 연결되지 않았어요.",
+    "forbidden": "대장에 있는 코드지만, 해당 대상을 볼 권한이 없어요.",
+    "broken": "코드가 더 이상 존재하지 않는 대상을 가리켜요.",
+    "unknown": "코드는 읽었지만 ERPCons에 추적 데이터가 아직 없어요.",
+    "status": {
+      "DRAFT": "미발행",
+      "ACTIVE": "사용 중",
+      "EXPIRED": "만료됨",
+      "SUSPENDED": "일시 정지",
+      "REVOKED": "철회됨",
+      "REPLACED": "코드 교체됨",
+      "ARCHIVED": "보관됨"
+    },
+    "notes": {
+      "EXPIRED": "기한이 지난 코드예요 — 이력만 볼 수 있고 작업은 할 수 없어요.",
+      "SUSPENDED": "일시 정지된 코드예요 — 업무에 쓰지 마세요.",
+      "REVOKED": "철회된 코드예요 — 이 라벨은 더 이상 유효하지 않아요.",
+      "REPLACED": "교체된 라벨이에요 — 새 라벨을 사용하세요.",
+      "ARCHIVED": "더 이상 관리하지 않는 대상이에요."
+    }
+  }
+}

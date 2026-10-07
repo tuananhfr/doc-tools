@@ -56,10 +56,10 @@ describe('readPerson / readDirection', () => {
     const reading = readPerson(batTrach, person(1990, 'MALE'))
     expect(reading.ok).toBe(true)
     if (!reading.ok) return
-    expect(reading.value.trigram.name).toBe('Khảm')
-    expect(reading.value.group.name).toBe('Đông tứ mệnh')
-    expect(readDirection(reading.value, 132).star.name).toBe('Sinh khí')
-    expect(readDirection(reading.value, 225).star.name).toBe('Tuyệt mệnh')
+    expect(reading.value.trigram.id).toBe('KAN')
+    expect(reading.value.group.id).toBe('EAST')
+    expect(readDirection(reading.value, 132).star.id).toBe('SINH_KHI')
+    expect(readDirection(reading.value, 225).star.id).toBe('TUYET_MENH')
     expect(goodDirections(reading.value).map((segment) => segment.name)).toEqual(['Đông Nam', 'Đông', 'Nam', 'Bắc'])
   })
 
@@ -100,14 +100,14 @@ describe('readHouse', () => {
 
   it('ảnh mẫu: nam 1986 (Khôn), hướng 178,4° Nam là Lục sát; toạ Bắc là Khảm trạch, không hợp Tây tứ mệnh', () => {
     const house = readHouse(CURRENT_RULE_PROFILE, read(1986, 'MALE'), 178.4)
-    expect(house.facing).toMatchObject({ segment: 'Nam', star: { name: 'Lục sát', fortune: 'BAD' } })
-    expect(house.house).toMatchObject({ segment: 'Bắc', trigram: { name: 'Khảm' }, group: { id: 'EAST' }, matchesPerson: false })
+    expect(house.facing).toMatchObject({ segment: 'Nam', star: { id: 'LUC_SAT', fortune: 'BAD' } })
+    expect(house.house).toMatchObject({ segment: 'Bắc', trigram: { id: 'KAN' }, group: { id: 'EAST' }, matchesPerson: false })
   })
 
   it('hai cách có thể vênh: người Khảm, nhà hướng Đông — sao Thiên y nhưng toạ Tây là Tây tứ trạch', () => {
     const house = readHouse(CURRENT_RULE_PROFILE, read(1990, 'MALE'), 90)
-    expect(house.facing.star.name).toBe('Thiên y')
-    expect(house.house).toMatchObject({ trigram: { name: 'Đoài' }, matchesPerson: false })
+    expect(house.facing.star.id).toBe('THIEN_Y')
+    expect(house.house).toMatchObject({ trigram: { id: 'DUI' }, matchesPerson: false })
   })
 
   it('bộ luật v1.0.0 không có hướng hậu thiên → chỉ có sao tại hướng', () => {

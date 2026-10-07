@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Chargement des données signées…",
+    "invalid": "Le paquet de données du système n'a pas passé la vérification (signature, validité ou format) et n'est donc pas utilisé. Veuillez prévenir un administrateur.",
+    "unavailable": "Impossible de charger les données signées depuis le serveur. Vous pouvez toujours saisir les valeurs vous-même.",
+    "upcoming": "À partir du {{date}}, le nouveau {{label}} s'applique selon {{source}}."
+  }
+}

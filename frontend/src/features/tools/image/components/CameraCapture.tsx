@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Button, Modal, Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { TOOL_LIMITS } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
@@ -46,6 +47,7 @@ export function CameraCapture({ show, onClose, onDone }: CameraCaptureProps) {
 }
 
 function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
+  const { t } = useTranslation('image')
   const toast = useToast()
   const { video, state: cameraState, canRetry, torch, toggleTorch, retry, capture } = useCamera()
   const [shots, setShots] = useState<Shot[]>([])
@@ -68,7 +70,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
       const { blob, width, height } = await capture()
       setShots((current) => [...current, { id: newId(), blob, url: URL.createObjectURL(blob), width, height, rect: null }])
     } catch {
-      toast.error('Không chụp được. Thử lại.')
+      toast.error(t('camera.shootFailed'))
     } finally {
       setBusy(null)
     }
@@ -96,7 +98,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
       onDone(files)
       onClose()
     } catch {
-      toast.error('Không dựng được ảnh đã cắt. Bỏ khung cắt rồi thử lại.')
+      toast.error(t('camera.cropFailed'))
       setBusy(null)
     }
   }
@@ -106,18 +108,18 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
       <Modal.Header>
         <Modal.Title as="h2" className="fs-5" id="erp-camera-title">
           <Icon name="camera" className="me-2" />
-          {review ? `Cắt ảnh ${shots.indexOf(review) + 1}/${shots.length}` : 'Chụp ảnh'}
+          {review ? t('camera.titleReview', { index: shots.indexOf(review) + 1, total: shots.length }) : t('camera.title')}
         </Modal.Title>
       </Modal.Header>
 
       <Modal.Body className="erp-camera__body">
         <div className="erp-camera__view">
           {/* Giữ <video> trong cây cả lúc đang cắt ảnh: gỡ ra là luồng camera mất chỗ phát, quay lại chụp phải xin lại. */}
-          <video ref={video} className="erp-camera__video" hidden={review !== null || !live} playsInline muted autoPlay aria-label="Khung ngắm camera" />
+          <video ref={video} className="erp-camera__video" hidden={review !== null || !live} playsInline muted autoPlay aria-label={t('camera.viewfinder')} />
 
           {review ? (
             <div className="erp-image-stage__frame" style={{ '--erp-image-ratio': review.width / review.height } as CSSProperties}>
-              <img className="erp-camera__shot" src={review.url} alt={`Ảnh chụp ${shots.indexOf(review) + 1}`} draggable={false} />
+              <img className="erp-camera__shot" src={review.url} alt={t('camera.shotAlt', { index: shots.indexOf(review) + 1 })} draggable={false} />
               <CropBox bounds={review} rect={review.rect ?? fullRect(review)} aspect={null} disabled={busy !== null} onChange={(rect) => setRect(review, rect)} />
             </div>
           ) : null}
@@ -125,7 +127,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
           {!review && cameraState.phase === 'starting' ? (
             <p className="erp-camera__status" role="status">
               <Spinner as="span" size="sm" />
-              Đang mở camera… Trình duyệt có thể hỏi quyền dùng camera.
+              {t('camera.starting')}
             </p>
           ) : null}
 
@@ -136,7 +138,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
               {canRetry ? (
                 <Button variant="outline-secondary" size="sm" onClick={retry}>
                   <Icon name="arrow-clockwise" className="me-2" />
-                  Thử lại
+                  {t('camera.retry')}
                 </Button>
               ) : null}
             </div>
@@ -147,23 +149,23 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
           <div className="erp-camera__controls erp-camera__controls--review">
             <Button variant="outline-secondary" disabled={busy !== null} onClick={() => setReviewing(null)}>
               <Icon name="arrow-left" className="me-2" />
-              Chụp tiếp
+              {t('camera.backToShoot')}
             </Button>
             <Button variant="outline-secondary" disabled={busy !== null || !review.rect || isFullRect(review.rect, review)} onClick={() => setRect(review, null)}>
               <Icon name="arrows-fullscreen" className="me-2" />
-              Bỏ khung cắt
+              {t('camera.clearCrop')}
             </Button>
             <Button variant="outline-danger" disabled={busy !== null} onClick={() => discard(review)}>
               <Icon name="trash3" className="me-2" />
-              Xoá ảnh này
+              {t('camera.deleteShot')}
             </Button>
           </div>
         ) : (
           <div className="erp-camera__controls">
-            <ol className="erp-camera__strip" aria-label="Ảnh đã chụp">
+            <ol className="erp-camera__strip" aria-label={t('camera.strip')}>
               {shots.map((shot, index) => (
                 <li key={shot.id}>
-                  <button type="button" className="erp-camera__thumb" aria-label={`Xem và cắt ảnh ${index + 1}`} title="Xem, cắt hoặc xoá ảnh này" onClick={() => setReviewing(shot.id)}>
+                  <button type="button" className="erp-camera__thumb" aria-label={t('camera.thumbAria', { index: index + 1 })} title={t('camera.thumbTitle')} onClick={() => setReviewing(shot.id)}>
                     <img src={shot.url} alt="" />
                     <span className="erp-camera__thumb-order">{index + 1}</span>
                   </button>
@@ -171,7 +173,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
               ))}
             </ol>
 
-            <button type="button" className="erp-camera__shutter" aria-label="Chụp" title={full ? `Đã đủ ${MAX_SHOTS} ảnh` : 'Chụp'} disabled={!live || busy !== null || full} onClick={() => void shoot()}>
+            <button type="button" className="erp-camera__shutter" aria-label={t('camera.shutter')} title={full ? t('camera.full', { count: MAX_SHOTS }) : t('camera.shutter')} disabled={!live || busy !== null || full} onClick={() => void shoot()}>
               <span className="erp-camera__shutter-core" />
             </button>
 
@@ -180,9 +182,9 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
                 <button
                   type="button"
                   className={`btn erp-camera__torch${torch ? ' is-on' : ''}`}
-                  aria-label="Đèn"
+                  aria-label={t('camera.torch')}
                   aria-pressed={torch}
-                  title={torch ? 'Tắt đèn' : 'Bật đèn'}
+                  title={torch ? t('camera.torchOff') : t('camera.torchOn')}
                   disabled={!live}
                   onClick={() => void toggleTorch()}
                 >
@@ -195,22 +197,22 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
 
         <p className="erp-camera__count" role="status">
           {review
-            ? 'Kéo khung để giữ lại phần cần lấy. Không kéo gì thì giữ cả ảnh.'
+            ? t('camera.reviewHint')
             : shots.length === 0
-              ? 'Chưa chụp ảnh nào.'
+              ? t('camera.none')
               : full
-                ? `Đã đủ ${MAX_SHOTS} ảnh cho một lượt.`
-                : `Đã chụp ${shots.length} ảnh. Bấm vào ảnh thu nhỏ để cắt hoặc xoá.`}
+                ? t('camera.fullStatus', { count: MAX_SHOTS })
+                : t('camera.shotCount', { count: shots.length })}
         </p>
       </Modal.Body>
 
       <Modal.Footer>
         <Button variant="outline-secondary" disabled={busy === 'finishing'} onClick={onClose}>
-          {shots.length > 0 ? `Bỏ ${shots.length} ảnh và đóng` : 'Đóng'}
+          {shots.length > 0 ? t('camera.discardClose', { count: shots.length }) : t('camera.close')}
         </Button>
         <Button variant="primary" disabled={shots.length === 0 || busy !== null} onClick={() => void finish()}>
           {busy === 'finishing' ? <Spinner as="span" size="sm" className="me-2" /> : <Icon name="check2" className="me-2" />}
-          {shots.length > 0 ? `Dùng ${shots.length} ảnh` : 'Dùng ảnh'}
+          {shots.length > 0 ? t('camera.useShots', { count: shots.length }) : t('camera.useNone')}
         </Button>
       </Modal.Footer>
     </>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { HEADING_FAILURE, STABILITY_BADGE } from '../config/heading-status'
 import { useDeviceHeading } from '../hooks/useDeviceHeading'
@@ -17,23 +18,25 @@ interface DeviceCompassPanelProps {
  * người dùng tự CHỐT số. Mọi lỗi đều có lối ra nhập tay — không bao giờ kẹt.
  */
 export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: DeviceCompassPanelProps) {
+  const { t } = useTranslation('orientation')
   const { status, reading, start, stop } = useDeviceHeading()
   const [outside, setOutside] = useState(false)
-  const failure = HEADING_FAILURE[status]
+  const failureKey = HEADING_FAILURE[status]
+  const failure = failureKey ? t(`heading.failure.${failureKey}`) : null
   // Đứng ngoài nhìn vào nhà thì đầu máy chĩa NGƯỢC hướng nhà.
   const heading = reading ? normalizeDeg(reading.heading + (outside ? 180 : 0)) : null
-  const stability = reading?.stability ? STABILITY_BADGE[reading.stability] : null
+  const stability = reading?.stability ? { ...STABILITY_BADGE[reading.stability], label: t(`heading.stability.${reading.stability}`) } : null
 
   return (
     <div className="erp-orient-device">
       <ol className="erp-orient-device__steps">
-        <li>Đứng ở cửa chính, quay lưng vào nhà, nhìn thẳng ra ngoài.</li>
-        <li>Cầm điện thoại nằm ngang (song song mặt đất), đầu máy chĩa theo hướng nhìn.</li>
-        <li>Đứng yên vài giây cho số ổn định rồi bấm “Chốt số đo”.</li>
+        <li>{t('device.steps.stand')}</li>
+        <li>{t('device.steps.hold')}</li>
+        <li>{t('device.steps.wait')}</li>
       </ol>
       <p className="erp-orient-note erp-orient-note--warning">
         <Icon name="magnet" />
-        Đứng xa cột thép, ô tô, cửa cuốn, nam châm và thiết bị điện — chúng làm lệch la bàn.
+        {t('heading.magnetWarning')}
       </p>
 
       {status === 'live' && heading !== null ? (
@@ -47,9 +50,9 @@ export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: 
             </span>
           ) : null}
           {reading?.accuracy !== null && reading?.accuracy !== undefined ? (
-            <span className="erp-orient-live__meta">Máy báo sai số ±{Math.round(reading.accuracy)}°</span>
+            <span className="erp-orient-live__meta">{t('heading.accuracy', { value: Math.round(reading.accuracy) })}</span>
           ) : (
-            <span className="erp-orient-live__meta">Máy không báo sai số</span>
+            <span className="erp-orient-live__meta">{t('heading.noAccuracy')}</span>
           )}
         </div>
       ) : null}
@@ -64,7 +67,7 @@ export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: 
       <Form.Check
         type="checkbox"
         id="orient-outside"
-        label="Tôi đang đứng ngoài, nhìn vào nhà"
+        label={t('heading.outside')}
         checked={outside}
         disabled={disabled}
         onChange={(event) => setOutside(event.target.checked)}
@@ -75,26 +78,26 @@ export function DeviceCompassPanel({ targetLabel, disabled, onLock, onManual }: 
           <>
             <Button variant="primary" disabled={disabled || reading?.stability === 'UNSTABLE'} onClick={() => onLock(heading, reading?.accuracy ?? null)}>
               <Icon name="pin-angle" className="me-2" />
-              Chốt số đo cho {targetLabel.toLowerCase()}
+              {t('device.lock', { target: targetLabel.toLowerCase() })}
             </Button>
             <Button variant="outline-secondary" disabled={disabled} onClick={stop}>
-              Dừng
+              {t('heading.stop')}
             </Button>
           </>
         ) : (
           <Button variant="primary" disabled={disabled || status === 'starting'} onClick={() => void start()}>
             <Icon name="compass" className="me-2" />
-            {status === 'starting' ? 'Đang mở la bàn…' : failure ? 'Thử lại' : 'Bắt đầu đo'}
+            {t(status === 'starting' ? 'heading.starting' : failure ? 'heading.retry' : 'heading.start')}
           </Button>
         )}
         <Button variant="link" className="erp-orient-actions__link" disabled={disabled} onClick={onManual}>
-          Nhập số độ thay vào
+          {t('device.manual')}
         </Button>
       </div>
       {reading?.stability === 'UNSTABLE' ? (
         <p className="erp-orient-note erp-orient-note--warning">
           <Icon name="arrow-repeat" />
-          Số đang nhảy nhiều. Đứng yên, xoay máy hình số 8 vài lần để máy tự hiệu chỉnh, rồi đo lại.
+          {t('device.unstable')}
         </p>
       ) : null}
     </div>

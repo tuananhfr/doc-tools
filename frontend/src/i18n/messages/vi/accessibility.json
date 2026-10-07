@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Sẵn sàng",
+    "stop": "Dừng"
+  },
+  "dictation": {
+    "status": "Trạng thái",
+    "listening": "Đang nghe",
+    "unsupported": "Chưa hỗ trợ",
+    "privacy": "Nhận dạng giọng nói dùng dịch vụ của trình duyệt; âm thanh có thể được gửi tới nhà cung cấp trình duyệt. Văn bản bạn sửa tại đây không được gửi tới máy chủ Chuyện Nhỏ.",
+    "title": "Đọc chính tả tiếng Việt",
+    "start": "Bắt đầu đọc",
+    "text": "Văn bản",
+    "copy": "Sao chép",
+    "download": "Tải .txt",
+    "interrupted": "Nhận dạng giọng nói bị gián đoạn. Kiểm tra quyền micro và thử lại.",
+    "micFailed": "Không mở được micro. Kiểm tra quyền truy cập của trình duyệt."
+  },
+  "magnifier": {
+    "noCamera": "Trình duyệt này không hỗ trợ camera.",
+    "cameraFailed": "Không mở được camera. Kiểm tra quyền truy cập và camera đang dùng.",
+    "preview": "Hình ảnh camera",
+    "frozen": "Đã dừng hình",
+    "live": "Đang xem trực tiếp",
+    "hint": "Bấm Mở camera để bắt đầu.",
+    "privacy": "Hình ảnh chỉ hiển thị trên thiết bị, không ghi lại hoặc gửi đi.",
+    "title": "Kính lúp",
+    "zoom": "Phóng to: {{zoom}}×",
+    "switchCamera": "Đổi camera",
+    "openCamera": "Mở camera",
+    "resume": "Tiếp tục",
+    "freeze": "Dừng hình",
+    "contrastOff": "Tắt tương phản",
+    "contrastOn": "Tăng tương phản",
+    "closeCamera": "Tắt camera"
+  },
+  "readAloud": {
+    "device": "Đọc trên thiết bị",
+    "speaking": "Đang đọc",
+    "read": "Đọc văn bản",
+    "voiceNote": "Giọng đọc phụ thuộc giọng tiếng Việt đã cài trên thiết bị và trình duyệt.",
+    "unsupported": "Trình duyệt này không hỗ trợ đọc văn bản.",
+    "title": "Văn bản cần đọc",
+    "content": "Nội dung",
+    "rate": "Tốc độ: {{rate}}×"
+  }
+}

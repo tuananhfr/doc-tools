@@ -1,4 +1,5 @@
 import type { FlowNote, FlowOutput } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { carryExif, createCanvas, decodeImage, encodeCanvas, exifNotes, outputName, releaseCanvas, sizeLabel, writableFormat } from '@/features/tools/image'
 import type { Size } from '../types/orientation.types'
 import type { OrientationSourceFile } from '../types/source.types'
@@ -160,7 +161,7 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
 
   if (!view || !spec) {
     const card = await compassCard(request)
-    if (view) notes.push({ tone: 'info', text: 'Chưa xác định được hướng Bắc trên ảnh nên la bàn được xuất riêng, không vẽ lên ảnh.' })
+    if (view) notes.push({ tone: 'info', text: translate('orientation:export.notes.standalone') })
     const blob = format === 'pdf' ? await imagePdf(card.blob, card.size) : card.blob
     return { output: { name: `la-ban-huong-nha.${format === 'pdf' ? 'pdf' : 'png'}`, blob, detail: sizeLabel(card.size) }, notes }
   }
@@ -186,10 +187,10 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
       const overlay = await overlayLayer(scaleLayers(onImage, factor), size, request)
       try {
         const blob = await vectorPdf(source, overlay)
-        return { output: { name: `${stem(source.name)} - huong nha.pdf`, blob, detail: `Trang ${source.pageIndex + 1}` }, notes }
+        return { output: { name: `${stem(source.name)} - huong nha.pdf`, blob, detail: translate('orientation:export.pageDetail', { page: source.pageIndex + 1 }) }, notes }
       } catch {
         // PDF có mã hoá quyền / cấu trúc lạ mà pdf-lib không mở được: vẫn trả về bản vẽ lại thay vì báo lỗi.
-        notes.push({ tone: 'warning', text: 'Không giữ được trang PDF gốc dạng vector — trang được vẽ lại thành ảnh, chữ trong trang không chọn được.' })
+        notes.push({ tone: 'warning', text: translate('orientation:export.notes.rasterized') })
       }
     }
     const { renderPdfPage } = await import('./pdf-page')
@@ -202,5 +203,5 @@ export async function exportOrientation(request: ExportRequest): Promise<ExportR
     }
   }
 
-  throw new Error('Không có nguồn để xuất.')
+  throw new Error(translate('orientation:export.noSource'))
 }

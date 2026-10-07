@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "出典の追加が必要",
+      "NEEDS_REVIEW": "確認待ち",
+      "VERIFIED": "確認済み",
+      "REJECTED": "不採用",
+      "APPROVED": "承認済み",
+      "PUBLISHED": "公開済み",
+      "SUPERSEDED": "新しい版あり",
+      "REVOKED": "取り消し済み"
+    },
+    "sendFailed": "提案を送信できませんでした。",
+    "received": "提案を受け付けました: {{status}}。状況確認のため、受付番号を控えておいてください。",
+    "offlineDraft": "サーバーに接続できません。入力内容はこのページに残っています。",
+    "invalidReceipt": "受付番号が正しくありません。",
+    "statusLine": "状態: {{status}}",
+    "receiptNotFound": "受付番号が見つかりません。",
+    "lookupFailed": "現在、状態を確認できません。",
+    "addSourceFailed": "出典を追加できませんでした。",
+    "sourceAdded": "出典を追加しました。提案は確認待ちです。",
+    "offline": "サーバーに接続できません。",
+    "ideaTitle": "ツールの提案",
+    "regulationTitle": "規定データへの意見",
+    "ideaIntro": "実際の困りごとと、欲しいツールを書いてください。アイデアは公開前に確認されます。",
+    "regulationIntro": "修正が必要な内容と出典のリンクを書いてください。これは担当者が確認するための意見で、ツールのデータはまだ変更されません。",
+    "ideaName": "アイデア名",
+    "regulationTopic": "文書またはテーマ",
+    "ideaDetail": "困りごとと解決方法の提案",
+    "regulationDetail": "照合・修正が必要な内容",
+    "sourceUrl": "出典のHTTPS URL（あれば）",
+    "sourceType": "提案する出典の種類",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "公的機関のサイト",
+      "OFFICIAL_DOCUMENT": "公式文書",
+      "OFFICIAL_API": "公式API",
+      "OTHER": "その他の出典"
+    },
+    "consent": "個人情報や秘密のキーを取り除いたうえで、運営者の確認のためにこの内容を送信することに同意します",
+    "sending": "送信中…",
+    "submit": "提案を送信",
+    "receipt": "受付番号:",
+    "lookupTitle": "状態を確認",
+    "receiptLabel": "受付番号",
+    "lookup": "確認",
+    "needsSource": "上の出典欄にHTTPS URLを入力し、この受付番号で追加してください。",
+    "addSource": "出典を追加"
+  },
+  "ideas": {
+    "published": "公開済みのアイデア",
+    "empty": "承認・公開されたアイデアはまだありません。"
+  }
+}

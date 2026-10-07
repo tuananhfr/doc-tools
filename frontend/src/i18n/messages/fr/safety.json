@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Nombreux signaux à vérifier",
+    "levelMedium": "Quelques signaux à vérifier",
+    "levelLow": "Aucun signal détecté par les règles",
+    "result": "Résultat de l'analyse",
+    "note": "Il s'agit seulement d'une détection de signaux par règles ; elle ne prouve pas qu'un lien ou un message est sûr. Ne saisissez jamais de code OTP ni de mot de passe sur une page ouverte depuis un message ; contactez l'organisme par un canal que vous avez trouvé vous-même.",
+    "title": "Contenu à vérifier",
+    "kind": "Type de contenu",
+    "kindMessage": "Message",
+    "kindLink": "Lien",
+    "messageLabel": "Texte du message",
+    "linkPlaceholder": "Collez le lien, inutile de l'ouvrir…",
+    "messagePlaceholder": "Collez le message suspect…",
+    "privacy": "Le contenu est analysé sur votre appareil ; l'outil n'ouvre jamais le lien que vous collez."
+  },
+  "flags": {
+    "unreadable": "Impossible de lire le lien.",
+    "noHttps": "N'utilise pas HTTPS.",
+    "ipHost": "Utilise une adresse IP au lieu d'un nom de domaine.",
+    "punycode": "Le domaine contient du punycode ; comparez-le avec le vrai nom.",
+    "shortener": "Un lien raccourci masque la destination.",
+    "riskyTld": "Extension de domaine fréquente dans les liens à risque.",
+    "fakeGov": "Contient « gov » sans appartenir au domaine .gov.vn.",
+    "brand": "Le domaine contient « {{brand}} » ; comparez-le avec l'adresse officielle.",
+    "loginPath": "Le chemin évoque une étape de connexion ou de vérification.",
+    "otp": "Demande un code OTP ou un code de vérification.",
+    "lockThreat": "Fait pression en menaçant de bloquer votre compte.",
+    "prize": "Promet un prix ou un cadeau.",
+    "easyJob": "Propose un travail facile et bien payé ou des missions en ligne.",
+    "urgentTransfer": "Vous presse de virer ou de recharger de l'argent.",
+    "installApp": "Demande d'installer une application depuis le message.",
+    "link": "Lien {{link}} : {{flags}}"
+  }
+}

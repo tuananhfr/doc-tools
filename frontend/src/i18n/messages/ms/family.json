@@ -1,0 +1,153 @@
+{
+  "shared": {
+    "members": "Ahli",
+    "phone": "Nombor telefon",
+    "notes": "Catatan"
+  },
+  "recurrence": {
+    "once": "Sekali",
+    "daily": "Setiap hari",
+    "weekly": "Setiap minggu",
+    "monthly": "Setiap bulan",
+    "yearly": "Setiap tahun"
+  },
+  "dataClasses": {
+    "NORMAL": "Biasa",
+    "PRIVATE": "Peribadi",
+    "SENSITIVE": "Sensitif"
+  },
+  "profiles": {
+    "PARENT": "Ibu bapa",
+    "SENIOR": "Datuk nenek",
+    "CHILD": "Anak"
+  },
+  "page": {
+    "views": {
+      "calendar": "Kalendar",
+      "list": "Senarai",
+      "members": "Ahli",
+      "backup": "Sandaran",
+      "safety": "SOS & kenalan"
+    },
+    "lunarHint": "Tarikh qamari jatuh pada tarikh suria yang berbeza setiap tahun. Acara belum boleh berulang mengikut kalendar qamari, jadi peringatan ini hanya terpakai untuk tahun ini.",
+    "loading": "Membuka kalendar yang disimpan pada peranti...",
+    "storage": "<strong>Disimpan pada peranti ini</strong> · {{events}} acara · {{members}} ahli. Tidak perlu akaun. Memadam data pelayar akan menghapuskan kalendar jika anda belum memuat turun sandaran. Perkongsian dan penyegerakan dalam talian belum diaktifkan.",
+    "enableNotifications": "Hidupkan pemberitahuan semasa halaman dibuka",
+    "remindersTitle": "Peringatan semasa halaman dibuka",
+    "seen": "Sudah dilihat",
+    "viewModes": "Mod paparan",
+    "viewingFor": "Melihat untuk"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Hari ini",
+      "week": "7 hari akan datang",
+      "upcoming": "30 hari akan datang"
+    },
+    "rangeLabel": "Julat masa",
+    "empty": "Tiada acara atau cuti dalam julat ini.",
+    "upcomingNote": "Memaparkan 30 hari mulai hari ini. Acara berulang masih berterusan selepas julat ini."
+  },
+  "day": {
+    "lunar": "Kalendar qamari: hari {{day}} bulan {{month}}",
+    "lunarLeap": "Kalendar qamari: hari {{day}} bulan lompat {{month}}",
+    "byLunar": "mengikut kalendar qamari",
+    "bySolar": "mengikut kalendar suria",
+    "addReminder": "Tambah peringatan",
+    "empty": "Tiada acara keluarga pada hari ini.",
+    "addToDay": "Tambah pada hari ini"
+  },
+  "form": {
+    "categories": {
+      "task": "Urusan rumah",
+      "school": "Pembelajaran",
+      "appointment": "Temu janji",
+      "deadline": "Tarikh akhir dokumen",
+      "medication": "Peringatan ubat",
+      "payment": "Pembayaran",
+      "other": "Lain-lain"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Seluruh keluarga",
+      "PARENTS_SENIORS": "Ibu bapa dan datuk nenek",
+      "PARENTS_CHILDREN": "Ibu bapa dan anak",
+      "PRIVATE": "Peranti ini sahaja"
+    },
+    "reminderInvalid": "Peringatan memerlukan waktu tertentu dan tempoh peringatan antara 0 hingga 1,440 minit.",
+    "saveFailed": "Tidak dapat menyimpan acara. Semak tarikh dan data yang dimasukkan.",
+    "editTitle": "Sunting acara",
+    "addTitle": "Tambah acara keluarga",
+    "title": "Nama acara",
+    "date": "Tarikh",
+    "time": "Waktu (pilihan)",
+    "category": "Jenis",
+    "recurrence": "Ulang",
+    "scope": "Skop",
+    "privacy": "Privasi",
+    "reminder": "Ingatkan lebih awal (minit, maksimum 1 hari; perlu masukkan waktu)",
+    "medicationNote": "Peringatan ubat hanya berdasarkan data yang anda masukkan; ini bukan nasihat perubatan. Kandungan sensitif disembunyikan dalam pemberitahuan secara lalai.",
+    "reminderNote": "Peringatan hanya muncul semasa halaman dibuka atau apabila pelayar membenarkan pemberitahuan; sistem pengendalian mungkin menjeda halaman.",
+    "saveChanges": "Simpan perubahan",
+    "saveNew": "Simpan acara pada peranti",
+    "cancel": "Batal"
+  },
+  "event": {
+    "undo": "Tandakan belum selesai",
+    "done": "Selesai",
+    "edit": "Sunting",
+    "delete": "Padam",
+    "confirmDelete": "Padam acara ini dan semua ulangannya daripada peranti ini?"
+  },
+  "members": {
+    "saveFailed": "Tidak dapat menyimpan ahli.",
+    "intro": "Gunakan nama panggilan yang mudah dikenali. Tidak perlu memasukkan tarikh lahir, sekolah atau dokumen peribadi.",
+    "name": "Nama panggilan",
+    "profile": "Profil",
+    "add": "Tambah ahli"
+  },
+  "backup": {
+    "invalidFile": "Fail sandaran tidak sah atau melebihi 20 MB.",
+    "wrongVersion": "Tidak dapat membaca sandaran versi yang betul.",
+    "confirmRestore": "Pulihkan keluarga {{id}} dengan {{count}} acara? Data semasa anda kekal dalam storan peranti supaya boleh dibuka semula.",
+    "restoreFailed": "Tidak dapat memulihkan. Data semasa anda masih ada.",
+    "title": "Sandaran dan eksport kalendar",
+    "intro": "Sandaran JSON menyimpan ahli, acara, peringatan dan isyarat SOS. Fail ICS hanya untuk memindahkan acara ke aplikasi lain; ia tidak menggantikan sandaran.",
+    "downloadBackup": "Muat turun sandaran",
+    "downloadIcs": "Muat turun ICS",
+    "print": "Cetak / Simpan PDF 30 hari akan datang",
+    "includeSensitive": "Sertakan acara peribadi dan sensitif dalam ICS/PDF",
+    "defaultsNote": "ICS dan PDF secara lalai tidak menyertakan acara peribadi dan sensitif. Sandaran sentiasa mengandungi semua data; simpan fail di tempat yang anda percayai.",
+    "restoreLabel": "Pulihkan daripada sandaran JSON",
+    "inspected": "Telah dibaca: {{members}} ahli, {{events}} acara, {{reminders}} peringatan. Kod keluarga: {{id}}.",
+    "restoreThis": "Pulihkan sandaran ini"
+  },
+  "safety": {
+    "invalidContact": "Masukkan nama dan nombor telefon yang sah.",
+    "contactFailed": "Tidak dapat menyimpan kenalan.",
+    "sosFailed": "Tidak dapat menyimpan isyarat SOS pada peranti ini.",
+    "noGeolocation": "Peranti ini tidak menyokong lokasi.",
+    "locationSaveFailed": "Tidak dapat menyimpan lokasi.",
+    "locateFailed": "Tidak dapat mendapatkan lokasi. Isyarat SOS yang disimpan masih ada.",
+    "title": "Keselamatan keluarga",
+    "intro": "Mod semasa hanya menyimpan pada peranti ini. Isyarat SOS di sini <strong>belum dihantar kepada ahli keluarga</strong>. Apabila memerlukan bantuan, hubungi terus nombor kecemasan atau kenalan yang disimpan.",
+    "contactName": "Nama kenalan kecemasan",
+    "saveContact": "Simpan kenalan",
+    "saveSos": "Simpan isyarat SOS pada peranti",
+    "call": "Hubungi {{number}}",
+    "pendingTitle": "Isyarat disimpan secara setempat",
+    "notSent": "{{time}} · Belum dihantar melalui rangkaian",
+    "lastLocation": "Lokasi terakhir: {{latitude}}, {{longitude}} pada {{time}}",
+    "locateOnce": "Dapatkan lokasi sekali",
+    "imSafe": "Saya selamat"
+  },
+  "reminders": {
+    "sensitiveTitle": "Ada acara keluarga yang perlu dilihat",
+    "notificationTitle": "Kalendar Keluarga",
+    "notificationBody": "Buka aplikasi untuk melihat butiran."
+  },
+  "space": {
+    "loadFailed": "Tidak dapat membuka data pada peranti ini. Semak kebenaran storan pelayar anda.",
+    "saveFailed": "Tidak dapat menyimpan perubahan. Eksport sandaran dan semak ruang storan peranti.",
+    "restoreFailed": "Tidak dapat memulihkan sandaran."
+  }
+}

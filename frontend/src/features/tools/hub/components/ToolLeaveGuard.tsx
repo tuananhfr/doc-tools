@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { useBlocker } from 'react-router-dom'
 import { Icon } from '@/components/ui'
 import { useAuthStore } from '@/store/auth.store'
@@ -21,6 +22,7 @@ interface ToolLeaveGuardProps {
  */
 export function ToolLeaveGuard({ active }: ToolLeaveGuardProps) {
   const { base, kind } = useToolsBranch()
+  const { t } = useTranslation('common')
 
   const blocker = useBlocker(({ currentLocation, nextLocation }) => {
     if (!active) return false
@@ -43,18 +45,18 @@ export function ToolLeaveGuard({ active }: ToolLeaveGuardProps) {
       <Modal.Header closeButton>
         <Modal.Title as="h2" className="fs-5" id="erp-tool-leave-title">
           <Icon name="exclamation-triangle" className="me-2" />
-          Rời trang này?
+          {t('leave.title')}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="mb-0">Tệp đang làm chỉ nằm trong tab này, chưa lưu ở đâu khác. Rời đi là mất, không khôi phục được — tải tệp về trước nếu cần giữ.</p>
+        <p className="mb-0">{t('leave.body')}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-secondary" autoFocus onClick={() => blocker.reset?.()}>
-          Ở lại
+          {t('leave.stay')}
         </Button>
         <Button variant="danger" onClick={() => blocker.proceed?.()}>
-          Rời trang
+          {t('leave.leave')}
         </Button>
       </Modal.Footer>
     </Modal>

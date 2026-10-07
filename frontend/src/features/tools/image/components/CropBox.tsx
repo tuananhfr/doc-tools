@@ -1,4 +1,5 @@
 import { useRef, type KeyboardEvent, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Rect, Size } from '../types/image.types'
 import { CROP_HANDLES, moveRect, resizeRect, type CropHandle } from '../utils/crop-rect'
 
@@ -12,17 +13,6 @@ interface CropBoxProps {
   onChange: (rect: Rect) => void
 }
 
-const HANDLE_LABEL: Record<CropHandle, string> = {
-  nw: 'Góc trên trái',
-  n: 'Cạnh trên',
-  ne: 'Góc trên phải',
-  e: 'Cạnh phải',
-  se: 'Góc dưới phải',
-  s: 'Cạnh dưới',
-  sw: 'Góc dưới trái',
-  w: 'Cạnh trái',
-}
-
 const ARROWS: Record<string, [number, number]> = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }
 
 const percent = (value: number, total: number) => `${(value / total) * 100}%`
@@ -33,6 +23,7 @@ const percent = (value: number, total: number) => `${(value / total) * 100}%`
  * `position: relative` và đúng tỉ lệ của ảnh.
  */
 export function CropBox({ bounds, rect, aspect, disabled, onChange }: CropBoxProps) {
+  const { t } = useTranslation('image')
   const root = useRef<HTMLDivElement>(null)
   // Lúc bắt đầu kéo: khung + vị trí con trỏ. Tính từ mốc này chứ không cộng dồn từng bước —
   // cộng dồn thì con trỏ chạm mép ảnh rồi quay lại là khung lệch khỏi con trỏ.
@@ -87,7 +78,7 @@ export function CropBox({ bounds, rect, aspect, disabled, onChange }: CropBoxPro
       <div
         className="erp-crop__box"
         role="group"
-        aria-label="Khung cắt — kéo hoặc dùng phím mũi tên để dời"
+        aria-label={t('crop.box')}
         tabIndex={disabled ? -1 : 0}
         style={box}
         onPointerDown={start}
@@ -102,7 +93,7 @@ export function CropBox({ bounds, rect, aspect, disabled, onChange }: CropBoxPro
             key={handle}
             type="button"
             className={`erp-crop__handle erp-crop__handle--${handle}`}
-            aria-label={`${HANDLE_LABEL[handle]} — kéo hoặc dùng phím mũi tên để đổi cỡ`}
+            aria-label={t('crop.handleAria', { handle: t(`crop.handle.${handle}`) })}
             data-handle={handle}
             disabled={disabled}
             onPointerDown={start}

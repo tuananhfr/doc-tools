@@ -1,0 +1,432 @@
+{
+  "shared": {
+    "copyResult": "Chép kết quả",
+    "days": "ngày",
+    "daysValue": "{{count}} <unit>ngày</unit>"
+  },
+  "weekdays": {
+    "sun": "Chủ nhật",
+    "mon": "Thứ Hai",
+    "tue": "Thứ Ba",
+    "wed": "Thứ Tư",
+    "thu": "Thứ Năm",
+    "fri": "Thứ Sáu",
+    "sat": "Thứ Bảy"
+  },
+  "duration": {
+    "weeks": "{{count}} tuần",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days": "{{count}} ngày"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "Diện tích",
+      "volume": "Thể tích",
+      "mass": "Khối lượng"
+    },
+    "formulas": {
+      "rectangle": "Hình chữ nhật",
+      "triangle": "Hình tam giác",
+      "trapezoid": "Hình thang",
+      "circle": "Hình tròn",
+      "box": "Khối hộp (móng, dầm, sàn)",
+      "cylinder": "Khối trụ (cột tròn, cọc)",
+      "rebar": "Thép tròn (thép cây)",
+      "plate": "Thép tấm",
+      "density": "Thể tích × khối lượng riêng"
+    },
+    "inputs": {
+      "length": "Chiều dài",
+      "width": "Chiều rộng",
+      "base": "Cạnh đáy",
+      "height": "Chiều cao",
+      "bigBase": "Đáy lớn",
+      "smallBase": "Đáy nhỏ",
+      "diameter": "Đường kính",
+      "heightThickness": "Chiều cao / dày",
+      "heightLength": "Chiều cao / dài",
+      "thickness": "Bề dày",
+      "volume": "Thể tích",
+      "density": "Khối lượng riêng"
+    },
+    "presets": {
+      "steel": "Thép",
+      "reinforcedConcrete": "Bê tông cốt thép",
+      "water": "Nước"
+    },
+    "tonnes": "= {{value}} tấn",
+    "perPiece": "Mỗi cấu kiện: {{value}} {{unit}}",
+    "invalid": "Kích thước và số lượng phải là số lớn hơn 0.",
+    "missing": "Nhập đủ kích thước để tính.",
+    "groupLabel": "Đại lượng cần tính",
+    "panelTitle": "Kích thước",
+    "material": "Vật liệu / cách tính",
+    "shape": "Hình",
+    "quantity": "Số lượng",
+    "pieces": "cái",
+    "densityPresets": "Khối lượng riêng có sẵn",
+    "decimalHint": "Dấu thập phân gõ phẩy hay chấm đều được: 2,5 và 2.5 là một. Số gõ vào được in lại trong phép tính bên cạnh."
+  },
+  "money": {
+    "groups": {
+      "percent": "Phần trăm",
+      "tax": "Thuế & chiết khấu",
+      "profit": "Lãi gộp",
+      "split": "Chia tiền"
+    },
+    "presets": {
+      "percentOf": "X% của một số",
+      "percentRatio": "A bằng bao nhiêu % của B",
+      "percentChange": "Tăng / giảm bao nhiêu %",
+      "vatAdd": "Cộng thuế vào giá chưa thuế",
+      "vatExtract": "Tách thuế khỏi giá đã gồm thuế",
+      "discount": "Chiết khấu / giảm giá",
+      "margin": "Lãi gộp từ giá vốn và giá bán",
+      "priceFromMargin": "Giá bán từ giá vốn và margin",
+      "priceFromMarkup": "Giá bán từ giá vốn và markup",
+      "split": "Chia đều một khoản tiền"
+    },
+    "inputs": {
+      "rate": "Tỷ lệ",
+      "ofNumber": "Của số",
+      "numberA": "Số A",
+      "numberB": "Số B",
+      "oldValue": "Giá trị cũ",
+      "newValue": "Giá trị mới",
+      "netPrice": "Giá chưa thuế",
+      "taxRate": "Thuế suất",
+      "grossPrice": "Giá đã gồm thuế",
+      "originalPrice": "Giá gốc",
+      "discount": "Chiết khấu",
+      "cost": "Giá vốn",
+      "price": "Giá bán",
+      "targetMargin": "Margin mong muốn",
+      "targetMarkup": "Markup mong muốn",
+      "total": "Tổng tiền",
+      "people": "Số người",
+      "extra": "Phụ phí / tip"
+    },
+    "placeholders": {
+      "manual": "Tự nhập",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "Kết quả",
+      "aVsB": "A so với B",
+      "increase": "Tăng",
+      "decrease": "Giảm",
+      "difference": "Chênh lệch",
+      "grossPrice": "Giá đã gồm thuế",
+      "tax": "Tiền thuế",
+      "netPrice": "Giá chưa thuế",
+      "discounted": "Giá sau chiết khấu",
+      "discountAmount": "Số tiền được giảm",
+      "margin": "Biên lợi nhuận (margin, trên giá bán)",
+      "markup": "Markup (trên giá vốn)",
+      "grossProfit": "Lãi gộp",
+      "price": "Giá bán",
+      "impliedMarkup": "Markup tương ứng",
+      "impliedMargin": "Margin tương ứng",
+      "each": "Mỗi người",
+      "totalDue": "Tổng phải trả",
+      "eachRounded": "Mỗi người, làm tròn lên nghìn",
+      "surplus": "Dư ra khi thu tròn"
+    },
+    "errors": {
+      "bNonZero": "Số B phải khác 0.",
+      "oldNonZero": "Giá trị cũ phải khác 0.",
+      "discountMax": "Chiết khấu không quá 100%.",
+      "pricePositive": "Giá bán phải lớn hơn 0.",
+      "costPositive": "Giá vốn phải lớn hơn 0.",
+      "marginMax": "Margin phải nhỏ hơn 100%.",
+      "tooLarge": "Số quá lớn để tính."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "người"
+    },
+    "copyRow": "Chép {{label}}",
+    "invalid": "Ô được đánh dấu chưa phải một con số hợp lệ (không âm; số người là số nguyên từ 1).",
+    "missing": "Nhập đủ các ô để tính.",
+    "formulaCode": "Mã công thức: {{code}}",
+    "groupLabel": "Loại phép tính",
+    "panelTitle": "Số liệu",
+    "operation": "Phép tính",
+    "taxHint": "Thuế suất do bạn tự nhập: mức thuế khác nhau theo mặt hàng và theo từng thời kỳ, công cụ không gắn sẵn con số nào.",
+    "profitHint": "Margin tính trên giá bán, markup tính trên giá vốn — cùng một khoản lãi cho hai con số khác nhau.",
+    "inputHint": "Số tiền: 150.000 và 150,000 đều là một trăm năm mươi nghìn; phần lẻ gõ 1500,5. Số đã hiểu được in lại trong phép tính bên cạnh. Kết quả hiện tới hai số lẻ, không tự làm tròn theo quy định kế toán nào."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "Chiều dài",
+      "area": "Diện tích",
+      "mass": "Khối lượng"
+    },
+    "units": {
+      "mm": {
+        "name": "Milimét",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "Xentimét",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "Mét",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "Kilômét",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "Inch",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "Foot (feet)",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "Yard",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "Dặm Anh",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "Milimét vuông",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "Xentimét vuông",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "Mét vuông",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "Héc-ta",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "Kilômét vuông",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "Foot vuông",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "Mẫu Anh (acre)",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "Gam",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "Kilôgam",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "Tấn",
+        "symbol": "tấn"
+      },
+      "oz": {
+        "name": "Ounce",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "Pound",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "Ở mọi đơn vị",
+    "equalsHeading": "{{value}} {{unit}} bằng",
+    "notNumber": "Giá trị chưa phải một con số.",
+    "notNumberExample": "Giá trị chưa phải một con số. Ví dụ: 2,5 hoặc 1200.",
+    "enterValue": "Nhập giá trị cần đổi.",
+    "copyIn": "Chép giá trị theo {{unit}}",
+    "groupLabel": "Loại đơn vị",
+    "panelTitle": "Đổi đơn vị",
+    "value": "Giá trị",
+    "from": "Từ đơn vị",
+    "to": "Sang đơn vị",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "Đảo hai đơn vị",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "Ký tự",
+      "charactersNoSpaces": "Ký tự không tính khoảng trắng",
+      "words": "Từ",
+      "lines": "Dòng",
+      "paragraphs": "Đoạn"
+    },
+    "hints": {
+      "characters": "tính cả khoảng trắng và xuống dòng",
+      "words": "cụm chữ cách nhau bằng khoảng trắng",
+      "paragraphs": "cách nhau bằng dòng trống"
+    },
+    "counts": "Số đếm",
+    "panelTitle": "Văn bản",
+    "clear": "Xoá hết",
+    "textLabel": "Văn bản cần đếm",
+    "placeholder": "Gõ hoặc dán văn bản vào đây…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "Rất rõ (AAA)",
+      "aa": "Đọc tốt (AA)",
+      "large": "Chỉ hợp chữ lớn",
+      "fail": "Khó đọc"
+    },
+    "pickFailed": "Không hút được màu từ màn hình.",
+    "preview": "Xem thử",
+    "swatch": "Màu {{hex}}",
+    "textOnColor": "Chữ đặt trên màu này",
+    "whiteText": "Chữ trắng",
+    "blackText": "Chữ đen",
+    "contrastHint": "Tỷ lệ tương phản theo WCAG: từ 4,5 : 1 là chữ thường đọc được, từ 3 : 1 chỉ đủ cho chữ lớn và icon.",
+    "panelTitle": "Chọn màu",
+    "picker": "Bảng chọn màu",
+    "pickerHint": "Bấm vào ô màu để mở bảng chọn, hoặc gõ mã ở dưới.",
+    "eyedropper": "Hút màu từ màn hình",
+    "copyCode": "Chép mã {{label}}"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "Giữa hai ngày",
+      "add": "Cộng / trừ ngày"
+    },
+    "weekendOnly": "Ngày làm việc ở đây chỉ loại Thứ Bảy và Chủ nhật. Ngày lễ lớn được liệt kê ở phần kết quả nhưng KHÔNG tự trừ; nghỉ bù hay lịch làm thứ Bảy của từng nơi cũng không tính — thời hạn có ngày lễ chen vào phải tự cộng thêm.",
+    "distance": "Khoảng cách",
+    "countingBack": "Ngày kết thúc đứng trước ngày bắt đầu — đang đếm ngược.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "Chép số ngày",
+    "workdays": "Ngày làm việc (Thứ Hai – Thứ Sáu)",
+    "weekendDays": "Thứ Bảy, Chủ nhật",
+    "startIncluded": "Ngày bắt đầu (có tính)",
+    "startExcluded": "Ngày bắt đầu (không tính)",
+    "endIncluded": "Ngày kết thúc (có tính)",
+    "pickBoth": "Chọn đủ hai ngày để tính.",
+    "landsOn": "Rơi vào ngày",
+    "addedCalendar": "= {{start}} {{sign}} {{count}} ngày",
+    "addedWorkdays": "= {{start}} {{sign}} {{count}} ngày làm việc",
+    "calendarEquivalent": "Tức {{count}} ngày lịch.",
+    "copyDate": "Chép ngày",
+    "countInvalid": "Số ngày phải là số nguyên từ 0 đến {{max}}.",
+    "pickStart": "Chọn ngày bắt đầu và nhập số ngày.",
+    "modeLabel": "Cách tính",
+    "betweenTitle": "Hai mốc ngày",
+    "fromDate": "Từ ngày",
+    "toDate": "Đến ngày",
+    "includeStart": "Tính cả ngày bắt đầu",
+    "includeStartHint": "Không tính ngày bắt đầu: Thứ Hai đến Thứ Sáu là 4 ngày (cách đếm thời hạn). Có tính: 5 ngày (cách đếm số ngày làm).",
+    "addTitle": "Mốc và số ngày",
+    "startDate": "Ngày bắt đầu",
+    "dayCount": "Số ngày",
+    "direction": "Hướng",
+    "forward": "Cộng (về sau)",
+    "back": "Trừ (về trước)",
+    "dayKind": "Loại ngày",
+    "calendar": "Ngày lịch",
+    "addHint": "Ngày bắt đầu không được tính: cộng 1 ngày từ Thứ Sáu ra Thứ Bảy (ngày lịch) hoặc Thứ Hai (ngày làm việc)."
+  },
+  "holidays": {
+    "tooLong": "Khoảng dài hơn {{count}} ngày nên không liệt kê ngày lễ.",
+    "none": "Không có ngày lễ lớn nào trong khoảng này.",
+    "count": "Có {{count}} ngày lễ trong khoảng",
+    "more": "và {{count}} ngày khác",
+    "hint": "Công cụ không tự trừ ngày nghỉ. Nếu cơ quan nghỉ những ngày này, hãy tự cộng thêm vào thời hạn."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "Mật khẩu",
+      "code": "Mã đơn, mã phiếu"
+    },
+    "classes": {
+      "upper": "Chữ hoa (A–Z)",
+      "lower": "Chữ thường (a–z)",
+      "digits": "Chữ số (0–9)",
+      "symbols": "Ký hiệu (!@#$…)"
+    },
+    "strengths": {
+      "weak": "Yếu",
+      "fair": "Tạm được",
+      "strong": "Mạnh",
+      "excellent": "Rất mạnh"
+    },
+    "results": "Kết quả",
+    "resultsCount": "Kết quả ({{count}})",
+    "copyAll": "Chép tất cả",
+    "noClass": "Bật ít nhất một nhóm ký tự để tạo mật khẩu.",
+    "copyValue": "Chép {{value}}",
+    "regenerate": "Tạo lại",
+    "modeLabel": "Loại mã",
+    "panelTitle": "Tuỳ chọn",
+    "length": "Độ dài",
+    "chars": "{{count}} ký tự",
+    "classGroups": "Dùng các nhóm ký tự",
+    "plain": "Bỏ ký tự dễ nhìn nhầm (0 O o 1 l I)",
+    "strength": "Độ mạnh: <strong>{{label}}</strong> · khoảng {{bits}} bit",
+    "prefix": "Tiền tố (không bắt buộc)",
+    "prefixPlaceholder": "Ví dụ PX-",
+    "charset": "Phần ngẫu nhiên gồm",
+    "alnum": "Chữ hoa và số",
+    "digitsOnly": "Chỉ chữ số",
+    "codeLength": "Số ký tự ngẫu nhiên",
+    "alnumHint": "Không dùng I, O, 0, 1 — mã đọc qua điện thoại hay chép tay không bị nhầm.",
+    "count": "Số lượng mỗi lượt (tối đa {{max}})"
+  },
+  "notes": {
+    "untitled": "Ghi chú chưa có nội dung",
+    "limitReached": "Đã đủ {{count}} ghi chú. Xoá bớt ghi chú cũ để thêm mới.",
+    "listLabel": "Danh sách ghi chú",
+    "title": "Ghi chú",
+    "titleCount": "Ghi chú ({{count}})",
+    "newNote": "Ghi chú mới",
+    "empty": "Chưa có ghi chú nào trên máy này.",
+    "notice": "Ghi chú nằm trong trình duyệt này, không theo tài khoản: ai dùng chung máy cũng đọc được, và xoá dữ liệu duyệt web là mất.",
+    "clearAllTitle": "Xoá cả {{count}} ghi chú?",
+    "localOnly": "Ghi chú chỉ nằm trên máy này, xoá rồi không lấy lại được.",
+    "clearAllConfirm": "Xoá hết",
+    "clearAll": "Xoá tất cả ghi chú",
+    "editorLabel": "Soạn ghi chú",
+    "emptyStart": "Ghi điều cần nhớ, lập danh sách việc cần làm.",
+    "emptyPick": "Chọn một ghi chú ở danh sách để xem và sửa.",
+    "backToList": "Danh sách ghi chú",
+    "titleLabel": "Tiêu đề",
+    "titlePlaceholder": "Ví dụ: Việc cần làm ở công trường thứ Hai",
+    "body": "Nội dung",
+    "bodyPlaceholder": "Ghi nhanh điều cần nhớ…",
+    "saveFailed": "Không ghi được vào máy này. Chép nội dung ra chỗ khác trước khi đóng trang.",
+    "savedAt": "Đã lưu trên máy này · {{time}}",
+    "deleteTitle": "Xoá ghi chú này?",
+    "deleteConfirm": "Xoá",
+    "delete": "Xoá ghi chú",
+    "tasks": "Danh sách việc",
+    "taskDone": "Đã xong: {{task}}",
+    "taskFallback": "việc {{number}}",
+    "task": "Việc {{number}}",
+    "removeTask": "Bỏ việc {{number}}",
+    "removeTaskTitle": "Bỏ việc này",
+    "newTask": "Việc mới",
+    "tasksFull": "Đã đủ {{count}} việc",
+    "addTaskPlaceholder": "Thêm việc, nhấn Enter",
+    "addTask": "Thêm"
+  }
+}

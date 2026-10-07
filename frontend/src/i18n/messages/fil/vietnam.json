@@ -1,0 +1,162 @@
+{
+  "holidayLayers": {
+    "major": "Malalaking holiday",
+    "lunar": "Tradisyonal na pista",
+    "moon": "Ika-1 at ika-15 ng lunar na buwan",
+    "memorial": "Mga paggunita"
+  },
+  "calendar": {
+    "layersAria": "Ipakita ang mga holiday sa kalendaryo",
+    "monthAria": "Kalendaryo ng buwan {{month}}/{{year}}",
+    "monthTitle": "Buwan {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Nakaraang buwan",
+    "nextMonth": "Susunod na buwan",
+    "today": "Ngayon",
+    "weekdays": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Miy",
+      "thu": "Huw",
+      "fri": "Biy",
+      "sat": "Sab",
+      "sun": "Lin"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}L",
+    "dayLunar": "lunar {{day}}/{{month}}",
+    "dayLunarLeap": "lunar {{day}}/{{month}} leap",
+    "dayEvents_one": "{{count}} event",
+    "dayEvents_other": "{{count}} event"
+  },
+  "day": {
+    "outOfRange": "Nasa labas ng saklaw na 1800–2199 na sinusuportahan ng algorithm ang petsa.",
+    "solar": "Solar na kalendaryo",
+    "lunarMonthYear": "Buwan {{month}} ng taong {{year}}",
+    "lunarMonthYearLeap": "Leap na buwan {{month}} ng taong {{year}}",
+    "lunarDate": "Lunar {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Lunar {{day}}/{{month}} leap/{{year}}",
+    "facts": {
+      "day": "Araw",
+      "month": "Buwan",
+      "year": "Taon"
+    },
+    "goodDay": "Mapalad na araw",
+    "badDay": "Malas na araw",
+    "byLunar": "ayon sa lunar na kalendaryo",
+    "bySolar": "ayon sa solar na kalendaryo",
+    "goodHours": "Mapalad na oras",
+    "nextTet_one": "Tết {{year}}: <strong>{{date}}</strong> · {{count}} araw na lang",
+    "nextTet_other": "Tết {{year}}: <strong>{{date}}</strong> · {{count}} araw na lang",
+    "note": "Astronomical na algorithm para sa time zone ng Vietnam (UTC+7), angkop bilang sanggunian sa araw-araw; ihambing sa kalendaryong inilathala ng awtoridad kapag para sa opisyal na gamit. Ayon sa kaugaliang-bayan ang mapalad / malas na araw at sanggunian lang. <link>Source ng algorithm ni Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Pumunta sa petsa",
+    "convertTitle": "Lunar → solar",
+    "fields": {
+      "day": "Lunar na araw",
+      "month": "Lunar na buwan",
+      "year": "Lunar na taon"
+    },
+    "leapMonth": "Leap na buwan",
+    "solarResult": "Solar na petsa <strong>{{date}}</strong>",
+    "showOnCalendar": "Tingnan sa kalendaryo",
+    "noSuchDay": "Walang ganitong petsa.",
+    "noSuchDayLeap": "Walang ganitong petsa (walang leap na bersyon ng buwang ito sa taong iyon).",
+    "anniversaryTitle": "Anibersaryo ng pagpanaw ayon sa lunar na kalendaryo",
+    "anniversaryFields": {
+      "day": "Araw",
+      "month": "Buwan"
+    },
+    "anniversaryYear": "Lunar na taon {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "walang ganitong petsa"
+  },
+  "address": {
+    "status": {
+      "full": "Buong na-convert",
+      "province": "Probinsya lang",
+      "ambiguous": "Pumili nang mano-mano: {{options}}",
+      "none": "Hindi makilala ang probinsya"
+    },
+    "orSeparator": " o ",
+    "resultLabel": "Paghahambing ng address",
+    "resultValue": "{{full}}/{{total}} ang buong na-convert",
+    "resultNote": "Nakikilala ang probinsya saanmang bahagi, pati mga daglat (TP.HCM, HN…). Inaalis ang antas ng distrito. Pinapalitan lang ang commune/ward kapag iisang bagong commune ang itinuturo ng data; kung hinati ang lumang commune, ililista ang mga opsyon para pumili ka.",
+    "columns": {
+      "old": "Lumang address",
+      "proposed": "Mungkahi",
+      "status": "Status"
+    },
+    "downloadCsv": "I-download ang CSV",
+    "verifiedNote": "Signed na talaan ng paghahambing, epektibo mula {{date}}. Source: {{source}}. Kumpirmahin ang huling address sa tatanggap ng iyong dokumento.",
+    "manualNote": "Ikaw ang naglagay ng talaan ng paghahambing; hindi pa ito beripikado ng system. Kumpirmahin ang huling address sa tatanggap ng iyong dokumento.",
+    "viewSource": "Tingnan ang source ng data",
+    "panelTitle": "Mga lumang address at talaan ng paghahambing",
+    "addressesLabel": "Isang address bawat linya, pinaghihiwalay ng kuwit ang bawat antas",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Gumagamit ng signed na talaan ng paghahambing",
+    "applyVerified": "Gamitin ang signed na talaan ng paghahambing",
+    "rulesLabel": "talaan ng paghahambing ng address",
+    "rulesNone": "Wala pang signed at epektibong talaan ng paghahambing ng address sa system.",
+    "manualLabel": "O ilagay ang sarili mo, isa bawat linya: “lumang probinsya|lumang distrito|lumang commune|bagong probinsya|bagong commune”",
+    "manualInvalid": "Mali ang format ng talaan (dapat 5 bahagi bawat linya, hanggang 150 character bawat bahagi) o may lumang probinsyang nakatala sa dalawang magkaibang bagong probinsya."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "Lampas sa 5 MB ang XML file.",
+      "unreadable": "Hindi mabasa ang XML file.",
+      "doctype": "May entity declaration o DOCTYPE ang XML na hindi suportado.",
+      "invalid": "Hindi wasto ang XML file.",
+      "noCommon": "Walang nahanap na bloke ng pangkalahatang impormasyon ng invoice."
+    },
+    "resultLabel": "Invoice",
+    "noNumber": "Walang numero",
+    "series": "Serye: {{series}} · Petsa: {{date}}",
+    "seller": "Nagbebenta: {{name}} ({{taxCode}})",
+    "buyer": "Bumibili: {{name}} ({{taxCode}})",
+    "noTaxCode": "walang tax code",
+    "amounts": "Bago ang buwis: {{subtotal}} đ · Buwis: {{vat}} đ",
+    "total": "Kabuuang babayaran: {{total}} đ",
+    "signature": "XML signature tag: {{signature}} · Code ng tax authority: {{authority}}",
+    "present": "mayroon",
+    "notFound": "wala",
+    "downloadCsv": "I-download ang listahan bilang CSV",
+    "empty": "Pumili ng XML file para makita ang data ng invoice.",
+    "disclaimer": "Binabasa lang ng tool ang nilalaman ng XML; hindi nito bineberipika ang digital signature o legal na katayuan ng invoice. Tingnan ito sa opisyal na portal bago gamitin.",
+    "panelTitle": "Invoice file",
+    "pickFile": "Pumili ng XML file",
+    "columns": {
+      "ordinal": "Blg.",
+      "name": "Produkto, serbisyo",
+      "quantity": "Dami",
+      "amount": "Halaga"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Na-convert na text",
+    "copy": "Kopyahin ang text",
+    "note": "Piliin ang tamang encoding ng orihinal na text; hindi matutukoy ng ipinapakitang pangalan ng font ang character encoding.",
+    "panelTitle": "Orihinal na text",
+    "conversionLabel": "Uri ng conversion",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 malalaking titik → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Pagsamahin ang Unicode diacritics (NFC)",
+      "strip": "Alisin ang Vietnamese diacritics",
+      "lower": "maliliit na titik",
+      "upper": "MALALAKING TITIK"
+    },
+    "contentLabel": "Nilalaman",
+    "placeholder": "I-paste ang text na iko-convert…"
+  },
+  "numberWords": {
+    "resultLabel": "Sa salita",
+    "invalid": "Buong numero lang, hanggang 36 na digit.",
+    "note": "Binabasa ang numero sa salitang Vietnamese para sa resibo at kontrata; alamin ang kombensyon ng tatanggap.",
+    "copy": "Kopyahin ang resulta",
+    "panelTitle": "Numerong babasahin",
+    "inputLabel": "Buong numero",
+    "placeholder": "Halimbawa: 1.234.567",
+    "zeroWordLabel": "Salita para sa zero sa tens place",
+    "fourWordLabel": "Salita para sa apat pagkatapos ng tens"
+  }
+}

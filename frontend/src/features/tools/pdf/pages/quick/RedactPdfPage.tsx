@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ToolLeaveGuard } from '@/features/tools/hub'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { RedactStage } from '../../components/quick/RedactStage'
@@ -15,6 +16,7 @@ interface Marked {
 
 /** CHE THÔNG TIN PDF — khoanh vùng trên từng trang; nội dung dưới khung bị xoá hẳn khỏi tệp ra. */
 export default function RedactPdfPage() {
+  const { t } = useTranslation('pdf')
   const quick = useQuickSources({ accept: ACCEPT, multiple: false })
   const [marked, setMarked] = useState<Marked>({ sourceId: '', boxes: {} })
 
@@ -34,11 +36,11 @@ export default function RedactPdfPage() {
         quick={quick}
         accept={ACCEPT}
         multiple={false}
-        pickerTitle="Chọn tệp PDF cần che thông tin"
+        pickerTitle={t('redact.pickerTitle')}
         stage={(running) => (item ? <RedactStage key={sourceId} item={item} boxes={boxes} disabled={running} onChange={change} onClear={quick.clear} /> : null)}
-        runLabel={pages > 0 ? `Che và xoá trên ${pages} trang` : 'Che thông tin'}
+        runLabel={pages > 0 ? t('redact.runMany', { count: pages }) : t('redact.run')}
         runIcon="eye-slash"
-        blocked={pages === 0 ? 'Chưa khoanh vùng nào — kéo trên trang để khoanh phần cần che.' : null}
+        blocked={pages === 0 ? t('redact.blocked') : null}
         task={() => redactTask(item, boxes)}
       />
     </>

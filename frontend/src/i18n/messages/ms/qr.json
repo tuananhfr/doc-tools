@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "Alat kod QR",
+    "qrCreate": "Cipta kod QR",
+    "barcodeCreate": "Cipta kod bar",
+    "qrRead": "Imbas kod"
+  },
+  "shared": {
+    "codeContent": "Kandungan dalam kod",
+    "enterToCreate": "Masukkan kandungan untuk mencipta kod",
+    "contentPanel": "Kandungan kod",
+    "kind": "Jenis kod",
+    "phone": "Nombor telefon",
+    "security": "Keselamatan",
+    "password": "Kata laluan",
+    "noPassword": "Tiada kata laluan",
+    "retry": "Cuba lagi",
+    "downloadPng": "Muat turun PNG",
+    "value": "Nilai",
+    "emailPlaceholder": "nama@syarikat.com.my"
+  },
+  "qrCreate": {
+    "side": "Kod QR",
+    "tooLong": "Kandungan terlalu panjang untuk muat dalam satu kod QR. Pendekkan, atau gunakan pautan ke tempat kandungan itu disimpan.",
+    "renderFailed": "Tidak dapat melukis imej kod QR. Cuba lagi.",
+    "notCreated": "Kod belum dicipta",
+    "downloadPng": "Muat turun kod QR",
+    "downloadSvg": "Muat turun SVG untuk dicetak",
+    "downloadPdf": "Muat turun PDF",
+    "transparentHint": "Apabila meletakkannya pada foto, pilih kawasan yang cukup cerah dan sekata warnanya supaya kod mudah diimbas.",
+    "lowContrast": "Warna kod dan warna latar terlalu hampir; tingkatkan kontras supaya mudah diimbas.",
+    "previewLabel": "Kod QR bagi kandungan yang dimasukkan"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (pautan)",
+      "text": "Teks",
+      "wifi": "Wi-Fi",
+      "phone": "Nombor telefon",
+      "email": "E-mel",
+      "vcard": "Kad nama (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "Tiada kata laluan"
+    },
+    "enterContent": "Masukkan kandungan",
+    "textPlaceholder": "Contoh: Gudang B — rak 12, tingkat 3",
+    "ssid": "Nama rangkaian Wi-Fi",
+    "ssidPlaceholder": "Contoh: Pejabat-WiFi",
+    "hidden": "Rangkaian tersembunyi (nama tidak disiarkan)",
+    "emailAddress": "Alamat e-mel",
+    "subject": "Subjek e-mel (pilihan)",
+    "contactName": "Nama penuh",
+    "contactNamePlaceholder": "Ahmad bin Ali",
+    "contactEmail": "E-mel untuk dihubungi",
+    "contactOrg": "Syarikat (pilihan)",
+    "contactTitle": "Jawatan (pilihan)",
+    "vcardHint": "Perlukan nama penuh dan sekurang-kurangnya nombor telefon atau e-mel. Imbasan dengan kamera telefon akan menawarkan untuk menambahnya ke senarai kenalan."
+  },
+  "payload": {
+    "urlSpaces": "Pautan tidak boleh mengandungi ruang kosong.",
+    "wifiPassword": "Masukkan kata laluan Wi-Fi, atau pilih \"Tiada kata laluan\".",
+    "wpaShort": "Kata laluan WPA/WPA2 mempunyai sekurang-kurangnya 8 aksara.",
+    "phoneChars": "Nombor telefon hanya mengandungi digit dan boleh bermula dengan +.",
+    "phoneShort": "Nombor telefon terlalu pendek.",
+    "email": "Alamat e-mel tidak mengikut bentuk nama@syarikat.com.my.",
+    "contactName": "Masukkan nama penuh kenalan.",
+    "contactReach": "Masukkan nombor telefon atau e-mel kenalan."
+  },
+  "colors": {
+    "legend": "Warna kod QR",
+    "background": "Latar kod QR",
+    "backgroundModes": {
+      "white": "Latar putih",
+      "transparent": "Tanpa latar",
+      "custom": "Pilih warna"
+    },
+    "presetBackgrounds": "Warna latar sedia ada",
+    "customColor": "Warna pilihan sendiri",
+    "names": {
+      "ink": "Hitam",
+      "steel": "Kelabu keluli",
+      "blue": "Biru",
+      "crimson": "Merah",
+      "teal": "Hijau kebiruan",
+      "green": "Hijau",
+      "white": "Putih",
+      "mist": "Kelabu cerah",
+      "blue-soft": "Biru cerah",
+      "teal-soft": "Hijau kebiruan cerah",
+      "amber-soft": "Krim",
+      "rose-soft": "Merah jambu cerah"
+    }
+  },
+  "barcode": {
+    "side": "Kod bar",
+    "modeLabel": "Cara mencipta",
+    "modes": {
+      "single": "Satu kod",
+      "batch": "Pukal"
+    },
+    "files": {
+      "png": "Muat turun PNG",
+      "svg": "SVG untuk dicetak",
+      "pdf": "PDF saiz sebenar"
+    },
+    "drawFailed": "Tidak dapat melukis kod ini.",
+    "fileFailed": "Tidak dapat membina fail kod bar.",
+    "engineFailed": "Tidak dapat memuatkan enjin kod bar. Muat semula halaman.",
+    "engineLoading": "Memuatkan enjin kod bar…",
+    "previewLabel": "Kod bar {{kind}} bagi {{value}}",
+    "styleTitle": "Gaya kod",
+    "listTitle": "Senarai kod"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Kod dalaman: bahan, aset, gudang — huruf, digit, simbol",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Kod dalaman untuk pengimbas lama — huruf besar, digit, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Kod produk runcit, 13 digit dikeluarkan oleh GS1",
+      "placeholder": "12 digit, digit semak ditambah secara automatik"
+    },
+    "ean8": {
+      "hint": "Kod produk bersaiz kecil, 8 digit dikeluarkan oleh GS1",
+      "placeholder": "7 digit, digit semak ditambah secara automatik"
+    },
+    "itf14": {
+      "hint": "Kod karton / bungkusan, 14 digit mengikut GS1",
+      "placeholder": "13 digit, digit semak ditambah secara automatik"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Saiz cetakan",
+    "sizeStandard": "{{percent}}% (standard)",
+    "height": "Ketinggian bar",
+    "includeText": "Cetak digit / teks di bawah kod",
+    "sizeWarning": "Di bawah 80%, banyak pengimbas pegang tangan tidak dapat membaca kod; cetak satu label percubaan sebelum mencetak seluruh kelompok."
+  },
+  "gs1Notice": "Nombor EAN / ITF-14 mesti dikeluarkan oleh GS1 Vietnam kepada perniagaan anda — alat ini tidak mencipta nombor, ia hanya melukis nombor yang sudah anda miliki. Untuk kod dalaman (bahan, aset, gudang), pilih <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "Fail lebih besar daripada {{size}}.",
+    "readFailed": "Tidak dapat membaca fail ini.",
+    "buildFailed": "Tidak dapat membina fail.",
+    "pickTitle": "Pilih fail CSV atau Excel (.xlsx)",
+    "pickHint": "Satu kod setiap baris, diambil daripada lajur pertama · maksimum {{limit}} baris",
+    "valid": "{{count}} kod sah",
+    "invalid": "{{count}} baris salah — dikeluarkan",
+    "header": "Baris tajuk “{{header}}” dilangkau",
+    "dropped": "{{count}} baris melebihi had {{limit}} dibuang",
+    "line": "Baris",
+    "reason": "Sebab",
+    "moreErrors": "… dan {{count}} baris salah lagi.",
+    "building": "Membina {{done}}/{{total}}…",
+    "pdf": "PDF ({{count}} halaman)",
+    "zip": "Pakej {{type}} (.zip)",
+    "unsupported": "Hanya fail .csv atau .xlsx boleh dibaca."
+  },
+  "check": {
+    "digitsOnly": "Digit sahaja.",
+    "checkDigitAdded": "Digit semak {{digit}} telah ditambah.",
+    "wrongLength": "Perlukan {{short}} digit (digit semak ditambah secara automatik) atau cukup {{full}} digit — anda ada {{count}}.",
+    "wrongCheckDigit": "Digit semak salah: digit terakhir sepatutnya {{expected}}, bukan {{actual}}. Semak semula nombor yang anda salin.",
+    "empty": "Belum ada kandungan.",
+    "tooLong": "Melebihi {{max}} aksara — kod akan terlalu lebar untuk pengimbas.",
+    "code39Chars": "Code 39 hanya menerima huruf tanpa diakritik, digit dan - . $ / + % ruang kosong.",
+    "code39Upper": "Code 39 tiada huruf kecil — telah ditukar kepada huruf besar.",
+    "code128Chars": "Code 128 tidak dapat mengekod huruf berdiakritik atau aksara khas. Gunakan huruf tanpa diakritik.",
+    "prefix893": "Awalan 893: didaftarkan dengan GS1 Vietnam (tempat kod dikeluarkan, bukan tempat produk dibuat).",
+    "prefixIsbn": "Awalan 978/979: kod buku (ISBN).",
+    "prefixIssn": "Awalan 977: kod terbitan berkala (ISSN).",
+    "prefixInternal": "Awalan 20–29: kod untuk kegunaan dalaman kedai / syarikat sahaja; tidak sah di luar sistem anda sendiri."
+  },
+  "render": {
+    "barcodeFailed": "tidak dapat membina kod {{value}}.",
+    "imageFailed": "pelayar tidak dapat memaparkan imej."
+  },
+  "read": {
+    "results": "Hasil",
+    "resultsCount": "Hasil ({{count}})",
+    "clearAll": "Kosongkan semua",
+    "empty": "Belum ada kod dibaca. Pilih imej yang mengandungi kod, tampal tangkapan skrin, atau imbas dengan kamera.",
+    "safety": "Semak pautan dengan teliti sebelum membukanya: sesiapa sahaja boleh mencetak kod QR dan menampalnya di atas kod yang asli.",
+    "pickTitle": "Pilih imej yang mengandungi kod QR atau kod bar",
+    "pickHint": "JPG, PNG, WebP · anda juga boleh menampal imej dengan Ctrl+V",
+    "camera": "Imbas dengan kamera",
+    "missTitle": "Tidak dapat membaca {{count}} imej",
+    "moreMisses": "… dan {{count}} imej lagi",
+    "hideNotice": "Sembunyikan notis",
+    "pastedImage": "Imej yang ditampal",
+    "noCode": "tiada kod ditemui. Cuba foto yang diambil lurus, cukup cahaya, dan kod memenuhi sebahagian besar bingkai.",
+    "unreadable": "tidak dapat dibuka. Hanya imej JPG, PNG dan WebP boleh dibaca.",
+    "tooLarge": "lebih besar daripada {{size}}.",
+    "tooManyPixels": "terlalu besar ({{pixels}} megapiksel, had {{limit}} megapiksel). Pangkas kawasan yang mengandungi kod dan cuba lagi."
+  },
+  "camera": {
+    "scanTitle": "Imbas QR / Kod bar",
+    "aim": "Letakkan kod dalam bingkai",
+    "searching": "Mencari kod…",
+    "detected": "Kod dibaca",
+    "scanNext": "Imbas seterusnya",
+    "openLink": "Buka pautan",
+    "zoom": "Zum",
+    "zoomIn": "Zum masuk",
+    "zoomOut": "Zum keluar",
+    "captured": "Imej kod yang dibaca",
+    "title": "Kamera",
+    "off": "Matikan kamera",
+    "viewfinder": "Pemidang tilik kamera",
+    "starting": "Membuka kamera… Pelayar mungkin meminta kebenaran menggunakan kamera.",
+    "hint": "Letakkan kod di tengah bingkai dan pegang tanpa bergerak seketika. Hasil dipaparkan sebaik sahaja kod dibaca; teruskan mengimbas kod lain tanpa perlu menekan apa-apa.",
+    "insecure": "{{reason}} Ambil foto kod dengan aplikasi kamera, kemudian pilih imej itu daripada peranti anda."
+  },
+  "scanResult": {
+    "qrCode": "Kod QR",
+    "remove": "Buang hasil ini",
+    "removeShort": "Buang",
+    "ssid": "Nama rangkaian",
+    "unknown": "Tidak diketahui",
+    "checkOk": "Digit semak betul.",
+    "checkBad": "Digit semak SALAH — kod tersalah cetak atau telah diubah.",
+    "open": "Buka {{host}}",
+    "copyPassword": "Salin kata laluan",
+    "copyNumber": "Salin nombor",
+    "copyAddress": "Salin alamat",
+    "copy": "Salin",
+    "copyRaw": "Salin teks asal"
+  },
+  "vietqr": {
+    "side": "Kod pindahan bank",
+    "placeholder": "Masukkan BIN dan nombor akaun untuk mencipta kod",
+    "copy": "Salin rentetan QR",
+    "downloadSvg": "Muat turun SVG",
+    "checkNote": "Cuba imbas dengan aplikasi perbankan dan semak nama penerima, nombor akaun dan jumlah sebelum menggunakannya.",
+    "panel": "Butiran pindahan",
+    "bin": "BIN bank (6 digit)",
+    "account": "Nombor akaun",
+    "amount": "Jumlah (đ), boleh dibiarkan kosong",
+    "note": "Keterangan pindahan",
+    "privacy": "Kod dicipta pada peranti anda; butiran akaun tidak dihantar ke pelayan Chuyện Nhỏ.",
+    "fieldTooLong": "Medan QR terlalu panjang"
+  },
+  "trace": {
+    "title": "Kebolehkesanan ERPCons",
+    "label": "Semak dalam ERPCons",
+    "object": "Objek",
+    "code": "Kod dalaman",
+    "serial": "Nombor siri",
+    "noEvents": "Belum ada peristiwa jejakan.",
+    "recentEvents": "Peristiwa terkini",
+    "loading": "Menyemak dalam ERPCons…",
+    "accountForbidden": "Akaun anda belum dibenarkan menyemak kebolehkesanan.",
+    "failed": "Tidak dapat menyemak: {{message}}",
+    "legacy": "Kod lama objek ini — belum dipasangkan kod jejakan.",
+    "forbidden": "Kod ini ada dalam daftar, tetapi anda tidak dibenarkan melihat objeknya.",
+    "broken": "Kod ini menunjuk kepada objek yang sudah tidak wujud.",
+    "unknown": "Kod telah dibaca, tetapi belum ada data jejakan dalam ERPCons.",
+    "status": {
+      "DRAFT": "Belum dikeluarkan",
+      "ACTIVE": "Aktif",
+      "EXPIRED": "Tamat tempoh",
+      "SUSPENDED": "Digantung",
+      "REVOKED": "Ditarik balik",
+      "REPLACED": "Telah diganti",
+      "ARCHIVED": "Diarkibkan"
+    },
+    "notes": {
+      "EXPIRED": "Kod telah tamat tempoh — lihat sejarah sahaja, tiada tindakan.",
+      "SUSPENDED": "Kod sedang digantung — jangan gunakan untuk operasi.",
+      "REVOKED": "Kod telah ditarik balik — label ini tidak lagi sah.",
+      "REPLACED": "Label ini telah diganti — gunakan label baharu.",
+      "ARCHIVED": "Objek ini tidak lagi diurus."
+    }
+  }
+}

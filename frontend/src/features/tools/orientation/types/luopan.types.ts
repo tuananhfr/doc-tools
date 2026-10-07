@@ -1,7 +1,6 @@
 /** Một trong 24 sơn: 15° quanh `center`, thuộc một trong 8 hướng. */
 export interface Mountain {
   index: number
-  name: string
   /** Tâm sơn, độ so với Bắc theo chiều kim đồng hồ (Tý = 0°). */
   center: number
   /** Chỉ số 8 hướng chứa sơn này, 0 = Bắc. */
@@ -25,5 +24,4 @@ export interface LuopanConvention {
   version: string
   /** Nửa độ rộng vùng không vong quanh mỗi ranh sơn, độ. */
   voidWindow: number
-  note: string
 }

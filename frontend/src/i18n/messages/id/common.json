@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "Bahasa",
+    "current": "Bahasa: {{name}}"
+  },
+  "theme": {
+    "current": "Tampilan: {{name}}",
+    "light": "Terang (kantor)",
+    "dark": "Gelap (ruang kendali)",
+    "field": "Luar ruangan (lapangan)",
+    "lightShort": "Terang",
+    "darkShort": "Gelap",
+    "fieldShort": "Luar ruangan"
+  },
+  "ui": {
+    "confirm": "Konfirmasi",
+    "cancel": "Batal",
+    "loadingData": "Memuat data",
+    "loading": "Memuat...",
+    "toastRegion": "Notifikasi sistem",
+    "toastClose": "Tutup notifikasi",
+    "toastTone": {
+      "success": "Berhasil",
+      "info": "Informasi",
+      "warning": "Peringatan",
+      "danger": "Galat"
+    }
+  },
+  "apiErrors": {
+    "network": "Tidak dapat terhubung ke server. Periksa koneksi Anda.",
+    "timeout": "Server terlalu lama merespons. Silakan coba lagi.",
+    "unauthorized": "Sesi login Anda telah berakhir. Silakan login kembali.",
+    "forbidden": "Anda tidak memiliki izin untuk melakukan tindakan ini.",
+    "notFound": "Data tidak ditemukan.",
+    "validation": "Data belum valid. Silakan periksa kembali.",
+    "rateLimited": "Anda bertindak terlalu cepat. Silakan coba lagi nanti.",
+    "server": "Server sedang bermasalah. Silakan coba lagi nanti.",
+    "unknown": "Terjadi kesalahan."
+  },
+  "crumb": {
+    "label": "Lokasi"
+  },
+  "tool": {
+    "privacyNoFile": "Berjalan di perangkat Anda, konten tidak dikirim ke mana pun",
+    "privacyFile": "Diproses di perangkat Anda, file tidak diunggah"
+  },
+  "session": {
+    "openInApp": "Buka di ERPcons",
+    "login": "Masuk"
+  },
+  "board": {
+    "result": "Hasil"
+  },
+  "copy": {
+    "label": "Salin",
+    "copied": "Tersalin",
+    "done": "Sudah disalin ke papan klip.",
+    "blocked": "Browser tidak mengizinkan penyalinan. Blok teksnya lalu tekan Ctrl+C."
+  },
+  "fileList": {
+    "title": "File yang dipilih",
+    "clearAll": "Hapus semua",
+    "moveUp": "Naikkan",
+    "moveUpLabel": "Naikkan {{name}}",
+    "moveDown": "Turunkan",
+    "moveDownLabel": "Turunkan {{name}}",
+    "remove": "Hapus file ini",
+    "removeLabel": "Hapus {{name}}"
+  },
+  "filePicker": {
+    "pick": "Pilih file",
+    "add": "Tambah file",
+    "pickOther": "Pilih file lain",
+    "reading": "Membaca file {{current}}/{{total}}…",
+    "dropMore": "Letakkan file tambahan di sini",
+    "dropOther": "Letakkan file lain di sini"
+  },
+  "flow": {
+    "finishing": "Menyelesaikan…",
+    "processing": "Memproses",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Progres pemrosesan",
+    "cancel": "Batal",
+    "rejected": "{{count}} file dilewati",
+    "rejectedMore": "… dan {{count}} file lainnya",
+    "dismiss": "Sembunyikan notifikasi",
+    "side": "Opsi dan jalankan",
+    "options": "Opsi",
+    "error": "Tidak dapat diproses: {{message}}",
+    "errorCode": "Kode galat: {{code}}",
+    "runFailed": "File tidak dapat diproses. Coba lagi."
+  },
+  "result": {
+    "textLabel": "Isi teks",
+    "tooLarge": "File lebih besar dari {{limit}}: tidak dapat dimuat ulang ke alat di sini, dan banyak kotak surat tidak menerima file sebesar ini.",
+    "shareFailed": "File tidak dapat dibagikan. Unduh lalu kirim secara manual.",
+    "download": "Unduh",
+    "preview": "Pratinjau",
+    "share": "Bagikan",
+    "edit": "Edit lagi",
+    "restart": "Ulangi"
+  },
+  "leave": {
+    "title": "Tinggalkan halaman ini?",
+    "body": "File yang sedang Anda kerjakan hanya ada di tab ini dan belum disimpan di tempat lain. Jika Anda pergi, file akan hilang dan tidak bisa dipulihkan — unduh dulu jika ingin menyimpannya.",
+    "stay": "Tetap di sini",
+    "leave": "Tinggalkan halaman"
+  },
+  "unsupported": {
+    "title": "Browser ini terlalu lama untuk memproses PDF",
+    "description": "{{tool}} memerlukan Chrome, Edge, Firefox, atau Safari versi terbaru. Perbarui browser Anda lalu buka kembali halaman ini. Alat gambar, kode QR, dan utilitas lainnya tetap bisa dipakai di perangkat ini.",
+    "back": "Pilih alat lain"
+  },
+  "camera": {
+    "insecure": "Kamera hanya bisa dipakai jika halaman dibuka lewat HTTPS (atau localhost).",
+    "blocked": "Browser memblokir kamera untuk halaman ini. Klik ikon gembok di bilah alamat untuk mengizinkannya, lalu coba lagi.",
+    "notFound": "Tidak ada kamera di perangkat ini.",
+    "busy": "Kamera sedang dipakai aplikasi lain. Tutup aplikasi itu lalu coba lagi.",
+    "failed": "Kamera tidak dapat dibuka."
+  },
+  "canvas": {
+    "tooLarge": "Gambar terlalu besar untuk browser ini.",
+    "unsupported": "Browser ini tidak dapat mengekspor format gambar yang dipilih."
+  },
+  "hero": {
+    "statTools": "alat gratis",
+    "statFree": "gratis dipakai",
+    "statInstall": "instalasi",
+    "trialErpcons": "Coba ERPcons",
+    "trialTekshot": "Coba TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "kali alat dipakai",
+    "unlimited": "Tanpa batas",
+    "visits": "kali dipakai",
+    "readyTools": "alat siap pakai",
+    "groups": "kelompok alat",
+    "proOffer": "simpan, bagikan, dan setujui bersama tim"
+  },
+  "aside": {
+    "label": "Info lainnya",
+    "recent": "Baru dipakai",
+    "recentEmpty": "Belum ada alat yang dipakai di perangkat ini. Alat yang Anda buka akan muncul di sini.",
+    "proIntro": "Saat urusan kecil menjadi berkas proyek:",
+    "about": "Tentang Chuyện Nhỏ",
+    "aboutText": "Kumpulan alat gratis dari ERPCons untuk membantu Anda menyelesaikan urusan kecil dalam pekerjaan sehari-hari dengan cepat. File diproses langsung di perangkat Anda, tidak diunggah ke server.",
+    "tips": "Tips cepat"
+  },
+  "pro": {
+    "signup": "Daftar uji coba",
+    "soon": "Formulir pendaftaran uji coba {{product}} sedang disiapkan — segera hadir.",
+    "features": {
+      "storage": "Penyimpanan jangka panjang, versi, dan revisi R00, R01…",
+      "sharing": "Berbagi, hak akses, komentar, dan persetujuan",
+      "linking": "Hubungkan berkas dengan proyek, kontrak, dan tugas",
+      "ai": "AI membaca, meringkas, dan mengekstrak dokumen"
+    }
+  },
+  "nudge": {
+    "text": "Unduhan selesai. Perlu menyimpan versi ini ke berkas proyek, membagikan, dan menyetujuinya bersama tim? Tersedia di ERPCons Pro.",
+    "login": "Masuk ke ERPCons",
+    "later": "Nanti saja"
+  },
+  "toolCard": {
+    "soon": "Segera hadir"
+  },
+  "filters": {
+    "label": "Saring menurut kelompok alat"
+  },
+  "authBrand": {
+    "home": "Kembali ke beranda {{name}}",
+    "headline": "Satu platform<br/>Semua proyek<br/>Kendali penuh",
+    "lead": "{{name}} Construction OS – Platform manajemen menyeluruh untuk perusahaan konstruksi, terintegrasi dengan AI, IoT, dan data real-time untuk mengoptimalkan kinerja, mengelola risiko, dan mengambil keputusan cerdas.",
+    "status": "Semua sistem berjalan normal",
+    "statusLink": "Lihat status sistem",
+    "features": {
+      "security": {
+        "title": "Keamanan maksimal",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "Konektivitas menyeluruh",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "Satu sumber data",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "Kinerja unggul",
+        "line1": "Kecepatan optimal",
+        "line2": "dan mudah dikembangkan"
+      },
+      "analytics": {
+        "title": "Analitik cerdas",
+        "line1": "Dashboard intuitif",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "Bekerja di mana saja",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

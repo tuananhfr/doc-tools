@@ -1,4 +1,5 @@
 import { useRef, useState, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { rgbCss } from '../../utils/decorations'
 import { INK_COLOR, SIGNATURE_PAD, SIGNATURE_STROKE, strokePath, type SignatureInk, type Stroke } from '../../utils/signature'
 
@@ -14,6 +15,7 @@ const MIN_STEP = 1.5
 
 /** Ô ký tay: kéo chuột / ngón tay / bút để vẽ. Nét lưu theo hệ `SIGNATURE_PAD`, không theo điểm ảnh màn hình. */
 export function SignaturePad({ strokes, ink, disabled, onChange }: SignaturePadProps) {
+  const { t } = useTranslation('pdf')
   const drawing = useRef(false)
   const [draft, setDraft] = useState<Stroke | null>(null)
 
@@ -62,7 +64,7 @@ export function SignaturePad({ strokes, ink, disabled, onChange }: SignaturePadP
       className={`erp-sign-pad${disabled ? ' is-disabled' : ''}`}
       viewBox={`0 0 ${SIGNATURE_PAD.width} ${SIGNATURE_PAD.height}`}
       role="img"
-      aria-label={strokes.length > 0 ? `Ô ký — đã có ${strokes.length} nét` : 'Ô ký — chưa có nét nào'}
+      aria-label={strokes.length > 0 ? t('signStage.pad', { count: strokes.length }) : t('signStage.padEmpty')}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}

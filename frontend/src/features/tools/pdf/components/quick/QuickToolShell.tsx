@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import {
   ToolFlow,
@@ -38,10 +39,10 @@ interface QuickToolShellProps {
 
 const PDF_MIME = 'application/pdf'
 
-const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept' | 'hint'>> = {
-  pdf: { accept: '.pdf,application/pdf', hint: 'PDF · tối đa 100 MB mỗi tệp' },
-  image: { accept: '.jpg,.jpeg,.png,image/jpeg,image/png', hint: 'JPG, PNG · tối đa 100 MB mỗi ảnh' },
-  'pdf+image': { accept: '.pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png', hint: 'PDF, JPG, PNG · tối đa 100 MB mỗi tệp' },
+const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept'> & { hint: 'pdf' | 'image' | 'pdfImage' }> = {
+  pdf: { accept: '.pdf,application/pdf', hint: 'pdf' },
+  image: { accept: '.jpg,.jpeg,.png,image/jpeg,image/png', hint: 'image' },
+  'pdf+image': { accept: '.pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png', hint: 'pdfImage' },
 }
 
 /**
@@ -51,6 +52,7 @@ const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept' | 'hint'
  * và việc cần chạy.
  */
 export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, runLabel, runIcon, blocked, task }: QuickToolShellProps) {
+  const { t } = useTranslation('pdf')
   const navigate = useNavigate()
   const { base } = useToolsBranch()
   const run = useFlowRun()
@@ -62,7 +64,7 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
     name: source.name,
     size: source.size,
     icon: source.kind === 'pdf' ? 'file-earmark-pdf' : 'file-earmark-image',
-    detail: source.kind === 'pdf' ? `${pages.length} trang` : 'Ảnh',
+    detail: source.kind === 'pdf' ? t('stage.pageCount', { count: pages.length }) : t('stage.image'),
     thumbnail: quick.thumbnails[source.id],
   }))
 
@@ -85,10 +87,12 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
     navigate(toolPathOf(base, 'edit-pdf'))
   }
 
+  const picker = PICKER[accept.length > 1 ? 'pdf+image' : accept[0]]
+
   return (
     <>
       <ToolFlow
-        picker={{ ...PICKER[accept.length > 1 ? 'pdf+image' : accept[0]], multiple, title: pickerTitle }}
+        picker={{ accept: picker.accept, hint: t(`picker.${picker.hint}`), multiple, title: pickerTitle }}
         files={files}
         loading={quick.loading}
         rejected={quick.rejected}
@@ -108,7 +112,7 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
         options={options}
         runLabel={runLabel}
         runIcon={runIcon}
-        blocked={quick.items.length === 0 ? 'Chưa chọn tệp nào.' : blocked}
+        blocked={quick.items.length === 0 ? t('picker.noFiles') : blocked}
         run={run}
         onRun={() => void run.start(task())}
         onEdit={editable ? editFurther : undefined}

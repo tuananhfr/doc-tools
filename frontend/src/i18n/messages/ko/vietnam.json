@@ -1,0 +1,160 @@
+{
+  "holidayLayers": {
+    "major": "주요 공휴일",
+    "lunar": "전통 명절",
+    "moon": "음력 1일 & 15일",
+    "memorial": "기념일"
+  },
+  "calendar": {
+    "layersAria": "달력에 공휴일 표시",
+    "monthAria": "{{year}}년 {{month}}월 달력",
+    "monthTitle": "{{month}}월<year> {{year}}년</year>",
+    "prevMonth": "이전 달",
+    "nextMonth": "다음 달",
+    "today": "오늘",
+    "weekdays": {
+      "mon": "월",
+      "tue": "화",
+      "wed": "수",
+      "thu": "목",
+      "fri": "금",
+      "sat": "토",
+      "sun": "일"
+    },
+    "lunarFirstLeap": "윤{{month}}/{{day}}",
+    "dayLunar": "음력 {{month}}월 {{day}}일",
+    "dayLunarLeap": "음력 윤{{month}}월 {{day}}일",
+    "dayEvents": "일정 {{count}}개"
+  },
+  "day": {
+    "outOfRange": "알고리즘이 지원하는 1800–2199년 범위를 벗어난 날짜예요.",
+    "solar": "양력",
+    "lunarMonthYear": "{{year}}년 {{month}}월",
+    "lunarMonthYearLeap": "{{year}}년 윤{{month}}월",
+    "lunarDate": "음력 {{year}}년 {{month}}월 {{day}}일",
+    "lunarDateLeap": "음력 {{year}}년 윤{{month}}월 {{day}}일",
+    "facts": {
+      "day": "일",
+      "month": "월",
+      "year": "년"
+    },
+    "goodDay": "황도일 (길일)",
+    "badDay": "흑도일 (흉일)",
+    "byLunar": "음력 기준",
+    "bySolar": "양력 기준",
+    "goodHours": "황도시 (길한 시간)",
+    "nextTet": "{{year}}년 설(Tết): <strong>{{date}}</strong> · {{count}}일 남음",
+    "note": "베트남 시간대 UTC+7 기준 천문 알고리즘으로, 일상 참고용으로 적합해요. 공식 용도로 쓸 때는 관계 기관이 발표한 달력과 대조하세요. 황도일 / 흑도일은 민간 방식으로 계산한 것이라 참고용이에요. <link>Hồ Ngọc Đức 알고리즘 출처</link>"
+  },
+  "lunar": {
+    "jumpTo": "날짜로 이동",
+    "convertTitle": "음력 → 양력 변환",
+    "fields": {
+      "day": "음력 일",
+      "month": "음력 월",
+      "year": "음력 연도"
+    },
+    "leapMonth": "윤달",
+    "solarResult": "양력 <strong>{{date}}</strong>",
+    "showOnCalendar": "달력에서 보기",
+    "noSuchDay": "없는 날짜예요.",
+    "noSuchDayLeap": "없는 날짜예요 (그해에는 이 달에 윤달이 없어요).",
+    "anniversaryTitle": "음력 기일 (제삿날)",
+    "anniversaryFields": {
+      "day": "일",
+      "month": "월"
+    },
+    "anniversaryYear": "음력 {{year}}년: <strong>{{date}}</strong>",
+    "noSuchDayShort": "없는 날짜"
+  },
+  "address": {
+    "status": {
+      "full": "전체 변환",
+      "province": "성(省)만 변환",
+      "ambiguous": "직접 선택 필요: {{options}}",
+      "none": "성(省)을 인식하지 못함"
+    },
+    "orSeparator": " 또는 ",
+    "resultLabel": "주소 대조",
+    "resultValue": "{{full}}/{{total}} 전체 변환",
+    "resultNote": "성(省)은 약칭(TP.HCM, HN…)을 포함해 어느 부분에 있어도 인식해요. 군(huyện) 단위는 삭제돼요. 사(xã)/방(phường)은 데이터상 새 사가 정확히 하나일 때만 변환하고, 옛 사가 나뉜 경우에는 목록으로 보여 드려 직접 고르게 해요.",
+    "columns": {
+      "old": "옛 주소",
+      "proposed": "제안",
+      "status": "상태"
+    },
+    "downloadCsv": "CSV 다운로드",
+    "verifiedNote": "서명된 대조표로, {{date}}부터 유효해요. 출처: {{source}}. 최종 주소는 서류 접수처에 확인하세요.",
+    "manualNote": "직접 입력한 대조표로, 시스템에서 검증하지 않았어요. 최종 주소는 서류 접수처에 확인하세요.",
+    "viewSource": "데이터 출처 보기",
+    "panelTitle": "옛 주소와 대조표",
+    "addressesLabel": "한 줄에 주소 하나, 각 단위는 쉼표로 구분",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "서명된 대조표를 사용 중",
+    "applyVerified": "서명된 대조표 적용",
+    "rulesLabel": "주소 대조표",
+    "rulesNone": "시스템에 유효한 서명된 주소 대조표가 아직 없어요.",
+    "manualLabel": "또는 직접 입력하세요. 한 줄에: “옛 성|옛 군|옛 사|새 성|새 사”",
+    "manualInvalid": "대조표 형식이 잘못됐거나(각 줄 5개 항목, 항목당 최대 150자), 같은 옛 성이 서로 다른 두 새 성에 지정돼 있어요."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "XML 파일이 5 MB를 넘어요.",
+      "unreadable": "XML 파일을 읽을 수 없어요.",
+      "doctype": "지원하지 않는 엔티티 선언이나 DOCTYPE이 있는 XML이에요.",
+      "invalid": "올바르지 않은 XML 파일이에요.",
+      "noCommon": "송장의 공통 정보 블록을 찾을 수 없어요."
+    },
+    "resultLabel": "전자 송장",
+    "noNumber": "번호 없음",
+    "series": "기호: {{series}} · 날짜: {{date}}",
+    "seller": "판매자: {{name}} ({{taxCode}})",
+    "buyer": "구매자: {{name}} ({{taxCode}})",
+    "noTaxCode": "세금 코드 없음",
+    "amounts": "세전: {{subtotal}} đ · 세금: {{vat}} đ",
+    "total": "총 결제 금액: {{total}} đ",
+    "signature": "XML 서명 태그: {{signature}} · 세무 당국 코드: {{authority}}",
+    "present": "있음",
+    "notFound": "없음",
+    "downloadCsv": "CSV 명세 다운로드",
+    "empty": "XML 파일을 선택하면 송장 데이터를 볼 수 있어요.",
+    "disclaimer": "이 도구는 XML 내용만 읽고, 전자 서명이나 송장의 법적 상태를 검증하지 않아요. 사용하기 전에 공식 포털에서 조회하세요.",
+    "panelTitle": "송장 파일",
+    "pickFile": "XML 파일 선택",
+    "columns": {
+      "ordinal": "번호",
+      "name": "상품, 서비스",
+      "quantity": "수량",
+      "amount": "금액"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "변환된 텍스트",
+    "copy": "텍스트 복사",
+    "note": "원본 텍스트의 인코딩을 정확히 선택하세요. 표시되는 글꼴 이름만으로는 문자 인코딩을 판별할 수 없어요.",
+    "panelTitle": "원본 텍스트",
+    "conversionLabel": "변환 방식",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 대문자 → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Unicode 성조 결합 (NFC)",
+      "strip": "베트남어 성조 제거",
+      "lower": "소문자",
+      "upper": "대문자"
+    },
+    "contentLabel": "내용",
+    "placeholder": "변환할 텍스트를 붙여 넣으세요…"
+  },
+  "numberWords": {
+    "resultLabel": "글자로 쓰기",
+    "invalid": "최대 36자리의 정수만 입력하세요.",
+    "note": "증빙 서류와 계약서용 숫자 읽기예요. 제출처의 표기 관례를 확인하세요.",
+    "copy": "결과 복사",
+    "panelTitle": "읽을 숫자",
+    "inputLabel": "정수",
+    "placeholder": "예: 1.234.567",
+    "zeroWordLabel": "십의 자리 0 읽는 법",
+    "fourWordLabel": "십의 자리 뒤 4 읽는 법"
+  }
+}

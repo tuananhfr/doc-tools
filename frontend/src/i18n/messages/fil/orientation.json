@@ -1,0 +1,362 @@
+{
+  "shared": {
+    "on": "Naka-on",
+    "off": "Naka-off",
+    "remove": "Alisin ang {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "May-ari ng bahay",
+    "PROFESSIONAL": "Propesyonal"
+  },
+  "page": {
+    "projectNorthWarning": "Sinusukat ayon sa Project North — hindi ito totoong direksyon, kaya hindi mababasa ang mabuti / masama ayon sa edad at hindi makukuwenta ang sikat ng araw. Lumipat sa True North o Magnetic North sa teknikal na bahagi.",
+    "missing": {
+      "drawing": "I-tap ang simbolo ng North sa drawing para magsimula.",
+      "device": "Pindutin ang “Simulan ang pagsukat”, tumayo nang hindi gumagalaw, saka i-lock ang sukat.",
+      "manual": "Ilagay ang alam mong digri.",
+      "placeAxis": "Ilagay ang axis ng {{target}} sa larawan.",
+      "pickMeasured": "Pumili ng bagay na may sukat na."
+    },
+    "noSource": "Wala pang source.",
+    "modeLabel": "Display mode",
+    "back": "Bumalik",
+    "changeSource": "Palitan ang larawan / source",
+    "placeOnImage": "Ilagay sa larawan ng bahay / drawing",
+    "nothingToSave": "Wala pang sukat na mase-save.",
+    "frontageFallback": "Harapan",
+    "houseFrontageFallback": "Harapan ng bahay",
+    "sideAge": "Ayon sa edad at pag-save ng resulta"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "Direksyon ng bahay",
+      "hint": "Mula sa loob ng bahay, nakatingin nang diretso sa harapan"
+    },
+    "MAIN_DOOR": {
+      "label": "Pangunahing pinto",
+      "hint": "Mula sa loob ng bahay, nakatingin palabas sa pangunahing pinto"
+    },
+    "BALCONY": {
+      "label": "Balkonahe",
+      "hint": "Mula sa loob ng kuwarto, nakatingin palabas sa balkonahe"
+    },
+    "KITCHEN": {
+      "label": "Kusina",
+      "hint": "Direksyon ng likod ng nagluluto — kabaligtaran ng tinitingnan ng nagluluto sa kalan"
+    },
+    "ALTAR": {
+      "label": "Altar",
+      "hint": "Direksyong hinaharap ng altar"
+    },
+    "BED": {
+      "label": "Kama",
+      "hint": "Mula sa ulunan, nakatingin sa paanan ng kama"
+    },
+    "DESK": {
+      "label": "Mesa sa trabaho",
+      "hint": "Direksyong tinitingnan ng nakaupong nagtatrabaho"
+    },
+    "LAND_FRONTAGE": {
+      "label": "Harapan ng lote",
+      "hint": "Mula sa loob ng lote, nakatingin sa kalsada"
+    },
+    "CUSTOM": {
+      "label": "Ibang bagay",
+      "hint": "Ikaw ang magpapangalan; nakaturo ang axis sa direksyong susukatin"
+    }
+  },
+  "north": {
+    "TRUE": "True North",
+    "MAGNETIC": "Magnetic North",
+    "PROJECT": "Project North"
+  },
+  "sources": {
+    "DRAWING": "inilagay sa drawing",
+    "MANUAL": "manu-manong inilagay",
+    "DEVICE": "compass ng telepono",
+    "SURVEY": "sukat mula sa survey"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · error ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "Hindi mabasa ng browser na ito ang compass ng device.",
+      "insecure": "Gumagana lang ang compass kapag binuksan ang page gamit ang HTTPS.",
+      "denied": "Hindi mo pa pinapayagan ang pagbasa ng orientation sensor. Payagan ito sa settings ng browser at subukan ulit.",
+      "noSignal": "Walang natatanggap na signal ng compass — walang ganitong sensor ang computer at maraming browser."
+    },
+    "stability": {
+      "STABLE": "Stable",
+      "WOBBLY": "Gumagalaw pa",
+      "UNSTABLE": "Hindi stable"
+    },
+    "accuracy": "Iniulat ng device ang error na ±{{value}}°",
+    "noAccuracy": "Hindi nag-uulat ng error ang device",
+    "starting": "Binubuksan ang compass…",
+    "retry": "Subukan ulit",
+    "start": "Simulan ang pagsukat",
+    "stop": "Ihinto",
+    "outside": "Nasa labas ako, nakaharap sa bahay",
+    "magnetWarning": "Lumayo sa poste na bakal, kotse, roll-up door, magnet at mga de-kuryenteng gamit — pinalilihis nila ang compass."
+  },
+  "device": {
+    "steps": {
+      "stand": "Tumayo sa pangunahing pinto, nakatalikod sa bahay, nakatingin nang diretso palabas.",
+      "hold": "Hawakan nang pahiga ang telepono (kapantay ng sahig), nakaturo ang itaas nito sa direksyong tinitingnan mo.",
+      "wait": "Huwag gumalaw nang ilang segundo hanggang mag-stable ang numero, saka pindutin ang “I-lock ang sukat”."
+    },
+    "lock": "I-lock ang sukat para sa {{target}}",
+    "manual": "Maglagay na lang ng digri",
+    "unstable": "Masyadong gumagalaw ang numero. Huwag gumalaw, igalaw ang telepono nang pa-figure 8 nang ilang beses para mag-calibrate ito, saka sukatin ulit."
+  },
+  "live": {
+    "title": "Compass para sa direksyon ng bahay",
+    "intro": "Tumayo sa pangunahing pinto, nakatalikod sa bahay, hawakan nang pahiga ang telepono at nakaturo ang itaas nito nang diretso palabas.",
+    "dialAria": "Mukha ng compass, North sa itaas",
+    "dialAriaFacing": "Mukha ng compass, nakaharap ang bahay sa {{degree}}",
+    "facingEnd": "HARAP",
+    "sittingEnd": "LIKOD",
+    "empty": "Pindutin ang “Simulan ang pagsukat” o maglagay ng digri para mabasa ang direksyon ng bahay.",
+    "failureManual": "{{failure}} Puwede kang maglagay ng digring sinukat gamit ang ibang compass.",
+    "locked": "Naka-lock sa {{degree}}",
+    "remeasure": "Sukatin ulit",
+    "lock": "I-lock ang direksyon",
+    "useDevice": "Gamitin ang compass ng device",
+    "enterDegree": "Ilagay ang digri",
+    "unstable": "Masyadong gumagalaw ang numero kaya hindi pa ma-lock. Huwag gumalaw, igalaw ang telepono nang pa-figure 8 nang ilang beses para mag-calibrate ito.",
+    "facing": "Harap",
+    "sitting": "Likod",
+    "offset": "{{degree}} mula sa gitna ng {{mountain}}, papunta sa {{toward}}.",
+    "centered": "Eksakto sa gitna ng mountain na {{mountain}}.",
+    "void": {
+      "MAJOR": "Major void line",
+      "MINOR": "Minor void line"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — nasa mismong hangganan ng {{mountain}} / {{toward}} ang direksyon. {{note}}"
+  },
+  "manual": {
+    "label": "Digri ng {{target}}",
+    "placeholder": "Halimbawa 132",
+    "hint": "Sinusukat pakanan mula sa North: East 90°, South 180°, West 270°.",
+    "invalid": "Maglagay ng numero, halimbawa 132 o 132.5."
+  },
+  "method": {
+    "title": "Paano kukunin ang direksyon?",
+    "label": "Paraan ng pagkuha ng direksyon",
+    "options": {
+      "DEVICE": "Sukatin ngayon",
+      "MANUAL": "Alam ko ang digri",
+      "DRAWING": "Mula sa drawing"
+    },
+    "locked": "Naka-lock ang {{degree}} para sa {{target}}.",
+    "drawingNote": "Hindi kailangan ng sensor: kailangan lang ng drawing na may simbolo ng North. Ilagay ang North arrow sa larawan, saka ilagay ang axis ng bagay na susukatin."
+  },
+  "canvas": {
+    "imageAlt": "Larawan / drawing na sinusukatan ng direksyon",
+    "traceGrip": "Punto {{index}} ng guhit — i-tap para piliin ang guhit, i-drag o gamitin ang arrow keys para ayusin",
+    "closeAria": "Isara ang hugis sa unang punto",
+    "closeTitle": "Isara ang hugis",
+    "northHead": "Dulo ng North arrow — i-drag para i-rotate ayon sa simbolo ng North ng drawing",
+    "northTail": "Buntot ng North arrow — i-drag para ilipat",
+    "axisHead": "Dulo ng axis ng {{target}} — i-drag para i-rotate",
+    "axisTail": "Buntot ng axis ng {{target}} — i-drag para ilipat",
+    "compassCenter": "Gitna ng compass — i-drag para ilipat ang compass",
+    "compassEdge": "Gilid ng compass — i-drag para palakihin / paliitin"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "Linya ng pader",
+      "polygon": "Polygon",
+      "rect": "Box"
+    },
+    "traceHints": {
+      "line": "I-tap ang dalawang punto para gumuhit ng pader. I-tap ang dulo ng iginuhit na pader para lagyan ng label na harapan / pangunahing pinto.",
+      "polygon": "I-tap isa-isa ang mga sulok, saka i-tap ulit ang unang punto (ang bilog na walang laman) para isara ang hugis.",
+      "rect": "I-tap ang dalawang magkatapat na sulok para gumuhit ng box."
+    },
+    "northStep": "Direksyon ng North",
+    "hints": {
+      "north": "I-tap ang simbolo ng North sa drawing para ilagay ang North arrow, saka i-drag ang dulo ng arrow para tumugma sa simbolo.",
+      "door": "I-tap ang pangunahing pinto para magdagdag ng axis ng pinto (opsyonal). I-drag ang dulo ng arrow para nakaturo palabas.",
+      "drawing": "I-tap ang lugar na susukatin para ilagay ang axis ng {{target}}. I-drag ang dulo ng arrow para nakaturo PALABAS — tanaw mula sa loob palabas.",
+      "overlay": "Para mailagay ang compass sa larawan: i-tap ang lugar na susukatin at i-drag ang dulo ng arrow palabas ayon sa direksyon ng {{target}}."
+    },
+    "aria": "Larawang sinusukatan ng direksyon",
+    "tabsAria": "Ginagawa sa larawan",
+    "placeTab": "Ilagay ang direksyon",
+    "traceTab": "Iguhit ulit ang plano",
+    "undo": "I-undo",
+    "redo": "I-redo",
+    "traceKindsAria": "Uri ng guhit",
+    "snap": "I-snap sa 45°",
+    "stepsAria": "Mga hakbang sa larawan",
+    "done": "(nailagay na)",
+    "pageAria": "PDF page na sinusukat",
+    "pageOption": "Page {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "Resulta ng pagsukat",
+    "fine": "16 na direksyon: {{direction}}",
+    "empty": "Wala pang sukat.",
+    "compassAria": "Compass, North sa itaas"
+  },
+  "solar": {
+    "title": "Araw at sikat ng araw",
+    "locationFailure": {
+      "denied": "Hindi mo pa pinapayagan ang pagkuha ng lokasyon. Ilagay nang mano-mano ang latitude at longitude.",
+      "unavailable": "Hindi makuha ng device ang lokasyon. Ilagay nang mano-mano ang latitude at longitude."
+    },
+    "daySide": {
+      "MORNING": "nasisikatan ng araw sa umaga",
+      "AFTERNOON": "nasisikatan ng araw sa hapon (matindi ang init, mainit sa bahay)",
+      "BOTH": "nasisikatan ng araw sa umaga at hapon",
+      "NONE": "kaunti ang direktang sikat ng araw sa maghapon"
+    },
+    "intro": "Tingnan kung saan sumisikat at lumulubog ang araw at kung nasisikatan ng araw sa hapon ang {{target}}.",
+    "locating": "Kinukuha ang lokasyon…",
+    "useLocation": "Gamitin ang aking lokasyon",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "date": "Petsa",
+    "time": "Oras",
+    "sunAt": "Araw nang {{time}}",
+    "sunPosition": "{{degree}} · {{direction}} · taas {{elevation}}",
+    "belowHorizon": "Nasa ilalim ng horizon",
+    "sunrise": "Pagsikat",
+    "sunset": "Paglubog",
+    "facingSun": "{{side}} · nasisikatan ng araw ngayon",
+    "awayFromSun": "{{side}} · hindi nasisikatan ng araw ngayon",
+    "needCoordinates": "Ilagay ang latitude at longitude (o pindutin ang “Gamitin ang aking lokasyon”) para makuwenta.",
+    "note": "Kinukuwenta ang direksyon ng araw ayon sa True North; sa Vietnam, wala pang 1° ang diperensya nito sa Magnetic North. Hindi kasama ang anino ng katabing bahay."
+  },
+  "source": {
+    "title": "Ano ang hawak mo?",
+    "pickTitle": "Pumili ng floor plan, larawan ng bahay o PDF na drawing",
+    "pickHint": "JPG, PNG, WebP, PDF · hanggang 100 MB · sa device mo lang binubuksan ang file",
+    "camera": "Kumuha ng larawan",
+    "rejectedTitle": "Hindi mabuksan ang file",
+    "dismiss": "Itago ang abiso",
+    "none": "Walang larawan — compass lang",
+    "noneHint": "Sukatin gamit ang compass ng telepono o ilagay ang alam mong digri.",
+    "tooLarge": "Lampas sa {{size}} ang file.",
+    "openFailed": "Hindi mabuksan ang file na ito.",
+    "pageFailed": "Hindi maiguhit ang page na ito."
+  },
+  "targetsPanel": {
+    "title": "Sukatin ang direksyon ng",
+    "noAxis": "Wala pang axis",
+    "noMeasure": "Wala pang sukat",
+    "hint": "{{hint}}.",
+    "customName": "Pangalan ng bagay",
+    "customPlaceholder": "Halimbawa: Gilid na gate",
+    "addAria": "Bagay na idadagdag",
+    "add": "Idagdag",
+    "axisAngle": "Anggulo ng axis sa larawan",
+    "axisAngleHint": "0° = nakaturo sa itaas na gilid ng larawan, pakanan."
+  },
+  "tech": {
+    "title": "Teknikal na detalye",
+    "reference": "Batayan ng digri",
+    "referenceHint": "Label lang ito, walang awtomatikong conversion. Sa Vietnam, wala pang 1° ang layo ng Magnetic North sa True North; sumusunod ang Project North sa coordinate grid ng drawing.",
+    "divisionsLabel": "Hati ng compass",
+    "divisionsAria": "Bilang ng sektor ng compass",
+    "divisions_one": "{{count}} direksyon",
+    "divisions_other": "{{count}} direksyon",
+    "size": "Laki ng compass sa larawan · {{percent}}%",
+    "opacity": "Opacity ng compass · {{percent}}%",
+    "saveRecord": "I-download ang talaan ng sukat (JSON)"
+  },
+  "traceActions": {
+    "aria": "Napiling guhit",
+    "tags": {
+      "FRONTAGE": "Ito ang harapan",
+      "ENTRANCE": "Ito ang pangunahing pinto"
+    },
+    "flip": "Baligtarin ang panig na palabas",
+    "delete": "Burahin ang guhit na ito"
+  },
+  "export": {
+    "title": "I-save ang resulta",
+    "legend": "I-save bilang",
+    "image": "Larawan",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "Napapanatili ang impormasyon ng kuha (EXIF) ng orihinal na larawan",
+      "pdf": "Iginuguhit ulit bilang PNG na larawan ang page ng drawing",
+      "none": "Larawan ng compass kasama ang sukat"
+    },
+    "pdfHintVector": "Napapanatili ang orihinal na page ng drawing bilang vector",
+    "pdfHintPage": "Isang page, puwedeng i-print",
+    "buildFailed": "Hindi mabuo ang resultang file.",
+    "shareFailed": "Hindi maibahagi. I-save ang file at saka ipadala.",
+    "building": "Binubuo ang file…",
+    "savePdf": "I-save ang PDF",
+    "saveImage": "I-save ang larawan",
+    "share": "Ibahagi",
+    "saved": "Na-save ang {{name}}",
+    "savedDetail": "Na-save ang {{name}} · {{detail}}",
+    "notes": {
+      "standalone": "Hindi pa natutukoy ang North sa larawan kaya hiwalay na ine-export ang compass, hindi iginuguhit sa larawan.",
+      "rasterized": "Hindi napanatili bilang vector ang orihinal na PDF page — iginuhit ulit ito bilang larawan, at hindi mapipili ang text sa page."
+    },
+    "pageDetail": "Page {{page}}",
+    "noSource": "Walang source na mae-export."
+  },
+  "pdf": {
+    "password": "May password sa pagbukas ang PDF — alisin ang password gamit ang tool na \"I-unlock ang PDF\" at pumili ulit.",
+    "unreadable": "Hindi mabasa ang PDF file na ito.",
+    "noCanvas": "Hindi makapagbigay ng drawing area ang browser.",
+    "renderFailed": "Hindi maiguhit ang PDF page."
+  },
+  "age": {
+    "title": "Basahin ayon sa edad ng may-ari ng bahay",
+    "intro": "Opsyonal. I-on para ipakita sa compass ang singsing ng mabubuti / masasamang bituin ayon sa edad, at makita kung bagay o hindi ang direksyon ng bahay ayon sa {{method}}.",
+    "addPerson": "Maghambing ng isa pang tao",
+    "method": "Paraan: {{name}} · rule set v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "Petsa ng kapanganakan (solar)",
+      "LUNAR_YEAR": "Taon ng kapanganakan (lunar)"
+    },
+    "name": "Pangalan",
+    "sex": "Kasarian",
+    "sexes": {
+      "MALE": "Lalaki",
+      "FEMALE": "Babae"
+    },
+    "inputBy": "Ilagay ayon sa",
+    "yearPlaceholder": "Halimbawa 1986",
+    "yearNote": "Nagsisimula ang taon sa Tết (lunar new year).",
+    "yearNoteLunar": "Nagsisimula ang taon sa Tết (lunar new year) — kung ipinanganak bago ang Tết, gamitin ang naunang taon.",
+    "facts": {
+      "age": "Edad",
+      "napAm": "Elemento (nạp âm)",
+      "trigram": "Life trigram"
+    },
+    "beforeTet": "Ipinanganak bago ang Tết kaya binibilang ang edad para sa taong {{year}} ({{canChi}}).",
+    "facingGood": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, mabuti. {{meaning}}.",
+    "facingBad": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, masama. {{meaning}}.",
+    "houseSame": "Ayon sa likod (sitting): ang bahay na nakaupo sa {{segment}} ay {{trigram}} na bahay ({{houseGroup}} na grupo), kapareho ng grupo ng {{personGroup}}.",
+    "houseOther": "Ayon sa likod (sitting): ang bahay na nakaupo sa {{segment}} ay {{trigram}} na bahay ({{houseGroup}} na grupo), iba sa grupo ng {{personGroup}}.",
+    "lockFirst": "I-lock ang sukat ng {{target}} para makita kung mabuti o masama.",
+    "goodDirections": "Apat na mabuting direksyon: {{list}}",
+    "drivesDial": "Kinukuwenta ang singsing ng bituin sa compass para kay {{name}}.",
+    "thisPerson": "ang taong ito",
+    "defaultName": "Tao {{index}}",
+    "errors": {
+      "yearFormat": "Maglagay ng taon na apat na digit, halimbawa 1986.",
+      "invalidDate": "Hindi wasto ang petsa ng kapanganakan.",
+      "outOfRange": "Hindi totoo ang petsang ito o nasa labas ito ng sinusuportahang saklaw ng lunar na kalendaryo (1800–2199)."
+    }
+  },
+  "rules": {
+    "segments": "Dapat kumpleto ang 8 sektor sa rule set.",
+    "missingStars": "Kulang ang mga bituin ng trigram na {{trigram}}.",
+    "duplicateStars": "May dalawang bituin sa iisang direksyon ang trigram na {{trigram}}.",
+    "noGroup": "Hindi kabilang sa anumang grupo ang trigram na {{trigram}}.",
+    "homes": "Hindi wasto ang Later Heaven na direksyon ng mga trigram.",
+    "yearRange": "Dapat nasa pagitan ng {{min}} at {{max}} ang taon ng kapanganakan.",
+    "noTrigram": "Walang trigram na numero {{number}} sa rule set."
+  }
+}

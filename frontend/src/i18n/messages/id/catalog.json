@@ -1,0 +1,448 @@
+{
+  "pageTitle": "{{name}} gratis",
+  "groups": {
+    "all": "Semua",
+    "document": "Dokumen",
+    "image": "Gambar",
+    "calc": "Hitung",
+    "money": "Uang",
+    "date": "Tanggal & tenggat",
+    "data": "Data",
+    "construction": "Konstruksi",
+    "home": "Rumah & kehidupan",
+    "tech": "Teknis",
+    "other": "Utilitas lain"
+  },
+  "tips": {
+    "insertPages": "Letakkan file tambahan di tengah kisi halaman untuk menyisipkannya tepat di tempatnya, tanpa perlu menggabungkan ulang dari awal.",
+    "findInScan": "Ctrl+F juga bisa menemukan teks di hasil scan, setelah OCR dijalankan.",
+    "undo": "Ctrl+Z mengurungkan semua tindakan pada halaman: hapus, putar, potong, edit teks.",
+    "rangeSelect": "Tahan Shift lalu klik halaman kedua untuk memilih seluruh rentang halaman di antaranya."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "Kompres video",
+      "description": "Kecilkan ukuran, ekspor MP4 langsung di browser",
+      "synonyms": "kecilkan video, perkecil ukuran video, compress video, kompres video, mp4"
+    },
+    "trim-video": {
+      "name": "Potong video",
+      "description": "Pilih potongan per detik, ekspor video MP4 baru",
+      "synonyms": "trim video, potong klip, cut video, mp4"
+    },
+    "video-gif": {
+      "name": "Buat GIF dari video",
+      "description": "Ubah potongan video pendek menjadi gambar bergerak yang berulang",
+      "synonyms": "gif, gambar bergerak, video ke gif, video to gif"
+    },
+    "extract-audio": {
+      "name": "Ambil audio dari video",
+      "description": "Ambil suara, ekspor MP3, M4A, atau WAV di perangkat",
+      "synonyms": "video ke mp3, musik dari video, extract audio, ambil suara"
+    },
+    "assistant": {
+      "name": "Asisten pemilih alat",
+      "description": "Temukan alat yang cocok dan pakai AI sendiri lewat pertanyaan yang sudah dipratinjau",
+      "synonyms": "asisten ai, tanya cara, rekomendasi alat"
+    },
+    "idea-suggestion": {
+      "name": "Usulkan alat baru",
+      "description": "Kirim ide dan pantau persetujuannya dengan kode tanda terima",
+      "privacyNote": "Isi hanya dikirim saat Anda menekan Kirim usulan",
+      "synonyms": "masukan alat, ide baru, saran fitur, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "Masukan peraturan",
+      "description": "Kirim isi dan URL sumber untuk diperiksa pengelola",
+      "privacyNote": "Isi hanya dikirim saat Anda menekan Kirim usulan",
+      "synonyms": "pembaruan hukum, peraturan baru, masukan data"
+    },
+    "remove-background": {
+      "name": "Hapus latar foto",
+      "description": "Hapus latar warna polos otomatis dan rapikan manual dengan kuas",
+      "synonyms": "hapus background, latar transparan, foto produk, remove background"
+    },
+    "cv": {
+      "name": "Buat CV lamaran kerja",
+      "description": "Susun CV, pilih templat, lalu cetak atau simpan PDF di perangkat",
+      "synonyms": "cv, daftar riwayat hidup, lamaran kerja, resume"
+    },
+    "pdf-password": {
+      "name": "Pasang / hapus kata sandi PDF",
+      "description": "Enkripsi AES-256 atau buka kunci dengan kata sandi yang benar",
+      "synonyms": "kunci pdf, proteksi pdf, buka pdf, password pdf"
+    },
+    "family-calendar": {
+      "name": "Kalender Keluarga",
+      "description": "Simpan jadwal, kegiatan, dan kontak darurat di perangkat; buat cadangan dan ekspor ICS",
+      "synonyms": "kalender keluarga, pengingat, sos, jadwal sekolah"
+    },
+    "address-conversion": {
+      "name": "Ubah alamat pasca-pemekaran wilayah Vietnam",
+      "description": "Cocokkan alamat lama dengan tabel kelurahan/desa lengkap",
+      "privacyNote": "Dicocokkan di perangkat; masukan hanya dikirim jika Anda setuju",
+      "synonyms": "alamat baru vietnam, penggabungan provinsi, ganti nama kelurahan"
+    },
+    "payroll": {
+      "name": "Gaji Gross – Net",
+      "description": "Perkirakan gaji bersih dari parameter yang Anda isi atau paket bertanda tangan",
+      "privacyNote": "Dihitung di perangkat; masukan hanya dikirim jika Anda setuju",
+      "synonyms": "gaji bersih, pajak penghasilan, asuransi, gross net"
+    },
+    "lunar-calendar": {
+      "name": "Kalender lunar – Masehi",
+      "description": "Kalender bulanan lunar – Masehi dengan hari raya, kalender ganzhi, jam baik; konversi tanggal dua arah dan cari hari peringatan wafat",
+      "synonyms": "kalender lunar, imlek, tết, hari peringatan"
+    },
+    "electricity": {
+      "name": "Tagihan listrik, air",
+      "description": "Perkirakan tagihan listrik per blok dan tagihan air dengan tarif yang Anda isi",
+      "privacyNote": "Dihitung di perangkat; masukan hanya dikirim jika Anda setuju",
+      "synonyms": "tagihan listrik, tarif listrik kwh, tagihan air"
+    },
+    "form-templates": {
+      "name": "Templat surat, berita acara",
+      "description": "Susun surat cuti, surat kuasa, dan berita acara serah terima untuk dicetak",
+      "synonyms": "surat cuti, surat kuasa, berita acara serah terima"
+    },
+    "dictation": {
+      "name": "Rekam suara jadi teks",
+      "description": "Dikte bahasa Vietnam dengan pengenalan suara browser",
+      "privacyNote": "Audio dapat dikirim browser ke layanan pengenalan suara milik penyedia browser",
+      "synonyms": "dikte, mikrofon, speech to text, suara ke teks"
+    },
+    "magnifier": {
+      "name": "Kaca pembesar",
+      "description": "Perbesar gambar kamera untuk membaca tulisan kecil",
+      "synonyms": "perbesar kamera, baca tulisan kecil, lup"
+    },
+    "house-estimate": {
+      "name": "Perkiraan biaya bangun rumah",
+      "description": "Konversi luas, isi harga satuan kontraktor untuk memperkirakan biaya",
+      "synonyms": "luas bangunan, rab rumah, biaya bangun rumah, harga satuan"
+    },
+    "number-words": {
+      "name": "Angka ke kata (bahasa Vietnam)",
+      "description": "Tulis jumlah uang dengan kata-kata bahasa Vietnam untuk kuitansi dan kontrak",
+      "synonyms": "terbilang, angka jadi kata, uang dalam kata"
+    },
+    "loan": {
+      "name": "Pinjaman cicilan & tabungan",
+      "description": "Hitung jadwal cicilan utang atau deposito yang diperpanjang",
+      "synonyms": "pinjaman bank, cicilan, bunga pinjaman, kpr"
+    },
+    "unit-price": {
+      "name": "Bandingkan harga per satuan",
+      "description": "Samakan dua produk ke jumlah yang sama untuk membandingkan harga",
+      "synonyms": "harga per kg, harga per liter, belanja"
+    },
+    "study": {
+      "name": "Konversi nilai & seleksi masuk",
+      "description": "Konversi nilai dan hitung prioritas seleksi masuk sebagai acuan",
+      "synonyms": "ipk skala 4, nilai skala 10, nilai prioritas"
+    },
+    "pomodoro": {
+      "name": "Pengatur waktu fokus",
+      "description": "Bagi waktu fokus dan istirahat per sesi",
+      "synonyms": "timer, fokus, pomodoro"
+    },
+    "group-split": {
+      "name": "Bagi uang kelompok",
+      "description": "Hitung siapa harus transfer ke siapa setelah pengeluaran bersama",
+      "synonyms": "patungan, split bill, bagi tagihan, uang jalan-jalan"
+    },
+    "legacy-font": {
+      "name": "Konversi font & diakritik Vietnam",
+      "description": "Ubah TCVN3, VNI, dan normalkan diakritik ke Unicode",
+      "synonyms": "vni ke unicode, tcvn3 ke unicode, hapus diakritik"
+    },
+    "read-aloud": {
+      "name": "Bacakan teks",
+      "description": "Pakai suara pembaca perangkat untuk mendengarkan teks",
+      "synonyms": "text to speech, teks ke suara, bacakan"
+    },
+    "vietqr": {
+      "name": "VietQR transfer bank",
+      "description": "Buat kode QR transfer dari kode BIN dan nomor rekening",
+      "synonyms": "qr bank, napas, kode transfer, vietqr"
+    },
+    "invoice-xml": {
+      "name": "Baca faktur elektronik XML",
+      "description": "Lihat kolom-kolomnya dan ekspor daftar barang dari XML",
+      "synonyms": "faktur xml, e-faktur, daftar faktur, tt78"
+    },
+    "remove-metadata": {
+      "name": "Hapus lokasi di foto",
+      "description": "Gambar ulang foto untuk menghapus EXIF, GPS, dan info kamera asli",
+      "synonyms": "hapus exif, hapus gps, sembunyikan lokasi foto, metadata"
+    },
+    "collage": {
+      "name": "Kolase foto",
+      "description": "Gabungkan 2–9 foto menjadi kisi PNG",
+      "synonyms": "collage, kolase, grid foto, gabung foto"
+    },
+    "message-risk": {
+      "name": "Cek pesan, tautan mencurigakan",
+      "description": "Saring tanda penipuan tanpa membuka tautannya",
+      "synonyms": "penipuan, phishing, sms palsu, link mencurigakan"
+    },
+    "flashcards": {
+      "name": "Kartu hafalan",
+      "description": "Buat dan ulangi kartu dengan kotak Leitner di perangkat",
+      "synonyms": "flashcard, hafalan kosakata, kotak leitner"
+    },
+    "scan-to-pdf": {
+      "name": "Pindai gambar → PDF",
+      "description": "Gabungkan foto menjadi satu file PDF",
+      "pageTitle": "Ubah gambar ke PDF gratis",
+      "synonyms": "jpg ke pdf, gambar jadi pdf, foto dokumen, image to pdf, scan, gabung foto"
+    },
+    "merge-pdf": {
+      "name": "Gabung PDF",
+      "description": "Gabungkan beberapa file PDF menjadi satu",
+      "synonyms": "gabung pdf, satukan pdf, kombinasi, merge"
+    },
+    "split-pdf": {
+      "name": "Pisah PDF",
+      "description": "Pisahkan halaman, ambil halaman ke file terpisah",
+      "synonyms": "potong pdf, bagi pdf, ambil halaman, split"
+    },
+    "compress-pdf": {
+      "name": "Kompres PDF",
+      "description": "Kecilkan ukuran file PDF",
+      "synonyms": "perkecil pdf, pdf ringan, kompres pdf, compress"
+    },
+    "convert-file": {
+      "name": "Konversi file",
+      "description": "PDF ke Word, Excel, gambar",
+      "pageTitle": "Ubah PDF ke Word gratis",
+      "synonyms": "pdf to word, docx, xlsx, pdf ke excel, pdf ke jpg, pdf ke gambar"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Gambar",
+      "description": "Setiap halaman PDF menjadi satu gambar JPG, PNG",
+      "synonyms": "pdf ke jpg, pdf ke png, pdf to jpg, ekspor gambar"
+    },
+    "organize-pdf": {
+      "name": "Atur PDF",
+      "description": "Ubah urutan, putar, hapus halaman",
+      "synonyms": "urutkan halaman, putar halaman, hapus halaman, atur ulang halaman"
+    },
+    "page-numbers": {
+      "name": "Nomor halaman",
+      "description": "Tambahkan nomor halaman ke file PDF",
+      "synonyms": "nomor halaman, page number, footer"
+    },
+    "stamp-pdf": {
+      "name": "Cap PDF",
+      "description": "Cap teks atau logo di halaman-halaman",
+      "synonyms": "watermark, logo, salinan, tanda air, cap"
+    },
+    "redact-pdf": {
+      "name": "Sensor info PDF",
+      "description": "Hapus permanen area sensitif dari file",
+      "synonyms": "hitamkan, redact, sembunyikan info, hapus teks, sensor"
+    },
+    "view-pdf": {
+      "name": "Lihat PDF",
+      "description": "Lihat, cari teks, beri catatan di halaman",
+      "synonyms": "baca pdf, buka pdf, pdf viewer"
+    },
+    "ocr": {
+      "name": "OCR teks",
+      "description": "Kenali teks bahasa Vietnam pada hasil scan",
+      "synonyms": "pengenalan teks, pdf bisa dicari, searchable, ocr"
+    },
+    "compare": {
+      "name": "Bandingkan dokumen",
+      "description": "Bandingkan teks dua PDF, tunjukkan baris yang berbeda",
+      "synonyms": "cocokkan, diff, bandingkan pdf, perbedaan, versi lama versi baru"
+    },
+    "sign": {
+      "name": "Sisipkan tanda tangan",
+      "description": "Gambar tangan atau sisipkan gambar tanda tangan di halaman",
+      "synonyms": "tanda tangan dokumen, ttd, tanda tangan, tanda tangan pdf, sign"
+    },
+    "edit-pdf": {
+      "name": "Edit PDF",
+      "description": "Edit teks, beri tanda, atur halaman",
+      "synonyms": "edit pdf, ubah pdf, putar halaman, hapus halaman, tambah teks"
+    },
+    "image-to-text": {
+      "name": "Gambar → Teks",
+      "description": "Ambil teks bahasa Vietnam dari foto",
+      "synonyms": "ocr gambar, salin teks dari gambar, ekstrak teks, image to text"
+    },
+    "measure-image": {
+      "name": "Ukur di gambar",
+      "description": "Ukur panjang dan luas di gambar",
+      "synonyms": "penggaris, ukur gambar kerja, skala"
+    },
+    "convert-image": {
+      "name": "Konversi gambar",
+      "description": "Ubah antara JPG, PNG, WebP",
+      "synonyms": "ganti format gambar, png ke jpg, jpg ke png, webp ke jpg"
+    },
+    "compress-image": {
+      "name": "Kompres gambar",
+      "description": "Kecilkan ukuran gambar",
+      "synonyms": "perkecil gambar, foto ringan, kompres foto, resize"
+    },
+    "crop-image": {
+      "name": "Potong & sesuaikan gambar",
+      "description": "Potong, putar, atur terang gelap",
+      "synonyms": "crop, putar gambar, balik gambar, kecerahan"
+    },
+    "batch-image": {
+      "name": "Gambar massal",
+      "description": "Ubah ukuran, ganti nama, ubah format sekaligus",
+      "synonyms": "resize foto, ganti nama foto, perkecil foto, batch, banyak foto"
+    },
+    "mark-image": {
+      "name": "Sensor & cap gambar",
+      "description": "Sensor informasi, beri cap teks pada gambar",
+      "synonyms": "watermark, hitamkan, sensor wajah, sensor nomor, cap hak cipta"
+    },
+    "id-photo": {
+      "name": "Pas foto & Cetak foto",
+      "description": "Potong pas foto, susun banyak salinan di lembar cetak",
+      "synonyms": "pas foto 3x4, pas foto 4x6, foto paspor, cetak pas foto, passport"
+    },
+    "qr-create": {
+      "name": "Buat kode QR",
+      "description": "Buat kode QR dari teks atau tautan",
+      "synonyms": "kode qr, qr link, qr code"
+    },
+    "barcode-create": {
+      "name": "Buat barcode",
+      "description": "EAN-13, Code 128, ITF-14 — satu kode atau massal",
+      "synonyms": "barcode, kode batang, ean, code 128, code 39, itf, cetak label, kode barang"
+    },
+    "qr-read": {
+      "name": "Baca kode QR/Barcode",
+      "description": "Pindai kode dari gambar atau kamera",
+      "synonyms": "pindai qr, scan qr, barcode, scanner"
+    },
+    "quick-calc": {
+      "name": "Hitung cepat",
+      "description": "Luas, volume, massa",
+      "synonyms": "kalkulator, m2, m3, beton"
+    },
+    "money-calc": {
+      "name": "Hitung uang & pajak",
+      "description": "Persen, PPN, diskon, laba kotor, bagi uang",
+      "synonyms": "ppn, vat, pajak, persen, diskon, margin, markup, bagi tagihan, laba"
+    },
+    "date-calc": {
+      "name": "Hitung tanggal & tenggat",
+      "description": "Hitung hari, hari kerja, tambah kurang hari",
+      "synonyms": "hitung hari, tenggat, deadline, hari kerja, berapa hari"
+    },
+    "house-orientation": {
+      "name": "Arah rumah & kompas",
+      "description": "Ukur arah rumah, letakkan kompas di foto atau gambar denah",
+      "synonyms": "kompas, arah rumah, arah pintu, fengsui, feng shui, delapan rumah, arah muka rumah, sinar sore"
+    },
+    "quick-note": {
+      "name": "Catatan cepat",
+      "description": "Catatan dan daftar tugas yang disimpan di perangkat",
+      "synonyms": "note, catatan, todo, daftar tugas"
+    },
+    "char-count": {
+      "name": "Hitung karakter",
+      "description": "Hitung karakter, kata, baris",
+      "synonyms": "hitung kata, word count, jumlah karakter"
+    },
+    "unit-convert": {
+      "name": "Konversi satuan",
+      "description": "Panjang, luas, massa",
+      "synonyms": "ubah satuan, inci, kaki, meter, konversi"
+    },
+    "color": {
+      "name": "Warna",
+      "description": "Pilih warna, ubah kode warna",
+      "synonyms": "palet warna, hex, rgb, color picker"
+    },
+    "random-code": {
+      "name": "Buat kode acak",
+      "description": "Kata sandi, kode pesanan, kode voucher",
+      "synonyms": "password, kata sandi, buat kode, acak"
+    },
+    "construction-price": {
+      "name": "Harga konstruksi",
+      "description": "Cari harga satuan, material, dan upah tenaga kerja per daerah"
+    },
+    "planning-lookup": {
+      "name": "Tata ruang",
+      "description": "Cari informasi tata ruang dan ketentuan pemanfaatan lahan"
+    },
+    "construction-law": {
+      "name": "Legalitas konstruksi",
+      "description": "Cari prosedur, dokumen, dan formulir hukum"
+    },
+    "construction-standards": {
+      "name": "Standar konstruksi",
+      "description": "Cari dan lihat cepat standar serta regulasi teknis"
+    },
+    "dossier-check": {
+      "name": "Periksa berkas",
+      "description": "Periksa kesalahan umum dalam berkas desain dan gambar kerja"
+    },
+    "structure-calc": {
+      "name": "Hitung struktur cepat",
+      "description": "Hitung penampang dan beban dasar"
+    },
+    "drawing-convert": {
+      "name": "Konversi gambar kerja",
+      "description": "Ubah DWG, DXF ke PDF dan ukur dimensinya"
+    },
+    "drawing-area": {
+      "name": "Ukur luas di gambar kerja",
+      "description": "Ukur luas dan keliling pada gambar kerja PDF"
+    },
+    "site-diary": {
+      "name": "Buku harian lapangan",
+      "description": "Ambil foto, catat, dan tandai langsung di lokasi proyek"
+    },
+    "supplier-lookup": {
+      "name": "Cari pemasok",
+      "description": "Temukan pemasok material dan peralatan konstruksi"
+    },
+    "family-reminders": {
+      "name": "Pengingat",
+      "description": "Ingatkan minum obat, antar jemput, pekerjaan rumah, janji"
+    },
+    "family-share": {
+      "name": "Berbagi dengan keluarga",
+      "description": "Undang keluarga untuk melihat dan memperbarui jadwal bersama"
+    },
+    "family-health": {
+      "name": "Kesehatan keluarga",
+      "description": "Catat jadwal periksa dan pengingat obat untuk setiap orang"
+    },
+    "house-chores": {
+      "name": "Daftar pekerjaan rumah",
+      "description": "Bagi pekerjaan rumah, pantau yang sudah selesai"
+    },
+    "family-budget": {
+      "name": "Pengeluaran keluarga",
+      "description": "Catat pemasukan dan pengeluaran, pantau anggaran sederhana"
+    },
+    "family-album": {
+      "name": "Album keluarga",
+      "description": "Simpan foto dan video momen keluarga"
+    },
+    "special-days": {
+      "name": "Hari istimewa",
+      "description": "Ingatkan ulang tahun, hari jadi, hari peringatan wafat, hari raya"
+    },
+    "honor-board": {
+      "name": "Papan penghargaan",
+      "description": "Apresiasi kontributor data yang sudah diverifikasi"
+    },
+    "code-manager": {
+      "name": "Kelola kode",
+      "description": "Buat daftar kode QR, barcode, dan ekspor file"
+    }
+  }
+}

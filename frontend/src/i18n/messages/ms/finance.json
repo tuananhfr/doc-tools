@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "Lihat sumber data",
+    "vatPercent": "Cukai (%)"
+  },
+  "electricity": {
+    "resultLabel": "Anggaran bil",
+    "waterBreakdown": "Caj air: {{subtotal}} đ · Fi: {{fee}} đ · Cukai: {{vat}} đ. Setiap satu dikira berasingan berdasarkan caj air asas.",
+    "waterHint": "Masukkan penggunaan air dan harga seunit daripada bil terkini anda.",
+    "electricityBreakdown": "Caj elektrik sebelum cukai: {{subtotal}} đ · Cukai {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "Blok hingga kWh",
+      "units": "Bilangan kWh",
+      "price": "Harga/kWh",
+      "amount": "Amaun",
+      "rest": "Selebihnya"
+    },
+    "electricityHint": "Masukkan bacaan meter dan jadual harga mengikut bil atau kontrak. Gunakan tanda * pada baris terakhir untuk baki selebihnya.",
+    "tariffVerified": "Jadual harga yang ditandatangani, berkuat kuasa mulai {{date}}. Sumber: {{source}}.",
+    "tariffManual": "Jadual harga dimasukkan oleh anda; alat ini tidak mengesahkan bahawa ini harga elektrik semasa.",
+    "vatVerified": "Kadar cukai {{percent}}% yang ditandatangani, berkuat kuasa mulai {{date}}. Sumber: {{source}}.",
+    "vatManual": "Kadar cukai dimasukkan oleh anda.",
+    "notIncluded": "Belum termasuk fi lain atau cara pembundaran oleh pembekal.",
+    "panelTitle": "Bil elektrik dan air",
+    "billType": "Jenis bil",
+    "modes": {
+      "electricity": "Elektrik",
+      "water": "Air"
+    },
+    "water": {
+      "cubicMeters": "Penggunaan air (m³)",
+      "price": "Harga seunit (đ/m³)",
+      "fee": "Fi saliran / alam sekitar (%)"
+    },
+    "kwh": "Penggunaan elektrik (kWh)",
+    "households": "Bilangan kuota isi rumah yang berkongsi meter",
+    "tiers": "Jadual harga: setiap baris ialah “had kWh, harga đ/kWh”",
+    "applyTariff": "Gunakan jadual harga yang ditandatangani",
+    "applyVat": "Gunakan kadar cukai yang ditandatangani",
+    "ruleLabel": "jadual harga elektrik",
+    "ruleNone": "Belum ada jadual harga elektrik yang ditandatangani dan masih berkuat kuasa dalam sistem.",
+    "vatRuleLabel": "kadar VAT"
+  },
+  "groupSplit": {
+    "resultLabel": "Pindahan wang untuk menyelesaikan baki",
+    "balanced": "Sudah seimbang",
+    "note": "Setiap perbelanjaan dibahagi sama rata antara peserta perbelanjaan itu. Jumlah pindahan dibundarkan kepada đồng terdekat.",
+    "membersTitle": "Ahli",
+    "onePerLine": "Seorang setiap baris",
+    "expensesTitle": "Perbelanjaan",
+    "addExpense": "Tambah perbelanjaan",
+    "payer": "Dibayar oleh",
+    "choosePerson": "Pilih orang",
+    "amount": "Jumlah (đ)",
+    "participants": "Dikongsi bersama",
+    "removeExpense": "Buang perbelanjaan"
+  },
+  "loan": {
+    "totalPayment": "Jumlah perlu dibayar",
+    "finalBalance": "Baki akhir",
+    "interest": "Faedah: {{amount}} đ",
+    "firstPayment": "Bayaran pertama: {{amount}} đ",
+    "downloadCsv": "Muat turun jadual CSV",
+    "table": {
+      "period": "Tempoh",
+      "principal": "Pokok",
+      "interest": "Faedah",
+      "balance": "Baki hutang"
+    },
+    "savingsNote": "Faedah {{amount}} đ selepas {{months}} bulan. Setiap tempoh mendapat faedah mudah, yang dicampur ke dalam pokok pada akhir tempoh apabila diperbaharui.",
+    "hint": "Masukkan jumlah positif, kadar faedah tidak negatif dan tempoh yang sah.",
+    "disclaimer": "Untuk rujukan sahaja; jadual sebenar bergantung pada kontrak dan cara pembundaran pemberi pinjaman.",
+    "loanTitle": "Pinjaman",
+    "savingsTitle": "Simpanan",
+    "mode": "Mod",
+    "modes": {
+      "loan": "Pinjaman ansuran",
+      "savings": "Simpanan tetap diperbaharui"
+    },
+    "loanAmount": "Jumlah pinjaman (đ)",
+    "savingsAmount": "Jumlah simpanan (đ)",
+    "rate": "Kadar faedah tahunan (%)",
+    "loanTerm": "Tempoh (bulan)",
+    "savingsTerm": "Tempoh matang (bulan)",
+    "method": "Cara bayaran pokok",
+    "methods": {
+      "annuity": "Bayaran hampir sama rata",
+      "equalPrincipal": "Pokok sama rata"
+    },
+    "renewals": "Bilangan pembaharuan"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Pelepasan diri (đ)",
+      "dependentDeduct": "Pelepasan bagi setiap tanggungan (đ)",
+      "referenceSalary": "Gaji rujukan untuk had insurans (đ)",
+      "minWage1": "Gaji minimum wilayah I (đ)",
+      "minWage2": "Gaji minimum wilayah II (đ)",
+      "minWage3": "Gaji minimum wilayah III (đ)",
+      "minWage4": "Gaji minimum wilayah IV (đ)",
+      "employeeSocial": "Pekerja: insurans sosial (%)",
+      "employeeHealth": "Pekerja: insurans kesihatan (%)",
+      "employeeUnemployment": "Pekerja: insurans pengangguran (%)",
+      "employerSocial": "Majikan: insurans sosial (%)",
+      "employerHealth": "Majikan: insurans kesihatan (%)",
+      "employerUnemployment": "Majikan: insurans pengangguran (%)"
+    },
+    "resultLabel": "Keputusan rujukan",
+    "net": "Gaji bersih {{amount}} đ",
+    "missingParams": "Parameter belum lengkap",
+    "rows": {
+      "gross": "Kasar",
+      "employeeSocial": "Insurans sosial pekerja",
+      "employeeHealth": "Insurans kesihatan pekerja",
+      "employeeUnemployment": "Insurans pengangguran pekerja",
+      "deduction": "Pelepasan",
+      "taxable": "Pendapatan bercukai",
+      "bracket": "Kadar {{level}} · {{rate}}%",
+      "tax": "Cukai pendapatan peribadi",
+      "employerTotal": "Caruman majikan",
+      "employerCost": "Jumlah kos majikan"
+    },
+    "hint": "Isi semua parameter daripada set peraturan yang ditandatangani atau daripada slip gaji, kontrak dan panduan akauntan anda.",
+    "paramsVerified": "Pakej parameter yang ditandatangani, berkuat kuasa mulai {{date}}. Sumber: {{source}}.",
+    "paramsManual": "Parameter dimasukkan oleh anda; alat ini tidak mengesahkan bahawa ini peraturan semasa.",
+    "notSettlement": "Keputusan ini tidak menggantikan penyelesaian cukai sebenar.",
+    "panelTitle": "Kalkulator gaji kasar – bersih",
+    "direction": "Arah pengiraan",
+    "directions": {
+      "gross": "Kasar → Bersih",
+      "net": "Bersih → Kasar"
+    },
+    "grossSalary": "Gaji kasar (đ/bulan)",
+    "netSalary": "Gaji bersih yang diingini (đ/bulan)",
+    "dependents": "Tanggungan",
+    "region": "Wilayah",
+    "regionOption": "Wilayah {{region}}",
+    "insuranceBase": "Gaji untuk caruman insurans (đ, biarkan kosong = gaji kasar)",
+    "exempt": "Elaun dikecualikan cukai dalam gaji kasar (đ)",
+    "applyParams": "Gunakan parameter yang ditandatangani",
+    "ruleLabel": "parameter penggajian",
+    "ruleNone": "Belum ada pakej peraturan gaji yang ditandatangani dan masih berkuat kuasa dalam sistem.",
+    "enterParams": "Masukkan parameter penggajian",
+    "brackets": "Jadual cukai: “had pendapatan bercukai (đ), kadar cukai (%)”; gunakan * pada baris terakhir"
+  },
+  "unitPrice": {
+    "resultLabel": "Perbandingan harga seunit",
+    "equal": "Harga sama",
+    "cheaper": "Produk {{index}} lebih murah",
+    "perUnit": "Produk {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "Perbezaan {{percent}}% berbanding harga yang lebih tinggi.",
+    "hint": "Masukkan harga tidak negatif dan kuantiti positif untuk kedua-dua produk, dalam unit yang sama.",
+    "panelTitle": "Dua produk",
+    "price": "Harga produk {{index}} (đ)",
+    "quantity": "Kuantiti produk {{index}} ({{unit}})",
+    "unit": "Unit kuantiti",
+    "units": {
+      "kg": "kg",
+      "liter": "liter",
+      "piece": "biji"
+    }
+  }
+}

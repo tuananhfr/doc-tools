@@ -1,4 +1,5 @@
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import {
   MARKUP_COLOR,
@@ -13,42 +14,30 @@ import {
 } from '../types/markup.types'
 import { rgbCss } from '../utils/decorations'
 import type { MarkupStyle } from '../utils/markup-draft'
-import { MARKUP_COLORS, STAMP_PRESETS } from '../utils/markup-geometry'
+import { MARKUP_COLORS, stampLabel } from '../utils/markup-geometry'
 
-const TOOLS: Record<MarkupTool, { icon: string; label: string; hint?: string }> = {
-  select: { icon: 'cursor', label: 'Chọn / di chuyển' },
-  pen: { icon: 'pencil', label: 'Bút' },
-  line: { icon: 'slash-lg', label: 'Đường thẳng' },
-  arrow: { icon: 'arrow-up-right', label: 'Mũi tên' },
-  rect: { icon: 'square', label: 'Khung chữ nhật' },
-  ellipse: { icon: 'circle', label: 'Khung tròn' },
-  cloud: { icon: 'cloud', label: 'Đám mây (vùng sửa)' },
-  highlight: { icon: 'highlighter', label: 'Tô sáng', hint: 'Tô sáng — kéo qua chữ để tô theo dòng, kéo ngoài chữ để tô một vùng' },
-  underline: { icon: 'type-underline', label: 'Gạch chân', hint: 'Gạch chân — kéo qua chữ để gạch theo dòng' },
-  strikeout: { icon: 'type-strikethrough', label: 'Gạch ngang', hint: 'Gạch ngang — kéo qua chữ để gạch theo dòng' },
-  editText: { icon: 'input-cursor-text', label: 'Sửa chữ', hint: 'Sửa chữ — bấm vào dòng chữ để gõ lại, kéo để chọn một đoạn' },
-  cover: { icon: 'eraser', label: 'Che chữ', hint: 'Che chữ — kéo qua chữ hoặc một vùng để phủ màu nền lên' },
-  redact: {
-    icon: 'square-fill',
-    label: 'Xoá thật',
-    hint: 'Xoá thật — kéo qua chữ hoặc một vùng; khi xuất, nội dung dưới khung bị xoá hẳn khỏi tệp',
-  },
-  text: { icon: 'fonts', label: 'Chữ' },
-  note: { icon: 'sticky', label: 'Ghi chú' },
-  stamp: { icon: 'patch-check', label: 'Dấu duyệt' },
+type HintedTool = 'highlight' | 'underline' | 'strikeout' | 'editText' | 'cover' | 'redact'
+
+const TOOLS: Record<MarkupTool, { icon: string; hint?: HintedTool }> = {
+  select: { icon: 'cursor' },
+  pen: { icon: 'pencil' },
+  line: { icon: 'slash-lg' },
+  arrow: { icon: 'arrow-up-right' },
+  rect: { icon: 'square' },
+  ellipse: { icon: 'circle' },
+  cloud: { icon: 'cloud' },
+  highlight: { icon: 'highlighter', hint: 'highlight' },
+  underline: { icon: 'type-underline', hint: 'underline' },
+  strikeout: { icon: 'type-strikethrough', hint: 'strikeout' },
+  editText: { icon: 'input-cursor-text', hint: 'editText' },
+  cover: { icon: 'eraser', hint: 'cover' },
+  redact: { icon: 'square-fill', hint: 'redact' },
+  text: { icon: 'fonts' },
+  note: { icon: 'sticky' },
+  stamp: { icon: 'patch-check' },
 }
 
-const COLOR_LABEL: Record<MarkupColor, string> = {
-  red: 'Đỏ',
-  orange: 'Cam',
-  yellow: 'Vàng',
-  green: 'Xanh lá',
-  blue: 'Xanh dương',
-  black: 'Đen',
-}
-
-const WIDTH_LABEL: Record<StrokeWidth, string> = { 1: 'Nét mảnh', 2: 'Nét vừa', 4: 'Nét đậm' }
-const TEXT_SIZE_LABEL: Record<StrokeWidth, string> = { 1: 'Chữ nhỏ', 2: 'Chữ vừa', 4: 'Chữ lớn' }
+const WIDTH_KEY: Record<StrokeWidth, 'thin' | 'medium' | 'thick'> = { 1: 'thin', 2: 'medium', 4: 'thick' }
 
 const WITH_WIDTH: ReadonlySet<string> = new Set(['pen', 'line', 'arrow', 'rect', 'ellipse', 'cloud', 'underline', 'strikeout', 'text'])
 
@@ -74,24 +63,30 @@ interface MarkupToolbarProps {
 }
 
 export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUndo, canRedo, onTool, onStyle, onDelete, onUndo, onRedo, onDone }: MarkupToolbarProps) {
+  const { t } = useTranslation('pdf')
   const fromPage = target !== null && FROM_PAGE.has(target)
   // Che chữ và dấu sửa chữ cũ chỉ phủ lên bề mặt — phải nói ra; sửa chữ thì tuỳ trang có viết lại được không.
   const surface = fromPage && !(target === 'editText' && realEdit)
   const redact = target === 'redact'
   const showColor = target !== null && target !== 'stamp' && !fromPage && !redact
   const showWidth = target !== null && WITH_WIDTH.has(target)
-  const widthLabels = target === 'text' ? TEXT_SIZE_LABEL : WIDTH_LABEL
+  const widthLabel = (width: StrokeWidth) => t(target === 'text' ? `markup.textSize.${WIDTH_KEY[width]}` : `markup.width.${WIDTH_KEY[width]}`)
+  const toolHint = (id: MarkupTool) => {
+    const hint = TOOLS[id].hint
+    return hint ? t(`markup.hint.${hint}`) : t(`markup.tool.${id}`)
+  }
+  const colorLabel = (color: MarkupColor) => t(`markup.color.${color}`)
 
   return (
-    <div className="erp-doc-markbar" role="toolbar" aria-label="Công cụ đánh dấu">
-      <div className="erp-doc-markbar__group" role="group" aria-label="Công cụ">
+    <div className="erp-doc-markbar" role="toolbar" aria-label={t('markup.toolbar')}>
+      <div className="erp-doc-markbar__group" role="group" aria-label={t('markup.tools')}>
         {Object.values(MARKUP_TOOL).map((id) => (
           <button
             key={id}
             type="button"
             className="erp-doc-tool erp-doc-markbar__tool"
-            title={TOOLS[id].hint ?? TOOLS[id].label}
-            aria-label={TOOLS[id].label}
+            title={toolHint(id)}
+            aria-label={t(`markup.tool.${id}`)}
             aria-pressed={tool === id}
             onClick={() => onTool(id)}
           >
@@ -101,14 +96,14 @@ export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUnd
       </div>
 
       {showColor ? (
-        <div className="erp-doc-markbar__group" role="group" aria-label="Màu">
+        <div className="erp-doc-markbar__group" role="group" aria-label={t('stamp.color')}>
           {Object.values(MARKUP_COLOR).map((color) => (
             <button
               key={color}
               type="button"
               className="erp-doc-markbar__swatch"
-              title={COLOR_LABEL[color]}
-              aria-label={`Màu ${COLOR_LABEL[color].toLowerCase()}`}
+              title={colorLabel(color)}
+              aria-label={t('markup.colorAria', { color: colorLabel(color).toLowerCase() })}
               aria-pressed={style.color === color}
               onClick={() => onStyle({ color })}
             >
@@ -119,14 +114,14 @@ export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUnd
       ) : null}
 
       {showWidth ? (
-        <div className="erp-doc-markbar__group" role="group" aria-label={target === 'text' ? 'Cỡ chữ' : 'Độ dày nét'}>
+        <div className="erp-doc-markbar__group" role="group" aria-label={target === 'text' ? t('shared.fontSize') : t('markup.strokeWidth')}>
           {Object.values(STROKE_WIDTH).map((width) => (
             <button
               key={width}
               type="button"
               className="erp-doc-tool erp-doc-markbar__width"
-              title={widthLabels[width]}
-              aria-label={widthLabels[width]}
+              title={widthLabel(width)}
+              aria-label={widthLabel(width)}
               aria-pressed={style.width === width}
               onClick={() => onStyle({ width })}
             >
@@ -145,14 +140,14 @@ export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUnd
       {surface ? (
         <p className="erp-doc-markbar__notice">
           <Icon name="info-circle" />
-          Chỉ che trên bề mặt — chữ gốc vẫn còn trong tệp.
+          {t('markup.surfaceNotice')}
         </p>
       ) : null}
 
       {redact ? (
         <p className="erp-doc-markbar__notice erp-doc-markbar__notice--redact">
           <Icon name="exclamation-triangle" />
-          Xoá thật: phần dưới khung đen bị xoá hẳn khỏi tệp khi xuất.
+          {t('markup.redactNotice')}
         </p>
       ) : null}
 
@@ -160,31 +155,31 @@ export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUnd
         <Form.Select
           size="sm"
           className="erp-doc-markbar__preset"
-          aria-label="Mẫu dấu"
+          aria-label={t('markup.preset')}
           value={style.preset}
           onChange={(event) => onStyle({ preset: event.target.value as StampPreset })}
         >
           {Object.values(STAMP_PRESET).map((preset) => (
             <option key={preset} value={preset}>
-              {STAMP_PRESETS[preset].label}
+              {stampLabel(preset)}
             </option>
           ))}
         </Form.Select>
       ) : null}
 
-      <div className="erp-doc-markbar__group erp-doc-markbar__actions" role="group" aria-label="Thao tác">
-        <button type="button" className="erp-doc-tool erp-doc-tool--danger" title="Xoá dấu đang chọn (Delete)" aria-label="Xoá dấu đang chọn" disabled={!canDelete} onClick={onDelete}>
+      <div className="erp-doc-markbar__group erp-doc-markbar__actions" role="group" aria-label={t('markup.actions')}>
+        <button type="button" className="erp-doc-tool erp-doc-tool--danger" title={t('markup.deleteHint')} aria-label={t('markup.delete')} disabled={!canDelete} onClick={onDelete}>
           <Icon name="trash3" />
         </button>
-        <button type="button" className="erp-doc-tool" title="Hoàn tác (Ctrl+Z)" aria-label="Hoàn tác" disabled={!canUndo} onClick={onUndo}>
+        <button type="button" className="erp-doc-tool" title={t('toolbar.undoHint')} aria-label={t('toolbar.undo')} disabled={!canUndo} onClick={onUndo}>
           <Icon name="arrow-counterclockwise" />
         </button>
-        <button type="button" className="erp-doc-tool" title="Làm lại (Ctrl+Y)" aria-label="Làm lại" disabled={!canRedo} onClick={onRedo}>
+        <button type="button" className="erp-doc-tool" title={t('toolbar.redoHint')} aria-label={t('toolbar.redo')} disabled={!canRedo} onClick={onRedo}>
           <Icon name="arrow-clockwise" />
         </button>
         <button type="button" className="erp-doc-tool erp-doc-markbar__done" onClick={onDone}>
           <Icon name="check-lg" />
-          <span>Xong</span>
+          <span>{t('markup.done')}</span>
         </button>
       </div>
     </div>

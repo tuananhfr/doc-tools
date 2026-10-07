@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { translate } from '@/i18n/runtime'
 import { loadFamilySpace, saveFamilySpace } from '../storage/family-store'
 import { type FamilySpace, validateFamilySpace } from '../core/family'
 
@@ -11,7 +12,7 @@ export function useFamilySpace() {
   const pending = useRef(0)
   useEffect(() => {
     let mounted = true
-    void loadFamilySpace().then((value) => { if (mounted) { current.current = value; setSpace(value) } }).catch(() => { if (mounted) setError('Không mở được dữ liệu trên thiết bị. Kiểm tra quyền lưu trữ của trình duyệt.') })
+    void loadFamilySpace().then((value) => { if (mounted) { current.current = value; setSpace(value) } }).catch(() => { if (mounted) setError(translate('family:space.loadFailed')) })
     return () => { mounted = false }
   }, [])
   const persist = useCallback(async (next: FamilySpace, failure: string) => {
@@ -28,12 +29,12 @@ export function useFamilySpace() {
     const next = change(current.current)
     if (!validateFamilySpace(next)) throw new Error('Invalid family data')
     current.current = next
-    await persist(next, 'Không lưu được thay đổi. Hãy xuất bản sao lưu và kiểm tra dung lượng thiết bị.')
+    await persist(next, translate('family:space.saveFailed'))
   }, [persist])
   const replace = useCallback(async (next: FamilySpace) => {
     if (!validateFamilySpace(next)) throw new Error('Invalid family backup')
     current.current = next
-    await persist(next, 'Không khôi phục được bản sao lưu.')
+    await persist(next, translate('family:space.restoreFailed'))
   }, [persist])
   return { space, error, saving, update, replace }
 }

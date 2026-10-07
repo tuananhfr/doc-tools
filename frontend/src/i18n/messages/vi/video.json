@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Bắt đầu (giây)",
+    "end": "Kết thúc (giây)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Đang tải bộ xử lý…",
+      "reading": "Đang đọc video…",
+      "processing": "Đang xử lý video…",
+      "saving": "Đang chuẩn bị kết quả…"
+    },
+    "chooseFailed": "Không chọn được video.",
+    "result": "Kết quả",
+    "noOutput": "Chưa có tệp mới",
+    "idle": "Chọn video, chỉnh thiết lập rồi bấm xử lý.",
+    "progressLabel": "Tiến trình xử lý video",
+    "progressEstimate": "{{percent}}% · Tiến trình ước tính",
+    "processing": "Đang xử lý…",
+    "cancel": "Hủy xử lý",
+    "smaller": "Nhỏ hơn bản gốc {{percent}}%.",
+    "notSmaller": "Bản mới không nhỏ hơn bản gốc. Video đã nén sẵn có thể tăng dung lượng; thử mức nén mạnh hơn.",
+    "outputVideo": "Video kết quả",
+    "outputAudio": "Âm thanh kết quả",
+    "outputGif": "Ảnh GIF kết quả",
+    "download": "Tải kết quả",
+    "panelTitle": "Video của bạn",
+    "chooseVideo": "Chọn một video",
+    "limits": "Tối đa 100 MB, 10 phút và 4K. Trên điện thoại, nên dùng đoạn ngắn dưới 30 MB. Không tải tệp lên máy chủ.",
+    "unsupported": "Trình duyệt chưa hỗ trợ xử lý video. Hãy thử trình duyệt mới trên máy tính.",
+    "seconds": "{{seconds}} giây",
+    "sourceVideo": "Video gốc",
+    "playbackHint": "Nếu trình duyệt không phát được bản gốc, bạn vẫn có thể thử xử lý. Bộ xử lý sẽ kiểm tra codec và thời lượng.",
+    "settingsLegend": "Thiết lập xử lý video",
+    "engineNote": "Lần đầu bấm xử lý sẽ tải thêm bộ xử lý khoảng 32 MB. Tác vụ có thể chậm hoặc thiếu bộ nhớ trên điện thoại. Kết quả không giữ metadata của tệp gốc.",
+    "license": "Giấy phép và mã nguồn FFmpeg GPL"
+  },
+  "task": {
+    "done": "Đã tạo tệp mới. Xem trước và tải kết quả bên dưới.",
+    "failed": "Không xử lý được video."
+  },
+  "compress": {
+    "action": "Nén video",
+    "note": "Xuất MP4 H.264/AAC. Nén làm giảm chất lượng; dung lượng cuối phụ thuộc nội dung và độ nén của bản gốc.",
+    "level": "Mức nén",
+    "light": "Nhẹ · ưu tiên hình ảnh",
+    "medium": "Vừa · cân bằng",
+    "strong": "Mạnh · ưu tiên dung lượng",
+    "maxEdge": "Cạnh dài tối đa"
+  },
+  "audio": {
+    "action": "Tách âm thanh",
+    "note": "Xuất toàn bộ luồng âm thanh đầu tiên. MP3/M4A tiết kiệm dung lượng; WAV thường lớn hơn. Video không có âm thanh sẽ được báo rõ.",
+    "format": "Định dạng âm thanh",
+    "mp3": "MP3 · dùng phổ biến",
+    "wav": "WAV · không nén"
+  },
+  "trim": {
+    "action": "Cắt video",
+    "note": "Nhập thời gian theo giây. Đoạn được mã hóa lại để cắt theo khung hình, xuất MP4; cạnh dài tối đa 1080 px."
+  },
+  "gif": {
+    "action": "Tạo GIF",
+    "note": "GIF không có âm thanh và lặp liên tục. Chọn đoạn tối đa 20 giây; giảm chiều rộng hoặc số khung hình để giảm dung lượng.",
+    "width": "Chiều rộng",
+    "fps": "Khung hình/giây",
+    "fpsSmall": "8 · tệp nhỏ",
+    "fpsBalanced": "12 · cân bằng",
+    "fpsSmooth": "15 · chuyển động mượt hơn"
+  },
+  "errors": {
+    "emptyFile": "Tệp trống. Hãy chọn một video khác.",
+    "tooLarge": "Video vượt quá 100 MB. Hãy chọn tệp nhỏ hơn.",
+    "notVideo": "Hãy chọn một tệp video MP4, MOV, WebM, MKV hoặc AVI.",
+    "unreadableInfo": "Không đọc được thông tin video.",
+    "noVideoStream": "Tệp không có luồng video hợp lệ hoặc không xác định được thời lượng.",
+    "tooLong": "Video dài hơn 10 phút. Hãy chọn một đoạn ngắn hơn.",
+    "tooHighRes": "Độ phân giải video vượt quá 4K. Hãy chọn bản có độ phân giải thấp hơn.",
+    "badCompress": "Thiết lập nén chưa hợp lệ.",
+    "badAudioFormat": "Định dạng âm thanh chưa hợp lệ.",
+    "badRange": "Thời gian kết thúc phải lớn hơn bắt đầu và cả hai phải là số giây hợp lệ.",
+    "endPastDuration": "Video chỉ dài {{seconds}} giây. Hãy giảm thời gian kết thúc.",
+    "gifLimits": "GIF tối đa 20 giây, rộng 640 px và 15 khung hình/giây.",
+    "noAudio": "Video này không có âm thanh để tách.",
+    "unsupported": "Trình duyệt này chưa hỗ trợ xử lý video. Hãy thử Chrome, Edge, Firefox hoặc Safari phiên bản mới trên máy tính.",
+    "busy": "Một video khác đang được xử lý. Hãy chờ hoặc hủy tác vụ đó.",
+    "unreadable": "Không đọc được video. Tệp có thể hỏng hoặc dùng codec chưa hỗ trợ.",
+    "processFailed": "Không xử lý được video hoặc đã hết thời gian. Hãy thử một đoạn ngắn hơn hoặc chất lượng thấp hơn.",
+    "noOutput": "Không tạo được tệp kết quả. Hãy thử video khác.",
+    "cancelled": "Đã hủy xử lý video.",
+    "timedOut": "Tác vụ mất quá nhiều thời gian. Hãy thử video ngắn hơn và kiểm tra kết nối khi tải bộ xử lý.",
+    "engineFailed": "Không tải hoặc chạy được bộ xử lý video. Kiểm tra kết nối, đóng bớt tab hoặc thử tệp nhỏ hơn trên máy tính."
+  }
+}

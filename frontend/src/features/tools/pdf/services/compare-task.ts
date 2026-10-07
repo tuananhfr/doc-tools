@@ -1,4 +1,5 @@
 import type { FlowNote, FlowTask } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import type { QuickItem } from '../hooks/useQuickSources'
 import { baseName } from '../utils/file-guard'
 import { plainText } from '../utils/plain-text'
@@ -33,7 +34,8 @@ export function compareTask(before: QuickItem, after: QuickItem, options: Compar
   return async (step) => {
     const total = before.pages.length + after.pages.length
     let done = 0
-    const tick = () => step.onProgress(++done, total, 'Đang đọc chữ')
+    const reading = translate('pdf:compareTask.reading')
+    const tick = () => step.onProgress(++done, total, reading)
     const old = await linesOf(before, tick, step.signal)
     const next = await linesOf(after, tick, step.signal)
 
@@ -42,7 +44,7 @@ export function compareTask(before: QuickItem, after: QuickItem, options: Compar
       [before, old],
       [after, next],
     ] as const) {
-      if (text.lines.length === 0) throw new Error(`tệp "${item.source.name}" không có lớp chữ (tệp scan). Chạy "Nhận dạng chữ (OCR)" cho tệp đó trước rồi so lại.`)
+      if (text.lines.length === 0) throw new Error(translate('pdf:compareTask.noText', { name: item.source.name }))
     }
 
     const result = compareLines(old.lines, next.lines, options)
@@ -51,21 +53,21 @@ export function compareTask(before: QuickItem, after: QuickItem, options: Compar
     const same = result.hunks.length === 0
 
     const notes: FlowNote[] = []
-    if (!result.exact) notes.push({ tone: 'warning', text: 'Hai bản khác nhau quá nhiều để dò từng dòng: phần giữa được báo là "bỏ hết rồi thêm hết". Kiểm tra lại xem có chọn đúng hai bản của cùng một tài liệu không.' })
-    if (old.blank + next.blank > 0) notes.push({ tone: 'warning', text: `${old.blank + next.blank} trang không có lớp chữ (trang scan hoặc chỉ có hình) nên KHÔNG được so.` })
-    notes.push({ tone: 'info', text: 'Chỉ so chữ theo từng dòng. Hình vẽ, chữ ký, con dấu, bảng dạng ảnh và định dạng (đậm, màu, cỡ chữ) không được so; một đoạn chỉ đổi chỗ ngắt dòng cũng hiện là khác.' })
+    if (!result.exact) notes.push({ tone: 'warning', text: translate('pdf:compareTask.tooDifferent') })
+    if (old.blank + next.blank > 0) notes.push({ tone: 'warning', text: translate('pdf:compareTask.blankPages', { count: old.blank + next.blank }) })
+    notes.push({ tone: 'info', text: translate('pdf:compareTask.scopeNote') })
 
     return {
-      title: same ? 'Không thấy dòng chữ nào khác nhau' : `Tìm thấy ${result.hunks.length} chỗ khác`,
+      title: same ? translate('pdf:compareTask.same') : translate('pdf:compareTask.found', { count: result.hunks.length }),
       tone: same ? 'success' : 'info',
       output: {
-        name: `${baseName(before.source.name)} - so sánh.txt`,
+        name: `${baseName(before.source.name)} - ${translate('pdf:file.compare')}.txt`,
         blob: new Blob([report], { type: 'text/plain;charset=utf-8' }),
-        detail: same ? 'Báo cáo so sánh' : `bỏ ${result.removed} dòng · thêm ${result.added} dòng`,
+        detail: same ? translate('pdf:compareTask.report') : translate('pdf:compareTask.diffDetail', { removed: result.removed, added: result.added }),
       },
       notes,
       text: report,
-      textLabel: 'Báo cáo so sánh',
+      textLabel: translate('pdf:compareTask.report'),
     }
   }
 }

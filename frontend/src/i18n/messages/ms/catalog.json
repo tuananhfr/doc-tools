@@ -1,0 +1,448 @@
+{
+  "pageTitle": "{{name}} percuma",
+  "groups": {
+    "all": "Semua",
+    "document": "Dokumen",
+    "image": "Imej",
+    "calc": "Pengiraan",
+    "money": "Wang",
+    "date": "Tarikh & tempoh",
+    "data": "Data",
+    "construction": "Pembinaan",
+    "home": "Rumah & kehidupan",
+    "tech": "Teknikal",
+    "other": "Utiliti lain"
+  },
+  "tips": {
+    "insertPages": "Lepaskan lebih banyak fail di tengah grid halaman untuk menyisipkannya tepat di tempat yang anda mahu — tidak perlu menggabungkan semula dari awal.",
+    "findInScan": "Selepas menjalankan OCR, Ctrl+F boleh mencari teks walaupun dalam imbasan.",
+    "undo": "Ctrl+Z membuat asal sebarang tindakan pada halaman: padam, putar, pangkas, sunting teks.",
+    "rangeSelect": "Tahan Shift dan klik halaman kedua untuk memilih semua halaman di antaranya."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "Mampatkan video",
+      "description": "Kurangkan saiz dan eksport MP4 terus dalam pelayar",
+      "synonyms": "mampat video, kecilkan video, compress video, kurangkan saiz video, mp4"
+    },
+    "trim-video": {
+      "name": "Potong video",
+      "description": "Pilih klip mengikut saat dan eksport MP4 baharu",
+      "synonyms": "potong video, trim video, cut video, klip, mp4"
+    },
+    "video-gif": {
+      "name": "Video ke GIF",
+      "description": "Jadikan klip video pendek sebagai animasi berulang",
+      "synonyms": "gif, gif animasi, video ke gif, video to gif, pembuat gif"
+    },
+    "extract-audio": {
+      "name": "Ekstrak audio daripada video",
+      "description": "Ambil audio dan eksport MP3, M4A atau WAV pada peranti anda",
+      "synonyms": "video ke mp3, video to mp3, ekstrak audio, lagu daripada video, extract audio"
+    },
+    "assistant": {
+      "name": "Pembantu memilih alat",
+      "description": "Cari alat yang sesuai dan guna AI anda sendiri dengan gesaan yang dipratonton dahulu",
+      "synonyms": "pembantu ai, ai assistant, cara buat, alat mana, bantu pilih"
+    },
+    "idea-suggestion": {
+      "name": "Cadangkan alat",
+      "description": "Hantar idea dan jejaki semakannya dengan kod resit",
+      "privacyNote": "Kandungan hanya dihantar apabila anda menekan Hantar cadangan",
+      "synonyms": "maklum balas alat, idea baharu, cadangan ciri, feature request, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "Maklum balas peraturan",
+      "description": "Hantar kandungan dan URL sumber untuk disemak oleh pengendali",
+      "privacyNote": "Kandungan hanya dihantar apabila anda menekan Hantar cadangan",
+      "synonyms": "kemas kini undang-undang, peraturan baharu, maklum balas data, pembetulan"
+    },
+    "remove-background": {
+      "name": "Buang latar imej",
+      "description": "Buang latar warna polos secara automatik dan baiki dengan berus",
+      "synonyms": "buang latar, remove background, latar telus, pemadam latar, foto produk"
+    },
+    "cv": {
+      "name": "Penyusun CV",
+      "description": "Tulis CV, pilih templat, kemudian cetak atau simpan sebagai PDF pada peranti anda",
+      "synonyms": "resume, cv, resume kerja, permohonan kerja, biodata"
+    },
+    "pdf-password": {
+      "name": "Tetapkan / buang kata laluan PDF",
+      "description": "Sulitkan dengan AES-256 atau buka kunci dengan kata laluan yang betul",
+      "synonyms": "kunci pdf, lindungi pdf, buka kunci pdf, kata laluan pdf, pdf password, unlock pdf"
+    },
+    "family-calendar": {
+      "name": "Kalendar Keluarga",
+      "description": "Simpan acara, tugasan dan kenalan kecemasan pada peranti; buat sandaran dan eksport ICS",
+      "synonyms": "kalendar keluarga, peringatan, sos, jadual sekolah, family calendar"
+    },
+    "address-conversion": {
+      "name": "Tukar alamat selepas penggabungan",
+      "description": "Padankan alamat lama dengan jadual komun/wad yang lengkap",
+      "privacyNote": "Padanan dibuat pada peranti; maklum balas hanya dihantar dengan persetujuan anda",
+      "synonyms": "alamat baharu, penggabungan wilayah, tukar nama komun, alamat vietnam"
+    },
+    "payroll": {
+      "name": "Gaji kasar – bersih",
+      "description": "Anggarkan gaji bersih mengikut parameter yang anda masukkan atau pakej yang ditandatangani",
+      "privacyNote": "Dikira pada peranti; maklum balas hanya dihantar dengan persetujuan anda",
+      "synonyms": "gaji bersih, gross to net, cukai pendapatan, insurans sosial, penggajian, payroll"
+    },
+    "lunar-calendar": {
+      "name": "Kalendar qamari – suria",
+      "description": "Kalendar bulanan qamari – suria dengan cuti, can chi dan waktu bertuah; tukar tarikh dua hala dan semak hari peringatan kematian",
+      "synonyms": "kalendar qamari, kalendar lunar, tet, tahun baharu cina, hari peringatan kematian, tukar tarikh"
+    },
+    "electricity": {
+      "name": "Bil elektrik & air",
+      "description": "Anggarkan bil elektrik mengikut blok tarif dan bil air mengikut harga yang anda masukkan",
+      "privacyNote": "Dikira pada peranti; maklum balas hanya dihantar dengan persetujuan anda",
+      "synonyms": "bil elektrik, tarif elektrik, harga kwh, bil air, bil utiliti"
+    },
+    "form-templates": {
+      "name": "Borang & rekod",
+      "description": "Sediakan permohonan cuti, surat kuasa dan rekod serah terima untuk dicetak",
+      "synonyms": "borang cuti, permohonan cuti, surat kuasa, rekod serah terima, templat borang"
+    },
+    "dictation": {
+      "name": "Suara ke teks",
+      "description": "Imlak bahasa Vietnam menggunakan pengecaman suara pelayar",
+      "privacyNote": "Audio mungkin dihantar oleh pelayar kepada perkhidmatan pengecaman suaranya",
+      "synonyms": "imlak, mikrofon, speech to text, suara ke teks, taip dengan suara"
+    },
+    "magnifier": {
+      "name": "Kanta pembesar",
+      "description": "Zum dengan kamera untuk membaca tulisan kecil",
+      "synonyms": "zum kamera, baca tulisan kecil, kanta pembesar, magnifier"
+    },
+    "house-estimate": {
+      "name": "Anggaran kos membina rumah",
+      "description": "Tukar keluasan lantai dan masukkan harga kontraktor untuk menganggar kos",
+      "synonyms": "keluasan binaan, kos rumah, anggaran kos bina, harga per m2"
+    },
+    "number-words": {
+      "name": "Nombor kepada perkataan",
+      "description": "Tulis jumlah wang dalam perkataan untuk resit dan kontrak",
+      "synonyms": "jumlah dalam perkataan, nombor ke perkataan, eja nombor"
+    },
+    "loan": {
+      "name": "Pinjaman & simpanan",
+      "description": "Kira jadual bayaran balik atau simpanan tetap yang diperbaharui",
+      "synonyms": "pinjaman bank, baki berkurangan, faedah pinjaman, pinjaman perumahan, simpanan"
+    },
+    "unit-price": {
+      "name": "Perbandingan harga seunit",
+      "description": "Samakan kuantiti dua produk untuk membandingkan harga",
+      "synonyms": "harga sekilo, harga seliter, membeli-belah, harga seunit"
+    },
+    "study": {
+      "name": "Penukaran markah & kemasukan",
+      "description": "Tukar markah dan kira markah keutamaan kemasukan sebagai rujukan",
+      "synonyms": "pngk, gpa, skala 4, skala 10, markah keutamaan, markah kemasukan"
+    },
+    "pomodoro": {
+      "name": "Pemasa fokus",
+      "description": "Bahagikan masa kepada sesi fokus dan rehat",
+      "synonyms": "pemasa, fokus, pomodoro, pemasa belajar"
+    },
+    "group-split": {
+      "name": "Bahagi belanja kumpulan",
+      "description": "Kira siapa perlu membayar kepada siapa selepas perbelanjaan bersama",
+      "synonyms": "bahagi bil, split bill, belanja percutian, selesaikan hutang, kos bersama"
+    },
+    "legacy-font": {
+      "name": "Penukar fon & diakritik Vietnam",
+      "description": "Tukar TCVN3, VNI dan seragamkan diakritik kepada Unicode",
+      "synonyms": "vni ke unicode, tcvn3 ke unicode, buang diakritik, fon vietnam"
+    },
+    "read-aloud": {
+      "name": "Bacakan teks",
+      "description": "Dengar teks menggunakan suara peranti anda",
+      "synonyms": "text to speech, tts, dengar teks, bacakan teks"
+    },
+    "vietqr": {
+      "name": "VietQR pindahan bank",
+      "description": "Cipta kod QR pindahan daripada BIN bank dan nombor akaun",
+      "synonyms": "qr bank, napas, qr pindahan, qr pembayaran, duitnow"
+    },
+    "invoice-xml": {
+      "name": "Pembaca e-invois XML",
+      "description": "Lihat medan dan eksport senarai barangan daripada XML",
+      "synonyms": "invois xml, e-invois, senarai invois, tt78"
+    },
+    "remove-metadata": {
+      "name": "Buang lokasi daripada foto",
+      "description": "Lukis semula imej untuk membuang EXIF, GPS dan maklumat kamera asal",
+      "synonyms": "buang exif, buang gps, sembunyi lokasi foto, metadata"
+    },
+    "collage": {
+      "name": "Kolaj foto",
+      "description": "Gabungkan 2–9 imej menjadi grid PNG",
+      "synonyms": "kolaj, collage, grid foto, gabung gambar, cantum foto"
+    },
+    "message-risk": {
+      "name": "Semak mesej & pautan mencurigakan",
+      "description": "Saring tanda penipuan tanpa membuka pautan",
+      "synonyms": "scam, penipuan, phishing, sms palsu, semak penipuan"
+    },
+    "flashcards": {
+      "name": "Kad imbas",
+      "description": "Cipta dan ulang kaji kad dengan kotak Leitner pada peranti anda",
+      "synonyms": "flashcard, kad imbas, kosa kata, kotak leitner, kad belajar"
+    },
+    "scan-to-pdf": {
+      "name": "Imbas imej → PDF",
+      "description": "Gabungkan foto menjadi satu fail PDF",
+      "pageTitle": "Tukar imej kepada PDF secara percuma",
+      "synonyms": "jpg ke pdf, imej ke pdf, gambar ke pdf, image to pdf, imbas dokumen, gabung gambar"
+    },
+    "merge-pdf": {
+      "name": "Gabung PDF",
+      "description": "Gabungkan beberapa fail PDF menjadi satu",
+      "synonyms": "gabung pdf, cantum pdf, satukan pdf, merge pdf, merge"
+    },
+    "split-pdf": {
+      "name": "Pisah PDF",
+      "description": "Pisahkan halaman atau ekstrak halaman ke fail berasingan",
+      "synonyms": "pisah pdf, potong pdf, ekstrak halaman, asingkan pdf, split"
+    },
+    "compress-pdf": {
+      "name": "Mampatkan PDF",
+      "description": "Kurangkan saiz fail PDF",
+      "synonyms": "kecilkan pdf, pdf ringan, kurangkan saiz pdf, compress"
+    },
+    "convert-file": {
+      "name": "Tukar fail",
+      "description": "PDF ke Word, Excel, imej",
+      "pageTitle": "Tukar PDF kepada Word secara percuma",
+      "synonyms": "pdf to word, pdf ke word, docx, xlsx, pdf ke excel, pdf ke jpg, pdf ke imej"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Imej",
+      "description": "Jadikan setiap halaman PDF sebagai imej JPG atau PNG",
+      "synonyms": "pdf ke jpg, pdf ke png, pdf to jpg, eksport imej"
+    },
+    "organize-pdf": {
+      "name": "Susun PDF",
+      "description": "Ubah urutan, putar dan buang halaman",
+      "synonyms": "susun semula halaman, putar halaman, padam halaman, susun pdf"
+    },
+    "page-numbers": {
+      "name": "Tambah nombor halaman",
+      "description": "Tambah nombor halaman pada fail PDF",
+      "synonyms": "nombor halaman, page number, pengaki, nombor muka surat"
+    },
+    "stamp-pdf": {
+      "name": "Cop PDF",
+      "description": "Tambah cop teks atau logo pada halaman",
+      "synonyms": "watermark, tera air, logo, cop salinan, tambah cop"
+    },
+    "redact-pdf": {
+      "name": "Tutup maklumat PDF",
+      "description": "Buang kawasan sensitif daripada fail secara kekal",
+      "synonyms": "hitamkan, redact, sembunyi maklumat, padam teks"
+    },
+    "view-pdf": {
+      "name": "Lihat PDF",
+      "description": "Lihat, cari teks dan buat anotasi pada halaman",
+      "synonyms": "baca pdf, buka pdf, pembaca pdf, pdf viewer"
+    },
+    "ocr": {
+      "name": "OCR teks",
+      "description": "Kenal pasti teks bahasa Vietnam dalam imbasan",
+      "synonyms": "pengecaman teks, pdf boleh dicari, searchable, ocr, imbasan ke teks"
+    },
+    "compare": {
+      "name": "Bandingkan dokumen",
+      "description": "Bandingkan teks dua PDF dan tunjukkan baris yang berbeza",
+      "synonyms": "bandingkan, diff, bandingkan pdf, perbezaan, versi lama versi baharu"
+    },
+    "sign": {
+      "name": "Tambah tandatangan",
+      "description": "Lukis tandatangan atau sisipkan imej tandatangan pada halaman",
+      "synonyms": "tandatangan dokumen, tandatangan, e-tandatangan, tandatangan pdf, sign"
+    },
+    "edit-pdf": {
+      "name": "Sunting PDF",
+      "description": "Sunting teks, tanda dan susun halaman",
+      "synonyms": "edit pdf, sunting pdf, putar halaman, padam halaman, tambah teks"
+    },
+    "image-to-text": {
+      "name": "Imej → Teks",
+      "description": "Ambil teks bahasa Vietnam daripada foto",
+      "synonyms": "ocr imej, salin teks daripada gambar, ekstrak teks, image to text"
+    },
+    "measure-image": {
+      "name": "Ukur pada imej",
+      "description": "Ukur panjang dan keluasan pada imej",
+      "synonyms": "pembaris, ukur lukisan, skala, ukur foto"
+    },
+    "convert-image": {
+      "name": "Tukar format imej",
+      "description": "Tukar antara JPG, PNG dan WebP",
+      "synonyms": "tukar format gambar, png ke jpg, jpg ke png, webp ke jpg, convert image"
+    },
+    "compress-image": {
+      "name": "Mampatkan imej",
+      "description": "Kurangkan saiz fail imej",
+      "synonyms": "kecilkan gambar, gambar ringan, kurangkan saiz foto, resize, compress image"
+    },
+    "crop-image": {
+      "name": "Pangkas & laras imej",
+      "description": "Pangkas, putar dan laraskan kecerahan",
+      "synonyms": "crop, pangkas gambar, putar gambar, terbalikkan gambar, kecerahan"
+    },
+    "batch-image": {
+      "name": "Imej pukal",
+      "description": "Ubah saiz, tukar nama dan tukar format sekelompok imej",
+      "synonyms": "resize gambar, tukar nama gambar, ubah saiz pukal, batch, banyak gambar"
+    },
+    "mark-image": {
+      "name": "Tutup & cop imej",
+      "description": "Sembunyikan maklumat dan cop teks pada imej",
+      "synonyms": "watermark, tera air, hitamkan, tutup muka, sembunyi nombor, cop hak cipta"
+    },
+    "id-photo": {
+      "name": "Foto pasport & cetakan",
+      "description": "Pangkas foto pasport dan susun beberapa salinan pada helaian cetak",
+      "synonyms": "gambar pasport, foto pasport, gambar ic, 35x50, 3x4, cetak gambar pasport, passport photo"
+    },
+    "qr-create": {
+      "name": "Penjana kod QR",
+      "description": "Cipta kod QR daripada teks atau pautan",
+      "synonyms": "kod qr, qr pautan, qr code, penjana qr"
+    },
+    "barcode-create": {
+      "name": "Penjana kod bar",
+      "description": "EAN-13, Code 128, ITF-14 — satu kod atau sekelompok",
+      "synonyms": "barcode, kod bar, penjana kod bar, ean, code 128, code 39, itf, cetak label, kod barang"
+    },
+    "qr-read": {
+      "name": "Pembaca kod QR / kod bar",
+      "description": "Imbas kod daripada imej atau kamera",
+      "synonyms": "imbas qr, scan qr, pengimbas qr, baca kod bar, barcode"
+    },
+    "quick-calc": {
+      "name": "Kalkulator pantas",
+      "description": "Keluasan, isi padu, berat",
+      "synonyms": "kalkulator, m2, m3, konkrit"
+    },
+    "money-calc": {
+      "name": "Kalkulator wang & cukai",
+      "description": "Peratus, VAT, diskaun, margin kasar, bahagi bil",
+      "synonyms": "vat, sst, cukai, peratus, diskaun, margin, markup, bahagi bil, untung"
+    },
+    "date-calc": {
+      "name": "Kalkulator tarikh & tempoh",
+      "description": "Kira hari, hari bekerja, tambah atau tolak hari",
+      "synonyms": "kira hari, tarikh akhir, deadline, hari bekerja, berapa hari"
+    },
+    "house-orientation": {
+      "name": "Arah rumah & kompas",
+      "description": "Ukur arah rumah; letakkan kompas pada foto atau lukisan",
+      "synonyms": "kompas, arah rumah, arah pintu, feng shui, bat trach, arah muka hadapan, matahari petang"
+    },
+    "quick-note": {
+      "name": "Nota pantas",
+      "description": "Nota dan senarai tugasan disimpan pada peranti",
+      "synonyms": "nota, note, todo, senarai tugasan, buku nota"
+    },
+    "char-count": {
+      "name": "Pengira aksara",
+      "description": "Kira aksara, perkataan dan baris",
+      "synonyms": "kira perkataan, word count, kira aksara, bilangan huruf"
+    },
+    "unit-convert": {
+      "name": "Penukar unit",
+      "description": "Panjang, keluasan, berat",
+      "synonyms": "tukar unit, inci, kaki, meter, ekar"
+    },
+    "color": {
+      "name": "Warna",
+      "description": "Pilih warna dan tukar kod warna",
+      "synonyms": "palet warna, pemilih warna, hex, rgb"
+    },
+    "random-code": {
+      "name": "Penjana kod rawak",
+      "description": "Kata laluan, kod pesanan, kod baucar",
+      "synonyms": "kata laluan, password, jana kod, rawak, penjana kata laluan"
+    },
+    "construction-price": {
+      "name": "Harga pembinaan",
+      "description": "Semak harga seunit, bahan dan upah buruh mengikut kawasan"
+    },
+    "planning-lookup": {
+      "name": "Perancangan guna tanah",
+      "description": "Semak maklumat perancangan dan penunjuk guna tanah"
+    },
+    "construction-law": {
+      "name": "Undang-undang pembinaan",
+      "description": "Semak prosedur, dokumen undang-undang dan borang"
+    },
+    "construction-standards": {
+      "name": "Piawaian pembinaan",
+      "description": "Semak dan lihat dengan pantas piawaian dan kod"
+    },
+    "dossier-check": {
+      "name": "Semakan dokumen projek",
+      "description": "Semak kesilapan biasa dalam dokumen reka bentuk dan lukisan"
+    },
+    "structure-calc": {
+      "name": "Kiraan struktur pantas",
+      "description": "Kira keratan rentas dan beban asas"
+    },
+    "drawing-convert": {
+      "name": "Penukar lukisan",
+      "description": "Tukar DWG dan DXF kepada PDF dan ukur dimensi"
+    },
+    "drawing-area": {
+      "name": "Ukur keluasan pada lukisan",
+      "description": "Ukur keluasan dan perimeter pada lukisan PDF"
+    },
+    "site-diary": {
+      "name": "Diari tapak",
+      "description": "Ambil foto, tulis nota dan tandakan terus di tapak bina"
+    },
+    "supplier-lookup": {
+      "name": "Carian pembekal",
+      "description": "Cari pembekal bahan dan peralatan pembinaan"
+    },
+    "family-reminders": {
+      "name": "Peringatan",
+      "description": "Peringatan makan ubat, hantar dan ambil anak, kerja rumah dan temu janji"
+    },
+    "family-share": {
+      "name": "Kongsi dengan keluarga",
+      "description": "Jemput ahli keluarga untuk melihat dan mengemas kini kalendar bersama"
+    },
+    "family-health": {
+      "name": "Kesihatan keluarga",
+      "description": "Catat jadual pemeriksaan dan peringatan ubat untuk setiap orang"
+    },
+    "house-chores": {
+      "name": "Senarai kerja rumah",
+      "description": "Agihkan kerja rumah dan jejaki yang sudah selesai"
+    },
+    "family-budget": {
+      "name": "Perbelanjaan keluarga",
+      "description": "Catat pendapatan dan perbelanjaan serta jejaki bajet ringkas"
+    },
+    "family-album": {
+      "name": "Album keluarga",
+      "description": "Simpan foto dan video detik-detik keluarga"
+    },
+    "special-days": {
+      "name": "Hari istimewa",
+      "description": "Peringatan hari lahir, ulang tahun, hari peringatan kematian dan cuti"
+    },
+    "honor-board": {
+      "name": "Papan penghargaan",
+      "description": "Penghargaan kepada penyumbang data yang telah disahkan"
+    },
+    "code-manager": {
+      "name": "Pengurus kod",
+      "description": "Cipta senarai kod QR dan kod bar serta eksport fail"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
 import { ConfirmAction, Icon, useToast } from '@/components/ui'
 import { NoteEditor } from '../components/NoteEditor'
@@ -12,6 +13,7 @@ import { isBlankNote, NOTE_LIMITS } from '../utils/notes'
  * tôi biến mất" là thứ người dùng không tha thứ.
  */
 export default function QuickNotePage() {
+  const { t } = useTranslation('utility')
   const toast = useToast()
   const { notes, saveFailed, create, update, remove, clear } = useNotes()
   // Màn rộng mở sẵn ghi chú mới nhất; màn hẹp (danh sách và khung soạn thay nhau) bắt đầu ở danh sách.
@@ -26,36 +28,36 @@ export default function QuickNotePage() {
     if (blank) return setOpenId(blank.id)
     const id = create()
     if (id) setOpenId(id)
-    else toast.error(`Đã đủ ${NOTE_LIMITS.notes} ghi chú. Xoá bớt ghi chú cũ để thêm mới.`)
+    else toast.error(t('notes.limitReached', { count: NOTE_LIMITS.notes }))
   }
 
   return (
     <div className={`erp-notes${open ? ' has-open' : ''}`}>
-      <section className="erp-tool-panel erp-notes__list" aria-label="Danh sách ghi chú">
+      <section className="erp-tool-panel erp-notes__list" aria-label={t('notes.listLabel')}>
         <div className="erp-tool-panel__head">
-          <h2 className="erp-tool-panel__title">Ghi chú{notes.length > 0 ? ` (${notes.length})` : ''}</h2>
+          <h2 className="erp-tool-panel__title">{notes.length > 0 ? t('notes.titleCount', { count: notes.length }) : t('notes.title')}</h2>
           <Button variant="primary" size="sm" onClick={add}>
             <Icon name="plus-lg" className="me-2" />
-            Ghi chú mới
+            {t('notes.newNote')}
           </Button>
         </div>
 
         {notes.length === 0 ? (
-          <p className="erp-flow-field__hint">Chưa có ghi chú nào trên máy này.</p>
+          <p className="erp-flow-field__hint">{t('notes.empty')}</p>
         ) : (
           <NoteList notes={notes} openId={open?.id ?? null} onOpen={setOpenId} />
         )}
 
         <p className="erp-notes__notice">
           <Icon name="info-circle" />
-          <span>Ghi chú nằm trong trình duyệt này, không theo tài khoản: ai dùng chung máy cũng đọc được, và xoá dữ liệu duyệt web là mất.</span>
+          <span>{t('notes.notice')}</span>
         </p>
 
         {notes.length > 1 ? (
           <ConfirmAction
-            title={`Xoá cả ${notes.length} ghi chú?`}
-            description="Ghi chú chỉ nằm trên máy này, xoá rồi không lấy lại được."
-            confirmLabel="Xoá hết"
+            title={t('notes.clearAllTitle', { count: notes.length })}
+            description={t('notes.localOnly')}
+            confirmLabel={t('notes.clearAllConfirm')}
             danger
             onConfirm={() => {
               clear()
@@ -64,7 +66,7 @@ export default function QuickNotePage() {
           >
             {({ onClick }) => (
               <Button variant="link" size="sm" className="erp-flow-files__clear align-self-start" onClick={onClick}>
-                Xoá tất cả ghi chú
+                {t('notes.clearAll')}
               </Button>
             )}
           </ConfirmAction>
@@ -84,12 +86,12 @@ export default function QuickNotePage() {
           onBack={() => setOpenId(null)}
         />
       ) : (
-        <section className="erp-tool-panel erp-notes__editor erp-notes__editor--empty" aria-label="Soạn ghi chú">
+        <section className="erp-tool-panel erp-notes__editor erp-notes__editor--empty" aria-label={t('notes.editorLabel')}>
           <Icon name="journal-text" className="erp-notes__empty-icon" />
-          <p className="erp-notes__empty-text">{notes.length === 0 ? 'Ghi điều cần nhớ, lập danh sách việc cần làm.' : 'Chọn một ghi chú ở danh sách để xem và sửa.'}</p>
+          <p className="erp-notes__empty-text">{notes.length === 0 ? t('notes.emptyStart') : t('notes.emptyPick')}</p>
           <Button variant="outline-secondary" onClick={add}>
             <Icon name="plus-lg" className="me-2" />
-            Ghi chú mới
+            {t('notes.newNote')}
           </Button>
         </section>
       )}

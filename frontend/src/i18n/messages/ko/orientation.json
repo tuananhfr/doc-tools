@@ -1,0 +1,361 @@
+{
+  "shared": {
+    "on": "켜짐",
+    "off": "꺼짐",
+    "remove": "{{name}} 빼기"
+  },
+  "modes": {
+    "HOMEOWNER": "집주인",
+    "PROFESSIONAL": "전문가"
+  },
+  "page": {
+    "projectNorthWarning": "프로젝트 북쪽 기준으로 측정 중이에요. 실제 방위가 아니어서 나이별 길흉을 볼 수 없고 햇빛도 계산할 수 없어요. 기술 설정에서 진북이나 자북으로 바꾸세요.",
+    "missing": {
+      "drawing": "도면의 북쪽 기호를 눌러 시작하세요.",
+      "device": "“측정 시작”을 누르고 가만히 선 뒤 측정값을 확정하세요.",
+      "manual": "알고 있는 각도를 입력하세요.",
+      "placeAxis": "사진에 {{target}} 축을 놓으세요.",
+      "pickMeasured": "측정값이 있는 대상을 선택하세요."
+    },
+    "noSource": "아직 소스가 없어요.",
+    "modeLabel": "표시 모드",
+    "back": "뒤로",
+    "changeSource": "사진 / 소스 바꾸기",
+    "placeOnImage": "집 사진 / 도면 위에 놓기",
+    "nothingToSave": "저장할 측정값이 없어요.",
+    "frontageFallback": "정면",
+    "houseFrontageFallback": "집 정면",
+    "sideAge": "나이별 풀이와 결과 저장"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "집 방향",
+      "hint": "집 안에서 정면을 똑바로 바라본 방향"
+    },
+    "MAIN_DOOR": {
+      "label": "현관문",
+      "hint": "집 안에서 현관문 밖을 바라본 방향"
+    },
+    "BALCONY": {
+      "label": "발코니",
+      "hint": "방 안에서 발코니 쪽을 바라본 방향"
+    },
+    "KITCHEN": {
+      "label": "부엌",
+      "hint": "요리하는 사람의 등 방향 — 요리하는 사람이 화구를 보는 방향의 반대"
+    },
+    "ALTAR": {
+      "label": "제단",
+      "hint": "제단 정면이 향하는 방향"
+    },
+    "BED": {
+      "label": "침대",
+      "hint": "침대 머리에서 발 쪽을 바라본 방향"
+    },
+    "DESK": {
+      "label": "책상",
+      "hint": "앉아서 일하는 사람이 바라보는 방향"
+    },
+    "LAND_FRONTAGE": {
+      "label": "대지 정면",
+      "hint": "대지 안에서 도로 쪽을 바라본 방향"
+    },
+    "CUSTOM": {
+      "label": "기타 대상",
+      "hint": "직접 이름을 정하고, 축을 측정할 방향으로 향하게 하세요"
+    }
+  },
+  "north": {
+    "TRUE": "진북",
+    "MAGNETIC": "자북",
+    "PROJECT": "프로젝트 북쪽"
+  },
+  "sources": {
+    "DRAWING": "도면에 배치",
+    "MANUAL": "직접 입력",
+    "DEVICE": "휴대폰 나침반",
+    "SURVEY": "측량값"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · 오차 ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "이 브라우저는 기기의 나침반을 읽을 수 없어요.",
+      "insecure": "나침반은 HTTPS로 페이지를 열었을 때만 작동해요.",
+      "denied": "방향 센서 읽기를 허용하지 않았어요. 브라우저 설정에서 허용한 뒤 다시 시도하세요.",
+      "noSignal": "나침반 신호를 받지 못했어요. 컴퓨터와 많은 브라우저에는 이 센서가 없어요."
+    },
+    "stability": {
+      "STABLE": "안정적",
+      "WOBBLY": "약간 흔들림",
+      "UNSTABLE": "불안정"
+    },
+    "accuracy": "기기 보고 오차 ±{{value}}°",
+    "noAccuracy": "기기가 오차를 알려 주지 않아요",
+    "starting": "나침반을 여는 중…",
+    "retry": "다시 시도",
+    "start": "측정 시작",
+    "stop": "중지",
+    "outside": "밖에 서서 집을 바라보고 있어요",
+    "magnetWarning": "철골 기둥, 자동차, 셔터, 자석, 전기 기기에서 멀리 떨어지세요. 나침반이 틀어질 수 있어요."
+  },
+  "device": {
+    "steps": {
+      "stand": "현관문에 서서 집을 등지고 밖을 똑바로 바라보세요.",
+      "hold": "휴대폰을 수평(지면과 평행)으로 들고, 기기 윗부분이 바라보는 방향을 향하게 하세요.",
+      "wait": "숫자가 안정될 때까지 몇 초간 가만히 있다가 “측정값 확정”을 누르세요."
+    },
+    "lock": "{{target}} 측정값 확정",
+    "manual": "대신 각도 입력",
+    "unstable": "숫자가 많이 흔들려요. 가만히 서서 휴대폰을 8자 모양으로 몇 번 돌려 보정한 뒤 다시 측정하세요."
+  },
+  "live": {
+    "title": "집 방향 나침반",
+    "intro": "현관문에 서서 집을 등지고, 휴대폰을 수평으로 들어 윗부분이 밖을 똑바로 향하게 하세요.",
+    "dialAria": "나침반 문자판, 위쪽이 북쪽",
+    "dialAriaFacing": "나침반 문자판, 집 방향 {{degree}}",
+    "facingEnd": "향",
+    "sittingEnd": "좌",
+    "empty": "“측정 시작”을 누르거나 각도를 입력하면 집 방향을 읽어요.",
+    "failureManual": "{{failure}} 다른 나침반으로 잰 각도를 입력할 수도 있어요.",
+    "locked": "{{degree}}로 고정됨",
+    "remeasure": "다시 측정",
+    "lock": "방향 고정",
+    "useDevice": "기기 나침반 사용",
+    "enterDegree": "각도 입력",
+    "unstable": "숫자가 많이 흔들려서 아직 고정할 수 없어요. 가만히 서서 휴대폰을 8자 모양으로 몇 번 돌려 보정하세요.",
+    "facing": "향",
+    "sitting": "좌",
+    "offset": "{{mountain}} 중심에서 {{toward}} 쪽으로 {{degree}} 벗어났어요.",
+    "centered": "{{mountain}} 산의 정중앙이에요.",
+    "void": {
+      "MAJOR": "대공망",
+      "MINOR": "소공망"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — 방향이 {{mountain}} / {{toward}} 경계에 바짝 붙어 있어요. {{note}}"
+  },
+  "manual": {
+    "label": "{{target}} 각도",
+    "placeholder": "예: 132",
+    "hint": "북쪽에서 시계 방향으로 재요: 동 90°, 남 180°, 서 270°.",
+    "invalid": "숫자를 입력하세요. 예: 132 또는 132,5."
+  },
+  "method": {
+    "title": "방향을 어떻게 구할까요?",
+    "label": "방향 구하는 방법",
+    "options": {
+      "DEVICE": "바로 측정",
+      "MANUAL": "각도를 알아요",
+      "DRAWING": "도면으로"
+    },
+    "locked": "{{target}}을(를) {{degree}}로 확정했어요.",
+    "drawingNote": "센서가 필요 없어요. 북쪽 기호가 있는 도면만 있으면 돼요. 사진에 북쪽 화살표를 놓고, 측정할 대상의 축을 놓으세요."
+  },
+  "canvas": {
+    "imageAlt": "방향을 측정 중인 사진 / 도면",
+    "traceGrip": "선의 {{index}}번 점 — 눌러서 선을 선택하고, 끌거나 화살표 키로 조정하세요",
+    "closeAria": "시작점에서 도형 닫기",
+    "closeTitle": "도형 닫기",
+    "northHead": "북쪽 화살표 머리 — 끌어서 도면의 북쪽 기호에 맞게 회전",
+    "northTail": "북쪽 화살표 꼬리 — 끌어서 이동",
+    "axisHead": "{{target}} 축 머리 — 끌어서 회전",
+    "axisTail": "{{target}} 축 꼬리 — 끌어서 이동",
+    "compassCenter": "나침반 중심 — 끌어서 나침반 이동",
+    "compassEdge": "나침반 가장자리 — 끌어서 확대 / 축소"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "벽 선",
+      "polygon": "다각형",
+      "rect": "사각형"
+    },
+    "traceHints": {
+      "line": "두 점을 눌러 벽 한 구간을 그리세요. 이미 그린 구간의 끝을 누르면 정면 / 현관문 라벨을 붙일 수 있어요.",
+      "polygon": "꼭짓점을 차례로 누르고, 시작점(빈 원)을 다시 눌러 도형을 닫으세요.",
+      "rect": "마주 보는 두 모서리를 눌러 사각형을 그리세요."
+    },
+    "northStep": "북쪽 방향",
+    "hints": {
+      "north": "도면의 북쪽 기호를 눌러 북쪽 화살표를 놓고, 화살표 머리를 끌어 기호 방향과 맞추세요.",
+      "door": "현관문을 눌러 문 축을 추가하세요(선택). 화살표 머리가 바깥을 향하도록 끄세요.",
+      "drawing": "측정할 곳을 눌러 {{target}} 축을 놓으세요. 화살표 머리가 바깥을 향하도록 끄세요 — 안에서 밖을 보는 방향이에요.",
+      "overlay": "나침반을 사진 위에 놓으려면 측정할 곳을 누르고, 화살표 머리를 {{target}} 방향에 맞게 바깥으로 끄세요."
+    },
+    "aria": "방향을 측정 중인 사진",
+    "tabsAria": "사진에서 하는 작업",
+    "placeTab": "방향 놓기",
+    "traceTab": "평면도 따라 그리기",
+    "undo": "실행 취소",
+    "redo": "다시 실행",
+    "traceKindsAria": "선 종류",
+    "snap": "45° 각도에 맞춤",
+    "stepsAria": "사진 작업 단계",
+    "done": "(놓음)",
+    "pageAria": "측정 중인 PDF 페이지",
+    "pageOption": "{{page}} / {{total}} 페이지"
+  },
+  "result": {
+    "title": "측정 결과",
+    "fine": "16방위: {{direction}}",
+    "empty": "아직 측정값이 없어요.",
+    "compassAria": "나침반, 위쪽이 북쪽"
+  },
+  "solar": {
+    "title": "햇빛 & 태양",
+    "locationFailure": {
+      "denied": "위치 정보를 허용하지 않았어요. 위도와 경도를 직접 입력하세요.",
+      "unavailable": "기기가 위치를 가져오지 못했어요. 위도와 경도를 직접 입력하세요."
+    },
+    "daySide": {
+      "MORNING": "아침 햇빛을 받아요",
+      "AFTERNOON": "오후 햇빛을 받아요 (강한 햇빛, 집이 더워짐)",
+      "BOTH": "아침과 오후 모두 햇빛을 받아요",
+      "NONE": "하루 중 직사광선이 적어요"
+    },
+    "intro": "해가 어느 방향에서 뜨고 지는지, {{target}}에 오후 햇빛이 드는지 확인하세요.",
+    "locating": "위치를 가져오는 중…",
+    "useLocation": "내 위치 사용",
+    "latitude": "위도",
+    "longitude": "경도",
+    "date": "날짜",
+    "time": "시간",
+    "sunAt": "{{time}}의 태양",
+    "sunPosition": "{{degree}} · {{direction}} · 고도 {{elevation}}",
+    "belowHorizon": "지평선 아래",
+    "sunrise": "일출",
+    "sunset": "일몰",
+    "facingSun": "{{side}} · 지금 햇빛을 받고 있어요",
+    "awayFromSun": "{{side}} · 지금은 햇빛을 받지 않아요",
+    "needCoordinates": "계산하려면 위도와 경도를 입력하세요 (또는 “내 위치 사용” 누르기).",
+    "note": "태양 방향은 진북 기준으로 계산해요. 베트남에서는 자북과의 차이가 1° 미만이에요. 옆 건물의 그림자는 반영하지 않아요."
+  },
+  "source": {
+    "title": "무엇을 가지고 있나요?",
+    "pickTitle": "평면도 사진, 집 사진 또는 도면 PDF 선택",
+    "pickHint": "JPG, PNG, WebP, PDF · 최대 100 MB · 파일은 내 기기에서만 열려요",
+    "camera": "사진 찍기",
+    "rejectedTitle": "파일을 열 수 없어요",
+    "dismiss": "알림 숨기기",
+    "none": "사진 없음 — 나침반만 사용",
+    "noneHint": "휴대폰 나침반으로 재거나 알고 있는 각도를 입력하세요.",
+    "tooLarge": "파일이 {{size}}를 넘어요.",
+    "openFailed": "이 파일을 열 수 없어요.",
+    "pageFailed": "이 페이지를 그릴 수 없어요."
+  },
+  "targetsPanel": {
+    "title": "방향을 잴 대상",
+    "noAxis": "축 없음",
+    "noMeasure": "측정값 없음",
+    "hint": "{{hint}}.",
+    "customName": "대상 이름",
+    "customPlaceholder": "예: 쪽문",
+    "addAria": "추가할 대상",
+    "add": "추가",
+    "axisAngle": "사진 위 축 각도",
+    "axisAngleHint": "0° = 사진 위쪽 가장자리를 향함, 시계 방향."
+  },
+  "tech": {
+    "title": "기술 설정",
+    "reference": "각도 기준",
+    "referenceHint": "라벨만 붙이고 자동 변환하지 않아요. 베트남에서 자북은 진북과 1° 미만 차이 나요. 프로젝트 북쪽은 도면의 좌표 격자를 따라요.",
+    "divisionsLabel": "나침반 분할",
+    "divisionsAria": "나침반 구간 수",
+    "divisions": "{{count}}방위",
+    "size": "사진 위 나침반 크기 · {{percent}}%",
+    "opacity": "나침반 진하기 · {{percent}}%",
+    "saveRecord": "측정 기록 다운로드 (JSON)"
+  },
+  "traceActions": {
+    "aria": "선택한 선",
+    "tags": {
+      "FRONTAGE": "여기가 정면",
+      "ENTRANCE": "여기가 현관문"
+    },
+    "flip": "바깥쪽 바꾸기",
+    "delete": "이 선 삭제"
+  },
+  "export": {
+    "title": "결과 저장",
+    "legend": "저장 형식",
+    "image": "이미지",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "원본 사진의 촬영 정보(EXIF)를 그대로 유지",
+      "pdf": "도면 페이지를 PNG 이미지로 다시 그림",
+      "none": "측정값이 포함된 나침반 이미지"
+    },
+    "pdfHintVector": "원본 도면 페이지를 벡터로 유지",
+    "pdfHintPage": "한 페이지, 인쇄 가능",
+    "buildFailed": "결과 파일을 만들지 못했어요.",
+    "shareFailed": "공유하지 못했어요. 파일을 저장한 뒤 보내세요.",
+    "building": "파일을 만드는 중…",
+    "savePdf": "PDF 저장",
+    "saveImage": "이미지 저장",
+    "share": "공유",
+    "saved": "{{name}} 저장됨",
+    "savedDetail": "{{name}} 저장됨 · {{detail}}",
+    "notes": {
+      "standalone": "사진에서 북쪽을 정하지 못해서 나침반을 사진 위가 아닌 별도로 내보냈어요.",
+      "rasterized": "원본 PDF 페이지를 벡터로 유지하지 못했어요. 페이지를 이미지로 다시 그려서 페이지 안의 텍스트는 선택할 수 없어요."
+    },
+    "pageDetail": "{{page}}페이지",
+    "noSource": "내보낼 소스가 없어요."
+  },
+  "pdf": {
+    "password": "열기 비밀번호가 있는 PDF예요. \"PDF 잠금 해제\" 도구로 비밀번호를 해제한 뒤 다시 선택하세요.",
+    "unreadable": "이 PDF 파일을 읽을 수 없어요.",
+    "noCanvas": "브라우저가 그리기 영역을 제공하지 못했어요.",
+    "renderFailed": "PDF 페이지를 그리지 못했어요."
+  },
+  "age": {
+    "title": "집주인 나이별 풀이",
+    "intro": "선택 사항이에요. 켜면 나침반에 나이별 길흉 별 고리가 표시되고, {{method}}에 따라 집 방향이 맞는지 볼 수 있어요.",
+    "addPerson": "한 사람 더 비교",
+    "method": "방법: {{name}} · 규칙 v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "양력 생년월일",
+      "LUNAR_YEAR": "음력 출생 연도"
+    },
+    "name": "호칭",
+    "sex": "성별",
+    "sexes": {
+      "MALE": "남성",
+      "FEMALE": "여성"
+    },
+    "inputBy": "입력 기준",
+    "yearPlaceholder": "예: 1986",
+    "yearNote": "연도는 음력 설(Tết) 기준이에요.",
+    "yearNoteLunar": "연도는 음력 설(Tết) 기준이에요. 설 전에 태어났다면 전년도를 쓰세요.",
+    "facts": {
+      "age": "나이 (띠)",
+      "napAm": "명 (납음)",
+      "trigram": "명궁"
+    },
+    "beforeTet": "설 전에 태어나서 {{year}}년({{canChi}}) 기준으로 계산해요.",
+    "facingGood": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, 길해요. {{meaning}}.",
+    "facingBad": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, 흉해요. {{meaning}}.",
+    "houseSame": "좌 기준: {{segment}} 좌의 집은 {{trigram}}택({{houseGroup}}택)으로, {{personGroup}}과(와) 같은 그룹이에요.",
+    "houseOther": "좌 기준: {{segment}} 좌의 집은 {{trigram}}택({{houseGroup}}택)으로, {{personGroup}}과(와) 다른 그룹이에요.",
+    "lockFirst": "길흉을 보려면 {{target}} 측정값을 고정하세요.",
+    "goodDirections": "길한 네 방향: {{list}}",
+    "drivesDial": "나침반의 별 고리는 {{name}} 기준이에요.",
+    "thisPerson": "이 사람",
+    "defaultName": "사람 {{index}}",
+    "errors": {
+      "yearFormat": "네 자리 연도를 입력하세요. 예: 1986.",
+      "invalidDate": "생년월일이 올바르지 않아요.",
+      "outOfRange": "존재하지 않는 날짜이거나 지원하는 음력 범위(1800–2199)를 벗어났어요."
+    }
+  },
+  "rules": {
+    "segments": "규칙에는 8궁이 모두 있어야 해요.",
+    "missingStars": "{{trigram}} 괘에 별이 빠져 있어요.",
+    "duplicateStars": "{{trigram}} 괘에 같은 방향을 가리키는 별이 두 개 있어요.",
+    "noGroup": "{{trigram}} 괘가 어느 그룹에도 속하지 않아요.",
+    "homes": "괘의 후천 방위가 올바르지 않아요.",
+    "yearRange": "출생 연도는 {{min}}–{{max}} 사이여야 해요.",
+    "noTrigram": "규칙에 {{number}}번 괘가 없어요."
+  }
+}

@@ -1,5 +1,16 @@
+import type { TFunction } from 'i18next'
 import { normalizeTextSearch } from '@/utils/text-search'
-import type { FaqItem } from '../config/support-faq'
+import { SUPPORT_EMAIL } from '../config/site-navigation'
+import type { FaqEntry, FaqItem } from '../config/support-faq'
+
+export function localizeFaq(t: TFunction<'site'>, entries: readonly FaqEntry[]): FaqItem[] {
+  return entries.map((entry) => ({
+    id: entry.id,
+    question: t(`faq.items.${entry.id}.question`),
+    answer: t(`faq.items.${entry.id}.answer`, { email: SUPPORT_EMAIL }),
+    link: entry.link ? { to: entry.link.to, label: t(`faq.links.${entry.link.label}`) } : undefined,
+  }))
+}
 
 /** Lọc như ô tìm công cụ: bỏ dấu, mỗi từ chỉ cần có trong câu hỏi hoặc câu trả lời. */
 export function searchFaq(items: readonly FaqItem[], keyword: string): FaqItem[] {
@@ -11,7 +22,7 @@ export function searchFaq(items: readonly FaqItem[], keyword: string): FaqItem[]
   })
 }
 
-export function pickFaq(items: readonly FaqItem[], ids: readonly string[]): FaqItem[] {
+export function pickFaq<T extends { id: string }>(items: readonly T[], ids: readonly string[]): T[] {
   return ids.flatMap((id) => items.find((item) => item.id === id) ?? [])
 }
 

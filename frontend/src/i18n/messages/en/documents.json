@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "Print / Save as PDF"
+  },
+  "cv": {
+    "title": "CV builder",
+    "saveDraft": "Save draft",
+    "openDraft": "Open draft",
+    "clearDraft": "Delete draft",
+    "template": "CV template",
+    "templates": {
+      "classic": "Classic",
+      "modern": "Modern"
+    },
+    "fields": {
+      "name": "Full name",
+      "role": "Position applied for",
+      "phone": "Phone number",
+      "email": "Email",
+      "location": "Location",
+      "link": "Portfolio or LinkedIn"
+    },
+    "photo": "Portrait photo (this session only)",
+    "photoAlt": "Portrait photo in the CV",
+    "summary": "Short summary",
+    "sections": {
+      "experience": "Experience",
+      "education": "Education",
+      "skills": "Skills",
+      "languages": "Languages",
+      "certificates": "Certificates"
+    },
+    "entry": {
+      "period": "Period",
+      "company": "Company",
+      "school": "School",
+      "position": "Position",
+      "degree": "Major / degree",
+      "description": "Description / achievements",
+      "remove": "Remove entry",
+      "add": "Add entry"
+    },
+    "messages": {
+      "saved": "Draft saved on this device; the photo isn't saved.",
+      "saveFailed": "Couldn't save the draft on this device.",
+      "noDraft": "No valid draft yet.",
+      "opened": "Draft opened.",
+      "unreadable": "The draft couldn't be read.",
+      "cleared": "Draft deleted from this device."
+    },
+    "note": "Check the details carefully before sending. The draft is saved on your device only when you press Save; the photo isn't saved."
+  },
+  "formTemplates": {
+    "title": "Form templates",
+    "kind": "Document type",
+    "names": {
+      "leave": "Leave request",
+      "authorization": "Letter of authorization",
+      "handover": "Handover record"
+    },
+    "fields": {
+      "recipient": "To",
+      "name": "Full name",
+      "department": "Position, department",
+      "from": "Leave from",
+      "to": "Leave until",
+      "reason": "Reason",
+      "handover": "Work handed over to",
+      "placeWritten": "Place of writing",
+      "fromName": "Authorizing person",
+      "fromId": "ID number of the authorizing person",
+      "fromAddress": "Address of the authorizing person",
+      "toName": "Authorized person",
+      "toId": "ID number of the authorized person",
+      "toAddress": "Address of the authorized person",
+      "scope": "Scope of authorization",
+      "term": "Term",
+      "giver": "Handing over (name, position)",
+      "receiver": "Receiving (name, position)",
+      "items": "Items handed over (one per line)",
+      "note": "Notes",
+      "placeDrawn": "Place drawn up"
+    },
+    "authorizationWarning": "Some matters require notarization or certification. Check with the receiving office before using it.",
+    "defaultWarning": "Reference template; check the receiving office's requirements before submitting.",
+    "privacy": "Your data stays on this open page only."
+  }
+}

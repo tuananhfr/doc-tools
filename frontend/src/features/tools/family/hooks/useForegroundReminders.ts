@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { translate } from '@/i18n/runtime'
 import { dateOffset, occursOn, type FamilySpace } from '../core/family'
 
 export interface ReminderAlert { key: string; title: string; date: string; time: string; sensitive: boolean }
@@ -28,9 +29,9 @@ export function useForegroundReminders(space: FamilySpace | null, viewerId: stri
           try { if (sessionStorage.getItem(SESSION_PREFIX + key)) continue; sessionStorage.setItem(SESSION_PREFIX + key, '1') } catch { /* Session storage can be disabled. */ }
           seen.add(key)
           const sensitive = reminder.hideDetails || event.dataClass === 'SENSITIVE'
-          found.push({ key, title: sensitive ? 'Có lịch gia đình cần xem' : event.title, date, time: event.time, sensitive })
+          found.push({ key, title: sensitive ? translate('family:reminders.sensitiveTitle') : event.title, date, time: event.time, sensitive })
           if ('Notification' in window && Notification.permission === 'granted') {
-            try { new Notification(sensitive ? 'Lịch Gia Đình' : event.title, { body: sensitive ? 'Mở ứng dụng để xem chi tiết.' : `${date} · ${event.time}` }) } catch { /* In-app alert remains available. */ }
+            try { new Notification(sensitive ? translate('family:reminders.notificationTitle') : event.title, { body: sensitive ? translate('family:reminders.notificationBody') : `${date} · ${event.time}` }) } catch { /* In-app alert remains available. */ }
           }
         }
       }

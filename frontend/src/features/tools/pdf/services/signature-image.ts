@@ -1,5 +1,6 @@
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { canvasToBlob } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { rgbCss } from '../utils/decorations'
 import { INK_COLOR, SIGNATURE_STROKE, strokeBounds, strokePath, type SignatureInk, type Stroke } from '../utils/signature'
 import type { StampImage } from './stamp-image'
@@ -13,13 +14,13 @@ const SCALE = 4
  */
 export async function renderSignature(strokes: Stroke[], ink: SignatureInk): Promise<StampImage> {
   const bounds = strokeBounds(strokes)
-  if (!bounds) throw new Error('chưa có nét ký nào.')
+  if (!bounds) throw new Error(translate('pdf:signatureImage.noStrokes'))
 
   const canvas = document.createElement('canvas')
   canvas.width = Math.max(1, Math.ceil(bounds.width * SCALE))
   canvas.height = Math.max(1, Math.ceil(bounds.height * SCALE))
   const context = canvas.getContext('2d')
-  if (!context) throw new ToolError(TOOL_ERROR.memory, 'Trình duyệt không cấp được vùng vẽ cho chữ ký.')
+  if (!context) throw new ToolError(TOOL_ERROR.memory, translate('pdf:signatureImage.noCanvas'))
 
   context.setTransform(SCALE, 0, 0, SCALE, -bounds.x * SCALE, -bounds.y * SCALE)
   context.strokeStyle = rgbCss(INK_COLOR[ink])
@@ -31,5 +32,5 @@ export async function renderSignature(strokes: Stroke[], ink: SignatureInk): Pro
   const blob = await canvasToBlob(canvas, 'image/png')
   const aspect = canvas.height / canvas.width
   canvas.width = 0
-  return { name: 'chữ ký vẽ tay', bytes: new Uint8Array(await blob.arrayBuffer()), mime: 'image/png', aspect }
+  return { name: translate('pdf:signatureImage.name'), bytes: new Uint8Array(await blob.arrayBuffer()), mime: 'image/png', aspect }
 }

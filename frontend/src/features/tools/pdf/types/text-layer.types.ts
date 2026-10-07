@@ -1,4 +1,5 @@
 import type { Point } from '../utils/page-geometry'
+import type { OcrPageResult } from './ocr-result.types'
 
 /**
  * Lớp chữ của một trang PDF — mảnh chữ pdf.js đọc được, đã đổi sang KHUNG GỐC
@@ -29,6 +30,7 @@ export interface TextRun {
 
 export interface PageText {
   runs: TextRun[]
+  ocr?: OcrPageResult
 }
 
 /** Tứ giác trong khung gốc (4 đỉnh theo chiều chữ: trên-trái, trên-phải, dưới-phải, dưới-trái). */

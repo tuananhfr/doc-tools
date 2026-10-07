@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib'
 import { maxImagePixels, megabytes, TOOL_ERROR, TOOL_LIMITS, type ToolErrorCode } from '@/features/tools/hub'
 import { attachJpegExif, canvasToBlob, exifForRedraw, readImageSize, readJpegExif } from '@/features/tools/shared'
 import { newId } from '@/utils/id'
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import type { FormSummary } from '../types/form.types'
 import { detectKind, readJpegOrientation } from '../utils/file-guard'
@@ -33,7 +34,7 @@ async function inspectPdf(bytes: Uint8Array): Promise<Inspected> {
     // theo kiểu lỗi là báo nhầm tệp có mật khẩu thành "tệp hỏng".
     doc = await PDFDocument.load(bytes, { updateMetadata: false, ignoreEncryption: true })
   } catch {
-    return 'Tệp PDF hỏng hoặc không đọc được.'
+    return translate('pdf:ingest.corrupt')
   }
   // pdf-lib không giải mã được: chép luồng đã mã hoá sang tệp mới thì PDF ra
   // toàn trang trắng — phải qua qpdf giải trước.
@@ -41,20 +42,17 @@ async function inspectPdf(bytes: Uint8Array): Promise<Inspected> {
   return { pageCount: doc.getPageCount(), form: formSummary(doc) }
 }
 
-const LOCKED_REASON: Record<LockKind, string> = {
-  open: 'Tệp có mật khẩu — dùng "Thêm tệp" để nhập mật khẩu mở khoá.',
-  owner: 'Tệp bị khoá quyền sửa — dùng "Thêm tệp" để nhập mật khẩu chủ.',
-}
+const LOCKED_REASON = { open: 'ingest.lockedOpen', owner: 'ingest.lockedOwner' } as const satisfies Record<LockKind, string>
 
 /** Tệp mã hoá mà không đặt mật khẩu nào (nhiều máy scan, Word xuất ra thế) thì giải luôn, khỏi hỏi. */
 async function decryptWithoutPassword(bytes: Uint8Array<ArrayBuffer>): Promise<IngestResult | Uint8Array<ArrayBuffer>> {
   try {
     const locked = await lockKind(bytes)
-    if (locked) return { ok: false, code: TOOL_ERROR.permission, reason: LOCKED_REASON[locked], locked, bytes }
+    if (locked) return { ok: false, code: TOOL_ERROR.permission, reason: translate(`pdf:${LOCKED_REASON[locked]}`), locked, bytes }
     const result = await unlockPdf(bytes, '')
-    return result.ok ? result.bytes : { ok: false, code: TOOL_ERROR.permission, reason: 'Tệp PDF mã hoá không giải được.' }
+    return result.ok ? result.bytes : { ok: false, code: TOOL_ERROR.permission, reason: translate('pdf:ingest.undecryptable') }
   } catch {
-    return { ok: false, code: TOOL_ERROR.unknown, reason: 'Không tải được bộ mở khoá PDF. Kiểm tra kết nối mạng rồi thử lại.' }
+    return { ok: false, code: TOOL_ERROR.unknown, reason: translate('pdf:unlock.unavailable') }
   }
 }
 
@@ -84,12 +82,12 @@ async function normalizeJpeg(bitmap: ImageBitmap, original: Uint8Array): Promise
 
 /** Đọc một tệp người dùng thả vào thành `SourceFile` + các trang của nó. */
 export async function ingestFile(file: File): Promise<IngestResult> {
-  if (file.size === 0) return { ok: false, code: TOOL_ERROR.corruptFile, reason: 'Tệp rỗng.' }
-  if (file.size > TOOL_LIMITS.fileBytes) return { ok: false, code: TOOL_ERROR.fileTooLarge, reason: `Tệp vượt ${megabytes(TOOL_LIMITS.fileBytes)}.` }
+  if (file.size === 0) return { ok: false, code: TOOL_ERROR.corruptFile, reason: translate('pdf:ingest.empty') }
+  if (file.size > TOOL_LIMITS.fileBytes) return { ok: false, code: TOOL_ERROR.fileTooLarge, reason: translate('pdf:ingest.tooLarge', { size: megabytes(TOOL_LIMITS.fileBytes) }) }
 
   let bytes: Uint8Array<ArrayBuffer> = new Uint8Array(await file.arrayBuffer())
   const detected = detectKind(bytes.subarray(0, 1024))
-  if (!detected) return { ok: false, code: TOOL_ERROR.unsupportedFormat, reason: 'Chỉ nhận PDF, JPG hoặc PNG.' }
+  if (!detected) return { ok: false, code: TOOL_ERROR.unsupportedFormat, reason: translate('pdf:ingest.unsupported') }
 
   if (detected.kind === 'pdf') {
     let inspected = await inspectPdf(bytes)
@@ -98,10 +96,10 @@ export async function ingestFile(file: File): Promise<IngestResult> {
       if (!(decrypted instanceof Uint8Array)) return decrypted
       bytes = decrypted
       inspected = await inspectPdf(bytes)
-      if (inspected === 'encrypted') return { ok: false, code: TOOL_ERROR.permission, reason: 'Tệp PDF mã hoá không giải được.' }
+      if (inspected === 'encrypted') return { ok: false, code: TOOL_ERROR.permission, reason: translate('pdf:ingest.undecryptable') }
     }
     if (typeof inspected === 'string') return { ok: false, code: TOOL_ERROR.corruptFile, reason: inspected }
-    if (inspected.pageCount === 0) return { ok: false, code: TOOL_ERROR.corruptFile, reason: 'Tệp PDF không có trang nào.' }
+    if (inspected.pageCount === 0) return { ok: false, code: TOOL_ERROR.corruptFile, reason: translate('pdf:ingest.noPages') }
 
     const source: SourceFile = {
       id: newId(),
@@ -118,23 +116,23 @@ export async function ingestFile(file: File): Promise<IngestResult> {
 
   const size = readImageSize(bytes, detected.mime === 'image/png' ? 'png' : 'jpeg')
   if (size && size.width * size.height > maxImagePixels()) {
-    return { ok: false, code: TOOL_ERROR.pixelLimit, reason: `Ảnh quá lớn (vượt ${maxImagePixels() / 1_000_000} triệu điểm ảnh).` }
+    return { ok: false, code: TOOL_ERROR.pixelLimit, reason: translate('pdf:ingest.pixels', { megapixels: maxImagePixels() / 1_000_000 }) }
   }
 
   let bitmap: ImageBitmap
   try {
     bitmap = await createImageBitmap(new Blob([bytes], { type: detected.mime }))
   } catch {
-    return { ok: false, code: TOOL_ERROR.corruptFile, reason: 'Ảnh hỏng hoặc không đọc được.' }
+    return { ok: false, code: TOOL_ERROR.corruptFile, reason: translate('pdf:ingest.imageCorrupt') }
   }
 
   try {
     if (bitmap.width * bitmap.height > maxImagePixels()) {
-      return { ok: false, code: TOOL_ERROR.pixelLimit, reason: `Ảnh quá lớn (vượt ${maxImagePixels() / 1_000_000} triệu điểm ảnh).` }
+      return { ok: false, code: TOOL_ERROR.pixelLimit, reason: translate('pdf:ingest.pixels', { megapixels: maxImagePixels() / 1_000_000 }) }
     }
     if (detected.mime === 'image/jpeg' && readJpegOrientation(bytes) !== 1) {
       const upright = await normalizeJpeg(bitmap, bytes)
-      if (!upright) return { ok: false, code: TOOL_ERROR.memory, reason: 'Không xoay được ảnh theo EXIF.' }
+      if (!upright) return { ok: false, code: TOOL_ERROR.memory, reason: translate('pdf:ingest.exif') }
       bytes = upright
     }
   } finally {

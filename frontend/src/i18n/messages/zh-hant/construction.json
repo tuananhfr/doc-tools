@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "地基",
+      "basement": "地下室",
+      "ground": "一樓",
+      "upper": "每層樓",
+      "floor": "第 {{floor}} 層樓",
+      "rooftopRoom": "屋頂樓梯間",
+      "terrace": "無頂露臺",
+      "roof": "屋頂",
+      "yard": "前／後院"
+    },
+    "result": "參考概算",
+    "money": "{{amount}} đ",
+    "enterPrice": "輸入單價",
+    "convertedArea": "換算面積：{{area}} m²",
+    "costs": "結構體：{{base}} đ · 裝修或統包：{{finishing}} đ · 基樁：{{pile}} đ",
+    "columns": {
+      "item": "項目",
+      "area": "面積",
+      "factor": "係數",
+      "converted": "換算"
+    },
+    "checkInput": "請檢查輸入的數據。",
+    "disclaimer": "係數是存檔資料中的參考慣例，並非政府定額。請對照設計圖與承包商報價；不含設計費、建照、活動家具或地質追加費用。",
+    "title": "你的面積與單價",
+    "fields": {
+      "floorArea": "一樓樓地板面積（m²）",
+      "upperFloors": "樓層數（不含一樓）",
+      "rooftopRoomArea": "屋頂樓梯間面積（m²）",
+      "terraceArea": "無頂露臺（m²）",
+      "yardArea": "前／後院（m²）",
+      "basePrice": "結構體單價（đ/m²）",
+      "finishingPrice": "裝修或統包單價（đ/m²）",
+      "pileCost": "基樁費用（đ）"
+    },
+    "turnkey": "第二個單價為統包價，已包含結構體",
+    "editFactors": "依承包商報價修改係數",
+    "factorLabel": "{{label}}（%）"
+  }
+}

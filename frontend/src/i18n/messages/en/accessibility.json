@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Ready",
+    "stop": "Stop"
+  },
+  "dictation": {
+    "status": "Status",
+    "listening": "Listening",
+    "unsupported": "Not supported",
+    "privacy": "Speech recognition uses your browser's service; audio may be sent to your browser provider. The text you edit here is not sent to the Chuyện Nhỏ server.",
+    "title": "Vietnamese dictation",
+    "start": "Start dictating",
+    "text": "Text",
+    "copy": "Copy",
+    "download": "Download .txt",
+    "interrupted": "Speech recognition was interrupted. Check microphone permission and try again.",
+    "micFailed": "Couldn't open the microphone. Check your browser's permissions."
+  },
+  "magnifier": {
+    "noCamera": "This browser doesn't support the camera.",
+    "cameraFailed": "Couldn't open the camera. Check permissions and whether the camera is in use.",
+    "preview": "Camera view",
+    "frozen": "Frozen",
+    "live": "Live view",
+    "hint": "Tap Open camera to start.",
+    "privacy": "The image is shown on your device only — never recorded or sent anywhere.",
+    "title": "Magnifier",
+    "zoom": "Zoom: {{zoom}}×",
+    "switchCamera": "Switch camera",
+    "openCamera": "Open camera",
+    "resume": "Resume",
+    "freeze": "Freeze",
+    "contrastOff": "Normal contrast",
+    "contrastOn": "High contrast",
+    "closeCamera": "Turn off camera"
+  },
+  "readAloud": {
+    "device": "Read on device",
+    "speaking": "Reading",
+    "read": "Read text aloud",
+    "voiceNote": "The voice depends on the Vietnamese voices installed on your device and browser.",
+    "unsupported": "This browser doesn't support reading text aloud.",
+    "title": "Text to read",
+    "content": "Content",
+    "rate": "Speed: {{rate}}×"
+  }
+}

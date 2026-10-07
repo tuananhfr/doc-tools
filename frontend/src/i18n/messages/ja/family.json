@@ -1,0 +1,153 @@
+{
+  "shared": {
+    "members": "メンバー",
+    "phone": "電話番号",
+    "notes": "メモ"
+  },
+  "recurrence": {
+    "once": "1回のみ",
+    "daily": "毎日",
+    "weekly": "毎週",
+    "monthly": "毎月",
+    "yearly": "毎年"
+  },
+  "dataClasses": {
+    "NORMAL": "通常",
+    "PRIVATE": "プライベート",
+    "SENSITIVE": "機密"
+  },
+  "profiles": {
+    "PARENT": "父母",
+    "SENIOR": "祖父母",
+    "CHILD": "子ども"
+  },
+  "page": {
+    "views": {
+      "calendar": "カレンダー",
+      "list": "リスト",
+      "members": "メンバー",
+      "backup": "バックアップ",
+      "safety": "SOS・連絡先"
+    },
+    "lunarHint": "旧暦の日付は、毎年異なる新暦の日付にあたります。カレンダーはまだ旧暦での繰り返しに対応していないため、このリマインダーは今年だけ有効です。",
+    "loading": "端末に保存されたカレンダーを開いています...",
+    "storage": "<strong>この端末に保存</strong> · 予定 {{events}} 件 · メンバー {{members}} 人。アカウントは不要です。バックアップをダウンロードしていない場合、ブラウザのデータを消去するとカレンダーが失われます。ネット経由の共有や同期はまだ有効になっていません。",
+    "enableNotifications": "ページを開いている間の通知をオンにする",
+    "remindersTitle": "ページを開いている間のリマインダー",
+    "seen": "確認済み",
+    "viewModes": "表示モード",
+    "viewingFor": "表示対象"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "今日",
+      "week": "今後7日間",
+      "upcoming": "今後30日間"
+    },
+    "rangeLabel": "期間",
+    "empty": "この期間に予定や祝日はありません。",
+    "upcomingNote": "今日から30日分を表示しています。繰り返しの予定はこの期間以降も続きます。"
+  },
+  "day": {
+    "lunar": "旧暦: {{month}}月{{day}}日",
+    "lunarLeap": "旧暦: 閏{{month}}月{{day}}日",
+    "byLunar": "旧暦で",
+    "bySolar": "新暦で",
+    "addReminder": "リマインダーを追加",
+    "empty": "この日の家族の予定はありません。",
+    "addToDay": "この日に追加"
+  },
+  "form": {
+    "categories": {
+      "task": "家事・家族の用事",
+      "school": "学校・学習",
+      "appointment": "約束・予約",
+      "deadline": "書類の期限",
+      "medication": "服薬リマインダー",
+      "payment": "支払い",
+      "other": "その他"
+    },
+    "scopes": {
+      "FAMILY_ALL": "家族全員",
+      "PARENTS_SENIORS": "父母と祖父母",
+      "PARENTS_CHILDREN": "父母と子ども",
+      "PRIVATE": "この端末のみ"
+    },
+    "reminderInvalid": "リマインダーには具体的な時刻と、0〜1,440 分の通知タイミングが必要です。",
+    "saveFailed": "予定を保存できませんでした。日付と入力内容を確認してください。",
+    "editTitle": "予定を編集",
+    "addTitle": "家族の予定を追加",
+    "title": "予定名",
+    "date": "日付",
+    "time": "時刻（任意）",
+    "category": "種類",
+    "recurrence": "繰り返し",
+    "scope": "範囲",
+    "privacy": "公開範囲",
+    "reminder": "事前通知（分、最大1日。時刻の入力が必要）",
+    "medicationNote": "服薬リマインダーは入力したデータに基づくだけで、医療上の助言ではありません。機密の内容は通知では初期設定で非表示になります。",
+    "reminderNote": "リマインダーは、ページを開いているときか、ブラウザが通知を許可しているときだけ表示されます。OSがページを一時停止することもあります。",
+    "saveChanges": "変更を保存",
+    "saveNew": "端末に予定を保存",
+    "cancel": "キャンセル"
+  },
+  "event": {
+    "undo": "完了を取り消す",
+    "done": "完了",
+    "edit": "編集",
+    "delete": "削除",
+    "confirmDelete": "この予定とすべての繰り返しを端末から削除しますか？"
+  },
+  "members": {
+    "saveFailed": "メンバーを保存できませんでした。",
+    "intro": "分かりやすい呼び名を付けてください。生年月日、学校名、身分証明書の情報は入力不要です。",
+    "name": "呼び名",
+    "profile": "プロフィール",
+    "add": "メンバーを追加"
+  },
+  "backup": {
+    "invalidFile": "バックアップファイルが無効か、20 MB を超えています。",
+    "wrongVersion": "対応するバージョンのバックアップを読み込めませんでした。",
+    "confirmRestore": "家族 {{id}}（予定 {{count}} 件）を復元しますか？現在のデータも端末内に残るので、あとで開き直せます。",
+    "restoreFailed": "復元できませんでした。現在のデータはそのまま残っています。",
+    "title": "バックアップとカレンダーの書き出し",
+    "intro": "JSONバックアップには、メンバー、予定、リマインダー、SOS信号が含まれます。ICSファイルは他のアプリに予定を移すためのもので、バックアップの代わりにはなりません。",
+    "downloadBackup": "バックアップをダウンロード",
+    "downloadIcs": "ICS をダウンロード",
+    "print": "今後30日分を印刷 / PDFで保存",
+    "includeSensitive": "ICS/PDF にプライベート・機密の予定も含める",
+    "defaultsNote": "ICS と PDF は初期設定でプライベート・機密の予定を除外します。バックアップには常にすべてのデータが含まれるので、信頼できる場所に保管してください。",
+    "restoreLabel": "JSONバックアップから復元",
+    "inspected": "読み込み結果: メンバー {{members}} 人、予定 {{events}} 件、リマインダー {{reminders}} 件。家族コード: {{id}}。",
+    "restoreThis": "このバックアップを復元"
+  },
+  "safety": {
+    "invalidContact": "有効な名前と電話番号を入力してください。",
+    "contactFailed": "連絡先を保存できませんでした。",
+    "sosFailed": "端末にSOS信号を保存できませんでした。",
+    "noGeolocation": "この端末は位置情報に対応していません。",
+    "locationSaveFailed": "位置情報を保存できませんでした。",
+    "locateFailed": "位置情報を取得できませんでした。保存済みのSOS信号は残っています。",
+    "title": "家族の安全",
+    "intro": "現在のモードでは端末に保存するだけです。ここでのSOS信号は<strong>まだ家族には送信されません</strong>。助けが必要なときは、緊急通報番号または保存した連絡先に直接電話してください。",
+    "contactName": "緊急連絡先の名前",
+    "saveContact": "連絡先を保存",
+    "saveSos": "端末にSOS信号を保存",
+    "call": "{{number}} に電話",
+    "pendingTitle": "端末内に保存中の信号",
+    "notSent": "{{time}} · ネット経由では未送信",
+    "lastLocation": "最後の位置: {{latitude}}, {{longitude}}（{{time}}）",
+    "locateOnce": "位置情報を1回取得",
+    "imSafe": "無事です"
+  },
+  "reminders": {
+    "sensitiveTitle": "確認が必要な家族の予定があります",
+    "notificationTitle": "家族カレンダー",
+    "notificationBody": "アプリを開いて詳細を確認してください。"
+  },
+  "space": {
+    "loadFailed": "端末のデータを開けませんでした。ブラウザのストレージ権限を確認してください。",
+    "saveFailed": "変更を保存できませんでした。バックアップを書き出し、端末の空き容量を確認してください。",
+    "restoreFailed": "バックアップを復元できませんでした。"
+  }
+}

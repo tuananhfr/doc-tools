@@ -1,5 +1,4 @@
-/** Lý do camera không dùng được ở ngữ cảnh không an toàn (`http://<IP LAN>`). */
-export const CAMERA_INSECURE = 'Camera chỉ dùng được khi mở trang bằng HTTPS (hoặc localhost).'
+import { translate } from '@/i18n/runtime'
 
 /** Trình duyệt chỉ đưa `getUserMedia` cho trang HTTPS / localhost. */
 export function cameraAvailable(): boolean {
@@ -10,9 +9,9 @@ export function cameraAvailable(): boolean {
 export function cameraErrorMessage(error: unknown): string {
   const name = error instanceof DOMException ? error.name : ''
   if (name === 'NotAllowedError' || name === 'SecurityError') {
-    return 'Trình duyệt đang chặn camera với trang này. Bấm biểu tượng ổ khoá trên thanh địa chỉ để cho phép, rồi thử lại.'
+    return translate('common:camera.blocked')
   }
-  if (name === 'NotFoundError' || name === 'OverconstrainedError') return 'Không tìm thấy camera trên máy này.'
-  if (name === 'NotReadableError' || name === 'AbortError') return 'Camera đang được ứng dụng khác dùng. Đóng ứng dụng đó rồi thử lại.'
-  return 'Không mở được camera.'
+  if (name === 'NotFoundError' || name === 'OverconstrainedError') return translate('common:camera.notFound')
+  if (name === 'NotReadableError' || name === 'AbortError') return translate('common:camera.busy')
+  return translate('common:camera.failed')
 }

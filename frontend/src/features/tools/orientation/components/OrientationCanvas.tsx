@@ -1,10 +1,12 @@
 import { useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Axis, Point } from '../types/orientation.types'
 import type { SourceView } from '../types/source.types'
 import { compassShapes } from '../utils/compass-geometry'
 import type { CompassPalette } from '../utils/compass-palette'
 import { overlayCompass, type CompassExtras } from '../utils/compass-view'
 import type { OrientationAction, OrientationState } from '../utils/orientation-state'
+import { targetLabel } from '../utils/orientation-summary'
 import { sceneShapes } from '../utils/scene-geometry'
 import { MIN_POLYGON_POINTS, snapPoint } from '../utils/trace'
 import { ShapeLayer } from './ShapeLayer'
@@ -46,6 +48,7 @@ const shift = (axis: Axis, dx: number, dy: number): Axis => ({ from: { x: axis.f
  * Kéo đuôi mũi tên = dời cả mũi tên; kéo đầu = xoay / đổi dài.
  */
 export function OrientationCanvas({ view, state, palette, extras, disabled, labelOf, dispatch, checkpoint, onPlace, selectedShape, onSelectShape }: OrientationCanvasProps) {
+  const { t } = useTranslation('orientation')
   const surface = useRef<HTMLDivElement>(null)
   const drag = useRef<{ grip: Grip; x: number; y: number; start: Point; moved: boolean } | null>(null)
   const [hover, setHover] = useState<Point | null>(null)
@@ -168,7 +171,7 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
       }}
       onPointerLeave={() => setHover(null)}
     >
-      <img className="erp-orient__image" src={view.url} alt="Ảnh / bản vẽ đang đo hướng" draggable={false} />
+      <img className="erp-orient__image" src={view.url} alt={t('canvas.imageAlt')} draggable={false} />
 
       <svg className="erp-orient__layer" viewBox={`0 0 ${view.width} ${view.height}`} preserveAspectRatio="none" aria-hidden="true">
         <ShapeLayer shapes={scene} palette={palette} opacity={1} />
@@ -182,7 +185,7 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
             type="button"
             className={`erp-orient__grip erp-orient__grip--trace${shape.id === selectedShape ? ' is-selected' : ''}`}
             style={at(point)}
-            aria-label={`Điểm ${index + 1} của nét vẽ — chạm để chọn nét, kéo hoặc dùng phím mũi tên để chỉnh`}
+            aria-label={t('canvas.traceGrip', { index: index + 1 })}
             aria-pressed={shape.id === selectedShape}
             {...handlers({ kind: 'trace', id: shape.id, index }, () => onSelectShape(shape.id === selectedShape ? null : shape.id))}
           />
@@ -196,8 +199,8 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
             type="button"
             className="erp-orient__grip erp-orient__grip--close"
             style={at(point)}
-            aria-label="Khép hình tại điểm đầu"
-            title="Khép hình"
+            aria-label={t('canvas.closeAria')}
+            title={t('canvas.closeTitle')}
             disabled={disabled}
             onClick={(event) => {
               event.stopPropagation()
@@ -216,7 +219,7 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
               type="button"
               className={`erp-orient__grip erp-orient__grip--north${end === 'to' ? ' is-head' : ''}`}
               style={at(state.anchor?.source === 'DRAWING' ? state.anchor.northAxis[end] : { x: 0, y: 0 })}
-              aria-label={end === 'to' ? 'Đầu mũi tên Bắc — kéo để xoay theo ký hiệu Bắc của bản vẽ' : 'Đuôi mũi tên Bắc — kéo để dời'}
+              aria-label={t(end === 'to' ? 'canvas.northHead' : 'canvas.northTail')}
               {...handlers({ kind: 'north', end })}
             />
           ))
@@ -231,7 +234,7 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
                     type="button"
                     className={`erp-orient__grip erp-orient__grip--axis${end === 'to' ? ' is-head' : ''}${target.id === state.activeId ? ' is-active' : ''}`}
                     style={at(target.axis![end])}
-                    aria-label={`${end === 'to' ? 'Đầu' : 'Đuôi'} trục ${labelOf(target.id)} — ${end === 'to' ? 'kéo để xoay' : 'kéo để dời'}`}
+                    aria-label={t(end === 'to' ? 'canvas.axisHead' : 'canvas.axisTail', { target: targetLabel(target) })}
                     {...handlers({ kind: 'axis', id: target.id, end }, () => dispatch({ type: 'activate', id: target.id }))}
                   />
                 ))
@@ -245,14 +248,14 @@ export function OrientationCanvas({ view, state, palette, extras, disabled, labe
             type="button"
             className="erp-orient__grip erp-orient__grip--compass"
             style={at(state.compass.center)}
-            aria-label="Tâm la bàn — kéo để dời la bàn"
+            aria-label={t('canvas.compassCenter')}
             {...handlers({ kind: 'compass', part: 'center' })}
           />
           <button
             type="button"
             className="erp-orient__grip erp-orient__grip--size"
             style={at({ x: Math.min(state.compass.center.x + compassSpec.radius, view.width), y: state.compass.center.y })}
-            aria-label="Mép la bàn — kéo để phóng to / thu nhỏ"
+            aria-label={t('canvas.compassEdge')}
             {...handlers({ kind: 'compass', part: 'edge' })}
           />
         </>

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { OrganizePages } from '../../hooks/useOrganizePages'
 import { usePageThumbnail } from '../../hooks/usePageThumbnail'
@@ -27,6 +28,7 @@ interface TileProps {
 const noOverlay = () => null
 
 function OrganizeTile({ page, position, total, source, disabled, organize }: TileProps) {
+  const { t } = useTranslation('pdf')
   const frame = useRef<HTMLDivElement>(null)
   const thumb = usePageThumbnail(frame, source, page)
 
@@ -44,14 +46,14 @@ function OrganizeTile({ page, position, total, source, disabled, organize }: Til
       <p className="erp-organize__label">
         <span className="erp-organize__no">{position}</span>
         {/* Số trang trong tệp gốc: dời đi rồi vẫn biết trang này vốn ở đâu. */}
-        <span className="erp-organize__origin">gốc: trang {page.pageIndex + 1}</span>
+        <span className="erp-organize__origin">{t('organizeStage.origin', { page: page.pageIndex + 1 })}</span>
       </p>
       <div className="erp-organize__actions">
         <button
           type="button"
           className="btn erp-organize__button"
-          aria-label={`Dời trang ${position} lên trước`}
-          title="Dời lên trước"
+          aria-label={t('organizeStage.moveBackLabel', { position })}
+          title={t('organizeStage.moveBack')}
           disabled={disabled || position === 1}
           onClick={() => organize.shift(page.id, -1)}
         >
@@ -60,8 +62,8 @@ function OrganizeTile({ page, position, total, source, disabled, organize }: Til
         <button
           type="button"
           className="btn erp-organize__button"
-          aria-label={`Dời trang ${position} ra sau`}
-          title="Dời ra sau"
+          aria-label={t('organizeStage.moveForwardLabel', { position })}
+          title={t('organizeStage.moveForward')}
           disabled={disabled || position === total}
           onClick={() => organize.shift(page.id, 1)}
         >
@@ -70,8 +72,8 @@ function OrganizeTile({ page, position, total, source, disabled, organize }: Til
         <button
           type="button"
           className="btn erp-organize__button"
-          aria-label={`Xoay trang ${position} sang phải`}
-          title="Xoay 90°"
+          aria-label={t('organizeStage.rotateLabel', { position })}
+          title={t('organizeStage.rotate')}
           disabled={disabled}
           onClick={() => organize.rotate(page.id)}
         >
@@ -80,8 +82,8 @@ function OrganizeTile({ page, position, total, source, disabled, organize }: Til
         <button
           type="button"
           className="btn erp-organize__button erp-organize__button--remove"
-          aria-label={`Bỏ trang ${position}`}
-          title="Bỏ trang"
+          aria-label={t('organizeStage.removeLabel', { position })}
+          title={t('organizeStage.remove')}
           disabled={disabled}
           onClick={() => organize.remove(page.id)}
         >
@@ -94,19 +96,21 @@ function OrganizeTile({ page, position, total, source, disabled, organize }: Til
 
 /** Lưới trang của "Sắp xếp PDF": dời, xoay, bỏ từng trang bằng nút — dùng được trên điện thoại và bằng bàn phím. */
 export function OrganizeStage({ items, organize, disabled, onClear }: OrganizeStageProps) {
+  const { t } = useTranslation('pdf')
   const sources = Object.fromEntries(items.map((item) => [item.source.id, item.source]))
   const original = items.reduce((sum, item) => sum + item.pages.length, 0)
   const removed = original - organize.pages.length
-  const name = items.length === 1 ? items[0].source.name : `${items.length} tệp PDF`
+  const name = items.length === 1 ? items[0].source.name : t('organizeStage.filesName', { count: items.length })
+  const count = organize.pages.length
 
   return (
-    <section className="erp-page-stage" aria-label="Các trang của tệp">
-      <StageHead name={name} meta={`${organize.pages.length} trang${removed > 0 ? ` · đã bỏ ${removed}` : ''}`}>
+    <section className="erp-page-stage" aria-label={t('organizeStage.label')}>
+      <StageHead name={name} meta={removed > 0 ? t('organizeStage.metaRemoved', { count, removed }) : t('organizeStage.meta', { count })}>
         <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={disabled || organize.untouched} onClick={organize.reset}>
-          Hoàn lại
+          {t('organizeStage.reset')}
         </button>
         <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={disabled} onClick={onClear}>
-          {items.length > 1 ? 'Bỏ tất cả' : 'Bỏ tệp'}
+          {items.length > 1 ? t('stage.removeAll') : t('stage.removeFile')}
         </button>
       </StageHead>
 
@@ -125,7 +129,7 @@ export function OrganizeStage({ items, organize, disabled, onClear }: OrganizeSt
           ))}
         </ol>
       ) : (
-        <p className="erp-page-stage__empty">Đã bỏ hết trang. Bấm "Hoàn lại" để lấy lại các trang của tệp.</p>
+        <p className="erp-page-stage__empty">{t('organizeStage.empty')}</p>
       )}
     </section>
   )

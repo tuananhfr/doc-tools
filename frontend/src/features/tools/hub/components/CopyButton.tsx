@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { copyText } from '../utils/clipboard'
 
@@ -15,8 +16,9 @@ interface CopyButtonProps {
 }
 
 /** Nút "Sao chép" tự báo đã chép ngay trên nút — không bật toast cho một việc xảy ra hàng chục lần. */
-export function CopyButton({ text, label = 'Sao chép', iconOnly, variant = 'outline-secondary', size, className }: CopyButtonProps) {
+export function CopyButton({ text, label, iconOnly, variant = 'outline-secondary', size, className }: CopyButtonProps) {
   const toast = useToast()
+  const { t } = useTranslation('common')
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
@@ -27,10 +29,10 @@ export function CopyButton({ text, label = 'Sao chép', iconOnly, variant = 'out
 
   const copy = async () => {
     if (await copyText(text)) setCopied(true)
-    else toast.error('Trình duyệt không cho sao chép. Bôi đen đoạn chữ rồi nhấn Ctrl+C.')
+    else toast.error(t('copy.blocked'))
   }
 
-  const shown = copied ? 'Đã chép' : label
+  const shown = copied ? t('copy.copied') : (label ?? t('copy.label'))
 
   return (
     <Button
@@ -47,7 +49,7 @@ export function CopyButton({ text, label = 'Sao chép', iconOnly, variant = 'out
       {/* Nút chỉ có icon vẫn phải báo cho trình đọc màn hình biết đã chép. */}
       {iconOnly ? (
         <span className="visually-hidden" role="status">
-          {copied ? 'Đã chép' : ''}
+          {copied ? t('copy.copied') : ''}
         </span>
       ) : null}
     </Button>

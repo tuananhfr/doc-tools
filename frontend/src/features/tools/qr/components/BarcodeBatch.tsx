@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { describeError, downloadOutput, FilePicker, megabytes, TOOL_LIMITS, useDownloadNudge } from '@/features/tools/hub'
 import { BARCODE_BATCH_LIMIT } from '../config/barcode-kinds'
@@ -25,6 +26,7 @@ type ExportType = 'pdf' | 'png' | 'svg'
  * hiện kèm số dòng + lý do và bị loại khỏi tệp ra; không có dòng nào bị "sửa giúp".
  */
 export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
+  const { t } = useTranslation('qr')
   const toast = useToast()
   const nudge = useDownloadNudge()
   const [file, setFile] = useState<{ name: string; values: string[] } | null>(null)
@@ -40,14 +42,14 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
     const picked = files[0]
     if (!picked) return
     if (picked.size > TOOL_LIMITS.fileBytes) {
-      toast.error(`Tệp lớn hơn ${megabytes(TOOL_LIMITS.fileBytes)}.`)
+      toast.error(t('batch.fileTooLarge', { size: megabytes(TOOL_LIMITS.fileBytes) }))
       return
     }
     setReading(true)
     try {
       setFile({ name: picked.name, values: await readFirstColumn(picked) })
     } catch (error) {
-      toast.error(describeError(error, 'Không đọc được tệp này.').message)
+      toast.error(describeError(error, t('batch.readFailed')).message)
     } finally {
       setReading(false)
     }
@@ -66,7 +68,7 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
       downloadOutput({ name: type === 'pdf' ? `${stem}.pdf` : `${stem} (${type.toUpperCase()}).zip`, blob })
       nudge.onDownloaded()
     } catch (error) {
-      toast.error(describeError(error, 'Không dựng được tệp.').message)
+      toast.error(describeError(error, t('batch.buildFailed')).message)
     } finally {
       setProgress(null)
     }
@@ -77,8 +79,8 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
       <FilePicker
         accept={ACCEPT}
         multiple={false}
-        title="Chọn tệp CSV hoặc Excel (.xlsx)"
-        hint={`Mỗi dòng một mã, lấy cột đầu tiên · tối đa ${BARCODE_BATCH_LIMIT} dòng`}
+        title={t('batch.pickTitle')}
+        hint={t('batch.pickHint', { limit: BARCODE_BATCH_LIMIT })}
         compact={file !== null}
         loading={reading ? { done: 0, total: 1 } : null}
         disabled={reading || progress !== null}
@@ -94,19 +96,19 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
           <ul className="erp-barcode-batch__stats">
             <li className="erp-barcode-stat erp-barcode-stat--ok">
               <Icon name="check-circle" />
-              {valid.length} mã hợp lệ
+              {t('batch.valid', { count: valid.length })}
             </li>
             {invalid.length > 0 ? (
               <li className="erp-barcode-stat erp-barcode-stat--bad">
                 <Icon name="x-circle" />
-                {invalid.length} dòng sai — bị loại
+                {t('batch.invalid', { count: invalid.length })}
               </li>
             ) : null}
-            {batch.header ? <li className="erp-barcode-stat">Bỏ dòng tiêu đề “{batch.header}”</li> : null}
+            {batch.header ? <li className="erp-barcode-stat">{t('batch.header', { header: batch.header })}</li> : null}
             {batch.dropped > 0 ? (
               <li className="erp-barcode-stat erp-barcode-stat--bad">
                 <Icon name="exclamation-triangle" />
-                Bỏ {batch.dropped} dòng vượt trần {BARCODE_BATCH_LIMIT}
+                {t('batch.dropped', { count: batch.dropped, limit: BARCODE_BATCH_LIMIT })}
               </li>
             ) : null}
           </ul>
@@ -116,9 +118,9 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
               <table className="table table-sm mb-0">
                 <thead>
                   <tr>
-                    <th scope="col">Dòng</th>
-                    <th scope="col">Giá trị</th>
-                    <th scope="col">Lý do</th>
+                    <th scope="col">{t('batch.line')}</th>
+                    <th scope="col">{t('shared.value')}</th>
+                    <th scope="col">{t('batch.reason')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -131,7 +133,7 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
                   ))}
                 </tbody>
               </table>
-              {invalid.length > SHOWN_ERRORS ? <p className="erp-barcode-muted">… và {invalid.length - SHOWN_ERRORS} dòng sai nữa.</p> : null}
+              {invalid.length > SHOWN_ERRORS ? <p className="erp-barcode-muted">{t('batch.moreErrors', { count: invalid.length - SHOWN_ERRORS })}</p> : null}
             </div>
           ) : null}
 
@@ -145,10 +147,10 @@ export function BarcodeBatch({ kind, look, engine }: BarcodeBatchProps) {
               >
                 <Icon name={type === 'pdf' ? 'file-earmark-pdf' : 'file-earmark-zip'} className="me-2" />
                 {progress?.type === type
-                  ? `Đang dựng ${progress.done}/${progress.total}…`
+                  ? t('batch.building', { done: progress.done, total: progress.total })
                   : type === 'pdf'
-                    ? `PDF (${valid.length} trang)`
-                    : `Gói ${type.toUpperCase()} (.zip)`}
+                    ? t('batch.pdf', { count: valid.length })
+                    : t('batch.zip', { type: type.toUpperCase() })}
               </Button>
             ))}
           </div>

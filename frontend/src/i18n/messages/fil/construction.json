@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Pundasyon",
+      "basement": "Basement",
+      "ground": "Ground floor",
+      "upper": "Bawat itaas na palapag",
+      "floor": "Palapag {{floor}}",
+      "rooftopRoom": "Kuwarto ng hagdan sa bubungan",
+      "terrace": "Bukas na roof deck",
+      "roof": "Bubong",
+      "yard": "Bakuran sa harap/likod"
+    },
+    "result": "Tantiyang sanggunian",
+    "money": "{{amount}} đ",
+    "enterPrice": "Ilagay ang presyo kada yunit",
+    "convertedArea": "Na-convert na sukat: {{area}} m²",
+    "costs": "Estruktura: {{base}} đ · Finishing o turnkey: {{finishing}} đ · Pile: {{pile}} đ",
+    "columns": {
+      "item": "Bahagi",
+      "area": "Sukat",
+      "factor": "Factor",
+      "converted": "Na-convert"
+    },
+    "checkInput": "Suriin ang mga numerong inilagay mo.",
+    "disclaimer": "Ang mga factor ay sangguniang kombensyon mula sa mga naka-archive na dokumento, hindi pamantayan ng gobyerno. Ihambing sa disenyo at sa quotation ng kontratista; hindi kasama ang disenyo, permit, hiwalay na muwebles o dagdag-gastos dahil sa kondisyon ng lupa.",
+    "title": "Ang iyong mga sukat at presyo kada yunit",
+    "fields": {
+      "floorArea": "Sukat ng ground floor (m²)",
+      "upperFloors": "Bilang ng itaas na palapag (hindi kasama ang ground)",
+      "rooftopRoomArea": "Sukat ng kuwarto ng hagdan sa bubungan (m²)",
+      "terraceArea": "Bukas na roof deck (m²)",
+      "yardArea": "Bakuran sa harap/likod (m²)",
+      "basePrice": "Presyo ng estruktura kada yunit (đ/m²)",
+      "finishingPrice": "Presyo ng finishing o turnkey kada yunit (đ/m²)",
+      "pileCost": "Gastos sa pile (đ)"
+    },
+    "turnkey": "Turnkey ang ikalawang presyo at kasama na rito ang estruktura",
+    "editFactors": "Iayon ang mga factor sa quotation ng kontratista",
+    "factorLabel": "{{label}} (%)"
+  }
+}

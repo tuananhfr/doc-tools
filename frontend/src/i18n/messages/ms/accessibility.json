@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Sedia",
+    "stop": "Henti"
+  },
+  "dictation": {
+    "status": "Status",
+    "listening": "Sedang mendengar",
+    "unsupported": "Tidak disokong",
+    "privacy": "Pengecaman suara menggunakan perkhidmatan pelayar anda; audio mungkin dihantar kepada penyedia pelayar. Teks yang anda sunting di sini tidak dihantar ke pelayan Chuyện Nhỏ.",
+    "title": "Imlak bahasa Vietnam",
+    "start": "Mula mengimlak",
+    "text": "Teks",
+    "copy": "Salin",
+    "download": "Muat turun .txt",
+    "interrupted": "Pengecaman suara terganggu. Semak kebenaran mikrofon dan cuba lagi.",
+    "micFailed": "Tidak dapat membuka mikrofon. Semak kebenaran akses pelayar anda."
+  },
+  "magnifier": {
+    "noCamera": "Pelayar ini tidak menyokong kamera.",
+    "cameraFailed": "Tidak dapat membuka kamera. Semak kebenaran akses dan sama ada kamera sedang digunakan.",
+    "preview": "Paparan kamera",
+    "frozen": "Imej dibekukan",
+    "live": "Paparan langsung",
+    "hint": "Tekan Buka kamera untuk bermula.",
+    "privacy": "Imej hanya dipaparkan pada peranti anda, tidak dirakam atau dihantar ke mana-mana.",
+    "title": "Kanta pembesar",
+    "zoom": "Zum: {{zoom}}×",
+    "switchCamera": "Tukar kamera",
+    "openCamera": "Buka kamera",
+    "resume": "Sambung",
+    "freeze": "Bekukan imej",
+    "contrastOff": "Kontras biasa",
+    "contrastOn": "Kontras tinggi",
+    "closeCamera": "Matikan kamera"
+  },
+  "readAloud": {
+    "device": "Baca pada peranti",
+    "speaking": "Sedang membaca",
+    "read": "Bacakan teks",
+    "voiceNote": "Suara bacaan bergantung pada suara bahasa Vietnam yang dipasang pada peranti dan pelayar anda.",
+    "unsupported": "Pelayar ini tidak menyokong bacaan teks.",
+    "title": "Teks untuk dibaca",
+    "content": "Kandungan",
+    "rate": "Kelajuan: {{rate}}×"
+  }
+}

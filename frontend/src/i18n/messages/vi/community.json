@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Cần bổ sung nguồn",
+      "NEEDS_REVIEW": "Đang chờ kiểm tra",
+      "VERIFIED": "Đã xác minh",
+      "REJECTED": "Không được chấp nhận",
+      "APPROVED": "Đã phê duyệt",
+      "PUBLISHED": "Đã công bố",
+      "SUPERSEDED": "Đã có bản mới",
+      "REVOKED": "Đã thu hồi"
+    },
+    "sendFailed": "Không gửi được đề xuất.",
+    "received": "Đã nhận đề xuất: {{status}}. Hãy giữ mã biên nhận để theo dõi.",
+    "offlineDraft": "Không kết nối được máy chủ. Nội dung vẫn ở trang này.",
+    "invalidReceipt": "Mã biên nhận không hợp lệ.",
+    "statusLine": "Trạng thái: {{status}}",
+    "receiptNotFound": "Không tìm thấy mã biên nhận.",
+    "lookupFailed": "Không tra được trạng thái lúc này.",
+    "addSourceFailed": "Không bổ sung được nguồn.",
+    "sourceAdded": "Đã bổ sung nguồn. Đề xuất đang chờ kiểm tra.",
+    "offline": "Không kết nối được máy chủ.",
+    "ideaTitle": "Đề xuất tiện ích",
+    "regulationTitle": "Góp ý dữ liệu quy định",
+    "ideaIntro": "Mô tả vấn đề thực tế và công cụ bạn muốn có. Ý tưởng cần được kiểm tra trước khi công bố.",
+    "regulationIntro": "Nêu nội dung cần sửa và đường dẫn nguồn. Đây là góp ý để người phụ trách kiểm tra, chưa thay đổi dữ liệu công cụ.",
+    "ideaName": "Tên ý tưởng",
+    "regulationTopic": "Văn bản hoặc chủ đề",
+    "ideaDetail": "Vấn đề và cách giải quyết đề xuất",
+    "regulationDetail": "Nội dung cần đối chiếu / điều chỉnh",
+    "sourceUrl": "URL nguồn HTTPS (nếu có)",
+    "sourceType": "Loại nguồn bạn đề xuất",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Trang cơ quan",
+      "OFFICIAL_DOCUMENT": "Văn bản chính thức",
+      "OFFICIAL_API": "API chính thức",
+      "OTHER": "Nguồn khác"
+    },
+    "consent": "Tôi đã bỏ thông tin cá nhân, khóa bí mật và đồng ý gửi nội dung này để người vận hành kiểm tra",
+    "sending": "Đang gửi…",
+    "submit": "Gửi đề xuất",
+    "receipt": "Mã biên nhận:",
+    "lookupTitle": "Tra trạng thái",
+    "receiptLabel": "Mã biên nhận",
+    "lookup": "Tra cứu",
+    "needsSource": "Nhập URL HTTPS ở ô nguồn phía trên, rồi bổ sung bằng mã biên nhận này.",
+    "addSource": "Bổ sung nguồn"
+  },
+  "ideas": {
+    "published": "Ý tưởng đã công bố",
+    "empty": "Chưa có ý tưởng nào được duyệt và công bố."
+  }
+}

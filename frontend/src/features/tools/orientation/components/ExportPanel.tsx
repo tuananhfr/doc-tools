@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { canShare, describeError, downloadOutput, FlowChoice, shareOutput, ToolPanel, useDownloadNudge, type FlowNote, type FlowOutput } from '@/features/tools/hub'
 import type { ExportFormat, ExportResult } from '../services/orientation-export'
@@ -15,14 +16,9 @@ interface ExportPanelProps {
 
 const TONE_ICON: Record<FlowNote['tone'], string> = { success: 'check-circle', info: 'info-circle', warning: 'exclamation-triangle' }
 
-const IMAGE_HINT: Record<ExportPanelProps['sourceKind'], string> = {
-  image: 'Giữ nguyên thông tin chụp (EXIF) của ảnh gốc',
-  pdf: 'Trang bản vẽ được vẽ lại thành ảnh PNG',
-  none: 'Ảnh la bàn kèm số đo',
-}
-
 /** Lưu ảnh / PDF có la bàn + chú thích số đo — tệp mới, tệp gốc không bị sửa. */
 export function ExportPanel({ blocked, sourceKind, disabled, onBuild, onBusy }: ExportPanelProps) {
+  const { t } = useTranslation('orientation')
   const toast = useToast()
   const nudge = useDownloadNudge()
   const [format, setFormat] = useState<ExportFormat>('image')
@@ -37,7 +33,7 @@ export function ExportPanel({ blocked, sourceKind, disabled, onBuild, onBusy }: 
       setLast(result)
       return result
     } catch (error) {
-      toast.error(describeError(error, 'Không dựng được tệp kết quả.').message)
+      toast.error(describeError(error, t('export.buildFailed')).message)
       return null
     } finally {
       setBusy(false)
@@ -57,18 +53,18 @@ export function ExportPanel({ blocked, sourceKind, disabled, onBuild, onBusy }: 
     try {
       await shareOutput(last.output)
     } catch {
-      toast.error('Không chia sẻ được. Hãy lưu tệp rồi gửi.')
+      toast.error(t('export.shareFailed'))
     }
   }
 
   return (
-    <ToolPanel title="Lưu kết quả">
+    <ToolPanel title={t('export.title')}>
       <FlowChoice<ExportFormat>
-        legend="Lưu thành"
+        legend={t('export.legend')}
         value={format}
         options={[
-          { value: 'image', label: 'Ảnh', hint: IMAGE_HINT[sourceKind] },
-          { value: 'pdf', label: 'PDF', hint: sourceKind === 'pdf' ? 'Giữ trang bản vẽ gốc dạng vector' : 'Một trang, in được' },
+          { value: 'image', label: t('export.image'), hint: t(`export.imageHint.${sourceKind}`) },
+          { value: 'pdf', label: t('export.pdf'), hint: t(sourceKind === 'pdf' ? 'export.pdfHintVector' : 'export.pdfHintPage') },
         ]}
         onChange={(next) => {
           setFormat(next)
@@ -81,12 +77,12 @@ export function ExportPanel({ blocked, sourceKind, disabled, onBuild, onBusy }: 
       <div className="erp-orient-actions">
         <Button variant="primary" className="erp-flow__run" disabled={disabled || busy || blocked !== null} onClick={() => void save()}>
           <Icon name={busy ? 'hourglass-split' : 'download'} className="me-2" />
-          {busy ? 'Đang dựng tệp…' : format === 'pdf' ? 'Lưu PDF' : 'Lưu ảnh'}
+          {t(busy ? 'export.building' : format === 'pdf' ? 'export.savePdf' : 'export.saveImage')}
         </Button>
         {last && canShare(last.output) ? (
           <Button variant="outline-secondary" disabled={busy} onClick={() => void share()}>
             <Icon name="share" className="me-2" />
-            Chia sẻ
+            {t('export.share')}
           </Button>
         ) : null}
       </div>
@@ -95,8 +91,7 @@ export function ExportPanel({ blocked, sourceKind, disabled, onBuild, onBusy }: 
         <ul className="erp-orient-notes">
           <li className="erp-orient-note erp-orient-note--success">
             <Icon name="check-circle" />
-            Đã lưu {last.output.name}
-            {last.output.detail ? ` · ${last.output.detail}` : ''}
+            {last.output.detail ? t('export.savedDetail', { name: last.output.name, detail: last.output.detail }) : t('export.saved', { name: last.output.name })}
           </li>
           {last.notes.map((note) => (
             <li key={note.text} className={`erp-orient-note erp-orient-note--${note.tone}`}>

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Tab, Tabs } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { SIDE_PANEL_ID } from '../utils/export-sections'
 
 export type SideTab = 'export' | 'decorate' | 'search' | 'form'
@@ -27,7 +28,7 @@ function Badge({ count, label }: { count: number; label: string }) {
       </span>
       <span className="visually-hidden">
         {' '}
-        ({count} {label})
+        ({label})
       </span>
     </>
   )
@@ -38,8 +39,9 @@ function Badge({ count, label }: { count: number; label: string }) {
  * gì đã nhập khi chuyển qua lại. Tab do trang điều khiển để Ctrl+F nhảy thẳng tới Tìm.
  */
 export function DocSidePanel({ exportPanel, decorationPanel, searchPanel, formPanel, formPending, decorationCount, activeTab, onTabChange }: DocSidePanelProps) {
+  const { t } = useTranslation('pdf')
   return (
-    <aside id={SIDE_PANEL_ID} className="erp-doc-export" aria-label="Xuất tệp, trang trí trang, tìm chữ và điền form">
+    <aside id={SIDE_PANEL_ID} className="erp-doc-export" aria-label={t('side.label')}>
       <Tabs
         activeKey={activeTab}
         onSelect={(key) => key && onTabChange(key as SideTab)}
@@ -47,21 +49,21 @@ export function DocSidePanel({ exportPanel, decorationPanel, searchPanel, formPa
         className="erp-doc-export__tabs"
         fill
       >
-        <Tab eventKey="export" title="Xuất tệp">
+        <Tab eventKey="export" title={t('side.export')}>
           {exportPanel}
         </Tab>
         <Tab
           eventKey="decorate"
           title={
             <>
-              Số trang & dấu
-              <Badge count={decorationCount} label="đang bật" />
+              {t('side.decorate')}
+              <Badge count={decorationCount} label={t('side.decorationsOn', { count: decorationCount })} />
             </>
           }
         >
           {decorationPanel}
         </Tab>
-        <Tab eventKey="search" title="Tìm">
+        <Tab eventKey="search" title={t('side.search')}>
           {searchPanel}
         </Tab>
         {formPanel ? (
@@ -69,8 +71,8 @@ export function DocSidePanel({ exportPanel, decorationPanel, searchPanel, formPa
             eventKey="form"
             title={
               <>
-                Điền form
-                <Badge count={formPending} label="thay đổi chưa áp dụng" />
+                {t('side.form')}
+                <Badge count={formPending} label={t('side.formPending', { count: formPending })} />
               </>
             }
           >

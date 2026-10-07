@@ -1,0 +1,164 @@
+{
+  "holidayLayers": {
+    "major": "Grandes fêtes",
+    "lunar": "Fêtes traditionnelles",
+    "moon": "1er et 15e jours lunaires",
+    "memorial": "Commémorations"
+  },
+  "calendar": {
+    "layersAria": "Afficher les fêtes sur le calendrier",
+    "monthAria": "Calendrier de {{month}}/{{year}}",
+    "monthTitle": "Mois {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "today": "Aujourd'hui",
+    "weekdays": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mer",
+      "thu": "Jeu",
+      "fri": "Ven",
+      "sat": "Sam",
+      "sun": "Dim"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}i",
+    "dayLunar": "lunaire {{day}}/{{month}}",
+    "dayLunarLeap": "lunaire {{day}}/{{month}} intercalaire",
+    "dayEvents_one": "{{count}} événement",
+    "dayEvents_many": "{{count}} événements",
+    "dayEvents_other": "{{count}} événements"
+  },
+  "day": {
+    "outOfRange": "Cette date est hors de la plage 1800–2199 prise en charge par l'algorithme.",
+    "solar": "Calendrier solaire",
+    "lunarMonthYear": "Mois {{month}}, année {{year}}",
+    "lunarMonthYearLeap": "Mois {{month}} intercalaire, année {{year}}",
+    "lunarDate": "Lunaire {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Lunaire {{day}}/{{month}} intercalaire/{{year}}",
+    "facts": {
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année"
+    },
+    "goodDay": "Jour faste",
+    "badDay": "Jour néfaste",
+    "byLunar": "selon le calendrier lunaire",
+    "bySolar": "selon le calendrier solaire",
+    "goodHours": "Heures fastes",
+    "nextTet_one": "Tết {{year}} : <strong>{{date}}</strong> · encore {{count}} jour",
+    "nextTet_many": "Tết {{year}} : <strong>{{date}}</strong> · encore {{count}} jours",
+    "nextTet_other": "Tết {{year}} : <strong>{{date}}</strong> · encore {{count}} jours",
+    "note": "Algorithme astronomique pour le fuseau horaire du Vietnam (UTC+7), adapté à un usage courant ; pour un usage officiel, vérifiez le calendrier publié par les autorités compétentes. Les jours fastes / néfastes suivent la tradition populaire et sont donnés à titre indicatif. <link>Source de l'algorithme : Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Aller à la date",
+    "convertTitle": "Lunaire → solaire",
+    "fields": {
+      "day": "Jour lunaire",
+      "month": "Mois lunaire",
+      "year": "Année lunaire"
+    },
+    "leapMonth": "Mois intercalaire",
+    "solarResult": "Date solaire <strong>{{date}}</strong>",
+    "showOnCalendar": "Voir sur le calendrier",
+    "noSuchDay": "Cette date n'existe pas.",
+    "noSuchDayLeap": "Cette date n'existe pas (cette année-là, ce mois n'est pas intercalaire).",
+    "anniversaryTitle": "Anniversaire de décès selon le calendrier lunaire",
+    "anniversaryFields": {
+      "day": "Jour",
+      "month": "Mois"
+    },
+    "anniversaryYear": "Année lunaire {{year}} : <strong>{{date}}</strong>",
+    "noSuchDayShort": "date inexistante"
+  },
+  "address": {
+    "status": {
+      "full": "Entièrement converti",
+      "province": "Province uniquement",
+      "ambiguous": "À choisir manuellement : {{options}}",
+      "none": "Province non reconnue"
+    },
+    "orSeparator": " ou ",
+    "resultLabel": "Correspondance des adresses",
+    "resultValue": "{{full}}/{{total}} entièrement converties",
+    "resultNote": "La province est reconnue dans n'importe quelle partie, y compris en abrégé (TP.HCM, HN…). Le niveau du district est supprimé. La commune/le quartier n'est converti que si les données désignent une seule nouvelle commune ; si l'ancienne commune a été scindée, les options sont listées pour que vous choisissiez.",
+    "columns": {
+      "old": "Ancienne adresse",
+      "proposed": "Proposition",
+      "status": "État"
+    },
+    "downloadCsv": "Télécharger le CSV",
+    "verifiedNote": "Table de correspondance signée, en vigueur depuis le {{date}}. Source : {{source}}. Confirmez l'adresse définitive auprès de l'organisme qui reçoit votre dossier.",
+    "manualNote": "Table de correspondance saisie par vous, non vérifiée par le système. Confirmez l'adresse définitive auprès de l'organisme qui reçoit votre dossier.",
+    "viewSource": "Voir la source des données",
+    "panelTitle": "Anciennes adresses et table de correspondance",
+    "addressesLabel": "Une adresse par ligne, niveaux séparés par des virgules",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Table de correspondance signée en cours d'utilisation",
+    "applyVerified": "Appliquer la table de correspondance signée",
+    "rulesLabel": "table de correspondance des adresses",
+    "rulesNone": "Aucune table de correspondance d'adresses signée et en vigueur n'est encore disponible sur le système.",
+    "manualLabel": "Ou saisissez la vôtre, une ligne par entrée : « ancienne province|ancien district|ancienne commune|nouvelle province|nouvelle commune »",
+    "manualInvalid": "La table de correspondance est mal formée (chaque ligne doit compter 5 parties de 150 caractères au plus) ou une ancienne province est rattachée à deux nouvelles provinces différentes."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "Le fichier XML dépasse 5 Mo.",
+      "unreadable": "Impossible de lire le fichier XML.",
+      "doctype": "Le XML déclare des entités ou un DOCTYPE, ce qui n'est pas pris en charge.",
+      "invalid": "Fichier XML non valide.",
+      "noCommon": "Le bloc d'informations générales de la facture est introuvable."
+    },
+    "resultLabel": "Facture",
+    "noNumber": "Sans numéro",
+    "series": "Série : {{series}} · Date : {{date}}",
+    "seller": "Vendeur : {{name}} ({{taxCode}})",
+    "buyer": "Acheteur : {{name}} ({{taxCode}})",
+    "noTaxCode": "sans numéro fiscal",
+    "amounts": "Hors taxe : {{subtotal}} đ · Taxe : {{vat}} đ",
+    "total": "Total à payer : {{total}} đ",
+    "signature": "Balise de signature XML : {{signature}} · Code de l'administration fiscale : {{authority}}",
+    "present": "présente",
+    "notFound": "introuvable",
+    "downloadCsv": "Télécharger le relevé CSV",
+    "empty": "Choisissez un fichier XML pour afficher les données de la facture.",
+    "disclaimer": "L'outil lit uniquement le contenu XML ; il ne vérifie ni la signature numérique ni le statut juridique de la facture. Consultez le portail officiel avant de l'utiliser.",
+    "panelTitle": "Fichier de facture",
+    "pickFile": "Choisir un fichier XML",
+    "columns": {
+      "ordinal": "N°",
+      "name": "Biens, services",
+      "quantity": "Qté",
+      "amount": "Montant"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Texte converti",
+    "copy": "Copier le texte",
+    "note": "Choisissez le bon encodage du texte d'origine ; le nom de la police affichée ne suffit pas à déterminer l'encodage des caractères.",
+    "panelTitle": "Texte d'origine",
+    "conversionLabel": "Type de conversion",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 majuscules → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Combiner les diacritiques Unicode (NFC)",
+      "strip": "Supprimer les accents vietnamiens",
+      "lower": "minuscules",
+      "upper": "MAJUSCULES"
+    },
+    "contentLabel": "Contenu",
+    "placeholder": "Collez le texte à convertir…"
+  },
+  "numberWords": {
+    "resultLabel": "En toutes lettres",
+    "invalid": "Saisissez uniquement un nombre entier, de 36 chiffres au plus.",
+    "note": "Écrit les nombres en toutes lettres en vietnamien pour les reçus et contrats ; vérifiez les conventions de l'organisme destinataire.",
+    "copy": "Copier le résultat",
+    "panelTitle": "Nombre à écrire",
+    "inputLabel": "Nombre entier",
+    "placeholder": "Exemple : 1.234.567",
+    "zeroWordLabel": "Mot pour le zéro des dizaines",
+    "fourWordLabel": "Mot pour le quatre après les dizaines"
+  }
+}

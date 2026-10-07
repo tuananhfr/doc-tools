@@ -1,4 +1,5 @@
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { downloadOutput, ToolPanel } from '@/features/tools/hub'
 import type { NorthReference } from '../types/orientation.types'
@@ -6,7 +7,6 @@ import type { OrientationSourceFile } from '../types/source.types'
 import { hasResult } from '../utils/compass-view'
 import { orientationRecord } from '../utils/orientation-record'
 import type { OrientationAction, OrientationState } from '../utils/orientation-state'
-import { NORTH_LABEL } from '../utils/orientation-summary'
 
 interface TechPanelProps {
   state: OrientationState
@@ -20,6 +20,7 @@ const REFERENCES: NorthReference[] = ['TRUE', 'MAGNETIC', 'PROJECT']
 
 /** Tuỳ chọn chuyên môn (spec v1.1 §6): loại Bắc, 8/16 cung, cỡ la bàn, bản ghi số đo. */
 export function TechPanel({ state, source, disabled, dispatch, checkpoint }: TechPanelProps) {
+  const { t } = useTranslation('orientation')
   const compass = state.compass
   // Kéo thanh trượt là một bước hoàn tác, không phải mỗi nấc một bước.
   const slide = { onPointerDown: checkpoint, onKeyDown: checkpoint }
@@ -30,9 +31,9 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
   }
 
   return (
-    <ToolPanel title="Thông số kỹ thuật">
+    <ToolPanel title={t('tech.title')}>
       <Form.Group controlId="orient-reference" className="erp-flow-field">
-        <Form.Label className="erp-flow-field__label">Số độ tính theo</Form.Label>
+        <Form.Label className="erp-flow-field__label">{t('tech.reference')}</Form.Label>
         <Form.Select
           value={state.northReference}
           disabled={disabled}
@@ -40,18 +41,16 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
         >
           {REFERENCES.map((reference) => (
             <option key={reference} value={reference}>
-              {NORTH_LABEL[reference]}
+              {t(`north.${reference}`)}
             </option>
           ))}
         </Form.Select>
-        <Form.Text className="erp-flow-field__hint">
-          Chỉ ghi nhãn, không tự quy đổi. Ở Việt Nam Bắc từ lệch Bắc thật dưới 1°; Bắc dự án theo lưới toạ độ của bản vẽ.
-        </Form.Text>
+        <Form.Text className="erp-flow-field__hint">{t('tech.referenceHint')}</Form.Text>
       </Form.Group>
 
       <div className="erp-flow-field">
-        <span className="erp-flow-field__label">Chia la bàn</span>
-        <div className="erp-tool-tabs" role="group" aria-label="Số cung của la bàn">
+        <span className="erp-flow-field__label">{t('tech.divisionsLabel')}</span>
+        <div className="erp-tool-tabs" role="group" aria-label={t('tech.divisionsAria')}>
           {([8, 16] as const).map((divisions) => (
             <button
               key={divisions}
@@ -61,7 +60,7 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
               disabled={disabled}
               onClick={() => dispatch({ type: 'divisions', divisions })}
             >
-              {divisions} hướng
+              {t('tech.divisions', { count: divisions })}
             </button>
           ))}
         </div>
@@ -70,7 +69,7 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
       {compass ? (
         <>
           <Form.Group controlId="orient-size" className="erp-flow-field">
-            <Form.Label className="erp-flow-field__label">Cỡ la bàn trên ảnh · {Math.round(compass.radius * 200)}%</Form.Label>
+            <Form.Label className="erp-flow-field__label">{t('tech.size', { percent: Math.round(compass.radius * 200) })}</Form.Label>
             <Form.Range
               min={8}
               max={50}
@@ -81,7 +80,7 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
             />
           </Form.Group>
           <Form.Group controlId="orient-opacity" className="erp-flow-field">
-            <Form.Label className="erp-flow-field__label">Độ đậm la bàn · {Math.round(compass.opacity * 100)}%</Form.Label>
+            <Form.Label className="erp-flow-field__label">{t('tech.opacity', { percent: Math.round(compass.opacity * 100) })}</Form.Label>
             <Form.Range
               min={30}
               max={100}
@@ -96,7 +95,7 @@ export function TechPanel({ state, source, disabled, dispatch, checkpoint }: Tec
 
       <Button variant="outline-secondary" className="align-self-start" disabled={disabled || !hasResult(state)} onClick={saveRecord}>
         <Icon name="filetype-json" className="me-2" />
-        Tải bản ghi số đo (JSON)
+        {t('tech.saveRecord')}
       </Button>
     </ToolPanel>
   )

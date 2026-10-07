@@ -1,11 +1,12 @@
-import type { ToolDefinition } from '../types/tool.types'
+import type { ToolEntry } from '../types/tool.types'
 
 /**
  * Mọi công cụ của "Chuyện Nhỏ", theo đúng thứ tự trên lưới "tất cả".
  *
- * Mô tả phải nói ĐÚNG việc công cụ làm được hôm nay (OCR chỉ có tiếng Việt,
- * chuyển đổi ảnh không có HEIC) — thẻ hứa quá tay là người dùng thả tệp vào rồi
- * mới biết. Công cụ chưa làm mang `status: 'soon'`: có thẻ, không có đường vào.
+ * Tên, mô tả, từ đồng nghĩa nằm ở `i18n/messages/<ngôn ngữ>/catalog.json`
+ * (`tools.<id>`). Mô tả phải nói ĐÚNG việc công cụ làm được hôm nay (OCR chỉ có
+ * tiếng Việt, chuyển đổi ảnh không có HEIC) — thẻ hứa quá tay là người dùng thả
+ * tệp vào rồi mới biết. Công cụ chưa làm mang `status: 'soon'`: có thẻ, không có đường vào.
  *
  * Bốn slug `ghep-pdf` · `tach-pdf` · `anh-sang-pdf` · `pdf-sang-word` đã phát
  * ra ngoài từ trước khi có trang này — không đổi.
@@ -14,88 +15,88 @@ import type { ToolDefinition } from '../types/tool.types'
  * rồi nạp nó bằng Node lúc build để sinh thẻ chia sẻ — một import chạy thật
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
-export const ALL_TOOLS: ToolDefinition[] = [
+export const ALL_TOOLS: ToolEntry[] = [
   {
-    id: 'compress-video', slug: 'nen-video', name: 'Nén video', description: 'Giảm dung lượng, xuất MP4 ngay trong trình duyệt', icon: 'file-earmark-play',
-    categories: ['other'], synonyms: ['giảm dung lượng video', 'compress video', 'mp4'], status: 'ready', screen: 'compress-video',
+    id: 'compress-video', slug: 'nen-video', icon: 'file-earmark-play',
+    categories: ['other'], status: 'ready', screen: 'compress-video',
   },
   {
-    id: 'trim-video', slug: 'cat-video', name: 'Cắt video', description: 'Chọn đoạn theo giây, xuất video MP4 mới', icon: 'scissors',
-    categories: ['other'], synonyms: ['trim video', 'cắt clip', 'mp4'], status: 'ready', screen: 'trim-video',
+    id: 'trim-video', slug: 'cat-video', icon: 'scissors',
+    categories: ['other'], status: 'ready', screen: 'trim-video',
   },
   {
-    id: 'video-gif', slug: 'tao-gif', name: 'Tạo GIF từ video', description: 'Biến một đoạn video ngắn thành ảnh động lặp lại', icon: 'film',
-    categories: ['other'], synonyms: ['gif', 'ảnh động', 'video sang gif'], status: 'ready', screen: 'video-gif',
+    id: 'video-gif', slug: 'tao-gif', icon: 'film',
+    categories: ['other'], status: 'ready', screen: 'video-gif',
   },
   {
-    id: 'extract-audio', slug: 'tach-am-thanh', name: 'Tách âm thanh từ video', description: 'Lấy âm thanh, xuất MP3, M4A hoặc WAV trên máy', icon: 'soundwave',
-    categories: ['other'], synonyms: ['video sang mp3', 'nhạc từ video', 'extract audio'], status: 'ready', screen: 'extract-audio',
+    id: 'extract-audio', slug: 'tach-am-thanh', icon: 'soundwave',
+    categories: ['other'], status: 'ready', screen: 'extract-audio',
   },
   {
-    id: 'assistant', slug: 'tro-ly', name: 'Trợ lý chọn công cụ', description: 'Tìm tiện ích phù hợp và tự dùng AI qua câu hỏi đã xem trước', icon: 'chat-dots',
-    categories: ['other'], synonyms: ['trợ lý ai', 'hỏi cách làm', 'tư vấn công cụ'], noFile: true, status: 'ready', screen: 'assistant',
+    id: 'assistant', slug: 'tro-ly', icon: 'chat-dots',
+    categories: ['other'], noFile: true, status: 'ready', screen: 'assistant',
   },
   {
-    id: 'idea-suggestion', slug: 'de-xuat-tien-ich', name: 'Đề xuất tiện ích', description: 'Gửi ý tưởng và theo dõi duyệt bằng mã biên nhận', icon: 'lightbulb',
-    categories: ['other'], synonyms: ['góp ý công cụ', 'ý tưởng mới', 'roadmap'], noFile: true, privacyNote: 'Nội dung chỉ gửi khi bạn bấm Gửi đề xuất', status: 'ready', screen: 'idea-suggestion',
+    id: 'idea-suggestion', slug: 'de-xuat-tien-ich', icon: 'lightbulb',
+    categories: ['other'], noFile: true, status: 'ready', screen: 'idea-suggestion',
   },
   {
-    id: 'regulation-feedback', slug: 'gop-y-quy-dinh', name: 'Góp ý quy định', description: 'Gửi nội dung và URL nguồn để người vận hành kiểm tra', icon: 'chat-left-text',
-    categories: ['data', 'other'], synonyms: ['cập nhật pháp luật', 'văn bản mới', 'góp ý dữ liệu'], noFile: true, privacyNote: 'Nội dung chỉ gửi khi bạn bấm Gửi đề xuất', status: 'ready', screen: 'regulation-feedback',
+    id: 'regulation-feedback', slug: 'gop-y-quy-dinh', icon: 'chat-left-text',
+    categories: ['data', 'other'], noFile: true, status: 'ready', screen: 'regulation-feedback',
   },
   {
-    id: 'remove-background', slug: 'xoa-phong', name: 'Xóa phông nền ảnh', description: 'Xóa nền màu trơn tự động và chỉnh tay bằng cọ', icon: 'eraser',
-    categories: ['image'], synonyms: ['tách nền', 'nền trong suốt', 'ảnh sản phẩm'], status: 'ready', screen: 'remove-background',
+    id: 'remove-background', slug: 'xoa-phong', icon: 'eraser',
+    categories: ['image'], status: 'ready', screen: 'remove-background',
   },
   {
-    id: 'cv', slug: 'tao-cv', name: 'Tạo CV xin việc', description: 'Soạn CV, chọn mẫu và in hoặc lưu PDF trên thiết bị', icon: 'person-vcard',
-    categories: ['document', 'other'], synonyms: ['hồ sơ ứng tuyển', 'sơ yếu lý lịch', 'resume'], noFile: true, status: 'ready', screen: 'cv',
+    id: 'cv', slug: 'tao-cv', icon: 'person-vcard',
+    categories: ['document', 'other'], noFile: true, status: 'ready', screen: 'cv',
   },
   {
-    id: 'pdf-password', slug: 'mat-khau-pdf', name: 'Đặt, gỡ mật khẩu PDF', description: 'Mã hóa AES-256 hoặc gỡ khóa bằng mật khẩu hợp lệ', icon: 'file-earmark-lock',
-    categories: ['document'], synonyms: ['khóa pdf', 'bảo vệ pdf', 'mở pdf'], status: 'ready', screen: 'pdf-password',
+    id: 'pdf-password', slug: 'mat-khau-pdf', icon: 'file-earmark-lock',
+    categories: ['document'], status: 'ready', screen: 'pdf-password',
   },
   {
-    id: 'family-calendar', slug: 'lich-gia-dinh', name: 'Lịch Gia Đình', description: 'Lưu lịch, việc và liên hệ khẩn cấp trên thiết bị; sao lưu và xuất ICS', icon: 'calendar-heart',
-    categories: ['date', 'home'], synonyms: ['lịch gia đình', 'nhắc việc', 'sos', 'lịch học'], noFile: true, status: 'ready', screen: 'family-calendar',
+    id: 'family-calendar', slug: 'lich-gia-dinh', icon: 'calendar-heart',
+    categories: ['date', 'home'], noFile: true, status: 'ready', screen: 'family-calendar',
   },
   {
-    id: 'address-conversion', slug: 'doi-dia-chi', name: 'Đổi địa chỉ sau sáp nhập', description: 'Đối chiếu địa chỉ cũ theo bảng xã/phường đủ cấp', icon: 'geo-alt',
-    categories: ['data', 'other'], synonyms: ['địa chỉ mới', 'sáp nhập tỉnh', 'đổi tên xã'], noFile: true, privacyNote: 'Đối chiếu trên máy; góp ý chỉ gửi khi bạn đồng ý', status: 'ready', screen: 'address-conversion',
+    id: 'address-conversion', slug: 'doi-dia-chi', icon: 'geo-alt',
+    categories: ['data', 'other'], noFile: true, status: 'ready', screen: 'address-conversion',
   },
   {
-    id: 'payroll', slug: 'luong', name: 'Lương Gross – Net', description: 'Ước tính thực nhận theo tham số bạn nhập hoặc gói đã ký', icon: 'wallet',
-    categories: ['money'], synonyms: ['lương net', 'thuế thu nhập cá nhân', 'bảo hiểm'], noFile: true, privacyNote: 'Tính trên máy; góp ý chỉ gửi khi bạn đồng ý', status: 'ready', screen: 'payroll',
+    id: 'payroll', slug: 'luong', icon: 'wallet',
+    categories: ['money'], noFile: true, status: 'ready', screen: 'payroll',
   },
   {
-    id: 'lunar-calendar', slug: 'lich-am', name: 'Lịch âm – dương', description: 'Lịch tháng âm – dương có ngày lễ, can chi, giờ hoàng đạo; đổi ngày hai chiều và tra ngày giỗ', icon: 'moon',
-    categories: ['date', 'other'], synonyms: ['âm lịch', 'tết', 'ngày giỗ'], noFile: true, status: 'ready', screen: 'lunar-calendar',
+    id: 'lunar-calendar', slug: 'lich-am', icon: 'moon',
+    categories: ['date', 'other'], noFile: true, status: 'ready', screen: 'lunar-calendar',
   },
   {
-    id: 'electricity', slug: 'tien-dien', name: 'Tiền điện, nước', description: 'Ước tính tiền điện theo bậc và tiền nước theo giá bạn nhập', icon: 'lightning-charge',
-    categories: ['money', 'home'], synonyms: ['hóa đơn điện', 'giá điện kwh', 'tiền nước'], noFile: true, privacyNote: 'Tính trên máy; góp ý chỉ gửi khi bạn đồng ý', status: 'ready', screen: 'electricity',
+    id: 'electricity', slug: 'tien-dien', icon: 'lightning-charge',
+    categories: ['money', 'home'], noFile: true, status: 'ready', screen: 'electricity',
   },
   {
-    id: 'form-templates', slug: 'mau-don', name: 'Mẫu đơn, biên bản', description: 'Soạn đơn nghỉ phép, giấy ủy quyền và biên bản bàn giao để in', icon: 'file-earmark-text',
-    categories: ['document', 'other'], synonyms: ['đơn xin nghỉ', 'giấy ủy quyền', 'biên bản bàn giao'], noFile: true, status: 'ready', screen: 'form-templates',
+    id: 'form-templates', slug: 'mau-don', icon: 'file-earmark-text',
+    categories: ['document', 'other'], noFile: true, status: 'ready', screen: 'form-templates',
   },
   {
-    id: 'dictation', slug: 'ghi-am', name: 'Ghi âm thành văn bản', description: 'Đọc chính tả tiếng Việt bằng nhận dạng giọng nói của trình duyệt', icon: 'mic',
-    categories: ['other'], synonyms: ['đọc chính tả', 'micro', 'speech to text'], noFile: true,
-    privacyNote: 'Âm thanh có thể được trình duyệt gửi tới dịch vụ nhận dạng giọng nói của họ', status: 'ready', screen: 'dictation',
+    id: 'dictation', slug: 'ghi-am', icon: 'mic',
+    categories: ['other'], noFile: true,
+    status: 'ready', screen: 'dictation',
   },
   {
-    id: 'magnifier', slug: 'kinh-lup', name: 'Kính lúp', description: 'Phóng to hình camera để đọc chữ nhỏ', icon: 'search',
-    categories: ['other'], synonyms: ['phóng to camera', 'đọc chữ nhỏ'], noFile: true, status: 'ready', screen: 'magnifier',
+    id: 'magnifier', slug: 'kinh-lup', icon: 'search',
+    categories: ['other'], noFile: true, status: 'ready', screen: 'magnifier',
   },
   {
     id: 'house-estimate',
     slug: 'khai-toan-nha',
-    name: 'Khái toán chi phí xây nhà',
-    description: 'Quy đổi diện tích, nhập đơn giá nhà thầu để ước tính chi phí',
+   
+   
     icon: 'house',
     categories: ['construction', 'home', 'money'],
-    synonyms: ['diện tích xây dựng', 'dự toán nhà', 'đơn giá xây dựng'],
+   
     noFile: true,
     status: 'ready',
     screen: 'house-estimate',
@@ -103,11 +104,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'number-words',
     slug: 'so-thanh-chu',
-    name: 'Đọc số thành chữ',
-    description: 'Viết số tiền bằng chữ cho chứng từ và hợp đồng',
+   
+   
     icon: '123',
     categories: ['money', 'other'],
-    synonyms: ['số tiền bằng chữ', 'viết số thành chữ', 'đọc tiền'],
+   
     noFile: true,
     status: 'ready',
     screen: 'number-words',
@@ -115,11 +116,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'loan',
     slug: 'vay-tra-gop',
-    name: 'Vay trả góp & tiết kiệm',
-    description: 'Tính lịch trả nợ hoặc tiền gửi tái tục',
+   
+   
     icon: 'cash-stack',
     categories: ['money'],
-    synonyms: ['vay ngân hàng', 'dư nợ giảm dần', 'lãi vay'],
+   
     noFile: true,
     status: 'ready',
     screen: 'loan',
@@ -127,11 +128,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'unit-price',
     slug: 'so-sanh-gia-theo-don-vi',
-    name: 'So sánh giá theo đơn vị',
-    description: 'Quy hai sản phẩm về cùng lượng để so giá',
+   
+   
     icon: 'calculator',
     categories: ['money', 'home'],
-    synonyms: ['giá mỗi kg', 'giá mỗi lít', 'mua sắm'],
+   
     noFile: true,
     status: 'ready',
     screen: 'unit-price',
@@ -139,11 +140,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'study',
     slug: 'diem-hoc-tap',
-    name: 'Quy đổi điểm & xét tuyển',
-    description: 'Quy đổi điểm và tính ưu tiên xét tuyển để tham khảo',
+   
+   
     icon: 'mortarboard',
     categories: ['calc', 'other'],
-    synonyms: ['điểm hệ 4', 'điểm hệ 10', 'điểm ưu tiên'],
+   
     noFile: true,
     status: 'ready',
     screen: 'study',
@@ -151,11 +152,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'pomodoro',
     slug: 'pomodoro',
-    name: 'Hẹn giờ tập trung',
-    description: 'Chia thời gian tập trung và nghỉ theo từng phiên',
+   
+   
     icon: 'stopwatch',
     categories: ['date', 'other'],
-    synonyms: ['hẹn giờ', 'tập trung', 'pomodoro'],
+   
     noFile: true,
     status: 'ready',
     screen: 'pomodoro',
@@ -163,11 +164,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'group-split',
     slug: 'chia-tien-nhom',
-    name: 'Chia tiền nhóm',
-    description: 'Tính ai cần chuyển cho ai sau các khoản chi chung',
+   
+   
     icon: 'people',
     categories: ['money', 'home'],
-    synonyms: ['chia hóa đơn', 'tiền đi chơi', 'cân bằng chi phí'],
+   
     noFile: true,
     status: 'ready',
     screen: 'group-split',
@@ -175,11 +176,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'legacy-font',
     slug: 'chuyen-font-tieng-viet',
-    name: 'Chuyển font & dấu tiếng Việt',
-    description: 'Đổi TCVN3, VNI và chuẩn hóa dấu sang Unicode',
+   
+   
     icon: 'fonts',
     categories: ['data', 'other'],
-    synonyms: ['vni sang unicode', 'tcvn3 sang unicode', 'bỏ dấu'],
+   
     noFile: true,
     status: 'ready',
     screen: 'legacy-font',
@@ -187,11 +188,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'read-aloud',
     slug: 'doc-to-van-ban',
-    name: 'Đọc to văn bản',
-    description: 'Dùng giọng đọc của thiết bị để nghe văn bản',
+   
+   
     icon: 'volume-up',
     categories: ['other'],
-    synonyms: ['text to speech', 'nghe chữ', 'đọc văn bản'],
+   
     noFile: true,
     status: 'ready',
     screen: 'read-aloud',
@@ -199,11 +200,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'vietqr',
     slug: 'vietqr-chuyen-khoan',
-    name: 'VietQR chuyển khoản',
-    description: 'Tạo mã QR chuyển khoản từ mã BIN và số tài khoản',
+   
+   
     icon: 'qr-code',
     categories: ['money', 'other'],
-    synonyms: ['qr ngân hàng', 'napas', 'mã chuyển khoản'],
+   
     noFile: true,
     status: 'ready',
     screen: 'vietqr',
@@ -211,44 +212,44 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'invoice-xml',
     slug: 'doc-hoa-don-xml',
-    name: 'Đọc hóa đơn điện tử XML',
-    description: 'Xem các trường và xuất bảng kê hàng hóa từ XML',
+   
+   
     icon: 'filetype-xml',
     categories: ['data', 'money'],
-    synonyms: ['hóa đơn xml', 'bảng kê hóa đơn', 'tt78'],
+   
     status: 'ready',
     screen: 'invoice-xml',
   },
   {
     id: 'remove-metadata',
     slug: 'xoa-metadata-anh',
-    name: 'Xóa vị trí trong ảnh',
-    description: 'Vẽ lại ảnh để bỏ EXIF, GPS và thông tin máy ảnh gốc',
+   
+   
     icon: 'geo-alt',
     categories: ['image', 'other'],
-    synonyms: ['xóa exif', 'bỏ gps', 'ẩn vị trí ảnh'],
+   
     status: 'ready',
     screen: 'remove-metadata',
   },
   {
     id: 'collage',
     slug: 'ghep-anh',
-    name: 'Ghép ảnh',
-    description: 'Ghép 2–9 ảnh thành lưới PNG',
+   
+   
     icon: 'grid-3x3-gap',
     categories: ['image'],
-    synonyms: ['collage', 'lưới ảnh', 'nối ảnh'],
+   
     status: 'ready',
     screen: 'collage',
   },
   {
     id: 'message-risk',
     slug: 'kiem-tra-tin-nhan-link-la',
-    name: 'Kiểm tra tin nhắn, link lạ',
-    description: 'Sàng lọc dấu hiệu lừa đảo mà không mở đường dẫn',
+   
+   
     icon: 'shield-exclamation',
     categories: ['other'],
-    synonyms: ['lừa đảo', 'phishing', 'sms giả mạo'],
+   
     noFile: true,
     status: 'ready',
     screen: 'message-risk',
@@ -256,11 +257,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'flashcards',
     slug: 'the-ghi-nho',
-    name: 'Thẻ ghi nhớ',
-    description: 'Tạo và ôn tập thẻ theo hộp Leitner trên thiết bị',
+   
+   
     icon: 'card-text',
     categories: ['other'],
-    synonyms: ['flashcard', 'ôn từ vựng', 'hộp leitner'],
+   
     noFile: true,
     status: 'ready',
     screen: 'flashcards',
@@ -268,281 +269,281 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'scan-to-pdf',
     slug: 'anh-sang-pdf',
-    name: 'Scan ảnh → PDF',
-    description: 'Gộp ảnh chụp thành một tệp PDF',
+   
+   
     icon: 'camera',
     categories: ['document', 'image'],
     priority: 1,
-    synonyms: ['jpg sang pdf', 'ảnh thành pdf', 'chụp tài liệu', 'image to pdf', 'ghép ảnh'],
-    pageTitle: 'Chuyển ảnh sang PDF miễn phí',
+   
+   
     status: 'ready',
     screen: 'images-to-pdf',
   },
   {
     id: 'merge-pdf',
     slug: 'ghep-pdf',
-    name: 'Ghép PDF',
-    description: 'Gộp nhiều tệp PDF thành một',
+   
+   
     icon: 'files',
     categories: ['document'],
     priority: 2,
-    synonyms: ['nối pdf', 'gộp pdf', 'kết hợp', 'merge'],
+   
     status: 'ready',
     screen: 'merge-pdf',
   },
   {
     id: 'split-pdf',
     slug: 'tach-pdf',
-    name: 'Tách PDF',
-    description: 'Tách trang, trích trang ra tệp riêng',
+   
+   
     icon: 'scissors',
     categories: ['document'],
     priority: 3,
-    synonyms: ['cắt pdf', 'chia pdf', 'lấy trang', 'split'],
+   
     status: 'ready',
     screen: 'split-pdf',
   },
   {
     id: 'compress-pdf',
     slug: 'nen-pdf',
-    name: 'Nén PDF',
-    description: 'Giảm dung lượng tệp PDF',
+   
+   
     icon: 'file-earmark-zip',
     categories: ['document'],
     priority: 4,
-    synonyms: ['thu nhỏ pdf', 'pdf nhẹ', 'compress'],
+   
     status: 'ready',
     screen: 'compress-pdf',
   },
   {
     id: 'convert-file',
     slug: 'pdf-sang-word',
-    name: 'Chuyển đổi file',
-    description: 'PDF sang Word, Excel, ảnh',
+   
+   
     icon: 'arrow-left-right',
     categories: ['document'],
     processing: 'browser-model',
     priority: 6,
-    synonyms: ['pdf to word', 'docx', 'xlsx', 'pdf sang excel', 'pdf sang jpg', 'pdf sang ảnh'],
-    pageTitle: 'Chuyển PDF sang Word miễn phí',
+   
+   
     status: 'ready',
     screen: 'convert-file',
   },
   {
     id: 'pdf-to-image',
     slug: 'pdf-sang-anh',
-    name: 'PDF → Ảnh',
-    description: 'Mỗi trang PDF thành một ảnh JPG, PNG',
+   
+   
     icon: 'image',
     categories: ['document', 'image'],
-    synonyms: ['pdf sang jpg', 'pdf sang png', 'pdf to jpg', 'xuất ảnh'],
+   
     status: 'ready',
     screen: 'pdf-to-image',
   },
   {
     id: 'organize-pdf',
     slug: 'sap-xep-pdf',
-    name: 'Sắp xếp PDF',
-    description: 'Đổi thứ tự, xoay, bỏ trang',
+   
+   
     icon: 'grid-3x3-gap',
     categories: ['document'],
-    synonyms: ['đảo trang', 'xoay trang', 'xoá trang', 'sắp lại trang'],
+   
     status: 'ready',
     screen: 'organize-pdf',
   },
   {
     id: 'page-numbers',
     slug: 'danh-so-trang',
-    name: 'Đánh số trang',
-    description: 'Thêm số trang vào tệp PDF',
+   
+   
     icon: 'hash',
     categories: ['document'],
-    synonyms: ['số trang', 'page number', 'chân trang'],
+   
     status: 'ready',
     screen: 'page-numbers',
   },
   {
     id: 'stamp-pdf',
     slug: 'dong-dau-pdf',
-    name: 'Đóng dấu PDF',
-    description: 'Dấu chữ hoặc logo lên các trang',
+   
+   
     icon: 'droplet-half',
     categories: ['document'],
-    synonyms: ['watermark', 'logo', 'bản sao', 'chèn dấu'],
+   
     status: 'ready',
     screen: 'stamp-pdf',
   },
   {
     id: 'redact-pdf',
     slug: 'che-thong-tin-pdf',
-    name: 'Che thông tin PDF',
-    description: 'Xoá hẳn vùng nhạy cảm khỏi tệp',
+   
+   
     icon: 'eye-slash',
     categories: ['document'],
-    synonyms: ['bôi đen', 'redact', 'ẩn thông tin', 'xoá chữ'],
+   
     status: 'ready',
     screen: 'redact-pdf',
   },
   {
     id: 'view-pdf',
     slug: 'xem-pdf',
-    name: 'Xem PDF',
-    description: 'Xem, tìm chữ, ghi chú trên trang',
+   
+   
     icon: 'file-earmark-pdf',
     categories: ['document'],
     processing: 'browser-model',
-    synonyms: ['đọc pdf', 'mở pdf'],
+   
     status: 'ready',
     screen: 'editor',
   },
   {
     id: 'ocr',
     slug: 'ocr-van-ban',
-    name: 'OCR văn bản',
-    description: 'Nhận dạng chữ tiếng Việt trên bản scan',
+   
+   
     icon: 'textarea-t',
     categories: ['document', 'image'],
     processing: 'browser-model',
     priority: 7,
-    synonyms: ['nhận diện chữ', 'pdf tìm được chữ', 'searchable'],
+   
     status: 'ready',
     screen: 'ocr',
   },
   {
     id: 'compare',
     slug: 'so-sanh-tai-lieu',
-    name: 'So sánh tài liệu',
-    description: 'So chữ hai bản PDF, chỉ ra dòng khác',
+   
+   
     icon: 'layout-split',
     categories: ['document'],
-    synonyms: ['đối chiếu', 'diff', 'so sánh pdf', 'khác nhau', 'bản cũ bản mới'],
+   
     status: 'ready',
     screen: 'compare-pdf',
   },
   {
     id: 'sign',
     slug: 'ky-tai-lieu',
-    name: 'Chèn chữ ký',
-    description: 'Vẽ tay hoặc chèn ảnh chữ ký lên trang',
+   
+   
     icon: 'pen',
     categories: ['document'],
-    synonyms: ['ký tài liệu', 'ký tên', 'chữ ký', 'ký pdf', 'sign'],
+   
     status: 'ready',
     screen: 'sign-pdf',
   },
   {
     id: 'edit-pdf',
     slug: 'chinh-sua-pdf',
-    name: 'Chỉnh sửa PDF',
-    description: 'Sửa chữ, đánh dấu, sắp xếp trang',
+   
+   
     icon: 'pencil-square',
     categories: ['document'],
     processing: 'browser-model',
     priority: 5,
-    synonyms: ['sửa pdf', 'xoay trang', 'xoá trang', 'thêm chữ'],
+   
     status: 'ready',
     screen: 'editor',
   },
   {
     id: 'image-to-text',
     slug: 'anh-sang-van-ban',
-    name: 'Ảnh → Văn bản',
-    description: 'Lấy chữ tiếng Việt từ ảnh chụp',
+   
+   
     icon: 'card-text',
     categories: ['image', 'document'],
     processing: 'browser-model',
-    synonyms: ['ocr ảnh', 'chép chữ từ ảnh', 'trích chữ', 'image to text'],
+   
     status: 'ready',
     screen: 'image-to-text',
   },
   {
     id: 'measure-image',
     slug: 'do-kich-thuoc-anh',
-    name: 'Đo kích thước ảnh',
-    description: 'Đo chiều dài, diện tích trên ảnh',
+   
+   
     icon: 'rulers',
     categories: ['image', 'calc', 'construction'],
-    synonyms: ['thước đo', 'đo bản vẽ', 'tỉ lệ'],
+   
     status: 'ready',
     screen: 'measure-image',
   },
   {
     id: 'convert-image',
     slug: 'chuyen-doi-anh',
-    name: 'Chuyển đổi ảnh',
-    description: 'Đổi giữa JPG, PNG, WebP',
+   
+   
     icon: 'images',
     categories: ['image'],
     priority: 9,
-    synonyms: ['đổi đuôi ảnh', 'png sang jpg', 'jpg sang png', 'webp sang jpg'],
+   
     status: 'ready',
     screen: 'convert-image',
   },
   {
     id: 'compress-image',
     slug: 'nen-anh',
-    name: 'Nén ảnh',
-    description: 'Giảm dung lượng ảnh',
+   
+   
     icon: 'file-earmark-image',
     categories: ['image'],
     priority: 8,
-    synonyms: ['thu nhỏ ảnh', 'ảnh nhẹ', 'resize'],
+   
     status: 'ready',
     screen: 'compress-image',
   },
   {
     id: 'crop-image',
     slug: 'cat-chinh-anh',
-    name: 'Cắt & chỉnh ảnh',
-    description: 'Cắt, xoay, chỉnh sáng tối',
+   
+   
     icon: 'crop',
     categories: ['image'],
-    synonyms: ['crop', 'xoay ảnh', 'lật ảnh', 'độ sáng'],
+   
     status: 'ready',
     screen: 'crop-image',
   },
   {
     id: 'batch-image',
     slug: 'anh-hang-loat',
-    name: 'Ảnh hàng loạt',
-    description: 'Đổi cỡ, đổi tên, đổi định dạng cả lô',
+   
+   
     icon: 'collection',
     categories: ['image'],
-    synonyms: ['resize ảnh', 'đổi tên ảnh', 'thu nhỏ ảnh', 'batch', 'nhiều ảnh'],
+   
     status: 'ready',
     screen: 'batch-image',
   },
   {
     id: 'mark-image',
     slug: 'che-dong-dau-anh',
-    name: 'Che & đóng dấu ảnh',
-    description: 'Che thông tin, đóng dấu chữ lên ảnh',
+   
+   
     icon: 'eye-slash',
     categories: ['image'],
-    synonyms: ['watermark', 'bôi đen', 'che mặt', 'che số', 'đóng dấu bản quyền'],
+   
     status: 'ready',
     screen: 'mark-image',
   },
   {
     id: 'id-photo',
     slug: 'anh-the',
-    name: 'Ảnh thẻ & In ảnh',
-    description: 'Cắt ảnh thẻ, xếp nhiều bản lên tờ in',
+   
+   
     icon: 'person-badge',
     categories: ['image'],
-    synonyms: ['ảnh 3x4', 'ảnh 4x6', 'ảnh hộ chiếu', 'in ảnh thẻ', 'passport'],
+   
     status: 'ready',
     screen: 'id-photo',
   },
   {
     id: 'qr-create',
     slug: 'tao-ma-qr',
-    name: 'Tạo QR Code',
-    description: 'Tạo mã QR từ chữ hoặc đường dẫn',
+   
+   
     icon: 'qr-code',
     categories: ['data'],
     priority: 10,
-    synonyms: ['mã qr', 'qr link'],
+   
     status: 'ready',
     screen: 'qr-create',
     noFile: true,
@@ -550,11 +551,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'barcode-create',
     slug: 'tao-ma-vach',
-    name: 'Tạo mã vạch',
-    description: 'EAN-13, Code 128, ITF-14 — một mã hoặc cả lô',
+   
+   
     icon: 'upc',
     categories: ['data'],
-    synonyms: ['barcode', 'mã vạch', 'ean', 'code 128', 'code 39', 'itf', 'in tem', 'mã vật tư'],
+   
     status: 'ready',
     screen: 'barcode-create',
     noFile: true,
@@ -562,23 +563,23 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'qr-read',
     slug: 'doc-ma-qr',
-    name: 'Đọc mã QR/Barcode',
-    description: 'Quét mã từ ảnh hoặc camera',
+   
+   
     icon: 'qr-code-scan',
     categories: ['data'],
-    synonyms: ['quét qr', 'scan qr', 'mã vạch'],
+   
     status: 'ready',
     screen: 'qr-read',
   },
   {
     id: 'quick-calc',
     slug: 'tinh-toan-nhanh',
-    name: 'Tính toán nhanh',
-    description: 'Diện tích, thể tích, khối lượng',
+   
+   
     icon: 'calculator',
     categories: ['calc'],
     priority: 11,
-    synonyms: ['máy tính', 'm2', 'm3', 'bê tông'],
+   
     status: 'ready',
     screen: 'quick-calc',
     noFile: true,
@@ -586,11 +587,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'money-calc',
     slug: 'tinh-tien',
-    name: 'Tính tiền & thuế',
-    description: 'Phần trăm, VAT, chiết khấu, lãi gộp, chia tiền',
+   
+   
     icon: 'cash-coin',
     categories: ['money'],
-    synonyms: ['vat', 'thuế gtgt', 'phần trăm', 'giảm giá', 'margin', 'markup', 'chia hoá đơn', 'lợi nhuận'],
+   
     status: 'ready',
     screen: 'money-calc',
     noFile: true,
@@ -598,11 +599,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'date-calc',
     slug: 'tinh-ngay',
-    name: 'Tính ngày & thời hạn',
-    description: 'Đếm ngày, ngày làm việc, cộng trừ ngày',
+   
+   
     icon: 'calendar-check',
     categories: ['date'],
-    synonyms: ['đếm ngày', 'hạn chót', 'deadline', 'ngày làm việc', 'bao nhiêu ngày'],
+   
     status: 'ready',
     screen: 'date-calc',
     noFile: true,
@@ -610,22 +611,22 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'house-orientation',
     slug: 'huong-nha-la-ban',
-    name: 'Hướng nhà & la bàn',
-    description: 'Đo hướng nhà, đặt la bàn lên ảnh, bản vẽ',
+   
+   
     icon: 'compass',
     categories: ['home', 'construction'],
-    synonyms: ['la bàn', 'xem hướng nhà', 'hướng cửa', 'phong thuỷ', 'bát trạch', 'hướng mặt tiền', 'nắng chiều'],
+   
     status: 'ready',
     screen: 'house-orientation',
   },
   {
     id: 'quick-note',
     slug: 'ghi-chu-nhanh',
-    name: 'Ghi chú nhanh',
-    description: 'Ghi chú, danh sách việc lưu trên máy',
+   
+   
     icon: 'journal-check',
     categories: ['other'],
-    synonyms: ['note', 'todo', 'việc cần làm'],
+   
     status: 'ready',
     screen: 'quick-note',
     noFile: true,
@@ -633,11 +634,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'char-count',
     slug: 'dem-ky-tu',
-    name: 'Đếm ký tự',
-    description: 'Đếm chữ, từ, dòng',
+   
+   
     icon: 'fonts',
     categories: ['document'],
-    synonyms: ['đếm từ', 'word count', 'số chữ'],
+   
     status: 'ready',
     screen: 'char-count',
     noFile: true,
@@ -645,12 +646,12 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'unit-convert',
     slug: 'chuyen-doi-don-vi',
-    name: 'Chuyển đổi đơn vị',
-    description: 'Chiều dài, diện tích, khối lượng',
+   
+   
     icon: 'arrow-repeat',
     categories: ['calc'],
     priority: 12,
-    synonyms: ['đổi đơn vị', 'inch', 'feet', 'mét'],
+   
     status: 'ready',
     screen: 'unit-convert',
     noFile: true,
@@ -658,11 +659,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'color',
     slug: 'mau-sac',
-    name: 'Màu sắc',
-    description: 'Chọn màu, đổi mã màu',
+   
+   
     icon: 'palette',
     categories: ['image'],
-    synonyms: ['bảng màu', 'hex', 'rgb'],
+   
     status: 'ready',
     screen: 'color',
     noFile: true,
@@ -670,11 +671,11 @@ export const ALL_TOOLS: ToolDefinition[] = [
   {
     id: 'random-code',
     slug: 'tao-ma-ngau-nhien',
-    name: 'Tạo mã ngẫu nhiên',
-    description: 'Mật khẩu, mã đơn, mã phiếu',
+   
+   
     icon: 'shuffle',
     categories: ['data'],
-    synonyms: ['password', 'sinh mã', 'ngẫu nhiên'],
+   
     status: 'ready',
     screen: 'random-code',
     noFile: true,
@@ -682,79 +683,79 @@ export const ALL_TOOLS: ToolDefinition[] = [
   // "Sắp có": công cụ đã có trong mẫu giao diện nhưng chưa làm. Mô tả nói việc nó SẼ làm;
   // `processing: 'server'` = sẽ cần dữ liệu máy chủ, trang "Cách xử lý dữ liệu" nói trước.
   {
-    id: 'construction-price', slug: 'gia-xay-dung', name: 'Giá xây dựng', description: 'Tra cứu đơn giá, vật liệu, nhân công theo địa phương', icon: 'database',
+    id: 'construction-price', slug: 'gia-xay-dung', icon: 'database',
     categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'planning-lookup', slug: 'quy-hoach', name: 'Quy hoạch', description: 'Tra cứu thông tin quy hoạch, chỉ tiêu sử dụng đất', icon: 'map',
+    id: 'planning-lookup', slug: 'quy-hoach', icon: 'map',
     categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'construction-law', slug: 'phap-ly-xay-dung', name: 'Pháp lý xây dựng', description: 'Tra cứu thủ tục, văn bản, biểu mẫu pháp lý', icon: 'bank',
+    id: 'construction-law', slug: 'phap-ly-xay-dung', icon: 'bank',
     categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'construction-standards', slug: 'tieu-chuan-xay-dung', name: 'Tiêu chuẩn xây dựng', description: 'Tra cứu và xem nhanh tiêu chuẩn, quy chuẩn', icon: 'book',
+    id: 'construction-standards', slug: 'tieu-chuan-xay-dung', icon: 'book',
     categories: ['construction'], noFile: true, status: 'soon',
   },
   {
-    id: 'dossier-check', slug: 'kiem-ho-so', name: 'Kiểm hồ sơ', description: 'Soát lỗi thường gặp trong hồ sơ thiết kế, bản vẽ', icon: 'list-check',
+    id: 'dossier-check', slug: 'kiem-ho-so', icon: 'list-check',
     categories: ['construction', 'document'], processing: 'server', status: 'soon',
   },
   {
-    id: 'structure-calc', slug: 'tinh-ket-cau', name: 'Tính kết cấu nhanh', description: 'Tính toán tiết diện, tải trọng cơ bản', icon: 'bricks',
+    id: 'structure-calc', slug: 'tinh-ket-cau', icon: 'bricks',
     categories: ['construction', 'calc'], noFile: true, status: 'soon',
   },
   {
-    id: 'drawing-convert', slug: 'chuyen-doi-ban-ve', name: 'Chuyển đổi bản vẽ', description: 'Chuyển DWG, DXF sang PDF và đo kích thước', icon: 'arrow-left-right',
+    id: 'drawing-convert', slug: 'chuyen-doi-ban-ve', icon: 'arrow-left-right',
     categories: ['construction', 'document'], status: 'soon',
   },
   {
-    id: 'drawing-area', slug: 'do-dien-tich-ban-ve', name: 'Đo diện tích trên bản vẽ', description: 'Đo diện tích, chu vi trên bản vẽ PDF', icon: 'bounding-box',
+    id: 'drawing-area', slug: 'do-dien-tich-ban-ve', icon: 'bounding-box',
     categories: ['construction'], status: 'soon',
   },
   {
-    id: 'site-diary', slug: 'nhat-ky-hien-truong', name: 'Nhật ký hiện trường', description: 'Chụp ảnh, ghi chú, đánh dấu ngay tại công trình', icon: 'camera',
+    id: 'site-diary', slug: 'nhat-ky-hien-truong', icon: 'camera',
     categories: ['construction'], noFile: true, status: 'soon',
   },
   {
-    id: 'supplier-lookup', slug: 'tra-cuu-nha-cung-cap', name: 'Tra cứu nhà cung cấp', description: 'Tìm nhà cung cấp vật liệu, thiết bị xây dựng', icon: 'truck',
+    id: 'supplier-lookup', slug: 'tra-cuu-nha-cung-cap', icon: 'truck',
     categories: ['construction'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'family-reminders', slug: 'nhac-viec', name: 'Nhắc việc', description: 'Nhắc uống thuốc, đưa đón, việc nhà, hẹn giờ', icon: 'bell',
+    id: 'family-reminders', slug: 'nhac-viec', icon: 'bell',
     categories: ['home', 'date'], noFile: true, status: 'soon',
   },
   {
-    id: 'family-share', slug: 'chia-se-gia-dinh', name: 'Chia sẻ với gia đình', description: 'Mời người thân cùng xem và cập nhật lịch chung', icon: 'people',
+    id: 'family-share', slug: 'chia-se-gia-dinh', icon: 'people',
     categories: ['home'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'family-health', slug: 'suc-khoe-gia-dinh', name: 'Sức khỏe gia đình', description: 'Ghi lịch khám, nhắc thuốc cho từng người', icon: 'heart-pulse',
+    id: 'family-health', slug: 'suc-khoe-gia-dinh', icon: 'heart-pulse',
     categories: ['home'], noFile: true, status: 'soon',
   },
   {
-    id: 'house-chores', slug: 'viec-nha', name: 'Danh sách việc nhà', description: 'Phân công việc nhà, theo dõi việc đã xong', icon: 'clipboard-check',
+    id: 'house-chores', slug: 'viec-nha', icon: 'clipboard-check',
     categories: ['home'], noFile: true, status: 'soon',
   },
   {
-    id: 'family-budget', slug: 'chi-tieu-gia-dinh', name: 'Chi tiêu gia đình', description: 'Ghi thu chi, theo dõi ngân sách đơn giản', icon: 'wallet2',
+    id: 'family-budget', slug: 'chi-tieu-gia-dinh', icon: 'wallet2',
     categories: ['home', 'money'], noFile: true, status: 'soon',
   },
   {
-    id: 'family-album', slug: 'album-gia-dinh', name: 'Album gia đình', description: 'Lưu giữ ảnh và video khoảnh khắc gia đình', icon: 'images',
+    id: 'family-album', slug: 'album-gia-dinh', icon: 'images',
     categories: ['home', 'image'], processing: 'server', status: 'soon',
   },
   {
-    id: 'special-days', slug: 'ngay-dac-biet', name: 'Ngày đặc biệt', description: 'Nhắc sinh nhật, kỷ niệm, ngày giỗ, ngày lễ', icon: 'gift',
+    id: 'special-days', slug: 'ngay-dac-biet', icon: 'gift',
     categories: ['home', 'date'], noFile: true, status: 'soon',
   },
   {
-    id: 'honor-board', slug: 'bang-vinh-danh', name: 'Bảng vinh danh', description: 'Ghi nhận người góp dữ liệu đã được xác minh', icon: 'trophy',
+    id: 'honor-board', slug: 'bang-vinh-danh', icon: 'trophy',
     categories: ['other'], processing: 'server', noFile: true, status: 'soon',
   },
   {
-    id: 'code-manager', slug: 'quan-ly-ma', name: 'Quản lý mã', description: 'Tạo danh sách mã QR, mã vạch và xuất tệp', icon: 'upc-scan',
+    id: 'code-manager', slug: 'quan-ly-ma', icon: 'upc-scan',
     categories: ['data'], processing: 'server', noFile: true, status: 'soon',
   },
 ]

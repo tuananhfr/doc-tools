@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "開始（秒）",
+    "end": "結束（秒）"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "正在載入處理引擎…",
+      "reading": "正在讀取影片…",
+      "processing": "正在處理影片…",
+      "saving": "正在準備結果…"
+    },
+    "chooseFailed": "無法選擇影片。",
+    "result": "結果",
+    "noOutput": "尚無新檔案",
+    "idle": "選擇影片、調整設定，然後按「處理」。",
+    "progressLabel": "影片處理進度",
+    "progressEstimate": "{{percent}}% · 估計進度",
+    "processing": "處理中…",
+    "cancel": "取消處理",
+    "smaller": "比原始檔案小 {{percent}}%。",
+    "notSmaller": "新檔案沒有比原始檔案小。已經壓縮過的影片可能會變大；請試試更強的壓縮等級。",
+    "outputVideo": "輸出影片",
+    "outputAudio": "輸出音訊",
+    "outputGif": "輸出 GIF",
+    "download": "下載結果",
+    "panelTitle": "你的影片",
+    "chooseVideo": "選擇一部影片",
+    "limits": "上限 100 MB、10 分鐘、4K。在手機上建議使用 30 MB 以下的短片。檔案不會上傳到伺服器。",
+    "unsupported": "瀏覽器尚不支援影片處理。請在電腦上改用較新的瀏覽器。",
+    "seconds": "{{seconds}} 秒",
+    "sourceVideo": "原始影片",
+    "playbackHint": "即使瀏覽器無法播放原始檔，你仍可以嘗試處理。處理引擎會檢查編解碼器與長度。",
+    "settingsLegend": "影片處理設定",
+    "engineNote": "第一次按「處理」時，會額外下載約 32 MB 的處理引擎。在手機上可能較慢或記憶體不足。結果不會保留原始檔案的中繼資料。",
+    "license": "FFmpeg GPL 授權與原始碼"
+  },
+  "task": {
+    "done": "已產生新檔案。請在下方預覽並下載結果。",
+    "failed": "無法處理影片。"
+  },
+  "compress": {
+    "action": "壓縮影片",
+    "note": "輸出 MP4 H.264/AAC。壓縮會降低畫質；最終大小取決於內容與原始檔的壓縮程度。",
+    "level": "壓縮等級",
+    "light": "輕度 · 畫質優先",
+    "medium": "中度 · 平衡",
+    "strong": "強力 · 檔案大小優先",
+    "maxEdge": "長邊上限"
+  },
+  "audio": {
+    "action": "擷取音訊",
+    "note": "輸出第一條完整音軌。MP3/M4A 較省空間；WAV 通常較大。影片沒有音訊時會明確提示。",
+    "format": "音訊格式",
+    "mp3": "MP3 · 最常用",
+    "wav": "WAV · 無壓縮"
+  },
+  "trim": {
+    "action": "剪輯影片",
+    "note": "以秒為單位輸入時間。片段會重新編碼以精確到影格，輸出 MP4；長邊上限 1080 px。"
+  },
+  "gif": {
+    "action": "製作 GIF",
+    "note": "GIF 沒有聲音且會不斷循環。請選擇最多 20 秒的片段；降低寬度或影格數可減少檔案大小。",
+    "width": "寬度",
+    "fps": "每秒影格數",
+    "fpsSmall": "8 · 檔案小",
+    "fpsBalanced": "12 · 平衡",
+    "fpsSmooth": "15 · 動作較流暢"
+  },
+  "errors": {
+    "emptyFile": "檔案是空的。請選擇其他影片。",
+    "tooLarge": "影片超過 100 MB。請選擇較小的檔案。",
+    "notVideo": "請選擇 MP4、MOV、WebM、MKV 或 AVI 影片檔。",
+    "unreadableInfo": "無法讀取影片資訊。",
+    "noVideoStream": "檔案沒有有效的視訊串流，或無法判斷長度。",
+    "tooLong": "影片長度超過 10 分鐘。請選擇較短的片段。",
+    "tooHighRes": "影片解析度超過 4K。請選擇解析度較低的版本。",
+    "badCompress": "壓縮設定無效。",
+    "badAudioFormat": "音訊格式無效。",
+    "badRange": "結束時間必須大於開始時間，且兩者都必須是有效的秒數。",
+    "endPastDuration": "影片只有 {{seconds}} 秒長。請縮短結束時間。",
+    "gifLimits": "GIF 上限為 20 秒、寬 640 px、每秒 15 格。",
+    "noAudio": "這部影片沒有可擷取的音訊。",
+    "unsupported": "此瀏覽器尚不支援影片處理。請在電腦上試試新版的 Chrome、Edge、Firefox 或 Safari。",
+    "busy": "另一部影片正在處理中。請等待或取消該工作。",
+    "unreadable": "無法讀取影片。檔案可能已損毀，或使用了不支援的編解碼器。",
+    "processFailed": "無法處理影片或已逾時。請試試較短的片段或較低的畫質。",
+    "noOutput": "無法產生輸出檔案。請試試其他影片。",
+    "cancelled": "已取消影片處理。",
+    "timedOut": "工作花費時間過長。請試試較短的影片，並在下載處理引擎時檢查網路連線。",
+    "engineFailed": "無法下載或執行影片處理引擎。請檢查網路連線、關閉部分分頁，或在電腦上試試較小的檔案。"
+  }
+}

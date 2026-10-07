@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "查看資料來源",
+    "vatPercent": "稅率（%）"
+  },
+  "electricity": {
+    "resultLabel": "帳單估算",
+    "waterBreakdown": "水費：{{subtotal}} đ · 附加費：{{fee}} đ · 稅：{{vat}} đ。各項費用分別以原始水費計算。",
+    "waterHint": "輸入最近一期帳單上的用水量和單價。",
+    "electricityBreakdown": "稅前電費：{{subtotal}} đ · 稅 {{percent}}%：{{vat}} đ",
+    "table": {
+      "upTo": "級距上限（kWh）",
+      "units": "度數（kWh）",
+      "price": "每 kWh 價格",
+      "amount": "金額",
+      "rest": "其餘"
+    },
+    "electricityHint": "依帳單或合約輸入用電度數與費率表。最後一行用 * 表示其餘度數。",
+    "tariffVerified": "費率表已簽署，自 {{date}} 起生效。來源：{{source}}。",
+    "tariffManual": "費率表由你輸入；本工具不確認這是現行的售電價格。",
+    "vatVerified": "{{percent}}% 稅率已簽署，自 {{date}} 起生效。來源：{{source}}。",
+    "vatManual": "稅率由你輸入。",
+    "notIncluded": "未計入其他費用或供應商的進位方式。",
+    "panelTitle": "電費、水費",
+    "billType": "帳單類型",
+    "modes": {
+      "electricity": "電費",
+      "water": "水費"
+    },
+    "water": {
+      "cubicMeters": "用水量（m³）",
+      "price": "單價（đ/m³）",
+      "fee": "排水／環境費（%）"
+    },
+    "kwh": "用電量（kWh）",
+    "households": "共用電錶的戶數定額",
+    "tiers": "費率表：每行為「kWh 級距上限, 單價 đ/kWh」",
+    "applyTariff": "套用已簽署的費率表",
+    "applyVat": "套用已簽署的稅率",
+    "ruleLabel": "電價表",
+    "ruleNone": "系統上目前沒有已簽署且仍有效的電價表。",
+    "vatRuleLabel": "加值稅率"
+  },
+  "groupSplit": {
+    "resultLabel": "轉帳以結清",
+    "balanced": "已結清",
+    "note": "每筆費用由該筆的參與者平均分攤。轉帳金額四捨五入到元。",
+    "membersTitle": "成員",
+    "onePerLine": "每行一人",
+    "expensesTitle": "支出",
+    "addExpense": "新增支出",
+    "payer": "付款人",
+    "choosePerson": "選擇成員",
+    "amount": "金額（đ）",
+    "participants": "分攤者",
+    "removeExpense": "移除支出"
+  },
+  "loan": {
+    "totalPayment": "應付總額",
+    "finalBalance": "期末餘額",
+    "interest": "利息：{{amount}} đ",
+    "firstPayment": "首期：{{amount}} đ",
+    "downloadCsv": "下載 CSV 表格",
+    "table": {
+      "period": "期數",
+      "principal": "本金",
+      "interest": "利息",
+      "balance": "剩餘本金"
+    },
+    "savingsNote": "{{months}} 個月後利息 {{amount}} đ。每期以單利計算，續存時期末利息併入本金。",
+    "hint": "請輸入正數金額、非負利率和有效期限。",
+    "disclaimer": "結果僅供參考；實際還款時程取決於合約及貸款方的進位方式。",
+    "loanTitle": "貸款",
+    "savingsTitle": "存款",
+    "mode": "模式",
+    "modes": {
+      "loan": "分期貸款",
+      "savings": "定存自動續存"
+    },
+    "loanAmount": "貸款金額（đ）",
+    "savingsAmount": "存款金額（đ）",
+    "rate": "年利率（%）",
+    "loanTerm": "期限（月）",
+    "savingsTerm": "存期（月）",
+    "method": "還本方式",
+    "methods": {
+      "annuity": "本息平均攤還",
+      "equalPrincipal": "本金平均攤還"
+    },
+    "renewals": "續存次數"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "本人扣除額（đ）",
+      "dependentDeduct": "每位受扶養人扣除額（đ）",
+      "referenceSalary": "計算保險上限的參考薪資（đ）",
+      "minWage1": "第 I 區最低工資（đ）",
+      "minWage2": "第 II 區最低工資（đ）",
+      "minWage3": "第 III 區最低工資（đ）",
+      "minWage4": "第 IV 區最低工資（đ）",
+      "employeeSocial": "員工：社會保險 BHXH（%）",
+      "employeeHealth": "員工：健康保險 BHYT（%）",
+      "employeeUnemployment": "員工：失業保險 BHTN（%）",
+      "employerSocial": "公司：社會保險 BHXH（%）",
+      "employerHealth": "公司：健康保險 BHYT（%）",
+      "employerUnemployment": "公司：失業保險 BHTN（%）"
+    },
+    "resultLabel": "參考結果",
+    "net": "實領 {{amount}} đ",
+    "missingParams": "參數不足",
+    "rows": {
+      "gross": "稅前薪資（Gross）",
+      "employeeSocial": "員工社會保險",
+      "employeeHealth": "員工健康保險",
+      "employeeUnemployment": "員工失業保險",
+      "deduction": "扣除額",
+      "taxable": "應稅所得",
+      "bracket": "第 {{level}} 級 · {{rate}}%",
+      "tax": "個人所得稅",
+      "employerTotal": "公司另需負擔",
+      "employerCost": "公司總成本"
+    },
+    "hint": "請依已簽署的規則包、薪資表、合約或會計的說明，填入完整參數。",
+    "paramsVerified": "參數包已簽署，自 {{date}} 起生效。來源：{{source}}。",
+    "paramsManual": "參數由你輸入；本工具不確認這是現行規定。",
+    "notSettlement": "結果不能取代實際的稅務結算。",
+    "panelTitle": "薪資 Gross – Net 計算",
+    "direction": "計算方向",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "稅前薪資 Gross（đ/月）",
+    "netSalary": "期望實領 Net（đ/月）",
+    "dependents": "受扶養人數",
+    "region": "區域",
+    "regionOption": "第 {{region}} 區",
+    "insuranceBase": "投保薪資（đ，留空 = Gross）",
+    "exempt": "Gross 中的免稅津貼（đ）",
+    "applyParams": "套用已簽署的參數",
+    "ruleLabel": "薪資計算參數",
+    "ruleNone": "系統上目前沒有已簽署且仍有效的薪資規則包。",
+    "enterParams": "輸入薪資計算參數",
+    "brackets": "稅率表：「應稅所得級距上限（đ）, 稅率（%）」；最後一行用 *"
+  },
+  "unitPrice": {
+    "resultLabel": "依單位比較",
+    "equal": "價格相同",
+    "cheaper": "商品 {{index}} 較便宜",
+    "perUnit": "商品 {{index}}：{{amount}} đ/{{unit}}",
+    "difference": "與較高的價格相差 {{percent}}%。",
+    "hint": "請為兩項商品輸入非負價格和正數數量，並使用相同單位。",
+    "panelTitle": "兩項商品",
+    "price": "商品 {{index}} 價格（đ）",
+    "quantity": "商品 {{index}} 數量（{{unit}}）",
+    "unit": "數量單位",
+    "units": {
+      "kg": "kg",
+      "liter": "公升",
+      "piece": "個"
+    }
+  }
+}

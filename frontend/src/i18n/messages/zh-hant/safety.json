@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "有多個需要檢查的跡象",
+    "levelMedium": "有需要檢查的跡象",
+    "levelLow": "規則中尚未發現可疑跡象",
+    "result": "篩檢結果",
+    "note": "這只是用規則檢查跡象，無法證明連結或訊息是安全的。不要在從訊息開啟的頁面輸入 OTP 或密碼；請透過你自己查到的管道聯絡該機構。",
+    "title": "要檢查的內容",
+    "kind": "內容類型",
+    "kindMessage": "訊息",
+    "kindLink": "連結",
+    "messageLabel": "訊息內容",
+    "linkPlaceholder": "貼上連結，不需開啟…",
+    "messagePlaceholder": "貼上可疑訊息…",
+    "privacy": "內容在你的裝置上分析；本工具不會開啟你貼上的連結。"
+  },
+  "flags": {
+    "unreadable": "無法讀取連結。",
+    "noHttps": "未使用 HTTPS。",
+    "ipHost": "使用 IP 位址而非網域名稱。",
+    "punycode": "網域含有 punycode 編碼，需核對真實名稱。",
+    "shortener": "短網址隱藏了真正的目的地。",
+    "riskyTld": "網域字尾常見於高風險連結。",
+    "fakeGov": "含有「gov」字樣，但不屬於 .gov.vn 網域。",
+    "brand": "網域含有「{{brand}}」字樣；請核對官方網址。",
+    "loginPath": "連結路徑暗示要登入或驗證。",
+    "otp": "要求提供 OTP 或驗證碼。",
+    "lockThreat": "以帳號將被鎖定施加壓力。",
+    "prize": "承諾獎品或禮物。",
+    "easyJob": "提供輕鬆高薪的工作或線上任務。",
+    "urgentTransfer": "催促緊急轉帳或儲值。",
+    "installApp": "要求從訊息安裝應用程式。",
+    "link": "連結 {{link}}：{{flags}}"
+  }
+}

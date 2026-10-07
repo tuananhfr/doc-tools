@@ -1,10 +1,8 @@
+import { translate } from '@/i18n/runtime'
 import type { Axis, Size } from '../types/orientation.types'
 import { axisAngle, pointAt } from './azimuth'
 import type { CompassRole, CompassShape } from './compass-geometry'
 import type { OrientationState } from './orientation-state'
-import type { TraceTag } from './trace'
-
-const TAG_LABEL: Record<TraceTag, string> = { FRONTAGE: 'Mặt tiền', ENTRANCE: 'Cửa chính' }
 
 /** Cỡ nét / chữ theo ảnh, không theo màn hình — giống công cụ đo ảnh: ảnh xuất trông như lúc làm. */
 export function sceneUnit(view: Size): number {
@@ -37,7 +35,7 @@ export function sceneShapes(state: OrientationState, view: Size, labelOf: (id: s
     shapes.push({ kind: 'path', points: shape.points, closed, role, width: (shape.tag ? 3 : 2.2) * unit, fill: closed })
     if (shape.tag && shape.points.length >= 2) {
       const [a, b] = shape.points
-      shapes.push({ kind: 'text', at: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 - 14 * unit }, text: TAG_LABEL[shape.tag], role, size: 11 * unit, weight: 700 })
+      shapes.push({ kind: 'text', at: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 - 14 * unit }, text: translate(`orientation:sceneTags.${shape.tag}`), role, size: 11 * unit, weight: 700 })
     }
   }
   if (state.trace.draft.length > 1) {

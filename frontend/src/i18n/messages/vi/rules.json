@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Đang tải số liệu đã ký…",
+    "invalid": "Gói số liệu trên hệ thống không qua bước kiểm tra (chữ ký, hạn hoặc định dạng) nên không được dùng. Hãy báo quản trị viên.",
+    "unavailable": "Không tải được số liệu đã ký từ máy chủ. Bạn vẫn có thể tự nhập.",
+    "upcoming": "Từ {{date}} áp dụng {{label}} mới theo {{source}}."
+  }
+}

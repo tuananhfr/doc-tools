@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib'
 import { newId } from '@/utils/id'
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { canvasToBlob } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { originOf, type CollagePart, type CollageSource, type ImageSource, type PageRef, type PdfSource, type SourceFile } from '../types/doc-tools.types'
 import type { Rect } from '../types/markup.types'
 import { moveMarkup } from '../utils/markup-geometry'
@@ -15,20 +16,18 @@ import { formSummary } from './pdf-form'
 /** Vùng cắt nhỏ hơn thế này gần như chắc là bấm nhầm, không phải ý định cắt. */
 export const MIN_CROP = 12
 
-const CUT_SUFFIX = ' · đã cắt'
-
 function croppedLabel(source: SourceFile, pageIndex: number): string {
   const origin = describeOrigin(source, pageIndex)
-  return origin.endsWith(CUT_SUFFIX) ? origin : `${origin}${CUT_SUFFIX}`
+  const suffix = translate('pdf:origin.cut')
+  return origin.endsWith(suffix) ? origin : `${origin}${suffix}`
 }
 
 export function makeCollage(parts: CollagePart[]): CollageSource {
-  const label = `Gộp ${parts.length} ảnh`
   return {
     id: newId(),
     originId: parts.length ? originOf(parts[0].source) : undefined,
-    name: label,
-    label,
+    name: translate('pdf:origin.collage', { count: parts.length }),
+    label: translate('pdf:origin.collage', { count: parts.length }),
     kind: 'collage',
     parts,
     size: parts.reduce((sum, part) => sum + part.source.size, 0),
@@ -101,13 +100,13 @@ async function cropImage(source: ImageSource, page: PageRef, area: Rect) {
   canvas.height = height
   try {
     const context = canvas.getContext('2d')
-    if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+    if (!context) throw new Error(translate('pdf:errors.noCanvas'))
     context.drawImage(bitmap, sx, sy, width, height, 0, 0, width, height)
   } finally {
     bitmap.close()
   }
   const blob = await canvasToBlob(canvas, source.mime).catch(() => null)
-  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, 'Không cắt được ảnh.')
+  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, translate('pdf:errors.cropImage'))
   const bytes = new Uint8Array(await blob.arrayBuffer())
 
   const cropped: ImageSource = {

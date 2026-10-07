@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
 import { useAuthStore } from '@/store/auth.store'
@@ -20,11 +21,12 @@ export function useGuestSessionAction(): GuestSessionAction | null {
   const status = useAuthStore((state) => state.status)
   const { kind } = useToolsBranch()
   const { pathname } = useLocation()
+  const { t } = useTranslation('common')
 
   if (kind !== 'public') return null
   if (status === 'authenticated' || status === 'offline') {
-    return { to: `${ROUTES.tools}${pathname.slice(ROUTES.docTools.length)}`, label: 'Mở trong ERPcons', openInApp: true }
+    return { to: `${ROUTES.tools}${pathname.slice(ROUTES.docTools.length)}`, label: t('session.openInApp'), openInApp: true }
   }
-  if (status === 'unauthenticated') return { to: ROUTES.login, label: 'Đăng nhập', openInApp: false }
+  if (status === 'unauthenticated') return { to: ROUTES.login, label: t('session.login'), openInApp: false }
   return null
 }

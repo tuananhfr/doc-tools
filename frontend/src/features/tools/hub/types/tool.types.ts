@@ -123,34 +123,47 @@ export type ToolScreen =
 
 interface ToolBase {
   id: string
-  /** Không dấu, đúng chữ người Việt gõ tìm — đổi slug là gãy mọi link đã phát ra. */
+  /** Không dấu, đúng chữ người Việt gõ tìm — đổi slug là gãy mọi link đã phát ra. Chung cho mọi ngôn ngữ. */
   slug: string
-  name: string
-  description: string
   icon: string
   /** Nhóm đầu tiên quyết định màu ô icon. */
   categories: [ToolCategory, ...ToolCategory[]]
-  /** Tiêu đề tab trình duyệt; thiếu = `<name> miễn phí`. */
-  pageTitle?: string
   /** Công cụ không nhận tệp: dòng cam kết đầu trang nói về DỮ LIỆU thay vì về tệp. */
   noFile?: boolean
-  /** Privacy statement for a tool that uses a browser-provided remote service. */
-  privacyNote?: string
   /** Thiếu = `browser`. */
   processing?: ToolProcessing
   /** Thứ hạng ở lưới "Hay dùng" (nhỏ đứng trước); thiếu = chỉ hiện khi xem tất cả. */
   priority?: number
-  /** Từ người dùng hay gõ tìm mà tên và mô tả không có. Chỉ ghi việc công cụ LÀM ĐƯỢC hôm nay. */
-  synonyms?: string[]
 }
 
-export interface ReadyTool extends ToolBase {
+/** Mục danh mục chưa gắn chữ: đủ cho route, slug, màu, thứ tự — không đủ để hiển thị. */
+export interface ReadyToolEntry extends ToolBase {
   status: 'ready'
   screen: ToolScreen
 }
 
-export interface SoonTool extends ToolBase {
+export interface SoonToolEntry extends ToolBase {
   status: 'soon'
 }
 
+export type ToolEntry = ReadyToolEntry | SoonToolEntry
+
+/**
+ * Chữ của một công cụ theo ngôn ngữ đang xem, lấy từ namespace `catalog`
+ * (`tools.<id>`). Tách khỏi `ToolEntry` để TypeScript chặn chỗ nào hiện chữ
+ * từ danh mục chưa gắn ngôn ngữ.
+ */
+export interface ToolText {
+  name: string
+  description: string
+  /** Tiêu đề tab trình duyệt; catalog không khai thì là mẫu `pageTitle` (`<name> miễn phí`). */
+  pageTitle: string
+  /** Privacy statement for a tool that uses a browser-provided remote service. */
+  privacyNote?: string
+  /** Từ người dùng hay gõ tìm mà tên và mô tả không có. Chỉ ghi việc công cụ LÀM ĐƯỢC hôm nay. */
+  synonyms: string[]
+}
+
+export type ReadyTool = ReadyToolEntry & ToolText
+export type SoonTool = SoonToolEntry & ToolText
 export type ToolDefinition = ReadyTool | SoonTool

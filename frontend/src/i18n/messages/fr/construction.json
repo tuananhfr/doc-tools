@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Fondations",
+      "basement": "Sous-sol",
+      "ground": "Rez-de-chaussée",
+      "upper": "Chaque étage",
+      "floor": "Étage {{floor}}",
+      "rooftopRoom": "Édicule de toit (cage d'escalier)",
+      "terrace": "Toit-terrasse non couvert",
+      "roof": "Toiture",
+      "yard": "Cour avant/arrière"
+    },
+    "result": "Estimation indicative",
+    "money": "{{amount}} đ",
+    "enterPrice": "Saisissez les prix unitaires",
+    "convertedArea": "Surface pondérée : {{area}} m²",
+    "costs": "Gros œuvre : {{base}} đ · Finitions ou clé en main : {{finishing}} đ · Pieux : {{pile}} đ",
+    "columns": {
+      "item": "Poste",
+      "area": "Surface",
+      "factor": "Coefficient",
+      "converted": "Pondérée"
+    },
+    "checkInput": "Vérifiez les valeurs saisies.",
+    "disclaimer": "Les coefficients sont des conventions de référence tirées de documents d'archive, pas des normes de l'État. Comparez avec le plan et les devis des entrepreneurs ; ne comprend ni la conception, ni le permis, ni le mobilier, ni les surcoûts liés au sol.",
+    "title": "Vos surfaces et prix unitaires",
+    "fields": {
+      "floorArea": "Surface du rez-de-chaussée (m²)",
+      "upperFloors": "Nombre d'étages (hors rez-de-chaussée)",
+      "rooftopRoomArea": "Surface de l'édicule de toit (m²)",
+      "terraceArea": "Toit-terrasse non couvert (m²)",
+      "yardArea": "Cour avant/arrière (m²)",
+      "basePrice": "Prix unitaire du gros œuvre (đ/m²)",
+      "finishingPrice": "Prix unitaire finitions ou clé en main (đ/m²)",
+      "pileCost": "Coût des pieux (đ)"
+    },
+    "turnkey": "Le second prix est un prix clé en main, gros œuvre compris",
+    "editFactors": "Ajuster les coefficients selon le devis de l'entrepreneur",
+    "factorLabel": "{{label}} (%)"
+  }
+}

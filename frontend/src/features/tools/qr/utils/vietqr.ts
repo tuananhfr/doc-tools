@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 function removeVietnameseMarks(input: string): string {
   return input.normalize('NFD').replace(/\p{Mn}/gu, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').normalize('NFC')
 }
@@ -10,7 +12,7 @@ export interface VietQrInput {
 }
 
 function tlv(id: string, value: string): string {
-  if (value.length > 99) throw new Error('Trường QR quá dài')
+  if (value.length > 99) throw new Error(translate('qr:vietqr.fieldTooLong'))
   return `${id}${String(value.length).padStart(2, '0')}${value}`
 }
 

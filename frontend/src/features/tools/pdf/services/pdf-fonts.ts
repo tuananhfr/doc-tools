@@ -15,6 +15,7 @@ import matchSerifBoldUrl from '@/assets/fonts/Tinos-Bold.ttf?url'
 import matchSerifBoldItalicUrl from '@/assets/fonts/Tinos-BoldItalic.ttf?url'
 import matchSerifItalicUrl from '@/assets/fonts/Tinos-Italic.ttf?url'
 import matchSerifUrl from '@/assets/fonts/Tinos-Regular.ttf?url'
+import { translate } from '@/i18n/runtime'
 import { fontKey, type FontKey, type FontStyle } from '../utils/font-style'
 import { localFont } from './local-fonts'
 
@@ -87,7 +88,7 @@ export function createFontLoader(doc: PDFDocument, { subset = true }: { subset?:
     if (!font) {
       font = Promise.all([register(), fontBytes(key)])
         .catch(() => {
-          throw new Error('Không tải được phông chữ cho số trang / chữ đánh dấu. Kiểm tra kết nối mạng rồi thử lại.')
+          throw new Error(translate('pdf:errors.fontLoad'))
         })
         .then(([, bytes]) => doc.embedFont(bytes, { subset }))
       fonts.set(key, font)

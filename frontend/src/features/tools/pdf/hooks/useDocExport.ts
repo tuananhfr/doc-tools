@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useToast } from '@/components/ui'
+import { translate } from '@/i18n/runtime'
 import type { ImageFormat, PageRef, PdfOutput, SourceFile } from '../types/doc-tools.types'
 import {
   buildBatch,
@@ -53,7 +54,7 @@ export function useDocExport(sources: Record<string, SourceFile>, decorations: R
       try {
         // Phạm vi trang sai mà vẫn xuất thì ra tệp THIẾU số trang/watermark trông như bình thường.
         const scopeError = decorations.errors.headerFooter ?? decorations.errors.watermark
-        if (scopeError) throw new Error(`phạm vi trang của số trang / watermark chưa hợp lệ (${scopeError})`)
+        if (scopeError) throw new Error(translate('pdf:exportToast.scopeInvalid', { error: scopeError }))
         // Chỉ vẽ lại khi phần trăm nhích: mỗi lần setState là cả lưới 500 thẻ trang render lại.
         let shown = -1
         const onProgress = (done: number, total: number) => {
@@ -65,8 +66,13 @@ export function useDocExport(sources: Record<string, SourceFile>, decorations: R
         await task({ signal: abort.signal, onProgress })
         return true
       } catch (error) {
-        if (abort.signal.aborted) toast.info('Đã huỷ xuất — chưa tải tệp nào.')
-        else toast.error(error instanceof Error && error.message ? `Không xuất được: ${error.message}` : 'Không xuất được tệp. Thử lại.')
+        if (abort.signal.aborted) toast.info(translate('pdf:exportToast.cancelled'))
+        else
+          toast.error(
+            error instanceof Error && error.message
+              ? translate('pdf:exportToast.failedWith', { message: error.message })
+              : translate('pdf:exportToast.failed'),
+          )
         return false
       } finally {
         controller.current = null
@@ -101,8 +107,12 @@ export function useDocExport(sources: Record<string, SourceFile>, decorations: R
     (reduced: number[], dpi: number) => {
       if (reduced.length === 0) return
       const lowest = Math.round(Math.min(...reduced))
-      const what = reduced.length === 1 ? 'Một trang khổ lớn' : `${reduced.length} trang khổ lớn`
-      toast.info(`${what} chỉ xuất được ~${lowest} DPI (thay vì ${dpi}) — mỗi ảnh tối đa ${CANVAS_CAP.maxArea / 1_000_000} triệu điểm ảnh để trình duyệt không treo.`)
+      const vars = { lowest, dpi, megapixels: CANVAS_CAP.maxArea / 1_000_000 }
+      toast.info(
+        reduced.length === 1
+          ? translate('pdf:exportToast.reducedOne', vars)
+          : translate('pdf:exportToast.reducedMany', { ...vars, count: reduced.length }),
+      )
     },
     [toast],
   )
@@ -147,8 +157,8 @@ export function useDocExport(sources: Record<string, SourceFile>, decorations: R
         if (built.withoutText > 0) {
           toast.info(
             kind === 'word'
-              ? `${built.withoutText} trang không có lớp chữ (ảnh, bản scan) được chèn vào Word dạng ảnh.`
-              : `${built.withoutText} trang không có lớp chữ (ảnh, bản scan) nên để trống trong Excel.`,
+              ? translate('pdf:exportToast.wordImages', { count: built.withoutText })
+              : translate('pdf:exportToast.excelBlank', { count: built.withoutText }),
           )
         }
       }),
@@ -165,7 +175,7 @@ export function useDocExport(sources: Record<string, SourceFile>, decorations: R
           reportCarryover(built.carryover)
         }
         if (format === 'image') reportReduced(built.reduced, options.image.dpi)
-        if (built.withoutText > 0) toast.info(`${built.withoutText} trang không có lớp chữ (ảnh, bản scan) — Word chèn dạng ảnh, Excel để trống.`)
+        if (built.withoutText > 0) toast.info(translate('pdf:exportToast.batchTextless', { count: built.withoutText }))
       }),
     [run, context, reportCompression, reportCarryover, reportReduced, toast],
   )

@@ -1,0 +1,447 @@
+{
+  "shared": {
+    "copyResult": "Kopyahin ang resulta",
+    "days": "araw",
+    "daysValue_one": "{{count}} <unit>araw</unit>",
+    "daysValue_other": "{{count}} <unit>araw</unit>"
+  },
+  "weekdays": {
+    "sun": "Linggo",
+    "mon": "Lunes",
+    "tue": "Martes",
+    "wed": "Miyerkules",
+    "thu": "Huwebes",
+    "fri": "Biyernes",
+    "sat": "Sabado"
+  },
+  "duration": {
+    "weeks_one": "{{count}} linggo",
+    "weeks_other": "{{count}} linggo",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days_one": "{{count}} araw",
+    "days_other": "{{count}} araw"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "Area",
+      "volume": "Volume",
+      "mass": "Timbang"
+    },
+    "formulas": {
+      "rectangle": "Parihaba",
+      "triangle": "Tatsulok",
+      "trapezoid": "Trapezoid",
+      "circle": "Bilog",
+      "box": "Kahon (pundasyon, biga, sahig)",
+      "cylinder": "Silindro (bilog na poste, pile)",
+      "rebar": "Bilog na bakal (rebar)",
+      "plate": "Steel plate",
+      "density": "Volume × density"
+    },
+    "inputs": {
+      "length": "Haba",
+      "width": "Lapad",
+      "base": "Base",
+      "height": "Taas",
+      "bigBase": "Malaking base",
+      "smallBase": "Maliit na base",
+      "diameter": "Diameter",
+      "heightThickness": "Taas / kapal",
+      "heightLength": "Taas / haba",
+      "thickness": "Kapal",
+      "volume": "Volume",
+      "density": "Density"
+    },
+    "presets": {
+      "steel": "Bakal",
+      "reinforcedConcrete": "Reinforced concrete",
+      "water": "Tubig"
+    },
+    "tonnes": "= {{value}} tonelada",
+    "perPiece": "Bawat piraso: {{value}} {{unit}}",
+    "invalid": "Dapat mas malaki sa 0 ang mga sukat at dami.",
+    "missing": "Kumpletuhin ang mga sukat para makuwenta.",
+    "groupLabel": "Kukuwentahin",
+    "panelTitle": "Mga sukat",
+    "material": "Materyal / paraan ng kalkulasyon",
+    "shape": "Hugis",
+    "quantity": "Dami",
+    "pieces": "piraso",
+    "densityPresets": "Mga nakahandang density",
+    "decimalHint": "Puwedeng kuwit o tuldok ang decimal point: pareho lang ang 2,5 at 2.5. Inuulit sa katabing kalkulasyon ang mga numerong itina-type mo."
+  },
+  "money": {
+    "groups": {
+      "percent": "Porsyento",
+      "tax": "Buwis at discount",
+      "profit": "Gross profit",
+      "split": "Hatian"
+    },
+    "presets": {
+      "percentOf": "X% ng isang numero",
+      "percentRatio": "Ilang % ng B ang A",
+      "percentChange": "Ilang % ang itinaas / ibinaba",
+      "vatAdd": "Idagdag ang buwis sa presyong walang buwis",
+      "vatExtract": "Ihiwalay ang buwis sa presyong may buwis",
+      "discount": "Discount / bawas-presyo",
+      "margin": "Gross profit mula sa puhunan at presyo",
+      "priceFromMargin": "Presyo mula sa puhunan at margin",
+      "priceFromMarkup": "Presyo mula sa puhunan at markup",
+      "split": "Pantay na hatiin ang halaga"
+    },
+    "inputs": {
+      "rate": "Rate",
+      "ofNumber": "Ng numero",
+      "numberA": "Numero A",
+      "numberB": "Numero B",
+      "oldValue": "Lumang value",
+      "newValue": "Bagong value",
+      "netPrice": "Presyong walang buwis",
+      "taxRate": "Tax rate",
+      "grossPrice": "Presyong may buwis",
+      "originalPrice": "Orihinal na presyo",
+      "discount": "Discount",
+      "cost": "Puhunan",
+      "price": "Presyo ng benta",
+      "targetMargin": "Gustong margin",
+      "targetMarkup": "Gustong markup",
+      "total": "Kabuuang halaga",
+      "people": "Bilang ng tao",
+      "extra": "Dagdag na singil / tip"
+    },
+    "placeholders": {
+      "manual": "Ilagay mo",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "Resulta",
+      "aVsB": "A kumpara sa B",
+      "increase": "Itinaas",
+      "decrease": "Ibinaba",
+      "difference": "Diperensya",
+      "grossPrice": "Presyong may buwis",
+      "tax": "Halaga ng buwis",
+      "netPrice": "Presyong walang buwis",
+      "discounted": "Presyo pagkatapos ng discount",
+      "discountAmount": "Halagang nabawas",
+      "margin": "Profit margin (batay sa presyo ng benta)",
+      "markup": "Markup (batay sa puhunan)",
+      "grossProfit": "Gross profit",
+      "price": "Presyo ng benta",
+      "impliedMarkup": "Katumbas na markup",
+      "impliedMargin": "Katumbas na margin",
+      "each": "Bawat tao",
+      "totalDue": "Kabuuang babayaran",
+      "eachRounded": "Bawat tao, ni-round up sa libo",
+      "surplus": "Sobra kapag ni-round up ang singil"
+    },
+    "errors": {
+      "bNonZero": "Hindi puwedeng 0 ang Numero B.",
+      "oldNonZero": "Hindi puwedeng 0 ang lumang value.",
+      "discountMax": "Hindi puwedeng lumampas sa 100% ang discount.",
+      "pricePositive": "Dapat mas malaki sa 0 ang presyo ng benta.",
+      "costPositive": "Dapat mas malaki sa 0 ang puhunan.",
+      "marginMax": "Dapat mas mababa sa 100% ang margin.",
+      "tooLarge": "Masyadong malaki ang numero para makuwenta."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "tao"
+    },
+    "copyRow": "Kopyahin ang {{label}}",
+    "invalid": "Hindi pa wastong numero ang mga minarkahang kahon (hindi negatibo; buong numero mula 1 ang bilang ng tao).",
+    "missing": "Punan ang lahat ng kahon para makuwenta.",
+    "formulaCode": "Formula code: {{code}}",
+    "groupLabel": "Uri ng kalkulasyon",
+    "panelTitle": "Mga numero",
+    "operation": "Kalkulasyon",
+    "taxHint": "Ikaw ang maglalagay ng tax rate: iba-iba ang buwis ayon sa produkto at panahon, kaya walang nakatakdang numero ang tool.",
+    "profitHint": "Ang margin ay batay sa presyo ng benta, ang markup ay batay sa puhunan — iisang tubo pero dalawang magkaibang numero.",
+    "inputHint": "Halaga: pareho lang na isandaan at limampung libo ang 150.000 at 150,000; para sa decimal, i-type ang 1500,5. Inuulit sa katabing kalkulasyon ang numerong naintindihan. Hanggang dalawang decimal place ang resulta at hindi ini-round off ayon sa anumang patakaran sa accounting."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "Haba",
+      "area": "Area",
+      "mass": "Timbang"
+    },
+    "units": {
+      "mm": {
+        "name": "Milimetro",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "Sentimetro",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "Metro",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "Kilometro",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "Pulgada (inch)",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "Talampakan (feet)",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "Yarda",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "Milya",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "Square millimeter",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "Square centimeter",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "Metro kuwadrado",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "Ektarya",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "Square kilometer",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "Square foot",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "Acre",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "Gramo",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "Kilo",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến (10 kg, yunit sa Vietnam)",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ (100 kg, yunit sa Vietnam)",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "Tonelada",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "Onsa",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "Libra (pound)",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "Sa lahat ng yunit",
+    "equalsHeading": "Ang {{value}} {{unit}} ay katumbas ng",
+    "notNumber": "Hindi pa numero ang value.",
+    "notNumberExample": "Hindi pa numero ang value. Halimbawa: 2.5 o 1200.",
+    "enterValue": "Ilagay ang value na iko-convert.",
+    "copyIn": "Kopyahin ang value sa {{unit}}",
+    "groupLabel": "Uri ng yunit",
+    "panelTitle": "I-convert ang yunit",
+    "value": "Value",
+    "from": "Mula sa yunit",
+    "to": "Papunta sa yunit",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "Pagpalitin ang dalawang yunit",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "Character",
+      "charactersNoSpaces": "Character na walang espasyo",
+      "words": "Salita",
+      "lines": "Linya",
+      "paragraphs": "Talata"
+    },
+    "hints": {
+      "characters": "kasama ang espasyo at line break",
+      "words": "mga grupo ng titik na pinaghihiwalay ng espasyo",
+      "paragraphs": "pinaghihiwalay ng blangkong linya"
+    },
+    "counts": "Mga bilang",
+    "panelTitle": "Text",
+    "clear": "Burahin lahat",
+    "textLabel": "Text na bibilangin",
+    "placeholder": "Mag-type o mag-paste ng text dito…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "Napakalinaw (AAA)",
+      "aa": "Madaling basahin (AA)",
+      "large": "Para lang sa malaking text",
+      "fail": "Mahirap basahin"
+    },
+    "pickFailed": "Hindi makakuha ng kulay mula sa screen.",
+    "preview": "Preview",
+    "swatch": "Kulay {{hex}}",
+    "textOnColor": "Text sa kulay na ito",
+    "whiteText": "Puting text",
+    "blackText": "Itim na text",
+    "contrastHint": "Contrast ratio ayon sa WCAG: mula 4.5 : 1, nababasa ang karaniwang text; mula 3 : 1, sapat lang para sa malaking text at icon.",
+    "panelTitle": "Pumili ng kulay",
+    "picker": "Color picker",
+    "pickerHint": "I-click ang kahon ng kulay para buksan ang picker, o i-type ang code sa ibaba.",
+    "eyedropper": "Kumuha ng kulay mula sa screen",
+    "copyCode": "Kopyahin ang {{label}} code"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "Pagitan ng dalawang petsa",
+      "add": "Magdagdag / magbawas ng araw"
+    },
+    "weekendOnly": "Sabado at Linggo lang ang hindi binibilang na araw ng trabaho dito. Nakalista sa resulta ang malalaking holiday pero HINDI awtomatikong ibinabawas; hindi rin kasama ang mga kapalit na day off o Sabadong may pasok ng bawat lugar — kung may holiday sa pagitan, ikaw na ang magdagdag.",
+    "distance": "Pagitan",
+    "countingBack": "Nauuna ang petsa ng katapusan sa petsa ng simula — pabalik ang bilang.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "Kopyahin ang bilang ng araw",
+    "workdays": "Araw ng trabaho (Lunes – Biyernes)",
+    "weekendDays": "Sabado, Linggo",
+    "startIncluded": "Petsa ng simula (kasama)",
+    "startExcluded": "Petsa ng simula (hindi kasama)",
+    "endIncluded": "Petsa ng katapusan (kasama)",
+    "pickBoth": "Pumili ng dalawang petsa para makuwenta.",
+    "landsOn": "Tatapat sa",
+    "addedCalendar_one": "= {{start}} {{sign}} {{count}} araw",
+    "addedCalendar_other": "= {{start}} {{sign}} {{count}} araw",
+    "addedWorkdays_one": "= {{start}} {{sign}} {{count}} araw ng trabaho",
+    "addedWorkdays_other": "= {{start}} {{sign}} {{count}} araw ng trabaho",
+    "calendarEquivalent_one": "Katumbas ng {{count}} araw sa kalendaryo.",
+    "calendarEquivalent_other": "Katumbas ng {{count}} araw sa kalendaryo.",
+    "copyDate": "Kopyahin ang petsa",
+    "countInvalid": "Dapat buong numero mula 0 hanggang {{max}} ang bilang ng araw.",
+    "pickStart": "Pumili ng petsa ng simula at ilagay ang bilang ng araw.",
+    "modeLabel": "Paraan ng kalkulasyon",
+    "betweenTitle": "Dalawang petsa",
+    "fromDate": "Mula sa petsa",
+    "toDate": "Hanggang sa petsa",
+    "includeStart": "Isama ang petsa ng simula",
+    "includeStartHint": "Kung hindi kasama ang simula: 4 na araw ang Lunes hanggang Biyernes (paraan ng pagbilang ng deadline). Kung kasama: 5 araw (paraan ng pagbilang ng araw ng trabaho).",
+    "addTitle": "Petsa at bilang ng araw",
+    "startDate": "Petsa ng simula",
+    "dayCount": "Bilang ng araw",
+    "direction": "Direksyon",
+    "forward": "Idagdag (pasulong)",
+    "back": "Ibawas (paurong)",
+    "dayKind": "Uri ng araw",
+    "calendar": "Araw sa kalendaryo",
+    "addHint": "Hindi binibilang ang petsa ng simula: ang pagdagdag ng 1 araw mula Biyernes ay Sabado (araw sa kalendaryo) o Lunes (araw ng trabaho)."
+  },
+  "holidays": {
+    "tooLong_one": "Lampas sa {{count}} araw ang saklaw kaya hindi inililista ang mga holiday.",
+    "tooLong_other": "Lampas sa {{count}} araw ang saklaw kaya hindi inililista ang mga holiday.",
+    "none": "Walang malaking holiday sa saklaw na ito.",
+    "count_one": "May {{count}} holiday sa saklaw",
+    "count_other": "May {{count}} holiday sa saklaw",
+    "more_one": "at {{count}} pang araw",
+    "more_other": "at {{count}} pang araw",
+    "hint": "Hindi awtomatikong ibinabawas ng tool ang mga day off. Kung sarado ang opisina sa mga araw na ito, idagdag mo ang mga ito sa deadline."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "Password",
+      "code": "Order code, voucher code"
+    },
+    "classes": {
+      "upper": "Malalaking titik (A–Z)",
+      "lower": "Maliliit na titik (a–z)",
+      "digits": "Mga digit (0–9)",
+      "symbols": "Mga simbolo (!@#$…)"
+    },
+    "strengths": {
+      "weak": "Mahina",
+      "fair": "Puwede na",
+      "strong": "Malakas",
+      "excellent": "Napakalakas"
+    },
+    "results": "Mga resulta",
+    "resultsCount_one": "Resulta ({{count}})",
+    "resultsCount_other": "Mga resulta ({{count}})",
+    "copyAll": "Kopyahin lahat",
+    "noClass": "I-on ang kahit isang grupo ng character para makagawa ng password.",
+    "copyValue": "Kopyahin ang {{value}}",
+    "regenerate": "Gumawa ulit",
+    "modeLabel": "Uri ng code",
+    "panelTitle": "Mga opsyon",
+    "length": "Haba",
+    "chars_one": "{{count}} character",
+    "chars_other": "{{count}} character",
+    "classGroups": "Gamitin ang mga grupo ng character",
+    "plain": "Alisin ang mga character na madaling mapagkamalan (0 O o 1 l I)",
+    "strength": "Lakas: <strong>{{label}}</strong> · mga {{bits}} bit",
+    "prefix": "Prefix (opsyonal)",
+    "prefixPlaceholder": "Halimbawa PX-",
+    "charset": "Laman ng random na bahagi",
+    "alnum": "Malalaking titik at numero",
+    "digitsOnly": "Mga digit lang",
+    "codeLength": "Bilang ng random na character",
+    "alnumHint": "Walang I, O, 0, 1 — hindi mapagkakamalan ang code kapag binasa sa telepono o kinopya sa papel.",
+    "count": "Dami bawat round (hanggang {{max}})"
+  },
+  "notes": {
+    "untitled": "Talang walang laman",
+    "limitReached_one": "Umabot na sa {{count}} tala. Burahin ang ilang lumang tala para makapagdagdag.",
+    "limitReached_other": "Umabot na sa {{count}} tala. Burahin ang ilang lumang tala para makapagdagdag.",
+    "listLabel": "Listahan ng tala",
+    "title": "Mga tala",
+    "titleCount_one": "Tala ({{count}})",
+    "titleCount_other": "Mga tala ({{count}})",
+    "newNote": "Bagong tala",
+    "empty": "Wala pang tala sa device na ito.",
+    "notice": "Nasa browser na ito ang mga tala, hindi nakatali sa account: mababasa ito ng sinumang gumagamit ng device, at mawawala kapag binura ang browsing data.",
+    "clearAllTitle_one": "Burahin ang {{count}} tala?",
+    "clearAllTitle_other": "Burahin ang lahat ng {{count}} tala?",
+    "localOnly": "Nasa device na ito lang ang mga tala; hindi na maibabalik kapag binura.",
+    "clearAllConfirm": "Burahin lahat",
+    "clearAll": "Burahin ang lahat ng tala",
+    "editorLabel": "Isulat ang tala",
+    "emptyStart": "Itala ang mga dapat tandaan, gumawa ng listahan ng gagawin.",
+    "emptyPick": "Pumili ng tala sa listahan para tingnan at i-edit.",
+    "backToList": "Listahan ng tala",
+    "titleLabel": "Pamagat",
+    "titlePlaceholder": "Halimbawa: Mga gagawin sa site sa Lunes",
+    "body": "Nilalaman",
+    "bodyPlaceholder": "Mabilis na itala ang dapat tandaan…",
+    "saveFailed": "Hindi ma-save sa device na ito. Kopyahin muna ang nilalaman sa ibang lugar bago isara ang page.",
+    "savedAt": "Na-save sa device na ito · {{time}}",
+    "deleteTitle": "Burahin ang talang ito?",
+    "deleteConfirm": "Burahin",
+    "delete": "Burahin ang tala",
+    "tasks": "Listahan ng gagawin",
+    "taskDone": "Tapos na: {{task}}",
+    "taskFallback": "gawain {{number}}",
+    "task": "Gawain {{number}}",
+    "removeTask": "Alisin ang gawain {{number}}",
+    "removeTaskTitle": "Alisin ang gawaing ito",
+    "newTask": "Bagong gawain",
+    "tasksFull_one": "Umabot na sa {{count}} gawain",
+    "tasksFull_other": "Umabot na sa {{count}} gawain",
+    "addTaskPlaceholder": "Magdagdag ng gawain, pindutin ang Enter",
+    "addTask": "Idagdag"
+  }
+}

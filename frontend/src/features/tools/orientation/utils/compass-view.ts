@@ -1,10 +1,11 @@
-import { targetSpec } from '../config/targets'
+import { translate } from '@/i18n/runtime'
 import type { Size } from '../types/orientation.types'
 import { imageNorth } from './azimuth'
 import type { CompassNeedle, CompassRings, CompassSpec, StarSegment } from './compass-geometry'
 import type { OrientationState } from './orientation-state'
 import { measurements } from './orientation-summary'
 import type { PersonReading } from './rule-engine'
+import { starName } from './terms'
 
 /** Lớp phụ vẽ trên la bàn, không thuộc trạng thái đo. */
 export interface CompassExtras {
@@ -18,7 +19,7 @@ function needles(state: OrientationState): CompassNeedle[] {
   return measurements(state).flatMap((item) => {
     if (item.azimuth === null) return []
     const custom = item.target.type === 'CUSTOM' ? item.target.label?.trim() : ''
-    return [{ azimuth: item.azimuth, label: custom || targetSpec(item.target.type).short, active: item.target.id === state.activeId }]
+    return [{ azimuth: item.azimuth, label: custom || translate(`orientation:targets.${item.target.type}.short`), active: item.target.id === state.activeId }]
   })
 }
 
@@ -29,7 +30,7 @@ function ringsFor(state: OrientationState, extras: CompassExtras): CompassRings 
 
 /** 8 ô của vòng sao theo thứ tự hướng (0 = Bắc). */
 export function starSegments(reading: PersonReading): StarSegment[] {
-  return reading.segments.map((segment) => ({ label: segment.star.name, good: segment.star.fortune === 'GOOD' }))
+  return reading.segments.map((segment) => ({ label: starName(segment.star.id), good: segment.star.fortune === 'GOOD' }))
 }
 
 /**

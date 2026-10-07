@@ -1,0 +1,896 @@
+{
+  "trust": {
+    "label": "Ang aming pangako",
+    "items": {
+      "free": {
+        "title": "Ganap na libre",
+        "description": "Gamitin agad, walang nakatagong bayad"
+      },
+      "noAccount": {
+        "title": "Hindi kailangan ng account",
+        "description": "Pumunta sa site, pumili ng tool at gamitin"
+      },
+      "noInstall": {
+        "title": "Hindi kailangang mag-install",
+        "description": "Tumatakbo agad sa browser"
+      },
+      "onDevice": {
+        "title": "Nasa device mo ang file",
+        "description": "Hindi ina-upload sa server ang iyong mga file"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — mga libreng tool",
+    "description": "Libreng mga tool para sa PDF, larawan, QR code at iba pang utility. Pinoproseso sa device mo, hindi ina-upload ang file."
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "Tungkol sa Chuyện Nhỏ | Libreng mga tool mula sa ERPCons & LPC",
+      "description": "Ang Chuyện Nhỏ ay koleksyon ng libreng tool mula sa ERPCons & LPC para mabilis matapos ang maliliit na gawain sa trabaho, konstruksyon at araw-araw na buhay."
+    },
+    "ho-tro": {
+      "title": "Tulong at mga madalas itanong | Chuyện Nhỏ",
+      "description": "Mga sagot sa madalas na tanong tungkol sa paggamit ng Chuyện Nhỏ, at kung paano kami makokontak."
+    },
+    "xu-ly-du-lieu": {
+      "title": "Paano namin pinoproseso ang data | Chuyện Nhỏ",
+      "description": "Aling tool ang nagpoproseso mismo sa device, alin ang nangangailangan ng server, at anong data ang sine-save. Malinaw para sa bawat tool."
+    },
+    "cai-dat": {
+      "title": "I-install ang Chuyện Nhỏ sa telepono at computer | Chuyện Nhỏ",
+      "description": "Idagdag ang Chuyện Nhỏ sa home screen ng Android, iPhone, iPad o i-install sa Windows, macOS para mabilis mabuksan na parang app."
+    },
+    "huong-dan": {
+      "title": "Mga gabay | Chuyện Nhỏ",
+      "description": "Sunud-sunod na gabay para sa mga popular na tool: pag-compress ng PDF, pag-scan ng larawan sa PDF, OCR, QR code, direksyon ng bahay, tantiyang gastos, Kalendaryo ng Pamilya."
+    },
+    "dieu-khoan": {
+      "title": "Mga tuntunin ng paggamit | Chuyện Nhỏ",
+      "description": "Mga tuntunin ng paggamit ng libreng koleksyon ng tool na Chuyện Nhỏ."
+    },
+    "quyen-rieng-tu": {
+      "title": "Patakaran sa privacy | Chuyện Nhỏ",
+      "description": "Paano kinokolekta, ginagamit at pinoprotektahan ng Chuyện Nhỏ ang personal na data, ayon sa Personal Data Protection Law 2025 ng Vietnam."
+    }
+  },
+  "nav": {
+    "tools": "Mga tool",
+    "construction": "Konstruksyon",
+    "family": "Pamilya",
+    "guides": "Mga gabay",
+    "about": "Tungkol sa amin"
+  },
+  "header": {
+    "skipLink": "Pumunta sa nilalaman",
+    "mainNav": "Pangunahing navigation",
+    "search": "Maghanap ng tool",
+    "openMenu": "Buksan ang menu",
+    "mobileNav": "Navigation sa telepono"
+  },
+  "footer": {
+    "madeBy": "Isang produkto ng <link>ERPCons & LPC</link>",
+    "navLabel": "Navigation sa ibaba ng page",
+    "motto": "Kasama mo sa bawat hakbang.",
+    "links": {
+      "about": "Tungkol sa amin",
+      "guides": "Mga gabay",
+      "data": "Pagproseso ng data",
+      "support": "Tulong",
+      "terms": "Mga tuntunin",
+      "privacy": "Privacy"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ, home"
+  },
+  "share": {
+    "button": "Ibahagi",
+    "title": "Ibahagi ang link",
+    "description": "Ipadala ang page na ito sa mga kaibigan o katrabaho.",
+    "urlLabel": "Link ng kasalukuyang page",
+    "copy": "Kopyahin ang link",
+    "native": "Ibahagi sa pamamagitan ng app",
+    "copied": "Nakopya ang link.",
+    "copyFailed": "Hindi makopya. Piliin at kopyahin ang link sa itaas.",
+    "shareFailed": "Hindi mabuksan ang share sheet. Kopyahin ang link para ipadala.",
+    "unsupported": "Hindi pa sinusuportahan ng browser na ito ang pagbabahagi sa pamamagitan ng app. Puwede mong kopyahin ang link para ipadala sa Messenger, Viber o ibang app."
+  },
+  "breadcrumb": {
+    "label": "Nasaan ka",
+    "home": "Home",
+    "tools": "Mga tool",
+    "guides": "Mga gabay"
+  },
+  "search": {
+    "label": "Maghanap ng tool",
+    "placeholder": "Maghanap ng tool… (halimbawa: pagsamahin ang PDF, QR, OCR)",
+    "clear": "Burahin ang keyword",
+    "submit": "Hanapin"
+  },
+  "filters": {
+    "all": "Lahat"
+  },
+  "results": {
+    "count_one": "{{count}} tool",
+    "count_other": "{{count}} tool",
+    "countFor_one": "{{count}} tool para sa “{{keyword}}”",
+    "countFor_other": "{{count}} tool para sa “{{keyword}}”",
+    "empty": "Walang nahanap na tool",
+    "emptyHint": "Subukan ang ibang keyword o alisin ang ilang filter.",
+    "showAll": "Tingnan ang lahat ng tool"
+  },
+  "toolCard": {
+    "useNow": "Gamitin ngayon",
+    "soon": "Malapit na"
+  },
+  "processing": {
+    "server": "Pinoproseso sa server",
+    "device": "Sa device"
+  },
+  "recent": {
+    "title": "Kamakailang ginamit"
+  },
+  "products": {
+    "learnMore": "Alamin ang tungkol sa {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | Libreng mga tool. Gamitin kapag kailangan.",
+    "captionStart": "Maliliit na gawain,\nmalaking halaga.",
+    "tagline": "Libreng mga tool. Gamitin kapag kailangan.",
+    "description": "Simple at praktikal na mga utility para sa araw-araw na trabaho.",
+    "promisesLabel": "Gamitin agad",
+    "promises": {
+      "noAccount": "Hindi kailangan ng account",
+      "noInstall": "Hindi kailangang mag-install",
+      "onDevice": "Pinoproseso ang file sa device"
+    },
+    "captionEnd": "Simple ngayon.\nMatatag bukas.",
+    "catalogTitle": "Ano ang kailangan mong gawin ngayon?",
+    "featuredLabel": "Mga popular na tool",
+    "resultsLabel": "Mga tool"
+  },
+  "directory": {
+    "metaTitle": "Lahat ng libreng tool | Chuyện Nhỏ",
+    "metaDescription": "Lahat ng libreng tool ng Chuyện Nhỏ para sa PDF, larawan, QR code at iba pang utility. Hindi kailangan ng account, pinoproseso mismo sa device.",
+    "title": "Lahat ng tool",
+    "lead_one": "{{count}} libreng tool. Piliin ang kailangan mo at gamitin agad sa browser.",
+    "lead_other": "{{count}} libreng tool. Piliin ang kailangan mo at gamitin agad sa browser.",
+    "catalogLabel": "Katalogo ng tool"
+  },
+  "ecosystem": {
+    "title": "Kapag kulang ang isang tool…",
+    "description": "Mula sa maliliit na gawain ngayon, hanggang sa mas malalaking trabaho bukas.",
+    "erpcons": {
+      "heading": "Pamahalaan ang trabaho, proyekto at negosyo sa konstruksyon sa iisang platform.",
+      "modules": "Trabaho · Kontrata · Proyekto\nGastos · Pagbili · Bodega · Pananalapi",
+      "trial": "Subukan"
+    },
+    "tekshot": {
+      "heading": "AI at Software platform na tumutulong sa negosyo na makakita, makaunawa nang malalim, mag-automate at lumago.",
+      "modules": "Camera AI · Benta at POS · Marketing AI\nResearch AI · Isang platform, lahat ng data",
+      "trial": "Subukan nang libre",
+      "demo": "Tingnan ang demo"
+    },
+    "storyTitle": "Iisang ecosystem. Mas maraming halaga.",
+    "story": "Ang Chuyện Nhỏ ay koleksyon ng libreng tool mula sa ERPCons & LPC para mabilis mong matapos ang maliliit na gawain sa araw-araw.",
+    "steps": {
+      "chuyenNho": "Kailangan ng maliit na gawain.\nGamitin agad.",
+      "erpcons": "Pamahalaan ang trabaho,\nproyekto at negosyo.",
+      "tekshot": "AI na nakakakita, nakakaunawa, kumikilos at natututo\npara sa negosyo."
+    },
+    "motto": "Mas magaan na trabaho.\nMas magandang araw-araw."
+  },
+  "hub": {
+    "highlightsLabel": "Sa grupong ito",
+    "listLabel": "Listahan ng {{label}}",
+    "subgroupFilter": "I-filter ayon sa subgroup",
+    "emptyHint": "Subukan ang ibang keyword o alisin ang filter ng subgroup.",
+    "showGroup": "Tingnan ang buong grupo",
+    "asideLabel": "Iba pang mungkahi",
+    "privacy": {
+      "title": "Iginagalang ang iyong mga file",
+      "description": "Karamihan sa mga tool ay nagpoproseso mismo sa device. Malinaw na nakasulat sa card ang mga tool na nangangailangan ng server.",
+      "link": "Tingnan kung paano namin pinoproseso ang data"
+    },
+    "support": {
+      "title": "Kailangan ng tulong?",
+      "description": "Tingnan ang sunud-sunod na gabay o padalhan kami ng email.",
+      "guides": "Tingnan ang mga gabay"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "Mga tool sa konstruksyon",
+      "title": "Mga tool sa <accent>konstruksyon</accent>",
+      "tagline": "Maghanap. Magkuwenta. Magsuri. Simple pero epektibo.",
+      "description": "Libreng mga tool para sa engineer, arkitekto, kontratista at may-ari ng bahay, mula sa ideya hanggang sa pagpapatayo at turnover.",
+      "metaTitle": "Libreng mga tool sa konstruksyon | Chuyện Nhỏ",
+      "metaDescription": "Tantiyang gastos sa pagpapatayo ng bahay, pagtukoy ng direksyon ng bahay, pagsukat sa larawan at mga paparating na lookup tool sa konstruksyon. Libre, hindi kailangan ng account.",
+      "caption": "Mas simpleng trabaho\nsa konstruksyon araw-araw!",
+      "searchPlaceholder": "Maghanap ng tool sa konstruksyon… (halimbawa: tantiya, direksyon ng bahay, planning)",
+      "highlights": {
+        "estimate": "Tantiya",
+        "planning": "Planning",
+        "prices": "Presyo sa konstruksyon",
+        "legal": "Legal",
+        "standards": "Pamantayan",
+        "dossier": "Suriin ang dossier",
+        "site": "Site"
+      },
+      "trust": {
+        "free": {
+          "title": "Libre",
+          "detail": "Gamitin agad, walang nakatagong bayad"
+        },
+        "noInstall": {
+          "title": "Hindi kailangang mag-install",
+          "detail": "Tumatakbo agad sa browser"
+        },
+        "onDevice": {
+          "title": "Kinukuwenta sa device mo",
+          "detail": "Hindi umaalis sa device ang mga numerong inilagay mo"
+        },
+        "practical": {
+          "title": "Para sa totoong trabaho",
+          "detail": "Mula may-ari ng bahay hanggang kontratista"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "Tantiya at kalkulasyon",
+        "quy-hoach": "Planning at direksyon ng bahay",
+        "gia-vat-lieu": "Presyo at materyales",
+        "phap-ly": "Legal at pamantayan",
+        "ban-ve": "Drawing at dossier",
+        "hien-truong": "Site"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Kailangan mo ba ng higit sa isang tool?",
+          "description": "Pamahalaan ang buong proyekto, gastos, kontrata, dossier at pagbili sa iisang platform.",
+          "points": {
+            "work": "Trabaho · Proyekto · Kontrata",
+            "cost": "Gastos · Budget · Pagbili",
+            "documents": "Dossier · Dokumento · Pag-apruba",
+            "ai": "AI assistant para sa tanong tungkol sa data"
+          }
+        },
+        "tekshot": {
+          "title": "Mas matalinong pagtatala sa site?",
+          "description": "Camera, larawan ng site at AI recognition, direktang konektado sa proyekto.",
+          "points": {
+            "vision": "Vision · Camera · Site",
+            "studio": "Studio · Nilalaman · Ulat",
+            "insight": "Insight · Merkado",
+            "central": "Central · Buod at operasyon"
+          }
+        }
+      },
+      "journey": {
+        "title": "Mula ideya hanggang sa gusali. Lagi kaming kasama mo.",
+        "motto": "Maliit na tool.\nMalaking halaga!",
+        "steps": {
+          "idea": {
+            "title": "Ideya",
+            "detail": "Planning · Direksyon ng bahay"
+          },
+          "design": {
+            "title": "Disenyo",
+            "detail": "Pamantayan · Suriin ang dossier"
+          },
+          "estimate": {
+            "title": "Estimate",
+            "detail": "Tantiya · Presyo sa konstruksyon"
+          },
+          "build": {
+            "title": "Pagpapatayo",
+            "detail": "Site diary"
+          },
+          "handover": {
+            "title": "Turnover",
+            "detail": "Dossier · Archive"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "Mga tool para sa pamilya",
+      "title": "Mga tool para sa <accent>pamilya</accent>",
+      "tagline": "Maliliit na bagay, malaking kaligayahan.",
+      "description": "Simpleng mga utility para ayusin ang iskedyul ng pamilya, magpaalala ng gawain at kuwentahin ang gastusin sa bahay. Para sabay-sabay at masaya ang buong pamilya araw-araw.",
+      "metaTitle": "Libreng mga tool para sa pamilya | Chuyện Nhỏ",
+      "metaDescription": "Kalendaryo ng Pamilya, lunar at solar na kalendaryo, bill sa kuryente at tubig, hatian sa grupo, direksyon ng bahay at mga paparating na utility para sa pamilya. Libre, naka-save ang data sa iyong device.",
+      "caption": "Ano ang masaya\nsa bahay ngayon?",
+      "searchPlaceholder": "Maghanap ng tool para sa pamilya… (halimbawa: kalendaryo, paalala, kuryente)",
+      "highlights": {
+        "calendar": "Ayusin ang iskedyul ng pamilya",
+        "reminders": "Paalala at pag-aalaga",
+        "spending": "Kuwentahin ang gastusin sa bahay",
+        "together": "Sabay-sabay ang buong pamilya"
+      },
+      "trust": {
+        "free": {
+          "title": "Libre",
+          "detail": "Gamitin agad, walang nakatagong bayad"
+        },
+        "noInstall": {
+          "title": "Hindi kailangang mag-install",
+          "detail": "Tumatakbo agad sa browser"
+        },
+        "private": {
+          "title": "Pribado",
+          "detail": "Naka-save ang data sa iyong device"
+        },
+        "devices": {
+          "title": "Maganda gamitin sa",
+          "detail": "Telepono at computer"
+        }
+      },
+      "subgroups": {
+        "lich": "Kalendaryo at paalala",
+        "chi-tieu": "Gastusin",
+        "nha-cua": "Bahay",
+        "hoc-tap": "Pag-aaral",
+        "suc-khoe": "Kalusugan",
+        "ket-noi": "Koneksyon"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "Kalendaryo ng Pamilya",
+          "subtitle": "Ano ang ganap sa bahay ngayon?",
+          "points": {
+            "schedules": "Iskedyul sa school, sa trabaho at ng pamilya",
+            "contacts": "Listahan ng gagawin at mga emergency contact",
+            "backup": "Naka-save sa device, mag-backup kapag kailangan",
+            "ics": "I-export ang kalendaryo sa telepono (ICS)"
+          }
+        },
+        "houseOrientation": {
+          "title": "Direksyon ng bahay at compass",
+          "subtitle": "Pumili ng magandang direksyon, mas panatag",
+          "points": {
+            "direction": "Tukuyin ang direksyon ng bahay at lote",
+            "compass": "Compass mismo sa telepono",
+            "lookup": "Mabilis at madaling gamitin"
+          }
+        }
+      },
+      "journey": {
+        "title": "Para sa masayang pamilya araw-araw",
+        "motto": "Maliliit na bagay.\nNagdudulot ng malaking saya!",
+        "steps": {
+          "organized": {
+            "title": "Mas maayos",
+            "detail": "Oras, gawain, buhay"
+          },
+          "connected": {
+            "title": "Mas malapit",
+            "detail": "Nagbabahagi ang buong pamilya"
+          },
+          "caring": {
+            "title": "Mas mapag-aruga",
+            "detail": "Kalusugan, pag-aaral, araw-araw na buhay"
+          },
+          "happy": {
+            "title": "Mas masaya",
+            "detail": "Mula sa maliliit na bagay araw-araw"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "Dokumento at PDF",
+      "title": "Mga tool para sa <accent>Dokumento at PDF</accent>",
+      "tagline": "I-edit. I-convert. Pagsamahin at hatiin. Pirmahan. I-compress. Mabilis at libre.",
+      "description": "Simpleng pagproseso ng text, PDF at kuhang larawan ng dokumento. Gamitin agad sa browser, hindi kailangang mag-install, hindi umaalis sa device ang file.",
+      "metaTitle": "Libreng PDF tools: merge, split, compress, OCR, sign | Chuyện Nhỏ",
+      "metaDescription": "Pagsamahin, hatiin, i-compress, i-edit, pirmahan, i-convert ang PDF sa Word at kilalanin ang Vietnamese na text. Libre, hindi kailangan ng account, pinoproseso mismo sa device ang file.",
+      "caption": "Ang gawain sa dokumento\nay simple na ngayon!",
+      "searchPlaceholder": "Maghanap ng tool sa dokumento… (halimbawa: compress PDF, merge PDF, OCR, pirma)",
+      "highlights": {
+        "edit": "I-edit ang nilalaman ng PDF",
+        "mergeSplit": "Pagsamahin, hatiin, i-compress",
+        "convert": "I-convert ang format",
+        "sign": "Pirmahan ang dokumento",
+        "ocr": "OCR ng text",
+        "compare": "Ihambing ang mga dokumento",
+        "redact": "Takpan ang sensitibong impormasyon"
+      },
+      "trust": {
+        "free": {
+          "title": "Libre",
+          "detail": "Gamitin agad, walang nakatagong bayad"
+        },
+        "noInstall": {
+          "title": "Hindi kailangang mag-install",
+          "detail": "Tumatakbo agad sa browser"
+        },
+        "secure": {
+          "title": "Ligtas at pribado",
+          "detail": "Pinoproseso mismo sa device ang file"
+        },
+        "formats": {
+          "title": "Maraming format",
+          "detail": "PDF, Word, Excel, larawan"
+        }
+      },
+      "subgroups": {
+        "sua": "I-edit at ayusin",
+        "gop-tach": "Pagsamahin, hatiin, i-compress",
+        "chuyen-doi": "I-convert",
+        "ocr": "OCR at paghahambing",
+        "ky-bao-mat": "Pirma at seguridad",
+        "soan-thao": "Pagsulat ng dokumento"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Mas mabilis na pagproseso ng dokumento gamit ang ERPCons",
+          "description": "Pamahalaan ang mga dossier, dokumento, kontrata, bersyon at pag-apruba sa iisang platform.",
+          "points": {
+            "storage": "Sentralisadong storage",
+            "permissions": "Pahintulot at pagbabahagi",
+            "versions": "Pagsubaybay ng bersyon",
+            "linked": "Nakakabit sa trabaho at proyekto"
+          }
+        },
+        "tips": {
+          "title": "Mabilis na tip",
+          "items": {
+            "drop": "I-drag at i-drop ang file sa lugar ng tool.",
+            "options": "Piliin ang angkop na opsyon.",
+            "download": "I-download ang resulta sa device mo.",
+            "closeTab": "Kapag isinara ang tab, mawawala sa browser ang file."
+          }
+        }
+      },
+      "journey": {
+        "title": "Mula dokumento hanggang trabaho. Lagi kaming kasama mo.",
+        "motto": "Ang malalaking gawain ay nagsisimula\nsa maliliit na bagay!",
+        "steps": {
+          "documents": {
+            "title": "Dokumento",
+            "detail": "PDF, Word, Excel"
+          },
+          "storage": {
+            "title": "Storage",
+            "detail": "Sentralisadong dossier"
+          },
+          "share": {
+            "title": "Pagbabahagi",
+            "detail": "Sa mga katrabaho"
+          },
+          "approve": {
+            "title": "Pag-apruba",
+            "detail": "Mabilis"
+          },
+          "track": {
+            "title": "Pagsubaybay",
+            "detail": "Bersyon, history"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "Tungkol sa Chuyện Nhỏ",
+    "title": "Tungkol sa <accent>Chuyện Nhỏ</accent>",
+    "tagline": "Maliliit na gawain, malaking halaga.",
+    "intro": "Ang Chuyện Nhỏ ay koleksyon ng libreng tool mula sa ERPCons & LPC para mabilis mong matapos ang maliliit na gawain sa trabaho, konstruksyon at araw-araw na buhay.",
+    "introMore": "Gamitin kapag kailangan. Simple. Epektibo. Hindi kailangang mag-install, hindi kailangan ng account.",
+    "caption": "May kailangang gawin,\ngamitin agad!",
+    "explore": "Tuklasin ang mga tool",
+    "guides": "Tingnan ang mga gabay",
+    "valuesLabel": "Ang pangako ng Chuyện Nhỏ",
+    "values": {
+      "free": {
+        "title": "Libre",
+        "detail": "Gamitin agad, walang nakatagong bayad"
+      },
+      "noInstall": {
+        "title": "Hindi kailangang mag-install",
+        "detail": "Tumatakbo agad sa browser"
+      },
+      "onDevice": {
+        "title": "Inuuna ang pagproseso sa device",
+        "detail": "Nananatili sa device mo ang iyong mga file"
+      },
+      "domains": {
+        "title": "Maraming larangan",
+        "detail": "Trabaho · Konstruksyon · Pamilya"
+      }
+    },
+    "ecosystemTitle": "Iisang ecosystem, mas maraming halaga",
+    "ecosystemDescription": "Bahagi ang Chuyện Nhỏ ng ecosystem ng mga produkto ng ERPCons & LPC.",
+    "products": {
+      "chuyen-nho": {
+        "role": "Para sa isang gawain",
+        "points": {
+          "free": "Libreng mga tool",
+          "noAccount": "Gamitin agad, hindi kailangan ng account",
+          "noInstall": "Hindi kailangang mag-install",
+          "domains": "Para sa trabaho, konstruksyon at pamilya"
+        }
+      },
+      "erpcons": {
+        "role": "Pamahalaan ang trabaho, proyekto at negosyo",
+        "points": {
+          "work": "Trabaho · Kontrata · Proyekto",
+          "cost": "Gastos · Pagbili · Bodega",
+          "finance": "Pananalapi · Dossier · HR",
+          "ai": "AI assistant para sa tanong tungkol sa data"
+        }
+      },
+      "tekshot": {
+        "role": "AI na nakakakita, nakakaunawa, kumikilos at natututo para sa negosyo",
+        "points": {
+          "vision": "Camera AI · TekShot Vision",
+          "pos": "POS at Benta · TekShot POS",
+          "studio": "Marketing AI · TekShot Studio",
+          "research": "Research AI · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "Mula sa maliliit na gawain ngayon\nhanggang sa malalaking trabaho bukas.",
+    "story": "Tinutulungan ka ng Chuyện Nhỏ na magsimula sa maliliit na gawain. Kapag mas kumplikado na ang trabaho, ang ERPCons at TekShot AI ang lugar para mamahala, kumonekta at palawakin ang halaga.",
+    "statsLabel": "Ang Chuyện Nhỏ sa mga numero",
+    "stats": {
+      "tools": "libreng tool, gamitin agad",
+      "groups": "grupo ng gawain: dokumento, larawan, kalkulasyon, konstruksyon, pamilya…"
+    }
+  },
+  "data": {
+    "trail": "Pagproseso ng data",
+    "title": "Paano namin <accent>pinoproseso ang data</accent>",
+    "tagline": "Nananatili sa device mo ang iyong mga file.",
+    "intro": "Pinoproseso ng Chuyện Nhỏ ang mga file mismo sa browser. Ipinapaliwanag ng page na ito kung saan tumatakbo ang bawat tool, at kung ano talaga ang ipinapadala sa server.",
+    "caption": "Malinaw\nsa bawat tool!",
+    "points": {
+      "noCookie": "Walang cookie",
+      "noTracking": "Walang tracking o ad tool",
+      "noAccount": "Hindi kailangan ng account"
+    },
+    "flowLabel": "Saan napupunta ang data",
+    "columns": {
+      "device": {
+        "title": "Pinoproseso mismo sa device",
+        "lead_one": "{{count}} tool na magagamit ngayon",
+        "lead_other": "{{count}} tool na magagamit ngayon",
+        "points": {
+          "tab": "Sa browser tab lang binubuksan ang PDF, larawan at video",
+          "download": "Lalabas lang ang resulta kapag pinindot mo ang i-download",
+          "model": "Dina-download ang text recognition model mula sa site ding ito, hindi dumadaan sa third party"
+        }
+      },
+      "server": {
+        "title": "Ipinapadala sa aming server",
+        "lead": "Hangga't maaari, kaunti lang",
+        "points": {
+          "visits": "Pangalan ng tool na binuksan mo, para mabilang ang kabuuang paggamit. Walang cookie, hindi ka kinikilala",
+          "ip": "One-way na hina-hash lang ang IP address para labanan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras",
+          "feedback": "Ipinapadala lang ang puna at mungkahi kapag nag-check ka ng pagpayag at pinindot ang Ipadala",
+          "soon_one": "{{count}} paparating na tool ang mangangailangan ng lookup sa server, at malinaw itong nakasulat sa card nito",
+          "soon_other": "{{count}} paparating na tool ang mangangailangan ng lookup sa server, at malinaw itong nakasulat sa kanilang card"
+        }
+      },
+      "local": {
+        "title": "Naka-save sa iyong browser",
+        "lead": "Sa device na ito lang",
+        "points": {
+          "prefs": "Mga kamakailang ginamit na tool at maliwanag o madilim na tema",
+          "saved": "Data na ikaw mismo ang nag-save: Kalendaryo ng Pamilya, mga tala, draft ng CV, flashcards",
+          "clear": "Burahin anumang oras sa tool o sa settings ng browser"
+        }
+      }
+    },
+    "tableTitle": "Saan pinoproseso ang bawat tool",
+    "tableDescription": "Direktang binubuo ang talahanayan mula sa katalogo ng tool, kaya laging tugma sa label ng bawat card.",
+    "searchPlaceholder": "Maghanap ng tool… (halimbawa: OCR, sahod, QR)",
+    "filterLabel": "I-filter ayon sa lugar ng pagproseso",
+    "modelFilter": "May dina-download na recognition model",
+    "head": {
+      "tool": "Tool",
+      "group": "Grupo",
+      "where": "Saan pinoproseso",
+      "note": "Tala"
+    },
+    "modes": {
+      "device": "Sa device",
+      "model": "Sa device, may dina-download na recognition model",
+      "server": "Kailangan ng server"
+    },
+    "notes": {
+      "server": "Malapit na. Kailangang mag-lookup ng data sa server; malinaw na isusulat kung anong data ang ipapadala bago ilunsad.",
+      "model": "Isang beses na dina-download ang recognition model mula sa site ding ito, saka mismong sa device kinikilala.",
+      "noFile": "Tumatakbo mismo sa device mo, walang ipinapadalang data.",
+      "device": "Hindi umaalis sa device ang file."
+    },
+    "emptyHint": "Subukan ang ibang keyword o alisin ang filter.",
+    "showAll": "Tingnan lahat",
+    "faqTitle": "Mga tanong tungkol sa data",
+    "faqDescription": "Basahin ang buo sa <link>Patakaran sa privacy</link>."
+  },
+  "guidesPage": {
+    "title": "Mga <accent>gabay</accent>",
+    "tagline": "Maiikling hakbang, eksaktong salita sa screen.",
+    "intro": "Ilang minuto lang ang bawat gabay. Sundin ang bawat hakbang at tapos na ang gawain, may kasamang tip at mga dapat tandaan.",
+    "caption": "Basahin nang 2 minuto,\ngawin agad!",
+    "listTitle": "Listahan ng mga gabay",
+    "filterLabel": "I-filter ayon sa grupo",
+    "missingTitle": "Wala pa ang gabay na kailangan mo?",
+    "missing": "Tingnan ang <faq>mga madalas itanong</faq>, kung paano <install>i-install ang Chuyện Nhỏ sa device</install>, o magmungkahi ng bagong gabay sa <suggest>Magmungkahi ng tool</suggest>."
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Gabay ng Chuyện Nhỏ",
+    "fallbackTitle": "Gabay | Chuyện Nhỏ",
+    "minutes_one": "{{count}} minuto",
+    "minutes_other": "{{count}} minuto",
+    "steps_one": "{{count}} hakbang",
+    "steps_other": "{{count}} hakbang",
+    "open": "Buksan ang {{name}}",
+    "stepsTitle": "Mga hakbang",
+    "tipsTitle": "Mga tip",
+    "notesTitle": "Dapat tandaan",
+    "asideLabel": "Kaugnay",
+    "toolsTitle": "Mga tool sa gabay",
+    "othersTitle": "Iba pang gabay",
+    "all": "Tingnan ang lahat ng gabay"
+  },
+  "install": {
+    "trail": "I-install sa device",
+    "title": "I-install ang Chuyện Nhỏ <accent>sa device</accent>",
+    "tagline": "Gamitin na parang app. Mabilis buksan. Mas maginhawa araw-araw.",
+    "intro": "Web app ang Chuyện Nhỏ: idagdag ito sa home screen o Dock para mabuksan agad, hindi na kailangang hanapin ulit ang page sa browser.",
+    "caption": "I-install nang isang beses,\nmaginhawang gamitin araw-araw!",
+    "benefits": {
+      "fast": "Mabilis buksan mula sa home screen",
+      "fullscreen": "Full screen, walang address bar",
+      "noStore": "Hindi kailangang pumunta sa app store",
+      "free": "Libre"
+    },
+    "cta": "I-install ang app",
+    "ctaHint": "Isang tap lang, hindi dumadaan sa app store.",
+    "installed": "Naka-install na ang Chuyện Nhỏ sa device na ito.",
+    "chooseTitle": "Piliin ang iyong device",
+    "chooseDescription": "Iba-iba ang lugar ng install button sa bawat browser.",
+    "tabsLabel": "Device",
+    "panelTitle": "I-install sa {{platform}} ({{browser}})",
+    "stepWithAddress": "{{detail}} Address: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Buksan ang Chuyện Nhỏ sa Chrome",
+            "detail": "I-type ang address ng site sa address bar ng Chrome."
+          },
+          "menu": {
+            "title": "I-tap ang menu ⋮ (tatlong tuldok)",
+            "detail": "Nasa kanang itaas na sulok ng screen."
+          },
+          "add": {
+            "title": "Piliin ang “Add to Home screen”",
+            "detail": "Sa ilang telepono, “Install app” ang nakasulat."
+          },
+          "install": {
+            "title": "I-tap ang “Install”",
+            "detail": "Lalabas ang icon ng Chuyện Nhỏ sa home screen at magbubukas na parang app."
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Buksan ang Chuyện Nhỏ sa Safari",
+            "detail": "I-type ang address ng site sa address bar ng Safari."
+          },
+          "share": {
+            "title": "I-tap ang Share button",
+            "detail": "Parisukat na may arrow na nakaturo pataas. Sa bagong iOS, nasa menu ⋯ ito sa ibabang bar."
+          },
+          "add": {
+            "title": "Piliin ang “Add to Home Screen”",
+            "detail": "I-scroll pababa ang listahan kung hindi mo pa ito makita."
+          },
+          "confirm": {
+            "title": "I-tap ang “Add”",
+            "detail": "Nasa kanang itaas na sulok. Lalabas ang icon ng Chuyện Nhỏ sa home screen."
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Buksan ang Chuyện Nhỏ sa Chrome o Edge",
+            "detail": "Dapat bagong bersyon ang browser."
+          },
+          "icon": {
+            "title": "I-click ang install icon sa address bar",
+            "detail": "Larawan ng screen na may arrow pababa, nasa dulo ng address bar."
+          },
+          "menu": {
+            "title": "Hindi makita ang icon? Gamitin ang menu",
+            "detail": "Chrome: menu ⋮, piliin ang “Cast, save, and share”, saka “Install page as app”. Edge: menu ⋯, piliin ang “Apps”, saka “Install this site as an app”."
+          },
+          "install": {
+            "title": "I-click ang “Install”",
+            "detail": "Magbubukas ang Chuyện Nhỏ sa sarili nitong window at makikita sa Start menu."
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Buksan ang Chuyện Nhỏ sa Safari",
+            "detail": "Kailangan ng macOS Sonoma (14) o mas bago."
+          },
+          "dock": {
+            "title": "Pumunta sa menu na File, piliin ang “Add to Dock”",
+            "detail": "Nasa menu bar sa itaas ng screen."
+          },
+          "confirm": {
+            "title": "I-click ang “Add”",
+            "detail": "Lalabas ang Chuyện Nhỏ sa Dock at magbubukas sa sarili nitong window."
+          },
+          "chrome": {
+            "title": "Gumagamit ng Chrome o Edge?",
+            "detail": "Gawin ang gaya sa Windows: i-click ang install icon sa dulo ng address bar."
+          }
+        }
+      },
+      "other": {
+        "label": "Ibang browser",
+        "browser": "Firefox, Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "I-tap ang menu ≡, piliin ang “Add page to”, saka “Home screen”."
+          },
+          "firefox": {
+            "title": "Firefox sa computer",
+            "detail": "Hindi pa sinusuportahan ang pag-install ng site bilang app. Magagamit mo pa rin nang normal ang lahat ng tool sa tab."
+          },
+          "install": {
+            "title": "Gusto mo bang i-install na parang app?",
+            "detail": "Buksan ang Chuyện Nhỏ sa Chrome, Edge o Safari at sundin ang katumbas na tab."
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "Hindi makita ang opsyon sa pag-install?",
+    "troubleshooting": {
+      "update": "I-update ang browser sa pinakabagong bersyon.",
+      "address": "Tiyaking tamang address ng Chuyện Nhỏ ang binuksan mo, hindi page na ibinahagi ulit.",
+      "incognito": "Hindi puwedeng mag-install sa incognito mode. Magbukas ng normal na tab.",
+      "installed": "Kung naka-install na, hindi na ipapakita ulit ng browser ang opsyon sa pag-install."
+    },
+    "stillStuck": "Hindi pa rin gumana? Tingnan ang <link>page ng tulong</link> o padalhan kami ng email."
+  },
+  "support": {
+    "trail": "Tulong",
+    "title": "Paano ka namin <accent>matutulungan</accent>?",
+    "intro": "Maghanap ng mabilis na sagot sa mga madalas itanong, o padalhan kami ng email.",
+    "caption": "Mabilis na tanong,\nmaikling sagot!",
+    "searchLabel": "Maghanap ng tanong",
+    "searchPlaceholder": "Maghanap ng tanong… (halimbawa: install, pag-save ng file, pagbura ng data)",
+    "topicsTitle": "Mga paksa ng tulong",
+    "topics": {
+      "start": {
+        "title": "Pagsisimula",
+        "detail": "Sunud-sunod na gabay"
+      },
+      "documents": {
+        "title": "Dokumento at PDF",
+        "detail": "Pagsamahin, hatiin, i-compress, OCR"
+      },
+      "image": {
+        "title": "Larawan",
+        "detail": "I-compress, baguhin ang laki, alisin ang background"
+      },
+      "qr": {
+        "title": "QR at barcode",
+        "detail": "Gumawa, magbasa, mag-print nang maramihan"
+      },
+      "construction": {
+        "title": "Konstruksyon",
+        "detail": "Tantiya, direksyon ng bahay"
+      },
+      "family": {
+        "title": "Pamilya",
+        "detail": "Kalendaryo, paalala, SOS"
+      },
+      "install": {
+        "title": "I-install sa device",
+        "detail": "Android, iPhone, computer"
+      },
+      "privacy": {
+        "title": "Data at privacy",
+        "detail": "Saan pinoproseso ang file"
+      }
+    },
+    "faqTitle": "Mga madalas itanong",
+    "faqCount_one": "{{count}} tanong",
+    "faqCount_other": "{{count}} tanong",
+    "faqCountFor_one": "{{count}} tanong para sa “{{keyword}}”",
+    "faqCountFor_other": "{{count}} tanong para sa “{{keyword}}”",
+    "emptyTitle": "Walang katugmang tanong",
+    "emptyHint": "Subukan ang ibang keyword, o magpadala ng email para direktang magtanong.",
+    "showAll": "Tingnan ang lahat ng tanong",
+    "contactTitle": "Kailangan pa rin ng tulong?",
+    "mailTitle": "Padalhan kami ng email",
+    "mailBody": "Isulat ang pangalan ng tool, ang browser na gamit mo at ilarawan ang nangyari. Huwag maglakip ng file na may personal na impormasyon.",
+    "suggestTitle": "Puna at mungkahing tool",
+    "suggestBody": "Kailangan mo ba ng tool na wala pa, o may puna ka sa kasalukuyang tool? Magpadala ng mungkahi at makatanggap ng resibo code para masubaybayan ito.",
+    "suggestAction": "Magpadala ng mungkahi"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Libre ba ang Chuyện Nhỏ?",
+        "answer": "Oo. Libre ang lahat ng gumaganang tool, walang limitasyon sa paggamit at hindi kailangan ng account. Kapag kailangan ng team ng pangmatagalang storage, pagbabahagi at pag-apruba ng dokumento, ang ERPCons ang bayad na bersyon para doon."
+      },
+      "tai-khoan": {
+        "question": "Kailangan ko bang gumawa ng account?",
+        "answer": "Hindi. Pumunta sa site, pumili ng tool at gamitin agad. Walang sign-up ang Chuyện Nhỏ, at hindi nito hinihingi ang iyong pangalan, email o numero ng telepono."
+      },
+      "luu-tep": {
+        "question": "Ina-upload o sine-save ba ang aking mga file?",
+        "answer": "Hindi. Sa browser tab lang nananatili ang PDF, larawan at video na binuksan mo, at mismong sa device mo pinoproseso. Hindi namin natatanggap ang iyong mga file. Kapag isinara ang tab, mawawala ang file sa browser; lalabas lang ang resulta kapag dinownload mo."
+      },
+      "may-chu": {
+        "question": "Bakit may ilang tool na may nakasulat na “Pinoproseso sa server”?",
+        "answer": "May ilang paparating na tool na nangangailangan ng malaking data o patuloy na update, gaya ng presyo sa konstruksyon o planning, kaya kailangang mag-lookup sa server. Malinaw itong nakasulat sa kanilang card para alam mo nang maaga. Lahat ng tool na magagamit ngayon ay nagpoproseso sa device."
+      },
+      "cai-dat": {
+        "question": "Paano i-install ang Chuyện Nhỏ sa telepono?",
+        "answer": "Buksan ang Chuyện Nhỏ sa Chrome (Android) o Safari (iPhone, iPad), saka piliin ang “Add to Home screen”. Sa computer, i-click ang install icon sa address bar ng Chrome o Edge."
+      },
+      "offline": {
+        "question": "Magagamit ko ba ang Chuyện Nhỏ kahit walang internet?",
+        "answer": "Pagkatapos ng unang pagbukas na may internet, sine-save ng browser ang page at code ng tool kaya kadalasang nabubuksan pa rin ito kapag paputol-putol ang koneksyon. Dina-download sa unang paggamit ang mabibigat na bahagi gaya ng text recognition o pagproseso ng video, kaya subukan muna itong gamitin nang isang beses habang may internet."
+      },
+      "loi": {
+        "question": "May error ako, ano ang gagawin ko?",
+        "answer": "I-reload ang page at gamitin ang bagong bersyon ng Chrome, Edge o Safari. Puwede ring huminto ang tool kung masyadong malaki ang file o naka-lock ito ng password; ipapakita ng tool ang dahilan sa screen. Kung may error pa rin, mag-email sa {{email}} kasama ang pangalan ng tool, ang browser na gamit mo at paglalarawan ng error."
+      },
+      "an-toan": {
+        "question": "Ligtas ba ang Chuyện Nhỏ?",
+        "answer": "Tumatakbo ang site sa naka-encrypt na koneksyon (HTTPS), walang cookie, at walang nakakabit na ad o tracking tool ng third party. Hindi umaalis sa device mo ang iyong mga file."
+      },
+      "thu-thap": {
+        "question": "Kinokolekta ba ng Chuyện Nhỏ ang aking personal na impormasyon?",
+        "answer": "Halos hindi. Kapag nagbukas ka ng tool, iniuulat ng browser ang pangalan ng tool para mabilang namin ang kabuuang paggamit; one-way na hina-hash lang ang IP address para labanan ang automated na pagpapadala at awtomatikong binubura pagkalipas ng mga 1 oras. Ipinapadala lang ang nilalaman ng puna kapag nag-check ka ng pagpayag at pinindot ang Ipadala."
+      },
+      "xoa-du-lieu": {
+        "question": "Paano burahin ang aking data?",
+        "answer": "Nasa device mo ang data na sine-save mo sa mga tool (Kalendaryo ng Pamilya, mga tala, draft ng CV, flashcards): burahin ito mismo sa tool, o burahin ang site data sa settings ng browser. Para burahin ang naipadalang puna, mag-email sa {{email}} kasama ang resibo code."
+      },
+      "ben-thu-ba": {
+        "question": "Ibinabahagi ba ang data sa third party?",
+        "answer": "Hindi. Hindi namin ibinebenta o ibinabahagi ang data para sa advertising. Tanging ang tool na Boses patungong text ang gumagamit ng speech recognition ng mismong browser, kaya napupunta ang audio sa provider ng browser (halimbawa, Google para sa Chrome), hindi dumadaan sa aming server."
+      },
+      "de-xuat": {
+        "question": "Gusto kong magmungkahi ng bagong tool?",
+        "answer": "Malugod naming tinatanggap. Gamitin ang tool na Magmungkahi ng tool: makakatanggap ka ng resibo code para tingnan ang status ng pagsusuri pagkatapos."
+      }
+    },
+    "links": {
+      "processingPerTool": "Tingnan kung saan pinoproseso ang bawat tool",
+      "installPerDevice": "Gabay sa pag-install para sa bawat device",
+      "dataHandling": "Paano namin pinoproseso ang data",
+      "privacyPolicy": "Basahin ang patakaran sa privacy",
+      "suggest": "Buksan ang Magmungkahi ng tool"
+    }
+  },
+  "legalPage": {
+    "updated": "Huling na-update: {{date}}",
+    "toc": "Nilalaman",
+    "summary": "Buod"
+  }
+}

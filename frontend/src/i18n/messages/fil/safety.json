@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Maraming babalang senyales",
+    "levelMedium": "May ilang babalang senyales",
+    "levelLow": "Walang senyales na nakita ng rule set",
+    "result": "Resulta ng screening",
+    "note": "Pagsusuri lang ito ng mga babalang senyales batay sa mga patakaran; hindi nito pinapatunayang ligtas ang link o mensahe. Huwag maglagay ng OTP o password sa page na binuksan mula sa mensahe; kontakin ang organisasyon sa channel na ikaw mismo ang naghanap.",
+    "title": "Nilalamang susuriin",
+    "kind": "Uri ng nilalaman",
+    "kindMessage": "Mensahe",
+    "kindLink": "Link",
+    "messageLabel": "Text ng mensahe",
+    "linkPlaceholder": "I-paste ang link — hindi na kailangang buksan…",
+    "messagePlaceholder": "I-paste ang kahina-hinalang mensahe…",
+    "privacy": "Sa device mo sinusuri ang nilalaman; hindi binibisita ng tool ang link na i-paste mo."
+  },
+  "flags": {
+    "unreadable": "Hindi mabasa ang link.",
+    "noHttps": "Hindi gumagamit ng HTTPS.",
+    "ipHost": "Gumagamit ng IP address sa halip na domain name.",
+    "punycode": "Gumagamit ng punycode ang domain; ihambing ito sa totoong pangalan.",
+    "shortener": "Itinatago ng pinaikling link ang tunay na pupuntahan.",
+    "riskyTld": "Dulo ng domain na madalas makita sa mapanganib na link.",
+    "fakeGov": "May \"gov\" pero wala sa domain na .gov.vn.",
+    "brand": "May \"{{brand}}\" ang domain; ihambing ito sa opisyal na address.",
+    "loginPath": "Mukhang hakbang ng pag-log in o beripikasyon ang path.",
+    "otp": "Humihingi ng OTP o verification code.",
+    "lockThreat": "Nananakot na mala-lock ang account.",
+    "prize": "Nangangako ng premyo o regalo.",
+    "easyJob": "Nag-aalok ng madali at malaking-sahod na trabaho o online na task.",
+    "urgentTransfer": "Minamadali kang magpadala o mag-top up ng pera.",
+    "installApp": "Pinapa-install ka ng app mula sa mensahe.",
+    "link": "Link {{link}}: {{flags}}"
+  }
+}

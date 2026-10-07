@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Handa na",
+    "stop": "Ihinto"
+  },
+  "dictation": {
+    "status": "Status",
+    "listening": "Nakikinig",
+    "unsupported": "Hindi suportado",
+    "privacy": "Gumagamit ang speech recognition ng serbisyo ng iyong browser; maaaring maipadala ang audio sa provider ng browser. Hindi ipinapadala sa server ng Chuyện Nhỏ ang text na ine-edit mo rito.",
+    "title": "Pagdidikta sa Vietnamese",
+    "start": "Simulan ang pagdidikta",
+    "text": "Text",
+    "copy": "Kopyahin",
+    "download": "I-download ang .txt",
+    "interrupted": "Naputol ang speech recognition. Tingnan ang pahintulot sa mikropono at subukan ulit.",
+    "micFailed": "Hindi mabuksan ang mikropono. Tingnan ang mga pahintulot ng iyong browser."
+  },
+  "magnifier": {
+    "noCamera": "Hindi sinusuportahan ng browser na ito ang camera.",
+    "cameraFailed": "Hindi mabuksan ang camera. Tingnan ang mga pahintulot at kung may ibang gumagamit ng camera.",
+    "preview": "View ng camera",
+    "frozen": "Naka-freeze",
+    "live": "Live view",
+    "hint": "I-tap ang Buksan ang camera para magsimula.",
+    "privacy": "Sa device mo lang ipinapakita ang larawan — hindi ito nire-record o ipinapadala kahit saan.",
+    "title": "Magnifier",
+    "zoom": "Zoom: {{zoom}}×",
+    "switchCamera": "Palitan ang camera",
+    "openCamera": "Buksan ang camera",
+    "resume": "Ituloy",
+    "freeze": "I-freeze",
+    "contrastOff": "Normal na contrast",
+    "contrastOn": "Mataas na contrast",
+    "closeCamera": "Patayin ang camera"
+  },
+  "readAloud": {
+    "device": "Basahin sa device",
+    "speaking": "Nagbabasa",
+    "read": "Basahin nang malakas ang text",
+    "voiceNote": "Nakadepende ang boses sa mga Vietnamese na boses na naka-install sa iyong device at browser.",
+    "unsupported": "Hindi sinusuportahan ng browser na ito ang pagbasa nang malakas ng text.",
+    "title": "Text na babasahin",
+    "content": "Nilalaman",
+    "rate": "Bilis: {{rate}}×"
+  }
+}

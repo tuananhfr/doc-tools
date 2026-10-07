@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "Ngôn ngữ",
+    "current": "Ngôn ngữ: {{name}}"
+  },
+  "theme": {
+    "current": "Giao diện: {{name}}",
+    "light": "Sáng (văn phòng)",
+    "dark": "Tối (điều hành)",
+    "field": "Ngoài trời (công trường)",
+    "lightShort": "Sáng",
+    "darkShort": "Tối",
+    "fieldShort": "Ngoài trời"
+  },
+  "ui": {
+    "confirm": "Xác nhận",
+    "cancel": "Hủy",
+    "loadingData": "Đang tải dữ liệu",
+    "loading": "Đang tải...",
+    "toastRegion": "Thông báo hệ thống",
+    "toastClose": "Đóng thông báo",
+    "toastTone": {
+      "success": "Thành công",
+      "info": "Thông tin",
+      "warning": "Cảnh báo",
+      "danger": "Lỗi"
+    }
+  },
+  "apiErrors": {
+    "network": "Không kết nối được máy chủ. Vui lòng kiểm tra đường truyền.",
+    "timeout": "Máy chủ phản hồi quá lâu. Vui lòng thử lại.",
+    "unauthorized": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "forbidden": "Bạn không có quyền thực hiện thao tác này.",
+    "notFound": "Không tìm thấy dữ liệu.",
+    "validation": "Dữ liệu chưa hợp lệ. Vui lòng kiểm tra lại.",
+    "rateLimited": "Bạn thao tác quá nhanh. Vui lòng thử lại sau.",
+    "server": "Máy chủ gặp sự cố. Vui lòng thử lại sau.",
+    "unknown": "Đã có lỗi xảy ra."
+  },
+  "crumb": {
+    "label": "Vị trí"
+  },
+  "tool": {
+    "privacyNoFile": "Chạy trên máy bạn, không gửi nội dung đi",
+    "privacyFile": "Xử lý trên máy bạn, tệp không tải lên"
+  },
+  "session": {
+    "openInApp": "Mở trong ERPcons",
+    "login": "Đăng nhập"
+  },
+  "board": {
+    "result": "Kết quả"
+  },
+  "copy": {
+    "label": "Sao chép",
+    "copied": "Đã chép",
+    "done": "Đã sao chép vào bộ nhớ tạm.",
+    "blocked": "Trình duyệt không cho sao chép. Bôi đen đoạn chữ rồi nhấn Ctrl+C."
+  },
+  "fileList": {
+    "title": "Tệp đã chọn",
+    "clearAll": "Bỏ tất cả",
+    "moveUp": "Đưa lên",
+    "moveUpLabel": "Đưa {{name}} lên trên",
+    "moveDown": "Đưa xuống",
+    "moveDownLabel": "Đưa {{name}} xuống dưới",
+    "remove": "Bỏ tệp này",
+    "removeLabel": "Bỏ {{name}}"
+  },
+  "filePicker": {
+    "pick": "Chọn tệp",
+    "add": "Thêm tệp",
+    "pickOther": "Chọn tệp khác",
+    "reading": "Đang đọc tệp {{current}}/{{total}}…",
+    "dropMore": "Thả thêm tệp vào đây",
+    "dropOther": "Thả tệp khác vào đây"
+  },
+  "flow": {
+    "finishing": "Đang hoàn tất…",
+    "processing": "Đang xử lý",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Tiến độ xử lý",
+    "cancel": "Huỷ",
+    "rejected": "Bỏ qua {{count}} tệp",
+    "rejectedMore": "… và {{count}} tệp khác",
+    "dismiss": "Ẩn thông báo",
+    "side": "Tuỳ chọn và chạy",
+    "options": "Tuỳ chọn",
+    "error": "Không xử lý được: {{message}}",
+    "errorCode": "Mã lỗi: {{code}}",
+    "runFailed": "Không xử lý được tệp. Thử lại."
+  },
+  "result": {
+    "textLabel": "Nội dung văn bản",
+    "tooLarge": "Tệp nặng hơn {{limit}}: không nạp lại được vào các công cụ ở đây, và nhiều hộp thư không nhận tệp cỡ này.",
+    "shareFailed": "Không chia sẻ được tệp. Tải về rồi gửi thủ công.",
+    "download": "Tải về",
+    "preview": "Xem trước",
+    "share": "Chia sẻ",
+    "edit": "Sửa tiếp",
+    "restart": "Làm lại"
+  },
+  "leave": {
+    "title": "Rời trang này?",
+    "body": "Tệp đang làm chỉ nằm trong tab này, chưa lưu ở đâu khác. Rời đi là mất, không khôi phục được — tải tệp về trước nếu cần giữ.",
+    "stay": "Ở lại",
+    "leave": "Rời trang"
+  },
+  "unsupported": {
+    "title": "Trình duyệt này quá cũ để xử lý PDF",
+    "description": "{{tool}} cần Chrome, Edge, Firefox hoặc Safari bản mới nhất. Hãy cập nhật trình duyệt rồi mở lại trang này. Các công cụ ảnh, mã QR và tiện ích khác vẫn dùng được trên máy này.",
+    "back": "Chọn công cụ khác"
+  },
+  "camera": {
+    "insecure": "Camera chỉ dùng được khi mở trang bằng HTTPS (hoặc localhost).",
+    "blocked": "Trình duyệt đang chặn camera với trang này. Bấm biểu tượng ổ khoá trên thanh địa chỉ để cho phép, rồi thử lại.",
+    "notFound": "Không tìm thấy camera trên máy này.",
+    "busy": "Camera đang được ứng dụng khác dùng. Đóng ứng dụng đó rồi thử lại.",
+    "failed": "Không mở được camera."
+  },
+  "canvas": {
+    "tooLarge": "Ảnh quá lớn với trình duyệt này.",
+    "unsupported": "Trình duyệt này không xuất được định dạng ảnh đã chọn."
+  },
+  "hero": {
+    "statTools": "công cụ miễn phí",
+    "statFree": "dùng miễn phí",
+    "statInstall": "cài đặt",
+    "trialErpcons": "Dùng thử ERPcons",
+    "trialTekshot": "Dùng thử TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "lượt dùng công cụ",
+    "unlimited": "Không giới hạn",
+    "visits": "lượt dùng",
+    "readyTools": "công cụ sẵn dùng",
+    "groups": "nhóm công cụ",
+    "proOffer": "lưu trữ, chia sẻ, duyệt cùng cả đội"
+  },
+  "aside": {
+    "label": "Thông tin thêm",
+    "recent": "Dùng gần đây",
+    "recentEmpty": "Chưa dùng công cụ nào trên máy này. Công cụ bạn mở sẽ hiện ở đây.",
+    "proIntro": "Khi việc nhỏ thành hồ sơ dự án:",
+    "about": "Về Chuyện Nhỏ",
+    "aboutText": "Bộ công cụ miễn phí từ ERPCons, giúp bạn xử lý nhanh những việc nhỏ trong công việc hàng ngày. Tệp được xử lý ngay trên máy bạn, không tải lên máy chủ.",
+    "tips": "Mẹo nhanh"
+  },
+  "pro": {
+    "signup": "Đăng ký dùng thử",
+    "soon": "Form đăng ký dùng thử {{product}} đang được hoàn thiện — sắp có.",
+    "features": {
+      "storage": "Lưu trữ dài hạn, phiên bản và revision R00, R01…",
+      "sharing": "Chia sẻ, phân quyền, góp ý và duyệt",
+      "linking": "Gắn hồ sơ với dự án, hợp đồng, công việc",
+      "ai": "AI đọc, tóm tắt và trích xuất tài liệu"
+    }
+  },
+  "nudge": {
+    "text": "Đã tải xong. Cần lưu bản này vào hồ sơ dự án, chia sẻ và duyệt cùng cả đội? Có trong ERPCons Pro.",
+    "login": "Đăng nhập ERPCons",
+    "later": "Để sau"
+  },
+  "toolCard": {
+    "soon": "Sắp có"
+  },
+  "filters": {
+    "label": "Lọc theo nhóm công cụ"
+  },
+  "authBrand": {
+    "home": "Về trang chủ {{name}}",
+    "headline": "Một nền tảng<br/>Mọi dự án<br/>Kiểm soát hoàn toàn",
+    "lead": "{{name}} Construction OS – Nền tảng quản trị doanh nghiệp xây dựng toàn diện, tích hợp AI, IoT và dữ liệu thời gian thực để tối ưu hiệu suất, quản trị rủi ro và ra quyết định thông minh.",
+    "status": "Tất cả hệ thống đang hoạt động bình thường",
+    "statusLink": "Xem trạng thái hệ thống",
+    "features": {
+      "security": {
+        "title": "Bảo mật tối đa",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "Kết nối toàn diện",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "Dữ liệu duy nhất",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "Hiệu suất vượt trội",
+        "line1": "Tối ưu tốc độ",
+        "line2": "và khả năng mở rộng"
+      },
+      "analytics": {
+        "title": "Phân tích thông minh",
+        "line1": "Dashboard trực quan",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "Làm việc mọi nơi",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

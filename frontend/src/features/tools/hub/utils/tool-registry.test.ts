@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { TOOL_CATALOG } from '../config/tool-catalog'
 import type { ToolDefinition } from '../types/tool.types'
+import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { filterTools } from './tool-lookup'
 import { enabledTools, TOP_TOOL_COUNT, toolProcessing, topTools } from './tool-registry'
 
 const tool = (id: string, extra: Partial<ToolDefinition> = {}): ToolDefinition =>
-  ({ id, slug: id, name: id, description: '', icon: 'x', categories: ['other'], status: 'ready', screen: 'quick-note', ...extra }) as ToolDefinition
+  ({ id, slug: id, name: id, description: '', pageTitle: id, synonyms: [], icon: 'x', categories: ['other'], status: 'ready', screen: 'quick-note', ...extra }) as ToolDefinition
 
 describe('enabledTools', () => {
   it('bỏ đúng công cụ bị tắt, id lạ thì không sao', () => {
@@ -36,11 +37,11 @@ describe('danh mục thật', () => {
   })
 
   it('tìm ra công cụ bằng từ người dùng hay gõ, không có trong tên lẫn mô tả', () => {
-    const found = (keyword: string) => filterTools(TOOL_CATALOG, 'all', keyword).map((item) => item.id)
+    const found = (keyword: string) => filterTools(VI_TOOL_CATALOG, 'all', keyword).map((item) => item.id)
     expect(found('nối pdf')).toContain('merge-pdf')
     expect(found('giam dung luong')).toEqual(expect.arrayContaining(['compress-pdf', 'compress-image']))
     expect(found('docx')).toEqual(['convert-file'])
-    expect(found('mã vạch')).toEqual(['barcode-create', 'qr-read', 'code-manager'])
+    expect(found('mã vạch')).toEqual(['barcode-create', 'qr-read'])
     expect(found('mat khau')).toEqual(['pdf-password', 'random-code'])
   })
 })

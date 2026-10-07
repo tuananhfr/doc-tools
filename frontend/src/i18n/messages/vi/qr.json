@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "Công cụ mã QR",
+    "qrCreate": "Tạo mã QR",
+    "barcodeCreate": "Tạo mã vạch",
+    "qrRead": "Quét mã"
+  },
+  "shared": {
+    "codeContent": "Nội dung trong mã",
+    "enterToCreate": "Nhập nội dung để tạo mã",
+    "contentPanel": "Nội dung mã",
+    "kind": "Loại mã",
+    "phone": "Số điện thoại",
+    "security": "Bảo mật",
+    "password": "Mật khẩu",
+    "noPassword": "Không mật khẩu",
+    "retry": "Thử lại",
+    "downloadPng": "Tải PNG",
+    "value": "Giá trị",
+    "emailPlaceholder": "ten@congty.vn"
+  },
+  "qrCreate": {
+    "side": "Mã QR",
+    "tooLong": "Nội dung dài quá sức chứa của một mã QR. Rút gọn lại, hoặc dùng đường dẫn tới nơi chứa nội dung.",
+    "renderFailed": "Không dựng được ảnh mã QR. Thử lại.",
+    "notCreated": "Chưa tạo được mã",
+    "downloadPng": "Tải mã QR",
+    "downloadSvg": "Tải bản SVG để in",
+    "downloadPdf": "Tải bản PDF",
+    "transparentHint": "Khi ghép lên ảnh, chọn vùng đủ sáng và đồng màu để mã dễ quét.",
+    "lowContrast": "Màu mã và màu nền quá gần nhau; hãy tăng tương phản để dễ quét.",
+    "previewLabel": "Mã QR của nội dung đang nhập"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (đường dẫn)",
+      "text": "Văn bản",
+      "wifi": "Wi-Fi",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "vcard": "Danh thiếp (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "Không mật khẩu"
+    },
+    "enterContent": "Nhập nội dung",
+    "textPlaceholder": "Ví dụ: Kho B — kệ 12, tầng 3",
+    "ssid": "Tên mạng Wi-Fi",
+    "ssidPlaceholder": "Ví dụ: VanPhong-BCH",
+    "hidden": "Mạng ẩn (không phát tên)",
+    "emailAddress": "Địa chỉ email",
+    "subject": "Tiêu đề thư (không bắt buộc)",
+    "contactName": "Họ tên",
+    "contactNamePlaceholder": "Nguyễn Văn An",
+    "contactEmail": "Email liên hệ",
+    "contactOrg": "Công ty (không bắt buộc)",
+    "contactTitle": "Chức danh (không bắt buộc)",
+    "vcardHint": "Cần họ tên và ít nhất một trong hai: số điện thoại, email. Quét bằng camera điện thoại sẽ được mời thêm vào danh bạ."
+  },
+  "payload": {
+    "urlSpaces": "Đường dẫn không được có khoảng trắng.",
+    "wifiPassword": "Nhập mật khẩu Wi-Fi, hoặc chọn \"Không mật khẩu\".",
+    "wpaShort": "Mật khẩu WPA/WPA2 có ít nhất 8 ký tự.",
+    "phoneChars": "Số điện thoại chỉ gồm chữ số, có thể bắt đầu bằng dấu +.",
+    "phoneShort": "Số điện thoại quá ngắn.",
+    "email": "Địa chỉ email chưa đúng dạng ten@congty.vn.",
+    "contactName": "Nhập họ tên của liên hệ.",
+    "contactReach": "Nhập số điện thoại hoặc email của liên hệ."
+  },
+  "colors": {
+    "legend": "Màu mã QR",
+    "background": "Nền mã QR",
+    "backgroundModes": {
+      "white": "Nền trắng",
+      "transparent": "Không nền",
+      "custom": "Chọn màu"
+    },
+    "presetBackgrounds": "Màu nền có sẵn",
+    "customColor": "Màu tùy ý",
+    "names": {
+      "ink": "Đen",
+      "steel": "Xám thép",
+      "blue": "Xanh dương",
+      "crimson": "Đỏ",
+      "teal": "Xanh ngọc",
+      "green": "Xanh lá",
+      "white": "Trắng",
+      "mist": "Xám nhạt",
+      "blue-soft": "Xanh dương nhạt",
+      "teal-soft": "Xanh ngọc nhạt",
+      "amber-soft": "Kem",
+      "rose-soft": "Hồng nhạt"
+    }
+  },
+  "barcode": {
+    "side": "Mã vạch",
+    "modeLabel": "Cách tạo",
+    "modes": {
+      "single": "Một mã",
+      "batch": "Hàng loạt"
+    },
+    "files": {
+      "png": "Tải PNG",
+      "svg": "SVG để in",
+      "pdf": "PDF đúng khổ"
+    },
+    "drawFailed": "Không vẽ được mã này.",
+    "fileFailed": "Không dựng được tệp mã vạch.",
+    "engineFailed": "Không nạp được bộ vẽ mã. Tải lại trang.",
+    "engineLoading": "Đang nạp bộ vẽ mã…",
+    "previewLabel": "Mã vạch {{kind}} của {{value}}",
+    "styleTitle": "Kiểu mã",
+    "listTitle": "Danh sách mã"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Mã nội bộ: vật tư, tài sản, kho — chữ, số, ký hiệu",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Mã nội bộ cho máy quét đời cũ — chữ hoa, số, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Mã sản phẩm bán lẻ, 13 số do GS1 cấp",
+      "placeholder": "12 số, số kiểm tra tự thêm"
+    },
+    "ean8": {
+      "hint": "Mã sản phẩm cỡ nhỏ, 8 số do GS1 cấp",
+      "placeholder": "7 số, số kiểm tra tự thêm"
+    },
+    "itf14": {
+      "hint": "Mã thùng / kiện hàng, 14 số theo GS1",
+      "placeholder": "13 số, số kiểm tra tự thêm"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Cỡ in",
+    "sizeStandard": "{{percent}}% (chuẩn)",
+    "height": "Chiều cao vạch",
+    "includeText": "In dãy số / chữ dưới mã",
+    "sizeWarning": "Cỡ dưới 80% nhiều máy quét cầm tay đọc không ra; in thử một tem trước khi in cả lô."
+  },
+  "gs1Notice": "Số EAN / ITF-14 phải do GS1 Việt Nam cấp cho doanh nghiệp của bạn — công cụ không tạo số, chỉ vẽ số bạn đã có. Mã dùng trong nội bộ (vật tư, tài sản, kho) thì chọn <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "Tệp lớn hơn {{size}}.",
+    "readFailed": "Không đọc được tệp này.",
+    "buildFailed": "Không dựng được tệp.",
+    "pickTitle": "Chọn tệp CSV hoặc Excel (.xlsx)",
+    "pickHint": "Mỗi dòng một mã, lấy cột đầu tiên · tối đa {{limit}} dòng",
+    "valid": "{{count}} mã hợp lệ",
+    "invalid": "{{count}} dòng sai — bị loại",
+    "header": "Bỏ dòng tiêu đề “{{header}}”",
+    "dropped": "Bỏ {{count}} dòng vượt trần {{limit}}",
+    "line": "Dòng",
+    "reason": "Lý do",
+    "moreErrors": "… và {{count}} dòng sai nữa.",
+    "building": "Đang dựng {{done}}/{{total}}…",
+    "pdf": "PDF ({{count}} trang)",
+    "zip": "Gói {{type}} (.zip)",
+    "unsupported": "Chỉ đọc được tệp .csv hoặc .xlsx."
+  },
+  "check": {
+    "digitsOnly": "Chỉ được có chữ số.",
+    "checkDigitAdded": "Đã thêm số kiểm tra {{digit}}.",
+    "wrongLength": "Cần {{short}} số (tự thêm số kiểm tra) hoặc đủ {{full}} số — đang có {{count}}.",
+    "wrongCheckDigit": "Sai số kiểm tra: số cuối phải là {{expected}}, không phải {{actual}}. Kiểm lại số đã chép.",
+    "empty": "Chưa có nội dung.",
+    "tooLong": "Dài quá {{max}} ký tự — mã sẽ dài quá khổ máy quét.",
+    "code39Chars": "Code 39 chỉ nhận chữ không dấu, số và - . $ / + % khoảng trắng.",
+    "code39Upper": "Code 39 không có chữ thường — đã đổi sang chữ hoa.",
+    "code128Chars": "Code 128 không mã hoá được chữ có dấu hay ký tự đặc biệt. Dùng chữ không dấu.",
+    "prefix893": "Tiền tố 893: mã đăng ký với GS1 Việt Nam (nơi cấp mã, không phải nơi sản xuất).",
+    "prefixIsbn": "Tiền tố 978/979: mã sách (ISBN).",
+    "prefixIssn": "Tiền tố 977: mã ấn phẩm định kỳ (ISSN).",
+    "prefixInternal": "Tiền tố 20–29: mã dùng nội bộ cửa hàng / doanh nghiệp, không dùng được ngoài hệ thống của mình."
+  },
+  "render": {
+    "barcodeFailed": "không dựng được mã {{value}}.",
+    "imageFailed": "trình duyệt không dựng được ảnh."
+  },
+  "read": {
+    "results": "Kết quả",
+    "resultsCount": "Kết quả ({{count}})",
+    "clearAll": "Xoá hết",
+    "empty": "Chưa đọc mã nào. Chọn ảnh có mã, dán ảnh chụp màn hình, hoặc quét bằng camera.",
+    "safety": "Xem kỹ đường dẫn trước khi mở: ai cũng in được một mã QR rồi dán đè lên mã thật.",
+    "pickTitle": "Chọn ảnh có mã QR hoặc mã vạch",
+    "pickHint": "JPG, PNG, WebP · dán ảnh bằng Ctrl+V cũng được",
+    "camera": "Quét bằng camera",
+    "missTitle": "Không đọc được {{count}} ảnh",
+    "moreMisses": "… và {{count}} ảnh khác",
+    "hideNotice": "Ẩn thông báo",
+    "pastedImage": "Ảnh vừa dán",
+    "noCode": "không thấy mã nào. Thử ảnh chụp thẳng, đủ sáng, mã chiếm phần lớn khung hình.",
+    "unreadable": "không mở được. Chỉ đọc được ảnh JPG, PNG, WebP.",
+    "tooLarge": "lớn hơn {{size}}.",
+    "tooManyPixels": "quá lớn ({{pixels}} triệu điểm ảnh, trần {{limit}} triệu). Cắt lấy vùng có mã rồi thử lại."
+  },
+  "camera": {
+    "scanTitle": "Quét QR / Barcode",
+    "aim": "Đưa mã vào khung",
+    "searching": "Đang tìm mã…",
+    "detected": "Đã đọc mã",
+    "scanNext": "Quét tiếp",
+    "openLink": "Mở liên kết",
+    "zoom": "Thu phóng",
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "captured": "Ảnh mã vừa đọc",
+    "title": "Camera",
+    "off": "Tắt camera",
+    "viewfinder": "Khung ngắm camera",
+    "starting": "Đang mở camera… Trình duyệt có thể hỏi quyền dùng camera.",
+    "hint": "Đưa mã vào giữa khung hình, giữ yên một chút. Đọc được là kết quả hiện ngay, quét tiếp mã khác không cần bấm gì.",
+    "insecure": "{{reason}} Chụp mã bằng ứng dụng máy ảnh rồi chọn ảnh từ máy."
+  },
+  "scanResult": {
+    "qrCode": "Mã QR",
+    "remove": "Bỏ kết quả này",
+    "removeShort": "Bỏ",
+    "ssid": "Tên mạng",
+    "unknown": "Không rõ",
+    "checkOk": "Số kiểm tra đúng.",
+    "checkBad": "Số kiểm tra SAI — mã in hỏng hoặc bị sửa.",
+    "open": "Mở {{host}}",
+    "copyPassword": "Chép mật khẩu",
+    "copyNumber": "Chép số",
+    "copyAddress": "Chép địa chỉ",
+    "copy": "Sao chép",
+    "copyRaw": "Chép nguyên văn"
+  },
+  "vietqr": {
+    "side": "Mã chuyển khoản",
+    "placeholder": "Nhập mã BIN và số tài khoản để tạo mã",
+    "copy": "Chép chuỗi QR",
+    "downloadSvg": "Tải SVG",
+    "checkNote": "Quét thử bằng ứng dụng ngân hàng và kiểm tra tên người nhận, số tài khoản, số tiền trước khi sử dụng.",
+    "panel": "Thông tin chuyển khoản",
+    "bin": "Mã BIN ngân hàng (6 số)",
+    "account": "Số tài khoản",
+    "amount": "Số tiền (đ), có thể để trống",
+    "note": "Nội dung chuyển khoản",
+    "privacy": "Mã được tạo trên máy bạn; thông tin tài khoản không gửi tới máy chủ của Chuyện Nhỏ.",
+    "fieldTooLong": "Trường QR quá dài"
+  },
+  "trace": {
+    "title": "Truy xuất ERPCons",
+    "label": "Tra cứu trong ERPCons",
+    "object": "Đối tượng",
+    "code": "Mã nội bộ",
+    "serial": "Số sê-ri",
+    "noEvents": "Chưa có sự kiện truy xuất nào.",
+    "recentEvents": "Sự kiện gần nhất",
+    "loading": "Đang tra trong ERPCons…",
+    "accountForbidden": "Tài khoản của bạn chưa được tra cứu truy xuất.",
+    "failed": "Không tra được: {{message}}",
+    "legacy": "Mã cũ của đối tượng — chưa gắn mã truy xuất.",
+    "forbidden": "Mã có trong sổ nhưng bạn không được xem đối tượng của nó.",
+    "broken": "Mã trỏ tới một đối tượng không còn tồn tại.",
+    "unknown": "Đã đọc mã nhưng chưa có dữ liệu truy xuất trong ERPCons.",
+    "status": {
+      "DRAFT": "Chưa phát hành",
+      "ACTIVE": "Đang dùng",
+      "EXPIRED": "Đã hết hạn",
+      "SUSPENDED": "Tạm khoá",
+      "REVOKED": "Đã thu hồi",
+      "REPLACED": "Đã thay mã",
+      "ARCHIVED": "Đã lưu trữ"
+    },
+    "notes": {
+      "EXPIRED": "Mã đã quá hạn — chỉ xem lịch sử, không thao tác.",
+      "SUSPENDED": "Mã đang tạm khoá — không dùng cho nghiệp vụ.",
+      "REVOKED": "Mã đã thu hồi — nhãn này không còn giá trị.",
+      "REPLACED": "Nhãn này đã được thay — dùng nhãn mới.",
+      "ARCHIVED": "Đối tượng đã ngừng quản lý."
+    }
+  }
+}

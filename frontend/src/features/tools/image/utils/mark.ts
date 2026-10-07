@@ -9,19 +9,7 @@ export const INITIAL_MARK: MarkState = {
 /** Màu GHI VÀO ẢNH (điểm ảnh của tệp ra) — không phải màu giao diện, không theo theme. */
 export const MARK_COLOR: Record<MarkColor, string> = { red: '#c8102e', black: '#111111', white: '#ffffff' }
 
-export const MARK_COLOR_LABEL: Record<MarkColor, string> = { red: 'Đỏ', black: 'Đen', white: 'Trắng' }
-
-export const MARK_ANCHOR_LABEL: Record<MarkAnchor, string> = {
-  topLeft: 'Trên — trái',
-  topCenter: 'Trên — giữa',
-  topRight: 'Trên — phải',
-  middleLeft: 'Giữa — trái',
-  center: 'Chính giữa',
-  middleRight: 'Giữa — phải',
-  bottomLeft: 'Dưới — trái',
-  bottomCenter: 'Dưới — giữa',
-  bottomRight: 'Dưới — phải',
-}
+export const MARK_COLORS: MarkColor[] = ['red', 'black', 'white']
 
 /** Vị trí neo theo hai trục: 0 = mép trái / trên, 0,5 = giữa, 1 = mép phải / dưới. */
 const ANCHOR_AXES: Record<MarkAnchor, readonly [number, number]> = {

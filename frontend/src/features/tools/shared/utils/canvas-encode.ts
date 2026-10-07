@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 export type CanvasMime = 'image/jpeg' | 'image/png' | 'image/webp'
 
 /** Chất lượng khi công cụ không cho chọn: đủ cao để lần lưu lại không thấy vỡ nét. */
@@ -11,7 +13,7 @@ export class CanvasEncodeError extends Error {
   readonly reason: 'too-large' | 'unsupported'
 
   constructor(reason: 'too-large' | 'unsupported') {
-    super(reason === 'too-large' ? 'Ảnh quá lớn với trình duyệt này.' : 'Trình duyệt này không xuất được định dạng ảnh đã chọn.')
+    super(reason === 'too-large' ? translate('common:canvas.tooLarge') : translate('common:canvas.unsupported'))
     this.name = 'CanvasEncodeError'
     this.reason = reason
   }

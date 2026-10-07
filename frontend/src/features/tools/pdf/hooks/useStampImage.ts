@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { describeError, type ToolFailure } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { prepareStampImage, type StampImage } from '../services/stamp-image'
 
 export interface PickedStamp extends StampImage {
@@ -35,7 +36,7 @@ export function useStampImage() {
       url.current = URL.createObjectURL(new Blob([prepared.bytes], { type: prepared.mime }))
       setImage({ ...prepared, url: url.current })
     } catch (failure) {
-      if (mine === turn.current) setError(describeError(failure, 'Không mở được ảnh dấu.'))
+      if (mine === turn.current) setError(describeError(failure, translate('pdf:stampImage.openFailed')))
     } finally {
       if (mine === turn.current) setLoading(false)
     }

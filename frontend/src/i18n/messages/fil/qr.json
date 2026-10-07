@@ -1,0 +1,290 @@
+{
+  "modes": {
+    "label": "Mga tool sa QR code",
+    "qrCreate": "Gumawa ng QR code",
+    "barcodeCreate": "Gumawa ng barcode",
+    "qrRead": "I-scan ang code"
+  },
+  "shared": {
+    "codeContent": "Nilalaman ng code",
+    "enterToCreate": "Ilagay ang nilalaman para makagawa ng code",
+    "contentPanel": "Nilalaman ng code",
+    "kind": "Uri ng code",
+    "phone": "Numero ng telepono",
+    "security": "Seguridad",
+    "password": "Password",
+    "noPassword": "Walang password",
+    "retry": "Subukan ulit",
+    "downloadPng": "I-download ang PNG",
+    "value": "Value",
+    "emailPlaceholder": "pangalan@kompanya.ph"
+  },
+  "qrCreate": {
+    "side": "QR code",
+    "tooLong": "Masyadong mahaba ang nilalaman para sa isang QR code. Paikliin ito, o gumamit ng link papunta sa lugar ng nilalaman.",
+    "renderFailed": "Hindi mabuo ang larawan ng QR code. Subukan ulit.",
+    "notCreated": "Hindi pa nakagawa ng code",
+    "downloadPng": "I-download ang QR code",
+    "downloadSvg": "I-download ang SVG para i-print",
+    "downloadPdf": "I-download ang PDF",
+    "transparentHint": "Kapag ipinatong sa larawan, pumili ng bahaging sapat ang liwanag at iisa ang kulay para madaling ma-scan.",
+    "lowContrast": "Masyadong magkalapit ang kulay ng code at ng background; dagdagan ang contrast para madaling ma-scan.",
+    "previewLabel": "QR code ng nilalamang inilalagay mo"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (link)",
+      "text": "Text",
+      "wifi": "Wi-Fi",
+      "phone": "Numero ng telepono",
+      "email": "Email",
+      "vcard": "Business card (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "Walang password"
+    },
+    "enterContent": "Ilagay ang nilalaman",
+    "textPlaceholder": "Halimbawa: Bodega B — estante 12, palapag 3",
+    "ssid": "Pangalan ng Wi-Fi network",
+    "ssidPlaceholder": "Halimbawa: Opisina-WiFi",
+    "hidden": "Nakatagong network (hindi ipinapakita ang pangalan)",
+    "emailAddress": "Email address",
+    "subject": "Subject ng email (opsyonal)",
+    "contactName": "Buong pangalan",
+    "contactNamePlaceholder": "Juan dela Cruz",
+    "contactEmail": "Email ng contact",
+    "contactOrg": "Kompanya (opsyonal)",
+    "contactTitle": "Posisyon (opsyonal)",
+    "vcardHint": "Kailangan ang buong pangalan at kahit isa sa dalawa: numero ng telepono o email. Kapag na-scan gamit ang camera ng telepono, iaalok itong idagdag sa contacts."
+  },
+  "payload": {
+    "urlSpaces": "Hindi puwedeng may espasyo ang link.",
+    "wifiPassword": "Ilagay ang password ng Wi-Fi, o piliin ang \"Walang password\".",
+    "wpaShort": "Hindi bababa sa 8 character ang password ng WPA/WPA2.",
+    "phoneChars": "Mga digit lang ang numero ng telepono, at puwedeng magsimula sa +.",
+    "phoneShort": "Masyadong maikli ang numero ng telepono.",
+    "email": "Hindi tama ang format ng email address (pangalan@kompanya.ph).",
+    "contactName": "Ilagay ang buong pangalan ng contact.",
+    "contactReach": "Ilagay ang numero ng telepono o email ng contact."
+  },
+  "colors": {
+    "legend": "Kulay ng QR code",
+    "background": "Background ng QR code",
+    "backgroundModes": {
+      "white": "Puting background",
+      "transparent": "Walang background",
+      "custom": "Pumili ng kulay"
+    },
+    "presetBackgrounds": "Mga nakahandang kulay ng background",
+    "customColor": "Sariling kulay",
+    "names": {
+      "ink": "Itim",
+      "steel": "Steel gray",
+      "blue": "Asul",
+      "crimson": "Pula",
+      "teal": "Teal",
+      "green": "Berde",
+      "white": "Puti",
+      "mist": "Mapusyaw na abo",
+      "blue-soft": "Mapusyaw na asul",
+      "teal-soft": "Mapusyaw na teal",
+      "amber-soft": "Cream",
+      "rose-soft": "Mapusyaw na pink"
+    }
+  },
+  "barcode": {
+    "side": "Barcode",
+    "modeLabel": "Paraan ng paggawa",
+    "modes": {
+      "single": "Isang code",
+      "batch": "Maramihan"
+    },
+    "files": {
+      "png": "I-download ang PNG",
+      "svg": "SVG para i-print",
+      "pdf": "PDF sa tamang laki"
+    },
+    "drawFailed": "Hindi maiguhit ang code na ito.",
+    "fileFailed": "Hindi mabuo ang barcode file.",
+    "engineFailed": "Hindi ma-load ang barcode renderer. I-reload ang page.",
+    "engineLoading": "Nilo-load ang barcode renderer…",
+    "previewLabel": "{{kind}} na barcode ng {{value}}",
+    "styleTitle": "Estilo ng code",
+    "listTitle": "Listahan ng code"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Internal na code: materyales, asset, bodega — titik, numero, simbolo",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Internal na code para sa lumang scanner — malalaking titik, numero, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Code ng retail na produkto, 13 digit na ibinigay ng GS1",
+      "placeholder": "12 digit, awtomatikong idadagdag ang check digit"
+    },
+    "ean8": {
+      "hint": "Code ng maliit na produkto, 8 digit na ibinigay ng GS1",
+      "placeholder": "7 digit, awtomatikong idadagdag ang check digit"
+    },
+    "itf14": {
+      "hint": "Code ng kahon / kargamento, 14 digit ayon sa GS1",
+      "placeholder": "13 digit, awtomatikong idadagdag ang check digit"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Laki ng print",
+    "sizeStandard": "{{percent}}% (standard)",
+    "height": "Taas ng bar",
+    "includeText": "I-print ang numero / text sa ilalim ng code",
+    "sizeWarning": "Sa laking mas mababa sa 80%, maraming handheld scanner ang hindi makabasa; mag-print muna ng isang label bago ang buong batch."
+  },
+  "gs1Notice": "Dapat ibigay ng GS1 Vietnam sa iyong negosyo ang mga numerong EAN / ITF-14 — hindi gumagawa ng numero ang tool, iginuguhit lang nito ang numerong mayroon ka na. Para sa internal na code (materyales, asset, bodega), piliin ang <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "Mas malaki sa {{size}} ang file.",
+    "readFailed": "Hindi mabasa ang file na ito.",
+    "buildFailed": "Hindi mabuo ang file.",
+    "pickTitle": "Pumili ng CSV o Excel (.xlsx) file",
+    "pickHint": "Isang code bawat linya, mula sa unang column · hanggang {{limit}} linya",
+    "valid_one": "{{count}} wastong code",
+    "valid_other": "{{count}} wastong code",
+    "invalid_one": "{{count}} maling linya — inalis",
+    "invalid_other": "{{count}} maling linya — inalis",
+    "header": "Nilaktawan ang header na linya “{{header}}”",
+    "dropped_one": "Inalis ang {{count}} linyang lampas sa limitasyong {{limit}}",
+    "dropped_other": "Inalis ang {{count}} linyang lampas sa limitasyong {{limit}}",
+    "line": "Linya",
+    "reason": "Dahilan",
+    "moreErrors_one": "… at {{count}} pang maling linya.",
+    "moreErrors_other": "… at {{count}} pang maling linya.",
+    "building": "Binubuo {{done}}/{{total}}…",
+    "pdf_one": "PDF ({{count}} page)",
+    "pdf_other": "PDF ({{count}} page)",
+    "zip": "{{type}} bundle (.zip)",
+    "unsupported": ".csv o .xlsx file lang ang nababasa."
+  },
+  "check": {
+    "digitsOnly": "Mga digit lang ang puwede.",
+    "checkDigitAdded": "Idinagdag ang check digit na {{digit}}.",
+    "wrongLength_one": "Kailangan ng {{short}} digit (awtomatikong idadagdag ang check digit) o buong {{full}} digit — {{count}} pa lang ang mayroon.",
+    "wrongLength_other": "Kailangan ng {{short}} digit (awtomatikong idadagdag ang check digit) o buong {{full}} digit — {{count}} pa lang ang mayroon.",
+    "wrongCheckDigit": "Mali ang check digit: dapat {{expected}} ang huling digit, hindi {{actual}}. Suriin ulit ang kinopyang numero.",
+    "empty": "Wala pang nilalaman.",
+    "tooLong": "Lampas sa {{max}} character — masyadong hahaba ang code para sa scanner.",
+    "code39Chars": "Titik na walang diacritics, numero at - . $ / + % at espasyo lang ang tinatanggap ng Code 39.",
+    "code39Upper": "Walang maliliit na titik ang Code 39 — ginawang malalaking titik.",
+    "code128Chars": "Hindi kayang i-encode ng Code 128 ang titik na may diacritics o espesyal na character. Gumamit ng titik na walang diacritics.",
+    "prefix893": "Prefix 893: code na nakarehistro sa GS1 Vietnam (kung saan ibinigay ang code, hindi kung saan ginawa ang produkto).",
+    "prefixIsbn": "Prefix 978/979: code ng libro (ISBN).",
+    "prefixIssn": "Prefix 977: code ng periodical (ISSN).",
+    "prefixInternal": "Prefix 20–29: internal na code ng tindahan / negosyo, hindi magagamit sa labas ng sarili mong system."
+  },
+  "render": {
+    "barcodeFailed": "hindi mabuo ang code na {{value}}.",
+    "imageFailed": "hindi mabuo ng browser ang larawan."
+  },
+  "read": {
+    "results": "Mga resulta",
+    "resultsCount_one": "Resulta ({{count}})",
+    "resultsCount_other": "Mga resulta ({{count}})",
+    "clearAll": "Burahin lahat",
+    "empty": "Wala pang nabasang code. Pumili ng larawang may code, mag-paste ng screenshot, o mag-scan gamit ang camera.",
+    "safety": "Suriing mabuti ang link bago buksan: kahit sino ay puwedeng mag-print ng QR code at idikit ito sa ibabaw ng totoong code.",
+    "pickTitle": "Pumili ng larawang may QR code o barcode",
+    "pickHint": "JPG, PNG, WebP · puwede ring mag-paste ng larawan gamit ang Ctrl+V",
+    "camera": "I-scan gamit ang camera",
+    "missTitle_one": "Hindi mabasa ang {{count}} larawan",
+    "missTitle_other": "Hindi mabasa ang {{count}} larawan",
+    "moreMisses_one": "… at {{count}} pang larawan",
+    "moreMisses_other": "… at {{count}} pang larawan",
+    "hideNotice": "Itago ang abiso",
+    "pastedImage": "Kaka-paste na larawan",
+    "noCode": "walang nakitang code. Subukan ang larawang kinunan nang diretso, maliwanag, at sakop ng code ang malaking bahagi ng frame.",
+    "unreadable": "hindi mabuksan. JPG, PNG at WebP na larawan lang ang nababasa.",
+    "tooLarge": "mas malaki sa {{size}}.",
+    "tooManyPixels": "masyadong malaki ({{pixels}} megapixel, limitasyon {{limit}}). I-crop ang bahaging may code at subukan ulit."
+  },
+  "camera": {
+    "scanTitle": "I-scan ang QR / Barcode",
+    "aim": "Ilagay ang code sa loob ng frame",
+    "searching": "Naghahanap ng code…",
+    "detected": "Nabasa ang code",
+    "scanNext": "Mag-scan muli",
+    "openLink": "Buksan ang link",
+    "zoom": "Zoom",
+    "zoomIn": "Palakihin",
+    "zoomOut": "Paliitin",
+    "captured": "Larawan ng nabasang code",
+    "title": "Camera",
+    "off": "Patayin ang camera",
+    "viewfinder": "Viewfinder ng camera",
+    "starting": "Binubuksan ang camera… Maaaring humingi ang browser ng pahintulot na gamitin ang camera.",
+    "hint": "Itapat ang code sa gitna ng frame at huwag galawin sandali. Lalabas agad ang resulta kapag nabasa, at puwede nang mag-scan ng iba nang hindi pumipindot.",
+    "insecure": "{{reason}} Kunan ang code gamit ang camera app at pumili ng larawan mula sa device."
+  },
+  "scanResult": {
+    "qrCode": "QR code",
+    "remove": "Alisin ang resultang ito",
+    "removeShort": "Alisin",
+    "ssid": "Pangalan ng network",
+    "unknown": "Hindi alam",
+    "checkOk": "Tama ang check digit.",
+    "checkBad": "MALI ang check digit — sira ang pagkaka-print o binago ang code.",
+    "open": "Buksan ang {{host}}",
+    "copyPassword": "Kopyahin ang password",
+    "copyNumber": "Kopyahin ang numero",
+    "copyAddress": "Kopyahin ang address",
+    "copy": "Kopyahin",
+    "copyRaw": "Kopyahin nang buo"
+  },
+  "vietqr": {
+    "side": "Transfer code",
+    "placeholder": "Ilagay ang BIN at numero ng account para makagawa ng code",
+    "copy": "Kopyahin ang QR string",
+    "downloadSvg": "I-download ang SVG",
+    "checkNote": "Subukang i-scan gamit ang banking app at suriin ang pangalan ng tatanggap, numero ng account at halaga bago gamitin.",
+    "panel": "Impormasyon ng transfer",
+    "bin": "BIN ng bangko (6 na digit)",
+    "account": "Numero ng account",
+    "amount": "Halaga (đ), puwedeng iwanang blangko",
+    "note": "Mensahe ng transfer",
+    "privacy": "Sa device mo ginagawa ang code; hindi ipinapadala sa server ng Chuyện Nhỏ ang impormasyon ng account.",
+    "fieldTooLong": "Masyadong mahaba ang QR field"
+  },
+  "trace": {
+    "title": "ERPCons traceability",
+    "label": "Hanapin sa ERPCons",
+    "object": "Object",
+    "code": "Internal na code",
+    "serial": "Serial number",
+    "noEvents": "Wala pang traceability event.",
+    "recentEvents": "Mga pinakabagong event",
+    "loading": "Hinahanap sa ERPCons…",
+    "accountForbidden": "Wala pang pahintulot ang iyong account na maghanap sa traceability.",
+    "failed": "Hindi mahanap: {{message}}",
+    "legacy": "Lumang code ng object — wala pang nakakabit na trace code.",
+    "forbidden": "Nasa talaan ang code pero hindi ka pinapayagang makita ang object nito.",
+    "broken": "Tumuturo ang code sa object na wala na.",
+    "unknown": "Nabasa ang code pero wala pang traceability data sa ERPCons.",
+    "status": {
+      "DRAFT": "Hindi pa inilalabas",
+      "ACTIVE": "Ginagamit",
+      "EXPIRED": "Expired na",
+      "SUSPENDED": "Pansamantalang naka-lock",
+      "REVOKED": "Binawi",
+      "REPLACED": "Pinalitan ang code",
+      "ARCHIVED": "Naka-archive"
+    },
+    "notes": {
+      "EXPIRED": "Expired na ang code — history lang ang matitingnan, walang magagawang aksyon.",
+      "SUSPENDED": "Pansamantalang naka-lock ang code — huwag gamitin sa transaksyon.",
+      "REVOKED": "Binawi na ang code — wala nang bisa ang label na ito.",
+      "REPLACED": "Napalitan na ang label na ito — gamitin ang bagong label.",
+      "ARCHIVED": "Hindi na pinamamahalaan ang object."
+    }
+  }
+}

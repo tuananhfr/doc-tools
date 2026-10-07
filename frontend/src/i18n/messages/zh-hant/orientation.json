@@ -1,0 +1,361 @@
+{
+  "shared": {
+    "on": "已開啟",
+    "off": "已關閉",
+    "remove": "移除 {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "屋主",
+    "PROFESSIONAL": "專業"
+  },
+  "page": {
+    "projectNorthWarning": "目前以專案北方測量——不是真實方位，因此無法依年齡判讀吉凶，也無法計算日照。請在技術設定中改為真北或磁北。",
+    "missing": {
+      "drawing": "點一下圖面上的指北符號即可開始。",
+      "device": "按「開始測量」，站穩後鎖定讀數。",
+      "manual": "輸入已知的度數。",
+      "placeAxis": "在圖片上放置{{target}}的軸線。",
+      "pickMeasured": "選擇已有讀數的對象。"
+    },
+    "noSource": "尚無來源。",
+    "modeLabel": "顯示模式",
+    "back": "返回",
+    "changeSource": "更換圖片／來源",
+    "placeOnImage": "放到房屋照片／圖面上",
+    "nothingToSave": "還沒有可儲存的讀數。",
+    "frontageFallback": "正面",
+    "houseFrontageFallback": "房屋正面",
+    "sideAge": "依年齡查看並儲存結果"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "房屋座向",
+      "hint": "從屋內直視正面朝外"
+    },
+    "MAIN_DOOR": {
+      "label": "大門",
+      "hint": "從屋內透過大門往外看"
+    },
+    "BALCONY": {
+      "label": "陽台",
+      "hint": "從房間內往陽台看"
+    },
+    "KITCHEN": {
+      "label": "廚房",
+      "hint": "掌廚者背後的方向——與掌廚者面向爐灶的方向相反"
+    },
+    "ALTAR": {
+      "label": "神桌",
+      "hint": "神桌正面朝向的方向"
+    },
+    "BED": {
+      "label": "床",
+      "hint": "從床頭往床尾看"
+    },
+    "DESK": {
+      "label": "辦公桌",
+      "hint": "坐著工作時面向的方向"
+    },
+    "LAND_FRONTAGE": {
+      "label": "土地正面",
+      "hint": "從地塊內往道路看"
+    },
+    "CUSTOM": {
+      "label": "其他對象",
+      "hint": "自行命名，軸線指向要測量的方向"
+    }
+  },
+  "north": {
+    "TRUE": "真北",
+    "MAGNETIC": "磁北",
+    "PROJECT": "專案北"
+  },
+  "sources": {
+    "DRAWING": "放在圖面上",
+    "MANUAL": "手動輸入",
+    "DEVICE": "手機指南針",
+    "SURVEY": "測量數據"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · 誤差 ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "此瀏覽器無法讀取裝置的指南針。",
+      "insecure": "指南針只在以 HTTPS 開啟頁面時運作。",
+      "denied": "你尚未允許讀取方向感測器。請在瀏覽器設定中允許後再試一次。",
+      "noSignal": "收不到指南針訊號——電腦和許多瀏覽器沒有這種感測器。"
+    },
+    "stability": {
+      "STABLE": "穩定",
+      "WOBBLY": "仍有晃動",
+      "UNSTABLE": "不穩定"
+    },
+    "accuracy": "裝置回報誤差 ±{{value}}°",
+    "noAccuracy": "裝置未回報誤差",
+    "starting": "正在開啟指南針…",
+    "retry": "再試一次",
+    "start": "開始測量",
+    "stop": "停止",
+    "outside": "我站在屋外，面向房屋",
+    "magnetWarning": "請遠離鋼柱、汽車、捲門、磁鐵和電器——它們會讓指南針偏差。"
+  },
+  "device": {
+    "steps": {
+      "stand": "站在大門口，背對屋內，直視屋外。",
+      "hold": "將手機水平拿著（與地面平行），手機頂端朝向你看的方向。",
+      "wait": "站穩幾秒讓讀數穩定，再按「鎖定讀數」。"
+    },
+    "lock": "鎖定{{target}}的讀數",
+    "manual": "改為輸入度數",
+    "unstable": "讀數跳動很大。請站穩，將手機以 8 字形轉幾圈讓它自動校正，然後重新測量。"
+  },
+  "live": {
+    "title": "房屋座向指南針",
+    "intro": "站在大門口，背對屋內，手機水平拿著，頂端直指屋外。",
+    "dialAria": "指南針盤面，北方在上",
+    "dialAriaFacing": "指南針盤面，房屋座向 {{degree}}",
+    "facingEnd": "向",
+    "sittingEnd": "坐",
+    "empty": "按「開始測量」或輸入度數來讀取房屋座向。",
+    "failureManual": "{{failure}}你可以輸入用其他指南針測得的度數。",
+    "locked": "已鎖定 {{degree}}",
+    "remeasure": "重新測量",
+    "lock": "鎖定方向",
+    "useDevice": "使用裝置的指南針",
+    "enterDegree": "輸入度數",
+    "unstable": "讀數跳動很大，無法鎖定。請站穩，將手機以 8 字形轉幾圈讓它自動校正。",
+    "facing": "向",
+    "sitting": "坐",
+    "offset": "偏離 {{mountain}} 中心 {{degree}}，偏向 {{toward}}。",
+    "centered": "正好在 {{mountain}} 山中心。",
+    "void": {
+      "MAJOR": "大空亡",
+      "MINOR": "小空亡"
+    },
+    "voidWarning": "<strong>{{kind}}</strong>——方向緊貼 {{mountain}}／{{toward}} 的分界。{{note}}"
+  },
+  "manual": {
+    "label": "{{target}}的度數",
+    "placeholder": "例如 132",
+    "hint": "從北方順時針測量：東 90°、南 180°、西 270°。",
+    "invalid": "請輸入數字，例如 132 或 132,5。"
+  },
+  "method": {
+    "title": "要用什麼方式取得方向？",
+    "label": "取得方向的方式",
+    "options": {
+      "DEVICE": "立即測量",
+      "MANUAL": "我知道度數",
+      "DRAWING": "依照圖面"
+    },
+    "locked": "已為{{target}}鎖定 {{degree}}。",
+    "drawingNote": "不需要感測器：只要圖面上有指北符號即可。先在圖片上放置指北箭頭，再放置要測量對象的軸線。"
+  },
+  "canvas": {
+    "imageAlt": "正在測量方向的照片／圖面",
+    "traceGrip": "描線的第 {{index}} 點——點一下選取描線，拖曳或用方向鍵調整",
+    "closeAria": "在起點封閉圖形",
+    "closeTitle": "封閉圖形",
+    "northHead": "指北箭頭的頭——拖曳以對齊圖面上的指北符號",
+    "northTail": "指北箭頭的尾——拖曳以移動",
+    "axisHead": "{{target}}軸線的頭——拖曳以旋轉",
+    "axisTail": "{{target}}軸線的尾——拖曳以移動",
+    "compassCenter": "指南針中心——拖曳以移動指南針",
+    "compassEdge": "指南針邊緣——拖曳以放大／縮小"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "牆線",
+      "polygon": "多邊形",
+      "rect": "方框"
+    },
+    "traceHints": {
+      "line": "點兩個點畫出一段牆。點一下已畫線段的端點，可標記為正面／大門。",
+      "polygon": "依序點各個角，再點一次起點（空心圓）即可封閉圖形。",
+      "rect": "點兩個對角畫出方框。"
+    },
+    "northStep": "北方",
+    "hints": {
+      "north": "點一下圖面上的指北符號放置指北箭頭，再拖曳箭頭的頭對齊符號方向。",
+      "door": "點一下大門以加入大門軸線（選填）。拖曳箭頭的頭朝向屋外。",
+      "drawing": "點一下要測量的位置放置{{target}}軸線。將箭頭的頭拖曳朝「外」——從裡往外看的方向。",
+      "overlay": "想讓指南針疊在圖片上：點一下要測量的位置，將箭頭的頭朝外拖曳，對準{{target}}的方向。"
+    },
+    "aria": "正在測量方向的圖片",
+    "tabsAria": "在圖片上進行的工作",
+    "placeTab": "設定方向",
+    "traceTab": "描繪平面圖",
+    "undo": "復原",
+    "redo": "重做",
+    "traceKindsAria": "描線類型",
+    "snap": "吸附 45° 角",
+    "stepsAria": "圖片上的步驟",
+    "done": "（已放置）",
+    "pageAria": "正在測量的 PDF 頁面",
+    "pageOption": "第 {{page}} / {{total}} 頁"
+  },
+  "result": {
+    "title": "測量結果",
+    "fine": "16 方位：{{direction}}",
+    "empty": "還沒有讀數。",
+    "compassAria": "指南針，北方在上"
+  },
+  "solar": {
+    "title": "日照與太陽",
+    "locationFailure": {
+      "denied": "你尚未允許取得位置。請手動輸入緯度、經度。",
+      "unavailable": "裝置無法取得位置。請手動輸入緯度、經度。"
+    },
+    "daySide": {
+      "MORNING": "受上午陽光照射",
+      "AFTERNOON": "受午後陽光照射（西曬強烈，屋內較熱）",
+      "BOTH": "上午和下午都有日照",
+      "NONE": "一天中少有直射陽光"
+    },
+    "intro": "查看太陽從哪個方向升起、落下，以及{{target}}是否會有西曬。",
+    "locating": "正在取得位置…",
+    "useLocation": "使用我的位置",
+    "latitude": "緯度",
+    "longitude": "經度",
+    "date": "日期",
+    "time": "時間",
+    "sunAt": "{{time}} 的太陽",
+    "sunPosition": "{{degree}} · {{direction}} · 高度 {{elevation}}",
+    "belowHorizon": "在地平線以下",
+    "sunrise": "日出",
+    "sunset": "日落",
+    "facingSun": "{{side}} · 目前正受到日照",
+    "awayFromSun": "{{side}} · 目前未受到日照",
+    "needCoordinates": "請輸入緯度、經度（或按「使用我的位置」）以進行計算。",
+    "note": "太陽方位以真北計算；在越南與磁北的差距小於 1°。不計入鄰近建築的陰影。"
+  },
+  "source": {
+    "title": "你手上有什麼？",
+    "pickTitle": "選擇平面圖、房屋照片或 PDF 圖面",
+    "pickHint": "JPG、PNG、WebP、PDF · 最大 100 MB · 檔案只在你的裝置上開啟",
+    "camera": "拍照",
+    "rejectedTitle": "無法開啟檔案",
+    "dismiss": "隱藏通知",
+    "none": "沒有圖片——只用指南針",
+    "noneHint": "用手機指南針測量，或輸入已知的度數。",
+    "tooLarge": "檔案超過 {{size}}。",
+    "openFailed": "無法開啟此檔案。",
+    "pageFailed": "無法繪製此頁面。"
+  },
+  "targetsPanel": {
+    "title": "測量方向的對象",
+    "noAxis": "尚未放置軸線",
+    "noMeasure": "尚無讀數",
+    "hint": "{{hint}}。",
+    "customName": "對象名稱",
+    "customPlaceholder": "例如：側門",
+    "addAria": "要新增的對象",
+    "add": "新增",
+    "axisAngle": "圖片上的軸線角度",
+    "axisAngleHint": "0° = 指向圖片上緣，順時針計算。"
+  },
+  "tech": {
+    "title": "技術參數",
+    "reference": "度數基準",
+    "referenceHint": "只作標示，不會自動換算。在越南磁北與真北相差小於 1°；專案北依圖面的座標網格。",
+    "divisionsLabel": "指南針分區",
+    "divisionsAria": "指南針的分區數",
+    "divisions": "{{count}} 方位",
+    "size": "圖片上的指南針大小 · {{percent}}%",
+    "opacity": "指南針不透明度 · {{percent}}%",
+    "saveRecord": "下載讀數紀錄（JSON）"
+  },
+  "traceActions": {
+    "aria": "目前選取的描線",
+    "tags": {
+      "FRONTAGE": "這是正面",
+      "ENTRANCE": "這是大門"
+    },
+    "flip": "切換朝外的一側",
+    "delete": "刪除此描線"
+  },
+  "export": {
+    "title": "儲存結果",
+    "legend": "儲存為",
+    "image": "圖片",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "保留原始照片的拍攝資訊（EXIF）",
+      "pdf": "圖面頁面會重新繪製為 PNG 圖片",
+      "none": "附帶讀數的指南針圖片"
+    },
+    "pdfHintVector": "保留原始圖面頁面的向量格式",
+    "pdfHintPage": "單頁，可列印",
+    "buildFailed": "無法產生結果檔案。",
+    "shareFailed": "無法分享。請先儲存檔案再傳送。",
+    "building": "正在產生檔案…",
+    "savePdf": "儲存 PDF",
+    "saveImage": "儲存圖片",
+    "share": "分享",
+    "saved": "已儲存 {{name}}",
+    "savedDetail": "已儲存 {{name}} · {{detail}}",
+    "notes": {
+      "standalone": "尚未確定圖片上的北方，因此指南針單獨匯出，不會畫在圖片上。",
+      "rasterized": "無法保留原始 PDF 頁面的向量格式——頁面已重新繪製為圖片，頁面中的文字無法選取。"
+    },
+    "pageDetail": "第 {{page}} 頁",
+    "noSource": "沒有可匯出的來源。"
+  },
+  "pdf": {
+    "password": "PDF 有開啟密碼——請用「解除 PDF 密碼」工具移除密碼後再重新選擇。",
+    "unreadable": "無法讀取此 PDF 檔案。",
+    "noCanvas": "瀏覽器無法提供繪圖區域。",
+    "renderFailed": "無法繪製 PDF 頁面。"
+  },
+  "age": {
+    "title": "依屋主年齡查看",
+    "intro": "選填。開啟後會在指南針上顯示依年齡的吉凶星環，並依{{method}}查看房屋座向是吉是凶。",
+    "addPerson": "再比較一個人",
+    "method": "方法：{{name}} · 規則集 v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "國曆出生日期",
+      "LUNAR_YEAR": "農曆出生年"
+    },
+    "name": "稱呼",
+    "sex": "性別",
+    "sexes": {
+      "MALE": "男",
+      "FEMALE": "女"
+    },
+    "inputBy": "輸入方式",
+    "yearPlaceholder": "例如 1986",
+    "yearNote": "年份以農曆春節為分界。",
+    "yearNoteLunar": "年份以農曆春節為分界——在春節前出生者，取前一年。",
+    "facts": {
+      "age": "生肖年",
+      "napAm": "命（納音）",
+      "trigram": "命卦"
+    },
+    "beforeTet": "在春節前出生，因此以 {{year}} 年（{{canChi}}）計算。",
+    "facingGood": "{{target}}：{{segment}}（{{degree}}）——<strong>{{star}}</strong>，吉。{{meaning}}。",
+    "facingBad": "{{target}}：{{segment}}（{{degree}}）——<strong>{{star}}</strong>，凶。{{meaning}}。",
+    "houseSame": "依坐向來看：坐 {{segment}} 的房屋為{{trigram}}宅（{{houseGroup}}宅），與{{personGroup}}同組。",
+    "houseOther": "依坐向來看：坐 {{segment}} 的房屋為{{trigram}}宅（{{houseGroup}}宅），與{{personGroup}}不同組。",
+    "lockFirst": "鎖定{{target}}的讀數以查看吉凶。",
+    "goodDirections": "四個吉方：{{list}}",
+    "drivesDial": "指南針上的星環依{{name}}計算。",
+    "thisPerson": "此人",
+    "defaultName": "第 {{index}} 人",
+    "errors": {
+      "yearFormat": "請輸入四位數年份，例如 1986。",
+      "invalidDate": "出生日期無效。",
+      "outOfRange": "此日期不存在，或超出支援的農曆範圍（1800–2199）。"
+    }
+  },
+  "rules": {
+    "segments": "規則集必須包含完整 8 宮。",
+    "missingStars": "{{trigram}}卦缺少星。",
+    "duplicateStars": "{{trigram}}卦有兩顆星落在同一方向。",
+    "noGroup": "{{trigram}}卦不屬於任何組。",
+    "homes": "各卦的後天方位無效。",
+    "yearRange": "出生年必須在 {{min}}–{{max}} 之間。",
+    "noTrigram": "規則集中沒有第 {{number}} 卦。"
+  }
+}

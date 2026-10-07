@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, type ReactNode } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { formatFileSize } from '@/utils/format'
 import { megabytes, TOOL_LIMITS } from '../../config/limits'
@@ -33,10 +34,11 @@ const BADGE_ICON: Record<FlowTone, string> = {
 /** Bước 3: tệp đã xong — tải về, xem trước, chia sẻ, làm lại. */
 export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: FlowResultProps) {
   const toast = useToast()
+  const { t } = useTranslation('common')
   const heading = useRef<HTMLHeadingElement>(null)
   const { output } = result
   const tone = result.tone ?? 'success'
-  const textLabel = result.textLabel ?? 'Nội dung văn bản'
+  const textLabel = result.textLabel ?? t('result.textLabel')
   const previewable = canPreview(output.blob.type)
   const shareable = useMemo(() => canShare(output), [output])
 
@@ -50,21 +52,21 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
   const notes = useMemo<FlowNote[]>(() => {
     if (output.blob.size <= TOOL_LIMITS.outputWarnBytes) return result.notes
     const limit = megabytes(TOOL_LIMITS.outputWarnBytes)
-    return [...result.notes, { tone: 'warning', text: `Tệp nặng hơn ${limit}: không nạp lại được vào các công cụ ở đây, và nhiều hộp thư không nhận tệp cỡ này.` }]
-  }, [output, result.notes])
+    return [...result.notes, { tone: 'warning', text: t('result.tooLarge', { limit }) }]
+  }, [output, result.notes, t])
 
   const copyText = async () => {
     if (!result.text) return
     // `copyToClipboard` có đường lui cho ngữ cảnh không an toàn (mở bằng http://<IP LAN>), nơi `navigator.clipboard` là undefined.
-    if (await copyToClipboard(result.text)) toast.success('Đã sao chép vào bộ nhớ tạm.')
-    else toast.error('Trình duyệt không cho sao chép. Bôi đen đoạn chữ rồi nhấn Ctrl+C.')
+    if (await copyToClipboard(result.text)) toast.success(t('copy.done'))
+    else toast.error(t('copy.blocked'))
   }
 
   const share = async () => {
     try {
       await shareOutput(output)
     } catch {
-      toast.error('Không chia sẻ được tệp. Tải về rồi gửi thủ công.')
+      toast.error(t('result.shareFailed'))
     }
   }
 
@@ -98,7 +100,7 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
             <span className="erp-flow-result__text-label">{textLabel}</span>
             <Button variant="outline-secondary" size="sm" onClick={() => void copyText()}>
               <Icon name="copy" className="me-2" />
-              Sao chép
+              {t('copy.label')}
             </Button>
           </div>
           <textarea className="form-control erp-flow-result__text-body" readOnly rows={10} value={result.text} aria-label={textLabel} />
@@ -115,30 +117,30 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
           }}
         >
           <Icon name="download" className="me-2" />
-          Tải về
+          {t('result.download')}
         </Button>
         <div className="erp-flow-result__more">
           {previewable ? (
             <Button variant="outline-secondary" onClick={() => previewOutput(output)}>
               <Icon name="eye" className="me-2" />
-              Xem trước
+              {t('result.preview')}
             </Button>
           ) : null}
           {shareable ? (
             <Button variant="outline-secondary" onClick={() => void share()}>
               <Icon name="share" className="me-2" />
-              Chia sẻ
+              {t('result.share')}
             </Button>
           ) : null}
           {onEdit ? (
             <Button variant="outline-secondary" onClick={() => onEdit(output)}>
               <Icon name="pencil-square" className="me-2" />
-              Sửa tiếp
+              {t('result.edit')}
             </Button>
           ) : null}
           <Button variant="outline-secondary" onClick={onRestart}>
             <Icon name="arrow-counterclockwise" className="me-2" />
-            Làm lại
+            {t('result.restart')}
           </Button>
         </div>
       </div>

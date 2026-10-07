@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "複製提問",
+    "copied": "已複製提問。"
+  },
+  "panel": {
+    "hasSecrets": "變更內容含有電子郵件、權杖（token）或內部網址。請先刪除這些資料再送出。",
+    "sendFailed": "無法送出建議。",
+    "sent": "建議已送入來源審核佇列。請保留收據編號以查詢狀態。",
+    "offline": "無法連線到伺服器。草稿仍保留在此頁面。",
+    "close": "關閉來源檢查",
+    "open": "用你自己的 AI 檢查新來源",
+    "intro": "Chuyện Nhỏ 不會呼叫 AI，也不會儲存你的 AI 金鑰。複製到你選擇的 AI 服務之前，請先確認下方的內容。AI 的結果僅供參考。",
+    "includeResult": "將目前檢視的結果加入提問（可能含有個人資訊）",
+    "packageLabel": "將複製的內容",
+    "copyFailed": "無法複製；請手動選取並複製。",
+    "pasteTitle": "貼上 AI 結果以檢視變更",
+    "aiJson": "AI 回傳的 JSON",
+    "invalidJson": "JSON 結構不正確或超出限制。請檢查 changes、sources、uncertainties 欄位。",
+    "unverified": "這是尚未驗證的資料。請逐一檢查來源網址，並選擇要提出建議的部分。",
+    "columns": {
+      "select": "選取",
+      "field": "欄位",
+      "current": "目前",
+      "proposed": "AI 建議"
+    },
+    "selectField": "選取 {{field}}",
+    "sources": "AI 建議的來源（送出者需自行核對）：{{sources}}",
+    "noSources": "尚無",
+    "uncertainties": "不確定之處：{{items}}",
+    "consent": "我已檢視每一項變更、檢查過私人資料，並同意將所選內容送交管理員審核",
+    "submit": "送出更新建議",
+    "receipt": "收據編號："
+  },
+  "assistant": {
+    "suggestions": "本機建議",
+    "intro": "輸入你想做的事，找出合適的工具。如果想請 AI 說明，請先預覽內容，再自行複製到你選擇的服務。",
+    "noMatch": "還找不到明確符合的工具。",
+    "title": "工具選擇助理",
+    "question": "你想做什麼？",
+    "placeholder": "例如：我想合併兩個 PDF 檔案並加上頁碼",
+    "copyNote": "下方的提問只有在你按下按鈕時才會被複製。電子郵件、權杖和內部網址會自動遮蔽；交給 AI 前請自行再檢查一次。",
+    "promptLabel": "要傳給 AI 的內容",
+    "copyFailed": "無法複製；請選取文字後手動複製。",
+    "answerLabel": "在此貼上 AI 的回答以便閱讀（不會儲存或傳送給 Chuyện Nhỏ）",
+    "unverified": "未經驗證的內容"
+  }
+}

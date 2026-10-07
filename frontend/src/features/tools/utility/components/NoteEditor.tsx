@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { ConfirmAction, Icon } from '@/components/ui'
 import { formatDateTime } from '@/utils/format'
@@ -18,23 +19,24 @@ interface NoteEditorProps {
 
 /** Khung soạn một ghi chú. Mỗi phím gõ ghi thẳng xuống máy — không có nút Lưu. */
 export function NoteEditor({ note, saveFailed, onChange, onDelete, onBack }: NoteEditorProps) {
+  const { t } = useTranslation('utility')
   const ids = useId()
 
   return (
-    <section className="erp-tool-panel erp-notes__editor" aria-label="Soạn ghi chú">
+    <section className="erp-tool-panel erp-notes__editor" aria-label={t('notes.editorLabel')}>
       <Button variant="link" size="sm" className="erp-notes__back" onClick={onBack}>
         <Icon name="arrow-left" className="me-2" />
-        Danh sách ghi chú
+        {t('notes.backToList')}
       </Button>
 
       <div className="erp-flow-field">
         <label className="erp-flow-field__label" htmlFor={`${ids}-title`}>
-          Tiêu đề
+          {t('notes.titleLabel')}
         </label>
         <Form.Control
           id={`${ids}-title`}
           type="text"
-          placeholder="Ví dụ: Việc cần làm ở công trường thứ Hai"
+          placeholder={t('notes.titlePlaceholder')}
           maxLength={NOTE_LIMITS.title}
           value={note.title}
           onChange={(event) => onChange({ title: event.target.value })}
@@ -43,14 +45,14 @@ export function NoteEditor({ note, saveFailed, onChange, onDelete, onBack }: Not
 
       <div className="erp-flow-field">
         <label className="erp-flow-field__label" htmlFor={`${ids}-body`}>
-          Nội dung
+          {t('notes.body')}
         </label>
         <Form.Control
           id={`${ids}-body`}
           as="textarea"
           rows={8}
           className="erp-tool-textarea"
-          placeholder="Ghi nhanh điều cần nhớ…"
+          placeholder={t('notes.bodyPlaceholder')}
           maxLength={NOTE_LIMITS.body}
           value={note.body}
           onChange={(event) => onChange({ body: event.target.value })}
@@ -63,19 +65,19 @@ export function NoteEditor({ note, saveFailed, onChange, onDelete, onBack }: Not
         {saveFailed ? (
           <p className="erp-notes__saved erp-notes__saved--failed" role="alert">
             <Icon name="exclamation-triangle" />
-            Không ghi được vào máy này. Chép nội dung ra chỗ khác trước khi đóng trang.
+            {t('notes.saveFailed')}
           </p>
         ) : (
           <p className="erp-notes__saved" role="status">
             <Icon name="check2-circle" />
-            Đã lưu trên máy này · {formatDateTime(note.updatedAt)}
+            {t('notes.savedAt', { time: formatDateTime(note.updatedAt) })}
           </p>
         )}
-        <ConfirmAction title="Xoá ghi chú này?" description="Ghi chú chỉ nằm trên máy này, xoá rồi không lấy lại được." confirmLabel="Xoá" danger onConfirm={onDelete}>
+        <ConfirmAction title={t('notes.deleteTitle')} description={t('notes.localOnly')} confirmLabel={t('notes.deleteConfirm')} danger onConfirm={onDelete}>
           {({ onClick }) => (
             <Button variant="outline-danger" size="sm" onClick={onClick}>
               <Icon name="trash3" className="me-2" />
-              Xoá ghi chú
+              {t('notes.delete')}
             </Button>
           )}
         </ConfirmAction>

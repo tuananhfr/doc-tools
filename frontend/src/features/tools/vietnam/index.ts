@@ -1,4 +1,5 @@
 export { canChi, lunarToSolar, solarToLunar } from './utils/lunar-calendar'
+export { canChiName } from './utils/can-chi-name'
 export type { CalendarDate, LunarDate } from './utils/lunar-calendar'
 export { HOLIDAY_LAYERS, holidaysInRange, MAX_RANGE_DAYS as HOLIDAY_RANGE_MAX_DAYS } from './utils/vietnam-holidays'
 export type { Holiday, HolidayLayer } from './utils/vietnam-holidays'

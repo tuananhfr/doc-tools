@@ -1,0 +1,160 @@
+{
+  "holidayLayers": {
+    "major": "主要な祝日",
+    "lunar": "伝統行事",
+    "moon": "旧暦の1日・15日",
+    "memorial": "記念日"
+  },
+  "calendar": {
+    "layersAria": "カレンダーに祝日を表示",
+    "monthAria": "{{year}}年{{month}}月のカレンダー",
+    "monthTitle": "{{month}}月<year> {{year}}年</year>",
+    "prevMonth": "前の月",
+    "nextMonth": "次の月",
+    "today": "今日",
+    "weekdays": {
+      "mon": "月",
+      "tue": "火",
+      "wed": "水",
+      "thu": "木",
+      "fri": "金",
+      "sat": "土",
+      "sun": "日"
+    },
+    "lunarFirstLeap": "閏{{month}}/{{day}}",
+    "dayLunar": "旧暦 {{month}}/{{day}}",
+    "dayLunarLeap": "旧暦 閏{{month}}/{{day}}",
+    "dayEvents": "予定 {{count}} 件"
+  },
+  "day": {
+    "outOfRange": "日付がアルゴリズムの対応範囲（1800〜2199年）外です。",
+    "solar": "新暦",
+    "lunarMonthYear": "{{year}}年 {{month}}月",
+    "lunarMonthYearLeap": "{{year}}年 閏{{month}}月",
+    "lunarDate": "旧暦 {{year}}/{{month}}/{{day}}",
+    "lunarDateLeap": "旧暦 {{year}}/閏{{month}}/{{day}}",
+    "facts": {
+      "day": "日",
+      "month": "月",
+      "year": "年"
+    },
+    "goodDay": "黄道日（吉日）",
+    "badDay": "黒道日（凶日）",
+    "byLunar": "旧暦で",
+    "bySolar": "新暦で",
+    "goodHours": "黄道の時間（吉時）",
+    "nextTet": "{{year}}年のテト（旧正月）: <strong>{{date}}</strong> · あと {{count}} 日",
+    "note": "ベトナムのタイムゾーン UTC+7 向けの天文アルゴリズムで、日常の参考に適しています。公式な用途では、権限のある機関が公表する暦と照合してください。黄道日・黒道日は民間の暦法による計算で、参考程度にお使いください。<link>アルゴリズムの出典: Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "日付へ移動",
+    "convertTitle": "旧暦 → 新暦に変換",
+    "fields": {
+      "day": "旧暦の日",
+      "month": "旧暦の月",
+      "year": "旧暦の年"
+    },
+    "leapMonth": "閏月",
+    "solarResult": "新暦 <strong>{{date}}</strong>",
+    "showOnCalendar": "カレンダーで見る",
+    "noSuchDay": "この日付は存在しません。",
+    "noSuchDayLeap": "この日付は存在しません（その年にこの閏月はありません）。",
+    "anniversaryTitle": "旧暦の命日",
+    "anniversaryFields": {
+      "day": "日",
+      "month": "月"
+    },
+    "anniversaryYear": "旧暦 {{year}}年: <strong>{{date}}</strong>",
+    "noSuchDayShort": "この日付はありません"
+  },
+  "address": {
+    "status": {
+      "full": "すべて変換",
+      "province": "省のみ変換",
+      "ambiguous": "手動で選択: {{options}}",
+      "none": "省を認識できません"
+    },
+    "orSeparator": " または ",
+    "resultLabel": "住所の照合",
+    "resultValue": "{{full}}/{{total}} 件をすべて変換",
+    "resultNote": "省は略称（TP.HCM、HN…）も含め、どの部分にあっても認識されます。県（郡）レベルは削除されます。社・坊はデータ上で新しい社が1つに特定できる場合のみ変換し、旧社が分割された場合は候補を一覧表示するので選んでください。",
+    "columns": {
+      "old": "旧住所",
+      "proposed": "提案",
+      "status": "状態"
+    },
+    "downloadCsv": "CSV をダウンロード",
+    "verifiedNote": "署名済みの照合データ（{{date}} から有効）。出典: {{source}}。最終的な住所は書類の提出先に確認してください。",
+    "manualNote": "照合表はあなたが入力したもので、システムによる確認はされていません。最終的な住所は書類の提出先に確認してください。",
+    "viewSource": "データの出典を見る",
+    "panelTitle": "旧住所と照合表",
+    "addressesLabel": "1行に1住所、各行政単位はカンマで区切ります",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "署名済みの照合表を使用中",
+    "applyVerified": "署名済みの照合表を適用",
+    "rulesLabel": "住所照合表",
+    "rulesNone": "システム上に、有効な署名済み住所照合データはまだありません。",
+    "manualLabel": "または手動で入力（1行ずつ「旧省|旧県|旧社|新省|新社」）",
+    "manualInvalid": "照合表の形式が正しくないか（各行5項目、各項目150文字まで）、同じ旧省が異なる2つの新省に割り当てられています。"
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "XMLファイルが 5 MB を超えています。",
+      "unreadable": "XMLファイルを読み込めません。",
+      "doctype": "XMLに未対応のエンティティ宣言または DOCTYPE が含まれています。",
+      "invalid": "XMLファイルが正しくありません。",
+      "noCommon": "請求書の共通情報ブロックが見つかりません。"
+    },
+    "resultLabel": "請求書",
+    "noNumber": "番号なし",
+    "series": "記号: {{series}} · 日付: {{date}}",
+    "seller": "売り手: {{name}}（{{taxCode}}）",
+    "buyer": "買い手: {{name}}（{{taxCode}}）",
+    "noTaxCode": "税番号なし",
+    "amounts": "税抜: {{subtotal}} đ · 税額: {{vat}} đ",
+    "total": "支払合計: {{total}} đ",
+    "signature": "XML署名タグ: {{signature}} · 税務署コード: {{authority}}",
+    "present": "あり",
+    "notFound": "見つかりません",
+    "downloadCsv": "明細を CSV でダウンロード",
+    "empty": "XMLファイルを選ぶと請求書のデータを表示します。",
+    "disclaimer": "このツールはXMLの内容を読むだけで、電子署名や請求書の法的な有効性は検証しません。使用前に公式ポータルで照会してください。",
+    "panelTitle": "請求書ファイル",
+    "pickFile": "XMLファイルを選択",
+    "columns": {
+      "ordinal": "No.",
+      "name": "商品・サービス",
+      "quantity": "数量",
+      "amount": "金額"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "変換後のテキスト",
+    "copy": "テキストをコピー",
+    "note": "元のテキストの文字コードを正しく選んでください。表示されているフォント名からは文字コードを自動判別できません。",
+    "panelTitle": "元のテキスト",
+    "conversionLabel": "変換の種類",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 大文字 → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Unicode の声調記号を結合（NFC）",
+      "strip": "ベトナム語の声調記号を除去",
+      "lower": "小文字",
+      "upper": "大文字"
+    },
+    "contentLabel": "内容",
+    "placeholder": "変換するテキストを貼り付け…"
+  },
+  "numberWords": {
+    "resultLabel": "文字表記",
+    "invalid": "36桁までの整数のみ入力してください。",
+    "note": "証憑や契約書向けに数字をベトナム語で読み上げ表記します。提出先の慣例を確認してください。",
+    "copy": "結果をコピー",
+    "panelTitle": "読み上げる数字",
+    "inputLabel": "整数",
+    "placeholder": "例: 1.234.567",
+    "zeroWordLabel": "十の位のゼロの読み方",
+    "fourWordLabel": "十の位の後の4の読み方"
+  }
+}

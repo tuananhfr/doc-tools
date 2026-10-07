@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from 'react'
 import { Modal, Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import type { Markup, Rect } from '../types/markup.types'
@@ -114,6 +115,7 @@ export function PagePreviewModal({
   onNext,
   onClose,
 }: PagePreviewModalProps) {
+  const { t } = useTranslation('pdf')
   const stage = useRef<HTMLDivElement | null>(null)
   const anchor = useRef<{ x: number; y: number } | null>(null)
   const pan = useRef<{ x: number; y: number; left: number; top: number } | null>(null)
@@ -336,45 +338,45 @@ export function PagePreviewModal({
       <div className="erp-doc-preview__bar">
         <h2 id="doc-preview-title" className="erp-doc-preview__title">
           <span className="erp-doc-preview__no">
-            Trang {position}/{total}
+            {t('stage.pageOf', { page: position, total })}
           </span>
           <span className="erp-doc-preview__origin" title={source.name}>
             {origin}
-            {page.rotation ? ` · xoay ${page.rotation}°` : ''}
+            {page.rotation ? t('preview.rotated', { rotation: page.rotation }) : ''}
           </span>
         </h2>
 
-        <div className="erp-doc-preview__group erp-doc-preview__group--nav" role="group" aria-label="Chuyển trang">
-          <PreviewButton icon="chevron-left" label="Trang trước" hint="Trang trước (←)" disabled={!onPrev} onClick={() => onPrev?.()} />
-          <PreviewButton icon="chevron-right" label="Trang sau" hint="Trang sau (→)" disabled={!onNext} onClick={() => onNext?.()} />
+        <div className="erp-doc-preview__group erp-doc-preview__group--nav" role="group" aria-label={t('stage.switchPage')}>
+          <PreviewButton icon="chevron-left" label={t('stage.prevPage')} hint={t('preview.prevHint')} disabled={!onPrev} onClick={() => onPrev?.()} />
+          <PreviewButton icon="chevron-right" label={t('stage.nextPage')} hint={t('preview.nextHint')} disabled={!onNext} onClick={() => onNext?.()} />
         </div>
 
-        <div className="erp-doc-preview__group" role="group" aria-label="Thu phóng">
-          <PreviewButton icon="zoom-out" label="Thu nhỏ" hint="Thu nhỏ (−)" disabled={zoom === null} onClick={() => zoomBy(-1)} />
-          <output className="erp-doc-preview__percent" aria-live="polite" aria-label={`Mức phóng ${percent}`}>
+        <div className="erp-doc-preview__group" role="group" aria-label={t('preview.zoom')}>
+          <PreviewButton icon="zoom-out" label={t('preview.zoomOut')} hint={t('preview.zoomOutHint')} disabled={zoom === null} onClick={() => zoomBy(-1)} />
+          <output className="erp-doc-preview__percent" aria-live="polite" aria-label={t('preview.zoomLevel', { percent })}>
             {percent}
           </output>
-          <PreviewButton icon="zoom-in" label="Phóng to" hint="Phóng to (+)" disabled={zoom === null} onClick={() => zoomBy(1)} />
-          <PreviewButton icon="arrows-angle-contract" label="Vừa trang" hint="Vừa trang (0)" pressed={mode === 'page'} onClick={() => changeMode('page')} />
-          <PreviewButton icon="arrows" label="Vừa ngang" pressed={mode === 'width'} onClick={() => changeMode('width')} />
-          <PreviewButton icon="aspect-ratio" label="100%" hint="Cỡ thật (100%)" pressed={mode === 1} onClick={() => changeMode(1)} />
+          <PreviewButton icon="zoom-in" label={t('preview.zoomIn')} hint={t('preview.zoomInHint')} disabled={zoom === null} onClick={() => zoomBy(1)} />
+          <PreviewButton icon="arrows-angle-contract" label={t('preview.fitPage')} hint={t('preview.fitPageHint')} pressed={mode === 'page'} onClick={() => changeMode('page')} />
+          <PreviewButton icon="arrows" label={t('preview.fitWidth')} pressed={mode === 'width'} onClick={() => changeMode('width')} />
+          <PreviewButton icon="aspect-ratio" label="100%" hint={t('preview.actualSizeHint')} pressed={mode === 1} onClick={() => changeMode(1)} />
         </div>
 
         {hitPosition ? (
-          <div className="erp-doc-preview__group" role="group" aria-label="Kết quả tìm">
-            <PreviewButton icon="chevron-up" label="Kết quả trước" hint="Kết quả trước (Shift+F3)" iconOnly onClick={() => onHitStep(-1)} />
-            <output className="erp-doc-preview__percent" aria-label={`Kết quả ${hitPosition.index + 1} trên ${hitPosition.total}`}>
+          <div className="erp-doc-preview__group" role="group" aria-label={t('preview.hits')}>
+            <PreviewButton icon="chevron-up" label={t('preview.prevHit')} hint={t('preview.prevHitHint')} iconOnly onClick={() => onHitStep(-1)} />
+            <output className="erp-doc-preview__percent" aria-label={t('preview.hitPosition', { index: hitPosition.index + 1, total: hitPosition.total })}>
               {hitPosition.index >= 0 ? hitPosition.index + 1 : '–'}/{hitPosition.total}
             </output>
-            <PreviewButton icon="chevron-down" label="Kết quả sau" hint="Kết quả sau (F3)" iconOnly onClick={() => onHitStep(1)} />
+            <PreviewButton icon="chevron-down" label={t('preview.nextHit')} hint={t('preview.nextHitHint')} iconOnly onClick={() => onHitStep(1)} />
           </div>
         ) : null}
 
-        <div className="erp-doc-preview__group" role="group" aria-label="Sửa">
+        <div className="erp-doc-preview__group" role="group" aria-label={t('preview.edit')}>
           <PreviewButton
             icon="pencil-square"
-            label="Đánh dấu"
-            hint="Vẽ, tô sáng, ghi chú, đóng dấu lên trang"
+            label={t('preview.markup')}
+            hint={t('preview.markupHint')}
             pressed={marking}
             disabled={status === 'error'}
             onClick={() => {
@@ -385,8 +387,8 @@ export function PagePreviewModal({
           {source.kind !== 'collage' ? (
             <PreviewButton
               icon="crop"
-              label="Cắt trang"
-              hint="Chọn phần trang giữ lại, bỏ lề thừa"
+              label={t('crop.toolbar')}
+              hint={t('preview.cropHint')}
               pressed={cropping}
               disabled={status !== 'ready'}
               onClick={cropping ? cancelCrop : startCrop}
@@ -394,9 +396,9 @@ export function PagePreviewModal({
           ) : null}
         </div>
 
-        <button type="button" className="erp-doc-tool erp-doc-preview__close" title="Đóng (Esc)" onClick={onClose}>
+        <button type="button" className="erp-doc-tool erp-doc-preview__close" title={t('preview.closeHint')} onClick={onClose}>
           <Icon name="x-lg" />
-          <span className="erp-doc-tool__label">Đóng</span>
+          <span className="erp-doc-tool__label">{t('preview.close')}</span>
         </button>
       </div>
 
@@ -431,7 +433,7 @@ export function PagePreviewModal({
         {status === 'error' ? (
           <p className="erp-doc-preview__state">
             <Icon name="exclamation-triangle" className="me-2" />
-            Không vẽ được trang này.
+            {t('stage.drawFailed')}
           </p>
         ) : pageSize && zoom !== null ? (
           <div className="erp-doc-preview__sheet" style={{ width, height }}>
@@ -467,14 +469,14 @@ export function PagePreviewModal({
             {status === 'loading' ? (
               <span className="erp-doc-preview__state">
                 <Spinner size="sm" className="me-2" />
-                Đang vẽ trang…
+                {t('stage.drawing')}
               </span>
             ) : null}
           </div>
         ) : (
           <span className="erp-doc-preview__state">
             <Spinner size="sm" className="me-2" />
-            Đang mở trang…
+            {t('preview.opening')}
           </span>
         )}
       </div>

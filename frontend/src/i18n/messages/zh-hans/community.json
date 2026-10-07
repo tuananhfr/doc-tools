@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "需要补充来源",
+      "NEEDS_REVIEW": "等待审核",
+      "VERIFIED": "已核实",
+      "REJECTED": "未被采纳",
+      "APPROVED": "已批准",
+      "PUBLISHED": "已发布",
+      "SUPERSEDED": "已有新版本",
+      "REVOKED": "已撤回"
+    },
+    "sendFailed": "无法提交建议。",
+    "received": "已收到建议：{{status}}。请保留回执编号以便跟进。",
+    "offlineDraft": "无法连接服务器。内容仍保留在本页。",
+    "invalidReceipt": "回执编号无效。",
+    "statusLine": "状态：{{status}}",
+    "receiptNotFound": "未找到该回执编号。",
+    "lookupFailed": "暂时无法查询状态。",
+    "addSourceFailed": "无法补充来源。",
+    "sourceAdded": "已补充来源。建议正在等待审核。",
+    "offline": "无法连接服务器。",
+    "ideaTitle": "工具建议",
+    "regulationTitle": "规定数据反馈",
+    "ideaIntro": "描述你遇到的实际问题和希望有的工具。想法需经过审核才会发布。",
+    "regulationIntro": "说明需要修改的内容并附上来源链接。这只是供负责人核查的反馈，不会直接修改工具数据。",
+    "ideaName": "想法名称",
+    "regulationTopic": "文件或主题",
+    "ideaDetail": "问题和建议的解决方式",
+    "regulationDetail": "需要核对 / 调整的内容",
+    "sourceUrl": "HTTPS 来源网址（如有）",
+    "sourceType": "你建议的来源类型",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "政府机关网站",
+      "OFFICIAL_DOCUMENT": "官方文件",
+      "OFFICIAL_API": "官方 API",
+      "OTHER": "其他来源"
+    },
+    "consent": "我已删除个人信息和密钥，并同意提交此内容供运营人员审核",
+    "sending": "正在提交…",
+    "submit": "提交建议",
+    "receipt": "回执编号：",
+    "lookupTitle": "查询状态",
+    "receiptLabel": "回执编号",
+    "lookup": "查询",
+    "needsSource": "请在上方来源栏输入 HTTPS 网址，然后用此回执编号补充。",
+    "addSource": "补充来源"
+  },
+  "ideas": {
+    "published": "已发布的想法",
+    "empty": "还没有经审核并发布的想法。"
+  }
+}

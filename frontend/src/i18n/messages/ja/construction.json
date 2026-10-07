@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "基礎",
+      "basement": "地下階",
+      "ground": "1階",
+      "upper": "上階（各階）",
+      "floor": "上階 {{floor}}",
+      "rooftopRoom": "塔屋",
+      "terrace": "屋根なし屋上",
+      "roof": "屋根",
+      "yard": "前庭・裏庭"
+    },
+    "result": "参考概算",
+    "money": "{{amount}} đ",
+    "enterPrice": "単価を入力",
+    "convertedArea": "換算面積: {{area}} m²",
+    "costs": "躯体工事: {{base}} đ · 仕上げまたは一式: {{finishing}} đ · 杭: {{pile}} đ",
+    "columns": {
+      "item": "項目",
+      "area": "面積",
+      "factor": "係数",
+      "converted": "換算"
+    },
+    "checkInput": "入力した数値を確認してください。",
+    "disclaimer": "係数は保存資料にある参考上の慣行で、国の基準ではありません。設計図や施工業者の見積もりと照らし合わせてください。設計費、許可費、置き家具、地盤による追加費用は含まれていません。",
+    "title": "面積と単価",
+    "fields": {
+      "floorArea": "1階の床面積 (m²)",
+      "upperFloors": "上階の数（1階を除く）",
+      "rooftopRoomArea": "塔屋の面積 (m²)",
+      "terraceArea": "屋根なし屋上 (m²)",
+      "yardArea": "前庭・裏庭 (m²)",
+      "basePrice": "躯体工事の単価 (đ/m²)",
+      "finishingPrice": "仕上げまたは一式の単価 (đ/m²)",
+      "pileCost": "杭の費用 (đ)"
+    },
+    "turnkey": "2つ目の単価は躯体工事込みの一式価格",
+    "editFactors": "施工業者の見積もりに合わせて係数を編集",
+    "factorLabel": "{{label}} (%)"
+  }
+}

@@ -1,5 +1,6 @@
 import type { FlowNote, FlowTask } from '@/features/tools/hub'
 import { stem } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { formatFileSize } from '@/utils/format'
 import type { ImageFormat, ImageItem } from '../types/image.types'
 import { renameAll, resizeTo, type RenameRule, type ResizeRule } from '../utils/batch'
@@ -30,7 +31,7 @@ export function batchImagesTask(items: ImageItem[], { resize, format, quality, r
       return targets[index] === item.format && size.width === item.width && size.height === item.height
     })
 
-    const results = await eachImage(items, step, 'Đang xử lý', async (item) => {
+    const results = await eachImage(items, step, 'process', async (item) => {
       const index = items.indexOf(item)
       if (untouched[index]) return { blob: item.file, exif: await originalExif(item) }
       return reencode(item, targets[index], quality, (size) => resizeTo(size, resize))
@@ -50,15 +51,15 @@ export function batchImagesTask(items: ImageItem[], { resize, format, quality, r
 
     const notes: FlowNote[] = [{ tone: 'info', text: `${formatFileSize(before)} → ${formatFileSize(after)}.` }]
     if (resize.mode !== 'keep') {
-      notes.push({ tone: 'info', text: `${resized}/${items.length} ảnh được thu nhỏ.${resized < items.length ? ' Ảnh đã nhỏ hơn cỡ đích thì giữ nguyên cỡ — công cụ không phóng to.' : ''}` })
+      notes.push({ tone: 'info', text: translate(resized < items.length ? 'image:batch.resizedPartial' : 'image:batch.resizedAll', { count: resized, total: items.length }) })
     }
-    if (kept > 0) notes.push({ tone: 'info', text: `${kept} ảnh không cần đổi cỡ hay định dạng — giữ nguyên từng byte, chỉ đổi tên.` })
-    if (format === 'jpeg' && items.some((item) => item.format !== 'jpeg')) notes.push({ tone: 'info', text: 'JPG không có nền trong suốt: vùng trong suốt (nếu có) được tô trắng.' })
-    if (format === 'keep' && items.some((item, index) => targets[index] !== item.format)) notes.push({ tone: 'info', text: 'Trình duyệt này không ghi được WebP: ảnh WebP được lưu thành PNG.' })
+    if (kept > 0) notes.push({ tone: 'info', text: translate('image:batch.keptBytes', { count: kept }) })
+    if (format === 'jpeg' && items.some((item) => item.format !== 'jpeg')) notes.push({ tone: 'info', text: translate('image:tasks.jpegFlatten') })
+    if (format === 'keep' && items.some((item, index) => targets[index] !== item.format)) notes.push({ tone: 'info', text: translate('image:tasks.webpAsPng') })
     notes.push(...exifNotes(results.map((result) => result.exif)))
 
     return {
-      title: items.length === 1 ? 'Đã xử lý ảnh' : `Đã xử lý ${items.length} ảnh`,
+      title: items.length === 1 ? translate('image:batch.titleOne') : translate('image:batch.titleMany', { count: items.length }),
       output: await bundle(files, `${stem(names[0])} - ${items.length} ảnh`),
       notes,
     }

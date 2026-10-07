@@ -1,3 +1,5 @@
+import { dateTimeFormat } from '@/i18n/intl'
+import { translate } from '@/i18n/runtime'
 import type {
   Decorations,
   HeaderFooter,
@@ -31,24 +33,24 @@ export function rgbCss([r, g, b]: Rgb): string {
 }
 
 export const STAMP_TOKENS = [
-  { token: '{n}', label: 'Số trang' },
-  { token: '{N}', label: 'Tổng số trang' },
-  { token: '{date}', label: 'Ngày' },
-  { token: '{file}', label: 'Tên tệp' },
+  { token: '{n}', id: 'page' },
+  { token: '{N}', id: 'total' },
+  { token: '{date}', id: 'date' },
+  { token: '{file}', id: 'file' },
 ] as const
 
 const ALL_PAGES: PageScope = { mode: 'all', range: '' }
 
-export const DEFAULT_HEADER_FOOTER: HeaderFooter = {
-  slots: { topLeft: '', topCenter: '', topRight: '', bottomLeft: '', bottomCenter: 'Trang {n}/{N}', bottomRight: '' },
+export const HEADER_FOOTER_BASE: HeaderFooter = {
+  slots: { topLeft: '', topCenter: '', topRight: '', bottomLeft: '', bottomCenter: '', bottomRight: '' },
   fontSize: 10,
   margin: 28,
   startNumber: 1,
   scope: ALL_PAGES,
 }
 
-export const DEFAULT_WATERMARK: Watermark = {
-  text: 'BẢN SAO',
+export const WATERMARK_BASE: Watermark = {
+  text: '',
   fontSize: 60,
   color: 'gray',
   opacity: 0.2,
@@ -56,12 +58,21 @@ export const DEFAULT_WATERMARK: Watermark = {
   scope: ALL_PAGES,
 }
 
+// Chữ mặc định in vào PDF theo ngôn ngữ trang, nên dựng lúc dùng chứ không phải hằng số lúc nạp module.
+export function defaultHeaderFooter(): HeaderFooter {
+  return { ...HEADER_FOOTER_BASE, slots: { ...HEADER_FOOTER_BASE.slots, bottomCenter: translate('pdf:file.pageFooter') } }
+}
+
+export function defaultWatermark(): Watermark {
+  return { ...WATERMARK_BASE, text: translate('pdf:file.watermark') }
+}
+
 export const NO_DECORATIONS: Decorations = { headerFooter: null, watermark: null }
 
+const STAMP_DATE: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' }
+
 export function formatStampDate(date: Date): string {
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  return `${day}/${month}/${date.getFullYear()}`
+  return dateTimeFormat(STAMP_DATE).format(date)
 }
 
 export function fillTokens(template: string, context: StampContext): string {
@@ -104,7 +115,7 @@ export type ScopeResult = { ok: true; ids: Set<string> } | { ok: false; message:
 export function resolveScope(scope: PageScope, pageIds: string[]): ScopeResult {
   if (scope.mode === 'all') return { ok: true, ids: new Set(pageIds) }
   if (scope.mode === 'skipFirst') return { ok: true, ids: new Set(pageIds.slice(1)) }
-  if (scope.range.trim() === '') return { ok: false, message: 'Nhập khoảng trang.' }
+  if (scope.range.trim() === '') return { ok: false, message: translate('pdf:scope.enterRange') }
 
   const parsed = parsePageRanges(scope.range, pageIds.length)
   if (!parsed.ok) return parsed

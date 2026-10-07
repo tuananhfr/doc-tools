@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui'
 import { PRO_FEATURES } from '../config/pro-offer'
-import { HUB_TIPS } from '../config/tool-catalog'
+import { useTranslation } from 'react-i18next'
+import { HUB_TIP_KEYS } from '../config/tool-catalog'
 import { useToolsBranch } from '../hooks/tools-branch'
 import type { ToolDefinition } from '../types/tool.types'
 import { toolPath } from '../utils/tool-lookup'
@@ -18,23 +19,25 @@ interface HubAsideProps {
 const DAY_MS = 24 * 60 * 60 * 1000
 
 /** Mỗi ngày một mẹo: đổi theo từng lần mở trang thì người dùng không kịp đọc lại. */
-function tipOfToday(): string {
-  return HUB_TIPS[Math.floor(Date.now() / DAY_MS) % HUB_TIPS.length]
+function tipOfToday(): (typeof HUB_TIP_KEYS)[number] {
+  return HUB_TIP_KEYS[Math.floor(Date.now() / DAY_MS) % HUB_TIP_KEYS.length]
 }
 
 /** Cột phải của trang chọn công cụ. */
 export function HubAside({ recent, guest }: HubAsideProps) {
   const [tip] = useState(tipOfToday)
+  const { t } = useTranslation('catalog')
+  const { t: tc } = useTranslation('common')
   const { base } = useToolsBranch()
 
   return (
-    <aside className="erp-tools-aside" aria-label="Thông tin thêm">
+    <aside className="erp-tools-aside" aria-label={tc('aside.label')}>
       {/* Thứ tự + `--wide` phục vụ lúc cột này rơi xuống dưới lưới thẻ: mỗi hàng phải
           KÍN bề ngang (gần đây · Pro · hai khối chữ chia đôi), không để một khối lẻ. */}
       <section className="erp-tools-panel erp-tools-panel--wide">
         <h2 className="erp-tools-panel__title">
           <Icon name="clock-history" />
-          Dùng gần đây
+          {tc('aside.recent')}
         </h2>
         {recent.length > 0 ? (
           <ul className="erp-tools-recent">
@@ -48,7 +51,7 @@ export function HubAside({ recent, guest }: HubAsideProps) {
             ))}
           </ul>
         ) : (
-          <p className="erp-tools-panel__text">Chưa dùng công cụ nào trên máy này. Công cụ bạn mở sẽ hiện ở đây.</p>
+          <p className="erp-tools-panel__text">{tc('aside.recentEmpty')}</p>
         )}
       </section>
 
@@ -59,13 +62,13 @@ export function HubAside({ recent, guest }: HubAsideProps) {
               <Icon name="stars" />
               ERPCons Pro
             </h2>
-            <p className="erp-tools-panel__text">Khi việc nhỏ thành hồ sơ dự án:</p>
+            <p className="erp-tools-panel__text">{tc('aside.proIntro')}</p>
           </div>
           <ul className="erp-tools-pro__list">
             {PRO_FEATURES.map((feature) => (
               <li key={feature}>
                 <Icon name="check2" />
-                {feature}
+                {tc(`pro.features.${feature}`)}
               </li>
             ))}
           </ul>
@@ -78,19 +81,19 @@ export function HubAside({ recent, guest }: HubAsideProps) {
       <section className="erp-tools-panel">
         <h2 className="erp-tools-panel__title">
           <Icon name="shield-check" />
-          Về Chuyện Nhỏ
+          {tc('aside.about')}
         </h2>
         <p className="erp-tools-panel__text">
-          Bộ công cụ miễn phí từ ERPCons, giúp bạn xử lý nhanh những việc nhỏ trong công việc hàng ngày. Tệp được xử lý ngay trên máy bạn, không tải lên máy chủ.
+          {tc('aside.aboutText')}
         </p>
       </section>
 
       <section className="erp-tools-panel">
         <h2 className="erp-tools-panel__title">
           <Icon name="lightbulb" />
-          Mẹo nhanh
+          {tc('aside.tips')}
         </h2>
-        <p className="erp-tools-panel__text">{tip}</p>
+        <p className="erp-tools-panel__text">{t(`tips.${tip}`)}</p>
       </section>
     </aside>
   )

@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "Không vẽ được bản xem trước của ảnh này.",
+    "opening": "Đang mở ảnh…",
+    "saveImage": "Lưu ảnh",
+    "noImageSelected": "chưa chọn ảnh.",
+    "keepSize": "Giữ kích thước",
+    "maxEdge": "Cạnh dài tối đa",
+    "result": "Kết quả",
+    "processing": "Đang xử lý…",
+    "processFailed": "Không xử lý được ảnh.",
+    "imageCount": "{{count}} ảnh"
+  },
+  "shell": {
+    "hint": "JPG, PNG, WebP · tối đa 100 MB mỗi ảnh",
+    "noImages": "Chưa chọn ảnh nào."
+  },
+  "files": {
+    "batchLimit": "Vượt trần {{limit}} ảnh cho một lượt.",
+    "singleOnly": "Công cụ này làm trên một ảnh mỗi lượt."
+  },
+  "intake": {
+    "tooLarge": "Ảnh lớn hơn {{size}}.",
+    "heic": "Ảnh HEIC (iPhone) chưa hỗ trợ — đổi sang JPG rồi thử lại.",
+    "unsupported": "Công cụ này chỉ nhận ảnh JPG, PNG, WebP.",
+    "pixelLimit": "Ảnh {{width}} × {{height}} ({{millions}} triệu điểm ảnh) vượt trần {{limit}} triệu điểm ảnh.",
+    "corrupt": "Không đọc được ảnh — tệp hỏng hoặc trình duyệt không mở được."
+  },
+  "codec": {
+    "corrupt": "không đọc được ảnh — tệp hỏng hoặc trình duyệt không mở được định dạng này.",
+    "tooLarge": "ảnh {{size}} quá lớn với trình duyệt này.",
+    "exportUnsupported": "trình duyệt này không xuất được {{format}}.",
+    "tooLargeRetry": "ảnh {{size}} quá lớn với trình duyệt này — thu nhỏ cạnh dài rồi thử lại."
+  },
+  "exif": {
+    "keptOne": "Ảnh ra vẫn giữ thông tin của máy ảnh (ngày chụp, vị trí GPS).",
+    "keptSome": "{{count}}/{{total}} ảnh ra vẫn giữ thông tin của máy ảnh (ngày chụp, vị trí GPS).",
+    "lostOne": "Ảnh ra không còn thông tin của máy ảnh (ngày chụp, vị trí GPS) — chỉ ảnh ra JPG hoặc PNG mang được thông tin này.",
+    "lostSome": "{{count}}/{{total}} ảnh ra không còn thông tin của máy ảnh (ngày chụp, vị trí GPS) — chỉ ảnh ra JPG hoặc PNG mang được thông tin này."
+  },
+  "tasks": {
+    "progress": {
+      "process": "Đang xử lý ảnh {{current}}/{{total}}",
+      "convert": "Đang chuyển ảnh {{current}}/{{total}}",
+      "compress": "Đang nén ảnh {{current}}/{{total}}"
+    },
+    "imageFailed": "không xử lý được ảnh.",
+    "jpegFlatten": "JPG không có nền trong suốt: vùng trong suốt (nếu có) được tô trắng.",
+    "webpAsPng": "Trình duyệt này không ghi được WebP: ảnh WebP được lưu thành PNG.",
+    "rendering": "Đang dựng ảnh",
+    "formatFallback": "Trình duyệt này không ghi được {{from}}: ảnh được lưu thành {{to}}."
+  },
+  "convert": {
+    "pickerTitle": "Chọn ảnh cần đổi định dạng",
+    "runOne": "Chuyển sang {{format}}",
+    "runMany": "Chuyển {{count}} ảnh sang {{format}}",
+    "blockedOne": "Ảnh đã chọn là {{format}} sẵn.",
+    "blockedMany": "Các ảnh đã chọn là {{format}} sẵn.",
+    "targetLegend": "Chuyển sang",
+    "qualityLegend": "Chất lượng",
+    "target": {
+      "jpeg": "Nhẹ, mở được ở mọi nơi. Không giữ nền trong suốt.",
+      "png": "Giữ nguyên từng điểm ảnh và nền trong suốt; tệp nặng hơn.",
+      "webp": "Nhẹ hơn JPG ở cùng chất lượng, giữ được nền trong suốt."
+    },
+    "quality": {
+      "high": {
+        "label": "Cao",
+        "hint": "Gần như không khác ảnh gốc."
+      },
+      "medium": {
+        "label": "Vừa",
+        "hint": "Cân giữa độ nét và dung lượng."
+      },
+      "small": {
+        "label": "Nhỏ gọn",
+        "hint": "Nhẹ nhất; phóng to sẽ thấy vỡ nét."
+      }
+    },
+    "noWebp": "Trình duyệt này không xuất được WebP.",
+    "keptNote": "{{count}} ảnh đã là {{format}} sẵn — giữ nguyên, không mã hoá lại.",
+    "titleOne": "Đã chuyển sang {{format}}",
+    "titleMany": "Đã chuyển {{count}} ảnh sang {{format}}"
+  },
+  "compress": {
+    "pickerTitle": "Chọn ảnh cần nén",
+    "runOne": "Nén ảnh",
+    "runMany": "Nén {{count}} ảnh",
+    "levelLegend": "Mức nén",
+    "level": {
+      "light": {
+        "label": "Nhẹ",
+        "hint": "Gần như không thấy khác ảnh gốc."
+      },
+      "medium": {
+        "label": "Vừa",
+        "hint": "Hợp gửi email, đăng lên web."
+      },
+      "strong": {
+        "label": "Mạnh",
+        "hint": "Nhẹ nhất; phóng to sẽ thấy vỡ nét."
+      }
+    },
+    "hint": "Mức nén áp cho JPG và WebP. PNG không mất dữ liệu nên chỉ nhẹ đi khi thu nhỏ kích thước.",
+    "smaller": "{{sizes}} (nhẹ hơn {{percent}}%).",
+    "unchangedOne": "Ảnh ra không nhẹ hơn ảnh gốc — giữ nguyên tệp gốc. {{hint}}",
+    "unchangedSome": "{{count}}/{{total}} ảnh không nhẹ hơn được — giữ nguyên tệp gốc. {{hint}}",
+    "shrunk": "{{count}} ảnh được thu nhỏ về cạnh dài {{edge}} px.",
+    "hintPng": "PNG không mất dữ liệu nên khó nhỏ hơn; muốn nhẹ hẳn thì dùng \"Chuyển đổi ảnh\" sang JPG hoặc WebP.",
+    "hintMaxed": "Ảnh đã được nén gần hết mức từ trước.",
+    "hintTryEdge": "Ảnh đã được nén gần hết mức từ trước — thử thêm \"Cạnh dài tối đa\" để thu nhỏ.",
+    "titleDone": "Đã nén xong",
+    "titleNone": "Không nén thêm được"
+  },
+  "batch": {
+    "pickerTitle": "Chọn các ảnh cần xử lý",
+    "runOne": "Xử lý ảnh",
+    "runMany": "Xử lý {{count}} ảnh",
+    "resize": {
+      "keep": "Giữ kích thước",
+      "edge": "Cạnh dài tối đa",
+      "width": "Chiều rộng",
+      "height": "Chiều cao",
+      "percent": "Theo phần trăm"
+    },
+    "sizeRange": "Kích thước phải là số nguyên từ {{min}} đến {{max}}.",
+    "startInvalid": "Số bắt đầu phải là số nguyên từ 0.",
+    "resizeLabel": "Đổi kích thước",
+    "resizeHint": "Giữ tỉ lệ ảnh. Ảnh đã nhỏ hơn cỡ này thì giữ nguyên — không phóng to.",
+    "formatLabel": "Định dạng ra",
+    "keepFormat": "Giữ định dạng từng ảnh",
+    "qualityLabel": "Chất lượng JPG / WebP",
+    "quality": {
+      "high": "Cao — gần như không khác ảnh gốc",
+      "medium": "Vừa — cân giữa độ nét và dung lượng",
+      "small": "Nhỏ gọn — nhẹ nhất"
+    },
+    "patternLabel": "Mẫu tên tệp",
+    "patternHint": "<code>{name}</code> = tên gốc, <code>{n}</code> = số thứ tự. Ví dụ: <code>cong-trinh-{n}</code>",
+    "startLabel": "Số bắt đầu",
+    "sample": "Tên ra: <strong>{{names}}</strong>",
+    "patternEmpty": "Nhập mẫu tên tệp, ví dụ {name} hoặc anh-{n}.",
+    "patternIllegal": "Tên tệp không được chứa \\ / : * ? \" < > |",
+    "patternTokens": "Chỉ có hai chỗ điền: {name} (tên gốc) và {n} (số thứ tự).",
+    "resizedAll": "{{count}}/{{total}} ảnh được thu nhỏ.",
+    "resizedPartial": "{{count}}/{{total}} ảnh được thu nhỏ. Ảnh đã nhỏ hơn cỡ đích thì giữ nguyên cỡ — công cụ không phóng to.",
+    "keptBytes": "{{count}} ảnh không cần đổi cỡ hay định dạng — giữ nguyên từng byte, chỉ đổi tên.",
+    "titleOne": "Đã xử lý ảnh",
+    "titleMany": "Đã xử lý {{count}} ảnh"
+  },
+  "crop": {
+    "pickerTitle": "Chọn ảnh cần cắt hoặc chỉnh",
+    "blocked": "Chưa cắt, xoay hay chỉnh gì — ảnh ra sẽ giống hệt ảnh gốc.",
+    "stageLabel": "Ảnh đang chỉnh",
+    "aspectLabel": "Tỉ lệ khung cắt",
+    "aspect": {
+      "free": "Tự do",
+      "square": "1:1 — vuông",
+      "landscape": "4:3 — ngang",
+      "portrait": "3:4 — dọc",
+      "wide": "16:9 — ngang rộng",
+      "tall": "9:16 — dọc dài"
+    },
+    "rotate": "Xoay ảnh",
+    "rotateLeft": "Xoay trái",
+    "rotateRight": "Xoay phải",
+    "brightness": "Độ sáng",
+    "contrast": "Tương phản",
+    "output": "Ảnh ra: <strong>{{size}}</strong>",
+    "reset": "Đặt lại như ảnh gốc",
+    "box": "Khung cắt — kéo hoặc dùng phím mũi tên để dời",
+    "handleAria": "{{handle}} — kéo hoặc dùng phím mũi tên để đổi cỡ",
+    "handle": {
+      "nw": "Góc trên trái",
+      "n": "Cạnh trên",
+      "ne": "Góc trên phải",
+      "e": "Cạnh phải",
+      "se": "Góc dưới phải",
+      "s": "Cạnh dưới",
+      "sw": "Góc dưới trái",
+      "w": "Cạnh trái"
+    },
+    "title": "Đã lưu ảnh đã chỉnh"
+  },
+  "mark": {
+    "pickerTitle": "Chọn ảnh cần che hoặc đóng dấu",
+    "blocked": "Chưa vẽ khung che hay nhập chữ đóng dấu — ảnh ra sẽ giống hệt ảnh gốc.",
+    "stageLabel": "Ảnh đang che và đóng dấu",
+    "boxCount": "{{count}} khung che",
+    "stageHint": "Kéo trên ảnh để khoanh vùng cần che. Bấm vào một khung đã vẽ để bỏ khung đó.",
+    "overlayBoxes": "{{count}} khung che trên ảnh",
+    "overlayEmpty": "Chưa có khung che trên ảnh",
+    "boxesLabel": "Khung che",
+    "boxesSummary": "{{count}} khung — vùng bên dưới bị thay bằng khối đen trong tệp ra, không khôi phục được.",
+    "boxesEmpty": "Chưa có khung nào. Kéo trên ảnh để vẽ.",
+    "clearBoxes": "Bỏ mọi khung che",
+    "textLabel": "Chữ đóng dấu (không bắt buộc)",
+    "textPlaceholder": "Ví dụ: BẢN NHÁP — KHÔNG SAO CHÉP",
+    "tile": "Lặp chéo khắp ảnh",
+    "anchorLabel": "Vị trí dấu",
+    "colorLabel": "Màu chữ",
+    "sizeLabel": "Cỡ chữ",
+    "opacityLabel": "Độ đậm",
+    "color": {
+      "red": "Đỏ",
+      "black": "Đen",
+      "white": "Trắng"
+    },
+    "anchor": {
+      "topLeft": "Trên — trái",
+      "topCenter": "Trên — giữa",
+      "topRight": "Trên — phải",
+      "middleLeft": "Giữa — trái",
+      "center": "Chính giữa",
+      "middleRight": "Giữa — phải",
+      "bottomLeft": "Dưới — trái",
+      "bottomCenter": "Dưới — giữa",
+      "bottomRight": "Dưới — phải"
+    },
+    "boxesNote": "{{count}} vùng đã được thay bằng khối đen trong chính điểm ảnh — không còn lớp nào bên dưới để gỡ ra.",
+    "stampNote": "Dấu chữ đã ghi vào ảnh.",
+    "titleBoth": "Đã che và đóng dấu ảnh",
+    "titleBoxes": "Đã che ảnh",
+    "titleStamp": "Đã đóng dấu ảnh"
+  },
+  "measure": {
+    "pickerTitle": "Chọn ảnh cần đo",
+    "run": "Lưu ảnh có số đo",
+    "blocked": "Chưa có số đo nào trên ảnh.",
+    "stageLabel": "Ảnh đang đo",
+    "modesLabel": "Kiểu đo",
+    "tab": {
+      "distance": "Đo khoảng cách",
+      "area": "Đo diện tích",
+      "count": "Đếm số lượng"
+    },
+    "hint": {
+      "distance": "Bấm hai điểm trên ảnh để đo một đoạn. Kéo đầu đoạn để chỉnh.",
+      "area": "Bấm lần lượt các góc của vùng, rồi bấm lại điểm đầu để khép vùng.",
+      "count": "Bấm lên từng vật để đếm. Bấm lại vào một điểm để bỏ.",
+      "reference": "Bấm hai đầu của một vật đã biết chiều dài: cánh cửa, viên gạch, cây thước."
+    },
+    "closeArea": "Khép vùng",
+    "undo": "Hoàn tác",
+    "clearAll": "Xoá hết",
+    "imageAlt": "Ảnh đang đo: {{name}}",
+    "referenceGrip": "Đầu {{index}} của đoạn chuẩn — kéo hoặc dùng phím mũi tên để chỉnh",
+    "countGrip": "Điểm đếm {{number}} — bấm để bỏ, kéo để dời",
+    "distanceGrip": "Điểm {{point}} của đoạn {{index}} — kéo hoặc dùng phím mũi tên để chỉnh, Delete để xoá",
+    "areaGrip": "Điểm {{point}} của vùng {{index}} — kéo hoặc dùng phím mũi tên để chỉnh, Delete để xoá",
+    "closeAtStart": "Khép vùng tại điểm đầu",
+    "lengthLabel": "Chiều dài thật của đoạn chuẩn",
+    "lengthPlaceholder": "Ví dụ 2,1",
+    "unit": "Đơn vị",
+    "clearReference": "Bỏ đoạn chuẩn",
+    "referenceLabel": "Đoạn chuẩn",
+    "referenceHint": "Đánh dấu một vật đã biết chiều dài để quy số đo ra đơn vị thật.",
+    "placing": "Đang đặt — bấm hai điểm trên ảnh",
+    "resetReference": "Đặt lại đoạn chuẩn",
+    "setReference": "Đặt đoạn chuẩn",
+    "scaleHint": "Số đo chỉ đúng với những thứ nằm cùng mặt phẳng với đoạn chuẩn, trên ảnh chụp thẳng góc.",
+    "noLength": "Chưa nhập chiều dài thật — số đo đang tính bằng điểm ảnh (px).",
+    "noReference": "Chưa có đoạn chuẩn — số đo đang tính bằng điểm ảnh (px).",
+    "results": "Số đo",
+    "noResults": "Chưa có số đo nào.",
+    "distanceName": "Đoạn {{index}}",
+    "areaName": "Vùng {{index}}",
+    "removeDistance": "Xoá đoạn {{index}}",
+    "removeArea": "Xoá vùng {{index}}",
+    "remove": "Xoá",
+    "perimeter": "chu vi {{length}}",
+    "counted": "Đã đếm",
+    "summaryDistances": "{{count}} đoạn đo",
+    "summaryAreas": "{{count}} vùng đo",
+    "summaryCounts": "{{count}} điểm đếm",
+    "recorded": "Ảnh đã ghi {{summary}}.",
+    "pixelWarning": "Chưa có đoạn chuẩn nên số đo ghi theo điểm ảnh (px), không phải kích thước thật.",
+    "title": "Đã lưu ảnh có số đo"
+  },
+  "idPhoto": {
+    "pickerTitle": "Chọn ảnh chân dung",
+    "gapRange": "Khoảng cách phải từ {{min}} đến {{max}} mm.",
+    "copiesInvalid": "Số bản phải là số nguyên từ 1.",
+    "tooBig": "Ảnh thẻ cỡ này không vừa khổ giấy đã chọn.",
+    "overCapacity": "Một tờ {{paper}} chỉ chứa được {{count}} ảnh cỡ này.",
+    "runSingle": "Tạo ảnh thẻ",
+    "runSheet": "Tạo tờ in {{count}} ảnh",
+    "photoSize": "Cỡ ảnh thẻ",
+    "photoHint": "Chọn theo yêu cầu của nơi nhận hồ sơ — công cụ không biết quy định ảnh của từng loại giấy tờ, và không kiểm nền hay vị trí khuôn mặt.",
+    "lowDpi": "Vùng đã chọn chỉ đạt {{dpi}} DPI ở cỡ này (nên từ {{min}}) — in ra sẽ nhoè. Kéo khung rộng hơn hoặc dùng ảnh nét hơn.",
+    "outputLegend": "Tệp ra",
+    "output": {
+      "pdf": {
+        "label": "Tờ in PDF",
+        "hint": "In ở \"Kích thước thật / 100%\" là ra đúng milimét."
+      },
+      "sheet": {
+        "label": "Tờ in JPG",
+        "hint": "300 DPI — cho máy in ảnh hoặc tiệm in chỉ nhận tệp ảnh."
+      },
+      "single": {
+        "label": "Một ảnh thẻ",
+        "hint": "Chỉ ảnh đã cắt đúng tỉ lệ — để nộp trực tuyến."
+      }
+    },
+    "paperLabel": "Khổ giấy",
+    "paper": {
+      "a4": "A4 (21 × 29,7 cm)",
+      "a5": "A5 (14,8 × 21 cm)",
+      "10x15": "Giấy ảnh 10 × 15 cm",
+      "13x18": "Giấy ảnh 13 × 18 cm"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "Giấy ảnh 10 × 15 cm",
+      "13x18": "Giấy ảnh 13 × 18 cm"
+    },
+    "fill": "Xếp kín tờ ({{count}} ảnh)",
+    "copies": "Số bản",
+    "gap": "Khoảng cách",
+    "guides": "Vẽ viền cắt quanh từng ảnh",
+    "layoutHint": "{{columns}} cột × {{rows}} hàng, lề giấy {{margin}} mm. Khi in chọn \"Kích thước thật\" (Actual size / 100%), không chọn \"Vừa trang giấy\" — không thì ảnh ra sai cỡ.",
+    "sheetAria": "Tờ in: {{count}} ảnh",
+    "renderingSheet": "Đang dựng tờ in",
+    "lowDpiNote": "Vùng đã cắt chỉ đạt {{dpi}} DPI ở cỡ {{size}} — in ra có thể nhoè.",
+    "titleSingle": "Đã tạo ảnh thẻ",
+    "sheetDetail": "{{count}} ảnh {{photo}} trên {{paper}}",
+    "noExif": "Tờ in không mang thông tin của máy ảnh (ngày chụp, vị trí GPS) của ảnh gốc.",
+    "actualSize": "Khi in chọn \"Kích thước thật\" (Actual size / 100%), không chọn \"Vừa trang giấy\".",
+    "titleSheet": "Đã tạo tờ in ảnh thẻ"
+  },
+  "camera": {
+    "insecure": "{{reason}} Chụp bằng ứng dụng máy ảnh rồi chọn ảnh từ máy.",
+    "notReady": "camera chưa sẵn sàng.",
+    "shootFailed": "Không chụp được. Thử lại.",
+    "cropFailed": "Không dựng được ảnh đã cắt. Bỏ khung cắt rồi thử lại.",
+    "titleReview": "Cắt ảnh {{index}}/{{total}}",
+    "title": "Chụp ảnh",
+    "viewfinder": "Khung ngắm camera",
+    "shotAlt": "Ảnh chụp {{index}}",
+    "starting": "Đang mở camera… Trình duyệt có thể hỏi quyền dùng camera.",
+    "retry": "Thử lại",
+    "backToShoot": "Chụp tiếp",
+    "clearCrop": "Bỏ khung cắt",
+    "deleteShot": "Xoá ảnh này",
+    "strip": "Ảnh đã chụp",
+    "thumbAria": "Xem và cắt ảnh {{index}}",
+    "thumbTitle": "Xem, cắt hoặc xoá ảnh này",
+    "shutter": "Chụp",
+    "full": "Đã đủ {{count}} ảnh",
+    "torch": "Đèn",
+    "torchOff": "Tắt đèn",
+    "torchOn": "Bật đèn",
+    "reviewHint": "Kéo khung để giữ lại phần cần lấy. Không kéo gì thì giữ cả ảnh.",
+    "none": "Chưa chụp ảnh nào.",
+    "fullStatus": "Đã đủ {{count}} ảnh cho một lượt.",
+    "shotCount": "Đã chụp {{count}} ảnh. Bấm vào ảnh thu nhỏ để cắt hoặc xoá.",
+    "discardClose": "Bỏ {{count}} ảnh và đóng",
+    "close": "Đóng",
+    "useShots": "Dùng {{count}} ảnh",
+    "useNone": "Dùng ảnh"
+  },
+  "collage": {
+    "invalid": "Chọn 2–9 ảnh, 1–3 cột và khoảng cách 0–100 px.",
+    "tooLarge": "{{name}}: ảnh vượt giới hạn dung lượng.",
+    "unsupported": "{{name}}: chỉ hỗ trợ JPG, PNG và WebP.",
+    "pixelLimit": "{{name}}: ảnh vượt giới hạn điểm ảnh.",
+    "failed": "Không tạo được ảnh ghép.",
+    "done": "Đã tải ảnh ghép PNG. Kiểm tra bố cục trước khi sử dụng.",
+    "resultLabel": "Ảnh ghép",
+    "idle": "Ảnh được xếp theo thứ tự chọn, cắt vừa ô vuông và xuất PNG. Metadata của ảnh gốc không được giữ.",
+    "busy": "Đang ghép…",
+    "run": "Ghép và tải ảnh",
+    "panel": "Ảnh cần ghép",
+    "choose": "Chọn từ 2 đến 9 ảnh",
+    "columns": "Số cột",
+    "gap": "Khoảng cách (px)"
+  },
+  "removeMeta": {
+    "tooLarge": "Ảnh vượt giới hạn dung lượng.",
+    "unsupported": "Chỉ hỗ trợ ảnh JPG, PNG và WebP.",
+    "pixelLimit": "Ảnh vượt giới hạn điểm ảnh.",
+    "done": "Đã tạo ảnh {{width}} × {{height}} và tải về. Kiểm tra ảnh trước khi chia sẻ.",
+    "outputLabel": "Tệp đầu ra",
+    "idle": "Vẽ lại ảnh trên máy để bỏ EXIF gốc, gồm vị trí GPS, máy ảnh và ngày chụp. Ảnh JPG được mã hóa lại nên chất lượng có thể thay đổi.",
+    "run": "Xóa EXIF và tải ảnh",
+    "panel": "Ảnh cần làm sạch",
+    "choose": "Chọn ảnh JPG, PNG hoặc WebP",
+    "note": "Công cụ này chủ động bỏ EXIF. Các công cụ ảnh khác vẫn giữ thông tin hiện trường theo lựa chọn hiện tại của dự án."
+  },
+  "removeBg": {
+    "invalidFile": "Chọn ảnh JPG, PNG hoặc WebP dưới 20 MB.",
+    "invalidSize": "Kích thước ảnh không hợp lệ.",
+    "processed": "Đã xử lý ảnh {{width}} × {{height}}. Nền nhiều màu cần chỉnh bằng cọ.",
+    "openFailed": "Không mở được ảnh.",
+    "exportFailed": "Không xuất được ảnh.",
+    "done": "Đã tạo PNG. Hãy xem kỹ mép vật thể trước khi dùng.",
+    "noImage": "Chưa chọn ảnh",
+    "idle": "Tự nhận màu nền từ viền ảnh. Phù hợp phông trơn; cọ giữ/xóa sửa vùng sai.",
+    "download": "Tải ảnh PNG",
+    "panel": "Xóa phông nền trơn",
+    "choose": "Chọn ảnh",
+    "tolerance": "Độ nhạy màu nền: {{value}}",
+    "background": "Nền mới",
+    "backgroundTransparent": "Trong suốt",
+    "backgroundWhite": "Trắng",
+    "backgroundIdBlue": "Xanh ảnh thẻ",
+    "brush": "Chỉnh bằng cọ",
+    "brushOff": "Không dùng",
+    "brushErase": "Xóa thêm",
+    "brushKeep": "Giữ lại",
+    "brushSize": "Cỡ cọ: {{value}}",
+    "undoBrush": "Hoàn tác cọ",
+    "note": "Ảnh xử lý trên máy. Nền nhiều chi tiết cần cọ chỉnh tay; ảnh lớn được thu tối đa còn 2200 px mỗi cạnh."
+  }
+}

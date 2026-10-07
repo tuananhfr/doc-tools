@@ -1,4 +1,5 @@
 import { useRef, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Rect } from '../types/markup.types'
 import type { Point, Size } from '../utils/page-geometry'
 
@@ -18,6 +19,7 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
  * bị cắt bỏ phủ tối — người dùng thấy ngay trang sẽ còn lại những gì.
  */
 export function CropOverlay({ size, rect, onChange }: CropOverlayProps) {
+  const { t } = useTranslation('pdf')
   const gesture = useRef<Gesture | null>(null)
 
   const toPoint = (event: PointerEvent<SVGSVGElement>): Point => {
@@ -73,7 +75,7 @@ export function CropOverlay({ size, rect, onChange }: CropOverlayProps) {
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="none"
       role="img"
-      aria-label="Vùng cắt trang"
+      aria-label={t('crop.area')}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}

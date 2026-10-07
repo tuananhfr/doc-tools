@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
 import { CopyButton } from '@/features/tools/hub'
 import type { Rgb } from '../utils/color'
@@ -18,6 +19,7 @@ interface ColorCodeFieldProps {
  * người đang gõ. Rời ô mới quay về mã chuẩn.
  */
 export function ColorCodeField({ label, code, parse, onColor }: ColorCodeFieldProps) {
+  const { t } = useTranslation('utility')
   const id = useId()
   const [draft, setDraft] = useState<string | null>(null)
 
@@ -43,7 +45,7 @@ export function ColorCodeField({ label, code, parse, onColor }: ColorCodeFieldPr
           }}
           onBlur={() => setDraft(null)}
         />
-        <CopyButton text={code} label={`Chép mã ${label}`} iconOnly />
+        <CopyButton text={code} label={t('color.copyCode', { label })} iconOnly />
       </div>
     </div>
   )

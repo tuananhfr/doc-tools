@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Several warning signs",
+    "levelMedium": "Some warning signs",
+    "levelLow": "No signs found by the rule set",
+    "result": "Screening result",
+    "note": "This is only a rule-based check for warning signs; it doesn't prove a link or message is safe. Never enter an OTP or password on a page opened from a message; contact the organization through a channel you find yourself.",
+    "title": "Content to check",
+    "kind": "Content type",
+    "kindMessage": "Message",
+    "kindLink": "Link",
+    "messageLabel": "Message text",
+    "linkPlaceholder": "Paste the link — no need to open it…",
+    "messagePlaceholder": "Paste the suspicious message…",
+    "privacy": "Content is analyzed on your device; the tool never visits the link you paste."
+  },
+  "flags": {
+    "unreadable": "Couldn't read the link.",
+    "noHttps": "Doesn't use HTTPS.",
+    "ipHost": "Uses an IP address instead of a domain name.",
+    "punycode": "The domain uses punycode; compare it with the real name.",
+    "shortener": "A shortened link hides the destination.",
+    "riskyTld": "Domain ending commonly seen in risky links.",
+    "fakeGov": "Contains \"gov\" but isn't under the .gov.vn domain.",
+    "brand": "The domain contains \"{{brand}}\"; compare it with the official address.",
+    "loginPath": "The path suggests a login or verification step.",
+    "otp": "Asks for an OTP or verification code.",
+    "lockThreat": "Pressures you with a threat of account lockout.",
+    "prize": "Promises a prize or gift.",
+    "easyJob": "Offers easy, high-paying work or online tasks.",
+    "urgentTransfer": "Urges you to transfer or top up money quickly.",
+    "installApp": "Asks you to install an app from the message.",
+    "link": "Link {{link}}: {{flags}}"
+  }
+}

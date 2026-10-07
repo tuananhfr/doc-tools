@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "基础",
+      "basement": "地下室",
+      "ground": "一层",
+      "upper": "每层楼",
+      "floor": "{{floor}} 楼",
+      "rooftopRoom": "屋顶楼梯间",
+      "terrace": "无顶露台",
+      "roof": "屋顶",
+      "yard": "前后院"
+    },
+    "result": "参考估算",
+    "money": "{{amount}} đ",
+    "enterPrice": "输入单价",
+    "convertedArea": "折算面积：{{area}} m²",
+    "costs": "毛坯部分：{{base}} đ · 装修或全包：{{finishing}} đ · 桩基：{{pile}} đ",
+    "columns": {
+      "item": "项目",
+      "area": "面积",
+      "factor": "系数",
+      "converted": "折算"
+    },
+    "checkInput": "请检查已输入的数据。",
+    "disclaimer": "系数是存档资料中的参考惯例，并非国家定额。请对照设计图和施工方报价；未包括设计费、许可证、活动家具或地质问题导致的额外费用。",
+    "title": "你的面积和单价",
+    "fields": {
+      "floorArea": "一层建筑面积（m²）",
+      "upperFloors": "楼层数（不含一层）",
+      "rooftopRoomArea": "屋顶楼梯间面积（m²）",
+      "terraceArea": "无顶露台（m²）",
+      "yardArea": "前后院（m²）",
+      "basePrice": "毛坯单价（đ/m²）",
+      "finishingPrice": "装修或全包单价（đ/m²）",
+      "pileCost": "桩基费用（đ）"
+    },
+    "turnkey": "第二个单价是全包价，已含毛坯部分",
+    "editFactors": "按施工方报价修改系数",
+    "factorLabel": "{{label}}（%）"
+  }
+}

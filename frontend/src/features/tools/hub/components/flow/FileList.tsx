@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { formatFileSize } from '@/utils/format'
 import type { FlowFile } from '../../types/flow.types'
@@ -13,15 +14,16 @@ interface FileListProps {
 
 /** Tệp đã chọn: tên, dung lượng, dời lên / xuống, bỏ. */
 export function FileList({ files, disabled, onRemove, onMove, onClear }: FileListProps) {
+  const { t } = useTranslation('common')
   return (
-    <section className="erp-flow-files" aria-label="Tệp đã chọn">
+    <section className="erp-flow-files" aria-label={t('fileList.title')}>
       <header className="erp-flow-files__head">
         <h2 className="erp-flow-files__title">
-          Tệp đã chọn <span className="erp-flow-files__count">({files.length})</span>
+          {t('fileList.title')} <span className="erp-flow-files__count">({files.length})</span>
         </h2>
         {files.length > 1 ? (
           <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={disabled} onClick={onClear}>
-            Bỏ tất cả
+            {t('fileList.clearAll')}
           </button>
         ) : null}
       </header>
@@ -48,8 +50,8 @@ export function FileList({ files, disabled, onRemove, onMove, onClear }: FileLis
                   <button
                     type="button"
                     className="btn erp-flow-file__button"
-                    aria-label={`Đưa ${file.name} lên trên`}
-                    title="Đưa lên"
+                    aria-label={t('fileList.moveUpLabel', { name: file.name })}
+                    title={t('fileList.moveUp')}
                     disabled={disabled || index === 0}
                     onClick={() => onMove(file.id, -1)}
                   >
@@ -58,8 +60,8 @@ export function FileList({ files, disabled, onRemove, onMove, onClear }: FileLis
                   <button
                     type="button"
                     className="btn erp-flow-file__button"
-                    aria-label={`Đưa ${file.name} xuống dưới`}
-                    title="Đưa xuống"
+                    aria-label={t('fileList.moveDownLabel', { name: file.name })}
+                    title={t('fileList.moveDown')}
                     disabled={disabled || index === files.length - 1}
                     onClick={() => onMove(file.id, 1)}
                   >
@@ -70,8 +72,8 @@ export function FileList({ files, disabled, onRemove, onMove, onClear }: FileLis
               <button
                 type="button"
                 className="btn erp-flow-file__button"
-                aria-label={`Bỏ ${file.name}`}
-                title="Bỏ tệp này"
+                aria-label={t('fileList.removeLabel', { name: file.name })}
+                title={t('fileList.remove')}
                 disabled={disabled}
                 onClick={() => onRemove(file.id)}
               >

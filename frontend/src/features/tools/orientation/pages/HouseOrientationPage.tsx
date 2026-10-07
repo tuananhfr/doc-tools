@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
+import type { TFunction } from 'i18next'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { ToolBoard, ToolLeaveGuard, ToolSegments } from '@/features/tools/hub'
 import { useThemeTokens } from '@/hooks'
@@ -25,28 +27,26 @@ import { mountainOf, sittingOf } from '../utils/luopan'
 import type { OrientationState } from '../utils/orientation-state'
 import { legendLines, measurements, targetLabel } from '../utils/orientation-summary'
 import { readSolar, type SolarInput } from '../utils/sun-exposure'
+import { mountainName } from '../utils/terms'
 
 /** Trục mới dài bằng ngần này cạnh ngắn của ảnh — đủ thấy rõ, không che hết bản vẽ. */
 const AXIS_SHARE = 0.16
 
-const MODES: { value: UxMode; label: string; icon: string }[] = [
-  { value: 'HOMEOWNER', label: 'Gia chủ', icon: 'house' },
-  { value: 'PROFESSIONAL', label: 'Chuyên môn', icon: 'rulers' },
+const MODES: { value: UxMode; icon: string }[] = [
+  { value: 'HOMEOWNER', icon: 'house' },
+  { value: 'PROFESSIONAL', icon: 'rulers' },
 ]
 
-const PROJECT_NORTH_WARNING =
-  'Đang đo theo Bắc dự án — không phải phương thật, nên không đọc hợp / kỵ theo tuổi và không tính nắng được. Đổi sang Bắc thật hoặc Bắc từ ở phần kỹ thuật.'
-
 /** Câu nói rõ còn thiếu gì để ra số — không bao giờ để ô kết quả trống câm. */
-function missingStep(state: OrientationState, hasImage: boolean): string | null {
+function missingStep(state: OrientationState, hasImage: boolean, t: TFunction<'orientation'>): string | null {
   const main = measurements(state)[0]
   if (!main || main.azimuth !== null) return null
   if (!state.anchor) {
-    if (state.method === 'DRAWING') return 'Chạm vào ký hiệu Bắc trên bản vẽ để bắt đầu.'
-    if (state.method === 'DEVICE') return 'Bấm “Bắt đầu đo”, đứng yên rồi chốt số đo.'
-    return 'Nhập số độ đã biết.'
+    if (state.method === 'DRAWING') return t('page.missing.drawing')
+    if (state.method === 'DEVICE') return t('page.missing.device')
+    return t('page.missing.manual')
   }
-  return hasImage ? `Đặt trục ${targetLabel(main.target).toLowerCase()} trên ảnh.` : 'Chọn đối tượng đã có số đo.'
+  return hasImage ? t('page.missing.placeAxis', { target: targetLabel(main.target).toLowerCase() }) : t('page.missing.pickMeasured')
 }
 
 /**
@@ -55,6 +55,9 @@ function missingStep(state: OrientationState, hasImage: boolean): string | null 
  * mặt trời, số liệu kỹ thuật (spec §2). Mọi thứ chỉ nằm trong RAM của tab.
  */
 export default function HouseOrientationPage() {
+  // Nạp cả `image` (service ảnh báo lỗi bằng translate('image:…')) và `vietnam` (tên can chi):
+  // namespace chưa nạp là hiện khoá thô.
+  const { t } = useTranslation(['orientation', 'image', 'vietnam'])
   const files = useOrientationSource()
   const orientation = useOrientation()
   const owners = useOwners()
@@ -85,6 +88,8 @@ export default function HouseOrientationPage() {
     stars: projectNorth ? null : owners.stars,
   }
   const busy = files.loading || exporting
+  const projectNorthWarning = projectNorth ? t('page.projectNorthWarning') : null
+  const modes = MODES.map((mode) => ({ ...mode, label: t(`modes.${mode.value}`) }))
 
   const labelOf = (id: string) => {
     const target = state.targets.find((item) => item.id === id)
@@ -108,10 +113,12 @@ export default function HouseOrientationPage() {
   }
 
   const build = async (format: 'image' | 'pdf') => {
-    if (!source) throw new Error('Chưa có nguồn.')
+    if (!source) throw new Error(t('page.noSource'))
     const { exportOrientation } = await import('../services/orientation-export')
     const facing = main?.azimuth ?? null
-    const luopan = !professional && facing !== null ? [`Hướng ${mountainOf(facing).mountain.name} · Toạ ${mountainOf(sittingOf(facing)).mountain.name}`] : []
+    const luopan = !professional && facing !== null
+      ? [t('legend.luopan', { facing: mountainName(mountainOf(facing).mountain.index), sitting: mountainName(mountainOf(sittingOf(facing)).mountain.index) })]
+      : []
     // Tệp gửi đi in ra giấy / mở ở máy khác: luôn dùng bảng màu sáng, không theo theme đang xem.
     return exportOrientation({ state, source, palette: compassPalette(themeTokens.light), legend: legendLines(state, new Date(), luopan), format, labelOf, extras })
   }
@@ -124,16 +131,16 @@ export default function HouseOrientationPage() {
 
   const head = (
     <div className="erp-orient-head">
-      <ToolSegments label="Chế độ hiển thị" value={state.mode} options={MODES} disabled={busy} onChange={changeMode} />
+      <ToolSegments label={t('page.modeLabel')} value={state.mode} options={modes} disabled={busy} onChange={changeMode} />
       {picking && source ? (
         <Button variant="link" className="erp-orient-actions__link" disabled={busy} onClick={() => setPicking(false)}>
           <Icon name="arrow-left" className="me-2" />
-          Quay lại
+          {t('page.back')}
         </Button>
       ) : (
         <Button variant="link" className="erp-orient-actions__link" disabled={busy} onClick={() => setPicking(true)}>
           <Icon name={view ? 'arrow-left-right' : 'image'} className="me-2" />
-          {view ? 'Đổi ảnh / nguồn' : 'Đặt lên ảnh nhà / bản vẽ'}
+          {t(view ? 'page.changeSource' : 'page.placeOnImage')}
         </Button>
       )}
     </div>
@@ -155,14 +162,14 @@ export default function HouseOrientationPage() {
   }
 
   const exportPanel = (
-    <ExportPanel blocked={hasResult(state) ? null : 'Chưa có số đo để lưu.'} sourceKind={source.kind} disabled={files.loading} onBuild={build} onBusy={setExporting} />
+    <ExportPanel blocked={hasResult(state) ? null : t('page.nothingToSave')} sourceKind={source.kind} disabled={files.loading} onBuild={build} onBusy={setExporting} />
   )
   const agePanel = (
     <AgePanel
       owners={owners}
       azimuth={main?.azimuth ?? null}
-      targetLabel={main ? targetLabel(main.target) : 'Mặt tiền'}
-      warning={projectNorth ? PROJECT_NORTH_WARNING : null}
+      targetLabel={main ? targetLabel(main.target) : t('page.frontageFallback')}
+      warning={projectNorthWarning}
     />
   )
 
@@ -171,7 +178,7 @@ export default function HouseOrientationPage() {
       <>
         <ToolLeaveGuard active={hasResult(state)} />
         <ToolBoard
-          sideLabel="Theo tuổi và lưu kết quả"
+          sideLabel={t('page.sideAge')}
           side={
             <>
               {agePanel}
@@ -205,18 +212,18 @@ export default function HouseOrientationPage() {
     <>
       <ToolLeaveGuard active={hasResult(state) || state.trace.shapes.length > 0} />
       <ToolBoard
-        sideLabel="Kết quả đo"
+        sideLabel={t('result.title')}
         side={
           <>
-            <ResultPanel state={state} palette={palette} missing={missingStep(state, Boolean(view))} showCompass={showStandalone} extras={extras} />
+            <ResultPanel state={state} palette={palette} missing={missingStep(state, Boolean(view), t)} showCompass={showStandalone} extras={extras} />
             {exportPanel}
             {agePanel}
             {professional ? (
               <SolarPanel
                 reading={solarReading}
                 front={frontage?.azimuth ?? null}
-                frontLabel={frontage ? targetLabel(frontage.target) : 'Mặt tiền nhà'}
-                warning={projectNorth ? PROJECT_NORTH_WARNING : null}
+                frontLabel={frontage ? targetLabel(frontage.target) : t('page.houseFrontageFallback')}
+                warning={projectNorthWarning}
                 onChange={setSolar}
               />
             ) : null}

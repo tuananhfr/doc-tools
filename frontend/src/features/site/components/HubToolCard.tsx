@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useToolsBranch } from '@/features/tools/hub/hooks/tools-branch'
@@ -7,6 +8,7 @@ import { ProcessingBadge } from './ProcessingBadge'
 
 /** Thẻ "Sắp có" không phải link: slug của nó chỉ đưa về trang chủ. */
 export function HubToolCard({ tool }: { tool: ToolDefinition }) {
+  const { t } = useTranslation('site')
   const { base } = useToolsBranch()
   const ready = tool.status === 'ready'
 
@@ -22,10 +24,10 @@ export function HubToolCard({ tool }: { tool: ToolDefinition }) {
       <ProcessingBadge tool={tool} />
       {ready ? (
         <Link className="cn-hub-card-cta" to={toolPath(base, tool)}>
-          <span className="visually-hidden">{tool.name}: </span>Dùng ngay <Icon name="arrow-right" />
+          <span className="visually-hidden">{tool.name}: </span>{t('toolCard.useNow')} <Icon name="arrow-right" />
         </Link>
       ) : (
-        <span className="cn-hub-card-cta is-disabled"><Icon name="clock" />Sắp có</span>
+        <span className="cn-hub-card-cta is-disabled"><Icon name="clock" />{t('toolCard.soon')}</span>
       )}
     </article>
   )

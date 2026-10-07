@@ -1,13 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import { ALL_TOOLS } from '@/features/tools/hub/config/tool-list'
 import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
+import site from '@/i18n/messages/vi/site.json'
 import { HUB_PAGE_LIST } from '../config/hub-pages'
 import { SITE_PAGE_SLUGS } from '../config/site-pages'
 import type { HubPage } from '../types/hub-page.types'
 import { readyFirst, resolveHubTools, searchHubTools } from './hub-tools'
 
 const tool = (id: string, status: 'ready' | 'soon' = 'ready', name = id): ToolDefinition =>
-  ({ id, slug: id, name, description: '', icon: 'x', categories: ['other'], status, ...(status === 'ready' ? { screen: 'quick-note' } : {}) }) as ToolDefinition
+  ({ id, slug: id, name, description: '', pageTitle: name, synonyms: [], icon: 'x', categories: ['other'], status, ...(status === 'ready' ? { screen: 'quick-note' } : {}) }) as ToolDefinition
 
 const page = (subgroups: HubPage['subgroups']): HubPage => ({ ...HUB_PAGE_LIST[0], subgroups })
 
@@ -15,23 +16,23 @@ describe('resolveHubTools', () => {
   it('puts ready tools first, drops duplicates and ids missing from the catalog', () => {
     const catalog = [tool('a'), tool('b', 'soon'), tool('c')]
     const hub = resolveHubTools(page([
-      { id: 'one', label: 'One', toolIds: ['b', 'a', 'gone'] },
-      { id: 'two', label: 'Two', toolIds: ['a', 'c'] },
+      { id: 'one', toolIds: ['b', 'a', 'gone'] },
+      { id: 'two', toolIds: ['a', 'c'] },
     ]), catalog)
     expect(hub.groups.map((group) => group.tools.map((item) => item.id))).toEqual([['a', 'b'], ['a', 'c']])
     expect(hub.all.map((item) => item.id)).toEqual(['a', 'c', 'b'])
   })
 
   it('hides a subgroup whose every tool is switched off', () => {
-    const hub = resolveHubTools(page([{ id: 'off', label: 'Off', toolIds: ['gone'] }, { id: 'on', label: 'On', toolIds: ['a'] }]), [tool('a')])
+    const hub = resolveHubTools(page([{ id: 'off', toolIds: ['gone'] }, { id: 'on', toolIds: ['a'] }]), [tool('a')])
     expect(hub.groups.map((group) => group.id)).toEqual(['on'])
   })
 })
 
 describe('searchHubTools', () => {
   const hub = resolveHubTools(page([
-    { id: 'one', label: 'One', toolIds: ['a'] },
-    { id: 'two', label: 'Two', toolIds: ['b'] },
+    { id: 'one', toolIds: ['a'] },
+    { id: 'two', toolIds: ['b'] },
   ]), [tool('a', 'ready', 'Nén PDF'), tool('b', 'ready', 'Ghép PDF')])
 
   it('searches inside the chosen subgroup, or the whole hub for an unknown one', () => {
@@ -63,15 +64,30 @@ describe('real hub pages', () => {
     }
   })
 
-  it('keeps subgroup ids unique and the title accent inside the title', () => {
+  it('keeps subgroup ids unique and marks the title accent', () => {
     for (const hubPage of HUB_PAGE_LIST) {
       expect(new Set(hubPage.subgroups.map((group) => group.id)).size).toBe(hubPage.subgroups.length)
-      expect(hubPage.title).toContain(hubPage.titleAccent)
+      expect(site.hubs[hubPage.slug].title).toMatch(/<accent>.+<\/accent>/)
+    }
+  })
+
+  it('has text for every id in the config', () => {
+    for (const hubPage of HUB_PAGE_LIST) {
+      const text: Record<string, unknown> = site.hubs[hubPage.slug]
+      const keys = (path: string) => Object.keys(path.split('.').reduce<Record<string, unknown>>((node, key) => node[key] as Record<string, unknown>, text))
+      expect(keys('highlights')).toEqual([...hubPage.highlights])
+      expect(keys('trust')).toEqual(hubPage.trust.map((item) => item.id))
+      expect(keys('subgroups')).toEqual(hubPage.subgroups.map((group) => group.id))
+      expect(keys('journey.steps')).toEqual(hubPage.journey.steps.map((step) => step.id))
+      for (const aside of hubPage.aside) {
+        if (aside.kind === 'product' || aside.kind === 'spotlight') expect(keys(`aside.${aside.id}.points`)).toEqual([...aside.points])
+        if (aside.kind === 'tips') expect(keys(`aside.${aside.id}.items`)).toEqual([...aside.items])
+      }
     }
   })
 
   it('writes no em or en dash in page copy', () => {
-    expect(JSON.stringify(HUB_PAGE_LIST)).not.toMatch(/[–—]/)
+    expect(JSON.stringify(site.hubs)).not.toMatch(/[–—]/)
   })
 })
 

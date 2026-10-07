@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { ToolBoard } from '@/features/tools/hub'
 import { buildMonthGrid, HolidayLayerToggles, holidaysInRange, MonthCalendar, shiftMonth, useHolidayLayers, type Holiday } from '@/features/tools/vietnam'
 import { FamilyAgenda } from '../components/FamilyAgenda'
@@ -17,10 +18,11 @@ const todayInVietnam = () => new Date(Date.now() + 7 * 60 * 60 * 1000).toISOStri
 type View = 'calendar' | 'list' | 'members' | 'backup' | 'safety'
 interface Editor { key: number; draft: FamilyEventDraft; editing?: { event: FamilyEvent; reminder: FamilyReminder | null } }
 
-const VIEWS: [View, string][] = [['calendar', 'Lịch'], ['list', 'Danh sách'], ['members', 'Thành viên'], ['backup', 'Sao lưu'], ['safety', 'SOS & liên hệ']]
-const LUNAR_DRAFT_HINT = 'Ngày âm lịch rơi vào ngày dương khác nhau mỗi năm. Lịch chưa lặp được theo âm lịch nên nhắc này chỉ áp dụng cho năm nay.'
+const VIEWS: View[] = ['calendar', 'list', 'members', 'backup', 'safety']
 
 export default function FamilyCalendarPage() {
+  // `vietnam` chứa tên ngày lễ mà holidaysInRange đọc qua translateKey.
+  const { t } = useTranslation(['family', 'vietnam'])
   const { space, error, saving, update, replace } = useFamilySpace()
   const { layers, toggle } = useHolidayLayers()
   const [today] = useState(todayInVietnam)
@@ -44,13 +46,13 @@ export default function FamilyCalendarPage() {
   }, [grid, layers])
   const eventsByDate = useMemo(() => new Map(space && viewer ? grid.map((cell) => [cell.date, eventsForDate(space, cell.date, viewer.id)]) : []), [grid, space, viewer])
 
-  if (!space || !viewer) return <p role={error ? 'alert' : 'status'}>{error || 'Đang mở lịch lưu trên thiết bị...'}</p>
+  if (!space || !viewer) return <p role={error ? 'alert' : 'status'}>{error || t('page.loading')}</p>
   const senior = viewer.profile === 'SENIOR'
   const memberNames = (event: FamilyEvent) => event.memberIds.map((id) => space.members.find((member) => member.id === id)?.name).filter(Boolean).join(', ')
   const touch = () => new Date().toISOString()
 
   const openEditor = (draft: FamilyEventDraft, editing?: Editor['editing']) => setEditor((current) => ({ key: (current?.key ?? 0) + 1, draft, editing }))
-  const addOn = (date: string, holiday?: Holiday) => openEditor(holiday ? { date, title: holiday.name, recurrence: holiday.lunar ? 'once' : 'yearly', hint: holiday.lunar ? LUNAR_DRAFT_HINT : undefined } : { date })
+  const addOn = (date: string, holiday?: Holiday) => openEditor(holiday ? { date, title: holiday.name, recurrence: holiday.lunar ? 'once' : 'yearly', hint: holiday.lunar ? t('page.lunarHint') : undefined } : { date })
   const edit = (event: FamilyEvent) => openEditor({ date: event.date }, { event, reminder: space.reminders.find((reminder) => reminder.eventId === event.id) ?? null })
   const selectDate = (date: string) => { setSelected(date); setCursor({ year: Number(date.slice(0, 4)), month: Number(date.slice(5, 7)) }) }
   const saveEvent = async (event: FamilyEvent, reminder: FamilyReminder | null) => {
@@ -83,15 +85,15 @@ export default function FamilyCalendarPage() {
     <style>{`.family-print-only { display: none; } @media print { body * { visibility: hidden !important; } .family-print-only, .family-print-only * { visibility: visible !important; } .family-print-only { display: block !important; position: absolute; left: 0; top: 0; width: 100%; color: #111; background: white; } @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
     <ToolBoard>
       <div className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
-        <p className="cn-family-storage"><strong>Lưu trên thiết bị này</strong> · {space.events.length} lịch · {space.members.length} thành viên. Không cần tài khoản. Xóa dữ liệu trình duyệt sẽ mất lịch nếu bạn chưa tải bản sao lưu. Chưa bật chia sẻ hoặc đồng bộ qua mạng.</p>
+        <p className="cn-family-storage"><Trans ns="family" i18nKey="page.storage" values={{ events: space.events.length, members: space.members.length }} components={{ strong: <strong /> }} /></p>
         {error ? <p role="alert">{error}</p> : null}
-        {notificationPermission === 'default' ? <div className="mb-3"><Button variant="outline-secondary" size="sm" onClick={() => void Notification.requestPermission().then(setNotificationPermission)}>Bật thông báo khi trang đang mở</Button></div> : null}
-        {reminders.alerts.length ? <div className="erp-tool-panel mb-3" role="status"><strong>Nhắc việc khi trang đang mở</strong>{reminders.alerts.map((alert) => <div key={alert.key} className="d-flex justify-content-between gap-2 mt-2"><span>{alert.title} · {alert.date} {alert.time}</span><Button size="sm" variant="outline-secondary" onClick={() => reminders.dismiss(alert.key)}>Đã xem</Button></div>)}</div> : null}
+        {notificationPermission === 'default' ? <div className="mb-3"><Button variant="outline-secondary" size="sm" onClick={() => void Notification.requestPermission().then(setNotificationPermission)}>{t('page.enableNotifications')}</Button></div> : null}
+        {reminders.alerts.length ? <div className="erp-tool-panel mb-3" role="status"><strong>{t('page.remindersTitle')}</strong>{reminders.alerts.map((alert) => <div key={alert.key} className="d-flex justify-content-between gap-2 mt-2"><span>{alert.title} · {alert.date} {alert.time}</span><Button size="sm" variant="outline-secondary" onClick={() => reminders.dismiss(alert.key)}>{t('page.seen')}</Button></div>)}</div> : null}
         <div className="cn-family-toolbar family-no-print">
-          <div className="cn-family-segment" role="tablist" aria-label="Chế độ xem">
-            {VIEWS.filter(([key]) => !senior || ['calendar', 'safety'].includes(key)).map(([key, label]) => <Button key={key} role="tab" aria-selected={view === key} variant={view === key ? 'primary' : 'outline-secondary'} onClick={() => changeView(key)}>{label}</Button>)}
+          <div className="cn-family-segment" role="tablist" aria-label={t('page.viewModes')}>
+            {VIEWS.filter((key) => !senior || ['calendar', 'safety'].includes(key)).map((key) => <Button key={key} role="tab" aria-selected={view === key} variant={view === key ? 'primary' : 'outline-secondary'} onClick={() => changeView(key)}>{t(`page.views.${key}`)}</Button>)}
           </div>
-          <label className="cn-family-viewer">Đang xem cho<Form.Select size="sm" value={viewer.id} onChange={(event) => setViewerId(event.target.value)}>{space.members.map((member) => <option value={member.id} key={member.id}>{member.name}</option>)}</Form.Select></label>
+          <label className="cn-family-viewer">{t('page.viewingFor')}<Form.Select size="sm" value={viewer.id} onChange={(event) => setViewerId(event.target.value)}>{space.members.map((member) => <option value={member.id} key={member.id}>{member.name}</option>)}</Form.Select></label>
         </div>
         {view === 'calendar' || view === 'list' ? <HolidayLayerToggles layers={layers} onToggle={toggle} /> : null}
         {view === 'calendar' ? <div className="cn-cal-layout">

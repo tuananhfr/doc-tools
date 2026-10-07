@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "Tidak dapat melukis pratonton imej ini.",
+    "opening": "Membuka imej…",
+    "saveImage": "Simpan imej",
+    "noImageSelected": "tiada imej dipilih.",
+    "keepSize": "Kekalkan saiz",
+    "maxEdge": "Sisi panjang maksimum",
+    "result": "Hasil",
+    "processing": "Memproses…",
+    "processFailed": "Tidak dapat memproses imej.",
+    "imageCount": "{{count}} imej"
+  },
+  "shell": {
+    "hint": "JPG, PNG, WebP · maksimum 100 MB setiap imej",
+    "noImages": "Belum ada imej dipilih."
+  },
+  "files": {
+    "batchLimit": "Melebihi had {{limit}} imej untuk satu pusingan.",
+    "singleOnly": "Alat ini memproses satu imej pada satu masa."
+  },
+  "intake": {
+    "tooLarge": "Imej lebih besar daripada {{size}}.",
+    "heic": "Imej HEIC (iPhone) belum disokong — tukar kepada JPG dan cuba lagi.",
+    "unsupported": "Alat ini hanya menerima imej JPG, PNG dan WebP.",
+    "pixelLimit": "Imej {{width}} × {{height}} ({{millions}} megapiksel) melebihi had {{limit}} megapiksel.",
+    "corrupt": "Tidak dapat membaca imej — fail rosak atau pelayar tidak dapat membukanya."
+  },
+  "codec": {
+    "corrupt": "tidak dapat membaca imej — fail rosak atau pelayar tidak dapat membuka format ini.",
+    "tooLarge": "imej {{size}} terlalu besar untuk pelayar ini.",
+    "exportUnsupported": "pelayar ini tidak dapat mengeksport {{format}}.",
+    "tooLargeRetry": "imej {{size}} terlalu besar untuk pelayar ini — kecilkan sisi panjang dan cuba lagi."
+  },
+  "exif": {
+    "keptOne": "Imej hasil masih menyimpan maklumat kamera (tarikh diambil, lokasi GPS).",
+    "keptSome": "{{count}}/{{total}} imej hasil masih menyimpan maklumat kamera (tarikh diambil, lokasi GPS).",
+    "lostOne": "Imej hasil tidak lagi mempunyai maklumat kamera (tarikh diambil, lokasi GPS) — hanya imej hasil JPG atau PNG boleh membawa maklumat ini.",
+    "lostSome": "{{count}}/{{total}} imej hasil tidak lagi mempunyai maklumat kamera (tarikh diambil, lokasi GPS) — hanya imej hasil JPG atau PNG boleh membawa maklumat ini."
+  },
+  "tasks": {
+    "progress": {
+      "process": "Memproses imej {{current}}/{{total}}",
+      "convert": "Menukar imej {{current}}/{{total}}",
+      "compress": "Memampatkan imej {{current}}/{{total}}"
+    },
+    "imageFailed": "tidak dapat memproses imej.",
+    "jpegFlatten": "JPG tiada latar telus: kawasan telus (jika ada) diisi dengan warna putih.",
+    "webpAsPng": "Pelayar ini tidak dapat menulis WebP: imej WebP disimpan sebagai PNG.",
+    "rendering": "Memaparkan imej",
+    "formatFallback": "Pelayar ini tidak dapat menulis {{from}}: imej disimpan sebagai {{to}}."
+  },
+  "convert": {
+    "pickerTitle": "Pilih imej yang hendak ditukar format",
+    "runOne": "Tukar kepada {{format}}",
+    "runMany": "Tukar {{count}} imej kepada {{format}}",
+    "blockedOne": "Imej yang dipilih sudah dalam format {{format}}.",
+    "blockedMany": "Imej-imej yang dipilih sudah dalam format {{format}}.",
+    "targetLegend": "Tukar kepada",
+    "qualityLegend": "Kualiti",
+    "target": {
+      "jpeg": "Ringan dan boleh dibuka di mana-mana. Tidak mengekalkan latar telus.",
+      "png": "Mengekalkan setiap piksel dan latar telus; fail lebih besar.",
+      "webp": "Lebih ringan daripada JPG pada kualiti yang sama, dan mengekalkan latar telus."
+    },
+    "quality": {
+      "high": {
+        "label": "Tinggi",
+        "hint": "Hampir sama dengan imej asal."
+      },
+      "medium": {
+        "label": "Sederhana",
+        "hint": "Mengimbangi ketajaman dan saiz fail."
+      },
+      "small": {
+        "label": "Padat",
+        "hint": "Paling ringan; apabila dizum akan kelihatan pecah."
+      }
+    },
+    "noWebp": "Pelayar ini tidak dapat mengeksport WebP.",
+    "keptNote": "{{count}} imej sudah dalam format {{format}} — dikekalkan, tidak dikodkan semula.",
+    "titleOne": "Telah ditukar kepada {{format}}",
+    "titleMany": "{{count}} imej telah ditukar kepada {{format}}"
+  },
+  "compress": {
+    "pickerTitle": "Pilih imej yang hendak dimampatkan",
+    "runOne": "Mampatkan imej",
+    "runMany": "Mampatkan {{count}} imej",
+    "levelLegend": "Tahap mampatan",
+    "level": {
+      "light": {
+        "label": "Ringan",
+        "hint": "Hampir tiada beza yang ketara dengan imej asal."
+      },
+      "medium": {
+        "label": "Sederhana",
+        "hint": "Sesuai untuk dihantar melalui e-mel dan disiarkan di web."
+      },
+      "strong": {
+        "label": "Kuat",
+        "hint": "Paling ringan; apabila dizum akan kelihatan pecah."
+      }
+    },
+    "hint": "Tahap mampatan terpakai untuk JPG dan WebP. PNG tidak kehilangan data, jadi ia hanya menjadi lebih kecil apabila dimensinya dikecilkan.",
+    "smaller": "{{sizes}} ({{percent}}% lebih ringan).",
+    "unchangedOne": "Imej hasil tidak lebih ringan daripada imej asal — fail asal dikekalkan. {{hint}}",
+    "unchangedSome": "{{count}}/{{total}} imej tidak dapat diringankan — fail asal dikekalkan. {{hint}}",
+    "shrunk": "{{count}} imej telah dikecilkan kepada sisi panjang {{edge}} px.",
+    "hintPng": "PNG tidak kehilangan data, jadi sukar untuk dikecilkan; untuk fail yang jauh lebih ringan, gunakan \"Tukar format imej\" kepada JPG atau WebP.",
+    "hintMaxed": "Imej ini sudah dimampatkan hampir semaksimum mungkin sebelum ini.",
+    "hintTryEdge": "Imej ini sudah dimampatkan hampir semaksimum mungkin sebelum ini — cuba juga \"Sisi panjang maksimum\" untuk mengecilkannya.",
+    "titleDone": "Mampatan selesai",
+    "titleNone": "Tidak dapat dimampatkan lagi"
+  },
+  "batch": {
+    "pickerTitle": "Pilih imej yang hendak diproses",
+    "runOne": "Proses imej",
+    "runMany": "Proses {{count}} imej",
+    "resize": {
+      "keep": "Kekalkan saiz",
+      "edge": "Sisi panjang maksimum",
+      "width": "Lebar",
+      "height": "Tinggi",
+      "percent": "Mengikut peratus"
+    },
+    "sizeRange": "Saiz mesti nombor bulat dari {{min}} hingga {{max}}.",
+    "startInvalid": "Nombor permulaan mesti nombor bulat bermula dari 0.",
+    "resizeLabel": "Ubah saiz",
+    "resizeHint": "Mengekalkan nisbah imej. Imej yang sudah lebih kecil daripada saiz ini dikekalkan — tidak dibesarkan.",
+    "formatLabel": "Format hasil",
+    "keepFormat": "Kekalkan format setiap imej",
+    "qualityLabel": "Kualiti JPG / WebP",
+    "quality": {
+      "high": "Tinggi — hampir sama dengan imej asal",
+      "medium": "Sederhana — mengimbangi ketajaman dan saiz fail",
+      "small": "Padat — paling ringan"
+    },
+    "patternLabel": "Corak nama fail",
+    "patternHint": "<code>{name}</code> = nama asal, <code>{n}</code> = nombor urutan. Contoh: <code>foto-tapak-{n}</code>",
+    "startLabel": "Nombor permulaan",
+    "sample": "Nama hasil: <strong>{{names}}</strong>",
+    "patternEmpty": "Masukkan corak nama fail, contohnya {name} atau foto-{n}.",
+    "patternIllegal": "Nama fail tidak boleh mengandungi \\ / : * ? \" < > |",
+    "patternTokens": "Hanya ada dua ruang isian: {name} (nama asal) dan {n} (nombor urutan).",
+    "resizedAll": "{{count}}/{{total}} imej telah dikecilkan.",
+    "resizedPartial": "{{count}}/{{total}} imej telah dikecilkan. Imej yang sudah lebih kecil daripada saiz sasaran mengekalkan saiznya — alat ini tidak membesarkan imej.",
+    "keptBytes": "{{count}} imej tidak perlu ditukar saiz atau format — dikekalkan bait demi bait, hanya ditukar nama.",
+    "titleOne": "Imej telah diproses",
+    "titleMany": "{{count}} imej telah diproses"
+  },
+  "crop": {
+    "pickerTitle": "Pilih imej yang hendak dipangkas atau dilaraskan",
+    "blocked": "Belum ada pemangkasan, putaran atau pelarasan — imej hasil akan sama seperti imej asal.",
+    "stageLabel": "Imej yang sedang disunting",
+    "aspectLabel": "Nisbah bingkai pangkas",
+    "aspect": {
+      "free": "Bebas",
+      "square": "1:1 — segi empat sama",
+      "landscape": "4:3 — melintang",
+      "portrait": "3:4 — menegak",
+      "wide": "16:9 — skrin lebar",
+      "tall": "9:16 — menegak panjang"
+    },
+    "rotate": "Putar imej",
+    "rotateLeft": "Putar ke kiri",
+    "rotateRight": "Putar ke kanan",
+    "brightness": "Kecerahan",
+    "contrast": "Kontras",
+    "output": "Imej hasil: <strong>{{size}}</strong>",
+    "reset": "Set semula seperti imej asal",
+    "box": "Bingkai pangkas — seret atau guna kekunci anak panah untuk mengalihkan",
+    "handleAria": "{{handle}} — seret atau guna kekunci anak panah untuk mengubah saiz",
+    "handle": {
+      "nw": "Sudut atas kiri",
+      "n": "Tepi atas",
+      "ne": "Sudut atas kanan",
+      "e": "Tepi kanan",
+      "se": "Sudut bawah kanan",
+      "s": "Tepi bawah",
+      "sw": "Sudut bawah kiri",
+      "w": "Tepi kiri"
+    },
+    "title": "Imej yang disunting telah disimpan"
+  },
+  "mark": {
+    "pickerTitle": "Pilih imej yang hendak ditutup atau dicop",
+    "blocked": "Belum ada kotak tutupan dilukis atau teks cop dimasukkan — imej hasil akan sama seperti imej asal.",
+    "stageLabel": "Imej yang sedang ditutup dan dicop",
+    "boxCount": "{{count}} kotak tutupan",
+    "stageHint": "Seret pada imej untuk menandakan kawasan yang hendak ditutup. Klik kotak yang telah dilukis untuk membuangnya.",
+    "overlayBoxes": "{{count}} kotak tutupan pada imej",
+    "overlayEmpty": "Tiada kotak tutupan pada imej",
+    "boxesLabel": "Kotak tutupan",
+    "boxesSummary": "{{count}} kotak — kawasan di bawahnya diganti dengan blok hitam dalam fail hasil dan tidak dapat dipulihkan.",
+    "boxesEmpty": "Belum ada kotak. Seret pada imej untuk melukis.",
+    "clearBoxes": "Buang semua kotak tutupan",
+    "textLabel": "Teks cop (pilihan)",
+    "textPlaceholder": "Contoh: DRAF — JANGAN SALIN",
+    "tile": "Ulang secara pepenjuru di seluruh imej",
+    "anchorLabel": "Kedudukan cop",
+    "colorLabel": "Warna teks",
+    "sizeLabel": "Saiz fon",
+    "opacityLabel": "Kelegapan",
+    "color": {
+      "red": "Merah",
+      "black": "Hitam",
+      "white": "Putih"
+    },
+    "anchor": {
+      "topLeft": "Atas — kiri",
+      "topCenter": "Atas — tengah",
+      "topRight": "Atas — kanan",
+      "middleLeft": "Tengah — kiri",
+      "center": "Tepat di tengah",
+      "middleRight": "Tengah — kanan",
+      "bottomLeft": "Bawah — kiri",
+      "bottomCenter": "Bawah — tengah",
+      "bottomRight": "Bawah — kanan"
+    },
+    "boxesNote": "{{count}} kawasan telah diganti dengan blok hitam pada piksel itu sendiri — tiada lapisan di bawahnya yang boleh ditanggalkan.",
+    "stampNote": "Cop teks telah ditulis ke dalam imej.",
+    "titleBoth": "Imej telah ditutup dan dicop",
+    "titleBoxes": "Imej telah ditutup",
+    "titleStamp": "Imej telah dicop"
+  },
+  "measure": {
+    "pickerTitle": "Pilih imej yang hendak diukur",
+    "run": "Simpan imej bersama ukuran",
+    "blocked": "Belum ada ukuran pada imej.",
+    "stageLabel": "Imej yang sedang diukur",
+    "modesLabel": "Jenis ukuran",
+    "tab": {
+      "distance": "Ukur jarak",
+      "area": "Ukur keluasan",
+      "count": "Kira bilangan"
+    },
+    "hint": {
+      "distance": "Klik dua titik pada imej untuk mengukur satu segmen. Seret hujung segmen untuk melaraskan.",
+      "area": "Klik setiap sudut kawasan mengikut urutan, kemudian klik semula titik pertama untuk menutup kawasan.",
+      "count": "Klik setiap objek untuk mengiranya. Klik semula titik untuk membuangnya.",
+      "reference": "Klik kedua-dua hujung objek yang panjangnya diketahui: daun pintu, batu bata, pembaris."
+    },
+    "closeArea": "Tutup kawasan",
+    "undo": "Buat asal",
+    "clearAll": "Kosongkan semua",
+    "imageAlt": "Imej yang sedang diukur: {{name}}",
+    "referenceGrip": "Hujung {{index}} segmen rujukan — seret atau guna kekunci anak panah untuk melaraskan",
+    "countGrip": "Titik kiraan {{number}} — klik untuk membuang, seret untuk mengalihkan",
+    "distanceGrip": "Titik {{point}} segmen {{index}} — seret atau guna kekunci anak panah untuk melaraskan, Delete untuk memadam",
+    "areaGrip": "Titik {{point}} kawasan {{index}} — seret atau guna kekunci anak panah untuk melaraskan, Delete untuk memadam",
+    "closeAtStart": "Tutup kawasan pada titik pertama",
+    "lengthLabel": "Panjang sebenar segmen rujukan",
+    "lengthPlaceholder": "Contoh: 2.1",
+    "unit": "Unit",
+    "clearReference": "Buang segmen rujukan",
+    "referenceLabel": "Segmen rujukan",
+    "referenceHint": "Tandakan objek yang panjangnya diketahui untuk menukar ukuran kepada unit sebenar.",
+    "placing": "Sedang meletakkan — klik dua titik pada imej",
+    "resetReference": "Set semula segmen rujukan",
+    "setReference": "Tetapkan segmen rujukan",
+    "scaleHint": "Ukuran hanya tepat untuk objek yang berada pada satah yang sama dengan segmen rujukan, dalam foto yang diambil secara tegak lurus.",
+    "noLength": "Panjang sebenar belum dimasukkan — ukuran dikira dalam piksel (px).",
+    "noReference": "Belum ada segmen rujukan — ukuran dikira dalam piksel (px).",
+    "results": "Ukuran",
+    "noResults": "Belum ada ukuran.",
+    "distanceName": "Segmen {{index}}",
+    "areaName": "Kawasan {{index}}",
+    "removeDistance": "Padam segmen {{index}}",
+    "removeArea": "Padam kawasan {{index}}",
+    "remove": "Padam",
+    "perimeter": "perimeter {{length}}",
+    "counted": "Telah dikira",
+    "summaryDistances": "{{count}} segmen ukuran",
+    "summaryAreas": "{{count}} kawasan ukuran",
+    "summaryCounts": "{{count}} titik kiraan",
+    "recorded": "Imej telah merekodkan {{summary}}.",
+    "pixelWarning": "Tiada segmen rujukan, jadi ukuran direkodkan dalam piksel (px), bukan dimensi sebenar.",
+    "title": "Imej bersama ukuran telah disimpan"
+  },
+  "idPhoto": {
+    "pickerTitle": "Pilih foto potret",
+    "gapRange": "Jarak mesti dari {{min}} hingga {{max}} mm.",
+    "copiesInvalid": "Bilangan salinan mesti nombor bulat bermula dari 1.",
+    "tooBig": "Foto pasport bersaiz ini tidak muat pada saiz kertas yang dipilih.",
+    "overCapacity": "Sehelai {{paper}} hanya muat {{count}} foto bersaiz ini.",
+    "runSingle": "Cipta foto pasport",
+    "runSheet": "Cipta helaian cetak {{count}} foto",
+    "photoSize": "Saiz foto pasport",
+    "photoHint": "Pilih mengikut keperluan pejabat penerima — alat ini tidak mengetahui peraturan foto bagi setiap jenis dokumen dan tidak menyemak latar atau kedudukan wajah.",
+    "lowDpi": "Kawasan yang dipilih hanya mencapai {{dpi}} DPI pada saiz ini (sepatutnya {{min}} ke atas) — cetakan akan kabur. Seret bingkai lebih besar atau gunakan foto yang lebih tajam.",
+    "outputLegend": "Fail hasil",
+    "output": {
+      "pdf": {
+        "label": "Helaian cetak PDF",
+        "hint": "Cetak pada \"Saiz sebenar / 100%\" untuk mendapat ukuran milimeter yang tepat."
+      },
+      "sheet": {
+        "label": "Helaian cetak JPG",
+        "hint": "300 DPI — untuk pencetak foto atau kedai cetak yang hanya menerima fail imej."
+      },
+      "single": {
+        "label": "Satu foto pasport",
+        "hint": "Hanya foto yang dipangkas mengikut nisbah yang betul — untuk penyerahan dalam talian."
+      }
+    },
+    "paperLabel": "Saiz kertas",
+    "paper": {
+      "a4": "A4 (21 × 29.7 cm)",
+      "a5": "A5 (14.8 × 21 cm)",
+      "10x15": "Kertas foto 10 × 15 cm",
+      "13x18": "Kertas foto 13 × 18 cm"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "kertas foto 10 × 15 cm",
+      "13x18": "kertas foto 13 × 18 cm"
+    },
+    "fill": "Penuhkan helaian ({{count}} foto)",
+    "copies": "Bilangan salinan",
+    "gap": "Jarak",
+    "guides": "Lukis garis potong di sekeliling setiap foto",
+    "layoutHint": "{{columns}} lajur × {{rows}} baris, jidar kertas {{margin}} mm. Semasa mencetak, pilih \"Saiz sebenar\" (Actual size / 100%), bukan \"Muat halaman\" — jika tidak, foto akan dicetak dengan saiz yang salah.",
+    "sheetAria": "Helaian cetak: {{count}} foto",
+    "renderingSheet": "Memaparkan helaian cetak",
+    "lowDpiNote": "Kawasan yang dipangkas hanya mencapai {{dpi}} DPI pada saiz {{size}} — cetakan mungkin kabur.",
+    "titleSingle": "Foto pasport telah dicipta",
+    "sheetDetail": "{{count}} foto {{photo}} pada {{paper}}",
+    "noExif": "Helaian cetak tidak membawa maklumat kamera (tarikh diambil, lokasi GPS) daripada foto asal.",
+    "actualSize": "Semasa mencetak, pilih \"Saiz sebenar\" (Actual size / 100%), bukan \"Muat halaman\".",
+    "titleSheet": "Helaian cetak foto pasport telah dicipta"
+  },
+  "camera": {
+    "insecure": "{{reason}} Ambil foto dengan aplikasi kamera, kemudian pilih foto itu daripada peranti anda.",
+    "notReady": "kamera belum sedia.",
+    "shootFailed": "Tidak dapat mengambil foto. Cuba lagi.",
+    "cropFailed": "Tidak dapat membina imej yang dipangkas. Buang bingkai pangkas dan cuba lagi.",
+    "titleReview": "Pangkas foto {{index}}/{{total}}",
+    "title": "Ambil foto",
+    "viewfinder": "Pemidang tilik kamera",
+    "shotAlt": "Foto {{index}}",
+    "starting": "Membuka kamera… Pelayar mungkin meminta kebenaran menggunakan kamera.",
+    "retry": "Cuba lagi",
+    "backToShoot": "Teruskan mengambil foto",
+    "clearCrop": "Buang bingkai pangkas",
+    "deleteShot": "Padam foto ini",
+    "strip": "Foto yang diambil",
+    "thumbAria": "Lihat dan pangkas foto {{index}}",
+    "thumbTitle": "Lihat, pangkas atau padam foto ini",
+    "shutter": "Ambil",
+    "full": "Sudah mencapai {{count}} foto",
+    "torch": "Lampu suluh",
+    "torchOff": "Matikan lampu suluh",
+    "torchOn": "Hidupkan lampu suluh",
+    "reviewHint": "Seret bingkai untuk mengekalkan bahagian yang diperlukan. Jika tidak diseret, keseluruhan foto dikekalkan.",
+    "none": "Belum ada foto diambil.",
+    "fullStatus": "Sudah mencapai had {{count}} foto untuk satu pusingan.",
+    "shotCount": "{{count}} foto telah diambil. Ketik imej kecil untuk memangkas atau memadamnya.",
+    "discardClose": "Buang {{count}} foto dan tutup",
+    "close": "Tutup",
+    "useShots": "Gunakan {{count}} foto",
+    "useNone": "Gunakan foto"
+  },
+  "collage": {
+    "invalid": "Pilih 2–9 imej, 1–3 lajur dan jarak 0–100 px.",
+    "tooLarge": "{{name}}: imej melebihi had saiz.",
+    "unsupported": "{{name}}: hanya JPG, PNG dan WebP disokong.",
+    "pixelLimit": "{{name}}: imej melebihi had piksel.",
+    "failed": "Tidak dapat mencipta kolaj.",
+    "done": "Kolaj PNG telah dimuat turun. Semak susun atur sebelum menggunakannya.",
+    "resultLabel": "Kolaj",
+    "idle": "Imej disusun mengikut urutan pilihan anda, dipangkas mengikut petak segi empat sama dan dieksport sebagai PNG. Metadata imej asal tidak dikekalkan.",
+    "busy": "Menggabungkan…",
+    "run": "Gabung dan muat turun",
+    "panel": "Imej untuk digabungkan",
+    "choose": "Pilih 2 hingga 9 imej",
+    "columns": "Bilangan lajur",
+    "gap": "Jarak (px)"
+  },
+  "removeMeta": {
+    "tooLarge": "Imej melebihi had saiz.",
+    "unsupported": "Hanya imej JPG, PNG dan WebP disokong.",
+    "pixelLimit": "Imej melebihi had piksel.",
+    "done": "Imej {{width}} × {{height}} telah dicipta dan dimuat turun. Semak imej sebelum berkongsi.",
+    "outputLabel": "Fail hasil",
+    "idle": "Melukis semula imej pada peranti anda untuk membuang EXIF asal, termasuk lokasi GPS, kamera dan tarikh diambil. Imej JPG dikodkan semula, jadi kualiti mungkin berubah.",
+    "run": "Padam EXIF dan muat turun",
+    "panel": "Imej untuk dibersihkan",
+    "choose": "Pilih imej JPG, PNG atau WebP",
+    "note": "Alat ini sengaja membuang EXIF. Alat imej yang lain masih mengekalkan maklumat tapak mengikut pilihan semasa projek."
+  },
+  "removeBg": {
+    "invalidFile": "Pilih imej JPG, PNG atau WebP di bawah 20 MB.",
+    "invalidSize": "Saiz imej tidak sah.",
+    "processed": "Imej {{width}} × {{height}} telah diproses. Latar yang berbilang warna perlu dibaiki dengan berus.",
+    "openFailed": "Tidak dapat membuka imej.",
+    "exportFailed": "Tidak dapat mengeksport imej.",
+    "done": "PNG telah dicipta. Semak tepi objek dengan teliti sebelum menggunakannya.",
+    "noImage": "Belum ada imej dipilih",
+    "idle": "Mengesan warna latar daripada tepi imej secara automatik. Paling sesuai untuk latar polos; gunakan berus kekal/padam untuk membetulkan kawasan yang salah.",
+    "download": "Muat turun PNG",
+    "panel": "Buang latar polos",
+    "choose": "Pilih imej",
+    "tolerance": "Kepekaan warna latar: {{value}}",
+    "background": "Latar baharu",
+    "backgroundTransparent": "Telus",
+    "backgroundWhite": "Putih",
+    "backgroundIdBlue": "Biru foto pasport",
+    "brush": "Baiki dengan berus",
+    "brushOff": "Tidak digunakan",
+    "brushErase": "Padam lagi",
+    "brushKeep": "Kekalkan",
+    "brushSize": "Saiz berus: {{value}}",
+    "undoBrush": "Buat asal berus",
+    "note": "Imej diproses pada peranti anda. Latar yang terperinci perlu dibaiki secara manual dengan berus; imej besar dikecilkan kepada maksimum 2200 px setiap sisi."
+  }
+}

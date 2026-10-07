@@ -3,7 +3,8 @@
 .cn-tool-search input { border: 0; background: transparent; min-width: 0; width: 100%; flex: 1; height: 38px; color: var(--cn-ink); font: 400 12px/1.5 var(--cn-font-family); }
 .cn-tool-search input::placeholder { color: var(--cn-muted); opacity: 1; }
 .cn-tool-search input::-webkit-search-cancel-button { display: none; }
-.cn-tool-search input:focus-visible { outline-offset: 0; border-radius: 4px; }
+.cn-tool-search:focus-within { border-color: var(--cn-focus); outline: 2px solid var(--cn-focus); outline-offset: 2px; }
+.cn-site-page .cn-tool-search input:focus-visible { outline: none; }
 .cn-search-submit { flex: none; border: 0; border-radius: 24px; padding: 10px 20px; background: #005be8; color: var(--cn-on-accent); font: 700 12px/1.5 var(--cn-font-family); white-space: nowrap; min-height: 38px; }
 .cn-search-submit:hover { background: var(--cn-accent-hover); }
 .cn-search-clear { flex: none; display: grid; place-items: center; width: 28px; height: 32px; background: transparent; border: 0; color: var(--cn-muted); font-size: 12px; border-radius: 50%; }

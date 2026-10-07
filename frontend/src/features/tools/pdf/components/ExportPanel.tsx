@@ -1,5 +1,6 @@
 import { useId, useState, type ReactNode } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { LoginNudge } from '@/features/tools/hub'
 import { DEFAULT_PDF_OUTPUT, type ImageFormat, type PageRef, type PdfOutput, type SourceFile } from '../types/doc-tools.types'
@@ -39,18 +40,9 @@ interface ExportPanelProps {
 }
 
 // Nhãn trong ô chọn chỉ để số: cột hẹp 320px cắt mất "— cân bằng"; ý nghĩa đưa xuống dòng gợi ý.
-const DPI_OPTIONS = [
-  { value: 96, label: '96 DPI', hint: 'Xem trên màn hình, tệp nhẹ nhất.' },
-  { value: 150, label: '150 DPI', hint: 'Cân bằng độ nét và dung lượng.' },
-  { value: 300, label: '300 DPI', hint: 'Đủ nét để in.' },
-]
+const DPI_OPTIONS = [96, 150, 300] as const
 
-const BATCH_OPTIONS: { value: BatchFormat; label: string }[] = [
-  { value: 'pdf', label: 'PDF' },
-  { value: 'word', label: 'Word (.docx)' },
-  { value: 'excel', label: 'Excel (.xlsx)' },
-  { value: 'image', label: 'Ảnh từng trang' },
-]
+const BATCH_OPTIONS: readonly BatchFormat[] = ['pdf', 'word', 'excel', 'image']
 
 /**
  * Nút đang chạy chỉ đổi sang icon TĨNH — tiến độ đã có ở `ExportStatus` ngay dưới.
@@ -83,6 +75,7 @@ export function ExportPanel({
   nudge,
   onDismissNudge,
 }: ExportPanelProps) {
+  const { t } = useTranslation('pdf')
   const ids = useId()
   const [scope, setScope] = useState<Scope>('all')
   const [splitMode, setSplitMode] = useState<SplitMode>('ranges')
@@ -125,17 +118,17 @@ export function ExportPanel({
     <div>
       <section className="erp-doc-export__section">
         <Form.Group controlId={`${ids}-name`}>
-          <Form.Label className="erp-doc-export__label">Tên tệp xuất</Form.Label>
+          <Form.Label className="erp-doc-export__label">{t('export.fileName')}</Form.Label>
           <Form.Control value={name} placeholder={defaultName} maxLength={120} onChange={(event) => onNameChange(event.target.value)} />
         </Form.Group>
 
         <fieldset className="erp-doc-export__scope">
-          <legend className="erp-doc-export__label">Phạm vi</legend>
+          <legend className="erp-doc-export__label">{t('export.scope')}</legend>
           <Form.Check
             type="radio"
             id={`${ids}-all`}
             name={`${ids}-scope`}
-            label={`Tất cả (${pages.length} trang)`}
+            label={t('export.scopeAll', { count: pages.length })}
             checked={effectiveScope === 'all'}
             onChange={() => setScope('all')}
           />
@@ -143,7 +136,7 @@ export function ExportPanel({
             type="radio"
             id={`${ids}-selected`}
             name={`${ids}-scope`}
-            label={`Trang đã chọn (${selected.length})`}
+            label={t('export.scopeSelected', { count: selected.length })}
             checked={effectiveScope === 'selected'}
             disabled={selected.length === 0}
             onChange={() => setScope('selected')}
@@ -157,14 +150,13 @@ export function ExportPanel({
         {redactedCount > 0 ? (
           <p className="erp-doc-export__note erp-doc-export__note--redact">
             <Icon name="exclamation-triangle" className="me-1" />
-            {redactedCount} trang có vùng xoá thật sẽ được dựng lại thành ảnh: phần dưới khung đen bị xoá hẳn, liên kết và ô form trên
-            trang đó cũng không còn.
+            {t('export.redactNote', { count: redactedCount })}
           </p>
         ) : null}
 
         <Button className="w-100 erp-doc-export__cta" disabled={disabled} onClick={() => onExportPdf(scopedPages, fileName, pdfOutput)}>
           <BusyIcon active={busy === 'pdf'} icon="download" />
-          Tải PDF ({scopedPages.length} trang)
+          {t('export.downloadPdf', { count: scopedPages.length })}
         </Button>
         {statusFor('pdf')}
       </section>
@@ -172,22 +164,22 @@ export function ExportPanel({
       <section className="erp-doc-export__section" id={EXPORT_SECTION.split}>
         <h2 className="erp-doc-export__title">
           <Icon name="scissors" className="me-2" />
-          Tách PDF
+          {t('export.split')}
         </h2>
         <Form.Check
           type="radio"
           id={`${ids}-ranges`}
           name={`${ids}-split`}
-          label="Theo khoảng trang"
+          label={t('export.splitRanges')}
           checked={splitMode === 'ranges'}
           onChange={() => setSplitMode('ranges')}
         />
         {splitMode === 'ranges' ? (
           <Form.Group controlId={`${ids}-range-input`} className="erp-doc-export__ranges">
-            <Form.Label visuallyHidden>Khoảng trang</Form.Label>
+            <Form.Label visuallyHidden>{t('split.ranges')}</Form.Label>
             <Form.Control
               value={ranges}
-              placeholder="Ví dụ: 1-3, 5, 8-10"
+              placeholder={t('split.rangesPlaceholder')}
               isInvalid={!!rangeError}
               aria-describedby={`${ids}-range-help`}
               onChange={(event) => {
@@ -196,20 +188,20 @@ export function ExportPanel({
               }}
             />
             <Form.Control.Feedback type="invalid">{rangeError}</Form.Control.Feedback>
-            <Form.Text id={`${ids}-range-help`}>Mỗi nhóm cách nhau dấu phẩy thành một tệp.</Form.Text>
+            <Form.Text id={`${ids}-range-help`}>{t('split.rangesHint')}</Form.Text>
           </Form.Group>
         ) : null}
         <Form.Check
           type="radio"
           id={`${ids}-each`}
           name={`${ids}-split`}
-          label={`Mỗi trang một tệp (${pages.length} tệp)`}
+          label={t('export.splitEach', { count: pages.length })}
           checked={splitMode === 'each'}
           onChange={() => setSplitMode('each')}
         />
         <Button variant="outline-secondary" className="w-100 mt-2" disabled={disabled} onClick={submitSplit}>
           <BusyIcon active={busy === 'split'} icon="file-earmark-zip" />
-          Tách và tải .zip
+          {t('export.splitRun')}
         </Button>
         {statusFor('split')}
       </section>
@@ -217,28 +209,28 @@ export function ExportPanel({
       <section className="erp-doc-export__section" id={EXPORT_SECTION.image}>
         <h2 className="erp-doc-export__title">
           <Icon name="file-earmark-image" className="me-2" />
-          Xuất ảnh
+          {t('export.images')}
         </h2>
         <div className="erp-doc-export__row">
           <Form.Group controlId={`${ids}-format`}>
-            <Form.Label className="erp-doc-export__label">Định dạng</Form.Label>
+            <Form.Label className="erp-doc-export__label">{t('export.format')}</Form.Label>
             <Form.Select value={format} onChange={(event) => setFormat(event.target.value as ImageFormat)}>
               <option value="jpeg">JPG</option>
               <option value="png">PNG</option>
             </Form.Select>
           </Form.Group>
           <Form.Group controlId={`${ids}-dpi`}>
-            <Form.Label className="erp-doc-export__label">Độ phân giải</Form.Label>
+            <Form.Label className="erp-doc-export__label">{t('dpi.label')}</Form.Label>
             <Form.Select value={dpi} onChange={(event) => setDpi(Number(event.target.value))}>
-              {DPI_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {DPI_OPTIONS.map((value) => (
+                <option key={value} value={value}>
+                  {`${value} DPI`}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
         </div>
-        <Form.Text className="erp-doc-export__hint">{DPI_OPTIONS.find((option) => option.value === dpi)?.hint}</Form.Text>
+        <Form.Text className="erp-doc-export__hint">{DPI_OPTIONS.map((value) => (value === dpi ? t(`dpi.hint${value}`) : null))}</Form.Text>
         <Button
           variant="outline-secondary"
           className="w-100 mt-2"
@@ -246,7 +238,7 @@ export function ExportPanel({
           onClick={() => onExportImages(scopedPages, format, dpi, fileName)}
         >
           <BusyIcon active={busy === 'image'} icon="images" />
-          {scopedPages.length === 1 ? 'Tải ảnh' : `Tải ${scopedPages.length} ảnh (.zip)`}
+          {scopedPages.length === 1 ? t('export.downloadImage') : t('export.downloadImages', { count: scopedPages.length })}
         </Button>
         {statusFor('image')}
       </section>
@@ -254,19 +246,17 @@ export function ExportPanel({
       <section className="erp-doc-export__section">
         <h2 className="erp-doc-export__title">
           <Icon name="file-earmark-word" className="me-2" />
-          Chuyển sang Word / Excel
+          {t('export.office')}
         </h2>
-        <p className="erp-doc-export__note">
-          Dựng lại từ chữ trong PDF — bố cục phức tạp có thể lệch; dấu tay, số trang, watermark không đi theo.
-        </p>
+        <p className="erp-doc-export__note">{t('export.officeNote')}</p>
         <div className="erp-doc-export__pair">
           <Button variant="outline-secondary" disabled={disabled} onClick={() => onExportOffice('word', scopedPages, fileName)}>
             <BusyIcon active={busy === 'word'} icon="file-earmark-word" />
-            Tải Word
+            {t('export.downloadWord')}
           </Button>
           <Button variant="outline-secondary" disabled={disabled} onClick={() => onExportOffice('excel', scopedPages, fileName)}>
             <BusyIcon active={busy === 'excel'} icon="file-earmark-spreadsheet" />
-            Tải Excel
+            {t('export.downloadExcel')}
           </Button>
         </div>
         {statusFor('word', 'excel')}
@@ -276,24 +266,21 @@ export function ExportPanel({
         <section className="erp-doc-export__section">
           <h2 className="erp-doc-export__title">
             <Icon name="collection" className="me-2" />
-            Xử lý từng tệp riêng
+            {t('export.batch')}
           </h2>
-          <p className="erp-doc-export__note">
-            {batchGroups.length} tệp gốc — mỗi tệp ra một tệp riêng theo đúng thiết lập ở trên (nén, số trang, watermark, dấu tay), gói chung
-            một .zip. Không ghép các tệp lại với nhau.
-          </p>
+          <p className="erp-doc-export__note">{t('export.batchNote', { count: batchGroups.length })}</p>
           <Form.Group controlId={`${ids}-batch-format`}>
-            <Form.Label className="erp-doc-export__label">Xuất thành</Form.Label>
+            <Form.Label className="erp-doc-export__label">{t('export.batchAs')}</Form.Label>
             <Form.Select value={batchFormat} onChange={(event) => setBatchFormat(event.target.value as BatchFormat)}>
-              {BATCH_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {BATCH_OPTIONS.map((value) => (
+                <option key={value} value={value}>
+                  {t(`export.batchOption.${value}`)}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
           {batchFormat === 'image' ? (
-            <Form.Text className="erp-doc-export__hint">Định dạng và độ phân giải theo mục Xuất ảnh ({format === 'png' ? 'PNG' : 'JPG'}, {dpi} DPI).</Form.Text>
+            <Form.Text className="erp-doc-export__hint">{t('export.batchImageHint', { format: format === 'png' ? 'PNG' : 'JPG', dpi })}</Form.Text>
           ) : null}
           <Button
             variant="outline-secondary"
@@ -302,7 +289,7 @@ export function ExportPanel({
             onClick={() => onExportBatch(batchGroups, batchFormat, { output: pdfOutput, image: { format, dpi } }, fileName)}
           >
             <BusyIcon active={busy === 'batch'} icon="file-earmark-zip" />
-            Xuất {batchGroups.length} tệp (.zip)
+            {t('export.batchRun', { count: batchGroups.length })}
           </Button>
           {statusFor('batch')}
         </section>

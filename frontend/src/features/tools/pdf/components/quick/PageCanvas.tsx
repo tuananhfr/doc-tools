@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { usePagePreview } from '../../hooks/usePagePreview'
 import { PDF_CSS_SCALE } from '../../services/page-preview'
@@ -22,6 +23,7 @@ const FRAME: Box = { width: 900, height: 1200 }
  * trang — lớp phủ đặt theo phần trăm của khung nên lệch tỉ lệ là lệch mọi toạ độ.
  */
 export function PageCanvas({ source, page, overlay }: PageCanvasProps) {
+  const { t } = useTranslation('pdf')
   const { host, size: shown, status } = usePagePreview(source, page, 'page', FRAME)
   const size = shown ? { width: shown.width / PDF_CSS_SCALE, height: shown.height / PDF_CSS_SCALE } : null
 
@@ -31,12 +33,12 @@ export function PageCanvas({ source, page, overlay }: PageCanvasProps) {
       {status === 'error' ? (
         <p className="erp-page-stage__status" role="alert">
           <Icon name="exclamation-triangle" />
-          Không vẽ được trang này.
+          {t('stage.drawFailed')}
         </p>
       ) : status === 'loading' ? (
         <p className="erp-page-stage__status" role="status">
           <Spinner as="span" size="sm" />
-          Đang vẽ trang…
+          {t('stage.drawing')}
         </p>
       ) : size ? (
         overlay?.(size)

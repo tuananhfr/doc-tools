@@ -1,0 +1,448 @@
+{
+  "pageTitle": "{{name}} – gratuit",
+  "groups": {
+    "all": "Tous",
+    "document": "Documents",
+    "image": "Images",
+    "calc": "Calculs",
+    "money": "Argent",
+    "date": "Dates et délais",
+    "data": "Données",
+    "construction": "Construction",
+    "home": "Maison et vie quotidienne",
+    "tech": "Technique",
+    "other": "Autres utilitaires"
+  },
+  "tips": {
+    "insertPages": "Déposez d'autres fichiers au milieu de la grille des pages pour les insérer au bon endroit, sans tout refusionner.",
+    "findInScan": "Après l'OCR, Ctrl+F trouve aussi le texte dans les documents scannés.",
+    "undo": "Ctrl+Z annule toute action sur les pages : suppression, rotation, recadrage, modification du texte.",
+    "rangeSelect": "Maintenez Maj et cliquez sur une deuxième page pour sélectionner toutes les pages intermédiaires."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "Compresser une vidéo",
+      "description": "Réduire la taille et exporter en MP4 directement dans le navigateur",
+      "synonyms": "compresser vidéo, réduire taille vidéo, alléger vidéo, compress video, mp4"
+    },
+    "trim-video": {
+      "name": "Couper une vidéo",
+      "description": "Choisir un extrait à la seconde près et exporter un nouveau MP4",
+      "synonyms": "couper vidéo, découper vidéo, rogner vidéo, extrait, trim video, mp4"
+    },
+    "video-gif": {
+      "name": "Créer un GIF à partir d'une vidéo",
+      "description": "Transformer un court extrait vidéo en animation en boucle",
+      "synonyms": "gif, gif animé, vidéo en gif, créer gif, video to gif"
+    },
+    "extract-audio": {
+      "name": "Extraire l'audio d'une vidéo",
+      "description": "Récupérer le son et l'exporter en MP3, M4A ou WAV sur votre appareil",
+      "synonyms": "vidéo en mp3, extraire son, musique d'une vidéo, extract audio"
+    },
+    "assistant": {
+      "name": "Assistant de choix d'outil",
+      "description": "Trouver l'outil adapté et utiliser votre propre IA avec une question prévisualisée",
+      "synonyms": "assistant ia, comment faire, quel outil, aide au choix"
+    },
+    "idea-suggestion": {
+      "name": "Proposer un outil",
+      "description": "Envoyer une idée et suivre sa validation avec un code de reçu",
+      "privacyNote": "Le contenu n'est envoyé que lorsque vous appuyez sur Envoyer la proposition",
+      "synonyms": "suggestion d'outil, nouvelle idée, demande de fonctionnalité, roadmap"
+    },
+    "regulation-feedback": {
+      "name": "Signaler une réglementation",
+      "description": "Envoyer un contenu et une URL source à vérifier par l'équipe",
+      "privacyNote": "Le contenu n'est envoyé que lorsque vous appuyez sur Envoyer la proposition",
+      "synonyms": "mise à jour juridique, nouveau texte, correction de données, réglementation"
+    },
+    "remove-background": {
+      "name": "Supprimer l'arrière-plan d'une image",
+      "description": "Supprimer automatiquement un fond uni et retoucher au pinceau",
+      "synonyms": "détourer, fond transparent, supprimer fond, photo produit, remove background"
+    },
+    "cv": {
+      "name": "Créer un CV",
+      "description": "Rédiger un CV, choisir un modèle puis l'imprimer ou l'enregistrer en PDF sur votre appareil",
+      "synonyms": "cv, curriculum vitae, candidature, resume"
+    },
+    "pdf-password": {
+      "name": "Ajouter / retirer un mot de passe PDF",
+      "description": "Chiffrer en AES-256 ou déverrouiller avec le bon mot de passe",
+      "synonyms": "verrouiller pdf, protéger pdf, déverrouiller pdf, chiffrer pdf, mot de passe pdf"
+    },
+    "family-calendar": {
+      "name": "Calendrier familial",
+      "description": "Garder événements, tâches et contacts d'urgence sur l'appareil ; sauvegarder et exporter en ICS",
+      "synonyms": "calendrier familial, rappels, sos, emploi du temps scolaire, agenda"
+    },
+    "address-conversion": {
+      "name": "Conversion d'adresses après fusion",
+      "description": "Faire correspondre les anciennes adresses avec la table complète des communes/quartiers",
+      "privacyNote": "Correspondance effectuée sur l'appareil ; les remarques ne sont envoyées qu'avec votre accord",
+      "synonyms": "nouvelle adresse, fusion de provinces, changement de nom de commune, adresse vietnam"
+    },
+    "payroll": {
+      "name": "Salaire brut – net",
+      "description": "Estimer le net perçu à partir de vos paramètres ou d'un paquet signé",
+      "privacyNote": "Calcul sur l'appareil ; les remarques ne sont envoyées qu'avec votre accord",
+      "synonyms": "salaire net, brut en net, impôt sur le revenu, cotisations, paie"
+    },
+    "lunar-calendar": {
+      "name": "Calendrier lunaire – solaire",
+      "description": "Calendrier mensuel lunaire et solaire avec fêtes, can chi et heures fastes ; conversion de dates dans les deux sens et recherche d'anniversaires de décès",
+      "synonyms": "calendrier lunaire, tết, nouvel an lunaire, anniversaire de décès, convertir date"
+    },
+    "electricity": {
+      "name": "Facture d'électricité et d'eau",
+      "description": "Estimer la facture d'électricité par tranches et la facture d'eau selon les prix saisis",
+      "privacyNote": "Calcul sur l'appareil ; les remarques ne sont envoyées qu'avec votre accord",
+      "synonyms": "facture électricité, prix kwh, facture eau, charges"
+    },
+    "form-templates": {
+      "name": "Modèles de demandes et procès-verbaux",
+      "description": "Rédiger une demande de congé, une procuration ou un procès-verbal de passation à imprimer",
+      "synonyms": "demande de congé, procuration, procès-verbal de passation, modèle de lettre"
+    },
+    "dictation": {
+      "name": "Dictée vocale",
+      "description": "Dictée en vietnamien grâce à la reconnaissance vocale du navigateur",
+      "privacyNote": "L'audio peut être envoyé par le navigateur à son service de reconnaissance vocale",
+      "synonyms": "dictée, micro, reconnaissance vocale, speech to text, saisie vocale"
+    },
+    "magnifier": {
+      "name": "Loupe",
+      "description": "Agrandir l'image de la caméra pour lire les petits caractères",
+      "synonyms": "zoom caméra, lire petits caractères, loupe"
+    },
+    "house-estimate": {
+      "name": "Estimation du coût de construction",
+      "description": "Pondérer les surfaces et saisir les prix des entrepreneurs pour estimer le coût",
+      "synonyms": "surface construite, coût maison, devis construction, prix au m2"
+    },
+    "number-words": {
+      "name": "Nombre en toutes lettres",
+      "description": "Écrire les montants en lettres (en vietnamien) pour les reçus et contrats",
+      "synonyms": "montant en lettres, nombre en lettres, écrire un chiffre"
+    },
+    "loan": {
+      "name": "Prêt et épargne",
+      "description": "Calculer un échéancier de remboursement ou un dépôt renouvelé",
+      "synonyms": "prêt bancaire, capital restant dû, intérêts, crédit, épargne"
+    },
+    "unit-price": {
+      "name": "Comparer les prix unitaires",
+      "description": "Ramener deux produits à la même quantité pour comparer leurs prix",
+      "synonyms": "prix au kilo, prix au litre, courses, prix unitaire"
+    },
+    "study": {
+      "name": "Conversion de notes et admission",
+      "description": "Convertir des notes et calculer les points de priorité d'admission, à titre indicatif",
+      "synonyms": "gpa, barème sur 4, note sur 10, points de priorité, note d'admission"
+    },
+    "pomodoro": {
+      "name": "Minuteur de concentration",
+      "description": "Découper votre temps en séances de concentration et de pause",
+      "synonyms": "minuteur, concentration, pomodoro, chrono"
+    },
+    "group-split": {
+      "name": "Partage des dépenses de groupe",
+      "description": "Savoir qui doit rembourser qui après des dépenses communes",
+      "synonyms": "partager l'addition, frais de voyage, équilibrer les comptes, tricount"
+    },
+    "legacy-font": {
+      "name": "Conversion de polices et d'accents vietnamiens",
+      "description": "Convertir TCVN3, VNI et normaliser les accents en Unicode",
+      "synonyms": "vni vers unicode, tcvn3 vers unicode, supprimer accents, police vietnamienne"
+    },
+    "read-aloud": {
+      "name": "Lire un texte à voix haute",
+      "description": "Écouter un texte avec la voix de l'appareil",
+      "synonyms": "synthèse vocale, text to speech, tts, écouter un texte"
+    },
+    "vietqr": {
+      "name": "VietQR virement",
+      "description": "Créer un QR code de virement à partir du BIN et du numéro de compte",
+      "synonyms": "qr bancaire, napas, qr virement, qr paiement"
+    },
+    "invoice-xml": {
+      "name": "Lecteur de facture électronique XML",
+      "description": "Afficher les champs et exporter la liste des articles depuis le XML",
+      "synonyms": "facture xml, facture électronique, relevé de facture, tt78"
+    },
+    "remove-metadata": {
+      "name": "Supprimer la localisation des photos",
+      "description": "Redessiner l'image pour retirer EXIF, GPS et informations de l'appareil photo",
+      "synonyms": "supprimer exif, retirer gps, masquer localisation photo, métadonnées"
+    },
+    "collage": {
+      "name": "Assembler des photos",
+      "description": "Assembler 2 à 9 images en une grille PNG",
+      "synonyms": "collage, grille de photos, montage photo, assembler images"
+    },
+    "message-risk": {
+      "name": "Vérifier un message ou un lien suspect",
+      "description": "Repérer les signes d'arnaque sans ouvrir le lien",
+      "synonyms": "arnaque, phishing, hameçonnage, sms frauduleux"
+    },
+    "flashcards": {
+      "name": "Cartes mémoire",
+      "description": "Créer et réviser des cartes selon la boîte de Leitner sur votre appareil",
+      "synonyms": "flashcard, vocabulaire, boîte de leitner, révision"
+    },
+    "scan-to-pdf": {
+      "name": "Scanner des images → PDF",
+      "description": "Assembler des photos en un seul fichier PDF",
+      "pageTitle": "Convertir des images en PDF gratuitement",
+      "synonyms": "jpg en pdf, image en pdf, photo en pdf, scanner document, image to pdf"
+    },
+    "merge-pdf": {
+      "name": "Fusionner des PDF",
+      "description": "Réunir plusieurs fichiers PDF en un seul",
+      "synonyms": "fusionner pdf, assembler pdf, combiner pdf, merge"
+    },
+    "split-pdf": {
+      "name": "Diviser un PDF",
+      "description": "Séparer des pages ou les extraire dans des fichiers distincts",
+      "synonyms": "diviser pdf, couper pdf, extraire pages, séparer pdf, split"
+    },
+    "compress-pdf": {
+      "name": "Compresser un PDF",
+      "description": "Réduire la taille d'un fichier PDF",
+      "synonyms": "réduire pdf, alléger pdf, pdf plus léger, compress"
+    },
+    "convert-file": {
+      "name": "Convertir des fichiers",
+      "description": "PDF en Word, Excel, images",
+      "pageTitle": "Convertir un PDF en Word gratuitement",
+      "synonyms": "pdf en word, pdf to word, docx, xlsx, pdf en excel, pdf en jpg, pdf en image"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Images",
+      "description": "Chaque page PDF devient une image JPG ou PNG",
+      "synonyms": "pdf en jpg, pdf en png, pdf to jpg, exporter images"
+    },
+    "organize-pdf": {
+      "name": "Organiser un PDF",
+      "description": "Réordonner, faire pivoter, supprimer des pages",
+      "synonyms": "réordonner pages, pivoter pages, supprimer pages, trier pages"
+    },
+    "page-numbers": {
+      "name": "Numéroter les pages",
+      "description": "Ajouter des numéros de page à un fichier PDF",
+      "synonyms": "numéros de page, pagination, pied de page, page number"
+    },
+    "stamp-pdf": {
+      "name": "Tamponner un PDF",
+      "description": "Apposer un tampon texte ou un logo sur les pages",
+      "synonyms": "filigrane, watermark, logo, copie conforme, tampon"
+    },
+    "redact-pdf": {
+      "name": "Caviarder un PDF",
+      "description": "Supprimer définitivement les zones sensibles du fichier",
+      "synonyms": "caviarder, noircir, masquer informations, effacer texte, redact"
+    },
+    "view-pdf": {
+      "name": "Lire un PDF",
+      "description": "Afficher, rechercher du texte, annoter les pages",
+      "synonyms": "lecteur pdf, ouvrir pdf, visionneuse pdf"
+    },
+    "ocr": {
+      "name": "OCR de texte",
+      "description": "Reconnaître le texte vietnamien dans les documents scannés",
+      "synonyms": "reconnaissance de texte, pdf avec texte, pdf indexable, ocr, searchable"
+    },
+    "compare": {
+      "name": "Comparer des documents",
+      "description": "Comparer le texte de deux PDF et signaler les lignes différentes",
+      "synonyms": "comparer, diff, comparer pdf, différences, ancienne et nouvelle version"
+    },
+    "sign": {
+      "name": "Ajouter une signature",
+      "description": "Dessiner une signature ou insérer une image de signature sur une page",
+      "synonyms": "signer document, signature, signer pdf, e-signature, sign"
+    },
+    "edit-pdf": {
+      "name": "Modifier un PDF",
+      "description": "Modifier le texte, annoter, organiser les pages",
+      "synonyms": "modifier pdf, éditer pdf, pivoter pages, supprimer pages, ajouter texte"
+    },
+    "image-to-text": {
+      "name": "Image → Texte",
+      "description": "Extraire le texte vietnamien d'une photo",
+      "synonyms": "ocr image, copier texte d'une image, extraire texte, image to text"
+    },
+    "measure-image": {
+      "name": "Mesurer sur une image",
+      "description": "Mesurer des longueurs et des surfaces sur une image",
+      "synonyms": "règle, mesurer plan, échelle, mesurer photo"
+    },
+    "convert-image": {
+      "name": "Convertir des images",
+      "description": "Convertir entre JPG, PNG et WebP",
+      "synonyms": "changer format image, png en jpg, jpg en png, webp en jpg, heic en jpg"
+    },
+    "compress-image": {
+      "name": "Compresser des images",
+      "description": "Réduire la taille des images",
+      "synonyms": "réduire image, alléger photo, image plus légère, resize"
+    },
+    "crop-image": {
+      "name": "Recadrer et retoucher une image",
+      "description": "Recadrer, faire pivoter, régler la luminosité",
+      "synonyms": "recadrer, crop, pivoter image, retourner image, luminosité"
+    },
+    "batch-image": {
+      "name": "Images par lot",
+      "description": "Redimensionner, renommer, convertir tout un lot",
+      "synonyms": "redimensionner images, renommer images, traitement par lot, batch, plusieurs images"
+    },
+    "mark-image": {
+      "name": "Masquer et tamponner une image",
+      "description": "Masquer des informations, apposer un texte sur une image",
+      "synonyms": "filigrane, watermark, noircir, flouter visage, masquer numéro, copyright"
+    },
+    "id-photo": {
+      "name": "Photo d'identité et impression",
+      "description": "Recadrer une photo d'identité et en disposer plusieurs sur une planche",
+      "synonyms": "photo 3x4, photo 4x6, photo passeport, photo d'identité, passport"
+    },
+    "qr-create": {
+      "name": "Créer un QR code",
+      "description": "Créer un QR code à partir d'un texte ou d'un lien",
+      "synonyms": "qr code, code qr, qr lien, générateur qr"
+    },
+    "barcode-create": {
+      "name": "Créer un code-barres",
+      "description": "EAN-13, Code 128, ITF-14 — un seul code ou tout un lot",
+      "synonyms": "code-barres, barcode, ean, code 128, code 39, itf, étiquettes, code article"
+    },
+    "qr-read": {
+      "name": "Lire un QR code / code-barres",
+      "description": "Scanner un code depuis une image ou la caméra",
+      "synonyms": "scanner qr, lecteur qr, lire code-barres, scan qr"
+    },
+    "quick-calc": {
+      "name": "Calcul rapide",
+      "description": "Surface, volume, masse",
+      "synonyms": "calculatrice, m2, m3, béton"
+    },
+    "money-calc": {
+      "name": "Calcul d'argent et de taxes",
+      "description": "Pourcentages, TVA, remises, marge brute, partage d'addition",
+      "synonyms": "tva, ht ttc, pourcentage, remise, marge, taux de marque, partager l'addition, bénéfice"
+    },
+    "date-calc": {
+      "name": "Calcul de dates et délais",
+      "description": "Compter les jours, les jours ouvrés, ajouter ou retirer des jours",
+      "synonyms": "compter les jours, échéance, deadline, jours ouvrés, combien de jours"
+    },
+    "house-orientation": {
+      "name": "Orientation de la maison et boussole",
+      "description": "Mesurer l'orientation de la maison, placer la boussole sur une photo ou un plan",
+      "synonyms": "boussole, orientation maison, direction porte, feng shui, bát trạch, façade, soleil de l'après-midi"
+    },
+    "quick-note": {
+      "name": "Notes rapides",
+      "description": "Notes et listes de tâches enregistrées sur l'appareil",
+      "synonyms": "note, todo, liste de tâches, bloc-notes"
+    },
+    "char-count": {
+      "name": "Compteur de caractères",
+      "description": "Compter les caractères, mots et lignes",
+      "synonyms": "compter les mots, nombre de caractères, word count"
+    },
+    "unit-convert": {
+      "name": "Convertisseur d'unités",
+      "description": "Longueur, surface, masse",
+      "synonyms": "convertir unités, pouce, pied, mètre, inch, feet"
+    },
+    "color": {
+      "name": "Couleurs",
+      "description": "Choisir une couleur, convertir les codes couleur",
+      "synonyms": "palette, nuancier, sélecteur de couleur, hex, rgb"
+    },
+    "random-code": {
+      "name": "Générateur de codes aléatoires",
+      "description": "Mots de passe, codes de commande, codes de bon",
+      "synonyms": "mot de passe, générer code, aléatoire, password"
+    },
+    "construction-price": {
+      "name": "Prix de la construction",
+      "description": "Consulter les prix unitaires, matériaux et main-d'œuvre par localité"
+    },
+    "planning-lookup": {
+      "name": "Urbanisme",
+      "description": "Consulter les informations d'urbanisme et les indicateurs d'occupation des sols"
+    },
+    "construction-law": {
+      "name": "Droit de la construction",
+      "description": "Consulter procédures, textes et formulaires juridiques"
+    },
+    "construction-standards": {
+      "name": "Normes de construction",
+      "description": "Rechercher et consulter rapidement normes et règlements techniques"
+    },
+    "dossier-check": {
+      "name": "Vérification de dossier",
+      "description": "Repérer les erreurs courantes dans les dossiers de conception et les plans"
+    },
+    "structure-calc": {
+      "name": "Calcul de structure rapide",
+      "description": "Calculer des sections et des charges de base"
+    },
+    "drawing-convert": {
+      "name": "Conversion de plans",
+      "description": "Convertir DWG, DXF en PDF et mesurer les dimensions"
+    },
+    "drawing-area": {
+      "name": "Mesurer des surfaces sur plan",
+      "description": "Mesurer surfaces et périmètres sur des plans PDF"
+    },
+    "site-diary": {
+      "name": "Journal de chantier",
+      "description": "Prendre des photos, noter et annoter directement sur le chantier"
+    },
+    "supplier-lookup": {
+      "name": "Recherche de fournisseurs",
+      "description": "Trouver des fournisseurs de matériaux et d'équipements de construction"
+    },
+    "family-reminders": {
+      "name": "Rappels",
+      "description": "Rappels de médicaments, trajets d'école, tâches ménagères, rendez-vous"
+    },
+    "family-share": {
+      "name": "Partage en famille",
+      "description": "Inviter vos proches à consulter et mettre à jour un calendrier commun"
+    },
+    "family-health": {
+      "name": "Santé de la famille",
+      "description": "Noter les rendez-vous médicaux et les rappels de médicaments de chacun"
+    },
+    "house-chores": {
+      "name": "Liste des tâches ménagères",
+      "description": "Répartir les tâches ménagères et suivre ce qui est fait"
+    },
+    "family-budget": {
+      "name": "Dépenses familiales",
+      "description": "Noter recettes et dépenses, suivre un budget simple"
+    },
+    "family-album": {
+      "name": "Album de famille",
+      "description": "Conserver photos et vidéos des moments en famille"
+    },
+    "special-days": {
+      "name": "Dates importantes",
+      "description": "Rappels d'anniversaires, de commémorations, d'anniversaires de décès et de fêtes"
+    },
+    "honor-board": {
+      "name": "Tableau d'honneur",
+      "description": "Remercier les contributeurs dont les données ont été vérifiées"
+    },
+    "code-manager": {
+      "name": "Gestion des codes",
+      "description": "Créer des listes de QR codes et de codes-barres et exporter des fichiers"
+    }
+  }
+}

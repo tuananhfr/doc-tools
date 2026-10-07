@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Perlu sumber tambahan",
+      "NEEDS_REVIEW": "Menunggu semakan",
+      "VERIFIED": "Disahkan",
+      "REJECTED": "Tidak diterima",
+      "APPROVED": "Diluluskan",
+      "PUBLISHED": "Diterbitkan",
+      "SUPERSEDED": "Sudah ada versi baharu",
+      "REVOKED": "Ditarik balik"
+    },
+    "sendFailed": "Tidak dapat menghantar cadangan.",
+    "received": "Cadangan diterima: {{status}}. Simpan kod resit untuk menjejakinya.",
+    "offlineDraft": "Tidak dapat menyambung ke pelayan. Kandungan anda masih ada di halaman ini.",
+    "invalidReceipt": "Kod resit tidak sah.",
+    "statusLine": "Status: {{status}}",
+    "receiptNotFound": "Kod resit tidak ditemui.",
+    "lookupFailed": "Tidak dapat menyemak status buat masa ini.",
+    "addSourceFailed": "Tidak dapat menambah sumber.",
+    "sourceAdded": "Sumber ditambah. Cadangan sedang menunggu semakan.",
+    "offline": "Tidak dapat menyambung ke pelayan.",
+    "ideaTitle": "Cadangkan alat",
+    "regulationTitle": "Maklum balas data peraturan",
+    "ideaIntro": "Terangkan masalah sebenar dan alat yang anda mahukan. Idea akan disemak sebelum diterbitkan.",
+    "regulationIntro": "Nyatakan perkara yang perlu dibetulkan dan pautan sumbernya. Ini maklum balas untuk disemak oleh pihak penyelenggara; data alat belum diubah.",
+    "ideaName": "Nama idea",
+    "regulationTopic": "Dokumen atau topik",
+    "ideaDetail": "Masalah dan cadangan penyelesaian",
+    "regulationDetail": "Perkara yang perlu disemak / dibetulkan",
+    "sourceUrl": "URL sumber HTTPS (jika ada)",
+    "sourceType": "Jenis sumber yang anda cadangkan",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Laman web agensi",
+      "OFFICIAL_DOCUMENT": "Dokumen rasmi",
+      "OFFICIAL_API": "API rasmi",
+      "OTHER": "Sumber lain"
+    },
+    "consent": "Saya telah membuang maklumat peribadi dan kunci rahsia, dan bersetuju menghantar kandungan ini untuk disemak oleh pengendali",
+    "sending": "Menghantar…",
+    "submit": "Hantar cadangan",
+    "receipt": "Kod resit:",
+    "lookupTitle": "Semak status",
+    "receiptLabel": "Kod resit",
+    "lookup": "Semak",
+    "needsSource": "Masukkan URL HTTPS dalam ruangan sumber di atas, kemudian tambahkannya menggunakan kod resit ini.",
+    "addSource": "Tambah sumber"
+  },
+  "ideas": {
+    "published": "Idea yang diterbitkan",
+    "empty": "Belum ada idea yang diluluskan dan diterbitkan."
+  }
+}

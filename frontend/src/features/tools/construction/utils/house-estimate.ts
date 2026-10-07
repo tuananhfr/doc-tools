@@ -1,3 +1,5 @@
+import { translate } from '@/i18n/runtime'
+
 export const DEFAULT_FACTORS = {
   foundation: 50,
   basement: 0,
@@ -35,14 +37,14 @@ export function estimateHouse(input: EstimateInput) {
   const add = (name: string, area: number, factor: number) => {
     if (area > 0 && factor > 0) rows.push({ name, area, factor, convertedArea: area * factor / 100 })
   }
-  add('Móng', input.floorArea, input.factors.foundation)
-  add('Tầng hầm', input.floorArea, input.factors.basement)
-  add('Tầng trệt', input.floorArea, input.factors.ground)
-  for (let floor = 1; floor <= input.upperFloors; floor++) add(`Lầu ${floor}`, input.floorArea, input.factors.upper)
-  add('Tum', input.rooftopRoomArea, input.factors.rooftopRoom)
-  add('Sân thượng không mái', input.terraceArea, input.factors.terrace)
-  add('Mái', input.rooftopRoomArea > 0 ? input.rooftopRoomArea : input.floorArea, input.factors.roof)
-  add('Sân trước/sau', input.yardArea, input.factors.yard)
+  add(translate('construction:houseEstimate.parts.foundation'), input.floorArea, input.factors.foundation)
+  add(translate('construction:houseEstimate.parts.basement'), input.floorArea, input.factors.basement)
+  add(translate('construction:houseEstimate.parts.ground'), input.floorArea, input.factors.ground)
+  for (let floor = 1; floor <= input.upperFloors; floor++) add(translate('construction:houseEstimate.parts.floor', { floor }), input.floorArea, input.factors.upper)
+  add(translate('construction:houseEstimate.parts.rooftopRoom'), input.rooftopRoomArea, input.factors.rooftopRoom)
+  add(translate('construction:houseEstimate.parts.terrace'), input.terraceArea, input.factors.terrace)
+  add(translate('construction:houseEstimate.parts.roof'), input.rooftopRoomArea > 0 ? input.rooftopRoomArea : input.floorArea, input.factors.roof)
+  add(translate('construction:houseEstimate.parts.yard'), input.yardArea, input.factors.yard)
   const convertedArea = rows.reduce((sum, row) => sum + row.convertedArea, 0)
   const baseCost = input.finishingIncludesBase ? 0 : convertedArea * input.basePrice
   const finishingCost = convertedArea * input.finishingPrice

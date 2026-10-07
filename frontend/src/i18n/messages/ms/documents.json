@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "Cetak / Simpan sebagai PDF"
+  },
+  "cv": {
+    "title": "Penyusun CV",
+    "saveDraft": "Simpan draf",
+    "openDraft": "Buka draf",
+    "clearDraft": "Padam draf",
+    "template": "Templat CV",
+    "templates": {
+      "classic": "Klasik",
+      "modern": "Moden"
+    },
+    "fields": {
+      "name": "Nama penuh",
+      "role": "Jawatan yang dipohon",
+      "phone": "Nombor telefon",
+      "email": "E-mel",
+      "location": "Tempat tinggal",
+      "link": "Portfolio atau LinkedIn"
+    },
+    "photo": "Foto potret (sesi ini sahaja)",
+    "photoAlt": "Foto potret dalam CV",
+    "summary": "Pengenalan ringkas",
+    "sections": {
+      "experience": "Pengalaman",
+      "education": "Pendidikan",
+      "skills": "Kemahiran",
+      "languages": "Bahasa",
+      "certificates": "Sijil"
+    },
+    "entry": {
+      "period": "Tempoh",
+      "company": "Syarikat",
+      "school": "Sekolah",
+      "position": "Jawatan",
+      "degree": "Bidang / kelayakan",
+      "description": "Penerangan / pencapaian",
+      "remove": "Buang entri",
+      "add": "Tambah entri"
+    },
+    "messages": {
+      "saved": "Draf disimpan pada peranti ini; foto tidak disimpan.",
+      "saveFailed": "Tidak dapat menyimpan draf pada peranti ini.",
+      "noDraft": "Belum ada draf yang sah.",
+      "opened": "Draf dibuka.",
+      "unreadable": "Draf tidak dapat dibaca.",
+      "cleared": "Draf dipadam daripada peranti ini."
+    },
+    "note": "Semak maklumat dengan teliti sebelum menghantar. Draf hanya disimpan pada peranti apabila anda menekan Simpan; foto tidak disimpan."
+  },
+  "formTemplates": {
+    "title": "Templat borang",
+    "kind": "Jenis dokumen",
+    "names": {
+      "leave": "Permohonan cuti",
+      "authorization": "Surat kuasa",
+      "handover": "Rekod serah terima"
+    },
+    "fields": {
+      "recipient": "Kepada",
+      "name": "Nama penuh",
+      "department": "Jawatan, jabatan",
+      "from": "Cuti dari",
+      "to": "Hingga",
+      "reason": "Sebab",
+      "handover": "Penerima serahan tugas",
+      "placeWritten": "Tempat ditulis",
+      "fromName": "Pemberi kuasa",
+      "fromId": "Nombor pengenalan pemberi kuasa",
+      "fromAddress": "Alamat pemberi kuasa",
+      "toName": "Penerima kuasa",
+      "toId": "Nombor pengenalan penerima kuasa",
+      "toAddress": "Alamat penerima kuasa",
+      "scope": "Skop kuasa",
+      "term": "Tempoh",
+      "giver": "Pihak yang menyerahkan (nama, jawatan)",
+      "receiver": "Pihak yang menerima (nama, jawatan)",
+      "items": "Senarai serahan (satu item setiap baris)",
+      "note": "Catatan",
+      "placeDrawn": "Tempat disediakan"
+    },
+    "authorizationWarning": "Sesetengah urusan memerlukan notari atau pengesahan. Semak dengan pihak penerima sebelum menggunakannya.",
+    "defaultWarning": "Templat rujukan; semak keperluan pihak penerima sebelum menyerahkannya.",
+    "privacy": "Data anda hanya berada dalam halaman yang sedang dibuka."
+  }
+}

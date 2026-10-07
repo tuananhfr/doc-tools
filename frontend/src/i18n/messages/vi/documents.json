@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "In / Lưu PDF"
+  },
+  "cv": {
+    "title": "Soạn CV",
+    "saveDraft": "Lưu bản nháp",
+    "openDraft": "Mở bản nháp",
+    "clearDraft": "Xóa bản nháp",
+    "template": "Mẫu CV",
+    "templates": {
+      "classic": "Cổ điển",
+      "modern": "Hiện đại"
+    },
+    "fields": {
+      "name": "Họ và tên",
+      "role": "Vị trí ứng tuyển",
+      "phone": "Số điện thoại",
+      "email": "Email",
+      "location": "Nơi ở",
+      "link": "Portfolio hoặc LinkedIn"
+    },
+    "photo": "Ảnh chân dung (chỉ trong phiên hiện tại)",
+    "photoAlt": "Ảnh chân dung trong CV",
+    "summary": "Giới thiệu ngắn",
+    "sections": {
+      "experience": "Kinh nghiệm",
+      "education": "Học vấn",
+      "skills": "Kỹ năng",
+      "languages": "Ngoại ngữ",
+      "certificates": "Chứng chỉ"
+    },
+    "entry": {
+      "period": "Thời gian",
+      "company": "Công ty",
+      "school": "Trường",
+      "position": "Vị trí",
+      "degree": "Ngành / bằng cấp",
+      "description": "Mô tả / thành tích",
+      "remove": "Xóa mục",
+      "add": "Thêm mục"
+    },
+    "messages": {
+      "saved": "Đã lưu bản nháp trên thiết bị này; ảnh không được lưu.",
+      "saveFailed": "Không lưu được bản nháp trên thiết bị.",
+      "noDraft": "Chưa có bản nháp hợp lệ.",
+      "opened": "Đã mở bản nháp.",
+      "unreadable": "Bản nháp không đọc được.",
+      "cleared": "Đã xóa bản nháp trên thiết bị."
+    },
+    "note": "Xem kỹ thông tin trước khi gửi. Bản nháp chỉ lưu trên thiết bị khi bạn bấm Lưu; ảnh không được lưu."
+  },
+  "formTemplates": {
+    "title": "Soạn mẫu giấy tờ",
+    "kind": "Loại giấy tờ",
+    "names": {
+      "leave": "Đơn xin nghỉ phép",
+      "authorization": "Giấy ủy quyền",
+      "handover": "Biên bản bàn giao"
+    },
+    "fields": {
+      "recipient": "Kính gửi",
+      "name": "Họ và tên",
+      "department": "Chức vụ, bộ phận",
+      "from": "Nghỉ từ ngày",
+      "to": "Đến hết ngày",
+      "reason": "Lý do",
+      "handover": "Người nhận bàn giao",
+      "placeWritten": "Nơi viết",
+      "fromName": "Người ủy quyền",
+      "fromId": "Số định danh người ủy quyền",
+      "fromAddress": "Địa chỉ người ủy quyền",
+      "toName": "Người được ủy quyền",
+      "toId": "Số định danh người được ủy quyền",
+      "toAddress": "Địa chỉ người được ủy quyền",
+      "scope": "Nội dung ủy quyền",
+      "term": "Thời hạn",
+      "giver": "Bên giao (họ tên, chức vụ)",
+      "receiver": "Bên nhận (họ tên, chức vụ)",
+      "items": "Danh mục bàn giao (mỗi dòng một mục)",
+      "note": "Ghi chú",
+      "placeDrawn": "Nơi lập"
+    },
+    "authorizationWarning": "Một số việc yêu cầu công chứng hoặc chứng thực. Kiểm tra với nơi tiếp nhận trước khi sử dụng.",
+    "defaultWarning": "Mẫu tham khảo; hãy kiểm tra yêu cầu của nơi tiếp nhận trước khi nộp.",
+    "privacy": "Dữ liệu chỉ nằm trong trang đang mở."
+  }
+}

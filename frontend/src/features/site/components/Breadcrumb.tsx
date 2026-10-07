@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 
@@ -8,8 +9,9 @@ export interface BreadcrumbItem {
 }
 
 export function Breadcrumb({ items }: { items: readonly BreadcrumbItem[] }) {
+  const { t } = useTranslation('site')
   return (
-    <nav className="cn-breadcrumb" aria-label="Bạn đang ở">
+    <nav className="cn-breadcrumb" aria-label={t('breadcrumb.label')}>
       <ol>
         {items.map((item, index) => (
           <li key={item.label}>

@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "QR 碼工具",
+    "qrCreate": "產生 QR 碼",
+    "barcodeCreate": "產生條碼",
+    "qrRead": "掃描條碼"
+  },
+  "shared": {
+    "codeContent": "碼中的內容",
+    "enterToCreate": "輸入內容以產生條碼",
+    "contentPanel": "條碼內容",
+    "kind": "條碼類型",
+    "phone": "電話號碼",
+    "security": "加密方式",
+    "password": "密碼",
+    "noPassword": "無密碼",
+    "retry": "再試一次",
+    "downloadPng": "下載 PNG",
+    "value": "值",
+    "emailPlaceholder": "name@company.com"
+  },
+  "qrCreate": {
+    "side": "QR 碼",
+    "tooLong": "內容超過一個 QR 碼的容量。請縮短內容，或改用指向內容存放處的連結。",
+    "renderFailed": "無法產生 QR 碼影像。請再試一次。",
+    "notCreated": "尚未產生條碼",
+    "downloadPng": "下載 QR 碼",
+    "downloadSvg": "下載 SVG 版本以供列印",
+    "downloadPdf": "下載 PDF 版本",
+    "transparentHint": "疊放在圖片上時，請選擇夠亮且顏色均勻的區域，讓條碼容易掃描。",
+    "lowContrast": "條碼顏色與背景色太接近；請提高對比，讓條碼容易掃描。",
+    "previewLabel": "目前輸入內容的 QR 碼"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL（連結）",
+      "text": "文字",
+      "wifi": "Wi-Fi",
+      "phone": "電話號碼",
+      "email": "電子郵件",
+      "vcard": "名片（vCard）"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "無密碼"
+    },
+    "enterContent": "輸入內容",
+    "textPlaceholder": "例如：B 倉庫 — 12 號貨架，第 3 層",
+    "ssid": "Wi-Fi 網路名稱",
+    "ssidPlaceholder": "例如：Office-Site",
+    "hidden": "隱藏網路（不廣播名稱）",
+    "emailAddress": "電子郵件地址",
+    "subject": "郵件主旨（選填）",
+    "contactName": "姓名",
+    "contactNamePlaceholder": "王小明",
+    "contactEmail": "聯絡電子郵件",
+    "contactOrg": "公司（選填）",
+    "contactTitle": "職稱（選填）",
+    "vcardHint": "需要姓名，以及電話號碼或電子郵件至少其中之一。用手機相機掃描時會提示加入通訊錄。"
+  },
+  "payload": {
+    "urlSpaces": "連結中不能有空格。",
+    "wifiPassword": "請輸入 Wi-Fi 密碼，或選擇「無密碼」。",
+    "wpaShort": "WPA/WPA2 密碼至少需要 8 個字元。",
+    "phoneChars": "電話號碼只能包含數字，可以用 + 號開頭。",
+    "phoneShort": "電話號碼太短。",
+    "email": "電子郵件地址格式不正確，應為 name@company.com 的形式。",
+    "contactName": "請輸入聯絡人姓名。",
+    "contactReach": "請輸入聯絡人的電話號碼或電子郵件。"
+  },
+  "colors": {
+    "legend": "QR 碼顏色",
+    "background": "QR 碼背景",
+    "backgroundModes": {
+      "white": "白色背景",
+      "transparent": "透明背景",
+      "custom": "選擇顏色"
+    },
+    "presetBackgrounds": "預設背景色",
+    "customColor": "自訂顏色",
+    "names": {
+      "ink": "黑色",
+      "steel": "鋼灰色",
+      "blue": "藍色",
+      "crimson": "紅色",
+      "teal": "青綠色",
+      "green": "綠色",
+      "white": "白色",
+      "mist": "淺灰色",
+      "blue-soft": "淺藍色",
+      "teal-soft": "淺青綠色",
+      "amber-soft": "米色",
+      "rose-soft": "淺粉紅色"
+    }
+  },
+  "barcode": {
+    "side": "條碼",
+    "modeLabel": "產生方式",
+    "modes": {
+      "single": "單一條碼",
+      "batch": "批次"
+    },
+    "files": {
+      "png": "下載 PNG",
+      "svg": "SVG 供列印",
+      "pdf": "實際尺寸 PDF"
+    },
+    "drawFailed": "無法繪製此條碼。",
+    "fileFailed": "無法產生條碼檔案。",
+    "engineFailed": "無法載入條碼繪製元件。請重新整理頁面。",
+    "engineLoading": "正在載入條碼繪製元件…",
+    "previewLabel": "{{value}} 的 {{kind}} 條碼",
+    "styleTitle": "條碼樣式",
+    "listTitle": "條碼清單"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "內部代碼：物料、資產、倉庫——字母、數字、符號",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "供舊型掃描器使用的內部代碼——大寫字母、數字、- . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "零售商品條碼，由 GS1 核發的 13 位數",
+      "placeholder": "12 位數，自動加上檢查碼"
+    },
+    "ean8": {
+      "hint": "小型商品條碼，由 GS1 核發的 8 位數",
+      "placeholder": "7 位數，自動加上檢查碼"
+    },
+    "itf14": {
+      "hint": "箱／包裝條碼，依 GS1 的 14 位數",
+      "placeholder": "13 位數，自動加上檢查碼"
+    }
+  },
+  "barcodeOptions": {
+    "size": "列印尺寸",
+    "sizeStandard": "{{percent}}%（標準）",
+    "height": "條碼高度",
+    "includeText": "在條碼下方印出數字／文字",
+    "sizeWarning": "尺寸低於 80% 時，許多手持掃描器會讀不出來；整批列印前請先試印一張。"
+  },
+  "gs1Notice": "EAN／ITF-14 號碼必須由 GS1 越南核發給你的企業——本工具不會產生號碼，只會繪製你已有的號碼。內部使用的條碼（物料、資產、倉庫）請選擇 <strong>Code 128</strong>。",
+  "batch": {
+    "fileTooLarge": "檔案大於 {{size}}。",
+    "readFailed": "無法讀取此檔案。",
+    "buildFailed": "無法產生檔案。",
+    "pickTitle": "選擇 CSV 或 Excel（.xlsx）檔案",
+    "pickHint": "每行一個條碼，取第一欄 · 最多 {{limit}} 行",
+    "valid": "{{count}} 個有效條碼",
+    "invalid": "{{count}} 行錯誤——已排除",
+    "header": "略過標題列「{{header}}」",
+    "dropped": "略過超出上限 {{limit}} 的 {{count}} 行",
+    "line": "行",
+    "reason": "原因",
+    "moreErrors": "…還有 {{count}} 行錯誤。",
+    "building": "正在產生 {{done}}/{{total}}…",
+    "pdf": "PDF（{{count}} 頁）",
+    "zip": "{{type}} 壓縮包（.zip）",
+    "unsupported": "只能讀取 .csv 或 .xlsx 檔案。"
+  },
+  "check": {
+    "digitsOnly": "只能包含數字。",
+    "checkDigitAdded": "已加上檢查碼 {{digit}}。",
+    "wrongLength": "需要 {{short}} 位數（自動加上檢查碼）或完整 {{full}} 位數——目前有 {{count}} 位。",
+    "wrongCheckDigit": "檢查碼錯誤：最後一位應為 {{expected}}，而不是 {{actual}}。請再核對抄寫的號碼。",
+    "empty": "尚無內容。",
+    "tooLong": "超過 {{max}} 個字元——條碼會長到超出掃描器範圍。",
+    "code39Chars": "Code 39 只接受不含聲調符號的字母、數字以及 - . $ / + % 和空格。",
+    "code39Upper": "Code 39 沒有小寫字母——已轉換為大寫。",
+    "code128Chars": "Code 128 無法編碼帶聲調符號的字母或特殊字元。請使用不含聲調符號的字母。",
+    "prefix893": "前綴 893：向 GS1 越南註冊的條碼（代表核發地，不是產地）。",
+    "prefixIsbn": "前綴 978/979：書籍條碼（ISBN）。",
+    "prefixIssn": "前綴 977：期刊條碼（ISSN）。",
+    "prefixInternal": "前綴 20–29：商店／企業內部使用的條碼，無法在自身系統以外使用。"
+  },
+  "render": {
+    "barcodeFailed": "無法產生條碼 {{value}}。",
+    "imageFailed": "瀏覽器無法產生影像。"
+  },
+  "read": {
+    "results": "結果",
+    "resultsCount": "結果（{{count}}）",
+    "clearAll": "全部清除",
+    "empty": "尚未讀取任何條碼。選擇含有條碼的圖片、貼上螢幕截圖，或用相機掃描。",
+    "safety": "開啟前請仔細檢查連結：任何人都能印一張 QR 碼貼在真的上面。",
+    "pickTitle": "選擇含有 QR 碼或條碼的圖片",
+    "pickHint": "JPG、PNG、WebP · 也可以用 Ctrl+V 貼上圖片",
+    "camera": "用相機掃描",
+    "missTitle": "有 {{count}} 張圖片無法讀取",
+    "moreMisses": "…以及其他 {{count}} 張圖片",
+    "hideNotice": "隱藏通知",
+    "pastedImage": "剛貼上的圖片",
+    "noCode": "找不到任何條碼。請試試正面拍攝、光線充足、條碼佔畫面大部分的照片。",
+    "unreadable": "無法開啟。只能讀取 JPG、PNG、WebP 圖片。",
+    "tooLarge": "大於 {{size}}。",
+    "tooManyPixels": "太大了（{{pixels}} 百萬像素，上限 {{limit}} 百萬）。請裁切出條碼所在區域後再試一次。"
+  },
+  "camera": {
+    "scanTitle": "掃描 QR / 條碼",
+    "aim": "將碼放入取景框",
+    "searching": "正在尋找碼…",
+    "detected": "已讀取",
+    "scanNext": "繼續掃描",
+    "openLink": "開啟連結",
+    "zoom": "縮放",
+    "zoomIn": "放大",
+    "zoomOut": "縮小",
+    "captured": "已讀取的碼影像",
+    "title": "相機",
+    "off": "關閉相機",
+    "viewfinder": "相機取景框",
+    "starting": "正在開啟相機…瀏覽器可能會詢問相機使用權限。",
+    "hint": "將條碼放在畫面中央，保持穩定片刻。讀到後結果會立刻顯示，接著掃描下一個條碼不需要按任何按鈕。",
+    "insecure": "{{reason}}請用相機應用程式拍下條碼，再從裝置選擇該照片。"
+  },
+  "scanResult": {
+    "qrCode": "QR 碼",
+    "remove": "移除此結果",
+    "removeShort": "移除",
+    "ssid": "網路名稱",
+    "unknown": "不明",
+    "checkOk": "檢查碼正確。",
+    "checkBad": "檢查碼錯誤——條碼印壞了或遭到竄改。",
+    "open": "開啟 {{host}}",
+    "copyPassword": "複製密碼",
+    "copyNumber": "複製號碼",
+    "copyAddress": "複製地址",
+    "copy": "複製",
+    "copyRaw": "複製原文"
+  },
+  "vietqr": {
+    "side": "轉帳 QR 碼",
+    "placeholder": "輸入 BIN 碼和帳號以產生條碼",
+    "copy": "複製 QR 字串",
+    "downloadSvg": "下載 SVG",
+    "checkNote": "使用前請用銀行 App 試掃，並檢查收款人姓名、帳號和金額。",
+    "panel": "轉帳資訊",
+    "bin": "銀行 BIN 碼（6 位數）",
+    "account": "帳號",
+    "amount": "金額（đ），可留空",
+    "note": "轉帳附言",
+    "privacy": "條碼在你的裝置上產生；帳戶資訊不會傳送到 Chuyện Nhỏ 的伺服器。",
+    "fieldTooLong": "QR 欄位過長"
+  },
+  "trace": {
+    "title": "ERPCons 追溯",
+    "label": "在 ERPCons 中查詢",
+    "object": "對象",
+    "code": "內部代碼",
+    "serial": "序號",
+    "noEvents": "尚無任何追溯事件。",
+    "recentEvents": "最近事件",
+    "loading": "正在 ERPCons 中查詢…",
+    "accountForbidden": "你的帳號尚未獲准查詢追溯資料。",
+    "failed": "無法查詢：{{message}}",
+    "legacy": "對象的舊代碼——尚未綁定追溯碼。",
+    "forbidden": "此代碼在登記簿中，但你無權查看其對象。",
+    "broken": "此代碼指向一個已不存在的對象。",
+    "unknown": "已讀取代碼，但 ERPCons 中還沒有追溯資料。",
+    "status": {
+      "DRAFT": "未發行",
+      "ACTIVE": "使用中",
+      "EXPIRED": "已過期",
+      "SUSPENDED": "暫時停用",
+      "REVOKED": "已撤銷",
+      "REPLACED": "已換碼",
+      "ARCHIVED": "已封存"
+    },
+    "notes": {
+      "EXPIRED": "代碼已過期——只能查看歷史，不能操作。",
+      "SUSPENDED": "代碼暫時停用——不可用於業務作業。",
+      "REVOKED": "代碼已撤銷——此標籤已失效。",
+      "REPLACED": "此標籤已被替換——請使用新標籤。",
+      "ARCHIVED": "對象已停止管理。"
+    }
+  }
+}

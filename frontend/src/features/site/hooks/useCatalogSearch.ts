@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { TOOL_CATALOG, TOOL_FILTERS } from '@/features/tools/hub/config/tool-catalog'
+import { TOOL_FILTERS } from '@/features/tools/hub/config/tool-catalog'
+import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
 import type { ToolFilter } from '@/features/tools/hub/types/tool.types'
 import { filterTools } from '@/features/tools/hub/utils/tool-lookup'
 
@@ -10,9 +11,10 @@ export function useCatalogSearch() {
   // The server router only knows the pathname; restore query filters after hydration.
   useEffect(() => { setHydrated(true) }, [])
   const requestedFilter = hydrated ? params.get('nhom') : null
-  const filter = TOOL_FILTERS.find((item) => item.value === requestedFilter)?.value ?? 'all'
+  const filter = TOOL_FILTERS.find((item) => item === requestedFilter) ?? 'all'
   const keyword = hydrated ? params.get('q') ?? '' : ''
-  const tools = useMemo(() => filterTools(TOOL_CATALOG, filter, keyword), [filter, keyword])
+  const catalog = useToolCatalog()
+  const tools = useMemo(() => filterTools(catalog, filter, keyword), [catalog, filter, keyword])
   const update = (key: string, value: string) => setParams((current) => {
     const next = new URLSearchParams(current)
     if (value) next.set(key, value)

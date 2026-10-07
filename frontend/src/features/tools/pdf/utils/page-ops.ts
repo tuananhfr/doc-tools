@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { InsertPosition, PageRef, Rotation } from '../types/doc-tools.types'
 import type { Markup } from '../types/markup.types'
 
@@ -98,19 +99,19 @@ export function parsePageRanges(input: string, pageCount: number): RangeParseRes
     .map((part) => part.trim())
     .filter(Boolean)
 
-  if (parts.length === 0) return { ok: false, message: 'Nhập khoảng trang, ví dụ 1-3, 5, 8-10.' }
+  if (parts.length === 0) return { ok: false, message: translate('pdf:ranges.empty') }
 
   const groups: number[][] = []
   for (const part of parts) {
     const match = /^(\d+)\s*(?:[-–]\s*(\d+))?$/.exec(part)
-    if (!match) return { ok: false, message: `Không đọc được "${part}".` }
+    if (!match) return { ok: false, message: translate('pdf:ranges.unreadable', { part }) }
 
     const start = Number(match[1])
     const end = match[2] === undefined ? start : Number(match[2])
     if (start < 1 || end < 1 || start > pageCount || end > pageCount) {
-      return { ok: false, message: `"${part}" nằm ngoài 1–${pageCount}.` }
+      return { ok: false, message: translate('pdf:ranges.outside', { part, max: pageCount }) }
     }
-    if (start > end) return { ok: false, message: `"${part}": trang đầu lớn hơn trang cuối.` }
+    if (start > end) return { ok: false, message: translate('pdf:ranges.reversed', { part }) }
 
     groups.push(Array.from({ length: end - start + 1 }, (_, offset) => start - 1 + offset))
   }

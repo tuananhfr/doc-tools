@@ -1,5 +1,6 @@
 import { PDFArray, PDFDict, PDFDocument, PDFName, PDFNumber, type PDFPage } from 'pdf-lib'
 import { newId } from '@/utils/id'
+import { translate } from '@/i18n/runtime'
 import { originOf, type PageRef, type PdfSource } from '../types/doc-tools.types'
 import type { Rect } from '../types/markup.types'
 import type { Rgb } from '../utils/decorations'
@@ -362,7 +363,7 @@ export async function rewriteText(source: PdfSource, page: PageRef, request: Ref
       id: newId(),
       originId: originOf(source),
       name: source.name,
-      label: extra ? `${label} (tiếp)` : label,
+      label: extra ? translate('pdf:origin.continued', { label }) : label,
       kind: 'pdf',
       mime: 'application/pdf',
       bytes: bytes as Uint8Array<ArrayBuffer>,

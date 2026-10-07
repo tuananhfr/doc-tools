@@ -1,0 +1,49 @@
+{
+  "flashcard": {
+    "reviewDue_one": "Review · {{count}} card na dapat nang i-review",
+    "reviewDue_other": "Review · {{count}} card na dapat nang i-review",
+    "noneDue": "Walang card na dapat i-review",
+    "flip": "Baligtarin ang card",
+    "forgot": "Hindi pa",
+    "remembered": "Tanda ko na",
+    "schedule": "Babalik ang mga card na natatandaan mo pagkalipas ng 1, 3, 7, 14 o 30 araw.",
+    "stored_one": "{{count}} card ang naka-save sa device na ito. Mabubura ang iyong mga card kapag binura ang data ng browser.",
+    "stored_other": "{{count}} card ang naka-save sa device na ito. Mabubura ang iyong mga card kapag binura ang data ng browser.",
+    "title": "Gumawa ng flashcard",
+    "front": "Harap",
+    "back": "Likod",
+    "add": "Magdagdag ng card",
+    "remove": "Burahin"
+  },
+  "pomodoro": {
+    "focus": "Focus",
+    "break": "Pahinga",
+    "start": "Simulan",
+    "pause": "I-pause",
+    "reset": "I-reset",
+    "switch": "Palitan ang session",
+    "note": "Tumatakbo lang ang timer habang bukas ang page na ito. Pagdating sa 00:00, piliin ang Palitan ang session para simulan ang susunod na round.",
+    "title": "Tagal",
+    "focusMinutes": "Focus (minuto)",
+    "breakMinutes": "Pahinga (minuto)",
+    "invalid": "Focus 1–180 minuto; pahinga 1–60 minuto."
+  },
+  "grades": {
+    "gradeResult": "Sangguniang conversion",
+    "admissionResult": "Kabuuang admission score",
+    "breakdown": "Orihinal na score {{raw}} + inayos na priority points {{bonus}}",
+    "note": "Maaaring mag-iba ang conversion scale at mga patakaran sa priority depende sa paaralan at taon ng admission. Alamin ang patakaran ng institusyon bago ito gamitin.",
+    "title": "Mga marka sa pag-aaral",
+    "mode": "Mode",
+    "modeGrade": "10-point patungong 4-point na scale",
+    "modeAdmission": "Admission score",
+    "fields": {
+      "score10": "Marka (10-point scale)",
+      "subject1": "Subject 1",
+      "subject2": "Subject 2",
+      "subject3": "Subject 3",
+      "regionBonus": "Priority ayon sa rehiyon",
+      "categoryBonus": "Priority ayon sa kategorya"
+    }
+  }
+}

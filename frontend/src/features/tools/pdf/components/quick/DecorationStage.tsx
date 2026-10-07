@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { QuickItem } from '../../hooks/useQuickSources'
 import type { Decorations } from '../../types/decorations.types'
 import { formatStampDate, layoutImageStamp, resolveDecorations } from '../../utils/decorations'
@@ -24,6 +25,7 @@ const percent = (value: number, whole: number) => `${(value / whole) * 100}%`
  * bìa khi đang "bỏ trang đầu" là thấy một trang trống trơn, tưởng công cụ hỏng.
  */
 export function DecorationStage({ item, decorations, stampUrl, disabled, onClear }: DecorationStageProps) {
+  const { t } = useTranslation('pdf')
   const resolved = useMemo(
     () =>
       resolveDecorations(
@@ -42,10 +44,10 @@ export function DecorationStage({ item, decorations, stampUrl, disabled, onClear
   const stamp = resolved.imageStamp?.pageIds.has(page.id) ? resolved.imageStamp.value : null
 
   return (
-    <section className="erp-page-stage" aria-label="Xem trước">
-      <StageHead name={item.source.name} meta={`Xem trước trang ${index + 1}/${item.pages.length}`}>
+    <section className="erp-page-stage" aria-label={t('stage.preview')}>
+      <StageHead name={item.source.name} meta={t('stage.previewPage', { page: index + 1, total: item.pages.length })}>
         <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={disabled} onClick={onClear}>
-          Bỏ tệp
+          {t('stage.removeFile')}
         </button>
       </StageHead>
       <PageCanvas

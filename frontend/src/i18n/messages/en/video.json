@@ -1,0 +1,94 @@
+{
+  "timeRange": {
+    "start": "Start (seconds)",
+    "end": "End (seconds)"
+  },
+  "workspace": {
+    "phase": {
+      "loading": "Loading the processor…",
+      "reading": "Reading the video…",
+      "processing": "Processing the video…",
+      "saving": "Preparing the result…"
+    },
+    "chooseFailed": "Couldn't select the video.",
+    "result": "Result",
+    "noOutput": "No new file yet",
+    "idle": "Choose a video, adjust the settings, then press process.",
+    "progressLabel": "Video processing progress",
+    "progressEstimate": "{{percent}}% · Estimated progress",
+    "processing": "Processing…",
+    "cancel": "Cancel",
+    "smaller": "{{percent}}% smaller than the original.",
+    "notSmaller": "The new file isn't smaller than the original. Already-compressed videos can grow in size; try a stronger compression level.",
+    "outputVideo": "Output video",
+    "outputAudio": "Output audio",
+    "outputGif": "Output GIF",
+    "download": "Download result",
+    "panelTitle": "Your video",
+    "chooseVideo": "Choose a video",
+    "limits": "Up to 100 MB, 10 minutes and 4K. On phones, short clips under 30 MB work best. Files are never uploaded to a server.",
+    "unsupported": "Your browser doesn't support video processing yet. Try an up-to-date browser on a computer.",
+    "seconds": "{{seconds}} s",
+    "sourceVideo": "Original video",
+    "playbackHint": "If your browser can't play the original, you can still try processing it. The processor will check the codec and duration.",
+    "settingsLegend": "Video processing settings",
+    "engineNote": "The first time you process, an extra processor of about 32 MB is downloaded. Tasks may be slow or run out of memory on phones. The result doesn't keep the original file's metadata.",
+    "license": "FFmpeg GPL license and source code"
+  },
+  "task": {
+    "done": "New file created. Preview and download the result below.",
+    "failed": "Couldn't process the video."
+  },
+  "compress": {
+    "action": "Compress video",
+    "note": "Exports MP4 H.264/AAC. Compression reduces quality; the final size depends on the content and how compressed the original already is.",
+    "level": "Compression level",
+    "light": "Light · best picture",
+    "medium": "Medium · balanced",
+    "strong": "Strong · smallest size",
+    "maxEdge": "Maximum long edge"
+  },
+  "audio": {
+    "action": "Extract audio",
+    "note": "Exports the whole first audio track. MP3/M4A save space; WAV is usually larger. You'll be told clearly if the video has no audio.",
+    "format": "Audio format",
+    "mp3": "MP3 · most common",
+    "wav": "WAV · uncompressed"
+  },
+  "trim": {
+    "action": "Trim video",
+    "note": "Enter times in seconds. The clip is re-encoded to cut on exact frames and exported as MP4; maximum long edge 1080 px."
+  },
+  "gif": {
+    "action": "Make GIF",
+    "note": "GIFs have no sound and loop forever. Choose a clip of up to 20 seconds; reduce the width or frame rate to shrink the file.",
+    "width": "Width",
+    "fps": "Frames per second",
+    "fpsSmall": "8 · small file",
+    "fpsBalanced": "12 · balanced",
+    "fpsSmooth": "15 · smoother motion"
+  },
+  "errors": {
+    "emptyFile": "The file is empty. Choose another video.",
+    "tooLarge": "The video is over 100 MB. Choose a smaller file.",
+    "notVideo": "Choose an MP4, MOV, WebM, MKV or AVI video file.",
+    "unreadableInfo": "Couldn't read the video's information.",
+    "noVideoStream": "The file has no valid video track or its duration can't be determined.",
+    "tooLong": "The video is longer than 10 minutes. Choose a shorter clip.",
+    "tooHighRes": "The video resolution is above 4K. Choose a lower-resolution version.",
+    "badCompress": "Invalid compression settings.",
+    "badAudioFormat": "Invalid audio format.",
+    "badRange": "The end time must be after the start time, and both must be valid numbers of seconds.",
+    "endPastDuration": "The video is only {{seconds}} seconds long. Reduce the end time.",
+    "gifLimits": "GIFs can be at most 20 seconds, 640 px wide and 15 frames per second.",
+    "noAudio": "This video has no audio to extract.",
+    "unsupported": "This browser doesn't support video processing yet. Try an up-to-date Chrome, Edge, Firefox or Safari on a computer.",
+    "busy": "Another video is being processed. Wait or cancel that task.",
+    "unreadable": "Couldn't read the video. The file may be damaged or use an unsupported codec.",
+    "processFailed": "Couldn't process the video, or it timed out. Try a shorter clip or lower quality.",
+    "noOutput": "Couldn't create the output file. Try another video.",
+    "cancelled": "Video processing cancelled.",
+    "timedOut": "The task took too long. Try a shorter video and check your connection while the processor downloads.",
+    "engineFailed": "Couldn't load or run the video processor. Check your connection, close some tabs or try a smaller file on a computer."
+  }
+}

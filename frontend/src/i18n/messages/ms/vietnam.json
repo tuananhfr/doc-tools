@@ -1,0 +1,160 @@
+{
+  "holidayLayers": {
+    "major": "Cuti utama",
+    "lunar": "Perayaan tradisional",
+    "moon": "Hari ke-1 & ke-15 bulan qamari",
+    "memorial": "Hari peringatan"
+  },
+  "calendar": {
+    "layersAria": "Tunjukkan cuti pada kalendar",
+    "monthAria": "Kalendar bulan {{month}}/{{year}}",
+    "monthTitle": "Bulan {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Bulan sebelumnya",
+    "nextMonth": "Bulan berikutnya",
+    "today": "Hari ini",
+    "weekdays": {
+      "mon": "Isn",
+      "tue": "Sel",
+      "wed": "Rab",
+      "thu": "Kha",
+      "fri": "Jum",
+      "sat": "Sab",
+      "sun": "Ahd"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}L",
+    "dayLunar": "qamari {{day}}/{{month}}",
+    "dayLunarLeap": "qamari {{day}}/{{month}} lompat",
+    "dayEvents": "{{count}} acara"
+  },
+  "day": {
+    "outOfRange": "Tarikh ini di luar julat 1800–2199 yang disokong oleh algoritma.",
+    "solar": "Kalendar suria",
+    "lunarMonthYear": "Bulan {{month}} tahun {{year}}",
+    "lunarMonthYearLeap": "Bulan lompat {{month}} tahun {{year}}",
+    "lunarDate": "Qamari {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Qamari {{day}}/{{month}} lompat/{{year}}",
+    "facts": {
+      "day": "Hari",
+      "month": "Bulan",
+      "year": "Tahun"
+    },
+    "goodDay": "Hari bertuah",
+    "badDay": "Hari kurang bertuah",
+    "byLunar": "mengikut kalendar qamari",
+    "bySolar": "mengikut kalendar suria",
+    "goodHours": "Waktu bertuah",
+    "nextTet": "Tết {{year}}: <strong>{{date}}</strong> · lagi {{count}} hari",
+    "note": "Algoritma astronomi untuk zon waktu Vietnam UTC+7, sesuai sebagai rujukan harian; untuk urusan rasmi, rujuk kalendar yang diterbitkan oleh pihak berkuasa. Hari bertuah / kurang bertuah dikira mengikut amalan rakyat, hanya untuk rujukan. <link>Sumber algoritma: Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Pergi ke tarikh",
+    "convertTitle": "Tukar qamari → suria",
+    "fields": {
+      "day": "Hari qamari",
+      "month": "Bulan qamari",
+      "year": "Tahun qamari"
+    },
+    "leapMonth": "Bulan lompat",
+    "solarResult": "Tarikh suria <strong>{{date}}</strong>",
+    "showOnCalendar": "Lihat pada kalendar",
+    "noSuchDay": "Tarikh ini tidak wujud.",
+    "noSuchDayLeap": "Tarikh ini tidak wujud (tahun itu tiada bulan lompat bagi bulan ini).",
+    "anniversaryTitle": "Hari peringatan kematian mengikut kalendar qamari",
+    "anniversaryFields": {
+      "day": "Hari",
+      "month": "Bulan"
+    },
+    "anniversaryYear": "Tahun qamari {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "tarikh tidak wujud"
+  },
+  "address": {
+    "status": {
+      "full": "Ditukar sepenuhnya",
+      "province": "Wilayah sahaja",
+      "ambiguous": "Pilih secara manual: {{options}}",
+      "none": "Wilayah tidak dikenal pasti"
+    },
+    "orSeparator": " atau ",
+    "resultLabel": "Padanan alamat",
+    "resultValue": "{{full}}/{{total}} ditukar sepenuhnya",
+    "resultNote": "Wilayah dikenal pasti di bahagian mana-mana pun, termasuk singkatan (TP.HCM, HN…). Peringkat daerah dibuang. Komun/wad hanya ditukar apabila data menunjukkan tepat satu komun baharu; jika komun lama telah dipecahkan, pilihan akan disenaraikan untuk anda pilih.",
+    "columns": {
+      "old": "Alamat lama",
+      "proposed": "Cadangan",
+      "status": "Status"
+    },
+    "downloadCsv": "Muat turun CSV",
+    "verifiedNote": "Set padanan yang ditandatangani, berkuat kuasa mulai {{date}}. Sumber: {{source}}. Sahkan alamat akhir dengan pejabat yang menerima dokumen anda.",
+    "manualNote": "Jadual padanan dimasukkan oleh anda; belum disahkan oleh sistem. Sahkan alamat akhir dengan pejabat yang menerima dokumen anda.",
+    "viewSource": "Lihat sumber data",
+    "panelTitle": "Alamat lama dan jadual padanan",
+    "addressesLabel": "Satu alamat setiap baris, peringkat dipisahkan dengan koma",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Menggunakan jadual padanan yang ditandatangani",
+    "applyVerified": "Gunakan jadual padanan yang ditandatangani",
+    "rulesLabel": "jadual padanan alamat",
+    "rulesNone": "Belum ada set padanan alamat yang ditandatangani dan masih berkuat kuasa dalam sistem.",
+    "manualLabel": "Atau masukkan sendiri, satu setiap baris: “wilayah lama|daerah lama|komun lama|wilayah baharu|komun baharu”",
+    "manualInvalid": "Format jadual padanan salah (setiap baris perlu 5 bahagian, setiap bahagian maksimum 150 aksara) atau ada wilayah lama yang dipadankan kepada dua wilayah baharu yang berbeza."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "Fail XML melebihi 5 MB.",
+      "unreadable": "Tidak dapat membaca fail XML.",
+      "doctype": "XML mengisytiharkan entiti atau DOCTYPE yang tidak disokong.",
+      "invalid": "Fail XML tidak sah.",
+      "noCommon": "Blok maklumat am invois tidak ditemui."
+    },
+    "resultLabel": "Invois",
+    "noNumber": "Tiada nombor",
+    "series": "Siri: {{series}} · Tarikh: {{date}}",
+    "seller": "Penjual: {{name}} ({{taxCode}})",
+    "buyer": "Pembeli: {{name}} ({{taxCode}})",
+    "noTaxCode": "tiada kod cukai",
+    "amounts": "Sebelum cukai: {{subtotal}} đ · Cukai: {{vat}} đ",
+    "total": "Jumlah perlu dibayar: {{total}} đ",
+    "signature": "Tag tandatangan XML: {{signature}} · Kod pihak berkuasa cukai: {{authority}}",
+    "present": "ada",
+    "notFound": "tidak ditemui",
+    "downloadCsv": "Muat turun senarai CSV",
+    "empty": "Pilih fail XML untuk melihat data invois.",
+    "disclaimer": "Alat ini hanya membaca kandungan XML; ia tidak mengesahkan tandatangan digital atau status undang-undang invois. Semak di portal rasmi sebelum menggunakannya.",
+    "panelTitle": "Fail invois",
+    "pickFile": "Pilih fail XML",
+    "columns": {
+      "ordinal": "Bil.",
+      "name": "Barangan, perkhidmatan",
+      "quantity": "Kuantiti",
+      "amount": "Amaun"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Teks selepas penukaran",
+    "copy": "Salin teks",
+    "note": "Pilih pengekodan yang betul bagi teks asal; nama fon yang dipaparkan tidak dapat menentukan pengekodan aksara dengan sendirinya.",
+    "panelTitle": "Teks asal",
+    "conversionLabel": "Jenis penukaran",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 huruf besar → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Gabungkan diakritik Unicode (NFC)",
+      "strip": "Buang diakritik bahasa Vietnam",
+      "lower": "huruf kecil",
+      "upper": "HURUF BESAR"
+    },
+    "contentLabel": "Kandungan",
+    "placeholder": "Tampal teks yang hendak ditukar…"
+  },
+  "numberWords": {
+    "resultLabel": "Dalam perkataan",
+    "invalid": "Masukkan nombor bulat sahaja, maksimum 36 digit.",
+    "note": "Membaca nombor dalam perkataan bahasa Vietnam untuk resit dan kontrak; semak konvensyen pihak penerima.",
+    "copy": "Salin hasil",
+    "panelTitle": "Nombor untuk dibaca",
+    "inputLabel": "Nombor bulat",
+    "placeholder": "Contoh: 1.234.567",
+    "zeroWordLabel": "Perkataan bagi sifar di tempat puluh",
+    "fourWordLabel": "Perkataan bagi empat selepas puluh"
+  }
+}

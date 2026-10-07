@@ -1,8 +1,9 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
-import { WATERMARK_COLOR, type Watermark, type WatermarkColor } from '../types/decorations.types'
-import { DEFAULT_WATERMARK, DOCUMENT_COLORS, rgbCss } from '../utils/decorations'
+import { WATERMARK_COLOR, type Watermark } from '../types/decorations.types'
+import { defaultWatermark, DOCUMENT_COLORS, rgbCss } from '../utils/decorations'
 import { RangeField, ScopeField } from './decoration-fields'
 
 type Change = (value: Watermark | null, mergeKey?: string) => void
@@ -13,12 +14,11 @@ interface WatermarkSectionProps {
   onChange: Change
 }
 
-const COLOR_LABEL: Record<WatermarkColor, string> = { gray: 'Xám', red: 'Đỏ', blue: 'Xanh' }
-
 /** Watermark chữ vẽ đè lên nội dung, có độ trong để vẫn đọc được trang. */
 export function WatermarkSection({ value, scopeError, onChange }: WatermarkSectionProps) {
+  const { t } = useTranslation('pdf')
   const ids = useId()
-  const [kept, setKept] = useState<Watermark>(DEFAULT_WATERMARK)
+  const [kept, setKept] = useState<Watermark>(defaultWatermark)
 
   const toggle = (enabled: boolean) => {
     if (enabled) {
@@ -34,14 +34,14 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
       <h2 className="erp-doc-export__title mb-0">
         <label htmlFor={`${ids}-on`} className="erp-doc-deco__toggle">
           <Icon name="droplet-half" className="me-2" />
-          Watermark chữ
+          {t('watermark.title')}
         </label>
       </h2>
       <Form.Check
         type="switch"
         id={`${ids}-on`}
         checked={!!value}
-        aria-label="Bật watermark chữ"
+        aria-label={t('watermark.toggle')}
         onChange={(event) => toggle(event.target.checked)}
       />
     </div>
@@ -51,7 +51,7 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
     return (
       <section className="erp-doc-export__section">
         {head}
-        <p className="erp-doc-deco__hint">Đóng dấu chữ mờ như "BẢN SAO", "NHÁP", "MẬT" chéo giữa trang.</p>
+        <p className="erp-doc-deco__hint">{t('watermark.offHint')}</p>
       </section>
     )
   }
@@ -61,18 +61,18 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
       {head}
 
       <Form.Group controlId={`${ids}-text`}>
-        <Form.Label className="erp-doc-export__label">Nội dung</Form.Label>
+        <Form.Label className="erp-doc-export__label">{t('stamp.content')}</Form.Label>
         <Form.Control
           value={value.text}
           maxLength={60}
           isInvalid={value.text.trim() === ''}
           onChange={(event) => onChange({ ...value, text: event.target.value }, 'wm.text')}
         />
-        <Form.Control.Feedback type="invalid">Nhập chữ cho watermark, để trống sẽ không in.</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">{t('watermark.empty')}</Form.Control.Feedback>
       </Form.Group>
 
       <fieldset>
-        <legend className="erp-doc-export__label">Màu</legend>
+        <legend className="erp-doc-export__label">{t('stamp.color')}</legend>
         <div className="erp-doc-deco__colors">
           {Object.values(WATERMARK_COLOR).map((color) => (
             <Form.Check
@@ -86,7 +86,7 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
               label={
                 <>
                   <span className="erp-doc-deco__swatch" style={{ background: rgbCss(DOCUMENT_COLORS[color]) }} aria-hidden />
-                  {COLOR_LABEL[color]}
+                  {t(`color.${color}`)}
                 </>
               }
             />
@@ -95,7 +95,7 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
       </fieldset>
 
       <RangeField
-        label="Cỡ chữ"
+        label={t('shared.fontSize')}
         value={value.fontSize}
         min={16}
         max={160}
@@ -104,7 +104,7 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
         onChange={(fontSize) => onChange({ ...value, fontSize }, 'wm.fontSize')}
       />
       <RangeField
-        label="Độ đậm"
+        label={t('shared.opacity')}
         value={Math.round(value.opacity * 100)}
         min={5}
         max={100}
@@ -113,7 +113,7 @@ export function WatermarkSection({ value, scopeError, onChange }: WatermarkSecti
         onChange={(percent) => onChange({ ...value, opacity: percent / 100 }, 'wm.opacity')}
       />
       <RangeField
-        label="Góc nghiêng"
+        label={t('stamp.angle')}
         value={value.angle}
         min={-90}
         max={90}

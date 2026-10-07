@@ -1,6 +1,6 @@
 import type { Markup, OrientedBox, Rect } from '../types/markup.types'
 import type { Rgb } from './decorations'
-import { MARKUP_COLORS, orientedPoint, STAMP_PRESETS } from './markup-geometry'
+import { MARKUP_COLORS, orientedPoint, STAMP_PRESETS, stampLabel } from './markup-geometry'
 import type { Point } from './page-geometry'
 
 /**
@@ -90,7 +90,7 @@ export function annotationSpec(markup: Markup): AnnotSpec | null {
     case 'stamp':
       return {
         subtype: 'Stamp',
-        contents: `${STAMP_PRESETS[markup.preset].label} ${markup.date}`.trim(),
+        contents: `${stampLabel(markup.preset)} ${markup.date}`.trim(),
         color: STAMP_PRESETS[markup.preset].color,
         stampName: STAMP_NAME[markup.preset],
       }

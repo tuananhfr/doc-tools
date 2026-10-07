@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "Prêt",
+    "stop": "Arrêter"
+  },
+  "dictation": {
+    "status": "État",
+    "listening": "À l'écoute",
+    "unsupported": "Non pris en charge",
+    "privacy": "La reconnaissance vocale utilise le service de votre navigateur ; l'audio peut être envoyé à l'éditeur du navigateur. Le texte que vous modifiez ici n'est pas envoyé au serveur de Chuyện Nhỏ.",
+    "title": "Dictée en vietnamien",
+    "start": "Commencer la dictée",
+    "text": "Texte",
+    "copy": "Copier",
+    "download": "Télécharger le .txt",
+    "interrupted": "La reconnaissance vocale a été interrompue. Vérifiez l'autorisation du micro et réessayez.",
+    "micFailed": "Impossible d'ouvrir le micro. Vérifiez les autorisations de votre navigateur."
+  },
+  "magnifier": {
+    "noCamera": "Ce navigateur ne prend pas en charge la caméra.",
+    "cameraFailed": "Impossible d'ouvrir la caméra. Vérifiez les autorisations et si la caméra est déjà utilisée.",
+    "preview": "Image de la caméra",
+    "frozen": "Image figée",
+    "live": "En direct",
+    "hint": "Appuyez sur Ouvrir la caméra pour commencer.",
+    "privacy": "L'image s'affiche uniquement sur votre appareil, sans être enregistrée ni envoyée.",
+    "title": "Loupe",
+    "zoom": "Zoom : {{zoom}}×",
+    "switchCamera": "Changer de caméra",
+    "openCamera": "Ouvrir la caméra",
+    "resume": "Reprendre",
+    "freeze": "Figer l'image",
+    "contrastOff": "Contraste normal",
+    "contrastOn": "Contraste renforcé",
+    "closeCamera": "Éteindre la caméra"
+  },
+  "readAloud": {
+    "device": "Lecture sur l'appareil",
+    "speaking": "Lecture en cours",
+    "read": "Lire le texte",
+    "voiceNote": "La voix dépend des voix vietnamiennes installées sur votre appareil et votre navigateur.",
+    "unsupported": "Ce navigateur ne prend pas en charge la lecture de texte à voix haute.",
+    "title": "Texte à lire",
+    "content": "Contenu",
+    "rate": "Vitesse : {{rate}}×"
+  }
+}

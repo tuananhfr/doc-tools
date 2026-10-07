@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Nilo-load ang signed data…",
+    "invalid": "Hindi pumasa sa beripikasyon (signature, expiry o format) ang data package sa system kaya hindi ito ginagamit. Pakisabihan ang administrator.",
+    "unavailable": "Hindi ma-load ang signed data mula sa server. Puwede ka pa ring maglagay ng mga value nang mano-mano.",
+    "upcoming": "Simula {{date}}, ipapatupad ang bagong {{label}} ayon sa {{source}}."
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "shared": {
+    "copyResult": "复制结果",
+    "days": "天",
+    "daysValue": "{{count}} <unit>天</unit>"
+  },
+  "weekdays": {
+    "sun": "星期日",
+    "mon": "星期一",
+    "tue": "星期二",
+    "wed": "星期三",
+    "thu": "星期四",
+    "fri": "星期五",
+    "sat": "星期六"
+  },
+  "duration": {
+    "weeks": "{{count}} 周",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days": "{{count}} 天"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "面积",
+      "volume": "体积",
+      "mass": "重量"
+    },
+    "formulas": {
+      "rectangle": "长方形",
+      "triangle": "三角形",
+      "trapezoid": "梯形",
+      "circle": "圆形",
+      "box": "长方体（基础、梁、楼板）",
+      "cylinder": "圆柱体（圆柱、桩）",
+      "rebar": "圆钢（钢筋）",
+      "plate": "钢板",
+      "density": "体积 × 密度"
+    },
+    "inputs": {
+      "length": "长度",
+      "width": "宽度",
+      "base": "底边",
+      "height": "高度",
+      "bigBase": "下底",
+      "smallBase": "上底",
+      "diameter": "直径",
+      "heightThickness": "高度 / 厚度",
+      "heightLength": "高度 / 长度",
+      "thickness": "厚度",
+      "volume": "体积",
+      "density": "密度"
+    },
+    "presets": {
+      "steel": "钢",
+      "reinforcedConcrete": "钢筋混凝土",
+      "water": "水"
+    },
+    "tonnes": "= {{value}} 吨",
+    "perPiece": "每个构件：{{value}} {{unit}}",
+    "invalid": "尺寸和数量必须是大于 0 的数字。",
+    "missing": "请输入完整的尺寸再计算。",
+    "groupLabel": "要计算的量",
+    "panelTitle": "尺寸",
+    "material": "材料 / 计算方式",
+    "shape": "形状",
+    "quantity": "数量",
+    "pieces": "个",
+    "densityPresets": "常用密度",
+    "decimalHint": "小数点用逗号或句点都可以：2,5 和 2.5 是一样的。输入的数字会在旁边的算式中重新显示。"
+  },
+  "money": {
+    "groups": {
+      "percent": "百分比",
+      "tax": "税费与折扣",
+      "profit": "毛利",
+      "split": "分摊费用"
+    },
+    "presets": {
+      "percentOf": "某数的 X%",
+      "percentRatio": "A 是 B 的百分之几",
+      "percentChange": "增加 / 减少了百分之几",
+      "vatAdd": "在不含税价上加税",
+      "vatExtract": "从含税价中拆出税额",
+      "discount": "折扣 / 降价",
+      "margin": "由成本价和售价算毛利",
+      "priceFromMargin": "由成本价和毛利率算售价",
+      "priceFromMarkup": "由成本价和加成率算售价",
+      "split": "平均分摊一笔费用"
+    },
+    "inputs": {
+      "rate": "比例",
+      "ofNumber": "基数",
+      "numberA": "数 A",
+      "numberB": "数 B",
+      "oldValue": "原值",
+      "newValue": "新值",
+      "netPrice": "不含税价",
+      "taxRate": "税率",
+      "grossPrice": "含税价",
+      "originalPrice": "原价",
+      "discount": "折扣",
+      "cost": "成本价",
+      "price": "售价",
+      "targetMargin": "目标毛利率",
+      "targetMarkup": "目标加成率",
+      "total": "总金额",
+      "people": "人数",
+      "extra": "附加费 / 小费"
+    },
+    "placeholders": {
+      "manual": "自行输入",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "结果",
+      "aVsB": "A 相对于 B",
+      "increase": "增加",
+      "decrease": "减少",
+      "difference": "差额",
+      "grossPrice": "含税价",
+      "tax": "税额",
+      "netPrice": "不含税价",
+      "discounted": "折后价",
+      "discountAmount": "优惠金额",
+      "margin": "毛利率（margin，按售价计）",
+      "markup": "加成率（markup，按成本价计）",
+      "grossProfit": "毛利",
+      "price": "售价",
+      "impliedMarkup": "对应的加成率",
+      "impliedMargin": "对应的毛利率",
+      "each": "每人",
+      "totalDue": "应付总额",
+      "eachRounded": "每人，向上取整到千",
+      "surplus": "取整收款后的余额"
+    },
+    "errors": {
+      "bNonZero": "数 B 不能为 0。",
+      "oldNonZero": "原值不能为 0。",
+      "discountMax": "折扣不能超过 100%。",
+      "pricePositive": "售价必须大于 0。",
+      "costPositive": "成本价必须大于 0。",
+      "marginMax": "毛利率必须小于 100%。",
+      "tooLarge": "数字太大，无法计算。"
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "人"
+    },
+    "copyRow": "复制{{label}}",
+    "invalid": "标记的输入框不是有效的数字（不能为负；人数须为从 1 开始的整数）。",
+    "missing": "请填写所有输入框再计算。",
+    "formulaCode": "公式代码：{{code}}",
+    "groupLabel": "计算类型",
+    "panelTitle": "数据",
+    "operation": "运算",
+    "taxHint": "税率由你自行输入：不同商品、不同时期的税率各不相同，本工具不预设任何数值。",
+    "profitHint": "毛利率按售价计算，加成率按成本价计算——同一笔利润对应两个不同的数字。",
+    "inputHint": "金额：150.000 和 150,000 都表示十五万；小数部分输入 1500,5。识别出的数字会在旁边的算式中重新显示。结果显示到小数点后两位，不按任何会计规定自动取整。"
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "长度",
+      "area": "面积",
+      "mass": "重量"
+    },
+    "units": {
+      "mm": {
+        "name": "毫米",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "厘米",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "米",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "千米",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "英寸",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "英尺",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "码",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "英里",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "平方毫米",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "平方厘米",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "平方米",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "公顷",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "平方千米",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "平方英尺",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "英亩（acre）",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "克",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "千克",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến（越南单位，10 kg）",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ（越南单位，100 kg）",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "吨",
+        "symbol": "吨"
+      },
+      "oz": {
+        "name": "盎司",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "磅",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "换算成所有单位",
+    "equalsHeading": "{{value}} {{unit}} 等于",
+    "notNumber": "输入的值不是数字。",
+    "notNumberExample": "输入的值不是数字。例如：2,5 或 1200。",
+    "enterValue": "输入要换算的值。",
+    "copyIn": "复制以 {{unit}} 表示的值",
+    "groupLabel": "单位类型",
+    "panelTitle": "单位换算",
+    "value": "数值",
+    "from": "原单位",
+    "to": "目标单位",
+    "unitOption": "{{name}}（{{symbol}}）",
+    "swap": "互换两个单位",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "字符数",
+      "charactersNoSpaces": "字符数（不含空格）",
+      "words": "词数",
+      "lines": "行数",
+      "paragraphs": "段落数"
+    },
+    "hints": {
+      "characters": "包括空格和换行",
+      "words": "以空格分隔的字串",
+      "paragraphs": "以空行分隔"
+    },
+    "counts": "统计",
+    "panelTitle": "文字",
+    "clear": "全部清除",
+    "textLabel": "要统计的文字",
+    "placeholder": "在此输入或粘贴文字…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "非常清晰（AAA）",
+      "aa": "易于阅读（AA）",
+      "large": "仅适合大字",
+      "fail": "难以阅读"
+    },
+    "pickFailed": "无法从屏幕上取色。",
+    "preview": "预览",
+    "swatch": "颜色 {{hex}}",
+    "textOnColor": "在此颜色上的文字",
+    "whiteText": "白色文字",
+    "blackText": "黑色文字",
+    "contrastHint": "按 WCAG 的对比度：达到 4.5 : 1 时普通文字可读，达到 3 : 1 只够大字和图标使用。",
+    "panelTitle": "选择颜色",
+    "picker": "取色板",
+    "pickerHint": "点击色块打开取色板，或在下方输入色值。",
+    "eyedropper": "从屏幕取色",
+    "copyCode": "复制 {{label}} 色值"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "两个日期之间",
+      "add": "加 / 减天数"
+    },
+    "weekendOnly": "这里的工作日只排除星期六和星期日。重大节假日会在结果中列出，但不会自动扣除；各单位的调休或周六上班安排也不计入——期限内遇到节假日请自行顺延。",
+    "distance": "间隔",
+    "countingBack": "结束日期早于开始日期——正在倒数。",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "复制天数",
+    "workdays": "工作日（星期一至星期五）",
+    "weekendDays": "星期六、星期日",
+    "startIncluded": "开始日期（计入）",
+    "startExcluded": "开始日期（不计入）",
+    "endIncluded": "结束日期（计入）",
+    "pickBoth": "请选择两个日期再计算。",
+    "landsOn": "落在",
+    "addedCalendar": "= {{start}} {{sign}} {{count}} 天",
+    "addedWorkdays": "= {{start}} {{sign}} {{count}} 个工作日",
+    "calendarEquivalent": "即 {{count}} 个自然日。",
+    "copyDate": "复制日期",
+    "countInvalid": "天数必须是 0 到 {{max}} 之间的整数。",
+    "pickStart": "请选择开始日期并输入天数。",
+    "modeLabel": "计算方式",
+    "betweenTitle": "两个日期",
+    "fromDate": "开始日期",
+    "toDate": "结束日期",
+    "includeStart": "计入开始日期",
+    "includeStartHint": "不计开始日期：星期一到星期五为 4 天（计算期限的方式）。计入：5 天（计算工作天数的方式）。",
+    "addTitle": "起始日期和天数",
+    "startDate": "开始日期",
+    "dayCount": "天数",
+    "direction": "方向",
+    "forward": "加（往后）",
+    "back": "减（往前）",
+    "dayKind": "日期类型",
+    "calendar": "自然日",
+    "addHint": "开始日期不计入：从星期五加 1 天为星期六（自然日）或星期一（工作日）。"
+  },
+  "holidays": {
+    "tooLong": "时间跨度超过 {{count}} 天，因此不列出节假日。",
+    "none": "这段时间内没有重大节假日。",
+    "count": "这段时间内有 {{count}} 天节假日",
+    "more": "以及其他 {{count}} 天",
+    "hint": "本工具不会自动扣除假日。如果单位在这些日子放假，请自行顺延期限。"
+  },
+  "randomCode": {
+    "modes": {
+      "password": "密码",
+      "code": "订单号、单据号"
+    },
+    "classes": {
+      "upper": "大写字母（A–Z）",
+      "lower": "小写字母（a–z）",
+      "digits": "数字（0–9）",
+      "symbols": "符号（!@#$…）"
+    },
+    "strengths": {
+      "weak": "弱",
+      "fair": "一般",
+      "strong": "强",
+      "excellent": "非常强"
+    },
+    "results": "结果",
+    "resultsCount": "结果（{{count}}）",
+    "copyAll": "全部复制",
+    "noClass": "请至少开启一类字符来生成密码。",
+    "copyValue": "复制 {{value}}",
+    "regenerate": "重新生成",
+    "modeLabel": "编码类型",
+    "panelTitle": "选项",
+    "length": "长度",
+    "chars": "{{count}} 个字符",
+    "classGroups": "使用的字符类型",
+    "plain": "去掉容易看错的字符（0 O o 1 l I）",
+    "strength": "强度：<strong>{{label}}</strong> · 约 {{bits}} 位",
+    "prefix": "前缀（选填）",
+    "prefixPlaceholder": "例如 PX-",
+    "charset": "随机部分包含",
+    "alnum": "大写字母和数字",
+    "digitsOnly": "仅数字",
+    "codeLength": "随机字符数",
+    "alnumHint": "不使用 I、O、0、1——电话里念或手抄时不会弄错。",
+    "count": "每次生成数量（最多 {{max}}）"
+  },
+  "notes": {
+    "untitled": "空白笔记",
+    "limitReached": "已达到 {{count}} 条笔记上限。请删除一些旧笔记再新建。",
+    "listLabel": "笔记列表",
+    "title": "笔记",
+    "titleCount": "笔记（{{count}}）",
+    "newNote": "新建笔记",
+    "empty": "这台设备上还没有笔记。",
+    "notice": "笔记保存在此浏览器中，不跟随账号：共用这台设备的人都能看到，清除浏览数据就会丢失。",
+    "clearAllTitle": "要删除全部 {{count}} 条笔记吗？",
+    "localOnly": "笔记只保存在这台设备上，删除后无法找回。",
+    "clearAllConfirm": "全部删除",
+    "clearAll": "删除所有笔记",
+    "editorLabel": "编辑笔记",
+    "emptyStart": "记下要记住的事，列出待办清单。",
+    "emptyPick": "从列表中选择一条笔记来查看和编辑。",
+    "backToList": "笔记列表",
+    "titleLabel": "标题",
+    "titlePlaceholder": "例如：周一工地待办事项",
+    "body": "内容",
+    "bodyPlaceholder": "快速记下要记住的事…",
+    "saveFailed": "无法保存到这台设备。关闭页面前请把内容复制到别处。",
+    "savedAt": "已保存在这台设备上 · {{time}}",
+    "deleteTitle": "要删除这条笔记吗？",
+    "deleteConfirm": "删除",
+    "delete": "删除笔记",
+    "tasks": "待办清单",
+    "taskDone": "已完成：{{task}}",
+    "taskFallback": "待办 {{number}}",
+    "task": "待办 {{number}}",
+    "removeTask": "移除待办 {{number}}",
+    "removeTaskTitle": "移除此待办",
+    "newTask": "新待办",
+    "tasksFull": "已达到 {{count}} 项待办上限",
+    "addTaskPlaceholder": "添加待办，按 Enter",
+    "addTask": "添加"
+  }
+}

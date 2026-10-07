@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { directionOf, formatDeg } from '../utils/azimuth'
 import { compassShapes } from '../utils/compass-geometry'
@@ -21,13 +22,14 @@ const SIDE = 280
 
 /** KẾT QUẢ ĐO (spec v1.1 §15): số độ + hướng + nguồn, tách hẳn khỏi phần theo tuổi. */
 export function ResultPanel({ state, palette, missing, showCompass, extras }: ResultPanelProps) {
+  const { t } = useTranslation('orientation')
   const [main, ...others] = measurements(state)
   const origin = provenance(state)
 
   return (
     <section className="erp-orient-result" aria-labelledby="orient-result-title">
       <h2 id="orient-result-title" className="erp-orient-section-title">
-        Kết quả đo
+        {t('result.title')}
       </h2>
 
       {main && main.azimuth !== null ? (
@@ -36,13 +38,13 @@ export function ResultPanel({ state, palette, missing, showCompass, extras }: Re
           <span className="erp-orient-result__value">{formatDeg(main.azimuth)}</span>
           <span className="erp-orient-result__direction">{main.direction?.name}</span>
           {state.divisions === 8 && state.mode === 'PROFESSIONAL' ? (
-            <span className="erp-orient-result__fine">16 hướng: {directionOf(main.azimuth, 16).name}</span>
+            <span className="erp-orient-result__fine">{t('result.fine', { direction: directionOf(main.azimuth, 16).name })}</span>
           ) : null}
         </div>
       ) : (
         <p className="erp-orient-result__empty">
           <Icon name="compass" />
-          {missing ?? 'Chưa có số đo.'}
+          {missing ?? t('result.empty')}
         </p>
       )}
 
@@ -64,7 +66,7 @@ export function ResultPanel({ state, palette, missing, showCompass, extras }: Re
       {origin ? <p className="erp-orient-result__origin">{origin}</p> : null}
 
       {showCompass ? (
-        <svg className="erp-orient-result__compass" viewBox={`${-SIDE * 0.04} ${-SIDE * 0.04} ${SIDE * 1.08} ${SIDE * 1.08}`} role="img" aria-label="La bàn, Bắc ở trên">
+        <svg className="erp-orient-result__compass" viewBox={`${-SIDE * 0.04} ${-SIDE * 0.04} ${SIDE * 1.08} ${SIDE * 1.08}`} role="img" aria-label={t('result.compassAria')}>
           <ShapeLayer shapes={compassShapes(standaloneCompass(state, SIDE, extras))} palette={palette} opacity={1} />
         </svg>
       ) : null}

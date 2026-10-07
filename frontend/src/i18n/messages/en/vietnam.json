@@ -1,0 +1,162 @@
+{
+  "holidayLayers": {
+    "major": "Major holidays",
+    "lunar": "Traditional festivals",
+    "moon": "1st & 15th lunar days",
+    "memorial": "Commemorations"
+  },
+  "calendar": {
+    "layersAria": "Show holidays on the calendar",
+    "monthAria": "Calendar for {{month}}/{{year}}",
+    "monthTitle": "Month {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "today": "Today",
+    "weekdays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}L",
+    "dayLunar": "lunar {{day}}/{{month}}",
+    "dayLunarLeap": "lunar {{day}}/leap {{month}}",
+    "dayEvents_one": "{{count}} event",
+    "dayEvents_other": "{{count}} events"
+  },
+  "day": {
+    "outOfRange": "This date is outside the 1800–2199 range the algorithm supports.",
+    "solar": "Solar calendar",
+    "lunarMonthYear": "Month {{month}}, year {{year}}",
+    "lunarMonthYearLeap": "Leap month {{month}}, year {{year}}",
+    "lunarDate": "Lunar {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Lunar {{day}}/leap {{month}}/{{year}}",
+    "facts": {
+      "day": "Day",
+      "month": "Month",
+      "year": "Year"
+    },
+    "goodDay": "Auspicious day",
+    "badDay": "Inauspicious day",
+    "byLunar": "by lunar calendar",
+    "bySolar": "by solar calendar",
+    "goodHours": "Auspicious hours",
+    "nextTet_one": "Tết {{year}}: <strong>{{date}}</strong> · {{count}} day to go",
+    "nextTet_other": "Tết {{year}}: <strong>{{date}}</strong> · {{count}} days to go",
+    "note": "Astronomical algorithm for Vietnam's UTC+7 time zone, suitable for everyday reference; for official purposes, check the calendar published by the competent authorities. Auspicious / inauspicious days follow folk practice and are for reference only. <link>Algorithm source: Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Go to date",
+    "convertTitle": "Lunar → solar",
+    "fields": {
+      "day": "Lunar day",
+      "month": "Lunar month",
+      "year": "Lunar year"
+    },
+    "leapMonth": "Leap month",
+    "solarResult": "Solar date <strong>{{date}}</strong>",
+    "showOnCalendar": "Show on calendar",
+    "noSuchDay": "This date doesn't exist.",
+    "noSuchDayLeap": "This date doesn't exist (that year has no leap version of this month).",
+    "anniversaryTitle": "Death anniversary by lunar calendar",
+    "anniversaryFields": {
+      "day": "Day",
+      "month": "Month"
+    },
+    "anniversaryYear": "Lunar year {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "no such date"
+  },
+  "address": {
+    "status": {
+      "full": "Fully converted",
+      "province": "Province only",
+      "ambiguous": "Choose manually: {{options}}",
+      "none": "Province not recognized"
+    },
+    "orSeparator": " or ",
+    "resultLabel": "Address matching",
+    "resultValue": "{{full}}/{{total}} fully converted",
+    "resultNote": "The province is recognized in any part, including abbreviations (TP.HCM, HN…). The district level is dropped. A commune/ward is converted only when the data points to exactly one new commune; if the old commune was split, the options are listed for you to choose.",
+    "columns": {
+      "old": "Old address",
+      "proposed": "Suggested",
+      "status": "Status"
+    },
+    "downloadCsv": "Download CSV",
+    "verifiedNote": "Signed mapping set, effective from {{date}}. Source: {{source}}. Confirm the final address with the office receiving your documents.",
+    "manualNote": "Mapping table entered by you; not verified by the system. Confirm the final address with the office receiving your documents.",
+    "viewSource": "View data source",
+    "panelTitle": "Old addresses and mapping table",
+    "addressesLabel": "One address per line, levels separated by commas",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Using the signed mapping table",
+    "applyVerified": "Apply signed mapping table",
+    "rulesLabel": "address mapping table",
+    "rulesNone": "There's no signed, currently valid address mapping set on the system yet.",
+    "manualLabel": "Or enter your own, one per line: “old province|old district|old commune|new province|new commune”",
+    "manualInvalid": "The mapping table has the wrong format (each line needs 5 parts, each up to 150 characters) or an old province is mapped to two different new provinces."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "The XML file is larger than 5 MB.",
+      "unreadable": "Couldn't read the XML file.",
+      "doctype": "The XML declares entities or a DOCTYPE, which isn't supported.",
+      "invalid": "Invalid XML file.",
+      "noCommon": "Couldn't find the invoice's general information block."
+    },
+    "resultLabel": "Invoice",
+    "noNumber": "No number",
+    "series": "Series: {{series}} · Date: {{date}}",
+    "seller": "Seller: {{name}} ({{taxCode}})",
+    "buyer": "Buyer: {{name}} ({{taxCode}})",
+    "noTaxCode": "no tax code",
+    "amounts": "Before tax: {{subtotal}} đ · Tax: {{vat}} đ",
+    "total": "Total payable: {{total}} đ",
+    "signature": "XML signature tag: {{signature}} · Tax authority code: {{authority}}",
+    "present": "present",
+    "notFound": "not found",
+    "downloadCsv": "Download CSV list",
+    "empty": "Choose an XML file to view the invoice data.",
+    "disclaimer": "This tool only reads the XML content; it doesn't validate the digital signature or the invoice's legal status. Look it up on the official portal before using it.",
+    "panelTitle": "Invoice file",
+    "pickFile": "Choose XML file",
+    "columns": {
+      "ordinal": "No.",
+      "name": "Goods, services",
+      "quantity": "Qty",
+      "amount": "Amount"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Converted text",
+    "copy": "Copy text",
+    "note": "Choose the correct encoding of the original text; the displayed font name can't determine the character encoding by itself.",
+    "panelTitle": "Original text",
+    "conversionLabel": "Conversion type",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 uppercase → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Combine Unicode diacritics (NFC)",
+      "strip": "Remove Vietnamese diacritics",
+      "lower": "lowercase",
+      "upper": "UPPERCASE"
+    },
+    "contentLabel": "Content",
+    "placeholder": "Paste the text to convert…"
+  },
+  "numberWords": {
+    "resultLabel": "In words",
+    "invalid": "Enter whole numbers only, up to 36 digits.",
+    "note": "Reads numbers in Vietnamese words for receipts and contracts; check the conventions of the receiving party.",
+    "copy": "Copy result",
+    "panelTitle": "Number to read",
+    "inputLabel": "Whole number",
+    "placeholder": "Example: 1.234.567",
+    "zeroWordLabel": "Word for zero in the tens place",
+    "fourWordLabel": "Word for four after the tens"
+  }
+}

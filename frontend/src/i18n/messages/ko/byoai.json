@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "질문 복사",
+    "copied": "질문을 복사했어요."
+  },
+  "panel": {
+    "hasSecrets": "변경 내용에 이메일, 토큰 또는 내부 URL이 있어요. 보내기 전에 이 데이터를 지워 주세요.",
+    "sendFailed": "제안을 보내지 못했어요.",
+    "sent": "제안이 출처 검토 대기열에 들어갔어요. 상태를 확인하려면 접수 번호를 보관하세요.",
+    "offline": "서버에 연결할 수 없어요. 초안은 이 페이지에 그대로 있어요.",
+    "close": "출처 확인 닫기",
+    "open": "내 AI로 새 출처 확인하기",
+    "intro": "Chuyện Nhỏ는 AI를 호출하거나 내 AI 키를 저장하지 않아요. 원하는 AI 서비스에 복사하기 전에 아래 내용을 꼭 확인하세요. AI 결과는 참고용 제안일 뿐이에요.",
+    "includeResult": "보고 있는 결과를 질문에 추가 (개인 정보가 포함될 수 있음)",
+    "packageLabel": "복사할 내용",
+    "copyFailed": "복사하지 못했어요. 직접 선택해서 복사해 주세요.",
+    "pasteTitle": "AI 결과를 붙여 넣어 변경 내용 보기",
+    "aiJson": "AI가 반환한 JSON",
+    "invalidJson": "JSON 구조가 올바르지 않거나 한도를 넘었어요. changes, sources, uncertainties 필드를 다시 확인해 주세요.",
+    "unverified": "검증되지 않은 데이터예요. 출처 URL을 하나씩 확인하고 제안할 부분을 선택하세요.",
+    "columns": {
+      "select": "선택",
+      "field": "항목",
+      "current": "현재",
+      "proposed": "AI 제안"
+    },
+    "selectField": "{{field}} 선택",
+    "sources": "AI가 제시한 출처 (보내는 사람이 직접 확인해야 함): {{sources}}",
+    "noSources": "없음",
+    "uncertainties": "불확실한 점: {{items}}",
+    "consent": "변경 내용을 하나씩 확인하고 개인 데이터를 점검했으며, 선택한 내용을 관리자 검토용으로 보내는 데 동의해요",
+    "submit": "업데이트 제안 보내기",
+    "receipt": "접수 번호:"
+  },
+  "assistant": {
+    "suggestions": "기기 내 추천",
+    "intro": "하려는 일을 입력하면 알맞은 도구를 찾아 드려요. AI에게 설명을 부탁하려면 내용을 미리 확인한 뒤 원하는 서비스에 직접 복사하세요.",
+    "noMatch": "딱 맞는 도구를 찾지 못했어요.",
+    "title": "도구 찾기 도우미",
+    "question": "무엇을 하고 싶으세요?",
+    "placeholder": "예: PDF 파일 두 개를 합치고 페이지 번호를 넣고 싶어요",
+    "copyNote": "아래 질문은 버튼을 눌렀을 때만 복사돼요. 이메일, 토큰, 내부 URL은 자동으로 가려지지만, AI에 넘기기 전에 직접 다시 확인하세요.",
+    "promptLabel": "AI에 보낼 내용",
+    "copyFailed": "복사하지 못했어요. 텍스트를 선택해서 직접 복사해 주세요.",
+    "answerLabel": "AI 답변을 붙여 넣어 여기서 읽기 (저장하거나 Chuyện Nhỏ로 보내지 않음)",
+    "unverified": "검증되지 않은 내용"
+  }
+}

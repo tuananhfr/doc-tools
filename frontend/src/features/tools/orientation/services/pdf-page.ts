@@ -1,6 +1,7 @@
 import * as pdfjs from 'pdfjs-dist'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { pdfjsWasmUrl } from '@/utils/pdfjs-wasm'
 
 /*
@@ -21,9 +22,9 @@ function open(bytes: Uint8Array): Promise<PdfDocument> {
     doc = pdfjs.getDocument({ data: bytes.slice(), wasmUrl: pdfjsWasmUrl(pdfjs.version) }).promise.catch((error: unknown) => {
       documents.delete(bytes)
       if (error instanceof Error && error.name === 'PasswordException') {
-        throw new ToolError(TOOL_ERROR.permission, 'PDF có mật khẩu mở — gỡ mật khẩu bằng công cụ "Mở khoá PDF" rồi chọn lại.')
+        throw new ToolError(TOOL_ERROR.permission, translate('orientation:pdf.password'))
       }
-      throw new ToolError(TOOL_ERROR.corruptFile, 'Không đọc được tệp PDF này.')
+      throw new ToolError(TOOL_ERROR.corruptFile, translate('orientation:pdf.unreadable'))
     })
     documents.set(bytes, doc)
   }
@@ -53,7 +54,7 @@ export async function renderPdfPage(bytes: Uint8Array, index: number, longSide: 
     canvas.width = Math.round(viewport.width)
     canvas.height = Math.round(viewport.height)
     const context = canvas.getContext('2d')
-    if (!context) throw new ToolError(TOOL_ERROR.memory, 'Trình duyệt không cấp được vùng vẽ.')
+    if (!context) throw new ToolError(TOOL_ERROR.memory, translate('orientation:pdf.noCanvas'))
     context.fillStyle = '#ffffff'
     context.fillRect(0, 0, canvas.width, canvas.height)
     await page.render({ canvas, canvasContext: context, viewport }).promise
@@ -61,7 +62,7 @@ export async function renderPdfPage(bytes: Uint8Array, index: number, longSide: 
     const { width, height } = canvas
     canvas.width = 0
     canvas.height = 0
-    if (!blob) throw new ToolError(TOOL_ERROR.memory, 'Không vẽ được trang PDF.')
+    if (!blob) throw new ToolError(TOOL_ERROR.memory, translate('orientation:pdf.renderFailed'))
     return { blob, width, height, points: { width: base.width, height: base.height } }
   } finally {
     page.cleanup()

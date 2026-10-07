@@ -1,15 +1,19 @@
 import type { HeadingStatus } from '../hooks/useDeviceHeading'
 import type { Stability } from '../utils/device-heading'
 
-export const HEADING_FAILURE: Partial<Record<HeadingStatus, string>> = {
-  unsupported: 'Trình duyệt này không đọc được la bàn của máy.',
-  insecure: 'La bàn chỉ chạy khi mở trang bằng HTTPS.',
-  denied: 'Bạn chưa cho phép đọc cảm biến hướng. Cho phép trong cài đặt trình duyệt rồi thử lại.',
-  'no-signal': 'Không nhận được tín hiệu la bàn — máy tính và nhiều trình duyệt không có cảm biến này.',
+/** Khoá câu báo lỗi trong `orientation:heading.failure.*`. */
+export type HeadingFailure = 'unsupported' | 'insecure' | 'denied' | 'noSignal'
+
+export const HEADING_FAILURE: Partial<Record<HeadingStatus, HeadingFailure>> = {
+  unsupported: 'unsupported',
+  insecure: 'insecure',
+  denied: 'denied',
+  'no-signal': 'noSignal',
 }
 
-export const STABILITY_BADGE: Record<Stability, { label: string; icon: string; tone: string }> = {
-  STABLE: { label: 'Ổn định', icon: 'check-circle', tone: 'success' },
-  WOBBLY: { label: 'Còn dao động', icon: 'exclamation-circle', tone: 'warning' },
-  UNSTABLE: { label: 'Không ổn định', icon: 'exclamation-triangle', tone: 'danger' },
+/** Nhãn ở `orientation:heading.stability.<Stability>`. */
+export const STABILITY_BADGE: Record<Stability, { icon: string; tone: string }> = {
+  STABLE: { icon: 'check-circle', tone: 'success' },
+  WOBBLY: { icon: 'exclamation-circle', tone: 'warning' },
+  UNSTABLE: { icon: 'exclamation-triangle', tone: 'danger' },
 }

@@ -1,0 +1,170 @@
+{
+  "holidayLayers": {
+    "major": "الأعياد الكبرى",
+    "lunar": "الأعياد التقليدية",
+    "moon": "أول الشهر القمري ومنتصفه",
+    "memorial": "المناسبات التذكارية"
+  },
+  "calendar": {
+    "layersAria": "إظهار العطلات على التقويم",
+    "monthAria": "تقويم شهر {{month}}/{{year}}",
+    "monthTitle": "شهر {{month}}<year>/{{year}}</year>",
+    "prevMonth": "الشهر السابق",
+    "nextMonth": "الشهر التالي",
+    "today": "اليوم",
+    "weekdays": {
+      "mon": "إثنين",
+      "tue": "ثلاثاء",
+      "wed": "أربعاء",
+      "thu": "خميس",
+      "fri": "جمعة",
+      "sat": "سبت",
+      "sun": "أحد"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}} ك",
+    "dayLunar": "قمري {{day}}/{{month}}",
+    "dayLunarLeap": "قمري {{day}}/{{month}} كبيس",
+    "dayEvents_zero": "{{count}} موعد",
+    "dayEvents_one": "موعد واحد",
+    "dayEvents_two": "موعدان",
+    "dayEvents_few": "{{count}} مواعيد",
+    "dayEvents_many": "{{count}} موعدًا",
+    "dayEvents_other": "{{count}} موعد"
+  },
+  "day": {
+    "outOfRange": "التاريخ خارج النطاق 1800–2199 الذي تدعمه الخوارزمية.",
+    "solar": "التقويم الميلادي",
+    "lunarMonthYear": "الشهر {{month}} من سنة {{year}}",
+    "lunarMonthYearLeap": "الشهر {{month}} الكبيس من سنة {{year}}",
+    "lunarDate": "قمري {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "قمري {{day}}/{{month}} كبيس/{{year}}",
+    "facts": {
+      "day": "اليوم",
+      "month": "الشهر",
+      "year": "السنة"
+    },
+    "goodDay": "يوم سعد",
+    "badDay": "يوم نحس",
+    "byLunar": "حسب التقويم القمري",
+    "bySolar": "حسب التقويم الميلادي",
+    "goodHours": "ساعات السعد",
+    "nextTet_zero": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقي {{count}} يوم",
+    "nextTet_one": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقي يوم واحد",
+    "nextTet_two": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقي يومان",
+    "nextTet_few": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقيت {{count}} أيام",
+    "nextTet_many": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقي {{count}} يومًا",
+    "nextTet_other": "رأس السنة القمرية (Tết) {{year}}: <strong>{{date}}</strong> · بقي {{count}} يوم",
+    "note": "خوارزمية فلكية لتوقيت فيتنام UTC+7، مناسبة للاستخدام اليومي الاسترشادي؛ قارنها بالتقويم الصادر عن الجهات المختصة عند الاستخدام الرسمي. أيام السعد والنحس محسوبة وفق المعتقدات الشعبية، وهي للاستئناس فقط. <link>مصدر خوارزمية Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "الانتقال إلى تاريخ",
+    "convertTitle": "تحويل من القمري إلى الميلادي",
+    "fields": {
+      "day": "اليوم القمري",
+      "month": "الشهر القمري",
+      "year": "السنة القمرية"
+    },
+    "leapMonth": "شهر كبيس",
+    "solarResult": "التاريخ الميلادي <strong>{{date}}</strong>",
+    "showOnCalendar": "عرض على التقويم",
+    "noSuchDay": "هذا التاريخ غير موجود.",
+    "noSuchDayLeap": "هذا التاريخ غير موجود (لا يتكرر هذا الشهر كبيسًا في تلك السنة).",
+    "anniversaryTitle": "ذكرى الوفاة حسب التقويم القمري",
+    "anniversaryFields": {
+      "day": "اليوم",
+      "month": "الشهر"
+    },
+    "anniversaryYear": "السنة القمرية {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "التاريخ غير موجود"
+  },
+  "address": {
+    "status": {
+      "full": "تحويل كامل",
+      "province": "تحويل المحافظة فقط",
+      "ambiguous": "يلزم الاختيار يدويًا: {{options}}",
+      "none": "لم يُتعرَّف على المحافظة"
+    },
+    "orSeparator": " أو ",
+    "resultLabel": "مطابقة العناوين",
+    "resultValue": "{{full}}/{{total}} تحويل كامل",
+    "resultNote": "يُتعرَّف على المحافظة في أي جزء من العنوان، حتى بالاختصار (TP.HCM، HN…). يُحذف مستوى المقاطعة. لا يُحوَّل مستوى البلدية/الحي إلا إذا أشارت البيانات إلى بلدية جديدة واحدة بالضبط؛ وإذا قُسّمت البلدية القديمة فتُعرض الخيارات لتختار منها.",
+    "columns": {
+      "old": "العنوان القديم",
+      "proposed": "المقترح",
+      "status": "الحالة"
+    },
+    "downloadCsv": "تنزيل CSV",
+    "verifiedNote": "جدول مطابقة موقّع، ساري من {{date}}. المصدر: {{source}}. أكّد العنوان النهائي مع الجهة التي تستلم الملف.",
+    "manualNote": "جدول المطابقة من إدخالك؛ ولم يتحقق منه النظام. أكّد العنوان النهائي مع الجهة التي تستلم الملف.",
+    "viewSource": "عرض مصدر البيانات",
+    "panelTitle": "العناوين القديمة وجدول المطابقة",
+    "addressesLabel": "عنوان في كل سطر، والمستويات مفصولة بفواصل",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "يُستخدم جدول المطابقة الموقّع",
+    "applyVerified": "تطبيق جدول المطابقة الموقّع",
+    "rulesLabel": "جدول مطابقة العناوين",
+    "rulesNone": "لا يوجد جدول مطابقة عناوين موقّع وساري المفعول على النظام.",
+    "manualLabel": "أو أدخله بنفسك، كل سطر: «المحافظة القديمة|المقاطعة القديمة|البلدية القديمة|المحافظة الجديدة|البلدية الجديدة»",
+    "manualInvalid": "جدول المطابقة بتنسيق خاطئ (يجب أن يحتوي كل سطر على 5 أجزاء، وكل جزء 150 حرفًا كحد أقصى) أو توجد محافظة قديمة مُسندة إلى محافظتين جديدتين مختلفتين."
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "ملف XML يتجاوز 5 MB.",
+      "unreadable": "تعذّرت قراءة ملف XML.",
+      "doctype": "يحتوي XML على تعريف كيانات أو DOCTYPE غير مدعوم.",
+      "invalid": "ملف XML غير صالح.",
+      "noCommon": "لم يُعثر على كتلة المعلومات العامة للفاتورة."
+    },
+    "resultLabel": "الفاتورة",
+    "noNumber": "بلا رقم",
+    "series": "الرمز: {{series}} · التاريخ: {{date}}",
+    "seller": "البائع: {{name}} ({{taxCode}})",
+    "buyer": "المشتري: {{name}} ({{taxCode}})",
+    "noTaxCode": "بلا رقم ضريبي",
+    "amounts": "قبل الضريبة: {{subtotal}} đ · الضريبة: {{vat}} đ",
+    "total": "إجمالي المبلغ المستحق: {{total}} đ",
+    "signature": "وسم توقيع XML: {{signature}} · رمز مصلحة الضرائب: {{authority}}",
+    "present": "موجود",
+    "notFound": "غير موجود",
+    "downloadCsv": "تنزيل كشف CSV",
+    "empty": "اختر ملف XML لعرض بيانات الفاتورة.",
+    "disclaimer": "تقرأ الأداة محتوى XML فقط؛ ولا تتحقق من التوقيع الرقمي أو الوضع القانوني للفاتورة. تحقّق منها عبر البوابة الرسمية قبل الاستخدام.",
+    "panelTitle": "ملف الفاتورة",
+    "pickFile": "اختر ملف XML",
+    "columns": {
+      "ordinal": "م",
+      "name": "السلع والخدمات",
+      "quantity": "الكمية",
+      "amount": "المبلغ"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "النص بعد التحويل",
+    "copy": "نسخ النص",
+    "note": "اختر الترميز الصحيح للنص الأصلي؛ اسم الخط المعروض لا يحدد ترميز الأحرف تلقائيًا.",
+    "panelTitle": "النص الأصلي",
+    "conversionLabel": "نوع التحويل",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 بأحرف كبيرة → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "دمج علامات Unicode (NFC)",
+      "strip": "إزالة علامات التشكيل الفيتنامية",
+      "lower": "أحرف صغيرة",
+      "upper": "أحرف كبيرة"
+    },
+    "contentLabel": "المحتوى",
+    "placeholder": "الصق النص المراد تحويله…"
+  },
+  "numberWords": {
+    "resultLabel": "كتابةً",
+    "invalid": "أدخل عددًا صحيحًا فقط، 36 رقمًا كحد أقصى.",
+    "note": "قراءة الأرقام بالكلمات (بالفيتنامية) للمستندات والعقود؛ تحقّق من الأعراف المتّبعة لدى الجهة المستلمة.",
+    "copy": "نسخ النتيجة",
+    "panelTitle": "الرقم المراد قراءته",
+    "inputLabel": "عدد صحيح",
+    "placeholder": "مثال: 1.234.567",
+    "zeroWordLabel": "قراءة الصفر في خانة العشرات",
+    "fourWordLabel": "قراءة الأربعة بعد العشرات"
+  }
+}

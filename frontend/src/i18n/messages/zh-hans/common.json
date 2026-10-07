@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "语言",
+    "current": "语言：{{name}}"
+  },
+  "theme": {
+    "current": "主题：{{name}}",
+    "light": "浅色（办公室）",
+    "dark": "深色（指挥中心）",
+    "field": "户外（工地）",
+    "lightShort": "浅色",
+    "darkShort": "深色",
+    "fieldShort": "户外"
+  },
+  "ui": {
+    "confirm": "确认",
+    "cancel": "取消",
+    "loadingData": "正在加载数据",
+    "loading": "正在加载...",
+    "toastRegion": "系统通知",
+    "toastClose": "关闭通知",
+    "toastTone": {
+      "success": "成功",
+      "info": "信息",
+      "warning": "警告",
+      "danger": "错误"
+    }
+  },
+  "apiErrors": {
+    "network": "无法连接服务器。请检查网络连接。",
+    "timeout": "服务器响应时间过长。请重试。",
+    "unauthorized": "登录已过期。请重新登录。",
+    "forbidden": "你没有执行此操作的权限。",
+    "notFound": "未找到数据。",
+    "validation": "数据无效。请检查后重试。",
+    "rateLimited": "操作过于频繁。请稍后再试。",
+    "server": "服务器出现故障。请稍后再试。",
+    "unknown": "发生错误。"
+  },
+  "crumb": {
+    "label": "位置"
+  },
+  "tool": {
+    "privacyNoFile": "在你的设备上运行，内容不会发送出去",
+    "privacyFile": "在你的设备上处理，文件不会上传"
+  },
+  "session": {
+    "openInApp": "在 ERPcons 中打开",
+    "login": "登录"
+  },
+  "board": {
+    "result": "结果"
+  },
+  "copy": {
+    "label": "复制",
+    "copied": "已复制",
+    "done": "已复制到剪贴板。",
+    "blocked": "浏览器不允许复制。请选中文字后按 Ctrl+C。"
+  },
+  "fileList": {
+    "title": "已选文件",
+    "clearAll": "全部移除",
+    "moveUp": "上移",
+    "moveUpLabel": "将 {{name}} 上移",
+    "moveDown": "下移",
+    "moveDownLabel": "将 {{name}} 下移",
+    "remove": "移除此文件",
+    "removeLabel": "移除 {{name}}"
+  },
+  "filePicker": {
+    "pick": "选择文件",
+    "add": "添加文件",
+    "pickOther": "选择其他文件",
+    "reading": "正在读取文件 {{current}}/{{total}}…",
+    "dropMore": "把更多文件拖到这里",
+    "dropOther": "把其他文件拖到这里"
+  },
+  "flow": {
+    "finishing": "即将完成…",
+    "processing": "正在处理",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "处理进度",
+    "cancel": "取消",
+    "rejected": "已跳过 {{count}} 个文件",
+    "rejectedMore": "… 还有 {{count}} 个文件",
+    "dismiss": "隐藏通知",
+    "side": "选项与运行",
+    "options": "选项",
+    "error": "处理失败：{{message}}",
+    "errorCode": "错误代码：{{code}}",
+    "runFailed": "无法处理文件。请重试。"
+  },
+  "result": {
+    "textLabel": "文字内容",
+    "tooLarge": "文件大于 {{limit}}：无法再载入这里的工具，很多邮箱也不接收这么大的文件。",
+    "shareFailed": "无法分享文件。请下载后手动发送。",
+    "download": "下载",
+    "preview": "预览",
+    "share": "分享",
+    "edit": "继续编辑",
+    "restart": "重新开始"
+  },
+  "leave": {
+    "title": "要离开此页面吗？",
+    "body": "正在处理的文件只存在于这个标签页中，没有保存在别处。离开就会丢失，无法恢复——如需保留，请先下载文件。",
+    "stay": "留下",
+    "leave": "离开页面"
+  },
+  "unsupported": {
+    "title": "此浏览器版本太旧，无法处理 PDF",
+    "description": "{{tool}} 需要最新版 Chrome、Edge、Firefox 或 Safari。请更新浏览器后重新打开本页。图片、二维码（QR）和其他实用工具在这台设备上仍可使用。",
+    "back": "选择其他工具"
+  },
+  "camera": {
+    "insecure": "只有通过 HTTPS（或 localhost）打开页面时才能使用摄像头。",
+    "blocked": "浏览器已为此页面屏蔽摄像头。请点击地址栏上的锁形图标允许访问，然后重试。",
+    "notFound": "在这台设备上未找到摄像头。",
+    "busy": "摄像头正被其他应用占用。请关闭该应用后重试。",
+    "failed": "无法打开摄像头。"
+  },
+  "canvas": {
+    "tooLarge": "图片过大，此浏览器无法处理。",
+    "unsupported": "此浏览器无法导出所选的图片格式。"
+  },
+  "hero": {
+    "statTools": "免费工具",
+    "statFree": "免费使用",
+    "statInstall": "安装",
+    "trialErpcons": "试用 ERPcons",
+    "trialTekshot": "试用 TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "工具使用次数",
+    "unlimited": "不限次数",
+    "visits": "使用次数",
+    "readyTools": "可用工具",
+    "groups": "工具分类",
+    "proOffer": "存储、分享，与团队一起审核"
+  },
+  "aside": {
+    "label": "更多信息",
+    "recent": "最近使用",
+    "recentEmpty": "这台设备上还没用过任何工具。你打开的工具会显示在这里。",
+    "proIntro": "当小事变成项目资料时：",
+    "about": "关于 Chuyện Nhỏ",
+    "aboutText": "ERPCons 出品的免费工具集，帮你快速处理日常工作中的小事。文件直接在你的设备上处理，不会上传到服务器。",
+    "tips": "小贴士"
+  },
+  "pro": {
+    "signup": "申请试用",
+    "soon": "{{product}} 试用申请表正在完善中，即将推出。",
+    "features": {
+      "storage": "长期存储、版本管理和 R00、R01… 修订版",
+      "sharing": "分享、权限设置、评论和审批",
+      "linking": "将资料关联到项目、合同和任务",
+      "ai": "AI 阅读、总结和提取文档内容"
+    }
+  },
+  "nudge": {
+    "text": "下载完成。需要把这份文件存入项目资料，并与团队分享、审批吗？ERPCons Pro 可以做到。",
+    "login": "登录 ERPCons",
+    "later": "以后再说"
+  },
+  "toolCard": {
+    "soon": "即将推出"
+  },
+  "filters": {
+    "label": "按工具分类筛选"
+  },
+  "authBrand": {
+    "home": "返回 {{name}} 首页",
+    "headline": "一个平台<br/>所有项目<br/>全面掌控",
+    "lead": "{{name}} Construction OS——全面的建筑企业管理平台，集成 AI、IoT 和实时数据，助你优化效率、管控风险、做出明智决策。",
+    "status": "所有系统运行正常",
+    "statusLink": "查看系统状态",
+    "features": {
+      "security": {
+        "title": "极致安全",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "企业级"
+      },
+      "connectivity": {
+        "title": "全面连接",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "实时同步"
+      },
+      "singleSource": {
+        "title": "唯一数据源",
+        "line1": "一个对象 – 一个",
+        "line2": "可信数据源"
+      },
+      "performance": {
+        "title": "卓越性能",
+        "line1": "速度优化",
+        "line2": "与可扩展性"
+      },
+      "analytics": {
+        "title": "智能分析",
+        "line1": "直观的仪表盘",
+        "line2": "与深度洞察"
+      },
+      "anywhere": {
+        "title": "随处办公",
+        "line1": "Web • 移动端 • 离线",
+        "line2": "一体化体验"
+      }
+    }
+  }
+}

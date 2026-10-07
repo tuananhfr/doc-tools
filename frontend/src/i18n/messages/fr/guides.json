@@ -1,0 +1,293 @@
+{
+  "groups": {
+    "tai-lieu": "Documents et PDF",
+    "hinh-anh-qr": "QR codes et codes-barres",
+    "xay-dung": "Construction",
+    "gia-dinh": "Famille"
+  },
+  "items": {
+    "nen-pdf": {
+      "title": "Compresser un PDF pour l'envoyer par e-mail",
+      "summary": "Réduire le poids des documents scannés ou photographiés au téléphone, tout en restant lisible.",
+      "intro": "Compresser un PDF réduit sa taille en recompressant les photos et scans qu'il contient. Le fichier est traité directement sur votre appareil, sans être envoyé nulle part.",
+      "steps": {
+        "pick": {
+          "title": "Choisir le fichier PDF",
+          "detail": "Ouvrez Compresser un PDF, cliquez sur « Choisir des fichiers » ou glissez-déposez les fichiers dans le cadre. Vous pouvez en choisir plusieurs à la fois, 100 Mo maximum chacun."
+        },
+        "level": {
+          "title": "Choisir le niveau de compression",
+          "detail": "« Moyenne » garde des images assez nettes pour imprimer en A4. « Forte » donne le fichier le plus léger, idéal pour l'e-mail ou la lecture à l'écran."
+        },
+        "compress": {
+          "title": "Cliquer sur « Compresser le PDF »",
+          "detail": "Avec plusieurs fichiers, le bouton indique leur nombre, par exemple « Compresser 3 fichiers ». Une barre de progression s'affiche ; cliquez sur « Annuler » pour arrêter."
+        },
+        "download": {
+          "title": "Télécharger le résultat",
+          "detail": "Cliquez sur « Télécharger ». Un seul fichier est nommé « <nom du fichier> - đã nén.pdf » (« đã nén » signifie « compressé ») ; plusieurs fichiers sont regroupés dans un .zip. Vous pouvez utiliser « Aperçu » ou « Continuer à modifier » avant de télécharger."
+        }
+      },
+      "tips": {
+        "scans": "Ce sont les scans et les photos prises au téléphone qui se compressent le mieux.",
+        "email": "Pour un e-mail, choisissez « Forte » ; pour imprimer, choisissez « Moyenne ».",
+        "password": "Fichier protégé par mot de passe : l'outil vous le demande pour l'ouvrir avant de compresser."
+      },
+      "notes": {
+        "textOnly": "Un fichier composé uniquement de texte, comme un export Word, ne peut généralement pas être réduit. L'écran indique alors « Impossible de compresser davantage » : gardez le fichier d'origine.",
+        "png": "Les images PNG et en noir et blanc sont conservées telles quelles pour que le texte ne devienne pas flou.",
+        "limits": "Chaque traitement accepte au maximum 100 fichiers, 500 pages et 300 Mo au total."
+      }
+    },
+    "scan-anh-sang-pdf": {
+      "title": "Scanner des documents en PDF avec votre téléphone",
+      "summary": "Photographiez ou choisissez des images, recadrez-les et assemblez-les en un PDF de plusieurs pages.",
+      "intro": "Pas besoin de scanner : photographiez vos documents avec l'appareil photo du téléphone, recadrez-les puis assemblez-les en un seul PDF. Les images restent sur votre appareil.",
+      "steps": {
+        "pick": {
+          "title": "Choisir ou prendre des photos",
+          "detail": "Ouvrez Scanner des images → PDF. Cliquez sur « Choisir des fichiers » pour utiliser des images existantes (JPG, PNG), ou sur « Prendre une photo » pour photographier avec la caméra arrière."
+        },
+        "capture": {
+          "title": "Photographier et recadrer",
+          "detail": "Chaque session accepte jusqu'à 50 photos. Touchez une miniature pour la recadrer ou la supprimer ; dans un endroit sombre, touchez « Allumer la lampe ». Pour finir, touchez le bouton « Utiliser » suivi du nombre de photos."
+        },
+        "order": {
+          "title": "Remettre dans l'ordre",
+          "detail": "Chaque image devient une page. Réorganisez les pages dans le bon ordre avant de créer le fichier."
+        },
+        "paper": {
+          "title": "Choisir le format du papier et la marge",
+          "detail": "Dans la section « Pages d'images », choisissez le « Format du papier » (A4, A3, Letter ou « Adapté à l'image ») et la « Marge » (sans marge, 10 mm ou 20 mm)."
+        },
+        "create": {
+          "title": "Créer et télécharger le PDF",
+          "detail": "Cliquez sur « Créer le PDF » puis sur « Télécharger ». Les photos de téléphone mal orientées sont automatiquement redressées."
+        }
+      },
+      "tips": {
+        "shoot": "Photographiez bien à la verticale, au-dessus du document, posé sur un fond sombre et bien éclairé.",
+        "fit": "Choisissez « Adapté à l'image » pour garder les proportions de la photo, sans bordure blanche.",
+        "next": "Pour un fichier plus léger, passez ensuite par Compresser un PDF. Pour pouvoir chercher dans le texte, passez par OCR de texte."
+      },
+      "notes": {
+        "https": "La caméra ne fonctionne que si la page est ouverte en HTTPS. Si le navigateur bloque la caméra, cliquez sur l'icône de cadenas dans la barre d'adresse pour l'autoriser, puis réessayez.",
+        "formats": "Seules les images JPG et PNG sont acceptées pour l'instant."
+      }
+    },
+    "tach-pdf": {
+      "title": "Diviser un PDF ou extraire quelques pages",
+      "summary": "Découper un PDF en plusieurs fichiers par plages de pages ou par nombre de pages.",
+      "intro": "Diviser un PDF permet d'extraire une annexe, quelques pages à envoyer, ou de découper un long fichier en parties égales.",
+      "steps": {
+        "pick": {
+          "title": "Choisir le fichier PDF",
+          "detail": "Ouvrez Diviser un PDF et choisissez un fichier PDF."
+        },
+        "mode": {
+          "title": "Choisir le mode de division",
+          "detail": "« Par plages de pages » : saisissez par exemple 1-3, 5, 8-10 ; chaque groupe séparé par une virgule devient un fichier. « Un fichier toutes les N pages » : saisissez le nombre de pages par fichier."
+        },
+        "split": {
+          "title": "Lancer la division",
+          "detail": "Le bouton change selon votre choix : « Extraire les pages dans un fichier distinct » s'il n'y a qu'un groupe, ou « Diviser en » suivi du nombre de fichiers s'il y en a plusieurs."
+        },
+        "download": {
+          "title": "Télécharger",
+          "detail": "Un groupe donne un fichier PDF. Plusieurs groupes sont regroupés dans un .zip, et le nom de chaque partie indique ses numéros de page."
+        }
+      },
+      "tips": {
+        "single": "Seulement la page 5 : saisissez « 5 ».",
+        "appendix": "Pour séparer un contrat par annexe : saisissez la plage de pages de chaque annexe, séparées par des virgules.",
+        "edit": "Pour supprimer, faire pivoter ou réorganiser des pages : cliquez sur « Continuer à modifier » pour ouvrir l'éditeur PDF."
+      },
+      "notes": {
+        "onePage": "Un fichier d'une seule page n'a rien à diviser.",
+        "outOfRange": "Les numéros de page hors du fichier sont signalés juste sous le champ de saisie."
+      }
+    },
+    "ocr-van-ban": {
+      "title": "Reconnaître le texte vietnamien d'un scan (OCR)",
+      "summary": "Transformer un scan en PDF où l'on peut rechercher le texte, ou extraire le texte pour le copier.",
+      "intro": "L'OCR lit le texte des images et des scans. Le module de reconnaissance du vietnamien fonctionne directement sur votre appareil ; le fichier n'est pas envoyé.",
+      "steps": {
+        "pick": {
+          "title": "Choisir le scan ou l'image",
+          "detail": "Ouvrez OCR de texte, choisissez un PDF scanné ou des images JPG, PNG. Vous pouvez en choisir plusieurs et changer leur ordre."
+        },
+        "output": {
+          "title": "Choisir le type de résultat",
+          "detail": "« PDF avec texte recherchable » conserve l'aspect des pages et ajoute une couche de texte pour la recherche (Ctrl+F) et la copie. « Texte (.txt) » ne garde que le texte."
+        },
+        "run": {
+          "title": "Cliquer sur « Reconnaître le texte »",
+          "detail": "La première fois, l'outil télécharge le module de reconnaissance du vietnamien (environ 1,4 Mo) depuis ce site même. Ensuite, chaque page prend quelques secondes."
+        },
+        "download": {
+          "title": "Télécharger ou copier",
+          "detail": "Le PDF téléchargé est nommé « <nom du fichier> - OCR.pdf ». Le texte s'affiche dans le cadre « Contenu texte » ; cliquez sur « Copier » pour le coller ailleurs."
+        }
+      },
+      "tips": {
+        "quality": "Une photo prise de face, nette, avec un texte assez grand donne les meilleurs résultats.",
+        "existing": "Les pages qui ont déjà une couche de texte sont ignorées, sans nouvelle lecture.",
+        "image": "Pour extraire le texte d'une seule image : utilisez Image → Texte, plus rapide."
+      },
+      "notes": {
+        "language": "Seul le vietnamien est reconnu pour l'instant.",
+        "accuracy": "L'OCR peut se tromper, surtout sur une image floue ou de l'écriture manuscrite. Relisez avant utilisation.",
+        "network": "La première fois, une connexion est nécessaire pour télécharger le module de reconnaissance."
+      }
+    },
+    "tao-va-doc-ma-qr": {
+      "title": "Créer des QR codes, des codes-barres et scanner des codes",
+      "summary": "Créer un QR Wi-Fi, une carte de visite, des codes-barres à imprimer par lot, et lire des codes depuis une image ou la caméra.",
+      "intro": "Trois outils partagent les mêmes onglets : « Créer un QR code », « Créer un code-barres » et « Scanner un code ». Tout fonctionne sur votre appareil.",
+      "steps": {
+        "qr": {
+          "title": "Créer un QR code",
+          "detail": "Ouvrez Créer un QR code, choisissez le « Type de code » : lien, texte, Wi-Fi, numéro de téléphone, e-mail ou carte de visite. Le code se redessine à mesure que vous tapez."
+        },
+        "colors": {
+          "title": "Choisir la couleur et télécharger",
+          "detail": "Choisissez la couleur dans « Couleur du QR code », puis cliquez sur « Télécharger le QR code » pour obtenir une image PNG, ou sur « Télécharger en SVG pour l'impression » pour une impression nette."
+        },
+        "barcode": {
+          "title": "Créer un code-barres",
+          "detail": "Ouvrez Créer un code-barres, choisissez le type (Code 128, Code 39, EAN-13, EAN-8, ITF-14) et saisissez la « Valeur ». Besoin de nombreux codes : choisissez « Par lot » puis chargez un fichier CSV ou Excel, 500 lignes au maximum."
+        },
+        "scan": {
+          "title": "Scanner un code",
+          "detail": "Ouvrez Lire un QR code / code-barres, choisissez une image contenant le code, collez une image avec Ctrl+V, ou cliquez sur « Scanner avec la caméra ». Le code est lu automatiquement, sans rien cliquer."
+        },
+        "use": {
+          "title": "Utiliser le résultat",
+          "detail": "Cliquez sur « Copier », ouvrez le lien, ou utilisez « Copier le mot de passe » pour un code Wi-Fi."
+        }
+      },
+      "tips": {
+        "wifi": "Un QR Wi-Fi affiché au comptoir : les clients le scannent et se connectent, sans avoir à lire le mot de passe.",
+        "print": "Pour imprimer de petits codes-barres : imprimez une étiquette d'essai avant tout le lot.",
+        "ean": "Lors du scan d'un code EAN, l'outil vérifie aussi la clé de contrôle pour repérer les codes mal imprimés."
+      },
+      "notes": {
+        "gs1": "Les numéros EAN et ITF-14 des produits vendus au détail doivent être attribués par GS1 Vietnam.",
+        "links": "Vérifiez bien le lien avant de l'ouvrir : n'importe qui peut imprimer un QR code et le coller par-dessus le vrai.",
+        "wifiPassword": "Un mot de passe Wi-Fi WPA doit comporter au moins 8 caractères."
+      }
+    },
+    "xem-huong-nha": {
+      "title": "Déterminer l'orientation de la maison avec la boussole du téléphone",
+      "summary": "Mesurer l'orientation de la maison selon les 24 montagnes, voir si elle convient à l'âge du propriétaire et l'enregistrer en image ou en PDF.",
+      "intro": "Orientation de la maison et boussole s'ouvre sur une boussole en direct : le cadran tourne avec le téléphone et affiche aussitôt la façade et l'assise selon les 24 montagnes. Vous pouvez placer la boussole sur une photo de la maison ou un plan. Les données restent uniquement dans l'onglet ouvert.",
+      "steps": {
+        "position": {
+          "title": "Se placer au bon endroit",
+          "detail": "Tenez-vous à la porte d'entrée, dos à la maison, le téléphone à plat, le haut de l'appareil pointé droit vers l'extérieur. Éloignez-vous des poteaux en acier, des voitures et des rideaux métalliques. Si vous êtes dehors face à la maison, cochez « Je suis dehors et je regarde la maison »."
+        },
+        "measure": {
+          "title": "Mesurer et verrouiller la direction",
+          "detail": "Cliquez sur « Commencer la mesure ». Le cadran tourne avec l'appareil ; la ligne rouge indique la FAÇADE, l'autre extrémité l'ASSISE. Attendez l'étiquette « Stable » puis cliquez sur « Verrouiller la direction ». Sans capteur, cliquez sur « Saisir l'angle »."
+        },
+        "read": {
+          "title": "Lire le résultat",
+          "detail": "Sous la boussole s'affichent le nom de la montagne de la façade et de l'assise, l'angle en degrés et l'écart par rapport au centre de la montagne. Si la direction est tout près de la limite entre deux montagnes, un avertissement de ligne de vide apparaît : mieux vaut mesurer à nouveau."
+        },
+        "age": {
+          "title": "Interpréter selon l'âge (facultatif)",
+          "detail": "Activez « Interprétation selon l'âge du propriétaire », saisissez la date de naissance (calendrier solaire) ou l'année de naissance (calendrier lunaire) et le sexe. La boussole affiche l'anneau des étoiles favorables / défavorables de cette personne, avec une conclusion pour la direction verrouillée."
+        },
+        "save": {
+          "title": "Enregistrer le résultat",
+          "detail": "Dans « Enregistrer le résultat », choisissez image ou PDF puis enregistrez. Pour placer la boussole sur une photo de la maison ou un plan, cliquez sur « Placer sur une photo de la maison / un plan »."
+        }
+      },
+      "tips": {
+        "repeat": "Mesurez deux ou trois fois à des endroits différents, puis comparez.",
+        "expert": "Le mode « Professionnel » mesure plusieurs emplacements (porte d'entrée, cuisine, autel…), affiche l'ensoleillement et la course du soleil, ainsi que des données techniques.",
+        "iphone": "Sur iPhone, l'autorisation d'accès au capteur est demandée après avoir touché « Commencer la mesure » : choisissez Autoriser."
+      },
+      "notes": {
+        "sensor": "Les ordinateurs et de nombreux navigateurs n'ont pas de capteur de boussole ; cliquez alors sur « Saisir l'angle ».",
+        "https": "La boussole ne fonctionne que si la page est ouverte en HTTPS.",
+        "reference": "L'interprétation selon l'âge compte les années à partir du Tết (Nouvel An lunaire) et n'est qu'une référence issue du feng shui populaire (Bát trạch, les Huit Demeures), pas une conclusion technique.",
+        "save": "Le résultat n'est pas enregistré automatiquement : fermer l'onglet le fait disparaître si vous n'avez pas enregistré."
+      }
+    },
+    "khai-toan-xay-nha": {
+      "title": "Estimer le coût de construction d'une maison de ville",
+      "summary": "Estimer le coût à partir des surfaces et des prix unitaires de l'entrepreneur, mis à jour pendant la saisie.",
+      "intro": "L'estimation pondère la surface de chaque partie (fondations, planchers, édicule de toit, toit-terrasse, toiture) par un coefficient, puis la multiplie par les prix unitaires que vous saisissez. Le résultat n'est donné qu'à titre indicatif.",
+      "steps": {
+        "area": {
+          "title": "Saisir les surfaces",
+          "detail": "Renseignez « Surface du rez-de-chaussée (m²) », « Nombre d'étages (hors rez-de-chaussée) », la surface de l'édicule de toit, du toit-terrasse non couvert et de la cour avant/arrière."
+        },
+        "price": {
+          "title": "Saisir les prix unitaires",
+          "detail": "Renseignez « Prix unitaire du gros œuvre » et « Prix unitaire finitions ou clé en main » selon le devis dont vous disposez. Si le second prix inclut déjà le gros œuvre, cochez la case correspondante."
+        },
+        "ratios": {
+          "title": "Ajuster les coefficients si besoin",
+          "detail": "Ouvrez « Ajuster les coefficients selon le devis de l'entrepreneur » pour modifier les taux de calcul des surfaces. Par défaut : fondations 50 %, chaque étage 100 %, toit-terrasse et toiture 50 %."
+        },
+        "result": {
+          "title": "Lire le résultat",
+          "detail": "Le cadre « Estimation indicative » se met à jour pendant la saisie : surface pondérée, coût de chaque poste et total."
+        }
+      },
+      "tips": {
+        "quotes": "Demandez deux ou trois devis d'entrepreneurs pour obtenir des prix unitaires réalistes.",
+        "deposit": "S'il y a un coût de pieux, saisissez-le dans « Coût des pieux » pour voir le total complet.",
+        "noSave": "L'outil n'enregistre pas les données : faites une capture d'écran pour les conserver."
+      },
+      "notes": {
+        "ratios": "Les coefficients sont des conventions de référence, pas des normes de l'État.",
+        "excluded": "Ne comprend ni la conception, ni le permis, ni le mobilier indépendant, ni les surcoûts liés au sol.",
+        "prices": "L'outil ne fournit aucun prix unitaire ; tous les chiffres sont ceux que vous saisissez."
+      }
+    },
+    "lich-gia-dinh": {
+      "title": "Utiliser le Calendrier familial : ajouter des événements, recevoir des rappels, sauvegarder",
+      "summary": "Noter l'agenda de toute la famille, enregistrer les numéros d'urgence et sauvegarder, sans compte.",
+      "intro": "Le Calendrier familial est enregistré directement sur cet appareil, sans compte. Il n'y a pas encore de partage ni de synchronisation en ligne : pensez à sauvegarder régulièrement.",
+      "steps": {
+        "members": {
+          "title": "Ajouter des membres",
+          "detail": "Dans l'onglet « Membres », saisissez le « Nom », choisissez le profil Parent, Grand-parent ou Enfant, puis cliquez sur « Ajouter un membre ». Le profil Grand-parent affiche un texte plus grand et moins de rubriques."
+        },
+        "add": {
+          "title": "Ajouter un événement",
+          "detail": "Dans l'onglet « Ajouter », saisissez l'« Intitulé », la date, l'heure, choisissez le type, la répétition et les membres, puis cliquez sur « Enregistrer sur cet appareil »."
+        },
+        "remind": {
+          "title": "Activer les rappels",
+          "detail": "Saisissez le nombre de minutes de rappel à l'avance (l'événement doit avoir une heure précise), puis cliquez sur « Activer les notifications quand la page est ouverte » et autorisez les notifications."
+        },
+        "view": {
+          "title": "Consulter l'agenda",
+          "detail": "L'onglet « Calendrier » propose trois affichages : Aujourd'hui, 7 prochains jours et 30 prochains jours. Cliquez sur « Fait » une fois la tâche terminée."
+        },
+        "sos": {
+          "title": "Enregistrer les contacts d'urgence",
+          "detail": "L'onglet « SOS et contacts » enregistre le nom et le numéro de téléphone de vos proches pour les appeler rapidement, avec des boutons d'appel du 113 et du 115."
+        },
+        "backup": {
+          "title": "Sauvegarder",
+          "detail": "L'onglet « Sauvegarde » propose « Télécharger la sauvegarde » (fichier complet pour restaurer), « Télécharger l'ICS » pour importer dans l'agenda du téléphone, et l'impression des 30 prochains jours."
+        }
+      },
+      "tips": {
+        "viewing": "Utilisez le champ « Affiché pour » pour voir l'agenda de chaque personne.",
+        "backupFirst": "Sauvegardez avant d'effacer les données du navigateur ou de changer d'appareil.",
+        "ics": "Le fichier ICS s'ouvre avec Google Agenda et le calendrier de l'iPhone."
+      },
+      "notes": {
+        "openPage": "Les rappels ne s'affichent que lorsque la page est ouverte.",
+        "sos": "Les signaux SOS sont seulement enregistrés sur l'appareil, ils ne sont pas encore envoyés à vos proches.",
+        "clearData": "Effacer les données du navigateur supprime le calendrier si vous n'avez pas téléchargé de sauvegarde."
+      }
+    }
+  }
+}

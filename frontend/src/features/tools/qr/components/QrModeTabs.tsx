@@ -1,13 +1,14 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui'
 import { toolPathOf, useToolsBranch } from '@/features/tools/hub'
 
 type QrMode = 'qr-create' | 'barcode-create' | 'qr-read'
 
-const MODES: { id: QrMode; label: string; icon: string }[] = [
-  { id: 'qr-create', label: 'Tạo mã QR', icon: 'qr-code' },
-  { id: 'barcode-create', label: 'Tạo mã vạch', icon: 'upc' },
-  { id: 'qr-read', label: 'Quét mã', icon: 'qr-code-scan' },
+const MODES: { id: QrMode; label: 'qrCreate' | 'barcodeCreate' | 'qrRead'; icon: string }[] = [
+  { id: 'qr-create', label: 'qrCreate', icon: 'qr-code' },
+  { id: 'barcode-create', label: 'barcodeCreate', icon: 'upc' },
+  { id: 'qr-read', label: 'qrRead', icon: 'qr-code-scan' },
 ]
 
 /**
@@ -16,10 +17,11 @@ const MODES: { id: QrMode; label: string; icon: string }[] = [
  * nút Quay lại của trình duyệt đi đúng thẻ.
  */
 export function QrModeTabs({ current }: { current: QrMode }) {
+  const { t } = useTranslation('qr')
   const { base } = useToolsBranch()
 
   return (
-    <nav className="erp-tool-tabs erp-qr-modes" aria-label="Công cụ mã QR">
+    <nav className="erp-tool-tabs erp-qr-modes" aria-label={t('modes.label')}>
       {MODES.map((mode) => (
         <Link
           key={mode.id}
@@ -28,7 +30,7 @@ export function QrModeTabs({ current }: { current: QrMode }) {
           aria-current={mode.id === current ? 'page' : undefined}
         >
           <Icon name={mode.icon} />
-          {mode.label}
+          {t(`modes.${mode.label}`)}
         </Link>
       ))}
     </nav>

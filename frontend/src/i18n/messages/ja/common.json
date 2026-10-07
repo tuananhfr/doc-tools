@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "言語",
+    "current": "言語: {{name}}"
+  },
+  "theme": {
+    "current": "テーマ: {{name}}",
+    "light": "ライト（オフィス）",
+    "dark": "ダーク（管理）",
+    "field": "屋外（現場）",
+    "lightShort": "ライト",
+    "darkShort": "ダーク",
+    "fieldShort": "屋外"
+  },
+  "ui": {
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "loadingData": "データを読み込んでいます",
+    "loading": "読み込み中...",
+    "toastRegion": "システム通知",
+    "toastClose": "通知を閉じる",
+    "toastTone": {
+      "success": "成功",
+      "info": "お知らせ",
+      "warning": "警告",
+      "danger": "エラー"
+    }
+  },
+  "apiErrors": {
+    "network": "サーバーに接続できません。通信環境を確認してください。",
+    "timeout": "サーバーの応答に時間がかかりすぎています。もう一度お試しください。",
+    "unauthorized": "ログインの有効期限が切れました。もう一度ログインしてください。",
+    "forbidden": "この操作を行う権限がありません。",
+    "notFound": "データが見つかりません。",
+    "validation": "入力内容が正しくありません。確認してください。",
+    "rateLimited": "操作が速すぎます。しばらくしてからもう一度お試しください。",
+    "server": "サーバーで問題が発生しました。しばらくしてからもう一度お試しください。",
+    "unknown": "エラーが発生しました。"
+  },
+  "crumb": {
+    "label": "現在地"
+  },
+  "tool": {
+    "privacyNoFile": "端末内で動作し、内容は送信されません",
+    "privacyFile": "端末内で処理し、ファイルはアップロードされません"
+  },
+  "session": {
+    "openInApp": "ERPcons で開く",
+    "login": "ログイン"
+  },
+  "board": {
+    "result": "結果"
+  },
+  "copy": {
+    "label": "コピー",
+    "copied": "コピー済み",
+    "done": "クリップボードにコピーしました。",
+    "blocked": "ブラウザがコピーを許可していません。テキストを選択して Ctrl+C を押してください。"
+  },
+  "fileList": {
+    "title": "選択したファイル",
+    "clearAll": "すべて外す",
+    "moveUp": "上へ",
+    "moveUpLabel": "{{name}} を上へ移動",
+    "moveDown": "下へ",
+    "moveDownLabel": "{{name}} を下へ移動",
+    "remove": "このファイルを外す",
+    "removeLabel": "{{name}} を外す"
+  },
+  "filePicker": {
+    "pick": "ファイルを選択",
+    "add": "ファイルを追加",
+    "pickOther": "別のファイルを選択",
+    "reading": "ファイルを読み込み中 {{current}}/{{total}}…",
+    "dropMore": "ここにファイルをドロップして追加",
+    "dropOther": "ここに別のファイルをドロップ"
+  },
+  "flow": {
+    "finishing": "仕上げています…",
+    "processing": "処理中",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "処理の進捗",
+    "cancel": "キャンセル",
+    "rejected": "{{count}} 個のファイルをスキップしました",
+    "rejectedMore": "… ほか {{count}} 個のファイル",
+    "dismiss": "通知を隠す",
+    "side": "オプションと実行",
+    "options": "オプション",
+    "error": "処理できませんでした: {{message}}",
+    "errorCode": "エラーコード: {{code}}",
+    "runFailed": "ファイルを処理できませんでした。もう一度お試しください。"
+  },
+  "result": {
+    "textLabel": "テキストの内容",
+    "tooLarge": "ファイルが {{limit}} を超えています。ここにあるツールに読み込み直すことはできず、多くのメールでもこのサイズは受け付けられません。",
+    "shareFailed": "ファイルを共有できませんでした。ダウンロードして手動で送ってください。",
+    "download": "ダウンロード",
+    "preview": "プレビュー",
+    "share": "共有",
+    "edit": "続けて編集",
+    "restart": "やり直す"
+  },
+  "leave": {
+    "title": "このページを離れますか？",
+    "body": "作業中のファイルはこのタブの中にしかなく、ほかには保存されていません。離れると失われ、元に戻せません。残したい場合は先にダウンロードしてください。",
+    "stay": "とどまる",
+    "leave": "ページを離れる"
+  },
+  "unsupported": {
+    "title": "このブラウザは古すぎてPDFを処理できません",
+    "description": "{{tool}} には最新版の Chrome、Edge、Firefox、Safari が必要です。ブラウザを更新してから、このページを開き直してください。画像、QRコード、その他の便利ツールはこの端末でも引き続き使えます。",
+    "back": "別のツールを選ぶ"
+  },
+  "camera": {
+    "insecure": "カメラは HTTPS（または localhost）でページを開いた場合のみ使えます。",
+    "blocked": "ブラウザがこのページのカメラをブロックしています。アドレスバーの鍵アイコンを押して許可し、もう一度お試しください。",
+    "notFound": "この端末にカメラが見つかりません。",
+    "busy": "カメラは別のアプリで使用中です。そのアプリを閉じてから、もう一度お試しください。",
+    "failed": "カメラを起動できませんでした。"
+  },
+  "canvas": {
+    "tooLarge": "このブラウザには画像が大きすぎます。",
+    "unsupported": "このブラウザは選択した画像形式で書き出せません。"
+  },
+  "hero": {
+    "statTools": "無料ツール",
+    "statFree": "無料で利用",
+    "statInstall": "インストール",
+    "trialErpcons": "ERPcons を試す",
+    "trialTekshot": "TekShot AI を試す"
+  },
+  "stats": {
+    "toolVisits": "ツール利用回数",
+    "unlimited": "無制限",
+    "visits": "利用回数",
+    "readyTools": "すぐ使えるツール",
+    "groups": "ツールグループ",
+    "proOffer": "保存・共有・チームでの承認"
+  },
+  "aside": {
+    "label": "その他の情報",
+    "recent": "最近使ったツール",
+    "recentEmpty": "この端末ではまだツールを使っていません。開いたツールがここに表示されます。",
+    "proIntro": "小さな作業がプロジェクト書類になったら:",
+    "about": "Chuyện Nhỏ について",
+    "aboutText": "ERPCons による無料ツール集で、毎日の仕事のちょっとした作業をすばやく片付けられます。ファイルはあなたの端末上で処理され、サーバーにアップロードされることはありません。",
+    "tips": "ちょっとしたコツ"
+  },
+  "pro": {
+    "signup": "無料トライアルに申し込む",
+    "soon": "{{product}} の無料トライアル申込フォームは準備中です。近日公開。",
+    "features": {
+      "storage": "長期保存、バージョン管理とリビジョン R00、R01…",
+      "sharing": "共有、権限管理、コメント、承認",
+      "linking": "書類をプロジェクト・契約・タスクに紐付け",
+      "ai": "AIによる書類の読み取り・要約・抽出"
+    }
+  },
+  "nudge": {
+    "text": "ダウンロードが完了しました。このファイルをプロジェクト書類に保存し、チームで共有・承認したいですか？ ERPCons Pro でできます。",
+    "login": "ERPCons にログイン",
+    "later": "あとで"
+  },
+  "toolCard": {
+    "soon": "近日公開"
+  },
+  "filters": {
+    "label": "ツールグループで絞り込み"
+  },
+  "authBrand": {
+    "home": "{{name}} のホームへ",
+    "headline": "ひとつのプラットフォーム<br/>すべてのプロジェクト<br/>完全なコントロール",
+    "lead": "{{name}} Construction OS – AI、IoT、リアルタイムデータを統合し、生産性の最適化、リスク管理、スマートな意思決定を支える建設企業向けの総合管理プラットフォーム。",
+    "status": "すべてのシステムは正常に稼働しています",
+    "statusLink": "システムの状態を見る",
+    "features": {
+      "security": {
+        "title": "最高水準のセキュリティ",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "包括的な連携",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "唯一のデータ",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "優れたパフォーマンス",
+        "line1": "速度を最適化",
+        "line2": "高い拡張性"
+      },
+      "analytics": {
+        "title": "スマートな分析",
+        "line1": "見やすいダッシュボード",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "どこでも作業",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

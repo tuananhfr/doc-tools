@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import type { ComponentType } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Icon } from '@/components/ui'
 import { GuestPrefs } from '../components/GuestPrefs'
@@ -10,6 +11,7 @@ import { useToolsBranch } from '../hooks/tools-branch'
 import { useGuestSessionAction } from '../hooks/useGuestSessionAction'
 import { useRecordToolVisit } from '../hooks/useRecordToolVisit'
 import { usePageTitle } from '../hooks/usePageTitle'
+import { useToolCatalog } from '../hooks/useToolCatalog'
 import type { ToolScreen } from '../types/tool.types'
 import { pdfEngineSupported } from '../utils/browser-support'
 import { trackRecentTool } from '../utils/hub-prefs'
@@ -31,7 +33,8 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
   const { tool: slug } = useParams()
   const { base, kind } = useToolsBranch()
   const sessionAction = useGuestSessionAction()
-  const { tool, redirect } = resolveToolRoute(slug)
+  const { t } = useTranslation('common')
+  const { tool, redirect } = resolveToolRoute(slug, useToolCatalog())
 
   const readySlug = tool?.slug ?? null
 
@@ -51,7 +54,7 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
 
   return (
     <div className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
-      <nav className="erp-tool-crumb" aria-label="Vị trí">
+      <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
         <Link className="erp-tool-crumb__back" to={base}>
           <Icon name="arrow-left" />
           Chuyện Nhỏ
@@ -71,7 +74,7 @@ export default function ToolRoutePage({ screens }: ToolRoutePageProps) {
           <p className="cn-tool-description">{tool.description}</p>
           <p className="cn-tool-privacy">
             <Icon name="shield-check" />
-            {tool.privacyNote ?? (tool.noFile ? 'Chạy trên máy bạn, không gửi nội dung đi' : 'Xử lý trên máy bạn, tệp không tải lên')}
+            {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
           </p>
         </div>
       </header>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
 import { useThemeTokens } from '@/hooks'
 import { ImageToolShell } from '../components/ImageToolShell'
@@ -13,6 +14,7 @@ import { scaleOf } from '../utils/measure'
  * diện tích và đếm ngay trên ảnh. Kết quả là ảnh gốc có vẽ sẵn các số đo.
  */
 export default function MeasureImagePage() {
+  const { t } = useTranslation('image')
   const images = useImageFiles({ multiple: false })
   const run = useFlowRun()
   const tokens = useThemeTokens()
@@ -31,14 +33,14 @@ export default function MeasureImagePage() {
         images={images}
         run={run}
         multiple={false}
-        pickerTitle="Chọn ảnh cần đo"
+        pickerTitle={t('measure.pickerTitle')}
         stage={item ? <MeasureStage item={item} state={state} scale={scale} disabled={running} dispatch={dispatch} /> : undefined}
         options={item ? <MeasureOptions state={state} scale={scale} dispatch={dispatch} /> : undefined}
-        runLabel="Lưu ảnh có số đo"
+        runLabel={t('measure.run')}
         runIcon="download"
-        blocked={state.shapes.length === 0 ? 'Chưa có số đo nào trên ảnh.' : null}
+        blocked={state.shapes.length === 0 ? t('measure.blocked') : null}
         task={() => {
-          if (!item) throw new Error('chưa chọn ảnh.')
+          if (!item) throw new Error(t('shared.noImageSelected'))
           return measureTask(item, state, { line: tokens.brand, reference: tokens.actionSecondary, halo: tokens.textOnAccent })
         }}
       />

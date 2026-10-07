@@ -1,24 +1,13 @@
-import { targetSpec } from '../config/targets'
-import type { NorthReference, OrientationSource, OrientationTarget } from '../types/orientation.types'
+import { dateTimeFormat } from '@/i18n/intl'
+import { translate } from '@/i18n/runtime'
+import type { OrientationTarget } from '../types/orientation.types'
 import { directionOf, formatDeg, targetAzimuth, type Direction } from './azimuth'
 import type { OrientationState } from './orientation-state'
 
-export const NORTH_LABEL: Record<NorthReference, string> = {
-  TRUE: 'Bắc thật',
-  MAGNETIC: 'Bắc từ',
-  PROJECT: 'Bắc dự án',
-}
-
-export const SOURCE_LABEL: Record<OrientationSource, string> = {
-  DRAWING: 'đặt trên bản vẽ',
-  MANUAL: 'nhập tay',
-  DEVICE: 'la bàn điện thoại',
-  SURVEY: 'số đo đạc',
-}
-
+/** Tên đối tượng theo ngôn ngữ trang — cả trên màn hình lẫn trong tệp xuất. */
 export function targetLabel(target: OrientationTarget): string {
   const custom = target.type === 'CUSTOM' ? target.label?.trim() : ''
-  return custom || targetSpec(target.type).label
+  return custom || translate(`orientation:targets.${target.type}.label`)
 }
 
 export interface Measurement {
@@ -39,12 +28,13 @@ export function measurements(state: OrientationState): Measurement[] {
 /** "la bàn điện thoại · sai số ±15°" — không có sai số thì không ghi, spec §9: không giả độ chính xác. */
 export function provenance(state: OrientationState): string | null {
   if (!state.anchor) return null
-  const accuracy = state.anchor.source !== 'DRAWING' && state.anchor.accuracy !== null ? ` · sai số ±${Math.round(state.anchor.accuracy)}°` : ''
-  return `${NORTH_LABEL[state.northReference]} · ${SOURCE_LABEL[state.anchor.source]}${accuracy}`
+  const values = { north: translate(`orientation:north.${state.northReference}`), source: translate(`orientation:sources.${state.anchor.source}`) }
+  return state.anchor.source !== 'DRAWING' && state.anchor.accuracy !== null
+    ? translate('orientation:provenance.withAccuracy', { ...values, accuracy: Math.round(state.anchor.accuracy) })
+    : translate('orientation:provenance.plain', values)
 }
 
-const stamp = (date: Date) =>
-  `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+const STAMP_FORMAT: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }
 
 /**
  * Chú thích in kèm ảnh / PDF xuất ra: ảnh được gửi đi xa khỏi công cụ, người
@@ -53,10 +43,10 @@ const stamp = (date: Date) =>
 export function legendLines(state: OrientationState, now: Date, extra: string[] = []): string[] {
   const lines = measurements(state)
     .filter((item) => item.azimuth !== null)
-    .map((item) => `${targetLabel(item.target)}: ${formatDeg(item.azimuth ?? 0)} · ${item.direction?.name}`)
+    .map((item) => translate('orientation:legend.target', { target: targetLabel(item.target), degree: formatDeg(item.azimuth ?? 0), direction: item.direction?.name ?? '' }))
   const origin = provenance(state)
   if (origin) lines.push(origin)
   lines.push(...extra)
-  lines.push(`Chuyện Nhỏ · ERPCons · ${stamp(now)}`)
+  lines.push(translate('orientation:legend.footer', { time: dateTimeFormat(STAMP_FORMAT).format(now) }))
   return lines
 }

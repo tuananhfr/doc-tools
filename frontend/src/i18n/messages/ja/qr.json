@@ -1,0 +1,281 @@
+{
+  "modes": {
+    "label": "QRコードツール",
+    "qrCreate": "QRコードを作成",
+    "barcodeCreate": "バーコードを作成",
+    "qrRead": "コードを読み取り"
+  },
+  "shared": {
+    "codeContent": "コードの内容",
+    "enterToCreate": "内容を入力するとコードを作成します",
+    "contentPanel": "コードの内容",
+    "kind": "コードの種類",
+    "phone": "電話番号",
+    "security": "セキュリティ",
+    "password": "パスワード",
+    "noPassword": "パスワードなし",
+    "retry": "再試行",
+    "downloadPng": "PNG をダウンロード",
+    "value": "値",
+    "emailPlaceholder": "name@company.jp"
+  },
+  "qrCreate": {
+    "side": "QRコード",
+    "tooLong": "内容が長すぎて1つのQRコードに収まりません。短くするか、内容を置いた場所へのリンクを使ってください。",
+    "renderFailed": "QRコードの画像を作成できませんでした。もう一度お試しください。",
+    "notCreated": "まだコードを作成できていません",
+    "downloadPng": "QRコードをダウンロード",
+    "downloadSvg": "印刷用の SVG をダウンロード",
+    "downloadPdf": "PDF をダウンロード",
+    "transparentHint": "画像に重ねるときは、読み取りやすいよう十分に明るく色むらのない部分を選んでください。",
+    "lowContrast": "コードの色と背景色が近すぎます。読み取りやすいようにコントラストを上げてください。",
+    "previewLabel": "入力中の内容のQRコード"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL（リンク）",
+      "text": "テキスト",
+      "wifi": "Wi-Fi",
+      "phone": "電話番号",
+      "email": "メール",
+      "vcard": "名刺（vCard）"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "パスワードなし"
+    },
+    "enterContent": "内容を入力",
+    "textPlaceholder": "例: 倉庫B — 12番棚、3段目",
+    "ssid": "Wi-Fi ネットワーク名",
+    "ssidPlaceholder": "例: Office-5F",
+    "hidden": "非公開ネットワーク（名前を通知しない）",
+    "emailAddress": "メールアドレス",
+    "subject": "件名（任意）",
+    "contactName": "氏名",
+    "contactNamePlaceholder": "山田 太郎",
+    "contactEmail": "連絡先メール",
+    "contactOrg": "会社（任意）",
+    "contactTitle": "役職（任意）",
+    "vcardHint": "氏名と、電話番号またはメールのどちらか1つ以上が必要です。スマートフォンのカメラで読み取ると、連絡先への追加を案内されます。"
+  },
+  "payload": {
+    "urlSpaces": "リンクに空白を含めることはできません。",
+    "wifiPassword": "Wi-Fi のパスワードを入力するか、「パスワードなし」を選んでください。",
+    "wpaShort": "WPA/WPA2 のパスワードは 8 文字以上です。",
+    "phoneChars": "電話番号は数字のみで、先頭に + を付けることができます。",
+    "phoneShort": "電話番号が短すぎます。",
+    "email": "メールアドレスが name@company.jp の形式になっていません。",
+    "contactName": "連絡先の氏名を入力してください。",
+    "contactReach": "連絡先の電話番号またはメールを入力してください。"
+  },
+  "colors": {
+    "legend": "QRコードの色",
+    "background": "QRコードの背景",
+    "backgroundModes": {
+      "white": "白背景",
+      "transparent": "背景なし",
+      "custom": "色を選ぶ"
+    },
+    "presetBackgrounds": "用意された背景色",
+    "customColor": "任意の色",
+    "names": {
+      "ink": "黒",
+      "steel": "スチールグレー",
+      "blue": "青",
+      "crimson": "赤",
+      "teal": "ティール",
+      "green": "緑",
+      "white": "白",
+      "mist": "ライトグレー",
+      "blue-soft": "薄い青",
+      "teal-soft": "薄いティール",
+      "amber-soft": "クリーム",
+      "rose-soft": "薄いピンク"
+    }
+  },
+  "barcode": {
+    "side": "バーコード",
+    "modeLabel": "作成方法",
+    "modes": {
+      "single": "1つずつ",
+      "batch": "一括"
+    },
+    "files": {
+      "png": "PNG をダウンロード",
+      "svg": "印刷用 SVG",
+      "pdf": "実寸の PDF"
+    },
+    "drawFailed": "このコードを描画できませんでした。",
+    "fileFailed": "バーコードのファイルを作成できませんでした。",
+    "engineFailed": "コード描画エンジンを読み込めませんでした。ページを再読み込みしてください。",
+    "engineLoading": "コード描画エンジンを読み込んでいます…",
+    "previewLabel": "{{value}} の {{kind}} バーコード",
+    "styleTitle": "コードの形式",
+    "listTitle": "コード一覧"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "社内用コード: 資材・資産・倉庫 — 文字、数字、記号",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "旧型スキャナー向けの社内用コード — 大文字、数字、- . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "小売商品のコード。GS1 が発行する13桁",
+      "placeholder": "12桁（チェックデジットは自動付加）"
+    },
+    "ean8": {
+      "hint": "小型商品のコード。GS1 が発行する8桁",
+      "placeholder": "7桁（チェックデジットは自動付加）"
+    },
+    "itf14": {
+      "hint": "ケース・梱包用コード。GS1 準拠の14桁",
+      "placeholder": "13桁（チェックデジットは自動付加）"
+    }
+  },
+  "barcodeOptions": {
+    "size": "印刷サイズ",
+    "sizeStandard": "{{percent}}%（標準）",
+    "height": "バーの高さ",
+    "includeText": "コードの下に数字・文字を印刷",
+    "sizeWarning": "80% 未満のサイズは多くのハンディスキャナーで読み取れません。まとめて印刷する前に1枚試し刷りしてください。"
+  },
+  "gs1Notice": "EAN / ITF-14 の番号は、GS1 Vietnam があなたの会社に発行したものである必要があります。このツールは番号を作るのではなく、お持ちの番号を描画するだけです。社内用（資材・資産・倉庫）のコードには <strong>Code 128</strong> を選んでください。",
+  "batch": {
+    "fileTooLarge": "ファイルが {{size}} を超えています。",
+    "readFailed": "このファイルを読み込めませんでした。",
+    "buildFailed": "ファイルを作成できませんでした。",
+    "pickTitle": "CSV または Excel（.xlsx）ファイルを選択",
+    "pickHint": "1行に1コード、最初の列を使用 · 最大 {{limit}} 行",
+    "valid": "有効なコード {{count}} 件",
+    "invalid": "誤りのある行 {{count}} 件 — 除外しました",
+    "header": "見出し行「{{header}}」を除外",
+    "dropped": "上限 {{limit}} 行を超えた {{count}} 行を除外",
+    "line": "行",
+    "reason": "理由",
+    "moreErrors": "… ほか誤りのある行が {{count}} 件あります。",
+    "building": "作成中 {{done}}/{{total}}…",
+    "pdf": "PDF（{{count}} ページ）",
+    "zip": "{{type}} パック（.zip）",
+    "unsupported": ".csv または .xlsx ファイルのみ読み込めます。"
+  },
+  "check": {
+    "digitsOnly": "数字のみ使用できます。",
+    "checkDigitAdded": "チェックデジット {{digit}} を付加しました。",
+    "wrongLength": "{{short}}桁（チェックデジットは自動付加）か、{{full}}桁すべてが必要です — 現在 {{count}}桁です。",
+    "wrongCheckDigit": "チェックデジットが違います: 最後の数字は {{actual}} ではなく {{expected}} のはずです。写した番号を確認してください。",
+    "empty": "内容がありません。",
+    "tooLong": "{{max}} 文字を超えています — コードがスキャナーの読み取り幅を超えてしまいます。",
+    "code39Chars": "Code 39 で使えるのは、記号なしの英字、数字、- . $ / + %、空白だけです。",
+    "code39Upper": "Code 39 には小文字がないため、大文字に変換しました。",
+    "code128Chars": "Code 128 では声調記号付きの文字や特殊文字をエンコードできません。記号なしの文字を使ってください。",
+    "prefix893": "接頭辞 893: GS1 Vietnam に登録されたコード（発行地であり、製造地ではありません）。",
+    "prefixIsbn": "接頭辞 978/979: 書籍コード（ISBN）。",
+    "prefixIssn": "接頭辞 977: 定期刊行物コード（ISSN）。",
+    "prefixInternal": "接頭辞 20〜29: 店舗・企業の社内用コードで、自社のシステム外では使えません。"
+  },
+  "render": {
+    "barcodeFailed": "コード {{value}} を作成できませんでした。",
+    "imageFailed": "ブラウザで画像を作成できませんでした。"
+  },
+  "read": {
+    "results": "結果",
+    "resultsCount": "結果（{{count}}）",
+    "clearAll": "すべて消去",
+    "empty": "まだコードを読み取っていません。コードが写った画像を選ぶか、スクリーンショットを貼り付けるか、カメラで読み取ってください。",
+    "safety": "開く前にリンクをよく確認してください。誰でもQRコードを印刷して本物の上に貼れます。",
+    "pickTitle": "QRコードまたはバーコードが写った画像を選択",
+    "pickHint": "JPG、PNG、WebP · Ctrl+V で画像を貼り付けることもできます",
+    "camera": "カメラで読み取り",
+    "missTitle": "{{count}} 枚の画像を読み取れませんでした",
+    "moreMisses": "… ほか {{count}} 枚",
+    "hideNotice": "通知を隠す",
+    "pastedImage": "貼り付けた画像",
+    "noCode": "コードが見つかりません。正面から十分な明るさで撮り、コードが画面の大部分を占める画像でお試しください。",
+    "unreadable": "開けませんでした。読み込めるのは JPG、PNG、WebP 画像のみです。",
+    "tooLarge": "{{size}} を超えています。",
+    "tooManyPixels": "大きすぎます（{{pixels}} メガピクセル、上限 {{limit}} メガピクセル）。コードの部分を切り抜いて、もう一度お試しください。"
+  },
+  "camera": {
+    "scanTitle": "QR / バーコードをスキャン",
+    "aim": "枠内にコードを合わせてください",
+    "searching": "コードを探しています…",
+    "detected": "読み取り完了",
+    "scanNext": "次をスキャン",
+    "openLink": "リンクを開く",
+    "zoom": "ズーム",
+    "zoomIn": "拡大",
+    "zoomOut": "縮小",
+    "captured": "読み取ったコード",
+    "title": "カメラ",
+    "off": "カメラを停止",
+    "viewfinder": "カメラのファインダー",
+    "starting": "カメラを起動しています… ブラウザからカメラの使用許可を求められることがあります。",
+    "hint": "コードを画面の中央に合わせ、少しそのまま動かさないでください。読み取れるとすぐに結果が表示され、ボタンを押さずに続けて次のコードを読み取れます。",
+    "insecure": "{{reason}} カメラアプリでコードを撮影し、端末から画像を選んでください。"
+  },
+  "scanResult": {
+    "qrCode": "QRコード",
+    "remove": "この結果を削除",
+    "removeShort": "削除",
+    "ssid": "ネットワーク名",
+    "unknown": "不明",
+    "checkOk": "チェックデジットは正しいです。",
+    "checkBad": "チェックデジットが違います — 印刷不良か改ざんの可能性があります。",
+    "open": "{{host}} を開く",
+    "copyPassword": "パスワードをコピー",
+    "copyNumber": "番号をコピー",
+    "copyAddress": "アドレスをコピー",
+    "copy": "コピー",
+    "copyRaw": "そのままコピー"
+  },
+  "vietqr": {
+    "side": "振込用コード",
+    "placeholder": "BIN コードと口座番号を入力するとコードを作成します",
+    "copy": "QR 文字列をコピー",
+    "downloadSvg": "SVG をダウンロード",
+    "checkNote": "使用前に銀行アプリで試しに読み取り、受取人名・口座番号・金額を確認してください。",
+    "panel": "振込情報",
+    "bin": "銀行の BIN コード（6桁）",
+    "account": "口座番号",
+    "amount": "金額（đ）、空欄でも可",
+    "note": "振込メモ",
+    "privacy": "コードはあなたの端末で作成されます。口座情報が Chuyện Nhỏ のサーバーに送信されることはありません。",
+    "fieldTooLong": "QR の項目が長すぎます"
+  },
+  "trace": {
+    "title": "ERPCons トレーサビリティ",
+    "label": "ERPCons で照会",
+    "object": "対象",
+    "code": "社内コード",
+    "serial": "シリアル番号",
+    "noEvents": "トレーサビリティのイベントはまだありません。",
+    "recentEvents": "最近のイベント",
+    "loading": "ERPCons で照会しています…",
+    "accountForbidden": "お使いのアカウントにはトレーサビリティ照会の権限がありません。",
+    "failed": "照会できませんでした: {{message}}",
+    "legacy": "対象の旧コードです — トレーサビリティコードはまだ紐付いていません。",
+    "forbidden": "コードは台帳にありますが、その対象を閲覧する権限がありません。",
+    "broken": "コードが存在しない対象を指しています。",
+    "unknown": "コードは読み取れましたが、ERPCons にトレーサビリティデータがありません。",
+    "status": {
+      "DRAFT": "未発行",
+      "ACTIVE": "使用中",
+      "EXPIRED": "期限切れ",
+      "SUSPENDED": "一時停止",
+      "REVOKED": "取り消し済み",
+      "REPLACED": "コード差し替え済み",
+      "ARCHIVED": "アーカイブ済み"
+    },
+    "notes": {
+      "EXPIRED": "コードは期限切れです — 履歴の閲覧のみで、操作はできません。",
+      "SUSPENDED": "コードは一時停止中です — 業務には使えません。",
+      "REVOKED": "コードは取り消されました — このラベルはもう無効です。",
+      "REPLACED": "このラベルは差し替えられました — 新しいラベルを使ってください。",
+      "ARCHIVED": "この対象は管理対象外になりました。"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "Cetak / Simpan PDF"
+  },
+  "cv": {
+    "title": "Susun CV",
+    "saveDraft": "Simpan draf",
+    "openDraft": "Buka draf",
+    "clearDraft": "Hapus draf",
+    "template": "Templat CV",
+    "templates": {
+      "classic": "Klasik",
+      "modern": "Modern"
+    },
+    "fields": {
+      "name": "Nama lengkap",
+      "role": "Posisi yang dilamar",
+      "phone": "Nomor telepon",
+      "email": "Email",
+      "location": "Domisili",
+      "link": "Portofolio atau LinkedIn"
+    },
+    "photo": "Foto diri (hanya untuk sesi ini)",
+    "photoAlt": "Foto diri di CV",
+    "summary": "Perkenalan singkat",
+    "sections": {
+      "experience": "Pengalaman",
+      "education": "Pendidikan",
+      "skills": "Keahlian",
+      "languages": "Bahasa asing",
+      "certificates": "Sertifikat"
+    },
+    "entry": {
+      "period": "Periode",
+      "company": "Perusahaan",
+      "school": "Sekolah / kampus",
+      "position": "Jabatan",
+      "degree": "Jurusan / gelar",
+      "description": "Deskripsi / pencapaian",
+      "remove": "Hapus entri",
+      "add": "Tambah entri"
+    },
+    "messages": {
+      "saved": "Draf disimpan di perangkat ini; foto tidak ikut disimpan.",
+      "saveFailed": "Draf tidak dapat disimpan di perangkat.",
+      "noDraft": "Belum ada draf yang valid.",
+      "opened": "Draf sudah dibuka.",
+      "unreadable": "Draf tidak dapat dibaca.",
+      "cleared": "Draf di perangkat sudah dihapus."
+    },
+    "note": "Periksa kembali informasi sebelum mengirim. Draf hanya disimpan di perangkat saat Anda menekan Simpan; foto tidak ikut disimpan."
+  },
+  "formTemplates": {
+    "title": "Susun templat dokumen",
+    "kind": "Jenis dokumen",
+    "names": {
+      "leave": "Surat permohonan cuti",
+      "authorization": "Surat kuasa",
+      "handover": "Berita acara serah terima"
+    },
+    "fields": {
+      "recipient": "Kepada Yth.",
+      "name": "Nama lengkap",
+      "department": "Jabatan, bagian",
+      "from": "Cuti mulai tanggal",
+      "to": "Sampai dengan tanggal",
+      "reason": "Alasan",
+      "handover": "Penerima serah terima pekerjaan",
+      "placeWritten": "Tempat pembuatan surat",
+      "fromName": "Pemberi kuasa",
+      "fromId": "Nomor identitas pemberi kuasa",
+      "fromAddress": "Alamat pemberi kuasa",
+      "toName": "Penerima kuasa",
+      "toId": "Nomor identitas penerima kuasa",
+      "toAddress": "Alamat penerima kuasa",
+      "scope": "Isi kuasa",
+      "term": "Jangka waktu",
+      "giver": "Pihak yang menyerahkan (nama, jabatan)",
+      "receiver": "Pihak yang menerima (nama, jabatan)",
+      "items": "Daftar serah terima (satu entri per baris)",
+      "note": "Catatan",
+      "placeDrawn": "Tempat dibuat"
+    },
+    "authorizationWarning": "Beberapa urusan memerlukan notaris atau legalisasi. Tanyakan ke pihak penerima sebelum dipakai.",
+    "defaultWarning": "Templat acuan; periksa persyaratan pihak penerima sebelum mengajukan.",
+    "privacy": "Data hanya ada di halaman yang sedang terbuka."
+  }
+}

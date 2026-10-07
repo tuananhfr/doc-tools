@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { QR_BACKGROUND } from '../config/qr-colors'
 import type { QrMatrix } from '../types/qr.types'
@@ -7,12 +8,14 @@ interface QrPreviewProps {
   /** null = chưa có mã để vẽ. */
   matrix: QrMatrix | null
   color: string
+  background?: string | null
   /** Lời nhắn khi chưa có mã ("Nhập nội dung để tạo mã"). */
   placeholder: string
 }
 
-/** Mã QR đang soạn, vẽ bằng SVG trên ô nền trắng ở cả ba theme. */
-export function QrPreview({ matrix, color, placeholder }: QrPreviewProps) {
+/** The checkerboard is only a preview aid and never enters exported files. */
+export function QrPreview({ matrix, color, background = QR_BACKGROUND, placeholder }: QrPreviewProps) {
+  const { t } = useTranslation('qr')
   if (!matrix) {
     return (
       <div className="erp-qr-preview erp-qr-preview--empty">
@@ -25,9 +28,9 @@ export function QrPreview({ matrix, color, placeholder }: QrPreviewProps) {
   const span = matrixSpan(matrix)
 
   return (
-    <div className="erp-qr-preview">
-      <svg className="erp-qr-preview__code" viewBox={`0 0 ${span} ${span}`} shapeRendering="crispEdges" role="img" aria-label="Mã QR của nội dung đang nhập">
-        <rect width={span} height={span} fill={QR_BACKGROUND} />
+    <div className={`erp-qr-preview${background === null ? ' erp-qr-preview--transparent' : ''}`}>
+      <svg className="erp-qr-preview__code" viewBox={`0 0 ${span} ${span}`} shapeRendering="crispEdges" role="img" aria-label={t('qrCreate.previewLabel')}>
+        {background !== null ? <rect width={span} height={span} fill={background} /> : null}
         <path d={matrixPath(matrix)} fill={color} />
       </svg>
     </div>

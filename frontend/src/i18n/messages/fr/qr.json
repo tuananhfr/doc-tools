@@ -1,0 +1,299 @@
+{
+  "modes": {
+    "label": "Outils QR code",
+    "qrCreate": "Créer un QR code",
+    "barcodeCreate": "Créer un code-barres",
+    "qrRead": "Scanner un code"
+  },
+  "shared": {
+    "codeContent": "Contenu du code",
+    "enterToCreate": "Saisissez un contenu pour créer le code",
+    "contentPanel": "Contenu du code",
+    "kind": "Type de code",
+    "phone": "Numéro de téléphone",
+    "security": "Sécurité",
+    "password": "Mot de passe",
+    "noPassword": "Sans mot de passe",
+    "retry": "Réessayer",
+    "downloadPng": "Télécharger en PNG",
+    "value": "Valeur",
+    "emailPlaceholder": "nom@entreprise.fr"
+  },
+  "qrCreate": {
+    "side": "QR code",
+    "tooLong": "Le contenu est trop long pour tenir dans un QR code. Raccourcissez-le, ou utilisez un lien vers l'endroit où se trouve le contenu.",
+    "renderFailed": "Impossible de dessiner l'image du QR code. Réessayez.",
+    "notCreated": "Aucun code créé pour l'instant",
+    "downloadPng": "Télécharger le QR code",
+    "downloadSvg": "Télécharger en SVG pour l'impression",
+    "downloadPdf": "Télécharger en PDF",
+    "transparentHint": "Si vous le placez sur une photo, choisissez une zone claire et de couleur uniforme pour qu'il se scanne facilement.",
+    "lowContrast": "La couleur du code et celle du fond sont trop proches ; augmentez le contraste pour faciliter le scan.",
+    "previewLabel": "QR code du contenu saisi"
+  },
+  "content": {
+    "kinds": {
+      "url": "URL (lien)",
+      "text": "Texte",
+      "wifi": "Wi-Fi",
+      "phone": "Numéro de téléphone",
+      "email": "E-mail",
+      "vcard": "Carte de visite (vCard)"
+    },
+    "securities": {
+      "WPA": "WPA / WPA2 / WPA3",
+      "WEP": "WEP",
+      "nopass": "Sans mot de passe"
+    },
+    "enterContent": "Saisissez le contenu",
+    "textPlaceholder": "Exemple : Entrepôt B — étagère 12, niveau 3",
+    "ssid": "Nom du réseau Wi-Fi",
+    "ssidPlaceholder": "Exemple : Bureau-WiFi",
+    "hidden": "Réseau masqué (nom non diffusé)",
+    "emailAddress": "Adresse e-mail",
+    "subject": "Objet (facultatif)",
+    "contactName": "Nom et prénom",
+    "contactNamePlaceholder": "Marie Dupont",
+    "contactEmail": "E-mail du contact",
+    "contactOrg": "Entreprise (facultatif)",
+    "contactTitle": "Fonction (facultatif)",
+    "vcardHint": "Il faut un nom et au moins un numéro de téléphone ou un e-mail. En scannant avec l'appareil photo d'un téléphone, on vous proposera de l'ajouter aux contacts."
+  },
+  "payload": {
+    "urlSpaces": "Un lien ne peut pas contenir d'espaces.",
+    "wifiPassword": "Saisissez le mot de passe Wi-Fi, ou choisissez « Sans mot de passe ».",
+    "wpaShort": "Un mot de passe WPA/WPA2 comporte au moins 8 caractères.",
+    "phoneChars": "Un numéro de téléphone ne contient que des chiffres et peut commencer par +.",
+    "phoneShort": "Le numéro de téléphone est trop court.",
+    "email": "L'adresse e-mail n'est pas au format nom@entreprise.fr.",
+    "contactName": "Saisissez le nom du contact.",
+    "contactReach": "Saisissez le numéro de téléphone ou l'e-mail du contact."
+  },
+  "colors": {
+    "legend": "Couleur du QR code",
+    "background": "Fond du QR code",
+    "backgroundModes": {
+      "white": "Fond blanc",
+      "transparent": "Sans fond",
+      "custom": "Choisir une couleur"
+    },
+    "presetBackgrounds": "Fonds prédéfinis",
+    "customColor": "Couleur personnalisée",
+    "names": {
+      "ink": "Noir",
+      "steel": "Gris acier",
+      "blue": "Bleu",
+      "crimson": "Rouge",
+      "teal": "Bleu canard",
+      "green": "Vert",
+      "white": "Blanc",
+      "mist": "Gris clair",
+      "blue-soft": "Bleu clair",
+      "teal-soft": "Bleu canard clair",
+      "amber-soft": "Crème",
+      "rose-soft": "Rose clair"
+    }
+  },
+  "barcode": {
+    "side": "Code-barres",
+    "modeLabel": "Mode de création",
+    "modes": {
+      "single": "Un seul code",
+      "batch": "Par lot"
+    },
+    "files": {
+      "png": "Télécharger en PNG",
+      "svg": "SVG pour l'impression",
+      "pdf": "PDF à taille réelle"
+    },
+    "drawFailed": "Impossible de dessiner ce code.",
+    "fileFailed": "Impossible de générer le fichier de codes-barres.",
+    "engineFailed": "Impossible de charger le moteur de codes-barres. Rechargez la page.",
+    "engineLoading": "Chargement du moteur de codes-barres…",
+    "previewLabel": "Code-barres {{kind}} de {{value}}",
+    "styleTitle": "Type de code",
+    "listTitle": "Liste des codes"
+  },
+  "barcodeKinds": {
+    "code128": {
+      "hint": "Codes internes : fournitures, biens, entrepôt — lettres, chiffres, symboles",
+      "placeholder": "VT-000123"
+    },
+    "code39": {
+      "hint": "Codes internes pour lecteurs anciens — majuscules, chiffres, - . $ / + %",
+      "placeholder": "TS-0042"
+    },
+    "ean13": {
+      "hint": "Code produit pour la vente au détail, 13 chiffres attribués par GS1",
+      "placeholder": "12 chiffres, clé de contrôle ajoutée automatiquement"
+    },
+    "ean8": {
+      "hint": "Code pour petits produits, 8 chiffres attribués par GS1",
+      "placeholder": "7 chiffres, clé de contrôle ajoutée automatiquement"
+    },
+    "itf14": {
+      "hint": "Code de carton / colis, 14 chiffres selon GS1",
+      "placeholder": "13 chiffres, clé de contrôle ajoutée automatiquement"
+    }
+  },
+  "barcodeOptions": {
+    "size": "Taille d'impression",
+    "sizeStandard": "{{percent}} % (standard)",
+    "height": "Hauteur des barres",
+    "includeText": "Imprimer les chiffres / le texte sous le code",
+    "sizeWarning": "En dessous de 80 %, de nombreux lecteurs portables n'arrivent pas à lire le code ; imprimez une étiquette d'essai avant tout le lot."
+  },
+  "gs1Notice": "Les numéros EAN / ITF-14 doivent être attribués à votre entreprise par GS1 Vietnam : l'outil ne crée pas de numéros, il dessine seulement ceux que vous avez déjà. Pour un usage interne (fournitures, biens, entrepôt), choisissez <strong>Code 128</strong>.",
+  "batch": {
+    "fileTooLarge": "Le fichier dépasse {{size}}.",
+    "readFailed": "Impossible de lire ce fichier.",
+    "buildFailed": "Impossible de générer le fichier.",
+    "pickTitle": "Choisissez un fichier CSV ou Excel (.xlsx)",
+    "pickHint": "Un code par ligne, pris dans la première colonne · {{limit}} lignes au maximum",
+    "valid_one": "{{count}} code valide",
+    "valid_many": "{{count}} codes valides",
+    "valid_other": "{{count}} codes valides",
+    "invalid_one": "{{count}} ligne erronée — écartée",
+    "invalid_many": "{{count}} lignes erronées — écartées",
+    "invalid_other": "{{count}} lignes erronées — écartées",
+    "header": "Ligne d'en-tête « {{header}} » ignorée",
+    "dropped_one": "{{count}} ligne au-delà de la limite de {{limit}} ignorée",
+    "dropped_many": "{{count}} lignes au-delà de la limite de {{limit}} ignorées",
+    "dropped_other": "{{count}} lignes au-delà de la limite de {{limit}} ignorées",
+    "line": "Ligne",
+    "reason": "Motif",
+    "moreErrors_one": "… et {{count}} autre ligne erronée.",
+    "moreErrors_many": "… et {{count}} autres lignes erronées.",
+    "moreErrors_other": "… et {{count}} autres lignes erronées.",
+    "building": "Génération {{done}}/{{total}}…",
+    "pdf_one": "PDF ({{count}} page)",
+    "pdf_many": "PDF ({{count}} pages)",
+    "pdf_other": "PDF ({{count}} pages)",
+    "zip": "Archive {{type}} (.zip)",
+    "unsupported": "Seuls les fichiers .csv ou .xlsx peuvent être lus."
+  },
+  "check": {
+    "digitsOnly": "Chiffres uniquement.",
+    "checkDigitAdded": "Clé de contrôle {{digit}} ajoutée.",
+    "wrongLength_one": "Il faut {{short}} chiffres (clé de contrôle ajoutée automatiquement) ou les {{full}} chiffres complets — vous en avez {{count}}.",
+    "wrongLength_many": "Il faut {{short}} chiffres (clé de contrôle ajoutée automatiquement) ou les {{full}} chiffres complets — vous en avez {{count}}.",
+    "wrongLength_other": "Il faut {{short}} chiffres (clé de contrôle ajoutée automatiquement) ou les {{full}} chiffres complets — vous en avez {{count}}.",
+    "wrongCheckDigit": "Clé de contrôle erronée : le dernier chiffre doit être {{expected}} et non {{actual}}. Vérifiez le numéro recopié.",
+    "empty": "Aucun contenu pour l'instant.",
+    "tooLong": "Plus de {{max}} caractères : le code serait trop large pour les lecteurs.",
+    "code39Chars": "Code 39 n'accepte que les lettres sans accent, les chiffres et - . $ / + % espace.",
+    "code39Upper": "Code 39 n'a pas de minuscules : converti en majuscules.",
+    "code128Chars": "Code 128 ne peut pas encoder les lettres accentuées ni les caractères spéciaux. Utilisez des lettres sans accent.",
+    "prefix893": "Préfixe 893 : code enregistré auprès de GS1 Vietnam (lieu d'attribution du code, pas lieu de fabrication).",
+    "prefixIsbn": "Préfixe 978/979 : code de livre (ISBN).",
+    "prefixIssn": "Préfixe 977 : code de publication périodique (ISSN).",
+    "prefixInternal": "Préfixe 20–29 : réservé à un usage interne au magasin / à l'entreprise, inutilisable en dehors de votre propre système."
+  },
+  "render": {
+    "barcodeFailed": "impossible de générer le code {{value}}.",
+    "imageFailed": "le navigateur n'a pas pu générer l'image."
+  },
+  "read": {
+    "results": "Résultats",
+    "resultsCount_one": "Résultats ({{count}})",
+    "resultsCount_many": "Résultats ({{count}})",
+    "resultsCount_other": "Résultats ({{count}})",
+    "clearAll": "Tout effacer",
+    "empty": "Aucun code lu pour l'instant. Choisissez une image contenant un code, collez une capture d'écran ou scannez avec la caméra.",
+    "safety": "Examinez bien le lien avant de l'ouvrir : n'importe qui peut imprimer un QR code et le coller par-dessus le vrai.",
+    "pickTitle": "Choisissez une image avec un QR code ou un code-barres",
+    "pickHint": "JPG, PNG, WebP · vous pouvez aussi coller une image avec Ctrl+V",
+    "camera": "Scanner avec la caméra",
+    "missTitle_one": "Impossible de lire {{count}} image",
+    "missTitle_many": "Impossible de lire {{count}} images",
+    "missTitle_other": "Impossible de lire {{count}} images",
+    "moreMisses_one": "… et {{count}} autre image",
+    "moreMisses_many": "… et {{count}} autres images",
+    "moreMisses_other": "… et {{count}} autres images",
+    "hideNotice": "Masquer l'avis",
+    "pastedImage": "Image collée",
+    "noCode": "aucun code trouvé. Essayez une photo prise de face, bien éclairée, où le code occupe l'essentiel du cadre.",
+    "unreadable": "impossible à ouvrir. Seules les images JPG, PNG et WebP peuvent être lues.",
+    "tooLarge": "dépasse {{size}}.",
+    "tooManyPixels": "est trop grande ({{pixels}} mégapixels, limite {{limit}}). Recadrez sur la zone du code et réessayez."
+  },
+  "camera": {
+    "scanTitle": "Scanner QR / code-barres",
+    "aim": "Placez le code dans le cadre",
+    "searching": "Recherche du code…",
+    "detected": "Code lu",
+    "scanNext": "Scanner à nouveau",
+    "openLink": "Ouvrir le lien",
+    "zoom": "Zoom",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "captured": "Code capturé",
+    "title": "Caméra",
+    "off": "Éteindre la caméra",
+    "viewfinder": "Viseur de la caméra",
+    "starting": "Ouverture de la caméra… Votre navigateur peut demander l'autorisation d'utiliser la caméra.",
+    "hint": "Placez le code au centre du cadre et restez immobile un instant. Le résultat s'affiche dès que le code est lu ; continuez à scanner d'autres codes sans rien toucher.",
+    "insecure": "{{reason}} Prenez le code en photo avec l'application appareil photo, puis choisissez l'image depuis votre appareil."
+  },
+  "scanResult": {
+    "qrCode": "QR code",
+    "remove": "Retirer ce résultat",
+    "removeShort": "Retirer",
+    "ssid": "Nom du réseau",
+    "unknown": "Inconnu",
+    "checkOk": "Clé de contrôle correcte.",
+    "checkBad": "Clé de contrôle ERRONÉE : le code est mal imprimé ou a été modifié.",
+    "open": "Ouvrir {{host}}",
+    "copyPassword": "Copier le mot de passe",
+    "copyNumber": "Copier le numéro",
+    "copyAddress": "Copier l'adresse",
+    "copy": "Copier",
+    "copyRaw": "Copier le texte brut"
+  },
+  "vietqr": {
+    "side": "Code de virement",
+    "placeholder": "Saisissez le BIN et le numéro de compte pour créer le code",
+    "copy": "Copier la chaîne QR",
+    "downloadSvg": "Télécharger en SVG",
+    "checkNote": "Faites un scan d'essai avec une application bancaire et vérifiez le nom du bénéficiaire, le numéro de compte et le montant avant utilisation.",
+    "panel": "Informations de virement",
+    "bin": "BIN de la banque (6 chiffres)",
+    "account": "Numéro de compte",
+    "amount": "Montant (đ), facultatif",
+    "note": "Libellé du virement",
+    "privacy": "Le code est créé sur votre appareil ; les informations du compte ne sont pas envoyées au serveur de Chuyện Nhỏ.",
+    "fieldTooLong": "Champ QR trop long"
+  },
+  "trace": {
+    "title": "Traçabilité ERPCons",
+    "label": "Rechercher dans ERPCons",
+    "object": "Objet",
+    "code": "Code interne",
+    "serial": "Numéro de série",
+    "noEvents": "Aucun événement de traçabilité pour l'instant.",
+    "recentEvents": "Événements récents",
+    "loading": "Recherche dans ERPCons…",
+    "accountForbidden": "Votre compte n'a pas encore accès à la recherche de traçabilité.",
+    "failed": "Recherche impossible : {{message}}",
+    "legacy": "Ancien code de l'objet : aucun code de traçabilité associé pour l'instant.",
+    "forbidden": "Le code figure dans le registre, mais vous n'êtes pas autorisé à voir l'objet correspondant.",
+    "broken": "Le code renvoie à un objet qui n'existe plus.",
+    "unknown": "Le code a été lu, mais ERPCons ne contient pas encore de données de traçabilité.",
+    "status": {
+      "DRAFT": "Non émis",
+      "ACTIVE": "Actif",
+      "EXPIRED": "Expiré",
+      "SUSPENDED": "Suspendu",
+      "REVOKED": "Révoqué",
+      "REPLACED": "Remplacé",
+      "ARCHIVED": "Archivé"
+    },
+    "notes": {
+      "EXPIRED": "Le code a expiré : consultation de l'historique uniquement, aucune action possible.",
+      "SUSPENDED": "Le code est suspendu : ne l'utilisez pas pour les opérations.",
+      "REVOKED": "Le code a été révoqué : cette étiquette n'est plus valable.",
+      "REPLACED": "Cette étiquette a été remplacée : utilisez la nouvelle.",
+      "ARCHIVED": "L'objet n'est plus suivi."
+    }
+  }
+}

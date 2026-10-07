@@ -1,0 +1,507 @@
+{
+  "shared": {
+    "copyResult": "نسخ النتيجة",
+    "days": "يوم",
+    "daysValue_zero": "{{count}} <unit>يوم</unit>",
+    "daysValue_one": "{{count}} <unit>يوم</unit>",
+    "daysValue_two": "{{count}} <unit>يوم</unit>",
+    "daysValue_few": "{{count}} <unit>أيام</unit>",
+    "daysValue_many": "{{count}} <unit>يومًا</unit>",
+    "daysValue_other": "{{count}} <unit>يوم</unit>"
+  },
+  "weekdays": {
+    "sun": "الأحد",
+    "mon": "الإثنين",
+    "tue": "الثلاثاء",
+    "wed": "الأربعاء",
+    "thu": "الخميس",
+    "fri": "الجمعة",
+    "sat": "السبت"
+  },
+  "duration": {
+    "weeks_zero": "{{count}} أسبوع",
+    "weeks_one": "أسبوع واحد",
+    "weeks_two": "أسبوعان",
+    "weeks_few": "{{count}} أسابيع",
+    "weeks_many": "{{count}} أسبوعًا",
+    "weeks_other": "{{count}} أسبوع",
+    "weeksDays": "{{weeks}} و{{days}}",
+    "days_zero": "{{count}} يوم",
+    "days_one": "يوم واحد",
+    "days_two": "يومان",
+    "days_few": "{{count}} أيام",
+    "days_many": "{{count}} يومًا",
+    "days_other": "{{count}} يوم"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "المساحة",
+      "volume": "الحجم",
+      "mass": "الكتلة"
+    },
+    "formulas": {
+      "rectangle": "مستطيل",
+      "triangle": "مثلث",
+      "trapezoid": "شبه منحرف",
+      "circle": "دائرة",
+      "box": "متوازي مستطيلات (أساسات، كمرات، بلاطات)",
+      "cylinder": "أسطوانة (أعمدة دائرية، خوازيق)",
+      "rebar": "حديد تسليح دائري (قضبان)",
+      "plate": "ألواح فولاذية",
+      "density": "الحجم × الكثافة"
+    },
+    "inputs": {
+      "length": "الطول",
+      "width": "العرض",
+      "base": "القاعدة",
+      "height": "الارتفاع",
+      "bigBase": "القاعدة الكبرى",
+      "smallBase": "القاعدة الصغرى",
+      "diameter": "القطر",
+      "heightThickness": "الارتفاع / السماكة",
+      "heightLength": "الارتفاع / الطول",
+      "thickness": "السماكة",
+      "volume": "الحجم",
+      "density": "الكثافة"
+    },
+    "presets": {
+      "steel": "فولاذ",
+      "reinforcedConcrete": "خرسانة مسلحة",
+      "water": "ماء"
+    },
+    "tonnes": "= {{value}} طن",
+    "perPiece": "لكل قطعة: {{value}} {{unit}}",
+    "invalid": "يجب أن تكون الأبعاد والكمية أرقامًا أكبر من 0.",
+    "missing": "أدخل جميع الأبعاد للحساب.",
+    "groupLabel": "الكمية المراد حسابها",
+    "panelTitle": "الأبعاد",
+    "material": "المادة / طريقة الحساب",
+    "shape": "الشكل",
+    "quantity": "العدد",
+    "pieces": "قطعة",
+    "densityPresets": "كثافات جاهزة",
+    "decimalHint": "يمكنك كتابة الفاصلة العشرية بفاصلة أو نقطة: 2,5 و2.5 متساويان. يُعاد عرض الأرقام المُدخلة في العملية الحسابية المجاورة."
+  },
+  "money": {
+    "groups": {
+      "percent": "النسبة المئوية",
+      "tax": "الضريبة والخصم",
+      "profit": "الربح الإجمالي",
+      "split": "تقسيم المبلغ"
+    },
+    "presets": {
+      "percentOf": "X% من عدد",
+      "percentRatio": "A يساوي كم % من B",
+      "percentChange": "الزيادة / النقص بالنسبة المئوية",
+      "vatAdd": "إضافة الضريبة إلى السعر قبل الضريبة",
+      "vatExtract": "استخراج الضريبة من السعر الشامل للضريبة",
+      "discount": "الخصم / التخفيض",
+      "margin": "الربح الإجمالي من سعر التكلفة وسعر البيع",
+      "priceFromMargin": "سعر البيع من سعر التكلفة وهامش الربح (margin)",
+      "priceFromMarkup": "سعر البيع من سعر التكلفة ونسبة الإضافة (markup)",
+      "split": "تقسيم مبلغ بالتساوي"
+    },
+    "inputs": {
+      "rate": "النسبة",
+      "ofNumber": "من العدد",
+      "numberA": "العدد A",
+      "numberB": "العدد B",
+      "oldValue": "القيمة القديمة",
+      "newValue": "القيمة الجديدة",
+      "netPrice": "السعر قبل الضريبة",
+      "taxRate": "نسبة الضريبة",
+      "grossPrice": "السعر شاملًا الضريبة",
+      "originalPrice": "السعر الأصلي",
+      "discount": "الخصم",
+      "cost": "سعر التكلفة",
+      "price": "سعر البيع",
+      "targetMargin": "هامش الربح المطلوب",
+      "targetMarkup": "نسبة الإضافة المطلوبة",
+      "total": "المبلغ الإجمالي",
+      "people": "عدد الأشخاص",
+      "extra": "رسوم إضافية / بقشيش"
+    },
+    "placeholders": {
+      "manual": "إدخال يدوي",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "النتيجة",
+      "aVsB": "A مقارنةً بـ B",
+      "increase": "زيادة",
+      "decrease": "نقص",
+      "difference": "الفرق",
+      "grossPrice": "السعر شاملًا الضريبة",
+      "tax": "قيمة الضريبة",
+      "netPrice": "السعر قبل الضريبة",
+      "discounted": "السعر بعد الخصم",
+      "discountAmount": "مبلغ الخصم",
+      "margin": "هامش الربح (margin، على سعر البيع)",
+      "markup": "نسبة الإضافة (markup، على سعر التكلفة)",
+      "grossProfit": "الربح الإجمالي",
+      "price": "سعر البيع",
+      "impliedMarkup": "نسبة الإضافة المقابلة",
+      "impliedMargin": "هامش الربح المقابل",
+      "each": "لكل شخص",
+      "totalDue": "الإجمالي المستحق",
+      "eachRounded": "لكل شخص، مقرّبًا إلى أعلى ألف",
+      "surplus": "الفائض عند التقريب"
+    },
+    "errors": {
+      "bNonZero": "يجب أن يكون العدد B مختلفًا عن 0.",
+      "oldNonZero": "يجب أن تكون القيمة القديمة مختلفة عن 0.",
+      "discountMax": "لا يتجاوز الخصم 100%.",
+      "pricePositive": "يجب أن يكون سعر البيع أكبر من 0.",
+      "costPositive": "يجب أن يكون سعر التكلفة أكبر من 0.",
+      "marginMax": "يجب أن يكون هامش الربح أقل من 100%.",
+      "tooLarge": "العدد أكبر من أن يُحسب."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "شخص"
+    },
+    "copyRow": "نسخ {{label}}",
+    "invalid": "الحقل المحدد ليس رقمًا صالحًا (غير سالب؛ وعدد الأشخاص عدد صحيح من 1).",
+    "missing": "املأ جميع الحقول للحساب.",
+    "formulaCode": "رمز الصيغة: {{code}}",
+    "groupLabel": "نوع العملية الحسابية",
+    "panelTitle": "الأرقام",
+    "operation": "العملية الحسابية",
+    "taxHint": "نسبة الضريبة من إدخالك: تختلف النسب حسب السلعة وحسب الفترة الزمنية، ولا تتضمن الأداة أي رقم جاهز.",
+    "profitHint": "هامش الربح (margin) يُحسب على سعر البيع، ونسبة الإضافة (markup) تُحسب على سعر التكلفة — الربح نفسه برقمين مختلفين.",
+    "inputHint": "المبالغ: 150.000 و150,000 كلاهما مئة وخمسون ألفًا؛ وللكسور اكتب 1500,5. يُعاد عرض الرقم كما فُهم في العملية الحسابية المجاورة. تُعرض النتيجة بمنزلتين عشريتين، دون تقريب تلقائي وفق أي قاعدة محاسبية."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "الطول",
+      "area": "المساحة",
+      "mass": "الكتلة"
+    },
+    "units": {
+      "mm": {
+        "name": "مليمتر",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "سنتيمتر",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "متر",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "كيلومتر",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "بوصة",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "قدم",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "ياردة",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "ميل",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "مليمتر مربع",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "سنتيمتر مربع",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "متر مربع",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "هكتار",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "كيلومتر مربع",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "قدم مربع",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "فدان إنجليزي (acre)",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "غرام",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "كيلوغرام",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến (وحدة فيتنامية = 10 kg)",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ (وحدة فيتنامية = 100 kg)",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "طن",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "أونصة",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "رطل",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "بجميع الوحدات",
+    "equalsHeading": "{{value}} {{unit}} يساوي",
+    "notNumber": "القيمة ليست رقمًا.",
+    "notNumberExample": "القيمة ليست رقمًا. مثال: 2,5 أو 1200.",
+    "enterValue": "أدخل القيمة المراد تحويلها.",
+    "copyIn": "نسخ القيمة بوحدة {{unit}}",
+    "groupLabel": "نوع الوحدة",
+    "panelTitle": "تحويل الوحدات",
+    "value": "القيمة",
+    "from": "من وحدة",
+    "to": "إلى وحدة",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "تبديل الوحدتين",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "الأحرف",
+      "charactersNoSpaces": "الأحرف دون المسافات",
+      "words": "الكلمات",
+      "lines": "الأسطر",
+      "paragraphs": "الفقرات"
+    },
+    "hints": {
+      "characters": "تشمل المسافات وفواصل الأسطر",
+      "words": "مجموعات أحرف تفصلها مسافات",
+      "paragraphs": "تفصلها أسطر فارغة"
+    },
+    "counts": "الإحصاءات",
+    "panelTitle": "النص",
+    "clear": "مسح الكل",
+    "textLabel": "النص المراد عدّه",
+    "placeholder": "اكتب النص أو الصقه هنا…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "واضح جدًا (AAA)",
+      "aa": "مقروء جيدًا (AA)",
+      "large": "مناسب للنص الكبير فقط",
+      "fail": "صعب القراءة"
+    },
+    "pickFailed": "تعذّر التقاط اللون من الشاشة.",
+    "preview": "معاينة",
+    "swatch": "اللون {{hex}}",
+    "textOnColor": "نص فوق هذا اللون",
+    "whiteText": "نص أبيض",
+    "blackText": "نص أسود",
+    "contrastHint": "نسبة التباين وفق WCAG: من 4,5 : 1 يكون النص العادي مقروءًا، ومن 3 : 1 يكفي فقط للنص الكبير والأيقونات.",
+    "panelTitle": "اختيار اللون",
+    "picker": "منتقي الألوان",
+    "pickerHint": "اضغط على مربع اللون لفتح المنتقي، أو اكتب الرمز أدناه.",
+    "eyedropper": "التقاط لون من الشاشة",
+    "copyCode": "نسخ رمز {{label}}"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "بين تاريخين",
+      "add": "إضافة / طرح أيام"
+    },
+    "weekendOnly": "أيام العمل هنا تستبعد السبت والأحد فقط. تُدرج العطلات الرسمية الكبرى في النتيجة لكنها لا تُطرح تلقائيًا؛ ولا تُحتسب أيام التعويض أو جداول عمل السبت الخاصة بكل جهة — إن تخللت المدة عطلات فأضفها بنفسك.",
+    "distance": "المدة",
+    "countingBack": "تاريخ النهاية يسبق تاريخ البداية — العدّ يجري تنازليًا.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "نسخ عدد الأيام",
+    "workdays": "أيام العمل (الإثنين – الجمعة)",
+    "weekendDays": "السبت والأحد",
+    "startIncluded": "تاريخ البداية (محتسب)",
+    "startExcluded": "تاريخ البداية (غير محتسب)",
+    "endIncluded": "تاريخ النهاية (محتسب)",
+    "pickBoth": "اختر التاريخين للحساب.",
+    "landsOn": "يقع في",
+    "addedCalendar_zero": "= {{start}} {{sign}} {{count}} يوم",
+    "addedCalendar_one": "= {{start}} {{sign}} {{count}} يوم",
+    "addedCalendar_two": "= {{start}} {{sign}} {{count}} يوم",
+    "addedCalendar_few": "= {{start}} {{sign}} {{count}} أيام",
+    "addedCalendar_many": "= {{start}} {{sign}} {{count}} يومًا",
+    "addedCalendar_other": "= {{start}} {{sign}} {{count}} يوم",
+    "addedWorkdays_zero": "= {{start}} {{sign}} {{count}} يوم عمل",
+    "addedWorkdays_one": "= {{start}} {{sign}} {{count}} يوم عمل",
+    "addedWorkdays_two": "= {{start}} {{sign}} {{count}} يوم عمل",
+    "addedWorkdays_few": "= {{start}} {{sign}} {{count}} أيام عمل",
+    "addedWorkdays_many": "= {{start}} {{sign}} {{count}} يوم عمل",
+    "addedWorkdays_other": "= {{start}} {{sign}} {{count}} يوم عمل",
+    "calendarEquivalent_zero": "أي {{count}} يوم تقويمي.",
+    "calendarEquivalent_one": "أي يوم تقويمي واحد.",
+    "calendarEquivalent_two": "أي يومان تقويميان.",
+    "calendarEquivalent_few": "أي {{count}} أيام تقويمية.",
+    "calendarEquivalent_many": "أي {{count}} يومًا تقويميًا.",
+    "calendarEquivalent_other": "أي {{count}} يوم تقويمي.",
+    "copyDate": "نسخ التاريخ",
+    "countInvalid": "يجب أن يكون عدد الأيام عددًا صحيحًا من 0 إلى {{max}}.",
+    "pickStart": "اختر تاريخ البداية وأدخل عدد الأيام.",
+    "modeLabel": "طريقة الحساب",
+    "betweenTitle": "تاريخان",
+    "fromDate": "من تاريخ",
+    "toDate": "إلى تاريخ",
+    "includeStart": "احتساب يوم البداية",
+    "includeStartHint": "دون احتساب يوم البداية: من الإثنين إلى الجمعة 4 أيام (طريقة عدّ المهل). مع احتسابه: 5 أيام (طريقة عدّ أيام العمل).",
+    "addTitle": "التاريخ وعدد الأيام",
+    "startDate": "تاريخ البداية",
+    "dayCount": "عدد الأيام",
+    "direction": "الاتجاه",
+    "forward": "إضافة (إلى الأمام)",
+    "back": "طرح (إلى الوراء)",
+    "dayKind": "نوع الأيام",
+    "calendar": "أيام تقويمية",
+    "addHint": "لا يُحتسب يوم البداية: إضافة يوم واحد إلى الجمعة تعطي السبت (أيام تقويمية) أو الإثنين (أيام عمل)."
+  },
+  "holidays": {
+    "tooLong_zero": "الفترة أطول من {{count}} يوم، لذا لا تُعرض العطلات.",
+    "tooLong_one": "الفترة أطول من {{count}} يوم، لذا لا تُعرض العطلات.",
+    "tooLong_two": "الفترة أطول من {{count}} يوم، لذا لا تُعرض العطلات.",
+    "tooLong_few": "الفترة أطول من {{count}} أيام، لذا لا تُعرض العطلات.",
+    "tooLong_many": "الفترة أطول من {{count}} يومًا، لذا لا تُعرض العطلات.",
+    "tooLong_other": "الفترة أطول من {{count}} يوم، لذا لا تُعرض العطلات.",
+    "none": "لا توجد عطلات رسمية كبرى في هذه الفترة.",
+    "count_zero": "{{count}} عطلة في هذه الفترة",
+    "count_one": "عطلة واحدة في هذه الفترة",
+    "count_two": "عطلتان في هذه الفترة",
+    "count_few": "{{count}} عطلات في هذه الفترة",
+    "count_many": "{{count}} عطلة في هذه الفترة",
+    "count_other": "{{count}} عطلة في هذه الفترة",
+    "more_zero": "و{{count}} يوم آخر",
+    "more_one": "ويوم آخر",
+    "more_two": "ويومان آخران",
+    "more_few": "و{{count}} أيام أخرى",
+    "more_many": "و{{count}} يومًا آخر",
+    "more_other": "و{{count}} يوم آخر",
+    "hint": "لا تطرح الأداة أيام العطل تلقائيًا. إن كانت الجهة المعنية تعطّل في هذه الأيام، فأضفها بنفسك إلى المهلة."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "كلمة مرور",
+      "code": "أرقام طلبات وقسائم"
+    },
+    "classes": {
+      "upper": "أحرف كبيرة (A–Z)",
+      "lower": "أحرف صغيرة (a–z)",
+      "digits": "أرقام (0–9)",
+      "symbols": "رموز (!@#$…)"
+    },
+    "strengths": {
+      "weak": "ضعيفة",
+      "fair": "مقبولة",
+      "strong": "قوية",
+      "excellent": "قوية جدًا"
+    },
+    "results": "النتائج",
+    "resultsCount_zero": "النتائج ({{count}})",
+    "resultsCount_one": "النتائج ({{count}})",
+    "resultsCount_two": "النتائج ({{count}})",
+    "resultsCount_few": "النتائج ({{count}})",
+    "resultsCount_many": "النتائج ({{count}})",
+    "resultsCount_other": "النتائج ({{count}})",
+    "copyAll": "نسخ الكل",
+    "noClass": "فعّل مجموعة أحرف واحدة على الأقل لإنشاء كلمة مرور.",
+    "copyValue": "نسخ {{value}}",
+    "regenerate": "إنشاء من جديد",
+    "modeLabel": "نوع الرمز",
+    "panelTitle": "الخيارات",
+    "length": "الطول",
+    "chars_zero": "{{count}} حرف",
+    "chars_one": "حرف واحد",
+    "chars_two": "حرفان",
+    "chars_few": "{{count}} أحرف",
+    "chars_many": "{{count}} حرفًا",
+    "chars_other": "{{count}} حرف",
+    "classGroups": "مجموعات الأحرف المستخدمة",
+    "plain": "استبعاد الأحرف سهلة الالتباس (0 O o 1 l I)",
+    "strength": "القوة: <strong>{{label}}</strong> · نحو {{bits}} بت",
+    "prefix": "البادئة (اختياري)",
+    "prefixPlaceholder": "مثال: PX-",
+    "charset": "الجزء العشوائي يتكون من",
+    "alnum": "أحرف كبيرة وأرقام",
+    "digitsOnly": "أرقام فقط",
+    "codeLength": "عدد الأحرف العشوائية",
+    "alnumHint": "لا تُستخدم I وO و0 و1 — حتى لا يحدث التباس عند قراءة الرمز بالهاتف أو نسخه يدويًا.",
+    "count": "العدد في كل مرة (بحد أقصى {{max}})"
+  },
+  "notes": {
+    "untitled": "ملاحظة بلا محتوى",
+    "limitReached_zero": "بلغت الحد الأقصى: {{count}} ملاحظة. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "limitReached_one": "بلغت الحد الأقصى: {{count}} ملاحظة. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "limitReached_two": "بلغت الحد الأقصى: {{count}} ملاحظة. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "limitReached_few": "بلغت الحد الأقصى: {{count}} ملاحظات. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "limitReached_many": "بلغت الحد الأقصى: {{count}} ملاحظة. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "limitReached_other": "بلغت الحد الأقصى: {{count}} ملاحظة. احذف بعض الملاحظات القديمة لإضافة جديدة.",
+    "listLabel": "قائمة الملاحظات",
+    "title": "الملاحظات",
+    "titleCount_zero": "الملاحظات ({{count}})",
+    "titleCount_one": "الملاحظات ({{count}})",
+    "titleCount_two": "الملاحظات ({{count}})",
+    "titleCount_few": "الملاحظات ({{count}})",
+    "titleCount_many": "الملاحظات ({{count}})",
+    "titleCount_other": "الملاحظات ({{count}})",
+    "newNote": "ملاحظة جديدة",
+    "empty": "لا توجد ملاحظات على هذا الجهاز بعد.",
+    "notice": "الملاحظات محفوظة في هذا المتصفح، وليست مرتبطة بحساب: يستطيع قراءتها كل من يستخدم الجهاز، وتضيع عند مسح بيانات التصفح.",
+    "clearAllTitle_zero": "حذف جميع الملاحظات ({{count}})؟",
+    "clearAllTitle_one": "حذف الملاحظة الوحيدة؟",
+    "clearAllTitle_two": "حذف الملاحظتين؟",
+    "clearAllTitle_few": "حذف الملاحظات الـ{{count}}؟",
+    "clearAllTitle_many": "حذف جميع الملاحظات ({{count}})؟",
+    "clearAllTitle_other": "حذف جميع الملاحظات ({{count}})؟",
+    "localOnly": "الملاحظات موجودة على هذا الجهاز فقط، ولا يمكن استعادتها بعد حذفها.",
+    "clearAllConfirm": "حذف الكل",
+    "clearAll": "حذف جميع الملاحظات",
+    "editorLabel": "كتابة الملاحظة",
+    "emptyStart": "دوّن ما تريد تذكّره، وأنشئ قائمة بالمهام.",
+    "emptyPick": "اختر ملاحظة من القائمة لعرضها وتعديلها.",
+    "backToList": "قائمة الملاحظات",
+    "titleLabel": "العنوان",
+    "titlePlaceholder": "مثال: مهام موقع العمل يوم الإثنين",
+    "body": "المحتوى",
+    "bodyPlaceholder": "دوّن بسرعة ما تريد تذكّره…",
+    "saveFailed": "تعذّر الحفظ على هذا الجهاز. انسخ المحتوى إلى مكان آخر قبل إغلاق الصفحة.",
+    "savedAt": "محفوظ على هذا الجهاز · {{time}}",
+    "deleteTitle": "حذف هذه الملاحظة؟",
+    "deleteConfirm": "حذف",
+    "delete": "حذف الملاحظة",
+    "tasks": "قائمة المهام",
+    "taskDone": "تم: {{task}}",
+    "taskFallback": "المهمة {{number}}",
+    "task": "المهمة {{number}}",
+    "removeTask": "إزالة المهمة {{number}}",
+    "removeTaskTitle": "إزالة هذه المهمة",
+    "newTask": "مهمة جديدة",
+    "tasksFull_zero": "بلغت الحد: {{count}} مهمة",
+    "tasksFull_one": "بلغت الحد: {{count}} مهمة",
+    "tasksFull_two": "بلغت الحد: {{count}} مهمة",
+    "tasksFull_few": "بلغت الحد: {{count}} مهام",
+    "tasksFull_many": "بلغت الحد: {{count}} مهمة",
+    "tasksFull_other": "بلغت الحد: {{count}} مهمة",
+    "addTaskPlaceholder": "أضِف مهمة واضغط Enter",
+    "addTask": "إضافة"
+  }
+}

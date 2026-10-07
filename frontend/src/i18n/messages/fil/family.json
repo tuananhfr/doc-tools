@@ -1,0 +1,154 @@
+{
+  "shared": {
+    "members": "Mga miyembro",
+    "phone": "Numero ng telepono",
+    "notes": "Mga tala"
+  },
+  "recurrence": {
+    "once": "Isang beses",
+    "daily": "Araw-araw",
+    "weekly": "Linggu-linggo",
+    "monthly": "Buwan-buwan",
+    "yearly": "Taun-taon"
+  },
+  "dataClasses": {
+    "NORMAL": "Karaniwan",
+    "PRIVATE": "Pribado",
+    "SENSITIVE": "Sensitibo"
+  },
+  "profiles": {
+    "PARENT": "Magulang",
+    "SENIOR": "Lolo at lola",
+    "CHILD": "Anak"
+  },
+  "page": {
+    "views": {
+      "calendar": "Kalendaryo",
+      "list": "Listahan",
+      "members": "Mga miyembro",
+      "backup": "Backup",
+      "safety": "SOS at mga contact"
+    },
+    "lunarHint": "Iba-iba ang solar na petsa ng isang lunar na petsa bawat taon. Hindi pa mauulit ang mga event ayon sa lunar na kalendaryo, kaya para sa taong ito lang ang paalalang ito.",
+    "loading": "Binubuksan ang kalendaryong naka-save sa device na ito...",
+    "storage": "<strong>Naka-save sa device na ito</strong> · {{events}} event · {{members}} miyembro. Hindi kailangan ng account. Mabubura ang kalendaryo kapag binura ang data ng browser kung hindi ka pa nakapag-download ng backup. Hindi pa naka-on ang pagbabahagi o online sync.",
+    "enableNotifications": "I-on ang notification habang bukas ang page",
+    "remindersTitle": "Mga paalala habang bukas ang page",
+    "seen": "Nakita na",
+    "viewModes": "View mode",
+    "viewingFor": "Tinitingnan para kay"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Ngayon",
+      "week": "Susunod na 7 araw",
+      "upcoming": "Susunod na 30 araw"
+    },
+    "rangeLabel": "Saklaw ng panahon",
+    "empty": "Walang event o holiday sa saklaw na ito.",
+    "upcomingNote": "Ipinapakita ang 30 araw mula ngayon. Nagpapatuloy pa ang mga umuulit na event lampas dito."
+  },
+  "day": {
+    "lunar": "Lunar: araw {{day}} ng buwan {{month}}",
+    "lunarLeap": "Lunar: araw {{day}} ng leap na buwan {{month}}",
+    "byLunar": "ayon sa lunar na kalendaryo",
+    "bySolar": "ayon sa solar na kalendaryo",
+    "addReminder": "Magdagdag ng paalala",
+    "empty": "Walang event ng pamilya sa araw na ito.",
+    "addToDay": "Idagdag sa araw na ito"
+  },
+  "form": {
+    "categories": {
+      "task": "Gawaing pampamilya",
+      "school": "Pag-aaral",
+      "appointment": "Appointment",
+      "deadline": "Deadline ng dokumento",
+      "medication": "Paalala sa gamot",
+      "payment": "Bayarin",
+      "other": "Iba pa"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Buong pamilya",
+      "PARENTS_SENIORS": "Mga magulang at lolo't lola",
+      "PARENTS_CHILDREN": "Mga magulang at anak",
+      "PRIVATE": "Sa device na ito lang"
+    },
+    "reminderInvalid": "Kailangan ng paalala ang tiyak na oras at agwat na 0 hanggang 1,440 minuto.",
+    "saveFailed": "Hindi ma-save ang event. Suriin ang petsa at ang data na inilagay mo.",
+    "editTitle": "I-edit ang event",
+    "addTitle": "Magdagdag ng event ng pamilya",
+    "title": "Pangalan ng gawain",
+    "date": "Petsa",
+    "time": "Oras (opsyonal)",
+    "category": "Uri ng gawain",
+    "recurrence": "Ulitin",
+    "scope": "Saklaw",
+    "privacy": "Antas ng privacy",
+    "reminder": "Paalala bago (minuto, hanggang 1 araw; kailangan ng oras)",
+    "medicationNote": "Batay lang sa data na inilagay mo ang paalala sa gamot; hindi ito payong medikal. Nakatago sa notification ang sensitibong nilalaman bilang default.",
+    "reminderNote": "Lumalabas lang ang paalala habang bukas ang page o kung pinapayagan ng browser ang notification; puwedeng i-pause ng operating system ang page.",
+    "saveChanges": "I-save ang mga pagbabago",
+    "saveNew": "I-save ang event sa device",
+    "cancel": "Kanselahin"
+  },
+  "event": {
+    "undo": "Ibalik sa hindi tapos",
+    "done": "Tapos na",
+    "edit": "I-edit",
+    "delete": "Burahin",
+    "confirmDelete": "Burahin ang event na ito at lahat ng pag-ulit nito sa device?"
+  },
+  "members": {
+    "saveFailed": "Hindi ma-save ang miyembro.",
+    "intro": "Gumamit ng palayaw na madaling makilala. Hindi kailangan ang petsa ng kapanganakan, paaralan o personal na dokumento.",
+    "name": "Palayaw",
+    "profile": "Profile",
+    "add": "Magdagdag ng miyembro"
+  },
+  "backup": {
+    "invalidFile": "Hindi wasto ang backup file o lampas ito sa 20 MB.",
+    "wrongVersion": "Hindi mabasa ang backup na may tamang bersyon.",
+    "confirmRestore_one": "I-restore ang pamilyang {{id}} na may {{count}} event? Mananatili sa storage ng device ang data na ginagamit mo ngayon para mabuksan ulit.",
+    "confirmRestore_other": "I-restore ang pamilyang {{id}} na may {{count}} event? Mananatili sa storage ng device ang data na ginagamit mo ngayon para mabuksan ulit.",
+    "restoreFailed": "Hindi ma-restore. Nandiyan pa rin ang data na ginagamit mo ngayon.",
+    "title": "Backup at pag-export ng kalendaryo",
+    "intro": "Nasa JSON backup ang mga miyembro, event, paalala at SOS signal. Para lang sa paglipat ng kalendaryo sa ibang app ang ICS file; hindi nito pinapalitan ang backup.",
+    "downloadBackup": "I-download ang backup",
+    "downloadIcs": "I-download ang ICS",
+    "print": "I-print / I-save bilang PDF ang susunod na 30 araw",
+    "includeSensitive": "Isama ang pribado at sensitibong event sa ICS/PDF",
+    "defaultsNote": "Bilang default, hindi kasama sa ICS at PDF ang pribado at sensitibong event. Laging kumpleto ang data sa backup; itago ang file sa lugar na pinagkakatiwalaan mo.",
+    "restoreLabel": "I-restore mula sa JSON backup",
+    "inspected": "Nabasa: {{members}} miyembro, {{events}} event, {{reminders}} paalala. Family code: {{id}}.",
+    "restoreThis": "I-restore ang bersyong ito"
+  },
+  "safety": {
+    "invalidContact": "Maglagay ng wastong pangalan at numero ng telepono.",
+    "contactFailed": "Hindi ma-save ang contact.",
+    "sosFailed": "Hindi ma-save ang SOS signal sa device.",
+    "noGeolocation": "Hindi sinusuportahan ng device ang lokasyon.",
+    "locationSaveFailed": "Hindi ma-save ang lokasyon.",
+    "locateFailed": "Hindi makuha ang lokasyon. Nandiyan pa rin ang naka-save na SOS signal.",
+    "title": "Kaligtasan ng pamilya",
+    "intro": "Sa device lang nagse-save ang kasalukuyang mode. <strong>Hindi pa ipinapadala sa iyong mga mahal sa buhay</strong> ang SOS signal dito. Kapag kailangan mo ng tulong, direktang tumawag sa emergency number o sa naka-save na contact.",
+    "contactName": "Pangalan ng emergency contact",
+    "saveContact": "I-save ang contact",
+    "saveSos": "I-save ang SOS signal sa device",
+    "call": "Tawagan ang {{number}}",
+    "pendingTitle": "Mga signal na naka-save sa device",
+    "notSent": "{{time}} · Hindi pa naipadala online",
+    "lastLocation": "Huling lokasyon: {{latitude}}, {{longitude}} noong {{time}}",
+    "locateOnce": "Kunin ang lokasyon nang isang beses",
+    "imSafe": "Ligtas ako"
+  },
+  "reminders": {
+    "sensitiveTitle": "May event ng pamilya na dapat tingnan",
+    "notificationTitle": "Kalendaryo ng Pamilya",
+    "notificationBody": "Buksan ang app para makita ang detalye."
+  },
+  "space": {
+    "loadFailed": "Hindi mabuksan ang data sa device. Tingnan ang pahintulot sa storage ng browser.",
+    "saveFailed": "Hindi ma-save ang mga pagbabago. Mag-export ng backup at tingnan ang natitirang storage ng device.",
+    "restoreFailed": "Hindi ma-restore ang backup."
+  }
+}

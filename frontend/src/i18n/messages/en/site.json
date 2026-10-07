@@ -1,0 +1,896 @@
+{
+  "trust": {
+    "label": "Our commitments",
+    "items": {
+      "free": {
+        "title": "Completely free",
+        "description": "Use it now, no hidden costs"
+      },
+      "noAccount": {
+        "title": "No account needed",
+        "description": "Open the page, pick a tool, done"
+      },
+      "noInstall": {
+        "title": "Nothing to install",
+        "description": "Runs right in your browser"
+      },
+      "onDevice": {
+        "title": "Files stay on your device",
+        "description": "Your files are never uploaded"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — free tools",
+    "description": "Free PDF, image, QR code and utility tools. Processed on your device; files are never uploaded."
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "About Chuyện Nhỏ | Free tools from ERPCons & LPC",
+      "description": "Chuyện Nhỏ is a free toolkit from ERPCons & LPC that helps you quickly handle the small tasks of work, construction and everyday life."
+    },
+    "ho-tro": {
+      "title": "Help & FAQ | Chuyện Nhỏ",
+      "description": "Answers to common questions about using Chuyện Nhỏ, and how to contact us."
+    },
+    "xu-ly-du-lieu": {
+      "title": "How we handle data | Chuyện Nhỏ",
+      "description": "Which tools process data on your device, which need a server, and what data is stored. Transparent for every tool."
+    },
+    "cai-dat": {
+      "title": "Install Chuyện Nhỏ on your phone and computer | Chuyện Nhỏ",
+      "description": "Add Chuyện Nhỏ to your Android, iPhone or iPad home screen, or install it on Windows or macOS to open it quickly like an app."
+    },
+    "huong-dan": {
+      "title": "Guides | Chuyện Nhỏ",
+      "description": "Step-by-step guides for popular tools: compress PDF, scan images to PDF, OCR, QR codes, house orientation, construction estimates, Family Calendar."
+    },
+    "dieu-khoan": {
+      "title": "Terms of use | Chuyện Nhỏ",
+      "description": "Terms of use for the free Chuyện Nhỏ toolkit."
+    },
+    "quyen-rieng-tu": {
+      "title": "Privacy policy | Chuyện Nhỏ",
+      "description": "How Chuyện Nhỏ collects, uses and protects personal data under Vietnam's 2025 Law on Personal Data Protection."
+    }
+  },
+  "nav": {
+    "tools": "Tools",
+    "construction": "Construction",
+    "family": "Family",
+    "guides": "Guides",
+    "about": "About us"
+  },
+  "header": {
+    "skipLink": "Skip to content",
+    "mainNav": "Main navigation",
+    "search": "Search tools",
+    "openMenu": "Open menu",
+    "mobileNav": "Mobile navigation"
+  },
+  "footer": {
+    "madeBy": "A product from <link>ERPCons & LPC</link>",
+    "navLabel": "Footer navigation",
+    "motto": "Here to help.",
+    "links": {
+      "about": "About",
+      "guides": "Guides",
+      "data": "Data handling",
+      "support": "Help",
+      "terms": "Terms",
+      "privacy": "Privacy"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ, home"
+  },
+  "share": {
+    "button": "Share",
+    "title": "Share link",
+    "description": "Send this page to friends or colleagues.",
+    "urlLabel": "Link to this page",
+    "copy": "Copy link",
+    "native": "Share via app",
+    "copied": "Link copied.",
+    "copyFailed": "Couldn't copy. Select and copy the link above.",
+    "shareFailed": "Couldn't open the share sheet. Copy the link to send it.",
+    "unsupported": "This browser doesn't support sharing via apps yet. You can copy the link and send it via Zalo or another app."
+  },
+  "breadcrumb": {
+    "label": "You are here",
+    "home": "Home",
+    "tools": "Tools",
+    "guides": "Guides"
+  },
+  "search": {
+    "label": "Search tools",
+    "placeholder": "Search tools… (e.g. merge PDF, QR, OCR)",
+    "clear": "Clear search",
+    "submit": "Search"
+  },
+  "filters": {
+    "all": "All"
+  },
+  "results": {
+    "count_one": "{{count}} tool",
+    "count_other": "{{count}} tools",
+    "countFor_one": "{{count}} tool for “{{keyword}}”",
+    "countFor_other": "{{count}} tools for “{{keyword}}”",
+    "empty": "No tools found",
+    "emptyHint": "Try another keyword or remove some filters.",
+    "showAll": "See all tools"
+  },
+  "toolCard": {
+    "useNow": "Use now",
+    "soon": "Coming soon"
+  },
+  "processing": {
+    "server": "Processed on a server",
+    "device": "On your device"
+  },
+  "recent": {
+    "title": "Recently used"
+  },
+  "products": {
+    "learnMore": "Learn about {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | Free tools. Ready when you need them.",
+    "captionStart": "Small tasks\ncreate big value.",
+    "tagline": "Free tools. Ready when you need them.",
+    "description": "Simple, practical utilities for everyday work.",
+    "promisesLabel": "Use it now",
+    "promises": {
+      "noAccount": "No account needed",
+      "noInstall": "Nothing to install",
+      "onDevice": "Files processed on your device"
+    },
+    "captionEnd": "Simple today.\nSustainable tomorrow.",
+    "catalogTitle": "What do you need to do today?",
+    "featuredLabel": "Popular tools",
+    "resultsLabel": "Tools"
+  },
+  "directory": {
+    "metaTitle": "All free tools | Chuyện Nhỏ",
+    "metaDescription": "All of Chuyện Nhỏ's free PDF, image, QR code and utility tools. No account needed, processed right on your device.",
+    "title": "All tools",
+    "lead_one": "{{count}} free tool. Pick the task you need and use it right in your browser.",
+    "lead_other": "{{count}} free tools. Pick the task you need and use it right in your browser.",
+    "catalogLabel": "Tool catalog"
+  },
+  "ecosystem": {
+    "title": "When one tool isn't enough…",
+    "description": "From small tasks today to bigger work tomorrow.",
+    "erpcons": {
+      "heading": "Manage tasks, projects and construction businesses on one platform.",
+      "modules": "Tasks · Contracts · Projects\nCosts · Purchasing · Inventory · Finance",
+      "trial": "Try it"
+    },
+    "tekshot": {
+      "heading": "An AI & software platform that helps businesses see, understand, automate and grow.",
+      "modules": "Camera AI · Sales & POS · Marketing AI\nResearch AI · One platform, all your data",
+      "trial": "Try it free",
+      "demo": "Watch demo"
+    },
+    "storyTitle": "One ecosystem. More value.",
+    "story": "Chuyện Nhỏ is a free toolkit from ERPCons & LPC that helps you quickly handle the small tasks of every day.",
+    "steps": {
+      "chuyenNho": "Need a small task done.\nUse it now.",
+      "erpcons": "Manage tasks,\nprojects and businesses.",
+      "tekshot": "AI that sees, understands, acts and learns\nfor businesses."
+    },
+    "motto": "Lighter work.\nBetter days."
+  },
+  "hub": {
+    "highlightsLabel": "In this group",
+    "listLabel": "{{label}} list",
+    "subgroupFilter": "Filter by subgroup",
+    "emptyHint": "Try another keyword or clear the subgroup filter.",
+    "showGroup": "See the whole group",
+    "asideLabel": "More suggestions",
+    "privacy": {
+      "title": "Your files are respected",
+      "description": "Most tools process files right on your device. Any tool that needs a server says so clearly on its card.",
+      "link": "See how we handle data"
+    },
+    "support": {
+      "title": "Need help?",
+      "description": "Read the step-by-step guides or email us.",
+      "guides": "View guides"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "Construction tools",
+      "title": "<accent>Construction</accent> tools",
+      "tagline": "Look up. Calculate. Check. Simple and effective.",
+      "description": "A free toolkit for engineers, architects, contractors and homeowners, from the first idea through construction and handover.",
+      "metaTitle": "Free construction tools | Chuyện Nhỏ",
+      "metaDescription": "House construction cost estimates, house orientation, measuring on photos and construction lookup tools coming soon. Free, no account needed.",
+      "caption": "Construction work,\nsimpler every day!",
+      "searchPlaceholder": "Search construction tools… (e.g. estimate, house orientation, zoning)",
+      "highlights": {
+        "estimate": "Estimates",
+        "planning": "Zoning",
+        "prices": "Construction prices",
+        "legal": "Legal",
+        "standards": "Standards",
+        "dossier": "Dossier check",
+        "site": "On site"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "Use it now, no hidden costs"
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Runs right in your browser"
+        },
+        "onDevice": {
+          "title": "Calculated on your device",
+          "detail": "The figures you enter never leave your device"
+        },
+        "practical": {
+          "title": "For real-world work",
+          "detail": "From homeowners to contractors"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "Estimates & calculations",
+        "quy-hoach": "Zoning & orientation",
+        "gia-vat-lieu": "Prices & materials",
+        "phap-ly": "Legal & standards",
+        "ban-ve": "Drawings & dossiers",
+        "hien-truong": "On site"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Need more than one tool?",
+          "description": "Manage entire projects, costs, contracts, dossiers and purchasing on one platform.",
+          "points": {
+            "work": "Tasks · Projects · Contracts",
+            "cost": "Costs · Budgets · Purchasing",
+            "documents": "Dossiers · Documents · Approvals",
+            "ai": "AI assistant to query your data"
+          }
+        },
+        "tekshot": {
+          "title": "Smarter site records?",
+          "description": "Cameras, site photos and AI recognition, connected straight to your project.",
+          "points": {
+            "vision": "Vision · Camera · On site",
+            "studio": "Studio · Content · Reports",
+            "insight": "Insight · Market",
+            "central": "Central · Overview & operations"
+          }
+        }
+      },
+      "journey": {
+        "title": "From idea to finished building. We're with you all the way.",
+        "motto": "Small tools.\nBig value!",
+        "steps": {
+          "idea": {
+            "title": "Idea",
+            "detail": "Zoning · Orientation"
+          },
+          "design": {
+            "title": "Design",
+            "detail": "Standards · Dossier check"
+          },
+          "estimate": {
+            "title": "Estimate",
+            "detail": "Estimates · Construction prices"
+          },
+          "build": {
+            "title": "Construction",
+            "detail": "Site diary"
+          },
+          "handover": {
+            "title": "Handover",
+            "detail": "Dossiers · Archive"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "Family tools",
+      "title": "Tools for the <accent>family</accent>",
+      "tagline": "Small things, big happiness.",
+      "description": "Simple utilities to organize shared schedules, set reminders and track household spending. So the whole family stays in sync and enjoys every day.",
+      "metaTitle": "Free family tools | Chuyện Nhỏ",
+      "metaDescription": "Family Calendar, lunar–solar calendar, electricity and water bills, group expense split, house orientation and more family utilities coming soon. Free, with data stored on your device.",
+      "caption": "What's happening\nat home today?",
+      "searchPlaceholder": "Search family tools… (e.g. calendar, reminders, electricity bill)",
+      "highlights": {
+        "calendar": "Organize shared schedules",
+        "reminders": "Reminders & care",
+        "spending": "Track household spending",
+        "together": "The whole family in sync"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "Use it now, no hidden costs"
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Runs right in your browser"
+        },
+        "private": {
+          "title": "Private",
+          "detail": "Data stored on your device"
+        },
+        "devices": {
+          "title": "Works great on",
+          "detail": "Phones and computers"
+        }
+      },
+      "subgroups": {
+        "lich": "Calendar & reminders",
+        "chi-tieu": "Spending",
+        "nha-cua": "Home",
+        "hoc-tap": "Study",
+        "suc-khoe": "Health",
+        "ket-noi": "Connect"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "Family Calendar",
+          "subtitle": "What's on at home today?",
+          "points": {
+            "schedules": "School, work and family schedules",
+            "contacts": "To-do lists and emergency contacts",
+            "backup": "Saved on your device, back up when needed",
+            "ics": "Export to your phone calendar (ICS)"
+          }
+        },
+        "houseOrientation": {
+          "title": "House orientation & compass",
+          "subtitle": "Choose a good direction with peace of mind",
+          "points": {
+            "direction": "Find which way your house and land face",
+            "compass": "A compass right on your phone",
+            "lookup": "Quick and easy to use"
+          }
+        }
+      },
+      "journey": {
+        "title": "For a happier family every day",
+        "motto": "Small things.\nBig happiness!",
+        "steps": {
+          "organized": {
+            "title": "Better organized",
+            "detail": "Time, tasks, life"
+          },
+          "connected": {
+            "title": "More connected",
+            "detail": "The whole family sharing"
+          },
+          "caring": {
+            "title": "More caring",
+            "detail": "Health, study, daily life"
+          },
+          "happy": {
+            "title": "Happier",
+            "detail": "From small things every day"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "Documents & PDF",
+      "title": "<accent>Documents & PDF</accent> tools",
+      "tagline": "Edit. Convert. Merge and split. Sign. Compress. Fast and free.",
+      "description": "Handle documents, PDFs and photos of documents with ease. Use them right in your browser — nothing to install, and files never leave your device.",
+      "metaTitle": "Free PDF tools: merge, split, compress, OCR, sign | Chuyện Nhỏ",
+      "metaDescription": "Merge, split, compress, edit and sign PDFs, convert PDF to Word and recognize Vietnamese text. Free, no account needed, files processed right on your device.",
+      "caption": "Paperwork\nmade simple!",
+      "searchPlaceholder": "Search document tools… (e.g. compress PDF, merge PDF, OCR, sign)",
+      "highlights": {
+        "edit": "Edit PDF content",
+        "mergeSplit": "Merge, split, compress",
+        "convert": "Convert formats",
+        "sign": "Sign documents",
+        "ocr": "OCR text",
+        "compare": "Compare documents",
+        "redact": "Redact sensitive information"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "Use it now, no hidden costs"
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Runs right in your browser"
+        },
+        "secure": {
+          "title": "Secure and private",
+          "detail": "Files processed right on your device"
+        },
+        "formats": {
+          "title": "Many formats",
+          "detail": "PDF, Word, Excel, images"
+        }
+      },
+      "subgroups": {
+        "sua": "Edit & organize",
+        "gop-tach": "Merge, split, compress",
+        "chuyen-doi": "Convert",
+        "ocr": "OCR & compare",
+        "ky-bao-mat": "Sign & secure",
+        "soan-thao": "Write documents"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Handle documents faster with ERPCons",
+          "description": "Manage dossiers, documents, contracts, versions and approvals on one platform.",
+          "points": {
+            "storage": "Centralized storage",
+            "permissions": "Permissions & sharing",
+            "versions": "Version tracking",
+            "linked": "Linked to tasks & projects"
+          }
+        },
+        "tips": {
+          "title": "Quick tips",
+          "items": {
+            "drop": "Drag and drop files into the tool area.",
+            "options": "Choose the options that suit you.",
+            "download": "Download the result to your device.",
+            "closeTab": "Closing the tab removes the files from your browser."
+          }
+        }
+      },
+      "journey": {
+        "title": "From documents to work. We're with you all the way.",
+        "motto": "Big things start\nwith small ones!",
+        "steps": {
+          "documents": {
+            "title": "Documents",
+            "detail": "PDF, Word, Excel"
+          },
+          "storage": {
+            "title": "Storage",
+            "detail": "Centralized records"
+          },
+          "share": {
+            "title": "Share",
+            "detail": "With colleagues"
+          },
+          "approve": {
+            "title": "Approve",
+            "detail": "Quickly"
+          },
+          "track": {
+            "title": "Track",
+            "detail": "Versions, history"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "About Chuyện Nhỏ",
+    "title": "About <accent>Chuyện Nhỏ</accent>",
+    "tagline": "Small tasks create big value.",
+    "intro": "Chuyện Nhỏ is a free toolkit from ERPCons & LPC that helps you quickly handle the small tasks of work, construction and everyday life.",
+    "introMore": "Ready when you need it. Simple. Effective. Nothing to install, no account needed.",
+    "caption": "Need something done?\nUse it now!",
+    "explore": "Explore tools",
+    "guides": "View guides",
+    "valuesLabel": "What Chuyện Nhỏ promises",
+    "values": {
+      "free": {
+        "title": "Free",
+        "detail": "Use it now, no hidden costs"
+      },
+      "noInstall": {
+        "title": "Nothing to install",
+        "detail": "Runs right in your browser"
+      },
+      "onDevice": {
+        "title": "On-device processing first",
+        "detail": "Your files stay on your device"
+      },
+      "domains": {
+        "title": "Many areas",
+        "detail": "Work · Construction · Family"
+      }
+    },
+    "ecosystemTitle": "One ecosystem, more value",
+    "ecosystemDescription": "Chuyện Nhỏ is part of the ERPCons & LPC product ecosystem.",
+    "products": {
+      "chuyen-nho": {
+        "role": "Get one task done",
+        "points": {
+          "free": "Free tools",
+          "noAccount": "Use it now, no account needed",
+          "noInstall": "Nothing to install",
+          "domains": "For work, construction and family"
+        }
+      },
+      "erpcons": {
+        "role": "Manage tasks, projects and businesses",
+        "points": {
+          "work": "Tasks · Contracts · Projects",
+          "cost": "Costs · Purchasing · Inventory",
+          "finance": "Finance · Records · HR",
+          "ai": "AI assistant to query your data"
+        }
+      },
+      "tekshot": {
+        "role": "AI that sees, understands, acts and learns for businesses",
+        "points": {
+          "vision": "Camera AI · TekShot Vision",
+          "pos": "POS & Sales · TekShot POS",
+          "studio": "Marketing AI · TekShot Studio",
+          "research": "Research AI · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "From small tasks today\nto big work tomorrow.",
+    "story": "Chuyện Nhỏ helps you start with small tasks. When work gets more complex, ERPCons and TekShot AI are where you manage, connect and grow that value.",
+    "statsLabel": "Chuyện Nhỏ in numbers",
+    "stats": {
+      "tools": "free tools, ready to use",
+      "groups": "task groups: documents, images, calculators, construction, family…"
+    }
+  },
+  "data": {
+    "trail": "How we handle data",
+    "title": "How we <accent>handle data</accent>",
+    "tagline": "Your files stay on your device.",
+    "intro": "Chuyện Nhỏ processes files right in your browser. This page explains where each tool runs and what is actually sent to the server.",
+    "caption": "Transparent\nfor every tool!",
+    "points": {
+      "noCookie": "No cookies",
+      "noTracking": "No tracking or advertising tools",
+      "noAccount": "No account needed"
+    },
+    "flowLabel": "Where data goes",
+    "columns": {
+      "device": {
+        "title": "Processed right on your device",
+        "lead_one": "{{count}} tool available now",
+        "lead_other": "{{count}} tools available now",
+        "points": {
+          "tab": "PDFs, images and videos are only opened in your browser tab",
+          "download": "Results exist only when you press download",
+          "model": "The text recognition model is downloaded from this site itself, not through a third party"
+        }
+      },
+      "server": {
+        "title": "Sent to our server",
+        "lead": "As little as possible",
+        "points": {
+          "visits": "The name of the tool you open, to count total usage. No cookies, nothing that identifies you",
+          "ip": "IP addresses are only one-way hashed to prevent automated submissions, and deleted automatically after about 1 hour",
+          "feedback": "Feedback and suggestions are sent only when you tick consent and press Send",
+          "soon_one": "{{count}} upcoming tool will need server lookups; its card says so clearly",
+          "soon_other": "{{count}} upcoming tools will need server lookups; their cards say so clearly"
+        }
+      },
+      "local": {
+        "title": "Stored in your browser",
+        "lead": "On this device only",
+        "points": {
+          "prefs": "Recently used tools and light/dark theme",
+          "saved": "Data you save yourself: Family Calendar, notes, CV drafts, flashcards",
+          "clear": "Delete it anytime in the tool or in your browser settings"
+        }
+      }
+    },
+    "tableTitle": "Where each tool processes data",
+    "tableDescription": "This table is generated directly from the tool catalog, so it always matches the label on each card.",
+    "searchPlaceholder": "Search tools… (e.g. OCR, salary, QR)",
+    "filterLabel": "Filter by where processing happens",
+    "modelFilter": "Downloads a recognition model",
+    "head": {
+      "tool": "Tool",
+      "group": "Group",
+      "where": "Where it's processed",
+      "note": "Notes"
+    },
+    "modes": {
+      "device": "On your device",
+      "model": "On your device, downloads a recognition model",
+      "server": "Needs a server"
+    },
+    "notes": {
+      "server": "Coming soon. Needs to look up data on a server; what's sent will be stated clearly before launch.",
+      "model": "Downloads the recognition model once from this site, then recognizes text right on your device.",
+      "noFile": "Runs right on your device; no data is sent.",
+      "device": "Files never leave your device."
+    },
+    "emptyHint": "Try another keyword or remove the filter.",
+    "showAll": "Show all",
+    "faqTitle": "Questions about data",
+    "faqDescription": "Read the full details in the <link>Privacy Policy</link>."
+  },
+  "guidesPage": {
+    "title": "<accent>Guides</accent>",
+    "tagline": "Short steps that match the words on screen.",
+    "intro": "Each guide takes just a few minutes to read. Follow the steps and you're done, with tips and things to watch out for.",
+    "caption": "Read for 2 minutes,\nget it done!",
+    "listTitle": "All guides",
+    "filterLabel": "Filter by group",
+    "missingTitle": "Can't find the guide you need?",
+    "missing": "See the <faq>FAQ</faq>, how to <install>install Chuyện Nhỏ on your device</install>, or suggest a new guide via <suggest>Suggest a tool</suggest>."
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Chuyện Nhỏ guides",
+    "fallbackTitle": "Guides | Chuyện Nhỏ",
+    "minutes_one": "{{count}} minute",
+    "minutes_other": "{{count}} minutes",
+    "steps_one": "{{count}} step",
+    "steps_other": "{{count}} steps",
+    "open": "Open {{name}}",
+    "stepsTitle": "Steps",
+    "tipsTitle": "Tips",
+    "notesTitle": "Good to know",
+    "asideLabel": "Related",
+    "toolsTitle": "Tools in this guide",
+    "othersTitle": "Other guides",
+    "all": "See all guides"
+  },
+  "install": {
+    "trail": "Install on your device",
+    "title": "Install Chuyện Nhỏ <accent>on your device</accent>",
+    "tagline": "Use it like an app. Open it fast. More convenient every day.",
+    "intro": "Chuyện Nhỏ is a web app: add it to your home screen or Dock and it opens instantly, no need to find the page in your browser again.",
+    "caption": "Install once,\nhandy every day!",
+    "benefits": {
+      "fast": "Opens fast from your home screen",
+      "fullscreen": "Full screen, no address bar",
+      "noStore": "No app store needed",
+      "free": "Free"
+    },
+    "cta": "Install app",
+    "ctaHint": "One tap, no app store.",
+    "installed": "Chuyện Nhỏ is already installed on this device.",
+    "chooseTitle": "Choose your device",
+    "chooseDescription": "Each browser puts the install button in a different place.",
+    "tabsLabel": "Device",
+    "panelTitle": "Install on {{platform}} ({{browser}})",
+    "stepWithAddress": "{{detail}} Address: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Open Chuyện Nhỏ in Chrome",
+            "detail": "Type the site address into Chrome's address bar."
+          },
+          "menu": {
+            "title": "Tap the ⋮ menu (three dots)",
+            "detail": "In the top right corner of the screen."
+          },
+          "add": {
+            "title": "Choose “Add to Home screen”",
+            "detail": "On some phones it says “Install app”."
+          },
+          "install": {
+            "title": "Tap “Install”",
+            "detail": "The Chuyện Nhỏ icon will appear on your home screen and open like an app."
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Open Chuyện Nhỏ in Safari",
+            "detail": "Type the site address into Safari's address bar."
+          },
+          "share": {
+            "title": "Tap the Share button",
+            "detail": "The square with an arrow pointing up. On newer iOS, it's in the ⋯ menu on the bottom bar."
+          },
+          "add": {
+            "title": "Choose “Add to Home Screen”",
+            "detail": "Scroll down the list if you don't see it."
+          },
+          "confirm": {
+            "title": "Tap “Add”",
+            "detail": "In the top right corner. The Chuyện Nhỏ icon will appear on your home screen."
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Open Chuyện Nhỏ in Chrome or Edge",
+            "detail": "Your browser needs to be up to date."
+          },
+          "icon": {
+            "title": "Click the install icon in the address bar",
+            "detail": "A screen with a down arrow, at the end of the address bar."
+          },
+          "menu": {
+            "title": "Don't see the icon? Use the menu",
+            "detail": "Chrome: ⋮ menu, choose “Cast, save, and share”, then “Install page as app”. Edge: ⋯ menu, choose “Apps”, then “Install this site as an app”."
+          },
+          "install": {
+            "title": "Click “Install”",
+            "detail": "Chuyện Nhỏ opens in its own window and appears in the Start menu."
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Open Chuyện Nhỏ in Safari",
+            "detail": "Requires macOS Sonoma (14) or later."
+          },
+          "dock": {
+            "title": "In the File menu, choose “Add to Dock”",
+            "detail": "In the menu bar at the top of the screen."
+          },
+          "confirm": {
+            "title": "Click “Add”",
+            "detail": "Chuyện Nhỏ appears in the Dock and opens in its own window."
+          },
+          "chrome": {
+            "title": "Using Chrome or Edge?",
+            "detail": "Do the same as on Windows: click the install icon at the end of the address bar."
+          }
+        }
+      },
+      "other": {
+        "label": "Other browsers",
+        "browser": "Firefox, Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "Tap the ≡ menu, choose “Add page to”, then “Home screen”."
+          },
+          "firefox": {
+            "title": "Firefox on desktop",
+            "detail": "Doesn't support installing sites as apps yet. You can still use every tool normally in a tab."
+          },
+          "install": {
+            "title": "Want to install it as an app?",
+            "detail": "Open Chuyện Nhỏ in Chrome, Edge or Safari, then follow the matching tab."
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "Don't see the install option?",
+    "troubleshooting": {
+      "update": "Update your browser to the latest version.",
+      "address": "Check that you've opened the real Chuyện Nhỏ address, not a re-shared page.",
+      "incognito": "Incognito / private mode doesn't allow installing. Open a normal tab.",
+      "installed": "If it's already installed, the browser won't show the install option again."
+    },
+    "stillStuck": "Still stuck? See the <link>help page</link> or email us."
+  },
+  "support": {
+    "trail": "Help",
+    "title": "How can we <accent>help</accent> you?",
+    "intro": "Find quick answers in the frequently asked questions, or email us.",
+    "caption": "Quick questions,\nshort answers!",
+    "searchLabel": "Search questions",
+    "searchPlaceholder": "Search questions… (e.g. install, saving files, delete data)",
+    "topicsTitle": "Help topics",
+    "topics": {
+      "start": {
+        "title": "Getting started",
+        "detail": "Step-by-step guides"
+      },
+      "documents": {
+        "title": "Documents & PDF",
+        "detail": "Merge, split, compress, OCR"
+      },
+      "image": {
+        "title": "Images",
+        "detail": "Compress, resize, remove background"
+      },
+      "qr": {
+        "title": "QR & barcodes",
+        "detail": "Create, read, batch print"
+      },
+      "construction": {
+        "title": "Construction",
+        "detail": "Estimates, house orientation"
+      },
+      "family": {
+        "title": "Family",
+        "detail": "Calendar, reminders, SOS"
+      },
+      "install": {
+        "title": "Install on your device",
+        "detail": "Android, iPhone, computer"
+      },
+      "privacy": {
+        "title": "Data & privacy",
+        "detail": "Where files are processed"
+      }
+    },
+    "faqTitle": "Frequently asked questions",
+    "faqCount_one": "{{count}} question",
+    "faqCount_other": "{{count}} questions",
+    "faqCountFor_one": "{{count}} question for “{{keyword}}”",
+    "faqCountFor_other": "{{count}} questions for “{{keyword}}”",
+    "emptyTitle": "No matching questions",
+    "emptyHint": "Try another keyword, or email us to ask directly.",
+    "showAll": "See all questions",
+    "contactTitle": "Still need help?",
+    "mailTitle": "Email us",
+    "mailBody": "Include the tool name, the browser you use and a description of the problem. Don't attach files containing personal information.",
+    "suggestTitle": "Feedback and tool suggestions",
+    "suggestBody": "Need a tool we don't have yet, or want to give feedback on an existing one? Send a suggestion and get a receipt code to track it.",
+    "suggestAction": "Send a suggestion"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Is Chuyện Nhỏ free?",
+        "answer": "Yes. Every tool that's live is free, with unlimited use and no account needed. When a team needs long-term storage, sharing and approval of documents, ERPCons is the paid product for that."
+      },
+      "tai-khoan": {
+        "question": "Do I need to create an account?",
+        "answer": "No. Open the site, pick a tool and use it right away. Chuyện Nhỏ has no sign-up and never asks for your name, email or phone number."
+      },
+      "luu-tep": {
+        "question": "Are my files uploaded or stored?",
+        "answer": "No. The PDFs, images and videos you open stay in your browser tab and are processed right on your device. We never receive your files. When you close the tab, the files are gone from the browser; results exist only when you download them."
+      },
+      "may-chu": {
+        "question": "Why do some tools say “Processed on a server”?",
+        "answer": "Some upcoming tools need large or constantly updated data, such as construction prices or zoning, so they have to look things up on a server. Their cards say so clearly so you know in advance. All the tools available now process data on your device."
+      },
+      "cai-dat": {
+        "question": "How do I install Chuyện Nhỏ on my phone?",
+        "answer": "Open Chuyện Nhỏ in Chrome (Android) or Safari (iPhone, iPad), then choose “Add to Home Screen”. On a computer, click the install icon in the Chrome or Edge address bar."
+      },
+      "offline": {
+        "question": "Can I use Chuyện Nhỏ without an internet connection?",
+        "answer": "After the first visit with a connection, your browser caches the site and the tools' code, so they usually still open when your connection is spotty. Heavy parts such as text recognition or video processing are downloaded on first use, so try them once while you're online."
+      },
+      "loi": {
+        "question": "I ran into an error. What should I do?",
+        "answer": "Reload the page and use an up-to-date Chrome, Edge or Safari. Files that are too large or password-protected can also stop a tool; the tool will tell you why right on the screen. If it still fails, email {{email}} with the tool name, the browser you use and a description of the error."
+      },
+      "an-toan": {
+        "question": "Is Chuyện Nhỏ safe?",
+        "answer": "The site runs over an encrypted connection (HTTPS), uses no cookies and has no third-party advertising or tracking tools. Your files never leave your device."
+      },
+      "thu-thap": {
+        "question": "Does Chuyện Nhỏ collect my personal information?",
+        "answer": "Almost none. When you open a tool, your browser reports the tool name so we can count total usage; your IP address is only one-way hashed to prevent automated submissions and is deleted automatically after about 1 hour. Feedback is sent only when you tick consent and press Send."
+      },
+      "xoa-du-lieu": {
+        "question": "How do I delete my data?",
+        "answer": "Data you save in the tools (Family Calendar, notes, CV drafts, flashcards) lives on your device: delete it inside the tool, or clear site data in your browser settings. To delete feedback you've sent, email {{email}} with the receipt code."
+      },
+      "ben-thu-ba": {
+        "question": "Is data shared with third parties?",
+        "answer": "No. We don't sell data or share it for advertising. The only exception is the Speech to text tool, which uses the browser's own speech recognition, so the audio goes to the browser provider (for example, Google for Chrome), not through our servers."
+      },
+      "de-xuat": {
+        "question": "I'd like to suggest a new tool.",
+        "answer": "Please do! Use the Suggest a tool page: you'll get a receipt code to check the review status later."
+      }
+    },
+    "links": {
+      "processingPerTool": "See where each tool processes data",
+      "installPerDevice": "Install guide for each device",
+      "dataHandling": "How we handle data",
+      "privacyPolicy": "Read the privacy policy",
+      "suggest": "Open Suggest a tool"
+    }
+  },
+  "legalPage": {
+    "updated": "Last updated: {{date}}",
+    "toc": "Contents",
+    "summary": "Summary"
+  }
+}

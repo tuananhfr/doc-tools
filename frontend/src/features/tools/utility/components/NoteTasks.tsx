@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
 import { newId } from '@/utils/id'
@@ -12,6 +13,7 @@ interface NoteTasksProps {
 
 /** Danh sách việc của một ghi chú: đánh dấu xong, sửa chữ, bỏ, thêm việc mới bằng Enter. */
 export function NoteTasks({ tasks, onChange }: NoteTasksProps) {
+  const { t } = useTranslation('utility')
   const ids = useId()
   const [draft, setDraft] = useState('')
   const full = tasks.length >= NOTE_LIMITS.tasks
@@ -28,7 +30,7 @@ export function NoteTasks({ tasks, onChange }: NoteTasksProps) {
   return (
     <div className="erp-flow-field">
       <span className="erp-flow-field__label" id={`${ids}-label`}>
-        Danh sách việc
+        {t('notes.tasks')}
       </span>
 
       {tasks.length > 0 ? (
@@ -39,19 +41,19 @@ export function NoteTasks({ tasks, onChange }: NoteTasksProps) {
                 id={`${ids}-${task.id}`}
                 type="checkbox"
                 className="erp-note-task__check"
-                aria-label={`Đã xong: ${task.text || `việc ${index + 1}`}`}
+                aria-label={t('notes.taskDone', { task: task.text || t('notes.taskFallback', { number: index + 1 }) })}
                 checked={task.done}
                 onChange={(event) => patch(task.id, { done: event.target.checked })}
               />
               <Form.Control
                 type="text"
                 className="erp-note-task__text"
-                aria-label={`Việc ${index + 1}`}
+                aria-label={t('notes.task', { number: index + 1 })}
                 maxLength={NOTE_LIMITS.task}
                 value={task.text}
                 onChange={(event) => patch(task.id, { text: event.target.value })}
               />
-              <button type="button" className="btn erp-flow-file__button" aria-label={`Bỏ việc ${index + 1}`} title="Bỏ việc này" onClick={() => onChange(tasks.filter((other) => other.id !== task.id))}>
+              <button type="button" className="btn erp-flow-file__button" aria-label={t('notes.removeTask', { number: index + 1 })} title={t('notes.removeTaskTitle')} onClick={() => onChange(tasks.filter((other) => other.id !== task.id))}>
                 <Icon name="x-lg" />
               </button>
             </li>
@@ -68,8 +70,8 @@ export function NoteTasks({ tasks, onChange }: NoteTasksProps) {
       >
         <Form.Control
           type="text"
-          aria-label="Việc mới"
-          placeholder={full ? `Đã đủ ${NOTE_LIMITS.tasks} việc` : 'Thêm việc, nhấn Enter'}
+          aria-label={t('notes.newTask')}
+          placeholder={full ? t('notes.tasksFull', { count: NOTE_LIMITS.tasks }) : t('notes.addTaskPlaceholder')}
           maxLength={NOTE_LIMITS.task}
           disabled={full}
           value={draft}
@@ -77,7 +79,7 @@ export function NoteTasks({ tasks, onChange }: NoteTasksProps) {
         />
         <Button type="submit" variant="outline-secondary" disabled={full || draft.trim() === ''}>
           <Icon name="plus-lg" className="me-2" />
-          Thêm
+          {t('notes.addTask')}
         </Button>
       </form>
     </div>

@@ -1,13 +1,9 @@
 import type { TargetType } from '../types/orientation.types'
 
+/** Tên, tên ngắn (in cạnh kim la bàn) và gợi ý nằm ở `orientation:targets.<type>`. */
 export interface TargetSpec {
   type: TargetType
-  label: string
-  /** Nhãn ngắn in cạnh kim trên la bàn. */
-  short: string
   icon: string
-  /** Gợi ý cho người dùng phổ thông: trục này chỉ về đâu. */
-  hint: string
 }
 
 /**
@@ -16,16 +12,16 @@ export interface TargetSpec {
  * hướng nhìn từ trong nhà ra cửa, không phải hướng đứng ngoài nhìn vào.
  */
 export const TARGET_SPECS: TargetSpec[] = [
-  { type: 'HOUSE_FRONTAGE', label: 'Hướng nhà', short: 'Nhà', icon: 'house-door', hint: 'Từ trong nhà nhìn thẳng ra mặt tiền' },
-  { type: 'MAIN_DOOR', label: 'Cửa chính', short: 'Cửa', icon: 'door-open', hint: 'Từ trong nhà nhìn ra qua cửa chính' },
-  { type: 'BALCONY', label: 'Ban công', short: 'Ban công', icon: 'building', hint: 'Từ trong phòng nhìn ra ban công' },
+  { type: 'HOUSE_FRONTAGE', icon: 'house-door' },
+  { type: 'MAIN_DOOR', icon: 'door-open' },
+  { type: 'BALCONY', icon: 'building' },
   // Hướng bếp = hướng lưng người đứng nấu (mặt bếp nhìn ra), KHÔNG phải hướng người nấu nhìn vào.
-  { type: 'KITCHEN', label: 'Bếp', short: 'Bếp', icon: 'fire', hint: 'Hướng lưng người đứng nấu — ngược hướng người nấu nhìn vào bếp' },
-  { type: 'ALTAR', label: 'Bàn thờ', short: 'Bàn thờ', icon: 'brightness-alt-high', hint: 'Hướng mặt bàn thờ nhìn ra' },
-  { type: 'BED', label: 'Giường', short: 'Giường', icon: 'moon-stars', hint: 'Từ đầu giường nhìn về cuối giường' },
-  { type: 'DESK', label: 'Bàn làm việc', short: 'Bàn', icon: 'laptop', hint: 'Hướng người ngồi làm việc nhìn tới' },
-  { type: 'LAND_FRONTAGE', label: 'Mặt tiền đất', short: 'Đất', icon: 'signpost-split', hint: 'Từ trong lô đất nhìn ra đường' },
-  { type: 'CUSTOM', label: 'Đối tượng khác', short: 'Khác', icon: 'bullseye', hint: 'Tự đặt tên, trục chỉ về hướng cần đo' },
+  { type: 'KITCHEN', icon: 'fire' },
+  { type: 'ALTAR', icon: 'brightness-alt-high' },
+  { type: 'BED', icon: 'moon-stars' },
+  { type: 'DESK', icon: 'laptop' },
+  { type: 'LAND_FRONTAGE', icon: 'signpost-split' },
+  { type: 'CUSTOM', icon: 'bullseye' },
 ]
 
 export function targetSpec(type: TargetType): TargetSpec {

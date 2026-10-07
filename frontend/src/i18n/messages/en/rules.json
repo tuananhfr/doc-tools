@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Loading signed data…",
+    "invalid": "The data package on the system failed verification (signature, expiry or format), so it isn't used. Please tell an administrator.",
+    "unavailable": "Couldn't load signed data from the server. You can still enter values yourself.",
+    "upcoming": "From {{date}}, the new {{label}} applies under {{source}}."
+  }
+}

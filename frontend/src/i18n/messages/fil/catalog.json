@@ -1,0 +1,448 @@
+{
+  "pageTitle": "{{name}} nang libre",
+  "groups": {
+    "all": "Lahat",
+    "document": "Dokumento",
+    "image": "Larawan",
+    "calc": "Kalkulasyon",
+    "money": "Pera",
+    "date": "Petsa at deadline",
+    "data": "Data",
+    "construction": "Konstruksyon",
+    "home": "Bahay at buhay",
+    "tech": "Teknikal",
+    "other": "Iba pang utility"
+  },
+  "tips": {
+    "insertPages": "Mag-drop ng iba pang file sa gitna ng page grid para maisingit ito sa tamang lugar — hindi na kailangang mag-merge ulit mula sa simula.",
+    "findInScan": "Nahahanap din ng Ctrl+F ang text sa scan kapag napatakbo na ang OCR.",
+    "undo": "Ina-undo ng Ctrl+Z ang anumang ginawa mo sa page: pagbura, pag-rotate, pag-crop, pag-edit ng text.",
+    "rangeSelect": "Pindutin nang matagal ang Shift at i-click ang pangalawang page para mapili ang lahat ng page sa pagitan."
+  },
+  "tools": {
+    "compress-video": {
+      "name": "I-compress ang video",
+      "description": "Paliitin ang file at i-export bilang MP4 mismo sa browser",
+      "synonyms": "paliitin ang video, compress video, mp4, liitan video"
+    },
+    "trim-video": {
+      "name": "I-trim ang video",
+      "description": "Pumili ng bahagi ayon sa segundo at mag-export ng bagong MP4",
+      "synonyms": "trim video, cut video, putulin ang video, clip, mp4"
+    },
+    "video-gif": {
+      "name": "Gumawa ng GIF mula sa video",
+      "description": "Gawing paulit-ulit na animated na larawan ang maikling video clip",
+      "synonyms": "gif, animated gif, video to gif"
+    },
+    "extract-audio": {
+      "name": "Kunin ang audio mula sa video",
+      "description": "Kunin ang audio at i-export bilang MP3, M4A o WAV sa device",
+      "synonyms": "video to mp3, kanta mula sa video, extract audio"
+    },
+    "assistant": {
+      "name": "Tagahanap ng tool",
+      "description": "Hanapin ang tamang tool at gamitin ang sarili mong AI gamit ang prompt na na-preview mo",
+      "synonyms": "ai assistant, paano gawin, tulong sa pagpili ng tool"
+    },
+    "idea-suggestion": {
+      "name": "Magmungkahi ng tool",
+      "description": "Magpadala ng ideya at subaybayan ang review gamit ang resibo code",
+      "privacyNote": "Ipinapadala lang ang nilalaman kapag pinindot mo ang Ipadala ang mungkahi",
+      "synonyms": "puna sa tool, bagong ideya, roadmap, suggestion"
+    },
+    "regulation-feedback": {
+      "name": "Puna sa regulasyon",
+      "description": "Magpadala ng nilalaman at source URL para suriin ng mga operator",
+      "privacyNote": "Ipinapadala lang ang nilalaman kapag pinindot mo ang Ipadala ang mungkahi",
+      "synonyms": "update sa batas, bagong regulasyon, puna sa data"
+    },
+    "remove-background": {
+      "name": "Alisin ang background ng larawan",
+      "description": "Awtomatikong alisin ang plain na background at ayusin gamit ang brush",
+      "synonyms": "remove background, transparent background, larawan ng produkto, tanggal background"
+    },
+    "cv": {
+      "name": "Gumawa ng CV",
+      "description": "Isulat ang CV, pumili ng template at i-print o i-save bilang PDF sa device",
+      "synonyms": "resume, cv, biodata, job application"
+    },
+    "pdf-password": {
+      "name": "Maglagay o mag-alis ng password sa PDF",
+      "description": "I-encrypt gamit ang AES-256 o i-unlock gamit ang wastong password",
+      "synonyms": "lock pdf, protect pdf, unlock pdf, password pdf"
+    },
+    "family-calendar": {
+      "name": "Kalendaryo ng Pamilya",
+      "description": "I-save ang mga event, gawain at emergency contact sa device; mag-backup at mag-export ng ICS",
+      "synonyms": "family calendar, kalendaryo ng pamilya, paalala, sos, iskedyul sa school"
+    },
+    "address-conversion": {
+      "name": "Address pagkatapos ng merger",
+      "description": "Ihambing ang lumang address sa buong talaan ng commune/ward",
+      "privacyNote": "Inihahambing sa device; ipinapadala lang ang puna kapag pumayag ka",
+      "synonyms": "bagong address, vietnam address, pinagsamang probinsya, palit pangalan ng commune"
+    },
+    "payroll": {
+      "name": "Sahod Gross – Net",
+      "description": "Tantiyahin ang take-home pay batay sa iyong parameter o signed package",
+      "privacyNote": "Kinukuwenta sa device; ipinapadala lang ang puna kapag pumayag ka",
+      "synonyms": "net pay, sahod, income tax, insurance, payroll"
+    },
+    "lunar-calendar": {
+      "name": "Lunar – solar na kalendaryo",
+      "description": "Buwanang lunar – solar na kalendaryo na may holiday, sexagenary cycle at mapalad na oras; pag-convert ng petsa sa dalawang direksyon at paghahanap ng anibersaryo ng pagpanaw",
+      "synonyms": "lunar calendar, tet, chinese calendar, anibersaryo"
+    },
+    "electricity": {
+      "name": "Bill sa kuryente at tubig",
+      "description": "Tantiyahin ang bill sa kuryente ayon sa tier at bill sa tubig ayon sa presyong ilalagay mo",
+      "privacyNote": "Kinukuwenta sa device; ipinapadala lang ang puna kapag pumayag ka",
+      "synonyms": "electric bill, bill sa kuryente, kwh, bill sa tubig"
+    },
+    "form-templates": {
+      "name": "Mga form at talaan",
+      "description": "Gumawa ng leave request, sulat ng awtorisasyon at talaan ng turnover para i-print",
+      "synonyms": "leave form, authorization letter, turnover, handover"
+    },
+    "dictation": {
+      "name": "Boses patungong text",
+      "description": "Magdikta sa Vietnamese gamit ang speech recognition ng browser",
+      "privacyNote": "Maaaring ipadala ng browser ang audio sa sarili nitong speech recognition service",
+      "synonyms": "dictation, mikropono, speech to text, voice typing"
+    },
+    "magnifier": {
+      "name": "Magnifier",
+      "description": "I-zoom ang camera para mabasa ang maliliit na titik",
+      "synonyms": "zoom camera, basahin ang maliit na titik, magnifying glass"
+    },
+    "house-estimate": {
+      "name": "Tantiyang gastos sa pagpapatayo ng bahay",
+      "description": "I-convert ang sukat at ilagay ang presyo ng kontratista para tantiyahin ang gastos",
+      "synonyms": "floor area, estimate ng bahay, presyo ng konstruksyon, cost estimate"
+    },
+    "number-words": {
+      "name": "Numero sa salita",
+      "description": "Isulat sa salitang Vietnamese ang halaga para sa resibo at kontrata",
+      "synonyms": "amount in words, numero sa salita, vietnamese number words"
+    },
+    "loan": {
+      "name": "Hulugang loan at savings",
+      "description": "Kuwentahin ang iskedyul ng pagbabayad o ng nire-renew na deposito",
+      "synonyms": "bank loan, amortization, interes, hulugan"
+    },
+    "unit-price": {
+      "name": "Paghahambing ng presyo kada yunit",
+      "description": "Ihambing ang presyo ng dalawang produkto sa parehong dami",
+      "synonyms": "presyo kada kg, presyo kada litro, pamimili, unit price"
+    },
+    "study": {
+      "name": "Conversion ng marka at admission",
+      "description": "I-convert ang marka at kuwentahin ang admission priority bilang sanggunian",
+      "synonyms": "4-point scale, 10-point scale, grade conversion, priority points"
+    },
+    "pomodoro": {
+      "name": "Focus timer",
+      "description": "Hatiin ang oras sa mga session ng focus at pahinga",
+      "synonyms": "timer, focus, pomodoro"
+    },
+    "group-split": {
+      "name": "Hatian sa grupo",
+      "description": "Alamin kung sino ang dapat magbayad kanino pagkatapos ng mga pinagsaluhang gastos",
+      "synonyms": "split bill, hatian, ambagan, gastos sa lakad"
+    },
+    "legacy-font": {
+      "name": "Vietnamese font at diacritics",
+      "description": "I-convert ang TCVN3 at VNI at i-normalize ang diacritics sa Unicode",
+      "synonyms": "vni to unicode, tcvn3 to unicode, remove diacritics"
+    },
+    "read-aloud": {
+      "name": "Basahin nang malakas",
+      "description": "Gamitin ang boses ng device para pakinggan ang text",
+      "synonyms": "text to speech, pakinggan ang text, read aloud"
+    },
+    "vietqr": {
+      "name": "VietQR bank transfer",
+      "description": "Gumawa ng QR code para sa bank transfer mula sa BIN at numero ng account",
+      "synonyms": "bank qr, napas, transfer qr, vietqr"
+    },
+    "invoice-xml": {
+      "name": "Basahin ang XML na e-invoice",
+      "description": "Tingnan ang mga field at i-export ang listahan ng item mula sa XML",
+      "synonyms": "xml invoice, e-invoice, listahan ng invoice, tt78"
+    },
+    "remove-metadata": {
+      "name": "Alisin ang lokasyon sa larawan",
+      "description": "Gawing muli ang larawan para maalis ang EXIF, GPS at orihinal na impormasyon ng camera",
+      "synonyms": "remove exif, alisin ang gps, itago ang lokasyon ng larawan, metadata"
+    },
+    "collage": {
+      "name": "Photo collage",
+      "description": "Pagsamahin ang 2–9 na larawan sa isang PNG grid",
+      "synonyms": "collage, photo grid, pagsamahin ang mga larawan"
+    },
+    "message-risk": {
+      "name": "Suriin ang kahina-hinalang mensahe o link",
+      "description": "I-screen ang mga senyales ng scam nang hindi binubuksan ang link",
+      "synonyms": "scam, phishing, pekeng sms, modus"
+    },
+    "flashcards": {
+      "name": "Flashcards",
+      "description": "Gumawa at mag-review ng card gamit ang Leitner box sa device",
+      "synonyms": "flashcard, review ng bokabularyo, leitner box"
+    },
+    "scan-to-pdf": {
+      "name": "Scan larawan → PDF",
+      "description": "Pagsamahin ang mga kuhang larawan sa isang PDF file",
+      "pageTitle": "Libreng pag-convert ng larawan sa PDF",
+      "synonyms": "jpg to pdf, larawan sa pdf, scan ng dokumento, image to pdf, pagsamahin ang larawan"
+    },
+    "merge-pdf": {
+      "name": "Pagsamahin ang PDF",
+      "description": "Pagsamahin ang maraming PDF file sa isa",
+      "synonyms": "merge pdf, combine pdf, pagsamahin, pagdugtungin ang pdf"
+    },
+    "split-pdf": {
+      "name": "Hatiin ang PDF",
+      "description": "Hatiin ang mga page at kunin ang mga ito bilang hiwalay na file",
+      "synonyms": "split pdf, hatiin ang pdf, kunin ang page, extract pages"
+    },
+    "compress-pdf": {
+      "name": "I-compress ang PDF",
+      "description": "Paliitin ang laki ng PDF file",
+      "synonyms": "compress pdf, paliitin ang pdf, magaan na pdf, reduce pdf size"
+    },
+    "convert-file": {
+      "name": "I-convert ang file",
+      "description": "PDF sa Word, Excel, larawan",
+      "pageTitle": "Libreng pag-convert ng PDF sa Word",
+      "synonyms": "pdf to word, docx, xlsx, pdf to excel, pdf to jpg, pdf sa larawan"
+    },
+    "pdf-to-image": {
+      "name": "PDF → Larawan",
+      "description": "Gawing JPG o PNG na larawan ang bawat page ng PDF",
+      "synonyms": "pdf to jpg, pdf to png, pdf sa larawan, export image"
+    },
+    "organize-pdf": {
+      "name": "Ayusin ang PDF",
+      "description": "Baguhin ang pagkakasunod, i-rotate, alisin ang mga page",
+      "synonyms": "reorder pages, rotate page, delete page, ayusin ang page"
+    },
+    "page-numbers": {
+      "name": "Mga page number",
+      "description": "Lagyan ng page number ang PDF file",
+      "synonyms": "page number, numero ng page, footer"
+    },
+    "stamp-pdf": {
+      "name": "Mag-stamp sa PDF",
+      "description": "Text o logo na stamp sa mga page",
+      "synonyms": "watermark, logo, kopya, stamp"
+    },
+    "redact-pdf": {
+      "name": "I-redact ang PDF",
+      "description": "Permanenteng alisin ang sensitibong bahagi sa file",
+      "synonyms": "redact, blackout, itago ang impormasyon, burahin ang text"
+    },
+    "view-pdf": {
+      "name": "Tingnan ang PDF",
+      "description": "Tingnan, hanapin ang text, maglagay ng tala sa page",
+      "synonyms": "basahin ang pdf, buksan ang pdf, pdf viewer"
+    },
+    "ocr": {
+      "name": "OCR ng text",
+      "description": "Kilalanin ang Vietnamese na text sa mga scan",
+      "synonyms": "text recognition, searchable pdf, ocr, scan to text"
+    },
+    "compare": {
+      "name": "Ihambing ang mga dokumento",
+      "description": "Ihambing ang text ng dalawang PDF at ipakita ang magkaibang linya",
+      "synonyms": "compare, diff, compare pdf, pagkakaiba, luma at bagong bersyon"
+    },
+    "sign": {
+      "name": "Maglagay ng pirma",
+      "description": "Gumuhit o maglagay ng larawan ng pirma sa page",
+      "synonyms": "pirmahan ang dokumento, pirma, signature, sign pdf, e-sign"
+    },
+    "edit-pdf": {
+      "name": "I-edit ang PDF",
+      "description": "I-edit ang text, mag-highlight, ayusin ang mga page",
+      "synonyms": "edit pdf, rotate page, delete page, magdagdag ng text"
+    },
+    "image-to-text": {
+      "name": "Larawan → Text",
+      "description": "Kunin ang Vietnamese na text mula sa larawan",
+      "synonyms": "ocr image, kopyahin ang text sa larawan, extract text, image to text"
+    },
+    "measure-image": {
+      "name": "Sukatin sa larawan",
+      "description": "Sukatin ang haba at sukat ng lugar sa larawan",
+      "synonyms": "ruler, sukatin ang drawing, scale, measure"
+    },
+    "convert-image": {
+      "name": "I-convert ang larawan",
+      "description": "Palitan sa pagitan ng JPG, PNG, WebP",
+      "synonyms": "palitan ang format, png to jpg, jpg to png, webp to jpg"
+    },
+    "compress-image": {
+      "name": "I-compress ang larawan",
+      "description": "Paliitin ang laki ng larawan",
+      "synonyms": "paliitin ang larawan, magaan na larawan, resize, compress image"
+    },
+    "crop-image": {
+      "name": "I-crop at ayusin ang larawan",
+      "description": "I-crop, i-rotate, ayusin ang liwanag at dilim",
+      "synonyms": "crop, rotate image, flip image, brightness"
+    },
+    "batch-image": {
+      "name": "Batch na larawan",
+      "description": "Baguhin ang laki, pangalan at format nang sabay-sabay",
+      "synonyms": "resize image, rename image, paliitin ang larawan, batch, maraming larawan"
+    },
+    "mark-image": {
+      "name": "Takpan at i-stamp ang larawan",
+      "description": "Takpan ang impormasyon at mag-stamp ng text sa larawan",
+      "synonyms": "watermark, blackout, takpan ang mukha, takpan ang numero, copyright stamp"
+    },
+    "id-photo": {
+      "name": "ID photo at pag-print",
+      "description": "I-crop ang ID photo at ilagay ang maraming kopya sa isang sheet",
+      "synonyms": "2x2, 1x1, passport photo, id picture, print id photo"
+    },
+    "qr-create": {
+      "name": "Gumawa ng QR code",
+      "description": "Gumawa ng QR code mula sa text o link",
+      "synonyms": "qr code, qr link, qr generator"
+    },
+    "barcode-create": {
+      "name": "Gumawa ng barcode",
+      "description": "EAN-13, Code 128, ITF-14 — isa o maramihan",
+      "synonyms": "barcode, ean, code 128, code 39, itf, label, item code"
+    },
+    "qr-read": {
+      "name": "Basahin ang QR code/barcode",
+      "description": "I-scan ang code mula sa larawan o camera",
+      "synonyms": "scan qr, qr scanner, barcode scanner, barcode"
+    },
+    "quick-calc": {
+      "name": "Mabilis na kalkulasyon",
+      "description": "Sukat ng lugar, volume, timbang",
+      "synonyms": "calculator, m2, m3, konkreto, semento"
+    },
+    "money-calc": {
+      "name": "Pera at buwis",
+      "description": "Porsyento, VAT, discount, gross margin, hatian",
+      "synonyms": "vat, buwis, porsyento, discount, margin, markup, split bill, tubo"
+    },
+    "date-calc": {
+      "name": "Petsa at deadline",
+      "description": "Bilangin ang mga araw, araw ng trabaho, magdagdag o magbawas ng araw",
+      "synonyms": "bilang ng araw, deadline, working days, ilang araw"
+    },
+    "house-orientation": {
+      "name": "Direksyon ng bahay at compass",
+      "description": "Sukatin ang direksyon ng bahay, ilagay ang compass sa larawan o drawing",
+      "synonyms": "compass, direksyon ng bahay, direksyon ng pinto, feng shui, harap ng bahay, araw sa hapon"
+    },
+    "quick-note": {
+      "name": "Mabilis na tala",
+      "description": "Mga tala at to-do list na naka-save sa device",
+      "synonyms": "note, todo, listahan ng gagawin"
+    },
+    "char-count": {
+      "name": "Bilang ng character",
+      "description": "Bilangin ang character, salita, linya",
+      "synonyms": "word count, character count, bilang ng salita"
+    },
+    "unit-convert": {
+      "name": "Unit converter",
+      "description": "Haba, sukat ng lugar, timbang",
+      "synonyms": "convert unit, inch, feet, metro"
+    },
+    "color": {
+      "name": "Kulay",
+      "description": "Pumili ng kulay, i-convert ang color code",
+      "synonyms": "color palette, hex, rgb, kulay"
+    },
+    "random-code": {
+      "name": "Random code generator",
+      "description": "Password, order code, voucher code",
+      "synonyms": "password, generate code, random"
+    },
+    "construction-price": {
+      "name": "Presyo sa konstruksyon",
+      "description": "Hanapin ang presyo kada yunit, materyales at labor ayon sa lugar"
+    },
+    "planning-lookup": {
+      "name": "Urban planning",
+      "description": "Hanapin ang impormasyon sa planning at land-use indicators"
+    },
+    "construction-law": {
+      "name": "Batas sa konstruksyon",
+      "description": "Hanapin ang mga proseso, dokumento at legal na form"
+    },
+    "construction-standards": {
+      "name": "Pamantayan sa konstruksyon",
+      "description": "Hanapin at mabilis na tingnan ang mga standard at code"
+    },
+    "dossier-check": {
+      "name": "Suriin ang dossier",
+      "description": "Hanapin ang karaniwang mali sa design file at drawing"
+    },
+    "structure-calc": {
+      "name": "Mabilis na structural calc",
+      "description": "Kuwentahin ang section at basic na load"
+    },
+    "drawing-convert": {
+      "name": "I-convert ang drawing",
+      "description": "I-convert ang DWG, DXF sa PDF at sukatin"
+    },
+    "drawing-area": {
+      "name": "Sukatin ang area sa drawing",
+      "description": "Sukatin ang area at perimeter sa PDF na drawing"
+    },
+    "site-diary": {
+      "name": "Site diary",
+      "description": "Kumuha ng larawan, magtala at magmarka mismo sa construction site"
+    },
+    "supplier-lookup": {
+      "name": "Hanapin ang supplier",
+      "description": "Maghanap ng supplier ng materyales at kagamitan sa konstruksyon"
+    },
+    "family-reminders": {
+      "name": "Mga paalala",
+      "description": "Paalala sa gamot, paghatid-sundo, gawaing-bahay, timer"
+    },
+    "family-share": {
+      "name": "Ibahagi sa pamilya",
+      "description": "Imbitahan ang mga mahal sa buhay na tumingin at mag-update ng iisang kalendaryo"
+    },
+    "family-health": {
+      "name": "Kalusugan ng pamilya",
+      "description": "Itala ang check-up at paalala sa gamot ng bawat isa"
+    },
+    "house-chores": {
+      "name": "Listahan ng gawaing-bahay",
+      "description": "Hatiin ang gawaing-bahay at subaybayan ang mga natapos"
+    },
+    "family-budget": {
+      "name": "Gastusin ng pamilya",
+      "description": "Itala ang kita at gastos, subaybayan ang simpleng budget"
+    },
+    "family-album": {
+      "name": "Family album",
+      "description": "Itago ang mga larawan at video ng mga sandali ng pamilya"
+    },
+    "special-days": {
+      "name": "Mga espesyal na araw",
+      "description": "Paalala sa kaarawan, anibersaryo, araw ng paggunita, holiday"
+    },
+    "honor-board": {
+      "name": "Honor board",
+      "description": "Pagkilala sa mga nag-ambag ng beripikadong data"
+    },
+    "code-manager": {
+      "name": "Pamahalaan ang mga code",
+      "description": "Gumawa ng listahan ng QR code at barcode at i-export ang file"
+    }
+  }
+}

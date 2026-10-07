@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "打印 / 保存为 PDF"
+  },
+  "cv": {
+    "title": "制作简历",
+    "saveDraft": "保存草稿",
+    "openDraft": "打开草稿",
+    "clearDraft": "删除草稿",
+    "template": "简历模板",
+    "templates": {
+      "classic": "经典",
+      "modern": "现代"
+    },
+    "fields": {
+      "name": "姓名",
+      "role": "应聘职位",
+      "phone": "电话号码",
+      "email": "邮箱",
+      "location": "居住地",
+      "link": "作品集或 LinkedIn"
+    },
+    "photo": "个人照片（仅限本次会话）",
+    "photoAlt": "简历中的个人照片",
+    "summary": "简短介绍",
+    "sections": {
+      "experience": "工作经历",
+      "education": "教育背景",
+      "skills": "技能",
+      "languages": "外语",
+      "certificates": "证书"
+    },
+    "entry": {
+      "period": "时间",
+      "company": "公司",
+      "school": "学校",
+      "position": "职位",
+      "degree": "专业 / 学位",
+      "description": "描述 / 成果",
+      "remove": "删除此项",
+      "add": "添加一项"
+    },
+    "messages": {
+      "saved": "草稿已保存在此设备上；照片不会保存。",
+      "saveFailed": "无法在设备上保存草稿。",
+      "noDraft": "还没有有效的草稿。",
+      "opened": "已打开草稿。",
+      "unreadable": "无法读取草稿。",
+      "cleared": "已删除设备上的草稿。"
+    },
+    "note": "发送前请仔细检查信息。只有在你点击“保存”时草稿才会保存在设备上；照片不会保存。"
+  },
+  "formTemplates": {
+    "title": "制作文书模板",
+    "kind": "文书类型",
+    "names": {
+      "leave": "请假申请",
+      "authorization": "授权委托书",
+      "handover": "交接记录"
+    },
+    "fields": {
+      "recipient": "致",
+      "name": "姓名",
+      "department": "职务、部门",
+      "from": "请假开始日期",
+      "to": "请假截止日期",
+      "reason": "原因",
+      "handover": "工作交接人",
+      "placeWritten": "书写地点",
+      "fromName": "委托人",
+      "fromId": "委托人身份证件号码",
+      "fromAddress": "委托人地址",
+      "toName": "受托人",
+      "toId": "受托人身份证件号码",
+      "toAddress": "受托人地址",
+      "scope": "委托事项",
+      "term": "期限",
+      "giver": "移交方（姓名、职务）",
+      "receiver": "接收方（姓名、职务）",
+      "items": "交接清单（每行一项）",
+      "note": "备注",
+      "placeDrawn": "制作地点"
+    },
+    "authorizationWarning": "部分事项需要公证或认证。使用前请向受理单位确认。",
+    "defaultWarning": "参考模板；提交前请确认受理单位的要求。",
+    "privacy": "数据只保留在当前打开的页面中。"
+  }
+}

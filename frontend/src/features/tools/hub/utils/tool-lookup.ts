@@ -1,33 +1,34 @@
-import { normalizeTextSearch } from '@/utils/text-search'
+import { searchTools } from './tool-search'
 import { CATEGORY_TONE, LEGACY_TOOL_QUERY, TOOL_CATALOG } from '../config/tool-catalog'
-import type { ReadyTool, ToolDefinition, ToolFilter, ToolTone } from '../types/tool.types'
+import type { ToolDefinition, ToolEntry, ToolFilter, ToolTone } from '../types/tool.types'
 
 /** Build a tool URL within its public or ERPCons branch. */
-export function toolPath(base: string, tool: Pick<ToolDefinition, 'slug'>): string {
+export function toolPath(base: string, tool: Pick<ToolEntry, 'slug'>): string {
   return `${base.replace(/\/+$/, '')}/${tool.slug}`
 }
 
 /** Đường dẫn theo `id` — cho công cụ này mở công cụ khác mà không chép slug sang chỗ thứ hai. */
-export function toolPathOf(base: string, id: string, catalog: ToolDefinition[] = TOOL_CATALOG): string {
+export function toolPathOf(base: string, id: string, catalog: readonly ToolEntry[] = TOOL_CATALOG): string {
   const tool = catalog.find((item) => item.id === id)
   return tool && tool.status === 'ready' ? toolPath(base, tool) : base
 }
 
-export function toolTone(tool: ToolDefinition): ToolTone {
+export function toolTone(tool: Pick<ToolEntry, 'categories'>): ToolTone {
   return CATEGORY_TONE[tool.categories[0]]
 }
 
-export function toolPageTitle(tool: ToolDefinition): string {
-  return `${tool.pageTitle ?? `${tool.name} miễn phí`} · Chuyện Nhỏ`
+/** Tên thương hiệu đứng sau tiêu đề ở mọi ngôn ngữ. */
+export function toolPageTitle(tool: Pick<ToolDefinition, 'pageTitle'>): string {
+  return `${tool.pageTitle} · Chuyện Nhỏ`
 }
 
-export function findToolBySlug(slug: string, catalog: ToolDefinition[] = TOOL_CATALOG): ToolDefinition | null {
+export function findToolBySlug<T extends ToolEntry>(slug: string, catalog: readonly T[]): T | null {
   return catalog.find((tool) => tool.slug === slug) ?? null
 }
 
-export interface ToolRoute {
+export interface ToolRoute<T extends ToolEntry = ToolEntry> {
   /** Công cụ MỞ ĐƯỢC ở đường dẫn này; null = về trang chọn công cụ. */
-  tool: ReadyTool | null
+  tool: Extract<T, { status: 'ready' }> | null
   /** Slug chuẩn khi URL đang mở lệch chuẩn (viết hoa); null = giữ nguyên. */
   redirect: string | null
 }
@@ -35,19 +36,20 @@ export interface ToolRoute {
 /**
  * Slug lạ và slug của công cụ "Sắp có" đều về trang chọn — không có trang lỗi:
  * link đã chia sẻ mà gõ sai vẫn đưa người ta tới chỗ chọn được công cụ.
+ * Truyền danh mục đã gắn ngôn ngữ (`useToolCatalog()`) khi cần hiện tên công cụ.
  */
-export function resolveToolRoute(slug: string | undefined, catalog: ToolDefinition[] = TOOL_CATALOG): ToolRoute {
+export function resolveToolRoute<T extends ToolEntry = ToolEntry>(slug: string | undefined, catalog: readonly T[] = TOOL_CATALOG as unknown as readonly T[]): ToolRoute<T> {
   const normalized = slug?.trim().toLowerCase() ?? ''
   const tool = findToolBySlug(normalized, catalog)
   if (!tool || tool.status !== 'ready') return { tool: null, redirect: null }
-  return { tool, redirect: normalized === slug ? null : tool.slug }
+  return { tool: tool as Extract<T, { status: 'ready' }>, redirect: normalized === slug ? null : tool.slug }
 }
 
 /**
  * Điều hướng này có gỡ MÀN đang mở không? Đổi giữa hai slug chung một màn (Xem
  * PDF ↔ Chỉnh sửa PDF) không dựng lại màn nên không tính là rời — tệp còn nguyên.
  */
-export function leavesToolScreen(base: string, currentPath: string, nextPath: string, catalog: ToolDefinition[] = TOOL_CATALOG): boolean {
+export function leavesToolScreen(base: string, currentPath: string, nextPath: string, catalog: readonly ToolEntry[] = TOOL_CATALOG): boolean {
   const prefix = `${base.replace(/\/+$/, '')}/`
   const screenAt = (path: string) => (path.startsWith(prefix) ? (resolveToolRoute(path.slice(prefix.length).replace(/\/+$/, ''), catalog).tool?.screen ?? null) : null)
   const current = screenAt(currentPath)
@@ -61,7 +63,7 @@ export function leavesToolScreen(base: string, currentPath: string, nextPath: st
  * bỏ cột ảnh bìa cho nó. Các công cụ còn lại là một thẻ chọn tệp / một bảng nhập
  * liệu, vừa trong cột phải.
  */
-export function toolNeedsFullWidth(slug: string | undefined, catalog: ToolDefinition[] = TOOL_CATALOG): boolean {
+export function toolNeedsFullWidth(slug: string | undefined, catalog: readonly ToolEntry[] = TOOL_CATALOG): boolean {
   return resolveToolRoute(slug, catalog).tool?.screen === 'editor'
 }
 
@@ -71,13 +73,7 @@ export function legacyToolPath(base: string, query: string): string {
   return slug ? toolPath(base, { slug }) : base
 }
 
-/** Lọc theo nhóm rồi theo từ khoá (bỏ dấu, mỗi từ chỉ cần có trong tên, mô tả hoặc từ đồng nghĩa). */
-export function filterTools(catalog: ToolDefinition[], filter: ToolFilter, keyword: string): ToolDefinition[] {
-  const tokens = normalizeTextSearch(keyword).split(' ').filter(Boolean)
-  return catalog.filter((tool) => {
-    if (filter !== 'all' && !tool.categories.includes(filter)) return false
-    if (tokens.length === 0) return true
-    const haystack = normalizeTextSearch(`${tool.name} ${tool.description} ${tool.synonyms?.join(' ') ?? ''}`)
-    return tokens.every((token) => haystack.includes(token))
-  })
+/** Filter the directory or rank usable tools for a search query. */
+export function filterTools<T extends ToolDefinition>(catalog: readonly T[], filter: ToolFilter, keyword: string): T[] {
+  return searchTools(catalog, keyword, filter)
 }

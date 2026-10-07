@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "复制提问",
+    "copied": "已复制提问。"
+  },
+  "panel": {
+    "hasSecrets": "修改内容中含有邮箱、令牌或内部网址。请先删除这些数据再提交。",
+    "sendFailed": "无法提交建议。",
+    "sent": "建议已进入来源核查队列。请保留回执编号以便查看进度。",
+    "offline": "无法连接服务器。草稿仍保留在本页。",
+    "close": "关闭来源核查",
+    "open": "用你自己的 AI 核查最新来源",
+    "intro": "Chuyện Nhỏ 不会调用 AI，也不会保存你的 AI 密钥。复制到你选择的 AI 服务之前，请先确认下方内容。AI 的结果仅供参考。",
+    "includeResult": "将当前查看的结果加入提问（可能含有个人信息）",
+    "packageLabel": "将要复制的内容",
+    "copyFailed": "复制失败，请手动选中并复制。",
+    "pasteTitle": "粘贴 AI 结果以查看修改",
+    "aiJson": "AI 返回的 JSON",
+    "invalidJson": "JSON 结构不正确或超出限制。请检查 changes、sources、uncertainties 字段。",
+    "unverified": "这是未经核实的数据。请逐一核对来源网址，并选择要提交的部分。",
+    "columns": {
+      "select": "选择",
+      "field": "字段",
+      "current": "当前值",
+      "proposed": "AI 建议"
+    },
+    "selectField": "选择 {{field}}",
+    "sources": "AI 建议的来源（提交者需自行核对）：{{sources}}",
+    "noSources": "暂无",
+    "uncertainties": "尚不确定之处：{{items}}",
+    "consent": "我已逐条查看修改、检查过隐私数据，并同意将所选内容提交给管理员审核",
+    "submit": "提交更新建议",
+    "receipt": "回执编号："
+  },
+  "assistant": {
+    "suggestions": "本机推荐",
+    "intro": "输入你想做的事，帮你找到合适的工具。如需让 AI 解释，请先预览内容，再自行复制到你选择的服务。",
+    "noMatch": "暂未找到明确匹配的工具。",
+    "title": "选工具助手",
+    "question": "你想做什么？",
+    "placeholder": "例如：我想合并两个 PDF 文件并添加页码",
+    "copyNote": "只有在你点击按钮时才会复制下方的提问。邮箱、令牌和内部网址会自动遮盖；交给 AI 之前请再自行检查一遍。",
+    "promptLabel": "发送给 AI 的内容",
+    "copyFailed": "复制失败，请选中文字后手动复制。",
+    "answerLabel": "在此粘贴 AI 的回答以便阅读（不会保存或发送给 Chuyện Nhỏ）",
+    "unverified": "未经核实的内容"
+  }
+}

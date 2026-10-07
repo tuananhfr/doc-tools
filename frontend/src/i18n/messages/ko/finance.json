@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "데이터 출처 보기",
+    "vatPercent": "세금 (%)"
+  },
+  "electricity": {
+    "resultLabel": "예상 요금",
+    "waterBreakdown": "수도 요금: {{subtotal}} đ · 수수료: {{fee}} đ · 세금: {{vat}} đ. 각 항목은 기본 수도 요금에 따로 계산돼요.",
+    "waterHint": "최근 고지서의 사용량과 단가를 입력하세요.",
+    "electricityBreakdown": "세전 전기 요금: {{subtotal}} đ · 세금 {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "구간 상한 kWh",
+      "units": "kWh",
+      "price": "kWh당 단가",
+      "amount": "금액",
+      "rest": "나머지"
+    },
+    "electricityHint": "고지서나 계약서에 따라 사용량과 요금표를 입력하세요. 마지막 줄은 나머지 구간에 * 기호를 써요.",
+    "tariffVerified": "서명된 요금표로, {{date}}부터 유효해요. 출처: {{source}}.",
+    "tariffManual": "직접 입력한 요금표예요. 이 도구는 현행 전기 요금인지 확인하지 않아요.",
+    "vatVerified": "서명된 세율 {{percent}}%로, {{date}}부터 유효해요. 출처: {{source}}.",
+    "vatManual": "직접 입력한 세율이에요.",
+    "notIncluded": "다른 수수료나 공급사의 반올림 방식은 반영하지 않았어요.",
+    "panelTitle": "전기·수도 요금",
+    "billType": "고지서 종류",
+    "modes": {
+      "electricity": "전기 요금",
+      "water": "수도 요금"
+    },
+    "water": {
+      "cubicMeters": "수도 사용량 (m³)",
+      "price": "단가 (đ/m³)",
+      "fee": "하수도 / 환경 수수료 (%)"
+    },
+    "kwh": "전력 사용량 (kWh)",
+    "households": "계량기를 함께 쓰는 세대 수",
+    "tiers": "요금표: 한 줄에 “kWh 구간 상한, 단가 đ/kWh”",
+    "applyTariff": "서명된 요금표 적용",
+    "applyVat": "서명된 세율 적용",
+    "ruleLabel": "전기 요금표",
+    "ruleNone": "시스템에 유효한 서명된 전기 요금표가 아직 없어요.",
+    "vatRuleLabel": "부가가치세율"
+  },
+  "groupSplit": {
+    "resultLabel": "정산을 위한 송금",
+    "balanced": "정산 완료",
+    "note": "각 항목은 참여한 사람끼리 똑같이 나눠요. 송금액은 동 단위로 반올림돼요.",
+    "membersTitle": "참여자",
+    "onePerLine": "한 줄에 한 명",
+    "expensesTitle": "지출 항목",
+    "addExpense": "항목 추가",
+    "payer": "결제한 사람",
+    "choosePerson": "사람 선택",
+    "amount": "금액 (đ)",
+    "participants": "함께 나눌 사람",
+    "removeExpense": "항목 빼기"
+  },
+  "loan": {
+    "totalPayment": "총 상환액",
+    "finalBalance": "만기 잔액",
+    "interest": "이자: {{amount}} đ",
+    "firstPayment": "첫 회차: {{amount}} đ",
+    "downloadCsv": "CSV 표 다운로드",
+    "table": {
+      "period": "회차",
+      "principal": "원금",
+      "interest": "이자",
+      "balance": "남은 대출금"
+    },
+    "savingsNote": "{{months}}개월 후 이자 {{amount}} đ. 각 기간은 단리로 계산하고, 재예치할 때 기간 말 이자를 원금에 더해요.",
+    "hint": "양수 금액, 음수가 아닌 이율, 올바른 기간을 입력하세요.",
+    "disclaimer": "참고용 결과예요. 실제 일정은 계약과 대출 기관의 반올림 방식에 따라 달라요.",
+    "loanTitle": "대출",
+    "savingsTitle": "예금",
+    "mode": "모드",
+    "modes": {
+      "loan": "분할 상환 대출",
+      "savings": "재예치 예금"
+    },
+    "loanAmount": "대출 금액 (đ)",
+    "savingsAmount": "예금 금액 (đ)",
+    "rate": "연 이율 (%)",
+    "loanTerm": "기간 (개월)",
+    "savingsTerm": "예치 기간 (개월)",
+    "method": "원금 상환 방식",
+    "methods": {
+      "annuity": "원리금 균등",
+      "equalPrincipal": "원금 균등"
+    },
+    "renewals": "재예치 횟수"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "본인 공제 (đ)",
+      "dependentDeduct": "부양가족 1인당 공제 (đ)",
+      "referenceSalary": "보험 상한 계산용 기준 급여 (đ)",
+      "minWage1": "I 지역 최저임금 (đ)",
+      "minWage2": "II 지역 최저임금 (đ)",
+      "minWage3": "III 지역 최저임금 (đ)",
+      "minWage4": "IV 지역 최저임금 (đ)",
+      "employeeSocial": "근로자: 사회보험 (%)",
+      "employeeHealth": "근로자: 건강보험 (%)",
+      "employeeUnemployment": "근로자: 실업보험 (%)",
+      "employerSocial": "회사: 사회보험 (%)",
+      "employerHealth": "회사: 건강보험 (%)",
+      "employerUnemployment": "회사: 실업보험 (%)"
+    },
+    "resultLabel": "참고용 결과",
+    "net": "실수령액 {{amount}} đ",
+    "missingParams": "매개변수 부족",
+    "rows": {
+      "gross": "세전 급여 (Gross)",
+      "employeeSocial": "근로자 사회보험",
+      "employeeHealth": "근로자 건강보험",
+      "employeeUnemployment": "근로자 실업보험",
+      "deduction": "공제",
+      "taxable": "과세 소득",
+      "bracket": "{{level}}구간 · {{rate}}%",
+      "tax": "개인소득세",
+      "employerTotal": "회사 추가 부담",
+      "employerCost": "회사 총비용"
+    },
+    "hint": "서명된 규칙 패키지나 급여표, 계약서, 회계 담당자 안내에 따라 매개변수를 모두 입력하세요.",
+    "paramsVerified": "서명된 매개변수 패키지로, {{date}}부터 유효해요. 출처: {{source}}.",
+    "paramsManual": "직접 입력한 매개변수예요. 이 도구는 현행 규정인지 확인하지 않아요.",
+    "notSettlement": "이 결과는 실제 세금 정산을 대신하지 않아요.",
+    "panelTitle": "Gross – Net 급여 계산",
+    "direction": "계산 방향",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "세전 급여 Gross (đ/월)",
+    "netSalary": "희망 실수령액 Net (đ/월)",
+    "dependents": "부양가족",
+    "region": "지역",
+    "regionOption": "{{region}} 지역",
+    "insuranceBase": "보험료 산정 급여 (đ, 비우면 = Gross)",
+    "exempt": "Gross에 포함된 비과세 수당 (đ)",
+    "applyParams": "서명된 매개변수 적용",
+    "ruleLabel": "급여 계산 매개변수",
+    "ruleNone": "시스템에 유효한 서명된 급여 규칙 패키지가 아직 없어요.",
+    "enterParams": "급여 계산 매개변수 입력",
+    "brackets": "세율표: “과세 소득 구간 상한 (đ), 세율 (%)”; 마지막 줄은 * 사용"
+  },
+  "unitPrice": {
+    "resultLabel": "단위당 가격 비교",
+    "equal": "가격이 같아요",
+    "cheaper": "상품 {{index}}이(가) 더 저렴해요",
+    "perUnit": "상품 {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "비싼 쪽보다 {{percent}}% 차이 나요.",
+    "hint": "두 상품 모두 음수가 아닌 가격과 양수 수량을 같은 단위로 입력하세요.",
+    "panelTitle": "두 상품",
+    "price": "상품 {{index}} 가격 (đ)",
+    "quantity": "상품 {{index}} 수량 ({{unit}})",
+    "unit": "수량 단위",
+    "units": {
+      "kg": "kg",
+      "liter": "리터",
+      "piece": "개"
+    }
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "이 이미지의 미리 보기를 그리지 못했어요.",
+    "opening": "이미지를 여는 중…",
+    "saveImage": "이미지 저장",
+    "noImageSelected": "이미지를 선택하지 않았어요.",
+    "keepSize": "크기 유지",
+    "maxEdge": "긴 변 최대 길이",
+    "result": "결과",
+    "processing": "처리 중…",
+    "processFailed": "이미지를 처리하지 못했어요.",
+    "imageCount": "이미지 {{count}}장"
+  },
+  "shell": {
+    "hint": "JPG, PNG, WebP · 이미지당 최대 100 MB",
+    "noImages": "아직 선택한 이미지가 없어요."
+  },
+  "files": {
+    "batchLimit": "한 번에 처리할 수 있는 이미지 {{limit}}장을 넘었어요.",
+    "singleOnly": "이 도구는 한 번에 이미지 한 장만 처리해요."
+  },
+  "intake": {
+    "tooLarge": "이미지가 {{size}}보다 커요.",
+    "heic": "HEIC 이미지(iPhone)는 아직 지원하지 않아요. JPG로 바꾼 뒤 다시 시도하세요.",
+    "unsupported": "이 도구는 JPG, PNG, WebP 이미지만 받아요.",
+    "pixelLimit": "이미지 {{width}} × {{height}} ({{millions}}백만 화소)가 한도 {{limit}}백만 화소를 넘어요.",
+    "corrupt": "이미지를 읽을 수 없어요. 파일이 손상됐거나 브라우저가 열지 못해요."
+  },
+  "codec": {
+    "corrupt": "이미지를 읽을 수 없어요. 파일이 손상됐거나 브라우저가 이 형식을 열지 못해요.",
+    "tooLarge": "{{size}} 이미지는 이 브라우저에서 처리하기에 너무 커요.",
+    "exportUnsupported": "이 브라우저는 {{format}}(으)로 내보낼 수 없어요.",
+    "tooLargeRetry": "{{size}} 이미지는 이 브라우저에서 처리하기에 너무 커요. 긴 변을 줄인 뒤 다시 시도하세요."
+  },
+  "exif": {
+    "keptOne": "결과 이미지에 카메라 정보(촬영 날짜, GPS 위치)가 그대로 남아 있어요.",
+    "keptSome": "결과 이미지 {{count}}/{{total}}장에 카메라 정보(촬영 날짜, GPS 위치)가 그대로 남아 있어요.",
+    "lostOne": "결과 이미지에 카메라 정보(촬영 날짜, GPS 위치)가 없어요. 이 정보는 JPG나 PNG 결과에만 담을 수 있어요.",
+    "lostSome": "결과 이미지 {{count}}/{{total}}장에 카메라 정보(촬영 날짜, GPS 위치)가 없어요. 이 정보는 JPG나 PNG 결과에만 담을 수 있어요."
+  },
+  "tasks": {
+    "progress": {
+      "process": "이미지 처리 중 {{current}}/{{total}}",
+      "convert": "이미지 변환 중 {{current}}/{{total}}",
+      "compress": "이미지 압축 중 {{current}}/{{total}}"
+    },
+    "imageFailed": "이미지를 처리하지 못했어요.",
+    "jpegFlatten": "JPG는 투명 배경을 지원하지 않아서, 투명한 영역(있는 경우)은 흰색으로 채웠어요.",
+    "webpAsPng": "이 브라우저는 WebP로 저장할 수 없어서 WebP 이미지를 PNG로 저장했어요.",
+    "rendering": "이미지를 만드는 중",
+    "formatFallback": "이 브라우저는 {{from}}(으)로 저장할 수 없어서 {{to}}(으)로 저장했어요."
+  },
+  "convert": {
+    "pickerTitle": "형식을 바꿀 이미지 선택",
+    "runOne": "{{format}}(으)로 변환",
+    "runMany": "이미지 {{count}}장을 {{format}}(으)로 변환",
+    "blockedOne": "선택한 이미지는 이미 {{format}}이에요.",
+    "blockedMany": "선택한 이미지들은 이미 {{format}}이에요.",
+    "targetLegend": "변환 형식",
+    "qualityLegend": "품질",
+    "target": {
+      "jpeg": "가볍고 어디서나 열려요. 투명 배경은 유지되지 않아요.",
+      "png": "모든 화소와 투명 배경을 그대로 유지해요. 파일이 더 무거워요.",
+      "webp": "같은 품질에서 JPG보다 가볍고, 투명 배경도 유지돼요."
+    },
+    "quality": {
+      "high": {
+        "label": "높음",
+        "hint": "원본과 거의 차이가 없어요."
+      },
+      "medium": {
+        "label": "보통",
+        "hint": "선명도와 용량의 균형이에요."
+      },
+      "small": {
+        "label": "작게",
+        "hint": "가장 가벼워요. 확대하면 깨져 보여요."
+      }
+    },
+    "noWebp": "이 브라우저는 WebP로 내보낼 수 없어요.",
+    "keptNote": "이미지 {{count}}장은 이미 {{format}}이라 다시 인코딩하지 않고 그대로 두었어요.",
+    "titleOne": "{{format}}(으)로 변환했어요",
+    "titleMany": "이미지 {{count}}장을 {{format}}(으)로 변환했어요"
+  },
+  "compress": {
+    "pickerTitle": "압축할 이미지 선택",
+    "runOne": "이미지 압축",
+    "runMany": "이미지 {{count}}장 압축",
+    "levelLegend": "압축 단계",
+    "level": {
+      "light": {
+        "label": "약하게",
+        "hint": "원본과 거의 차이가 안 보여요."
+      },
+      "medium": {
+        "label": "보통",
+        "hint": "이메일 전송, 웹 게시에 알맞아요."
+      },
+      "strong": {
+        "label": "강하게",
+        "hint": "가장 가벼워요. 확대하면 깨져 보여요."
+      }
+    },
+    "hint": "압축 단계는 JPG와 WebP에 적용돼요. PNG는 무손실이라 크기를 줄여야만 가벼워져요.",
+    "smaller": "{{sizes}} ({{percent}}% 가벼워짐).",
+    "unchangedOne": "결과 이미지가 원본보다 가볍지 않아서 원본 파일을 그대로 두었어요. {{hint}}",
+    "unchangedSome": "이미지 {{count}}/{{total}}장은 더 가볍게 할 수 없어서 원본 파일을 그대로 두었어요. {{hint}}",
+    "shrunk": "이미지 {{count}}장의 긴 변을 {{edge}} px로 줄였어요.",
+    "hintPng": "PNG는 무손실이라 작게 만들기 어려워요. 확실히 가볍게 하려면 \"이미지 변환\"으로 JPG나 WebP로 바꾸세요.",
+    "hintMaxed": "이미지가 이미 거의 최대한 압축돼 있어요.",
+    "hintTryEdge": "이미지가 이미 거의 최대한 압축돼 있어요. \"긴 변 최대 길이\"로 크기를 줄여 보세요.",
+    "titleDone": "압축을 마쳤어요",
+    "titleNone": "더 압축할 수 없어요"
+  },
+  "batch": {
+    "pickerTitle": "처리할 이미지 선택",
+    "runOne": "이미지 처리",
+    "runMany": "이미지 {{count}}장 처리",
+    "resize": {
+      "keep": "크기 유지",
+      "edge": "긴 변 최대 길이",
+      "width": "너비",
+      "height": "높이",
+      "percent": "퍼센트로"
+    },
+    "sizeRange": "크기는 {{min}}부터 {{max}}까지의 정수여야 해요.",
+    "startInvalid": "시작 번호는 0 이상의 정수여야 해요.",
+    "resizeLabel": "크기 변경",
+    "resizeHint": "이미지 비율을 유지해요. 이미 이 크기보다 작은 이미지는 그대로 두고 확대하지 않아요.",
+    "formatLabel": "출력 형식",
+    "keepFormat": "각 이미지의 형식 유지",
+    "qualityLabel": "JPG / WebP 품질",
+    "quality": {
+      "high": "높음 — 원본과 거의 차이 없음",
+      "medium": "보통 — 선명도와 용량의 균형",
+      "small": "작게 — 가장 가벼움"
+    },
+    "patternLabel": "파일 이름 패턴",
+    "patternHint": "<code>{name}</code> = 원래 이름, <code>{n}</code> = 순번. 예: <code>site-{n}</code>",
+    "startLabel": "시작 번호",
+    "sample": "출력 이름: <strong>{{names}}</strong>",
+    "patternEmpty": "파일 이름 패턴을 입력하세요. 예: {name} 또는 photo-{n}.",
+    "patternIllegal": "파일 이름에는 \\ / : * ? \" < > |를 쓸 수 없어요",
+    "patternTokens": "채울 수 있는 자리는 {name}(원래 이름)과 {n}(순번) 두 가지뿐이에요.",
+    "resizedAll": "이미지 {{count}}/{{total}}장을 줄였어요.",
+    "resizedPartial": "이미지 {{count}}/{{total}}장을 줄였어요. 목표 크기보다 이미 작은 이미지는 크기를 그대로 두었어요 — 이 도구는 확대하지 않아요.",
+    "keptBytes": "이미지 {{count}}장은 크기나 형식을 바꿀 필요가 없어서 바이트 그대로 두고 이름만 바꿨어요.",
+    "titleOne": "이미지를 처리했어요",
+    "titleMany": "이미지 {{count}}장을 처리했어요"
+  },
+  "crop": {
+    "pickerTitle": "자르거나 보정할 이미지 선택",
+    "blocked": "아직 자르기, 회전, 보정을 하지 않았어요. 결과가 원본과 똑같아요.",
+    "stageLabel": "편집 중인 이미지",
+    "aspectLabel": "자르기 비율",
+    "aspect": {
+      "free": "자유",
+      "square": "1:1 — 정사각형",
+      "landscape": "4:3 — 가로",
+      "portrait": "3:4 — 세로",
+      "wide": "16:9 — 와이드",
+      "tall": "9:16 — 세로로 긴"
+    },
+    "rotate": "이미지 회전",
+    "rotateLeft": "왼쪽으로 회전",
+    "rotateRight": "오른쪽으로 회전",
+    "brightness": "밝기",
+    "contrast": "대비",
+    "output": "결과 이미지: <strong>{{size}}</strong>",
+    "reset": "원본으로 되돌리기",
+    "box": "자르기 영역 — 끌거나 화살표 키로 이동",
+    "handleAria": "{{handle}} — 끌거나 화살표 키로 크기 조정",
+    "handle": {
+      "nw": "왼쪽 위 모서리",
+      "n": "위쪽 가장자리",
+      "ne": "오른쪽 위 모서리",
+      "e": "오른쪽 가장자리",
+      "se": "오른쪽 아래 모서리",
+      "s": "아래쪽 가장자리",
+      "sw": "왼쪽 아래 모서리",
+      "w": "왼쪽 가장자리"
+    },
+    "title": "편집한 이미지를 저장했어요"
+  },
+  "mark": {
+    "pickerTitle": "가리거나 도장을 찍을 이미지 선택",
+    "blocked": "아직 가림 영역을 그리거나 도장 문구를 입력하지 않았어요. 결과가 원본과 똑같아요.",
+    "stageLabel": "가리기와 도장 작업 중인 이미지",
+    "boxCount": "가림 영역 {{count}}개",
+    "stageHint": "이미지 위를 끌어 가릴 영역을 지정하세요. 그린 영역을 누르면 지워져요.",
+    "overlayBoxes": "이미지 위 가림 영역 {{count}}개",
+    "overlayEmpty": "이미지에 가림 영역이 없어요",
+    "boxesLabel": "가림 영역",
+    "boxesSummary": "영역 {{count}}개 — 결과 파일에서 아래 내용이 검은 블록으로 바뀌며, 복구할 수 없어요.",
+    "boxesEmpty": "아직 영역이 없어요. 이미지 위를 끌어 그리세요.",
+    "clearBoxes": "가림 영역 모두 빼기",
+    "textLabel": "도장 문구 (선택)",
+    "textPlaceholder": "예: 초안 — 복사 금지",
+    "tile": "이미지 전체에 대각선으로 반복",
+    "anchorLabel": "도장 위치",
+    "colorLabel": "글자 색",
+    "sizeLabel": "글자 크기",
+    "opacityLabel": "진하기",
+    "color": {
+      "red": "빨강",
+      "black": "검정",
+      "white": "흰색"
+    },
+    "anchor": {
+      "topLeft": "위 — 왼쪽",
+      "topCenter": "위 — 가운데",
+      "topRight": "위 — 오른쪽",
+      "middleLeft": "가운데 — 왼쪽",
+      "center": "정가운데",
+      "middleRight": "가운데 — 오른쪽",
+      "bottomLeft": "아래 — 왼쪽",
+      "bottomCenter": "아래 — 가운데",
+      "bottomRight": "아래 — 오른쪽"
+    },
+    "boxesNote": "영역 {{count}}개를 화소 자체에서 검은 블록으로 바꿨어요. 아래에 벗겨 낼 레이어가 남아 있지 않아요.",
+    "stampNote": "도장 문구를 이미지에 새겼어요.",
+    "titleBoth": "이미지를 가리고 도장을 찍었어요",
+    "titleBoxes": "이미지를 가렸어요",
+    "titleStamp": "이미지에 도장을 찍었어요"
+  },
+  "measure": {
+    "pickerTitle": "측정할 이미지 선택",
+    "run": "측정값이 표시된 이미지 저장",
+    "blocked": "아직 이미지에 측정값이 없어요.",
+    "stageLabel": "측정 중인 이미지",
+    "modesLabel": "측정 방식",
+    "tab": {
+      "distance": "거리 측정",
+      "area": "면적 측정",
+      "count": "개수 세기"
+    },
+    "hint": {
+      "distance": "이미지에서 두 점을 눌러 구간을 재세요. 구간 끝을 끌어 조정할 수 있어요.",
+      "area": "영역의 꼭짓점을 차례로 누르고, 시작점을 다시 눌러 영역을 닫으세요.",
+      "count": "물체를 하나씩 눌러 세세요. 점을 다시 누르면 빠져요.",
+      "reference": "길이를 아는 물체의 양 끝을 누르세요: 문짝, 벽돌, 자 등."
+    },
+    "closeArea": "영역 닫기",
+    "undo": "실행 취소",
+    "clearAll": "모두 지우기",
+    "imageAlt": "측정 중인 이미지: {{name}}",
+    "referenceGrip": "기준 구간의 {{index}}번 끝 — 끌거나 화살표 키로 조정",
+    "countGrip": "개수 점 {{number}} — 눌러서 빼기, 끌어서 이동",
+    "distanceGrip": "구간 {{index}}의 {{point}}번 점 — 끌거나 화살표 키로 조정, Delete로 삭제",
+    "areaGrip": "영역 {{index}}의 {{point}}번 점 — 끌거나 화살표 키로 조정, Delete로 삭제",
+    "closeAtStart": "시작점에서 영역 닫기",
+    "lengthLabel": "기준 구간의 실제 길이",
+    "lengthPlaceholder": "예: 2,1",
+    "unit": "단위",
+    "clearReference": "기준 구간 빼기",
+    "referenceLabel": "기준 구간",
+    "referenceHint": "길이를 아는 물체를 표시하면 측정값을 실제 단위로 환산해요.",
+    "placing": "놓는 중 — 이미지에서 두 점을 누르세요",
+    "resetReference": "기준 구간 다시 놓기",
+    "setReference": "기준 구간 놓기",
+    "scaleHint": "측정값은 정면에서 찍은 사진에서 기준 구간과 같은 평면에 있는 것에만 정확해요.",
+    "noLength": "실제 길이를 입력하지 않아서 화소(px) 단위로 계산하고 있어요.",
+    "noReference": "기준 구간이 없어서 화소(px) 단위로 계산하고 있어요.",
+    "results": "측정값",
+    "noResults": "아직 측정값이 없어요.",
+    "distanceName": "구간 {{index}}",
+    "areaName": "영역 {{index}}",
+    "removeDistance": "구간 {{index}} 삭제",
+    "removeArea": "영역 {{index}} 삭제",
+    "remove": "삭제",
+    "perimeter": "둘레 {{length}}",
+    "counted": "센 개수",
+    "summaryDistances": "측정 구간 {{count}}개",
+    "summaryAreas": "측정 영역 {{count}}개",
+    "summaryCounts": "개수 점 {{count}}개",
+    "recorded": "이미지에 {{summary}}을(를) 기록했어요.",
+    "pixelWarning": "기준 구간이 없어서 측정값이 실제 크기가 아닌 화소(px) 단위로 기록됐어요.",
+    "title": "측정값이 표시된 이미지를 저장했어요"
+  },
+  "idPhoto": {
+    "pickerTitle": "인물 사진 선택",
+    "gapRange": "간격은 {{min}}~{{max}} mm여야 해요.",
+    "copiesInvalid": "장수는 1 이상의 정수여야 해요.",
+    "tooBig": "이 크기의 증명사진은 선택한 용지에 들어가지 않아요.",
+    "overCapacity": "{{paper}} 한 장에는 이 크기의 사진이 {{count}}장까지만 들어가요.",
+    "runSingle": "증명사진 만들기",
+    "runSheet": "사진 {{count}}장짜리 인쇄 시트 만들기",
+    "photoSize": "증명사진 크기",
+    "photoHint": "제출처의 요구에 맞게 고르세요. 이 도구는 서류별 사진 규정을 알지 못하며, 배경이나 얼굴 위치를 확인하지 않아요.",
+    "lowDpi": "선택한 영역이 이 크기에서 {{dpi}} DPI밖에 안 돼요({{min}} 이상 권장). 인쇄하면 흐릿해요. 영역을 넓히거나 더 선명한 사진을 쓰세요.",
+    "outputLegend": "출력 파일",
+    "output": {
+      "pdf": {
+        "label": "PDF 인쇄 시트",
+        "hint": "\"실제 크기 / 100%\"로 인쇄하면 밀리미터가 정확해요."
+      },
+      "sheet": {
+        "label": "JPG 인쇄 시트",
+        "hint": "300 DPI — 사진 프린터나 이미지 파일만 받는 인화점용."
+      },
+      "single": {
+        "label": "증명사진 한 장",
+        "hint": "비율에 맞게 자른 사진만 — 온라인 제출용."
+      }
+    },
+    "paperLabel": "용지 크기",
+    "paper": {
+      "a4": "A4 (21 × 29,7 cm)",
+      "a5": "A5 (14,8 × 21 cm)",
+      "10x15": "인화지 10 × 15 cm",
+      "13x18": "인화지 13 × 18 cm"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "인화지 10 × 15 cm",
+      "13x18": "인화지 13 × 18 cm"
+    },
+    "fill": "용지 가득 채우기 (사진 {{count}}장)",
+    "copies": "장수",
+    "gap": "간격",
+    "guides": "사진마다 재단선 그리기",
+    "layoutHint": "{{columns}}열 × {{rows}}행, 용지 여백 {{margin}} mm. 인쇄할 때 \"용지에 맞춤\"이 아니라 \"실제 크기\"(Actual size / 100%)를 고르세요. 그렇지 않으면 사진 크기가 틀어져요.",
+    "sheetAria": "인쇄 시트: 사진 {{count}}장",
+    "renderingSheet": "인쇄 시트를 만드는 중",
+    "lowDpiNote": "자른 영역이 {{size}} 크기에서 {{dpi}} DPI밖에 안 돼요. 인쇄하면 흐릿할 수 있어요.",
+    "titleSingle": "증명사진을 만들었어요",
+    "sheetDetail": "{{paper}}에 {{photo}} 사진 {{count}}장",
+    "noExif": "인쇄 시트에는 원본 사진의 카메라 정보(촬영 날짜, GPS 위치)가 담기지 않아요.",
+    "actualSize": "인쇄할 때 \"용지에 맞춤\"이 아니라 \"실제 크기\"(Actual size / 100%)를 고르세요.",
+    "titleSheet": "증명사진 인쇄 시트를 만들었어요"
+  },
+  "camera": {
+    "insecure": "{{reason}} 카메라 앱으로 찍은 뒤 기기에서 사진을 선택하세요.",
+    "notReady": "카메라가 아직 준비되지 않았어요.",
+    "shootFailed": "촬영하지 못했어요. 다시 시도해 주세요.",
+    "cropFailed": "자른 이미지를 만들지 못했어요. 자르기 영역을 빼고 다시 시도하세요.",
+    "titleReview": "사진 {{index}}/{{total}} 자르기",
+    "title": "사진 찍기",
+    "viewfinder": "카메라 뷰파인더",
+    "shotAlt": "찍은 사진 {{index}}",
+    "starting": "카메라를 여는 중… 브라우저가 카메라 사용 권한을 물어볼 수 있어요.",
+    "retry": "다시 시도",
+    "backToShoot": "계속 찍기",
+    "clearCrop": "자르기 영역 빼기",
+    "deleteShot": "이 사진 삭제",
+    "strip": "찍은 사진",
+    "thumbAria": "사진 {{index}} 보기 및 자르기",
+    "thumbTitle": "이 사진 보기, 자르기 또는 삭제",
+    "shutter": "촬영",
+    "full": "사진 {{count}}장이 가득 찼어요",
+    "torch": "플래시",
+    "torchOff": "플래시 끄기",
+    "torchOn": "플래시 켜기",
+    "reviewHint": "영역을 끌어 남길 부분을 정하세요. 아무것도 끌지 않으면 사진 전체를 남겨요.",
+    "none": "아직 찍은 사진이 없어요.",
+    "fullStatus": "한 번에 찍을 수 있는 사진 {{count}}장이 가득 찼어요.",
+    "shotCount": "사진 {{count}}장을 찍었어요. 작은 사진을 눌러 자르거나 삭제하세요.",
+    "discardClose": "사진 {{count}}장 버리고 닫기",
+    "close": "닫기",
+    "useShots": "사진 {{count}}장 사용",
+    "useNone": "사진 사용"
+  },
+  "collage": {
+    "invalid": "사진 2–9장, 1–3열, 간격 0–100 px로 선택하세요.",
+    "tooLarge": "{{name}}: 이미지가 용량 한도를 넘어요.",
+    "unsupported": "{{name}}: JPG, PNG, WebP만 지원해요.",
+    "pixelLimit": "{{name}}: 이미지가 화소 한도를 넘어요.",
+    "failed": "합친 이미지를 만들지 못했어요.",
+    "done": "합친 PNG 이미지를 다운로드했어요. 사용하기 전에 배치를 확인하세요.",
+    "resultLabel": "합친 이미지",
+    "idle": "사진은 선택한 순서대로 배치되고, 정사각형 칸에 맞게 잘려 PNG로 내보내져요. 원본 사진의 메타데이터는 유지되지 않아요.",
+    "busy": "합치는 중…",
+    "run": "합쳐서 다운로드",
+    "panel": "합칠 사진",
+    "choose": "사진 2~9장 선택",
+    "columns": "열 수",
+    "gap": "간격 (px)"
+  },
+  "removeMeta": {
+    "tooLarge": "이미지가 용량 한도를 넘어요.",
+    "unsupported": "JPG, PNG, WebP 이미지만 지원해요.",
+    "pixelLimit": "이미지가 화소 한도를 넘어요.",
+    "done": "{{width}} × {{height}} 이미지를 만들어 다운로드했어요. 공유하기 전에 이미지를 확인하세요.",
+    "outputLabel": "출력 파일",
+    "idle": "기기에서 이미지를 다시 그려 GPS 위치, 카메라, 촬영 날짜 등 원본 EXIF를 없애요. JPG 이미지는 다시 인코딩되므로 품질이 달라질 수 있어요.",
+    "run": "EXIF 삭제하고 다운로드",
+    "panel": "정리할 이미지",
+    "choose": "JPG, PNG 또는 WebP 이미지 선택",
+    "note": "이 도구는 의도적으로 EXIF를 없애요. 다른 이미지 도구는 프로젝트의 현재 방침에 따라 현장 정보를 그대로 유지해요."
+  },
+  "removeBg": {
+    "invalidFile": "20 MB 미만의 JPG, PNG 또는 WebP 이미지를 선택하세요.",
+    "invalidSize": "이미지 크기가 올바르지 않아요.",
+    "processed": "{{width}} × {{height}} 이미지를 처리했어요. 여러 색이 섞인 배경은 브러시로 다듬어야 해요.",
+    "openFailed": "이미지를 열 수 없어요.",
+    "exportFailed": "이미지를 내보내지 못했어요.",
+    "done": "PNG를 만들었어요. 사용하기 전에 물체의 가장자리를 꼼꼼히 확인하세요.",
+    "noImage": "선택한 이미지 없음",
+    "idle": "이미지 테두리에서 배경색을 자동으로 찾아요. 단색 배경에 알맞으며, 유지/지우기 브러시로 잘못된 부분을 고칠 수 있어요.",
+    "download": "PNG 이미지 다운로드",
+    "panel": "단색 배경 지우기",
+    "choose": "이미지 선택",
+    "tolerance": "배경색 민감도: {{value}}",
+    "background": "새 배경",
+    "backgroundTransparent": "투명",
+    "backgroundWhite": "흰색",
+    "backgroundIdBlue": "증명사진 파랑",
+    "brush": "브러시로 다듬기",
+    "brushOff": "사용 안 함",
+    "brushErase": "더 지우기",
+    "brushKeep": "남기기",
+    "brushSize": "브러시 크기: {{value}}",
+    "undoBrush": "브러시 실행 취소",
+    "note": "이미지는 기기에서 처리돼요. 배경이 복잡하면 브러시로 직접 다듬어야 하며, 큰 이미지는 각 변이 최대 2200 px로 줄어들어요."
+  }
+}

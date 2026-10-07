@@ -2,6 +2,7 @@ import { BrowserMultiFormatReader } from '@zxing/browser'
 import { BarcodeFormat, DecodeHintType, type Result } from '@zxing/library'
 import { MAX_IMAGE_BYTES, maxImagePixels, megabytes } from '@/features/tools/hub'
 import { detectImageFormat, IMAGE_HEADER_BYTES, readImageSize } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { QR_BACKGROUND } from '../config/qr-colors'
 
 export interface ScanRead {
@@ -49,12 +50,12 @@ async function loadImage(file: Blob): Promise<{ source: CanvasImageSource; width
  * giải mã sẽ lên tiếng.
  */
 export async function scanLimitReason(file: Blob): Promise<string | null> {
-  if (file.size > MAX_IMAGE_BYTES) return `lớn hơn ${megabytes(MAX_IMAGE_BYTES)}.`
+  if (file.size > MAX_IMAGE_BYTES) return translate('qr:read.tooLarge', { size: megabytes(MAX_IMAGE_BYTES) })
   const head = new Uint8Array(await file.slice(0, IMAGE_HEADER_BYTES).arrayBuffer())
   const format = detectImageFormat(head)
   const size = format ? readImageSize(head, format) : null
   if (size && size.width * size.height > maxImagePixels()) {
-    return `quá lớn (${Math.round((size.width * size.height) / 1_000_000)} triệu điểm ảnh, trần ${maxImagePixels() / 1_000_000} triệu). Cắt lấy vùng có mã rồi thử lại.`
+    return translate('qr:read.tooManyPixels', { pixels: Math.round((size.width * size.height) / 1_000_000), limit: maxImagePixels() / 1_000_000 })
   }
   return null
 }
@@ -68,7 +69,7 @@ export async function scanImage(file: Blob): Promise<ScanRead | null> {
   const canvas = document.createElement('canvas')
   try {
     const context = canvas.getContext('2d', { willReadFrequently: true })
-    if (!context) throw new Error('trình duyệt không dựng được ảnh.')
+    if (!context) throw new Error(translate('qr:render.imageFailed'))
     const longest = Math.max(image.width, image.height)
     const reader = stillReader()
     const tried = new Set<number>()

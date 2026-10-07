@@ -1,4 +1,5 @@
 import { canvasToBlob, zipFiles } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { barcodeKind } from '../config/barcode-kinds'
 import type { BarcodeKind } from '../types/barcode.types'
 import { barcodeFileName } from '../utils/qr-file-name'
@@ -88,7 +89,7 @@ export async function loadBarcodeEngine() {
     const factor = unitPt(look)
     for (const item of items) {
       const parsed = parseBarcodeSvg(bwip.toSVG(renderOptions(item, look, 1)))
-      if (!parsed) throw new Error(`không dựng được mã ${item.value}.`)
+      if (!parsed) throw new Error(translate('qr:render.barcodeFailed', { value: item.value }))
       const page = doc.addPage([parsed.width * factor, parsed.height * factor])
       for (const path of parsed.paths) {
         // `drawSvgPath` lật trục y và nhân cả độ dày nét theo `scale` — nét vạch ra đúng bề rộng.

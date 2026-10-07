@@ -2,6 +2,7 @@ import { degrees, PDFDocument } from 'pdf-lib'
 import { newId } from '@/utils/id'
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { canvasToBlob } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { originOf, type ImageSource, type PageRef, type PdfSource, type SourceFile } from '../types/doc-tools.types'
 import type { Rect } from '../types/markup.types'
 import { normalizeRotation } from '../utils/page-geometry'
@@ -21,7 +22,7 @@ const ANALYSIS_IMAGE_SIDE = 1200
 
 function grayOf(canvas: HTMLCanvasElement): GrayImage {
   const context = canvas.getContext('2d', { willReadFrequently: true })
-  if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+  if (!context) throw new Error(translate('pdf:errors.noCanvas'))
   const { data } = context.getImageData(0, 0, canvas.width, canvas.height)
   const gray = toGray(data, canvas.width, canvas.height)
   canvas.width = 0
@@ -51,11 +52,10 @@ async function paperArea(source: PdfSource | ImageSource, page: PageRef, paper: 
   return { x: frame.x + paper.x * frame.width, y: frame.y + paper.y * frame.height, width: paper.width * frame.width, height: paper.height * frame.height }
 }
 
-const DESKEW_SUFFIX = ' · đã chỉnh nghiêng'
-
 function deskewedLabel(source: SourceFile, pageIndex: number): string {
   const origin = describeOrigin(source, pageIndex)
-  return origin.endsWith(DESKEW_SUFFIX) ? origin : `${origin}${DESKEW_SUFFIX}`
+  const suffix = translate('pdf:origin.deskewed')
+  return origin.endsWith(suffix) ? origin : `${origin}${suffix}`
 }
 
 /**
@@ -107,7 +107,7 @@ async function deskewImage(source: ImageSource, page: PageRef, skew: number): Pr
   canvas.height = bitmap.height
   try {
     const context = canvas.getContext('2d')
-    if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+    if (!context) throw new Error(translate('pdf:errors.noCanvas'))
     context.fillStyle = '#ffffff'
     context.fillRect(0, 0, canvas.width, canvas.height)
     context.translate(canvas.width / 2, canvas.height / 2)
@@ -119,7 +119,7 @@ async function deskewImage(source: ImageSource, page: PageRef, skew: number): Pr
   }
   const blob = await canvasToBlob(canvas, source.mime).catch(() => null)
   canvas.width = 0
-  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, 'Không chỉnh nghiêng được ảnh.')
+  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, translate('pdf:errors.deskew'))
   const bytes = new Uint8Array(await blob.arrayBuffer())
   return {
     id: newId(),

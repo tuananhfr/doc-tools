@@ -1,28 +1,24 @@
 import { useId, useMemo, useState } from 'react'
+import type { TFunction } from 'i18next'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { NumberField, ScopeField } from '../../components/decoration-fields'
 import { DecorationStage } from '../../components/quick/DecorationStage'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { decorateTask } from '../../services/page-tasks'
 import type { Decorations, HeaderFooter, PageScope, StampSlot } from '../../types/decorations.types'
-import { DEFAULT_HEADER_FOOTER, resolveScope } from '../../utils/decorations'
+import { defaultHeaderFooter, HEADER_FOOTER_BASE, resolveScope } from '../../utils/decorations'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
-const POSITIONS: { value: StampSlot; label: string }[] = [
-  { value: 'bottomCenter', label: 'Chân trang — giữa' },
-  { value: 'bottomRight', label: 'Chân trang — phải' },
-  { value: 'bottomLeft', label: 'Chân trang — trái' },
-  { value: 'topCenter', label: 'Đầu trang — giữa' },
-  { value: 'topRight', label: 'Đầu trang — phải' },
-  { value: 'topLeft', label: 'Đầu trang — trái' },
-]
+const POSITIONS: readonly StampSlot[] = ['bottomCenter', 'bottomRight', 'bottomLeft', 'topCenter', 'topRight', 'topLeft']
 
-const TEMPLATES = [
-  { value: 'Trang {n}/{N}', label: 'Trang 1/12' },
+/** Mẫu có chữ "Trang" lấy theo ngôn ngữ trang — chữ đó in thẳng vào PDF. */
+const templates = (t: TFunction<'pdf'>) => [
+  { value: t('file.pageFooter'), label: t('file.pageSample') },
   { value: '{n}/{N}', label: '1/12' },
-  { value: 'Trang {n}', label: 'Trang 1' },
+  { value: t('file.pageOnly'), label: t('file.pageOnlySample') },
   { value: '{n}', label: '1' },
   { value: '- {n} -', label: '- 1 -' },
 ]
@@ -31,17 +27,18 @@ const EMPTY_SLOTS: HeaderFooter['slots'] = { topLeft: '', topCenter: '', topRigh
 
 /** ĐÁNH SỐ TRANG — một tệp PDF; cùng engine đầu / chân trang của trình chỉnh sửa, thu lại còn một ô số. */
 export default function PageNumbersPage() {
+  const { t } = useTranslation('pdf')
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: false })
   const [slot, setSlot] = useState<StampSlot>('bottomCenter')
-  const [template, setTemplate] = useState(TEMPLATES[0].value)
-  const [fontSize, setFontSize] = useState(DEFAULT_HEADER_FOOTER.fontSize)
+  const [template, setTemplate] = useState(() => t('file.pageFooter'))
+  const [fontSize, setFontSize] = useState(HEADER_FOOTER_BASE.fontSize)
   const [startNumber, setStartNumber] = useState(1)
-  const [scope, setScope] = useState<PageScope>(DEFAULT_HEADER_FOOTER.scope)
+  const [scope, setScope] = useState<PageScope>(HEADER_FOOTER_BASE.scope)
 
   const [item] = quick.items
   const decorations = useMemo<Decorations>(
-    () => ({ headerFooter: { ...DEFAULT_HEADER_FOOTER, slots: { ...EMPTY_SLOTS, [slot]: template }, fontSize, startNumber, scope }, watermark: null }),
+    () => ({ headerFooter: { ...defaultHeaderFooter(), slots: { ...EMPTY_SLOTS, [slot]: template }, fontSize, startNumber, scope }, watermark: null }),
     [slot, template, fontSize, startNumber, scope],
   )
   const resolved = item
@@ -57,28 +54,28 @@ export default function PageNumbersPage() {
       quick={quick}
       accept={ACCEPT}
       multiple={false}
-      pickerTitle="Chọn tệp PDF cần đánh số trang"
+      pickerTitle={t('pageNumbers.pickerTitle')}
       stage={(running) => (item ? <DecorationStage item={item} decorations={decorations} disabled={running} onClear={quick.clear} /> : null)}
-      runLabel="Đánh số trang"
+      runLabel={t('pageNumbers.run')}
       runIcon="hash"
-      blocked={scopeError ?? (resolved?.ok && resolved.ids.size === 0 ? 'Phạm vi đã chọn không có trang nào.' : null)}
-      task={() => decorateTask(item, decorations, { suffix: 'đã đánh số', title: 'Đã đánh số trang' })}
+      blocked={scopeError ?? (resolved?.ok && resolved.ids.size === 0 ? t('shared.scopeEmpty') : null)}
+      task={() => decorateTask(item, decorations, { suffix: t('file.numbered'), title: t('pageNumbers.doneTitle') })}
       options={
         <>
           <Form.Group controlId={`${ids}-slot`} className="erp-flow-field">
-            <Form.Label className="erp-flow-field__label">Vị trí</Form.Label>
+            <Form.Label className="erp-flow-field__label">{t('shared.position')}</Form.Label>
             <Form.Select value={slot} onChange={(event) => setSlot(event.target.value as StampSlot)}>
-              {POSITIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {POSITIONS.map((value) => (
+                <option key={value} value={value}>
+                  {t(`slot.${value}`)}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
           <Form.Group controlId={`${ids}-template`} className="erp-flow-field">
-            <Form.Label className="erp-flow-field__label">Kiểu số</Form.Label>
+            <Form.Label className="erp-flow-field__label">{t('pageNumbers.template')}</Form.Label>
             <Form.Select value={template} onChange={(event) => setTemplate(event.target.value)}>
-              {TEMPLATES.map((option) => (
+              {templates(t).map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
@@ -86,8 +83,8 @@ export default function PageNumbersPage() {
             </Form.Select>
           </Form.Group>
           <div className="erp-flow-pair">
-            <NumberField label="Số bắt đầu" value={startNumber} min={0} max={99999} onChange={setStartNumber} />
-            <NumberField label="Cỡ chữ (pt)" value={fontSize} min={6} max={36} onChange={setFontSize} />
+            <NumberField label={t('pageNumbers.startNumber')} value={startNumber} min={0} max={99999} onChange={setStartNumber} />
+            <NumberField label={t('pageNumbers.fontSizePt')} value={fontSize} min={6} max={36} onChange={setFontSize} />
           </div>
           <ScopeField value={scope} error={scopeError} mergeKey="scope" onChange={setScope} />
         </>

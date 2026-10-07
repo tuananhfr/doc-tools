@@ -22,10 +22,14 @@ const BAT_TRACH_1_0: RuleProfile = {
   id: 'bat-trach',
   method: 'BAT_TRACH',
   version: '1.0.0',
-  name: 'Bát trạch (cung phi theo năm sinh)',
-  sourceReference: 'Bát Trạch Minh Kính — phép Du niên; cung phi theo Lạc thư, năm sinh âm lịch',
+  text: {
+    name: 'orientation:profiles.batTrach.name',
+    source: 'orientation:profiles.batTrach.source',
+    interpretation: 'orientation:profiles.batTrach.interpretationV1',
+    disclaimer: 'orientation:profiles.batTrach.disclaimer',
+  },
   inputSchema: { year: { min: 1900, max: 2100, calendar: 'LUNAR' }, sex: true },
-  segments: ['Bắc', 'Đông Bắc', 'Đông', 'Đông Nam', 'Nam', 'Tây Nam', 'Tây', 'Tây Bắc'],
+  segments: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
   kua: {
     modulus: 9,
     male: { add: 11, sign: -1, fiveAs: 2 },
@@ -33,33 +37,29 @@ const BAT_TRACH_1_0: RuleProfile = {
     zeroAs: 9,
   },
   groups: [
-    { id: 'EAST', name: 'Đông tứ mệnh' },
-    { id: 'WEST', name: 'Tây tứ mệnh' },
+    { id: 'EAST' },
+    { id: 'WEST' },
   ],
   stars: [
-    { id: 'SINH_KHI', name: 'Sinh khí', fortune: 'GOOD', rank: 1, meaning: 'Tốt nhất — vượng tài lộc, danh tiếng, thăng tiến' },
-    { id: 'THIEN_Y', name: 'Thiên y', fortune: 'GOOD', rank: 2, meaning: 'Tốt cho sức khoẻ, có quý nhân giúp đỡ' },
-    { id: 'DIEN_NIEN', name: 'Diên niên', fortune: 'GOOD', rank: 3, meaning: 'Gia đạo hoà thuận, quan hệ bền lâu' },
-    { id: 'PHUC_VI', name: 'Phục vị', fortune: 'GOOD', rank: 4, meaning: 'Bình yên, vững tinh thần, thuận học hành' },
-    { id: 'TUYET_MENH', name: 'Tuyệt mệnh', fortune: 'BAD', rank: 1, meaning: 'Xấu nhất — hao tổn, bệnh tật' },
-    { id: 'NGU_QUY', name: 'Ngũ quỷ', fortune: 'BAD', rank: 2, meaning: 'Thị phi, mất mát, việc bất ngờ' },
-    { id: 'LUC_SAT', name: 'Lục sát', fortune: 'BAD', rank: 3, meaning: 'Xáo trộn quan hệ, kiện tụng' },
-    { id: 'HOA_HAI', name: 'Họa hại', fortune: 'BAD', rank: 4, meaning: 'Gặp chuyện không may, thất bại nhỏ' },
+    { id: 'SINH_KHI', fortune: 'GOOD', rank: 1 },
+    { id: 'THIEN_Y', fortune: 'GOOD', rank: 2 },
+    { id: 'DIEN_NIEN', fortune: 'GOOD', rank: 3 },
+    { id: 'PHUC_VI', fortune: 'GOOD', rank: 4 },
+    { id: 'TUYET_MENH', fortune: 'BAD', rank: 1 },
+    { id: 'NGU_QUY', fortune: 'BAD', rank: 2 },
+    { id: 'LUC_SAT', fortune: 'BAD', rank: 3 },
+    { id: 'HOA_HAI', fortune: 'BAD', rank: 4 },
   ],
   trigrams: [
-    { number: 1, name: 'Khảm', element: 'Thuỷ', group: 'EAST', stars: { SINH_KHI: 3, THIEN_Y: 2, DIEN_NIEN: 4, PHUC_VI: 0, HOA_HAI: 6, NGU_QUY: 1, LUC_SAT: 7, TUYET_MENH: 5 } },
-    { number: 2, name: 'Khôn', element: 'Thổ', group: 'WEST', stars: { SINH_KHI: 1, THIEN_Y: 6, DIEN_NIEN: 7, PHUC_VI: 5, HOA_HAI: 2, NGU_QUY: 3, LUC_SAT: 4, TUYET_MENH: 0 } },
-    { number: 3, name: 'Chấn', element: 'Mộc', group: 'EAST', stars: { SINH_KHI: 4, THIEN_Y: 0, DIEN_NIEN: 3, PHUC_VI: 2, HOA_HAI: 5, NGU_QUY: 7, LUC_SAT: 1, TUYET_MENH: 6 } },
-    { number: 4, name: 'Tốn', element: 'Mộc', group: 'EAST', stars: { SINH_KHI: 0, THIEN_Y: 4, DIEN_NIEN: 2, PHUC_VI: 3, HOA_HAI: 7, NGU_QUY: 5, LUC_SAT: 6, TUYET_MENH: 1 } },
-    { number: 6, name: 'Càn', element: 'Kim', group: 'WEST', stars: { SINH_KHI: 6, THIEN_Y: 1, DIEN_NIEN: 5, PHUC_VI: 7, HOA_HAI: 3, NGU_QUY: 2, LUC_SAT: 0, TUYET_MENH: 4 } },
-    { number: 7, name: 'Đoài', element: 'Kim', group: 'WEST', stars: { SINH_KHI: 7, THIEN_Y: 5, DIEN_NIEN: 1, PHUC_VI: 6, HOA_HAI: 0, NGU_QUY: 4, LUC_SAT: 3, TUYET_MENH: 2 } },
-    { number: 8, name: 'Cấn', element: 'Thổ', group: 'WEST', stars: { SINH_KHI: 5, THIEN_Y: 7, DIEN_NIEN: 6, PHUC_VI: 1, HOA_HAI: 4, NGU_QUY: 0, LUC_SAT: 2, TUYET_MENH: 3 } },
-    { number: 9, name: 'Ly', element: 'Hoả', group: 'EAST', stars: { SINH_KHI: 2, THIEN_Y: 3, DIEN_NIEN: 0, PHUC_VI: 4, HOA_HAI: 1, NGU_QUY: 6, LUC_SAT: 5, TUYET_MENH: 7 } },
+    { number: 1, id: 'KAN', element: 'WATER', group: 'EAST', stars: { SINH_KHI: 3, THIEN_Y: 2, DIEN_NIEN: 4, PHUC_VI: 0, HOA_HAI: 6, NGU_QUY: 1, LUC_SAT: 7, TUYET_MENH: 5 } },
+    { number: 2, id: 'KUN', element: 'EARTH', group: 'WEST', stars: { SINH_KHI: 1, THIEN_Y: 6, DIEN_NIEN: 7, PHUC_VI: 5, HOA_HAI: 2, NGU_QUY: 3, LUC_SAT: 4, TUYET_MENH: 0 } },
+    { number: 3, id: 'ZHEN', element: 'WOOD', group: 'EAST', stars: { SINH_KHI: 4, THIEN_Y: 0, DIEN_NIEN: 3, PHUC_VI: 2, HOA_HAI: 5, NGU_QUY: 7, LUC_SAT: 1, TUYET_MENH: 6 } },
+    { number: 4, id: 'XUN', element: 'WOOD', group: 'EAST', stars: { SINH_KHI: 0, THIEN_Y: 4, DIEN_NIEN: 2, PHUC_VI: 3, HOA_HAI: 7, NGU_QUY: 5, LUC_SAT: 6, TUYET_MENH: 1 } },
+    { number: 6, id: 'QIAN', element: 'METAL', group: 'WEST', stars: { SINH_KHI: 6, THIEN_Y: 1, DIEN_NIEN: 5, PHUC_VI: 7, HOA_HAI: 3, NGU_QUY: 2, LUC_SAT: 0, TUYET_MENH: 4 } },
+    { number: 7, id: 'DUI', element: 'METAL', group: 'WEST', stars: { SINH_KHI: 7, THIEN_Y: 5, DIEN_NIEN: 1, PHUC_VI: 6, HOA_HAI: 0, NGU_QUY: 4, LUC_SAT: 3, TUYET_MENH: 2 } },
+    { number: 8, id: 'GEN', element: 'EARTH', group: 'WEST', stars: { SINH_KHI: 5, THIEN_Y: 7, DIEN_NIEN: 6, PHUC_VI: 1, HOA_HAI: 4, NGU_QUY: 0, LUC_SAT: 2, TUYET_MENH: 3 } },
+    { number: 9, id: 'LI', element: 'FIRE', group: 'EAST', stars: { SINH_KHI: 2, THIEN_Y: 3, DIEN_NIEN: 0, PHUC_VI: 4, HOA_HAI: 1, NGU_QUY: 6, LUC_SAT: 5, TUYET_MENH: 7 } },
   ],
-  interpretation:
-    'Cung phi tính theo năm sinh âm lịch và giới tính. Hướng của đối tượng rơi vào cung nào trong 8 cung của người đó thì mang sao đó. Sinh trước Tết Nguyên đán thì dùng năm âm lịch là năm trước.',
-  disclaimer:
-    'Phần này là tham khảo theo phong thuỷ dân gian (phép Bát trạch), không phải kết luận kỹ thuật hay lời khuyên chuyên môn. Trường phái khác có thể cho kết quả khác. Số đo hướng ở phần Kết quả đo không phụ thuộc phần này.',
 }
 
 /** Hậu thiên bát quái: số quái → chỉ số hướng của chính nó (Khảm Bắc, Khôn Tây Nam…). */
@@ -76,8 +76,7 @@ const BAT_TRACH_1_1: RuleProfile = {
   version: '1.1.0',
   yearBoundary: 'TET',
   trigrams: BAT_TRACH_1_0.trigrams.map((trigram) => ({ ...trigram, home: HOME[trigram.number] })),
-  interpretation:
-    'Cung mệnh tính theo năm sinh âm lịch (đổi năm ở Tết Nguyên đán) và giới tính. Hướng của đối tượng rơi vào cung nào trong 8 cung của người đó thì mang sao đó. Nhà còn được xếp Đông / Tây tứ trạch theo hướng toạ (phía sau nhà); trường phái lấy mốc năm Lập Xuân (khoảng 4/2) có thể cho cung khác với người sinh giữa hai mốc.',
+  text: { ...BAT_TRACH_1_0.text, interpretation: 'orientation:profiles.batTrach.interpretationV1_1' },
 }
 
 export const RULE_PROFILES: RuleProfile[] = [BAT_TRACH_1_0, BAT_TRACH_1_1]

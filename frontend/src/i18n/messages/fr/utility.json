@@ -1,0 +1,462 @@
+{
+  "shared": {
+    "copyResult": "Copier le résultat",
+    "days": "jours",
+    "daysValue_one": "{{count}} <unit>jour</unit>",
+    "daysValue_many": "{{count}} <unit>jours</unit>",
+    "daysValue_other": "{{count}} <unit>jours</unit>"
+  },
+  "weekdays": {
+    "sun": "Dimanche",
+    "mon": "Lundi",
+    "tue": "Mardi",
+    "wed": "Mercredi",
+    "thu": "Jeudi",
+    "fri": "Vendredi",
+    "sat": "Samedi"
+  },
+  "duration": {
+    "weeks_one": "{{count}} semaine",
+    "weeks_many": "{{count}} semaines",
+    "weeks_other": "{{count}} semaines",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days_one": "{{count}} jour",
+    "days_many": "{{count}} jours",
+    "days_other": "{{count}} jours"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "Surface",
+      "volume": "Volume",
+      "mass": "Masse"
+    },
+    "formulas": {
+      "rectangle": "Rectangle",
+      "triangle": "Triangle",
+      "trapezoid": "Trapèze",
+      "circle": "Cercle",
+      "box": "Parallélépipède (semelle, poutre, dalle)",
+      "cylinder": "Cylindre (poteau rond, pieu)",
+      "rebar": "Acier rond (barre d'armature)",
+      "plate": "Tôle d'acier",
+      "density": "Volume × masse volumique"
+    },
+    "inputs": {
+      "length": "Longueur",
+      "width": "Largeur",
+      "base": "Base",
+      "height": "Hauteur",
+      "bigBase": "Grande base",
+      "smallBase": "Petite base",
+      "diameter": "Diamètre",
+      "heightThickness": "Hauteur / épaisseur",
+      "heightLength": "Hauteur / longueur",
+      "thickness": "Épaisseur",
+      "volume": "Volume",
+      "density": "Masse volumique"
+    },
+    "presets": {
+      "steel": "Acier",
+      "reinforcedConcrete": "Béton armé",
+      "water": "Eau"
+    },
+    "tonnes": "= {{value}} tonnes",
+    "perPiece": "Par élément : {{value}} {{unit}}",
+    "invalid": "Les dimensions et la quantité doivent être des nombres supérieurs à 0.",
+    "missing": "Saisissez toutes les dimensions pour calculer.",
+    "groupLabel": "Grandeur à calculer",
+    "panelTitle": "Dimensions",
+    "material": "Matériau / méthode",
+    "shape": "Forme",
+    "quantity": "Quantité",
+    "pieces": "pièces",
+    "densityPresets": "Masses volumiques prédéfinies",
+    "decimalHint": "Vous pouvez taper la décimale avec une virgule ou un point : 2,5 et 2.5 sont identiques. Les nombres saisis sont repris dans le calcul à côté."
+  },
+  "money": {
+    "groups": {
+      "percent": "Pourcentage",
+      "tax": "Taxes et remises",
+      "profit": "Marge brute",
+      "split": "Partage d'addition"
+    },
+    "presets": {
+      "percentOf": "X % d'un nombre",
+      "percentRatio": "A représente quel % de B",
+      "percentChange": "Hausse / baisse en %",
+      "vatAdd": "Ajouter la taxe à un prix hors taxe",
+      "vatExtract": "Extraire la taxe d'un prix toutes taxes comprises",
+      "discount": "Remise / réduction",
+      "margin": "Marge brute à partir du coût et du prix de vente",
+      "priceFromMargin": "Prix de vente à partir du coût et du taux de marge",
+      "priceFromMarkup": "Prix de vente à partir du coût et du taux de marque",
+      "split": "Partager un montant à parts égales"
+    },
+    "inputs": {
+      "rate": "Taux",
+      "ofNumber": "De",
+      "numberA": "Nombre A",
+      "numberB": "Nombre B",
+      "oldValue": "Ancienne valeur",
+      "newValue": "Nouvelle valeur",
+      "netPrice": "Prix hors taxe",
+      "taxRate": "Taux de taxe",
+      "grossPrice": "Prix toutes taxes comprises",
+      "originalPrice": "Prix initial",
+      "discount": "Remise",
+      "cost": "Coût de revient",
+      "price": "Prix de vente",
+      "targetMargin": "Marge visée",
+      "targetMarkup": "Taux de marque visé",
+      "total": "Montant total",
+      "people": "Nombre de personnes",
+      "extra": "Frais supplémentaires / pourboire"
+    },
+    "placeholders": {
+      "manual": "Saisie libre",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "Résultat",
+      "aVsB": "A par rapport à B",
+      "increase": "Hausse",
+      "decrease": "Baisse",
+      "difference": "Écart",
+      "grossPrice": "Prix toutes taxes comprises",
+      "tax": "Montant de la taxe",
+      "netPrice": "Prix hors taxe",
+      "discounted": "Prix après remise",
+      "discountAmount": "Montant de la remise",
+      "margin": "Taux de marge (sur le prix de vente)",
+      "markup": "Taux de marque (sur le coût)",
+      "grossProfit": "Marge brute",
+      "price": "Prix de vente",
+      "impliedMarkup": "Taux de marque correspondant",
+      "impliedMargin": "Taux de marge correspondant",
+      "each": "Par personne",
+      "totalDue": "Total à payer",
+      "eachRounded": "Par personne, arrondi au millier supérieur",
+      "surplus": "Excédent dû à l'arrondi"
+    },
+    "errors": {
+      "bNonZero": "Le nombre B doit être différent de 0.",
+      "oldNonZero": "L'ancienne valeur doit être différente de 0.",
+      "discountMax": "La remise ne peut pas dépasser 100 %.",
+      "pricePositive": "Le prix de vente doit être supérieur à 0.",
+      "costPositive": "Le coût de revient doit être supérieur à 0.",
+      "marginMax": "La marge doit être inférieure à 100 %.",
+      "tooLarge": "Le nombre est trop grand pour être calculé."
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "pers."
+    },
+    "copyRow": "Copier {{label}}",
+    "invalid": "La case signalée ne contient pas encore un nombre valide (non négatif ; le nombre de personnes est un entier à partir de 1).",
+    "missing": "Remplissez toutes les cases pour calculer.",
+    "formulaCode": "Code de la formule : {{code}}",
+    "groupLabel": "Type de calcul",
+    "panelTitle": "Valeurs",
+    "operation": "Calcul",
+    "taxHint": "Vous saisissez vous-même le taux de taxe : il varie selon le produit et la période, l'outil n'intègre donc aucun chiffre.",
+    "profitHint": "Le taux de marge se calcule sur le prix de vente, le taux de marque sur le coût de revient : un même bénéfice donne deux chiffres différents.",
+    "inputHint": "Montants : 150.000 et 150,000 valent tous deux cent cinquante mille ; pour les décimales, tapez 1500,5. Le nombre compris est repris dans le calcul à côté. Les résultats s'affichent avec deux décimales au plus, sans arrondi selon une règle comptable."
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "Longueur",
+      "area": "Surface",
+      "mass": "Masse"
+    },
+    "units": {
+      "mm": {
+        "name": "Millimètre",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "Centimètre",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "Mètre",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "Kilomètre",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "Pouce",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "Pied",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "Yard",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "Mile",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "Millimètre carré",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "Centimètre carré",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "Mètre carré",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "Hectare",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "Kilomètre carré",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "Pied carré",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "Acre",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "Gramme",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "Kilogramme",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến (10 kg, unité vietnamienne)",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ (100 kg, unité vietnamienne)",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "Tonne",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "Once",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "Livre",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "Dans toutes les unités",
+    "equalsHeading": "{{value}} {{unit}} équivaut à",
+    "notNumber": "La valeur n'est pas encore un nombre.",
+    "notNumberExample": "La valeur n'est pas encore un nombre. Exemple : 2,5 ou 1200.",
+    "enterValue": "Saisissez la valeur à convertir.",
+    "copyIn": "Copier la valeur en {{unit}}",
+    "groupLabel": "Type d'unité",
+    "panelTitle": "Convertir des unités",
+    "value": "Valeur",
+    "from": "De",
+    "to": "Vers",
+    "unitOption": "{{name}} ({{symbol}})",
+    "swap": "Inverser les unités",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "Caractères",
+      "charactersNoSpaces": "Caractères hors espaces",
+      "words": "Mots",
+      "lines": "Lignes",
+      "paragraphs": "Paragraphes"
+    },
+    "hints": {
+      "characters": "espaces et retours à la ligne compris",
+      "words": "groupes de lettres séparés par des espaces",
+      "paragraphs": "séparés par des lignes vides"
+    },
+    "counts": "Comptage",
+    "panelTitle": "Texte",
+    "clear": "Tout effacer",
+    "textLabel": "Texte à compter",
+    "placeholder": "Tapez ou collez du texte ici…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "Très lisible (AAA)",
+      "aa": "Lisible (AA)",
+      "large": "Grand texte uniquement",
+      "fail": "Difficile à lire"
+    },
+    "pickFailed": "Impossible de prélever une couleur à l'écran.",
+    "preview": "Aperçu",
+    "swatch": "Couleur {{hex}}",
+    "textOnColor": "Texte sur cette couleur",
+    "whiteText": "Texte blanc",
+    "blackText": "Texte noir",
+    "contrastHint": "Rapport de contraste WCAG : à partir de 4,5 : 1, un texte normal est lisible ; à partir de 3 : 1, cela suffit seulement pour les grands textes et les icônes.",
+    "panelTitle": "Choisir une couleur",
+    "picker": "Sélecteur de couleur",
+    "pickerHint": "Cliquez sur la pastille de couleur pour ouvrir le sélecteur, ou tapez un code ci-dessous.",
+    "eyedropper": "Prélever une couleur à l'écran",
+    "copyCode": "Copier le code {{label}}"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "Entre deux dates",
+      "add": "Ajouter / retirer des jours"
+    },
+    "weekendOnly": "Ici, les jours ouvrés excluent seulement le samedi et le dimanche. Les jours fériés sont listés dans les résultats mais ne sont PAS déduits automatiquement ; les jours de récupération et les samedis travaillés propres à chaque organisme ne sont pas pris en compte non plus : si un jour férié tombe dans le délai, ajoutez-le vous-même.",
+    "distance": "Écart",
+    "countingBack": "La date de fin précède la date de début : décompte à rebours.",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "Copier le nombre de jours",
+    "workdays": "Jours ouvrés (lundi – vendredi)",
+    "weekendDays": "Samedis, dimanches",
+    "startIncluded": "Date de début (incluse)",
+    "startExcluded": "Date de début (non incluse)",
+    "endIncluded": "Date de fin (incluse)",
+    "pickBoth": "Choisissez les deux dates pour calculer.",
+    "landsOn": "Tombe le",
+    "addedCalendar_one": "= {{start}} {{sign}} {{count}} jour",
+    "addedCalendar_many": "= {{start}} {{sign}} {{count}} jours",
+    "addedCalendar_other": "= {{start}} {{sign}} {{count}} jours",
+    "addedWorkdays_one": "= {{start}} {{sign}} {{count}} jour ouvré",
+    "addedWorkdays_many": "= {{start}} {{sign}} {{count}} jours ouvrés",
+    "addedWorkdays_other": "= {{start}} {{sign}} {{count}} jours ouvrés",
+    "calendarEquivalent_one": "Soit {{count}} jour calendaire.",
+    "calendarEquivalent_many": "Soit {{count}} jours calendaires.",
+    "calendarEquivalent_other": "Soit {{count}} jours calendaires.",
+    "copyDate": "Copier la date",
+    "countInvalid": "Le nombre de jours doit être un entier de 0 à {{max}}.",
+    "pickStart": "Choisissez une date de début et saisissez le nombre de jours.",
+    "modeLabel": "Mode de calcul",
+    "betweenTitle": "Deux dates",
+    "fromDate": "Du",
+    "toDate": "Au",
+    "includeStart": "Inclure la date de début",
+    "includeStartHint": "Sans la date de début : du lundi au vendredi font 4 jours (calcul d'un délai). Avec : 5 jours (calcul des jours travaillés).",
+    "addTitle": "Date de départ et nombre de jours",
+    "startDate": "Date de début",
+    "dayCount": "Nombre de jours",
+    "direction": "Sens",
+    "forward": "Ajouter (après)",
+    "back": "Retirer (avant)",
+    "dayKind": "Type de jours",
+    "calendar": "Jours calendaires",
+    "addHint": "La date de début n'est pas comptée : ajouter 1 jour à un vendredi donne samedi (jours calendaires) ou lundi (jours ouvrés)."
+  },
+  "holidays": {
+    "tooLong_one": "La période dépasse {{count}} jour : les jours fériés ne sont pas listés.",
+    "tooLong_many": "La période dépasse {{count}} jours : les jours fériés ne sont pas listés.",
+    "tooLong_other": "La période dépasse {{count}} jours : les jours fériés ne sont pas listés.",
+    "none": "Aucun jour férié sur cette période.",
+    "count_one": "{{count}} jour férié sur la période",
+    "count_many": "{{count}} jours fériés sur la période",
+    "count_other": "{{count}} jours fériés sur la période",
+    "more_one": "et {{count}} autre jour",
+    "more_many": "et {{count}} autres jours",
+    "more_other": "et {{count}} autres jours",
+    "hint": "L'outil ne déduit pas automatiquement les jours de congé. Si l'organisme est fermé ces jours-là, ajoutez-les vous-même au délai."
+  },
+  "randomCode": {
+    "modes": {
+      "password": "Mot de passe",
+      "code": "Codes de commande, de bon"
+    },
+    "classes": {
+      "upper": "Majuscules (A–Z)",
+      "lower": "Minuscules (a–z)",
+      "digits": "Chiffres (0–9)",
+      "symbols": "Symboles (!@#$…)"
+    },
+    "strengths": {
+      "weak": "Faible",
+      "fair": "Moyen",
+      "strong": "Fort",
+      "excellent": "Très fort"
+    },
+    "results": "Résultats",
+    "resultsCount_one": "Résultats ({{count}})",
+    "resultsCount_many": "Résultats ({{count}})",
+    "resultsCount_other": "Résultats ({{count}})",
+    "copyAll": "Tout copier",
+    "noClass": "Activez au moins un groupe de caractères pour générer un mot de passe.",
+    "copyValue": "Copier {{value}}",
+    "regenerate": "Régénérer",
+    "modeLabel": "Type de code",
+    "panelTitle": "Options",
+    "length": "Longueur",
+    "chars_one": "{{count}} caractère",
+    "chars_many": "{{count}} caractères",
+    "chars_other": "{{count}} caractères",
+    "classGroups": "Groupes de caractères utilisés",
+    "plain": "Éviter les caractères qui se confondent (0 O o 1 l I)",
+    "strength": "Robustesse : <strong>{{label}}</strong> · environ {{bits}} bits",
+    "prefix": "Préfixe (facultatif)",
+    "prefixPlaceholder": "Exemple : PX-",
+    "charset": "La partie aléatoire contient",
+    "alnum": "Majuscules et chiffres",
+    "digitsOnly": "Chiffres uniquement",
+    "codeLength": "Nombre de caractères aléatoires",
+    "alnumHint": "Sans I, O, 0, 1 : les codes dictés au téléphone ou recopiés à la main ne prêtent pas à confusion.",
+    "count": "Nombre par génération ({{max}} au maximum)"
+  },
+  "notes": {
+    "untitled": "Note vide",
+    "limitReached_one": "Vous avez atteint {{count}} note. Supprimez d'anciennes notes pour en ajouter.",
+    "limitReached_many": "Vous avez atteint {{count}} notes. Supprimez d'anciennes notes pour en ajouter.",
+    "limitReached_other": "Vous avez atteint {{count}} notes. Supprimez d'anciennes notes pour en ajouter.",
+    "listLabel": "Liste des notes",
+    "title": "Notes",
+    "titleCount_one": "Notes ({{count}})",
+    "titleCount_many": "Notes ({{count}})",
+    "titleCount_other": "Notes ({{count}})",
+    "newNote": "Nouvelle note",
+    "empty": "Aucune note sur cet appareil pour l'instant.",
+    "notice": "Les notes sont stockées dans ce navigateur, pas dans un compte : toute personne utilisant cet appareil peut les lire, et effacer les données de navigation les supprime.",
+    "clearAllTitle_one": "Supprimer {{count}} note ?",
+    "clearAllTitle_many": "Supprimer les {{count}} notes ?",
+    "clearAllTitle_other": "Supprimer les {{count}} notes ?",
+    "localOnly": "Les notes n'existent que sur cet appareil ; une fois supprimées, elles sont irrécupérables.",
+    "clearAllConfirm": "Tout supprimer",
+    "clearAll": "Supprimer toutes les notes",
+    "editorLabel": "Rédiger une note",
+    "emptyStart": "Notez ce qu'il faut retenir, faites des listes de choses à faire.",
+    "emptyPick": "Choisissez une note dans la liste pour la voir et la modifier.",
+    "backToList": "Liste des notes",
+    "titleLabel": "Titre",
+    "titlePlaceholder": "Exemple : choses à faire sur le chantier lundi",
+    "body": "Contenu",
+    "bodyPlaceholder": "Notez rapidement ce qu'il faut retenir…",
+    "saveFailed": "Impossible d'enregistrer sur cet appareil. Copiez le contenu ailleurs avant de fermer la page.",
+    "savedAt": "Enregistré sur cet appareil · {{time}}",
+    "deleteTitle": "Supprimer cette note ?",
+    "deleteConfirm": "Supprimer",
+    "delete": "Supprimer la note",
+    "tasks": "Liste de tâches",
+    "taskDone": "Terminé : {{task}}",
+    "taskFallback": "tâche {{number}}",
+    "task": "Tâche {{number}}",
+    "removeTask": "Retirer la tâche {{number}}",
+    "removeTaskTitle": "Retirer cette tâche",
+    "newTask": "Nouvelle tâche",
+    "tasksFull_one": "Limite de {{count}} tâche atteinte",
+    "tasksFull_many": "Limite de {{count}} tâches atteinte",
+    "tasksFull_other": "Limite de {{count}} tâches atteinte",
+    "addTaskPlaceholder": "Ajoutez une tâche, appuyez sur Entrée",
+    "addTask": "Ajouter"
+  }
+}

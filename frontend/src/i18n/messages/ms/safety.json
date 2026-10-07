@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "Banyak tanda amaran",
+    "levelMedium": "Ada tanda amaran",
+    "levelLow": "Tiada tanda ditemui oleh set peraturan",
+    "result": "Keputusan saringan",
+    "note": "Ini hanya semakan tanda amaran berasaskan peraturan; ia tidak membuktikan pautan atau mesej itu selamat. Jangan masukkan OTP atau kata laluan pada halaman yang dibuka daripada mesej; hubungi organisasi berkenaan melalui saluran yang anda cari sendiri.",
+    "title": "Kandungan untuk disemak",
+    "kind": "Jenis kandungan",
+    "kindMessage": "Mesej",
+    "kindLink": "Pautan",
+    "messageLabel": "Teks mesej",
+    "linkPlaceholder": "Tampal pautan, tidak perlu membukanya…",
+    "messagePlaceholder": "Tampal mesej yang mencurigakan…",
+    "privacy": "Kandungan dianalisis pada peranti anda; alat ini tidak melawati pautan yang anda tampal."
+  },
+  "flags": {
+    "unreadable": "Tidak dapat membaca pautan.",
+    "noHttps": "Tidak menggunakan HTTPS.",
+    "ipHost": "Menggunakan alamat IP dan bukan nama domain.",
+    "punycode": "Domain menggunakan punycode; bandingkan dengan nama sebenar.",
+    "shortener": "Pautan pendek menyembunyikan destinasi sebenar.",
+    "riskyTld": "Akhiran domain yang biasa dilihat dalam pautan berisiko.",
+    "fakeGov": "Mengandungi \"gov\" tetapi bukan di bawah domain .gov.vn.",
+    "brand": "Domain mengandungi \"{{brand}}\"; bandingkan dengan alamat rasmi.",
+    "loginPath": "Laluan pautan membayangkan langkah log masuk atau pengesahan.",
+    "otp": "Meminta OTP atau kod pengesahan.",
+    "lockThreat": "Mendesak dengan ancaman akaun akan disekat.",
+    "prize": "Menjanjikan hadiah atau ganjaran.",
+    "easyJob": "Menawarkan kerja mudah bergaji tinggi atau tugasan dalam talian.",
+    "urgentTransfer": "Mendesak anda memindahkan atau menambah nilai wang dengan segera.",
+    "installApp": "Meminta anda memasang aplikasi daripada mesej.",
+    "link": "Pautan {{link}}: {{flags}}"
+  }
+}

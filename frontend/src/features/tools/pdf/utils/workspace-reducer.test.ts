@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Decorations } from '../types/decorations.types'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
-import { DEFAULT_HEADER_FOOTER, DEFAULT_WATERMARK } from './decorations'
+import { defaultHeaderFooter, defaultWatermark } from './decorations'
 import { deletePages, rotatePages } from './page-ops'
 import { initialWorkspace, workspaceReducer, type WorkspaceState } from './workspace-reducer'
 
@@ -83,11 +83,11 @@ describe('workspaceReducer', () => {
   })
 
   describe('trang trí', () => {
-    const withWatermark = (text: string): Decorations => ({ headerFooter: null, watermark: { ...DEFAULT_WATERMARK, text } })
+    const withWatermark = (text: string): Decorations => ({ headerFooter: null, watermark: { ...defaultWatermark(), text } })
 
     it('hoàn tác trang trí cùng chồng với thao tác trang', () => {
       let state = withFile('a', 2)
-      state = workspaceReducer(state, { type: 'decorate', decorations: { headerFooter: DEFAULT_HEADER_FOOTER, watermark: null } })
+      state = workspaceReducer(state, { type: 'decorate', decorations: { headerFooter: defaultHeaderFooter(), watermark: null } })
       state = workspaceReducer(state, { type: 'edit', next: (pages) => rotatePages(pages, ['a-1'], 90) })
 
       state = workspaceReducer(state, { type: 'undo' })

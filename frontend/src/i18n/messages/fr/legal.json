@@ -1,0 +1,203 @@
+{
+  "bindingNotice": "Seule la version vietnamienne fait foi juridiquement.",
+  "dieu-khoan": {
+    "title": "Conditions <accent>d'utilisation</accent>",
+    "breadcrumb": "Conditions d'utilisation",
+    "intro": "Les présentes conditions s'appliquent lorsque vous utilisez la boîte à outils gratuite Chuyện Nhỏ exploitée par ERPCons & LPC (« nous »). En utilisant le site, vous acceptez les conditions ci-dessous.",
+    "summary": {
+      "free": "Gratuit, sans compte.",
+      "yours": "Vos fichiers restent les vôtres et sont traités sur votre appareil.",
+      "reference": "Les résultats de calcul sont fournis à titre indicatif ; vérifiez-les avant de les utiliser.",
+      "lawful": "N'utilisez pas les outils à des fins illégales."
+    },
+    "sections": {
+      "dich-vu": {
+        "heading": "Un service gratuit",
+        "paragraphs": {
+          "free": "Chuyện Nhỏ propose gratuitement des outils de traitement de documents et d'images, de calcul et des utilitaires du quotidien, qui fonctionnent directement dans votre navigateur, sans inscription.",
+          "changes": "Nous pouvons ajouter, modifier, suspendre ou arrêter un outil à tout moment. Les outils marqués « Bientôt disponible » sont des projets susceptibles de changer ou de ne jamais voir le jour."
+        }
+      },
+      "tep-cua-ban": {
+        "heading": "Vos fichiers et contenus",
+        "paragraphs": {
+          "ownership": "Vous conservez l'intégralité des droits sur vos fichiers et contenus. Les outils actuellement disponibles traitent les fichiers directement sur votre appareil ; nous ne recevons ni ne conservons vos fichiers.",
+          "responsibility": "Il vous appartient de vous assurer que vous avez le droit d'utiliser et de modifier les fichiers que vous confiez aux outils, et de conserver vous-même les originaux avant traitement."
+        }
+      },
+      "tham-khao": {
+        "heading": "Des résultats fournis à titre indicatif",
+        "paragraphs": {
+          "intro": "Certains outils produisent des chiffres ou des conclusions à partir des données que vous saisissez et de conventions courantes, par exemple :"
+        },
+        "items": {
+          "estimates": "Estimation du coût de construction d'une maison, calcul du salaire ou de la facture d'électricité : ils ne remplacent pas un devis, un bulletin de paie ou une facture officiels.",
+          "orientation": "Orientation de la maison et interprétations selon l'âge : données à titre indicatif d'après le feng shui populaire, et non des conclusions techniques.",
+          "ocr": "Reconnaissance de texte (OCR), conversion d'adresses, consultation de réglementations : des erreurs sont possibles ; vérifiez par rapport aux documents originaux."
+        }
+      },
+      "hanh-vi-cam": {
+        "heading": "Ce qui est interdit",
+        "items": {
+          "unlawful": "Utiliser les outils à des fins illégales, comme falsifier des documents ou créer des QR codes frauduleux.",
+          "unauthorized": "Retirer le mot de passe de fichiers ou modifier des fichiers sur lesquels vous n'avez aucun droit.",
+          "abuse": "Envoyer des requêtes automatisées en masse, scanner, attaquer ou perturber le système.",
+          "content": "Envoyer, via la fonction de remarques, des contenus illicites, insultants envers autrui ou contenant des informations personnelles d'autres personnes."
+        }
+      },
+      "gop-y": {
+        "heading": "Remarques et propositions",
+        "paragraphs": {
+          "use": "En envoyant une remarque ou une proposition, vous acceptez que nous utilisions l'idée pour améliorer le produit, sans obligation de rémunération. Les propositions approuvées peuvent être affichées publiquement sur la page des propositions. Merci de ne pas inclure d'informations personnelles dans vos envois."
+        }
+      },
+      "so-huu-tri-tue": {
+        "heading": "Propriété intellectuelle",
+        "paragraphs": {
+          "ownership": "Le nom, le logo, l'interface et le code source de Chuyện Nhỏ appartiennent à ERPCons & LPC. Les bibliothèques open source incluses sont régies par leurs propres licences."
+        }
+      },
+      "lien-ket": {
+        "heading": "Liens externes",
+        "paragraphs": {
+          "external": "Le site contient des liens vers ERPCons, TekShot AI et d'autres sites. Le contenu et les politiques de ces sites relèvent de la responsabilité de leurs exploitants respectifs."
+        }
+      },
+      "trach-nhiem": {
+        "heading": "Limitation de responsabilité",
+        "paragraphs": {
+          "asIs": "Les outils sont fournis gratuitement, en l'état. Dans les limites permises par la loi, nous déclinons toute responsabilité pour les dommages résultant de l'utilisation des résultats des outils ou d'une indisponibilité temporaire de ceux-ci.",
+          "consumer": "Les présentes conditions n'excluent aucun des droits que vous confère la législation sur la protection des consommateurs."
+        }
+      },
+      "quyen-rieng-tu": {
+        "heading": "Confidentialité",
+        "paragraphs": {
+          "policy": "La manière dont nous traitons les données est expliquée dans la Politique de confidentialité."
+        },
+        "link": "Lire la Politique de confidentialité"
+      },
+      "thay-doi": {
+        "heading": "Modification des conditions",
+        "paragraphs": {
+          "updates": "Nous pouvons mettre à jour ces conditions. La date de mise à jour figure en haut de la page ; les modifications importantes seront annoncées sur le site. Continuer à utiliser le site après une mise à jour vaut acceptation de la nouvelle version."
+        }
+      },
+      "luat-ap-dung": {
+        "heading": "Droit applicable",
+        "paragraphs": {
+          "law": "Les présentes conditions sont régies par le droit vietnamien. Les litiges seront de préférence réglés à l'amiable ; à défaut, ils seront portés devant l'autorité compétente conformément à la loi."
+        }
+      },
+      "lien-he": {
+        "heading": "Contact",
+        "paragraphs": {
+          "contact": "Pour toute question sur ces conditions, écrivez-nous à {{email}}."
+        }
+      }
+    }
+  },
+  "quyen-rieng-tu": {
+    "title": "Politique de <accent>confidentialité</accent>",
+    "breadcrumb": "Politique de confidentialité",
+    "intro": "Cette politique explique comment Chuyện Nhỏ collecte, utilise et protège les données personnelles, conformément à la loi n° 91/2025/QH15 sur la protection des données personnelles et au décret n° 356/2025/NĐ-CP.",
+    "summary": {
+      "device": "Vos fichiers sont traités sur votre appareil et ne sont jamais envoyés à un serveur.",
+      "noTracking": "Pas de compte, pas de cookies, aucun outil publicitaire ni de suivi.",
+      "counting": "Nous comptons uniquement les ouvertures d'outils ; les adresses IP sont hachées et supprimées automatiquement après environ 1 heure.",
+      "feedback": "Les remarques ne sont envoyées que si vous donnez votre accord et appuyez sur Envoyer."
+    },
+    "sections": {
+      "chung-toi": {
+        "heading": "Qui sommes-nous",
+        "paragraphs": {
+          "controller": "Chuyện Nhỏ est exploité par ERPCons & LPC, responsable du traitement des données personnelles traitées via ce site. Contact pour les questions de données personnelles : {{email}}."
+        }
+      },
+      "nguyen-tac": {
+        "heading": "Nos principes",
+        "items": {
+          "device": "Traitement sur l'appareil : les outils actuellement disponibles n'envoient pas vos fichiers à un serveur.",
+          "minimal": "Minimisation : nous ne traitons que les données nécessaires au fonctionnement du service et à la prévention des abus.",
+          "anonymous": "Anonymat : nous ne demandons ni nom, ni e-mail, ni numéro de téléphone, ni compte.",
+          "noTracking": "Pas de cookies, aucun outil d'analyse, de publicité ou de suivi tiers."
+        }
+      },
+      "du-lieu": {
+        "heading": "Données traitées et finalités",
+        "items": {
+          "visits": "Ouvertures d'outils : nom de l'outil et horodatage, pour compter l'utilisation totale. Seuls des totaux agrégés sont conservés, sans lien avec un utilisateur.",
+          "ip": "Adresse IP : hachée de manière irréversible avec une clé secrète, utilisée uniquement pour limiter les envois automatisés, et supprimée automatiquement après environ 1 heure.",
+          "feedback": "Contenu des remarques et propositions : uniquement si vous cochez la case de consentement et appuyez sur Envoyer, afin de les examiner et d'améliorer les outils. Les codes de reçu ne sont conservés que sous forme hachée.",
+          "logs": "Journaux techniques du serveur web (adresse IP, type de navigateur, pages consultées) : utilisés uniquement pour le fonctionnement et la sécurité du système, et conservés pendant la courte durée nécessaire."
+        }
+      },
+      "tren-thiet-bi": {
+        "heading": "Données stockées sur votre appareil",
+        "paragraphs": {
+          "local": "Certains outils stockent des données directement dans votre navigateur pour que vous puissiez les réutiliser : outils récemment utilisés, mode clair/sombre, Calendrier familial, notes, brouillons de CV, cartes mémoire. Ces données ne nous sont pas envoyées ; vous pouvez les supprimer dans l'outil ou en effaçant les données du site dans les paramètres de votre navigateur."
+        },
+        "link": "Voir où chaque outil traite les données"
+      },
+      "ben-thu-ba": {
+        "heading": "Partage avec des tiers",
+        "paragraphs": {
+          "noSale": "Nous ne vendons pas les données personnelles et ne les partageons pas à des fins publicitaires. Nous ne communiquons des données aux autorités publiques compétentes que lorsque la loi l'exige.",
+          "speech": "Seul l'outil de dictée (de la voix au texte) utilise le service de reconnaissance vocale intégré à votre navigateur. L'audio est envoyé par le navigateur à son éditeur (par exemple Google pour Chrome), peut être traité à l'étranger selon leurs politiques, et ne transite pas par nos serveurs."
+        }
+      },
+      "thoi-gian-luu": {
+        "heading": "Durées de conservation",
+        "items": {
+          "ip": "Adresses IP hachées : environ 1 heure.",
+          "counts": "Compteurs d'utilisation : conservés sous forme de statistiques agrégées, sans données personnelles.",
+          "feedback": "Remarques et propositions : conservées le temps nécessaire à leur examen et à leur suivi, ou jusqu'à ce que vous en demandiez la suppression."
+        }
+      },
+      "quyen": {
+        "heading": "Vos droits",
+        "paragraphs": {
+          "intro": "En vertu de la loi sur la protection des données personnelles, vous avez le droit de :"
+        },
+        "items": {
+          "informed": "Être informé du traitement de vos données personnelles.",
+          "consent": "Donner ou retirer votre consentement.",
+          "access": "Consulter, rectifier, demander l'effacement ou la limitation du traitement de vos données.",
+          "complain": "Déposer une réclamation, une dénonciation ou une action en justice conformément à la loi.",
+          "protection": "Demander aux autorités compétentes de protéger vos droits sur vos données personnelles."
+        }
+      },
+      "thuc-hien-quyen": {
+        "heading": "Comment exercer vos droits",
+        "paragraphs": {
+          "request": "Envoyez votre demande à {{email}}. Chuyện Nhỏ n'ayant pas de comptes, joignez le code de reçu de votre remarque pour que nous retrouvions le bon contenu.",
+          "timeline": "Nous accusons réception de votre demande sous 2 jours ouvrés et la traitons dans le délai fixé par la loi, au plus tard sous 20 jours."
+        }
+      },
+      "tre-em": {
+        "heading": "Enfants",
+        "paragraphs": {
+          "children": "Chuyện Nhỏ ne collecte pas d'informations permettant d'identifier les enfants. Les enfants qui souhaitent envoyer une remarque doivent avoir l'accord d'un parent ou d'un tuteur, conformément à la loi."
+        }
+      },
+      "bao-mat": {
+        "heading": "Sécurité",
+        "paragraphs": {
+          "security": "Le site fonctionne via une connexion chiffrée HTTPS. Les données reçues sont minimisées et hachées lorsque c'est possible. Aucun système n'est totalement sûr ; si un incident affecte des données personnelles, nous vous en informerons conformément à la loi."
+        }
+      },
+      "thay-doi": {
+        "heading": "Modification de la politique",
+        "paragraphs": {
+          "updates": "Lorsque la politique change, nous mettons à jour la date en haut de la page et annonçons les modifications importantes sur le site."
+        }
+      },
+      "lien-he": {
+        "heading": "Contact",
+        "paragraphs": {
+          "contact": "Pour toute question sur les données personnelles, écrivez-nous à {{email}}."
+        }
+      }
+    }
+  }
+}

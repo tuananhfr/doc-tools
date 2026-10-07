@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import { guessFontStyle, PLAIN_FONT, type FontStyle } from '../utils/font-style'
 import { normalizeRotation, visualSize, type Size } from '../utils/page-geometry'
@@ -175,11 +176,11 @@ export async function toExcel(targets: OfficeTarget[], title: string, step?: Wor
   for (const [position, target] of targets.entries()) {
     await pace(step?.signal)
     step?.onProgress?.(position, targets.length)
-    const sheet = workbook.addWorksheet(`Trang ${position + 1}`.replace(SHEET_NAME_FORBIDDEN, ' '))
+    const sheet = workbook.addWorksheet(translate('pdf:file.sheet', { page: position + 1 }).replace(SHEET_NAME_FORBIDDEN, ' '))
     const content = await readPage(target)
     if (!content) {
       withoutText++
-      sheet.getCell('A1').value = 'Trang này không có lớp chữ (ảnh hoặc bản scan) nên không lấy được dữ liệu.'
+      sheet.getCell('A1').value = translate('pdf:file.noTextSheet')
       sheet.getCell('A1').font = { italic: true }
       continue
     }

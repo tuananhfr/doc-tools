@@ -1,5 +1,6 @@
 import { MAX_IMAGE_BYTES, maxImagePixels, megabytes, TOOL_ERROR, type ToolErrorCode } from '@/features/tools/hub'
 import { detectImageFormat, IMAGE_HEADER_BYTES, isHeic, readImageSize } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import { newId } from '@/utils/id'
 import type { ImageItem } from '../types/image.types'
 import { fitWithin } from '../utils/image-format'
@@ -16,7 +17,7 @@ export type IntakeResult = { ok: true; item: ImageItem } | { ok: false; code: To
  * giải mã không nổi bị từ chối ngay ở đây, không để tới lúc chạy mới báo.
  */
 export async function intakeImage(file: File): Promise<IntakeResult> {
-  if (file.size > MAX_IMAGE_BYTES) return { ok: false, code: TOOL_ERROR.fileTooLarge, reason: `Ảnh lớn hơn ${megabytes(MAX_IMAGE_BYTES)}.` }
+  if (file.size > MAX_IMAGE_BYTES) return { ok: false, code: TOOL_ERROR.fileTooLarge, reason: translate('image:intake.tooLarge', { size: megabytes(MAX_IMAGE_BYTES) }) }
 
   const head = new Uint8Array(await file.slice(0, IMAGE_HEADER_BYTES).arrayBuffer())
   const format = detectImageFormat(head)
@@ -24,21 +25,21 @@ export async function intakeImage(file: File): Promise<IntakeResult> {
     return {
       ok: false,
       code: TOOL_ERROR.unsupportedFormat,
-      reason: isHeic(head) ? 'Ảnh HEIC (iPhone) chưa hỗ trợ — đổi sang JPG rồi thử lại.' : 'Công cụ này chỉ nhận ảnh JPG, PNG, WebP.',
+      reason: isHeic(head) ? translate('image:intake.heic') : translate('image:intake.unsupported'),
     }
   }
 
   const declared = readImageSize(head, format)
   if (declared && declared.width * declared.height > maxImagePixels()) {
     const millions = Math.round((declared.width * declared.height) / 1_000_000)
-    return { ok: false, code: TOOL_ERROR.pixelLimit, reason: `Ảnh ${declared.width} × ${declared.height} (${millions} triệu điểm ảnh) vượt trần ${maxImagePixels() / 1_000_000} triệu điểm ảnh.` }
+    return { ok: false, code: TOOL_ERROR.pixelLimit, reason: translate('image:intake.pixelLimit', { width: declared.width, height: declared.height, millions, limit: maxImagePixels() / 1_000_000 }) }
   }
 
   let bitmap: ImageBitmap
   try {
     bitmap = await decodeImage(file)
   } catch {
-    return { ok: false, code: TOOL_ERROR.corruptFile, reason: 'Không đọc được ảnh — tệp hỏng hoặc trình duyệt không mở được.' }
+    return { ok: false, code: TOOL_ERROR.corruptFile, reason: translate('image:intake.corrupt') }
   }
 
   try {

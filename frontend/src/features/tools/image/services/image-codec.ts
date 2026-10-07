@@ -1,5 +1,6 @@
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { CanvasEncodeError, canvasToBlob, KEEP_QUALITY } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { ImageFormat, Rotation, Size } from '../types/image.types'
 import { IMAGE_FORMAT, sizeLabel } from '../utils/image-format'
 
@@ -12,7 +13,7 @@ export async function decodeImage(file: Blob): Promise<ImageBitmap> {
   try {
     return await createImageBitmap(file, { imageOrientation: 'from-image' })
   } catch {
-    throw new ToolError(TOOL_ERROR.corruptFile, 'không đọc được ảnh — tệp hỏng hoặc trình duyệt không mở được định dạng này.')
+    throw new ToolError(TOOL_ERROR.corruptFile, translate('image:codec.corrupt'))
   }
 }
 
@@ -21,7 +22,7 @@ export function createCanvas(size: Size): { canvas: HTMLCanvasElement; context: 
   canvas.width = size.width
   canvas.height = size.height
   const context = canvas.getContext('2d')
-  if (!context) throw new ToolError(TOOL_ERROR.memory, `ảnh ${sizeLabel(size)} quá lớn với trình duyệt này.`)
+  if (!context) throw new ToolError(TOOL_ERROR.memory, translate('image:codec.tooLarge', { size: sizeLabel(size) }))
   return { canvas, context }
 }
 
@@ -48,8 +49,8 @@ export async function encodeCanvas(canvas: HTMLCanvasElement, format: ImageForma
   try {
     return await canvasToBlob(canvas, IMAGE_FORMAT[format].mime, quality)
   } catch (error) {
-    if (error instanceof CanvasEncodeError && error.reason === 'unsupported') throw new ToolError(TOOL_ERROR.exportFailed, `trình duyệt này không xuất được ${IMAGE_FORMAT[format].label}.`, { cause: error })
-    throw new ToolError(TOOL_ERROR.memory, `ảnh ${sizeLabel(canvas)} quá lớn với trình duyệt này — thu nhỏ cạnh dài rồi thử lại.`, { cause: error })
+    if (error instanceof CanvasEncodeError && error.reason === 'unsupported') throw new ToolError(TOOL_ERROR.exportFailed, translate('image:codec.exportUnsupported', { format: IMAGE_FORMAT[format].label }), { cause: error })
+    throw new ToolError(TOOL_ERROR.memory, translate('image:codec.tooLargeRetry', { size: sizeLabel(canvas) }), { cause: error })
   }
 }
 

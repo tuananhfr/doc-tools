@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "Sao chép câu hỏi",
+    "copied": "Đã sao chép câu hỏi."
+  },
+  "panel": {
+    "hasSecrets": "Thay đổi có email, token hoặc URL nội bộ. Hãy xóa dữ liệu này trước khi gửi.",
+    "sendFailed": "Không gửi được đề xuất.",
+    "sent": "Đề xuất đã gửi vào hàng chờ kiểm tra nguồn. Hãy giữ mã biên nhận để xem trạng thái.",
+    "offline": "Không kết nối được máy chủ. Bản nháp vẫn ở trang này.",
+    "close": "Đóng kiểm tra nguồn",
+    "open": "Kiểm tra nguồn mới bằng AI của bạn",
+    "intro": "Chuyện Nhỏ không gọi AI hoặc lưu khóa AI của bạn. Hãy xem đúng nội dung dưới đây trước khi sao chép sang dịch vụ AI bạn chọn. Kết quả AI chỉ là gợi ý.",
+    "includeResult": "Thêm kết quả đang xem vào câu hỏi (có thể chứa thông tin cá nhân)",
+    "packageLabel": "Nội dung sẽ sao chép",
+    "copyFailed": "Không sao chép được; hãy chọn và sao chép thủ công.",
+    "pasteTitle": "Dán kết quả AI để xem thay đổi",
+    "aiJson": "JSON AI trả về",
+    "invalidJson": "JSON chưa đúng cấu trúc hoặc vượt giới hạn. Kiểm tra lại các trường changes, sources, uncertainties.",
+    "unverified": "Đây là dữ liệu chưa xác minh. Kiểm tra từng URL nguồn và chọn phần muốn đề xuất.",
+    "columns": {
+      "select": "Chọn",
+      "field": "Trường",
+      "current": "Hiện tại",
+      "proposed": "AI đề xuất"
+    },
+    "selectField": "Chọn {{field}}",
+    "sources": "Nguồn AI gợi ý (người gửi cần tự đối chiếu): {{sources}}",
+    "noSources": "Chưa có",
+    "uncertainties": "Điểm chưa chắc chắn: {{items}}",
+    "consent": "Tôi đã xem từng thay đổi, kiểm tra dữ liệu riêng tư và đồng ý gửi nội dung đã chọn để quản trị viên xem xét",
+    "submit": "Gửi đề xuất cập nhật",
+    "receipt": "Mã biên nhận:"
+  },
+  "assistant": {
+    "suggestions": "Gợi ý trên máy",
+    "intro": "Nhập việc cần làm để tìm công cụ phù hợp. Nếu muốn nhờ AI diễn giải, xem trước đúng nội dung rồi tự sao chép sang dịch vụ bạn chọn.",
+    "noMatch": "Chưa tìm thấy công cụ khớp rõ ràng.",
+    "title": "Trợ lý chọn công cụ",
+    "question": "Bạn muốn làm gì?",
+    "placeholder": "Ví dụ: Tôi muốn gộp hai tệp PDF và đánh số trang",
+    "copyNote": "Câu hỏi dưới đây sẽ chỉ được sao chép khi bạn bấm nút. Email, token và URL nội bộ được che tự động; hãy tự xem lại trước khi đưa cho AI.",
+    "promptLabel": "Nội dung gửi AI",
+    "copyFailed": "Không sao chép được; hãy chọn văn bản và sao chép thủ công.",
+    "answerLabel": "Dán câu trả lời AI để đọc ở đây (không lưu hoặc gửi cho Chuyện Nhỏ)",
+    "unverified": "Nội dung chưa xác minh"
+  }
+}

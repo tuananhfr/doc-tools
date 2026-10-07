@@ -1,5 +1,6 @@
 import type { FlowNote } from '@/features/tools/hub'
 import { attachJpegExif, attachPngExif, exifForRedraw, IMAGE_HEADER_BYTES, readJpegExif, readPngExif, readWebpExif } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { ImageFormat, ImageItem, Size } from '../types/image.types'
 
 /** `none` = ảnh gốc không mang EXIF; `kept` / `lost` = có, và ảnh ra còn / không còn. */
@@ -38,9 +39,10 @@ export async function carryExif(item: ImageItem, blob: Blob, format: ImageFormat
 export function exifNotes(outcomes: ExifOutcome[]): FlowNote[] {
   const kept = outcomes.filter((outcome) => outcome === 'kept').length
   const lost = outcomes.filter((outcome) => outcome === 'lost').length
-  const which = (count: number) => (outcomes.length === 1 ? 'Ảnh ra' : `${count}/${outcomes.length} ảnh ra`)
+  const one = outcomes.length === 1
+  const total = outcomes.length
   const notes: FlowNote[] = []
-  if (kept > 0) notes.push({ tone: 'info', text: `${which(kept)} vẫn giữ thông tin của máy ảnh (ngày chụp, vị trí GPS).` })
-  if (lost > 0) notes.push({ tone: 'warning', text: `${which(lost)} không còn thông tin của máy ảnh (ngày chụp, vị trí GPS) — chỉ ảnh ra JPG hoặc PNG mang được thông tin này.` })
+  if (kept > 0) notes.push({ tone: 'info', text: one ? translate('image:exif.keptOne') : translate('image:exif.keptSome', { count: kept, total }) })
+  if (lost > 0) notes.push({ tone: 'warning', text: one ? translate('image:exif.lostOne') : translate('image:exif.lostSome', { count: lost, total }) })
   return notes
 }

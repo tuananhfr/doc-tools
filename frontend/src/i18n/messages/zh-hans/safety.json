@@ -1,0 +1,35 @@
+{
+  "messageRisk": {
+    "levelHigh": "多处可疑迹象需要核查",
+    "levelMedium": "有需要核查的迹象",
+    "levelLow": "规则库中暂未发现可疑迹象",
+    "result": "筛查结果",
+    "note": "这只是按规则检查可疑迹象，并不能证明链接或短信是安全的。不要在从短信打开的页面中输入验证码（OTP）或密码；请通过你自己查到的渠道联系相关机构。",
+    "title": "需要检查的内容",
+    "kind": "内容类型",
+    "kindMessage": "短信",
+    "kindLink": "链接",
+    "messageLabel": "短信内容",
+    "linkPlaceholder": "粘贴链接，无需打开…",
+    "messagePlaceholder": "粘贴可疑短信…",
+    "privacy": "内容在本机分析；工具不会访问你粘贴的链接。"
+  },
+  "flags": {
+    "unreadable": "无法读取该链接。",
+    "noHttps": "未使用 HTTPS。",
+    "ipHost": "使用 IP 地址而非域名。",
+    "punycode": "域名含有 punycode 编码，需要核对真实名称。",
+    "shortener": "短链接隐藏了真实目的地。",
+    "riskyTld": "该域名后缀常见于有风险的链接。",
+    "fakeGov": "含有“gov”字样，但不属于 .gov.vn 域名。",
+    "brand": "域名含有“{{brand}}”字样，需要核对官方地址。",
+    "loginPath": "链接诱导你登录或进行验证。",
+    "otp": "索要 OTP 验证码或认证码。",
+    "lockThreat": "以账户将被冻结来施压。",
+    "prize": "承诺奖金或礼品。",
+    "easyJob": "招揽“轻松高薪”工作或网上任务。",
+    "urgentTransfer": "催促紧急转账或充值。",
+    "installApp": "要求从短信中安装应用。",
+    "link": "链接 {{link}}：{{flags}}"
+  }
+}

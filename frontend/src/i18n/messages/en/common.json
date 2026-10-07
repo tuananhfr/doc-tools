@@ -1,0 +1,212 @@
+{
+  "language": {
+    "label": "Language",
+    "current": "Language: {{name}}"
+  },
+  "theme": {
+    "current": "Theme: {{name}}",
+    "light": "Light (office)",
+    "dark": "Dark (control room)",
+    "field": "Outdoor (on site)",
+    "lightShort": "Light",
+    "darkShort": "Dark",
+    "fieldShort": "Outdoor"
+  },
+  "ui": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "loadingData": "Loading data",
+    "loading": "Loading...",
+    "toastRegion": "System notifications",
+    "toastClose": "Close notification",
+    "toastTone": {
+      "success": "Success",
+      "info": "Info",
+      "warning": "Warning",
+      "danger": "Error"
+    }
+  },
+  "apiErrors": {
+    "network": "Couldn't reach the server. Please check your connection.",
+    "timeout": "The server took too long to respond. Please try again.",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You don't have permission to do this.",
+    "notFound": "Data not found.",
+    "validation": "Some data is invalid. Please check and try again.",
+    "rateLimited": "You're going too fast. Please try again later.",
+    "server": "The server ran into a problem. Please try again later.",
+    "unknown": "Something went wrong."
+  },
+  "crumb": {
+    "label": "Breadcrumb"
+  },
+  "tool": {
+    "privacyNoFile": "Runs on your device; nothing is sent anywhere",
+    "privacyFile": "Processed on your device; files are never uploaded"
+  },
+  "session": {
+    "openInApp": "Open in ERPcons",
+    "login": "Sign in"
+  },
+  "board": {
+    "result": "Result"
+  },
+  "copy": {
+    "label": "Copy",
+    "copied": "Copied",
+    "done": "Copied to clipboard.",
+    "blocked": "Your browser blocked copying. Select the text and press Ctrl+C."
+  },
+  "fileList": {
+    "title": "Selected files",
+    "clearAll": "Remove all",
+    "moveUp": "Move up",
+    "moveUpLabel": "Move {{name}} up",
+    "moveDown": "Move down",
+    "moveDownLabel": "Move {{name}} down",
+    "remove": "Remove this file",
+    "removeLabel": "Remove {{name}}"
+  },
+  "filePicker": {
+    "pick": "Choose files",
+    "add": "Add files",
+    "pickOther": "Choose other files",
+    "reading": "Reading file {{current}}/{{total}}…",
+    "dropMore": "Drop more files here",
+    "dropOther": "Drop other files here"
+  },
+  "flow": {
+    "finishing": "Finishing…",
+    "processing": "Processing",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Processing progress",
+    "cancel": "Cancel",
+    "rejected_one": "Skipped {{count}} file",
+    "rejected_other": "Skipped {{count}} files",
+    "rejectedMore_one": "… and {{count}} more file",
+    "rejectedMore_other": "… and {{count}} more files",
+    "dismiss": "Dismiss",
+    "side": "Options and run",
+    "options": "Options",
+    "error": "Couldn't process: {{message}}",
+    "errorCode": "Error code: {{code}}",
+    "runFailed": "Couldn't process the file. Try again."
+  },
+  "result": {
+    "textLabel": "Text content",
+    "tooLarge": "The file is larger than {{limit}}: it can't be loaded back into the tools here, and many mailboxes won't accept a file this size.",
+    "shareFailed": "Couldn't share the file. Download it and send it manually.",
+    "download": "Download",
+    "preview": "Preview",
+    "share": "Share",
+    "edit": "Keep editing",
+    "restart": "Start over"
+  },
+  "leave": {
+    "title": "Leave this page?",
+    "body": "The files you're working on exist only in this tab and aren't saved anywhere else. If you leave, they're gone for good — download them first if you need to keep them.",
+    "stay": "Stay",
+    "leave": "Leave page"
+  },
+  "unsupported": {
+    "title": "This browser is too old to process PDFs",
+    "description": "{{tool}} needs the latest Chrome, Edge, Firefox or Safari. Update your browser, then reopen this page. The image, QR code and other utility tools still work on this device.",
+    "back": "Choose another tool"
+  },
+  "camera": {
+    "insecure": "The camera only works when the page is opened over HTTPS (or localhost).",
+    "blocked": "Your browser is blocking the camera for this page. Click the lock icon in the address bar to allow it, then try again.",
+    "notFound": "No camera found on this device.",
+    "busy": "The camera is being used by another app. Close that app and try again.",
+    "failed": "Couldn't open the camera."
+  },
+  "canvas": {
+    "tooLarge": "The image is too large for this browser.",
+    "unsupported": "This browser can't export the selected image format."
+  },
+  "hero": {
+    "statTools": "free tools",
+    "statFree": "free to use",
+    "statInstall": "installs",
+    "trialErpcons": "Try ERPcons",
+    "trialTekshot": "Try TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "tool uses",
+    "unlimited": "Unlimited",
+    "visits": "uses",
+    "readyTools": "ready-to-use tools",
+    "groups": "tool groups",
+    "proOffer": "store, share and review with your whole team"
+  },
+  "aside": {
+    "label": "More information",
+    "recent": "Recently used",
+    "recentEmpty": "You haven't used any tools on this device yet. Tools you open will show up here.",
+    "proIntro": "When small tasks become project records:",
+    "about": "About Chuyện Nhỏ",
+    "aboutText": "A free toolkit from ERPCons that helps you handle the small tasks of everyday work quickly. Files are processed right on your device, never uploaded to a server.",
+    "tips": "Quick tips"
+  },
+  "pro": {
+    "signup": "Sign up for a trial",
+    "soon": "The {{product}} trial sign-up form is being finished — coming soon.",
+    "features": {
+      "storage": "Long-term storage, versions and revisions R00, R01…",
+      "sharing": "Sharing, permissions, comments and approvals",
+      "linking": "Link records to projects, contracts and tasks",
+      "ai": "AI that reads, summarizes and extracts from documents"
+    }
+  },
+  "nudge": {
+    "text": "Download complete. Need to save this to a project record, share it and review it with your team? That's in ERPCons Pro.",
+    "login": "Sign in to ERPCons",
+    "later": "Later"
+  },
+  "toolCard": {
+    "soon": "Coming soon"
+  },
+  "filters": {
+    "label": "Filter by tool group"
+  },
+  "authBrand": {
+    "home": "Back to the {{name}} home page",
+    "headline": "One platform<br/>Every project<br/>Full control",
+    "lead": "{{name}} Construction OS – an all-in-one management platform for construction businesses, integrating AI, IoT and real-time data to optimize performance, manage risk and make smarter decisions.",
+    "status": "All systems operational",
+    "statusLink": "View system status",
+    "features": {
+      "security": {
+        "title": "Maximum security",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "Fully connected",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "Single source of data",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "Outstanding performance",
+        "line1": "Optimized for speed",
+        "line2": "and scalability"
+      },
+      "analytics": {
+        "title": "Smart analytics",
+        "line1": "Visual dashboards",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "Work anywhere",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

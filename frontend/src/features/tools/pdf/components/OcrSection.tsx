@@ -1,4 +1,6 @@
+import type { TFunction } from 'i18next'
 import { Button, ProgressBar } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { OcrState } from '../hooks/useOcr'
 
@@ -11,39 +13,39 @@ interface OcrSectionProps {
   onCancel: () => void
 }
 
-function statusText(state: OcrState): string {
-  if (state.total === 0) return 'Đang kiểm tra trang nào chưa có lớp chữ…'
-  if (state.stage === 'loading') return `Đang tải bộ nhận dạng tiếng Việt (~5 MB, chỉ lần đầu) — trang ${state.done + 1}/${state.total}…`
-  return `Đang nhận dạng trang ${state.done + 1}/${state.total}…`
+function statusText(state: OcrState, t: TFunction<'pdf'>): string {
+  if (state.total === 0) return t('ocr.checking')
+  if (state.stage === 'loading') return t('ocr.loading', { page: state.done + 1, total: state.total })
+  return t('ocr.reading', { page: state.done + 1, total: state.total })
 }
 
 /** OCR cho trang ảnh / bản scan ở tab Tìm — kết quả thành lớp chữ cho tìm, tô, sửa và tệp xuất. */
 export function OcrSection({ state, selectedCount, disabled, onRun, onCancel }: OcrSectionProps) {
-  const scope = selectedCount > 0 ? `${selectedCount} trang đã chọn` : 'mọi trang'
+  const { t } = useTranslation('pdf')
 
   return (
-    <section className="erp-doc-ocr" aria-label="Nhận dạng chữ">
+    <section className="erp-doc-ocr" aria-label={t('ocr.label')}>
       <p className="erp-doc-ocr__intro">
         <Icon name="file-earmark-text" className="me-1" />
-        Trang ảnh, bản scan chưa có lớp chữ: nhận dạng ngay trên máy (tệp không gửi đi) để tìm, tô, sửa chữ và xuất PDF tìm được.
+        {t('ocr.intro')}
       </p>
       {state ? (
         <div className="erp-doc-ocr__running" role="status">
-          <span className="erp-doc-ocr__status">{statusText(state)}</span>
+          <span className="erp-doc-ocr__status">{statusText(state, t)}</span>
           <ProgressBar
             now={state.total === 0 ? 0 : ((state.done + (state.stage === 'reading' ? state.progress : 0)) / state.total) * 100}
-            aria-label="Tiến độ nhận dạng"
+            aria-label={t('ocr.progress')}
             className="erp-doc-ocr__bar"
           />
           <Button variant="outline-secondary" onClick={onCancel}>
             <Icon name="stop-circle" className="me-2" />
-            Dừng
+            {t('ocr.stop')}
           </Button>
         </div>
       ) : (
         <Button variant="outline-secondary" className="w-100" disabled={disabled} onClick={onRun}>
           <Icon name="magic" className="me-2" />
-          Nhận dạng chữ (OCR) — {scope}
+          {selectedCount > 0 ? t('ocr.runSelected', { count: selectedCount }) : t('ocr.runAll')}
         </Button>
       )}
     </section>

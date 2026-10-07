@@ -5,6 +5,8 @@
  * ra lệch một ngày.
  */
 
+import { translate } from '@/i18n/runtime'
+
 const DAY_MS = 86_400_000
 
 /** `'2026-10-03'` → số ngày; `null` khi chuỗi không phải một ngày có thật (30/02). */
@@ -38,12 +40,12 @@ export function isWeekend(day: number): boolean {
   return weekday === 0 || weekday === 6
 }
 
-const WEEKDAY_NAMES = ['Chủ nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy']
+const WEEKDAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const
 
 /** "Thứ Bảy, 03/10/2026". */
 export function formatDay(day: number): string {
   const [year, month, date] = fromDay(day).split('-')
-  return `${WEEKDAY_NAMES[weekdayOf(day)]}, ${date}/${month}/${year}`
+  return `${translate(`utility:weekdays.${WEEKDAY_KEYS[weekdayOf(day)]}`)}, ${date}/${month}/${year}`
 }
 
 /** Số ngày T2–T6 trong đoạn [first, last] (cả hai đầu); rỗng khi last < first. */
@@ -108,5 +110,5 @@ export function weeksLabel(days: number): string | null {
   if (total < 7) return null
   const weeks = Math.floor(total / 7)
   const rest = total % 7
-  return rest === 0 ? `${weeks} tuần` : `${weeks} tuần ${rest} ngày`
+  return rest === 0 ? translate('utility:duration.weeks', { count: weeks }) : translate('utility:duration.weeksDays', { weeks: translate('utility:duration.weeks', { count: weeks }), days: translate('utility:duration.days', { count: rest }) })
 }

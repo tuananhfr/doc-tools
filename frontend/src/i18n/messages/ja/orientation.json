@@ -1,0 +1,361 @@
+{
+  "shared": {
+    "on": "オン",
+    "off": "オフ",
+    "remove": "{{name}} を削除"
+  },
+  "modes": {
+    "HOMEOWNER": "家主向け",
+    "PROFESSIONAL": "専門家向け"
+  },
+  "page": {
+    "projectNorthWarning": "プロジェクト北で測定中です — 実際の方位ではないため、年齢による吉凶判断や日照計算はできません。技術設定で真北または磁北に切り替えてください。",
+    "missing": {
+      "drawing": "図面上の北の記号をタップして始めます。",
+      "device": "「測定を開始」を押し、静止してから測定値を確定してください。",
+      "manual": "わかっている角度を入力してください。",
+      "placeAxis": "画像上に{{target}}の軸を置いてください。",
+      "pickMeasured": "測定値のある対象を選んでください。"
+    },
+    "noSource": "ソースがありません。",
+    "modeLabel": "表示モード",
+    "back": "戻る",
+    "changeSource": "画像 / ソースを変更",
+    "placeOnImage": "家の写真 / 図面に重ねる",
+    "nothingToSave": "保存する測定値がありません。",
+    "frontageFallback": "正面",
+    "houseFrontageFallback": "家の正面",
+    "sideAge": "年齢による判断と結果の保存"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "家の向き",
+      "hint": "家の中から正面に向かってまっすぐ見た方向"
+    },
+    "MAIN_DOOR": {
+      "label": "玄関",
+      "hint": "家の中から玄関を通して外を見た方向"
+    },
+    "BALCONY": {
+      "label": "バルコニー",
+      "hint": "部屋の中からバルコニーを見た方向"
+    },
+    "KITCHEN": {
+      "label": "コンロ",
+      "hint": "調理する人の背中の方向 — 調理する人がコンロを見る向きの反対"
+    },
+    "ALTAR": {
+      "label": "祭壇",
+      "hint": "祭壇の正面が向いている方向"
+    },
+    "BED": {
+      "label": "ベッド",
+      "hint": "ベッドの頭側から足側を見た方向"
+    },
+    "DESK": {
+      "label": "机",
+      "hint": "座って作業する人が向いている方向"
+    },
+    "LAND_FRONTAGE": {
+      "label": "土地の正面",
+      "hint": "敷地の中から道路を見た方向"
+    },
+    "CUSTOM": {
+      "label": "その他の対象",
+      "hint": "名前を付け、軸を測りたい方向に向けます"
+    }
+  },
+  "north": {
+    "TRUE": "真北",
+    "MAGNETIC": "磁北",
+    "PROJECT": "プロジェクト北"
+  },
+  "sources": {
+    "DRAWING": "図面上で設定",
+    "MANUAL": "手入力",
+    "DEVICE": "スマートフォンのコンパス",
+    "SURVEY": "測量値"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · 誤差 ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "このブラウザは端末のコンパスを読み取れません。",
+      "insecure": "コンパスは HTTPS でページを開いた場合のみ動作します。",
+      "denied": "方位センサーの読み取りが許可されていません。ブラウザの設定で許可してから、もう一度お試しください。",
+      "noSignal": "コンパスの信号を受信できません — パソコンや多くのブラウザにはこのセンサーがありません。"
+    },
+    "stability": {
+      "STABLE": "安定",
+      "WOBBLY": "まだ揺れています",
+      "UNSTABLE": "不安定"
+    },
+    "accuracy": "端末の報告誤差 ±{{value}}°",
+    "noAccuracy": "端末は誤差を報告していません",
+    "starting": "コンパスを起動しています…",
+    "retry": "再試行",
+    "start": "測定を開始",
+    "stop": "停止",
+    "outside": "家の外に立って、家の方を見ています",
+    "magnetWarning": "鉄骨の柱、自動車、シャッター、磁石、電気機器から離れてください — コンパスが狂う原因になります。"
+  },
+  "device": {
+    "steps": {
+      "stand": "玄関に立ち、家に背を向けて、まっすぐ外を見ます。",
+      "hold": "スマートフォンを水平（地面と平行）に持ち、端末の上部を見ている方向に向けます。",
+      "wait": "数秒間じっとして数値が安定したら「測定値を確定」を押します。"
+    },
+    "lock": "{{target}}の測定値を確定",
+    "manual": "代わりに角度を入力",
+    "unstable": "数値が大きく揺れています。静止して端末を8の字に数回回して自動補正させてから、測り直してください。"
+  },
+  "live": {
+    "title": "家の向きコンパス",
+    "intro": "玄関に立ち、家に背を向け、端末を水平に持って上部をまっすぐ外に向けます。",
+    "dialAria": "コンパスの文字盤（上が北）",
+    "dialAriaFacing": "コンパスの文字盤、家の向き {{degree}}",
+    "facingEnd": "向",
+    "sittingEnd": "坐",
+    "empty": "「測定を開始」を押すか角度を入力すると、家の向きを読み取ります。",
+    "failureManual": "{{failure}} 別のコンパスで測った角度を入力することもできます。",
+    "locked": "{{degree}} で固定済み",
+    "remeasure": "測り直す",
+    "lock": "向きを固定",
+    "useDevice": "端末のコンパスを使う",
+    "enterDegree": "角度を入力",
+    "unstable": "数値が大きく揺れているため固定できません。静止して端末を8の字に数回回し、自動補正させてください。",
+    "facing": "向",
+    "sitting": "坐",
+    "offset": "{{mountain}}の中心から{{toward}}側へ {{degree}} ずれています。",
+    "centered": "{{mountain}}のちょうど中心です。",
+    "void": {
+      "MAJOR": "大空亡",
+      "MINOR": "小空亡"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — 向きが{{mountain}} / {{toward}}の境界に近すぎます。{{note}}"
+  },
+  "manual": {
+    "label": "{{target}}の角度",
+    "placeholder": "例: 132",
+    "hint": "北から時計回りに測ります: 東 90°、南 180°、西 270°。",
+    "invalid": "数値を入力してください（例: 132 または 132,5）。"
+  },
+  "method": {
+    "title": "どの方法で向きを測りますか？",
+    "label": "向きの取得方法",
+    "options": {
+      "DEVICE": "今すぐ測る",
+      "MANUAL": "角度がわかる",
+      "DRAWING": "図面から"
+    },
+    "locked": "{{target}}を {{degree}} で確定しました。",
+    "drawingNote": "センサーは不要で、北の記号がある図面があれば十分です。画像上に北の矢印を置き、次に測りたい対象の軸を置きます。"
+  },
+  "canvas": {
+    "imageAlt": "向きを測定中の画像 / 図面",
+    "traceGrip": "線の点 {{index}} — タップで線を選択、ドラッグまたは矢印キーで調整",
+    "closeAria": "始点で図形を閉じる",
+    "closeTitle": "図形を閉じる",
+    "northHead": "北の矢印の先端 — ドラッグして図面の北の記号に合わせて回転",
+    "northTail": "北の矢印の根元 — ドラッグして移動",
+    "axisHead": "{{target}}の軸の先端 — ドラッグして回転",
+    "axisTail": "{{target}}の軸の根元 — ドラッグして移動",
+    "compassCenter": "コンパスの中心 — ドラッグしてコンパスを移動",
+    "compassEdge": "コンパスの縁 — ドラッグして拡大 / 縮小"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "壁の線",
+      "polygon": "多角形",
+      "rect": "枠"
+    },
+    "traceHints": {
+      "line": "2点をタップして壁の線を引きます。引いた線の端をタップすると、正面 / 玄関のラベルを付けられます。",
+      "polygon": "角を順にタップし、始点（白抜きの円）をもう一度タップすると図形が閉じます。",
+      "rect": "対角の2点をタップして枠を描きます。"
+    },
+    "northStep": "北の方向",
+    "hints": {
+      "north": "図面上の北の記号をタップして北の矢印を置き、矢印の先端をドラッグして記号の向きに合わせます。",
+      "door": "玄関をタップすると玄関の軸を追加できます（任意）。矢印の先端を外側に向けてください。",
+      "drawing": "測りたい場所をタップして{{target}}の軸を置きます。矢印の先端を外側に向けてください — 中から外を見た方向です。",
+      "overlay": "コンパスを画像に重ねるには、測りたい場所をタップし、矢印の先端を{{target}}の向きどおり外側に向けてドラッグします。"
+    },
+    "aria": "向きを測定中の画像",
+    "tabsAria": "画像上での作業",
+    "placeTab": "向きを設定",
+    "traceTab": "間取りをなぞる",
+    "undo": "元に戻す",
+    "redo": "やり直し",
+    "traceKindsAria": "線の種類",
+    "snap": "45° にスナップ",
+    "stepsAria": "画像上の手順",
+    "done": "（設定済み）",
+    "pageAria": "測定中の PDF ページ",
+    "pageOption": "ページ {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "測定結果",
+    "fine": "16方位: {{direction}}",
+    "empty": "測定値がありません。",
+    "compassAria": "コンパス（上が北）"
+  },
+  "solar": {
+    "title": "日当たりと太陽",
+    "locationFailure": {
+      "denied": "位置情報の取得が許可されていません。緯度と経度を手入力してください。",
+      "unavailable": "端末で位置情報を取得できません。緯度と経度を手入力してください。"
+    },
+    "daySide": {
+      "MORNING": "朝日が当たる",
+      "AFTERNOON": "西日が当たる（日差しが強く、家が暑くなる）",
+      "BOTH": "朝も午後も日が当たる",
+      "NONE": "一日を通して直射日光が少ない"
+    },
+    "intro": "太陽がどの方向から昇り沈むか、{{target}}に西日が当たるかを確認できます。",
+    "locating": "位置情報を取得しています…",
+    "useLocation": "現在地を使う",
+    "latitude": "緯度",
+    "longitude": "経度",
+    "date": "日付",
+    "time": "時刻",
+    "sunAt": "{{time}} の太陽",
+    "sunPosition": "{{degree}} · {{direction}} · 高度 {{elevation}}",
+    "belowHorizon": "地平線の下",
+    "sunrise": "日の出",
+    "sunset": "日の入り",
+    "facingSun": "{{side}} · 現在は日が当たっています",
+    "awayFromSun": "{{side}} · 現在は日が当たっていません",
+    "needCoordinates": "計算するには緯度と経度を入力してください（または「現在地を使う」を押してください）。",
+    "note": "太陽の方位は真北基準で計算しています。ベトナムでは磁北との差は 1° 未満です。隣家の影は考慮していません。"
+  },
+  "source": {
+    "title": "手元に何がありますか？",
+    "pickTitle": "間取り図の画像、家の写真、または図面の PDF を選択",
+    "pickHint": "JPG、PNG、WebP、PDF · 最大 100 MB · ファイルはあなたの端末でのみ開きます",
+    "camera": "写真を撮る",
+    "rejectedTitle": "ファイルを開けませんでした",
+    "dismiss": "通知を隠す",
+    "none": "画像なし — コンパスだけ使う",
+    "noneHint": "スマートフォンのコンパスで測るか、わかっている角度を入力します。",
+    "tooLarge": "ファイルが {{size}} を超えています。",
+    "openFailed": "このファイルを開けませんでした。",
+    "pageFailed": "このページを描画できませんでした。"
+  },
+  "targetsPanel": {
+    "title": "向きを測る対象",
+    "noAxis": "軸が未設定",
+    "noMeasure": "測定値なし",
+    "hint": "{{hint}}。",
+    "customName": "対象の名前",
+    "customPlaceholder": "例: 通用門",
+    "addAria": "追加したい対象",
+    "add": "追加",
+    "axisAngle": "画像上の軸の角度",
+    "axisAngleHint": "0° = 画像の上端方向、時計回り。"
+  },
+  "tech": {
+    "title": "技術設定",
+    "reference": "角度の基準",
+    "referenceHint": "ラベルを付けるだけで、自動換算はしません。ベトナムでは磁北と真北の差は 1° 未満です。プロジェクト北は図面の座標グリッドに従います。",
+    "divisionsLabel": "コンパスの分割",
+    "divisionsAria": "コンパスの区分数",
+    "divisions": "{{count}} 方位",
+    "size": "画像上のコンパスの大きさ · {{percent}}%",
+    "opacity": "コンパスの濃さ · {{percent}}%",
+    "saveRecord": "測定記録をダウンロード（JSON）"
+  },
+  "traceActions": {
+    "aria": "選択中の線",
+    "tags": {
+      "FRONTAGE": "これは正面です",
+      "ENTRANCE": "これは玄関です"
+    },
+    "flip": "外側の向きを反転",
+    "delete": "この線を削除"
+  },
+  "export": {
+    "title": "結果を保存",
+    "legend": "保存形式",
+    "image": "画像",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "元の写真の撮影情報（EXIF）を保持します",
+      "pdf": "図面のページを PNG 画像として描き直します",
+      "none": "測定値付きのコンパス画像"
+    },
+    "pdfHintVector": "元の図面ページをベクター形式のまま保持します",
+    "pdfHintPage": "1ページ、印刷可能",
+    "buildFailed": "結果ファイルを作成できませんでした。",
+    "shareFailed": "共有できませんでした。ファイルを保存してから送ってください。",
+    "building": "ファイルを作成しています…",
+    "savePdf": "PDF を保存",
+    "saveImage": "画像を保存",
+    "share": "共有",
+    "saved": "{{name}} を保存しました",
+    "savedDetail": "{{name}} を保存しました · {{detail}}",
+    "notes": {
+      "standalone": "画像上の北の方向が決まっていないため、コンパスは画像に重ねず単独で書き出しました。",
+      "rasterized": "元の PDF ページをベクターのまま保持できませんでした — ページは画像として描き直され、ページ内の文字は選択できません。"
+    },
+    "pageDetail": "ページ {{page}}",
+    "noSource": "書き出すソースがありません。"
+  },
+  "pdf": {
+    "password": "PDF に閲覧パスワードが設定されています — 「PDF のロック解除」ツールでパスワードを外してから、もう一度選んでください。",
+    "unreadable": "この PDF ファイルを読み込めません。",
+    "noCanvas": "ブラウザが描画領域を確保できませんでした。",
+    "renderFailed": "PDF ページを描画できませんでした。"
+  },
+  "age": {
+    "title": "家主の年齢で見る",
+    "intro": "任意です。オンにすると、年齢に応じた吉凶の星の輪をコンパスに表示し、{{method}}で家の向きが吉か凶かを確認できます。",
+    "addPerson": "比べる人を追加",
+    "method": "方法: {{name}} · ルール v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "新暦の生年月日",
+      "LUNAR_YEAR": "旧暦の生まれ年"
+    },
+    "name": "呼び名",
+    "sex": "性別",
+    "sexes": {
+      "MALE": "男性",
+      "FEMALE": "女性"
+    },
+    "inputBy": "入力方法",
+    "yearPlaceholder": "例: 1986",
+    "yearNote": "年は旧正月（テト）を境に数えます。",
+    "yearNoteLunar": "年は旧正月（テト）を境に数えます — テトより前に生まれた場合は前年になります。",
+    "facts": {
+      "age": "年齢",
+      "napAm": "命（納音）",
+      "trigram": "本命卦"
+    },
+    "beforeTet": "テトより前の生まれなので、{{year}}年（{{canChi}}）として計算します。",
+    "facingGood": "{{target}}: {{segment}}（{{degree}}）— <strong>{{star}}</strong>、吉。{{meaning}}。",
+    "facingBad": "{{target}}: {{segment}}（{{degree}}）— <strong>{{star}}</strong>、凶。{{meaning}}。",
+    "houseSame": "坐で見ると: {{segment}}坐の家は{{trigram}}宅（{{houseGroup}}宅）で、{{personGroup}}と同じグループです。",
+    "houseOther": "坐で見ると: {{segment}}坐の家は{{trigram}}宅（{{houseGroup}}宅）で、{{personGroup}}とは異なるグループです。",
+    "lockFirst": "吉凶を見るには{{target}}の測定値を固定してください。",
+    "goodDirections": "4つの吉方位: {{list}}",
+    "drivesDial": "コンパス上の星の輪は{{name}}を基準に計算しています。",
+    "thisPerson": "この人",
+    "defaultName": "{{index}}人目",
+    "errors": {
+      "yearFormat": "4桁の年を入力してください（例: 1986）。",
+      "invalidDate": "生年月日が正しくありません。",
+      "outOfRange": "存在しない日付か、対応している旧暦の範囲（1800〜2199年）外です。"
+    }
+  },
+  "rules": {
+    "segments": "ルールには8つの宮がすべて必要です。",
+    "missingStars": "{{trigram}}卦に星が不足しています。",
+    "duplicateStars": "{{trigram}}卦で2つの星が同じ方位に重なっています。",
+    "noGroup": "{{trigram}}卦がどのグループにも属していません。",
+    "homes": "各卦の後天方位が正しくありません。",
+    "yearRange": "生まれ年は {{min}}〜{{max}} の範囲で入力してください。",
+    "noTrigram": "ルールに {{number}} 番の卦がありません。"
+  }
+}

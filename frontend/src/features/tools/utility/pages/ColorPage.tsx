@@ -1,4 +1,6 @@
 import { useId, useState, type CSSProperties } from 'react'
+import { useTranslation } from 'react-i18next'
+import type { ParseKeys } from 'i18next'
 import { Button } from 'react-bootstrap'
 import { Icon, useToast } from '@/components/ui'
 import { formatQuantity, ToolBoard, ToolPanel } from '@/features/tools/hub'
@@ -26,15 +28,16 @@ type EyeDropperConstructor = new () => { open: () => Promise<{ sRGBHex: string }
 
 const eyeDropper = (): EyeDropperConstructor | null => (window as unknown as { EyeDropper?: EyeDropperConstructor }).EyeDropper ?? null
 
-const LEVEL: Record<ContrastLevel, { label: string; icon: string; tone: string }> = {
-  aaa: { label: 'Rất rõ (AAA)', icon: 'check-circle-fill', tone: 'success' },
-  aa: { label: 'Đọc tốt (AA)', icon: 'check-circle', tone: 'success' },
-  large: { label: 'Chỉ hợp chữ lớn', icon: 'exclamation-triangle', tone: 'warning' },
-  fail: { label: 'Khó đọc', icon: 'x-circle', tone: 'danger' },
+const LEVEL: Record<ContrastLevel, { label: ParseKeys<'utility'>; icon: string; tone: string }> = {
+  aaa: { label: 'color.levels.aaa', icon: 'check-circle-fill', tone: 'success' },
+  aa: { label: 'color.levels.aa', icon: 'check-circle', tone: 'success' },
+  large: { label: 'color.levels.large', icon: 'exclamation-triangle', tone: 'warning' },
+  fail: { label: 'color.levels.fail', icon: 'x-circle', tone: 'danger' },
 }
 
 /** Tương phản của chữ trắng / chữ đen đặt trên màu đang chọn. */
 function ContrastRow({ label, ratio, sample }: { label: string; ratio: number; sample: CSSProperties }) {
+  const { t } = useTranslation('utility')
   const level = LEVEL[contrastLevel(ratio)]
 
   return (
@@ -48,7 +51,7 @@ function ContrastRow({ label, ratio, sample }: { label: string; ratio: number; s
       </span>
       <span className={`erp-color-contrast__level erp-color-contrast__level--${level.tone}`}>
         <Icon name={level.icon} />
-        {level.label}
+        {t(level.label)}
       </span>
     </li>
   )
@@ -56,6 +59,7 @@ function ContrastRow({ label, ratio, sample }: { label: string; ratio: number; s
 
 /** MÀU SẮC — chọn một màu, đọc mã của nó ở ba dạng HEX / RGB / HSL, sửa dạng nào hai dạng kia đổi theo. */
 export default function ColorPage() {
+  const { t } = useTranslation('utility')
   const pickerId = useId()
   const toast = useToast()
   const tokens = useThemeTokens()
@@ -72,43 +76,43 @@ export default function ColorPage() {
       if (picked) setColor(picked)
     } catch (error) {
       // Nhấn Esc để thôi hút màu không phải lỗi.
-      if (!(error instanceof DOMException && error.name === 'AbortError')) toast.error('Không hút được màu từ màn hình.')
+      if (!(error instanceof DOMException && error.name === 'AbortError')) toast.error(t('color.pickFailed'))
     }
   }
 
   return (
     <ToolBoard
-      sideLabel="Xem thử"
+      sideLabel={t('color.preview')}
       side={
         <>
-          <h2 className="erp-flow-options__title">Xem thử</h2>
+          <h2 className="erp-flow-options__title">{t('color.preview')}</h2>
           {/* Giá trị động: màu do người dùng chọn, không phải màu của giao diện. */}
-          <div className="erp-color-swatch" style={{ backgroundColor: hex }} role="img" aria-label={`Màu ${hex}`} />
+          <div className="erp-color-swatch" style={{ backgroundColor: hex }} role="img" aria-label={t('color.swatch', { hex })} />
           <div className="erp-flow-field">
-            <span className="erp-flow-field__label">Chữ đặt trên màu này</span>
+            <span className="erp-flow-field__label">{t('color.textOnColor')}</span>
             <ul className="erp-color-contrasts">
-              <ContrastRow label="Chữ trắng" ratio={contrastRatio(color, WHITE)} sample={{ backgroundColor: hex, color: formatHex(WHITE) }} />
-              <ContrastRow label="Chữ đen" ratio={contrastRatio(color, BLACK)} sample={{ backgroundColor: hex, color: formatHex(BLACK) }} />
+              <ContrastRow label={t('color.whiteText')} ratio={contrastRatio(color, WHITE)} sample={{ backgroundColor: hex, color: formatHex(WHITE) }} />
+              <ContrastRow label={t('color.blackText')} ratio={contrastRatio(color, BLACK)} sample={{ backgroundColor: hex, color: formatHex(BLACK) }} />
             </ul>
-            <p className="erp-flow-field__hint">Tỷ lệ tương phản theo WCAG: từ 4,5 : 1 là chữ thường đọc được, từ 3 : 1 chỉ đủ cho chữ lớn và icon.</p>
+            <p className="erp-flow-field__hint">{t('color.contrastHint')}</p>
           </div>
         </>
       }
     >
-      <ToolPanel title="Chọn màu">
+      <ToolPanel title={t('color.panelTitle')}>
         <div className="erp-tool-form">
           <div className="erp-color-pick">
             <label className="visually-hidden" htmlFor={pickerId}>
-              Bảng chọn màu
+              {t('color.picker')}
             </label>
             <input id={pickerId} type="color" className="erp-color-pick__input" value={hex.toLowerCase()} onChange={(event) => setColor(parseHex(event.target.value) ?? color)} />
             <div className="erp-color-pick__text">
               <p className="erp-color-pick__hex">{hex}</p>
-              <p className="erp-flow-field__hint">Bấm vào ô màu để mở bảng chọn, hoặc gõ mã ở dưới.</p>
+              <p className="erp-flow-field__hint">{t('color.pickerHint')}</p>
               {canPick ? (
                 <Button variant="outline-secondary" size="sm" className="align-self-start" onClick={() => void pickFromScreen()}>
                   <Icon name="eyedropper" className="me-2" />
-                  Hút màu từ màn hình
+                  {t('color.eyedropper')}
                 </Button>
               ) : null}
             </div>

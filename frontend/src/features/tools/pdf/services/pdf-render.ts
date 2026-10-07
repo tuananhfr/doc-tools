@@ -1,6 +1,7 @@
 import * as pdfjs from 'pdfjs-dist'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { pdfjsWasmUrl } from '@/utils/pdfjs-wasm'
+import { translate } from '@/i18n/runtime'
 import type { PdfSource } from '../types/doc-tools.types'
 import { CANVAS_CAP, fitScale } from '../utils/canvas-cap'
 
@@ -42,7 +43,7 @@ export async function renderPdfPage(
   canvas.width = Math.floor(viewport.width)
   canvas.height = Math.floor(viewport.height)
   const context = canvas.getContext('2d')
-  if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+  if (!context) throw new Error(translate('pdf:errors.noCanvas'))
 
   // PDF không khai nền → trong suốt; xuất JPEG sẽ thành nền đen.
   context.fillStyle = '#ffffff'

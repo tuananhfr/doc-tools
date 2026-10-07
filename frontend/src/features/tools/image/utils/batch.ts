@@ -1,4 +1,5 @@
 import { stem, uniqueNames } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { Size } from '../types/image.types'
 
 /** Cách đổi cỡ áp cho cả lô. `edge` = cạnh dài; `width` / `height` giữ tỉ lệ theo cạnh còn lại. */
@@ -60,9 +61,9 @@ export const DEFAULT_PATTERN = '{name}'
 /** Vì sao mẫu tên không dùng được; null = dùng được. */
 export function patternProblem(pattern: string): string | null {
   const text = pattern.trim()
-  if (!text) return 'Nhập mẫu tên tệp, ví dụ {name} hoặc anh-{n}.'
-  if (text.replace(/\{name\}|\{n\}/g, '').match(ILLEGAL)) return 'Tên tệp không được chứa \\ / : * ? " < > |'
-  if (/[{}]/.test(text.replace(/\{name\}|\{n\}/g, ''))) return 'Chỉ có hai chỗ điền: {name} (tên gốc) và {n} (số thứ tự).'
+  if (!text) return translate('image:batch.patternEmpty')
+  if (text.replace(/\{name\}|\{n\}/g, '').match(ILLEGAL)) return translate('image:batch.patternIllegal')
+  if (/[{}]/.test(text.replace(/\{name\}|\{n\}/g, ''))) return translate('image:batch.patternTokens')
   return null
 }
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { HeaderFooter, ImageStamp } from '../types/decorations.types'
 import {
-  DEFAULT_HEADER_FOOTER,
+  defaultHeaderFooter,
   fillTokens,
   formatStampDate,
   hasDecorations,
@@ -42,10 +42,10 @@ describe('formatStampDate', () => {
 
 describe('hasDecorations', () => {
   it('treats blank slots and blank watermark as off', () => {
-    const blank: HeaderFooter = { ...DEFAULT_HEADER_FOOTER, slots: { ...DEFAULT_HEADER_FOOTER.slots, bottomCenter: '  ' } }
+    const blank: HeaderFooter = { ...defaultHeaderFooter(), slots: { ...defaultHeaderFooter().slots, bottomCenter: '  ' } }
     expect(hasDecorations({ headerFooter: blank, watermark: null })).toBe(false)
-    expect(hasDecorations({ headerFooter: null, watermark: { ...DEFAULT_HEADER_FOOTER, text: ' ', color: 'gray', opacity: 1, angle: 0 } })).toBe(false)
-    expect(hasDecorations({ headerFooter: DEFAULT_HEADER_FOOTER, watermark: null })).toBe(true)
+    expect(hasDecorations({ headerFooter: null, watermark: { ...defaultHeaderFooter(), text: ' ', color: 'gray', opacity: 1, angle: 0 } })).toBe(false)
+    expect(hasDecorations({ headerFooter: defaultHeaderFooter(), watermark: null })).toBe(true)
   })
 })
 
@@ -70,10 +70,10 @@ describe('resolveScope', () => {
 describe('layoutHeaderFooter', () => {
   const page = { width: 600, height: 800 }
   const value: HeaderFooter = {
-    ...DEFAULT_HEADER_FOOTER,
+    ...defaultHeaderFooter(),
     fontSize: 10,
     margin: 20,
-    slots: { ...DEFAULT_HEADER_FOOTER.slots, topLeft: '{file}', topRight: 'Ngày {date}', bottomCenter: 'Trang {n}/{N}' },
+    slots: { ...defaultHeaderFooter().slots, topLeft: '{file}', topRight: 'Ngày {date}', bottomCenter: 'Trang {n}/{N}' },
   }
 
   it('places filled slots and skips empty ones', () => {
@@ -105,7 +105,7 @@ describe('resolveDecorations', () => {
   it('drops blank decorations and reports invalid scopes separately', () => {
     const resolved = resolveDecorations(
       {
-        headerFooter: { ...DEFAULT_HEADER_FOOTER, scope: { mode: 'range', range: '7' } },
+        headerFooter: { ...defaultHeaderFooter(), scope: { mode: 'range', range: '7' } },
         watermark: { text: 'NHÁP', fontSize: 40, color: 'red', opacity: 0.2, angle: 45, scope: { mode: 'skipFirst', range: '' } },
       },
       ['a', 'b'],

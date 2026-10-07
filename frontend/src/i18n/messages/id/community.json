@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Perlu tambahan sumber",
+      "NEEDS_REVIEW": "Menunggu pemeriksaan",
+      "VERIFIED": "Terverifikasi",
+      "REJECTED": "Tidak diterima",
+      "APPROVED": "Disetujui",
+      "PUBLISHED": "Diterbitkan",
+      "SUPERSEDED": "Sudah ada versi baru",
+      "REVOKED": "Dicabut"
+    },
+    "sendFailed": "Usulan tidak dapat dikirim.",
+    "received": "Usulan diterima: {{status}}. Simpan kode tanda terima untuk memantaunya.",
+    "offlineDraft": "Tidak dapat terhubung ke server. Isinya masih ada di halaman ini.",
+    "invalidReceipt": "Kode tanda terima tidak valid.",
+    "statusLine": "Status: {{status}}",
+    "receiptNotFound": "Kode tanda terima tidak ditemukan.",
+    "lookupFailed": "Status tidak dapat dicek saat ini.",
+    "addSourceFailed": "Sumber tidak dapat ditambahkan.",
+    "sourceAdded": "Sumber sudah ditambahkan. Usulan menunggu pemeriksaan.",
+    "offline": "Tidak dapat terhubung ke server.",
+    "ideaTitle": "Usulkan alat baru",
+    "regulationTitle": "Masukan untuk data peraturan",
+    "ideaIntro": "Jelaskan masalah nyata dan alat yang Anda inginkan. Ide perlu diperiksa sebelum diterbitkan.",
+    "regulationIntro": "Sebutkan bagian yang perlu diperbaiki dan tautan sumbernya. Ini masukan untuk diperiksa penanggung jawab, belum mengubah data alat.",
+    "ideaName": "Nama ide",
+    "regulationTopic": "Dokumen atau topik",
+    "ideaDetail": "Masalah dan usulan solusinya",
+    "regulationDetail": "Isi yang perlu dicocokkan / diubah",
+    "sourceUrl": "URL sumber HTTPS (jika ada)",
+    "sourceType": "Jenis sumber yang Anda usulkan",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Situs lembaga resmi",
+      "OFFICIAL_DOCUMENT": "Dokumen resmi",
+      "OFFICIAL_API": "API resmi",
+      "OTHER": "Sumber lain"
+    },
+    "consent": "Saya sudah menghapus informasi pribadi dan kunci rahasia, dan setuju mengirim isi ini untuk diperiksa pengelola",
+    "sending": "Mengirim…",
+    "submit": "Kirim usulan",
+    "receipt": "Kode tanda terima:",
+    "lookupTitle": "Cek status",
+    "receiptLabel": "Kode tanda terima",
+    "lookup": "Cek",
+    "needsSource": "Masukkan URL HTTPS di kolom sumber di atas, lalu tambahkan dengan kode tanda terima ini.",
+    "addSource": "Tambah sumber"
+  },
+  "ideas": {
+    "published": "Ide yang sudah diterbitkan",
+    "empty": "Belum ada ide yang disetujui dan diterbitkan."
+  }
+}

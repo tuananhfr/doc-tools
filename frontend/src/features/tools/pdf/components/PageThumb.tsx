@@ -1,5 +1,6 @@
 import { useRef, type DragEvent, type MouseEvent } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import type { InsertPosition, PageRef, SourceFile } from '../types/doc-tools.types'
 import { usePageThumbnail } from '../hooks/usePageThumbnail'
@@ -45,6 +46,7 @@ export function PageThumb({
   onDrop,
   onDragEnd,
 }: PageThumbProps) {
+  const { t } = useTranslation('pdf')
   const frame = useRef<HTMLDivElement>(null)
   const thumb = usePageThumbnail(frame, source, page)
   const origin = describeOrigin(source, page.pageIndex)
@@ -72,7 +74,7 @@ export function PageThumb({
           type="button"
           className="erp-doc-page__select"
           aria-pressed={selected}
-          aria-label={`Trang ${position}: ${origin}${hitCount > 0 ? `, ${hitCount} kết quả tìm` : ''}${selected ? ', đang chọn' : ''}`}
+          aria-label={`${t('thumb.label', { position, origin })}${hitCount > 0 ? t('thumb.hits', { count: hitCount }) : ''}${selected ? t('thumb.selected') : ''}`}
           onClick={onSelect}
           onKeyDown={(event) => {
             // Space = xem to (như Quick Look); chọn trang bằng bàn phím vẫn còn Enter.
@@ -97,7 +99,7 @@ export function PageThumb({
             ) : thumb.status === 'error' ? (
               <span className="erp-doc-page__placeholder">
                 <Icon name="exclamation-triangle" className="me-1" />
-                Không vẽ được
+                {t('thumb.drawFailed')}
               </span>
             ) : (
               <Spinner size="sm" className="erp-doc-page__spinner" aria-hidden />
@@ -122,8 +124,8 @@ export function PageThumb({
         <button
           type="button"
           className="erp-doc-page__zoom"
-          aria-label={`Xem to trang ${position}`}
-          title="Xem to (Space)"
+          aria-label={t('thumb.zoom', { position })}
+          title={t('thumb.zoomHint')}
           onClick={onPreview}
         >
           <Icon name="zoom-in" />
@@ -141,19 +143,19 @@ export function PageThumb({
         <button
           type="button"
           className="erp-doc-page__move"
-          aria-label={`Dời trang ${position} sang trái`}
+          aria-label={t('thumb.moveLeft', { position })}
           disabled={position === 1}
           onClick={() => onShift(-1)}
         >
           <Icon name="chevron-left" />
         </button>
-        <span className="erp-doc-page__grip" aria-hidden title="Kéo để đổi chỗ">
+        <span className="erp-doc-page__grip" aria-hidden title={t('thumb.grip')}>
           <Icon name="grip-horizontal" />
         </span>
         <button
           type="button"
           className="erp-doc-page__move"
-          aria-label={`Dời trang ${position} sang phải`}
+          aria-label={t('thumb.moveRight', { position })}
           disabled={position === total}
           onClick={() => onShift(1)}
         >

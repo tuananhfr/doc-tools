@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { describeError, TOOL_ERROR, TOOL_LIMITS, megabytes, type FlowRejected } from '@/features/tools/hub'
 import { intakeImage } from '@/features/tools/image'
+import { translate } from '@/i18n/runtime'
 import type { OrientationSourceFile } from '../types/source.types'
 
 /** Cạnh dài của trang PDF vẽ ra để làm việc: đủ nét để đặt điểm, không nặng như bản xuất. */
@@ -61,7 +62,7 @@ export function useOrientationSource() {
       try {
         if (isPdf(file)) {
           if (file.size > TOOL_LIMITS.fileBytes) {
-            setRejected({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: `Tệp vượt ${megabytes(TOOL_LIMITS.fileBytes)}.` })
+            setRejected({ name: file.name, code: TOOL_ERROR.fileTooLarge, reason: translate('orientation:source.tooLarge', { size: megabytes(TOOL_LIMITS.fileBytes) }) })
             return
           }
           replace(await openPdf(file.name, new Uint8Array(await file.arrayBuffer()), 0))
@@ -75,7 +76,7 @@ export function useOrientationSource() {
         const { item } = result
         replace({ kind: 'image', item, view: { url: item.url, width: item.width, height: item.height } })
       } catch (error) {
-        const failure = describeError(error, 'Không mở được tệp này.')
+        const failure = describeError(error, translate('orientation:source.openFailed'))
         setRejected({ name: file.name, code: failure.code, reason: failure.message })
       } finally {
         setLoading(false)
@@ -96,7 +97,7 @@ export function useOrientationSource() {
         latest.current = next
         setSource(next)
       } catch (error) {
-        const failure = describeError(error, 'Không vẽ được trang này.')
+        const failure = describeError(error, translate('orientation:source.pageFailed'))
         setRejected({ name: current.name, code: failure.code, reason: failure.message })
       } finally {
         setLoading(false)

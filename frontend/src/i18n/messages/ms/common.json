@@ -1,0 +1,210 @@
+{
+  "language": {
+    "label": "Bahasa",
+    "current": "Bahasa: {{name}}"
+  },
+  "theme": {
+    "current": "Tema: {{name}}",
+    "light": "Cerah (pejabat)",
+    "dark": "Gelap (bilik kawalan)",
+    "field": "Luar (tapak kerja)",
+    "lightShort": "Cerah",
+    "darkShort": "Gelap",
+    "fieldShort": "Luar"
+  },
+  "ui": {
+    "confirm": "Sahkan",
+    "cancel": "Batal",
+    "loadingData": "Memuatkan data",
+    "loading": "Memuatkan...",
+    "toastRegion": "Pemberitahuan sistem",
+    "toastClose": "Tutup pemberitahuan",
+    "toastTone": {
+      "success": "Berjaya",
+      "info": "Maklumat",
+      "warning": "Amaran",
+      "danger": "Ralat"
+    }
+  },
+  "apiErrors": {
+    "network": "Tidak dapat menyambung ke pelayan. Sila semak sambungan anda.",
+    "timeout": "Pelayan mengambil masa terlalu lama untuk membalas. Sila cuba lagi.",
+    "unauthorized": "Sesi log masuk anda telah tamat. Sila log masuk semula.",
+    "forbidden": "Anda tidak mempunyai kebenaran untuk melakukan tindakan ini.",
+    "notFound": "Data tidak ditemui.",
+    "validation": "Data tidak sah. Sila semak semula.",
+    "rateLimited": "Anda bertindak terlalu pantas. Sila cuba lagi sebentar nanti.",
+    "server": "Pelayan menghadapi masalah. Sila cuba lagi sebentar nanti.",
+    "unknown": "Berlaku ralat."
+  },
+  "crumb": {
+    "label": "Lokasi"
+  },
+  "tool": {
+    "privacyNoFile": "Berjalan pada peranti anda, tiada kandungan dihantar",
+    "privacyFile": "Diproses pada peranti anda, fail tidak dimuat naik"
+  },
+  "session": {
+    "openInApp": "Buka dalam ERPcons",
+    "login": "Log masuk"
+  },
+  "board": {
+    "result": "Hasil"
+  },
+  "copy": {
+    "label": "Salin",
+    "copied": "Disalin",
+    "done": "Disalin ke papan keratan.",
+    "blocked": "Pelayar menyekat penyalinan. Pilih teks dan tekan Ctrl+C."
+  },
+  "fileList": {
+    "title": "Fail yang dipilih",
+    "clearAll": "Buang semua",
+    "moveUp": "Naikkan",
+    "moveUpLabel": "Naikkan {{name}}",
+    "moveDown": "Turunkan",
+    "moveDownLabel": "Turunkan {{name}}",
+    "remove": "Buang fail ini",
+    "removeLabel": "Buang {{name}}"
+  },
+  "filePicker": {
+    "pick": "Pilih fail",
+    "add": "Tambah fail",
+    "pickOther": "Pilih fail lain",
+    "reading": "Membaca fail {{current}}/{{total}}…",
+    "dropMore": "Lepaskan lebih banyak fail di sini",
+    "dropOther": "Lepaskan fail lain di sini"
+  },
+  "flow": {
+    "finishing": "Menyelesaikan…",
+    "processing": "Memproses",
+    "progressPercent": "{{label}} — {{percent}}%",
+    "progressPending": "{{label}}…",
+    "progressLabel": "Kemajuan pemprosesan",
+    "cancel": "Batal",
+    "rejected": "{{count}} fail dilangkau",
+    "rejectedMore": "… dan {{count}} fail lagi",
+    "dismiss": "Sembunyikan",
+    "side": "Pilihan dan jalankan",
+    "options": "Pilihan",
+    "error": "Tidak dapat memproses: {{message}}",
+    "errorCode": "Kod ralat: {{code}}",
+    "runFailed": "Tidak dapat memproses fail. Cuba lagi."
+  },
+  "result": {
+    "textLabel": "Kandungan teks",
+    "tooLarge": "Fail lebih besar daripada {{limit}}: ia tidak boleh dimuatkan semula ke dalam alat di sini, dan banyak peti mel tidak menerima fail sebesar ini.",
+    "shareFailed": "Tidak dapat berkongsi fail. Muat turun dan hantar secara manual.",
+    "download": "Muat turun",
+    "preview": "Pratonton",
+    "share": "Kongsi",
+    "edit": "Teruskan menyunting",
+    "restart": "Mula semula"
+  },
+  "leave": {
+    "title": "Tinggalkan halaman ini?",
+    "body": "Fail yang sedang anda kerjakan hanya ada dalam tab ini dan tidak disimpan di tempat lain. Jika anda keluar, fail akan hilang dan tidak dapat dipulihkan — muat turun dahulu jika perlu menyimpannya.",
+    "stay": "Kekal",
+    "leave": "Tinggalkan halaman"
+  },
+  "unsupported": {
+    "title": "Pelayar ini terlalu lama untuk memproses PDF",
+    "description": "{{tool}} memerlukan Chrome, Edge, Firefox atau Safari versi terkini. Kemas kini pelayar anda, kemudian buka semula halaman ini. Alat imej, kod QR dan utiliti lain masih boleh digunakan pada peranti ini.",
+    "back": "Pilih alat lain"
+  },
+  "camera": {
+    "insecure": "Kamera hanya berfungsi apabila halaman dibuka melalui HTTPS (atau localhost).",
+    "blocked": "Pelayar sedang menyekat kamera untuk halaman ini. Klik ikon mangga pada bar alamat untuk membenarkannya, kemudian cuba lagi.",
+    "notFound": "Tiada kamera ditemui pada peranti ini.",
+    "busy": "Kamera sedang digunakan oleh aplikasi lain. Tutup aplikasi itu dan cuba lagi.",
+    "failed": "Tidak dapat membuka kamera."
+  },
+  "canvas": {
+    "tooLarge": "Imej terlalu besar untuk pelayar ini.",
+    "unsupported": "Pelayar ini tidak dapat mengeksport format imej yang dipilih."
+  },
+  "hero": {
+    "statTools": "alat percuma",
+    "statFree": "percuma digunakan",
+    "statInstall": "pemasangan",
+    "trialErpcons": "Cuba ERPcons",
+    "trialTekshot": "Cuba TekShot AI"
+  },
+  "stats": {
+    "toolVisits": "kali alat digunakan",
+    "unlimited": "Tanpa had",
+    "visits": "kali digunakan",
+    "readyTools": "alat sedia digunakan",
+    "groups": "kumpulan alat",
+    "proOffer": "simpan, kongsi dan semak bersama seluruh pasukan"
+  },
+  "aside": {
+    "label": "Maklumat lanjut",
+    "recent": "Digunakan baru-baru ini",
+    "recentEmpty": "Anda belum menggunakan sebarang alat pada peranti ini. Alat yang anda buka akan dipaparkan di sini.",
+    "proIntro": "Apabila tugasan kecil menjadi rekod projek:",
+    "about": "Tentang Chuyện Nhỏ",
+    "aboutText": "Set alat percuma daripada ERPCons yang membantu anda menyelesaikan tugasan kecil harian dengan pantas. Fail diproses terus pada peranti anda, tidak dimuat naik ke pelayan.",
+    "tips": "Petua pantas"
+  },
+  "pro": {
+    "signup": "Daftar untuk percubaan",
+    "soon": "Borang pendaftaran percubaan {{product}} sedang disiapkan — akan datang.",
+    "features": {
+      "storage": "Storan jangka panjang, versi dan semakan R00, R01…",
+      "sharing": "Perkongsian, kebenaran, ulasan dan kelulusan",
+      "linking": "Pautkan rekod dengan projek, kontrak dan tugasan",
+      "ai": "AI yang membaca, meringkaskan dan mengekstrak dokumen"
+    }
+  },
+  "nudge": {
+    "text": "Muat turun selesai. Perlu menyimpan fail ini ke rekod projek, berkongsi dan menyemaknya bersama pasukan? Semuanya ada dalam ERPCons Pro.",
+    "login": "Log masuk ERPCons",
+    "later": "Nanti"
+  },
+  "toolCard": {
+    "soon": "Akan datang"
+  },
+  "filters": {
+    "label": "Tapis mengikut kumpulan alat"
+  },
+  "authBrand": {
+    "home": "Kembali ke halaman utama {{name}}",
+    "headline": "Satu platform<br/>Setiap projek<br/>Kawalan penuh",
+    "lead": "{{name}} Construction OS – platform pengurusan menyeluruh untuk perniagaan pembinaan, menyepadukan AI, IoT dan data masa nyata untuk mengoptimumkan prestasi, mengurus risiko dan membuat keputusan yang lebih bijak.",
+    "status": "Semua sistem beroperasi seperti biasa",
+    "statusLink": "Lihat status sistem",
+    "features": {
+      "security": {
+        "title": "Keselamatan maksimum",
+        "line1": "ISO 27001 & SOC 2",
+        "line2": "Enterprise Grade"
+      },
+      "connectivity": {
+        "title": "Sambungan menyeluruh",
+        "line1": "AI • IoT • OCR • API",
+        "line2": "Real-time Sync"
+      },
+      "singleSource": {
+        "title": "Satu sumber data",
+        "line1": "One Object – One Source",
+        "line2": "of Truth"
+      },
+      "performance": {
+        "title": "Prestasi cemerlang",
+        "line1": "Dioptimumkan untuk kelajuan",
+        "line2": "dan kebolehskalaan"
+      },
+      "analytics": {
+        "title": "Analitik pintar",
+        "line1": "Papan pemuka visual",
+        "line2": "& Insightful"
+      },
+      "anywhere": {
+        "title": "Bekerja di mana-mana",
+        "line1": "Web • Mobile • Offline",
+        "line2": "All-in-one Experience"
+      }
+    }
+  }
+}

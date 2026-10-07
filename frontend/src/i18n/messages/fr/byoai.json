@@ -1,0 +1,48 @@
+{
+  "shared": {
+    "copyPrompt": "Copier la question",
+    "copied": "Question copiée."
+  },
+  "panel": {
+    "hasSecrets": "Les modifications contiennent un e-mail, un jeton ou une URL interne. Supprimez ces données avant l'envoi.",
+    "sendFailed": "Impossible d'envoyer la proposition.",
+    "sent": "Votre proposition est dans la file de vérification des sources. Conservez le code de reçu pour suivre son état.",
+    "offline": "Impossible de joindre le serveur. Votre brouillon reste sur cette page.",
+    "close": "Fermer la vérification des sources",
+    "open": "Vérifier les nouvelles sources avec votre propre IA",
+    "intro": "Chuyện Nhỏ n'appelle aucune IA et n'enregistre pas vos clés d'IA. Relisez exactement le contenu ci-dessous avant de le copier dans le service d'IA de votre choix. Le résultat de l'IA n'est qu'une suggestion.",
+    "includeResult": "Ajouter le résultat affiché à la question (peut contenir des informations personnelles)",
+    "packageLabel": "Contenu qui sera copié",
+    "copyFailed": "Impossible de copier ; sélectionnez le texte et copiez-le manuellement.",
+    "pasteTitle": "Collez le résultat de l'IA pour voir les modifications",
+    "aiJson": "JSON renvoyé par l'IA",
+    "invalidJson": "Le JSON n'a pas la bonne structure ou dépasse la limite. Vérifiez les champs changes, sources et uncertainties.",
+    "unverified": "Ces données ne sont pas vérifiées. Contrôlez chaque URL source et choisissez ce que vous souhaitez proposer.",
+    "columns": {
+      "select": "Choisir",
+      "field": "Champ",
+      "current": "Actuel",
+      "proposed": "Proposé par l'IA"
+    },
+    "selectField": "Choisir {{field}}",
+    "sources": "Sources suggérées par l'IA (à vérifier par l'expéditeur) : {{sources}}",
+    "noSources": "Aucune pour l'instant",
+    "uncertainties": "Points incertains : {{items}}",
+    "consent": "J'ai relu chaque modification, vérifié les données privées et j'accepte d'envoyer le contenu sélectionné pour examen par un administrateur",
+    "submit": "Envoyer la proposition de mise à jour",
+    "receipt": "Code de reçu :"
+  },
+  "assistant": {
+    "suggestions": "Suggestions sur l'appareil",
+    "intro": "Décrivez ce que vous voulez faire pour trouver l'outil adapté. Si vous souhaitez qu'une IA vous l'explique, prévisualisez exactement le contenu puis copiez-le vous-même dans le service de votre choix.",
+    "noMatch": "Aucun outil ne correspond clairement.",
+    "title": "Assistant de choix d'outil",
+    "question": "Que voulez-vous faire ?",
+    "placeholder": "Exemple : je veux fusionner deux fichiers PDF et numéroter les pages",
+    "copyNote": "La question ci-dessous n'est copiée que lorsque vous appuyez sur le bouton. Les e-mails, jetons et URL internes sont masqués automatiquement ; relisez-la vous-même avant de la confier à une IA.",
+    "promptLabel": "Contenu destiné à l'IA",
+    "copyFailed": "Impossible de copier ; sélectionnez le texte et copiez-le manuellement.",
+    "answerLabel": "Collez ici la réponse de l'IA pour la lire (ni enregistrée ni envoyée à Chuyện Nhỏ)",
+    "unverified": "Contenu non vérifié"
+  }
+}

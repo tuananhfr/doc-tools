@@ -1,0 +1,8 @@
+{
+  "status": {
+    "loading": "Memuatkan data yang ditandatangani…",
+    "invalid": "Pakej data dalam sistem gagal pengesahan (tandatangan, tarikh luput atau format), jadi ia tidak digunakan. Sila maklumkan pentadbir.",
+    "unavailable": "Tidak dapat memuatkan data yang ditandatangani daripada pelayan. Anda masih boleh memasukkan nilai sendiri.",
+    "upcoming": "Mulai {{date}}, {{label}} baharu terpakai mengikut {{source}}."
+  }
+}

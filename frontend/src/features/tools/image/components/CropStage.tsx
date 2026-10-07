@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { createCanvas, decodeImage, releaseCanvas, rotateContext } from '../services/image-codec'
 import type { ImageItem, Rect } from '../types/image.types'
@@ -28,6 +29,7 @@ type Preview = { id: string; source: HTMLCanvasElement } | { id: string; failed:
  * tương phản xem trước bằng `filter` của CSS; ảnh thật chỉ được dựng lúc lưu.
  */
 export function CropStage({ item, state, aspect, disabled, onRectChange }: CropStageProps) {
+  const { t } = useTranslation('image')
   const canvas = useRef<HTMLCanvasElement>(null)
   const [preview, setPreview] = useState<Preview | null>(null)
   const bounds = rotatedSize(item, state.rotation)
@@ -72,7 +74,7 @@ export function CropStage({ item, state, aspect, disabled, onRectChange }: CropS
   }, [source, state.rotation])
 
   return (
-    <section className="erp-image-stage" aria-label="Ảnh đang chỉnh">
+    <section className="erp-image-stage" aria-label={t('crop.stageLabel')}>
       <p className="erp-image-stage__caption">
         <span className="erp-image-stage__name" title={item.name}>
           {item.name}
@@ -84,7 +86,7 @@ export function CropStage({ item, state, aspect, disabled, onRectChange }: CropS
         {current && 'failed' in current ? (
           <p className="erp-image-stage__status" role="alert">
             <Icon name="exclamation-triangle" />
-            Không vẽ được bản xem trước của ảnh này.
+            {t('shared.previewFailed')}
           </p>
         ) : (
           <>
@@ -94,7 +96,7 @@ export function CropStage({ item, state, aspect, disabled, onRectChange }: CropS
             ) : (
               <p className="erp-image-stage__status" role="status">
                 <Spinner as="span" size="sm" />
-                Đang mở ảnh…
+                {t('shared.opening')}
               </p>
             )}
           </>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { DOCUMENT_COLORS, rgbCss } from '../utils/decorations'
 import { MARKUP_COLORS, NOTE_PADDING, noteFrameSize, textFrameSize, type MeasureText } from '../utils/markup-geometry'
 import type { TextKind } from '../utils/markup-draft'
@@ -29,6 +30,7 @@ interface MarkupTextInputProps {
 
 /** Ô gõ chữ đặt đúng chỗ chữ sẽ nằm, cùng phông và cỡ với lúc xuất để khung đo lúc lưu khớp cái đã thấy. */
 export function MarkupTextInput({ draft, page, pxPerPt, measure, onChange, onDone }: MarkupTextInputProps) {
+  const { t } = useTranslation('pdf')
   const field = useRef<HTMLTextAreaElement>(null)
   const note = draft.kind === 'note'
   const wrapped = draft.wrap !== undefined
@@ -43,7 +45,7 @@ export function MarkupTextInput({ draft, page, pxPerPt, measure, onChange, onDon
     <textarea
       ref={field}
       className={`erp-doc-markup__input${note ? ' is-note' : ''}${wrapped ? ' is-wrapped' : ''}`}
-      aria-label={note ? 'Nội dung ghi chú' : 'Nội dung chữ'}
+      aria-label={note ? t('markup.noteContent') : t('markup.textContent')}
       value={draft.value}
       spellCheck={false}
       style={{

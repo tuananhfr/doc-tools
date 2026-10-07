@@ -1,0 +1,47 @@
+{
+  "flashcard": {
+    "reviewDue": "Ulangi · {{count}} kartu jatuh tempo",
+    "noneDue": "Belum ada kartu yang jatuh tempo",
+    "flip": "Balik kartu",
+    "forgot": "Belum ingat",
+    "remembered": "Sudah ingat",
+    "schedule": "Kartu yang sudah diingat akan muncul lagi setelah 1, 3, 7, 14, atau 30 hari.",
+    "stored": "{{count}} kartu tersimpan di perangkat ini. Menghapus data browser akan menghapus kartu-kartu ini.",
+    "title": "Buat kartu hafalan",
+    "front": "Sisi depan",
+    "back": "Sisi belakang",
+    "add": "Tambah kartu",
+    "remove": "Hapus"
+  },
+  "pomodoro": {
+    "focus": "Fokus",
+    "break": "Istirahat",
+    "start": "Mulai",
+    "pause": "Jeda",
+    "reset": "Atur ulang",
+    "switch": "Ganti sesi",
+    "note": "Pengatur waktu hanya berjalan selama halaman terbuka. Saat mencapai 00:00, pilih ganti sesi untuk memulai putaran berikutnya.",
+    "title": "Durasi",
+    "focusMinutes": "Fokus (menit)",
+    "breakMinutes": "Istirahat (menit)",
+    "invalid": "Fokus 1–180 menit; istirahat 1–60 menit."
+  },
+  "grades": {
+    "gradeResult": "Konversi acuan",
+    "admissionResult": "Total nilai seleksi masuk",
+    "breakdown": "Nilai dasar {{raw}} + prioritas yang disesuaikan {{bonus}}",
+    "note": "Skala konversi dan aturan prioritas bisa berbeda menurut sekolah dan tahun penerimaan. Cocokkan dengan ketentuan lembaga terkait sebelum dipakai.",
+    "title": "Nilai belajar",
+    "mode": "Mode",
+    "modeGrade": "Nilai skala 10 ke skala 4",
+    "modeAdmission": "Nilai seleksi masuk",
+    "fields": {
+      "score10": "Nilai skala 10",
+      "subject1": "Mata pelajaran 1",
+      "subject2": "Mata pelajaran 2",
+      "subject3": "Mata pelajaran 3",
+      "regionBonus": "Prioritas wilayah",
+      "categoryBonus": "Prioritas golongan"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "Voir la source des données",
+    "vatPercent": "Taxe (%)"
+  },
+  "electricity": {
+    "resultLabel": "Estimation de la facture",
+    "waterBreakdown": "Eau : {{subtotal}} đ · Redevance : {{fee}} đ · Taxe : {{vat}} đ. Chaque montant est calculé séparément sur le prix de l'eau hors frais.",
+    "waterHint": "Saisissez la consommation d'eau et le prix unitaire de votre dernière facture.",
+    "electricityBreakdown": "Électricité hors taxe : {{subtotal}} đ · Taxe {{percent}} % : {{vat}} đ",
+    "table": {
+      "upTo": "Tranche jusqu'à (kWh)",
+      "units": "kWh",
+      "price": "Prix/kWh",
+      "amount": "Montant",
+      "rest": "Reste"
+    },
+    "electricityHint": "Saisissez la consommation et la grille tarifaire de votre facture ou de votre contrat. Utilisez * sur la dernière ligne pour le reste.",
+    "tariffVerified": "Grille tarifaire signée, en vigueur depuis le {{date}}. Source : {{source}}.",
+    "tariffManual": "Grille tarifaire saisie par vous ; l'outil ne confirme pas qu'il s'agit du tarif d'électricité en vigueur.",
+    "vatVerified": "Taux de taxe de {{percent}} % signé, en vigueur depuis le {{date}}. Source : {{source}}.",
+    "vatManual": "Taux de taxe saisi par vous.",
+    "notIncluded": "Les autres frais et l'arrondi du fournisseur ne sont pas pris en compte.",
+    "panelTitle": "Factures d'électricité et d'eau",
+    "billType": "Type de facture",
+    "modes": {
+      "electricity": "Électricité",
+      "water": "Eau"
+    },
+    "water": {
+      "cubicMeters": "Eau consommée (m³)",
+      "price": "Prix unitaire (đ/m³)",
+      "fee": "Redevance assainissement / environnement (%)"
+    },
+    "kwh": "Électricité consommée (kWh)",
+    "households": "Nombre de foyers partageant le compteur",
+    "tiers": "Grille tarifaire : une ligne par « seuil en kWh, prix en đ/kWh »",
+    "applyTariff": "Appliquer la grille signée",
+    "applyVat": "Appliquer le taux signé",
+    "ruleLabel": "grille tarifaire de l'électricité",
+    "ruleNone": "Aucune grille tarifaire d'électricité signée et en vigueur n'est encore disponible sur le système.",
+    "vatRuleLabel": "taux de TVA"
+  },
+  "groupSplit": {
+    "resultLabel": "Virements pour équilibrer les comptes",
+    "balanced": "Comptes équilibrés",
+    "note": "Chaque dépense est partagée à parts égales entre ses participants. Les montants des virements sont arrondis au đồng près.",
+    "membersTitle": "Membres",
+    "onePerLine": "Une personne par ligne",
+    "expensesTitle": "Dépenses",
+    "addExpense": "Ajouter une dépense",
+    "payer": "Payé par",
+    "choosePerson": "Choisir une personne",
+    "amount": "Montant (đ)",
+    "participants": "Partagé entre",
+    "removeExpense": "Retirer la dépense"
+  },
+  "loan": {
+    "totalPayment": "Total à payer",
+    "finalBalance": "Solde final",
+    "interest": "Intérêts : {{amount}} đ",
+    "firstPayment": "Première échéance : {{amount}} đ",
+    "downloadCsv": "Télécharger le tableau CSV",
+    "table": {
+      "period": "Échéance",
+      "principal": "Capital",
+      "interest": "Intérêts",
+      "balance": "Restant dû"
+    },
+    "savingsNote": "Intérêts de {{amount}} đ après {{months}} mois. Chaque période produit des intérêts simples, ajoutés au capital à la fin de la période lors du renouvellement.",
+    "hint": "Saisissez un montant positif, un taux d'intérêt non négatif et une durée valide.",
+    "disclaimer": "Résultat indicatif ; l'échéancier réel dépend du contrat et de l'arrondi appliqué par le prêteur.",
+    "loanTitle": "Prêt",
+    "savingsTitle": "Dépôt",
+    "mode": "Mode",
+    "modes": {
+      "loan": "Prêt remboursable par mensualités",
+      "savings": "Épargne renouvelée"
+    },
+    "loanAmount": "Montant emprunté (đ)",
+    "savingsAmount": "Montant déposé (đ)",
+    "rate": "Taux d'intérêt annuel (%)",
+    "loanTerm": "Durée (mois)",
+    "savingsTerm": "Durée du terme (mois)",
+    "method": "Mode de remboursement du capital",
+    "methods": {
+      "annuity": "Échéances quasi constantes",
+      "equalPrincipal": "Capital constant"
+    },
+    "renewals": "Nombre de renouvellements"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "Abattement personnel (đ)",
+      "dependentDeduct": "Abattement par personne à charge (đ)",
+      "referenceSalary": "Salaire de référence pour le plafond d'assurance (đ)",
+      "minWage1": "Salaire minimum de la région I (đ)",
+      "minWage2": "Salaire minimum de la région II (đ)",
+      "minWage3": "Salaire minimum de la région III (đ)",
+      "minWage4": "Salaire minimum de la région IV (đ)",
+      "employeeSocial": "Salarié : assurance sociale (%)",
+      "employeeHealth": "Salarié : assurance maladie (%)",
+      "employeeUnemployment": "Salarié : assurance chômage (%)",
+      "employerSocial": "Employeur : assurance sociale (%)",
+      "employerHealth": "Employeur : assurance maladie (%)",
+      "employerUnemployment": "Employeur : assurance chômage (%)"
+    },
+    "resultLabel": "Résultat indicatif",
+    "net": "Net perçu : {{amount}} đ",
+    "missingParams": "Paramètres incomplets",
+    "rows": {
+      "gross": "Brut",
+      "employeeSocial": "Assurance sociale (salarié)",
+      "employeeHealth": "Assurance maladie (salarié)",
+      "employeeUnemployment": "Assurance chômage (salarié)",
+      "deduction": "Abattements",
+      "taxable": "Revenu imposable",
+      "bracket": "Tranche {{level}} · {{rate}} %",
+      "tax": "Impôt sur le revenu",
+      "employerTotal": "Cotisations employeur",
+      "employerCost": "Coût total pour l'employeur"
+    },
+    "hint": "Renseignez tous les paramètres à partir du jeu de règles signé ou de votre bulletin de paie, de votre contrat et des indications de votre comptable.",
+    "paramsVerified": "Paquet de paramètres signé, en vigueur depuis le {{date}}. Source : {{source}}.",
+    "paramsManual": "Paramètres saisis par vous ; l'outil ne confirme pas qu'il s'agit de la réglementation en vigueur.",
+    "notSettlement": "Ce résultat ne remplace pas votre régularisation fiscale réelle.",
+    "panelTitle": "Calcul du salaire brut – net",
+    "direction": "Sens du calcul",
+    "directions": {
+      "gross": "Brut → Net",
+      "net": "Net → Brut"
+    },
+    "grossSalary": "Salaire brut (đ/mois)",
+    "netSalary": "Salaire net souhaité (đ/mois)",
+    "dependents": "Personnes à charge",
+    "region": "Région",
+    "regionOption": "Région {{region}}",
+    "insuranceBase": "Salaire soumis aux cotisations (đ, vide = brut)",
+    "exempt": "Indemnités exonérées incluses dans le brut (đ)",
+    "applyParams": "Appliquer les paramètres signés",
+    "ruleLabel": "paramètres de paie",
+    "ruleNone": "Aucun paquet de règles de paie signé et en vigueur n'est encore disponible sur le système.",
+    "enterParams": "Saisir les paramètres de paie",
+    "brackets": "Barème : « seuil de revenu imposable (đ), taux (%) » ; utilisez * sur la dernière ligne"
+  },
+  "unitPrice": {
+    "resultLabel": "Comparaison au prix unitaire",
+    "equal": "Prix identiques",
+    "cheaper": "Le produit {{index}} est moins cher",
+    "perUnit": "Produit {{index}} : {{amount}} đ/{{unit}}",
+    "difference": "Écart de {{percent}} % par rapport au prix le plus élevé.",
+    "hint": "Saisissez un prix non négatif et une quantité positive pour les deux produits, dans la même unité.",
+    "panelTitle": "Deux produits",
+    "price": "Prix du produit {{index}} (đ)",
+    "quantity": "Quantité du produit {{index}} ({{unit}})",
+    "unit": "Unité de quantité",
+    "units": {
+      "kg": "kg",
+      "liter": "litre",
+      "piece": "pièce"
+    }
+  }
+}

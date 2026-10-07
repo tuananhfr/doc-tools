@@ -1,5 +1,6 @@
 import { createZipWriter } from '@/features/tools/shared'
 import { newId } from '@/utils/id'
+import { translate } from '@/i18n/runtime'
 import type { ImageFormat, PageRef, PdfOutput, SourceFile } from '../types/doc-tools.types'
 import type { BatchGroup } from '../utils/batch-groups'
 import { addCarryover, NO_CARRYOVER, type CarryoverReport } from '../utils/carryover-summary'
@@ -115,14 +116,14 @@ export async function buildSplit(context: BuildContext, groups: SplitGroup[], na
       signal: step.signal,
       onProgress: (done) => step.onProgress?.(offset + done, pageTotal),
     })
-    zip.add(`${title} - phần ${index + 1} (tr ${group.label}).pdf`, pdf.bytes)
+    zip.add(`${title} - ${translate('pdf:file.part', { index: index + 1, pages: group.label })}.pdf`, pdf.bytes)
     compression = addStats(compression, pdf.compression)
     carryover = addCarryover(carryover, pdf.carryover)
     bytes += pdf.bytes.byteLength
     offset += group.pages.length
   }
   step.signal?.throwIfAborted()
-  return { file: { name: `${title} - đã tách.zip`, blob: zip.finish() }, compression, carryover, bytes }
+  return { file: { name: `${title} - ${translate('pdf:file.split')}.zip`, blob: zip.finish() }, compression, carryover, bytes }
 }
 
 /**
@@ -193,8 +194,8 @@ export async function buildImages(context: BuildContext, pages: PageRef[], forma
     zip.add(imageName(title, index, pages.length, extension), new Uint8Array(await blob.arrayBuffer()))
   })
   step.signal?.throwIfAborted()
-  if (zip) return { file: { name: `${title} - ảnh.zip`, blob: zip.finish() }, reduced }
-  if (!single) throw new Error('không có trang nào để xuất ảnh')
+  if (zip) return { file: { name: `${title} - ${translate('pdf:file.images')}.zip`, blob: zip.finish() }, reduced }
+  if (!single) throw new Error(translate('pdf:errors.noImagePages'))
   return { file: { name: `${title}.${extension}`, blob: single }, reduced }
 }
 
@@ -254,5 +255,5 @@ export async function buildBatch(
     offset += group.pages.length
   }
   step.signal?.throwIfAborted()
-  return { file: { name: `${sanitizeFileName(name)} - ${groups.length} tệp.zip`, blob: zip.finish() }, compression, carryover, bytes, reduced, withoutText }
+  return { file: { name: `${sanitizeFileName(name)} - ${translate('pdf:file.fileCount', { count: groups.length })}.zip`, blob: zip.finish() }, compression, carryover, bytes, reduced, withoutText }
 }

@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { Note, NoteTask } from '../types/note.types'
 
 /** Trần để một ô localStorage (~5 MB cho cả origin) không bị ghi chú ăn hết. */
@@ -67,7 +68,7 @@ export function noteLabel(note: Note): string {
     .map((line) => line.trim())
     .find(Boolean)
   if (firstLine) return firstLine
-  return note.tasks.find((task) => task.text.trim())?.text.trim() ?? 'Ghi chú chưa có nội dung'
+  return note.tasks.find((task) => task.text.trim())?.text.trim() ?? translate('utility:notes.untitled')
 }
 
 export function isBlankNote(note: Note): boolean {

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { TextEditMarkup } from '../types/markup.types'
 import { localFont } from '../services/local-fonts'
 import { cssFont } from '../services/text-measure'
@@ -36,6 +37,7 @@ function lineMetrics(font: FontStyle): { ascent: number; descent: number } {
  * bằng khung ngắt dòng — gõ tới đâu xuống dòng giống hệt lúc xuất tới đó.
  */
 export function TextEditInput({ markup, page, frame, pxPerPt, block, onChange, onDone }: TextEditInputProps) {
+  const { t } = useTranslation('pdf')
   const field = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -62,7 +64,7 @@ export function TextEditInput({ markup, page, frame, pxPerPt, block, onChange, o
     <textarea
       ref={field}
       className="erp-doc-markup__input is-edit"
-      aria-label="Chữ thay thế"
+      aria-label={t('markup.replacement')}
       value={markup.text}
       spellCheck={false}
       style={{

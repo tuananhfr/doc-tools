@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState, type MouseEvent, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { newId } from '@/utils/id'
 import type { Markup, MarkupTool, TextEditMarkup } from '../types/markup.types'
 import type { PageText } from '../types/text-layer.types'
@@ -89,6 +90,7 @@ function sameCaret(a: Caret, b: Caret | null) {
 
 /** Nét, hình, chữ, dấu mộc trên trang đang xem to. Chỉ báo lên khi xong một thao tác — mỗi thao tác là một bước hoàn tác. */
 export function MarkupEditor({ markups, size, rotation, pxPerPt, tool, style, selectedId, measure, pageText, inspect, rewriter, onSelect, onCommit, onSurfaceEdit }: MarkupEditorProps) {
+  const { t } = useTranslation('pdf')
   const page = useMemo<PageFrame>(() => ({ base: visualSize(size, rotation), rotation }), [size, rotation])
   const gesture = useRef<Gesture | null>(null)
   const [draft, setDraft] = useState<Markup | null>(null)
@@ -343,7 +345,7 @@ export function MarkupEditor({ markups, size, rotation, pxPerPt, tool, style, se
         viewBox={`0 0 ${size.width} ${size.height}`}
         preserveAspectRatio="none"
         role="group"
-        aria-label="Vùng đánh dấu trang"
+        aria-label={t('markup.area')}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}

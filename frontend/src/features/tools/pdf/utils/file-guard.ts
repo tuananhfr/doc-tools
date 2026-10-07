@@ -1,4 +1,5 @@
 import { detectImageFormat } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { ImageMime } from '../types/doc-tools.types'
 
 export type DetectedKind = { kind: 'pdf' } | { kind: 'image'; mime: ImageMime } | null
@@ -36,7 +37,7 @@ export function detectKind(head: Uint8Array): DetectedKind {
  * Tên tệp an toàn để tải về: bỏ ký tự cấm trên Windows/macOS và ký tự điều
  * khiển, GIỮ dấu tiếng Việt. Rỗng thì dùng `fallback`.
  */
-export function sanitizeFileName(name: string, fallback = 'tai-lieu'): string {
+export function sanitizeFileName(name: string, fallback = translate('pdf:file.defaultName')): string {
   const cleaned = name
     .normalize('NFC')
     // eslint-disable-next-line no-control-regex

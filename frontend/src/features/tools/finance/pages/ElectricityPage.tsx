@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
@@ -10,6 +11,7 @@ import { electricityBill, parseElectricityRules, validateElectricityTiers, water
 import { parseVatRule } from '../utils/vat-rule'
 
 export default function ElectricityPage() {
+  const { t } = useTranslation('finance')
   const [mode, setMode] = useState<'electricity' | 'water'>('electricity')
   const [kwh, setKwh] = useState('')
   const [households, setHouseholds] = useState('1')
@@ -44,27 +46,27 @@ export default function ElectricityPage() {
     applyVat()
   }
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">Ước tính hóa đơn</p>
-    <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? `${formatNumber(Math.round(waterResult.total))} đ` : '—' : result ? `${formatNumber(Math.round(result.total))} đ` : '—'}</p>
-    {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">Tiền nước: {formatNumber(waterResult.subtotal)} đ · Phí: {formatNumber(waterResult.fee)} đ · Thuế: {formatNumber(waterResult.vat)} đ. Các khoản tính riêng trên tiền nước gốc.</p> : <p className="erp-tool-result__note">Nhập lượng nước và đơn giá trên hóa đơn gần nhất.</p> : <>
-    {result ? <><p className="erp-tool-result__note">Tiền điện trước thuế: {formatNumber(result.subtotal)} đ · Thuế {formatNumber(Number(vat))}%: {formatNumber(result.vat)} đ</p>
-      <div className="table-responsive"><table className="table table-sm"><thead><tr><th>Bậc đến kWh</th><th>Số kWh</th><th>Giá/kWh</th><th>Thành tiền</th></tr></thead><tbody>{result.rows.map((row, index) => <tr key={index}><td>{row.upTo ?? 'Còn lại'}</td><td>{formatNumber(row.units)}</td><td>{formatNumber(row.price)}</td><td>{formatNumber(row.amount)}</td></tr>)}</tbody></table></div></> : <p className="erp-tool-result__note">Nhập số điện và bảng giá theo hóa đơn hoặc hợp đồng. Dòng cuối dùng dấu * cho phần còn lại.</p>}
-    <p className="erp-tool-result__note">{usingVerified && verified ? `Bảng giá có chữ ký, hiệu lực từ ${formatRuleDate(verified.effectiveFrom)}. Nguồn: ${verified.source.title}.` : 'Bảng giá do bạn nhập; công cụ không xác nhận đây là giá bán điện hiện hành.'} {appliedVat ? `Thuế suất ${formatNumber(appliedVat.percent)}% có chữ ký, hiệu lực từ ${formatRuleDate(appliedVat.from.effectiveFrom)}. Nguồn: ${appliedVat.from.source.title}.` : 'Thuế suất do bạn nhập.'} Chưa tính phí khác hoặc cách làm tròn của nhà cung cấp.</p>
-    {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">Xem nguồn dữ liệu</a> : null}</>}
+    <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
+    <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
+    {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: formatNumber(waterResult.subtotal), fee: formatNumber(waterResult.fee), vat: formatNumber(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{t('electricity.waterHint')}</p> : <>
+    {result ? <><p className="erp-tool-result__note">{t('electricity.electricityBreakdown', { subtotal: formatNumber(result.subtotal), percent: formatNumber(Number(vat)), vat: formatNumber(result.vat) })}</p>
+      <div className="table-responsive"><table className="table table-sm"><thead><tr><th>{t('electricity.table.upTo')}</th><th>{t('electricity.table.units')}</th><th>{t('electricity.table.price')}</th><th>{t('electricity.table.amount')}</th></tr></thead><tbody>{result.rows.map((row, index) => <tr key={index}><td>{row.upTo ?? t('electricity.table.rest')}</td><td>{formatNumber(row.units)}</td><td>{formatNumber(row.price)}</td><td>{formatNumber(row.amount)}</td></tr>)}</tbody></table></div></> : <p className="erp-tool-result__note">{t('electricity.electricityHint')}</p>}
+    <p className="erp-tool-result__note">{usingVerified && verified ? t('electricity.tariffVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('electricity.tariffManual')} {appliedVat ? t('electricity.vatVerified', { percent: formatNumber(appliedVat.percent), date: formatRuleDate(appliedVat.from.effectiveFrom), source: appliedVat.from.source.title }) : t('electricity.vatManual')} {t('electricity.notIncluded')}</p>
+    {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}</>}
   </div>}>
-    <ToolPanel title="Tiền điện, nước">
-      <label className="erp-flow-field__label">Loại hóa đơn<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="electricity">Tiền điện</option><option value="water">Tiền nước</option></Form.Select></label>
+    <ToolPanel title={t('electricity.panelTitle')}>
+      <label className="erp-flow-field__label">{t('electricity.billType')}<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="electricity">{t('electricity.modes.electricity')}</option><option value="water">{t('electricity.modes.water')}</option></Form.Select></label>
       {mode === 'water' ? <div className="erp-tool-form__grid mt-3">{([
-        ['cubicMeters', 'Số m³ nước'], ['price', 'Đơn giá (đ/m³)'], ['fee', 'Phí thoát nước / môi trường (%)'], ['vat', 'Thuế (%)'],
+        ['cubicMeters', t('electricity.water.cubicMeters')], ['price', t('electricity.water.price')], ['fee', t('electricity.water.fee')], ['vat', t('shared.vatPercent')],
       ] as [keyof typeof water, string][]).map(([key, label]) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min="0" step="any" value={water[key]} onChange={(event) => setWater((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div> : <>
-      <label className="erp-flow-field__label">Điện tiêu thụ (kWh)<Form.Control type="number" min="0" step="any" inputMode="decimal" value={kwh} onChange={(event) => setKwh(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">Số định mức hộ dùng chung công tơ<Form.Control type="number" min="1" step="1" value={households} onChange={(event) => setHouseholds(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">Bảng giá: mỗi dòng là “ngưỡng kWh, đơn giá đ/kWh”<Form.Control as="textarea" rows={7} placeholder={'50,1800\n100,2200\n*,3000'} value={lines} onChange={(event) => updateLines(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">Thuế (%)<Form.Control type="number" min="0" max="100" step="any" value={vat} onChange={(event) => { setVat(event.target.value); setAppliedVat(null) }} /></label>
-      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>Áp dụng bảng giá đã ký</Button>
-        : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>Áp dụng thuế suất đã ký</Button> : null}
-      <RuleStatus rules={electricityRules} label="bảng giá điện" noneText="Hiện chưa có bảng giá điện đã ký, còn hiệu lực trên hệ thống." />
-      {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label="thuế suất GTGT" /> : null}
+      <label className="erp-flow-field__label">{t('electricity.kwh')}<Form.Control type="number" min="0" step="any" inputMode="decimal" value={kwh} onChange={(event) => setKwh(event.target.value)} /></label>
+      <label className="erp-flow-field__label mt-3">{t('electricity.households')}<Form.Control type="number" min="1" step="1" value={households} onChange={(event) => setHouseholds(event.target.value)} /></label>
+      <label className="erp-flow-field__label mt-3">{t('electricity.tiers')}<Form.Control as="textarea" rows={7} placeholder={'50,1800\n100,2200\n*,3000'} value={lines} onChange={(event) => updateLines(event.target.value)} /></label>
+      <label className="erp-flow-field__label mt-3">{t('shared.vatPercent')}<Form.Control type="number" min="0" max="100" step="any" value={vat} onChange={(event) => { setVat(event.target.value); setAppliedVat(null) }} /></label>
+      {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('electricity.applyTariff')}</Button>
+        : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>{t('electricity.applyVat')}</Button> : null}
+      <RuleStatus rules={electricityRules} label={t('electricity.ruleLabel')} noneText={t('electricity.ruleNone')} />
+      {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
       </>}
     </ToolPanel>
     <ByoAiPanel toolId="tien-dien" domain="electricity" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={mode === 'water' ? waterResult ? `Nước ${water.cubicMeters} m³; tổng ${waterResult.total} đ` : '' : result ? `Điện ${kwh} kWh; tổng ${result.total} đ` : ''} />

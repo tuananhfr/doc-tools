@@ -1,5 +1,7 @@
 import { parseDecimal } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import type { MoneyPreset, MoneyRow, MoneyUnit } from '../config/money-presets'
+import { numberFormat } from '@/i18n/intl'
 
 /**
  * Đọc một SỐ TIỀN người dùng gõ tay. Khác `parseDecimal` ở đúng một chỗ: dấu
@@ -16,15 +18,14 @@ export function parseMoney(input: string): number | null {
   return value === null || value < 0 ? null : value
 }
 
-const MONEY = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 2 })
-const PERCENT = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 2 })
+const AMOUNT: Intl.NumberFormatOptions = { maximumFractionDigits: 2 }
 
 /** In một giá trị theo đơn vị của nó: tiền tới hai số lẻ, phần trăm kèm dấu %. */
 export function formatMoneyValue(value: number, unit: MoneyUnit): string {
   if (!Number.isFinite(value)) return '—'
   const safe = Object.is(value, -0) || Math.abs(value) < 0.005 ? 0 : value
-  if (unit === 'percent') return `${PERCENT.format(safe)}%`
-  return MONEY.format(safe)
+  if (unit === 'percent') return `${numberFormat(AMOUNT).format(safe)}%`
+  return numberFormat(AMOUNT).format(safe)
 }
 
 export type MoneyOutcome =
@@ -65,7 +66,7 @@ export function evaluatePreset(preset: MoneyPreset, texts: Record<string, string
     if (value === null) invalid.push(input.key)
     else {
       values[input.key] = value
-      shown[input.key] = input.unit === 'percent' ? PERCENT.format(value) : MONEY.format(value)
+      shown[input.key] = numberFormat(AMOUNT).format(value)
     }
   }
 
@@ -73,7 +74,7 @@ export function evaluatePreset(preset: MoneyPreset, texts: Record<string, string
 
   const rows = preset.compute(values)
   if (typeof rows === 'string') return { ok: false, invalid: [], reason: rows }
-  if (rows.some((row) => !Number.isFinite(row.value))) return { ok: false, invalid: [], reason: 'Số quá lớn để tính.' }
+  if (rows.some((row) => !Number.isFinite(row.value))) return { ok: false, invalid: [], reason: translate('utility:money.errors.tooLarge') }
   return { ok: true, rows, expression: preset.explain(shown) }
 }
 

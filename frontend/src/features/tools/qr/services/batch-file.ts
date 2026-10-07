@@ -1,4 +1,5 @@
 import { ToolError, TOOL_ERROR } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { csvFirstColumn } from '../utils/barcode-batch'
 
 const isXlsx = (file: File) => /\.xlsx$/i.test(file.name) || file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
@@ -15,7 +16,7 @@ function cellText(value: unknown, shown: string | undefined): string {
 /** Cột ĐẦU của tệp CSV / XLSX (trang tính đầu tiên), mỗi dòng một chuỗi — dòng trống giữ chỗ để số dòng khớp tệp. */
 export async function readFirstColumn(file: File): Promise<string[]> {
   if (isCsv(file)) return csvFirstColumn(await file.text())
-  if (!isXlsx(file)) throw new ToolError(TOOL_ERROR.unsupportedFormat, 'Chỉ đọc được tệp .csv hoặc .xlsx.')
+  if (!isXlsx(file)) throw new ToolError(TOOL_ERROR.unsupportedFormat, translate('qr:batch.unsupported'))
 
   const { default: ExcelJS } = await import('exceljs')
   const book = new ExcelJS.Workbook()

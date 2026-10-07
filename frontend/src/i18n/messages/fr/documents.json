@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "Imprimer / Enregistrer en PDF"
+  },
+  "cv": {
+    "title": "Créer un CV",
+    "saveDraft": "Enregistrer le brouillon",
+    "openDraft": "Ouvrir le brouillon",
+    "clearDraft": "Supprimer le brouillon",
+    "template": "Modèle de CV",
+    "templates": {
+      "classic": "Classique",
+      "modern": "Moderne"
+    },
+    "fields": {
+      "name": "Nom et prénom",
+      "role": "Poste visé",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "location": "Lieu de résidence",
+      "link": "Portfolio ou LinkedIn"
+    },
+    "photo": "Photo portrait (pour cette session uniquement)",
+    "photoAlt": "Photo portrait du CV",
+    "summary": "Présentation courte",
+    "sections": {
+      "experience": "Expérience",
+      "education": "Formation",
+      "skills": "Compétences",
+      "languages": "Langues",
+      "certificates": "Certifications"
+    },
+    "entry": {
+      "period": "Période",
+      "company": "Entreprise",
+      "school": "Établissement",
+      "position": "Poste",
+      "degree": "Filière / diplôme",
+      "description": "Description / réalisations",
+      "remove": "Supprimer l'entrée",
+      "add": "Ajouter une entrée"
+    },
+    "messages": {
+      "saved": "Brouillon enregistré sur cet appareil ; la photo n'est pas enregistrée.",
+      "saveFailed": "Impossible d'enregistrer le brouillon sur cet appareil.",
+      "noDraft": "Aucun brouillon valide pour l'instant.",
+      "opened": "Brouillon ouvert.",
+      "unreadable": "Le brouillon est illisible.",
+      "cleared": "Brouillon supprimé de cet appareil."
+    },
+    "note": "Vérifiez bien les informations avant l'envoi. Le brouillon n'est enregistré sur votre appareil que lorsque vous appuyez sur Enregistrer ; la photo n'est pas enregistrée."
+  },
+  "formTemplates": {
+    "title": "Modèles de documents",
+    "kind": "Type de document",
+    "names": {
+      "leave": "Demande de congé",
+      "authorization": "Procuration",
+      "handover": "Procès-verbal de passation"
+    },
+    "fields": {
+      "recipient": "À l'attention de",
+      "name": "Nom et prénom",
+      "department": "Fonction, service",
+      "from": "Congé du",
+      "to": "Jusqu'au (inclus)",
+      "reason": "Motif",
+      "handover": "Personne reprenant les tâches",
+      "placeWritten": "Fait à",
+      "fromName": "Mandant",
+      "fromId": "Numéro d'identification du mandant",
+      "fromAddress": "Adresse du mandant",
+      "toName": "Mandataire",
+      "toId": "Numéro d'identification du mandataire",
+      "toAddress": "Adresse du mandataire",
+      "scope": "Objet de la procuration",
+      "term": "Durée",
+      "giver": "Partie qui remet (nom, fonction)",
+      "receiver": "Partie qui reçoit (nom, fonction)",
+      "items": "Éléments remis (un par ligne)",
+      "note": "Remarques",
+      "placeDrawn": "Établi à"
+    },
+    "authorizationWarning": "Certaines démarches exigent une légalisation ou une certification. Renseignez-vous auprès de l'organisme destinataire avant utilisation.",
+    "defaultWarning": "Modèle de référence ; vérifiez les exigences de l'organisme destinataire avant de le déposer.",
+    "privacy": "Vos données restent uniquement dans la page ouverte."
+  }
+}

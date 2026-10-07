@@ -9,6 +9,8 @@ const config = {
   reactStrictMode: true,
   agentRules: false,
   poweredByHeader: false,
+  // The root layout sits under app/[lang]; unmatched URLs need app/global-not-found.tsx.
+  experimental: { globalNotFound: true },
   async rewrites() {
     const backend = process.env.BACKEND_URL ?? 'http://127.0.0.1:3003'
     return [

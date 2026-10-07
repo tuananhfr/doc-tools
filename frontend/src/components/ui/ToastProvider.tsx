@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { ReactNode } from 'react'
 import { Icon } from './Icon'
 import { ToastContext } from './toast-context'
@@ -17,13 +18,6 @@ const TONE_ICON: Record<ToastTone, string> = {
   danger: 'x-circle-fill',
 }
 
-const TONE_LABEL: Record<ToastTone, string> = {
-  success: 'Thành công',
-  info: 'Thông tin',
-  warning: 'Cảnh báo',
-  danger: 'Lỗi',
-}
-
 const DURATION = 4000
 
 /**
@@ -33,6 +27,7 @@ const DURATION = 4000
  * truyen dat trang thai (ERPcons_Design_System.md, muc 05 & 10).
  */
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const { t } = useTranslation('common')
   const [items, setItems] = useState<ToastItem[]>([])
   const nextId = useRef(1)
 
@@ -63,7 +58,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={api}>
       {children}
 
-      <div className="erp-toaster" role="region" aria-label="Thông báo hệ thống">
+      <div className="erp-toaster" role="region" aria-label={t('ui.toastRegion')}>
         {items.map((item) => (
           <div
             key={item.id}
@@ -73,14 +68,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <Icon
               name={TONE_ICON[item.tone]}
               className={`erp-toast__icon erp-text-${item.tone}`}
-              label={TONE_LABEL[item.tone]}
+              label={t(`ui.toastTone.${item.tone}`)}
             />
             <div className="flex-grow-1">{item.content}</div>
             <button
               type="button"
               className="erp-toast__close"
               onClick={() => remove(item.id)}
-              aria-label="Đóng thông báo"
+              aria-label={t('ui.toastClose')}
             >
               <Icon name="x-lg" size={12} />
             </button>

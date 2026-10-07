@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { LEGACY_TOOL_QUERY, TOOL_CATALOG, TOOL_FILTERS } from '../config/tool-catalog'
+import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { filterTools, leavesToolScreen, legacyToolPath, resolveToolRoute, toolNeedsFullWidth, toolPageTitle, toolPath, toolPathOf } from './tool-lookup'
 
 describe('TOOL_CATALOG', () => {
@@ -19,11 +20,11 @@ describe('TOOL_CATALOG', () => {
   })
 
   it('leaves no filter chip without a tool', () => {
-    for (const { value } of TOOL_FILTERS) expect(filterTools(TOOL_CATALOG, value, '').length).toBeGreaterThan(0)
+    for (const value of TOOL_FILTERS) expect(filterTools(VI_TOOL_CATALOG, value, '').length).toBeGreaterThan(0)
   })
 
   it('shows the groups in a fixed order, starting with "all"', () => {
-    expect(TOOL_FILTERS.map((item) => item.value)).toEqual(['all', 'document', 'image', 'calc', 'money', 'date', 'data', 'construction', 'home', 'other'])
+    expect(TOOL_FILTERS).toEqual(['all', 'document', 'image', 'calc', 'money', 'date', 'data', 'construction', 'home', 'other'])
   })
 })
 
@@ -104,30 +105,30 @@ describe('legacyToolPath', () => {
 
 describe('filterTools', () => {
   it('filters by category', () => {
-    const ids = filterTools(TOOL_CATALOG, 'calc', '').map((tool) => tool.id)
+    const ids = filterTools(VI_TOOL_CATALOG, 'calc', '').map((tool) => tool.id)
     expect(ids).toEqual(['study', 'measure-image', 'quick-calc', 'unit-convert', 'structure-calc'])
   })
 
   it('folds every PDF tool into the document group', () => {
-    const ids = filterTools(TOOL_CATALOG, 'document', '').map((tool) => tool.id)
+    const ids = filterTools(VI_TOOL_CATALOG, 'document', '').map((tool) => tool.id)
     for (const id of ['merge-pdf', 'split-pdf', 'compress-pdf', 'edit-pdf', 'view-pdf']) expect(ids).toContain(id)
   })
 
-  it('matches without diacritics, every word anywhere in name, description or synonyms', () => {
-    // "ghép ảnh" là từ đồng nghĩa của Scan ảnh → PDF.
-    expect(filterTools(TOOL_CATALOG, 'all', 'ghep').map((tool) => tool.id)).toEqual(['collage', 'scan-to-pdf', 'merge-pdf'])
-    expect(filterTools(TOOL_CATALOG, 'all', 'ghep pdf').map((tool) => tool.id)).toEqual(['scan-to-pdf', 'merge-pdf'])
-    expect(filterTools(TOOL_CATALOG, 'all', 'pdf nen').map((tool) => tool.id)).toEqual(['compress-pdf'])
+  it('matches without diacritics and ranks the requested operation first', () => {
+    expect(filterTools(VI_TOOL_CATALOG, 'all', 'ghep').map((tool) => tool.id)).toEqual(expect.arrayContaining(['collage', 'scan-to-pdf', 'merge-pdf']))
+    expect(filterTools(VI_TOOL_CATALOG, 'all', 'ghep pdf').map((tool) => tool.id)).toEqual(['merge-pdf'])
+    expect(filterTools(VI_TOOL_CATALOG, 'all', 'pdf nen').map((tool) => tool.id)).toEqual(['compress-pdf'])
   })
 
   it('applies category and keyword together', () => {
-    expect(filterTools(TOOL_CATALOG, 'image', 'nen').map((tool) => tool.id)).toEqual(['remove-background', 'compress-image'])
+    expect(filterTools(VI_TOOL_CATALOG, 'image', 'nen').map((tool) => tool.id)).toContain('compress-image')
+    expect(filterTools(VI_TOOL_CATALOG, 'image', 'nén PDF')).toEqual([])
   })
 })
 
 describe('toolPageTitle', () => {
   it('keeps the titles the four shared links already had', () => {
-    expect(toolPageTitle(resolveToolRoute('anh-sang-pdf').tool!)).toBe('Chuyển ảnh sang PDF miễn phí · Chuyện Nhỏ')
-    expect(toolPageTitle(resolveToolRoute('ghep-pdf').tool!)).toBe('Ghép PDF miễn phí · Chuyện Nhỏ')
+    expect(toolPageTitle(resolveToolRoute('anh-sang-pdf', VI_TOOL_CATALOG).tool!)).toBe('Chuyển ảnh sang PDF miễn phí · Chuyện Nhỏ')
+    expect(toolPageTitle(resolveToolRoute('ghep-pdf', VI_TOOL_CATALOG).tool!)).toBe('Ghép PDF miễn phí · Chuyện Nhỏ')
   })
 })

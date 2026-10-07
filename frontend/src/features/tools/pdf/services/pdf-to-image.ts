@@ -1,5 +1,6 @@
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { canvasToBlob, type CanvasMime } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { ImageFormat, ImageSheet, ImageSource, PageRef, SheetSource, SourceFile } from '../types/doc-tools.types'
 import type { Rect } from '../types/markup.types'
 import { fitScale } from '../utils/canvas-cap'
@@ -13,7 +14,7 @@ const MIME: Record<ImageFormat, CanvasMime> = { jpeg: 'image/jpeg', png: 'image/
 
 async function encodePage(canvas: HTMLCanvasElement, format: ImageFormat): Promise<Blob> {
   const blob = await canvasToBlob(canvas, MIME[format]).catch(() => null)
-  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, 'Không xuất được ảnh.')
+  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, translate('pdf:errors.exportImage'))
   return blob
 }
 
@@ -34,7 +35,7 @@ export async function renderImagePage(
     canvas.width = Math.round(sideways ? height : width)
     canvas.height = Math.round(sideways ? width : height)
     const context = canvas.getContext('2d')
-    if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+    if (!context) throw new Error(translate('pdf:errors.noCanvas'))
 
     context.fillStyle = '#ffffff'
     context.fillRect(0, 0, canvas.width, canvas.height)
@@ -67,7 +68,7 @@ export async function renderSheet(
   canvas.width = Math.round(sideways ? height : width)
   canvas.height = Math.round(sideways ? width : height)
   const context = canvas.getContext('2d')
-  if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+  if (!context) throw new Error(translate('pdf:errors.noCanvas'))
 
   context.fillStyle = '#ffffff'
   context.fillRect(0, 0, canvas.width, canvas.height)
@@ -99,7 +100,7 @@ export async function renderSheet(
 export function paintRedactions(canvas: HTMLCanvasElement, boxes: Rect[], base: Size, turn: QuarterTurn): void {
   if (boxes.length === 0) return
   const context = canvas.getContext('2d')
-  if (!context) throw new Error('Trình duyệt không cấp được canvas.')
+  if (!context) throw new Error(translate('pdf:errors.noCanvas'))
   context.fillStyle = '#000000'
   for (const rect of canvasRedactRects(boxes, base, turn, canvas)) context.fillRect(rect.x, rect.y, rect.width, rect.height)
 }

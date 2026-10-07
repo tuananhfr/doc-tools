@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { TOOL_ERROR, TOOL_LIMITS, type FlowRejected } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import { intakeImage } from '../services/image-intake'
 import type { ImageItem } from '../types/image.types'
 
@@ -39,7 +40,7 @@ export function useImageFiles({ multiple }: ImageFilesOptions) {
         for (const [index, file] of batch.entries()) {
           // Ảnh xử lý từng tấm rồi nhả nên không cần trần tổng dung lượng; trần số tệp giữ .zip ra và thời gian chờ ở mức chịu được.
           if (multiple && latest.current.length + added.length >= TOOL_LIMITS.batchFiles) {
-            refused.push({ name: file.name, code: TOOL_ERROR.quota, reason: `Vượt trần ${TOOL_LIMITS.batchFiles} ảnh cho một lượt.` })
+            refused.push({ name: file.name, code: TOOL_ERROR.quota, reason: translate('image:files.batchLimit', { limit: TOOL_LIMITS.batchFiles }) })
             setLoading({ done: index + 1, total: batch.length })
             continue
           }
@@ -53,7 +54,7 @@ export function useImageFiles({ multiple }: ImageFilesOptions) {
       }
 
       if (!multiple && files.length > 1) {
-        refused.push(...files.slice(1).map((file) => ({ name: file.name, code: TOOL_ERROR.quota, reason: 'Công cụ này làm trên một ảnh mỗi lượt.' })))
+        refused.push(...files.slice(1).map((file) => ({ name: file.name, code: TOOL_ERROR.quota, reason: translate('image:files.singleOnly') })))
       }
       setRejected(refused)
       if (added.length === 0) return

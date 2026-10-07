@@ -1,0 +1,164 @@
+{
+  "shared": {
+    "amount": "{{amount}} đ",
+    "viewSource": "データの出典を見る",
+    "vatPercent": "税率（%）"
+  },
+  "electricity": {
+    "resultLabel": "請求額の見積もり",
+    "waterBreakdown": "水道代: {{subtotal}} đ · 料金: {{fee}} đ · 税: {{vat}} đ。各項目は元の水道代に対して個別に計算しています。",
+    "waterHint": "直近の請求書にある使用量と単価を入力してください。",
+    "electricityBreakdown": "税抜の電気代: {{subtotal}} đ · 税 {{percent}}%: {{vat}} đ",
+    "table": {
+      "upTo": "段階の上限 kWh",
+      "units": "kWh 数",
+      "price": "単価/kWh",
+      "amount": "金額",
+      "rest": "残り"
+    },
+    "electricityHint": "請求書または契約に基づいて使用量と料金表を入力してください。最終行では残りの分に * を使います。",
+    "tariffVerified": "署名済みの料金表（{{date}} から有効）。出典: {{source}}。",
+    "tariffManual": "料金表はあなたが入力したものです。現行の電気料金であることをツールは確認していません。",
+    "vatVerified": "署名済みの税率 {{percent}}%（{{date}} から有効）。出典: {{source}}。",
+    "vatManual": "税率はあなたが入力したものです。",
+    "notIncluded": "その他の料金や供給事業者の端数処理は含まれていません。",
+    "panelTitle": "電気代・水道代",
+    "billType": "請求書の種類",
+    "modes": {
+      "electricity": "電気代",
+      "water": "水道代"
+    },
+    "water": {
+      "cubicMeters": "水の使用量（m³）",
+      "price": "単価（đ/m³）",
+      "fee": "下水道・環境料金（%）"
+    },
+    "kwh": "電力使用量（kWh）",
+    "households": "メーターを共用する世帯の定数",
+    "tiers": "料金表: 各行に「kWh の上限, 単価 đ/kWh」",
+    "applyTariff": "署名済みの料金表を適用",
+    "applyVat": "署名済みの税率を適用",
+    "ruleLabel": "電気料金表",
+    "ruleNone": "システム上に、有効な署名済み電気料金表はまだありません。",
+    "vatRuleLabel": "付加価値税率"
+  },
+  "groupSplit": {
+    "resultLabel": "精算のための送金",
+    "balanced": "精算済み",
+    "note": "各費用は参加者のグループ内で均等に割ります。送金額は1ドン単位で端数処理します。",
+    "membersTitle": "メンバー",
+    "onePerLine": "1行に1人",
+    "expensesTitle": "支出",
+    "addExpense": "支出を追加",
+    "payer": "支払った人",
+    "choosePerson": "人を選択",
+    "amount": "金額（đ）",
+    "participants": "割り勘する人",
+    "removeExpense": "支出を削除"
+  },
+  "loan": {
+    "totalPayment": "支払総額",
+    "finalBalance": "満期時の残高",
+    "interest": "利息: {{amount}} đ",
+    "firstPayment": "初回: {{amount}} đ",
+    "downloadCsv": "CSV 表をダウンロード",
+    "table": {
+      "period": "回",
+      "principal": "元金",
+      "interest": "利息",
+      "balance": "残債"
+    },
+    "savingsNote": "{{months}} か月後の利息は {{amount}} đ です。各期は単利で計算し、継続時に期末の利息を元金に組み入れます。",
+    "hint": "正の金額、0以上の金利、有効な期間を入力してください。",
+    "disclaimer": "参考値です。実際の返済スケジュールは契約内容と貸し手の端数処理によって異なります。",
+    "loanTitle": "ローン",
+    "savingsTitle": "預金",
+    "mode": "モード",
+    "modes": {
+      "loan": "分割返済ローン",
+      "savings": "自動継続の定期預金"
+    },
+    "loanAmount": "借入額（đ）",
+    "savingsAmount": "預入額（đ）",
+    "rate": "年利（%）",
+    "loanTerm": "期間（か月）",
+    "savingsTerm": "預入期間（か月）",
+    "method": "元金の返済方法",
+    "methods": {
+      "annuity": "元利均等（毎回ほぼ同額）",
+      "equalPrincipal": "元金均等"
+    },
+    "renewals": "継続回数"
+  },
+  "payroll": {
+    "fields": {
+      "selfDeduct": "本人控除（đ）",
+      "dependentDeduct": "扶養家族1人あたりの控除（đ）",
+      "referenceSalary": "保険料上限の計算に使う基準給与（đ）",
+      "minWage1": "地域 I の最低賃金（đ）",
+      "minWage2": "地域 II の最低賃金（đ）",
+      "minWage3": "地域 III の最低賃金（đ）",
+      "minWage4": "地域 IV の最低賃金（đ）",
+      "employeeSocial": "従業員: 社会保険 BHXH（%）",
+      "employeeHealth": "従業員: 健康保険 BHYT（%）",
+      "employeeUnemployment": "従業員: 失業保険 BHTN（%）",
+      "employerSocial": "会社: 社会保険 BHXH（%）",
+      "employerHealth": "会社: 健康保険 BHYT（%）",
+      "employerUnemployment": "会社: 失業保険 BHTN（%）"
+    },
+    "resultLabel": "参考結果",
+    "net": "手取り {{amount}} đ",
+    "missingParams": "パラメーターが不足しています",
+    "rows": {
+      "gross": "総支給額（Gross）",
+      "employeeSocial": "従業員の社会保険",
+      "employeeHealth": "従業員の健康保険",
+      "employeeUnemployment": "従業員の失業保険",
+      "deduction": "控除",
+      "taxable": "課税所得",
+      "bracket": "段階 {{level}} · {{rate}}%",
+      "tax": "個人所得税",
+      "employerTotal": "会社の追加負担",
+      "employerCost": "会社の総人件費"
+    },
+    "hint": "署名済みのルール、または給与表・契約書・経理担当の指示に基づいて、すべてのパラメーターを入力してください。",
+    "paramsVerified": "署名済みのパラメーター（{{date}} から有効）。出典: {{source}}。",
+    "paramsManual": "パラメーターはあなたが入力したものです。現行の規定であることをツールは確認していません。",
+    "notSettlement": "この結果は実際の税務精算の代わりにはなりません。",
+    "panelTitle": "給与計算 Gross – Net",
+    "direction": "計算の方向",
+    "directions": {
+      "gross": "Gross → Net",
+      "net": "Net → Gross"
+    },
+    "grossSalary": "総支給額 Gross（đ/月）",
+    "netSalary": "希望手取り額 Net（đ/月）",
+    "dependents": "扶養家族",
+    "region": "地域",
+    "regionOption": "地域 {{region}}",
+    "insuranceBase": "保険料の算定基礎給与（đ、空欄 = Gross）",
+    "exempt": "Gross に含まれる非課税手当（đ）",
+    "applyParams": "署名済みのパラメーターを適用",
+    "ruleLabel": "給与計算パラメーター",
+    "ruleNone": "システム上に、有効な署名済み給与ルールはまだありません。",
+    "enterParams": "給与計算パラメーターを入力",
+    "brackets": "税率表: 「課税所得の上限（đ）, 税率（%）」。最終行は * を使います"
+  },
+  "unitPrice": {
+    "resultLabel": "単位あたりの比較",
+    "equal": "同じ価格です",
+    "cheaper": "商品 {{index}} のほうが安い",
+    "perUnit": "商品 {{index}}: {{amount}} đ/{{unit}}",
+    "difference": "高いほうとの差は {{percent}}% です。",
+    "hint": "両方の商品について、0以上の価格と正の量を同じ単位で入力してください。",
+    "panelTitle": "2つの商品",
+    "price": "商品 {{index}} の価格（đ）",
+    "quantity": "商品 {{index}} の量（{{unit}}）",
+    "unit": "量の単位",
+    "units": {
+      "kg": "kg",
+      "liter": "リットル",
+      "piece": "個"
+    }
+  }
+}

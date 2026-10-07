@@ -1,0 +1,203 @@
+{
+  "bindingNotice": "Versi bahasa Vietnam adalah versi yang berkekuatan hukum.",
+  "dieu-khoan": {
+    "title": "Ketentuan <accent>penggunaan</accent>",
+    "breadcrumb": "Ketentuan penggunaan",
+    "intro": "Ketentuan ini berlaku saat Anda menggunakan kumpulan alat gratis Chuyện Nhỏ yang dioperasikan oleh ERPCons & LPC (“kami”). Dengan menggunakan situs ini, Anda menyetujui ketentuan di bawah ini.",
+    "summary": {
+      "free": "Gratis, tidak perlu akun.",
+      "yours": "File Anda tetap milik Anda dan diproses di perangkat Anda.",
+      "reference": "Hasil perhitungan hanya sebagai acuan; cocokkan sebelum dipakai.",
+      "lawful": "Jangan memakai alat untuk hal yang melanggar hukum."
+    },
+    "sections": {
+      "dich-vu": {
+        "heading": "Layanan gratis",
+        "paragraphs": {
+          "free": "Chuyện Nhỏ menyediakan secara gratis alat untuk mengolah dokumen, gambar, perhitungan, dan utilitas sehari-hari, yang berjalan langsung di browser tanpa perlu mendaftar.",
+          "changes": "Kami dapat menambah, mengubah, menangguhkan, atau menghentikan suatu alat kapan saja. Alat bertanda “Segera hadir” masih berupa rencana, dapat berubah atau tidak jadi dirilis."
+        }
+      },
+      "tep-cua-ban": {
+        "heading": "File dan konten Anda",
+        "paragraphs": {
+          "ownership": "Anda memegang hak penuh atas file dan konten Anda. Alat yang sedang aktif memproses file langsung di perangkat; kami tidak menerima dan tidak menyimpan file Anda.",
+          "responsibility": "Anda bertanggung jawab memastikan bahwa Anda berhak memakai dan mengubah file yang dimasukkan ke alat, serta menyimpan sendiri file aslinya sebelum diproses."
+        }
+      },
+      "tham-khao": {
+        "heading": "Hasil hanya sebagai acuan",
+        "paragraphs": {
+          "intro": "Beberapa alat memberikan angka atau kesimpulan berdasarkan data yang Anda masukkan dan kebiasaan yang umum, misalnya:"
+        },
+        "items": {
+          "estimates": "Perkiraan biaya membangun rumah, perhitungan gaji, tagihan listrik: tidak menggantikan penawaran harga, slip gaji, atau faktur resmi.",
+          "orientation": "Arah rumah dan bagian yang dilihat menurut usia: acuan menurut fengsui tradisional, bukan kesimpulan teknis.",
+          "ocr": "Pengenalan teks (OCR), konversi alamat, pencarian peraturan: bisa keliru, perlu dicek ulang dengan dokumen aslinya."
+        }
+      },
+      "hanh-vi-cam": {
+        "heading": "Hal-hal yang tidak boleh dilakukan",
+        "items": {
+          "unlawful": "Memakai alat untuk tujuan yang melanggar hukum, seperti memalsukan dokumen atau membuat kode QR penipuan.",
+          "unauthorized": "Menghapus kata sandi atau mengubah file yang bukan hak Anda.",
+          "abuse": "Mengirim secara otomatis dalam jumlah besar, memindai, menyerang, atau mengganggu sistem.",
+          "content": "Mengirim konten yang melanggar hukum, menghina orang lain, atau berisi informasi pribadi orang lain melalui bagian masukan."
+        }
+      },
+      "gop-y": {
+        "heading": "Masukan dan usulan",
+        "paragraphs": {
+          "use": "Saat mengirim masukan atau usulan, Anda setuju kami memakai ide tersebut untuk meningkatkan produk tanpa timbul kewajiban membayar. Usulan yang disetujui dapat ditampilkan secara publik di halaman usulan. Mohon jangan mencantumkan informasi pribadi dalam isi yang dikirim."
+        }
+      },
+      "so-huu-tri-tue": {
+        "heading": "Kekayaan intelektual",
+        "paragraphs": {
+          "ownership": "Nama, logo, tampilan, dan kode sumber Chuyện Nhỏ adalah milik ERPCons & LPC. Pustaka sumber terbuka yang disertakan tunduk pada lisensinya masing-masing."
+        }
+      },
+      "lien-ket": {
+        "heading": "Tautan eksternal",
+        "paragraphs": {
+          "external": "Situs ini memuat tautan ke ERPCons, TekShot AI, dan situs lain. Konten dan kebijakan situs-situs tersebut menjadi tanggung jawab pengelolanya masing-masing."
+        }
+      },
+      "trach-nhiem": {
+        "heading": "Batasan tanggung jawab",
+        "paragraphs": {
+          "asIs": "Alat disediakan secara gratis apa adanya. Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian yang timbul dari penggunaan hasil alat atau dari alat yang sementara tidak berfungsi.",
+          "consumer": "Ketentuan ini tidak menghapus hak-hak yang diberikan kepada Anda oleh hukum perlindungan konsumen."
+        }
+      },
+      "quyen-rieng-tu": {
+        "heading": "Privasi",
+        "paragraphs": {
+          "policy": "Cara kami memproses data dijelaskan dalam Kebijakan privasi."
+        },
+        "link": "Baca Kebijakan privasi"
+      },
+      "thay-doi": {
+        "heading": "Perubahan ketentuan",
+        "paragraphs": {
+          "updates": "Kami dapat memperbarui ketentuan ini. Tanggal pembaruan dicantumkan di bagian atas halaman; perubahan penting akan diumumkan di situs. Tetap menggunakan situs setelah pembaruan berarti Anda menyetujui versi baru."
+        }
+      },
+      "luat-ap-dung": {
+        "heading": "Hukum yang berlaku",
+        "paragraphs": {
+          "law": "Ketentuan ini diatur oleh hukum Vietnam. Sengketa diutamakan untuk diselesaikan secara musyawarah; jika tidak berhasil, akan diajukan ke lembaga berwenang sesuai ketentuan."
+        }
+      },
+      "lien-he": {
+        "heading": "Kontak",
+        "paragraphs": {
+          "contact": "Untuk pertanyaan apa pun tentang ketentuan ini, silakan kirim email ke {{email}}."
+        }
+      }
+    }
+  },
+  "quyen-rieng-tu": {
+    "title": "Kebijakan <accent>privasi</accent>",
+    "breadcrumb": "Kebijakan privasi",
+    "intro": "Kebijakan ini menjelaskan bagaimana Chuyện Nhỏ mengumpulkan, menggunakan, dan melindungi data pribadi, sesuai Undang-Undang Perlindungan Data Pribadi Vietnam No. 91/2025/QH15 dan Peraturan Pemerintah (Nghị định) No. 356/2025/NĐ-CP.",
+    "summary": {
+      "device": "File Anda diproses di perangkat Anda, tidak dikirim ke server.",
+      "noTracking": "Tanpa akun, tanpa cookie, tanpa alat iklan atau pelacakan.",
+      "counting": "Hanya menghitung berapa kali alat dibuka; alamat IP di-hash dan terhapus otomatis setelah sekitar 1 jam.",
+      "feedback": "Masukan hanya dikirim jika Anda setuju dan menekan Kirim."
+    },
+    "sections": {
+      "chung-toi": {
+        "heading": "Siapa kami",
+        "paragraphs": {
+          "controller": "Chuyện Nhỏ dioperasikan oleh ERPCons & LPC, yang merupakan pengendali data pribadi yang diproses melalui situs ini. Kontak terkait data pribadi: {{email}}."
+        }
+      },
+      "nguyen-tac": {
+        "heading": "Prinsip kami",
+        "items": {
+          "device": "Diproses di perangkat: alat yang sedang aktif tidak mengunggah file Anda ke server.",
+          "minimal": "Minimal: hanya memproses data yang diperlukan untuk operasional dan pencegahan penyalahgunaan.",
+          "anonymous": "Tanpa identitas: tidak meminta nama, email, nomor telepon, atau akun.",
+          "noTracking": "Tanpa cookie, tanpa alat analitik, iklan, atau pelacakan pihak ketiga."
+        }
+      },
+      "du-lieu": {
+        "heading": "Data yang kami proses dan tujuannya",
+        "items": {
+          "visits": "Pembukaan alat: nama alat dan waktunya, untuk menghitung total penggunaan. Hanya jumlah gabungan yang disimpan, tidak dikaitkan dengan pengguna.",
+          "ip": "Alamat IP: di-hash satu arah dengan kunci rahasia, hanya untuk membatasi pengiriman otomatis, dan terhapus otomatis setelah sekitar 1 jam.",
+          "feedback": "Isi masukan dan usulan: hanya jika Anda mencentang persetujuan dan menekan Kirim, untuk ditinjau dan meningkatkan alat. Kode tanda terima hanya disimpan dalam bentuk hash.",
+          "logs": "Log teknis server web (alamat IP, jenis browser, halaman yang dibuka): hanya dipakai untuk operasional dan keamanan sistem, disimpan dalam waktu singkat yang diperlukan."
+        }
+      },
+      "tren-thiet-bi": {
+        "heading": "Data yang disimpan di perangkat Anda",
+        "paragraphs": {
+          "local": "Beberapa alat menyimpan data langsung di browser Anda agar bisa dipakai lagi: alat yang baru dipakai, mode terang/gelap, Kalender Keluarga, catatan, draf CV, kartu hafalan. Data ini tidak dikirim kepada kami; Anda bisa menghapusnya langsung di alat atau dengan menghapus data situs di pengaturan browser."
+        },
+        "link": "Lihat di mana setiap alat memproses data"
+      },
+      "ben-thu-ba": {
+        "heading": "Berbagi dengan pihak ketiga",
+        "paragraphs": {
+          "noSale": "Kami tidak menjual dan tidak membagikan data pribadi untuk tujuan iklan. Kami hanya memberikan data kepada lembaga negara yang berwenang jika diwajibkan hukum.",
+          "speech": "Khusus alat Rekam suara jadi teks memakai layanan pengenalan suara bawaan browser. Audio dikirim oleh browser ke penyedia browser tersebut (misalnya Google untuk Chrome), dapat diproses di luar negeri sesuai kebijakan mereka, dan tidak melewati server kami."
+        }
+      },
+      "thoi-gian-luu": {
+        "heading": "Masa penyimpanan",
+        "items": {
+          "ip": "Hash alamat IP: sekitar 1 jam.",
+          "counts": "Jumlah penggunaan: disimpan sebagai statistik gabungan, tanpa data pribadi.",
+          "feedback": "Masukan dan usulan: disimpan selama diperlukan untuk ditinjau dan dipantau, atau sampai Anda meminta penghapusan."
+        }
+      },
+      "quyen": {
+        "heading": "Hak Anda",
+        "paragraphs": {
+          "intro": "Menurut Undang-Undang Perlindungan Data Pribadi, Anda berhak:"
+        },
+        "items": {
+          "informed": "Mengetahui pemrosesan data pribadi Anda.",
+          "consent": "Memberikan atau menarik persetujuan.",
+          "access": "Melihat, mengubah, meminta penghapusan, atau membatasi pemrosesan data.",
+          "complain": "Mengajukan keluhan, pengaduan, atau gugatan sesuai ketentuan hukum.",
+          "protection": "Meminta lembaga berwenang melindungi hak Anda atas data pribadi."
+        }
+      },
+      "thuc-hien-quyen": {
+        "heading": "Cara menggunakan hak Anda",
+        "paragraphs": {
+          "request": "Kirim permintaan ke {{email}}. Karena Chuyện Nhỏ tidak memakai akun, sertakan kode tanda terima masukan Anda agar kami dapat menemukan konten yang tepat.",
+          "timeline": "Kami mengonfirmasi penerimaan permintaan dalam 2 hari kerja dan memprosesnya dalam batas waktu yang ditetapkan hukum, paling lambat 20 hari."
+        }
+      },
+      "tre-em": {
+        "heading": "Anak-anak",
+        "paragraphs": {
+          "children": "Chuyện Nhỏ tidak mengumpulkan informasi untuk mengenali anak-anak. Anak-anak yang ingin mengirim masukan perlu mendapat persetujuan orang tua atau wali, sesuai ketentuan hukum."
+        }
+      },
+      "bao-mat": {
+        "heading": "Keamanan",
+        "paragraphs": {
+          "security": "Situs berjalan melalui koneksi terenkripsi HTTPS. Data yang diterima diminimalkan dan di-hash bila memungkinkan. Tidak ada sistem yang aman sepenuhnya; jika terjadi insiden yang memengaruhi data pribadi, kami akan memberi tahu sesuai ketentuan hukum."
+        }
+      },
+      "thay-doi": {
+        "heading": "Perubahan kebijakan",
+        "paragraphs": {
+          "updates": "Saat kebijakan berubah, kami memperbarui tanggal di bagian atas halaman dan mengumumkan perubahan penting di situs."
+        }
+      },
+      "lien-he": {
+        "heading": "Kontak",
+        "paragraphs": {
+          "contact": "Untuk pertanyaan apa pun tentang data pribadi, silakan kirim email ke {{email}}."
+        }
+      }
+    }
+  }
+}

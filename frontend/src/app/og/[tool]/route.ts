@@ -1,6 +1,8 @@
 import { TOOL_CATALOG } from '@/features/tools/hub/config/tool-catalog'
 import { resolveToolRoute } from '@/features/tools/hub/utils/tool-lookup'
+import { loadToolCatalog } from '@/features/site/server/tool-catalog'
 import { createToolShareImage } from '@/features/site/server/tool-share-image'
+import { DEFAULT_LOCALE } from '@/i18n/locales'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-static'
@@ -13,7 +15,8 @@ export function generateStaticParams() {
 
 export async function GET(_request: Request, { params }: { params: Promise<{ tool: string }> }) {
   const { tool: slug } = await params
-  const { tool } = resolveToolRoute(slug)
+  // Per-locale share images come with the SEO step; until then every locale shares the Vietnamese card.
+  const { tool } = resolveToolRoute(slug, await loadToolCatalog(DEFAULT_LOCALE))
   if (!tool) return new Response('Tool not found', { status: 404 })
   return createToolShareImage(tool)
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { Spinner } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { createCanvas, decodeImage, releaseCanvas } from '../services/image-codec'
 import { paintMarks } from '../services/mark-render'
@@ -25,6 +26,7 @@ type Preview = { id: string; source: HTMLCanvasElement } | { id: string; failed:
  * dựng ảnh ra (`paintMarks`) trên ảnh thu nhỏ — thứ thấy ở đây là thứ nằm trong tệp.
  */
 export function MarkStage({ item, state, disabled, onBoxesChange }: MarkStageProps) {
+  const { t } = useTranslation('image')
   const canvas = useRef<HTMLCanvasElement>(null)
   const [preview, setPreview] = useState<Preview | null>(null)
   const current = preview?.id === item.id ? preview : null
@@ -67,13 +69,13 @@ export function MarkStage({ item, state, disabled, onBoxesChange }: MarkStagePro
   }, [source, item, state])
 
   return (
-    <section className="erp-image-stage" aria-label="Ảnh đang che và đóng dấu">
+    <section className="erp-image-stage" aria-label={t('mark.stageLabel')}>
       <p className="erp-image-stage__caption">
         <span className="erp-image-stage__name" title={item.name}>
           {item.name}
         </span>
         <span className="erp-image-stage__meta">
-          {sizeLabel(item)} · {state.boxes.length} khung che
+          {sizeLabel(item)} · {t('mark.boxCount', { count: state.boxes.length })}
         </span>
       </p>
 
@@ -81,7 +83,7 @@ export function MarkStage({ item, state, disabled, onBoxesChange }: MarkStagePro
         {current && 'failed' in current ? (
           <p className="erp-image-stage__status" role="alert">
             <Icon name="exclamation-triangle" />
-            Không vẽ được bản xem trước của ảnh này.
+            {t('shared.previewFailed')}
           </p>
         ) : (
           <>
@@ -91,13 +93,13 @@ export function MarkStage({ item, state, disabled, onBoxesChange }: MarkStagePro
             ) : (
               <p className="erp-image-stage__status" role="status">
                 <Spinner as="span" size="sm" />
-                Đang mở ảnh…
+                {t('shared.opening')}
               </p>
             )}
           </>
         )}
       </div>
-      <p className="erp-flow-field__hint mb-0">Kéo trên ảnh để khoanh vùng cần che. Bấm vào một khung đã vẽ để bỏ khung đó.</p>
+      <p className="erp-flow-field__hint mb-0">{t('mark.stageHint')}</p>
     </section>
   )
 }

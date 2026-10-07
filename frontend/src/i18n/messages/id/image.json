@@ -1,0 +1,417 @@
+{
+  "shared": {
+    "previewFailed": "Pratinjau gambar ini tidak dapat dibuat.",
+    "opening": "Membuka gambar…",
+    "saveImage": "Simpan gambar",
+    "noImageSelected": "belum ada gambar yang dipilih.",
+    "keepSize": "Pertahankan ukuran",
+    "maxEdge": "Sisi panjang maksimal",
+    "result": "Hasil",
+    "processing": "Memproses…",
+    "processFailed": "Gambar tidak dapat diproses.",
+    "imageCount": "{{count}} gambar"
+  },
+  "shell": {
+    "hint": "JPG, PNG, WebP · maksimal 100 MB per gambar",
+    "noImages": "Belum ada gambar yang dipilih."
+  },
+  "files": {
+    "batchLimit": "Melebihi batas {{limit}} gambar per proses.",
+    "singleOnly": "Alat ini memproses satu gambar setiap kali."
+  },
+  "intake": {
+    "tooLarge": "Gambar lebih besar dari {{size}}.",
+    "heic": "Foto HEIC (iPhone) belum didukung — ubah ke JPG lalu coba lagi.",
+    "unsupported": "Alat ini hanya menerima gambar JPG, PNG, WebP.",
+    "pixelLimit": "Gambar {{width}} × {{height}} ({{millions}} juta piksel) melebihi batas {{limit}} juta piksel.",
+    "corrupt": "Gambar tidak dapat dibaca — file rusak atau browser tidak dapat membukanya."
+  },
+  "codec": {
+    "corrupt": "gambar tidak dapat dibaca — file rusak atau browser tidak dapat membuka format ini.",
+    "tooLarge": "gambar {{size}} terlalu besar untuk browser ini.",
+    "exportUnsupported": "browser ini tidak dapat mengekspor {{format}}.",
+    "tooLargeRetry": "gambar {{size}} terlalu besar untuk browser ini — perkecil sisi panjangnya lalu coba lagi."
+  },
+  "exif": {
+    "keptOne": "Gambar hasil tetap menyimpan informasi kamera (tanggal pengambilan, lokasi GPS).",
+    "keptSome": "{{count}}/{{total}} gambar hasil tetap menyimpan informasi kamera (tanggal pengambilan, lokasi GPS).",
+    "lostOne": "Gambar hasil tidak lagi menyimpan informasi kamera (tanggal pengambilan, lokasi GPS) — hanya hasil JPG atau PNG yang bisa membawa informasi ini.",
+    "lostSome": "{{count}}/{{total}} gambar hasil tidak lagi menyimpan informasi kamera (tanggal pengambilan, lokasi GPS) — hanya hasil JPG atau PNG yang bisa membawa informasi ini."
+  },
+  "tasks": {
+    "progress": {
+      "process": "Memproses gambar {{current}}/{{total}}",
+      "convert": "Mengonversi gambar {{current}}/{{total}}",
+      "compress": "Mengompres gambar {{current}}/{{total}}"
+    },
+    "imageFailed": "gambar tidak dapat diproses.",
+    "jpegFlatten": "JPG tidak mendukung latar transparan: area transparan (jika ada) diisi putih.",
+    "webpAsPng": "Browser ini tidak dapat menulis WebP: gambar WebP disimpan sebagai PNG.",
+    "rendering": "Membuat gambar",
+    "formatFallback": "Browser ini tidak dapat menulis {{from}}: gambar disimpan sebagai {{to}}."
+  },
+  "convert": {
+    "pickerTitle": "Pilih gambar yang akan diubah formatnya",
+    "runOne": "Ubah ke {{format}}",
+    "runMany": "Ubah {{count}} gambar ke {{format}}",
+    "blockedOne": "Gambar yang dipilih sudah berformat {{format}}.",
+    "blockedMany": "Gambar-gambar yang dipilih sudah berformat {{format}}.",
+    "targetLegend": "Ubah ke",
+    "qualityLegend": "Kualitas",
+    "target": {
+      "jpeg": "Ringan, bisa dibuka di mana saja. Tidak mempertahankan latar transparan.",
+      "png": "Mempertahankan setiap piksel dan latar transparan; file lebih besar.",
+      "webp": "Lebih ringan dari JPG pada kualitas yang sama, mendukung latar transparan."
+    },
+    "quality": {
+      "high": {
+        "label": "Tinggi",
+        "hint": "Hampir tidak berbeda dari aslinya."
+      },
+      "medium": {
+        "label": "Sedang",
+        "hint": "Seimbang antara ketajaman dan ukuran."
+      },
+      "small": {
+        "label": "Ringkas",
+        "hint": "Paling ringan; terlihat pecah saat diperbesar."
+      }
+    },
+    "noWebp": "Browser ini tidak dapat mengekspor WebP.",
+    "keptNote": "{{count}} gambar sudah berformat {{format}} — dibiarkan apa adanya, tidak dienkode ulang.",
+    "titleOne": "Sudah diubah ke {{format}}",
+    "titleMany": "{{count}} gambar sudah diubah ke {{format}}"
+  },
+  "compress": {
+    "pickerTitle": "Pilih gambar yang akan dikompres",
+    "runOne": "Kompres gambar",
+    "runMany": "Kompres {{count}} gambar",
+    "levelLegend": "Tingkat kompresi",
+    "level": {
+      "light": {
+        "label": "Ringan",
+        "hint": "Hampir tidak terlihat bedanya dari aslinya."
+      },
+      "medium": {
+        "label": "Sedang",
+        "hint": "Cocok untuk email atau diunggah ke web."
+      },
+      "strong": {
+        "label": "Kuat",
+        "hint": "Paling ringan; terlihat pecah saat diperbesar."
+      }
+    },
+    "hint": "Tingkat kompresi berlaku untuk JPG dan WebP. PNG bersifat lossless sehingga hanya menjadi lebih ringan jika ukurannya diperkecil.",
+    "smaller": "{{sizes}} ({{percent}}% lebih ringan).",
+    "unchangedOne": "Gambar hasil tidak lebih ringan dari aslinya — file asli dipertahankan. {{hint}}",
+    "unchangedSome": "{{count}}/{{total}} gambar tidak bisa lebih ringan — file asli dipertahankan. {{hint}}",
+    "shrunk": "{{count}} gambar diperkecil ke sisi panjang {{edge}} px.",
+    "hintPng": "PNG bersifat lossless sehingga sulit diperkecil; agar jauh lebih ringan, pakai \"Konversi gambar\" ke JPG atau WebP.",
+    "hintMaxed": "Gambar sudah dikompres hampir maksimal sebelumnya.",
+    "hintTryEdge": "Gambar sudah dikompres hampir maksimal sebelumnya — coba tambahkan \"Sisi panjang maksimal\" untuk memperkecilnya.",
+    "titleDone": "Kompresi selesai",
+    "titleNone": "Tidak bisa dikompres lagi"
+  },
+  "batch": {
+    "pickerTitle": "Pilih gambar yang akan diproses",
+    "runOne": "Proses gambar",
+    "runMany": "Proses {{count}} gambar",
+    "resize": {
+      "keep": "Pertahankan ukuran",
+      "edge": "Sisi panjang maksimal",
+      "width": "Lebar",
+      "height": "Tinggi",
+      "percent": "Menurut persen"
+    },
+    "sizeRange": "Ukuran harus bilangan bulat dari {{min}} sampai {{max}}.",
+    "startInvalid": "Nomor awal harus bilangan bulat mulai 0.",
+    "resizeLabel": "Ubah ukuran",
+    "resizeHint": "Rasio gambar dipertahankan. Gambar yang sudah lebih kecil dari ukuran ini dibiarkan — tidak diperbesar.",
+    "formatLabel": "Format hasil",
+    "keepFormat": "Pertahankan format setiap gambar",
+    "qualityLabel": "Kualitas JPG / WebP",
+    "quality": {
+      "high": "Tinggi — hampir tidak berbeda dari aslinya",
+      "medium": "Sedang — seimbang antara ketajaman dan ukuran",
+      "small": "Ringkas — paling ringan"
+    },
+    "patternLabel": "Pola nama file",
+    "patternHint": "<code>{name}</code> = nama asli, <code>{n}</code> = nomor urut. Contoh: <code>proyek-{n}</code>",
+    "startLabel": "Nomor awal",
+    "sample": "Nama hasil: <strong>{{names}}</strong>",
+    "patternEmpty": "Masukkan pola nama file, misalnya {name} atau foto-{n}.",
+    "patternIllegal": "Nama file tidak boleh berisi \\ / : * ? \" < > |",
+    "patternTokens": "Hanya ada dua isian: {name} (nama asli) dan {n} (nomor urut).",
+    "resizedAll": "{{count}}/{{total}} gambar diperkecil.",
+    "resizedPartial": "{{count}}/{{total}} gambar diperkecil. Gambar yang sudah lebih kecil dari ukuran target tetap pada ukurannya — alat ini tidak memperbesar.",
+    "keptBytes": "{{count}} gambar tidak perlu diubah ukuran atau formatnya — setiap byte dipertahankan, hanya namanya yang diganti.",
+    "titleOne": "Gambar sudah diproses",
+    "titleMany": "{{count}} gambar sudah diproses"
+  },
+  "crop": {
+    "pickerTitle": "Pilih gambar yang akan dipotong atau disesuaikan",
+    "blocked": "Belum ada pemotongan, rotasi, atau penyesuaian — gambar hasil akan sama persis dengan aslinya.",
+    "stageLabel": "Gambar yang sedang disesuaikan",
+    "aspectLabel": "Rasio bingkai potong",
+    "aspect": {
+      "free": "Bebas",
+      "square": "1:1 — persegi",
+      "landscape": "4:3 — mendatar",
+      "portrait": "3:4 — tegak",
+      "wide": "16:9 — mendatar lebar",
+      "tall": "9:16 — tegak tinggi"
+    },
+    "rotate": "Putar gambar",
+    "rotateLeft": "Putar ke kiri",
+    "rotateRight": "Putar ke kanan",
+    "brightness": "Kecerahan",
+    "contrast": "Kontras",
+    "output": "Gambar hasil: <strong>{{size}}</strong>",
+    "reset": "Kembalikan seperti aslinya",
+    "box": "Bingkai potong — seret atau pakai tombol panah untuk memindahkan",
+    "handleAria": "{{handle}} — seret atau pakai tombol panah untuk mengubah ukuran",
+    "handle": {
+      "nw": "Sudut kiri atas",
+      "n": "Sisi atas",
+      "ne": "Sudut kanan atas",
+      "e": "Sisi kanan",
+      "se": "Sudut kanan bawah",
+      "s": "Sisi bawah",
+      "sw": "Sudut kiri bawah",
+      "w": "Sisi kiri"
+    },
+    "title": "Gambar yang disesuaikan sudah disimpan"
+  },
+  "mark": {
+    "pickerTitle": "Pilih gambar yang akan disensor atau diberi cap",
+    "blocked": "Belum ada kotak sensor atau teks cap — gambar hasil akan sama persis dengan aslinya.",
+    "stageLabel": "Gambar yang sedang disensor dan diberi cap",
+    "boxCount": "{{count}} kotak sensor",
+    "stageHint": "Seret di atas gambar untuk menandai area yang akan disensor. Klik kotak yang sudah digambar untuk menghapusnya.",
+    "overlayBoxes": "{{count}} kotak sensor di gambar",
+    "overlayEmpty": "Belum ada kotak sensor di gambar",
+    "boxesLabel": "Kotak sensor",
+    "boxesSummary": "{{count}} kotak — area di bawahnya diganti blok hitam di file hasil dan tidak bisa dipulihkan.",
+    "boxesEmpty": "Belum ada kotak. Seret di atas gambar untuk menggambar.",
+    "clearBoxes": "Hapus semua kotak sensor",
+    "textLabel": "Teks cap (opsional)",
+    "textPlaceholder": "Contoh: DRAF — JANGAN DISALIN",
+    "tile": "Ulangi miring di seluruh gambar",
+    "anchorLabel": "Posisi cap",
+    "colorLabel": "Warna teks",
+    "sizeLabel": "Ukuran teks",
+    "opacityLabel": "Ketebalan",
+    "color": {
+      "red": "Merah",
+      "black": "Hitam",
+      "white": "Putih"
+    },
+    "anchor": {
+      "topLeft": "Atas — kiri",
+      "topCenter": "Atas — tengah",
+      "topRight": "Atas — kanan",
+      "middleLeft": "Tengah — kiri",
+      "center": "Tepat di tengah",
+      "middleRight": "Tengah — kanan",
+      "bottomLeft": "Bawah — kiri",
+      "bottomCenter": "Bawah — tengah",
+      "bottomRight": "Bawah — kanan"
+    },
+    "boxesNote": "{{count}} area sudah diganti blok hitam langsung pada pikselnya — tidak ada lapisan di bawahnya yang bisa dibuka.",
+    "stampNote": "Cap teks sudah ditulis ke gambar.",
+    "titleBoth": "Gambar sudah disensor dan diberi cap",
+    "titleBoxes": "Gambar sudah disensor",
+    "titleStamp": "Gambar sudah diberi cap"
+  },
+  "measure": {
+    "pickerTitle": "Pilih gambar yang akan diukur",
+    "run": "Simpan gambar dengan hasil ukur",
+    "blocked": "Belum ada hasil ukur di gambar.",
+    "stageLabel": "Gambar yang sedang diukur",
+    "modesLabel": "Jenis pengukuran",
+    "tab": {
+      "distance": "Ukur jarak",
+      "area": "Ukur luas",
+      "count": "Hitung jumlah"
+    },
+    "hint": {
+      "distance": "Klik dua titik di gambar untuk mengukur satu ruas. Seret ujung ruas untuk menyesuaikan.",
+      "area": "Klik sudut-sudut area secara berurutan, lalu klik lagi titik awal untuk menutup area.",
+      "count": "Klik setiap benda untuk menghitungnya. Klik lagi sebuah titik untuk menghapusnya.",
+      "reference": "Klik kedua ujung benda yang panjangnya sudah diketahui: daun pintu, batu bata, penggaris."
+    },
+    "closeArea": "Tutup area",
+    "undo": "Urungkan",
+    "clearAll": "Hapus semua",
+    "imageAlt": "Gambar yang sedang diukur: {{name}}",
+    "referenceGrip": "Ujung {{index}} ruas acuan — seret atau pakai tombol panah untuk menyesuaikan",
+    "countGrip": "Titik hitung {{number}} — klik untuk menghapus, seret untuk memindahkan",
+    "distanceGrip": "Titik {{point}} dari ruas {{index}} — seret atau pakai tombol panah untuk menyesuaikan, Delete untuk menghapus",
+    "areaGrip": "Titik {{point}} dari area {{index}} — seret atau pakai tombol panah untuk menyesuaikan, Delete untuk menghapus",
+    "closeAtStart": "Tutup area di titik awal",
+    "lengthLabel": "Panjang sebenarnya ruas acuan",
+    "lengthPlaceholder": "Contoh 2,1",
+    "unit": "Satuan",
+    "clearReference": "Hapus ruas acuan",
+    "referenceLabel": "Ruas acuan",
+    "referenceHint": "Tandai benda yang panjangnya sudah diketahui untuk mengubah hasil ukur ke satuan sebenarnya.",
+    "placing": "Sedang meletakkan — klik dua titik di gambar",
+    "resetReference": "Atur ulang ruas acuan",
+    "setReference": "Atur ruas acuan",
+    "scaleHint": "Hasil ukur hanya tepat untuk benda yang sebidang dengan ruas acuan, pada foto yang diambil tegak lurus.",
+    "noLength": "Panjang sebenarnya belum diisi — hasil ukur masih dalam piksel (px).",
+    "noReference": "Belum ada ruas acuan — hasil ukur masih dalam piksel (px).",
+    "results": "Hasil ukur",
+    "noResults": "Belum ada hasil ukur.",
+    "distanceName": "Ruas {{index}}",
+    "areaName": "Area {{index}}",
+    "removeDistance": "Hapus ruas {{index}}",
+    "removeArea": "Hapus area {{index}}",
+    "remove": "Hapus",
+    "perimeter": "keliling {{length}}",
+    "counted": "Terhitung",
+    "summaryDistances": "{{count}} ruas ukur",
+    "summaryAreas": "{{count}} area ukur",
+    "summaryCounts": "{{count}} titik hitung",
+    "recorded": "Gambar mencatat {{summary}}.",
+    "pixelWarning": "Belum ada ruas acuan sehingga hasil ukur dicatat dalam piksel (px), bukan ukuran sebenarnya.",
+    "title": "Gambar dengan hasil ukur sudah disimpan"
+  },
+  "idPhoto": {
+    "pickerTitle": "Pilih foto diri",
+    "gapRange": "Jarak harus antara {{min}} dan {{max}} mm.",
+    "copiesInvalid": "Jumlah salinan harus bilangan bulat mulai 1.",
+    "tooBig": "Pas foto ukuran ini tidak muat di ukuran kertas yang dipilih.",
+    "overCapacity": "Satu lembar {{paper}} hanya muat {{count}} foto ukuran ini.",
+    "runSingle": "Buat pas foto",
+    "runSheet": "Buat lembar cetak {{count}} foto",
+    "photoSize": "Ukuran pas foto",
+    "photoHint": "Pilih sesuai persyaratan pihak penerima berkas — alat ini tidak tahu aturan foto untuk setiap jenis dokumen, dan tidak memeriksa latar atau posisi wajah.",
+    "lowDpi": "Area yang dipilih hanya mencapai {{dpi}} DPI pada ukuran ini (sebaiknya minimal {{min}}) — hasil cetak akan buram. Perlebar bingkai atau pakai foto yang lebih tajam.",
+    "outputLegend": "File hasil",
+    "output": {
+      "pdf": {
+        "label": "Lembar cetak PDF",
+        "hint": "Cetak dengan \"Ukuran sebenarnya / 100%\" agar ukurannya tepat dalam milimeter."
+      },
+      "sheet": {
+        "label": "Lembar cetak JPG",
+        "hint": "300 DPI — untuk printer foto atau tempat cetak yang hanya menerima file gambar."
+      },
+      "single": {
+        "label": "Satu pas foto",
+        "hint": "Hanya foto yang sudah dipotong sesuai rasio — untuk pengajuan online."
+      }
+    },
+    "paperLabel": "Ukuran kertas",
+    "paper": {
+      "a4": "A4 (21 × 29,7 cm)",
+      "a5": "A5 (14,8 × 21 cm)",
+      "10x15": "Kertas foto 10 × 15 cm",
+      "13x18": "Kertas foto 13 × 18 cm"
+    },
+    "paperName": {
+      "a4": "A4",
+      "a5": "A5",
+      "10x15": "Kertas foto 10 × 15 cm",
+      "13x18": "Kertas foto 13 × 18 cm"
+    },
+    "fill": "Penuhi lembar ({{count}} foto)",
+    "copies": "Jumlah salinan",
+    "gap": "Jarak",
+    "guides": "Gambar garis potong di sekitar setiap foto",
+    "layoutHint": "{{columns}} kolom × {{rows}} baris, margin kertas {{margin}} mm. Saat mencetak pilih \"Ukuran sebenarnya\" (Actual size / 100%), jangan \"Sesuaikan dengan halaman\" — jika tidak, ukuran foto akan salah.",
+    "sheetAria": "Lembar cetak: {{count}} foto",
+    "renderingSheet": "Membuat lembar cetak",
+    "lowDpiNote": "Area yang dipotong hanya mencapai {{dpi}} DPI pada ukuran {{size}} — hasil cetak bisa buram.",
+    "titleSingle": "Pas foto sudah dibuat",
+    "sheetDetail": "{{count}} foto {{photo}} di {{paper}}",
+    "noExif": "Lembar cetak tidak membawa informasi kamera (tanggal pengambilan, lokasi GPS) dari foto asli.",
+    "actualSize": "Saat mencetak pilih \"Ukuran sebenarnya\" (Actual size / 100%), jangan \"Sesuaikan dengan halaman\".",
+    "titleSheet": "Lembar cetak pas foto sudah dibuat"
+  },
+  "camera": {
+    "insecure": "{{reason}} Ambil foto dengan aplikasi kamera lalu pilih gambar dari perangkat.",
+    "notReady": "kamera belum siap.",
+    "shootFailed": "Tidak dapat memotret. Coba lagi.",
+    "cropFailed": "Gambar yang dipotong tidak dapat dibuat. Hapus bingkai potong lalu coba lagi.",
+    "titleReview": "Potong foto {{index}}/{{total}}",
+    "title": "Ambil foto",
+    "viewfinder": "Jendela bidik kamera",
+    "shotAlt": "Foto {{index}}",
+    "starting": "Membuka kamera… Browser mungkin meminta izin memakai kamera.",
+    "retry": "Coba lagi",
+    "backToShoot": "Lanjut memotret",
+    "clearCrop": "Hapus bingkai potong",
+    "deleteShot": "Hapus foto ini",
+    "strip": "Foto yang sudah diambil",
+    "thumbAria": "Lihat dan potong foto {{index}}",
+    "thumbTitle": "Lihat, potong, atau hapus foto ini",
+    "shutter": "Potret",
+    "full": "Sudah {{count}} foto",
+    "torch": "Lampu",
+    "torchOff": "Matikan lampu",
+    "torchOn": "Nyalakan lampu",
+    "reviewHint": "Seret bingkai untuk menyisakan bagian yang diperlukan. Jika tidak diseret, seluruh foto dipakai.",
+    "none": "Belum ada foto yang diambil.",
+    "fullStatus": "Sudah mencapai {{count}} foto untuk satu proses.",
+    "shotCount": "{{count}} foto sudah diambil. Klik gambar kecil untuk memotong atau menghapus.",
+    "discardClose": "Buang {{count}} foto dan tutup",
+    "close": "Tutup",
+    "useShots": "Pakai {{count}} foto",
+    "useNone": "Pakai foto"
+  },
+  "collage": {
+    "invalid": "Pilih 2–9 gambar, 1–3 kolom, dan jarak 0–100 px.",
+    "tooLarge": "{{name}}: gambar melebihi batas ukuran file.",
+    "unsupported": "{{name}}: hanya mendukung JPG, PNG, dan WebP.",
+    "pixelLimit": "{{name}}: gambar melebihi batas piksel.",
+    "failed": "Kolase tidak dapat dibuat.",
+    "done": "Kolase PNG sudah diunduh. Periksa tata letaknya sebelum dipakai.",
+    "resultLabel": "Kolase",
+    "idle": "Gambar disusun sesuai urutan pilihan, dipotong agar pas di kotak persegi, dan diekspor ke PNG. Metadata gambar asli tidak dipertahankan.",
+    "busy": "Menggabungkan…",
+    "run": "Gabungkan dan unduh",
+    "panel": "Gambar yang akan digabung",
+    "choose": "Pilih 2 sampai 9 gambar",
+    "columns": "Jumlah kolom",
+    "gap": "Jarak (px)"
+  },
+  "removeMeta": {
+    "tooLarge": "Gambar melebihi batas ukuran file.",
+    "unsupported": "Hanya mendukung gambar JPG, PNG, dan WebP.",
+    "pixelLimit": "Gambar melebihi batas piksel.",
+    "done": "Gambar {{width}} × {{height}} sudah dibuat dan diunduh. Periksa gambarnya sebelum dibagikan.",
+    "outputLabel": "File hasil",
+    "idle": "Menggambar ulang gambar di perangkat untuk menghapus EXIF asli, termasuk lokasi GPS, kamera, dan tanggal pengambilan. Gambar JPG dienkode ulang sehingga kualitasnya bisa berubah.",
+    "run": "Hapus EXIF dan unduh",
+    "panel": "Gambar yang akan dibersihkan",
+    "choose": "Pilih gambar JPG, PNG, atau WebP",
+    "note": "Alat ini sengaja menghapus EXIF. Alat gambar lainnya tetap menyimpan informasi lokasi sesuai pilihan proyek saat ini."
+  },
+  "removeBg": {
+    "invalidFile": "Pilih gambar JPG, PNG, atau WebP di bawah 20 MB.",
+    "invalidSize": "Ukuran gambar tidak valid.",
+    "processed": "Gambar {{width}} × {{height}} sudah diproses. Latar yang berwarna-warni perlu dirapikan dengan kuas.",
+    "openFailed": "Gambar tidak dapat dibuka.",
+    "exportFailed": "Gambar tidak dapat diekspor.",
+    "done": "PNG sudah dibuat. Periksa tepi objek dengan saksama sebelum dipakai.",
+    "noImage": "Belum ada gambar",
+    "idle": "Warna latar dikenali otomatis dari tepi gambar. Cocok untuk latar polos; kuas pertahankan/hapus untuk memperbaiki area yang salah.",
+    "download": "Unduh PNG",
+    "panel": "Hapus latar polos",
+    "choose": "Pilih gambar",
+    "tolerance": "Kepekaan warna latar: {{value}}",
+    "background": "Latar baru",
+    "backgroundTransparent": "Transparan",
+    "backgroundWhite": "Putih",
+    "backgroundIdBlue": "Biru pas foto",
+    "brush": "Rapikan dengan kuas",
+    "brushOff": "Tidak dipakai",
+    "brushErase": "Hapus lagi",
+    "brushKeep": "Pertahankan",
+    "brushSize": "Ukuran kuas: {{value}}",
+    "undoBrush": "Urungkan kuas",
+    "note": "Gambar diproses di perangkat. Latar yang rumit perlu dirapikan manual dengan kuas; gambar besar diperkecil hingga maksimal 2200 px per sisi."
+  }
+}

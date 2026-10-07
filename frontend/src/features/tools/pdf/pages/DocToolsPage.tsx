@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { TFunction } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { useToast } from '@/components/ui'
 import { ToolLeaveGuard } from '@/features/tools/hub'
 import { useAuthStore } from '@/store/auth.store'
@@ -45,17 +47,17 @@ interface PendingReplace {
   position: number
 }
 
-function describeRejected(rejected: RejectedFile[]) {
+function describeRejected(rejected: RejectedFile[], t: TFunction<'pdf'>) {
   return (
     <>
-      Bỏ qua {rejected.length} tệp:
+      {t('editor.rejected', { count: rejected.length })}
       <ul className="mb-0 ps-3">
         {rejected.slice(0, 5).map((item, index) => (
           <li key={`${item.name}-${index}`}>
             <strong>{item.name}</strong> — {item.reason}
           </li>
         ))}
-        {rejected.length > 5 ? <li>… và {rejected.length - 5} tệp khác</li> : null}
+        {rejected.length > 5 ? <li>{t('editor.rejectedMore', { count: rejected.length - 5 })}</li> : null}
       </ul>
     </>
   )
@@ -74,6 +76,7 @@ function describeRejected(rejected: RejectedFile[]) {
  * không phân biệt chúng; việc làm nhanh một bước đã có công cụ riêng (`pages/quick/`).
  */
 export default function DocToolsPage() {
+  const { t } = useTranslation('pdf')
   const toast = useToast()
   const workspace = useDocWorkspace()
   const [pendingReplace, setPendingReplace] = useState<PendingReplace | null>(null)
@@ -91,7 +94,7 @@ export default function DocToolsPage() {
 
   const { pages, selected, addFiles, decorations } = workspace
   const firstSource = pages.length > 0 ? workspace.sources[pages[0].sourceId] : undefined
-  const defaultName = firstSource ? `${baseName(firstSource.name)}${Object.keys(workspace.sources).length > 1 ? ' - đã ghép' : ''}` : 'tai-lieu'
+  const defaultName = firstSource ? `${baseName(firstSource.name)}${Object.keys(workspace.sources).length > 1 ? ` - ${t('file.merged')}` : ''}` : t('file.defaultName')
   const fileName = sanitizeFileName(exportName.trim() || defaultName)
 
   const resolved = useMemo(() => resolveDecorations(decorations, pages.map((page) => page.id)), [decorations, pages])
@@ -113,7 +116,7 @@ export default function DocToolsPage() {
     searching: search.searching,
     onApply: (additions, count) => {
       workspace.appendMarkups(additions)
-      toast.success(`Đã thay ${count} chỗ — Ctrl+Z để hoàn tác.`)
+      toast.success(t('editor.replaced', { count }))
     },
   })
   const hitCounts = useMemo(() => {
@@ -183,10 +186,10 @@ export default function DocToolsPage() {
 
   const report = useCallback(
     (result: AddResult) => {
-      if (result.rejected.length > 0) toast.warning(describeRejected(result.rejected))
-      else if (result.added > 1) toast.success(`Đã thêm ${result.added} tệp.`)
+      if (result.rejected.length > 0) toast.warning(describeRejected(result.rejected, t))
+      else if (result.added > 1) toast.success(t('editor.added', { count: result.added }))
     },
-    [toast],
+    [toast, t],
   )
 
   // Tệp có mật khẩu không bị từ chối: xếp hàng hỏi mật khẩu, mở được thì nạp lại bản đã giải.
@@ -242,9 +245,9 @@ export default function DocToolsPage() {
 
   const handleCombine = (size: CollageSize) => {
     const { created, skipped } = workspace.combine(size)
-    const note = skipped > 0 ? ` Bỏ qua ${skipped} trang (không phải ảnh, đã đánh dấu hoặc lẻ nhóm).` : ''
-    if (created > 0) toast.success(`Đã gộp thành ${created} trang — Ctrl+Z để hoàn tác.${note}`)
-    else toast.warning(`Không gộp được trang nào.${note}`)
+    const note = skipped > 0 ? ` ${t('editor.combineSkipped', { count: skipped })}` : ''
+    if (created > 0) toast.success(`${t('editor.combineDone', { count: created })}${note}`)
+    else toast.warning(`${t('editor.combineNone')}${note}`)
   }
 
   const [sheetBusy, setSheetBusy] = useState(false)
@@ -253,7 +256,7 @@ export default function DocToolsPage() {
     try {
       await workspace.setImageSheet(sheet)
     } catch {
-      toast.error('Không đổi được khổ giấy. Thử lại.')
+      toast.error(t('editor.sheetFailed'))
     } finally {
       setSheetBusy(false)
     }
@@ -264,22 +267,21 @@ export default function DocToolsPage() {
     try {
       const { files, fields } = await form.apply()
       if (files === 0) return
-      const what = fields > 0 ? `Đã điền ${fields} trường` : 'Đã khoá form'
-      toast.success(`${what}${fields > 0 && flatten ? ' và khoá form' : ''} — Ctrl+Z để hoàn tác.`)
+      toast.success(fields === 0 ? t('editor.formLocked') : flatten ? t('editor.formFilledLocked', { count: fields }) : t('editor.formFilled', { count: fields }))
     } catch (error) {
-      toast.error(error instanceof Error && error.message.startsWith('Không tải được phông') ? error.message : 'Không điền được form của tệp này.')
+      toast.error(error instanceof Error && error.message.startsWith(t('errors.fontLoad')) ? error.message : t('editor.formFailed'))
     }
   }
 
   const handleCrop = async (id: string, area: Rect): Promise<boolean> => {
     try {
       if (await workspace.crop(id, area)) {
-        toast.success('Đã cắt trang — Ctrl+Z để hoàn tác.')
+        toast.success(t('editor.cropDone'))
         return true
       }
-      toast.warning('Vùng cắt quá nhỏ hoặc nằm ngoài nội dung trang.')
+      toast.warning(t('editor.cropTooSmall'))
     } catch {
-      toast.error('Không cắt được trang này.')
+      toast.error(t('editor.cropFailed'))
     }
     return false
   }
@@ -287,11 +289,11 @@ export default function DocToolsPage() {
   const handleRewriteText = async (id: string, request: ReflowRequest): Promise<boolean> => {
     try {
       const result = await workspace.rewriteText(id, request)
-      if (result?.spill) toast.info(`Phần tràn đã sang ${result.spill > 1 ? `${result.spill} trang mới` : 'một trang mới'} ngay sau trang này — Ctrl+Z để hoàn tác.`)
+      if (result?.spill) toast.info(result.spill > 1 ? t('editor.spillMany', { count: result.spill }) : t('editor.spillOne'))
       if (result) return true
-      toast.warning('Trang vừa đổi — bấm lại vào dòng chữ để sửa.')
+      toast.warning(t('editor.pageChanged'))
     } catch (error) {
-      toast.error(error instanceof Error && error.message.startsWith('Không tải được phông') ? error.message : 'Không sửa được chữ ở trang này. Thử lại.')
+      toast.error(error instanceof Error && error.message.startsWith(t('errors.fontLoad')) ? error.message : t('editor.rewriteFailed'))
     }
     return false
   }
@@ -310,11 +312,12 @@ export default function DocToolsPage() {
     try {
       const changed = await scan.apply()
       const fixed = changed - removed
-      const parts = [removed > 0 ? `bỏ ${removed} trang trắng` : '', fixed > 0 ? `sửa ${fixed} trang` : ''].filter(Boolean)
-      if (parts.length) toast.success(`Đã ${parts.join(', ')} — Ctrl+Z để hoàn tác.`)
-      else toast.warning('Không sửa được trang nào.')
+      if (removed > 0 && fixed > 0) toast.success(t('editor.scanRemovedFixed', { removed, fixed }))
+      else if (removed > 0) toast.success(t('editor.scanRemoved', { count: removed }))
+      else if (fixed > 0) toast.success(t('editor.scanFixed', { count: fixed }))
+      else toast.warning(t('editor.scanNone'))
     } catch {
-      toast.error('Không dọn được bản scan. Thử lại.')
+      toast.error(t('editor.scanFailed'))
     }
   }
 

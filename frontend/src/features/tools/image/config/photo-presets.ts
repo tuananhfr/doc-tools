@@ -19,16 +19,16 @@ export const PHOTO_SIZES: PhotoSize[] = [
   { id: '51x51', label: '5,1 × 5,1 cm (2 × 2 inch)', width: 51, height: 51 },
 ]
 
+/** Nhãn khổ giấy nằm ở `idPhoto.paper.<id>` / `idPhoto.paperName.<id>` của namespace `image`. */
 export interface PaperSize extends Size {
-  id: string
-  label: string
+  id: 'a4' | 'a5' | '10x15' | '13x18'
 }
 
 export const PAPER_SIZES: PaperSize[] = [
-  { id: 'a4', label: 'A4 (21 × 29,7 cm)', width: 210, height: 297 },
-  { id: 'a5', label: 'A5 (14,8 × 21 cm)', width: 148, height: 210 },
-  { id: '10x15', label: 'Giấy ảnh 10 × 15 cm', width: 102, height: 152 },
-  { id: '13x18', label: 'Giấy ảnh 13 × 18 cm', width: 127, height: 178 },
+  { id: 'a4', width: 210, height: 297 },
+  { id: 'a5', width: 148, height: 210 },
+  { id: '10x15', width: 102, height: 152 },
+  { id: '13x18', width: 127, height: 178 },
 ]
 
 /** Lề giấy (mm): máy in văn phòng không in được sát mép, 5 mm là mức an toàn chung. */

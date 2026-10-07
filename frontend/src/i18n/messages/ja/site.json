@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "ご利用にあたってのお約束",
+    "items": {
+      "free": {
+        "title": "完全無料",
+        "description": "すぐ使えて、隠れた費用はありません"
+      },
+      "noAccount": {
+        "title": "アカウント不要",
+        "description": "サイトを開き、ツールを選んで使うだけ"
+      },
+      "noInstall": {
+        "title": "インストール不要",
+        "description": "ブラウザですぐに動作"
+      },
+      "onDevice": {
+        "title": "ファイルは端末内に",
+        "description": "あなたのファイルはサーバーにアップロードされません"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — 無料ツール",
+    "description": "PDF、画像、QRコード、便利ツールが無料。あなたの端末上で処理し、ファイルはアップロードされません。"
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "Chuyện Nhỏ について | ERPCons & LPC の無料ツール",
+      "description": "Chuyện Nhỏ は ERPCons & LPC による無料ツール集で、仕事や建設、毎日の暮らしのちょっとした作業をすばやく片付けられます。"
+    },
+    "ho-tro": {
+      "title": "サポートとよくある質問 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ を使うときによくある疑問への回答と、お問い合わせ方法。"
+    },
+    "xu-ly-du-lieu": {
+      "title": "データの取り扱いについて | Chuyện Nhỏ",
+      "description": "どのツールが端末上で処理し、どのツールがサーバーを必要とし、どのデータが保存されるのか。ツールごとに透明性を持ってお伝えします。"
+    },
+    "cai-dat": {
+      "title": "スマートフォンとパソコンに Chuyện Nhỏ をインストール | Chuyện Nhỏ",
+      "description": "Android、iPhone、iPad のホーム画面に Chuyện Nhỏ を追加したり、Windows や macOS にインストールしたりして、アプリのようにすばやく開けます。"
+    },
+    "huong-dan": {
+      "title": "使い方ガイド | Chuyện Nhỏ",
+      "description": "よく使うツールのステップごとのガイド: PDF圧縮、画像スキャンから PDF、OCR、QRコード、家の向き、建築費の概算、家族カレンダー。"
+    },
+    "dieu-khoan": {
+      "title": "利用規約 | Chuyện Nhỏ",
+      "description": "無料ツール集 Chuyện Nhỏ の利用規約。"
+    },
+    "quyen-rieng-tu": {
+      "title": "プライバシーポリシー | Chuyện Nhỏ",
+      "description": "2025年個人データ保護法に基づき、Chuyện Nhỏ が個人データをどのように収集、利用、保護するか。"
+    }
+  },
+  "nav": {
+    "tools": "ツール",
+    "construction": "建設",
+    "family": "家族",
+    "guides": "ガイド",
+    "about": "私たちについて"
+  },
+  "header": {
+    "skipLink": "本文へ移動",
+    "mainNav": "メインナビゲーション",
+    "search": "ツールを検索",
+    "openMenu": "メニューを開く",
+    "mobileNav": "モバイルナビゲーション"
+  },
+  "footer": {
+    "madeBy": "<link>ERPCons & LPC</link> の製品です",
+    "navLabel": "フッターナビゲーション",
+    "motto": "いつもあなたのそばに。",
+    "links": {
+      "about": "紹介",
+      "guides": "ガイド",
+      "data": "データの取り扱い",
+      "support": "サポート",
+      "terms": "利用規約",
+      "privacy": "プライバシー"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ ホーム"
+  },
+  "share": {
+    "button": "共有",
+    "title": "リンクを共有",
+    "description": "このページを友人や同僚に送りましょう。",
+    "urlLabel": "開いているページのリンク",
+    "copy": "リンクをコピー",
+    "native": "アプリで共有",
+    "copied": "リンクをコピーしました。",
+    "copyFailed": "コピーできませんでした。上のリンクを選択してコピーしてください。",
+    "shareFailed": "共有メニューを開けませんでした。リンクをコピーして送ってください。",
+    "unsupported": "このブラウザはアプリでの共有にまだ対応していません。リンクをコピーして、Zalo などのアプリで送ることができます。"
+  },
+  "breadcrumb": {
+    "label": "現在地",
+    "home": "ホーム",
+    "tools": "ツール",
+    "guides": "ガイド"
+  },
+  "search": {
+    "label": "ツールを検索",
+    "placeholder": "ツールを検索…（例: PDF結合、QR、OCR）",
+    "clear": "キーワードを消去",
+    "submit": "検索"
+  },
+  "filters": {
+    "all": "すべて"
+  },
+  "results": {
+    "count": "{{count}} 個のツール",
+    "countFor": "「{{keyword}}」のツール {{count}} 個",
+    "empty": "ツールが見つかりませんでした",
+    "emptyHint": "別のキーワードを試すか、絞り込みを減らしてください。",
+    "showAll": "すべてのツールを見る"
+  },
+  "toolCard": {
+    "useNow": "今すぐ使う",
+    "soon": "近日公開"
+  },
+  "processing": {
+    "server": "サーバーで処理",
+    "device": "端末上で処理"
+  },
+  "recent": {
+    "title": "最近使ったツール"
+  },
+  "products": {
+    "learnMore": "{{product}} について詳しく"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | 無料ツール。必要なときにすぐ使える。",
+    "captionStart": "小さな作業が\n大きな価値を生む。",
+    "tagline": "無料ツール。必要なときにすぐ使える。",
+    "description": "毎日の仕事に役立つ、シンプルで実用的なツール。",
+    "promisesLabel": "すぐに使える",
+    "promises": {
+      "noAccount": "アカウント不要",
+      "noInstall": "インストール不要",
+      "onDevice": "ファイルは端末上で処理"
+    },
+    "captionEnd": "今日はシンプルに。\n明日も持続的に。",
+    "catalogTitle": "今日は何をしますか？",
+    "featuredLabel": "人気のツール",
+    "resultsLabel": "ツール"
+  },
+  "directory": {
+    "metaTitle": "すべての無料ツール | Chuyện Nhỏ",
+    "metaDescription": "Chuyện Nhỏ の PDF、画像、QRコード、便利ツールがすべて無料。アカウント不要で、端末上ですぐに処理します。",
+    "title": "すべてのツール",
+    "lead": "{{count}} 個の無料ツール。やりたいことを選んで、ブラウザですぐに使えます。",
+    "catalogLabel": "ツール一覧"
+  },
+  "ecosystem": {
+    "title": "ひとつのツールでは足りないときは…",
+    "description": "今日の小さな作業から、明日のもっと大きな仕事まで。",
+    "erpcons": {
+      "heading": "仕事、プロジェクト、建設会社の経営をひとつのプラットフォームで管理。",
+      "modules": "タスク · 契約 · プロジェクト\nコスト · 購買 · 在庫 · 財務",
+      "trial": "試してみる"
+    },
+    "tekshot": {
+      "heading": "企業が見て、深く理解し、自動化し、成長するための AI & ソフトウェアプラットフォーム。",
+      "modules": "AIカメラ · 販売 & POS · AIマーケティング\nAIリサーチ · ひとつのプラットフォームにすべてのデータ",
+      "trial": "無料で試す",
+      "demo": "デモを見る"
+    },
+    "storyTitle": "同じエコシステムで、もっと多くの価値を。",
+    "story": "Chuyện Nhỏ は ERPCons & LPC による無料ツール集で、毎日のちょっとした作業をすばやく片付けられます。",
+    "steps": {
+      "chuyenNho": "ちょっとした作業に。\nすぐ使える。",
+      "erpcons": "仕事、プロジェクト、\n会社を管理。",
+      "tekshot": "見て、理解し、動き、学ぶ\n企業のための AI。"
+    },
+    "motto": "仕事をもっと軽やかに。\n毎日をもっと良く。"
+  },
+  "hub": {
+    "highlightsLabel": "このグループの内容",
+    "listLabel": "{{label}}の一覧",
+    "subgroupFilter": "サブグループで絞り込み",
+    "emptyHint": "別のキーワードを試すか、サブグループの絞り込みを外してください。",
+    "showGroup": "グループ全体を見る",
+    "asideLabel": "その他のおすすめ",
+    "privacy": {
+      "title": "あなたのファイルを大切に扱います",
+      "description": "ほとんどのツールは端末上で処理します。サーバーが必要なツールは、カードにはっきり表示しています。",
+      "link": "データの取り扱いについて見る"
+    },
+    "support": {
+      "title": "お困りですか？",
+      "description": "ステップごとのガイドを見るか、メールでお問い合わせください。",
+      "guides": "ガイドを見る"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "建設ツール",
+      "title": "<accent>建設</accent>ツール",
+      "tagline": "調べる。計算する。チェックする。シンプルで効果的。",
+      "description": "エンジニア、建築家、施工業者、施主のための無料ツール集。構想から施工、竣工まで役立ちます。",
+      "metaTitle": "無料の建設ツール | Chuyện Nhỏ",
+      "metaDescription": "住宅建築費の概算、家の向きの確認、画像上の寸法測定、近日公開の建設関連の検索ツール。無料でアカウント不要。",
+      "caption": "建設の仕事を\n毎日もっとシンプルに！",
+      "searchPlaceholder": "建設ツールを検索…（例: 概算、家の向き、都市計画）",
+      "highlights": {
+        "estimate": "概算",
+        "planning": "都市計画",
+        "prices": "建設単価",
+        "legal": "法務",
+        "standards": "基準",
+        "dossier": "書類チェック",
+        "site": "現場"
+      },
+      "trust": {
+        "free": {
+          "title": "無料",
+          "detail": "すぐ使えて、隠れた費用はありません"
+        },
+        "noInstall": {
+          "title": "インストール不要",
+          "detail": "ブラウザですぐに動作"
+        },
+        "onDevice": {
+          "title": "端末上で計算",
+          "detail": "入力した数値は端末の外に出ません"
+        },
+        "practical": {
+          "title": "実務のために",
+          "detail": "施主から施工業者まで"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "概算・計算",
+        "quy-hoach": "都市計画・家の向き",
+        "gia-vat-lieu": "単価・資材",
+        "phap-ly": "法務・基準",
+        "ban-ve": "図面・書類",
+        "hien-truong": "現場"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "ひとつのツールでは足りませんか？",
+          "description": "プロジェクト全体、コスト、契約、書類、購買をひとつのプラットフォームで管理。",
+          "points": {
+            "work": "タスク · プロジェクト · 契約",
+            "cost": "コスト · 予算 · 購買",
+            "documents": "書類 · 文書 · 承認",
+            "ai": "データに答える AI アシスタント"
+          }
+        },
+        "tekshot": {
+          "title": "現場の記録をもっとスマートに？",
+          "description": "カメラ、現場写真、AI 認識をプロジェクトに直接つなげます。",
+          "points": {
+            "vision": "Vision · カメラ · 現場",
+            "studio": "Studio · コンテンツ · レポート",
+            "insight": "Insight · 市場",
+            "central": "Central · 集約と運用"
+          }
+        }
+      },
+      "journey": {
+        "title": "構想から竣工まで。いつもそばに。",
+        "motto": "小さなツール。\n大きな価値！",
+        "steps": {
+          "idea": {
+            "title": "構想",
+            "detail": "都市計画 · 家の向き"
+          },
+          "design": {
+            "title": "設計",
+            "detail": "基準 · 書類チェック"
+          },
+          "estimate": {
+            "title": "積算",
+            "detail": "概算 · 建設単価"
+          },
+          "build": {
+            "title": "施工",
+            "detail": "現場日誌"
+          },
+          "handover": {
+            "title": "竣工",
+            "detail": "書類 · 保管"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "家族ツール",
+      "title": "<accent>家族</accent>のためのツール",
+      "tagline": "小さなことで、大きな幸せを。",
+      "description": "共有の予定の整理、リマインダー、家計の計算に役立つシンプルなツール。家族みんなで同じリズムで、毎日を楽しく。",
+      "metaTitle": "無料の家族向けツール | Chuyện Nhỏ",
+      "metaDescription": "家族カレンダー、旧暦・新暦カレンダー、電気代・水道代、グループの割り勘、家の向き、近日公開の家族向けツール。無料で、データはあなたの端末に保存されます。",
+      "caption": "今日はうちで\nどんな楽しいことがある？",
+      "searchPlaceholder": "家族ツールを検索…（例: カレンダー、リマインダー、電気代）",
+      "highlights": {
+        "calendar": "共有の予定を整理",
+        "reminders": "リマインダーと見守り",
+        "spending": "家計の計算",
+        "together": "家族みんなで同じリズム"
+      },
+      "trust": {
+        "free": {
+          "title": "無料",
+          "detail": "すぐ使えて、隠れた費用はありません"
+        },
+        "noInstall": {
+          "title": "インストール不要",
+          "detail": "ブラウザですぐに動作"
+        },
+        "private": {
+          "title": "プライベート",
+          "detail": "データはあなたの端末に保存"
+        },
+        "devices": {
+          "title": "快適に使える端末",
+          "detail": "スマートフォンとパソコン"
+        }
+      },
+      "subgroups": {
+        "lich": "カレンダー・リマインダー",
+        "chi-tieu": "家計",
+        "nha-cua": "住まい",
+        "hoc-tap": "学習",
+        "suc-khoe": "健康",
+        "ket-noi": "つながり"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "家族カレンダー",
+          "subtitle": "今日、うちは何がある？",
+          "points": {
+            "schedules": "学校、仕事、家族の予定",
+            "contacts": "やることリストと緊急連絡先",
+            "backup": "端末に保存し、必要なときにバックアップ",
+            "ics": "スマートフォンに予定を書き出し（ICS）"
+          }
+        },
+        "houseOrientation": {
+          "title": "家の向き＆コンパス",
+          "subtitle": "良い向きを選んで、もっと安心",
+          "points": {
+            "direction": "家の向きや土地の向きを確認",
+            "compass": "スマートフォンですぐ使えるコンパス",
+            "lookup": "すばやく調べられて使いやすい"
+          }
+        }
+      },
+      "journey": {
+        "title": "毎日幸せな家族のために",
+        "motto": "小さなことが\n大きな幸せに！",
+        "steps": {
+          "organized": {
+            "title": "もっと整理して",
+            "detail": "時間、用事、暮らし"
+          },
+          "connected": {
+            "title": "もっとつながって",
+            "detail": "家族みんなで共有"
+          },
+          "caring": {
+            "title": "もっと気遣って",
+            "detail": "健康、学習、日々の暮らし"
+          },
+          "happy": {
+            "title": "もっと幸せに",
+            "detail": "毎日の小さなことから"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "書類と PDF",
+      "title": "<accent>書類と PDF</accent>のツール",
+      "tagline": "編集。変換。結合・分割。署名。圧縮。速くて無料。",
+      "description": "テキスト、PDF、書類の写真をシンプルに処理。ブラウザですぐに使え、インストール不要で、ファイルは端末の外に出ません。",
+      "metaTitle": "無料の PDF ツール: 結合、分割、圧縮、OCR、署名 | Chuyện Nhỏ",
+      "metaDescription": "PDF の結合、分割、圧縮、編集、署名、Word への変換、ベトナム語の文字認識。無料でアカウント不要、ファイルは端末上ですぐに処理されます。",
+      "caption": "書類の作業が\nこんなにシンプルに！",
+      "searchPlaceholder": "書類ツールを検索…（例: PDF圧縮、PDF結合、OCR、署名）",
+      "highlights": {
+        "edit": "PDF の内容を編集",
+        "mergeSplit": "結合・分割・圧縮",
+        "convert": "形式を変換",
+        "sign": "書類に署名",
+        "ocr": "テキストOCR",
+        "compare": "文書比較",
+        "redact": "機密情報を墨消し"
+      },
+      "trust": {
+        "free": {
+          "title": "無料",
+          "detail": "すぐ使えて、隠れた費用はありません"
+        },
+        "noInstall": {
+          "title": "インストール不要",
+          "detail": "ブラウザですぐに動作"
+        },
+        "secure": {
+          "title": "安全・プライベート",
+          "detail": "ファイルは端末上ですぐに処理"
+        },
+        "formats": {
+          "title": "多彩な形式",
+          "detail": "PDF、Word、Excel、画像"
+        }
+      },
+      "subgroups": {
+        "sua": "編集・並べ替え",
+        "gop-tach": "結合・分割・圧縮",
+        "chuyen-doi": "変換",
+        "ocr": "OCR・比較",
+        "ky-bao-mat": "署名・セキュリティ",
+        "soan-thao": "文書作成"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "ERPCons で書類処理をもっと速く",
+          "description": "書類、文書、契約、バージョン、承認をひとつのプラットフォームで管理。",
+          "points": {
+            "storage": "一元的な保管",
+            "permissions": "権限設定と共有",
+            "versions": "バージョンの追跡",
+            "linked": "タスクやプロジェクトに紐付け"
+          }
+        },
+        "tips": {
+          "title": "ちょっとしたコツ",
+          "items": {
+            "drop": "ツールの領域にファイルをドラッグ＆ドロップ。",
+            "options": "合ったオプションを選ぶ。",
+            "download": "結果を端末にダウンロード。",
+            "closeTab": "タブを閉じると、ファイルはブラウザから消えます。"
+          }
+        }
+      },
+      "journey": {
+        "title": "書類から仕事まで。いつもそばに。",
+        "motto": "大きな仕事は\n小さな作業から始まる！",
+        "steps": {
+          "documents": {
+            "title": "書類",
+            "detail": "PDF、Word、Excel"
+          },
+          "storage": {
+            "title": "保管",
+            "detail": "書類を一元管理"
+          },
+          "share": {
+            "title": "共有",
+            "detail": "同僚と"
+          },
+          "approve": {
+            "title": "承認",
+            "detail": "スピーディーに"
+          },
+          "track": {
+            "title": "追跡",
+            "detail": "バージョン、履歴"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "Chuyện Nhỏ について",
+    "title": "<accent>Chuyện Nhỏ</accent> について",
+    "tagline": "小さな作業が大きな価値を生む。",
+    "intro": "Chuyện Nhỏ は ERPCons & LPC による無料ツール集で、仕事や建設、毎日の暮らしのちょっとした作業をすばやく片付けられます。",
+    "introMore": "必要なときにすぐ使える。シンプル。効果的。インストールもアカウントも不要です。",
+    "caption": "やりたいことがあれば、\nすぐ使える！",
+    "explore": "ツールを見てみる",
+    "guides": "ガイドを見る",
+    "valuesLabel": "Chuyện Nhỏ のお約束",
+    "values": {
+      "free": {
+        "title": "無料",
+        "detail": "すぐ使えて、隠れた費用はありません"
+      },
+      "noInstall": {
+        "title": "インストール不要",
+        "detail": "ブラウザですぐに動作"
+      },
+      "onDevice": {
+        "title": "端末上での処理を優先",
+        "detail": "あなたのファイルは端末に残ります"
+      },
+      "domains": {
+        "title": "幅広い分野",
+        "detail": "仕事 · 建設 · 家族"
+      }
+    },
+    "ecosystemTitle": "ひとつのエコシステムで、もっと多くの価値を",
+    "ecosystemDescription": "Chuyện Nhỏ は ERPCons & LPC の製品エコシステムの一部です。",
+    "products": {
+      "chuyen-nho": {
+        "role": "ひとつの作業を片付ける",
+        "points": {
+          "free": "無料のツール",
+          "noAccount": "アカウント不要ですぐ使える",
+          "noInstall": "インストール不要",
+          "domains": "仕事、建設、家族のために"
+        }
+      },
+      "erpcons": {
+        "role": "仕事、プロジェクト、会社を管理",
+        "points": {
+          "work": "タスク · 契約 · プロジェクト",
+          "cost": "コスト · 購買 · 在庫",
+          "finance": "財務 · 書類 · 人事",
+          "ai": "データに答える AI アシスタント"
+        }
+      },
+      "tekshot": {
+        "role": "見て、理解し、動き、学ぶ企業のための AI",
+        "points": {
+          "vision": "AIカメラ · TekShot Vision",
+          "pos": "POS & 販売 · TekShot POS",
+          "studio": "AIマーケティング · TekShot Studio",
+          "research": "AIリサーチ · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "今日の小さな作業から\n明日の大きな仕事へ。",
+    "story": "Chuyện Nhỏ は小さな作業から始めるお手伝いをします。仕事がより複雑になったら、ERPCons と TekShot AI で管理し、つなげ、価値を広げられます。",
+    "statsLabel": "数字で見る Chuyện Nhỏ",
+    "stats": {
+      "tools": "すぐ使える無料ツール",
+      "groups": "作業グループ: 書類、画像、計算、建設、家族…"
+    }
+  },
+  "data": {
+    "trail": "データの取り扱い",
+    "title": "<accent>データの取り扱い</accent>について",
+    "tagline": "あなたのファイルはあなたの端末に残ります。",
+    "intro": "Chuyện Nhỏ はファイルをブラウザ内で直接処理します。このページでは、各ツールがどこで動作し、実際に何がサーバーに送られるのかをはっきりお伝えします。",
+    "caption": "ツールごとに\n透明性を！",
+    "points": {
+      "noCookie": "Cookie を使いません",
+      "noTracking": "追跡ツールや広告はありません",
+      "noAccount": "アカウント不要"
+    },
+    "flowLabel": "データの行き先",
+    "columns": {
+      "device": {
+        "title": "端末上ですぐに処理",
+        "lead": "{{count}} 個のツールが利用可能",
+        "points": {
+          "tab": "PDF、画像、動画ファイルはブラウザのタブの中だけで開きます",
+          "download": "結果はダウンロードを押したときだけ作られます",
+          "model": "文字認識モデルはこのサイトから直接読み込み、第三者を経由しません"
+        }
+      },
+      "server": {
+        "title": "当社のサーバーに送信",
+        "lead": "必要最小限",
+        "points": {
+          "visits": "開いたツールの名前（合計利用回数を数えるため）。Cookie なし、あなたを特定しません",
+          "ip": "IPアドレスは自動送信を防ぐため一方向ハッシュ化するだけで、約1時間後に自動削除",
+          "feedback": "ご意見・提案は、同意にチェックを入れて「送信」を押したときだけ送信",
+          "soon": "近日公開の {{count}} 個のツールはサーバーでの照会が必要になり、カードにその旨を明記します"
+        }
+      },
+      "local": {
+        "title": "あなたのブラウザに保存",
+        "lead": "この端末のみ",
+        "points": {
+          "prefs": "最近使ったツールとライト / ダークのテーマ",
+          "saved": "あなたが保存したデータ: 家族カレンダー、メモ、履歴書の下書き、暗記カード",
+          "clear": "ツール内またはブラウザの設定でいつでも削除可能"
+        }
+      }
+    },
+    "tableTitle": "各ツールの処理場所",
+    "tableDescription": "この表はツール一覧から直接生成されるため、各カードのラベルと常に一致します。",
+    "searchPlaceholder": "ツールを検索…（例: OCR、給与、QR）",
+    "filterLabel": "処理場所で絞り込み",
+    "modelFilter": "認識モデルを読み込むもの",
+    "head": {
+      "tool": "ツール",
+      "group": "グループ",
+      "where": "処理場所",
+      "note": "備考"
+    },
+    "modes": {
+      "device": "端末上",
+      "model": "端末上（認識モデルを読み込み）",
+      "server": "サーバーが必要"
+    },
+    "notes": {
+      "server": "近日公開。サーバーでのデータ照会が必要です。公開前に送信されるデータを明記します。",
+      "model": "このサイトから認識モデルを一度だけ読み込み、その後は端末上で認識します。",
+      "noFile": "あなたの端末上で動作し、データは送信されません。",
+      "device": "ファイルは端末の外に出ません。"
+    },
+    "emptyHint": "別のキーワードを試すか、絞り込みを外してください。",
+    "showAll": "すべて見る",
+    "faqTitle": "データに関する質問",
+    "faqDescription": "詳しくは<link>プライバシーポリシー</link>をご覧ください。"
+  },
+  "guidesPage": {
+    "title": "<accent>使い方</accent>ガイド",
+    "tagline": "短いステップで、画面の表示どおりに。",
+    "intro": "どの記事も数分で読めます。ステップどおりに進めれば完了し、コツや注意点も載っています。",
+    "caption": "2分読んで、\nすぐ実践！",
+    "listTitle": "ガイド一覧",
+    "filterLabel": "グループで絞り込み",
+    "missingTitle": "必要な記事が見つかりませんか？",
+    "missing": "<faq>よくある質問</faq>や、<install>Chuyện Nhỏ を端末にインストールする方法</install>をご覧いただくか、<suggest>ツールの提案</suggest>から新しいガイドを提案してください。"
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Chuyện Nhỏ ガイド",
+    "fallbackTitle": "ガイド | Chuyện Nhỏ",
+    "minutes": "{{count}} 分",
+    "steps": "{{count}} ステップ",
+    "open": "{{name}} を開く",
+    "stepsTitle": "手順",
+    "tipsTitle": "コツ",
+    "notesTitle": "注意点",
+    "asideLabel": "関連",
+    "toolsTitle": "この記事のツール",
+    "othersTitle": "その他の記事",
+    "all": "すべてのガイドを見る"
+  },
+  "install": {
+    "trail": "端末にインストール",
+    "title": "Chuyện Nhỏ を<accent>端末にインストール</accent>",
+    "tagline": "アプリのように使える。すばやく開ける。毎日もっと便利に。",
+    "intro": "Chuyện Nhỏ は Web アプリです。ホーム画面や Dock に追加すればすぐに開け、ブラウザでページを探し直す必要はありません。",
+    "caption": "一度インストールすれば、\n毎日便利に！",
+    "benefits": {
+      "fast": "ホーム画面からすばやく起動",
+      "fullscreen": "アドレスバーのない全画面表示",
+      "noStore": "アプリストア不要",
+      "free": "無料"
+    },
+    "cta": "アプリをインストール",
+    "ctaHint": "ワンタップで、アプリストアを経由しません。",
+    "installed": "この端末には Chuyện Nhỏ がインストール済みです。",
+    "chooseTitle": "お使いの端末を選んでください",
+    "chooseDescription": "ブラウザによってインストールボタンの場所が異なります。",
+    "tabsLabel": "端末",
+    "panelTitle": "{{platform}}（{{browser}}）にインストール",
+    "stepWithAddress": "{{detail}} アドレス: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Chrome で Chuyện Nhỏ を開く",
+            "detail": "Chrome のアドレスバーにサイトのアドレスを入力します。"
+          },
+          "menu": {
+            "title": "メニュー ⋮（3つの点）を押す",
+            "detail": "画面の右上にあります。"
+          },
+          "add": {
+            "title": "「ホーム画面に追加」を選ぶ",
+            "detail": "端末によっては「アプリをインストール」と表示されます。"
+          },
+          "install": {
+            "title": "「インストール」を押す",
+            "detail": "Chuyện Nhỏ のアイコンがホーム画面に追加され、アプリのように開けます。"
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Safari で Chuyện Nhỏ を開く",
+            "detail": "Safari のアドレスバーにサイトのアドレスを入力します。"
+          },
+          "share": {
+            "title": "共有ボタンを押す",
+            "detail": "上向き矢印の付いた四角形のアイコンです。新しい iOS では、下部バーの ⋯ メニュー内にあります。"
+          },
+          "add": {
+            "title": "「ホーム画面に追加」を選ぶ",
+            "detail": "見当たらない場合は、リストを下にスクロールしてください。"
+          },
+          "confirm": {
+            "title": "「追加」を押す",
+            "detail": "右上にあります。Chuyện Nhỏ のアイコンがホーム画面に追加されます。"
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Chrome または Edge で Chuyện Nhỏ を開く",
+            "detail": "ブラウザは最新版である必要があります。"
+          },
+          "icon": {
+            "title": "アドレスバーのインストールアイコンを押す",
+            "detail": "下向き矢印の付いた画面のアイコンで、アドレスバーの右端にあります。"
+          },
+          "menu": {
+            "title": "アイコンが見当たらない場合はメニューから",
+            "detail": "Chrome: メニュー ⋮ から「キャスト、保存、共有」→「ページをアプリとしてインストール」。Edge: メニュー ⋯ から「アプリ」→「このサイトをアプリとしてインストール」。"
+          },
+          "install": {
+            "title": "「インストール」を押す",
+            "detail": "Chuyện Nhỏ が専用のウィンドウで開き、スタートメニューにも追加されます。"
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Safari で Chuyện Nhỏ を開く",
+            "detail": "macOS Sonoma (14) 以降が必要です。"
+          },
+          "dock": {
+            "title": "「ファイル」メニューから「Dock に追加」を選ぶ",
+            "detail": "画面上部のメニューバーにあります。"
+          },
+          "confirm": {
+            "title": "「追加」を押す",
+            "detail": "Chuyện Nhỏ が Dock に表示され、専用のウィンドウで開きます。"
+          },
+          "chrome": {
+            "title": "Chrome または Edge を使う場合は？",
+            "detail": "Windows と同じく、アドレスバーの右端にあるインストールアイコンを押します。"
+          }
+        }
+      },
+      "other": {
+        "label": "その他のブラウザ",
+        "browser": "Firefox、Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "メニュー ≡ を押し、「ページを追加」→「ホーム画面」を選びます。"
+          },
+          "firefox": {
+            "title": "パソコン版 Firefox",
+            "detail": "サイトをアプリとしてインストールする機能にはまだ対応していません。すべてのツールはタブで通常どおり使えます。"
+          },
+          "install": {
+            "title": "アプリとしてインストールしたい場合は？",
+            "detail": "Chrome、Edge、Safari で Chuyện Nhỏ を開き、該当するタブの手順に従ってください。"
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "インストールのオプションが見当たりませんか？",
+    "troubleshooting": {
+      "update": "ブラウザを最新版に更新してください。",
+      "address": "共有された別のページではなく、Chuyện Nhỏ の正しいアドレスを開いているか確認してください。",
+      "incognito": "シークレットモードではインストールできません。通常のタブで開いてください。",
+      "installed": "すでにインストール済みの場合、ブラウザはインストールのオプションを再表示しません。"
+    },
+    "stillStuck": "それでもうまくいきませんか？ <link>サポートページ</link>をご覧いただくか、メールでお問い合わせください。"
+  },
+  "support": {
+    "trail": "サポート",
+    "title": "どんな<accent>お手伝い</accent>ができますか？",
+    "intro": "よくある質問から答えをすばやく探すか、メールでお問い合わせください。",
+    "caption": "すばやく質問、\n簡潔に回答！",
+    "searchLabel": "質問を検索",
+    "searchPlaceholder": "質問を検索…（例: インストール、ファイルの保存、データの削除）",
+    "topicsTitle": "サポートのトピック",
+    "topics": {
+      "start": {
+        "title": "はじめに",
+        "detail": "ステップごとのガイド"
+      },
+      "documents": {
+        "title": "書類と PDF",
+        "detail": "結合、分割、圧縮、OCR"
+      },
+      "image": {
+        "title": "画像",
+        "detail": "圧縮、サイズ変更、背景削除"
+      },
+      "qr": {
+        "title": "QR とバーコード",
+        "detail": "作成、読み取り、一括印刷"
+      },
+      "construction": {
+        "title": "建設",
+        "detail": "概算、家の向き"
+      },
+      "family": {
+        "title": "家族",
+        "detail": "カレンダー、リマインダー、SOS"
+      },
+      "install": {
+        "title": "端末にインストール",
+        "detail": "Android、iPhone、パソコン"
+      },
+      "privacy": {
+        "title": "データとプライバシー",
+        "detail": "ファイルがどこで処理されるか"
+      }
+    },
+    "faqTitle": "よくある質問",
+    "faqCount": "{{count}} 件の質問",
+    "faqCountFor": "「{{keyword}}」の質問 {{count}} 件",
+    "emptyTitle": "一致する質問はありません",
+    "emptyHint": "別のキーワードを試すか、メールで直接お問い合わせください。",
+    "showAll": "すべての質問を見る",
+    "contactTitle": "まだお困りですか？",
+    "mailTitle": "メールでお問い合わせ",
+    "mailBody": "ツール名、お使いのブラウザ、起きたことを書いてください。個人情報を含むファイルは添付しないでください。",
+    "suggestTitle": "ご意見とツールの提案",
+    "suggestBody": "まだないツールが欲しい、または今のツールについて意見がありますか？ 提案を送ると、追跡用の受付番号が発行されます。",
+    "suggestAction": "提案を送る"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Chuyện Nhỏ は無料ですか？",
+        "answer": "はい。稼働中のツールはすべて無料で、利用回数の制限もアカウントも不要です。チームで書類を長期間保管・共有・承認する必要がある場合は、そのための有料版として ERPCons があります。"
+      },
+      "tai-khoan": {
+        "question": "アカウントを作る必要はありますか？",
+        "answer": "いいえ。サイトを開き、ツールを選んですぐに使えます。Chuyện Nhỏ には登録がなく、名前、メールアドレス、電話番号を尋ねることもありません。"
+      },
+      "luu-tep": {
+        "question": "私のファイルはアップロードされたり保存されたりしますか？",
+        "answer": "いいえ。開いた PDF、画像、動画ファイルはブラウザのタブの中だけにあり、あなたの端末上で処理されます。当社がファイルを受け取ることはありません。タブを閉じるとファイルはブラウザから消え、結果はダウンロードしたときだけ手元に残ります。"
+      },
+      "may-chu": {
+        "question": "一部のツールに「サーバーで処理」と表示されているのはなぜですか？",
+        "answer": "建設単価や都市計画など、近日公開予定の一部のツールは大量のデータや頻繁な更新が必要なため、サーバーでの照会が必要です。事前にわかるよう、カードにその旨を明記しています。現在利用できるツールは、すべて端末上で処理します。"
+      },
+      "cai-dat": {
+        "question": "スマートフォンに Chuyện Nhỏ をインストールするには？",
+        "answer": "Chrome（Android）または Safari（iPhone、iPad）で Chuyện Nhỏ を開き、「ホーム画面に追加」を選びます。パソコンでは、Chrome または Edge のアドレスバーにあるインストールアイコンを押します。"
+      },
+      "offline": {
+        "question": "インターネットがなくても Chuyện Nhỏ を使えますか？",
+        "answer": "ネットにつながった状態で一度開くと、ブラウザがページとツールのコードを保存するため、通信が不安定でも再び開けることがほとんどです。文字認識や動画処理などの重い部分は初回利用時にダウンロードされるので、ネットにつながっているときに一度試しておいてください。"
+      },
+      "loi": {
+        "question": "エラーが出たらどうすればいいですか？",
+        "answer": "ページを再読み込みし、最新版の Chrome、Edge、Safari をお使いください。ファイルが大きすぎたりパスワードでロックされていたりすると、ツールが止まることもあります。その場合、理由が画面に表示されます。それでも解決しない場合は、ツール名、お使いのブラウザ、エラーの内容を添えて {{email}} までメールでお送りください。"
+      },
+      "an-toan": {
+        "question": "Chuyện Nhỏ は安全ですか？",
+        "answer": "本サイトは暗号化された接続（HTTPS）で動作し、Cookie を使わず、第三者の広告ツールや追跡ツールも組み込んでいません。あなたのファイルは端末の外に出ません。"
+      },
+      "thu-thap": {
+        "question": "Chuyện Nhỏ は私の個人情報を収集しますか？",
+        "answer": "ほとんど収集しません。ツールを開くと、合計利用回数を数えるためにブラウザがツール名を送ります。IPアドレスは自動送信を防ぐために一方向ハッシュ化するだけで、約1時間後に自動で削除されます。ご意見の内容は、同意にチェックを入れて「送信」を押したときだけ送信されます。"
+      },
+      "xoa-du-lieu": {
+        "question": "自分のデータを削除するには？",
+        "answer": "ツールに保存したデータ（家族カレンダー、メモ、履歴書の下書き、暗記カード）はあなたの端末にあります。ツール内で削除するか、ブラウザの設定でサイトデータを消去してください。送信済みのご意見を削除したい場合は、受付番号を添えて {{email}} までメールでお送りください。"
+      },
+      "ben-thu-ba": {
+        "question": "データが第三者と共有されることはありますか？",
+        "answer": "いいえ。当社はデータを販売せず、広告目的で共有することもありません。ただし、音声文字起こしツールはブラウザ自体の音声認識機能を使うため、音声はブラウザの提供元（例: Chrome の場合は Google）に送られ、当社のサーバーは経由しません。"
+      },
+      "de-xuat": {
+        "question": "新しいツールを提案したいのですが？",
+        "answer": "大歓迎です。「ツールの提案」ツールをお使いください。受付番号が発行されるので、後から審査状況を確認できます。"
+      }
+    },
+    "links": {
+      "processingPerTool": "各ツールの処理場所を見る",
+      "installPerDevice": "端末ごとのインストール方法",
+      "dataHandling": "データの取り扱いについて",
+      "privacyPolicy": "プライバシーポリシーを読む",
+      "suggest": "「ツールの提案」を開く"
+    }
+  },
+  "legalPage": {
+    "updated": "最終更新日: {{date}}",
+    "toc": "目次",
+    "summary": "概要"
+  }
+}

@@ -1,6 +1,7 @@
 import type { PDFDocument, PDFPage } from 'pdf-lib'
 import { TOOL_ERROR, ToolError } from '@/features/tools/hub'
 import { canvasToBlob } from '@/features/tools/shared'
+import { translate } from '@/i18n/runtime'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import { fitScale } from '../utils/canvas-cap'
 import { redactBoxes, runsOutside } from '../utils/redaction'
@@ -16,7 +17,7 @@ const REDACT_DPI = 200
 
 async function canvasJpeg(canvas: HTMLCanvasElement): Promise<Uint8Array> {
   const blob = await canvasToBlob(canvas, 'image/jpeg').catch(() => null)
-  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, 'Không dựng được ảnh trang.')
+  if (!blob) throw new ToolError(TOOL_ERROR.exportFailed, translate('pdf:errors.renderPage'))
   return new Uint8Array(await blob.arrayBuffer())
 }
 

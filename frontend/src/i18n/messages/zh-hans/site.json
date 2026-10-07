@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "使用承诺",
+    "items": {
+      "free": {
+        "title": "完全免费",
+        "description": "立即使用，没有隐藏费用"
+      },
+      "noAccount": {
+        "title": "无需账号",
+        "description": "打开网站，选择工具即可使用"
+      },
+      "noInstall": {
+        "title": "无需安装",
+        "description": "直接在浏览器中运行"
+      },
+      "onDevice": {
+        "title": "文件留在设备上",
+        "description": "你的文件不会上传到服务器"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — 免费工具",
+    "description": "免费的 PDF、图片、二维码和实用工具。在你的设备上处理，文件不上传。"
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "关于 Chuyện Nhỏ | ERPCons & LPC 出品的免费工具",
+      "description": "Chuyện Nhỏ 是 ERPCons & LPC 出品的免费工具集，帮你快速处理工作、建筑和日常生活中的小事。"
+    },
+    "ho-tro": {
+      "title": "帮助与常见问题 | Chuyện Nhỏ",
+      "description": "使用 Chuyện Nhỏ 时常见问题的解答，以及联系我们的方式。"
+    },
+    "xu-ly-du-lieu": {
+      "title": "我们如何处理数据 | Chuyện Nhỏ",
+      "description": "哪些工具直接在设备上处理，哪些需要服务器，以及会保存哪些数据。每个工具都公开透明。"
+    },
+    "cai-dat": {
+      "title": "在手机和电脑上安装 Chuyện Nhỏ | Chuyện Nhỏ",
+      "description": "把 Chuyện Nhỏ 添加到 Android、iPhone、iPad 的主屏幕，或安装在 Windows、macOS 上，像应用一样快速打开。"
+    },
+    "huong-dan": {
+      "title": "使用指南 | Chuyện Nhỏ",
+      "description": "常用工具的分步指南：压缩 PDF、扫描图片转 PDF、OCR、二维码、房屋朝向、建房估算、家庭日历。"
+    },
+    "dieu-khoan": {
+      "title": "使用条款 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ 免费工具集的使用条款。"
+    },
+    "quyen-rieng-tu": {
+      "title": "隐私政策 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ 如何依照越南 2025 年《个人数据保护法》收集、使用和保护个人数据。"
+    }
+  },
+  "nav": {
+    "tools": "工具",
+    "construction": "建筑",
+    "family": "家庭",
+    "guides": "指南",
+    "about": "关于我们"
+  },
+  "header": {
+    "skipLink": "跳到正文",
+    "mainNav": "主导航",
+    "search": "搜索工具",
+    "openMenu": "打开菜单",
+    "mobileNav": "手机端导航"
+  },
+  "footer": {
+    "madeBy": "<link>ERPCons & LPC</link> 出品",
+    "navLabel": "页脚导航",
+    "motto": "与你同行。",
+    "links": {
+      "about": "简介",
+      "guides": "指南",
+      "data": "数据处理",
+      "support": "帮助",
+      "terms": "条款",
+      "privacy": "隐私"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ，首页"
+  },
+  "share": {
+    "button": "分享",
+    "title": "分享链接",
+    "description": "把这个页面发给朋友或同事。",
+    "urlLabel": "当前页面的链接",
+    "copy": "复制链接",
+    "native": "通过应用分享",
+    "copied": "已复制链接。",
+    "copyFailed": "复制失败。请选中上方的链接后复制。",
+    "shareFailed": "无法打开分享面板。请复制链接后发送。",
+    "unsupported": "此浏览器暂不支持通过应用分享。你可以复制链接，通过 Zalo 或其他应用发送。"
+  },
+  "breadcrumb": {
+    "label": "当前位置",
+    "home": "首页",
+    "tools": "工具",
+    "guides": "指南"
+  },
+  "search": {
+    "label": "搜索工具",
+    "placeholder": "搜索工具…（例如：合并 PDF、二维码、OCR）",
+    "clear": "清除关键词",
+    "submit": "搜索"
+  },
+  "filters": {
+    "all": "全部"
+  },
+  "results": {
+    "count": "{{count}} 个工具",
+    "countFor": "“{{keyword}}”相关的 {{count}} 个工具",
+    "empty": "未找到任何工具",
+    "emptyHint": "试试其他关键词，或减少筛选条件。",
+    "showAll": "查看所有工具"
+  },
+  "toolCard": {
+    "useNow": "立即使用",
+    "soon": "即将推出"
+  },
+  "processing": {
+    "server": "在服务器上处理",
+    "device": "在设备上"
+  },
+  "recent": {
+    "title": "最近使用"
+  },
+  "products": {
+    "learnMore": "了解 {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | 免费工具，随用随取。",
+    "captionStart": "小小的事情，\n成就大大的价值。",
+    "tagline": "免费工具，随用随取。",
+    "description": "简单实用的小工具，服务日常工作。",
+    "promisesLabel": "立即使用",
+    "promises": {
+      "noAccount": "无需账号",
+      "noInstall": "无需安装",
+      "onDevice": "文件在设备上处理"
+    },
+    "captionEnd": "今天更简单，\n明天更长久。",
+    "catalogTitle": "你今天需要做什么？",
+    "featuredLabel": "常用工具",
+    "resultsLabel": "工具"
+  },
+  "directory": {
+    "metaTitle": "所有免费工具 | Chuyện Nhỏ",
+    "metaDescription": "Chuyện Nhỏ 的全部免费 PDF、图片、二维码和实用工具。无需账号，直接在设备上处理。",
+    "title": "所有工具",
+    "lead": "{{count}} 个免费工具。选择你要做的事，直接在浏览器中使用。",
+    "catalogLabel": "工具目录"
+  },
+  "ecosystem": {
+    "title": "当一个工具还不够时……",
+    "description": "从今天的小事，到明天更大的工作。",
+    "erpcons": {
+      "heading": "在一个平台上管理建筑企业的工作、项目和业务。",
+      "modules": "工作 · 合同 · 项目\n成本 · 采购 · 仓库 · 财务",
+      "trial": "试用"
+    },
+    "tekshot": {
+      "heading": "AI 与软件平台，帮助企业看见、深入理解、自动化并实现增长。",
+      "modules": "AI 摄像头 · 销售与 POS · AI 营销\nAI 调研 · 一个平台，所有数据",
+      "trial": "免费试用",
+      "demo": "观看演示"
+    },
+    "storyTitle": "同一个生态系统，更多价值。",
+    "story": "Chuyện Nhỏ 是 ERPCons & LPC 出品的免费工具集，帮你快速处理日常小事。",
+    "steps": {
+      "chuyenNho": "需要做件小事？\n马上就用。",
+      "erpcons": "管理工作、\n项目和企业。",
+      "tekshot": "为企业看、懂、做、学的\nAI。"
+    },
+    "motto": "工作更轻松。\n每天更美好。"
+  },
+  "hub": {
+    "highlightsLabel": "本类包含",
+    "listLabel": "{{label}}列表",
+    "subgroupFilter": "按子类筛选",
+    "emptyHint": "试试其他关键词，或取消子类筛选。",
+    "showGroup": "查看整个分类",
+    "asideLabel": "更多推荐",
+    "privacy": {
+      "title": "尊重你的文件",
+      "description": "大部分工具直接在设备上处理。需要服务器的工具都会在卡片上明确标注。",
+      "link": "查看我们如何处理数据"
+    },
+    "support": {
+      "title": "需要帮助？",
+      "description": "查看分步指南，或给我们发邮件。",
+      "guides": "查看指南"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "建筑工具",
+      "title": "<accent>建筑</accent>工具",
+      "tagline": "查询。计算。检查。简单而高效。",
+      "description": "为工程师、建筑师、施工方和房主准备的免费工具集，从构思到施工、竣工全程适用。",
+      "metaTitle": "免费建筑工具 | Chuyện Nhỏ",
+      "metaDescription": "建房费用估算、确定房屋朝向、在图片上测量尺寸，以及即将推出的建筑查询工具。免费，无需账号。",
+      "caption": "建筑工作\n一天比一天简单！",
+      "searchPlaceholder": "搜索建筑工具…（例如：估算、房屋朝向、规划）",
+      "highlights": {
+        "estimate": "估算",
+        "planning": "规划",
+        "prices": "建筑价格",
+        "legal": "法规",
+        "standards": "标准",
+        "dossier": "资料检查",
+        "site": "现场"
+      },
+      "trust": {
+        "free": {
+          "title": "免费",
+          "detail": "立即使用，没有隐藏费用"
+        },
+        "noInstall": {
+          "title": "无需安装",
+          "detail": "直接在浏览器中运行"
+        },
+        "onDevice": {
+          "title": "在你的设备上计算",
+          "detail": "输入的数据不会离开设备"
+        },
+        "practical": {
+          "title": "面向实际工作",
+          "detail": "从房主到施工方"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "估算与计算",
+        "quy-hoach": "规划与房屋朝向",
+        "gia-vat-lieu": "价格与材料",
+        "phap-ly": "法规与标准",
+        "ban-ve": "图纸与资料",
+        "hien-truong": "现场"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "需要的不止一个工具？",
+          "description": "在一个平台上管理整个项目、成本、合同、资料和采购。",
+          "points": {
+            "work": "工作 · 项目 · 合同",
+            "cost": "成本 · 预算 · 采购",
+            "documents": "资料 · 文档 · 审批",
+            "ai": "AI 助手数据问答"
+          }
+        },
+        "tekshot": {
+          "title": "想更智能地记录现场？",
+          "description": "摄像头、现场照片和 AI 识别，直接连接到项目。",
+          "points": {
+            "vision": "Vision · 摄像头 · 现场",
+            "studio": "Studio · 内容 · 报告",
+            "insight": "Insight · 市场",
+            "central": "Central · 汇总与运营"
+          }
+        }
+      },
+      "journey": {
+        "title": "从构思到工程落成，我们始终与你同行。",
+        "motto": "小工具，\n大价值！",
+        "steps": {
+          "idea": {
+            "title": "构思",
+            "detail": "规划 · 房屋朝向"
+          },
+          "design": {
+            "title": "设计",
+            "detail": "标准 · 资料检查"
+          },
+          "estimate": {
+            "title": "预算",
+            "detail": "估算 · 建筑价格"
+          },
+          "build": {
+            "title": "施工",
+            "detail": "现场日志"
+          },
+          "handover": {
+            "title": "竣工",
+            "detail": "资料 · 归档"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "家庭工具",
+      "title": "<accent>家庭</accent>工具",
+      "tagline": "小小事情，大大幸福。",
+      "description": "简单的小工具，帮你安排共同日程、提醒事项、计算家庭开支。让全家步调一致，每天都开心。",
+      "metaTitle": "免费家庭工具 | Chuyện Nhỏ",
+      "metaDescription": "家庭日历、农历公历、电费水费、多人分账、房屋朝向，以及即将推出的家庭工具。免费，数据保存在你的设备上。",
+      "caption": "今天家里\n有什么开心事？",
+      "searchPlaceholder": "搜索家庭工具…（例如：日历、提醒、电费）",
+      "highlights": {
+        "calendar": "安排共同日程",
+        "reminders": "提醒与关怀",
+        "spending": "计算家庭开支",
+        "together": "全家步调一致"
+      },
+      "trust": {
+        "free": {
+          "title": "免费",
+          "detail": "立即使用，没有隐藏费用"
+        },
+        "noInstall": {
+          "title": "无需安装",
+          "detail": "直接在浏览器中运行"
+        },
+        "private": {
+          "title": "私密",
+          "detail": "数据保存在你的设备上"
+        },
+        "devices": {
+          "title": "适用于",
+          "detail": "手机和电脑"
+        }
+      },
+      "subgroups": {
+        "lich": "日程与提醒",
+        "chi-tieu": "开支",
+        "nha-cua": "家居",
+        "hoc-tap": "学习",
+        "suc-khoe": "健康",
+        "ket-noi": "联系"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "家庭日历",
+          "subtitle": "今天家里有什么安排？",
+          "points": {
+            "schedules": "课程表、工作日程、家庭日程",
+            "contacts": "待办清单和紧急联系人",
+            "backup": "保存在本机，需要时备份",
+            "ics": "将日程导出到手机（ICS）"
+          }
+        },
+        "houseOrientation": {
+          "title": "房屋朝向与罗盘",
+          "subtitle": "选个好朝向，住得更安心",
+          "points": {
+            "direction": "确定房屋朝向、地块朝向",
+            "compass": "手机上的罗盘",
+            "lookup": "快速查询，简单易用"
+          }
+        }
+      },
+      "journey": {
+        "title": "为了每天都幸福的家庭",
+        "motto": "小小事情，\n成就大大幸福！",
+        "steps": {
+          "organized": {
+            "title": "安排更有序",
+            "detail": "时间、工作、生活"
+          },
+          "connected": {
+            "title": "关系更紧密",
+            "detail": "全家一起分享"
+          },
+          "caring": {
+            "title": "关怀更周到",
+            "detail": "健康、学习、生活"
+          },
+          "happy": {
+            "title": "生活更幸福",
+            "detail": "源于每天的小事"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "文档与 PDF",
+      "title": "<accent>文档与 PDF</accent>工具",
+      "tagline": "编辑。转换。合并拆分。签名。压缩。快速又免费。",
+      "description": "轻松处理文字、PDF 和文件照片。直接在浏览器中使用，无需安装，文件不离开设备。",
+      "metaTitle": "免费 PDF 工具：合并、拆分、压缩、OCR、签名 | Chuyện Nhỏ",
+      "metaDescription": "合并、拆分、压缩、编辑、签署 PDF，PDF 转 Word，以及越南语文字识别。免费，无需账号，文件直接在设备上处理。",
+      "caption": "文档工作\n现在真简单！",
+      "searchPlaceholder": "搜索文档工具…（例如：压缩 PDF、合并 PDF、OCR、签名）",
+      "highlights": {
+        "edit": "编辑 PDF 内容",
+        "mergeSplit": "合并、拆分、压缩",
+        "convert": "格式转换",
+        "sign": "签署文件",
+        "ocr": "OCR 文字识别",
+        "compare": "文档比较",
+        "redact": "遮盖敏感信息"
+      },
+      "trust": {
+        "free": {
+          "title": "免费",
+          "detail": "立即使用，没有隐藏费用"
+        },
+        "noInstall": {
+          "title": "无需安装",
+          "detail": "直接在浏览器中运行"
+        },
+        "secure": {
+          "title": "安全、私密",
+          "detail": "文件直接在设备上处理"
+        },
+        "formats": {
+          "title": "多种格式",
+          "detail": "PDF、Word、Excel、图片"
+        }
+      },
+      "subgroups": {
+        "sua": "编辑与整理",
+        "gop-tach": "合并、拆分、压缩",
+        "chuyen-doi": "转换",
+        "ocr": "OCR 与比较",
+        "ky-bao-mat": "签名与安全",
+        "soan-thao": "文书编写"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "用 ERPCons 更快处理文档",
+          "description": "在一个平台上管理资料、文档、合同、版本和审批。",
+          "points": {
+            "storage": "集中存储",
+            "permissions": "权限与共享",
+            "versions": "版本跟踪",
+            "linked": "关联工作与项目"
+          }
+        },
+        "tips": {
+          "title": "小贴士",
+          "items": {
+            "drop": "把文件拖放到工具区域。",
+            "options": "选择合适的选项。",
+            "download": "把结果下载到设备。",
+            "closeTab": "关闭标签页后，文件就会从浏览器中消失。"
+          }
+        }
+      },
+      "journey": {
+        "title": "从文档到工作，我们始终与你同行。",
+        "motto": "大事始于\n小事！",
+        "steps": {
+          "documents": {
+            "title": "文档",
+            "detail": "PDF、Word、Excel"
+          },
+          "storage": {
+            "title": "存储",
+            "detail": "集中管理资料"
+          },
+          "share": {
+            "title": "共享",
+            "detail": "与同事协作"
+          },
+          "approve": {
+            "title": "审批",
+            "detail": "快速高效"
+          },
+          "track": {
+            "title": "跟踪",
+            "detail": "版本、历史"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "关于 Chuyện Nhỏ",
+    "title": "关于 <accent>Chuyện Nhỏ</accent>",
+    "tagline": "小小的事情，成就大大的价值。",
+    "intro": "Chuyện Nhỏ 是 ERPCons & LPC 出品的免费工具集，帮你快速处理工作、建筑和日常生活中的小事。",
+    "introMore": "随用随取。简单。高效。无需安装，无需账号。",
+    "caption": "需要做件事，\n马上就用！",
+    "explore": "探索工具",
+    "guides": "查看指南",
+    "valuesLabel": "Chuyện Nhỏ 的承诺",
+    "values": {
+      "free": {
+        "title": "免费",
+        "detail": "立即使用，没有隐藏费用"
+      },
+      "noInstall": {
+        "title": "无需安装",
+        "detail": "直接在浏览器中运行"
+      },
+      "onDevice": {
+        "title": "优先在设备上处理",
+        "detail": "你的文件留在你的设备上"
+      },
+      "domains": {
+        "title": "覆盖多个领域",
+        "detail": "工作 · 建筑 · 家庭"
+      }
+    },
+    "ecosystemTitle": "一个生态系统，更多价值",
+    "ecosystemDescription": "Chuyện Nhỏ 是 ERPCons & LPC 产品生态系统的一部分。",
+    "products": {
+      "chuyen-nho": {
+        "role": "处理一件事",
+        "points": {
+          "free": "免费工具",
+          "noAccount": "立即使用，无需账号",
+          "noInstall": "无需安装",
+          "domains": "适用于工作、建筑和家庭"
+        }
+      },
+      "erpcons": {
+        "role": "管理工作、项目和企业",
+        "points": {
+          "work": "工作 · 合同 · 项目",
+          "cost": "成本 · 采购 · 仓库",
+          "finance": "财务 · 资料 · 人事",
+          "ai": "AI 助手数据问答"
+        }
+      },
+      "tekshot": {
+        "role": "为企业看、懂、做、学的 AI",
+        "points": {
+          "vision": "AI 摄像头 · TekShot Vision",
+          "pos": "POS 与销售 · TekShot POS",
+          "studio": "AI 营销 · TekShot Studio",
+          "research": "AI 调研 · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "从今天的小事\n到明天的大事。",
+    "story": "Chuyện Nhỏ 帮你从小事做起。当工作变得更复杂时，ERPCons 和 TekShot AI 就是你管理、连接和扩大价值的地方。",
+    "statsLabel": "数字看 Chuyện Nhỏ",
+    "stats": {
+      "tools": "个免费工具，立即可用",
+      "groups": "个工作类别：文档、图片、计算、建筑、家庭…"
+    }
+  },
+  "data": {
+    "trail": "数据处理方式",
+    "title": "我们如何<accent>处理数据</accent>",
+    "tagline": "你的文件留在你的设备上。",
+    "intro": "Chuyện Nhỏ 直接在浏览器中处理文件。本页清楚说明每个工具在哪里运行，以及真正发送到服务器的内容。",
+    "caption": "每个工具\n都公开透明！",
+    "points": {
+      "noCookie": "不使用 Cookie",
+      "noTracking": "无跟踪、广告工具",
+      "noAccount": "无需账号"
+    },
+    "flowLabel": "数据去向",
+    "columns": {
+      "device": {
+        "title": "直接在设备上处理",
+        "lead": "{{count}} 个工具可用",
+        "points": {
+          "tab": "PDF、图片、视频文件只在浏览器标签页中打开",
+          "download": "只有你点击下载时才会得到结果",
+          "model": "文字识别模型从本网站下载，不经过第三方"
+        }
+      },
+      "server": {
+        "title": "发送到我们的服务器",
+        "lead": "尽可能少",
+        "points": {
+          "visits": "你打开的工具名称，用于统计总使用次数。无 Cookie，不识别你的身份",
+          "ip": "IP 地址仅做单向哈希处理以防止自动提交，约 1 小时后自动删除",
+          "feedback": "反馈、建议只有在你勾选同意并点击“提交”后才会发送",
+          "soon": "{{count}} 个即将推出的工具需要在服务器上查询，其卡片会明确标注"
+        }
+      },
+      "local": {
+        "title": "保存在你的浏览器中",
+        "lead": "仅限此设备",
+        "points": {
+          "prefs": "最近使用的工具和浅色、深色主题",
+          "saved": "你自行保存的数据：家庭日历、笔记、简历草稿、记忆卡片",
+          "clear": "随时可在工具内或浏览器设置中删除"
+        }
+      }
+    },
+    "tableTitle": "每个工具在哪里处理",
+    "tableDescription": "此表直接根据工具目录生成，因此始终与每张卡片上的标签一致。",
+    "searchPlaceholder": "搜索工具…（例如：OCR、工资、二维码）",
+    "filterLabel": "按处理位置筛选",
+    "modelFilter": "需下载识别模型",
+    "head": {
+      "tool": "工具",
+      "group": "分类",
+      "where": "处理位置",
+      "note": "备注"
+    },
+    "modes": {
+      "device": "在设备上",
+      "model": "在设备上，需下载识别模型",
+      "server": "需要服务器"
+    },
+    "notes": {
+      "server": "即将推出。需要在服务器上查询数据；推出前会明确说明发送的数据。",
+      "model": "从本网站下载一次识别模型，之后直接在本机识别。",
+      "noFile": "直接在你的设备上运行，不发送数据。",
+      "device": "文件不离开设备。"
+    },
+    "emptyHint": "试试其他关键词，或取消筛选。",
+    "showAll": "查看全部",
+    "faqTitle": "关于数据的问题",
+    "faqDescription": "完整内容请阅读<link>隐私政策</link>。"
+  },
+  "guidesPage": {
+    "title": "使用<accent>指南</accent>",
+    "tagline": "步骤简短，与屏幕上的文字一致。",
+    "intro": "每篇只需几分钟阅读。按步骤操作就能完成，另附小贴士和注意事项。",
+    "caption": "读 2 分钟，\n马上上手！",
+    "listTitle": "指南列表",
+    "filterLabel": "按分类筛选",
+    "missingTitle": "没找到你需要的指南？",
+    "missing": "查看<faq>常见问题</faq>、<install>在设备上安装 Chuyện Nhỏ</install> 的方法，或通过<suggest>工具建议</suggest>提议新的指南。"
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Chuyện Nhỏ 指南",
+    "fallbackTitle": "指南 | Chuyện Nhỏ",
+    "minutes": "{{count}} 分钟",
+    "steps": "{{count}} 个步骤",
+    "open": "打开{{name}}",
+    "stepsTitle": "步骤",
+    "tipsTitle": "小贴士",
+    "notesTitle": "注意事项",
+    "asideLabel": "相关内容",
+    "toolsTitle": "文中用到的工具",
+    "othersTitle": "其他指南",
+    "all": "查看所有指南"
+  },
+  "install": {
+    "trail": "在设备上安装",
+    "title": "<accent>在设备上</accent>安装 Chuyện Nhỏ",
+    "tagline": "像应用一样使用。打开更快。每天更方便。",
+    "intro": "Chuyện Nhỏ 是一款网页应用：添加到主屏幕或程序坞后即可直接打开，无需在浏览器中重新查找。",
+    "caption": "安装一次，\n天天方便！",
+    "benefits": {
+      "fast": "从主屏幕快速打开",
+      "fullscreen": "全屏显示，没有地址栏",
+      "noStore": "无需进入应用商店",
+      "free": "免费"
+    },
+    "cta": "安装应用",
+    "ctaHint": "一键安装，无需应用商店。",
+    "installed": "Chuyện Nhỏ 已安装在此设备上。",
+    "chooseTitle": "选择你的设备",
+    "chooseDescription": "不同浏览器的安装按钮位置各不相同。",
+    "tabsLabel": "设备",
+    "panelTitle": "在 {{platform}}（{{browser}}）上安装",
+    "stepWithAddress": "{{detail}} 地址：{{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "用 Chrome 打开 Chuyện Nhỏ",
+            "detail": "在 Chrome 的地址栏中输入网址。"
+          },
+          "menu": {
+            "title": "点击菜单 ⋮（三个点）",
+            "detail": "在屏幕右上角。"
+          },
+          "add": {
+            "title": "选择“添加到主屏幕”",
+            "detail": "部分机型显示为“安装应用”。"
+          },
+          "install": {
+            "title": "点击“安装”",
+            "detail": "Chuyện Nhỏ 图标会出现在主屏幕上，像应用一样打开。"
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "用 Safari 打开 Chuyện Nhỏ",
+            "detail": "在 Safari 的地址栏中输入网址。"
+          },
+          "share": {
+            "title": "点击“分享”按钮",
+            "detail": "带向上箭头的方框。在新版 iOS 中，此按钮位于底部栏的 ⋯ 菜单中。"
+          },
+          "add": {
+            "title": "选择“添加到主屏幕”",
+            "detail": "如果没看到这一项，请向下滑动列表。"
+          },
+          "confirm": {
+            "title": "点击“添加”",
+            "detail": "在右上角。Chuyện Nhỏ 图标会出现在主屏幕上。"
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "用 Chrome 或 Edge 打开 Chuyện Nhỏ",
+            "detail": "浏览器需要是新版本。"
+          },
+          "icon": {
+            "title": "点击地址栏中的安装图标",
+            "detail": "带向下箭头的显示器图标，位于地址栏末尾。"
+          },
+          "menu": {
+            "title": "没看到图标？使用菜单",
+            "detail": "Chrome：菜单 ⋮，选择“投放、保存和分享”，再选“将页面作为应用安装”。Edge：菜单 ⋯，选择“应用”，再选“将此站点作为应用安装”。"
+          },
+          "install": {
+            "title": "点击“安装”",
+            "detail": "Chuyện Nhỏ 会在独立窗口中打开，并出现在“开始”菜单中。"
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "用 Safari 打开 Chuyện Nhỏ",
+            "detail": "需要 macOS Sonoma（14）或更高版本。"
+          },
+          "dock": {
+            "title": "打开“文件”菜单，选择“添加到程序坞”",
+            "detail": "在屏幕顶部的菜单栏中。"
+          },
+          "confirm": {
+            "title": "点击“添加”",
+            "detail": "Chuyện Nhỏ 会出现在程序坞中，并在独立窗口中打开。"
+          },
+          "chrome": {
+            "title": "使用 Chrome 或 Edge？",
+            "detail": "操作与 Windows 相同：点击地址栏末尾的安装图标。"
+          }
+        }
+      },
+      "other": {
+        "label": "其他浏览器",
+        "browser": "Firefox、Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "点击菜单 ≡，选择“添加页面至”，再选“主屏幕”。"
+          },
+          "firefox": {
+            "title": "电脑版 Firefox",
+            "detail": "暂不支持将网站安装为应用。你仍可在标签页中正常使用所有工具。"
+          },
+          "install": {
+            "title": "想像应用一样安装？",
+            "detail": "用 Chrome、Edge 或 Safari 打开 Chuyện Nhỏ，然后按照对应的标签页操作。"
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "没看到安装选项？",
+    "troubleshooting": {
+      "update": "把浏览器更新到最新版本。",
+      "address": "确认你打开的是 Chuyện Nhỏ 的正确网址，而不是转载的页面。",
+      "incognito": "无痕模式下无法安装。请在普通标签页中打开。",
+      "installed": "如果已经安装过，浏览器不会再显示安装选项。"
+    },
+    "stillStuck": "还是不行？请查看<link>帮助页面</link>或给我们发邮件。"
+  },
+  "support": {
+    "trail": "帮助",
+    "title": "我们能<accent>帮你什么</accent>？",
+    "intro": "在常见问题中快速找到答案，或给我们发邮件。",
+    "caption": "快速提问，\n简明解答！",
+    "searchLabel": "搜索问题",
+    "searchPlaceholder": "搜索问题…（例如：安装、保存文件、删除数据）",
+    "topicsTitle": "帮助主题",
+    "topics": {
+      "start": {
+        "title": "开始使用",
+        "detail": "分步指南"
+      },
+      "documents": {
+        "title": "文档与 PDF",
+        "detail": "合并、拆分、压缩、OCR"
+      },
+      "image": {
+        "title": "图片",
+        "detail": "压缩、调整尺寸、去背景"
+      },
+      "qr": {
+        "title": "二维码与条形码",
+        "detail": "生成、识别、批量打印"
+      },
+      "construction": {
+        "title": "建筑",
+        "detail": "估算、房屋朝向"
+      },
+      "family": {
+        "title": "家庭",
+        "detail": "日历、提醒、SOS"
+      },
+      "install": {
+        "title": "在设备上安装",
+        "detail": "Android、iPhone、电脑"
+      },
+      "privacy": {
+        "title": "数据与隐私",
+        "detail": "文件在哪里处理"
+      }
+    },
+    "faqTitle": "常见问题",
+    "faqCount": "{{count}} 个问题",
+    "faqCountFor": "“{{keyword}}”相关的 {{count}} 个问题",
+    "emptyTitle": "没有匹配的问题",
+    "emptyHint": "试试其他关键词，或发邮件直接咨询。",
+    "showAll": "查看所有问题",
+    "contactTitle": "仍需帮助？",
+    "mailTitle": "给我们发邮件",
+    "mailBody": "请写明工具名称、你使用的浏览器，并描述遇到的问题。请勿附带含有个人信息的文件。",
+    "suggestTitle": "反馈与工具建议",
+    "suggestBody": "你需要一个还没有的工具，或想对现有工具提出意见？提交建议后会获得回执编号以便跟进。",
+    "suggestAction": "提交建议"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Chuyện Nhỏ 是免费的吗？",
+        "answer": "是的。所有在线工具都免费，不限使用次数，也无需账号。当团队需要长期存储、共享和审批文档时，ERPCons 是为此提供的付费版本。"
+      },
+      "tai-khoan": {
+        "question": "我需要注册账号吗？",
+        "answer": "不需要。打开网站、选择工具即可使用。Chuyện Nhỏ 没有注册流程，不询问姓名、邮箱或电话号码。"
+      },
+      "luu-tep": {
+        "question": "我的文件会被上传或保存吗？",
+        "answer": "不会。你打开的 PDF、图片、视频文件只存在于浏览器标签页中，并直接在你的设备上处理。我们不会接收文件。关闭标签页后文件就会从浏览器中消失；只有你下载后才会得到结果。"
+      },
+      "may-chu": {
+        "question": "为什么有些工具标注“在服务器上处理”？",
+        "answer": "部分即将推出的工具需要大量数据或持续更新的数据，例如建筑价格或规划，因此必须在服务器上查询。它们的卡片会明确标注，让你事先知晓。目前可用的工具都在设备上处理。"
+      },
+      "cai-dat": {
+        "question": "如何在手机上安装 Chuyện Nhỏ？",
+        "answer": "用 Chrome（Android）或 Safari（iPhone、iPad）打开 Chuyện Nhỏ，然后选择“添加到主屏幕”。在电脑上，点击 Chrome 或 Edge 地址栏中的安装图标。"
+      },
+      "offline": {
+        "question": "没有网络时能使用 Chuyện Nhỏ 吗？",
+        "answer": "在联网状态下首次打开后，浏览器会缓存页面和工具代码，因此网络不稳定时通常仍能重新打开。文字识别、视频处理等较大的组件会在首次使用时下载，所以请在联网时先试用一次。"
+      },
+      "loi": {
+        "question": "遇到错误怎么办？",
+        "answer": "请刷新页面，并使用新版 Chrome、Edge 或 Safari。文件过大或设有密码也可能导致工具停止；工具会在屏幕上直接说明原因。如果仍有问题，请发送邮件至 {{email}}，附上工具名称、你使用的浏览器和错误描述。"
+      },
+      "an-toan": {
+        "question": "Chuyện Nhỏ 安全吗？",
+        "answer": "网站通过加密连接（HTTPS）运行，不使用 Cookie，不嵌入第三方广告或跟踪工具。你的文件不会离开设备。"
+      },
+      "thu-thap": {
+        "question": "Chuyện Nhỏ 会收集我的个人信息吗？",
+        "answer": "几乎不会。当你打开一个工具时，浏览器会报告工具名称，供我们统计总使用次数；IP 地址仅做单向哈希处理以防止自动提交，约 1 小时后自动删除。反馈内容只有在你勾选同意并点击“提交”后才会发送。"
+      },
+      "xoa-du-lieu": {
+        "question": "如何删除我的数据？",
+        "answer": "你在工具中保存的数据（家庭日历、笔记、简历草稿、记忆卡片）存放在你的设备上：可在工具内直接删除，或在浏览器设置中清除网站数据。如需删除已提交的反馈，请发送邮件至 {{email}} 并附上回执编号。"
+      },
+      "ben-thu-ba": {
+        "question": "数据会与第三方共享吗？",
+        "answer": "不会。我们不出售数据，也不为广告共享数据。唯有“语音转文字”工具使用浏览器自身的语音识别功能，因此音频会发送给浏览器提供商（例如 Chrome 对应 Google），不经过我们的服务器。"
+      },
+      "de-xuat": {
+        "question": "我想建议一个新工具？",
+        "answer": "非常欢迎。请使用“工具建议”：你会获得一个回执编号，之后可凭此查询审核进度。"
+      }
+    },
+    "links": {
+      "processingPerTool": "查看每个工具在哪里处理",
+      "installPerDevice": "各设备的安装指南",
+      "dataHandling": "我们如何处理数据",
+      "privacyPolicy": "阅读隐私政策",
+      "suggest": "打开工具建议"
+    }
+  },
+  "legalPage": {
+    "updated": "最后更新：{{date}}",
+    "toc": "目录",
+    "summary": "摘要"
+  }
+}

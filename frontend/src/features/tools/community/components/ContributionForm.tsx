@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { withBase } from '@/utils/url'
 
 interface Props { mode: 'idea' | 'regulation' }
-const statusLabels: Record<string, string> = { NEEDS_SOURCE: 'Cần bổ sung nguồn', NEEDS_REVIEW: 'Đang chờ kiểm tra', VERIFIED: 'Đã xác minh', REJECTED: 'Không được chấp nhận', APPROVED: 'Đã phê duyệt', PUBLISHED: 'Đã công bố', SUPERSEDED: 'Đã có bản mới', REVOKED: 'Đã thu hồi' }
+const STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
+const isKnownStatus = (status: string | undefined): status is (typeof STATUSES)[number] => (STATUSES as readonly (string | undefined)[]).includes(status)
 
 export function ContributionForm({ mode }: Props) {
+  const { t } = useTranslation('community')
+  const statusLabel = (status: string | undefined) => isKnownStatus(status) ? t(`contribution.status.${status}`) : String(status)
   const [title, setTitle] = useState('')
   const [detail, setDetail] = useState('')
   const [sourceUrl, setSourceUrl] = useState('')
@@ -28,42 +32,42 @@ export function ContributionForm({ mode }: Props) {
         sourceRefs: sourceUrl.trim() ? [{ url: sourceUrl.trim(), type: sourceType }] : [],
       }) })
       const value = await response.json() as { ok?: boolean; receiptCode?: string; status?: string; message?: string }
-      if (!response.ok || !value.ok || !value.receiptCode) { setMessage(value.message || 'Không gửi được đề xuất.'); return }
+      if (!response.ok || !value.ok || !value.receiptCode) { setMessage(value.message || t('contribution.sendFailed')); return }
       setReceipt(value.receiptCode); setLookup(value.receiptCode)
-      setMessage(`Đã nhận đề xuất: ${statusLabels[value.status || ''] || value.status}. Hãy giữ mã biên nhận để theo dõi.`)
-    } catch { setMessage('Không kết nối được máy chủ. Nội dung vẫn ở trang này.') }
+      setMessage(t('contribution.received', { status: statusLabel(value.status) }))
+    } catch { setMessage(t('contribution.offlineDraft')) }
     finally { setBusy(false) }
   }
   const check = async () => {
-    if (!/^[A-Za-z0-9_-]{32}$/.test(lookup)) { setLookupMessage('Mã biên nhận không hợp lệ.'); return }
+    if (!/^[A-Za-z0-9_-]{32}$/.test(lookup)) { setLookupMessage(t('contribution.invalidReceipt')); return }
     try {
       const response = await fetch(withBase(`/api/v1/contributions/receipt/${lookup}`), { cache: 'no-store' })
       const value = await response.json() as { contribution?: { status: string } | null }
       setLookupStatus(value.contribution?.status || '')
-      setLookupMessage(value.contribution ? `Trạng thái: ${statusLabels[value.contribution.status] || value.contribution.status}` : 'Không tìm thấy mã biên nhận.')
-    } catch { setLookupMessage('Không tra được trạng thái lúc này.') }
+      setLookupMessage(value.contribution ? t('contribution.statusLine', { status: statusLabel(value.contribution.status) }) : t('contribution.receiptNotFound'))
+    } catch { setLookupMessage(t('contribution.lookupFailed')) }
   }
   const addSource = async () => {
     try {
       const response = await fetch(withBase(`/api/v1/contributions/receipt/${lookup}/sources`), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sourceRefs: [{ url: sourceUrl.trim(), type: sourceType }] }) })
       const value = await response.json() as { ok?: boolean; message?: string }
-      if (!response.ok || !value.ok) { setLookupMessage(value.message || 'Không bổ sung được nguồn.'); return }
-      setLookupStatus('NEEDS_REVIEW'); setLookupMessage('Đã bổ sung nguồn. Đề xuất đang chờ kiểm tra.')
-    } catch { setLookupMessage('Không kết nối được máy chủ.') }
+      if (!response.ok || !value.ok) { setLookupMessage(value.message || t('contribution.addSourceFailed')); return }
+      setLookupStatus('NEEDS_REVIEW'); setLookupMessage(t('contribution.sourceAdded'))
+    } catch { setLookupMessage(t('contribution.offline')) }
   }
   return <div className="erp-tool-panel">
-    <h2 className="h5">{mode === 'idea' ? 'Đề xuất tiện ích' : 'Góp ý dữ liệu quy định'}</h2>
-    <p>{mode === 'idea' ? 'Mô tả vấn đề thực tế và công cụ bạn muốn có. Ý tưởng cần được kiểm tra trước khi công bố.' : 'Nêu nội dung cần sửa và đường dẫn nguồn. Đây là góp ý để người phụ trách kiểm tra, chưa thay đổi dữ liệu công cụ.'}</p>
-    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? 'Tên ý tưởng' : 'Văn bản hoặc chủ đề'}<Form.Control maxLength={100} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
-    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? 'Vấn đề và cách giải quyết đề xuất' : 'Nội dung cần đối chiếu / điều chỉnh'}<Form.Control as="textarea" rows={6} maxLength={4800} value={detail} onChange={(event) => setDetail(event.target.value)} /></label>
-    {mode === 'regulation' ? <><label className="erp-flow-field__label mt-3">URL nguồn HTTPS (nếu có)<Form.Control type="url" maxLength={2048} value={sourceUrl} onChange={(event) => setSourceUrl(event.target.value)} /></label><label className="erp-flow-field__label mt-3">Loại nguồn bạn đề xuất<Form.Select value={sourceType} onChange={(event) => setSourceType(event.target.value as typeof sourceType)}><option value="OFFICIAL_WEB">Trang cơ quan</option><option value="OFFICIAL_DOCUMENT">Văn bản chính thức</option><option value="OFFICIAL_API">API chính thức</option><option value="OTHER">Nguồn khác</option></Form.Select></label></> : null}
-    <Form.Check className="mt-3" checked={consent} onChange={(event) => setConsent(event.target.checked)} label="Tôi đã bỏ thông tin cá nhân, khóa bí mật và đồng ý gửi nội dung này để người vận hành kiểm tra" />
-    <Button className="mt-3" disabled={!consent || !title.trim() || !detail.trim() || busy || Boolean(receipt)} onClick={() => void submit()}>{busy ? 'Đang gửi…' : 'Gửi đề xuất'}</Button>
+    <h2 className="h5">{mode === 'idea' ? t('contribution.ideaTitle') : t('contribution.regulationTitle')}</h2>
+    <p>{mode === 'idea' ? t('contribution.ideaIntro') : t('contribution.regulationIntro')}</p>
+    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaName') : t('contribution.regulationTopic')}<Form.Control maxLength={100} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
+    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaDetail') : t('contribution.regulationDetail')}<Form.Control as="textarea" rows={6} maxLength={4800} value={detail} onChange={(event) => setDetail(event.target.value)} /></label>
+    {mode === 'regulation' ? <><label className="erp-flow-field__label mt-3">{t('contribution.sourceUrl')}<Form.Control type="url" maxLength={2048} value={sourceUrl} onChange={(event) => setSourceUrl(event.target.value)} /></label><label className="erp-flow-field__label mt-3">{t('contribution.sourceType')}<Form.Select value={sourceType} onChange={(event) => setSourceType(event.target.value as typeof sourceType)}><option value="OFFICIAL_WEB">{t('contribution.sourceTypes.OFFICIAL_WEB')}</option><option value="OFFICIAL_DOCUMENT">{t('contribution.sourceTypes.OFFICIAL_DOCUMENT')}</option><option value="OFFICIAL_API">{t('contribution.sourceTypes.OFFICIAL_API')}</option><option value="OTHER">{t('contribution.sourceTypes.OTHER')}</option></Form.Select></label></> : null}
+    <Form.Check className="mt-3" checked={consent} onChange={(event) => setConsent(event.target.checked)} label={t('contribution.consent')} />
+    <Button className="mt-3" disabled={!consent || !title.trim() || !detail.trim() || busy || Boolean(receipt)} onClick={() => void submit()}>{busy ? t('contribution.sending') : t('contribution.submit')}</Button>
     {message ? <p role="status" className="mt-3">{message}</p> : null}
-    {receipt ? <p><strong>Mã biên nhận:</strong> <code>{receipt}</code></p> : null}
+    {receipt ? <p><strong>{t('contribution.receipt')}</strong> <code>{receipt}</code></p> : null}
     <hr />
-    <h3 className="h6">Tra trạng thái</h3><div className="d-flex flex-wrap gap-2"><Form.Control style={{ maxWidth: 340 }} aria-label="Mã biên nhận" maxLength={32} value={lookup} onChange={(event) => setLookup(event.target.value)} /><Button variant="outline-secondary" onClick={() => void check()}>Tra cứu</Button></div>
+    <h3 className="h6">{t('contribution.lookupTitle')}</h3><div className="d-flex flex-wrap gap-2"><Form.Control style={{ maxWidth: 340 }} aria-label={t('contribution.receiptLabel')} maxLength={32} value={lookup} onChange={(event) => setLookup(event.target.value)} /><Button variant="outline-secondary" onClick={() => void check()}>{t('contribution.lookup')}</Button></div>
     {lookupMessage ? <p role="status" className="mt-2">{lookupMessage}</p> : null}
-    {mode === 'regulation' && lookupStatus === 'NEEDS_SOURCE' ? <><p>Nhập URL HTTPS ở ô nguồn phía trên, rồi bổ sung bằng mã biên nhận này.</p><Button variant="outline-primary" disabled={!sourceUrl.trim()} onClick={() => void addSource()}>Bổ sung nguồn</Button></> : null}
+    {mode === 'regulation' && lookupStatus === 'NEEDS_SOURCE' ? <><p>{t('contribution.needsSource')}</p><Button variant="outline-primary" disabled={!sourceUrl.trim()} onClick={() => void addSource()}>{t('contribution.addSource')}</Button></> : null}
   </div>
 }

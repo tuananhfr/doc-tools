@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import { parsePageRanges } from './page-ops'
 
 export type SplitMode = 'ranges' | 'every'
@@ -30,13 +31,13 @@ export function chunkPages(pageCount: number, size: number): number[][] {
 
 /** Các nhóm trang sẽ thành tệp riêng, hoặc lý do chưa tách được. */
 export function planSplit(input: SplitInput, pageCount: number): SplitPlan {
-  if (pageCount < 2) return { ok: false, message: 'Tệp chỉ có 1 trang — không có gì để tách.' }
+  if (pageCount < 2) return { ok: false, message: translate('pdf:splitPlan.onePage') }
   if (input.mode === 'ranges') {
-    if (input.ranges.trim() === '') return { ok: false, message: 'Nhập khoảng trang cần tách.' }
+    if (input.ranges.trim() === '') return { ok: false, message: translate('pdf:splitPlan.enterRanges') }
     return parsePageRanges(input.ranges, pageCount)
   }
-  if (!Number.isInteger(input.every) || input.every < 1) return { ok: false, message: 'Số trang mỗi tệp phải là số nguyên từ 1.' }
+  if (!Number.isInteger(input.every) || input.every < 1) return { ok: false, message: translate('pdf:splitPlan.everyInvalid') }
   // Bằng hoặc hơn số trang là ra đúng một tệp y như tệp gốc — người dùng tưởng đã tách.
-  if (input.every >= pageCount) return { ok: false, message: `Tệp có ${pageCount} trang — chọn số nhỏ hơn ${pageCount} để tách được.` }
+  if (input.every >= pageCount) return { ok: false, message: translate('pdf:splitPlan.everyTooBig', { count: pageCount }) }
   return { ok: true, groups: chunkPages(pageCount, input.every) }
 }

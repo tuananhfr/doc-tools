@@ -1,4 +1,5 @@
 import type { FlowNote, FlowResult, FlowStep, FlowTask } from '@/features/tools/hub'
+import { translate } from '@/i18n/runtime'
 import type { QuickItem } from '../hooks/useQuickSources'
 import { DEFAULT_PDF_OUTPUT, type ImageFormat, type ImageSheet, type PageRef, type PdfOutput, type SourceFile } from '../types/doc-tools.types'
 import { groupByOrigin } from '../utils/batch-groups'
@@ -23,6 +24,7 @@ import { loadPageText } from './text-layer'
 
 export type ConvertTarget = OfficeKind | ImageFormat
 export type OcrOutput = 'pdf' | 'text'
+export type OcrReviewStep = (items: QuickItem[], signal: AbortSignal) => Promise<void>
 
 export function contextOf(items: QuickItem[]): BuildContext {
   return { sources: Object.fromEntries(items.map((item) => [item.source.id, item.source])) }
@@ -49,30 +51,29 @@ export function carryoverNotes(report: CarryoverReport): FlowNote[] {
 function reducedNotes(reduced: number[], dpi: number): FlowNote[] {
   if (reduced.length === 0) return []
   const lowest = Math.round(Math.min(...reduced))
-  const what = reduced.length === 1 ? 'Một trang khổ lớn' : `${reduced.length} trang khổ lớn`
+  const vars = { lowest, dpi, megapixels: CANVAS_CAP.maxArea / 1_000_000 }
   return [
     {
       tone: 'warning',
-      text: `${what} chỉ xuất được ~${lowest} DPI (thay vì ${dpi}) — mỗi ảnh tối đa ${CANVAS_CAP.maxArea / 1_000_000} triệu điểm ảnh để trình duyệt không treo.`,
+      text: reduced.length === 1 ? translate('pdf:exportToast.reducedOne', vars) : translate('pdf:exportToast.reducedMany', { ...vars, count: reduced.length }),
     },
   ]
 }
 
 function withoutTextNotes(count: number, target: ConvertTarget, recognized: boolean): FlowNote[] {
   if (count === 0 || (target !== 'word' && target !== 'excel')) return []
-  const where = target === 'word' ? 'được chèn vào Word dạng ảnh' : 'nên để trống trong Excel'
-  if (recognized) return [{ tone: 'warning', text: `${count} trang nhận dạng không ra chữ ${where}.` }]
-  return [{ tone: 'warning', text: `${count} trang không có lớp chữ (ảnh, bản scan) ${where}. Bật "Nhận dạng chữ trên trang scan" rồi chuyển lại để lấy được chữ.` }]
+  if (recognized) return [{ tone: 'warning', text: translate(`pdf:quickTask.${target}Recognized`, { count }) }]
+  return [{ tone: 'warning', text: translate(`pdf:quickTask.${target}NoText`, { count }) }]
 }
 
 /** Ghép mọi tệp theo thứ tự đang xếp thành một PDF. */
 export function mergeTask(items: QuickItem[]): FlowTask {
   return async (step) => {
     const pages = pagesOf(items)
-    const built = await buildPdf(contextOf(items), pages, `${firstName(items)} - đã ghép`, DEFAULT_PDF_OUTPUT, step)
+    const built = await buildPdf(contextOf(items), pages, `${firstName(items)} - ${translate('pdf:file.merged')}`, DEFAULT_PDF_OUTPUT, step)
     return {
-      title: `Đã ghép ${items.length} tệp thành 1 PDF`,
-      output: output(built.file, `${pages.length} trang`),
+      title: translate('pdf:quickTask.mergeDone', { count: items.length }),
+      output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
       notes: carryoverNotes(built.carryover),
     }
   }
@@ -89,15 +90,15 @@ export function splitTask(item: QuickItem, groups: number[][]): FlowTask {
       const [part] = parts
       const built = await buildPdf(context, part.pages, `${name} - trang ${part.label}`, DEFAULT_PDF_OUTPUT, step)
       return {
-        title: `Đã lấy ${part.pages.length} trang ra tệp riêng`,
-        output: output(built.file, `${part.pages.length} trang`),
+        title: translate('pdf:quickTask.splitOne', { count: part.pages.length }),
+        output: output(built.file, translate('pdf:stage.pageCount', { count: part.pages.length })),
         notes: carryoverNotes(built.carryover),
       }
     }
     const built = await buildSplit(context, parts, name, DEFAULT_PDF_OUTPUT, step)
     return {
-      title: `Đã tách thành ${parts.length} tệp PDF`,
-      output: output(built.file, `${parts.length} tệp PDF`),
+      title: translate('pdf:quickTask.splitMany', { count: parts.length }),
+      output: output(built.file, translate('pdf:quickTask.pdfFiles', { count: parts.length })),
       notes: carryoverNotes(built.carryover),
     }
   }
@@ -113,15 +114,17 @@ function compressionNotes(stats: CompressionStats, before: number, after: number
   const change = sizeChange(before, after)
   const notes: FlowNote[] = []
   if (after < before && change) {
-    notes.push({ tone: 'success', text: `${sizes} (${change})${stats.recompressed ? `, nén lại ${stats.recompressed} ảnh` : ''}.` })
+    notes.push({
+      tone: 'success',
+      text: stats.recompressed
+        ? translate('pdf:quickTask.compressSavedImages', { sizes, change, count: stats.recompressed })
+        : translate('pdf:quickTask.compressSaved', { sizes, change }),
+    })
   } else {
-    const why =
-      stats.recompressed === 0
-        ? 'Tệp không có ảnh JPEG đủ lớn để nén lại — tệp toàn chữ hoặc ảnh PNG thường đã gọn sẵn.'
-        : 'Ảnh trong tệp đã được nén gần hết mức từ trước.'
-    notes.push({ tone: 'warning', text: `Tệp ra không nhẹ hơn tệp gốc (${sizes}). ${why} Nên giữ tệp gốc.` })
+    const why = stats.recompressed === 0 ? translate('pdf:quickTask.compressNoJpeg') : translate('pdf:quickTask.compressMaxed')
+    notes.push({ tone: 'warning', text: translate('pdf:quickTask.compressNotSmaller', { sizes, why }) })
   }
-  if (stats.flate) notes.push({ tone: 'info', text: `Giữ nguyên ${stats.flate} ảnh PNG / trắng đen để chữ không bị nhoè.` })
+  if (stats.flate) notes.push({ tone: 'info', text: translate('pdf:quickTask.flateKept', { count: stats.flate }) })
   return notes
 }
 
@@ -133,19 +136,20 @@ export function compressTask(items: QuickItem[], level: Exclude<Compression, 'no
     const before = items.reduce((sum, item) => sum + item.source.size, 0)
     const built =
       items.length === 1
-        ? await buildPdf(context, items[0].pages, `${firstName(items)} - đã nén`, pdfOutput, step)
-        : await buildBatch(context, groupByOrigin(pagesOf(items), context.sources), 'pdf', { output: pdfOutput, image: { format: 'jpeg', dpi: 150 } }, 'PDF đã nén', step)
+        ? await buildPdf(context, items[0].pages, `${firstName(items)} - ${translate('pdf:file.compressed')}`, pdfOutput, step)
+        : await buildBatch(context, groupByOrigin(pagesOf(items), context.sources), 'pdf', { output: pdfOutput, image: { format: 'jpeg', dpi: 150 } }, translate('pdf:file.compressedBatch'), step)
     const smaller = built.bytes < before
     return {
-      title: smaller ? 'Đã nén xong' : 'Không nén thêm được',
+      title: smaller ? translate('pdf:quickTask.compressDone') : translate('pdf:quickTask.compressNone'),
       tone: smaller ? 'success' : 'warning',
-      output: output(built.file, items.length === 1 ? `${items[0].pages.length} trang` : `${items.length} tệp PDF`),
+      output: output(
+        built.file,
+        items.length === 1 ? translate('pdf:stage.pageCount', { count: items[0].pages.length }) : translate('pdf:quickTask.pdfFiles', { count: items.length }),
+      ),
       notes: [...compressionNotes(built.compression, before, built.bytes), ...carryoverNotes(built.carryover)],
     }
   }
 }
-
-const TARGET_NAME: Record<ConvertTarget, string> = { word: 'Word', excel: 'Excel', jpeg: 'ảnh JPG', png: 'ảnh PNG' }
 
 /**
  * PDF → Word / Excel / ảnh từng trang; nhiều tệp thì mỗi tệp một kết quả, gói chung một .zip.
@@ -156,11 +160,13 @@ export function convertTask(items: QuickItem[], target: ConvertTarget, dpi: numb
   return async (step) => {
     const context = contextOf(items)
     const pages = pagesOf(items)
-    const title = `Đã chuyển sang ${TARGET_NAME[target]}`
+    const targetLabel = translate(`pdf:quickTask.target.${target}`)
+    const title = translate('pdf:quickTask.converted', { target: targetLabel })
+    const building = translate('pdf:quickTask.building', { target: targetLabel })
     const office = target === 'word' || target === 'excel'
     const found = office && ocr ? await recognizeMissing(context.sources, pages, pages.length, step) : null
     const build = found
-      ? { signal: step.signal, onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + pages.length, `Đang dựng tệp ${TARGET_NAME[target]}`) }
+      ? { signal: step.signal, onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + pages.length, building) }
       : step
     const officeNotes = (withoutText: number) => [...(found ? ocrNotes(found) : []), ...withoutTextNotes(withoutText, target, found !== null)]
 
@@ -170,23 +176,23 @@ export function convertTask(items: QuickItem[], target: ConvertTarget, dpi: numb
         groupByOrigin(pages, context.sources),
         office ? target : 'image',
         { output: DEFAULT_PDF_OUTPUT, image: { format: office ? 'jpeg' : target, dpi } },
-        `Chuyển sang ${TARGET_NAME[target]}`,
+        translate('pdf:file.convertedBatch', { target: targetLabel }),
         build,
       )
       return {
         title,
-        output: output(built.file, `${items.length} tệp`),
+        output: output(built.file, translate('pdf:quickTask.files', { count: items.length })),
         notes: [...(office ? officeNotes(built.withoutText) : []), ...reducedNotes(built.reduced, dpi)],
       }
     }
     if (office) {
       const built = await buildOffice(context, target, pages, firstName(items), build)
-      return { title, output: output(built.file, `${pages.length} trang`), notes: officeNotes(built.withoutText) }
+      return { title, output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })), notes: officeNotes(built.withoutText) }
     }
     const built = await buildImages(context, pages, target, dpi, firstName(items), step)
     return {
       title,
-      output: output(built.file, pages.length === 1 ? `${dpi} DPI` : `${pages.length} ảnh · ${dpi} DPI`),
+      output: output(built.file, pages.length === 1 ? `${dpi} DPI` : translate('pdf:quickTask.imagesDpi', { count: pages.length, dpi })),
       notes: reducedNotes(built.reduced, dpi),
     }
   }
@@ -216,8 +222,8 @@ async function recognizeMissing(sources: Record<string, SourceFile>, pages: Page
     const earlier = ocrText(source.id, page)
     if (earlier) {
       result.pages++
-      result.words += earlier.runs.length
-      if (earlier.runs.length === 0) result.blank++
+      result.words += earlier.ocr?.words.length ?? earlier.runs.length
+      if ((earlier.ocr?.words.length ?? earlier.runs.length) === 0) result.blank++
       continue
     }
     const text = await loadPageText(source, page).catch(() => ({ runs: [] }))
@@ -233,16 +239,16 @@ async function recognizeMissing(sources: Record<string, SourceFile>, pages: Page
   try {
     for (const [index, page] of targets.entries()) {
       step.signal.throwIfAborted()
-      const label = `Đang nhận dạng trang ${index + 1}/${targets.length}`
-      step.onProgress(index * OCR_WEIGHT, total, index === 0 ? 'Đang tải bộ nhận dạng tiếng Việt' : label)
+      const label = translate('pdf:quickTask.ocrReading', { page: index + 1, total: targets.length })
+      step.onProgress(index * OCR_WEIGHT, total, index === 0 ? translate('pdf:quickTask.ocrLoading') : label)
       const text = await recognizePage(sources[page.sourceId], page, ({ stage, progress }) => {
         if (stage === 'reading') step.onProgress((index + progress) * OCR_WEIGHT, total, label)
       })
       step.signal.throwIfAborted()
       saveOcrText(page.sourceId, page, text)
       result.pages++
-      result.words += text.runs.length
-      if (text.runs.length === 0) result.blank++
+      result.words += text.ocr?.words.length ?? text.runs.length
+      if ((text.ocr?.words.length ?? text.runs.length) === 0) result.blank++
     }
   } catch (error) {
     // Lỗi do chính việc giết worker không phải lỗi thật — để khung luồng thấy tín hiệu huỷ.
@@ -257,9 +263,9 @@ async function recognizeMissing(sources: Record<string, SourceFile>, pages: Page
 
 function ocrNotes(found: Recognized): FlowNote[] {
   const notes: FlowNote[] = []
-  if (found.pages > 0) notes.push({ tone: 'success', text: `Đã nhận dạng ${found.pages} trang (${found.words.toLocaleString('vi-VN')} từ).` })
-  if (found.native > 0) notes.push({ tone: 'info', text: `${found.native} trang đã có sẵn lớp chữ — giữ nguyên, không nhận dạng lại.` })
-  if (found.blank > 0) notes.push({ tone: 'warning', text: `${found.blank} trang không đọc được chữ nào — ảnh có thể quá mờ, quá nhỏ hoặc không có chữ.` })
+  if (found.pages > 0) notes.push({ tone: 'success', text: translate('pdf:quickTask.ocrDone', { count: found.pages, words: found.words }) })
+  if (found.native > 0) notes.push({ tone: 'info', text: translate('pdf:quickTask.ocrNative', { count: found.native }) })
+  if (found.blank > 0) notes.push({ tone: 'warning', text: translate('pdf:quickTask.ocrBlank', { count: found.blank }) })
   return notes
 }
 
@@ -278,22 +284,35 @@ async function textOf(items: QuickItem[]): Promise<string> {
  * Nhận dạng chữ tiếng Việt trên các trang chưa có lớp chữ. `pdf` = tệp PDF tìm,
  * chọn, chép được chữ (hình trang không đổi); `text` = văn bản thường.
  */
-export function ocrTask(items: QuickItem[], kind: OcrOutput): FlowTask {
+export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewStep): FlowTask {
   return async (step): Promise<FlowResult> => {
     const context = contextOf(items)
     const pages = pagesOf(items)
     const buildUnits = kind === 'pdf' ? pages.length : 0
     const found = await recognizeMissing(context.sources, pages, buildUnits, step)
-    if (found.words === 0 && found.native === 0) throw new Error('không đọc được chữ nào — ảnh có thể quá mờ, quá nhỏ hoặc không có chữ.')
+    if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+    if (review) {
+      step.onProgress(0, 0, translate('pdf:ocrReview.title'))
+      await review(items, step.signal)
+      step.signal.throwIfAborted()
+      const recognized = pages.map(page => ocrText(page.sourceId, page)).filter(text => text !== undefined)
+      found.words = recognized.reduce((count, text) => count + text.runs.length, 0)
+      found.blank = recognized.filter(text => text.runs.length === 0).length
+      if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+    }
     const notes = ocrNotes(found)
 
     if (kind === 'text') {
       const text = await textOf(items)
       step.signal.throwIfAborted()
-      const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${items.length} tệp`
+      const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${translate('pdf:file.fileCount', { count: items.length })}`
       return {
-        title: 'Đã lấy chữ xong',
-        output: { name: `${name}.txt`, blob: new Blob([text], { type: 'text/plain;charset=utf-8' }), detail: `${text.length.toLocaleString('vi-VN')} ký tự` },
+        title: translate('pdf:quickTask.textDone'),
+        output: {
+          name: `${name}.txt`,
+          blob: new Blob([text], { type: 'text/plain;charset=utf-8' }),
+          detail: translate('pdf:quickTask.chars', { count: text.length }),
+        },
         notes,
         text,
       }
@@ -301,21 +320,29 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput): FlowTask {
 
     const build = {
       signal: step.signal,
-      onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + buildUnits, 'Đang dựng tệp PDF'),
+      onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + buildUnits, translate('pdf:quickTask.buildingPdf')),
     }
     if (items.length === 1) {
       const built = await buildPdf(context, pages, `${firstName(items)} - OCR`, DEFAULT_PDF_OUTPUT, build)
-      return { title: 'Đã tạo PDF tìm được chữ', output: output(built.file, `${pages.length} trang`), notes: [...notes, ...carryoverNotes(built.carryover)] }
+      return {
+        title: translate('pdf:quickTask.searchablePdf'),
+        output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
+        notes: [...notes, ...carryoverNotes(built.carryover)],
+      }
     }
     const built = await buildBatch(
       context,
       groupByOrigin(pages, context.sources),
       'pdf',
       { output: DEFAULT_PDF_OUTPUT, image: { format: 'jpeg', dpi: 150 } },
-      'PDF đã OCR',
+      translate('pdf:file.ocrBatch'),
       build,
     )
-    return { title: 'Đã tạo PDF tìm được chữ', output: output(built.file, `${items.length} tệp PDF`), notes: [...notes, ...carryoverNotes(built.carryover)] }
+    return {
+      title: translate('pdf:quickTask.searchablePdf'),
+      output: output(built.file, translate('pdf:quickTask.pdfFiles', { count: items.length })),
+      notes: [...notes, ...carryoverNotes(built.carryover)],
+    }
   }
 }
 
@@ -323,11 +350,11 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput): FlowTask {
 export function imagesToPdfTask(items: QuickItem[], sheet: ImageSheet): FlowTask {
   return async (step) => {
     const pages = isDefaultSheet(sheet) ? pagesOf(items) : pagesOf(items).map((page) => ({ ...page, sheet }))
-    const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${items.length} ảnh`
+    const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${translate('pdf:file.imageCount', { count: items.length })}`
     const built = await buildPdf(contextOf(items), pages, name, DEFAULT_PDF_OUTPUT, step)
     return {
-      title: `Đã tạo PDF ${pages.length} trang`,
-      output: output(built.file, `${pages.length} trang`),
+      title: translate('pdf:quickTask.pdfPages', { count: pages.length }),
+      output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
       notes: [],
     }
   }

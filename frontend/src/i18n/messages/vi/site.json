@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "Cam kết sử dụng",
+    "items": {
+      "free": {
+        "title": "Hoàn toàn miễn phí",
+        "description": "Dùng ngay, không chi phí ẩn"
+      },
+      "noAccount": {
+        "title": "Không cần tài khoản",
+        "description": "Vào trang, chọn công cụ và dùng"
+      },
+      "noInstall": {
+        "title": "Không cần cài đặt",
+        "description": "Chạy ngay trong trình duyệt"
+      },
+      "onDevice": {
+        "title": "Tệp ở trên thiết bị",
+        "description": "Tệp của bạn không tải lên máy chủ"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — công cụ miễn phí",
+    "description": "Công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí. Xử lý trên máy bạn, tệp không tải lên."
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "Về Chuyện Nhỏ | Công cụ miễn phí từ ERPCons & LPC",
+      "description": "Chuyện Nhỏ là bộ công cụ miễn phí từ ERPCons & LPC, giúp xử lý nhanh việc nhỏ trong công việc, xây dựng và cuộc sống hằng ngày."
+    },
+    "ho-tro": {
+      "title": "Hỗ trợ & câu hỏi thường gặp | Chuyện Nhỏ",
+      "description": "Câu trả lời cho những thắc mắc thường gặp khi dùng Chuyện Nhỏ, và cách liên hệ với chúng tôi."
+    },
+    "xu-ly-du-lieu": {
+      "title": "Cách chúng tôi xử lý dữ liệu | Chuyện Nhỏ",
+      "description": "Công cụ nào xử lý ngay trên thiết bị, công cụ nào cần máy chủ, và dữ liệu nào được lưu. Minh bạch cho từng công cụ."
+    },
+    "cai-dat": {
+      "title": "Cài Chuyện Nhỏ trên điện thoại và máy tính | Chuyện Nhỏ",
+      "description": "Thêm Chuyện Nhỏ vào màn hình chính Android, iPhone, iPad hoặc cài trên Windows, macOS để mở nhanh như một ứng dụng."
+    },
+    "huong-dan": {
+      "title": "Hướng dẫn sử dụng | Chuyện Nhỏ",
+      "description": "Hướng dẫn từng bước cho các công cụ hay dùng: nén PDF, scan ảnh sang PDF, OCR, mã QR, hướng nhà, khái toán, Lịch Gia Đình."
+    },
+    "dieu-khoan": {
+      "title": "Điều khoản sử dụng | Chuyện Nhỏ",
+      "description": "Điều khoản sử dụng bộ công cụ miễn phí Chuyện Nhỏ."
+    },
+    "quyen-rieng-tu": {
+      "title": "Chính sách quyền riêng tư | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ thu thập, sử dụng và bảo vệ dữ liệu cá nhân như thế nào, theo Luật Bảo vệ dữ liệu cá nhân 2025."
+    }
+  },
+  "nav": {
+    "tools": "Công cụ",
+    "construction": "Xây dựng",
+    "family": "Gia đình",
+    "guides": "Hướng dẫn",
+    "about": "Về chúng tôi"
+  },
+  "header": {
+    "skipLink": "Đi tới nội dung",
+    "mainNav": "Điều hướng chính",
+    "search": "Tìm công cụ",
+    "openMenu": "Mở menu",
+    "mobileNav": "Điều hướng trên điện thoại"
+  },
+  "footer": {
+    "madeBy": "Một sản phẩm từ <link>ERPCons & LPC</link>",
+    "navLabel": "Điều hướng cuối trang",
+    "motto": "Đồng hành cùng bạn.",
+    "links": {
+      "about": "Giới thiệu",
+      "guides": "Hướng dẫn",
+      "data": "Xử lý dữ liệu",
+      "support": "Hỗ trợ",
+      "terms": "Điều khoản",
+      "privacy": "Quyền riêng tư"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ, trang chủ"
+  },
+  "share": {
+    "button": "Chia sẻ",
+    "title": "Chia sẻ liên kết",
+    "description": "Gửi trang này cho bạn bè hoặc đồng nghiệp.",
+    "urlLabel": "Liên kết trang đang mở",
+    "copy": "Sao chép liên kết",
+    "native": "Chia sẻ qua ứng dụng",
+    "copied": "Đã sao chép liên kết.",
+    "copyFailed": "Không sao chép được. Hãy chọn và sao chép liên kết bên trên.",
+    "shareFailed": "Không mở được bảng chia sẻ. Hãy sao chép liên kết để gửi.",
+    "unsupported": "Trình duyệt này chưa hỗ trợ chia sẻ qua ứng dụng. Bạn có thể sao chép liên kết để gửi qua Zalo hoặc ứng dụng khác."
+  },
+  "breadcrumb": {
+    "label": "Bạn đang ở",
+    "home": "Trang chủ",
+    "tools": "Công cụ",
+    "guides": "Hướng dẫn"
+  },
+  "search": {
+    "label": "Tìm công cụ",
+    "placeholder": "Tìm công cụ… (ví dụ: ghép PDF, QR, OCR)",
+    "clear": "Xoá từ khoá",
+    "submit": "Tìm ngay"
+  },
+  "filters": {
+    "all": "Tất cả"
+  },
+  "results": {
+    "count": "{{count}} công cụ",
+    "countFor": "{{count}} công cụ cho “{{keyword}}”",
+    "empty": "Không tìm thấy công cụ nào",
+    "emptyHint": "Thử từ khoá khác hoặc bỏ bớt bộ lọc.",
+    "showAll": "Xem tất cả công cụ"
+  },
+  "toolCard": {
+    "useNow": "Dùng ngay",
+    "soon": "Sắp có"
+  },
+  "processing": {
+    "server": "Xử lý trên máy chủ",
+    "device": "Trên thiết bị"
+  },
+  "recent": {
+    "title": "Dùng gần đây"
+  },
+  "products": {
+    "learnMore": "Tìm hiểu {{product}}"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | Công cụ miễn phí. Cần là dùng.",
+    "captionStart": "Những việc nhỏ\ntạo nên giá trị lớn.",
+    "tagline": "Công cụ miễn phí. Cần là dùng.",
+    "description": "Những tiện ích đơn giản, thiết thực cho công việc hằng ngày.",
+    "promisesLabel": "Sử dụng ngay",
+    "promises": {
+      "noAccount": "Không cần tài khoản",
+      "noInstall": "Không cần cài đặt",
+      "onDevice": "Tệp xử lý trên thiết bị"
+    },
+    "captionEnd": "Đơn giản hôm nay.\nBền vững ngày mai.",
+    "catalogTitle": "Bạn cần làm gì hôm nay?",
+    "featuredLabel": "Công cụ hay dùng",
+    "resultsLabel": "Công cụ"
+  },
+  "directory": {
+    "metaTitle": "Tất cả công cụ miễn phí | Chuyện Nhỏ",
+    "metaDescription": "Tất cả công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí của Chuyện Nhỏ. Không cần tài khoản, xử lý ngay trên thiết bị.",
+    "title": "Tất cả công cụ",
+    "lead": "{{count}} công cụ miễn phí. Chọn việc bạn cần, dùng ngay trong trình duyệt.",
+    "catalogLabel": "Danh mục công cụ"
+  },
+  "ecosystem": {
+    "title": "Khi một công cụ là chưa đủ…",
+    "description": "Từ những việc nhỏ hôm nay, đến công việc lớn hơn ngày mai.",
+    "erpcons": {
+      "heading": "Quản lý công việc, dự án và doanh nghiệp xây dựng trên một nền tảng.",
+      "modules": "Công việc · Hợp đồng · Dự án\nChi phí · Mua hàng · Kho · Tài chính",
+      "trial": "Dùng thử"
+    },
+    "tekshot": {
+      "heading": "Nền tảng AI & Software giúp doanh nghiệp nhìn thấy, hiểu sâu, tự động hóa và tăng trưởng.",
+      "modules": "Camera AI · Bán hàng & POS · Marketing AI\nResearch AI · Một nền tảng, mọi dữ liệu",
+      "trial": "Dùng thử miễn phí",
+      "demo": "Xem demo"
+    },
+    "storyTitle": "Cùng một hệ sinh thái. Nhiều giá trị hơn.",
+    "story": "Chuyện Nhỏ là bộ công cụ miễn phí từ ERPCons & LPC, giúp bạn xử lý nhanh những việc nhỏ hằng ngày.",
+    "steps": {
+      "chuyenNho": "Cần một việc nhỏ.\nDùng ngay.",
+      "erpcons": "Quản lý công việc,\ndự án và doanh nghiệp.",
+      "tekshot": "AI nhìn, hiểu, làm và học\ncho doanh nghiệp."
+    },
+    "motto": "Làm việc nhẹ hơn.\nMỗi ngày tốt hơn."
+  },
+  "hub": {
+    "highlightsLabel": "Trong nhóm này",
+    "listLabel": "Danh sách {{label}}",
+    "subgroupFilter": "Lọc theo nhóm con",
+    "emptyHint": "Thử từ khoá khác hoặc bỏ lọc nhóm con.",
+    "showGroup": "Xem cả nhóm",
+    "asideLabel": "Gợi ý thêm",
+    "privacy": {
+      "title": "Tệp của bạn được tôn trọng",
+      "description": "Phần lớn công cụ xử lý ngay trên thiết bị. Công cụ nào cần máy chủ đều ghi rõ trên thẻ.",
+      "link": "Xem cách chúng tôi xử lý dữ liệu"
+    },
+    "support": {
+      "title": "Cần hỗ trợ?",
+      "description": "Xem hướng dẫn từng bước hoặc gửi thư cho chúng tôi.",
+      "guides": "Xem hướng dẫn"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "Công cụ xây dựng",
+      "title": "Công cụ <accent>xây dựng</accent>",
+      "tagline": "Tra cứu. Tính toán. Kiểm tra. Đơn giản mà hiệu quả.",
+      "description": "Bộ công cụ miễn phí cho kỹ sư, kiến trúc sư, nhà thầu và chủ nhà, từ lúc lên ý tưởng đến khi thi công và hoàn công.",
+      "metaTitle": "Công cụ xây dựng miễn phí | Chuyện Nhỏ",
+      "metaDescription": "Khái toán chi phí xây nhà, xác định hướng nhà, đo kích thước trên ảnh và các công cụ tra cứu xây dựng sắp ra mắt. Miễn phí, không cần tài khoản.",
+      "caption": "Công việc xây dựng\nđơn giản hơn mỗi ngày!",
+      "searchPlaceholder": "Tìm công cụ xây dựng… (ví dụ: khái toán, hướng nhà, quy hoạch)",
+      "highlights": {
+        "estimate": "Khái toán",
+        "planning": "Quy hoạch",
+        "prices": "Giá xây dựng",
+        "legal": "Pháp lý",
+        "standards": "Tiêu chuẩn",
+        "dossier": "Kiểm hồ sơ",
+        "site": "Hiện trường"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Dùng ngay, không chi phí ẩn"
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Chạy ngay trên trình duyệt"
+        },
+        "onDevice": {
+          "title": "Tính trên máy bạn",
+          "detail": "Số liệu nhập vào không rời thiết bị"
+        },
+        "practical": {
+          "title": "Cho việc thực tế",
+          "detail": "Từ chủ nhà đến nhà thầu"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "Khái toán & tính toán",
+        "quy-hoach": "Quy hoạch & hướng nhà",
+        "gia-vat-lieu": "Giá & vật liệu",
+        "phap-ly": "Pháp lý & tiêu chuẩn",
+        "ban-ve": "Bản vẽ & hồ sơ",
+        "hien-truong": "Hiện trường"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Bạn cần nhiều hơn một công cụ?",
+          "description": "Quản lý toàn bộ dự án, chi phí, hợp đồng, hồ sơ và mua hàng trên một nền tảng.",
+          "points": {
+            "work": "Công việc · Dự án · Hợp đồng",
+            "cost": "Chi phí · Ngân sách · Mua hàng",
+            "documents": "Hồ sơ · Tài liệu · Phê duyệt",
+            "ai": "Trợ lý AI hỏi đáp dữ liệu"
+          }
+        },
+        "tekshot": {
+          "title": "Ghi nhận hiện trường thông minh hơn?",
+          "description": "Camera, ảnh hiện trường và nhận diện AI, kết nối thẳng với dự án.",
+          "points": {
+            "vision": "Vision · Camera · Hiện trường",
+            "studio": "Studio · Nội dung · Báo cáo",
+            "insight": "Insight · Thị trường",
+            "central": "Central · Tổng hợp & vận hành"
+          }
+        }
+      },
+      "journey": {
+        "title": "Từ ý tưởng đến công trình. Chúng tôi luôn đồng hành.",
+        "motto": "Công cụ nhỏ.\nGiá trị lớn!",
+        "steps": {
+          "idea": {
+            "title": "Ý tưởng",
+            "detail": "Quy hoạch · Hướng nhà"
+          },
+          "design": {
+            "title": "Thiết kế",
+            "detail": "Tiêu chuẩn · Kiểm hồ sơ"
+          },
+          "estimate": {
+            "title": "Dự toán",
+            "detail": "Khái toán · Giá xây dựng"
+          },
+          "build": {
+            "title": "Thi công",
+            "detail": "Nhật ký hiện trường"
+          },
+          "handover": {
+            "title": "Hoàn công",
+            "detail": "Hồ sơ · Lưu trữ"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "Công cụ gia đình",
+      "title": "Công cụ cho <accent>gia đình</accent>",
+      "tagline": "Những việc nhỏ, hạnh phúc lớn.",
+      "description": "Tiện ích đơn giản giúp sắp xếp lịch chung, nhắc việc, tính chi tiêu trong nhà. Để cả nhà cùng nhịp sống, cùng vui mỗi ngày.",
+      "metaTitle": "Công cụ cho gia đình miễn phí | Chuyện Nhỏ",
+      "metaDescription": "Lịch Gia Đình, lịch âm dương, tiền điện nước, chia tiền nhóm, hướng nhà và các tiện ích gia đình sắp ra mắt. Miễn phí, dữ liệu lưu trên thiết bị của bạn.",
+      "caption": "Hôm nay nhà mình\ncó gì vui?",
+      "searchPlaceholder": "Tìm công cụ gia đình… (ví dụ: lịch, nhắc việc, tiền điện)",
+      "highlights": {
+        "calendar": "Sắp xếp lịch chung",
+        "reminders": "Nhắc việc & quan tâm",
+        "spending": "Tính chi tiêu trong nhà",
+        "together": "Cả nhà cùng nhịp sống"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Dùng ngay, không chi phí ẩn"
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Chạy ngay trên trình duyệt"
+        },
+        "private": {
+          "title": "Riêng tư",
+          "detail": "Dữ liệu lưu trên thiết bị của bạn"
+        },
+        "devices": {
+          "title": "Dùng tốt trên",
+          "detail": "Điện thoại và máy tính"
+        }
+      },
+      "subgroups": {
+        "lich": "Lịch & nhắc việc",
+        "chi-tieu": "Chi tiêu",
+        "nha-cua": "Nhà cửa",
+        "hoc-tap": "Học tập",
+        "suc-khoe": "Sức khỏe",
+        "ket-noi": "Kết nối"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "Lịch Gia Đình",
+          "subtitle": "Hôm nay nhà mình có gì?",
+          "points": {
+            "schedules": "Lịch học, lịch làm việc, lịch gia đình",
+            "contacts": "Danh sách việc và liên hệ khẩn cấp",
+            "backup": "Lưu trên máy, sao lưu khi cần",
+            "ics": "Xuất lịch sang điện thoại (ICS)"
+          }
+        },
+        "houseOrientation": {
+          "title": "Hướng nhà & la bàn",
+          "subtitle": "Chọn hướng tốt, an tâm hơn",
+          "points": {
+            "direction": "Xác định hướng nhà, hướng đất",
+            "compass": "La bàn ngay trên điện thoại",
+            "lookup": "Tra cứu nhanh, dễ dùng"
+          }
+        }
+      },
+      "journey": {
+        "title": "Vì một gia đình hạnh phúc mỗi ngày",
+        "motto": "Chuyện nhỏ.\nTạo hạnh phúc lớn!",
+        "steps": {
+          "organized": {
+            "title": "Sắp xếp tốt hơn",
+            "detail": "Thời gian, công việc, cuộc sống"
+          },
+          "connected": {
+            "title": "Gắn kết hơn",
+            "detail": "Cả nhà cùng chia sẻ"
+          },
+          "caring": {
+            "title": "Quan tâm hơn",
+            "detail": "Sức khỏe, học tập, sinh hoạt"
+          },
+          "happy": {
+            "title": "Hạnh phúc hơn",
+            "detail": "Từ những điều nhỏ mỗi ngày"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "Tài liệu & PDF",
+      "title": "Công cụ <accent>Tài liệu & PDF</accent>",
+      "tagline": "Sửa. Chuyển đổi. Gộp tách. Ký. Nén. Nhanh và miễn phí.",
+      "description": "Xử lý văn bản, PDF và ảnh chụp tài liệu một cách đơn giản. Dùng ngay trên trình duyệt, không cần cài đặt, tệp không rời thiết bị.",
+      "metaTitle": "Công cụ PDF miễn phí: ghép, tách, nén, OCR, ký | Chuyện Nhỏ",
+      "metaDescription": "Ghép, tách, nén, chỉnh sửa, ký, chuyển PDF sang Word và nhận dạng chữ tiếng Việt. Miễn phí, không cần tài khoản, tệp xử lý ngay trên thiết bị.",
+      "caption": "Việc tài liệu\ngiờ thật đơn giản!",
+      "searchPlaceholder": "Tìm công cụ tài liệu… (ví dụ: nén PDF, ghép PDF, OCR, ký)",
+      "highlights": {
+        "edit": "Sửa nội dung PDF",
+        "mergeSplit": "Gộp, tách, nén",
+        "convert": "Chuyển đổi định dạng",
+        "sign": "Ký tài liệu",
+        "ocr": "OCR văn bản",
+        "compare": "So sánh tài liệu",
+        "redact": "Che thông tin nhạy cảm"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Dùng ngay, không chi phí ẩn"
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Chạy ngay trên trình duyệt"
+        },
+        "secure": {
+          "title": "Bảo mật, riêng tư",
+          "detail": "Tệp xử lý ngay trên thiết bị"
+        },
+        "formats": {
+          "title": "Nhiều định dạng",
+          "detail": "PDF, Word, Excel, ảnh"
+        }
+      },
+      "subgroups": {
+        "sua": "Sửa & sắp xếp",
+        "gop-tach": "Gộp, tách, nén",
+        "chuyen-doi": "Chuyển đổi",
+        "ocr": "OCR & so sánh",
+        "ky-bao-mat": "Ký & bảo mật",
+        "soan-thao": "Soạn văn bản"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "Xử lý tài liệu nhanh hơn với ERPCons",
+          "description": "Quản lý hồ sơ, tài liệu, hợp đồng, phiên bản và phê duyệt trên một nền tảng.",
+          "points": {
+            "storage": "Lưu trữ tập trung",
+            "permissions": "Phân quyền & chia sẻ",
+            "versions": "Theo dõi phiên bản",
+            "linked": "Gắn với công việc & dự án"
+          }
+        },
+        "tips": {
+          "title": "Mẹo nhanh",
+          "items": {
+            "drop": "Kéo thả tệp vào vùng công cụ.",
+            "options": "Chọn tùy chọn phù hợp.",
+            "download": "Tải kết quả về máy.",
+            "closeTab": "Đóng tab là tệp biến mất khỏi trình duyệt."
+          }
+        }
+      },
+      "journey": {
+        "title": "Từ tài liệu đến công việc. Chúng tôi luôn đồng hành.",
+        "motto": "Việc lớn bắt đầu\ntừ những việc nhỏ!",
+        "steps": {
+          "documents": {
+            "title": "Tài liệu",
+            "detail": "PDF, Word, Excel"
+          },
+          "storage": {
+            "title": "Lưu trữ",
+            "detail": "Hồ sơ tập trung"
+          },
+          "share": {
+            "title": "Chia sẻ",
+            "detail": "Với đồng nghiệp"
+          },
+          "approve": {
+            "title": "Phê duyệt",
+            "detail": "Nhanh chóng"
+          },
+          "track": {
+            "title": "Theo dõi",
+            "detail": "Phiên bản, lịch sử"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "Về Chuyện Nhỏ",
+    "title": "Về <accent>Chuyện Nhỏ</accent>",
+    "tagline": "Những việc nhỏ tạo nên giá trị lớn.",
+    "intro": "Chuyện Nhỏ là bộ công cụ miễn phí từ ERPCons & LPC, giúp bạn xử lý nhanh những việc nhỏ trong công việc, xây dựng và cuộc sống hằng ngày.",
+    "introMore": "Cần là dùng. Đơn giản. Hiệu quả. Không cần cài đặt, không cần tài khoản.",
+    "caption": "Cần một việc,\ndùng ngay!",
+    "explore": "Khám phá công cụ",
+    "guides": "Xem hướng dẫn",
+    "valuesLabel": "Điều Chuyện Nhỏ cam kết",
+    "values": {
+      "free": {
+        "title": "Miễn phí",
+        "detail": "Dùng ngay, không chi phí ẩn"
+      },
+      "noInstall": {
+        "title": "Không cần cài đặt",
+        "detail": "Chạy ngay trên trình duyệt"
+      },
+      "onDevice": {
+        "title": "Ưu tiên xử lý trên thiết bị",
+        "detail": "Tệp của bạn ở lại trên máy"
+      },
+      "domains": {
+        "title": "Đa lĩnh vực",
+        "detail": "Công việc · Xây dựng · Gia đình"
+      }
+    },
+    "ecosystemTitle": "Một hệ sinh thái, nhiều giá trị hơn",
+    "ecosystemDescription": "Chuyện Nhỏ là một phần trong hệ sinh thái sản phẩm của ERPCons & LPC.",
+    "products": {
+      "chuyen-nho": {
+        "role": "Xử lý một việc",
+        "points": {
+          "free": "Công cụ miễn phí",
+          "noAccount": "Dùng ngay, không cần tài khoản",
+          "noInstall": "Không cần cài đặt",
+          "domains": "Cho công việc, xây dựng và gia đình"
+        }
+      },
+      "erpcons": {
+        "role": "Quản lý công việc, dự án và doanh nghiệp",
+        "points": {
+          "work": "Công việc · Hợp đồng · Dự án",
+          "cost": "Chi phí · Mua hàng · Kho",
+          "finance": "Tài chính · Hồ sơ · Nhân sự",
+          "ai": "Trợ lý AI hỏi đáp dữ liệu"
+        }
+      },
+      "tekshot": {
+        "role": "AI nhìn, hiểu, làm và học cho doanh nghiệp",
+        "points": {
+          "vision": "Camera AI · TekShot Vision",
+          "pos": "POS & Bán hàng · TekShot POS",
+          "studio": "Marketing AI · TekShot Studio",
+          "research": "Research AI · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "Từ những việc nhỏ hôm nay\nđến những công việc lớn ngày mai.",
+    "story": "Chuyện Nhỏ giúp bạn bắt đầu từ những việc nhỏ. Khi công việc phức tạp hơn, ERPCons và TekShot AI là nơi bạn quản lý, kết nối và mở rộng giá trị.",
+    "statsLabel": "Chuyện Nhỏ bằng con số",
+    "stats": {
+      "tools": "công cụ miễn phí, dùng ngay",
+      "groups": "nhóm việc: tài liệu, ảnh, tính toán, xây dựng, gia đình…"
+    }
+  },
+  "data": {
+    "trail": "Cách xử lý dữ liệu",
+    "title": "Cách chúng tôi <accent>xử lý dữ liệu</accent>",
+    "tagline": "Tệp của bạn ở lại trên máy bạn.",
+    "intro": "Chuyện Nhỏ xử lý tệp ngay trong trình duyệt. Trang này nói rõ từng công cụ chạy ở đâu, và những gì thật sự được gửi về máy chủ.",
+    "caption": "Minh bạch\ntừng công cụ!",
+    "points": {
+      "noCookie": "Không dùng cookie",
+      "noTracking": "Không công cụ theo dõi, quảng cáo",
+      "noAccount": "Không cần tài khoản"
+    },
+    "flowLabel": "Dữ liệu đi đâu",
+    "columns": {
+      "device": {
+        "title": "Xử lý ngay trên thiết bị",
+        "lead": "{{count}} công cụ đang dùng được",
+        "points": {
+          "tab": "Tệp PDF, ảnh, video chỉ mở trong tab trình duyệt",
+          "download": "Kết quả chỉ có khi bạn bấm tải về",
+          "model": "Bộ nhận dạng chữ tải từ chính trang này, không qua bên thứ ba"
+        }
+      },
+      "server": {
+        "title": "Gửi tới máy chủ của chúng tôi",
+        "lead": "Ít nhất có thể",
+        "points": {
+          "visits": "Tên công cụ bạn mở, để đếm tổng lượt dùng. Không cookie, không định danh bạn",
+          "ip": "Địa chỉ IP chỉ được băm một chiều để chống gửi tự động, tự xoá sau khoảng 1 giờ",
+          "feedback": "Góp ý, đề xuất chỉ gửi khi bạn đánh dấu đồng ý và bấm Gửi",
+          "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ"
+        }
+      },
+      "local": {
+        "title": "Lưu trong trình duyệt của bạn",
+        "lead": "Chỉ trên máy này",
+        "points": {
+          "prefs": "Công cụ dùng gần đây và giao diện sáng, tối",
+          "saved": "Dữ liệu bạn tự lưu: Lịch Gia Đình, ghi chú, nháp CV, thẻ ghi nhớ",
+          "clear": "Xoá bất cứ lúc nào trong công cụ hoặc trong cài đặt trình duyệt"
+        }
+      }
+    },
+    "tableTitle": "Từng công cụ xử lý ở đâu",
+    "tableDescription": "Bảng sinh trực tiếp từ danh mục công cụ, nên luôn khớp với nhãn trên từng thẻ.",
+    "searchPlaceholder": "Tìm công cụ… (ví dụ: OCR, lương, QR)",
+    "filterLabel": "Lọc theo nơi xử lý",
+    "modelFilter": "Có tải bộ nhận dạng",
+    "head": {
+      "tool": "Công cụ",
+      "group": "Nhóm",
+      "where": "Xử lý ở đâu",
+      "note": "Ghi chú"
+    },
+    "modes": {
+      "device": "Trên thiết bị",
+      "model": "Trên thiết bị, có tải bộ nhận dạng",
+      "server": "Cần máy chủ"
+    },
+    "notes": {
+      "server": "Sắp có. Cần tra cứu dữ liệu trên máy chủ; sẽ ghi rõ dữ liệu gửi đi trước khi ra mắt.",
+      "model": "Tải bộ nhận dạng một lần từ chính trang này, rồi nhận dạng ngay trên máy.",
+      "noFile": "Chạy ngay trên máy bạn, không gửi dữ liệu đi.",
+      "device": "Tệp không rời thiết bị."
+    },
+    "emptyHint": "Thử từ khoá khác hoặc bỏ bộ lọc.",
+    "showAll": "Xem tất cả",
+    "faqTitle": "Câu hỏi về dữ liệu",
+    "faqDescription": "Đọc đầy đủ ở <link>Chính sách quyền riêng tư</link>."
+  },
+  "guidesPage": {
+    "title": "Hướng dẫn <accent>sử dụng</accent>",
+    "tagline": "Từng bước ngắn, đúng chữ trên màn hình.",
+    "intro": "Mỗi bài chỉ vài phút đọc. Làm theo từng bước là xong việc, kèm mẹo và những điều cần lưu ý.",
+    "caption": "Đọc 2 phút,\nlàm ngay!",
+    "listTitle": "Danh sách bài hướng dẫn",
+    "filterLabel": "Lọc theo nhóm",
+    "missingTitle": "Chưa thấy bài bạn cần?",
+    "missing": "Xem <faq>câu hỏi thường gặp</faq>, cách <install>cài Chuyện Nhỏ lên thiết bị</install>, hoặc gửi đề xuất bài hướng dẫn mới qua <suggest>Đề xuất tiện ích</suggest>."
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Hướng dẫn Chuyện Nhỏ",
+    "fallbackTitle": "Hướng dẫn | Chuyện Nhỏ",
+    "minutes": "{{count}} phút",
+    "steps": "{{count}} bước",
+    "open": "Mở {{name}}",
+    "stepsTitle": "Các bước",
+    "tipsTitle": "Mẹo",
+    "notesTitle": "Cần lưu ý",
+    "asideLabel": "Liên quan",
+    "toolsTitle": "Công cụ trong bài",
+    "othersTitle": "Bài khác",
+    "all": "Xem tất cả hướng dẫn"
+  },
+  "install": {
+    "trail": "Cài trên thiết bị",
+    "title": "Cài Chuyện Nhỏ <accent>trên thiết bị</accent>",
+    "tagline": "Dùng như một ứng dụng. Mở nhanh. Tiện hơn mỗi ngày.",
+    "intro": "Chuyện Nhỏ là ứng dụng web: thêm vào màn hình chính hoặc Dock là mở được ngay, không cần tìm lại trang trong trình duyệt.",
+    "caption": "Cài một lần,\ndùng tiện mỗi ngày!",
+    "benefits": {
+      "fast": "Mở nhanh từ màn hình chính",
+      "fullscreen": "Toàn màn hình, không thanh địa chỉ",
+      "noStore": "Không cần vào kho ứng dụng",
+      "free": "Miễn phí"
+    },
+    "cta": "Cài ứng dụng",
+    "ctaHint": "Một chạm, không qua kho ứng dụng.",
+    "installed": "Chuyện Nhỏ đã được cài trên thiết bị này.",
+    "chooseTitle": "Chọn thiết bị của bạn",
+    "chooseDescription": "Mỗi trình duyệt đặt nút cài ở một chỗ khác nhau.",
+    "tabsLabel": "Thiết bị",
+    "panelTitle": "Cài trên {{platform}} ({{browser}})",
+    "stepWithAddress": "{{detail}} Địa chỉ: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Mở Chuyện Nhỏ bằng Chrome",
+            "detail": "Gõ địa chỉ trang vào thanh địa chỉ của Chrome."
+          },
+          "menu": {
+            "title": "Bấm menu ⋮ (ba chấm)",
+            "detail": "Ở góc trên bên phải màn hình."
+          },
+          "add": {
+            "title": "Chọn “Thêm vào màn hình chính”",
+            "detail": "Có máy ghi là “Cài đặt ứng dụng”."
+          },
+          "install": {
+            "title": "Bấm “Cài đặt”",
+            "detail": "Biểu tượng Chuyện Nhỏ sẽ nằm trên màn hình chính, mở như một ứng dụng."
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Mở Chuyện Nhỏ bằng Safari",
+            "detail": "Gõ địa chỉ trang vào thanh địa chỉ của Safari."
+          },
+          "share": {
+            "title": "Bấm nút Chia sẻ",
+            "detail": "Hình vuông có mũi tên hướng lên. Trên iOS mới, nút này nằm trong menu ⋯ ở thanh dưới."
+          },
+          "add": {
+            "title": "Chọn “Thêm vào MH chính”",
+            "detail": "Kéo danh sách xuống nếu chưa thấy dòng này."
+          },
+          "confirm": {
+            "title": "Bấm “Thêm”",
+            "detail": "Ở góc trên bên phải. Biểu tượng Chuyện Nhỏ sẽ nằm trên màn hình chính."
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Mở Chuyện Nhỏ bằng Chrome hoặc Edge",
+            "detail": "Trình duyệt cần là bản mới."
+          },
+          "icon": {
+            "title": "Bấm biểu tượng cài đặt ở thanh địa chỉ",
+            "detail": "Hình màn hình có mũi tên xuống, nằm ở cuối thanh địa chỉ."
+          },
+          "menu": {
+            "title": "Chưa thấy biểu tượng? Dùng menu",
+            "detail": "Chrome: menu ⋮, chọn “Truyền, lưu và chia sẻ”, rồi “Cài đặt trang dưới dạng ứng dụng”. Edge: menu ⋯, chọn “Ứng dụng”, rồi “Cài đặt trang web này dưới dạng ứng dụng”."
+          },
+          "install": {
+            "title": "Bấm “Cài đặt”",
+            "detail": "Chuyện Nhỏ mở trong cửa sổ riêng và có trong menu Start."
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Mở Chuyện Nhỏ bằng Safari",
+            "detail": "Cần macOS Sonoma (14) trở lên."
+          },
+          "dock": {
+            "title": "Vào menu Tệp, chọn “Thêm vào Dock”",
+            "detail": "Trên thanh menu ở đầu màn hình."
+          },
+          "confirm": {
+            "title": "Bấm “Thêm”",
+            "detail": "Chuyện Nhỏ xuất hiện trên Dock, mở trong cửa sổ riêng."
+          },
+          "chrome": {
+            "title": "Dùng Chrome hoặc Edge?",
+            "detail": "Làm như trên Windows: bấm biểu tượng cài đặt ở cuối thanh địa chỉ."
+          }
+        }
+      },
+      "other": {
+        "label": "Trình duyệt khác",
+        "browser": "Firefox, Samsung Internet…",
+        "steps": {
+          "samsung": {
+            "title": "Samsung Internet",
+            "detail": "Bấm menu ≡, chọn “Thêm trang vào”, rồi “Màn hình chính”."
+          },
+          "firefox": {
+            "title": "Firefox trên máy tính",
+            "detail": "Chưa hỗ trợ cài trang thành ứng dụng. Bạn vẫn dùng mọi công cụ bình thường trong tab."
+          },
+          "install": {
+            "title": "Muốn cài như ứng dụng?",
+            "detail": "Mở Chuyện Nhỏ bằng Chrome, Edge hoặc Safari rồi làm theo thẻ tương ứng."
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "Chưa thấy tùy chọn cài đặt?",
+    "troubleshooting": {
+      "update": "Cập nhật trình duyệt lên phiên bản mới nhất.",
+      "address": "Kiểm tra bạn đang mở đúng địa chỉ của Chuyện Nhỏ, không phải trang chia sẻ lại.",
+      "incognito": "Chế độ ẩn danh không cho cài. Hãy mở tab thường.",
+      "installed": "Nếu đã cài rồi, trình duyệt sẽ không hiện lại tùy chọn cài đặt."
+    },
+    "stillStuck": "Vẫn chưa được? Xem <link>trang hỗ trợ</link> hoặc gửi thư cho chúng tôi."
+  },
+  "support": {
+    "trail": "Hỗ trợ",
+    "title": "Chúng tôi có thể <accent>giúp gì</accent> cho bạn?",
+    "intro": "Tìm câu trả lời nhanh trong các câu hỏi thường gặp, hoặc gửi thư cho chúng tôi.",
+    "caption": "Hỏi nhanh,\nđáp gọn!",
+    "searchLabel": "Tìm câu hỏi",
+    "searchPlaceholder": "Tìm câu hỏi… (ví dụ: cài đặt, lưu tệp, xoá dữ liệu)",
+    "topicsTitle": "Chủ đề hỗ trợ",
+    "topics": {
+      "start": {
+        "title": "Bắt đầu sử dụng",
+        "detail": "Hướng dẫn từng bước"
+      },
+      "documents": {
+        "title": "Tài liệu & PDF",
+        "detail": "Ghép, tách, nén, OCR"
+      },
+      "image": {
+        "title": "Hình ảnh",
+        "detail": "Nén, đổi cỡ, xoá phông"
+      },
+      "qr": {
+        "title": "QR & Mã vạch",
+        "detail": "Tạo, đọc, in hàng loạt"
+      },
+      "construction": {
+        "title": "Xây dựng",
+        "detail": "Khái toán, hướng nhà"
+      },
+      "family": {
+        "title": "Gia đình",
+        "detail": "Lịch, nhắc việc, SOS"
+      },
+      "install": {
+        "title": "Cài trên thiết bị",
+        "detail": "Android, iPhone, máy tính"
+      },
+      "privacy": {
+        "title": "Dữ liệu & quyền riêng tư",
+        "detail": "Tệp được xử lý ở đâu"
+      }
+    },
+    "faqTitle": "Câu hỏi thường gặp",
+    "faqCount": "{{count}} câu hỏi",
+    "faqCountFor": "{{count}} câu hỏi cho “{{keyword}}”",
+    "emptyTitle": "Chưa có câu hỏi nào khớp",
+    "emptyHint": "Thử từ khoá khác, hoặc gửi thư để hỏi trực tiếp.",
+    "showAll": "Xem tất cả câu hỏi",
+    "contactTitle": "Vẫn cần giúp đỡ?",
+    "mailTitle": "Gửi thư cho chúng tôi",
+    "mailBody": "Ghi tên công cụ, trình duyệt bạn dùng và mô tả việc gặp phải. Đừng gửi kèm tệp có thông tin cá nhân.",
+    "suggestTitle": "Góp ý và đề xuất công cụ",
+    "suggestBody": "Bạn cần một công cụ chưa có, hoặc muốn góp ý cho công cụ hiện tại? Gửi đề xuất và nhận mã biên nhận để theo dõi.",
+    "suggestAction": "Gửi đề xuất"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Chuyện Nhỏ có miễn phí không?",
+        "answer": "Có. Mọi công cụ đang chạy đều miễn phí, không giới hạn lượt dùng và không cần tài khoản. Khi đội nhóm cần lưu trữ, chia sẻ và phê duyệt tài liệu lâu dài, ERPCons là bản trả phí dành cho việc đó."
+      },
+      "tai-khoan": {
+        "question": "Tôi có cần tạo tài khoản không?",
+        "answer": "Không. Bạn vào trang, chọn công cụ và dùng ngay. Chuyện Nhỏ không có đăng ký, không hỏi tên, email hay số điện thoại."
+      },
+      "luu-tep": {
+        "question": "Tệp của tôi có bị tải lên hay lưu lại không?",
+        "answer": "Không. Tệp PDF, ảnh, video bạn mở chỉ nằm trong tab trình duyệt và được xử lý ngay trên máy bạn. Chúng tôi không nhận tệp. Đóng tab là tệp biến mất khỏi trình duyệt; kết quả chỉ có khi bạn tải về."
+      },
+      "may-chu": {
+        "question": "Vì sao một số công cụ ghi “Xử lý trên máy chủ”?",
+        "answer": "Một số công cụ sắp ra mắt cần dữ liệu lớn hoặc cập nhật liên tục, như giá xây dựng hay quy hoạch, nên phải tra cứu trên máy chủ. Thẻ của chúng ghi rõ điều này để bạn biết trước. Các công cụ đang dùng được hiện đều xử lý trên thiết bị."
+      },
+      "cai-dat": {
+        "question": "Làm thế nào để cài Chuyện Nhỏ trên điện thoại?",
+        "answer": "Mở Chuyện Nhỏ bằng Chrome (Android) hoặc Safari (iPhone, iPad), rồi chọn “Thêm vào màn hình chính”. Trên máy tính, bấm biểu tượng cài đặt ở thanh địa chỉ của Chrome hoặc Edge."
+      },
+      "offline": {
+        "question": "Tôi có dùng Chuyện Nhỏ khi không có Internet được không?",
+        "answer": "Sau lần mở đầu tiên có mạng, trình duyệt lưu sẵn trang và mã của công cụ nên thường vẫn mở lại được khi mạng chập chờn. Phần nặng như nhận dạng chữ hay xử lý video được tải về ở lần dùng đầu, nên hãy dùng thử một lần khi có mạng."
+      },
+      "loi": {
+        "question": "Tôi gặp lỗi, phải làm sao?",
+        "answer": "Hãy tải lại trang và dùng bản mới của Chrome, Edge hoặc Safari. Tệp quá lớn hoặc bị khoá mật khẩu cũng có thể làm công cụ dừng; công cụ sẽ báo lý do ngay trên màn hình. Nếu vẫn lỗi, gửi thư tới {{email}}, kèm tên công cụ, trình duyệt bạn dùng và mô tả lỗi."
+      },
+      "an-toan": {
+        "question": "Chuyện Nhỏ có an toàn không?",
+        "answer": "Trang chạy qua kết nối mã hoá (HTTPS), không dùng cookie, không gắn công cụ quảng cáo hay theo dõi của bên thứ ba. Tệp của bạn không rời thiết bị."
+      },
+      "thu-thap": {
+        "question": "Chuyện Nhỏ có thu thập thông tin cá nhân của tôi không?",
+        "answer": "Gần như không. Khi bạn mở một công cụ, trình duyệt báo tên công cụ để chúng tôi đếm tổng lượt dùng; địa chỉ IP chỉ được băm một chiều để chống gửi tự động và tự xoá sau khoảng 1 giờ. Nội dung góp ý chỉ gửi đi khi bạn đánh dấu đồng ý và bấm Gửi."
+      },
+      "xoa-du-lieu": {
+        "question": "Làm thế nào để xoá dữ liệu của tôi?",
+        "answer": "Dữ liệu bạn lưu trong công cụ (Lịch Gia Đình, ghi chú, nháp CV, thẻ ghi nhớ) nằm trên máy bạn: xoá ngay trong công cụ, hoặc xoá dữ liệu trang web trong cài đặt trình duyệt. Muốn xoá góp ý đã gửi, hãy gửi thư tới {{email}} kèm mã biên nhận."
+      },
+      "ben-thu-ba": {
+        "question": "Dữ liệu có được chia sẻ với bên thứ ba không?",
+        "answer": "Không. Chúng tôi không bán và không chia sẻ dữ liệu cho quảng cáo. Riêng công cụ Ghi âm thành văn bản dùng tính năng nhận dạng giọng nói của chính trình duyệt, nên âm thanh đi tới nhà cung cấp trình duyệt (ví dụ Google với Chrome), không qua máy chủ của chúng tôi."
+      },
+      "de-xuat": {
+        "question": "Tôi muốn đề xuất một công cụ mới?",
+        "answer": "Rất hoan nghênh. Hãy dùng công cụ Đề xuất tiện ích: bạn nhận một mã biên nhận để tra cứu tình trạng xem xét sau đó."
+      }
+    },
+    "links": {
+      "processingPerTool": "Xem từng công cụ xử lý ở đâu",
+      "installPerDevice": "Hướng dẫn cài từng thiết bị",
+      "dataHandling": "Cách chúng tôi xử lý dữ liệu",
+      "privacyPolicy": "Đọc chính sách quyền riêng tư",
+      "suggest": "Mở Đề xuất tiện ích"
+    }
+  },
+  "legalPage": {
+    "updated": "Cập nhật lần cuối: {{date}}",
+    "toc": "Mục lục",
+    "summary": "Tóm tắt"
+  }
+}

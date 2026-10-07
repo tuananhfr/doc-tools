@@ -1,4 +1,5 @@
 import { degrees, PDFDocument, type PDFImage, type PDFPage } from 'pdf-lib'
+import { translate } from '@/i18n/runtime'
 import type { StampMeta } from '../types/decorations.types'
 import { DEFAULT_PDF_OUTPUT, type PageRef, type PdfOutput, type SourceFile } from '../types/doc-tools.types'
 import type { Markup } from '../types/markup.types'
@@ -89,7 +90,7 @@ export async function assemblePdf(
     await pace(step?.signal)
     step?.onProgress?.(position, pages.length)
     const source = sources[ref.sourceId]
-    if (!source) throw new Error('Thiếu tệp nguồn của một trang.')
+    if (!source) throw new Error(translate('pdf:errors.missingSource'))
 
     if (isRedacted(ref)) {
       const page = await addRedactedPage(output, ref, source, fonts)
@@ -138,7 +139,7 @@ export async function assemblePdf(
 
   // Chốt chặn cuối: tệp thiếu trang mà vẫn tải về thì người dùng chỉ phát hiện khi đã nộp đi.
   if (output.getPageCount() !== pages.length) {
-    throw new Error(`tệp dựng ra có ${output.getPageCount()}/${pages.length} trang`)
+    throw new Error(translate('pdf:errors.pageCountMismatch', { built: output.getPageCount(), total: pages.length }))
   }
   step?.onProgress?.(pages.length, pages.length)
   step?.signal?.throwIfAborted()

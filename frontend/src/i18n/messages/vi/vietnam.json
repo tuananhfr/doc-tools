@@ -1,0 +1,357 @@
+{
+  "holidayLayers": {
+    "major": "Lễ lớn",
+    "lunar": "Lễ truyền thống",
+    "moon": "Mùng 1 & Rằm",
+    "memorial": "Ngày kỷ niệm"
+  },
+  "calendar": {
+    "layersAria": "Hiện ngày lễ trên lịch",
+    "monthAria": "Lịch tháng {{month}}/{{year}}",
+    "monthTitle": "Tháng {{month}}<year>/{{year}}</year>",
+    "prevMonth": "Tháng trước",
+    "nextMonth": "Tháng sau",
+    "today": "Hôm nay",
+    "weekdays": {
+      "mon": "T2",
+      "tue": "T3",
+      "wed": "T4",
+      "thu": "T5",
+      "fri": "T6",
+      "sat": "T7",
+      "sun": "CN"
+    },
+    "lunarFirstLeap": "{{day}}/{{month}}N",
+    "dayLunar": "âm lịch {{day}}/{{month}}",
+    "dayLunarLeap": "âm lịch {{day}}/{{month}} nhuận",
+    "dayEvents": "{{count}} lịch"
+  },
+  "day": {
+    "outOfRange": "Ngày nằm ngoài khoảng 1800–2199 mà thuật toán hỗ trợ.",
+    "solar": "Dương lịch",
+    "lunarMonthYear": "Tháng {{month}} năm {{year}}",
+    "lunarMonthYearLeap": "Tháng {{month}} nhuận năm {{year}}",
+    "lunarDate": "Âm lịch {{day}}/{{month}}/{{year}}",
+    "lunarDateLeap": "Âm lịch {{day}}/{{month}} nhuận/{{year}}",
+    "facts": {
+      "day": "Ngày",
+      "month": "Tháng",
+      "year": "Năm"
+    },
+    "goodDay": "Ngày hoàng đạo",
+    "badDay": "Ngày hắc đạo",
+    "byLunar": "theo âm lịch",
+    "bySolar": "theo dương lịch",
+    "goodHours": "Giờ hoàng đạo",
+    "nextTet": "Tết {{year}}: <strong>{{date}}</strong> · còn {{count}} ngày",
+    "note": "Thuật toán thiên văn cho múi giờ Việt Nam UTC+7, phù hợp tham khảo sinh hoạt; đối chiếu lịch được cơ quan có thẩm quyền công bố khi dùng cho việc chính thức. Hoàng đạo / hắc đạo tính theo phép dân gian, chỉ để tham khảo. <link>Nguồn thuật toán Hồ Ngọc Đức</link>"
+  },
+  "lunar": {
+    "jumpTo": "Đi tới ngày",
+    "convertTitle": "Đổi âm → dương",
+    "fields": {
+      "day": "Ngày âm",
+      "month": "Tháng âm",
+      "year": "Năm âm"
+    },
+    "leapMonth": "Tháng nhuận",
+    "solarResult": "Dương lịch <strong>{{date}}</strong>",
+    "showOnCalendar": "Xem trên lịch",
+    "noSuchDay": "Không có ngày này.",
+    "noSuchDayLeap": "Không có ngày này (năm đó không nhuận tháng này).",
+    "anniversaryTitle": "Ngày giỗ theo âm lịch",
+    "anniversaryFields": {
+      "day": "Ngày",
+      "month": "Tháng"
+    },
+    "anniversaryYear": "Năm âm {{year}}: <strong>{{date}}</strong>",
+    "noSuchDayShort": "không có ngày này"
+  },
+  "address": {
+    "status": {
+      "full": "Đổi đủ",
+      "province": "Chỉ đổi tỉnh",
+      "ambiguous": "Cần chọn tay: {{options}}",
+      "none": "Không nhận ra tỉnh"
+    },
+    "orSeparator": " hoặc ",
+    "resultLabel": "Đối chiếu địa chỉ",
+    "resultValue": "{{full}}/{{total}} đổi đủ",
+    "resultNote": "Tỉnh được nhận ra ở bất kỳ đoạn nào, kể cả viết tắt (TP.HCM, HN…). Cấp huyện bị bỏ. Xã/phường chỉ đổi khi dữ liệu chỉ ra đúng một xã mới; xã cũ bị tách thì liệt kê để bạn chọn.",
+    "columns": {
+      "old": "Địa chỉ cũ",
+      "proposed": "Đề xuất",
+      "status": "Trạng thái",
+      "droppedDistrict": "Cấp huyện đã bỏ"
+    },
+    "downloadCsv": "Tải CSV",
+    "verifiedNote": "Bộ đối chiếu có chữ ký, hiệu lực từ {{date}}. Nguồn: {{source}}. Xác nhận địa chỉ cuối cùng với nơi tiếp nhận hồ sơ.",
+    "manualNote": "Bảng đối chiếu do bạn nhập; chưa được hệ thống xác minh. Xác nhận địa chỉ cuối cùng với nơi tiếp nhận hồ sơ.",
+    "viewSource": "Xem nguồn dữ liệu",
+    "panelTitle": "Địa chỉ cũ và bảng đối chiếu",
+    "addressesLabel": "Mỗi dòng một địa chỉ, các cấp cách nhau bằng dấu phẩy",
+    "addressesPlaceholder": "12 Lê Lợi, Phường A, Quận B, Tỉnh C",
+    "usingVerified": "Đang dùng bảng đối chiếu đã ký",
+    "applyVerified": "Áp dụng bảng đối chiếu đã ký",
+    "rulesLabel": "bảng đối chiếu địa chỉ",
+    "rulesNone": "Chưa có bộ đối chiếu địa chỉ đã ký, còn hiệu lực trên hệ thống.",
+    "manualLabel": "Hoặc tự nhập, mỗi dòng: “tỉnh cũ|huyện cũ|xã cũ|tỉnh mới|xã mới”",
+    "manualInvalid": "Bảng đối chiếu sai định dạng (mỗi dòng đủ 5 phần, mỗi phần tối đa 150 ký tự) hoặc có tỉnh cũ được ghi vào hai tỉnh mới khác nhau.",
+    "csvFileName": "doi-dia-chi"
+  },
+  "invoice": {
+    "errors": {
+      "tooLarge": "Tệp XML vượt quá 5 MB.",
+      "unreadable": "Không đọc được tệp XML.",
+      "doctype": "XML có khai báo thực thể hoặc DOCTYPE không được hỗ trợ.",
+      "invalid": "Tệp XML không hợp lệ.",
+      "noCommon": "Không thấy khối thông tin chung của hóa đơn."
+    },
+    "resultLabel": "Hóa đơn",
+    "noNumber": "Không có số",
+    "series": "Ký hiệu: {{series}} · Ngày: {{date}}",
+    "seller": "Người bán: {{name}} ({{taxCode}})",
+    "buyer": "Người mua: {{name}} ({{taxCode}})",
+    "noTaxCode": "không có MST",
+    "amounts": "Trước thuế: {{subtotal}} đ · Thuế: {{vat}} đ",
+    "total": "Tổng thanh toán: {{total}} đ",
+    "signature": "Thẻ chữ ký XML: {{signature}} · Mã cơ quan thuế: {{authority}}",
+    "present": "có",
+    "notFound": "không thấy",
+    "downloadCsv": "Tải bảng kê CSV",
+    "empty": "Chọn tệp XML để xem dữ liệu hóa đơn.",
+    "disclaimer": "Công cụ chỉ đọc nội dung XML; không xác thực chữ ký số hoặc tình trạng pháp lý của hóa đơn. Hãy tra cứu trên cổng chính thức trước khi sử dụng.",
+    "panelTitle": "Tệp hóa đơn",
+    "pickFile": "Chọn tệp XML",
+    "columns": {
+      "ordinal": "STT",
+      "name": "Hàng hóa, dịch vụ",
+      "quantity": "SL",
+      "amount": "Thành tiền"
+    }
+  },
+  "legacyFont": {
+    "resultLabel": "Văn bản sau chuyển đổi",
+    "copy": "Chép văn bản",
+    "note": "Chọn đúng bảng mã của văn bản gốc; tên font hiển thị không tự xác định được mã ký tự.",
+    "panelTitle": "Văn bản gốc",
+    "conversionLabel": "Kiểu chuyển đổi",
+    "conversions": {
+      "tcvn3": "TCVN3 (ABC) → Unicode",
+      "tcvn3Upper": "TCVN3 chữ hoa → Unicode",
+      "vni": "VNI-Windows → Unicode",
+      "nfc": "Gộp dấu Unicode (NFC)",
+      "strip": "Bỏ dấu tiếng Việt",
+      "lower": "Chữ thường",
+      "upper": "CHỮ HOA"
+    },
+    "contentLabel": "Nội dung",
+    "placeholder": "Dán văn bản cần chuyển đổi…"
+  },
+  "numberWords": {
+    "resultLabel": "Bằng chữ",
+    "invalid": "Chỉ nhập số nguyên, tối đa 36 chữ số.",
+    "note": "Đọc số cho chứng từ và hợp đồng; hãy kiểm tra quy ước của nơi tiếp nhận.",
+    "copy": "Chép kết quả",
+    "panelTitle": "Số cần đọc",
+    "inputLabel": "Số nguyên",
+    "placeholder": "Ví dụ: 1.234.567",
+    "zeroWordLabel": "Số không ở hàng chục",
+    "fourWordLabel": "Số bốn sau hàng chục"
+  },
+  "terms": {
+    "stems": {
+      "0": "Giáp",
+      "1": "Ất",
+      "2": "Bính",
+      "3": "Đinh",
+      "4": "Mậu",
+      "5": "Kỷ",
+      "6": "Canh",
+      "7": "Tân",
+      "8": "Nhâm",
+      "9": "Quý"
+    },
+    "branches": {
+      "0": "Tý",
+      "1": "Sửu",
+      "2": "Dần",
+      "3": "Mão",
+      "4": "Thìn",
+      "5": "Tỵ",
+      "6": "Ngọ",
+      "7": "Mùi",
+      "8": "Thân",
+      "9": "Dậu",
+      "10": "Tuất",
+      "11": "Hợi"
+    },
+    "canChi": "{{stem}} {{branch}}",
+    "spirits": {
+      "THANH_LONG": "Thanh Long",
+      "MINH_DUONG": "Minh Đường",
+      "THIEN_HINH": "Thiên Hình",
+      "CHU_TUOC": "Chu Tước",
+      "KIM_QUY": "Kim Quỹ",
+      "KIM_DUONG": "Kim Đường",
+      "BACH_HO": "Bạch Hổ",
+      "NGOC_DUONG": "Ngọc Đường",
+      "THIEN_LAO": "Thiên Lao",
+      "HUYEN_VU": "Huyền Vũ",
+      "TU_MENH": "Tư Mệnh",
+      "CAU_TRAN": "Câu Trận"
+    }
+  },
+  "holidays": {
+    "NEW_YEAR": {
+      "name": "Tết Dương lịch",
+      "short": "Tết Dương lịch"
+    },
+    "REUNIFICATION": {
+      "name": "Ngày Giải phóng miền Nam",
+      "short": "Giải phóng miền Nam"
+    },
+    "LABOUR": {
+      "name": "Ngày Quốc tế Lao động",
+      "short": "Quốc tế Lao động"
+    },
+    "NATIONAL_DAY": {
+      "name": "Quốc khánh",
+      "short": "Quốc khánh"
+    },
+    "CULTURE": {
+      "name": "Ngày Văn hóa Việt Nam",
+      "short": "Ngày Văn hóa"
+    },
+    "PARTY": {
+      "name": "Ngày thành lập Đảng",
+      "short": "Thành lập Đảng"
+    },
+    "VALENTINE": {
+      "name": "Lễ Tình nhân",
+      "short": "Lễ Tình nhân"
+    },
+    "PHYSICIANS": {
+      "name": "Ngày Thầy thuốc Việt Nam",
+      "short": "Thầy thuốc VN"
+    },
+    "WOMEN_INTL": {
+      "name": "Quốc tế Phụ nữ",
+      "short": "Quốc tế Phụ nữ"
+    },
+    "YOUTH_UNION": {
+      "name": "Ngày thành lập Đoàn",
+      "short": "Thành lập Đoàn"
+    },
+    "DIEN_BIEN_PHU": {
+      "name": "Chiến thắng Điện Biên Phủ",
+      "short": "Điện Biên Phủ"
+    },
+    "HO_CHI_MINH": {
+      "name": "Ngày sinh Chủ tịch Hồ Chí Minh",
+      "short": "Sinh nhật Bác"
+    },
+    "CHILDREN": {
+      "name": "Quốc tế Thiếu nhi",
+      "short": "Quốc tế Thiếu nhi"
+    },
+    "FAMILY": {
+      "name": "Ngày Gia đình Việt Nam",
+      "short": "Gia đình VN"
+    },
+    "MARTYRS": {
+      "name": "Ngày Thương binh Liệt sĩ",
+      "short": "Thương binh Liệt sĩ"
+    },
+    "AUGUST_REVOLUTION": {
+      "name": "Cách mạng Tháng Tám",
+      "short": "Cách mạng Tháng Tám"
+    },
+    "CAPITAL": {
+      "name": "Ngày Giải phóng Thủ đô",
+      "short": "Giải phóng Thủ đô"
+    },
+    "WOMEN_VN": {
+      "name": "Ngày Phụ nữ Việt Nam",
+      "short": "Phụ nữ VN"
+    },
+    "TEACHERS": {
+      "name": "Ngày Nhà giáo Việt Nam",
+      "short": "Nhà giáo VN"
+    },
+    "ARMY": {
+      "name": "Ngày thành lập Quân đội nhân dân",
+      "short": "Quân đội ND"
+    },
+    "CHRISTMAS_EVE": {
+      "name": "Đêm Giáng sinh",
+      "short": "Đêm Giáng sinh"
+    },
+    "CHRISTMAS": {
+      "name": "Lễ Giáng sinh",
+      "short": "Lễ Giáng sinh"
+    },
+    "TET_1": {
+      "name": "Tết Nguyên đán (mùng 1)",
+      "short": "Mùng 1 Tết"
+    },
+    "TET_2": {
+      "name": "Tết Nguyên đán (mùng 2)",
+      "short": "Mùng 2 Tết"
+    },
+    "TET_3": {
+      "name": "Tết Nguyên đán (mùng 3)",
+      "short": "Mùng 3 Tết"
+    },
+    "HUNG_KINGS": {
+      "name": "Giỗ Tổ Hùng Vương",
+      "short": "Giỗ Tổ"
+    },
+    "LANTERN": {
+      "name": "Rằm tháng Giêng",
+      "short": "Rằm tháng Giêng"
+    },
+    "COLD_FOOD": {
+      "name": "Tết Hàn thực",
+      "short": "Tết Hàn thực"
+    },
+    "VESAK": {
+      "name": "Lễ Phật đản",
+      "short": "Lễ Phật đản"
+    },
+    "DOAN_NGO": {
+      "name": "Tết Đoan ngọ",
+      "short": "Tết Đoan ngọ"
+    },
+    "VU_LAN": {
+      "name": "Lễ Vu lan",
+      "short": "Lễ Vu lan"
+    },
+    "MID_AUTUMN": {
+      "name": "Tết Trung thu",
+      "short": "Tết Trung thu"
+    },
+    "KITCHEN_GODS": {
+      "name": "Ông Công Ông Táo",
+      "short": "Ông Táo"
+    },
+    "MOTHER": {
+      "name": "Ngày của Mẹ",
+      "short": "Ngày của Mẹ"
+    },
+    "FATHER": {
+      "name": "Ngày của Cha",
+      "short": "Ngày của Cha"
+    },
+    "NEW_YEAR_EVE": {
+      "name": "Giao thừa",
+      "short": "Giao thừa"
+    },
+    "moon": {
+      "first": "Mùng 1 tháng {{month}}",
+      "firstLeap": "Mùng 1 tháng {{month}} nhuận",
+      "full": "Rằm tháng {{month}}",
+      "fullLeap": "Rằm tháng {{month}} nhuận"
+    }
+  }
+}

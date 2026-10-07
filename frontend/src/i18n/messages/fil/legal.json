@@ -1,0 +1,203 @@
+{
+  "bindingNotice": "Ang bersyong Vietnamese ang may legal na bisa.",
+  "dieu-khoan": {
+    "title": "Mga tuntunin ng <accent>paggamit</accent>",
+    "breadcrumb": "Mga tuntunin ng paggamit",
+    "intro": "Ang mga tuntuning ito ay ipinapatupad kapag ginamit mo ang libreng koleksyon ng tool na Chuyện Nhỏ na pinapatakbo ng ERPCons & LPC (“kami”). Ang paggamit ng site ay nangangahulugang sumasang-ayon ka sa mga sumusunod.",
+    "summary": {
+      "free": "Libre, hindi kailangan ng account.",
+      "yours": "Sa iyo pa rin ang iyong mga file at pinoproseso ang mga ito sa device mo.",
+      "reference": "Ang mga resulta ng kalkulasyon ay para sa sanggunian lamang; suriin muna bago gamitin.",
+      "lawful": "Huwag gamitin ang mga tool sa anumang labag sa batas."
+    },
+    "sections": {
+      "dich-vu": {
+        "heading": "Libreng serbisyo",
+        "paragraphs": {
+          "free": "Nagbibigay ang Chuyện Nhỏ ng libreng mga tool para sa pagproseso ng dokumento, larawan, kalkulasyon at araw-araw na utility, na tumatakbo agad sa browser at hindi kailangang mag-sign up.",
+          "changes": "Maaari kaming magdagdag, magbago, pansamantalang ihinto o itigil ang isang tool anumang oras. Ang mga tool na may nakasulat na “Malapit na” ay plano pa lamang, at maaaring magbago o hindi ilunsad."
+        }
+      },
+      "tep-cua-ban": {
+        "heading": "Ang iyong mga file at nilalaman",
+        "paragraphs": {
+          "ownership": "Ikaw ang may buong karapatan sa iyong mga file at nilalaman. Ang mga gumaganang tool ay nagpoproseso ng file mismo sa device; hindi namin natatanggap at hindi namin sine-save ang iyong mga file.",
+          "responsibility": "Pananagutan mong tiyakin na may karapatan kang gamitin at i-edit ang mga file na inilalagay mo sa tool, at ikaw mismo ang mag-iingat ng orihinal bago ito iproseso."
+        }
+      },
+      "tham-khao": {
+        "heading": "Para sa sanggunian lamang ang mga resulta",
+        "paragraphs": {
+          "intro": "May ilang tool na nagbibigay ng numero o konklusyon batay sa data na inilagay mo at sa mga karaniwang kumbensyon, halimbawa:"
+        },
+        "items": {
+          "estimates": "Tantiyang gastos sa pagpapatayo ng bahay, pagkuwenta ng sahod, bill sa kuryente: hindi kapalit ng opisyal na quotation, payroll o resibo.",
+          "orientation": "Direksyon ng bahay at pagtingin ayon sa edad: sanggunian batay sa katutubong feng shui, hindi teknikal na konklusyon.",
+          "ocr": "Pagkilala ng text (OCR), pag-convert ng address, pag-lookup ng mga regulasyon: maaaring may mali, kailangang suriin muli laban sa orihinal na dokumento."
+        }
+      },
+      "hanh-vi-cam": {
+        "heading": "Mga bawal gawin",
+        "items": {
+          "unlawful": "Gamitin ang tool para sa layuning labag sa batas, gaya ng pamemeke ng dokumento o paggawa ng QR code para manloko.",
+          "unauthorized": "Mag-alis ng password o mag-edit ng file na wala kang karapatan.",
+          "abuse": "Magpadala nang maramihan nang awtomatiko, mag-scan, umatake o guluhin ang sistema.",
+          "content": "Magpadala ng nilalamang labag sa batas, nang-iinsulto sa iba o naglalaman ng personal na impormasyon ng ibang tao sa pamamagitan ng puna."
+        }
+      },
+      "gop-y": {
+        "heading": "Puna at mungkahi",
+        "paragraphs": {
+          "use": "Kapag nagpadala ka ng puna o mungkahi, pumapayag kang gamitin namin ang ideyang iyon para mapabuti ang produkto nang walang anumang obligasyong magbayad. Ang mga naaprubahang mungkahi ay maaaring ipakita nang publiko sa page ng mga mungkahi. Pakiusap, huwag isama ang personal na impormasyon sa ipinapadala mo."
+        }
+      },
+      "so-huu-tri-tue": {
+        "heading": "Intellectual property",
+        "paragraphs": {
+          "ownership": "Ang pangalan, logo, interface at source code ng Chuyện Nhỏ ay pag-aari ng ERPCons & LPC. Ang mga kasamang open-source library ay sumusunod sa kani-kanilang lisensya."
+        }
+      },
+      "lien-ket": {
+        "heading": "Mga panlabas na link",
+        "paragraphs": {
+          "external": "May mga link ang site papunta sa ERPCons, TekShot AI at iba pang site. Ang nilalaman at patakaran ng mga site na iyon ay pananagutan ng kani-kanilang operator."
+        }
+      },
+      "trach-nhiem": {
+        "heading": "Limitasyon ng pananagutan",
+        "paragraphs": {
+          "asIs": "Ibinibigay nang libre ang mga tool sa kasalukuyang kalagayan nito (“as is”). Hangga't pinapayagan ng batas, hindi kami mananagot sa anumang pinsalang dulot ng paggamit ng resulta ng tool o ng pansamantalang hindi paggana ng tool.",
+          "consumer": "Hindi inaalis ng mga tuntuning ito ang mga karapatang ibinibigay sa iyo ng batas sa proteksyon ng mga consumer."
+        }
+      },
+      "quyen-rieng-tu": {
+        "heading": "Privacy",
+        "paragraphs": {
+          "policy": "Malinaw na nakasaad sa Patakaran sa privacy kung paano namin pinoproseso ang data."
+        },
+        "link": "Basahin ang Patakaran sa privacy"
+      },
+      "thay-doi": {
+        "heading": "Pagbabago ng mga tuntunin",
+        "paragraphs": {
+          "updates": "Maaari naming i-update ang mga tuntunin. Nakasulat ang petsa ng update sa itaas ng page; ipapaalam sa page ang mahahalagang pagbabago. Ang patuloy na paggamit pagkatapos ng update ay nangangahulugang sumasang-ayon ka sa bagong bersyon."
+        }
+      },
+      "luat-ap-dung": {
+        "heading": "Batas na umiiral",
+        "paragraphs": {
+          "law": "Ang mga tuntunin ay pinamamahalaan ng batas ng Vietnam. Uunahing lutasin ang mga alitan sa pamamagitan ng negosasyon; kung hindi magtagumpay, dadalhin ito sa awtoridad na may kapangyarihan ayon sa regulasyon."
+        }
+      },
+      "lien-he": {
+        "heading": "Makipag-ugnayan",
+        "paragraphs": {
+          "contact": "Para sa anumang tanong tungkol sa mga tuntunin, mangyaring mag-email sa {{email}}."
+        }
+      }
+    }
+  },
+  "quyen-rieng-tu": {
+    "title": "Patakaran sa <accent>privacy</accent>",
+    "breadcrumb": "Patakaran sa privacy",
+    "intro": "Ipinapaliwanag ng patakarang ito kung paano kinokolekta, ginagamit at pinoprotektahan ng Chuyện Nhỏ ang personal na data, alinsunod sa Personal Data Protection Law Blg. 91/2025/QH15 at Decree 356/2025/NĐ-CP ng Vietnam.",
+    "summary": {
+      "device": "Pinoproseso ang iyong mga file sa device mo, hindi ipinapadala sa server.",
+      "noTracking": "Walang account, walang cookie, walang advertising o tracking tool.",
+      "counting": "Binibilang lang ang pagbukas ng tool; hina-hash ang IP address at awtomatikong binubura pagkalipas ng mga 1 oras.",
+      "feedback": "Ipinapadala lang ang puna kapag pumayag ka at pinindot ang Ipadala."
+    },
+    "sections": {
+      "chung-toi": {
+        "heading": "Sino kami",
+        "paragraphs": {
+          "controller": "Ang Chuyện Nhỏ ay pinapatakbo ng ERPCons & LPC, na siyang controller ng personal na data na pinoproseso sa pamamagitan ng site na ito. Contact tungkol sa personal na data: {{email}}."
+        }
+      },
+      "nguyen-tac": {
+        "heading": "Ang aming mga prinsipyo",
+        "items": {
+          "device": "Pagproseso sa device: hindi ina-upload sa server ng mga gumaganang tool ang iyong mga file.",
+          "minimal": "Minimal: pinoproseso lang ang data na kailangan para sa operasyon at paglaban sa pang-aabuso.",
+          "anonymous": "Hindi kinikilala ka: hindi hinihingi ang pangalan, email, numero ng telepono o account.",
+          "noTracking": "Walang cookie, walang analytics, advertising o tracking tool ng third party."
+        }
+      },
+      "du-lieu": {
+        "heading": "Ang data na pinoproseso namin at ang layunin nito",
+        "items": {
+          "visits": "Pagbukas ng tool: pangalan ng tool at oras, para mabilang ang kabuuang paggamit. Pinagsama-samang bilang lang ang sine-save, hindi nakakabit sa user.",
+          "ip": "IP address: one-way na hina-hash gamit ang lihim na key, para lang limitahan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras.",
+          "feedback": "Nilalaman ng puna at mungkahi: kapag nag-check ka lang ng pagpayag at pinindot ang Ipadala, para masuri at mapabuti ang mga tool. Sine-save lang ang resibo code bilang hash.",
+          "logs": "Teknikal na log ng web server (IP address, uri ng browser, page na binuksan): ginagamit lang para sa operasyon at seguridad ng sistema, at sine-save lang sa maikling panahong kailangan."
+        }
+      },
+      "tren-thiet-bi": {
+        "heading": "Data na naka-save sa iyong device",
+        "paragraphs": {
+          "local": "May ilang tool na nagse-save ng data mismo sa iyong browser para magamit ulit: mga kamakailang ginamit na tool, maliwanag o madilim na mode, Kalendaryo ng Pamilya, mga tala, draft ng CV, flashcards. Hindi ipinapadala sa amin ang data na ito; mabubura mo ito mismo sa tool o sa pagbura ng site data sa settings ng browser."
+        },
+        "link": "Tingnan kung saan pinoproseso ang bawat tool"
+      },
+      "ben-thu-ba": {
+        "heading": "Pagbabahagi sa third party",
+        "paragraphs": {
+          "noSale": "Hindi namin ibinebenta at hindi namin ibinabahagi ang personal na data para sa advertising. Nagbibigay lang kami ng data sa awtoridad ng gobyerno na may kapangyarihan kapag hinihingi ng batas.",
+          "speech": "Tanging ang tool na Boses patungong text ang gumagamit ng speech recognition service na nasa browser. Ipinapadala ng browser ang audio sa provider ng browser na iyon (halimbawa, Google para sa Chrome), maaaring iproseso ito sa ibang bansa ayon sa kanilang patakaran, at hindi ito dumadaan sa aming server."
+        }
+      },
+      "thoi-gian-luu": {
+        "heading": "Tagal ng pag-save",
+        "items": {
+          "ip": "Hash ng IP address: mga 1 oras.",
+          "counts": "Bilang ng paggamit: sine-save bilang pinagsama-samang istatistika, walang personal na data.",
+          "feedback": "Puna at mungkahi: sine-save sa panahong kailangan para masuri at masubaybayan, o hanggang hilingin mong burahin."
+        }
+      },
+      "quyen": {
+        "heading": "Ang iyong mga karapatan",
+        "paragraphs": {
+          "intro": "Ayon sa Personal Data Protection Law, may karapatan kang:"
+        },
+        "items": {
+          "informed": "Malaman ang tungkol sa pagproseso ng iyong personal na data.",
+          "consent": "Pumayag o bawiin ang pagpayag.",
+          "access": "Tingnan, i-edit, hilinging burahin o limitahan ang pagproseso ng data.",
+          "complain": "Magreklamo, mag-ulat at magsampa ng kaso ayon sa batas.",
+          "protection": "Hilingin sa awtoridad na may kapangyarihan na protektahan ang iyong mga karapatan sa personal na data."
+        }
+      },
+      "thuc-hien-quyen": {
+        "heading": "Paano gamitin ang iyong mga karapatan",
+        "paragraphs": {
+          "request": "Ipadala ang kahilingan sa {{email}}. Dahil walang account ang Chuyện Nhỏ, isama ang resibo code ng iyong puna para mahanap namin ang tamang nilalaman mo.",
+          "timeline": "Kukumpirmahin namin na natanggap ang kahilingan sa loob ng 2 araw ng trabaho at ipoproseso ito sa loob ng panahong itinakda ng batas, hindi lalampas sa 20 araw."
+        }
+      },
+      "tre-em": {
+        "heading": "Mga bata",
+        "paragraphs": {
+          "children": "Hindi nangongolekta ang Chuyện Nhỏ ng impormasyon para makilala ang mga bata. Ang mga batang gustong magpadala ng puna ay kailangang may pahintulot ng magulang o tagapag-alaga, ayon sa batas."
+        }
+      },
+      "bao-mat": {
+        "heading": "Seguridad",
+        "paragraphs": {
+          "security": "Tumatakbo ang site sa naka-encrypt na koneksyon (HTTPS). Minimal ang data na natatanggap at hina-hash kung posible. Walang sistemang ganap na ligtas; kung may insidenteng makakaapekto sa personal na data, aabisuhan namin ito ayon sa batas."
+        }
+      },
+      "thay-doi": {
+        "heading": "Pagbabago ng patakaran",
+        "paragraphs": {
+          "updates": "Kapag nagbago ang patakaran, ia-update namin ang petsa sa itaas ng page at ipapaalam sa page ang mahahalagang pagbabago."
+        }
+      },
+      "lien-he": {
+        "heading": "Makipag-ugnayan",
+        "paragraphs": {
+          "contact": "Para sa anumang tanong tungkol sa personal na data, mangyaring mag-email sa {{email}}."
+        }
+      }
+    }
+  }
+}

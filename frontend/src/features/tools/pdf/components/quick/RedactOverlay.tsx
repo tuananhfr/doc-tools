@@ -1,4 +1,5 @@
 import { useRef, useState, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { Rect } from '../../types/markup.types'
 import type { Point, Size } from '../../utils/page-geometry'
 
@@ -23,6 +24,7 @@ const between = (a: Point, b: Point): Rect => ({ x: Math.min(a.x, b.x), y: Math.
 
 /** Kéo trên trang để khoanh vùng cần che; bấm vào khung đã vẽ để bỏ khung đó. */
 export function RedactOverlay({ size, boxes, disabled, onChange }: RedactOverlayProps) {
+  const { t } = useTranslation('pdf')
   const gesture = useRef<Gesture | null>(null)
   const [draft, setDraft] = useState<Rect | null>(null)
 
@@ -75,7 +77,7 @@ export function RedactOverlay({ size, boxes, disabled, onChange }: RedactOverlay
       viewBox={`0 0 ${size.width} ${size.height}`}
       preserveAspectRatio="none"
       role="img"
-      aria-label={boxes.length > 0 ? `${boxes.length} khung che trên trang này` : 'Chưa có khung che trên trang này'}
+      aria-label={boxes.length > 0 ? t('redactStage.overlay', { count: boxes.length }) : t('redactStage.overlayEmpty')}
       onPointerDown={down}
       onPointerMove={move}
       onPointerUp={up}

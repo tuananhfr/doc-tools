@@ -1,0 +1,610 @@
+{
+  "shared": {
+    "on": "Đang bật",
+    "off": "Đang tắt",
+    "remove": "Bỏ {{name}}"
+  },
+  "modes": {
+    "HOMEOWNER": "Gia chủ",
+    "PROFESSIONAL": "Chuyên môn"
+  },
+  "page": {
+    "projectNorthWarning": "Đang đo theo Bắc dự án — không phải phương thật, nên không đọc hợp / kỵ theo tuổi và không tính nắng được. Đổi sang Bắc thật hoặc Bắc từ ở phần kỹ thuật.",
+    "missing": {
+      "drawing": "Chạm vào ký hiệu Bắc trên bản vẽ để bắt đầu.",
+      "device": "Bấm “Bắt đầu đo”, đứng yên rồi chốt số đo.",
+      "manual": "Nhập số độ đã biết.",
+      "placeAxis": "Đặt trục {{target}} trên ảnh.",
+      "pickMeasured": "Chọn đối tượng đã có số đo."
+    },
+    "noSource": "Chưa có nguồn.",
+    "modeLabel": "Chế độ hiển thị",
+    "back": "Quay lại",
+    "changeSource": "Đổi ảnh / nguồn",
+    "placeOnImage": "Đặt lên ảnh nhà / bản vẽ",
+    "nothingToSave": "Chưa có số đo để lưu.",
+    "frontageFallback": "Mặt tiền",
+    "houseFrontageFallback": "Mặt tiền nhà",
+    "sideAge": "Theo tuổi và lưu kết quả"
+  },
+  "targets": {
+    "HOUSE_FRONTAGE": {
+      "label": "Hướng nhà",
+      "hint": "Từ trong nhà nhìn thẳng ra mặt tiền",
+      "short": "Nhà"
+    },
+    "MAIN_DOOR": {
+      "label": "Cửa chính",
+      "hint": "Từ trong nhà nhìn ra qua cửa chính",
+      "short": "Cửa"
+    },
+    "BALCONY": {
+      "label": "Ban công",
+      "hint": "Từ trong phòng nhìn ra ban công",
+      "short": "Ban công"
+    },
+    "KITCHEN": {
+      "label": "Bếp",
+      "hint": "Hướng lưng người đứng nấu — ngược hướng người nấu nhìn vào bếp",
+      "short": "Bếp"
+    },
+    "ALTAR": {
+      "label": "Bàn thờ",
+      "hint": "Hướng mặt bàn thờ nhìn ra",
+      "short": "Bàn thờ"
+    },
+    "BED": {
+      "label": "Giường",
+      "hint": "Từ đầu giường nhìn về cuối giường",
+      "short": "Giường"
+    },
+    "DESK": {
+      "label": "Bàn làm việc",
+      "hint": "Hướng người ngồi làm việc nhìn tới",
+      "short": "Bàn"
+    },
+    "LAND_FRONTAGE": {
+      "label": "Mặt tiền đất",
+      "hint": "Từ trong lô đất nhìn ra đường",
+      "short": "Đất"
+    },
+    "CUSTOM": {
+      "label": "Đối tượng khác",
+      "hint": "Tự đặt tên, trục chỉ về hướng cần đo",
+      "short": "Khác"
+    }
+  },
+  "north": {
+    "TRUE": "Bắc thật",
+    "MAGNETIC": "Bắc từ",
+    "PROJECT": "Bắc dự án"
+  },
+  "sources": {
+    "DRAWING": "đặt trên bản vẽ",
+    "MANUAL": "nhập tay",
+    "DEVICE": "la bàn điện thoại",
+    "SURVEY": "số đo đạc"
+  },
+  "provenance": {
+    "plain": "{{north}} · {{source}}",
+    "withAccuracy": "{{north}} · {{source}} · sai số ±{{accuracy}}°"
+  },
+  "heading": {
+    "failure": {
+      "unsupported": "Trình duyệt này không đọc được la bàn của máy.",
+      "insecure": "La bàn chỉ chạy khi mở trang bằng HTTPS.",
+      "denied": "Bạn chưa cho phép đọc cảm biến hướng. Cho phép trong cài đặt trình duyệt rồi thử lại.",
+      "noSignal": "Không nhận được tín hiệu la bàn — máy tính và nhiều trình duyệt không có cảm biến này."
+    },
+    "stability": {
+      "STABLE": "Ổn định",
+      "WOBBLY": "Còn dao động",
+      "UNSTABLE": "Không ổn định"
+    },
+    "accuracy": "Máy báo sai số ±{{value}}°",
+    "noAccuracy": "Máy không báo sai số",
+    "starting": "Đang mở la bàn…",
+    "retry": "Thử lại",
+    "start": "Bắt đầu đo",
+    "stop": "Dừng",
+    "outside": "Tôi đang đứng ngoài, nhìn vào nhà",
+    "magnetWarning": "Đứng xa cột thép, ô tô, cửa cuốn, nam châm và thiết bị điện — chúng làm lệch la bàn."
+  },
+  "device": {
+    "steps": {
+      "stand": "Đứng ở cửa chính, quay lưng vào nhà, nhìn thẳng ra ngoài.",
+      "hold": "Cầm điện thoại nằm ngang (song song mặt đất), đầu máy chĩa theo hướng nhìn.",
+      "wait": "Đứng yên vài giây cho số ổn định rồi bấm “Chốt số đo”."
+    },
+    "lock": "Chốt số đo cho {{target}}",
+    "manual": "Nhập số độ thay vào",
+    "unstable": "Số đang nhảy nhiều. Đứng yên, xoay máy hình số 8 vài lần để máy tự hiệu chỉnh, rồi đo lại."
+  },
+  "live": {
+    "title": "La bàn hướng nhà",
+    "intro": "Đứng ở cửa chính, quay lưng vào nhà, cầm máy nằm ngang, đầu máy chĩa thẳng ra ngoài.",
+    "dialAria": "Mặt la bàn, Bắc ở trên",
+    "dialAriaFacing": "Mặt la bàn, hướng nhà {{degree}}",
+    "facingEnd": "HƯỚNG",
+    "sittingEnd": "TOẠ",
+    "empty": "Bấm “Bắt đầu đo” hoặc nhập số độ để đọc hướng nhà.",
+    "failureManual": "{{failure}} Có thể nhập số độ đo bằng la bàn khác.",
+    "locked": "Đã khoá {{degree}}",
+    "remeasure": "Đo lại",
+    "lock": "Khoá hướng",
+    "useDevice": "Dùng la bàn của máy",
+    "enterDegree": "Nhập số độ",
+    "unstable": "Số đang nhảy nhiều nên chưa khoá được. Đứng yên, xoay máy hình số 8 vài lần để máy tự hiệu chỉnh.",
+    "facing": "Hướng",
+    "sitting": "Toạ",
+    "offset": "Lệch tâm {{mountain}} {{degree}} về phía {{toward}}.",
+    "centered": "Đúng tâm sơn {{mountain}}.",
+    "void": {
+      "MAJOR": "Đại không vong",
+      "MINOR": "Tiểu không vong"
+    },
+    "voidWarning": "<strong>{{kind}}</strong> — hướng nằm sát ranh {{mountain}} / {{toward}}. {{note}}"
+  },
+  "manual": {
+    "label": "Số độ của {{target}}",
+    "placeholder": "Ví dụ 132",
+    "hint": "Đo theo chiều kim đồng hồ từ Bắc: Đông 90°, Nam 180°, Tây 270°.",
+    "invalid": "Nhập một số, ví dụ 132 hoặc 132,5."
+  },
+  "method": {
+    "title": "Lấy hướng bằng cách nào?",
+    "label": "Cách lấy hướng",
+    "options": {
+      "DEVICE": "Đo ngay",
+      "MANUAL": "Tôi biết số độ",
+      "DRAWING": "Theo bản vẽ"
+    },
+    "locked": "Đã chốt {{degree}} cho {{target}}.",
+    "drawingNote": "Không cần cảm biến: chỉ cần bản vẽ có ký hiệu Bắc. Đặt mũi tên Bắc trên ảnh, rồi đặt trục của đối tượng cần đo."
+  },
+  "canvas": {
+    "imageAlt": "Ảnh / bản vẽ đang đo hướng",
+    "traceGrip": "Điểm {{index}} của nét vẽ — chạm để chọn nét, kéo hoặc dùng phím mũi tên để chỉnh",
+    "closeAria": "Khép hình tại điểm đầu",
+    "closeTitle": "Khép hình",
+    "northHead": "Đầu mũi tên Bắc — kéo để xoay theo ký hiệu Bắc của bản vẽ",
+    "northTail": "Đuôi mũi tên Bắc — kéo để dời",
+    "axisHead": "Đầu trục {{target}} — kéo để xoay",
+    "axisTail": "Đuôi trục {{target}} — kéo để dời",
+    "compassCenter": "Tâm la bàn — kéo để dời la bàn",
+    "compassEdge": "Mép la bàn — kéo để phóng to / thu nhỏ"
+  },
+  "stage": {
+    "traceTools": {
+      "line": "Đường tường",
+      "polygon": "Đa giác",
+      "rect": "Khung"
+    },
+    "traceHints": {
+      "line": "Chạm hai điểm để vẽ một đoạn tường. Chạm vào đầu một đoạn đã vẽ để gắn nhãn mặt tiền / cửa chính.",
+      "polygon": "Chạm lần lượt các góc, chạm lại điểm đầu (vòng tròn rỗng) để khép hình.",
+      "rect": "Chạm hai góc đối nhau để vẽ một khung."
+    },
+    "northStep": "Hướng Bắc",
+    "hints": {
+      "north": "Chạm vào ký hiệu Bắc trên bản vẽ để đặt mũi tên Bắc, rồi kéo đầu mũi tên cho trùng hướng ký hiệu.",
+      "door": "Chạm vào cửa chính để thêm trục cửa (không bắt buộc). Kéo đầu mũi tên chĩa ra ngoài.",
+      "drawing": "Chạm vào chỗ cần đo để đặt trục {{target}}. Kéo đầu mũi tên chĩa RA ngoài — hướng nhìn từ trong ra.",
+      "overlay": "Muốn la bàn nằm trên ảnh: chạm vào chỗ cần đo và kéo đầu mũi tên chĩa ra ngoài theo đúng hướng {{target}}."
+    },
+    "aria": "Ảnh đang đo hướng",
+    "tabsAria": "Việc đang làm trên ảnh",
+    "placeTab": "Đặt hướng",
+    "traceTab": "Vẽ lại sơ đồ",
+    "undo": "Hoàn tác",
+    "redo": "Làm lại",
+    "traceKindsAria": "Kiểu nét vẽ",
+    "snap": "Bám góc 45°",
+    "stepsAria": "Các bước trên ảnh",
+    "done": "(đã đặt)",
+    "pageAria": "Trang PDF đang đo",
+    "pageOption": "Trang {{page}} / {{total}}"
+  },
+  "result": {
+    "title": "Kết quả đo",
+    "fine": "16 hướng: {{direction}}",
+    "empty": "Chưa có số đo.",
+    "compassAria": "La bàn, Bắc ở trên"
+  },
+  "solar": {
+    "title": "Nắng & mặt trời",
+    "locationFailure": {
+      "denied": "Bạn chưa cho phép lấy vị trí. Nhập vĩ độ, kinh độ bằng tay.",
+      "unavailable": "Máy không lấy được vị trí. Nhập vĩ độ, kinh độ bằng tay."
+    },
+    "daySide": {
+      "MORNING": "nhận nắng buổi sáng",
+      "AFTERNOON": "nhận nắng buổi chiều (nắng gắt, nóng nhà)",
+      "BOTH": "nhận nắng cả sáng lẫn chiều",
+      "NONE": "ít nắng trực tiếp trong ngày"
+    },
+    "intro": "Xem mặt trời mọc, lặn ở hướng nào và {{target}} có bị nắng chiều không.",
+    "locating": "Đang lấy vị trí…",
+    "useLocation": "Dùng vị trí của tôi",
+    "latitude": "Vĩ độ",
+    "longitude": "Kinh độ",
+    "date": "Ngày",
+    "time": "Giờ",
+    "sunAt": "Mặt trời lúc {{time}}",
+    "sunPosition": "{{degree}} · {{direction}} · cao {{elevation}}",
+    "belowHorizon": "Dưới đường chân trời",
+    "sunrise": "Mọc",
+    "sunset": "Lặn",
+    "facingSun": "{{side}} · lúc này đang đón nắng",
+    "awayFromSun": "{{side}} · lúc này không đón nắng",
+    "needCoordinates": "Nhập vĩ độ, kinh độ (hoặc bấm “Dùng vị trí của tôi”) để tính.",
+    "note": "Hướng mặt trời tính theo Bắc thật; ở Việt Nam chênh với Bắc từ dưới 1°. Không tính bóng nhà bên cạnh."
+  },
+  "source": {
+    "title": "Bạn có gì trong tay?",
+    "pickTitle": "Chọn ảnh mặt bằng, ảnh chụp nhà hoặc PDF bản vẽ",
+    "pickHint": "JPG, PNG, WebP, PDF · tối đa 100 MB · tệp chỉ mở trên máy bạn",
+    "camera": "Chụp ảnh",
+    "rejectedTitle": "Không mở được tệp",
+    "dismiss": "Ẩn thông báo",
+    "none": "Không có ảnh — chỉ dùng la bàn",
+    "noneHint": "Đo bằng la bàn điện thoại hoặc nhập số độ đã biết.",
+    "tooLarge": "Tệp vượt {{size}}.",
+    "openFailed": "Không mở được tệp này.",
+    "pageFailed": "Không vẽ được trang này."
+  },
+  "targetsPanel": {
+    "title": "Đo hướng của",
+    "noAxis": "Chưa đặt trục",
+    "noMeasure": "Chưa có số đo",
+    "hint": "{{hint}}.",
+    "customName": "Tên đối tượng",
+    "customPlaceholder": "Ví dụ: Cổng phụ",
+    "addAria": "Đối tượng muốn thêm",
+    "add": "Thêm",
+    "axisAngle": "Góc trục trên ảnh",
+    "axisAngleHint": "0° = chĩa lên mép trên ảnh, theo chiều kim đồng hồ."
+  },
+  "tech": {
+    "title": "Thông số kỹ thuật",
+    "reference": "Số độ tính theo",
+    "referenceHint": "Chỉ ghi nhãn, không tự quy đổi. Ở Việt Nam Bắc từ lệch Bắc thật dưới 1°; Bắc dự án theo lưới toạ độ của bản vẽ.",
+    "divisionsLabel": "Chia la bàn",
+    "divisionsAria": "Số cung của la bàn",
+    "divisions": "{{count}} hướng",
+    "size": "Cỡ la bàn trên ảnh · {{percent}}%",
+    "opacity": "Độ đậm la bàn · {{percent}}%",
+    "saveRecord": "Tải bản ghi số đo (JSON)"
+  },
+  "traceActions": {
+    "aria": "Nét vẽ đang chọn",
+    "tags": {
+      "FRONTAGE": "Đây là mặt tiền",
+      "ENTRANCE": "Đây là cửa chính"
+    },
+    "flip": "Đổi phía ra ngoài",
+    "delete": "Xoá nét này"
+  },
+  "export": {
+    "title": "Lưu kết quả",
+    "legend": "Lưu thành",
+    "image": "Ảnh",
+    "pdf": "PDF",
+    "imageHint": {
+      "image": "Giữ nguyên thông tin chụp (EXIF) của ảnh gốc",
+      "pdf": "Trang bản vẽ được vẽ lại thành ảnh PNG",
+      "none": "Ảnh la bàn kèm số đo"
+    },
+    "pdfHintVector": "Giữ trang bản vẽ gốc dạng vector",
+    "pdfHintPage": "Một trang, in được",
+    "buildFailed": "Không dựng được tệp kết quả.",
+    "shareFailed": "Không chia sẻ được. Hãy lưu tệp rồi gửi.",
+    "building": "Đang dựng tệp…",
+    "savePdf": "Lưu PDF",
+    "saveImage": "Lưu ảnh",
+    "share": "Chia sẻ",
+    "saved": "Đã lưu {{name}}",
+    "savedDetail": "Đã lưu {{name}} · {{detail}}",
+    "notes": {
+      "standalone": "Chưa xác định được hướng Bắc trên ảnh nên la bàn được xuất riêng, không vẽ lên ảnh.",
+      "rasterized": "Không giữ được trang PDF gốc dạng vector — trang được vẽ lại thành ảnh, chữ trong trang không chọn được."
+    },
+    "pageDetail": "Trang {{page}}",
+    "noSource": "Không có nguồn để xuất."
+  },
+  "pdf": {
+    "password": "PDF có mật khẩu mở — gỡ mật khẩu bằng công cụ \"Mở khoá PDF\" rồi chọn lại.",
+    "unreadable": "Không đọc được tệp PDF này.",
+    "noCanvas": "Trình duyệt không cấp được vùng vẽ.",
+    "renderFailed": "Không vẽ được trang PDF."
+  },
+  "age": {
+    "title": "Xem theo tuổi gia chủ",
+    "intro": "Không bắt buộc. Bật để hiện vòng sao hợp / kỵ theo tuổi trên la bàn và xem hướng nhà hợp hay kỵ theo {{method}}.",
+    "addPerson": "So thêm một người",
+    "method": "Phương pháp: {{name}} · bộ luật v{{version}} · {{source}}",
+    "birthKinds": {
+      "SOLAR_DATE": "Ngày sinh dương lịch",
+      "LUNAR_YEAR": "Năm sinh âm lịch"
+    },
+    "name": "Gọi là",
+    "sex": "Giới tính",
+    "sexes": {
+      "MALE": "Nam",
+      "FEMALE": "Nữ"
+    },
+    "inputBy": "Nhập theo",
+    "yearPlaceholder": "Ví dụ 1986",
+    "yearNote": "Năm tính theo Tết âm lịch.",
+    "yearNoteLunar": "Năm tính theo Tết âm lịch — sinh trước Tết thì lấy năm trước đó.",
+    "facts": {
+      "age": "Tuổi",
+      "napAm": "Mệnh (nạp âm)",
+      "trigram": "Cung mệnh"
+    },
+    "beforeTet": "Sinh trước Tết nên tính tuổi năm {{year}} ({{canChi}}).",
+    "facingGood": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, hợp. {{meaning}}.",
+    "facingBad": "{{target}}: {{segment}} ({{degree}}) — <strong>{{star}}</strong>, kỵ. {{meaning}}.",
+    "houseSame": "Xét theo toạ: nhà toạ {{segment}} là {{trigram}} trạch ({{houseGroup}} trạch), cùng nhóm với {{personGroup}}.",
+    "houseOther": "Xét theo toạ: nhà toạ {{segment}} là {{trigram}} trạch ({{houseGroup}} trạch), khác nhóm với {{personGroup}}.",
+    "lockFirst": "Khoá số đo {{target}} để xem hợp hay kỵ.",
+    "goodDirections": "Bốn hướng hợp: {{list}}",
+    "drivesDial": "Vòng sao trên la bàn tính theo {{name}}.",
+    "thisPerson": "người này",
+    "defaultName": "Người {{index}}",
+    "errors": {
+      "yearFormat": "Nhập năm bốn chữ số, ví dụ 1986.",
+      "invalidDate": "Ngày sinh không hợp lệ.",
+      "outOfRange": "Ngày này không có thật hoặc nằm ngoài khoảng lịch âm hỗ trợ (1800–2199)."
+    }
+  },
+  "rules": {
+    "segments": "Bộ luật phải có đủ 8 cung.",
+    "missingStars": "Quái {{trigram}} thiếu sao.",
+    "duplicateStars": "Quái {{trigram}} có hai sao trùng một hướng.",
+    "noGroup": "Quái {{trigram}} không thuộc nhóm nào.",
+    "homes": "Hướng hậu thiên của các quái không hợp lệ.",
+    "yearRange": "Năm sinh phải trong khoảng {{min}}–{{max}}.",
+    "noTrigram": "Bộ luật không có quái số {{number}}."
+  },
+  "terms": {
+    "directions8": {
+      "0": {
+        "name": "Bắc",
+        "short": "B"
+      },
+      "1": {
+        "name": "Đông Bắc",
+        "short": "ĐB"
+      },
+      "2": {
+        "name": "Đông",
+        "short": "Đ"
+      },
+      "3": {
+        "name": "Đông Nam",
+        "short": "ĐN"
+      },
+      "4": {
+        "name": "Nam",
+        "short": "N"
+      },
+      "5": {
+        "name": "Tây Nam",
+        "short": "TN"
+      },
+      "6": {
+        "name": "Tây",
+        "short": "T"
+      },
+      "7": {
+        "name": "Tây Bắc",
+        "short": "TB"
+      }
+    },
+    "directions16": {
+      "0": {
+        "name": "Bắc",
+        "short": "B"
+      },
+      "1": {
+        "name": "Bắc Đông Bắc",
+        "short": "BĐB"
+      },
+      "2": {
+        "name": "Đông Bắc",
+        "short": "ĐB"
+      },
+      "3": {
+        "name": "Đông Đông Bắc",
+        "short": "ĐĐB"
+      },
+      "4": {
+        "name": "Đông",
+        "short": "Đ"
+      },
+      "5": {
+        "name": "Đông Đông Nam",
+        "short": "ĐĐN"
+      },
+      "6": {
+        "name": "Đông Nam",
+        "short": "ĐN"
+      },
+      "7": {
+        "name": "Nam Đông Nam",
+        "short": "NĐN"
+      },
+      "8": {
+        "name": "Nam",
+        "short": "N"
+      },
+      "9": {
+        "name": "Nam Tây Nam",
+        "short": "NTN"
+      },
+      "10": {
+        "name": "Tây Nam",
+        "short": "TN"
+      },
+      "11": {
+        "name": "Tây Tây Nam",
+        "short": "TTN"
+      },
+      "12": {
+        "name": "Tây",
+        "short": "T"
+      },
+      "13": {
+        "name": "Tây Tây Bắc",
+        "short": "TTB"
+      },
+      "14": {
+        "name": "Tây Bắc",
+        "short": "TB"
+      },
+      "15": {
+        "name": "Bắc Tây Bắc",
+        "short": "BTB"
+      }
+    },
+    "mountains": {
+      "0": "Tý",
+      "1": "Quý",
+      "2": "Sửu",
+      "3": "Cấn",
+      "4": "Dần",
+      "5": "Giáp",
+      "6": "Mão",
+      "7": "Ất",
+      "8": "Thìn",
+      "9": "Tốn",
+      "10": "Tỵ",
+      "11": "Bính",
+      "12": "Ngọ",
+      "13": "Đinh",
+      "14": "Mùi",
+      "15": "Khôn",
+      "16": "Thân",
+      "17": "Canh",
+      "18": "Dậu",
+      "19": "Tân",
+      "20": "Tuất",
+      "21": "Càn",
+      "22": "Hợi",
+      "23": "Nhâm"
+    },
+    "trigrams": {
+      "KAN": "Khảm",
+      "GEN": "Cấn",
+      "ZHEN": "Chấn",
+      "XUN": "Tốn",
+      "LI": "Ly",
+      "KUN": "Khôn",
+      "DUI": "Đoài",
+      "QIAN": "Càn"
+    },
+    "elements": {
+      "METAL": "Kim",
+      "WOOD": "Mộc",
+      "WATER": "Thuỷ",
+      "FIRE": "Hoả",
+      "EARTH": "Thổ"
+    },
+    "napAm": {
+      "0": "Hải Trung Kim",
+      "1": "Lư Trung Hoả",
+      "2": "Đại Lâm Mộc",
+      "3": "Lộ Bàng Thổ",
+      "4": "Kiếm Phong Kim",
+      "5": "Sơn Đầu Hoả",
+      "6": "Giản Hạ Thuỷ",
+      "7": "Thành Đầu Thổ",
+      "8": "Bạch Lạp Kim",
+      "9": "Dương Liễu Mộc",
+      "10": "Tuyền Trung Thuỷ",
+      "11": "Ốc Thượng Thổ",
+      "12": "Tích Lịch Hoả",
+      "13": "Tùng Bách Mộc",
+      "14": "Trường Lưu Thuỷ",
+      "15": "Sa Trung Kim",
+      "16": "Sơn Hạ Hoả",
+      "17": "Bình Địa Mộc",
+      "18": "Bích Thượng Thổ",
+      "19": "Kim Bạch Kim",
+      "20": "Phú Đăng Hoả",
+      "21": "Thiên Hà Thuỷ",
+      "22": "Đại Trạch Thổ",
+      "23": "Thoa Xuyến Kim",
+      "24": "Tang Đố Mộc",
+      "25": "Đại Khê Thuỷ",
+      "26": "Sa Trung Thổ",
+      "27": "Thiên Thượng Hoả",
+      "28": "Thạch Lựu Mộc",
+      "29": "Đại Hải Thuỷ"
+    },
+    "voidNote": "Không vong là quy ước tham khảo của phong thuỷ dân gian: hướng nằm sát ranh hai hướng (đại không vong) hoặc hai sơn (tiểu không vong) trong khoảng ±{{window}}°."
+  },
+  "stars": {
+    "SINH_KHI": {
+      "name": "Sinh khí",
+      "meaning": "Tốt nhất — vượng tài lộc, danh tiếng, thăng tiến"
+    },
+    "THIEN_Y": {
+      "name": "Thiên y",
+      "meaning": "Tốt cho sức khoẻ, có quý nhân giúp đỡ"
+    },
+    "DIEN_NIEN": {
+      "name": "Diên niên",
+      "meaning": "Gia đạo hoà thuận, quan hệ bền lâu"
+    },
+    "PHUC_VI": {
+      "name": "Phục vị",
+      "meaning": "Bình yên, vững tinh thần, thuận học hành"
+    },
+    "TUYET_MENH": {
+      "name": "Tuyệt mệnh",
+      "meaning": "Xấu nhất — hao tổn, bệnh tật"
+    },
+    "NGU_QUY": {
+      "name": "Ngũ quỷ",
+      "meaning": "Thị phi, mất mát, việc bất ngờ"
+    },
+    "LUC_SAT": {
+      "name": "Lục sát",
+      "meaning": "Xáo trộn quan hệ, kiện tụng"
+    },
+    "HOA_HAI": {
+      "name": "Họa hại",
+      "meaning": "Gặp chuyện không may, thất bại nhỏ"
+    }
+  },
+  "groups": {
+    "EAST": {
+      "name": "Đông tứ mệnh",
+      "house": "Đông tứ"
+    },
+    "WEST": {
+      "name": "Tây tứ mệnh",
+      "house": "Tây tứ"
+    }
+  },
+  "profiles": {
+    "batTrach": {
+      "name": "Bát trạch (cung phi theo năm sinh)",
+      "source": "Bát Trạch Minh Kính — phép Du niên; cung phi theo Lạc thư, năm sinh âm lịch",
+      "interpretationV1": "Cung phi tính theo năm sinh âm lịch và giới tính. Hướng của đối tượng rơi vào cung nào trong 8 cung của người đó thì mang sao đó. Sinh trước Tết Nguyên đán thì dùng năm âm lịch là năm trước.",
+      "interpretationV1_1": "Cung mệnh tính theo năm sinh âm lịch (đổi năm ở Tết Nguyên đán) và giới tính. Hướng của đối tượng rơi vào cung nào trong 8 cung của người đó thì mang sao đó. Nhà còn được xếp Đông / Tây tứ trạch theo hướng toạ (phía sau nhà); trường phái lấy mốc năm Lập Xuân (khoảng 4/2) có thể cho cung khác với người sinh giữa hai mốc.",
+      "disclaimer": "Phần này là tham khảo theo phong thuỷ dân gian (phép Bát trạch), không phải kết luận kỹ thuật hay lời khuyên chuyên môn. Trường phái khác có thể cho kết quả khác. Số đo hướng ở phần Kết quả đo không phụ thuộc phần này."
+    }
+  },
+  "legend": {
+    "target": "{{target}}: {{degree}} · {{direction}}",
+    "luopan": "Hướng {{facing}} · Toạ {{sitting}}",
+    "footer": "Chuyện Nhỏ · ERPCons · {{time}}"
+  },
+  "sceneTags": {
+    "FRONTAGE": "Mặt tiền",
+    "ENTRANCE": "Cửa chính"
+  }
+}

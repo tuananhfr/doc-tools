@@ -1,4 +1,5 @@
 import { useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { ImageItem, Point } from '../types/image.types'
 import type { MeasureScale, MeasureState } from '../types/measure.types'
 import { labelAnchor, midpoint, referenceLabel, shapeLabel } from '../utils/measure'
@@ -30,6 +31,7 @@ const path = (points: Point[]) => points.map((point) => `${point.x},${point.y}`)
  * nguyên cỡ trên màn hình dù ảnh to hay nhỏ.
  */
 export function MeasureCanvas({ item, state, scale, disabled, dispatch }: MeasureCanvasProps) {
+  const { t } = useTranslation('image')
   const surface = useRef<HTMLDivElement>(null)
   const drag = useRef<{ grip: Grip; x: number; y: number; moved: boolean } | null>(null)
   const [hover, setHover] = useState<Point | null>(null)
@@ -110,7 +112,7 @@ export function MeasureCanvas({ item, state, scale, disabled, dispatch }: Measur
       }}
       onPointerLeave={() => setHover(null)}
     >
-      <img className="erp-measure__image" src={item.url} alt={`Ảnh đang đo: ${item.name}`} draggable={false} />
+      <img className="erp-measure__image" src={item.url} alt={t('measure.imageAlt', { name: item.name })} draggable={false} />
 
       <svg className="erp-measure__lines" viewBox={`0 0 ${item.width} ${item.height}`} preserveAspectRatio="none" aria-hidden="true">
         {reference ? (
@@ -143,7 +145,7 @@ export function MeasureCanvas({ item, state, scale, disabled, dispatch }: Measur
               type="button"
               className="erp-measure__grip erp-measure__grip--reference"
               style={at(point)}
-              aria-label={`Đầu ${index + 1} của đoạn chuẩn — kéo hoặc dùng phím mũi tên để chỉnh`}
+              aria-label={t('measure.referenceGrip', { index: index + 1 })}
               {...gripHandlers({ kind: 'reference', index: index as 0 | 1 }, point)}
             />
           ))
@@ -158,21 +160,24 @@ export function MeasureCanvas({ item, state, scale, disabled, dispatch }: Measur
               type="button"
               className="erp-measure__count"
               style={at(shape.points[0])}
-              aria-label={`Điểm đếm ${number} — bấm để bỏ, kéo để dời`}
+              aria-label={t('measure.countGrip', { number })}
               {...gripHandlers({ kind: 'shape', id: shape.id, index: 0 }, shape.points[0], () => dispatch({ type: 'remove', id: shape.id }))}
             >
               {number}
             </button>
           )
         }
-        const name = shape.kind === 'distance' ? `đoạn ${distances.indexOf(shape) + 1}` : `vùng ${areas.indexOf(shape) + 1}`
+        const gripLabel = (point: number) =>
+          shape.kind === 'distance'
+            ? t('measure.distanceGrip', { point, index: distances.indexOf(shape) + 1 })
+            : t('measure.areaGrip', { point, index: areas.indexOf(shape) + 1 })
         return shape.points.map((point, index) => (
           <button
             key={`${shape.id}-${index}`}
             type="button"
             className="erp-measure__grip"
             style={at(point)}
-            aria-label={`Điểm ${index + 1} của ${name} — kéo hoặc dùng phím mũi tên để chỉnh, Delete để xoá`}
+            aria-label={gripLabel(index + 1)}
             {...gripHandlers({ kind: 'shape', id: shape.id, index }, point)}
           />
         ))
@@ -185,8 +190,8 @@ export function MeasureCanvas({ item, state, scale, disabled, dispatch }: Measur
             type="button"
             className="erp-measure__grip erp-measure__grip--close"
             style={at(point)}
-            aria-label="Khép vùng tại điểm đầu"
-            title="Khép vùng"
+            aria-label={t('measure.closeAtStart')}
+            title={t('measure.closeArea')}
             disabled={disabled}
             onClick={(event) => {
               event.stopPropagation()

@@ -1,0 +1,432 @@
+{
+  "shared": {
+    "copyResult": "結果をコピー",
+    "days": "日",
+    "daysValue": "{{count}} <unit>日</unit>"
+  },
+  "weekdays": {
+    "sun": "日曜日",
+    "mon": "月曜日",
+    "tue": "火曜日",
+    "wed": "水曜日",
+    "thu": "木曜日",
+    "fri": "金曜日",
+    "sat": "土曜日"
+  },
+  "duration": {
+    "weeks": "{{count}} 週",
+    "weeksDays": "{{weeks}} {{days}}",
+    "days": "{{count}} 日"
+  },
+  "quickCalc": {
+    "groups": {
+      "area": "面積",
+      "volume": "体積",
+      "mass": "重量"
+    },
+    "formulas": {
+      "rectangle": "長方形",
+      "triangle": "三角形",
+      "trapezoid": "台形",
+      "circle": "円",
+      "box": "直方体（基礎・梁・床）",
+      "cylinder": "円柱（丸柱・杭）",
+      "rebar": "丸鋼（鉄筋）",
+      "plate": "鋼板",
+      "density": "体積 × 密度"
+    },
+    "inputs": {
+      "length": "長さ",
+      "width": "幅",
+      "base": "底辺",
+      "height": "高さ",
+      "bigBase": "下底",
+      "smallBase": "上底",
+      "diameter": "直径",
+      "heightThickness": "高さ / 厚さ",
+      "heightLength": "高さ / 長さ",
+      "thickness": "厚さ",
+      "volume": "体積",
+      "density": "密度"
+    },
+    "presets": {
+      "steel": "鋼",
+      "reinforcedConcrete": "鉄筋コンクリート",
+      "water": "水"
+    },
+    "tonnes": "= {{value}} トン",
+    "perPiece": "1部材あたり: {{value}} {{unit}}",
+    "invalid": "寸法と数量は 0 より大きい数で入力してください。",
+    "missing": "計算に必要な寸法をすべて入力してください。",
+    "groupLabel": "計算する量",
+    "panelTitle": "寸法",
+    "material": "材料 / 計算方法",
+    "shape": "形状",
+    "quantity": "数量",
+    "pieces": "個",
+    "densityPresets": "よく使う密度",
+    "decimalHint": "小数点はカンマでもピリオドでも入力できます（2,5 と 2.5 は同じ）。入力した数値は横の計算式に表示されます。"
+  },
+  "money": {
+    "groups": {
+      "percent": "パーセント",
+      "tax": "税金・割引",
+      "profit": "粗利",
+      "split": "割り勘"
+    },
+    "presets": {
+      "percentOf": "ある数の X%",
+      "percentRatio": "A は B の何 % か",
+      "percentChange": "何 % 増減したか",
+      "vatAdd": "税抜価格に税を加算",
+      "vatExtract": "税込価格から税を分離",
+      "discount": "割引・値引き",
+      "margin": "原価と売価から粗利を計算",
+      "priceFromMargin": "原価とマージンから売価を計算",
+      "priceFromMarkup": "原価とマークアップから売価を計算",
+      "split": "金額を均等に割る"
+    },
+    "inputs": {
+      "rate": "割合",
+      "ofNumber": "対象の数",
+      "numberA": "数 A",
+      "numberB": "数 B",
+      "oldValue": "元の値",
+      "newValue": "新しい値",
+      "netPrice": "税抜価格",
+      "taxRate": "税率",
+      "grossPrice": "税込価格",
+      "originalPrice": "元の価格",
+      "discount": "割引率",
+      "cost": "原価",
+      "price": "売価",
+      "targetMargin": "目標マージン",
+      "targetMarkup": "目標マークアップ",
+      "total": "合計金額",
+      "people": "人数",
+      "extra": "追加料金 / チップ"
+    },
+    "placeholders": {
+      "manual": "手動入力",
+      "zero": "0"
+    },
+    "rows": {
+      "result": "結果",
+      "aVsB": "B に対する A",
+      "increase": "増加",
+      "decrease": "減少",
+      "difference": "差額",
+      "grossPrice": "税込価格",
+      "tax": "税額",
+      "netPrice": "税抜価格",
+      "discounted": "割引後の価格",
+      "discountAmount": "割引額",
+      "margin": "利益率（マージン、売価に対して）",
+      "markup": "マークアップ（原価に対して）",
+      "grossProfit": "粗利",
+      "price": "売価",
+      "impliedMarkup": "対応するマークアップ",
+      "impliedMargin": "対応するマージン",
+      "each": "1人あたり",
+      "totalDue": "支払総額",
+      "eachRounded": "1人あたり（千単位で切り上げ）",
+      "surplus": "切り上げで集めた余り"
+    },
+    "errors": {
+      "bNonZero": "数 B は 0 以外にしてください。",
+      "oldNonZero": "元の値は 0 以外にしてください。",
+      "discountMax": "割引率は 100% 以下にしてください。",
+      "pricePositive": "売価は 0 より大きくしてください。",
+      "costPositive": "原価は 0 より大きくしてください。",
+      "marginMax": "マージンは 100% 未満にしてください。",
+      "tooLarge": "数が大きすぎて計算できません。"
+    },
+    "suffix": {
+      "money": "đ",
+      "percent": "%",
+      "count": "人"
+    },
+    "copyRow": "{{label}}をコピー",
+    "invalid": "マークの付いた欄が有効な数値ではありません（0以上。人数は1以上の整数）。",
+    "missing": "計算に必要な欄をすべて入力してください。",
+    "formulaCode": "計算式コード: {{code}}",
+    "groupLabel": "計算の種類",
+    "panelTitle": "数値",
+    "operation": "計算",
+    "taxHint": "税率はご自身で入力してください。税率は品目や時期によって異なるため、ツールにはあらかじめ数値を入れていません。",
+    "profitHint": "マージンは売価に対する割合、マークアップは原価に対する割合です。同じ利益でも2つの数値は異なります。",
+    "inputHint": "金額: 150.000 と 150,000 はどちらも15万として扱われます。小数は 1500,5 のように入力します。解釈した数値は横の計算式に表示されます。結果は小数点以下2桁まで表示し、会計規則による端数処理は行いません。"
+  },
+  "unitConvert": {
+    "groups": {
+      "length": "長さ",
+      "area": "面積",
+      "mass": "重量"
+    },
+    "units": {
+      "mm": {
+        "name": "ミリメートル",
+        "symbol": "mm"
+      },
+      "cm": {
+        "name": "センチメートル",
+        "symbol": "cm"
+      },
+      "m": {
+        "name": "メートル",
+        "symbol": "m"
+      },
+      "km": {
+        "name": "キロメートル",
+        "symbol": "km"
+      },
+      "in": {
+        "name": "インチ",
+        "symbol": "in"
+      },
+      "ft": {
+        "name": "フィート",
+        "symbol": "ft"
+      },
+      "yd": {
+        "name": "ヤード",
+        "symbol": "yd"
+      },
+      "mi": {
+        "name": "マイル",
+        "symbol": "mi"
+      },
+      "mm2": {
+        "name": "平方ミリメートル",
+        "symbol": "mm²"
+      },
+      "cm2": {
+        "name": "平方センチメートル",
+        "symbol": "cm²"
+      },
+      "m2": {
+        "name": "平方メートル",
+        "symbol": "m²"
+      },
+      "ha": {
+        "name": "ヘクタール",
+        "symbol": "ha"
+      },
+      "km2": {
+        "name": "平方キロメートル",
+        "symbol": "km²"
+      },
+      "ft2": {
+        "name": "平方フィート",
+        "symbol": "ft²"
+      },
+      "ac": {
+        "name": "エーカー",
+        "symbol": "ac"
+      },
+      "g": {
+        "name": "グラム",
+        "symbol": "g"
+      },
+      "kg": {
+        "name": "キログラム",
+        "symbol": "kg"
+      },
+      "yen": {
+        "name": "Yến（ベトナムの単位、10 kg）",
+        "symbol": "yến"
+      },
+      "ta": {
+        "name": "Tạ（ベトナムの単位、100 kg）",
+        "symbol": "tạ"
+      },
+      "t": {
+        "name": "トン",
+        "symbol": "t"
+      },
+      "oz": {
+        "name": "オンス",
+        "symbol": "oz"
+      },
+      "lb": {
+        "name": "ポンド",
+        "symbol": "lb"
+      }
+    },
+    "allUnits": "すべての単位で",
+    "equalsHeading": "{{value}} {{unit}} は",
+    "notNumber": "値が数値ではありません。",
+    "notNumberExample": "値が数値ではありません。例: 2,5 または 1200。",
+    "enterValue": "変換する値を入力してください。",
+    "copyIn": "{{unit}} の値をコピー",
+    "groupLabel": "単位の種類",
+    "panelTitle": "単位変換",
+    "value": "値",
+    "from": "変換元の単位",
+    "to": "変換先の単位",
+    "unitOption": "{{name}}（{{symbol}}）",
+    "swap": "単位を入れ替え",
+    "equals": "{{value}} {{unit}} ="
+  },
+  "charCount": {
+    "rows": {
+      "characters": "文字数",
+      "charactersNoSpaces": "文字数（空白を除く）",
+      "words": "単語数",
+      "lines": "行数",
+      "paragraphs": "段落数"
+    },
+    "hints": {
+      "characters": "空白と改行を含む",
+      "words": "空白で区切られた語のまとまり",
+      "paragraphs": "空行で区切る"
+    },
+    "counts": "カウント",
+    "panelTitle": "テキスト",
+    "clear": "すべて消去",
+    "textLabel": "数えるテキスト",
+    "placeholder": "ここにテキストを入力または貼り付け…"
+  },
+  "color": {
+    "levels": {
+      "aaa": "非常に見やすい（AAA）",
+      "aa": "読みやすい（AA）",
+      "large": "大きな文字のみ可",
+      "fail": "読みにくい"
+    },
+    "pickFailed": "画面から色を取得できませんでした。",
+    "preview": "プレビュー",
+    "swatch": "色 {{hex}}",
+    "textOnColor": "この色の上に置いた文字",
+    "whiteText": "白い文字",
+    "blackText": "黒い文字",
+    "contrastHint": "WCAG のコントラスト比: 4.5 : 1 以上なら通常の文字が読みやすく、3 : 1 以上は大きな文字やアイコン向けです。",
+    "panelTitle": "色を選ぶ",
+    "picker": "カラーピッカー",
+    "pickerHint": "色の枠を押すとカラーピッカーが開きます。下にコードを入力することもできます。",
+    "eyedropper": "画面から色を取得",
+    "copyCode": "{{label}} コードをコピー"
+  },
+  "dateCalc": {
+    "modes": {
+      "between": "2つの日付の間",
+      "add": "日数の加算 / 減算"
+    },
+    "weekendOnly": "ここでの営業日は土曜日と日曜日だけを除外します。主要な祝日は結果に一覧表示しますが、自動では差し引きません。振替休日や職場ごとの土曜出勤も考慮しないため、期限の間に祝日がある場合はご自身で日数を足してください。",
+    "distance": "期間",
+    "countingBack": "終了日が開始日より前のため、逆方向に数えています。",
+    "equalsWeeks": "= {{weeks}}",
+    "copyDays": "日数をコピー",
+    "workdays": "営業日（月曜日〜金曜日）",
+    "weekendDays": "土曜日・日曜日",
+    "startIncluded": "開始日（含む）",
+    "startExcluded": "開始日（含まない）",
+    "endIncluded": "終了日（含む）",
+    "pickBoth": "2つの日付を選んでください。",
+    "landsOn": "該当する日付",
+    "addedCalendar": "= {{start}} {{sign}} {{count}} 日",
+    "addedWorkdays": "= {{start}} {{sign}} {{count}} 営業日",
+    "calendarEquivalent": "暦日で {{count}} 日です。",
+    "copyDate": "日付をコピー",
+    "countInvalid": "日数は 0〜{{max}} の整数で入力してください。",
+    "pickStart": "開始日を選び、日数を入力してください。",
+    "modeLabel": "計算方法",
+    "betweenTitle": "2つの日付",
+    "fromDate": "開始日",
+    "toDate": "終了日",
+    "includeStart": "開始日を含める",
+    "includeStartHint": "開始日を含めない場合: 月曜日から金曜日は4日（期限の数え方）。含める場合: 5日（作業日数の数え方）。",
+    "addTitle": "基準日と日数",
+    "startDate": "開始日",
+    "dayCount": "日数",
+    "direction": "方向",
+    "forward": "加算（後へ）",
+    "back": "減算（前へ）",
+    "dayKind": "日の種類",
+    "calendar": "暦日",
+    "addHint": "開始日は数えません。金曜日に1日足すと土曜日（暦日）または月曜日（営業日）になります。"
+  },
+  "holidays": {
+    "tooLong": "期間が {{count}} 日を超えるため、祝日は一覧表示しません。",
+    "none": "この期間に主要な祝日はありません。",
+    "count": "期間内に祝日が {{count}} 日あります",
+    "more": "ほか {{count}} 日",
+    "hint": "ツールは休日を自動で差し引きません。提出先がこれらの日に休む場合は、期限にご自身で日数を足してください。"
+  },
+  "randomCode": {
+    "modes": {
+      "password": "パスワード",
+      "code": "注文番号・伝票番号"
+    },
+    "classes": {
+      "upper": "大文字（A–Z）",
+      "lower": "小文字（a–z）",
+      "digits": "数字（0–9）",
+      "symbols": "記号（!@#$…）"
+    },
+    "strengths": {
+      "weak": "弱い",
+      "fair": "まあまあ",
+      "strong": "強い",
+      "excellent": "非常に強い"
+    },
+    "results": "結果",
+    "resultsCount": "結果（{{count}}）",
+    "copyAll": "すべてコピー",
+    "noClass": "パスワードを作成するには、文字の種類を1つ以上オンにしてください。",
+    "copyValue": "{{value}} をコピー",
+    "regenerate": "再生成",
+    "modeLabel": "コードの種類",
+    "panelTitle": "オプション",
+    "length": "長さ",
+    "chars": "{{count}} 文字",
+    "classGroups": "使う文字の種類",
+    "plain": "見間違えやすい文字を除外（0 O o 1 l I）",
+    "strength": "強度: <strong>{{label}}</strong> · 約 {{bits}} ビット",
+    "prefix": "接頭辞（任意）",
+    "prefixPlaceholder": "例: PX-",
+    "charset": "ランダム部分の文字",
+    "alnum": "大文字と数字",
+    "digitsOnly": "数字のみ",
+    "codeLength": "ランダムな文字数",
+    "alnumHint": "I、O、0、1 は使いません。電話で読み上げたり手書きで写したりしても間違えにくくなります。",
+    "count": "1回あたりの生成数（最大 {{max}}）"
+  },
+  "notes": {
+    "untitled": "内容のないメモ",
+    "limitReached": "メモが上限の {{count}} 件に達しました。新しく追加するには古いメモを削除してください。",
+    "listLabel": "メモ一覧",
+    "title": "メモ",
+    "titleCount": "メモ（{{count}}）",
+    "newNote": "新しいメモ",
+    "empty": "この端末にはまだメモがありません。",
+    "notice": "メモはアカウントではなくこのブラウザに保存されます。同じ端末を使う人は誰でも読めますし、閲覧データを消去すると失われます。",
+    "clearAllTitle": "{{count}} 件のメモをすべて削除しますか？",
+    "localOnly": "メモはこの端末にしかなく、削除すると元に戻せません。",
+    "clearAllConfirm": "すべて削除",
+    "clearAll": "すべてのメモを削除",
+    "editorLabel": "メモを編集",
+    "emptyStart": "覚えておきたいことや、やることリストを書き留めましょう。",
+    "emptyPick": "一覧からメモを選ぶと、表示・編集できます。",
+    "backToList": "メモ一覧",
+    "titleLabel": "タイトル",
+    "titlePlaceholder": "例: 月曜日の現場でやること",
+    "body": "内容",
+    "bodyPlaceholder": "覚えておきたいことをさっとメモ…",
+    "saveFailed": "この端末に保存できませんでした。ページを閉じる前に内容を別の場所にコピーしてください。",
+    "savedAt": "この端末に保存済み · {{time}}",
+    "deleteTitle": "このメモを削除しますか？",
+    "deleteConfirm": "削除",
+    "delete": "メモを削除",
+    "tasks": "やることリスト",
+    "taskDone": "完了: {{task}}",
+    "taskFallback": "タスク {{number}}",
+    "task": "タスク {{number}}",
+    "removeTask": "タスク {{number}} を削除",
+    "removeTaskTitle": "このタスクを削除",
+    "newTask": "新しいタスク",
+    "tasksFull": "タスクが上限の {{count}} 件に達しました",
+    "addTaskPlaceholder": "タスクを追加して Enter",
+    "addTask": "追加"
+  }
+}

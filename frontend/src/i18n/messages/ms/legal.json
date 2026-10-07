@@ -1,0 +1,203 @@
+{
+  "bindingNotice": "Versi bahasa Vietnam ialah versi yang mempunyai kuat kuasa undang-undang.",
+  "dieu-khoan": {
+    "title": "Terma <accent>penggunaan</accent>",
+    "breadcrumb": "Terma penggunaan",
+    "intro": "Terma ini terpakai apabila anda menggunakan set alat percuma Chuyện Nhỏ yang dikendalikan oleh ERPCons & LPC (“kami”). Dengan menggunakan laman ini, anda bersetuju dengan perkara-perkara di bawah.",
+    "summary": {
+      "free": "Percuma, tidak perlu akaun.",
+      "yours": "Fail anda tetap milik anda dan diproses pada peranti anda.",
+      "reference": "Hasil pengiraan hanya untuk rujukan; semak semula sebelum digunakan.",
+      "lawful": "Jangan gunakan alat untuk melakukan perkara yang menyalahi undang-undang."
+    },
+    "sections": {
+      "dich-vu": {
+        "heading": "Perkhidmatan percuma",
+        "paragraphs": {
+          "free": "Chuyện Nhỏ menyediakan secara percuma alat untuk memproses dokumen, imej, pengiraan dan utiliti harian, yang berjalan terus dalam pelayar tanpa perlu mendaftar.",
+          "changes": "Kami boleh menambah, mengubah, menggantung sementara atau menghentikan sesuatu alat pada bila-bila masa. Alat yang bertanda “Akan datang” ialah rancangan, yang boleh berubah atau tidak dilancarkan."
+        }
+      },
+      "tep-cua-ban": {
+        "heading": "Fail dan kandungan anda",
+        "paragraphs": {
+          "ownership": "Anda memegang hak penuh ke atas fail dan kandungan anda. Alat yang sedang beroperasi memproses fail terus pada peranti; kami tidak menerima dan tidak menyimpan fail anda.",
+          "responsibility": "Anda bertanggungjawab memastikan anda mempunyai hak untuk menggunakan dan menyunting fail yang dimasukkan ke dalam alat, dan menyimpan sendiri salinan asal sebelum memprosesnya."
+        }
+      },
+      "tham-khao": {
+        "heading": "Hasil hanya untuk rujukan",
+        "paragraphs": {
+          "intro": "Sesetengah alat memberikan angka atau kesimpulan berdasarkan data yang anda masukkan dan konvensyen yang lazim, contohnya:"
+        },
+        "items": {
+          "estimates": "Anggaran kos membina rumah, pengiraan gaji, bil elektrik: tidak menggantikan sebut harga, slip gaji atau invois rasmi.",
+          "orientation": "Arah rumah dan bacaan mengikut umur: rujukan mengikut feng shui rakyat, bukan kesimpulan teknikal.",
+          "ocr": "Pengecaman teks (OCR), penukaran alamat, carian peraturan: mungkin terdapat kesilapan, perlu disemak semula dengan dokumen asal."
+        }
+      },
+      "hanh-vi-cam": {
+        "heading": "Perkara yang dilarang",
+        "items": {
+          "unlawful": "Menggunakan alat untuk tujuan yang menyalahi undang-undang, seperti memalsukan dokumen atau mencipta kod QR penipuan.",
+          "unauthorized": "Membuang kata laluan atau menyunting fail yang anda tiada hak ke atasnya.",
+          "abuse": "Menghantar secara automatik dan beramai-ramai, mengimbas, menyerang atau mengganggu sistem.",
+          "content": "Menghantar kandungan yang melanggar undang-undang, menghina orang lain atau mengandungi maklumat peribadi orang lain melalui bahagian maklum balas."
+        }
+      },
+      "gop-y": {
+        "heading": "Maklum balas dan cadangan",
+        "paragraphs": {
+          "use": "Apabila menghantar maklum balas atau cadangan, anda bersetuju membenarkan kami menggunakan idea tersebut untuk menambah baik produk tanpa timbul sebarang kewajipan membayar. Cadangan yang diluluskan mungkin dipaparkan secara terbuka di halaman cadangan. Sila jangan sertakan maklumat peribadi dalam kandungan yang dihantar."
+        }
+      },
+      "so-huu-tri-tue": {
+        "heading": "Harta intelek",
+        "paragraphs": {
+          "ownership": "Nama, logo, antara muka dan kod sumber Chuyện Nhỏ adalah milik ERPCons & LPC. Pustaka sumber terbuka yang disertakan tertakluk kepada lesen masing-masing."
+        }
+      },
+      "lien-ket": {
+        "heading": "Pautan luar",
+        "paragraphs": {
+          "external": "Laman ini mempunyai pautan ke ERPCons, TekShot AI dan laman lain. Kandungan dan dasar laman-laman tersebut adalah tanggungjawab pengendali masing-masing."
+        }
+      },
+      "trach-nhiem": {
+        "heading": "Had liabiliti",
+        "paragraphs": {
+          "asIs": "Alat disediakan secara percuma mengikut keadaan semasa (\"as is\"). Setakat yang dibenarkan oleh undang-undang, kami tidak bertanggungjawab ke atas kerugian yang timbul daripada penggunaan hasil alat atau daripada alat yang tidak berfungsi buat sementara waktu.",
+          "consumer": "Terma ini tidak mengecualikan hak yang diberikan kepada anda oleh undang-undang perlindungan hak dan kepentingan pengguna."
+        }
+      },
+      "quyen-rieng-tu": {
+        "heading": "Privasi",
+        "paragraphs": {
+          "policy": "Cara kami memproses data diterangkan dengan jelas dalam Dasar privasi."
+        },
+        "link": "Baca Dasar privasi"
+      },
+      "thay-doi": {
+        "heading": "Perubahan terma",
+        "paragraphs": {
+          "updates": "Kami boleh mengemas kini terma ini. Tarikh kemas kini dinyatakan di bahagian atas halaman; perubahan penting akan dimaklumkan di laman ini. Terus menggunakan laman selepas kemas kini bermakna anda bersetuju dengan versi baharu."
+        }
+      },
+      "luat-ap-dung": {
+        "heading": "Undang-undang yang terpakai",
+        "paragraphs": {
+          "law": "Terma ini dikawal oleh undang-undang Vietnam. Pertikaian diutamakan untuk diselesaikan melalui rundingan; jika tidak berjaya, ia akan dibawa ke pihak berkuasa yang berwibawa mengikut peraturan."
+        }
+      },
+      "lien-he": {
+        "heading": "Hubungi",
+        "paragraphs": {
+          "contact": "Sebarang pertanyaan mengenai terma ini, sila hantar e-mel ke {{email}}."
+        }
+      }
+    }
+  },
+  "quyen-rieng-tu": {
+    "title": "Dasar <accent>privasi</accent>",
+    "breadcrumb": "Dasar privasi",
+    "intro": "Dasar ini menerangkan cara Chuyện Nhỏ mengumpul, menggunakan dan melindungi data peribadi, menurut Undang-undang Perlindungan Data Peribadi Vietnam No. 91/2025/QH15 dan Dekri 356/2025/NĐ-CP.",
+    "summary": {
+      "device": "Fail anda diproses pada peranti anda, tidak dihantar ke pelayan.",
+      "noTracking": "Tiada akaun, tiada kuki, tiada alat pengiklanan atau penjejakan.",
+      "counting": "Hanya bilangan kali alat dibuka dikira; alamat IP dicincang dan dipadam secara automatik selepas kira-kira 1 jam.",
+      "feedback": "Maklum balas hanya dihantar apabila anda bersetuju dan menekan Hantar."
+    },
+    "sections": {
+      "chung-toi": {
+        "heading": "Siapa kami",
+        "paragraphs": {
+          "controller": "Chuyện Nhỏ dikendalikan oleh ERPCons & LPC, iaitu pihak pengawal data peribadi yang diproses melalui laman ini. Hubungan berkenaan data peribadi: {{email}}."
+        }
+      },
+      "nguyen-tac": {
+        "heading": "Prinsip kami",
+        "items": {
+          "device": "Diproses pada peranti: alat yang sedang beroperasi tidak memuat naik fail anda ke pelayan.",
+          "minimal": "Minimum: hanya memproses data yang diperlukan untuk operasi dan mencegah penyalahgunaan.",
+          "anonymous": "Tanpa identiti: tidak meminta nama, e-mel, nombor telefon atau akaun.",
+          "noTracking": "Tiada kuki, tiada alat analitik, pengiklanan atau penjejakan pihak ketiga."
+        }
+      },
+      "du-lieu": {
+        "heading": "Data yang kami proses dan tujuannya",
+        "items": {
+          "visits": "Bilangan kali alat dibuka: nama alat dan masanya, untuk mengira jumlah penggunaan. Hanya kiraan agregat disimpan, tidak dikaitkan dengan pengguna.",
+          "ip": "Alamat IP: dicincang sehala dengan kunci rahsia, hanya untuk mengehadkan penghantaran automatik, dan dipadam secara automatik selepas kira-kira 1 jam.",
+          "feedback": "Kandungan maklum balas dan cadangan: hanya apabila anda menanda persetujuan dan menekan Hantar, untuk disemak dan bagi menambah baik alat. Kod resit hanya disimpan dalam bentuk cincangan.",
+          "logs": "Log teknikal pelayan web (alamat IP, jenis pelayar, halaman yang dibuka): hanya digunakan untuk operasi dan keselamatan sistem, disimpan dalam tempoh singkat yang diperlukan."
+        }
+      },
+      "tren-thiet-bi": {
+        "heading": "Data yang disimpan pada peranti anda",
+        "paragraphs": {
+          "local": "Sesetengah alat menyimpan data terus dalam pelayar anda untuk digunakan semula: alat yang digunakan baru-baru ini, mod cerah gelap, Kalendar Keluarga, nota, draf CV, kad imbas kembali. Data ini tidak dihantar kepada kami; anda boleh memadamnya terus dalam alat atau dengan memadam data laman web dalam tetapan pelayar."
+        },
+        "link": "Lihat di mana setiap alat memproses data"
+      },
+      "ben-thu-ba": {
+        "heading": "Perkongsian dengan pihak ketiga",
+        "paragraphs": {
+          "noSale": "Kami tidak menjual dan tidak berkongsi data peribadi untuk tujuan pengiklanan. Kami hanya memberikan data kepada pihak berkuasa negara yang berwibawa apabila dikehendaki oleh undang-undang.",
+          "speech": "Khusus untuk alat Suara ke teks, perkhidmatan pengecaman suara yang terbina dalam pelayar digunakan. Audio dihantar oleh pelayar kepada pembekal pelayar tersebut (contohnya Google bagi Chrome), mungkin diproses di luar negara mengikut dasar mereka, dan tidak melalui pelayan kami."
+        }
+      },
+      "thoi-gian-luu": {
+        "heading": "Tempoh penyimpanan",
+        "items": {
+          "ip": "Cincangan alamat IP: kira-kira 1 jam.",
+          "counts": "Kiraan penggunaan: disimpan sebagai statistik agregat, tidak mengandungi data peribadi.",
+          "feedback": "Maklum balas dan cadangan: disimpan dalam tempoh yang diperlukan untuk disemak dan dipantau, atau sehingga anda meminta ia dipadam."
+        }
+      },
+      "quyen": {
+        "heading": "Hak anda",
+        "paragraphs": {
+          "intro": "Menurut Undang-undang Perlindungan Data Peribadi, anda berhak:"
+        },
+        "items": {
+          "informed": "Dimaklumkan tentang pemprosesan data peribadi anda.",
+          "consent": "Memberi atau menarik balik persetujuan.",
+          "access": "Melihat, membetulkan, meminta pemadaman atau mengehadkan pemprosesan data.",
+          "complain": "Membuat aduan, laporan dan tindakan undang-undang mengikut peruntukan undang-undang.",
+          "protection": "Meminta pihak berkuasa yang berwibawa melindungi hak anda berkenaan data peribadi."
+        }
+      },
+      "thuc-hien-quyen": {
+        "heading": "Cara melaksanakan hak anda",
+        "paragraphs": {
+          "request": "Hantar permintaan ke {{email}}. Oleh sebab Chuyện Nhỏ tidak mempunyai akaun, sila sertakan kod resit maklum balas supaya kami dapat mencari kandungan anda dengan tepat.",
+          "timeline": "Kami mengesahkan penerimaan permintaan dalam 2 hari bekerja dan memprosesnya dalam tempoh yang ditetapkan oleh undang-undang, selewat-lewatnya 20 hari."
+        }
+      },
+      "tre-em": {
+        "heading": "Kanak-kanak",
+        "paragraphs": {
+          "children": "Chuyện Nhỏ tidak mengumpul maklumat untuk mengenal pasti kanak-kanak. Kanak-kanak yang ingin menghantar maklum balas memerlukan persetujuan ibu bapa atau penjaga, mengikut peruntukan undang-undang."
+        }
+      },
+      "bao-mat": {
+        "heading": "Keselamatan",
+        "paragraphs": {
+          "security": "Laman ini berjalan melalui sambungan HTTPS yang disulitkan. Data yang diterima diminimumkan dan dicincang apabila boleh. Tiada sistem yang selamat sepenuhnya; jika berlaku insiden yang menjejaskan data peribadi, kami akan memaklumkan mengikut peruntukan undang-undang."
+        }
+      },
+      "thay-doi": {
+        "heading": "Perubahan dasar",
+        "paragraphs": {
+          "updates": "Apabila dasar berubah, kami mengemas kini tarikh di bahagian atas halaman dan memaklumkan perubahan penting di laman ini."
+        }
+      },
+      "lien-he": {
+        "heading": "Hubungi",
+        "paragraphs": {
+          "contact": "Sebarang pertanyaan mengenai data peribadi, sila hantar e-mel ke {{email}}."
+        }
+      }
+    }
+  }
+}

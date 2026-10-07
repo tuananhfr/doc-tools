@@ -1,0 +1,88 @@
+{
+  "shared": {
+    "print": "I-print / I-save bilang PDF"
+  },
+  "cv": {
+    "title": "Gumawa ng CV",
+    "saveDraft": "I-save ang draft",
+    "openDraft": "Buksan ang draft",
+    "clearDraft": "Burahin ang draft",
+    "template": "Template ng CV",
+    "templates": {
+      "classic": "Klasiko",
+      "modern": "Moderno"
+    },
+    "fields": {
+      "name": "Buong pangalan",
+      "role": "Posisyong ina-applyan",
+      "phone": "Numero ng telepono",
+      "email": "Email",
+      "location": "Tirahan",
+      "link": "Portfolio o LinkedIn"
+    },
+    "photo": "Larawang pang-portrait (sa session na ito lang)",
+    "photoAlt": "Larawang pang-portrait sa CV",
+    "summary": "Maikling pagpapakilala",
+    "sections": {
+      "experience": "Karanasan",
+      "education": "Edukasyon",
+      "skills": "Mga kasanayan",
+      "languages": "Mga wika",
+      "certificates": "Mga sertipiko"
+    },
+    "entry": {
+      "period": "Panahon",
+      "company": "Kompanya",
+      "school": "Paaralan",
+      "position": "Posisyon",
+      "degree": "Kurso / digri",
+      "description": "Paglalarawan / mga nagawa",
+      "remove": "Alisin ang entry",
+      "add": "Magdagdag ng entry"
+    },
+    "messages": {
+      "saved": "Na-save ang draft sa device na ito; hindi kasama ang larawan.",
+      "saveFailed": "Hindi ma-save ang draft sa device na ito.",
+      "noDraft": "Wala pang wastong draft.",
+      "opened": "Nabuksan ang draft.",
+      "unreadable": "Hindi mabasa ang draft.",
+      "cleared": "Nabura ang draft sa device na ito."
+    },
+    "note": "Suriing mabuti ang mga detalye bago ipadala. Sa device mo lang sine-save ang draft kapag pinindot mo ang I-save; hindi sine-save ang larawan."
+  },
+  "formTemplates": {
+    "title": "Mga template ng form",
+    "kind": "Uri ng dokumento",
+    "names": {
+      "leave": "Aplikasyon sa leave",
+      "authorization": "Sulat ng awtorisasyon",
+      "handover": "Talaan ng turnover"
+    },
+    "fields": {
+      "recipient": "Para kay",
+      "name": "Buong pangalan",
+      "department": "Posisyon, departamento",
+      "from": "Leave mula",
+      "to": "Leave hanggang",
+      "reason": "Dahilan",
+      "handover": "Pinagpasahan ng trabaho",
+      "placeWritten": "Lugar ng pagsulat",
+      "fromName": "Nagbibigay ng awtorisasyon",
+      "fromId": "ID number ng nagbibigay ng awtorisasyon",
+      "fromAddress": "Address ng nagbibigay ng awtorisasyon",
+      "toName": "Binigyan ng awtorisasyon",
+      "toId": "ID number ng binigyan ng awtorisasyon",
+      "toAddress": "Address ng binigyan ng awtorisasyon",
+      "scope": "Saklaw ng awtorisasyon",
+      "term": "Tagal",
+      "giver": "Nagpapasa (pangalan, posisyon)",
+      "receiver": "Tumatanggap (pangalan, posisyon)",
+      "items": "Mga ipinapasa (isa bawat linya)",
+      "note": "Tala",
+      "placeDrawn": "Lugar ng paggawa"
+    },
+    "authorizationWarning": "May ilang usapin na nangangailangan ng notaryo o sertipikasyon. Alamin muna sa tatanggap na opisina bago ito gamitin.",
+    "defaultWarning": "Sangguniang template; alamin ang mga kinakailangan ng tatanggap na opisina bago magsumite.",
+    "privacy": "Nasa nakabukas na page na ito lang ang iyong data."
+  }
+}

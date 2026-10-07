@@ -1,3 +1,5 @@
+import { canChiName } from './can-chi-name'
+
 export interface CalendarDate { day: number; month: number; year: number }
 export interface LunarDate extends CalendarDate { leap: boolean; julianDay: number }
 
@@ -125,12 +127,10 @@ export function lunarToSolar(date: CalendarDate & { leap?: boolean }): CalendarD
   return roundtrip && roundtrip.day === date.day && roundtrip.month === date.month && roundtrip.year === date.year && roundtrip.leap === Boolean(date.leap) ? solar : null
 }
 
-const stems = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý']
-const branches = ['Tý', 'Sửu', 'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi', 'Thân', 'Dậu', 'Tuất', 'Hợi']
 export function canChi(date: LunarDate) {
   return {
-    year: `${stems[(date.year + 6) % 10]} ${branches[(date.year + 8) % 12]}`,
-    month: `${stems[(date.year * 12 + date.month + 3) % 10]} ${branches[(date.month + 1) % 12]}`,
-    day: `${stems[(date.julianDay + 9) % 10]} ${branches[(date.julianDay + 1) % 12]}`,
+    year: canChiName((date.year + 6) % 10, (date.year + 8) % 12),
+    month: canChiName((date.year * 12 + date.month + 3) % 10, (date.month + 1) % 12),
+    day: canChiName((date.julianDay + 9) % 10, (date.julianDay + 1) % 12),
   }
 }

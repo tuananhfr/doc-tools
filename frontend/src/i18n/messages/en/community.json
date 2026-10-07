@@ -1,0 +1,53 @@
+{
+  "contribution": {
+    "status": {
+      "NEEDS_SOURCE": "Needs a source",
+      "NEEDS_REVIEW": "Awaiting review",
+      "VERIFIED": "Verified",
+      "REJECTED": "Not accepted",
+      "APPROVED": "Approved",
+      "PUBLISHED": "Published",
+      "SUPERSEDED": "Superseded",
+      "REVOKED": "Revoked"
+    },
+    "sendFailed": "Couldn't send the suggestion.",
+    "received": "Suggestion received: {{status}}. Keep the receipt code to follow up.",
+    "offlineDraft": "Couldn't reach the server. Your content is still on this page.",
+    "invalidReceipt": "Invalid receipt code.",
+    "statusLine": "Status: {{status}}",
+    "receiptNotFound": "Receipt code not found.",
+    "lookupFailed": "Can't look up the status right now.",
+    "addSourceFailed": "Couldn't add the source.",
+    "sourceAdded": "Source added. The suggestion is awaiting review.",
+    "offline": "Couldn't reach the server.",
+    "ideaTitle": "Suggest a tool",
+    "regulationTitle": "Feedback on regulatory data",
+    "ideaIntro": "Describe a real problem and the tool you'd like. Ideas are reviewed before they're published.",
+    "regulationIntro": "Describe what needs fixing and link the source. This is feedback for the maintainers to check; it doesn't change the tool's data yet.",
+    "ideaName": "Idea name",
+    "regulationTopic": "Document or topic",
+    "ideaDetail": "The problem and your proposed solution",
+    "regulationDetail": "What needs checking / correcting",
+    "sourceUrl": "HTTPS source URL (if any)",
+    "sourceType": "Type of source you suggest",
+    "sourceTypes": {
+      "OFFICIAL_WEB": "Government website",
+      "OFFICIAL_DOCUMENT": "Official document",
+      "OFFICIAL_API": "Official API",
+      "OTHER": "Other source"
+    },
+    "consent": "I've removed personal information and secret keys, and agree to send this content for the operators to review",
+    "sending": "Sending…",
+    "submit": "Send suggestion",
+    "receipt": "Receipt code:",
+    "lookupTitle": "Check status",
+    "receiptLabel": "Receipt code",
+    "lookup": "Look up",
+    "needsSource": "Enter an HTTPS URL in the source box above, then add it using this receipt code.",
+    "addSource": "Add source"
+  },
+  "ideas": {
+    "published": "Published ideas",
+    "empty": "No ideas have been approved and published yet."
+  }
+}

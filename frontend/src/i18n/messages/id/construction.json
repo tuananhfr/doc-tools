@@ -1,0 +1,42 @@
+{
+  "houseEstimate": {
+    "parts": {
+      "foundation": "Fondasi",
+      "basement": "Basemen",
+      "ground": "Lantai dasar",
+      "upper": "Tiap lantai atas",
+      "floor": "Lantai {{floor}}",
+      "rooftopRoom": "Ruang atap (tum)",
+      "terrace": "Teras atap terbuka",
+      "roof": "Atap",
+      "yard": "Halaman depan/belakang"
+    },
+    "result": "Perkiraan biaya acuan",
+    "money": "{{amount}} đ",
+    "enterPrice": "Masukkan harga satuan",
+    "convertedArea": "Luas konversi: {{area}} m²",
+    "costs": "Struktur: {{base}} đ · Finishing atau borongan: {{finishing}} đ · Tiang pancang: {{pile}} đ",
+    "columns": {
+      "item": "Pekerjaan",
+      "area": "Luas",
+      "factor": "Koefisien",
+      "converted": "Konversi"
+    },
+    "checkInput": "Periksa angka yang dimasukkan.",
+    "disclaimer": "Koefisien adalah kebiasaan acuan dari dokumen arsip, bukan norma resmi pemerintah. Cocokkan dengan desain dan penawaran kontraktor; belum termasuk desain, izin, perabot lepas, atau biaya tambahan akibat kondisi tanah.",
+    "title": "Luas dan harga satuan Anda",
+    "fields": {
+      "floorArea": "Luas lantai dasar (m²)",
+      "upperFloors": "Jumlah lantai atas (tanpa lantai dasar)",
+      "rooftopRoomArea": "Luas ruang atap (m²)",
+      "terraceArea": "Teras atap terbuka (m²)",
+      "yardArea": "Halaman depan/belakang (m²)",
+      "basePrice": "Harga satuan struktur (đ/m²)",
+      "finishingPrice": "Harga satuan finishing atau borongan (đ/m²)",
+      "pileCost": "Biaya tiang pancang (đ)"
+    },
+    "turnkey": "Harga satuan kedua adalah borongan penuh, sudah termasuk struktur",
+    "editFactors": "Ubah koefisien sesuai penawaran kontraktor",
+    "factorLabel": "{{label}} (%)"
+  }
+}

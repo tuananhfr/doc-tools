@@ -1,0 +1,47 @@
+{
+  "shared": {
+    "ready": "就绪",
+    "stop": "停止"
+  },
+  "dictation": {
+    "status": "状态",
+    "listening": "正在聆听",
+    "unsupported": "暂不支持",
+    "privacy": "语音识别使用浏览器自带的服务，音频可能会发送给浏览器提供商。你在此编辑的文字不会发送到 Chuyện Nhỏ 的服务器。",
+    "title": "越南语语音听写",
+    "start": "开始听写",
+    "text": "文字",
+    "copy": "复制",
+    "download": "下载 .txt",
+    "interrupted": "语音识别已中断。请检查麦克风权限后重试。",
+    "micFailed": "无法打开麦克风。请检查浏览器的访问权限。"
+  },
+  "magnifier": {
+    "noCamera": "此浏览器不支持摄像头。",
+    "cameraFailed": "无法打开摄像头。请检查访问权限以及摄像头是否正被占用。",
+    "preview": "摄像头画面",
+    "frozen": "画面已定格",
+    "live": "实时查看中",
+    "hint": "点击“打开摄像头”开始。",
+    "privacy": "画面只在你的设备上显示，不会录制或发送出去。",
+    "title": "放大镜",
+    "zoom": "放大：{{zoom}}×",
+    "switchCamera": "切换摄像头",
+    "openCamera": "打开摄像头",
+    "resume": "继续",
+    "freeze": "定格画面",
+    "contrastOff": "关闭高对比度",
+    "contrastOn": "增强对比度",
+    "closeCamera": "关闭摄像头"
+  },
+  "readAloud": {
+    "device": "在设备上朗读",
+    "speaking": "正在朗读",
+    "read": "朗读文字",
+    "voiceNote": "朗读声音取决于设备和浏览器中已安装的越南语语音。",
+    "unsupported": "此浏览器不支持文字朗读。",
+    "title": "要朗读的文字",
+    "content": "内容",
+    "rate": "语速：{{rate}}×"
+  }
+}

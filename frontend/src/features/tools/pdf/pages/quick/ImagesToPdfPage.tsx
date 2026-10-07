@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { CameraCapture } from '@/features/tools/image'
 import { ImageSheetFields } from '../../components/ImageSheetFields'
@@ -13,6 +14,7 @@ const ACCEPT: readonly QuickKind[] = ['image']
 
 /** SCAN ẢNH → PDF — mỗi ảnh một trang, xếp thứ tự, chọn khổ giấy và lề. Ảnh lấy từ máy hoặc chụp bằng camera. */
 export default function ImagesToPdfPage() {
+  const { t } = useTranslation('pdf')
   const quick = useQuickSources({ accept: ACCEPT, multiple: true })
   const [sheet, setSheet] = useState<ImageSheet>(DEFAULT_SHEET)
   const [camera, setCamera] = useState(false)
@@ -24,17 +26,17 @@ export default function ImagesToPdfPage() {
       accept={ACCEPT}
       multiple
       reorder
-      pickerTitle="Chọn ảnh cần gộp thành PDF"
+      pickerTitle={t('imagesToPdf.pickerTitle')}
       pickerExtra={(addFiles) => (
         <>
           <Button variant="outline-secondary" className="erp-flow-picker__pick" disabled={quick.loading !== null} onClick={() => setCamera(true)}>
             <Icon name="camera" className="me-2" />
-            Chụp ảnh
+            {t('imagesToPdf.camera')}
           </Button>
           <CameraCapture show={camera} onClose={() => setCamera(false)} onDone={addFiles} />
         </>
       )}
-      runLabel={count > 1 ? `Tạo PDF ${count} trang` : 'Tạo PDF'}
+      runLabel={count > 1 ? t('shared.createPdfPages', { count }) : t('shared.createPdf')}
       runIcon="file-earmark-pdf"
       blocked={null}
       task={() => imagesToPdfTask(quick.items, sheet)}

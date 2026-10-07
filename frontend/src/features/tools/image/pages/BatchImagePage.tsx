@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { parseDecimal, useFlowRun } from '@/features/tools/hub'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { useImageFiles } from '../hooks/useImageFiles'
@@ -14,18 +15,19 @@ type Quality = 'high' | 'medium' | 'small'
 
 const QUALITY_VALUE: Record<Quality, number> = { high: 0.92, medium: 0.8, small: 0.6 }
 
-const RESIZE_MODES: { value: ResizeMode; label: string; unit: string }[] = [
-  { value: 'keep', label: 'Giữ kích thước', unit: '' },
-  { value: 'edge', label: 'Cạnh dài tối đa', unit: 'px' },
-  { value: 'width', label: 'Chiều rộng', unit: 'px' },
-  { value: 'height', label: 'Chiều cao', unit: 'px' },
-  { value: 'percent', label: 'Theo phần trăm', unit: '%' },
+const RESIZE_MODES: { value: ResizeMode; unit: string }[] = [
+  { value: 'keep', unit: '' },
+  { value: 'edge', unit: 'px' },
+  { value: 'width', unit: 'px' },
+  { value: 'height', unit: 'px' },
+  { value: 'percent', unit: '%' },
 ]
 
 const FIRST_VALUE: Record<ResizeMode, string> = { keep: '', edge: '1920', width: '1280', height: '1080', percent: '50' }
 
 /** ẢNH HÀNG LOẠT — đổi cỡ, đổi định dạng và đổi tên cả lô trong một lượt. */
 export default function BatchImagePage() {
+  const { t } = useTranslation('image')
   const ids = useId()
   const images = useImageFiles({ multiple: true })
   const run = useFlowRun()
@@ -48,11 +50,11 @@ export default function BatchImagePage() {
   const lossy = format !== 'png' && (format !== 'keep' || images.items.some((item) => item.format !== 'png'))
 
   const blocked = !valueOk
-    ? `Kích thước phải là số nguyên từ ${RESIZE_LIMIT[mode as Exclude<ResizeMode, 'keep'>].min} đến ${RESIZE_LIMIT[mode as Exclude<ResizeMode, 'keep'>].max}.`
+    ? t('batch.sizeRange', { min: RESIZE_LIMIT[mode as Exclude<ResizeMode, 'keep'>].min, max: RESIZE_LIMIT[mode as Exclude<ResizeMode, 'keep'>].max })
     : patternError
       ? patternError
       : numbered && !startOk
-        ? 'Số bắt đầu phải là số nguyên từ 0.'
+        ? t('batch.startInvalid')
         : null
 
   const sample =
@@ -69,8 +71,8 @@ export default function BatchImagePage() {
       images={images}
       run={run}
       multiple
-      pickerTitle="Chọn các ảnh cần xử lý"
-      runLabel={count > 1 ? `Xử lý ${count} ảnh` : 'Xử lý ảnh'}
+      pickerTitle={t('batch.pickerTitle')}
+      runLabel={count > 1 ? t('batch.runMany', { count }) : t('batch.runOne')}
       runIcon="collection"
       blocked={blocked}
       task={() =>
@@ -85,12 +87,12 @@ export default function BatchImagePage() {
         <>
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-mode`}>
-              Đổi kích thước
+              {t('batch.resizeLabel')}
             </label>
             <Form.Select id={`${ids}-mode`} value={mode} onChange={(event) => setMode(event.target.value as ResizeMode)}>
               {RESIZE_MODES.map((option) => (
                 <option key={option.value} value={option.value}>
-                  {option.label}
+                  {t(`batch.resize.${option.value}`)}
                 </option>
               ))}
             </Form.Select>
@@ -98,7 +100,7 @@ export default function BatchImagePage() {
           {mode === 'keep' ? null : (
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-value`}>
-                {RESIZE_MODES.find((option) => option.value === mode)?.label}
+                {t(`batch.resize.${mode}`)}
               </label>
               <InputGroup hasValidation={false}>
                 <Form.Control
@@ -112,16 +114,16 @@ export default function BatchImagePage() {
                 />
                 <InputGroup.Text>{RESIZE_MODES.find((option) => option.value === mode)?.unit}</InputGroup.Text>
               </InputGroup>
-              <p className="erp-flow-field__hint">Giữ tỉ lệ ảnh. Ảnh đã nhỏ hơn cỡ này thì giữ nguyên — không phóng to.</p>
+              <p className="erp-flow-field__hint">{t('batch.resizeHint')}</p>
             </div>
           )}
 
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-format`}>
-              Định dạng ra
+              {t('batch.formatLabel')}
             </label>
             <Form.Select id={`${ids}-format`} value={format} onChange={(event) => setFormat(event.target.value as Target)}>
-              <option value="keep">Giữ định dạng từng ảnh</option>
+              <option value="keep">{t('batch.keepFormat')}</option>
               <option value="jpeg">JPG</option>
               <option value="png">PNG</option>
               {webp ? <option value="webp">WebP</option> : null}
@@ -130,19 +132,19 @@ export default function BatchImagePage() {
           {lossy ? (
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-quality`}>
-                Chất lượng JPG / WebP
+                {t('batch.qualityLabel')}
               </label>
               <Form.Select id={`${ids}-quality`} value={quality} onChange={(event) => setQuality(event.target.value as Quality)}>
-                <option value="high">Cao — gần như không khác ảnh gốc</option>
-                <option value="medium">Vừa — cân giữa độ nét và dung lượng</option>
-                <option value="small">Nhỏ gọn — nhẹ nhất</option>
+                <option value="high">{t('batch.quality.high')}</option>
+                <option value="medium">{t('batch.quality.medium')}</option>
+                <option value="small">{t('batch.quality.small')}</option>
               </Form.Select>
             </div>
           ) : null}
 
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={`${ids}-pattern`}>
-              Mẫu tên tệp
+              {t('batch.patternLabel')}
             </label>
             <Form.Control
               id={`${ids}-pattern`}
@@ -154,20 +156,20 @@ export default function BatchImagePage() {
               onChange={(event) => setPattern(event.target.value)}
             />
             <p className="erp-flow-field__hint">
-              <code>{'{name}'}</code> = tên gốc, <code>{'{n}'}</code> = số thứ tự. Ví dụ: <code>{'cong-trinh-{n}'}</code>
+              <Trans ns="image" i18nKey="batch.patternHint" components={{ code: <code /> }} />
             </p>
           </div>
           {numbered ? (
             <div className="erp-flow-field">
               <label className="erp-flow-field__label" htmlFor={`${ids}-start`}>
-                Số bắt đầu
+                {t('batch.startLabel')}
               </label>
               <Form.Control id={`${ids}-start`} type="text" inputMode="numeric" autoComplete="off" value={startText} isInvalid={!startOk} onChange={(event) => setStartText(event.target.value)} />
             </div>
           ) : null}
           {sample.length > 0 ? (
             <p className="erp-flow-field__hint erp-image-output">
-              Tên ra: <strong>{sample.join(', ')}</strong>
+              <Trans ns="image" i18nKey="batch.sample" values={{ names: sample.join(', ') }} components={{ strong: <strong /> }} />
               {count > sample.length ? '…' : ''}
             </p>
           ) : null}

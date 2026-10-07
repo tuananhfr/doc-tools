@@ -1,0 +1,887 @@
+{
+  "trust": {
+    "label": "이용 약속",
+    "items": {
+      "free": {
+        "title": "완전 무료",
+        "description": "바로 사용, 숨은 비용 없음"
+      },
+      "noAccount": {
+        "title": "계정 필요 없음",
+        "description": "들어와서 도구를 고르고 바로 사용"
+      },
+      "noInstall": {
+        "title": "설치 필요 없음",
+        "description": "브라우저에서 바로 실행"
+      },
+      "onDevice": {
+        "title": "파일은 내 기기에",
+        "description": "파일을 서버에 업로드하지 않아요"
+      }
+    }
+  },
+  "meta": {
+    "title": "Chuyện Nhỏ — 무료 도구",
+    "description": "무료 PDF, 이미지, QR 코드, 유틸리티 도구. 내 기기에서 처리하며 파일을 업로드하지 않아요."
+  },
+  "pages": {
+    "ve-chung-toi": {
+      "title": "Chuyện Nhỏ 소개 | ERPCons & LPC의 무료 도구",
+      "description": "Chuyện Nhỏ는 ERPCons & LPC가 만든 무료 도구 모음으로, 업무와 건설, 일상의 작은 일을 빠르게 처리하도록 도와줘요."
+    },
+    "ho-tro": {
+      "title": "도움말 & 자주 묻는 질문 | Chuyện Nhỏ",
+      "description": "Chuyện Nhỏ를 쓰면서 자주 생기는 궁금증에 대한 답변과 연락 방법이에요."
+    },
+    "xu-ly-du-lieu": {
+      "title": "데이터 처리 방식 | Chuyện Nhỏ",
+      "description": "어떤 도구가 기기에서 바로 처리하는지, 어떤 도구가 서버를 쓰는지, 어떤 데이터가 저장되는지. 도구마다 투명하게 알려 드려요."
+    },
+    "cai-dat": {
+      "title": "휴대폰과 컴퓨터에 Chuyện Nhỏ 설치하기 | Chuyện Nhỏ",
+      "description": "Android, iPhone, iPad 홈 화면에 Chuyện Nhỏ를 추가하거나 Windows, macOS에 설치해 앱처럼 빠르게 여세요."
+    },
+    "huong-dan": {
+      "title": "사용 가이드 | Chuyện Nhỏ",
+      "description": "자주 쓰는 도구의 단계별 가이드: PDF 압축, 사진 스캔 PDF 변환, OCR, QR 코드, 집 방향, 개략 견적, 가족 달력."
+    },
+    "dieu-khoan": {
+      "title": "이용 약관 | Chuyện Nhỏ",
+      "description": "무료 도구 모음 Chuyện Nhỏ의 이용 약관이에요."
+    },
+    "quyen-rieng-tu": {
+      "title": "개인정보 처리방침 | Chuyện Nhỏ",
+      "description": "2025년 개인정보 보호법에 따라 Chuyện Nhỏ가 개인 데이터를 수집, 이용, 보호하는 방법이에요."
+    }
+  },
+  "nav": {
+    "tools": "도구",
+    "construction": "건설",
+    "family": "가족",
+    "guides": "가이드",
+    "about": "소개"
+  },
+  "header": {
+    "skipLink": "본문으로 건너뛰기",
+    "mainNav": "주 메뉴",
+    "search": "도구 찾기",
+    "openMenu": "메뉴 열기",
+    "mobileNav": "모바일 메뉴"
+  },
+  "footer": {
+    "madeBy": "<link>ERPCons & LPC</link>의 제품",
+    "navLabel": "하단 메뉴",
+    "motto": "늘 곁에서 함께해요.",
+    "links": {
+      "about": "소개",
+      "guides": "가이드",
+      "data": "데이터 처리",
+      "support": "도움말",
+      "terms": "약관",
+      "privacy": "개인정보"
+    }
+  },
+  "brand": {
+    "home": "Chuyện Nhỏ, 홈"
+  },
+  "share": {
+    "button": "공유",
+    "title": "링크 공유",
+    "description": "이 페이지를 친구나 동료에게 보내세요.",
+    "urlLabel": "현재 페이지 링크",
+    "copy": "링크 복사",
+    "native": "앱으로 공유",
+    "copied": "링크를 복사했어요.",
+    "copyFailed": "복사하지 못했어요. 위의 링크를 선택해서 복사하세요.",
+    "shareFailed": "공유 창을 열지 못했어요. 링크를 복사해서 보내세요.",
+    "unsupported": "이 브라우저는 아직 앱으로 공유하기를 지원하지 않아요. 링크를 복사해 카카오톡, Zalo 등 다른 앱으로 보낼 수 있어요."
+  },
+  "breadcrumb": {
+    "label": "현재 위치",
+    "home": "홈",
+    "tools": "도구",
+    "guides": "가이드"
+  },
+  "search": {
+    "label": "도구 찾기",
+    "placeholder": "도구 찾기… (예: PDF 합치기, QR, OCR)",
+    "clear": "검색어 지우기",
+    "submit": "검색"
+  },
+  "filters": {
+    "all": "전체"
+  },
+  "results": {
+    "count": "도구 {{count}}개",
+    "countFor": "“{{keyword}}” 관련 도구 {{count}}개",
+    "empty": "찾는 도구가 없어요",
+    "emptyHint": "다른 검색어를 쓰거나 필터를 줄여 보세요.",
+    "showAll": "모든 도구 보기"
+  },
+  "toolCard": {
+    "useNow": "바로 사용",
+    "soon": "출시 예정"
+  },
+  "processing": {
+    "server": "서버에서 처리",
+    "device": "기기에서 처리"
+  },
+  "recent": {
+    "title": "최근 사용"
+  },
+  "products": {
+    "learnMore": "{{product}} 알아보기"
+  },
+  "home": {
+    "metaTitle": "Chuyện Nhỏ | 무료 도구. 필요할 때 바로.",
+    "captionStart": "작은 일이 모여\n큰 가치가 돼요.",
+    "tagline": "무료 도구. 필요할 때 바로.",
+    "description": "매일 하는 일에 꼭 필요한, 간단하고 실용적인 도구들.",
+    "promisesLabel": "바로 사용",
+    "promises": {
+      "noAccount": "계정 필요 없음",
+      "noInstall": "설치 필요 없음",
+      "onDevice": "파일은 기기에서 처리"
+    },
+    "captionEnd": "오늘은 간단하게.\n내일은 든든하게.",
+    "catalogTitle": "오늘은 무엇을 해야 하나요?",
+    "featuredLabel": "인기 도구",
+    "resultsLabel": "도구"
+  },
+  "directory": {
+    "metaTitle": "모든 무료 도구 | Chuyện Nhỏ",
+    "metaDescription": "Chuyện Nhỏ의 무료 PDF, 이미지, QR 코드, 유틸리티 도구 전체. 계정이 필요 없고 기기에서 바로 처리해요.",
+    "title": "모든 도구",
+    "lead": "무료 도구 {{count}}개. 필요한 일을 골라 브라우저에서 바로 쓰세요.",
+    "catalogLabel": "도구 목록"
+  },
+  "ecosystem": {
+    "title": "도구 하나로 부족할 때…",
+    "description": "오늘의 작은 일부터 내일의 더 큰 일까지.",
+    "erpcons": {
+      "heading": "업무, 프로젝트, 건설 기업 관리를 하나의 플랫폼에서.",
+      "modules": "업무 · 계약 · 프로젝트\n비용 · 구매 · 창고 · 재무",
+      "trial": "체험하기"
+    },
+    "tekshot": {
+      "heading": "기업이 보고, 깊이 이해하고, 자동화하고, 성장하도록 돕는 AI & 소프트웨어 플랫폼.",
+      "modules": "카메라 AI · 판매 & POS · 마케팅 AI\n리서치 AI · 하나의 플랫폼, 모든 데이터",
+      "trial": "무료 체험",
+      "demo": "데모 보기"
+    },
+    "storyTitle": "하나의 생태계. 더 많은 가치.",
+    "story": "Chuyện Nhỏ는 ERPCons & LPC가 만든 무료 도구 모음으로, 매일의 작은 일을 빠르게 처리하도록 도와줘요.",
+    "steps": {
+      "chuyenNho": "작은 일이 필요할 때.\n바로 사용.",
+      "erpcons": "업무, 프로젝트,\n기업 관리.",
+      "tekshot": "기업을 위해 보고, 이해하고,\n일하고, 배우는 AI."
+    },
+    "motto": "일은 더 가볍게.\n하루하루 더 좋게."
+  },
+  "hub": {
+    "highlightsLabel": "이 그룹에는",
+    "listLabel": "{{label}} 목록",
+    "subgroupFilter": "하위 그룹별 필터",
+    "emptyHint": "다른 검색어를 쓰거나 하위 그룹 필터를 풀어 보세요.",
+    "showGroup": "그룹 전체 보기",
+    "asideLabel": "추가 추천",
+    "privacy": {
+      "title": "내 파일을 소중히 다뤄요",
+      "description": "대부분의 도구는 기기에서 바로 처리해요. 서버가 필요한 도구는 카드에 분명히 표시해요.",
+      "link": "데이터 처리 방식 보기"
+    },
+    "support": {
+      "title": "도움이 필요하세요?",
+      "description": "단계별 가이드를 보거나 메일을 보내 주세요.",
+      "guides": "가이드 보기"
+    }
+  },
+  "hubs": {
+    "xay-dung": {
+      "label": "건설 도구",
+      "title": "<accent>건설</accent> 도구",
+      "tagline": "조회. 계산. 점검. 간단하지만 효과적으로.",
+      "description": "엔지니어, 건축가, 시공사, 건축주를 위한 무료 도구 모음. 아이디어 단계부터 시공과 준공까지 함께해요.",
+      "metaTitle": "무료 건설 도구 | Chuyện Nhỏ",
+      "metaDescription": "주택 건축비 개략 견적, 집 방향 확인, 사진 위 치수 측정, 그리고 곧 나올 건설 조회 도구들. 무료이며 계정이 필요 없어요.",
+      "caption": "건설 일이\n날마다 더 쉬워져요!",
+      "searchPlaceholder": "건설 도구 찾기… (예: 개략 견적, 집 방향, 도시 계획)",
+      "highlights": {
+        "estimate": "개략 견적",
+        "planning": "도시 계획",
+        "prices": "건설 단가",
+        "legal": "법규",
+        "standards": "기준",
+        "dossier": "서류 점검",
+        "site": "현장"
+      },
+      "trust": {
+        "free": {
+          "title": "무료",
+          "detail": "바로 사용, 숨은 비용 없음"
+        },
+        "noInstall": {
+          "title": "설치 필요 없음",
+          "detail": "브라우저에서 바로 실행"
+        },
+        "onDevice": {
+          "title": "내 기기에서 계산",
+          "detail": "입력한 수치는 기기 밖으로 나가지 않아요"
+        },
+        "practical": {
+          "title": "실무를 위해",
+          "detail": "건축주부터 시공사까지"
+        }
+      },
+      "subgroups": {
+        "khai-toan": "개략 견적 & 계산",
+        "quy-hoach": "도시 계획 & 집 방향",
+        "gia-vat-lieu": "단가 & 자재",
+        "phap-ly": "법규 & 기준",
+        "ban-ve": "도면 & 서류",
+        "hien-truong": "현장"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "도구 하나로는 부족하세요?",
+          "description": "프로젝트 전체, 비용, 계약, 서류, 구매를 하나의 플랫폼에서 관리하세요.",
+          "points": {
+            "work": "업무 · 프로젝트 · 계약",
+            "cost": "비용 · 예산 · 구매",
+            "documents": "서류 · 문서 · 승인",
+            "ai": "데이터를 묻고 답하는 AI 도우미"
+          }
+        },
+        "tekshot": {
+          "title": "현장 기록을 더 스마트하게?",
+          "description": "카메라, 현장 사진, AI 인식을 프로젝트와 바로 연결해요.",
+          "points": {
+            "vision": "Vision · 카메라 · 현장",
+            "studio": "Studio · 콘텐츠 · 보고서",
+            "insight": "Insight · 시장",
+            "central": "Central · 통합 & 운영"
+          }
+        }
+      },
+      "journey": {
+        "title": "아이디어부터 완공까지. 언제나 함께해요.",
+        "motto": "작은 도구.\n큰 가치!",
+        "steps": {
+          "idea": {
+            "title": "아이디어",
+            "detail": "도시 계획 · 집 방향"
+          },
+          "design": {
+            "title": "설계",
+            "detail": "기준 · 서류 점검"
+          },
+          "estimate": {
+            "title": "견적",
+            "detail": "개략 견적 · 건설 단가"
+          },
+          "build": {
+            "title": "시공",
+            "detail": "현장 일지"
+          },
+          "handover": {
+            "title": "준공",
+            "detail": "서류 · 보관"
+          }
+        }
+      }
+    },
+    "gia-dinh": {
+      "label": "가족 도구",
+      "title": "<accent>가족</accent>을 위한 도구",
+      "tagline": "작은 일들, 큰 행복.",
+      "description": "공동 일정 정리, 할 일 알림, 집안 지출 계산을 돕는 간단한 도구. 온 가족이 같은 리듬으로, 날마다 함께 즐겁게.",
+      "metaTitle": "무료 가족 도구 | Chuyện Nhỏ",
+      "metaDescription": "가족 달력, 음력·양력 달력, 전기·수도 요금, 모임 비용 나누기, 집 방향, 그리고 곧 나올 가족 도구들. 무료이며 데이터는 내 기기에 저장돼요.",
+      "caption": "오늘 우리 집에는\n어떤 즐거운 일이?",
+      "searchPlaceholder": "가족 도구 찾기… (예: 달력, 할 일 알림, 전기 요금)",
+      "highlights": {
+        "calendar": "공동 일정 정리",
+        "reminders": "할 일 알림 & 챙기기",
+        "spending": "집안 지출 계산",
+        "together": "온 가족이 같은 리듬으로"
+      },
+      "trust": {
+        "free": {
+          "title": "무료",
+          "detail": "바로 사용, 숨은 비용 없음"
+        },
+        "noInstall": {
+          "title": "설치 필요 없음",
+          "detail": "브라우저에서 바로 실행"
+        },
+        "private": {
+          "title": "프라이버시",
+          "detail": "데이터는 내 기기에 저장돼요"
+        },
+        "devices": {
+          "title": "어디서나 잘 작동",
+          "detail": "휴대폰과 컴퓨터"
+        }
+      },
+      "subgroups": {
+        "lich": "달력 & 알림",
+        "chi-tieu": "지출",
+        "nha-cua": "집",
+        "hoc-tap": "학업",
+        "suc-khoe": "건강",
+        "ket-noi": "소통"
+      },
+      "aside": {
+        "familyCalendar": {
+          "title": "가족 달력",
+          "subtitle": "오늘 우리 집에는 무슨 일이?",
+          "points": {
+            "schedules": "학교 일정, 업무 일정, 가족 일정",
+            "contacts": "할 일 목록과 긴급 연락처",
+            "backup": "기기에 저장, 필요할 때 백업",
+            "ics": "휴대폰으로 일정 내보내기 (ICS)"
+          }
+        },
+        "houseOrientation": {
+          "title": "집 방향 & 나침반",
+          "subtitle": "좋은 방향을 골라 더 안심하세요",
+          "points": {
+            "direction": "집 방향, 대지 방향 확인",
+            "compass": "휴대폰에서 바로 쓰는 나침반",
+            "lookup": "빠르고 쉬운 조회"
+          }
+        }
+      },
+      "journey": {
+        "title": "날마다 행복한 가족을 위해",
+        "motto": "작은 일이\n큰 행복을 만들어요!",
+        "steps": {
+          "organized": {
+            "title": "더 잘 정리하기",
+            "detail": "시간, 일, 생활"
+          },
+          "connected": {
+            "title": "더 가깝게",
+            "detail": "온 가족이 함께 나눠요"
+          },
+          "caring": {
+            "title": "더 세심하게",
+            "detail": "건강, 학업, 생활"
+          },
+          "happy": {
+            "title": "더 행복하게",
+            "detail": "날마다의 작은 일에서"
+          }
+        }
+      }
+    },
+    "tai-lieu-pdf": {
+      "label": "문서 & PDF",
+      "title": "<accent>문서 & PDF</accent> 도구",
+      "tagline": "편집. 변환. 합치기·나누기. 서명. 압축. 빠르고 무료로.",
+      "description": "문서, PDF, 서류 사진을 간단하게 처리하세요. 브라우저에서 바로 쓰고, 설치가 필요 없으며, 파일은 기기 밖으로 나가지 않아요.",
+      "metaTitle": "무료 PDF 도구: 합치기, 분할, 압축, OCR, 서명 | Chuyện Nhỏ",
+      "metaDescription": "PDF 합치기, 분할, 압축, 편집, 서명, Word 변환과 베트남어 텍스트 인식. 무료, 계정 필요 없음, 파일은 기기에서 바로 처리돼요.",
+      "caption": "문서 작업이\n이제 정말 간단해요!",
+      "searchPlaceholder": "문서 도구 찾기… (예: PDF 압축, PDF 합치기, OCR, 서명)",
+      "highlights": {
+        "edit": "PDF 내용 편집",
+        "mergeSplit": "합치기, 분할, 압축",
+        "convert": "형식 변환",
+        "sign": "문서 서명",
+        "ocr": "텍스트 OCR",
+        "compare": "문서 비교",
+        "redact": "민감한 정보 가리기"
+      },
+      "trust": {
+        "free": {
+          "title": "무료",
+          "detail": "바로 사용, 숨은 비용 없음"
+        },
+        "noInstall": {
+          "title": "설치 필요 없음",
+          "detail": "브라우저에서 바로 실행"
+        },
+        "secure": {
+          "title": "안전, 프라이버시",
+          "detail": "파일은 기기에서 바로 처리"
+        },
+        "formats": {
+          "title": "다양한 형식",
+          "detail": "PDF, Word, Excel, 이미지"
+        }
+      },
+      "subgroups": {
+        "sua": "편집 & 정리",
+        "gop-tach": "합치기, 분할, 압축",
+        "chuyen-doi": "변환",
+        "ocr": "OCR & 비교",
+        "ky-bao-mat": "서명 & 보안",
+        "soan-thao": "문서 작성"
+      },
+      "aside": {
+        "erpcons": {
+          "title": "ERPCons로 문서를 더 빠르게 처리하세요",
+          "description": "서류, 문서, 계약, 버전, 승인을 하나의 플랫폼에서 관리하세요.",
+          "points": {
+            "storage": "중앙 집중 보관",
+            "permissions": "권한 설정 & 공유",
+            "versions": "버전 추적",
+            "linked": "업무 & 프로젝트와 연결"
+          }
+        },
+        "tips": {
+          "title": "빠른 팁",
+          "items": {
+            "drop": "파일을 도구 영역에 끌어다 놓으세요.",
+            "options": "알맞은 옵션을 고르세요.",
+            "download": "결과를 기기에 다운로드하세요.",
+            "closeTab": "탭을 닫으면 파일이 브라우저에서 사라져요."
+          }
+        }
+      },
+      "journey": {
+        "title": "문서에서 업무까지. 언제나 함께해요.",
+        "motto": "큰일은\n작은 일에서 시작돼요!",
+        "steps": {
+          "documents": {
+            "title": "문서",
+            "detail": "PDF, Word, Excel"
+          },
+          "storage": {
+            "title": "보관",
+            "detail": "중앙 집중 서류"
+          },
+          "share": {
+            "title": "공유",
+            "detail": "동료와 함께"
+          },
+          "approve": {
+            "title": "승인",
+            "detail": "빠르게"
+          },
+          "track": {
+            "title": "추적",
+            "detail": "버전, 이력"
+          }
+        }
+      }
+    }
+  },
+  "about": {
+    "trail": "Chuyện Nhỏ 소개",
+    "title": "<accent>Chuyện Nhỏ</accent> 소개",
+    "tagline": "작은 일이 모여 큰 가치가 돼요.",
+    "intro": "Chuyện Nhỏ는 ERPCons & LPC가 만든 무료 도구 모음으로, 업무와 건설, 일상의 작은 일을 빠르게 처리하도록 도와줘요.",
+    "introMore": "필요할 때 바로. 간단하게. 효과적으로. 설치도 계정도 필요 없어요.",
+    "caption": "할 일이 생기면,\n바로 사용!",
+    "explore": "도구 둘러보기",
+    "guides": "가이드 보기",
+    "valuesLabel": "Chuyện Nhỏ의 약속",
+    "values": {
+      "free": {
+        "title": "무료",
+        "detail": "바로 사용, 숨은 비용 없음"
+      },
+      "noInstall": {
+        "title": "설치 필요 없음",
+        "detail": "브라우저에서 바로 실행"
+      },
+      "onDevice": {
+        "title": "기기 내 처리 우선",
+        "detail": "파일은 내 기기에 머물러요"
+      },
+      "domains": {
+        "title": "다양한 분야",
+        "detail": "업무 · 건설 · 가족"
+      }
+    },
+    "ecosystemTitle": "하나의 생태계, 더 많은 가치",
+    "ecosystemDescription": "Chuyện Nhỏ는 ERPCons & LPC 제품 생태계의 일부예요.",
+    "products": {
+      "chuyen-nho": {
+        "role": "한 가지 일 처리",
+        "points": {
+          "free": "무료 도구",
+          "noAccount": "계정 없이 바로 사용",
+          "noInstall": "설치 필요 없음",
+          "domains": "업무, 건설, 가족을 위해"
+        }
+      },
+      "erpcons": {
+        "role": "업무, 프로젝트, 기업 관리",
+        "points": {
+          "work": "업무 · 계약 · 프로젝트",
+          "cost": "비용 · 구매 · 창고",
+          "finance": "재무 · 서류 · 인사",
+          "ai": "데이터를 묻고 답하는 AI 도우미"
+        }
+      },
+      "tekshot": {
+        "role": "기업을 위해 보고, 이해하고, 일하고, 배우는 AI",
+        "points": {
+          "vision": "카메라 AI · TekShot Vision",
+          "pos": "POS & 판매 · TekShot POS",
+          "studio": "마케팅 AI · TekShot Studio",
+          "research": "리서치 AI · TekShot Research"
+        }
+      }
+    },
+    "storyMotto": "오늘의 작은 일부터\n내일의 큰일까지.",
+    "story": "Chuyện Nhỏ는 작은 일부터 시작하도록 도와줘요. 일이 더 복잡해지면 ERPCons와 TekShot AI에서 관리하고, 연결하고, 가치를 넓히세요.",
+    "statsLabel": "숫자로 보는 Chuyện Nhỏ",
+    "stats": {
+      "tools": "바로 쓰는 무료 도구",
+      "groups": "작업 그룹: 문서, 이미지, 계산, 건설, 가족…"
+    }
+  },
+  "data": {
+    "trail": "데이터 처리 방식",
+    "title": "<accent>데이터 처리</accent> 방식",
+    "tagline": "파일은 내 기기에 머물러요.",
+    "intro": "Chuyện Nhỏ는 브라우저 안에서 바로 파일을 처리해요. 이 페이지에서 각 도구가 어디에서 실행되는지, 실제로 서버로 무엇이 전송되는지 분명히 알려 드려요.",
+    "caption": "도구마다\n투명하게!",
+    "points": {
+      "noCookie": "쿠키를 쓰지 않아요",
+      "noTracking": "추적·광고 도구가 없어요",
+      "noAccount": "계정이 필요 없어요"
+    },
+    "flowLabel": "데이터가 가는 곳",
+    "columns": {
+      "device": {
+        "title": "기기에서 바로 처리",
+        "lead": "지금 쓸 수 있는 도구 {{count}}개",
+        "points": {
+          "tab": "PDF, 이미지, 동영상 파일은 브라우저 탭 안에서만 열려요",
+          "download": "결과는 다운로드를 눌렀을 때만 생겨요",
+          "model": "텍스트 인식 모델은 제3자를 거치지 않고 이 사이트에서 직접 내려받아요"
+        }
+      },
+      "server": {
+        "title": "당사 서버로 전송",
+        "lead": "가능한 한 최소로",
+        "points": {
+          "visits": "전체 이용 횟수를 세기 위한, 내가 연 도구 이름. 쿠키 없음, 개인 식별 없음",
+          "ip": "IP 주소는 자동화된 전송을 막기 위해 단방향 해시 처리만 하고, 약 1시간 후 자동 삭제돼요",
+          "feedback": "의견·제안은 동의에 체크하고 보내기를 눌렀을 때만 전송돼요",
+          "soon": "출시 예정 도구 {{count}}개는 서버 조회가 필요하며, 카드에 분명히 표시돼요"
+        }
+      },
+      "local": {
+        "title": "내 브라우저에 저장",
+        "lead": "이 기기에서만",
+        "points": {
+          "prefs": "최근 사용한 도구와 밝은/어두운 화면 설정",
+          "saved": "직접 저장한 데이터: 가족 달력, 메모, 이력서 초안, 암기 카드",
+          "clear": "도구 안이나 브라우저 설정에서 언제든 지울 수 있어요"
+        }
+      }
+    },
+    "tableTitle": "도구별 처리 위치",
+    "tableDescription": "도구 목록에서 바로 만든 표라서 각 카드의 표시와 항상 일치해요.",
+    "searchPlaceholder": "도구 찾기… (예: OCR, 급여, QR)",
+    "filterLabel": "처리 위치별 필터",
+    "modelFilter": "인식 모델 다운로드 있음",
+    "head": {
+      "tool": "도구",
+      "group": "그룹",
+      "where": "처리 위치",
+      "note": "비고"
+    },
+    "modes": {
+      "device": "기기에서 처리",
+      "model": "기기에서 처리, 인식 모델 다운로드",
+      "server": "서버 필요"
+    },
+    "notes": {
+      "server": "출시 예정. 서버에서 데이터 조회가 필요하며, 출시 전에 전송되는 데이터를 분명히 알려 드릴게요.",
+      "model": "이 사이트에서 인식 모델을 한 번 내려받은 뒤, 기기에서 바로 인식해요.",
+      "noFile": "내 기기에서 바로 실행하며 데이터를 보내지 않아요.",
+      "device": "파일은 기기 밖으로 나가지 않아요."
+    },
+    "emptyHint": "다른 검색어를 쓰거나 필터를 풀어 보세요.",
+    "showAll": "모두 보기",
+    "faqTitle": "데이터 관련 질문",
+    "faqDescription": "자세한 내용은 <link>개인정보 처리방침</link>에서 읽어 보세요."
+  },
+  "guidesPage": {
+    "title": "<accent>사용</accent> 가이드",
+    "tagline": "짧은 단계, 화면 속 문구 그대로.",
+    "intro": "글마다 몇 분이면 읽어요. 단계대로 따라 하면 끝나고, 팁과 주의할 점도 함께 담았어요.",
+    "caption": "2분 읽고,\n바로 하기!",
+    "listTitle": "가이드 목록",
+    "filterLabel": "그룹별 필터",
+    "missingTitle": "필요한 가이드가 없나요?",
+    "missing": "<faq>자주 묻는 질문</faq>, <install>기기에 Chuyện Nhỏ 설치하기</install>를 보거나, <suggest>도구 제안</suggest>으로 새 가이드를 제안해 주세요."
+  },
+  "guide": {
+    "metaTitle": "{{title}} | Chuyện Nhỏ 가이드",
+    "fallbackTitle": "가이드 | Chuyện Nhỏ",
+    "minutes": "{{count}}분",
+    "steps": "{{count}}단계",
+    "open": "{{name}} 열기",
+    "stepsTitle": "단계",
+    "tipsTitle": "팁",
+    "notesTitle": "주의할 점",
+    "asideLabel": "관련 항목",
+    "toolsTitle": "이 글의 도구",
+    "othersTitle": "다른 글",
+    "all": "모든 가이드 보기"
+  },
+  "install": {
+    "trail": "기기에 설치",
+    "title": "<accent>기기에</accent> Chuyện Nhỏ 설치하기",
+    "tagline": "앱처럼 쓰세요. 빠르게 열고. 날마다 더 편하게.",
+    "intro": "Chuyện Nhỏ는 웹 앱이에요. 홈 화면이나 Dock에 추가하면 브라우저에서 페이지를 다시 찾을 필요 없이 바로 열 수 있어요.",
+    "caption": "한 번 설치하고,\n날마다 편하게!",
+    "benefits": {
+      "fast": "홈 화면에서 빠르게 열기",
+      "fullscreen": "주소창 없는 전체 화면",
+      "noStore": "앱 스토어가 필요 없어요",
+      "free": "무료"
+    },
+    "cta": "앱 설치",
+    "ctaHint": "한 번 탭으로, 앱 스토어 없이.",
+    "installed": "이 기기에는 Chuyện Nhỏ가 이미 설치돼 있어요.",
+    "chooseTitle": "내 기기 선택",
+    "chooseDescription": "브라우저마다 설치 버튼 위치가 달라요.",
+    "tabsLabel": "기기",
+    "panelTitle": "{{platform}}({{browser}})에 설치",
+    "stepWithAddress": "{{detail}} 주소: {{address}}",
+    "platforms": {
+      "android": {
+        "label": "Android",
+        "browser": "Chrome",
+        "steps": {
+          "open": {
+            "title": "Chrome으로 Chuyện Nhỏ 열기",
+            "detail": "Chrome 주소창에 사이트 주소를 입력하세요."
+          },
+          "menu": {
+            "title": "⋮ 메뉴(점 세 개) 누르기",
+            "detail": "화면 오른쪽 위에 있어요."
+          },
+          "add": {
+            "title": "“홈 화면에 추가” 선택",
+            "detail": "기기에 따라 “앱 설치”로 표시되기도 해요."
+          },
+          "install": {
+            "title": "“설치” 누르기",
+            "detail": "Chuyện Nhỏ 아이콘이 홈 화면에 생기고, 앱처럼 열려요."
+          }
+        }
+      },
+      "ios": {
+        "label": "iPhone / iPad",
+        "browser": "Safari",
+        "steps": {
+          "open": {
+            "title": "Safari로 Chuyện Nhỏ 열기",
+            "detail": "Safari 주소창에 사이트 주소를 입력하세요."
+          },
+          "share": {
+            "title": "공유 버튼 누르기",
+            "detail": "위쪽 화살표가 있는 네모 모양이에요. 최신 iOS에서는 아래쪽 막대의 ⋯ 메뉴 안에 있어요."
+          },
+          "add": {
+            "title": "“홈 화면에 추가” 선택",
+            "detail": "이 항목이 안 보이면 목록을 아래로 내리세요."
+          },
+          "confirm": {
+            "title": "“추가” 누르기",
+            "detail": "오른쪽 위에 있어요. Chuyện Nhỏ 아이콘이 홈 화면에 생겨요."
+          }
+        }
+      },
+      "windows": {
+        "label": "Windows",
+        "browser": "Chrome / Edge",
+        "steps": {
+          "open": {
+            "title": "Chrome이나 Edge로 Chuyện Nhỏ 열기",
+            "detail": "브라우저가 최신 버전이어야 해요."
+          },
+          "icon": {
+            "title": "주소창의 설치 아이콘 누르기",
+            "detail": "아래쪽 화살표가 있는 모니터 모양으로, 주소창 끝에 있어요."
+          },
+          "menu": {
+            "title": "아이콘이 안 보이나요? 메뉴를 쓰세요",
+            "detail": "Chrome: ⋮ 메뉴에서 “전송, 저장, 공유”를 고른 뒤 “페이지를 앱으로 설치”. Edge: ⋯ 메뉴에서 “앱”을 고른 뒤 “이 사이트를 앱으로 설치”."
+          },
+          "install": {
+            "title": "“설치” 누르기",
+            "detail": "Chuyện Nhỏ가 별도 창에서 열리고 시작 메뉴에도 생겨요."
+          }
+        }
+      },
+      "macos": {
+        "label": "macOS",
+        "browser": "Safari / Chrome",
+        "steps": {
+          "open": {
+            "title": "Safari로 Chuyện Nhỏ 열기",
+            "detail": "macOS Sonoma(14) 이상이 필요해요."
+          },
+          "dock": {
+            "title": "파일 메뉴에서 “Dock에 추가” 선택",
+            "detail": "화면 맨 위 메뉴 막대에 있어요."
+          },
+          "confirm": {
+            "title": "“추가” 누르기",
+            "detail": "Chuyện Nhỏ가 Dock에 나타나고 별도 창에서 열려요."
+          },
+          "chrome": {
+            "title": "Chrome이나 Edge를 쓰시나요?",
+            "detail": "Windows와 똑같이 주소창 끝의 설치 아이콘을 누르세요."
+          }
+        }
+      },
+      "other": {
+        "label": "다른 브라우저",
+        "browser": "Firefox, 삼성 인터넷…",
+        "steps": {
+          "samsung": {
+            "title": "삼성 인터넷",
+            "detail": "≡ 메뉴를 누르고 “현재 페이지 추가”를 고른 뒤 “홈 화면”을 선택하세요."
+          },
+          "firefox": {
+            "title": "컴퓨터용 Firefox",
+            "detail": "아직 사이트를 앱으로 설치하는 기능을 지원하지 않아요. 탭에서 모든 도구를 평소처럼 쓸 수 있어요."
+          },
+          "install": {
+            "title": "앱처럼 설치하고 싶으세요?",
+            "detail": "Chrome, Edge 또는 Safari로 Chuyện Nhỏ를 열고 해당 탭의 안내를 따르세요."
+          }
+        }
+      }
+    },
+    "troubleshootTitle": "설치 옵션이 안 보이나요?",
+    "troubleshooting": {
+      "update": "브라우저를 최신 버전으로 업데이트하세요.",
+      "address": "다시 공유된 페이지가 아니라 Chuyện Nhỏ의 정확한 주소를 열었는지 확인하세요.",
+      "incognito": "시크릿 모드에서는 설치할 수 없어요. 일반 탭으로 여세요.",
+      "installed": "이미 설치했다면 브라우저가 설치 옵션을 다시 보여 주지 않아요."
+    },
+    "stillStuck": "그래도 안 되나요? <link>도움말 페이지</link>를 보거나 메일을 보내 주세요."
+  },
+  "support": {
+    "trail": "도움말",
+    "title": "무엇을 <accent>도와드릴까요</accent>?",
+    "intro": "자주 묻는 질문에서 빠르게 답을 찾거나, 메일을 보내 주세요.",
+    "caption": "빠르게 묻고,\n간단히 답해요!",
+    "searchLabel": "질문 찾기",
+    "searchPlaceholder": "질문 찾기… (예: 설치, 파일 저장, 데이터 삭제)",
+    "topicsTitle": "도움말 주제",
+    "topics": {
+      "start": {
+        "title": "시작하기",
+        "detail": "단계별 가이드"
+      },
+      "documents": {
+        "title": "문서 & PDF",
+        "detail": "합치기, 분할, 압축, OCR"
+      },
+      "image": {
+        "title": "이미지",
+        "detail": "압축, 크기 변경, 배경 제거"
+      },
+      "qr": {
+        "title": "QR & 바코드",
+        "detail": "만들기, 읽기, 일괄 인쇄"
+      },
+      "construction": {
+        "title": "건설",
+        "detail": "개략 견적, 집 방향"
+      },
+      "family": {
+        "title": "가족",
+        "detail": "달력, 할 일 알림, SOS"
+      },
+      "install": {
+        "title": "기기에 설치",
+        "detail": "Android, iPhone, 컴퓨터"
+      },
+      "privacy": {
+        "title": "데이터 & 개인정보",
+        "detail": "파일이 처리되는 곳"
+      }
+    },
+    "faqTitle": "자주 묻는 질문",
+    "faqCount": "질문 {{count}}개",
+    "faqCountFor": "“{{keyword}}” 관련 질문 {{count}}개",
+    "emptyTitle": "일치하는 질문이 없어요",
+    "emptyHint": "다른 검색어를 쓰거나, 메일로 직접 물어보세요.",
+    "showAll": "모든 질문 보기",
+    "contactTitle": "아직 도움이 필요하세요?",
+    "mailTitle": "메일 보내기",
+    "mailBody": "도구 이름, 사용하는 브라우저, 겪은 문제를 적어 주세요. 개인 정보가 담긴 파일은 첨부하지 마세요.",
+    "suggestTitle": "의견 및 도구 제안",
+    "suggestBody": "아직 없는 도구가 필요하거나 지금 도구에 의견이 있나요? 제안을 보내고 접수 번호로 진행 상황을 확인하세요.",
+    "suggestAction": "제안 보내기"
+  },
+  "faq": {
+    "items": {
+      "mien-phi": {
+        "question": "Chuyện Nhỏ는 무료인가요?",
+        "answer": "네. 운영 중인 모든 도구는 무료이며, 사용 횟수 제한도 계정도 없어요. 팀에서 문서를 오래 보관하고 공유·승인해야 할 때는 그 용도의 유료 제품인 ERPCons가 있어요."
+      },
+      "tai-khoan": {
+        "question": "계정을 만들어야 하나요?",
+        "answer": "아니요. 사이트에 들어와 도구를 고르고 바로 쓰면 돼요. Chuyện Nhỏ에는 가입이 없고, 이름이나 이메일, 전화번호를 묻지 않아요."
+      },
+      "luu-tep": {
+        "question": "내 파일이 업로드되거나 저장되나요?",
+        "answer": "아니요. 연 PDF, 이미지, 동영상 파일은 브라우저 탭 안에만 있고 내 기기에서 바로 처리돼요. 당사는 파일을 받지 않아요. 탭을 닫으면 파일은 브라우저에서 사라지고, 결과는 다운로드했을 때만 남아요."
+      },
+      "may-chu": {
+        "question": "왜 일부 도구에는 “서버에서 처리”라고 표시되나요?",
+        "answer": "건설 단가나 도시 계획처럼 곧 나올 일부 도구는 데이터가 크거나 계속 업데이트돼서 서버에서 조회해야 해요. 미리 알 수 있도록 카드에 분명히 표시해요. 지금 쓸 수 있는 도구는 모두 기기에서 처리해요."
+      },
+      "cai-dat": {
+        "question": "휴대폰에 Chuyện Nhỏ를 어떻게 설치하나요?",
+        "answer": "Chrome(Android)이나 Safari(iPhone, iPad)로 Chuyện Nhỏ를 연 뒤 “홈 화면에 추가”를 고르세요. 컴퓨터에서는 Chrome이나 Edge 주소창의 설치 아이콘을 누르세요."
+      },
+      "offline": {
+        "question": "인터넷이 없을 때도 Chuyện Nhỏ를 쓸 수 있나요?",
+        "answer": "인터넷에 연결된 상태로 처음 연 뒤에는 브라우저가 페이지와 도구 코드를 저장해 두기 때문에, 연결이 불안정해도 대개 다시 열 수 있어요. 텍스트 인식이나 동영상 처리 같은 무거운 부분은 처음 쓸 때 내려받으니, 인터넷이 될 때 한 번 써 보세요."
+      },
+      "loi": {
+        "question": "오류가 나면 어떻게 하나요?",
+        "answer": "페이지를 새로 고치고 최신 버전의 Chrome, Edge 또는 Safari를 쓰세요. 파일이 너무 크거나 비밀번호로 잠겨 있어도 도구가 멈출 수 있으며, 그 이유는 화면에 바로 표시돼요. 그래도 오류가 나면 도구 이름, 사용하는 브라우저, 오류 설명을 적어 {{email}}(으)로 메일을 보내 주세요."
+      },
+      "an-toan": {
+        "question": "Chuyện Nhỏ는 안전한가요?",
+        "answer": "사이트는 암호화된 연결(HTTPS)로 운영되고, 쿠키를 쓰지 않으며, 제3자 광고나 추적 도구를 붙이지 않아요. 파일은 기기 밖으로 나가지 않아요."
+      },
+      "thu-thap": {
+        "question": "Chuyện Nhỏ가 내 개인 정보를 수집하나요?",
+        "answer": "거의 수집하지 않아요. 도구를 열면 브라우저가 전체 이용 횟수를 세기 위해 도구 이름을 알려 주고, IP 주소는 자동화된 전송을 막기 위해 단방향 해시 처리만 한 뒤 약 1시간 후 자동 삭제돼요. 의견 내용은 동의에 체크하고 보내기를 눌렀을 때만 전송돼요."
+      },
+      "xoa-du-lieu": {
+        "question": "내 데이터는 어떻게 지우나요?",
+        "answer": "도구 안에 저장한 데이터(가족 달력, 메모, 이력서 초안, 암기 카드)는 내 기기에 있어요. 도구 안에서 바로 지우거나, 브라우저 설정에서 사이트 데이터를 지우세요. 보낸 의견을 지우려면 접수 번호와 함께 {{email}}(으)로 메일을 보내 주세요."
+      },
+      "ben-thu-ba": {
+        "question": "데이터가 제3자와 공유되나요?",
+        "answer": "아니요. 데이터를 판매하거나 광고용으로 공유하지 않아요. 단, 음성 텍스트 변환 도구는 브라우저 자체의 음성 인식 기능을 쓰기 때문에, 음성이 당사 서버를 거치지 않고 브라우저 제공업체(예: Chrome의 경우 Google)로 가요."
+      },
+      "de-xuat": {
+        "question": "새 도구를 제안하고 싶어요",
+        "answer": "언제든 환영해요. 도구 제안 기능을 이용하세요. 접수 번호를 받아 나중에 검토 상태를 조회할 수 있어요."
+      }
+    },
+    "links": {
+      "processingPerTool": "도구별 처리 위치 보기",
+      "installPerDevice": "기기별 설치 가이드",
+      "dataHandling": "데이터 처리 방식",
+      "privacyPolicy": "개인정보 처리방침 읽기",
+      "suggest": "도구 제안 열기"
+    }
+  },
+  "legalPage": {
+    "updated": "최종 업데이트: {{date}}",
+    "toc": "목차",
+    "summary": "요약"
+  }
+}

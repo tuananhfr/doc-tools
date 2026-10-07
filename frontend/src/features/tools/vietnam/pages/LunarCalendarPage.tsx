@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { Trans, useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { HolidayLayerToggles } from '../components/HolidayLayerToggles'
 import { LunarDayDetails } from '../components/LunarDayDetails'
@@ -14,6 +15,7 @@ const MIN_DATE = '1800-01-01'
 const MAX_DATE = '2199-12-31'
 
 export default function LunarCalendarPage() {
+  const { t } = useTranslation('vietnam')
   const [today] = useState(todayInVietnam)
   const { layers, toggle } = useHolidayLayers()
   const [selected, setSelected] = useState(today)
@@ -47,7 +49,7 @@ export default function LunarCalendarPage() {
     <div className="cn-cal cn-lunar">
       <div className="cn-lunar__toolbar" ref={calendarRef}>
         <HolidayLayerToggles layers={layers} onToggle={toggle} />
-        <label className="cn-lunar__jump">Đi tới ngày<Form.Control type="date" size="sm" min={MIN_DATE} max={MAX_DATE} value={selected} onChange={(event) => { if (event.target.value) selectDate(event.target.value) }} /></label>
+        <label className="cn-lunar__jump">{t('lunar.jumpTo')}<Form.Control type="date" size="sm" min={MIN_DATE} max={MAX_DATE} value={selected} onChange={(event) => { if (event.target.value) selectDate(event.target.value) }} /></label>
       </div>
       <div className="cn-cal-layout">
         <MonthCalendar year={cursor.year} month={cursor.month} today={today} selected={selected} holidays={holidaysByDate}
@@ -57,24 +59,20 @@ export default function LunarCalendarPage() {
         <div className="cn-cal-side"><LunarDayDetails date={selected} today={today} holidays={dayHolidays} /></div>
       </div>
       <div className="cn-lunar__tools">
-        <ToolPanel title="Đổi âm → dương">
-          <div className="erp-tool-form__grid">{([
-            ['day', 'Ngày âm'], ['month', 'Tháng âm'], ['year', 'Năm âm'],
-          ] as [keyof Pick<typeof lunarInput, 'day' | 'month' | 'year'>, string][]).map(([key, label]) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min={key === 'year' ? 1800 : 1} max={key === 'day' ? 30 : key === 'month' ? 12 : 2199} step="1" value={lunarInput[key]} onChange={(event) => setLunarInput((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
-          <Form.Check className="mt-3" id="lunar-leap" label="Tháng nhuận" checked={lunarInput.leap} onChange={(event) => setLunarInput((current) => ({ ...current, leap: event.target.checked }))} />
+        <ToolPanel title={t('lunar.convertTitle')}>
+          <div className="erp-tool-form__grid">{(['day', 'month', 'year'] as const).map((key) => <label className="erp-flow-field__label" key={key}>{t(`lunar.fields.${key}`)}<Form.Control type="number" min={key === 'year' ? 1800 : 1} max={key === 'day' ? 30 : key === 'month' ? 12 : 2199} step="1" value={lunarInput[key]} onChange={(event) => setLunarInput((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
+          <Form.Check className="mt-3" id="lunar-leap" label={t('lunar.leapMonth')} checked={lunarInput.leap} onChange={(event) => setLunarInput((current) => ({ ...current, leap: event.target.checked }))} />
           <div className="cn-lunar__result" aria-live="polite">
-            {lunarResult ? <><span>Dương lịch <strong>{formatDmy(lunarResult)}</strong></span><Button size="sm" variant="outline-secondary" onClick={() => showOnCalendar(toYmd(lunarResult))}>Xem trên lịch</Button></>
-              : <span>Không có ngày này{lunarInput.leap ? ' (năm đó không nhuận tháng này)' : ''}.</span>}
+            {lunarResult ? <><span><Trans ns="vietnam" i18nKey="lunar.solarResult" values={{ date: formatDmy(lunarResult) }} components={{ strong: <strong /> }} /></span><Button size="sm" variant="outline-secondary" onClick={() => showOnCalendar(toYmd(lunarResult))}>{t('lunar.showOnCalendar')}</Button></>
+              : <span>{t(lunarInput.leap ? 'lunar.noSuchDayLeap' : 'lunar.noSuchDay')}</span>}
           </div>
         </ToolPanel>
-        <ToolPanel title="Ngày giỗ theo âm lịch">
-          <div className="erp-tool-form__grid">{([
-            ['day', 'Ngày'], ['month', 'Tháng'],
-          ] as [keyof Pick<typeof anniversary, 'day' | 'month'>, string][]).map(([key, label]) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min="1" max={key === 'day' ? 30 : 12} step="1" value={anniversary[key]} onChange={(event) => setAnniversary((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
-          <Form.Check className="mt-3" id="anniversary-leap" label="Tháng nhuận" checked={anniversary.leap} onChange={(event) => setAnniversary((current) => ({ ...current, leap: event.target.checked }))} />
+        <ToolPanel title={t('lunar.anniversaryTitle')}>
+          <div className="erp-tool-form__grid">{(['day', 'month'] as const).map((key) => <label className="erp-flow-field__label" key={key}>{t(`lunar.anniversaryFields.${key}`)}<Form.Control type="number" min="1" max={key === 'day' ? 30 : 12} step="1" value={anniversary[key]} onChange={(event) => setAnniversary((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
+          <Form.Check className="mt-3" id="anniversary-leap" label={t('lunar.leapMonth')} checked={anniversary.leap} onChange={(event) => setAnniversary((current) => ({ ...current, leap: event.target.checked }))} />
           <ul className="cn-lunar__years" aria-live="polite">{anniversaries.map(({ year, solar }) => <li key={year}>
-            <span>Năm âm {year}: <strong>{solar ? formatDmy(solar) : 'không có ngày này'}</strong></span>
-            {solar ? <Button size="sm" variant="outline-secondary" onClick={() => showOnCalendar(toYmd(solar))}>Xem trên lịch</Button> : null}
+            <span><Trans ns="vietnam" i18nKey="lunar.anniversaryYear" values={{ year, date: solar ? formatDmy(solar) : t('lunar.noSuchDayShort') }} components={{ strong: <strong /> }} /></span>
+            {solar ? <Button size="sm" variant="outline-secondary" onClick={() => showOnCalendar(toYmd(solar))}>{t('lunar.showOnCalendar')}</Button> : null}
           </li>)}</ul>
         </ToolPanel>
       </div>

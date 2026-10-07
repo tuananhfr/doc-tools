@@ -1,0 +1,155 @@
+{
+  "shared": {
+    "members": "Membres",
+    "phone": "Téléphone",
+    "notes": "Remarques"
+  },
+  "recurrence": {
+    "once": "Une fois",
+    "daily": "Tous les jours",
+    "weekly": "Toutes les semaines",
+    "monthly": "Tous les mois",
+    "yearly": "Tous les ans"
+  },
+  "dataClasses": {
+    "NORMAL": "Normal",
+    "PRIVATE": "Privé",
+    "SENSITIVE": "Sensible"
+  },
+  "profiles": {
+    "PARENT": "Parent",
+    "SENIOR": "Grand-parent",
+    "CHILD": "Enfant"
+  },
+  "page": {
+    "views": {
+      "calendar": "Calendrier",
+      "list": "Liste",
+      "members": "Membres",
+      "backup": "Sauvegarde",
+      "safety": "SOS et contacts"
+    },
+    "lunarHint": "Une date du calendrier lunaire tombe à une date solaire différente chaque année. Les événements ne peuvent pas encore se répéter selon le calendrier lunaire : ce rappel ne vaut donc que pour cette année.",
+    "loading": "Ouverture du calendrier enregistré sur cet appareil...",
+    "storage": "<strong>Enregistré sur cet appareil</strong> · {{events}} événements · {{members}} membres. Aucun compte nécessaire. Effacer les données du navigateur supprimera le calendrier si vous n'avez pas téléchargé de sauvegarde. Le partage et la synchronisation en ligne ne sont pas activés.",
+    "enableNotifications": "Activer les notifications quand la page est ouverte",
+    "remindersTitle": "Rappels quand la page est ouverte",
+    "seen": "Vu",
+    "viewModes": "Mode d'affichage",
+    "viewingFor": "Affiché pour"
+  },
+  "agenda": {
+    "ranges": {
+      "today": "Aujourd'hui",
+      "week": "7 prochains jours",
+      "upcoming": "30 prochains jours"
+    },
+    "rangeLabel": "Période",
+    "empty": "Aucun événement ni jour férié sur cette période.",
+    "upcomingNote": "Affichage des 30 jours à partir d'aujourd'hui. Les événements récurrents continuent au-delà."
+  },
+  "day": {
+    "lunar": "Calendrier lunaire : jour {{day}} du mois {{month}}",
+    "lunarLeap": "Calendrier lunaire : jour {{day}} du mois {{month}} intercalaire",
+    "byLunar": "selon le calendrier lunaire",
+    "bySolar": "selon le calendrier solaire",
+    "addReminder": "Ajouter un rappel",
+    "empty": "Aucun événement familial ce jour-là.",
+    "addToDay": "Ajouter à ce jour"
+  },
+  "form": {
+    "categories": {
+      "task": "Tâche familiale",
+      "school": "Études",
+      "appointment": "Rendez-vous",
+      "deadline": "Échéance administrative",
+      "medication": "Rappel de médicament",
+      "payment": "Paiement",
+      "other": "Autre"
+    },
+    "scopes": {
+      "FAMILY_ALL": "Toute la famille",
+      "PARENTS_SENIORS": "Parents et grands-parents",
+      "PARENTS_CHILDREN": "Parents et enfants",
+      "PRIVATE": "Cet appareil uniquement"
+    },
+    "reminderInvalid": "Un rappel nécessite une heure précise et un délai de 0 à 1 440 minutes.",
+    "saveFailed": "Impossible d'enregistrer l'événement. Vérifiez la date et les données saisies.",
+    "editTitle": "Modifier l'événement",
+    "addTitle": "Ajouter un événement familial",
+    "title": "Intitulé",
+    "date": "Date",
+    "time": "Heure (facultatif)",
+    "category": "Type",
+    "recurrence": "Répétition",
+    "scope": "Partagé avec",
+    "privacy": "Confidentialité",
+    "reminder": "Rappel avant (minutes, 1 jour max. ; heure obligatoire)",
+    "medicationNote": "Les rappels de médicament suivent uniquement les données que vous saisissez ; ce n'est pas un avis médical. Le contenu sensible est masqué par défaut dans les notifications.",
+    "reminderNote": "Les rappels ne s'affichent que si la page est ouverte ou si le navigateur autorise les notifications ; le système d'exploitation peut mettre la page en pause.",
+    "saveChanges": "Enregistrer les modifications",
+    "saveNew": "Enregistrer sur cet appareil",
+    "cancel": "Annuler"
+  },
+  "event": {
+    "undo": "Marquer comme non fait",
+    "done": "Fait",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "confirmDelete": "Supprimer cet événement et toutes ses répétitions de cet appareil ?"
+  },
+  "members": {
+    "saveFailed": "Impossible d'enregistrer le membre.",
+    "intro": "Choisissez un nom facile à reconnaître. Inutile de saisir la date de naissance, l'école ou des pièces d'identité.",
+    "name": "Nom",
+    "profile": "Profil",
+    "add": "Ajouter un membre"
+  },
+  "backup": {
+    "invalidFile": "Le fichier de sauvegarde n'est pas valide ou dépasse 20 Mo.",
+    "wrongVersion": "Impossible de lire une sauvegarde de la bonne version.",
+    "confirmRestore_one": "Restaurer la famille {{id}} avec {{count}} événement ? Les données actuelles restent dans la mémoire de l'appareil pour pouvoir être rouvertes.",
+    "confirmRestore_many": "Restaurer la famille {{id}} avec {{count}} événements ? Les données actuelles restent dans la mémoire de l'appareil pour pouvoir être rouvertes.",
+    "confirmRestore_other": "Restaurer la famille {{id}} avec {{count}} événements ? Les données actuelles restent dans la mémoire de l'appareil pour pouvoir être rouvertes.",
+    "restoreFailed": "Restauration impossible. Les données actuelles sont toujours là.",
+    "title": "Sauvegarder et exporter",
+    "intro": "La sauvegarde JSON conserve les membres, les événements, les rappels et les signaux SOS. Le fichier ICS sert uniquement à transférer les événements vers une autre application ; il ne remplace pas la sauvegarde.",
+    "downloadBackup": "Télécharger la sauvegarde",
+    "downloadIcs": "Télécharger l'ICS",
+    "print": "Imprimer / Enregistrer en PDF les 30 prochains jours",
+    "includeSensitive": "Inclure les événements privés et sensibles dans l'ICS/le PDF",
+    "defaultsNote": "Par défaut, l'ICS et le PDF excluent les événements privés et sensibles. La sauvegarde contient toujours toutes les données ; gardez le fichier en lieu sûr.",
+    "restoreLabel": "Restaurer depuis une sauvegarde JSON",
+    "inspected": "Lu : {{members}} membres, {{events}} événements, {{reminders}} rappels. Code de la famille : {{id}}.",
+    "restoreThis": "Restaurer cette sauvegarde"
+  },
+  "safety": {
+    "invalidContact": "Saisissez un nom et un numéro de téléphone valides.",
+    "contactFailed": "Impossible d'enregistrer le contact.",
+    "sosFailed": "Impossible d'enregistrer le signal SOS sur cet appareil.",
+    "noGeolocation": "Cet appareil ne prend pas en charge la localisation.",
+    "locationSaveFailed": "Impossible d'enregistrer la position.",
+    "locateFailed": "Impossible d'obtenir votre position. Le signal SOS enregistré est toujours là.",
+    "title": "Sécurité familiale",
+    "intro": "Le mode actuel enregistre uniquement sur cet appareil. Les signaux SOS ici <strong>ne sont pas encore envoyés à vos proches</strong>. En cas de besoin, appelez directement le numéro d'urgence ou un contact enregistré.",
+    "contactName": "Nom du contact d'urgence",
+    "saveContact": "Enregistrer le contact",
+    "saveSos": "Enregistrer le signal SOS sur cet appareil",
+    "call": "Appeler le {{number}}",
+    "pendingTitle": "Signaux enregistrés localement",
+    "notSent": "{{time}} · Non envoyé sur le réseau",
+    "lastLocation": "Dernière position : {{latitude}}, {{longitude}} à {{time}}",
+    "locateOnce": "Obtenir la position une fois",
+    "imSafe": "Je suis en sécurité"
+  },
+  "reminders": {
+    "sensitiveTitle": "Un événement familial est à consulter",
+    "notificationTitle": "Calendrier familial",
+    "notificationBody": "Ouvrez l'application pour voir les détails."
+  },
+  "space": {
+    "loadFailed": "Impossible d'ouvrir les données de cet appareil. Vérifiez les autorisations de stockage du navigateur.",
+    "saveFailed": "Impossible d'enregistrer les modifications. Exportez une sauvegarde et vérifiez l'espace libre de l'appareil.",
+    "restoreFailed": "Impossible de restaurer la sauvegarde."
+  }
+}

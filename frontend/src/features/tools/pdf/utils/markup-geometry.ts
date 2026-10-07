@@ -1,3 +1,4 @@
+import { translate } from '@/i18n/runtime'
 import type { Markup, MarkupColor, OrientedBox, Rect, StampPreset, StrokeWidth, TextEditMarkup } from '../types/markup.types'
 import { DOCUMENT_COLORS, type Rgb } from './decorations'
 import type { FontStyle } from './font-style'
@@ -14,13 +15,16 @@ export const MARKUP_COLORS: Record<MarkupColor, Rgb> = {
   black: [0.1, 0.1, 0.12],
 }
 
-export const STAMP_PRESETS: Record<StampPreset, { label: string; color: Rgb }> = {
-  approved: { label: 'ĐÃ DUYỆT', color: [0.09, 0.55, 0.27] },
-  rejected: { label: 'KHÔNG DUYỆT', color: [0.8, 0.12, 0.14] },
-  checked: { label: 'ĐÃ KIỂM TRA', color: [0.12, 0.35, 0.75] },
-  revise: { label: 'CẦN SỬA', color: [0.85, 0.42, 0.05] },
-  draft: { label: 'BẢN NHÁP', color: DOCUMENT_COLORS.gray },
+export const STAMP_PRESETS: Record<StampPreset, { color: Rgb }> = {
+  approved: { color: [0.09, 0.55, 0.27] },
+  rejected: { color: [0.8, 0.12, 0.14] },
+  checked: { color: [0.12, 0.35, 0.75] },
+  revise: { color: [0.85, 0.42, 0.05] },
+  draft: { color: DOCUMENT_COLORS.gray },
 }
+
+/** Chữ trên con dấu theo ngôn ngữ trang — vừa hiện ở thanh công cụ vừa in vào PDF. */
+export const stampLabel = (preset: StampPreset) => translate(`pdf:file.stamps.${preset}`)
 
 /** Cỡ chữ của công cụ Chữ theo độ dày nét đang chọn — một thanh chọn cho cả hai. */
 export const TEXT_SIZE: Record<StrokeWidth, number> = { 1: 10, 2: 14, 4: 20 }
@@ -304,7 +308,8 @@ export function markupPrimitives(markup: Markup): Prim[] {
       return textEditPrimitives(markup)
     case 'stamp': {
       const { frame } = markup
-      const { label, color } = STAMP_PRESETS[markup.preset]
+      const { color } = STAMP_PRESETS[markup.preset]
+      const label = stampLabel(markup.preset)
       const h = frame.height
       const center = frame.width / 2
       return [
@@ -350,7 +355,7 @@ export function minTextWrap(fontSize: number): number {
 }
 
 export function stampFrameSize(preset: StampPreset, date: string, measure: MeasureText, height = STAMP_HEIGHT) {
-  const label = measure(STAMP_PRESETS[preset].label, height * 0.36, true)
+  const label = measure(stampLabel(preset), height * 0.36, true)
   const small = measure(date, height * 0.18, false)
   return { width: Math.max(label, small) + height * 0.7, height }
 }

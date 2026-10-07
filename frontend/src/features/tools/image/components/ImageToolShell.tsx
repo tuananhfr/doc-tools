@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ToolFlow, useDownloadNudge, type FlowFile, type FlowRun, type FlowTask } from '@/features/tools/hub'
 import type { ImageFiles } from '../hooks/useImageFiles'
 import { sizeLabel } from '../utils/image-format'
@@ -22,7 +23,6 @@ interface ImageToolShellProps {
 }
 
 const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
-const HINT = 'JPG, PNG, WebP · tối đa 100 MB mỗi ảnh'
 
 /**
  * Phần chung của các công cụ ảnh: nối ảnh đã chọn (`useImageFiles`) với khung
@@ -30,6 +30,7 @@ const HINT = 'JPG, PNG, WebP · tối đa 100 MB mỗi ảnh'
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
 export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task }: ImageToolShellProps) {
+  const { t } = useTranslation('image')
   const nudge = useDownloadNudge()
 
   const files: FlowFile[] = images.items.map((item) => ({
@@ -48,7 +49,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
 
   return (
     <ToolFlow
-      picker={{ accept: ACCEPT, hint: HINT, multiple, title: pickerTitle }}
+      picker={{ accept: ACCEPT, hint: t('shell.hint'), multiple, title: pickerTitle }}
       files={files}
       loading={images.loading}
       rejected={images.rejected}
@@ -69,7 +70,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
       options={options}
       runLabel={runLabel}
       runIcon={runIcon}
-      blocked={images.items.length === 0 ? 'Chưa chọn ảnh nào.' : blocked}
+      blocked={images.items.length === 0 ? t('shell.noImages') : blocked}
       run={run}
       onRun={() => void run.start(task())}
       onDownloaded={nudge.onDownloaded}
