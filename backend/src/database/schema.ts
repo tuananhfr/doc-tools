@@ -232,6 +232,34 @@ export const SCHEMA = [
     created_at BIGINT UNSIGNED NOT NULL,
     updated_at BIGINT UNSIGNED NOT NULL
   ) ENGINE=InnoDB`,
+  // What the agent proposes waits here, private to its owner, until they pick rows to send; a draft is
+  // never reviewed or published itself, only the contribution made from it.
+  `CREATE TABLE IF NOT EXISTS contribution_drafts (
+    id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    tool_id VARCHAR(48) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    domain VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    base_snapshot_id VARCHAR(128) NULL,
+    proposed_changes JSON NOT NULL,
+    source_refs JSON NOT NULL,
+    uncertainties JSON NOT NULL,
+    jurisdiction VARCHAR(128) NULL,
+    created_by ENUM('agent', 'user') NOT NULL,
+    submitted_contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    INDEX (user_id, created_at)
+  ) ENGINE=InnoDB`,
+  // History only: which tool was checked against which package; the conversation stays in GoClaw.
+  `CREATE TABLE IF NOT EXISTS ai_source_checks (
+    id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    tool_id VARCHAR(48) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    base_snapshot_id VARCHAR(128) NULL,
+    session_key VARCHAR(200) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    draft_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    INDEX (user_id, created_at)
+  ) ENGINE=InnoDB`,
   // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
   `CREATE TABLE IF NOT EXISTS mcp_tokens (
     token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,

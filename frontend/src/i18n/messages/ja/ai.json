@@ -94,6 +94,61 @@
     "AI_NOT_READY": "The assistant is not ready. Check your AI key again.",
     "AI_DISABLED": "The AI assistant of this account is suspended.",
     "NETWORK": "Could not reach the server. Check your connection and try again.",
-    "UNKNOWN": "Something went wrong. Please try again."
+    "UNKNOWN": "Something went wrong. Please try again.",
+    "NOT_FOUND": "This draft is gone (already sent or discarded).",
+    "SELECTION_INVALID": "Pick at least one change.",
+    "DUPLICATE_CONTRIBUTION": "This proposal is already waiting for review.",
+    "RATE_LIMITED": "You have sent too many proposals. Try again in an hour."
+  },
+  "sourceCheck": {
+    "title": "AI source check",
+    "text": "Your assistant uses your own AI key to find the latest official text and compare it with the figures this tool uses. Every change is only a draft: you pick the rows to send, and Chuyện Nhỏ reviewers check them before anything is applied.",
+    "inviteText": "Pro members can ask their AI assistant to find the latest official text and draft an update for this tool's figures.",
+    "setupText": "Set up your AI key so the assistant can check sources for this tool.",
+    "unavailable": "AI features are not enabled on the server yet.",
+    "basis": "Package in use",
+    "basisValue": "Effective from {{date}} ·",
+    "noBasis": "No verified package yet; the tool is using figures you entered.",
+    "includeResult": "Include my current result",
+    "includeResultHint": "The result is sent to the AI provider you set up. Emails and phone numbers are masked first.",
+    "noResult": "No result to include yet.",
+    "start": "Start source check",
+    "restart": "Start over",
+    "emptyTitle": "Ready to check sources",
+    "emptyText": "Press “Start source check”: the assistant reads the package in use, then looks for newer official text.",
+    "placeholder": "Ask more about this check",
+    "message": {
+      "intro": "Check the rules behind the “{{tool}}” tool (toolId: {{toolId}}, domain: {{domain}}, kind: {{kinds}}).",
+      "snapshot": "Chuyện Nhỏ uses the package effective from {{date}}, source “{{title}}”: {{url}}",
+      "noSnapshot": "Chuyện Nhỏ has no verified package for this tool; I am entering the figures myself.",
+      "result": "My current result:\n{{result}}",
+      "ask": "Find the latest official text and compare every figure. If anything differs, create a draft proposal for me to review."
+    }
+  },
+  "drafts": {
+    "title": "Draft proposals",
+    "hint": "Written by AI and not verified. Only pick rows you have checked against the official text.",
+    "createdAt": "Drafted {{date}}",
+    "current": "Current",
+    "proposed": "Proposed",
+    "pick": "Pick change {{field}}",
+    "sources": "Sources",
+    "uncertainties": "AI is unsure about",
+    "sourceType": {
+      "OFFICIAL_WEB": "Official page",
+      "OFFICIAL_DOCUMENT": "Document",
+      "OFFICIAL_API": "Official data",
+      "OTHER": "Other source"
+    },
+    "confirm": "I checked the picked rows against the sources",
+    "attribution": "Credit me by name when the proposal is published",
+    "submit": "Send {{selected}} changes for review",
+    "submitNone": "Pick changes to send",
+    "submitting": "Sending…",
+    "remove": "Discard draft",
+    "removeConfirm": "Discard this draft? It cannot be restored.",
+    "sent": "Sent for review. Follow it in",
+    "sentLink": "My proposals",
+    "loadFailed": "Could not load the draft proposals."
   }
 }

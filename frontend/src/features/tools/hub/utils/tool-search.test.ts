@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { SEARCH_INTENTS } from '../config/intent-registry'
 import { SEARCH_STORIES } from '../config/search-stories'
-import { assistantMatches } from '@/features/tools/byoai/utils/assistant-prompt'
 import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { searchTools } from './tool-search'
 
@@ -18,7 +17,6 @@ describe('search intent proposals', () => {
     else expect(results).toEqual([])
     expect(results.every(tool => tool.status === 'ready')).toBe(true)
     expect(results.some(tool => story.forbiddenTools.includes(tool.id))).toBe(false)
-    expect(assistantMatches(VI_TOOL_CATALOG, story.query)).toEqual(results.filter(tool => tool.id !== 'assistant').slice(0, 6))
   })
 
   it('only references existing usable preferred tools', () => {

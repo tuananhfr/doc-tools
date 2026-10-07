@@ -14,6 +14,11 @@ export interface SignedRulePackage<T = unknown> {
 
 export interface VerifiedRulePackage<T = unknown> extends SignedRulePackage<T> { digest: string }
 
+/** Gói đang dùng rút gọn cho phần kiểm nguồn AI: đủ để gọi tên gói, không kèm dữ liệu. */
+export function ruleSnapshot(item: VerifiedRulePackage | null) {
+  return item ? { id: item.digest, effectiveFrom: item.effectiveFrom, sourceTitle: item.source.title, sourceUrl: item.source.url } : null
+}
+
 /** Kết quả tra gói: phân biệt "chưa có gói" với "gói hỏng" và "không gọi được máy chủ" để trang báo đúng việc. */
 export type RuleLookup<T> =
   | { state: 'ready'; current: VerifiedRulePackage<T>; upcoming: VerifiedRulePackage<T> | null }

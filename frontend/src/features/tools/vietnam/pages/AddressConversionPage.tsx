@@ -2,16 +2,21 @@ import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
-import { formatRuleDate } from '@/features/tools/rules/services/signed-rules'
+import { formatRuleDate, ruleSnapshot } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
-import { ByoAiPanel } from '@/features/tools/byoai/components/ByoAiPanel'
+import { loginPath, useMe } from '@/features/account'
+import { AiSourceCheckPanel } from '@/features/ai'
 import { convertAddress, indexAddressRules, parseAddressMappings, parseAddressRules} from '../utils/address-conversion'
 
 const csvField = (value: string) => `"${(/^[=+\-@\t\r]/.test(value) ? `'${value}` : value).replace(/"/g, '""')}"`
 
+const ADDRESS_KINDS = ['addresses']
+
 export default function AddressConversionPage() {
   const { t } = useTranslation('vietnam')
+  const me = useMe()
+  const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [addresses, setAddresses] = useState('')
   const [mappingText, setMappingText] = useState('')
   const [usingVerified, setUsingVerified] = useState(false)
@@ -46,6 +51,6 @@ export default function AddressConversionPage() {
       <label className="erp-flow-field__label mt-3">{t('address.manualLabel')}<Form.Control as="textarea" rows={6} maxLength={1000000} value={mappingText} onChange={(event) => { setMappingText(event.target.value); setUsingVerified(false) }} /></label>
       {manualRules === null ? <p role="alert">{t('address.manualInvalid')}</p> : null}
     </ToolPanel>
-    <ByoAiPanel toolId="doi-dia-chi" domain="addresses" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />
+    <AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />
   </ToolBoard>
 }

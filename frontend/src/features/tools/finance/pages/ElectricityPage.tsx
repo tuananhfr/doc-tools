@@ -3,15 +3,21 @@ import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
-import { formatRuleDate, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
+import { formatRuleDate, ruleSnapshot, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
-import { ByoAiPanel } from '@/features/tools/byoai/components/ByoAiPanel'
+import { loginPath, useMe } from '@/features/account'
+import { AiSourceCheckPanel } from '@/features/ai'
 import { electricityBill, parseElectricityRules, validateElectricityTiers, waterBill } from '../utils/electricity'
 import { parseVatRule } from '../utils/vat-rule'
 
+// Thuế điện có gói `vat` riêng, nên lượt kiểm nguồn đọc cả hai.
+const ELECTRICITY_KINDS = ['electricity', 'vat']
+
 export default function ElectricityPage() {
   const { t } = useTranslation('finance')
+  const me = useMe()
+  const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [mode, setMode] = useState<'electricity' | 'water'>('electricity')
   const [kwh, setKwh] = useState('')
   const [households, setHouseholds] = useState('1')
@@ -69,6 +75,6 @@ export default function ElectricityPage() {
       {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
       </>}
     </ToolPanel>
-    <ByoAiPanel toolId="tien-dien" domain="electricity" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />
+    <AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />
   </ToolBoard>
 }

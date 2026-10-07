@@ -14,6 +14,8 @@ export interface AgentRow { userId: string; goclawAgentId: string | null; agentK
 
 export const mcpTokenHash = (token: string) => createHash('sha256').update(token).digest('hex')
 const now = () => Math.floor(Date.now() / 1000)
+// A check left open longer than this is unlikely to be what a new draft belongs to.
+const SOURCE_CHECK_LINK_SECONDS = 6 * 3600
 
 function toProvider(row: RowDataPacket): ProviderRow {
   return {
@@ -98,6 +100,17 @@ export class AiRepository {
     const [rows] = await this.database.pool.execute<RowDataPacket[]>(
       `SELECT t.user_id FROM mcp_tokens t JOIN users u ON u.id = t.user_id WHERE t.token_hash = ? AND t.revoked_at IS NULL AND u.status = 'active'`, [mcpTokenHash(token)])
     return rows.length ? (rows[0].user_id as string) : null
+  }
+
+  async recordSourceCheck(input: { id: string; userId: string; toolId: string; baseSnapshotId: string | null; sessionKey: string }) {
+    await this.database.pool.execute('INSERT INTO ai_source_checks (id, user_id, tool_id, base_snapshot_id, session_key, created_at) VALUES (?, ?, ?, ?, ?, ?)',
+      [input.id, input.userId, input.toolId, input.baseSnapshotId, input.sessionKey, now()])
+  }
+
+  /** MCP calls do not say which chat they came from; the person's latest check of that tool is the best match. */
+  async linkSourceCheck(userId: string, toolId: string, draftId: string) {
+    await this.database.pool.execute('UPDATE ai_source_checks SET draft_id = ? WHERE user_id = ? AND tool_id = ? AND created_at >= ? ORDER BY created_at DESC LIMIT 1',
+      [draftId, userId, toolId, now() - SOURCE_CHECK_LINK_SECONDS])
   }
 
   /** Admin listing: everyone who ever saved a provider, newest change first. */

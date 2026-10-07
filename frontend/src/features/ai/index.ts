@@ -1,3 +1,5 @@
 export { AiAssistant } from './components/AiAssistant'
 export { AiAccountCard } from './components/AiAccountCard'
+export { AiSourceCheckPanel } from './components/AiSourceCheckPanel'
+export type { RuleSnapshot } from './types/ai.types'
 export { AI_SETTINGS_PATH } from './config/ai-routes'

@@ -1,7 +1,8 @@
 import { HttpException, Injectable, Logger, type OnModuleInit } from '@nestjs/common'
-import { randomBytes } from 'node:crypto'
+import { randomBytes, randomUUID } from 'node:crypto'
 import { AccountDeletionService } from '../accounts/account-deletion.service'
 import { configuration } from '../config/configuration'
+import { readyTool } from '../mcp/tool-catalog'
 import { PROMPT_VERSION, agentDefinition, agentFiles, agentKey, goclawUserId, providerName } from './agent-profile'
 import { AiRepository, type ProviderRow } from './ai.repository'
 import { checkApiBase } from './api-base'
@@ -210,6 +211,20 @@ export class AiService implements OnModuleInit {
     // GoClaw builds ws_url from the Host of OUR request, which the browser cannot reach.
     const wsUrl = configuration().goclaw.publicWsUrl || ticket.wsUrl
     return { ok: true, token: ticket.token, wsUrl, userId: ticket.userId, agentKey: agent.agentKey, expiresAt: ticket.expiresAt }
+  }
+
+  /** Remembers that a source check started; the chat it names must be one of this person's own sessions. */
+  async recordSourceCheck(userId: string, input: { toolId: unknown; baseSnapshotId: unknown; sessionKey: unknown }) {
+    const toolId = typeof input.toolId === 'string' && readyTool(input.toolId) ? input.toolId : null
+    const snapshot = input.baseSnapshotId === undefined || input.baseSnapshotId === null ? null
+      : typeof input.baseSnapshotId === 'string' && /^[A-Za-z0-9_-]{1,128}$/.test(input.baseSnapshotId) ? input.baseSnapshotId : undefined
+    const sessionPrefix = `agent:${agentKey(userId)}:ws:direct:`
+    const sessionKey = typeof input.sessionKey === 'string' && input.sessionKey.startsWith(sessionPrefix)
+      && /^[0-9a-f-]{36}$/.test(input.sessionKey.slice(sessionPrefix.length)) ? input.sessionKey : null
+    if (!toolId || snapshot === undefined || !sessionKey) aiError(400, 'INVALID_INPUT', 'Thông tin lượt kiểm nguồn không hợp lệ.')
+    const id = randomUUID()
+    await this.repository.recordSourceCheck({ id, userId, toolId, baseSnapshotId: snapshot, sessionKey })
+    return { ok: true, id }
   }
 
   /** Staff switch: blocks the user's AI until staff enable it again; the user cannot undo it by re-verifying. */

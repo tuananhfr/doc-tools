@@ -4,5 +4,5 @@ import { RulesController } from './rules.controller'
 import { RulesRepository } from './rules.repository'
 import { RulesService } from './rules.service'
 
-@Module({ imports: [DatabaseModule], controllers: [RulesController], providers: [RulesRepository, RulesService] })
+@Module({ imports: [DatabaseModule], controllers: [RulesController], providers: [RulesRepository, RulesService], exports: [RulesService] })
 export class RulesModule {}

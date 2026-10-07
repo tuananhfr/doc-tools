@@ -1,6 +1,7 @@
 export const AI_ERROR_CODES = [
   'SIGNED_OUT', 'PRO_REQUIRED', 'UNTRUSTED_REQUEST', 'INVALID_INPUT', 'INVALID_API_BASE', 'AI_UNAVAILABLE', 'AI_UPSTREAM',
-  'AI_NO_PROVIDER', 'AI_VERIFY_FAILED', 'AI_NOT_READY', 'AI_DISABLED', 'NETWORK', 'UNKNOWN',
+  'AI_NO_PROVIDER', 'AI_VERIFY_FAILED', 'AI_NOT_READY', 'AI_DISABLED', 'NOT_FOUND', 'SELECTION_INVALID', 'DUPLICATE_CONTRIBUTION',
+  'RATE_LIMITED', 'NETWORK', 'UNKNOWN',
 ] as const
 export type AiErrorCode = (typeof AI_ERROR_CODES)[number]
 
@@ -25,3 +26,20 @@ export interface ChatSessionSummary { key: string; label: string; messageCount: 
 
 /** What an agent may ask the page to show; anything else in a `cn-action` block is dropped. */
 export interface OpenToolAction { type: 'open-tool'; slug: string; params: Record<string, string> }
+
+/** The published rule package a tool page is using, as the source check names it to the agent. */
+export interface RuleSnapshot { id: string; effectiveFrom: string; sourceTitle: string; sourceUrl: string }
+
+export interface DraftChange { field: string; before: string; after: string }
+export interface DraftSource { url: string; type: 'OFFICIAL_WEB' | 'OFFICIAL_DOCUMENT' | 'OFFICIAL_API' | 'OTHER' }
+
+/** What the agent proposed; it becomes a contribution only when its owner picks rows and sends them. */
+export interface ContributionDraft {
+  id: string; toolId: string; domain: string; baseSnapshotId: string | null; jurisdiction: string | null
+  changes: DraftChange[]; sources: DraftSource[]; uncertainties: string[]
+  createdBy: 'agent' | 'user'
+  /** Unix seconds. */
+  createdAt: number
+}
+
+export interface DraftSubmitResult { receiptCode: string; status: 'NEEDS_SOURCE' | 'NEEDS_REVIEW'; tracked: boolean; contributionId: string }

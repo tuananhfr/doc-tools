@@ -173,6 +173,14 @@ chép từ ERPCons, giữ nguyên các luật ở đó (khoá phiên do client s
 - `features/ai` không import `features/account` ở component dùng chung (`AiAssistant`,
   `AiAccountCard`, `ProInvite` nhận props) — `AccountPage` import `@/features/ai`, đi ngược là
   vòng import. Chỉ `pages/AiSettingsPage` (nạp lười từ `ToolsRouter`) dùng `useMe`.
+- Kiểm nguồn (`AiSourceCheckPanel`) ở `tien-dien` / `luong` / `doi-dia-chi` thay màn chép
+  prompt + dán JSON cũ (`byoai` đã gỡ, chỉ còn `AssistantPage`). Panel nhúng `AgentChat`
+  với `storageKey` riêng mỗi công cụ (`cn.ai.check.<toolId>`) để không giẫm phiên của
+  `tro-ly`, và `starter` gửi tin mở đầu: chỉ gửi sau khi `restored` (đã mở lại phiên cũ),
+  gửi sớm hơn là F5 bắn lại tin. `beforeSend` ghi `/ai/source-checks` với khoá phiên MỚI
+  (sinh trước khi gửi). Kết quả gửi kèm qua `clipResult` (che email / SĐT / URL nội bộ).
+- Nháp đề xuất do agent soạn (`DraftReview`): không dòng nào được chọn sẵn, nút gửi khoá
+  tới khi có dòng + ô "đã đối chiếu". Agent không có đường gửi — gửi luôn là việc của người.
 - Sửa danh mục / chữ catalog → chạy `node scripts/export-tool-catalog.mjs` (backend đọc
   `backend/data/tool-catalog.json` cho tool MCP); test `tool-catalog-export.test.ts` canh.
 - Dòng cam kết đầu trang `tro-ly` là `privacyNote` trong catalog (câu hỏi đi tới nhà cung cấp
@@ -252,8 +260,8 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
   Đổi địa chỉ KHÔNG có bảng tỉnh viết cứng: tỉnh lấy từ gói `addresses` (hoặc suy ra từ
   `wards`); thuế điện lấy gói `vat` trước, rồi `vatPercent` trong gói điện.
   Không đưa số liệu trong archive vào như luật hiện hành.
-- BYOAI: xem trước + che thông tin nhạy cảm trong prompt, chỉ gửi thay đổi người dùng
-  chọn sau khi đồng ý; văn bản AI không bao giờ tự xuất bản.
+- Kiểm nguồn AI: chỉ gửi dòng người dùng tự chọn sau khi xác nhận đã đối chiếu; văn bản
+  AI không bao giờ tự gửi hay tự xuất bản.
 - Lịch Gia Đình V1: chỉ IndexedDB trên máy, có sao lưu / ICS / in, nhắc khi đang mở;
   chia sẻ online, đồng bộ tài khoản và Native còn chờ quyết định định danh/quyền riêng tư.
 - Công cụ ảnh có sẵn GIỮ EXIF; chỉ công cụ xoá metadata mới gỡ.

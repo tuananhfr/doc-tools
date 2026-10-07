@@ -94,6 +94,61 @@
     "AI_NOT_READY": "Trợ lý chưa sẵn sàng. Hãy kiểm tra lại khoá AI.",
     "AI_DISABLED": "Trợ lý AI của tài khoản này đang bị tạm khoá.",
     "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
-    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại."
+    "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại.",
+    "NOT_FOUND": "Nháp không còn nữa (đã gửi hoặc đã bỏ).",
+    "SELECTION_INVALID": "Hãy chọn ít nhất một thay đổi.",
+    "DUPLICATE_CONTRIBUTION": "Đề xuất này đã có trong hàng chờ duyệt.",
+    "RATE_LIMITED": "Bạn đã gửi quá nhiều đề xuất. Hãy thử lại sau một giờ."
+  },
+  "sourceCheck": {
+    "title": "Kiểm nguồn bằng AI",
+    "text": "Trợ lý dùng khoá AI của bạn tìm văn bản chính thức mới nhất và so với số liệu công cụ đang dùng. Mọi thay đổi chỉ là nháp: bạn chọn dòng để gửi, người duyệt của Chuyện Nhỏ kiểm lại trước khi áp dụng.",
+    "inviteText": "Thành viên Pro có thể nhờ trợ lý AI tìm văn bản chính thức mới nhất và soạn sẵn đề xuất cập nhật số liệu cho công cụ này.",
+    "setupText": "Cài khoá AI để trợ lý kiểm nguồn cho công cụ này.",
+    "unavailable": "Tính năng AI chưa được bật trên máy chủ.",
+    "basis": "Gói đang dùng",
+    "basisValue": "Hiệu lực từ {{date}} ·",
+    "noBasis": "Chưa có gói đã xác minh, công cụ đang dùng số liệu bạn tự nhập.",
+    "includeResult": "Gửi kèm kết quả đang tính",
+    "includeResultHint": "Kết quả được gửi tới nhà cung cấp AI bạn đã cài. Email và số điện thoại được che trước khi gửi.",
+    "noResult": "Chưa có kết quả để gửi kèm.",
+    "start": "Bắt đầu kiểm nguồn",
+    "restart": "Kiểm lại từ đầu",
+    "emptyTitle": "Sẵn sàng kiểm nguồn",
+    "emptyText": "Bấm “Bắt đầu kiểm nguồn”: trợ lý đọc gói đang dùng rồi tìm văn bản chính thức mới hơn.",
+    "placeholder": "Hỏi thêm về lượt kiểm này",
+    "message": {
+      "intro": "Kiểm nguồn quy định cho công cụ «{{tool}}» (toolId: {{toolId}}, domain: {{domain}}, kind: {{kinds}}).",
+      "snapshot": "Chuyện Nhỏ đang dùng gói hiệu lực từ {{date}}, nguồn «{{title}}»: {{url}}",
+      "noSnapshot": "Chuyện Nhỏ chưa có gói đã xác minh cho công cụ này; tôi đang tự nhập số liệu.",
+      "result": "Kết quả tôi đang tính:\n{{result}}",
+      "ask": "Hãy tìm văn bản chính thức mới nhất và so từng con số. Nếu có khác biệt, tạo nháp đề xuất để tôi xem."
+    }
+  },
+  "drafts": {
+    "title": "Nháp đề xuất",
+    "hint": "Do AI soạn, chưa được xác minh. Chỉ chọn dòng bạn đã đối chiếu với văn bản chính thức.",
+    "createdAt": "Soạn lúc {{date}}",
+    "current": "Hiện tại",
+    "proposed": "Đề xuất",
+    "pick": "Chọn thay đổi {{field}}",
+    "sources": "Nguồn",
+    "uncertainties": "AI chưa chắc",
+    "sourceType": {
+      "OFFICIAL_WEB": "Trang chính thức",
+      "OFFICIAL_DOCUMENT": "Văn bản",
+      "OFFICIAL_API": "Dữ liệu chính thức",
+      "OTHER": "Nguồn khác"
+    },
+    "confirm": "Tôi đã đối chiếu các dòng đã chọn với nguồn",
+    "attribution": "Ghi tên tôi khi đề xuất được công bố",
+    "submit": "Gửi {{selected}} thay đổi để duyệt",
+    "submitNone": "Chọn thay đổi để gửi",
+    "submitting": "Đang gửi…",
+    "remove": "Bỏ nháp",
+    "removeConfirm": "Bỏ nháp này? Không khôi phục được.",
+    "sent": "Đã gửi để duyệt. Theo dõi ở",
+    "sentLink": "Đề xuất của tôi",
+    "loadFailed": "Không tải được nháp đề xuất."
   }
 }

@@ -133,7 +133,16 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - Token MCP (`X-CN-MCP-Token`) đổi mỗi lần verify thành công, thu hồi khi admin khoá / xoá
   tài khoản. GoClaw chặn MCP ở host nội bộ trừ khi có trong `GOCLAW_MCP_ALLOW_PRIVATE_HOSTS`
   (env của GoClaw, không phải của app). Đổi chỉ dẫn agent (`agent/*.md`) thì tăng
-  `PROMPT_VERSION` rồi `npm run ai -- sync-agents`.
+  `PROMPT_VERSION` (đang là 2) rồi `npm run ai -- sync-agents` — agent cũ không tự đổi.
+- Kiểm nguồn: agent chỉ được **soạn nháp** (`cn_create_contribution_draft` → bảng
+  `contribution_drafts`), không có tool nào gửi đề xuất. Người dùng chọn dòng rồi gửi qua
+  `/me/contribution-drafts/:id/submit`; nháp bị "claim" trước rồi mới gọi
+  `ContributionsService.submit` với chính id đó, lỗi thì nhả claim — đừng đảo thứ tự, gửi
+  hai lần song song sẽ ra hai đề xuất. `toolId` của đề xuất / nháp là **slug** công cụ
+  (`tien-dien`), không phải id catalog (`electricity`).
+- Tool MCP cần dịch vụ khác (quy tắc, nháp) nằm ở `mcp-tools.service.ts`; tool chỉ đọc
+  catalog nằm ở `mcp-tools.ts` (`callCatalogTool`). Lỗi kho quy tắc phải trả câu bảo agent
+  đừng đoán số, không ném lỗi JSON-RPC.
 - `data/tool-catalog.json` sinh từ frontend (`node scripts/export-tool-catalog.mjs`); sửa
   danh mục / chữ catalog mà quên xuất lại là test `tool-catalog-export.test.ts` bên frontend đỏ.
 - `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).

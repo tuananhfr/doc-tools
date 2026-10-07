@@ -1,3 +1,4 @@
+import { SOURCE_CHECK_KINDS } from './rule-summary'
 import { findTools, readyTool, toolGuide } from './tool-catalog'
 
 export interface McpToolResult { content: { type: 'text'; text: string }[]; isError?: boolean }
@@ -25,11 +26,51 @@ export const MCP_TOOLS = [
       required: ['slug'],
     },
   },
+  {
+    name: 'cn_get_rules',
+    description: 'Gói quy định Chuyện Nhỏ đang dùng và sắp hiệu lực (đã ký, có nguồn và ngày). Gọi trước khi so với văn bản mới; snapshotId dùng làm baseSnapshotId của nháp.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        kind: { type: 'string', enum: [...SOURCE_CHECK_KINDS], description: 'electricity = bậc giá điện, vat = thuế GTGT, payroll = tham số lương/bảo hiểm/thuế TNCN, addresses = đơn vị hành chính sau sáp nhập.' },
+        query: { type: 'string', description: 'Chỉ cho addresses: tên xã/phường/huyện/tỉnh cần xem.' },
+      },
+      required: ['kind'],
+    },
+  },
+  {
+    name: 'cn_create_contribution_draft',
+    description: 'Lưu NHÁP đề xuất sửa số liệu của một công cụ. Không gửi, không công bố: người dùng tự xem bảng khác biệt, chọn dòng và bấm gửi; người duyệt kiểm lại sau đó.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        toolId: { type: 'string', description: 'Slug công cụ, ví dụ tien-dien, luong, doi-dia-chi.' },
+        domain: { type: 'string', description: 'electricity (tien-dien), payroll (luong), addresses (doi-dia-chi).' },
+        baseSnapshotId: { type: 'string', description: 'snapshotId lấy từ cn_get_rules.' },
+        changes: {
+          type: 'array', minItems: 1, maxItems: 50,
+          items: { type: 'object', properties: { field: { type: 'string' }, before: { type: 'string' }, after: { type: 'string' } }, required: ['field', 'before', 'after'] },
+        },
+        sources: {
+          type: 'array', maxItems: 10,
+          items: { type: 'object', properties: { url: { type: 'string', description: 'https, trang chính thức' }, type: { type: 'string', enum: ['OFFICIAL_WEB', 'OFFICIAL_DOCUMENT', 'OFFICIAL_API', 'OTHER'] } }, required: ['url', 'type'] },
+        },
+        uncertainties: { type: 'array', maxItems: 20, items: { type: 'string' }, description: 'Điều chưa chắc, người duyệt cần kiểm.' },
+        jurisdiction: { type: 'string', description: 'Phạm vi áp dụng, ví dụ VN hoặc tên tỉnh.' },
+      },
+      required: ['toolId', 'domain', 'changes', 'sources'],
+    },
+  },
+  {
+    name: 'cn_my_contributions',
+    description: 'Đề xuất người dùng đã gửi (trạng thái duyệt) và số nháp đang chờ họ xem. Dùng trước khi tạo nháp mới để tránh trùng.',
+    inputSchema: { type: 'object', properties: { status: { type: 'string', enum: ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] } } },
+  },
 ] as const
 
-const text = (value: unknown): McpToolResult => ({ content: [{ type: 'text', text: typeof value === 'string' ? value : JSON.stringify(value) }] })
-const failure = (message: string): McpToolResult => ({ content: [{ type: 'text', text: message }], isError: true })
-const str = (value: unknown, max: number) => (typeof value === 'string' ? value.trim().slice(0, max) : '')
+export const text = (value: unknown): McpToolResult => ({ content: [{ type: 'text', text: typeof value === 'string' ? value : JSON.stringify(value) }] })
+export const failure = (message: string): McpToolResult => ({ content: [{ type: 'text', text: message }], isError: true })
+export const str = (value: unknown, max: number) => (typeof value === 'string' ? value.trim().slice(0, max) : '')
 
 /** Only short ASCII keys and plain values reach the URL the browser opens. */
 function openParams(value: unknown): Record<string, string> | null {
@@ -45,7 +86,8 @@ function openParams(value: unknown): Record<string, string> | null {
   return params
 }
 
-export function callMcpTool(name: string, args: Record<string, unknown>): McpToolResult {
+/** Catalog tools need nothing about the caller; `null` means the name is not one of them. */
+export function callCatalogTool(name: string, args: Record<string, unknown>): McpToolResult | null {
   const locale = str(args.locale, 10) || undefined
   if (name === 'cn_find_tools') {
     const limit = Math.min(15, Math.max(1, Number.isInteger(args.limit) ? Number(args.limit) : 8))
@@ -64,5 +106,5 @@ export function callMcpTool(name: string, args: Record<string, unknown>): McpToo
     const action = { type: 'open-tool', slug: tool.slug, ...(Object.keys(params).length ? { params } : {}) }
     return text(`Chép nguyên văn khối dưới đây vào câu trả lời (giao diện sẽ hiện thành nút):\n\n\`\`\`cn-action\n${JSON.stringify(action)}\n\`\`\``)
   }
-  return failure(`Unknown tool: ${name}`)
+  return null
 }

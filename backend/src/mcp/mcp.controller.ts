@@ -5,7 +5,8 @@ import { randomUUID } from 'node:crypto'
 import type { ServerResponse } from 'node:http'
 import { AiRepository } from '../ai/ai.repository'
 import { configuration } from '../config/configuration'
-import { MCP_TOOLS, callMcpTool } from './mcp-tools'
+import { MCP_TOOLS } from './mcp-tools'
+import { McpToolsService } from './mcp-tools.service'
 
 interface McpSession { userId: string; token: string; raw: ServerResponse; keepalive: ReturnType<typeof setInterval>; openedAt: number }
 interface RpcMessage { jsonrpc?: string; id?: string | number | null; method?: string; params?: Record<string, unknown> }
@@ -31,7 +32,7 @@ export class McpController {
   private readonly logger = new Logger('McpController')
   private readonly sessions = new Map<string, McpSession>()
 
-  constructor(private readonly ai: AiRepository) {}
+  constructor(private readonly ai: AiRepository, private readonly tools: McpToolsService) {}
 
   private ipAllowed(request: FastifyRequest) {
     const allowed = configuration().mcp.allowedIps
@@ -83,13 +84,13 @@ export class McpController {
     const messages = (Array.isArray(body) ? body : [body]).filter((item): item is RpcMessage => Boolean(item) && typeof item === 'object')
     if (!messages.length) throw deny(400, 'MCP_BAD_REQUEST')
     for (const message of messages) {
-      const reply = this.handle(message)
+      const reply = await this.handle(message, session.userId)
       if (reply) session.raw.write(`event: message\ndata: ${JSON.stringify(reply)}\n\n`)
     }
     return 'Accepted'
   }
 
-  private handle(message: RpcMessage) {
+  private async handle(message: RpcMessage, userId: string) {
     // Notifications carry no id and get no answer.
     if (message.id === undefined || message.id === null) return null
     const result = (value: unknown) => ({ jsonrpc: '2.0', id: message.id, result: value })
@@ -108,7 +109,7 @@ export class McpController {
       case 'tools/call': {
         const name = String(message.params?.name ?? '')
         const args = message.params?.arguments
-        try { return result(callMcpTool(name, args && typeof args === 'object' && !Array.isArray(args) ? args as Record<string, unknown> : {})) }
+        try { return result(await this.tools.call(name, args && typeof args === 'object' && !Array.isArray(args) ? args as Record<string, unknown> : {}, userId)) }
         catch (failure) {
           this.logger.warn(`tool ${name} failed: ${failure instanceof Error ? failure.message : String(failure)}`)
           return result({ content: [{ type: 'text', text: 'Công cụ gặp lỗi, hãy thử lại.' }], isError: true })

@@ -28,12 +28,13 @@ export interface Submitter { userId: string; attribution: boolean }
 export class ContributionsService {
   constructor(private readonly repository: ContributionsRepository, private readonly settings: SettingsService) {}
 
-  async submit(input: ContributionInput, ip: string, submitter: Submitter | null) {
+  /** `id` is passed in by draft submission, which claims the draft under that id before calling here. */
+  async submit(input: ContributionInput, ip: string, submitter: Submitter | null, id: string = randomUUID()) {
     const secret = configuration().visitHashSecret
     const receiptCode = randomBytes(24).toString('base64url')
     const status = input.sourceRefs.length || input.domain === 'ideas' ? 'NEEDS_REVIEW' : 'NEEDS_SOURCE'
     const result = await this.repository.submit(input, {
-      id: randomUUID(), receiptHash: hash(receiptCode), duplicateHash: hash(stable(input)),
+      id, receiptHash: hash(receiptCode), duplicateHash: hash(stable(input)),
       floodKey: createHmac('sha256', secret).update(submitter ? `contribution-user:${submitter.userId}` : `contribution:${ip}`).digest('hex'),
       // Per account rather than per IP, so an office behind one address does not lock its staff out.
       floodLimit: await this.settings.get(submitter ? 'contributions.accountHourly' : 'contributions.guestHourly'),

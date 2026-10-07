@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
-import { formatRuleDate } from '@/features/tools/rules/services/signed-rules'
+import { formatRuleDate, ruleSnapshot } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
 import { RuleStatus } from '@/features/tools/rules/components/RuleStatus'
-import { ByoAiPanel } from '@/features/tools/byoai/components/ByoAiPanel'
+import { loginPath, useMe } from '@/features/account'
+import { AiSourceCheckPanel } from '@/features/ai'
 import { grossToNet, netToGross, validatePayrollRules, type PayrollRules } from '../utils/payroll'
 
 type RuleField = 'selfDeduct' | 'dependentDeduct' | 'referenceSalary' | 'minWage1' | 'minWage2' | 'minWage3' | 'minWage4' | 'employeeSocial' | 'employeeHealth' | 'employeeUnemployment' | 'employerSocial' | 'employerHealth' | 'employerUnemployment'
@@ -33,8 +34,12 @@ function parseRules(fields: Record<RuleField, string>, bracketText: string): Pay
   })
 }
 
+const PAYROLL_KINDS = ['payroll']
+
 export default function PayrollPage() {
   const { t } = useTranslation('finance')
+  const me = useMe()
+  const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [mode, setMode] = useState<'gross' | 'net'>('gross')
   const [salary, setSalary] = useState('')
   const [dependents, setDependents] = useState('0')
@@ -90,6 +95,6 @@ export default function PayrollPage() {
         <label className="erp-flow-field__label mt-3">{t('payroll.brackets')}<Form.Control as="textarea" rows={6} placeholder={'10000000,5\n30000000,10\n*,20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
       </details>
     </ToolPanel>
-    <ByoAiPanel toolId="luong" domain="payroll" snapshot={usingVerified && verified ? verified.digest : null} checkedAt={usingVerified && verified ? verified.source.retrievedAt : null} sources={usingVerified && verified ? [verified.source.url] : []} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />
+    <AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />
   </ToolBoard>
 }

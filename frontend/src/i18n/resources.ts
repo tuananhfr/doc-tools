@@ -5,7 +5,7 @@ import type { Locale } from './locales'
 export const NAMESPACES = [
   'common', 'catalog', 'site', 'guides', 'legal', 'quality',
   'pdf', 'ocr', 'image', 'qr', 'utility', 'orientation', 'vietnam', 'finance', 'family', 'documents', 'video',
-  'byoai', 'study', 'safety', 'construction', 'community', 'accessibility', 'rules', 'account', 'ai',
+  'study', 'safety', 'construction', 'community', 'accessibility', 'rules', 'account', 'ai',
 ] as const
 export type Namespace = (typeof NAMESPACES)[number]
 

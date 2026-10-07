@@ -10,8 +10,8 @@ const OPEN_SESSION_STORAGE_KEY = 'cn.ai.session'
 let messageSeq = 0
 const nextId = () => `m${++messageSeq}`
 
-function readStoredKey() {
-  try { return localStorage.getItem(OPEN_SESSION_STORAGE_KEY) ?? '' } catch { return '' }
+function readStoredKey(storageKey: string) {
+  try { return localStorage.getItem(storageKey) ?? '' } catch { return '' }
 }
 
 const settle = (messages: ChatMessage[]) => messages.map((message) => (message.streaming ? { ...message, streaming: false } : message))
@@ -24,9 +24,11 @@ const settle = (messages: ChatMessage[]) => messages.map((message) => (message.s
  *   ask whether the session is still running. Fetching history first leaves a silent hole mid-reply,
  *   because GoClaw keeps streaming a run to the user while the new tab is still loading.
  */
-export function useAgentChat(client: AgentWsClient, connected: boolean) {
+export function useAgentChat(client: AgentWsClient, connected: boolean, { storageKey = OPEN_SESSION_STORAGE_KEY }: { storageKey?: string } = {}) {
   const [sessions, setSessions] = useState<ChatSessionSummary[]>([])
-  const [sessionKey, setSessionKey] = useState(readStoredKey)
+  const [sessionKey, setSessionKey] = useState(() => readStoredKey(storageKey))
+  // False until the stored session has been reopened after (re)connecting; sending earlier races that reopen.
+  const [restored, setRestored] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [streaming, setStreaming] = useState(false)
   const [loadingHistory, setLoadingHistory] = useState(false)
@@ -39,12 +41,12 @@ export function useAgentChat(client: AgentWsClient, connected: boolean) {
   useEffect(() => { sessionKeyRef.current = sessionKey }, [sessionKey])
   useEffect(() => {
     try {
-      if (sessionKey) localStorage.setItem(OPEN_SESSION_STORAGE_KEY, sessionKey)
-      else localStorage.removeItem(OPEN_SESSION_STORAGE_KEY)
+      if (sessionKey) localStorage.setItem(storageKey, sessionKey)
+      else localStorage.removeItem(storageKey)
     } catch {
       // Storage blocked: chat still works, a reload just starts a new conversation.
     }
-  }, [sessionKey])
+  }, [sessionKey, storageKey])
 
   const syncFromServer = useCallback(async (key: string) => {
     if (!key) return
@@ -135,16 +137,19 @@ export function useAgentChat(client: AgentWsClient, connected: boolean) {
 
   // On (re)connect: list sessions and reopen the one from before the reload, if it is this agent's.
   useEffect(() => {
+    setRestored(false)
     if (!connected) return
     void Promise.resolve().then(async () => {
       await refreshSessions()
       const stored = sessionKeyRef.current
       await openSession(belongsToAgent(stored, client.agentKey) ? stored : '')
+      setRestored(true)
     })
     // Runs on connection changes only; openSession changes with every session switch.
   }, [connected])
 
-  const send = useCallback(async (text: string) => {
+  /** `presetKey` names a new session; it is ignored when continuing an open one. */
+  const send = useCallback(async (text: string, presetKey?: string) => {
     const content = text.trim()
     if (!content || !connected) return
     setFailed(false)
@@ -154,7 +159,7 @@ export function useAgentChat(client: AgentWsClient, connected: boolean) {
     let key = sessionKeyRef.current
     const isNew = key === ''
     if (isNew) {
-      key = buildSessionKey(client.agentKey)
+      key = presetKey ?? buildSessionKey(client.agentKey)
       sessionKeyRef.current = key
       setSessionKey(key)
     }
@@ -182,7 +187,18 @@ export function useAgentChat(client: AgentWsClient, connected: boolean) {
 
   const startNewSession = useCallback(() => { void openSession('') }, [openSession])
 
-  return { sessions, sessionKey, messages, streaming, loadingHistory, failed, send, abort, openSession, startNewSession, refreshSessions }
+  /**
+   * Opens a fresh session and sends its first message. `beforeSend` learns the session key first, so a
+   * caller can record it before the agent starts working in that session.
+   */
+  const startWith = useCallback(async (text: string, beforeSend?: (sessionKey: string) => Promise<unknown> | void) => {
+    await openSession('')
+    const key = buildSessionKey(client.agentKey)
+    await beforeSend?.(key)
+    await send(text, key)
+  }, [client, openSession, send])
+
+  return { sessions, sessionKey, messages, streaming, loadingHistory, failed, restored, send, abort, openSession, startNewSession, startWith, refreshSessions }
 }
 
 export type AgentChat = ReturnType<typeof useAgentChat>

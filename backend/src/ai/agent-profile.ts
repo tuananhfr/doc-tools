@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 /** Bump when anything under backend/agent/ changes; `npm run ai -- sync-agents` pushes it to older agents. */
-export const PROMPT_VERSION = 1
+export const PROMPT_VERSION = 2
 
 export const AGENT_FILE_NAMES = ['AGENTS.md', 'SOUL.md', 'IDENTITY.md', 'CAPABILITIES.md'] as const
 

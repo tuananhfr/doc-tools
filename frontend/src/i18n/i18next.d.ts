@@ -16,7 +16,6 @@ import type finance from './messages/vi/finance.json'
 import type family from './messages/vi/family.json'
 import type documents from './messages/vi/documents.json'
 import type video from './messages/vi/video.json'
-import type byoai from './messages/vi/byoai.json'
 import type study from './messages/vi/study.json'
 import type safety from './messages/vi/safety.json'
 import type construction from './messages/vi/construction.json'
@@ -48,7 +47,6 @@ declare module 'i18next' {
       family: typeof family
       documents: typeof documents
       video: typeof video
-      byoai: typeof byoai
       study: typeof study
       safety: typeof safety
       construction: typeof construction

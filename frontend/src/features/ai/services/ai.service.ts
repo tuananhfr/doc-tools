@@ -1,5 +1,5 @@
 import { withBase } from '@/utils/url'
-import { AI_ERROR_CODES, type AiErrorCode, type AiSetup, type AiTicket, type ProviderTypeOption } from '../types/ai.types'
+import { AI_ERROR_CODES, type AiErrorCode, type AiSetup, type AiTicket, type ContributionDraft, type DraftSubmitResult, type ProviderTypeOption } from '../types/ai.types'
 
 export class AiError extends Error {
   constructor(readonly code: AiErrorCode, readonly status: number, readonly detail: string | null = null) {
@@ -35,4 +35,8 @@ export const aiService = {
   verify: (model: string) => call<AiSetup>('/ai/provider/verify', { method: 'POST', body: { model } }),
   removeProvider: () => call<AiSetup>('/ai/provider', { method: 'DELETE' }),
   session: () => call<AiTicket>('/ai/session', { method: 'POST' }),
+  recordSourceCheck: (input: { toolId: string; baseSnapshotId: string | null; sessionKey: string }) => call<{ id: string }>('/ai/source-checks', { method: 'POST', body: input }),
+  drafts: (toolId: string) => call<{ items: ContributionDraft[] }>(`/me/contribution-drafts?toolId=${encodeURIComponent(toolId)}`).then((result) => result.items),
+  submitDraft: (id: string, input: { selectedIndexes: number[]; attribution: boolean }) => call<DraftSubmitResult>(`/me/contribution-drafts/${id}/submit`, { method: 'POST', body: input }),
+  removeDraft: (id: string) => call<object>(`/me/contribution-drafts/${id}`, { method: 'DELETE' }),
 }

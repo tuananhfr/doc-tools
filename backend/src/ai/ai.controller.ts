@@ -65,6 +65,17 @@ export class AiController {
     return { ok: true, ...(await this.ai.removeProvider(user.id)) }
   }
 
+  @Post('source-checks')
+  @HttpCode(200)
+  @UseGuards(TrustedWriteGuard)
+  @Header('Cache-Control', 'no-store')
+  @RouteConfig({ bodyLimit: 2048 })
+  async sourceCheck(@Body() body: unknown, @Req() request: FastifyRequest) {
+    const user = await this.pro(request)
+    const input = (body ?? {}) as Record<string, unknown>
+    return this.ai.recordSourceCheck(user.id, { toolId: input.toolId, baseSnapshotId: input.baseSnapshotId, sessionKey: input.sessionKey })
+  }
+
   @Post('session')
   @HttpCode(200)
   @UseGuards(TrustedWriteGuard)

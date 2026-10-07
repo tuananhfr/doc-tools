@@ -13,18 +13,55 @@ const MAX_MESSAGE_LENGTH = 4000
 // Follow new text only while the reader is already at the bottom; scrolling up to reread must not be yanked back.
 const STICKY_BOTTOM_PX = 80
 
-export function AgentChat() {
+export interface ChatStarter {
+  /** A new id sends again; the same id is sent once. */
+  id: number
+  text: string
+  beforeSend?: (sessionKey: string) => Promise<unknown> | void
+}
+
+interface AgentChatProps {
+  /** Keeps the embedded chat's open session apart from the assistant page's. */
+  storageKey?: string
+  /** Inside a tool page: no session picker, the host decides when a conversation starts. */
+  embedded?: boolean
+  starter?: ChatStarter | null
+  /** After every finished turn; the agent may have written something the host shows. */
+  onTurnEnd?: () => void
+  emptyTitle?: string
+  emptyText?: string
+  placeholder?: string
+}
+
+export function AgentChat({ storageKey, embedded = false, starter = null, onTurnEnd, emptyTitle, emptyText, placeholder }: AgentChatProps) {
   const { t } = useTranslation('ai')
+  const hint = placeholder ?? t('chat.placeholder')
   const connection = useAgentConnection(true)
-  const chat = useAgentChat(connection.client, connection.connected)
+  const chat = useAgentChat(connection.client, connection.connected, { storageKey })
   const [draft, setDraft] = useState('')
   const threadRef = useRef<HTMLDivElement>(null)
   const stickRef = useRef(true)
+  const startedRef = useRef<number | null>(null)
+  const streamingRef = useRef(false)
+  const turnEndRef = useRef(onTurnEnd)
+  useEffect(() => { turnEndRef.current = onTurnEnd }, [onTurnEnd])
 
   useEffect(() => {
     const thread = threadRef.current
     if (thread && stickRef.current) thread.scrollTop = thread.scrollHeight
   }, [chat.messages, chat.streaming])
+
+  useEffect(() => {
+    if (streamingRef.current && !chat.streaming) turnEndRef.current?.()
+    streamingRef.current = chat.streaming
+  }, [chat.streaming])
+
+  useEffect(() => {
+    if (!starter || startedRef.current === starter.id || !connection.connected || !chat.restored || chat.streaming) return
+    startedRef.current = starter.id
+    stickRef.current = true
+    void chat.startWith(starter.text, starter.beforeSend)
+  }, [starter, connection.connected, chat.restored, chat.streaming, chat.startWith])
 
   const submit = (event?: FormEvent) => {
     event?.preventDefault()
@@ -45,9 +82,12 @@ export function AgentChat() {
   const lastMessage = chat.messages[chat.messages.length - 1]
   const waitingFirstChunk = chat.streaming && lastMessage?.role !== 'assistant'
 
+  // Between connecting and reopening the stored session the thread is not empty yet, only unknown.
+  const restoring = connection.connected && !chat.restored && !chat.messages.length
+
   return (
-    <div className="cn-ai-chat">
-      <div className="cn-ai-chat__bar">
+    <div className={`cn-ai-chat${embedded ? ' is-embedded' : ''}`}>
+      {embedded ? null : <div className="cn-ai-chat__bar">
         <label className="cn-ai-chat__sessions">
           <span className="visually-hidden">{t('chat.history')}</span>
           <select
@@ -64,7 +104,7 @@ export function AgentChat() {
         <button type="button" className="cn-button cn-button--ghost" disabled={!connection.connected || chat.streaming || !chat.sessionKey} onClick={chat.startNewSession}>
           <Icon name="plus-lg" />{t('chat.newChat')}
         </button>
-      </div>
+      </div>}
 
       {state === CONNECTION_STATES.failed ? (
         <div className="cn-ai-chat__notice is-bad" role="alert">
@@ -85,7 +125,7 @@ export function AgentChat() {
         ref={threadRef}
         className="cn-ai-chat__thread"
         aria-live="polite"
-        aria-busy={chat.streaming || chat.loadingHistory}
+        aria-busy={chat.streaming || chat.loadingHistory || restoring}
         onScroll={(event) => {
           const thread = event.currentTarget
           stickRef.current = thread.scrollHeight - thread.scrollTop - thread.clientHeight < STICKY_BOTTOM_PX
@@ -93,13 +133,13 @@ export function AgentChat() {
       >
         {!connection.connected && state !== CONNECTION_STATES.failed && !chat.messages.length ? (
           <p className="cn-ai-chat__connecting"><span className="cn-ai-dots" aria-hidden="true"><span /><span /><span /></span>{t('chat.connecting')}</p>
-        ) : chat.loadingHistory ? (
+        ) : chat.loadingHistory || restoring ? (
           <Skeleton rows={4} title={false} />
         ) : !chat.messages.length ? (
           <div className="cn-ai-chat__empty">
             <span className="cn-ai-chat__empty-icon"><Icon name="stars" /></span>
-            <h3>{t('chat.emptyTitle')}</h3>
-            <p>{t('chat.emptyText')}</p>
+            <h3>{emptyTitle ?? t('chat.emptyTitle')}</h3>
+            <p>{emptyText ?? t('chat.emptyText')}</p>
           </div>
         ) : (
           chat.messages.map((message) => (
@@ -117,14 +157,14 @@ export function AgentChat() {
       {chat.failed ? <p className="cn-form-error" role="alert"><Icon name="exclamation-circle" />{chat.messages.length ? t('chat.sendFailed') : t('chat.loadFailed')}</p> : null}
 
       <form className="cn-ai-chat__composer" onSubmit={submit}>
-        <label className="visually-hidden" htmlFor="cn-ai-draft">{t('chat.placeholder')}</label>
+        <label className="visually-hidden" htmlFor="cn-ai-draft">{hint}</label>
         <textarea
           id="cn-ai-draft"
           className="form-control cn-input"
           rows={2}
           maxLength={MAX_MESSAGE_LENGTH}
           value={draft}
-          placeholder={t('chat.placeholder')}
+          placeholder={hint}
           onChange={(event) => setDraft(event.target.value)}
           onKeyDown={onKeyDown}
         />

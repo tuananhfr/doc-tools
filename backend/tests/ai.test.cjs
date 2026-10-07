@@ -275,7 +275,7 @@ test('AI: provider, agent, guard rails, tickets, MCP tools, staff switch and del
     }
     const init = await rpc(1, 'initialize', { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'qa', version: '1' } })
     assert.equal(init.result.protocolVersion, '2024-11-05')
-    assert.deepEqual((await rpc(2, 'tools/list', {})).result.tools.map((tool) => tool.name), ['cn_find_tools', 'cn_tool_guide', 'cn_open_tool'])
+    assert.deepEqual((await rpc(2, 'tools/list', {})).result.tools.map((tool) => tool.name), ['cn_find_tools', 'cn_tool_guide', 'cn_open_tool', 'cn_get_rules', 'cn_create_contribution_draft', 'cn_my_contributions'])
     const found = JSON.parse((await rpc(3, 'tools/call', { name: 'cn_find_tools', arguments: { query: 'nén pdf', locale: 'vi' } })).result.content[0].text)
     assert.equal(found.tools[0].slug, 'nen-pdf')
     const guide = JSON.parse((await rpc(4, 'tools/call', { name: 'cn_tool_guide', arguments: { slug: 'nen-pdf', locale: 'en' } })).result.content[0].text)
