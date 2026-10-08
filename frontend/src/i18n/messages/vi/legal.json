@@ -30,7 +30,7 @@
       "tai-khoan-pro": {
         "heading": "Tài khoản và bản Pro",
         "items": {
-          "security": "Hãy giữ an toàn hộp thư dùng để đăng nhập: ai đọc được mã đăng nhập thì vào được tài khoản.",
+          "security": "Hãy dùng mật khẩu riêng cho Chuyện Nhỏ và giữ an toàn hộp thư của tài khoản: ai đọc được mã xác nhận trong thư thì đặt lại được mật khẩu.",
           "aiKey": "Khoá AI là của bạn: chi phí gọi AI do nhà cung cấp tính thẳng cho bạn theo điều khoản của họ. Bạn gỡ khoá được bất cứ lúc nào.",
           "aiOutput": "Câu trả lời của AI có thể sai. Nháp đề xuất do AI soạn chỉ được gửi khi bạn tự chọn và xác nhận, và vẫn phải qua người kiểm duyệt trước khi thành số liệu chính thức.",
           "expiry": "Khi Pro hết hạn: trợ lý AI dừng, mục đã lưu chuyển sang chỉ đọc trong 90 ngày rồi bị xoá, có thư báo trước ít nhất 7 ngày. Gia hạn trong thời gian đó thì mọi thứ được giữ nguyên.",
@@ -150,7 +150,8 @@
       "tai-khoan": {
         "heading": "Khi bạn có tài khoản",
         "items": {
-          "email": "Email: để gửi mã đăng nhập và thư về tài khoản (gói Pro sắp hết hạn, mục đã lưu sắp bị xoá). Không dùng cho quảng cáo.",
+          "email": "Email: để đăng nhập, gửi mã xác nhận khi tạo tài khoản hoặc quên mật khẩu, và gửi thư về tài khoản (gói Pro sắp hết hạn, mục đã lưu sắp bị xoá). Không dùng cho quảng cáo.",
+          "password": "Mật khẩu: chỉ lưu bản băm một chiều (scrypt, mỗi tài khoản một muối riêng); không ai, kể cả quản trị viên, đọc lại được mật khẩu gốc.",
           "session": "Phiên đăng nhập: cookie cn_session (HttpOnly, chỉ dùng để đăng nhập); máy chủ lưu bản băm của phiên cùng thời điểm tạo và lần dùng gần nhất.",
           "profile": "Tên hiển thị và lựa chọn ghi tên trên đề xuất được công bố, chỉ khi bạn tự điền.",
           "contributions": "Đề xuất gửi khi đã đăng nhập được gắn với tài khoản để bạn theo dõi trạng thái và bổ sung nguồn.",
@@ -195,7 +196,7 @@
           "account": "Tài khoản: tới khi bạn xoá tài khoản. Phiên đăng nhập hết hạn sau 30 ngày không dùng (tài khoản quản trị: 12 giờ).",
           "saved": "Mục đã lưu: trong thời gian dùng Pro; khi Pro hết, giữ ở chế độ chỉ đọc 90 ngày rồi xoá, có thư báo ít nhất 7 ngày trước.",
           "uploads": "Ảnh đính kèm cho trợ lý AI: xoá ngay sau khi gửi, chậm nhất sau 7 ngày.",
-          "mail": "Thư gửi cho bạn: nội dung thư (kể cả mã đăng nhập) bị xoá khỏi hàng đợi ngay khi gửi xong; chỉ giữ địa chỉ nhận, loại thư và trạng thái gửi."
+          "mail": "Thư gửi cho bạn: nội dung thư (kể cả mã xác nhận) bị xoá khỏi hàng đợi ngay khi gửi xong; chỉ giữ địa chỉ nhận, loại thư và trạng thái gửi."
         }
       },
       "quyen": {

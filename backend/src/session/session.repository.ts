@@ -44,6 +44,10 @@ export class SessionRepository implements OnModuleInit, OnModuleDestroy {
     const [result] = await this.database.pool.execute<ResultSetHeader>('DELETE FROM user_sessions WHERE user_id = ?', [userId])
     return result.affectedRows
   }
+  async deleteForUserExcept(userId: string, keepTokenHash: string) {
+    const [result] = await this.database.pool.execute<ResultSetHeader>('DELETE FROM user_sessions WHERE user_id = ? AND token_hash <> ?', [userId, keepTokenHash])
+    return result.affectedRows
+  }
 
   /** Metadata only: the token hash never leaves this repository. */
   async listForUser(userId: string, now: number) {

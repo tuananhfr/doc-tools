@@ -8,6 +8,8 @@ export interface AccountUser {
   email: string
   displayName: string | null
   publicAttribution: boolean
+  /** False for accounts made before passwords existed; they set one through the emailed code. */
+  hasPassword: boolean
 }
 
 /** Body of `GET /me`; guests get the same shape with `user: null`. */
@@ -53,6 +55,7 @@ export interface MyContributionsPage {
 
 export const ACCOUNT_ERROR_CODES = [
   'EMAIL_INVALID', 'OTP_INVALID', 'RATE_LIMITED', 'ACCOUNT_DISABLED', 'SIGNUP_CLOSED', 'UNTRUSTED_REQUEST', 'SIGNED_OUT',
-  'EVIDENCE_CLOSED', 'TOO_MANY_SOURCES', 'SOURCE_INVALID', 'NOT_FOUND', 'STAFF_ACCOUNT', 'CONFIRM_MISMATCH', 'DELETE_FAILED', 'NETWORK', 'UNKNOWN',
+  'LOGIN_FAILED', 'PASSWORD_TOO_SHORT', 'PASSWORD_TOO_LONG', 'PASSWORD_COMMON', 'PASSWORD_WRONG', 'PASSWORD_NOT_SET',
+  'EVIDENCE_CLOSED', 'TOO_MANY_SOURCES', 'SOURCE_INVALID', 'NOT_FOUND', 'STAFF_ACCOUNT', 'DELETE_FAILED', 'NETWORK', 'UNKNOWN',
 ] as const
 export type AccountErrorCode = (typeof ACCOUNT_ERROR_CODES)[number]

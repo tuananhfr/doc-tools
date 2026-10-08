@@ -47,7 +47,7 @@ export const MAIL_STATUS: Record<MailStatus, { label: string; icon: string; tone
   failed: { label: 'Thất bại', icon: 'exclamation-octagon', tone: 'danger' },
 }
 
-export const MAIL_TEMPLATE: Record<string, string> = { otp: 'Mã đăng nhập', test: 'Thư thử', pro_expiring: 'Pro sắp hết hạn', cloud_purge: 'Báo xoá mục đã lưu' }
+export const MAIL_TEMPLATE: Record<string, string> = { otp: 'Mã xác nhận', test: 'Thư thử', pro_expiring: 'Pro sắp hết hạn', cloud_purge: 'Báo xoá mục đã lưu' }
 
 export const MAIL_TRANSPORT = { direct: 'Gửi thẳng (MX + DKIM)', smtp: 'Qua máy chủ SMTP', log: 'Chỉ ghi log (không gửi)' } as const
 

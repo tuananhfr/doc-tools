@@ -5,28 +5,26 @@ import { useToast } from '@/components/ui'
 import { Icon } from '@/components/ui/Icon'
 import { useDeleteAccount } from '../hooks/useAccount'
 import { accountErrorCode } from '../utils/account-error'
+import { PasswordInput } from './PasswordInput'
 
-// Same folding as the backend's normalizeEmail, so the button never enables for an answer the server refuses.
-const sameEmail = (typed: string, email: string) => typed.trim().toLowerCase() === email.toLowerCase()
+interface DeleteAccountSectionProps { staff: boolean; hasPassword: boolean; onDeleted: () => void }
 
-export function DeleteAccountSection({ email, staff, onDeleted }: { email: string; staff: boolean; onDeleted: () => void }) {
+export function DeleteAccountSection({ staff, hasPassword, onDeleted }: DeleteAccountSectionProps) {
   const { t } = useTranslation('account')
   const navigate = useNavigate()
   const toast = useToast()
   const [open, setOpen] = useState(false)
-  const [typed, setTyped] = useState('')
+  const [password, setPassword] = useState('')
   const remove = useDeleteAccount(() => {
     onDeleted()
     toast.success(t('account.delete.done'))
     void navigate('/', { replace: true })
   })
-  const matches = sameEmail(typed, email)
-
   const submit = (event: FormEvent) => {
     event.preventDefault()
-    if (matches && !remove.isPending) remove.mutate(typed)
+    if (password && !remove.isPending) remove.mutate(password)
   }
-  const cancel = () => { setOpen(false); setTyped(''); remove.reset() }
+  const cancel = () => { setOpen(false); setPassword(''); remove.reset() }
 
   return (
     <section className="cn-account-card is-danger" aria-labelledby="cn-account-delete">
@@ -37,26 +35,26 @@ export function DeleteAccountSection({ email, staff, onDeleted }: { email: strin
       </ul>
       {staff ? (
         <p className="cn-delete-note"><Icon name="shield-lock" />{t('account.delete.staff')}</p>
+      ) : !hasPassword ? (
+        <p className="cn-delete-note"><Icon name="key" />{t('account.delete.needsPassword')}</p>
       ) : !open ? (
         <button type="button" className="cn-button cn-button--danger-ghost" onClick={() => setOpen(true)}>
           <Icon name="trash3" />{t('account.delete.start')}
         </button>
       ) : (
         <form className="cn-account-form" onSubmit={submit} noValidate>
-          <label className="cn-field-label" htmlFor="cn-delete-confirm">{t('account.delete.confirmLabel', { email })}</label>
-          <input
+          <label className="cn-field-label" htmlFor="cn-delete-confirm">{t('account.delete.confirmLabel')}</label>
+          <PasswordInput
             id="cn-delete-confirm"
-            className="form-control cn-input"
-            type="email"
-            autoComplete="off"
-            spellCheck={false}
+            autoComplete="current-password"
             autoFocus
-            value={typed}
-            onChange={(event) => { setTyped(event.target.value); remove.reset() }}
+            value={password}
+            invalid={remove.isError}
+            onChange={(value) => { setPassword(value); remove.reset() }}
           />
           {remove.isError ? <p className="cn-form-error" role="alert"><Icon name="exclamation-circle" />{t(`errors.${accountErrorCode(remove.error)}`)}</p> : null}
           <div className="cn-account-actions">
-            <button className="cn-button cn-button--red" type="submit" disabled={!matches || remove.isPending}>
+            <button className="cn-button cn-button--red" type="submit" disabled={!password || remove.isPending}>
               <Icon name="trash3" />{remove.isPending ? t('account.delete.busy') : t('account.delete.confirm')}
             </button>
             <button className="cn-button cn-button--ghost" type="button" disabled={remove.isPending} onClick={cancel}>{t('account.delete.cancel')}</button>

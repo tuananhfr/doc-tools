@@ -66,5 +66,11 @@ export class SessionService {
   }
 
   async endAll(userId: string) { return this.sessions.deleteForUser(userId) }
+
+  /** Signs the user out everywhere except the device making this request. */
+  async endOthers(request: FastifyRequest, userId: string) {
+    const token = readCookie(request, SESSION_COOKIE)
+    return token ? this.sessions.deleteForUserExcept(userId, tokenHash(token)) : this.sessions.deleteForUser(userId)
+  }
   async list(userId: string) { return this.sessions.listForUser(userId, Math.floor(Date.now() / 1000)) }
 }

@@ -58,7 +58,7 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
       { id: 'chung-toi', paragraphs: ['controller'] },
       { id: 'nguyen-tac', items: ['device', 'minimal', 'anonymous', 'noTracking'] },
       { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs'] },
-      { id: 'tai-khoan', items: ['email', 'session', 'profile', 'contributions', 'plan'] },
+      { id: 'tai-khoan', items: ['email', 'password', 'session', 'profile', 'contributions', 'plan'] },
       { id: 'pro', paragraphs: ['intro'], items: ['key', 'chat', 'memory', 'uploads', 'checks', 'saved'] },
       { id: 'tren-thiet-bi', paragraphs: ['local'], link: { to: '/xu-ly-du-lieu' } },
       { id: 'ben-thu-ba', paragraphs: ['noSale', 'ai', 'speech'] },

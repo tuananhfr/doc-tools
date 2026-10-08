@@ -1,6 +1,6 @@
 const { test } = require('node:test')
 const assert = require('node:assert/strict')
-const { createHash, randomBytes, randomUUID } = require('node:crypto')
+const { createHash, createHmac, randomBytes, randomUUID } = require('node:crypto')
 
 const DAY = 86400
 
@@ -16,6 +16,7 @@ test('Pro lifecycle: reminder, read-only window, warned purge, renewal; self-ser
   const { DatabaseService } = require('../dist/database/database.service')
   const { PlanLifecycleService } = require('../dist/lifecycle/plan-lifecycle.service')
   const { renderMail } = require('../dist/mail/mail-templates')
+  const { hashPassword } = require('../dist/accounts/password')
 
   const app = await NestFactory.create(AppModule, createHttpAdapter(), { logger: false, bodyParser: false })
   app.setGlobalPrefix('api/v1')
@@ -115,17 +116,23 @@ test('Pro lifecycle: reminder, read-only window, warned purge, renewal; self-ser
     // Self-service deletion.
     const leaving = await person('leaving', { plans: [[now - DAY, now + DAY]], items: 1 })
     const staff = await person('staff', { role: 'admin' })
-    assert.equal((await call(null, 'DELETE', '/me', { confirmEmail: leaving.email })).statusCode, 401)
-    assert.equal((await call(leaving, 'DELETE', '/me', { confirmEmail: leaving.email }, { trusted: false })).statusCode, 403)
-    const mismatch = await call(leaving, 'DELETE', '/me', { confirmEmail: 'someone@example.test' })
-    assert.deepEqual([mismatch.statusCode, JSON.parse(mismatch.body).code], [400, 'CONFIRM_MISMATCH'])
-    const staffTry = await call(staff, 'DELETE', '/me', { confirmEmail: staff.email })
+    const secret = 'xoá thật rồi đấy'
+    assert.equal((await call(null, 'DELETE', '/me', { password: secret })).statusCode, 401)
+    assert.equal((await call(leaving, 'DELETE', '/me', { password: secret }, { trusted: false })).statusCode, 403)
+    const unset = await call(leaving, 'DELETE', '/me', { password: secret })
+    assert.deepEqual([unset.statusCode, JSON.parse(unset.body).code], [409, 'PASSWORD_NOT_SET'])
+    await database.pool.execute('INSERT INTO user_passwords (user_id, hash, updated_at) VALUES (?, ?, ?)', [leaving.id, await hashPassword(secret), now])
+    const mismatch = await call(leaving, 'DELETE', '/me', { password: 'không phải nó' })
+    assert.deepEqual([mismatch.statusCode, JSON.parse(mismatch.body).code], [400, 'PASSWORD_WRONG'])
+    const staffTry = await call(staff, 'DELETE', '/me', { password: secret })
     assert.deepEqual([staffTry.statusCode, JSON.parse(staffTry.body).code], [409, 'STAFF_ACCOUNT'])
-    const gone = await call(leaving, 'DELETE', '/me', { confirmEmail: `  ${leaving.email.toUpperCase()} ` })
+    const gone = await call(leaving, 'DELETE', '/me', { password: secret })
     assert.equal(gone.statusCode, 200, gone.body)
     assert.match(String(gone.headers['set-cookie']), /cn_session=;/)
     const [[row]] = await database.pool.execute('SELECT COUNT(*) AS total FROM users WHERE id = ?', [leaving.id])
     assert.equal(Number(row.total), 0)
+    const [[hashes]] = await database.pool.execute('SELECT COUNT(*) AS total FROM user_passwords WHERE user_id = ?', [leaving.id])
+    assert.equal(Number(hashes.total), 0, 'the password hash goes with the account')
     assert.equal(await itemCount(leaving), 0)
     const [audit] = await database.pool.execute('SELECT action, actor FROM user_audit WHERE user_id = ?', [leaving.id])
     assert.deepEqual(audit.map((entry) => [entry.action, entry.actor]), [['DELETED', 'self']])
@@ -133,8 +140,10 @@ test('Pro lifecycle: reminder, read-only window, warned purge, renewal; self-ser
   } finally {
     if (database) {
       for (const user of users) {
-        for (const table of ['saved_items', 'plan_notices', 'user_sessions', 'user_plans', 'user_roles', 'user_audit']) await database.pool.execute(`DELETE FROM ${table} WHERE user_id = ?`, [user.id])
+        for (const table of ['saved_items', 'plan_notices', 'user_sessions', 'user_plans', 'user_roles', 'user_audit', 'user_passwords']) await database.pool.execute(`DELETE FROM ${table} WHERE user_id = ?`, [user.id])
         await database.pool.execute('DELETE FROM mail_outbox WHERE to_email = ?', [user.email])
+        const flood = createHmac('sha256', process.env.VISIT_HASH_SECRET).update(`password-check:${user.id}`).digest('hex')
+        for (const table of ['auth_flood_events', 'auth_flood_locks']) await database.pool.execute(`DELETE FROM ${table} WHERE key_hash = ?`, [flood])
         await database.pool.execute('DELETE FROM users WHERE id = ?', [user.id])
       }
     }

@@ -11,6 +11,7 @@ import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { DeleteAccountSection } from '../components/DeleteAccountSection'
 import { PlanSection } from '../components/PlanSection'
 import { ProfileForm } from '../components/ProfileForm'
+import { SecuritySection } from '../components/SecuritySection'
 import { useLogout, useMe } from '../hooks/useAccount'
 import { accountErrorCode } from '../utils/account-error'
 import { loginPath } from '../utils/next-path'
@@ -60,6 +61,7 @@ export default function AccountPage() {
               {me.data.plan.pro ? <AiAccountCard /> : null}
               <SavedAccountCard pro={me.data.plan.pro} />
               <ProfileForm key={user.id} user={user} />
+              <SecuritySection user={user} />
               <section className="cn-account-card" aria-labelledby="cn-account-signout">
                 <div className="cn-account-card__head"><h2 id="cn-account-signout">{t('account.signOut.title')}</h2></div>
                 <p className="cn-account-card__text">{t('account.signOut.text')}</p>
@@ -73,7 +75,7 @@ export default function AccountPage() {
                   <Icon name="box-arrow-right" />{logout.isPending ? t('account.signOut.busy') : t('account.signOut.button')}
                 </button>
               </section>
-              <DeleteAccountSection email={user.email} staff={Boolean(me.data.staff)} onDeleted={() => setDeleted(true)} />
+              <DeleteAccountSection staff={Boolean(me.data.staff)} hasPassword={user.hasPassword} onDeleted={() => setDeleted(true)} />
             </div>
           </div>
         )}

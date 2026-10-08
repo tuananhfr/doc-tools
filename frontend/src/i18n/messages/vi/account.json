@@ -2,7 +2,7 @@
   "pages": {
     "dang-nhap": {
       "title": "Đăng nhập | Chuyện Nhỏ",
-      "description": "Đăng nhập Chuyện Nhỏ bằng email và mã xác nhận, không cần mật khẩu."
+      "description": "Đăng nhập Chuyện Nhỏ bằng email và mật khẩu. Tạo tài khoản hoặc đặt lại mật khẩu bằng mã gửi qua email."
     },
     "tai-khoan": {
       "title": "Tài khoản | Chuyện Nhỏ",
@@ -15,22 +15,17 @@
   },
   "login": {
     "trail": "Đăng nhập",
-    "title": "Đăng nhập bằng <accent>email</accent>",
-    "intro": "Không cần mật khẩu. Nhập email, chúng tôi gửi một mã 6 chữ số để xác nhận đó là bạn.",
+    "title": "Đăng nhập <accent>Chuyện Nhỏ</accent>",
+    "intro": "Đăng nhập bằng email và mật khẩu. Chưa có tài khoản? Tạo mới bằng email, chỉ mất một phút.",
     "emailLabel": "Email",
     "emailPlaceholder": "ban@vidu.vn",
-    "sendCode": "Gửi mã",
-    "sending": "Đang gửi…",
-    "codeLabel": "Mã xác nhận",
-    "codeSentTo": "Mã đã gửi tới <strong>{{email}}</strong> và có hiệu lực 10 phút.",
-    "codeHint": "Không thấy thư? Xem thư mục Spam hoặc Quảng cáo.",
-    "verify": "Đăng nhập",
-    "verifying": "Đang kiểm tra…",
-    "changeEmail": "Đổi email",
-    "resend": "Gửi lại mã",
-    "resendIn": "Gửi lại sau {{seconds}} giây",
-    "resent": "Đã gửi mã mới. Mã cũ không còn dùng được.",
-    "terms": "Khi đăng nhập, bạn đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Quyền riêng tư</privacy>.",
+    "passwordLabel": "Mật khẩu",
+    "forgot": "Quên mật khẩu?",
+    "submit": "Đăng nhập",
+    "submitting": "Đang đăng nhập…",
+    "noAccount": "Chưa có tài khoản?",
+    "createAccount": "Tạo tài khoản",
+    "terms": "Khi đăng nhập hoặc tạo tài khoản, bạn đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Quyền riêng tư</privacy>.",
     "asideTitle": "Tài khoản để làm gì?",
     "asideNote": "Mọi công cụ vẫn dùng được khi không đăng nhập. Tệp của bạn vẫn chỉ xử lý trong trình duyệt.",
     "benefits": {
@@ -46,6 +41,44 @@
         "title": "Sẵn sàng cho bản Pro",
         "text": "Trợ lý AI chạy bằng khoá AI của riêng bạn, lưu trữ và đồng bộ giữa các thiết bị."
       }
+    }
+  },
+  "password": {
+    "show": "Hiện mật khẩu",
+    "hide": "Ẩn mật khẩu"
+  },
+  "setup": {
+    "sendCode": "Gửi mã xác nhận",
+    "sending": "Đang gửi…",
+    "codeLabel": "Mã xác nhận",
+    "codeSentTo": "Mã đã gửi tới <strong>{{email}}</strong> và có hiệu lực 10 phút.",
+    "codeHint": "Không thấy thư? Xem thư mục Spam hoặc Quảng cáo.",
+    "passwordHint": "Ít nhất 8 ký tự. Một cụm từ dễ nhớ, như “mây trắng bay qua đồi”, vừa dài vừa khó đoán.",
+    "saving": "Đang lưu…",
+    "changeEmail": "Đổi email",
+    "resend": "Gửi lại mã",
+    "resendIn": "Gửi lại sau {{seconds}} giây",
+    "resent": "Đã gửi mã mới. Mã cũ không còn dùng được.",
+    "haveAccount": "Đã có tài khoản?",
+    "signIn": "Đăng nhập",
+    "backToLogin": "Quay lại đăng nhập",
+    "signup": {
+      "trail": "Tạo tài khoản",
+      "title": "Tạo tài khoản <accent>Chuyện Nhỏ</accent>",
+      "intro": "Nhập email, chúng tôi gửi mã 6 chữ số để xác nhận hộp thư là của bạn. Sau đó bạn đặt mật khẩu cho những lần đăng nhập sau.",
+      "passwordLabel": "Mật khẩu",
+      "submit": "Tạo tài khoản"
+    },
+    "reset": {
+      "trail": "Quên mật khẩu",
+      "title": "Đặt lại <accent>mật khẩu</accent>",
+      "intro": "Nhập email của tài khoản, chúng tôi gửi mã 6 chữ số. Đặt mật khẩu mới xong, mọi thiết bị đang đăng nhập sẽ bị đăng xuất.",
+      "passwordLabel": "Mật khẩu mới",
+      "submit": "Đặt mật khẩu mới"
+    },
+    "set": {
+      "passwordLabel": "Mật khẩu",
+      "submit": "Đặt mật khẩu"
     }
   },
   "account": {
@@ -92,6 +125,22 @@
       "saving": "Đang lưu…",
       "saved": "Đã lưu."
     },
+    "security": {
+      "title": "Mật khẩu",
+      "text": "Đổi mật khẩu sẽ đăng xuất mọi thiết bị khác, thiết bị này vẫn giữ đăng nhập.",
+      "noPassword": "Tài khoản này được tạo trước khi có mật khẩu. Đặt mật khẩu bằng mã gửi tới <strong>{{email}}</strong> để lần sau đăng nhập không cần chờ thư.",
+      "currentLabel": "Mật khẩu hiện tại",
+      "newLabel": "Mật khẩu mới",
+      "change": "Đổi mật khẩu",
+      "changing": "Đang đổi…",
+      "changed": "Đã đổi mật khẩu. Các thiết bị khác đã bị đăng xuất.",
+      "set": "Đã đặt mật khẩu. Lần sau đăng nhập bằng email và mật khẩu này.",
+      "sessionsText": "Quên đăng xuất ở máy khác hoặc thấy điều gì lạ? Kết thúc mọi phiên đăng nhập, trừ thiết bị này.",
+      "sessionsButton": "Đăng xuất khỏi mọi thiết bị khác",
+      "sessionsBusy": "Đang đăng xuất…",
+      "sessionsEnded": "Đã đăng xuất các thiết bị khác.",
+      "sessionsNone": "Không có thiết bị nào khác đang đăng nhập."
+    },
     "signOut": {
       "title": "Đăng xuất",
       "text": "Kết thúc phiên đăng nhập trên thiết bị này.",
@@ -102,16 +151,17 @@
       "title": "Xoá tài khoản",
       "text": "Xoá vĩnh viễn tài khoản này. Không hoàn tác được.",
       "points": {
-        "data": "Email, phiên đăng nhập, gói Pro, mục đã lưu và lịch sử kiểm nguồn bị xoá.",
+        "data": "Email, mật khẩu, phiên đăng nhập, gói Pro, mục đã lưu và lịch sử kiểm nguồn bị xoá.",
         "ai": "Trợ lý AI và khoá AI của bạn bị gỡ khỏi máy chủ trợ lý.",
         "contributions": "Đề xuất đã gửi được giữ lại nhưng không còn gắn với bạn."
       },
       "start": "Xoá tài khoản…",
-      "confirmLabel": "Gõ lại email {{email}} để xác nhận",
+      "confirmLabel": "Nhập mật khẩu để xác nhận",
       "confirm": "Xoá vĩnh viễn",
       "busy": "Đang xoá…",
       "cancel": "Thôi",
       "staff": "Tài khoản quản trị không tự xoá được. Hãy nhờ một owner gỡ vai trò trước.",
+      "needsPassword": "Hãy đặt mật khẩu ở mục Mật khẩu trước; việc xoá tài khoản cần xác nhận bằng mật khẩu.",
       "done": "Đã xoá tài khoản. Cảm ơn bạn đã dùng Chuyện Nhỏ."
     },
     "mine": {
@@ -128,6 +178,12 @@
     "SIGNUP_CLOSED": "Hiện chưa mở đăng ký tài khoản mới. Tài khoản đã có vẫn đăng nhập bình thường.",
     "UNTRUSTED_REQUEST": "Yêu cầu không hợp lệ. Hãy tải lại trang rồi thử lại.",
     "SIGNED_OUT": "Phiên đăng nhập đã hết. Hãy đăng nhập lại.",
+    "LOGIN_FAILED": "Email hoặc mật khẩu không đúng.",
+    "PASSWORD_TOO_SHORT": "Mật khẩu cần ít nhất 8 ký tự.",
+    "PASSWORD_TOO_LONG": "Mật khẩu dài tối đa 128 ký tự.",
+    "PASSWORD_COMMON": "Mật khẩu này quá dễ đoán (hoặc trùng email). Hãy chọn mật khẩu khác.",
+    "PASSWORD_WRONG": "Mật khẩu hiện tại không đúng.",
+    "PASSWORD_NOT_SET": "Tài khoản chưa có mật khẩu. Hãy đặt mật khẩu ở mục Mật khẩu trước.",
     "NETWORK": "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.",
     "UNKNOWN": "Có lỗi xảy ra. Hãy thử lại sau.",
     "EVIDENCE_CLOSED": "Đề xuất đã được xét, không bổ sung nguồn được nữa.",
@@ -135,7 +191,6 @@
     "SOURCE_INVALID": "Nguồn không hợp lệ. Dùng đường dẫn HTTPS công khai, không chứa khoá hay mã truy cập.",
     "NOT_FOUND": "Không tìm thấy đề xuất này. Hãy tải lại trang.",
     "STAFF_ACCOUNT": "Tài khoản quản trị không tự xoá được. Hãy nhờ một owner gỡ vai trò trước.",
-    "CONFIRM_MISMATCH": "Email chưa khớp với tài khoản đang đăng nhập.",
     "DELETE_FAILED": "Chưa xoá được tài khoản lúc này. Hãy thử lại sau ít phút."
   },
   "box": {

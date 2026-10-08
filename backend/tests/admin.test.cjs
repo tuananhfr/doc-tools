@@ -117,7 +117,7 @@ test('admin area: roles, permissions, users, settings, review and deletion', asy
     // A code issued before sign-up closed still cannot create the account.
     const now = Math.floor(Date.now() / 1000)
     await database.pool.execute('INSERT INTO auth_otps (email_hash, code_hash, expires_at, created_at) VALUES (?, ?, ?, ?)', [hmac(`email:${outsider}`), hmac(`otp:${outsider}:123456`), now + 600, now])
-    assert.equal((await call(null, 'POST', '/auth/otp/verify', { email: outsider, code: '123456' })).json().code, 'SIGNUP_CLOSED')
+    assert.equal((await call(null, 'POST', '/auth/password/setup', { email: outsider, code: '123456', password: 'một mật khẩu đủ dài' })).json().code, 'SIGNUP_CLOSED')
     await database.pool.execute('DELETE FROM auth_otps WHERE email_hash = ?', [hmac(`email:${outsider}`)])
     await call(owner, 'DELETE', '/admin/settings/auth.signupOpen')
 

@@ -142,8 +142,11 @@ trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
   đi qua `account.service.ts`, đừng `fetch` tay.
 - `useMe()` cố ý trả `data` rỗng **trong lúc hydrate**: trang có namespace i18n nạp lười
   hydrate sau khi `/me` đã về, vẽ theo kết quả đó là lệch HTML máy chủ (hydration error).
-- Sau đăng nhập không có callback điều hướng: verify ghi phiên vào cache `/me`, `LoginPage`
-  tự `<Navigate>` tới `?next=` (đã lọc bằng `safeNextPath`).
+- Sau đăng nhập không có callback điều hướng: `login` / `password/setup` ghi phiên vào cache `/me`,
+  `LoginPage` tự `<Navigate>` tới `?next=` (đã lọc bằng `safeNextPath`). Tạo tài khoản và quên mật khẩu
+  là `?mode=signup|reset` của cùng trang (không phải route riêng) để `next` theo qua mọi bước; backend
+  xử lý hai chế độ y hệt nhau, chỉ khác chữ. Tài khoản cũ chưa có mật khẩu (`user.hasPassword: false`)
+  đặt ở thẻ Mật khẩu trang tài khoản (`PasswordSetupForm mode="set"`).
 - Pro hết hạn ở mốc **nửa đêm VN của ngày hôm sau** (loại trừ) — hiển thị phải lùi 1 giây.
 - Kiểm tra code theo capability (`/me` trả `capabilities`), không theo tên gói. Dòng nào trên
   trang tài khoản chưa có tính năng thật thì `live: false` (chip "Sắp có") trong

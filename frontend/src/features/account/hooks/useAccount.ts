@@ -32,9 +32,26 @@ function useStoreAccount() {
   return (state: AccountState) => client.setQueryData(ACCOUNT_QUERY_KEY, state)
 }
 
-export function useVerifyCode() {
+export function useLogin() {
   const store = useStoreAccount()
-  return useMutation({ mutationFn: ({ email, code }: { email: string; code: string }) => accountService.verifyCode(email, code), onSuccess: store })
+  return useMutation({ mutationFn: ({ email, password }: { email: string; password: string }) => accountService.login(email, password), onSuccess: store })
+}
+
+/** Sign-up and forgot-password: the emailed code plus the password to keep. Signs in on success. */
+export function useSetupPassword() {
+  const store = useStoreAccount()
+  return useMutation({
+    mutationFn: ({ email, code, password }: { email: string; code: string; password: string }) => accountService.setupPassword(email, code, password),
+    onSuccess: store,
+  })
+}
+
+export function useChangePassword() {
+  return useMutation({ mutationFn: ({ currentPassword, newPassword }: { currentPassword: string; newPassword: string }) => accountService.changePassword(currentPassword, newPassword) })
+}
+
+export function useEndOtherSessions() {
+  return useMutation({ mutationFn: accountService.endOtherSessions })
 }
 
 export function useUpdateProfile() {
@@ -64,7 +81,7 @@ export function useAddEvidence() {
 export function useDeleteAccount(onGone: () => void) {
   const client = useQueryClient()
   return useMutation({
-    mutationFn: (confirmEmail: string) => accountService.deleteAccount(confirmEmail),
+    mutationFn: (password: string) => accountService.deleteAccount(password),
     onSuccess: () => {
       onGone()
       return client.resetQueries({ queryKey: ['account'] })

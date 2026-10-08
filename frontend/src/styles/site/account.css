@@ -39,6 +39,20 @@
 .cn-link-button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0; border: 0; background: none; color: var(--cn-accent); font: 700 13px/1.3 var(--cn-font-family); }
 .cn-link-button:hover:not(:disabled) { text-decoration: underline; }
 .cn-link-button:disabled { color: var(--cn-muted); cursor: default; }
+.cn-field-label--spaced { margin-top: 8px; }
+.cn-field-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.cn-field-row .cn-link-button { min-height: 28px; font-size: 12px; }
+.cn-password { position: relative; }
+.cn-account .cn-password .cn-input { padding-right: 48px; }
+.cn-password__toggle { position: absolute; inset: 0 0 0 auto; display: grid; place-items: center; width: 46px; padding: 0; border: 0; border-radius: 0 var(--cn-radius-button) var(--cn-radius-button) 0; background: none; color: var(--cn-muted); font-size: 17px; }
+.cn-password__toggle:hover { color: var(--cn-ink); }
+.cn-password__toggle:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: -4px; }
+.cn-account-switch { margin: 10px 0 0; padding-top: 14px; border-top: 1px solid var(--cn-line); font-size: 13px; color: var(--cn-muted); text-align: center; }
+.cn-account-switch .cn-link-button { min-height: 28px; vertical-align: baseline; }
+.cn-account-panel > .cn-account-switch { margin-top: 16px; }
+.cn-setup-start { justify-self: start; }
+.cn-security-sessions { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--cn-line); }
+.cn-security-sessions .cn-account-card__text { margin-top: 0; }
 .cn-check { display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; font-size: 13px; line-height: 1.5; color: var(--cn-ink); cursor: pointer; }
 .cn-check .form-check-input { flex: none; margin-top: 2px; border-color: var(--cn-muted); background-color: var(--cn-surface); }
 .cn-check .form-check-input:checked { border-color: #005be8; background-color: #005be8; }

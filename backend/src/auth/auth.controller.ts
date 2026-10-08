@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Header, HttpCode, Post, Req, Res, UseGuards } from '@nestjs/common'
+import { BadRequestException, Body, Controller, Header, HttpCode, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common'
 import { RouteConfig } from '@nestjs/platform-fastify'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { normalizeEmail } from '../accounts/profile-input'
@@ -24,16 +24,33 @@ export class AuthController {
     return this.auth.requestCode(email, input.locale === 'vi' ? 'vi' : 'en', request.ip)
   }
 
-  @Post('otp/verify')
+  @Post('login')
   @HttpCode(200)
   @Header('Cache-Control', 'no-store')
   @RouteConfig({ bodyLimit: 2048 })
-  verify(@Body() body: unknown, @Req() request: FastifyRequest, @Res({ passthrough: true }) reply: FastifyReply) {
-    const input = (body ?? {}) as { email?: unknown; code?: unknown }
+  login(@Body() body: unknown, @Req() request: FastifyRequest, @Res({ passthrough: true }) reply: FastifyReply) {
+    const input = (body ?? {}) as { email?: unknown; password?: unknown }
+    const email = normalizeEmail(input.email)
+    if (!email) throw new BadRequestException(INVALID_EMAIL)
+    // A malformed password is just a wrong one; the cap keeps scrypt from hashing megabytes.
+    if (typeof input.password !== 'string' || !input.password || input.password.length > 1024) {
+      throw new UnauthorizedException({ ok: false, code: 'LOGIN_FAILED', message: 'Email hoặc mật khẩu không đúng.' })
+    }
+    return this.auth.login(email, input.password, request.ip, reply)
+  }
+
+  /** Sign-up and forgot-password share this step: the emailed code plus the password to keep. */
+  @Post('password/setup')
+  @HttpCode(200)
+  @Header('Cache-Control', 'no-store')
+  @RouteConfig({ bodyLimit: 2048 })
+  setup(@Body() body: unknown, @Req() request: FastifyRequest, @Res({ passthrough: true }) reply: FastifyReply) {
+    const input = (body ?? {}) as { email?: unknown; code?: unknown; password?: unknown }
     const email = normalizeEmail(input.email)
     if (!email) throw new BadRequestException(INVALID_EMAIL)
     if (typeof input.code !== 'string' || !/^\d{6}$/.test(input.code.trim())) throw new BadRequestException({ ok: false, code: 'OTP_INVALID', message: 'Mã gồm 6 chữ số.' })
-    return this.auth.verifyCode(email, input.code.trim(), request.ip, reply)
+    if (typeof input.password !== 'string') throw new BadRequestException({ ok: false, code: 'PASSWORD_TOO_SHORT', message: 'Mật khẩu cần ít nhất 8 ký tự.' })
+    return this.auth.setupPassword(email, input.code.trim(), input.password, request.ip, reply)
   }
 
   @Post('logout')

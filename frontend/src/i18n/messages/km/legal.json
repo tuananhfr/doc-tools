@@ -30,7 +30,7 @@
       "tai-khoan-pro": {
         "heading": "Accounts and the Pro plan",
         "items": {
-          "security": "Keep the mailbox you sign in with safe: anyone who can read the sign-in code can open the account.",
+          "security": "Use a password of its own for Chuyện Nhỏ and keep the account mailbox safe: anyone who can read the confirmation code in it can reset the password.",
           "aiKey": "The AI key is yours: the provider charges you directly for AI calls under its own terms. You can remove the key at any time.",
           "aiOutput": "AI answers can be wrong. Suggestion drafts written by the AI are sent only when you pick and confirm them, and still go through human review before becoming official data.",
           "expiry": "When Pro ends, the AI assistant stops and saved items become read-only for 90 days, then are deleted, with an email at least 7 days before. Renew within that time and everything stays.",
@@ -150,7 +150,8 @@
       "tai-khoan": {
         "heading": "If you have an account",
         "items": {
-          "email": "Email: to send sign-in codes and account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "email": "Email: to sign in, to send confirmation codes when you create an account or forget the password, and for account emails (Pro ending soon, saved items about to be deleted). Never used for advertising.",
+          "password": "Password: only a one-way hash is stored (scrypt, with a salt per account); nobody, administrators included, can read the original password back.",
           "session": "Sign-in session: the cn_session cookie (HttpOnly, used only to keep you signed in); the server keeps a hash of the session with when it was created and last used.",
           "profile": "Display name and whether to credit you on published suggestions, only if you fill them in.",
           "contributions": "Suggestions sent while signed in are linked to your account so you can follow their status and add sources.",
@@ -195,7 +196,7 @@
           "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
-          "mail": "Emails we send you: the content (including sign-in codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
+          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
         }
       },
       "quyen": {

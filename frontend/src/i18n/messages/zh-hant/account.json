@@ -2,7 +2,7 @@
   "pages": {
     "dang-nhap": {
       "title": "Sign in | Chuyện Nhỏ",
-      "description": "Sign in to Chuyện Nhỏ with your email and a one-time code, no password needed."
+      "description": "Sign in to Chuyện Nhỏ with your email and password. Create an account or reset your password with a code sent by email."
     },
     "tai-khoan": {
       "title": "Account | Chuyện Nhỏ",
@@ -15,22 +15,17 @@
   },
   "login": {
     "trail": "Sign in",
-    "title": "Sign in with <accent>email</accent>",
-    "intro": "No password. Enter your email and we will send a 6-digit code to confirm it is you.",
+    "title": "Sign in to <accent>Chuyện Nhỏ</accent>",
+    "intro": "Sign in with your email and password. No account yet? Create one with your email in about a minute.",
     "emailLabel": "Email",
     "emailPlaceholder": "you@example.com",
-    "sendCode": "Send code",
-    "sending": "Sending…",
-    "codeLabel": "Verification code",
-    "codeSentTo": "We sent a code to <strong>{{email}}</strong>. It is valid for 10 minutes.",
-    "codeHint": "No email? Check your Spam or Promotions folder.",
-    "verify": "Sign in",
-    "verifying": "Checking…",
-    "changeEmail": "Use another email",
-    "resend": "Resend code",
-    "resendIn": "Resend in {{seconds}} s",
-    "resent": "A new code is on its way. The previous one no longer works.",
-    "terms": "By signing in you agree to the <terms>Terms of use</terms> and the <privacy>Privacy policy</privacy>.",
+    "passwordLabel": "Password",
+    "forgot": "Forgot password?",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "noAccount": "No account yet?",
+    "createAccount": "Create an account",
+    "terms": "By signing in or creating an account you agree to the <terms>Terms of use</terms> and the <privacy>Privacy policy</privacy>.",
     "asideTitle": "What is an account for?",
     "asideNote": "Every tool still works without signing in. Your files are still processed only in your browser.",
     "benefits": {
@@ -46,6 +41,44 @@
         "title": "Ready for Pro",
         "text": "An AI assistant that runs on your own AI key, with cloud storage and sync across devices."
       }
+    }
+  },
+  "password": {
+    "show": "Show password",
+    "hide": "Hide password"
+  },
+  "setup": {
+    "sendCode": "Send confirmation code",
+    "sending": "Sending…",
+    "codeLabel": "Confirmation code",
+    "codeSentTo": "We sent a code to <strong>{{email}}</strong>. It is valid for 10 minutes.",
+    "codeHint": "No email? Check your Spam or Promotions folder.",
+    "passwordHint": "At least 8 characters. A memorable phrase, like “white clouds over the hill”, is both long and hard to guess.",
+    "saving": "Saving…",
+    "changeEmail": "Use another email",
+    "resend": "Resend code",
+    "resendIn": "Resend in {{seconds}} s",
+    "resent": "A new code is on its way. The previous one no longer works.",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "backToLogin": "Back to sign in",
+    "signup": {
+      "trail": "Create account",
+      "title": "Create a <accent>Chuyện Nhỏ</accent> account",
+      "intro": "Enter your email and we will send a 6-digit code to confirm the mailbox is yours. Then choose a password for signing in later.",
+      "passwordLabel": "Password",
+      "submit": "Create account"
+    },
+    "reset": {
+      "trail": "Forgot password",
+      "title": "Reset your <accent>password</accent>",
+      "intro": "Enter your account email and we will send a 6-digit code. Once the new password is set, every signed-in device is signed out.",
+      "passwordLabel": "New password",
+      "submit": "Set new password"
+    },
+    "set": {
+      "passwordLabel": "Password",
+      "submit": "Set password"
     }
   },
   "account": {
@@ -92,6 +125,22 @@
       "saving": "Saving…",
       "saved": "Saved."
     },
+    "security": {
+      "title": "Password",
+      "text": "Changing the password signs out every other device; this one stays signed in.",
+      "noPassword": "This account was created before passwords existed. Set one with a code sent to <strong>{{email}}</strong> so you can sign in next time without waiting for an email.",
+      "currentLabel": "Current password",
+      "newLabel": "New password",
+      "change": "Change password",
+      "changing": "Changing…",
+      "changed": "Password changed. Other devices have been signed out.",
+      "set": "Password set. Next time, sign in with your email and this password.",
+      "sessionsText": "Forgot to sign out somewhere, or noticed something odd? End every session except this device.",
+      "sessionsButton": "Sign out of all other devices",
+      "sessionsBusy": "Signing out…",
+      "sessionsEnded": "Other devices have been signed out.",
+      "sessionsNone": "No other device is signed in."
+    },
     "signOut": {
       "title": "Sign out",
       "text": "End the session on this device.",
@@ -102,16 +151,17 @@
       "title": "Delete account",
       "text": "Permanently delete this account. This cannot be undone.",
       "points": {
-        "data": "Your email, sessions, Pro plan, saved items and source-check history are deleted.",
+        "data": "Your email, password, sessions, Pro plan, saved items and source-check history are deleted.",
         "ai": "Your AI assistant and AI key are removed from the assistant server.",
         "contributions": "Suggestions you sent are kept but no longer linked to you."
       },
       "start": "Delete account…",
-      "confirmLabel": "Type your email {{email}} to confirm",
+      "confirmLabel": "Enter your password to confirm",
       "confirm": "Delete permanently",
       "busy": "Deleting…",
       "cancel": "Cancel",
       "staff": "Staff accounts cannot delete themselves. Ask an owner to remove the role first.",
+      "needsPassword": "Set a password in the Password section first; deleting the account is confirmed with it.",
       "done": "Your account has been deleted. Thank you for using Chuyện Nhỏ."
     },
     "mine": {
@@ -128,6 +178,12 @@
     "SIGNUP_CLOSED": "New sign-ups are closed for now. Existing accounts can still sign in.",
     "UNTRUSTED_REQUEST": "The request was rejected. Reload the page and try again.",
     "SIGNED_OUT": "Your session has ended. Please sign in again.",
+    "LOGIN_FAILED": "Wrong email or password.",
+    "PASSWORD_TOO_SHORT": "The password needs at least 8 characters.",
+    "PASSWORD_TOO_LONG": "The password can be at most 128 characters.",
+    "PASSWORD_COMMON": "That password is too easy to guess (or matches your email). Please choose another.",
+    "PASSWORD_WRONG": "The current password is wrong.",
+    "PASSWORD_NOT_SET": "This account has no password yet. Set one in the Password section first.",
     "NETWORK": "Cannot reach the server. Check your connection and try again.",
     "UNKNOWN": "Something went wrong. Please try again later.",
     "EVIDENCE_CLOSED": "This proposal has been reviewed; sources can no longer be added.",
@@ -135,7 +191,6 @@
     "SOURCE_INVALID": "Invalid source. Use a public HTTPS link without keys or access codes.",
     "NOT_FOUND": "This proposal was not found. Reload the page.",
     "STAFF_ACCOUNT": "Staff accounts cannot delete themselves. Ask an owner to remove the role first.",
-    "CONFIRM_MISMATCH": "That email does not match the signed-in account.",
     "DELETE_FAILED": "Your account could not be deleted right now. Please try again in a few minutes."
   },
   "box": {

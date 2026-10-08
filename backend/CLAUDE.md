@@ -61,8 +61,8 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `tools` | `POST /tools/visits` · `GET /tools/stats` | Bộ đếm lượt mở công cụ |
 | `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
 | `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` · `GET /me/contributions` · `POST /me/contributions/:id/evidence` | Nhận đề xuất (khách hoặc có tài khoản), tra trạng thái theo mã biên nhận, "Đề xuất của tôi" + bổ sung nguồn, ý tưởng đã duyệt |
-| `auth` | `POST /auth/otp/{request,verify}` · `POST /auth/logout` | Đăng nhập email + mã 6 số, không mật khẩu |
-| `accounts` | `GET`/`PATCH`/`DELETE /me` | Người dùng + gói Pro + danh sách capability; tự xoá tài khoản (gõ lại email) |
+| `auth` | `POST /auth/{login,otp/request,password/setup,logout}` · `PUT /me/password` · `POST /me/sessions/end-others` · `DELETE /me` | Đăng nhập email + mật khẩu; mã 6 số chỉ để tạo tài khoản / quên mật khẩu (chung một bước `password/setup`); tự xoá tài khoản xác nhận bằng mật khẩu |
+| `accounts` | `GET`/`PATCH /me` | Người dùng + gói Pro + danh sách capability; bảng `user_passwords` (băm scrypt) |
 | `session` · `mail` | — | Phiên cookie `cn_session` + `TrustedWriteGuard` (CSRF) · hàng đợi `mail_outbox` + transport `direct`/`smtp`/`log` |
 | `admin` | `/admin/*` (bảng đầy đủ ở `docs/api.md`) | Khu quản trị: người dùng, Pro, duyệt đề xuất, email, thống kê công cụ, cài đặt, phân quyền, nhật ký |
 | `roles` · `settings` | — | Vai trò `owner`/`admin`/`reviewer` → permission (`roles/roles.ts`) · công tắc vận hành `app_settings` (`@Global`, cache 30 s) |
@@ -79,7 +79,7 @@ Gói quy tắc chỉ ký / stage / kích hoạt bằng `src/cli/`. Duyệt đón
 khu quản trị — cùng luật ba người, cùng `assertPublishablePackage()` (`contributions/publish-check.ts`).
 
 Khu quản trị không có đăng nhập riêng: tài khoản có dòng trong `user_roles` đăng nhập bằng
-mã email như mọi người, phiên chỉ sống 12 giờ (`STAFF_SESSION_SECONDS`). Mọi route
+email + mật khẩu như mọi người, phiên chỉ sống 12 giờ (`STAFF_SESSION_SECONDS`). Mọi route
 `/admin/*` qua `@Staff(permission)` (`admin/admin.guard.ts`) và **đòi header tin cậy cả
 với GET** — để trang lạ không đọc được dữ liệu quản trị bằng cookie. Mọi lệnh ghi phải
 `AdminAuditRepository.record()`.
@@ -127,6 +127,11 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - **Mã OTP nằm thô trong `mail_outbox.payload` cho tới khi gửi xong** (rồi bị thay bằng `{}`);
   thư OTP quá hạn bị bỏ, không gửi muộn. `MAIL_TRANSPORT` mặc định `log` = in mã ra console,
   không gửi gì — production phải đặt `direct`/`smtp`.
+- **Mật khẩu ở bảng riêng `user_passwords`**, không phải cột của `users`: schema chỉ `CREATE TABLE IF NOT
+  EXISTS`, không bao giờ ALTER. Tài khoản tạo trước P7 chưa có mật khẩu → `login` trả `LOGIN_FAILED` như sai
+  mật khẩu; họ đặt bằng "Quên mật khẩu" (hoặc thẻ Mật khẩu ở trang tài khoản). Đặt lại mật khẩu đăng xuất
+  mọi phiên; đổi mật khẩu đăng xuất mọi phiên trừ phiên hiện tại. Không khoá cứng tài khoản khi đoán sai —
+  ai cũng gõ được email người khác; giới hạn theo IP và cặp email + IP (`auth.service.ts`).
 - `direct` gửi thẳng cổng 25 tới MX người nhận: cần SPF + DKIM + PTR + cổng 25 mở, thiếu một thứ
   là Gmail/Outlook vứt vào Spam hoặc từ chối. Máy dev nhà mạng thường chặn cổng 25. STARTTLS
   luôn kiểm chứng chứng chỉ (MX chứng chỉ sai thì sang MX kế tiếp, không tin bừa).

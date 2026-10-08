@@ -67,7 +67,7 @@ export function AdminLayout() {
     // Ordinary accounts are sent home, as if the area did not exist for them.
     if (code === 'NOT_STAFF') return <Navigate to="/" replace />
     const next = location.pathname + location.search
-    if (code === 'SIGNED_OUT') return <AdminGateCard icon="shield-lock" title="Đăng nhập để vào khu quản trị" text="Dùng email đã được cấp quyền quản trị. Mã đăng nhập gửi về email đó." action={<Link className="cn-admin-button" to={loginPath(next)}>Đăng nhập</Link>} />
+    if (code === 'SIGNED_OUT') return <AdminGateCard icon="shield-lock" title="Đăng nhập để vào khu quản trị" text="Dùng email và mật khẩu của tài khoản đã được cấp quyền quản trị." action={<Link className="cn-admin-button" to={loginPath(next)}>Đăng nhập</Link>} />
     if (code === 'STAFF_REAUTH') {
       return <AdminGateCard icon="clock-history" title="Phiên quản trị đã quá 12 giờ" text="Vì an toàn, khu quản trị cần một lần đăng nhập mới mỗi 12 giờ." action={<button type="button" className="cn-admin-button" disabled={logout.isPending} onClick={() => logout.mutate(undefined, { onSettled: () => { forget(); navigate(loginPath(next)) } })}>Đăng nhập lại</button>} />
     }

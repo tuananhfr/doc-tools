@@ -8,10 +8,11 @@ import { AuthController } from './auth.controller'
 import { AuthFloodRepository } from './auth-flood.repository'
 import { AuthService } from './auth.service'
 import { OtpRepository } from './otp.repository'
+import { SecurityController } from './security.controller'
 
 @Module({
   imports: [DatabaseModule, MailModule, AccountsModule, SessionModule, RolesModule],
-  controllers: [AuthController],
+  controllers: [AuthController, SecurityController],
   providers: [OtpRepository, AuthFloodRepository, AuthService],
 })
 export class AuthModule {}

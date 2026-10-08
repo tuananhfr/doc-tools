@@ -9,7 +9,7 @@ export class AccountError extends Error {
 
 const isKnownCode = (value: unknown): value is AccountErrorCode => (ACCOUNT_ERROR_CODES as readonly unknown[]).includes(value)
 
-async function call<T>(path: string, init?: { method: 'POST' | 'PATCH' | 'DELETE'; body?: unknown }): Promise<T> {
+async function call<T>(path: string, init?: { method: 'POST' | 'PUT' | 'PATCH' | 'DELETE'; body?: unknown }): Promise<T> {
   let response: Response
   try {
     response = await fetch(withBase('/api/v1' + path), init
@@ -29,11 +29,14 @@ export const accountService = {
   me: () => call<AccountState>('/me'),
   // The mail template only exists in Vietnamese and English.
   requestCode: (email: string, locale: string) => call<{ ok: true }>('/auth/otp/request', { method: 'POST', body: { email, locale: locale === 'vi' ? 'vi' : 'en' } }),
-  verifyCode: (email: string, code: string) => call<AccountState>('/auth/otp/verify', { method: 'POST', body: { email, code } }),
+  login: (email: string, password: string) => call<AccountState>('/auth/login', { method: 'POST', body: { email, password } }),
+  setupPassword: (email: string, code: string, password: string) => call<AccountState>('/auth/password/setup', { method: 'POST', body: { email, code, password } }),
+  changePassword: (currentPassword: string, newPassword: string) => call<{ ok: true; ended: number }>('/me/password', { method: 'PUT', body: { currentPassword, newPassword } }),
+  endOtherSessions: () => call<{ ok: true; ended: number }>('/me/sessions/end-others', { method: 'POST' }),
   logout: () => call<{ ok: true }>('/auth/logout', { method: 'POST' }),
   updateProfile: (input: ProfileInput) => call<AccountState>('/me', { method: 'PATCH', body: input }),
   myContributions: (page: number) => call<MyContributionsPage>(`/me/contributions?page=${page}`),
   addEvidence: (id: string, sourceRefs: SourceRef[]) =>
     call<Pick<MyContribution, 'status' | 'sourceRefs'>>(`/me/contributions/${encodeURIComponent(id)}/evidence`, { method: 'POST', body: { sourceRefs } }),
-  deleteAccount: (confirmEmail: string) => call<{ ok: true }>('/me', { method: 'DELETE', body: { confirmEmail } }),
+  deleteAccount: (password: string) => call<{ ok: true }>('/me', { method: 'DELETE', body: { password } }),
 }

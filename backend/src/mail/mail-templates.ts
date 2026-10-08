@@ -15,17 +15,17 @@ function escapeHtml(value: string) {
 
 const OTP_COPY = {
   vi: {
-    subject: 'Mã đăng nhập Chuyện Nhỏ',
-    intro: 'Mã đăng nhập Chuyện Nhỏ của bạn là:',
+    subject: 'Mã xác nhận Chuyện Nhỏ',
+    intro: 'Mã xác nhận để tạo tài khoản hoặc đặt lại mật khẩu Chuyện Nhỏ của bạn là:',
     expiry: (minutes: number) => `Mã có hiệu lực trong ${minutes} phút và chỉ dùng được một lần.`,
-    ignore: 'Nếu bạn không yêu cầu mã này, hãy bỏ qua thư. Không ai đăng nhập được nếu không có mã.',
+    ignore: 'Nếu bạn không yêu cầu mã này, hãy bỏ qua thư. Không ai đổi được mật khẩu của bạn nếu không có mã.',
     never: 'Chuyện Nhỏ không bao giờ hỏi mã này qua điện thoại hay tin nhắn.',
   },
   en: {
-    subject: 'Your Chuyện Nhỏ sign-in code',
-    intro: 'Your Chuyện Nhỏ sign-in code is:',
+    subject: 'Your Chuyện Nhỏ confirmation code',
+    intro: 'Your code to create a Chuyện Nhỏ account or reset its password is:',
     expiry: (minutes: number) => `The code is valid for ${minutes} minutes and works only once.`,
-    ignore: 'If you did not request this code, you can ignore this email. Nobody can sign in without it.',
+    ignore: 'If you did not request this code, you can ignore this email. Nobody can change your password without it.',
     never: 'Chuyện Nhỏ will never ask for this code by phone or message.',
   },
 }

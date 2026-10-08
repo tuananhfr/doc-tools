@@ -300,6 +300,12 @@ export const SCHEMA = [
     sent_at BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (user_id, kind, plan_end)
   ) ENGINE=InnoDB`,
+  // Separate from `users` because the schema only ever creates tables; it never adds columns.
+  `CREATE TABLE IF NOT EXISTS user_passwords (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    hash VARCHAR(255) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
   // GoClaw holds the plain token as the user's MCP credential; we keep only its hash.
   `CREATE TABLE IF NOT EXISTS mcp_tokens (
     token_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
