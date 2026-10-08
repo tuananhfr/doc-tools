@@ -9,6 +9,7 @@ import { SavedAccountCard } from '@/features/cloud'
 import { SitePageHero } from '@/features/site/components/SitePageHero'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { DeleteAccountSection } from '../components/DeleteAccountSection'
+import { EmailChangeSection } from '../components/EmailChangeSection'
 import { PlanSection } from '../components/PlanSection'
 import { ProfileForm } from '../components/ProfileForm'
 import { SecuritySection } from '../components/SecuritySection'
@@ -61,6 +62,7 @@ export default function AccountPage() {
               {me.data.plan.pro ? <AiAccountCard /> : null}
               <SavedAccountCard pro={me.data.plan.pro} />
               <ProfileForm key={user.id} user={user} />
+              <EmailChangeSection key={user.email} user={user} />
               <SecuritySection user={user} />
               <section className="cn-account-card" aria-labelledby="cn-account-signout">
                 <div className="cn-account-card__head"><h2 id="cn-account-signout">{t('account.signOut.title')}</h2></div>

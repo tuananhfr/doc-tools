@@ -125,6 +125,21 @@
       "saving": "Đang lưu…",
       "saved": "Đã lưu."
     },
+    "email": {
+      "title": "Email đăng nhập",
+      "current": "Bạn đăng nhập bằng <strong>{{email}}</strong>. Mã xác nhận và thông báo tài khoản đều gửi tới địa chỉ này.",
+      "start": "Đổi email",
+      "needsPassword": "Đặt mật khẩu ở mục Mật khẩu trước, rồi mới đổi được email.",
+      "newLabel": "Email mới",
+      "formHint": "Mã 6 chữ số sẽ gửi tới email mới để chắc đó là hộp thư của bạn. Đổi xong, email cũ nhận thư báo và các thiết bị khác bị đăng xuất.",
+      "passwordLabel": "Mật khẩu hiện tại",
+      "send": "Gửi mã tới email mới",
+      "confirm": "Xác nhận đổi email",
+      "confirming": "Đang đổi…",
+      "back": "Nhập email khác",
+      "cancel": "Huỷ",
+      "changed": "Đã đổi email đăng nhập. Các thiết bị khác đã bị đăng xuất."
+    },
     "security": {
       "title": "Mật khẩu",
       "text": "Đổi mật khẩu sẽ đăng xuất mọi thiết bị khác, thiết bị này vẫn giữ đăng nhập.",
@@ -191,7 +206,9 @@
     "SOURCE_INVALID": "Nguồn không hợp lệ. Dùng đường dẫn HTTPS công khai, không chứa khoá hay mã truy cập.",
     "NOT_FOUND": "Không tìm thấy đề xuất này. Hãy tải lại trang.",
     "STAFF_ACCOUNT": "Tài khoản quản trị không tự xoá được. Hãy nhờ một owner gỡ vai trò trước.",
-    "DELETE_FAILED": "Chưa xoá được tài khoản lúc này. Hãy thử lại sau ít phút."
+    "DELETE_FAILED": "Chưa xoá được tài khoản lúc này. Hãy thử lại sau ít phút.",
+    "EMAIL_SAME": "Đây đã là email của bạn.",
+    "EMAIL_TAKEN": "Email này đã thuộc một tài khoản khác."
   },
   "box": {
     "signedInAs": "Gửi bằng tài khoản <strong>{{email}}</strong>, bạn theo dõi được đề xuất này mà không cần mã biên nhận.",

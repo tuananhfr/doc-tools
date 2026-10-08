@@ -125,6 +125,21 @@
       "saving": "Saving…",
       "saved": "Saved."
     },
+    "email": {
+      "title": "Sign-in email",
+      "current": "You sign in with <strong>{{email}}</strong>. Codes and account notices go to this address.",
+      "start": "Change email",
+      "needsPassword": "Set a password under Password first, then you can change your email.",
+      "newLabel": "New email",
+      "formHint": "We send a 6-digit code to the new address to make sure the mailbox is yours. Once changed, the old address gets a notice and other devices are signed out.",
+      "passwordLabel": "Current password",
+      "send": "Send code to new email",
+      "confirm": "Confirm new email",
+      "confirming": "Changing…",
+      "back": "Use a different email",
+      "cancel": "Cancel",
+      "changed": "Sign-in email changed. Other devices have been signed out."
+    },
     "security": {
       "title": "Password",
       "text": "Changing the password signs out every other device; this one stays signed in.",
@@ -191,7 +206,9 @@
     "SOURCE_INVALID": "Invalid source. Use a public HTTPS link without keys or access codes.",
     "NOT_FOUND": "This proposal was not found. Reload the page.",
     "STAFF_ACCOUNT": "Staff accounts cannot delete themselves. Ask an owner to remove the role first.",
-    "DELETE_FAILED": "Your account could not be deleted right now. Please try again in a few minutes."
+    "DELETE_FAILED": "Your account could not be deleted right now. Please try again in a few minutes.",
+    "EMAIL_SAME": "That is already your email.",
+    "EMAIL_TAKEN": "Another account already uses this email."
   },
   "box": {
     "signedInAs": "Sending as <strong>{{email}}</strong>, so you can follow this proposal without a receipt code.",

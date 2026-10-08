@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Query } from '@nestjs/common'
 import { RouteConfig } from '@nestjs/platform-fastify'
-import { parseProfileInput } from '../accounts/profile-input'
+import { normalizeEmail, parseProfileInput } from '../accounts/profile-input'
 import { body, invalid, parseChoice, parseNote, parsePage, parseUuid } from './admin-input'
 import { AdminUsersService } from './admin-users.service'
 import { Actor, Staff, type StaffActor } from './admin.guard'
@@ -50,6 +50,20 @@ export class AdminUsersController {
     const profile = parseProfileInput(input)
     if (!profile) invalid('Tên hiển thị không hợp lệ (tối đa 80 ký tự).')
     return this.users.updateProfile(actor, parseUuid(id), profile)
+  }
+
+  /** For someone who lost the old mailbox; they then set a password through "forgot password" at the new one. */
+  @Post(':id/email')
+  @HttpCode(200)
+  @Staff('users.manage')
+  @RouteConfig({ bodyLimit: 4096 })
+  changeEmail(@Actor() actor: StaffActor, @Param('id') id: string, @Body() input: unknown) {
+    const data = body(input)
+    const email = normalizeEmail(data.email)
+    if (!email) invalid('Email không hợp lệ.', 'EMAIL_INVALID')
+    // 300, not 500: the audit detail also carries both addresses and is capped at 1000 characters.
+    const reason = parseNote(data.reason, 300, true)!
+    return this.users.changeEmail(actor, parseUuid(id), email, reason, data.password)
   }
 
   @Post(':id/pro')

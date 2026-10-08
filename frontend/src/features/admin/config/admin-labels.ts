@@ -47,7 +47,10 @@ export const MAIL_STATUS: Record<MailStatus, { label: string; icon: string; tone
   failed: { label: 'Thất bại', icon: 'exclamation-octagon', tone: 'danger' },
 }
 
-export const MAIL_TEMPLATE: Record<string, string> = { otp: 'Mã xác nhận', test: 'Thư thử', pro_expiring: 'Pro sắp hết hạn', cloud_purge: 'Báo xoá mục đã lưu' }
+export const MAIL_TEMPLATE: Record<string, string> = {
+  otp: 'Mã xác nhận', test: 'Thư thử', pro_expiring: 'Pro sắp hết hạn', cloud_purge: 'Báo xoá mục đã lưu',
+  email_change_code: 'Mã đổi email', email_changed_old: 'Báo đổi email (địa chỉ cũ)', email_changed_new: 'Báo đổi email (địa chỉ mới)',
+}
 
 export const MAIL_TRANSPORT = { direct: 'Gửi thẳng (MX + DKIM)', smtp: 'Qua máy chủ SMTP', log: 'Chỉ ghi log (không gửi)' } as const
 
@@ -60,7 +63,7 @@ export const AI_STATUS: Record<AiProviderStatus, { label: string; icon: string; 
 
 export const AUDIT_ACTION: Record<string, string> = {
   USER_DISABLED: 'Khoá tài khoản', USER_ENABLED: 'Mở khoá tài khoản', SESSIONS_ENDED: 'Đăng xuất mọi phiên', PROFILE_EDITED: 'Sửa hồ sơ',
-  PRO_GRANTED: 'Cấp Pro', PRO_REVOKED: 'Thu hồi Pro', USER_DELETED: 'Xoá tài khoản',
+  PRO_GRANTED: 'Cấp Pro', PRO_REVOKED: 'Thu hồi Pro', USER_DELETED: 'Xoá tài khoản', USER_EMAIL_CHANGED: 'Đổi email đăng nhập',
   CONTRIBUTION_VERIFY: 'Xác minh đề xuất', CONTRIBUTION_APPROVE: 'Phê duyệt đề xuất', CONTRIBUTION_PUBLISH: 'Công bố đề xuất',
   CONTRIBUTION_REJECT: 'Từ chối đề xuất', CONTRIBUTION_SUPERSEDE: 'Đánh dấu thay thế', CONTRIBUTION_REVOKE: 'Rút công bố',
   MAIL_TEST: 'Gửi thư thử', SETTING_CHANGED: 'Đổi cài đặt', SETTING_RESET: 'Khôi phục mặc định', ROLE_GRANTED: 'Cấp vai trò', ROLE_REVOKED: 'Thu vai trò',
@@ -68,7 +71,7 @@ export const AUDIT_ACTION: Record<string, string> = {
   INTEGRATION_CHANGED: 'Đổi cấu hình kết nối', INTEGRATION_RESET: 'Về cấu hình .env', DKIM_GENERATED: 'Tạo khoá DKIM',
   MCP_REGISTERED: 'Đăng ký máy chủ công cụ', AGENTS_SYNCED: 'Đẩy chỉ dẫn agent',
   // Account trail (user_audit) shares this table.
-  LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá',
+  LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá', EMAIL_CHANGED: 'Đổi email đăng nhập',
   SUBMITTED: 'Gửi đề xuất', SOURCES_ADDED: 'Thêm nguồn (mã biên nhận)', EVIDENCE_ADDED: 'Bổ sung nguồn', VERIFY: 'Xác minh', APPROVE: 'Phê duyệt',
   PUBLISH: 'Công bố', REJECT: 'Từ chối', SUPERSEDE: 'Bị thay thế', REVOKE: 'Rút công bố',
 }

@@ -54,6 +54,7 @@ export const adminService = {
   enableUser: (id: string) => call<UserDetail>(`/users/${id}/enable`, 'POST'),
   endSessions: (id: string) => call<UserDetail>(`/users/${id}/sessions/end`, 'POST'),
   updateProfile: (id: string, displayName: string, publicAttribution: boolean) => call<UserDetail>(`/users/${id}/profile`, 'PATCH', { displayName, publicAttribution }),
+  changeEmail: (id: string, email: string, reason: string, password: string) => call<UserDetail>(`/users/${id}/email`, 'POST', { email, reason, password }),
   grantPro: (id: string, until: string, note: string) => call<UserDetail>(`/users/${id}/pro`, 'POST', { until, note }),
   revokePro: (id: string, note: string) => call<UserDetail>(`/users/${id}/pro/revoke`, 'POST', { note }),
   deleteUser: (id: string, confirmEmail: string) => call<{ ok: true }>(`/users/${id}`, 'DELETE', { confirmEmail }),

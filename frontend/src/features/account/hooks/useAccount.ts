@@ -50,6 +50,18 @@ export function useChangePassword() {
   return useMutation({ mutationFn: ({ currentPassword, newPassword }: { currentPassword: string; newPassword: string }) => accountService.changePassword(currentPassword, newPassword) })
 }
 
+/** Step one: the code goes to the new address; the account keeps its email until step two. */
+export function useRequestEmailChange() {
+  return useMutation({
+    mutationFn: ({ email, password, locale }: { email: string; password: string; locale: string }) => accountService.requestEmailChange(email, password, locale),
+  })
+}
+
+export function useConfirmEmailChange() {
+  const store = useStoreAccount()
+  return useMutation({ mutationFn: (code: string) => accountService.confirmEmailChange(code), onSuccess: ({ ended: _ended, ...state }) => store(state) })
+}
+
 export function useEndOtherSessions() {
   return useMutation({ mutationFn: accountService.endOtherSessions })
 }

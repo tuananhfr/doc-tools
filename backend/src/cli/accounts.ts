@@ -1,13 +1,18 @@
 import 'dotenv/config'
 import { DatabaseService } from '../database/database.service'
+import { EmailChangesRepository } from '../accounts/email-changes.repository'
+import { maskEmail } from '../accounts/mask-email'
 import { PlansRepository } from '../accounts/plans.repository'
 import { UsersRepository } from '../accounts/users.repository'
 import { normalizeEmail } from '../accounts/profile-input'
 import { endOfVietnamDay } from '../accounts/plan-dates'
+import { emailCodeKey } from '../auth/auth-hash'
+import { configuration } from '../config/configuration'
+import { MailOutboxRepository } from '../mail/mail-outbox.repository'
 import { isRole, ROLES } from '../roles/roles'
 import { RolesRepository } from '../roles/roles.repository'
 
-const USAGE = 'Usage: accounts <grant-pro <email> <YYYY-MM-DD> <operator> [note] | revoke-pro <email> <operator> [note] | show <email> | list-pro | grant-role <email> <owner|admin|reviewer> <operator> | revoke-role <email> <operator> | list-roles>'
+const USAGE = 'Usage: accounts <grant-pro <email> <YYYY-MM-DD> <operator> [note] | revoke-pro <email> <operator> [note] | show <email> | list-pro | grant-role <email> <owner|admin|reviewer> <operator> | revoke-role <email> <operator> | list-roles | change-email <email> <new email> <operator>>'
 
 function operator(value: string | undefined) {
   if (!/^[a-zA-Z0-9._@-]{2,128}$/.test(value || '')) throw new Error('Named operator is required')
@@ -16,7 +21,7 @@ function operator(value: string | undefined) {
 
 async function main() {
   const [action, ...args] = process.argv.slice(2)
-  if (!['grant-pro', 'revoke-pro', 'show', 'list-pro', 'grant-role', 'revoke-role', 'list-roles'].includes(action)) throw new Error(USAGE)
+  if (!['grant-pro', 'revoke-pro', 'show', 'list-pro', 'grant-role', 'revoke-role', 'list-roles', 'change-email'].includes(action)) throw new Error(USAGE)
   const database = new DatabaseService()
   await database.onModuleInit()
   try {
@@ -64,6 +69,22 @@ async function main() {
       await roles.remove(user.id)
       await users.audit(user.id, 'ROLE_REVOKED', actor)
       process.stdout.write(`${email} → no role\n`)
+      return
+    }
+    if (action === 'change-email') {
+      // Break-glass twin of the admin page's support change, for when no staff account can sign in.
+      const next = normalizeEmail(args[1])
+      if (!next) throw new Error(USAGE)
+      const actor = operator(args[2])
+      if (next === email) throw new Error('That is already the account email')
+      if (!await new EmailChangesRepository(database).swap(user.id, next, emailCodeKey(email), actor, now)) throw new Error('Another account already uses that email')
+      await database.pool.execute('DELETE FROM user_sessions WHERE user_id = ?', [user.id])
+      // Queued only: the running API sends them on its next poll.
+      const outbox = new MailOutboxRepository(database)
+      await outbox.enqueue(email, 'email_changed_old', { newEmail: maskEmail(next), by: 'admin' }, null, now)
+      await outbox.enqueue(next, 'email_changed_new', { by: 'admin', siteUrl: configuration().siteUrl }, null, now)
+      process.stdout.write(`${email} → ${next}
+`)
       return
     }
     if (action === 'revoke-pro') {

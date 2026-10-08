@@ -209,6 +209,15 @@ export const SCHEMA = [
     updated_by VARCHAR(128) NOT NULL,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   ) ENGINE=InnoDB`,
+  // One pending self-service email change per account; the new address is used only after its code is entered.
+  `CREATE TABLE IF NOT EXISTS email_changes (
+    user_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    new_email VARCHAR(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+    code_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    expires_at BIGINT UNSIGNED NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
   // tool_visits only keeps an all-time total; daily rows start counting from the day this table appears.
   `CREATE TABLE IF NOT EXISTS tool_visit_days (
     day CHAR(10) CHARACTER SET ascii NOT NULL,

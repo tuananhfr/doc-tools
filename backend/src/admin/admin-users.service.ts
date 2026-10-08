@@ -4,6 +4,8 @@ import { endOfVietnamDay } from '../accounts/plan-dates'
 import { PlansRepository } from '../accounts/plans.repository'
 import type { ProfileInput } from '../accounts/profile-input'
 import { UsersRepository, type UserRow } from '../accounts/users.repository'
+import { AuthService } from '../auth/auth.service'
+import { EMAIL_TAKEN, EmailChangeService } from '../auth/email-change.service'
 import { RolesRepository } from '../roles/roles.repository'
 import { SessionService } from '../session/session.service'
 import { AdminAuditRepository } from './admin-audit.repository'
@@ -23,6 +25,8 @@ export class AdminUsersService {
     private readonly sessions: SessionService,
     private readonly deletion: AccountDeletionService,
     private readonly audit: AdminAuditRepository,
+    private readonly auth: AuthService,
+    private readonly emailChange: EmailChangeService,
   ) {}
 
   async list(filter: UserFilter, page: number) {
@@ -85,6 +89,17 @@ export class AdminUsersService {
     await this.users.updateProfile(id, input)
     await this.users.audit(id, 'PROFILE_EDITED', actor.label)
     await this.audit.record(actor, 'PROFILE_EDITED', 'user', id, `${user.email}: ${input.displayName ?? '(không tên)'}`)
+    return this.detail(id)
+  }
+
+  /** Checked in this order so a typo or a taken address never costs the admin a password attempt. */
+  async changeEmail(actor: StaffActor, id: string, email: string, reason: string, password: unknown) {
+    const user = await this.target(actor, id)
+    if (email === user.email) invalid('Đây đã là email của tài khoản.', 'EMAIL_SAME')
+    if (await this.users.findByEmail(email)) throw new ConflictException(EMAIL_TAKEN)
+    await this.auth.confirmPassword(actor.id, password)
+    if (!await this.emailChange.changeForSupport(id, user.email, email, actor.label)) throw new ConflictException(EMAIL_TAKEN)
+    await this.audit.record(actor, 'USER_EMAIL_CHANGED', 'user', id, `${user.email} → ${email}: ${reason}`)
     return this.detail(id)
   }
 

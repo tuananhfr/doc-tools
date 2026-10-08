@@ -6,6 +6,7 @@ import { useDeleteUser, useUserAction } from '../hooks/useAdmin'
 import type { UserDetail } from '../types/admin.types'
 import { formatProEnd, vietnamDatePlus } from '../utils/admin-format'
 import { ErrorText, Panel } from './AdminKit'
+import { UserEmailForm } from './UserEmailForm'
 
 type User = UserDetail['user']
 
@@ -59,6 +60,8 @@ export function AccountActions({ user, onDeleted }: { user: User; onDeleted: () 
           <label>Tên hiển thị<input type="text" maxLength={80} value={name} onChange={(event) => setName(event.target.value)} placeholder="Để trống = không có tên" /></label>
           <div className="cn-admin-form__actions"><button type="submit" className="cn-admin-button is-ghost" disabled={rename.isPending || name.trim() === (user.displayName ?? '')}>Lưu tên</button></div>
         </form>
+
+        <UserEmailForm key={user.email} user={user} />
 
         {user.status === 'active' ? (
           <form className="cn-admin-form" onSubmit={(event) => { event.preventDefault(); disable.mutate(undefined, { onSuccess: () => { toast.success('Đã khoá tài khoản và đăng xuất mọi phiên.'); setReason('') } }) }}>

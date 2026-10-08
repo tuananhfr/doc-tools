@@ -1,5 +1,5 @@
 import { BadRequestException, ForbiddenException, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common'
-import { createHmac, randomInt } from 'node:crypto'
+import { randomInt } from 'node:crypto'
 import type { FastifyReply } from 'fastify'
 import { AccountsService } from '../accounts/accounts.service'
 import { dummyHash, hashPassword, passwordProblem, verifyPassword } from '../accounts/password'
@@ -12,7 +12,9 @@ import { SettingsService } from '../settings/settings.service'
 import type { MailLocale } from '../mail/mail-templates'
 import { SessionService } from '../session/session.service'
 import { AuthFloodRepository } from './auth-flood.repository'
+import { authHash as hmac, emailCodeKey } from './auth-hash'
 import { OtpRepository } from './otp.repository'
+import { enforceLimit, type RateRule } from './rate-limit'
 
 // Limits are per rolling window; together they cap brute force at a few dozen guesses per hour per email.
 const REQUESTS_PER_EMAIL = { limit: 3, window: 900 }
@@ -33,7 +35,6 @@ const PASSWORD_MESSAGES = {
   PASSWORD_COMMON: 'Mật khẩu này quá dễ đoán. Hãy chọn mật khẩu khác.',
 }
 
-function hmac(value: string) { return createHmac('sha256', configuration().visitHashSecret).update(value).digest('hex') }
 const now = () => Math.floor(Date.now() / 1000)
 
 @Injectable()
@@ -55,11 +56,7 @@ export class AuthService {
     return await this.settings.get('auth.signupOpen') || Boolean(await this.users.findByEmail(email))
   }
 
-  private async limit(key: string, rule: { limit: number; window: number }, at: number) {
-    if (!await this.flood.hit(hmac(key), rule.limit, rule.window, at)) {
-      throw new HttpException({ ok: false, code: 'RATE_LIMITED', message: 'Bạn đã thử quá nhiều lần. Hãy đợi ít phút rồi thử lại.' }, HttpStatus.TOO_MANY_REQUESTS)
-    }
-  }
+  private limit(key: string, rule: RateRule, at: number) { return enforceLimit(this.flood, key, rule, at) }
 
   private assertStrong(password: string, email: string) {
     const problem = passwordProblem(password, email)
@@ -84,7 +81,7 @@ export class AuthService {
     const { otpTtlSeconds } = configuration().auth
     if (!await this.mayCreate(email)) return { ok: true }
     const code = String(randomInt(0, 1_000_000)).padStart(6, '0')
-    await this.otps.issue(hmac(`email:${email}`), hmac(`otp:${email}:${code}`), at, at + otpTtlSeconds)
+    await this.otps.issue(emailCodeKey(email), hmac(`otp:${email}:${code}`), at, at + otpTtlSeconds)
     await this.mail.enqueue(email, 'otp', { code, locale, ttlMinutes: Math.round(otpTtlSeconds / 60) }, at + otpTtlSeconds)
     return { ok: true }
   }
@@ -99,7 +96,7 @@ export class AuthService {
     const at = now()
     await this.limit(`verify-ip:${ip}`, VERIFICATIONS_PER_IP, at)
     const { otpMaxAttempts } = configuration().auth
-    if (!await this.otps.consume(hmac(`email:${email}`), hmac(`otp:${email}:${code}`), at, otpMaxAttempts)) {
+    if (!await this.otps.consume(emailCodeKey(email), hmac(`otp:${email}:${code}`), at, otpMaxAttempts)) {
       throw new BadRequestException({ ok: false, code: 'OTP_INVALID', message: 'Mã không đúng hoặc đã hết hạn.' })
     }
     if (!await this.mayCreate(email)) throw new ForbiddenException({ ok: false, code: 'SIGNUP_CLOSED', message: 'Chuyện Nhỏ tạm ngừng nhận tài khoản mới.' })

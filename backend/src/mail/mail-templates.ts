@@ -1,11 +1,16 @@
 export type MailLocale = 'vi' | 'en'
-export type MailTemplate = 'otp' | 'test' | 'pro_expiring' | 'cloud_purge'
+export type MailTemplate = 'otp' | 'test' | 'pro_expiring' | 'cloud_purge' | 'email_change_code' | 'email_changed_old' | 'email_changed_new'
 
 export interface OtpPayload { code: string; locale: MailLocale; ttlMinutes: number }
 export interface TestPayload { requestedBy: string; at: string }
 /** Epoch seconds; `endsAt` is exclusive (midnight in Vietnam after the last day). */
 export interface ProExpiringPayload { endsAt: number; siteUrl: string }
 export interface CloudPurgePayload { purgeAt: number; items: number; siteUrl: string }
+/** `self`: the person confirmed a code; `admin`: support moved the account for someone who lost the old mailbox. */
+export type EmailChangedBy = 'self' | 'admin'
+/** `newEmail` arrives masked: the old mailbox may no longer belong to the account holder. */
+export interface EmailChangedOldPayload { newEmail: string; by: EmailChangedBy }
+export interface EmailChangedNewPayload { by: EmailChangedBy; siteUrl: string }
 
 export interface RenderedMail { subject: string; text: string; html: string }
 
@@ -30,8 +35,25 @@ const OTP_COPY = {
   },
 }
 
-function renderOtp(payload: OtpPayload): RenderedMail {
-  const copy = OTP_COPY[payload.locale] ?? OTP_COPY.vi
+const EMAIL_CHANGE_COPY: typeof OTP_COPY = {
+  vi: {
+    subject: 'Mã xác nhận đổi email Chuyện Nhỏ',
+    intro: 'Có người muốn dùng địa chỉ này làm email đăng nhập tài khoản Chuyện Nhỏ. Mã xác nhận là:',
+    expiry: OTP_COPY.vi.expiry,
+    ignore: 'Nếu không phải bạn, hãy bỏ qua thư. Không có mã thì địa chỉ này không được gắn vào tài khoản nào.',
+    never: OTP_COPY.vi.never,
+  },
+  en: {
+    subject: 'Confirm your new Chuyện Nhỏ email',
+    intro: 'Someone wants to use this address to sign in to a Chuyện Nhỏ account. The confirmation code is:',
+    expiry: OTP_COPY.en.expiry,
+    ignore: 'If this was not you, ignore this email. Without the code this address is not added to any account.',
+    never: OTP_COPY.en.never,
+  },
+}
+
+function renderCode(table: typeof OTP_COPY, payload: OtpPayload): RenderedMail {
+  const copy = table[payload.locale] ?? table.vi
   const expiry = copy.expiry(payload.ttlMinutes)
   const text = [copy.intro, '', payload.code, '', expiry, copy.ignore, copy.never].join('\n')
   const html = `<!doctype html><html lang="${payload.locale}"><body style="margin:0;padding:24px;background:#f4f6fa;font-family:Arial,Helvetica,sans-serif;color:#1d2433">
@@ -94,9 +116,42 @@ function renderCloudPurge(payload: CloudPurgePayload): RenderedMail {
   ])
 }
 
+function renderEmailChangedOld(payload: EmailChangedOldPayload): RenderedMail {
+  const admin = payload.by === 'admin'
+  return renderBilingual('Email đăng nhập Chuyện Nhỏ đã đổi / Your Chuyện Nhỏ sign-in email has changed', [
+    admin
+      ? `Quản trị viên Chuyện Nhỏ vừa đổi email đăng nhập tài khoản của bạn sang ${payload.newEmail} theo một yêu cầu hỗ trợ.`
+      : `Email đăng nhập tài khoản Chuyện Nhỏ của bạn vừa được đổi sang ${payload.newEmail}.`,
+    'Từ nay địa chỉ này không còn dùng để đăng nhập tài khoản đó.',
+    `Nếu bạn không yêu cầu việc này, hãy liên hệ ngay ${SUPPORT}.`,
+  ], [
+    admin
+      ? `A Chuyện Nhỏ administrator has changed your account's sign-in email to ${payload.newEmail} following a support request.`
+      : `The sign-in email of your Chuyện Nhỏ account has just been changed to ${payload.newEmail}.`,
+    'This address no longer signs in to that account.',
+    `If you did not ask for this, contact ${SUPPORT} right away.`,
+  ])
+}
+
+function renderEmailChangedNew(payload: EmailChangedNewPayload): RenderedMail {
+  const admin = payload.by === 'admin'
+  return renderBilingual('Email đăng nhập Chuyện Nhỏ mới / Your new Chuyện Nhỏ sign-in email', [
+    admin ? 'Quản trị viên Chuyện Nhỏ đã chuyển tài khoản của bạn sang địa chỉ email này theo yêu cầu hỗ trợ.' : 'Từ nay bạn đăng nhập Chuyện Nhỏ bằng địa chỉ email này.',
+    `Không nhớ mật khẩu? Đặt mật khẩu mới bằng mã gửi tới địa chỉ này: ${payload.siteUrl}/dang-nhap?mode=reset`,
+    `Nếu bạn không biết gì về việc này, hãy báo ${SUPPORT}.`,
+  ], [
+    admin ? 'A Chuyện Nhỏ administrator has moved your account to this email address following a support request.' : 'From now on you sign in to Chuyện Nhỏ with this email address.',
+    `Forgot your password? Set a new one with a code sent to this address: ${payload.siteUrl}/en/dang-nhap?mode=reset`,
+    `If you know nothing about this, tell ${SUPPORT}.`,
+  ])
+}
+
 export function renderMail(template: MailTemplate, payload: unknown): RenderedMail {
   switch (template) {
-    case 'otp': return renderOtp(payload as OtpPayload)
+    case 'otp': return renderCode(OTP_COPY, payload as OtpPayload)
+    case 'email_change_code': return renderCode(EMAIL_CHANGE_COPY, payload as OtpPayload)
+    case 'email_changed_old': return renderEmailChangedOld(payload as EmailChangedOldPayload)
+    case 'email_changed_new': return renderEmailChangedNew(payload as EmailChangedNewPayload)
     case 'test': return renderTest(payload as TestPayload)
     case 'pro_expiring': return renderProExpiring(payload as ProExpiringPayload)
     case 'cloud_purge': return renderCloudPurge(payload as CloudPurgePayload)

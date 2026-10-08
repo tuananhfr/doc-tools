@@ -45,6 +45,7 @@ npm run contributions -- show <uuid>
 npm run contributions -- verify <uuid> <reviewer> <note>   # rồi approve / publish
 npm run accounts -- grant-pro <email> <YYYY-MM-DD> <operator> [note]   # hết NGÀY đó giờ VN; revoke-pro / show / list-pro
 npm run accounts -- grant-role <email> <owner|admin|reviewer> <operator>   # tạo chủ hệ thống đầu tiên; revoke-role / list-roles
+npm run accounts -- change-email <email> <email mới> <operator>   # khi không còn admin nào đăng nhập được; thư nằm trong outbox chờ API gửi
 npm run mail -- dkim-keygen <thư mục ngoài repo> [selector]   # in sẵn .env + bản ghi DNS SPF/DKIM/DMARC
 npm run mail -- test <email>                           # gửi thử qua MAIL_TRANSPORT đang đặt
 ```

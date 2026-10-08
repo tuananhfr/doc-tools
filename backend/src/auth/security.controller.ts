@@ -2,10 +2,12 @@ import { BadRequestException, Body, Controller, Delete, Header, HttpCode, HttpEx
 import { RouteConfig } from '@nestjs/platform-fastify'
 import type { FastifyReply, FastifyRequest } from 'fastify'
 import { AccountDeletionService } from '../accounts/account-deletion.service'
+import { normalizeEmail } from '../accounts/profile-input'
 import { UsersRepository } from '../accounts/users.repository'
 import { SessionService } from '../session/session.service'
 import { TrustedWriteGuard } from '../session/trusted-write.guard'
 import { AuthService } from './auth.service'
+import { EmailChangeService } from './email-change.service'
 
 const SIGNED_OUT = { ok: false, code: 'SIGNED_OUT', message: 'Bạn cần đăng nhập.' }
 
@@ -16,7 +18,7 @@ export class SecurityController {
   private readonly logger = new Logger('Accounts')
 
   constructor(private readonly auth: AuthService, private readonly sessions: SessionService, private readonly users: UsersRepository,
-    private readonly deletion: AccountDeletionService) {}
+    private readonly deletion: AccountDeletionService, private readonly emailChange: EmailChangeService) {}
 
   private async user(request: FastifyRequest) {
     const user = await this.sessions.current(request)
@@ -35,6 +37,30 @@ export class SecurityController {
     if (typeof input.newPassword !== 'string') throw new BadRequestException({ ok: false, code: 'PASSWORD_TOO_SHORT', message: 'Mật khẩu cần ít nhất 8 ký tự.' })
     await this.auth.changePassword(user, input.currentPassword, input.newPassword)
     return { ok: true, ended: await this.sessions.endOthers(request, user.id) }
+  }
+
+  /** Step one of changing the sign-in email: password here, then a code sent to the new address. */
+  @Post('email')
+  @HttpCode(200)
+  @Header('Cache-Control', 'no-store')
+  @RouteConfig({ bodyLimit: 2048 })
+  async requestEmailChange(@Body() body: unknown, @Req() request: FastifyRequest) {
+    const user = await this.user(request)
+    const input = (body ?? {}) as { email?: unknown; password?: unknown; locale?: unknown }
+    const email = normalizeEmail(input.email)
+    if (!email) throw new BadRequestException({ ok: false, code: 'EMAIL_INVALID', message: 'Email không hợp lệ.' })
+    return this.emailChange.request(user, email, input.password, input.locale === 'vi' ? 'vi' : 'en', request.ip)
+  }
+
+  @Post('email/confirm')
+  @HttpCode(200)
+  @Header('Cache-Control', 'no-store')
+  @RouteConfig({ bodyLimit: 1024 })
+  async confirmEmailChange(@Body() body: unknown, @Req() request: FastifyRequest) {
+    const user = await this.user(request)
+    const code = (body as { code?: unknown } | null)?.code
+    if (typeof code !== 'string' || !/^\d{6}$/.test(code.trim())) throw new BadRequestException({ ok: false, code: 'OTP_INVALID', message: 'Mã gồm 6 chữ số.' })
+    return this.emailChange.confirm(request, user, code.trim())
   }
 
   @Post('sessions/end-others')

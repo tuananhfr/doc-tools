@@ -33,6 +33,9 @@ export const accountService = {
   setupPassword: (email: string, code: string, password: string) => call<AccountState>('/auth/password/setup', { method: 'POST', body: { email, code, password } }),
   changePassword: (currentPassword: string, newPassword: string) => call<{ ok: true; ended: number }>('/me/password', { method: 'PUT', body: { currentPassword, newPassword } }),
   endOtherSessions: () => call<{ ok: true; ended: number }>('/me/sessions/end-others', { method: 'POST' }),
+  requestEmailChange: (email: string, password: string, locale: string) =>
+    call<{ ok: true }>('/me/email', { method: 'POST', body: { email, password, locale: locale === 'vi' ? 'vi' : 'en' } }),
+  confirmEmailChange: (code: string) => call<AccountState & { ended: number }>('/me/email/confirm', { method: 'POST', body: { code } }),
   logout: () => call<{ ok: true }>('/auth/logout', { method: 'POST' }),
   updateProfile: (input: ProfileInput) => call<AccountState>('/me', { method: 'PATCH', body: input }),
   myContributions: (page: number) => call<MyContributionsPage>(`/me/contributions?page=${page}`),
