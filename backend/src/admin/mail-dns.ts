@@ -39,9 +39,9 @@ export async function checkMailDns(domain: string, selector: string | null): Pro
       return { state: 'ok', value: spf[0], hint: 'Kiểm ip4 của máy chủ gửi có trong bản ghi.' }
     }),
     check('DKIM', selector ? `${selector}._domainkey.${domain}` : `(chưa đặt selector)._domainkey.${domain}`, async () => {
-      if (!selector) return { state: 'missing', value: null, hint: 'Chưa đặt MAIL_DKIM_SELECTOR; chạy npm run mail -- dkim-keygen.' }
+      if (!selector) return { state: 'missing', value: null, hint: 'Chưa có khoá DKIM; tạo ở thẻ Cấu hình gửi.' }
       const key = (await txt(`${selector}._domainkey.${domain}`)).find((value) => value.includes('p='))
-      return key ? { state: 'ok', value: `${key.slice(0, 60)}…`, hint: 'Khoá công khai phải khớp khoá riêng trong MAIL_DKIM_KEY_FILE.' } : { state: 'missing', value: null, hint: 'Chưa có bản ghi DKIM cho selector này.' }
+      return key ? { state: 'ok', value: `${key.slice(0, 60)}…`, hint: 'Khoá công khai phải khớp khoá riêng đang dùng để ký.' } : { state: 'missing', value: null, hint: 'Chưa có bản ghi DKIM cho selector này.' }
     }),
     check('DMARC', `_dmarc.${domain}`, async () => {
       const record = (await txt(`_dmarc.${domain}`)).find((value) => value.toLowerCase().startsWith('v=dmarc1'))

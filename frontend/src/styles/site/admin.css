@@ -226,6 +226,32 @@
 .cn-admin-radios strong { color: var(--cn-ink); }
 .cn-admin-steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
 
+/* Integration settings (mail, GoClaw): grouped fields, write-only secrets, password re-check. */
+.cn-admin-fieldset { display: grid; gap: 12px; min-width: 0; margin: 0; padding: 14px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); }
+.cn-admin-fieldset legend { padding: 0 6px; font-size: 12px; font-weight: 700; }
+.cn-admin-form label.is-check { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; color: var(--cn-muted); }
+.cn-admin-form label.is-check input { margin-top: 1px; }
+.cn-admin-secret { display: grid; gap: 5px; }
+.cn-admin-secret__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; }
+.cn-admin-secret__head label { font-size: 12px; font-weight: 700; }
+.cn-admin-secret > .cn-admin-link { justify-self: start; font-size: 12px; }
+.cn-admin-secret__removing { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 9px 12px; border-radius: var(--cn-radius-button); background: color-mix(in srgb, var(--cn-admin-danger) 7%, var(--cn-surface)); font-size: 13px; }
+.cn-admin-secret__removing > .bi { color: var(--cn-admin-danger); }
+.cn-admin-more { border-top: 1px solid var(--cn-line); padding-top: 10px; }
+.cn-admin-more > summary { color: var(--cn-accent); font-size: 13px; font-weight: 700; cursor: pointer; }
+.cn-admin-more[open] > summary { margin-bottom: 12px; }
+.cn-admin-more > label + label { margin-top: 12px; }
+.cn-admin-confirm { padding-top: 12px; border-top: 1px solid var(--cn-line); }
+.cn-admin .cn-admin-confirm input { max-width: 320px; }
+.cn-admin-push-end { margin-left: auto; }
+@media (max-width: 575.98px) { .cn-admin-push-end { margin-left: 0; } }
+.cn-admin-dkim { display: grid; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--cn-line); }
+.cn-admin-dkim h3 { margin: 0; font-size: 14px; font-weight: 700; }
+.cn-admin-dkim__record { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--cn-radius-button); background: var(--cn-tint); }
+.cn-admin-dkim__record .cn-admin-sub { margin: 0; }
+.cn-admin-check-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+.cn-admin-panel__tools { display: flex; flex-wrap: wrap; gap: 8px; }
+
 .cn-admin-settings { display: grid; }
 .cn-admin-setting { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 6px 24px; padding: 16px 0; border-top: 1px solid var(--cn-line); }
 .cn-admin-setting:first-child { border-top: 0; padding-top: 0; }

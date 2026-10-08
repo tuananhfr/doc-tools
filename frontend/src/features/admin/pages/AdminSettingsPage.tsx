@@ -42,8 +42,8 @@ function SettingRow({ setting }: { setting: Setting }) {
 
 function SystemPanel({ system }: { system: SystemStatus }) {
   return (
-    <Panel title="Cấu hình máy chủ (.env)">
-      <p className="cn-admin-lead">Chỉ đọc. Bí mật chỉ báo đã đặt hay chưa; đổi bằng <code>.env</code> rồi khởi động lại backend.</p>
+    <Panel title="Cấu hình máy chủ">
+      <p className="cn-admin-lead">Chỉ đọc. Bí mật chỉ báo đã đặt hay chưa. GoClaw và MCP sửa ở trang Tài khoản AI, cách gửi thư ở trang Email; phần còn lại đổi bằng <code>.env</code> rồi khởi động lại backend.</p>
       <dl className="cn-admin-facts">
         <dt>Nguồn được phép (SITE_ORIGINS)</dt><dd>{system.auth.allowedOrigins.length ? system.auth.allowedOrigins.join(', ') : <Pill tone="warning" icon="exclamation-triangle">Trống: nhận mọi nguồn (chỉ dùng khi dev)</Pill>}</dd>
         <dt>Cookie Secure</dt><dd><SetState ok={system.auth.cookieSecure}>{system.auth.cookieSecure ? 'Bật' : 'Tắt (chỉ dev)'}</SetState></dd>

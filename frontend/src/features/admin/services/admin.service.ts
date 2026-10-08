@@ -1,7 +1,7 @@
 import { withBase } from '@/utils/url'
 import type {
-  AiAccountList, AiStatus, AuditRow, ContributionDetail, ContributionList, DnsCheck, MailList, Overview, Paged, RoleHolder, Setting, Staff, StaffRole,
-  SystemStatus, ToolsStats, Transition, UserDetail, UserRow,
+  AiAccountList, AiStatus, AuditRow, ContributionDetail, ContributionList, DkimRecord, DnsCheck, IntegrationGroup, Integrations, MailList, Overview, Paged, RoleHolder,
+  Setting, Staff, StaffRole, SystemStatus, ToolsStats, Transition, UserDetail, UserRow,
 } from '../types/admin.types'
 
 /** The admin API answers in Vietnamese already, so the message is shown as is. */
@@ -72,6 +72,12 @@ export const adminService = {
   updateSetting: (key: string, value: unknown) => call<{ settings: Setting[]; system: SystemStatus }>(`/settings/${key}`, 'PUT', { value }),
   resetSetting: (key: string) => call<{ settings: Setting[]; system: SystemStatus }>(`/settings/${key}`, 'DELETE'),
 
+  integrations: () => call<Integrations>('/integrations'),
+  saveIntegration: (group: IntegrationGroup, password: string, values: object, secrets: Record<string, string | null>) => call<Integrations>(`/integrations/${group}`, 'PUT', { password, values, secrets }),
+  resetIntegration: (group: IntegrationGroup, password: string) => call<Integrations>(`/integrations/${group}`, 'DELETE', { password }),
+  verifySmtp: () => call<{ result: { ok: boolean; error: string | null } }>('/integrations/mail/verify', 'POST'),
+  generateDkim: (password: string, selector: string) => call<Integrations & { record: DkimRecord & { selector: string } }>('/integrations/mail/dkim', 'POST', { password, selector }),
+
   roles: () => call<{ holders: RoleHolder[] }>('/roles'),
   grantRole: (email: string, role: StaffRole) => call<{ holders: RoleHolder[] }>('/roles', 'PUT', { email, role }),
   revokeRole: (userId: string) => call<{ holders: RoleHolder[] }>(`/roles/${userId}`, 'DELETE'),
@@ -80,6 +86,8 @@ export const adminService = {
   aiStatus: () => call<AiStatus>('/ai/status'),
   disableAi: (userId: string) => call<{ ok: true }>(`/ai/${userId}/disable`, 'POST'),
   enableAi: (userId: string) => call<{ ok: true }>(`/ai/${userId}/enable`, 'POST'),
+  registerMcp: () => call<{ action: 'created' | 'updated'; url: string; serverName: string }>('/ai/mcp/register', 'POST'),
+  syncAgents: () => call<{ promptVersion: number; updated: number; failed: string[] }>('/ai/agents/sync', 'POST'),
 
   audit: (actor: string | undefined, target: string | undefined, page: number) => call<Paged<AuditRow>>(`/audit${query({ actor, target, page })}`),
 }

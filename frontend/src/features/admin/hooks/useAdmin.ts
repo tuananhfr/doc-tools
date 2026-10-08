@@ -1,6 +1,6 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { adminService, type AiQuery, type ContributionQuery, type UserQuery } from '../services/admin.service'
-import type { StaffRole, Transition, UserDetail } from '../types/admin.types'
+import type { IntegrationGroup, Integrations, StaffRole, Transition, UserDetail } from '../types/admin.types'
 
 const ADMIN = ['admin'] as const
 const key = {
@@ -14,6 +14,7 @@ const key = {
   roles: [...ADMIN, 'roles'] as const,
   audit: [...ADMIN, 'audit'] as const,
   ai: [...ADMIN, 'ai'] as const,
+  integrations: [...ADMIN, 'integrations'] as const,
 }
 
 // Staff errors (signed out, not staff, stale session) are answers, not glitches: retrying only delays them.
@@ -101,6 +102,41 @@ export function useSettingMutation() {
     mutationFn: ({ settingKey, value }: { settingKey: string; value: unknown | undefined }) => value === undefined ? adminService.resetSetting(settingKey) : adminService.updateSetting(settingKey, value),
     onSuccess: (data) => client.setQueryData(key.settings, data),
   })
+}
+
+export function useIntegrations(enabled: boolean) {
+  return useQuery({ queryKey: key.integrations, queryFn: adminService.integrations, enabled, ...once })
+}
+
+/** The mail queue, GoClaw status and settings screens all show the merged configuration, so all three refresh. */
+function useIntegrationWrite<A, R extends Integrations>(run: (args: A) => Promise<R>) {
+  const client = useQueryClient()
+  return useMutation({
+    mutationFn: run,
+    onSuccess: (data) => {
+      client.setQueryData(key.integrations, data)
+      void Promise.all([key.mail, key.ai, key.settings, key.audit].map((queryKey) => client.invalidateQueries({ queryKey })))
+    },
+  })
+}
+export function useSaveIntegration() {
+  return useIntegrationWrite(({ group, password, values, secrets }: { group: IntegrationGroup; password: string; values: object; secrets: Record<string, string | null> }) => adminService.saveIntegration(group, password, values, secrets))
+}
+export function useResetIntegration() {
+  return useIntegrationWrite(({ group, password }: { group: IntegrationGroup; password: string }) => adminService.resetIntegration(group, password))
+}
+export function useGenerateDkim() {
+  return useIntegrationWrite(({ password, selector }: { password: string; selector: string }) => adminService.generateDkim(password, selector))
+}
+export function useVerifySmtp() { return useMutation({ mutationFn: adminService.verifySmtp }) }
+
+export function useRegisterMcp() {
+  const client = useQueryClient()
+  return useMutation({ mutationFn: adminService.registerMcp, onSettled: () => client.invalidateQueries({ queryKey: key.ai }) })
+}
+export function useSyncAgents() {
+  const client = useQueryClient()
+  return useMutation({ mutationFn: adminService.syncAgents, onSettled: () => client.invalidateQueries({ queryKey: key.ai }) })
 }
 
 export function useRoles() { return useQuery({ queryKey: key.roles, queryFn: adminService.roles, ...once }) }

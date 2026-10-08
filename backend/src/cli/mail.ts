@@ -7,6 +7,8 @@ import { DatabaseService } from '../database/database.service'
 import { normalizeEmail } from '../accounts/profile-input'
 import { MailOutboxRepository } from '../mail/mail-outbox.repository'
 import { MailService } from '../mail/mail.service'
+import { applyRuntimeOverrides } from '../config/runtime-config'
+import { IntegrationRepository } from '../settings/integration.repository'
 
 const USAGE = 'Usage: mail <dkim-keygen <directory outside the repo> [selector] | test <email>>'
 
@@ -38,6 +40,8 @@ async function sendTest(email: string) {
   const database = new DatabaseService()
   await database.onModuleInit()
   try {
+    // Sends through whatever the running server would use, admin-area settings included.
+    applyRuntimeOverrides((await new IntegrationRepository(database).snapshot()).overrides)
     const outbox = new MailOutboxRepository(database)
     const id = await outbox.enqueue(email, 'otp', { code: '000000', locale: 'vi', ttlMinutes: 10 }, null, Math.floor(Date.now() / 1000))
     await new MailService(outbox).processDue()

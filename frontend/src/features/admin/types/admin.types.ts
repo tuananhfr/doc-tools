@@ -75,7 +75,7 @@ export interface SystemStatus {
   mail: {
     transport: 'direct' | 'smtp' | 'log'; from: string; fromName: string; heloName: string
     smtp: { host: string | null; port: number; secure: boolean; userSet: boolean; passwordSet: boolean }
-    dkim: { domain: string; selector: string | null; keyFileSet: boolean; keyFileReadable: boolean }
+    dkim: { domain: string; selector: string | null; privateKeySet: boolean; keyFileSet: boolean; keyFileReadable: boolean }
   }
   auth: { allowedOrigins: string[]; cookieSecure: boolean; otpTtlSeconds: number; sessionDays: number }
   rules: { signingPublicKeySet: boolean }
@@ -84,6 +84,30 @@ export interface SystemStatus {
 }
 
 export interface MailList extends Paged<MailRow> { config: SystemStatus['mail'] }
+
+export type IntegrationGroup = 'mail' | 'goclaw'
+export type MailTransport = SystemStatus['mail']['transport']
+
+/** `ui` = set in the admin area, `env` = from the backend `.env`, `null` = not set anywhere. */
+export interface SecretState { source: 'ui' | 'env' | null; updatedBy: string | null; updatedAt: string | null; readable: boolean }
+
+export interface MailValues {
+  transport: MailTransport; from: string; fromName: string; heloName: string
+  smtpHost: string; smtpPort: number; smtpSecure: boolean; smtpUser: string; dkimDomain: string; dkimSelector: string
+}
+export interface GoclawValues { url: string; publicWsUrl: string; publicFilesUrl: string; mcpPublicUrl: string; mcpAllowedIps: string[] }
+
+interface IntegrationMeta { source: 'ui' | 'env'; updatedBy: string | null; updatedAt: string | null }
+export interface DkimRecord { host: string; value: string }
+
+export interface Integrations {
+  encryptionReady: boolean; envOnly: boolean
+  mail: IntegrationMeta & { values: MailValues; dkimRecord: DkimRecord | null; secrets: { smtpPassword: SecretState; dkimPrivateKey: SecretState } }
+  goclaw: IntegrationMeta & { values: GoclawValues; secrets: { gatewayToken: SecretState } }
+}
+
+/** A typed secret: new value, `null` to remove, absent to keep. */
+export type SecretChange = string | null | undefined
 
 export interface DnsCheck { name: string; host: string; state: 'ok' | 'missing' | 'warning' | 'error'; value: string | null; hint: string }
 

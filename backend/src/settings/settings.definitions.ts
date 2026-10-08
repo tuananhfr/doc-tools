@@ -1,6 +1,6 @@
 /**
- * Operational switches an admin may change at runtime. Secrets never live here: they stay in `.env`
- * and the admin UI only reports whether each one is set.
+ * Operational switches an admin may change at runtime. Mail and GoClaw settings, secrets included,
+ * live in integration.definitions.ts instead: they need a password check and sealed storage.
  */
 interface BooleanSetting { type: 'boolean'; default: boolean; label: string; help: string }
 interface IntegerSetting { type: 'integer'; default: number; min: number; max: number; label: string; help: string; unit?: string }

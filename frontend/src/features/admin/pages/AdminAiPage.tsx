@@ -4,9 +4,11 @@ import { Icon } from '@/components/ui/Icon'
 import { useToast } from '@/components/ui'
 import { useDebounce } from '@/hooks/useDebounce'
 import { AdminPage, Empty, ErrorText, LoadError, Pager, Panel, Pill, SetState, SkeletonRows } from '../components/AdminKit'
+import { GoclawConfigForm } from '../components/GoclawConfigForm'
+import { SourceNote } from '../components/IntegrationFields'
 import { useStaff } from '../components/RequirePermission'
 import { AI_STATUS } from '../config/admin-labels'
-import { useAiAccounts, useAiStatus, useAiSwitch } from '../hooks/useAdmin'
+import { useAiAccounts, useAiStatus, useAiSwitch, useIntegrations, useRegisterMcp, useSyncAgents } from '../hooks/useAdmin'
 import type { AiAccountRow, AiProviderStatus } from '../types/admin.types'
 import { formatDateTime } from '../utils/admin-format'
 
@@ -33,9 +35,44 @@ function SwitchButton({ row }: { row: AiAccountRow }) {
   )
 }
 
+function RegisterMcpButton({ registered }: { registered: boolean }) {
+  const toast = useToast()
+  const register = useRegisterMcp()
+  return (
+    <>
+      <button type="button" className="cn-admin-button is-ghost" disabled={register.isPending} onClick={() => register.mutate(undefined, {
+        onSuccess: (result) => toast.success(result.action === 'created' ? 'Đã đăng ký máy chủ công cụ với GoClaw.' : 'Đã cập nhật địa chỉ máy chủ công cụ trong GoClaw.'),
+      })}>
+        <Icon name="plug" />{register.isPending ? 'Đang đăng ký…' : registered ? 'Đăng ký lại' : 'Đăng ký MCP'}
+      </button>
+      <ErrorText error={register.error} />
+    </>
+  )
+}
+
+function SyncAgentsButton() {
+  const toast = useToast()
+  const sync = useSyncAgents()
+  return (
+    <>
+      <button type="button" className="cn-admin-button is-ghost" disabled={sync.isPending} onClick={() => sync.mutate(undefined, {
+        onSuccess: (result) => result.failed.length
+          ? toast.error(`Đẩy được ${result.updated} agent, ${result.failed.length} agent lỗi. Xem nhật ký máy chủ.`)
+          : toast.success(result.updated ? `Đã đẩy chỉ dẫn v${result.promptVersion} cho ${result.updated} agent.` : 'Mọi agent đã dùng chỉ dẫn mới nhất.'),
+      })}>
+        <Icon name="cloud-upload" />{sync.isPending ? 'Đang đẩy…' : 'Đẩy chỉ dẫn cho agent cũ'}
+      </button>
+      <ErrorText error={sync.error} />
+    </>
+  )
+}
+
 export default function AdminAiPage() {
   const staff = useStaff()
   const canManage = staff.permissions.includes('ai.manage')
+  const canConfigure = staff.permissions.includes('settings.manage')
+  const integrations = useIntegrations(canConfigure)
+  const [editing, setEditing] = useState(false)
   const [params, setParams] = useSearchParams()
   const [search, setSearch] = useState(params.get('q') ?? '')
   const debounced = useDebounce(search, 300)
@@ -62,8 +99,14 @@ export default function AdminAiPage() {
       title="Tài khoản AI"
       description="Khoá AI riêng của thành viên Pro, chạy trên GoClaw dùng chung. Khoá API nằm mã hoá trong GoClaw; ở đây chỉ thấy nhà cung cấp, model và trạng thái."
     >
-      <Panel title="GoClaw" actions={<button type="button" className="cn-admin-button is-ghost" disabled={live.isFetching} onClick={() => void live.refetch()}><Icon name="arrow-repeat" />Kiểm lại</button>}>
-        {live.isPending ? <SkeletonRows rows={4} /> : live.isError ? <LoadError error={live.error} onRetry={() => void live.refetch()} /> : info ? (
+      <Panel title="GoClaw" actions={editing ? null : (
+        <div className="cn-admin-panel__tools">
+          {canConfigure && integrations.data ? <button type="button" className="cn-admin-button is-ghost" onClick={() => setEditing(true)}><Icon name="pencil-square" />Sửa cấu hình</button> : null}
+          <button type="button" className="cn-admin-button is-ghost" disabled={live.isFetching} onClick={() => void live.refetch()}><Icon name="arrow-repeat" />Kiểm lại</button>
+        </div>
+      )}>
+        {editing && integrations.data ? <GoclawConfigForm data={integrations.data} onDone={() => setEditing(false)} />
+          : live.isPending ? <SkeletonRows rows={4} /> : live.isError ? <LoadError error={live.error} onRetry={() => void live.refetch()} /> : info ? (
           <dl className="cn-admin-facts">
             <dt>Kết nối</dt>
             <dd>
@@ -80,8 +123,9 @@ export default function AdminAiPage() {
               {info.mcpRegistered ? <Pill tone={info.mcpEnabled === false ? 'warning' : 'positive'} icon="plug">{info.mcpEnabled === false ? 'Đã đăng ký nhưng đang tắt' : 'Đã đăng ký'}</Pill>
                 : <Pill tone="warning" icon="exclamation-triangle">Chưa đăng ký</Pill>}
               <code>{info.mcpServerName}</code>
-              {info.mcpUrl && info.mcpPublicUrl && info.mcpUrl !== info.mcpPublicUrl ? <span className="cn-admin-error-text">GoClaw đang trỏ {info.mcpUrl}, khác MCP_PUBLIC_URL — chạy lại register-mcp.</span> : null}
-              {!info.mcpPublicUrl ? <span className="cn-admin-sub">Thiếu MCP_PUBLIC_URL.</span> : null}
+              {info.mcpUrl && info.mcpPublicUrl && info.mcpUrl !== info.mcpPublicUrl ? <span className="cn-admin-error-text">GoClaw đang trỏ {info.mcpUrl}, khác địa chỉ MCP đã đặt: bấm Đăng ký lại.</span> : null}
+              {!info.mcpPublicUrl ? <span className="cn-admin-sub">Chưa đặt địa chỉ MCP.</span> : null}
+              {canManage && info.reachable && info.mcpPublicUrl ? <RegisterMcpButton registered={info.mcpRegistered} /> : null}
             </dd>
             <dt>Nhà cung cấp tác vụ nền</dt>
             <dd>
@@ -105,9 +149,10 @@ export default function AdminAiPage() {
                 : <span className="cn-admin-sub">Chưa chạy lần nào kể từ khi máy chủ khởi động (lần đầu sau 5 phút). Chạy tay: <code>npm run ai -- reconcile</code></span>}
             </dd>
             <dt>Phiên bản chỉ dẫn agent</dt>
-            <dd>v{info.promptVersion} · đẩy lại cho agent cũ bằng <code>npm run ai -- sync-agents</code></dd>
+            <dd>v{info.promptVersion}{canManage && info.reachable ? <SyncAgentsButton /> : null}</dd>
           </dl>
         ) : null}
+        {!editing && canConfigure && integrations.data ? <SourceNote {...integrations.data.goclaw} /> : null}
       </Panel>
 
       <Panel flush>

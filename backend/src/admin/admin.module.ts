@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { AccountsModule } from '../accounts/accounts.module'
 import { AiModule } from '../ai/ai.module'
+import { AuthModule } from '../auth/auth.module'
 import { ContributionsModule } from '../contributions/contributions.module'
 import { DatabaseModule } from '../database/database.module'
 import { MailModule } from '../mail/mail.module'
@@ -12,6 +13,7 @@ import { AdminAuditRepository } from './admin-audit.repository'
 import { AdminContributionsController } from './admin-contributions.controller'
 import { AdminContributionsRepository } from './admin-contributions.repository'
 import { AdminContributionsService } from './admin-contributions.service'
+import { AdminIntegrationsController } from './admin-integrations.controller'
 import { AdminMailController } from './admin-mail.controller'
 import { AdminMailRepository } from './admin-mail.repository'
 import { AdminRolesController } from './admin-roles.controller'
@@ -24,8 +26,8 @@ import { AdminUsersService } from './admin-users.service'
 import { AdminGuard } from './admin.guard'
 
 @Module({
-  imports: [DatabaseModule, AccountsModule, SessionModule, RolesModule, MailModule, ContributionsModule, AiModule],
-  controllers: [AdminStatsController, AdminUsersController, AdminContributionsController, AdminMailController, AdminSettingsController, AdminRolesController, AdminAuditController, AdminAiController],
+  imports: [DatabaseModule, AccountsModule, SessionModule, RolesModule, MailModule, ContributionsModule, AiModule, AuthModule],
+  controllers: [AdminStatsController, AdminUsersController, AdminContributionsController, AdminMailController, AdminSettingsController, AdminRolesController, AdminAuditController, AdminAiController, AdminIntegrationsController],
   providers: [AdminGuard, AdminAuditRepository, AdminUsersRepository, AdminUsersService, AdminContributionsRepository, AdminContributionsService, AdminMailRepository, AdminStatsRepository],
   exports: [AdminGuard, AdminAuditRepository],
 })

@@ -107,9 +107,17 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - Visit vượt trần 120/giờ/IP vẫn trả `{ok:true}` (chỉ không cộng). Contributions vượt trần
   (mặc định 5/giờ/IP khách, 10/giờ/tài khoản — đổi được ở `app_settings`, không còn là hằng
   số) thì trả 429, trùng trả 409 `DUPLICATE_CONTRIBUTION`.
-- **`app_settings` chỉ giữ giá trị không bí mật.** Bí mật (SMTP, DKIM, khoá ký, token GoClaw)
-  ở `.env`; trang quản trị chỉ báo đã đặt / chưa (`admin/system-status.ts`) — đừng trả giá trị.
-  Thêm cài đặt = một mục trong `settings/settings.definitions.ts` (kiểu + khoảng + nhãn tiếng Việt).
+- **Cấu hình Mail + GoClaw đặt được ở trang quản trị và thắng `.env`** (`config/runtime-config.ts`,
+  `settings/integration-*.ts`). `configuration()` gộp sẵn nên mọi chỗ gọi nó đều thấy cùng một bản;
+  đừng đọc thẳng `process.env.SMTP_*` / `GOCLAW_*`. Bí mật nằm ở `app_secrets`, niêm phong bằng
+  `CONFIG_ENCRYPTION_KEY` (thứ duy nhất phải ở `.env`); API không bao giờ trả giá trị. Mật khẩu SMTP /
+  token gắn với host / địa chỉ của nó: đổi host mà không nhập lại là 400, và bản ở `.env` không bao giờ
+  được gửi tới host đặt trên giao diện. `CONFIG_FROM_ENV_ONLY=1` bỏ qua cấu hình trên giao diện — mọi test
+  khởi động app phải đặt cờ này (test chạy trên DB dev, nơi owner có thể đã lưu SMTP thật). Service nạp ở
+  `onApplicationBootstrap`, không phải `onModuleInit`: hook của module global có thể chạy trước khi
+  `DatabaseService` tạo bảng.
+- Khoá ký gói quy định vẫn chỉ ở `.env`. Thêm công tắc vận hành = một mục trong
+  `settings/settings.definitions.ts` (kiểu + khoảng + nhãn tiếng Việt).
 - `auth.signupOpen = false` kiểm SAU khi xác nhận mã (`SIGNUP_CLOSED`), nên không lộ email
   nào đã có tài khoản. Xoá tài khoản đi qua `AccountDeletionService` — module mới giữ dữ liệu
   theo người dùng phải `addCleanup()` vào đó, không thì dữ liệu mồ côi.

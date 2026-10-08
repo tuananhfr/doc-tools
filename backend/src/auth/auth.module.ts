@@ -14,5 +14,7 @@ import { SecurityController } from './security.controller'
   imports: [DatabaseModule, MailModule, AccountsModule, SessionModule, RolesModule],
   controllers: [AuthController, SecurityController],
   providers: [OtpRepository, AuthFloodRepository, AuthService],
+  // The admin area re-asks the password before secrets change.
+  exports: [AuthService],
 })
 export class AuthModule {}

@@ -20,8 +20,9 @@ export class MailSendError extends Error {
 export const loggedMails: OutgoingMail[] = []
 
 function dkimOptions(config: MailConfig) {
-  if (!config.dkim.selector || !config.dkim.keyFile) return undefined
-  return { domainName: config.dkim.domain, keySelector: config.dkim.selector, privateKey: readFileSync(config.dkim.keyFile, 'utf8') }
+  const { domain, selector, privateKey, keyFile } = config.dkim
+  if (!selector || (!privateKey && !keyFile)) return undefined
+  return { domainName: domain, keySelector: selector, privateKey: privateKey || readFileSync(keyFile, 'utf8') }
 }
 
 function message(config: MailConfig, mail: OutgoingMail): SendMailOptions {
@@ -46,16 +47,30 @@ class LogTransport implements MailTransport {
   }
 }
 
+function smtpTransporter(config: MailConfig, timeouts: { connectionTimeout?: number; greetingTimeout?: number; socketTimeout?: number } = {}) {
+  const { host, port, secure, user, pass } = config.smtp
+  return createTransport({ host, port, secure, name: config.heloName, auth: user ? { user, pass } : undefined, dkim: dkimOptions(config), ...timeouts })
+}
+
 class SmtpTransport implements MailTransport {
   private readonly transporter
-  constructor(private readonly config: MailConfig) {
-    const { host, port, secure, user, pass } = config.smtp
-    this.transporter = createTransport({ host, port, secure, name: config.heloName, auth: user ? { user, pass } : undefined, dkim: dkimOptions(config) })
-  }
+  constructor(private readonly config: MailConfig) { this.transporter = smtpTransporter(config) }
   async send(mail: OutgoingMail) {
     try { await this.transporter.sendMail(message(this.config, mail)) }
     catch (error) { throw rejection(error) }
   }
+}
+
+/** Connects and logs in without sending anything; the error text comes from the SMTP server. */
+export async function verifySmtp(config: MailConfig) {
+  // Short timeouts: an admin is waiting on the button, unlike the queue.
+  const transporter = smtpTransporter(config, { connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 20000 })
+  try {
+    await transporter.verify()
+    return { ok: true as const, error: null }
+  } catch (error) {
+    return { ok: false as const, error: (error instanceof Error ? error.message : String(error)).slice(0, 300) }
+  } finally { transporter.close() }
 }
 
 /** Delivers straight to the recipient's MX on port 25, like a minimal MTA. */

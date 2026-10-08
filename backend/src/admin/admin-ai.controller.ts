@@ -1,10 +1,11 @@
-import { Controller, Get, HttpCode, Param, Post, Query } from '@nestjs/common'
+import { BadGatewayException, Controller, Get, HttpCode, Param, Post, Query, ServiceUnavailableException } from '@nestjs/common'
 import { RouteConfig } from '@nestjs/platform-fastify'
 import { PROMPT_VERSION } from '../ai/agent-profile'
 import { AiReconcileService } from '../ai/ai-reconcile.service'
 import { AiRepository } from '../ai/ai.repository'
 import { AiService } from '../ai/ai.service'
-import { GoclawClient } from '../ai/goclaw.client'
+import { GoclawClient, GoclawError } from '../ai/goclaw.client'
+import { registerMcpServer } from '../ai/mcp-registration'
 import { configuration } from '../config/configuration'
 import { AdminAuditRepository } from './admin-audit.repository'
 import { ADMIN_PAGE_SIZE, parseChoice, parsePage, parseUuid } from './admin-input'
@@ -44,6 +45,35 @@ export class AdminAiController {
     } catch (error) {
       return { ok: true, ...base, reachable: false, mcpRegistered: false, backgroundProvider: null, error: error instanceof Error ? error.message.slice(0, 300) : 'error' }
     }
+  }
+
+  /** Same as `npm run ai -- register-mcp`, for owners who never open a shell on the server. */
+  @Post('mcp/register')
+  @HttpCode(200)
+  @Staff('ai.manage')
+  @RouteConfig({ bodyLimit: 1024 })
+  async registerMcp(@Actor() actor: StaffActor) {
+    if (!this.goclaw.configured()) throw new ServiceUnavailableException({ ok: false, code: 'AI_UNAVAILABLE', message: 'Chưa cấu hình GoClaw (địa chỉ và token gateway).' })
+    try {
+      const result = await registerMcpServer(this.goclaw)
+      await this.audit.record(actor, 'MCP_REGISTERED', 'ai', result.id, `${result.action} ${result.url}`)
+      return { ok: true, ...result }
+    } catch (error) {
+      if (!(error instanceof GoclawError)) throw error
+      const message = error.status === 400 ? 'Địa chỉ MCP phải là địa chỉ đầy đủ GoClaw gọi tới, kết thúc bằng /api/v1/mcp/sse.' : `GoClaw báo lỗi: ${error.message.slice(0, 200)}`
+      throw new BadGatewayException({ ok: false, code: 'GOCLAW_ERROR', message })
+    }
+  }
+
+  /** Same as `npm run ai -- sync-agents`. */
+  @Post('agents/sync')
+  @HttpCode(200)
+  @Staff('ai.manage')
+  @RouteConfig({ bodyLimit: 1024 })
+  async syncAgents(@Actor() actor: StaffActor) {
+    const result = await this.ai.syncAgents()
+    await this.audit.record(actor, 'AGENTS_SYNCED', 'ai', null, `v${PROMPT_VERSION}: ${result.updated} updated, ${result.failed.length} failed`)
+    return { ok: true, promptVersion: PROMPT_VERSION, ...result }
   }
 
   @Post(':userId/disable')

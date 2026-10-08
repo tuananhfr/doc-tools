@@ -1,3 +1,5 @@
+// Mail/GoClaw settings an owner saved in the dev database's admin area must not reach these tests.
+process.env.CONFIG_FROM_ENV_ONLY = '1'
 const { test, before, after } = require('node:test')
 const assert = require('node:assert/strict')
 const crypto = require('node:crypto')

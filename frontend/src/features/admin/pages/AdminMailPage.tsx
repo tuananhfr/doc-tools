@@ -3,9 +3,12 @@ import { useSearchParams } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useToast } from '@/components/ui'
 import { AdminPage, Empty, ErrorText, LoadError, Pager, Panel, Pill, SetState, SkeletonRows } from '../components/AdminKit'
+import { DkimPanel } from '../components/DkimPanel'
+import { SourceNote } from '../components/IntegrationFields'
+import { MailConfigForm } from '../components/MailConfigForm'
 import { useStaff } from '../components/RequirePermission'
 import { MAIL_STATUS, MAIL_TEMPLATE, MAIL_TRANSPORT } from '../config/admin-labels'
-import { useMail, useMailDns, useSendTestMail } from '../hooks/useAdmin'
+import { useIntegrations, useMail, useMailDns, useSendTestMail, useVerifySmtp } from '../hooks/useAdmin'
 import { MAIL_STATUSES, type DnsCheck } from '../types/admin.types'
 import { formatDateTime } from '../utils/admin-format'
 
@@ -27,7 +30,12 @@ export default function AdminMailPage() {
   const dns = useMailDns(checkDns)
   const [to, setTo] = useState('')
   const send = useSendTestMail()
+  const verify = useVerifySmtp()
+  const canConfigure = staff.permissions.includes('settings.manage')
+  const integrations = useIntegrations(canConfigure)
+  const [editing, setEditing] = useState(false)
   const config = mail.data?.config
+  const dkimReady = Boolean(config && (config.dkim.privateKeySet || config.dkim.keyFileReadable))
 
   const sendTest = (event: FormEvent) => {
     event.preventDefault()
@@ -37,17 +45,30 @@ export default function AdminMailPage() {
   return (
     <AdminPage title="Email" description="Hàng đợi thư đi và cấu hình gửi. Nội dung thư (mã đăng nhập) không bao giờ hiện ở đây.">
       <div className="cn-admin-grid is-two">
-        <Panel title="Cấu hình gửi">
-          {config ? (
+        <Panel title="Cấu hình gửi" actions={canConfigure && integrations.data && !editing ? <button type="button" className="cn-admin-button is-ghost" onClick={() => setEditing(true)}><Icon name="pencil-square" />Sửa</button> : null}>
+          {editing && integrations.data ? (
+            <>
+              <MailConfigForm data={integrations.data} onDone={() => setEditing(false)} />
+              <DkimPanel data={integrations.data} />
+            </>
+          ) : config ? (
             <dl className="cn-admin-facts">
               <dt>Cách gửi</dt><dd>{MAIL_TRANSPORT[config.transport]}{config.transport === 'log' ? <Pill tone="warning" icon="exclamation-triangle">Không gửi thư thật</Pill> : null}</dd>
               <dt>Người gửi</dt><dd>{config.fromName} &lt;{config.from}&gt;</dd>
               <dt>HELO</dt><dd>{config.heloName}</dd>
               {config.transport === 'smtp' ? <><dt>SMTP</dt><dd>{config.smtp.host}:{config.smtp.port}{config.smtp.secure ? ' (TLS)' : ''} · tài khoản <SetState ok={config.smtp.userSet} /> · mật khẩu <SetState ok={config.smtp.passwordSet} /></dd></> : null}
-              <dt>DKIM</dt><dd>{config.dkim.selector ? <>selector <code>{config.dkim.selector}</code> · </> : null}khoá <SetState ok={config.dkim.keyFileReadable}>{config.dkim.keyFileReadable ? 'Đọc được' : config.dkim.keyFileSet ? 'Không đọc được tệp' : 'Chưa đặt'}</SetState></dd>
+              <dt>DKIM</dt><dd>{config.dkim.selector ? <>selector <code>{config.dkim.selector}</code> · </> : null}khoá <SetState ok={dkimReady}>{dkimReady ? 'Đã có' : config.dkim.keyFileSet ? 'Không đọc được tệp' : 'Chưa đặt'}</SetState></dd>
             </dl>
           ) : mail.isError ? <LoadError error={mail.error} /> : <SkeletonRows rows={4} />}
-          <p className="cn-admin-sub">Đổi cấu hình bằng <code>.env</code> của backend rồi khởi động lại. Bí mật không hiện ra đây.</p>
+          {!editing && config?.transport === 'smtp' && staff.permissions.includes('mail.test') ? (
+            <div className="cn-admin-check-row">
+              <button type="button" className="cn-admin-button is-ghost" disabled={verify.isPending} onClick={() => verify.mutate()}><Icon name="plug" />{verify.isPending ? 'Đang kết nối…' : 'Kiểm tra đăng nhập SMTP'}</button>
+              {verify.data ? verify.data.result.ok ? <Pill tone="positive" icon="check2-circle">Đăng nhập được</Pill> : <span className="cn-admin-error-text cn-admin-break">{verify.data.result.error}</span> : null}
+              <ErrorText error={verify.error} />
+            </div>
+          ) : null}
+          {editing ? null : canConfigure ? integrations.data ? <SourceNote {...integrations.data.mail} /> : integrations.isError ? <LoadError error={integrations.error} /> : null
+            : <p className="cn-admin-sub">Chủ hệ thống đổi cấu hình gửi ở trang này. Mật khẩu không bao giờ hiện ra đây.</p>}
         </Panel>
         <Panel title="Gửi thư thử">
           {staff.permissions.includes('mail.test') ? (
@@ -62,7 +83,7 @@ export default function AdminMailPage() {
       </div>
 
       <Panel title="DNS của tên miền gửi" actions={<button type="button" className="cn-admin-button is-ghost" disabled={dns.isFetching} onClick={() => checkDns ? void dns.refetch() : setCheckDns(true)}><Icon name="arrow-repeat" />{checkDns ? 'Kiểm lại' : 'Kiểm tra DNS'}</button>}>
-        {!checkDns ? <p className="cn-admin-lead">Tra MX, SPF, DKIM, DMARC trực tiếp từ máy chủ. Cần cho cách gửi “thẳng”; bản ghi chuẩn lấy từ <code>npm run mail -- dkim-keygen</code>.</p>
+        {!checkDns ? <p className="cn-admin-lead">Tra MX, SPF, DKIM, DMARC trực tiếp từ máy chủ. Cần cho cách gửi “thẳng”; bản ghi DKIM lấy ở thẻ Cấu hình gửi → Sửa → Khoá DKIM.</p>
           : dns.isPending ? <SkeletonRows rows={4} /> : dns.isError ? <LoadError error={dns.error} onRetry={() => void dns.refetch()} /> : (
             <div className="cn-admin-table-wrap">
               <table className="cn-admin-table is-compact">

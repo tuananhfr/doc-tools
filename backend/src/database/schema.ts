@@ -202,6 +202,13 @@ export const SCHEMA = [
     updated_by VARCHAR(128) NOT NULL,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   ) ENGINE=InnoDB`,
+  // Mail / GoClaw secrets set from the admin area, sealed with CONFIG_ENCRYPTION_KEY (config/secret-box.ts).
+  `CREATE TABLE IF NOT EXISTS app_secrets (
+    secret_key VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    sealed TEXT CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    updated_by VARCHAR(128) NOT NULL,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB`,
   // tool_visits only keeps an all-time total; daily rows start counting from the day this table appears.
   `CREATE TABLE IF NOT EXISTS tool_visit_days (
     day CHAR(10) CHARACTER SET ascii NOT NULL,

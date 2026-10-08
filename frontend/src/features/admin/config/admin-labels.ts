@@ -65,6 +65,8 @@ export const AUDIT_ACTION: Record<string, string> = {
   CONTRIBUTION_REJECT: 'Từ chối đề xuất', CONTRIBUTION_SUPERSEDE: 'Đánh dấu thay thế', CONTRIBUTION_REVOKE: 'Rút công bố',
   MAIL_TEST: 'Gửi thư thử', SETTING_CHANGED: 'Đổi cài đặt', SETTING_RESET: 'Khôi phục mặc định', ROLE_GRANTED: 'Cấp vai trò', ROLE_REVOKED: 'Thu vai trò',
   AI_DISABLE: 'Tạm khoá trợ lý AI', AI_ENABLE: 'Mở lại trợ lý AI',
+  INTEGRATION_CHANGED: 'Đổi cấu hình kết nối', INTEGRATION_RESET: 'Về cấu hình .env', DKIM_GENERATED: 'Tạo khoá DKIM',
+  MCP_REGISTERED: 'Đăng ký máy chủ công cụ', AGENTS_SYNCED: 'Đẩy chỉ dẫn agent',
   // Account trail (user_audit) shares this table.
   LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá',
   SUBMITTED: 'Gửi đề xuất', SOURCES_ADDED: 'Thêm nguồn (mã biên nhận)', EVIDENCE_ADDED: 'Bổ sung nguồn', VERIFY: 'Xác minh', APPROVE: 'Phê duyệt',

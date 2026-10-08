@@ -1,5 +1,6 @@
 import { Injectable, Logger, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
 import { configuration } from '../config/configuration'
+import { runtimeConfigVersion } from '../config/runtime-config'
 import { MailOutboxRepository } from './mail-outbox.repository'
 import { renderMail, type MailTemplate } from './mail-templates'
 import { createMailTransport, MailSendError, type MailTransport } from './mail-transport'
@@ -11,6 +12,7 @@ const BATCH = 10
 export class MailService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger('Mail')
   private transport: MailTransport | null = null
+  private transportVersion = -1
   private timer?: NodeJS.Timeout
   // Serializes drains so a request-triggered kick and the poll timer never claim concurrently in one process.
   private queue: Promise<unknown> = Promise.resolve()
@@ -36,8 +38,13 @@ export class MailService implements OnModuleInit, OnModuleDestroy {
     return run
   }
 
+  /** Rebuilt after an admin changes the mail settings, without a restart. */
   private defaultTransport() {
-    this.transport ??= createMailTransport(configuration().mail)
+    const version = runtimeConfigVersion()
+    if (!this.transport || version !== this.transportVersion) {
+      this.transport = createMailTransport(configuration().mail)
+      this.transportVersion = version
+    }
     return this.transport
   }
 
