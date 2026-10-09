@@ -3,7 +3,7 @@ import { AdminAuditRepository, type AuditTarget } from './admin-audit.repository
 import { ADMIN_PAGE_SIZE, parseChoice, parsePage, parseUuid } from './admin-input'
 import { Staff } from './admin.guard'
 
-const TARGETS: AuditTarget[] = ['user', 'contribution', 'mail', 'setting', 'role', 'ai']
+const TARGETS: AuditTarget[] = ['user', 'contribution', 'mail', 'setting', 'role', 'ai', 'landing']
 
 @Controller('admin/audit')
 export class AdminAuditController {

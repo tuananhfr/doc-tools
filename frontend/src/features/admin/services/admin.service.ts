@@ -1,36 +1,42 @@
+import type { LandingDoc } from '@/features/site-landing'
 import { withBase } from '@/utils/url'
 import type {
-  AiAccountList, AiStatus, AuditRow, ContributionDetail, ContributionList, DkimRecord, DnsCheck, IntegrationGroup, Integrations, MailList, Overview, Paged, RoleHolder,
+  AiAccountList, AiStatus, AuditRow, ContributionDetail, ContributionList, DkimRecord, DnsCheck, IntegrationGroup, Integrations, LandingDetail, LandingSummary, MailList, Overview, Paged, RoleHolder,
   Setting, Staff, StaffRole, SystemStatus, ToolsStats, Transition, UserDetail, UserRow,
 } from '../types/admin.types'
 
 /** The admin API answers in Vietnamese already, so the message is shown as is. */
 export class AdminError extends Error {
-  constructor(readonly code: string, readonly status: number, message: string) {
+  /** `field` names the invalid input (e.g. "hero.title") so a form can point at it. */
+  constructor(readonly code: string, readonly status: number, message: string, readonly field?: string) {
     super(message)
   }
 }
 
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
-async function call<T>(path: string, method: Method = 'GET', body?: unknown): Promise<T> {
+async function send<T>(path: string, method: Method, body: BodyInit | undefined, headers: Record<string, string>): Promise<T> {
   let response: Response
   try {
     response = await fetch(withBase('/api/v1/admin' + path), {
       method,
       // Every admin route, reads included, requires the header (see backend AdminGuard).
-      headers: { 'X-CN-Request': '1', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
-      body: body === undefined ? undefined : JSON.stringify(body),
+      headers: { 'X-CN-Request': '1', ...headers },
+      body,
       credentials: 'same-origin',
       cache: 'no-store',
     })
   } catch {
     throw new AdminError('NETWORK', 0, 'Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.')
   }
-  const value = await response.json().catch(() => null) as ({ ok?: boolean; code?: string; message?: string } & T) | null
+  const value = await response.json().catch(() => null) as ({ ok?: boolean; code?: string; message?: string; field?: string } & T) | null
   if (response.ok && value?.ok) return value
   const code = typeof value?.code === 'string' ? value.code : response.status === 401 ? 'SIGNED_OUT' : 'UNKNOWN'
-  throw new AdminError(code, response.status, typeof value?.message === 'string' ? value.message : `Lỗi máy chủ (${response.status}).`)
+  throw new AdminError(code, response.status, typeof value?.message === 'string' ? value.message : `Lỗi máy chủ (${response.status}).`, typeof value?.field === 'string' ? value.field : undefined)
+}
+
+function call<T>(path: string, method: Method = 'GET', body?: unknown): Promise<T> {
+  return body === undefined ? send<T>(path, method, undefined, {}) : send<T>(path, method, JSON.stringify(body), { 'Content-Type': 'application/json' })
 }
 
 function query(params: Record<string, string | number | undefined>) {
@@ -91,4 +97,15 @@ export const adminService = {
   syncAgents: () => call<{ promptVersion: number; updated: number; failed: string[] }>('/ai/agents/sync', 'POST'),
 
   audit: (actor: string | undefined, target: string | undefined, page: number) => call<Paged<AuditRow>>(`/audit${query({ actor, target, page })}`),
+
+  landings: () => call<{ landings: LandingSummary[] }>('/landings').then((value) => value.landings),
+  landing: (key: string) => call<{ landing: LandingDetail }>(`/landings/${key}`).then((value) => value.landing),
+  createLanding: (key: string, name: string) => call<{ landing: LandingDetail }>('/landings', 'POST', { key, name }).then((value) => value.landing),
+  saveLanding: (key: string, name: string, draft: LandingDoc, baseRev: number) => call<{ landing: LandingDetail }>(`/landings/${key}`, 'PUT', { name, draft, baseRev }).then((value) => value.landing),
+  publishLanding: (key: string, baseRev: number) => call<{ landing: LandingDetail }>(`/landings/${key}/publish`, 'POST', { baseRev }).then((value) => value.landing),
+  unpublishLanding: (key: string) => call<{ landing: LandingDetail }>(`/landings/${key}/unpublish`, 'POST').then((value) => value.landing),
+  /** Raw bytes; the file name only lets the server double-check the type it sniffs. */
+  uploadLandingAsset: (file: File) => send<{ asset: { id: string; mimeType: string; size: number } }>('/landings/assets', 'POST', file, {
+    'Content-Type': 'application/octet-stream', 'X-CN-Filename': encodeURIComponent(file.name),
+  }).then((value) => value.asset),
 }

@@ -70,6 +70,7 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `ai` | `/ai/{provider-types,setup,provider,provider/verify,session}` · `/admin/ai/*` | Trợ lý AI bản Pro: khoá AI của từng người thành provider + agent `cn-<userId>` trên GoClaw dùng chung; trình duyệt cầm vé nối WS thẳng tới GoClaw |
 | `cloud` | `/me/saved` · `/me/saved/bookmarks/:toolId` | Kết quả đã lưu + công cụ yêu thích của tài khoản Pro (bảng `saved_items`); lịch sử kiểm nguồn ở `GET /ai/history` (module `ai`) |
 | `lifecycle` | — | Job mỗi giờ quanh lúc hết Pro: thư nhắc 7 ngày trước, mục đã lưu chỉ-đọc 90 ngày, thư báo rồi mới xoá (bảng `plan_notices`) |
+| `landings` | `GET /landings/:key` · `GET /landings/assets/:id` · `/admin/landings/*` | Trang giới thiệu Chuyện Nhỏ cho từng website ngành: nháp + bản xuất bản (bảng `landing_pages`, khoá lạc quan `baseRev` → 409), ảnh PNG/JPEG/WebP lưu đĩa theo sha256 ở `LANDING_ASSET_DIR` (bảng `landing_assets`). Khuôn nội dung trong `landing-content.ts` phải khớp bản sao type `frontend/src/features/site-landing/types` |
 | `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
@@ -95,6 +96,9 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 - **User MySQL của app không có `ALTER`/`DROP`** (chỉ `SELECT, INSERT, UPDATE, DELETE, CREATE,
   INDEX`). `ALTER` lúc khởi động sẽ làm server sập. Cần thêm dữ liệu cho bảng cũ thì dựng
   **bảng phụ** (như `contribution_submitters` cho người gửi đề xuất), không thêm cột.
+- **`LANDING_ASSET_DIR` phải sống qua mỗi lần deploy** (để ngoài thư mục release hoặc loại khỏi
+  `rsync --delete`). Mất tệp mà còn dòng trong `landing_assets` thì ảnh trả 404 và trang giới
+  thiệu hiện ảnh vỡ, không lỗi nào báo.
 - **Parser body tự viết** (`config/http-adapter.ts`): nhận mọi content-type, JSON lỗi
   thành `null` thay vì 400 ở tầng parser — bắt chước Drupal cũ. Controller tự kiểm và trả
   `{ok:false, message}`.

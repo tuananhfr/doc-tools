@@ -1,0 +1,51 @@
+/* Admin › Trang giới thiệu: block editor beside a live preview (side by side from 1280px, tabs below). */
+.cn-admin-leditor { display: grid; gap: 16px; }
+.cn-admin-lbar { position: sticky; top: 0; z-index: 5; display: grid; gap: 10px; padding: 12px 16px; box-shadow: 0 6px 18px -14px rgb(12 37 77 / 45%); }
+.cn-admin-lbar__state { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cn-admin-leditor__panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; align-items: start; }
+.cn-admin-leditor__switch { display: none; justify-self: start; }
+.cn-admin-leditor__preview { position: sticky; top: 132px; }
+@media (max-width: 1279.98px) {
+  .cn-admin-leditor__panes { grid-template-columns: minmax(0, 1fr); }
+  .cn-admin-leditor__switch { display: inline-flex; }
+  .cn-admin-leditor[data-pane='form'] .cn-admin-leditor__preview, .cn-admin-leditor[data-pane='preview'] .cn-admin-leditor__form { display: none; }
+  .cn-admin-leditor__preview { position: static; }
+}
+/* On phones the wrapped bar is a third of the screen; it scrolls away there instead of covering the form. */
+@media (max-width: 991.98px) { .cn-admin-lbar { position: static; } }
+
+.cn-admin-lform { display: grid; gap: 16px; }
+.cn-admin-lblock { scroll-margin-top: 140px; }
+.cn-admin-lblock__head { margin-bottom: 14px; }
+.cn-admin-lblock__head h2 { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+.cn-admin-lblock__head .cn-admin-lead { margin: 0; }
+.cn-admin-lblock__body { display: grid; gap: 14px; }
+.cn-admin-litem { gap: 12px; }
+
+.cn-admin-lfield { display: grid; gap: 5px; min-width: 0; margin: 0; font-size: 12px; font-weight: 700; color: var(--cn-ink); }
+.cn-admin-form__row > .cn-admin-lfield { flex: 1 1 220px; }
+.cn-admin-lfield__head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 700; }
+.cn-admin-lfield__optional { color: var(--cn-muted); font-weight: 400; }
+.cn-admin-lfield__count { color: var(--cn-muted); font-size: 11px; font-weight: 400; font-variant-numeric: tabular-nums; }
+.cn-admin .cn-admin-lfield [aria-invalid='true'] { border-color: var(--cn-admin-danger); }
+.cn-admin-lfield > .cn-admin-sub { font-weight: 400; }
+
+.cn-admin-lcolor { display: flex; gap: 8px; }
+.cn-admin .cn-admin-lcolor input[type='color'] { flex: none; width: 44px; height: 38px; padding: 3px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); cursor: pointer; }
+.cn-admin .cn-admin-lcolor input[type='text'] { width: 110px; font-variant-numeric: tabular-nums; text-transform: lowercase; }
+.cn-admin-lmode { grid-template-columns: repeat(2, minmax(96px, max-content)); }
+.cn-admin-lmode legend { grid-column: 1 / -1; }
+.cn-admin .cn-admin-lmode label { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); font-size: 13px; cursor: pointer; }
+.cn-admin-lmode label:has(input:checked) { border-color: var(--cn-accent); background: var(--cn-tint); }
+
+.cn-admin-limage { display: grid; gap: 6px; }
+.cn-admin-limage__row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+/* Checkerboard so a transparent logo still shows its edges. */
+.cn-admin-limage__thumb { width: 132px; height: 88px; flex: none; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); object-fit: contain; background: repeating-conic-gradient(var(--cn-hero) 0 25%, var(--cn-surface) 0 50%) 0 0 / 14px 14px; }
+.cn-admin-limage__actions { display: grid; gap: 6px; min-width: 0; flex: 1 1 200px; }
+
+.cn-admin-lpreview { display: grid; gap: 10px; }
+.cn-admin-lpreview > .cn-admin-panel__head { margin-bottom: 0; }
+.cn-admin-lpreview__stage { position: relative; height: calc(100dvh - 260px); min-height: 420px; overflow: hidden; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-hero); }
+.cn-admin-lpreview__stage iframe { position: absolute; top: 0; border: 0; background: #fff; transform-origin: top left; }
+@media (max-width: 1279.98px) { .cn-admin-lpreview__stage { height: 70dvh; } }

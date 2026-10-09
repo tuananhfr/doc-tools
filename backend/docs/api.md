@@ -118,6 +118,34 @@ An owner sets the outgoing mail (transport, sender, HELO, SMTP host/port/TLS/use
 
 Every write is recorded in `admin_audit` (actor id + email, action, target, detail ≤ 1000 chars). Failed mail cannot be resent from the admin area: its payload is wiped when it leaves the queue so one-time codes are not kept.
 
+## Intro pages for host sites (landings)
+
+Each industry website (office, family, construction…) shows its own Chuyện Nhỏ intro page by reverse-proxying one of its paths to `<DocTools>/gioi-thieu/<key>`. The frontend renders that page; this module stores its content. Blocks are fixed: staff change text, pictures, accent colour, logo and light/dark mode, nothing else. Vietnamese only. Tables `landing_pages` (draft + published copy per key) and `landing_assets` (uploaded pictures); picture bytes live on disk in `LANDING_ASSET_DIR` (default `data/landing-assets`).
+
+| Route | Who | Notes |
+| --- | --- | --- |
+| `GET /landings/:key` | public | Published copy only: `{ok, landing:{key, publishedAt, ...doc}}`, `no-store`. 404 `NOT_FOUND` when the key is unknown or unpublished. Read by the frontend server, which caches it 60 s |
+| `GET /landings/assets/:id` | public | Picture bytes. `id` is the sha256 of the file, so the response is `immutable` for a year, with `nosniff` and `Cross-Origin-Resource-Policy: cross-origin` (host sites on other domains show it). Unknown id, or a row whose file is gone → 404 |
+| `GET /admin/landings` | `landings.manage` | `{ok, landings:[summary]}`; summary = `{key, name, rev, publishedRev, published, unpublishedChanges, createdAt, updatedAt, updatedBy, publishedAt, publishedBy}` (seconds) |
+| `POST /admin/landings {key, name}` | `landings.manage` | `key` matches `^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$` and never changes; the draft starts as a copy of the office page's copy. 409 `LANDING_EXISTS` |
+| `GET /admin/landings/:key` | `landings.manage` | `{ok, landing:{...summary, draft, publishedContent}}` (`publishedContent` is `null` when unpublished) |
+| `PUT /admin/landings/:key {name?, draft, baseRev}` | `landings.manage` | Replaces the draft whole. `baseRev` is the `rev` the editor loaded; if someone saved since → 409 `LANDING_CONFLICT` with the current `landing` summary. Body ≤ 64 KiB |
+| `POST /admin/landings/:key/publish {baseRev}` | `landings.manage` | Copies the draft at `baseRev` to the published copy, after checking it again (a tool retired since the save fails here). Same 409 |
+| `POST /admin/landings/:key/unpublish` | `landings.manage` | Public route answers 404 again; the draft stays. There is no delete |
+| `POST /admin/landings/assets` | `landings.manage` | Raw bytes, `Content-Type: application/octet-stream`, file name URI-encoded in `X-CN-Filename`. PNG, JPEG or WebP by magic bytes (never SVG: these files are served from DocTools' own origin) → 415 `UPLOAD_TYPE`; over `LANDING_ASSET_MAX_BYTES` (default 5 MiB, hard cap 10 MiB) → 413 `UPLOAD_TOO_LARGE`. Answers `{ok, asset:{id, mimeType, size}}`; the same file twice gives the same id |
+
+The draft (`LandingDoc`, `src/landings/landing-content.ts`) is checked on every save and publish. The first bad field answers 400 `INVALID_INPUT` with `field` as a dotted path (`hero.title`, `cases.items.1.target`) so the editor can point at it.
+- Text is one plain line: control characters and line breaks collapse to a space, markup is kept literally (the page escapes it). Caps: 60 for buttons and link labels, 120 for titles, 400 for paragraphs, 70 / 200 for `meta.title` / `meta.description`.
+- `theme.accent` is `#rrggbb`, `theme.mode` is `light` or `dark`; pictures are asset ids or `null` (the page then uses the office page's artwork).
+- `tools.items` and every other `items` array hold exactly 3 entries. A tool slug must be a `ready` tool in `data/tool-catalog.json`; an empty tool title or body is filled from the catalog on the page. A use-case `target` is a ready tool or one of `cong-cu`, `tai-lieu-pdf`, `gia-dinh`, `xay-dung`, `huong-dan`.
+- `canonicalUrl` is the page's address on the host site (https; plain http only for `localhost` / `127.0.0.1`), or empty to credit DocTools.
+
+Audit: `LANDING_CREATED`, `LANDING_DRAFT_SAVED` / `LANDING_PUBLISHED` (detail `rev N`), `LANDING_UNPUBLISHED`, `LANDING_ASSET_UPLOADED` (detail = asset id), target type `landing`.
+
+`LANDING_ASSET_DIR` must survive deploys (keep it outside the release folder, or exclude it from `rsync --delete`). A database row whose file is gone answers 404, and the page shows a broken picture without any error.
+
+How host sites proxy the page: `frontend/docs/landing-host-proxy.md`.
+
 ## Saved items (Pro)
 
 Table `saved_items`: per account, either a saved tool result (`kind: result`, the tool page's own JSON in `payload`) or a favourite tool (`kind: bookmark`, at most one per tool). The server list is the only copy; devices re-read it (on focus and every minute) instead of syncing changes, so a delete is a real `DELETE` with no tombstone.

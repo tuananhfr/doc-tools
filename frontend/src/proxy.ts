@@ -57,4 +57,5 @@ function localeRoute(request: NextRequest, url: URL) {
 }
 
 // Pages only: Next internals, the API rewrite, share images, vendored engines and any file with an extension pass through.
-export const config = { matcher: ['/((?!_next|__next|api/|og/|vendor/|.*\\.\\w+$).*)'] }
+// `gioi-thieu/` too: host sites proxy those intro pages in, so they get no locale and no app shell.
+export const config = { matcher: ['/((?!_next|__next|api/|og/|vendor/|gioi-thieu/|.*\\.\\w+$).*)'] }

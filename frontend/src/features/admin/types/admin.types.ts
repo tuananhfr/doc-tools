@@ -1,9 +1,11 @@
+import type { LandingDoc } from '@/features/site-landing'
+
 export type StaffRole = 'owner' | 'admin' | 'reviewer'
 
 export type Permission =
   | 'dashboard.view' | 'tools.view' | 'contributions.review'
   | 'users.view' | 'users.manage' | 'plans.manage' | 'mail.view' | 'mail.test' | 'ai.view' | 'ai.manage'
-  | 'settings.manage' | 'roles.manage' | 'audit.view'
+  | 'settings.manage' | 'roles.manage' | 'audit.view' | 'landings.manage'
 
 export interface Staff { id: string; email: string; role: StaffRole; permissions: Permission[] }
 
@@ -141,3 +143,11 @@ export interface AiStatus {
 }
 
 export interface AuditRow { id: number; actorId: string; actorEmail: string; action: string; targetType: string; targetId: string | null; detail: string | null; createdAt: string }
+
+/** Epoch seconds throughout, as the landings API sends them. */
+export interface LandingSummary {
+  key: string; name: string; rev: number; publishedRev: number | null; published: boolean; unpublishedChanges: boolean
+  createdAt: number; updatedAt: number; updatedBy: string; publishedAt: number | null; publishedBy: string | null
+}
+
+export interface LandingDetail extends LandingSummary { draft: LandingDoc; publishedContent: LandingDoc | null }

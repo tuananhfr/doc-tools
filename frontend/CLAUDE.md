@@ -129,7 +129,7 @@ OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-im
 
 Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin,ai}/*`,
+`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin,ai,landings}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
@@ -258,7 +258,38 @@ vào 15 file message). `noindex, nofollow`, không có trong sitemap, HTML khôn
   `STAFF_REAUTH` (phiên staff quá 12 giờ) → đăng xuất rồi đăng nhập lại.
 - Ẩn mục menu chưa đủ: mỗi trang bọc `RequirePermission`, vì link dán thẳng vẫn vào được.
 - Thêm mục quản trị = một dòng `ADMIN_SECTIONS` (`config/admin-nav.ts`) + một `<Route>` trong
-  `AdminApp.tsx`; slug mới tự có trang tĩnh.
+  `AdminApp.tsx`; slug mới tự có trang tĩnh. **Chỉ một segment**: layout `[lang]` đặt
+  `dynamicParams = false`, nên `/quan-tri/<mục>/<x>` vào được khi bấm link nhưng 404 khi F5.
+  Mở chi tiết bằng query (`?id=`, `?trang=`).
+
+### Trang giới thiệu cho website khác (`features/site-landing`, `/gioi-thieu/<mã>`)
+
+Mỗi website ngành reverse-proxy **một** đường dẫn của nó tới `<basePath>/gioi-thieu/<mã>`.
+Nội dung do quản trị sửa (`/quan-tri/trang-gioi-thieu`, backend module `landings`). Mẫu cấu hình
+proxy (nginx, Apache, Cloudflare, Next, PHP) ở `docs/landing-host-proxy.md`.
+
+- Route handler `app/gioi-thieu/[site]/route.ts` trả **HTML tự đủ**: CSS inline, **không một
+  thẻ `<script>`**, mọi URL tuyệt đối về `NEXT_PUBLIC_SITE_URL` + basePath (`server/render-landing.ts`).
+  URL tương đối sẽ trỏ về domain của website gắn trang và vỡ.
+- **Không dùng `react-dom/server` trong route handler**: Next 16 chặn lúc build. HTML dựng bằng
+  template chuỗi + `esc()` (`render/landing-html.ts`). Mọi chữ từ quản trị phải đi qua `esc()`;
+  màu nhấn bị ép về hex (`utils/landing-theme.ts`) vì nó nằm trong CSS inline.
+- CSS (`styles/landing-css.ts`, tiền tố `cnl-`) đặt reset trong `:where(.cnl)`. Reset có độ
+  ưu tiên cao từng thắng `.cnl-button` (nút trắng chữ trắng). Đã có test chặn lỗi này.
+- Font phục vụ qua `app/gioi-thieu/font/[file]` với `Access-Control-Allow-Origin: *`, vì trình
+  duyệt tải `@font-face` khác domain bằng CORS. Icon là SVG inline đọc từ `bootstrap-icons/icons`
+  lúc render.
+- `proxy.ts` (matcher) và `public/sw.js` bỏ qua `/gioi-thieu/`: trang này không có locale
+  và không vào precache. Trang không có trong sitemap. Canonical lấy từ `canonicalUrl` của trang.
+- Cache: dữ liệu backend `revalidate` 60 s; HTML trả `public, max-age=60, stale-while-revalidate=600`;
+  404/503 `no-store`.
+- Xem trước trong quản trị (`admin/utils/landing-preview.ts`) gọi **cùng** `landingDocumentHtml`
+  + `pickLandingTools`, vẽ vào iframe `srcdoc` `sandbox="allow-same-origin"` (cần để font icon
+  cùng origin tải được; trang không có script). Trình duyệt không đọc được file SVG, nên khung
+  chép rule `@font-face`/`.bi` của trang quản trị vào. Liên kết trong khung bị tắt: link `#mục`
+  trong `srcdoc` sẽ phân giải theo URL trang cha và nạp cả trang quản trị vào khung.
+- Type `LandingDoc` là bản sao của `backend/src/landings/landing-content.ts`; trần độ dài ở
+  `admin/config/landing-form.ts` cũng chép từ đó. Thêm trường thì sửa cả ba chỗ.
 
 ## Thêm một công cụ
 
@@ -329,6 +360,7 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 | Tiến độ so với bộ tài liệu Chuyện Nhỏ, phần còn thiếu, thứ tự ưu tiên khi mâu thuẫn | `docs/chuyen-nho-implementation-map.md` |
 | Hành vi gốc của công cụ (lưu ý: viết cho ERPCons) | `docs/upstream/doc-tools.md` |
 | Engine video | `docs/video-engine.md` |
+| Gắn trang giới thiệu vào website khác (mẫu proxy) | `docs/landing-host-proxy.md` |
 | Phạm vi đã kiểm chứng | `docs/verification.md`, `docs/repo-split-verification.md` |
 | Next.js 16 khác bản quen thuộc | `node_modules/next/dist/docs/` (xem `AGENTS.md`) |
 

@@ -50,6 +50,8 @@ self.addEventListener('fetch', event => {
   const withinScope = url.pathname === basePath || url.pathname.startsWith(scopePath)
   const apiPath = appPath('/api')
   if (event.request.method !== 'GET' || url.origin !== self.location.origin || !withinScope || url.pathname === apiPath || url.pathname.startsWith(apiPath + '/')) return
+  // Host sites' intro pages change whenever staff publish; a cached copy here would pin an old one.
+  if (url.pathname.startsWith(appPath('/gioi-thieu/'))) return
   const nextPath = appPath('/_next/')
   const devAsset = url.pathname.startsWith(nextPath) && (
     url.pathname.includes('/webpack-hmr') || url.pathname.includes('.hot-update.') ||

@@ -8,6 +8,7 @@ import AdminOverviewPage from './pages/AdminOverviewPage'
 import AdminUsersPage from './pages/AdminUsersPage'
 import AdminContributionsPage from './pages/AdminContributionsPage'
 import AdminToolsPage from './pages/AdminToolsPage'
+import AdminLandingsPage from './pages/AdminLandingsPage'
 import AdminMailPage from './pages/AdminMailPage'
 import AdminAiPage from './pages/AdminAiPage'
 import AdminSettingsPage from './pages/AdminSettingsPage'
@@ -25,6 +26,7 @@ export default function AdminApp() {
         <Route path="nguoi-dung" element={guard('users.view', <AdminUsersPage />)} />
         <Route path="de-xuat" element={guard('contributions.review', <AdminContributionsPage />)} />
         <Route path="cong-cu" element={guard('tools.view', <AdminToolsPage />)} />
+        <Route path="trang-gioi-thieu" element={guard('landings.manage', <AdminLandingsPage />)} />
         <Route path="email" element={guard('mail.view', <AdminMailPage />)} />
         <Route path="tai-khoan-ai" element={guard('ai.view', <AdminAiPage />)} />
         <Route path="cai-dat" element={guard('settings.manage', <AdminSettingsPage />)} />

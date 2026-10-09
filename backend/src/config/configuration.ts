@@ -83,5 +83,10 @@ export function configuration() {
         linkTtlSeconds: 300,
       },
     },
+    landings: {
+      assetDir: process.env.LANDING_ASSET_DIR || join(process.cwd(), 'data', 'landing-assets'),
+      // Capped by the upload route's body limit (LANDING_ASSET_MAX_BYTES in landings.service.ts).
+      assetMaxBytes: Math.min(Number(process.env.LANDING_ASSET_MAX_BYTES ?? 5 * MIB), 10 * MIB),
+    },
   }
 }

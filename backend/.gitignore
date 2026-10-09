@@ -9,3 +9,4 @@ dist/
 !*.example
 qa-output/
 data/ai-uploads/
+data/landing-assets/

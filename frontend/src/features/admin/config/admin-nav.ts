@@ -8,6 +8,7 @@ export const ADMIN_SECTIONS = [
   { slug: 'nguoi-dung', label: 'Người dùng', icon: 'people', permission: 'users.view' },
   { slug: 'de-xuat', label: 'Duyệt đề xuất', icon: 'clipboard-check', permission: 'contributions.review' },
   { slug: 'cong-cu', label: 'Lượt dùng công cụ', icon: 'bar-chart', permission: 'tools.view' },
+  { slug: 'trang-gioi-thieu', label: 'Trang giới thiệu', icon: 'window-stack', permission: 'landings.manage' },
   { slug: 'email', label: 'Email', icon: 'envelope', permission: 'mail.view' },
   { slug: 'tai-khoan-ai', label: 'Tài khoản AI', icon: 'stars', permission: 'ai.view' },
   { slug: 'cai-dat', label: 'Cài đặt', icon: 'sliders', permission: 'settings.manage' },

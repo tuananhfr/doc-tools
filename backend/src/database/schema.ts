@@ -330,4 +330,28 @@ export const SCHEMA = [
     revoked_at BIGINT UNSIGNED NULL,
     INDEX (user_id)
   ) ENGINE=InnoDB`,
+  // Per-site intro pages that host sites proxy in. `published_rev` is the draft revision that went
+  // live, so "unpublished changes" is a number compare, not a JSON diff.
+  `CREATE TABLE IF NOT EXISTS landing_pages (
+    landing_key VARCHAR(40) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    draft JSON NOT NULL,
+    published JSON NULL,
+    rev INT UNSIGNED NOT NULL,
+    published_rev INT UNSIGNED NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL,
+    updated_by VARCHAR(128) NOT NULL,
+    published_at BIGINT UNSIGNED NULL,
+    published_by VARCHAR(128) NULL
+  ) ENGINE=InnoDB`,
+  // Pictures for those pages, named by the SHA-256 of their bytes: the same file uploaded twice is
+  // one row, and a URL never changes content, so it can be cached forever.
+  `CREATE TABLE IF NOT EXISTS landing_assets (
+    id CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    mime_type VARCHAR(32) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    size_bytes INT UNSIGNED NOT NULL,
+    created_by VARCHAR(128) NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
 ]

@@ -3,7 +3,7 @@ import type { RowDataPacket } from 'mysql2/promise'
 import { DatabaseService } from '../database/database.service'
 import type { StaffActor } from './admin.guard'
 
-export type AuditTarget = 'user' | 'contribution' | 'mail' | 'setting' | 'role' | 'ai'
+export type AuditTarget = 'user' | 'contribution' | 'mail' | 'setting' | 'role' | 'ai' | 'landing'
 
 export interface AuditFilter { actorId?: string; targetType?: AuditTarget; targetId?: string }
 

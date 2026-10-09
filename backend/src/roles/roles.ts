@@ -4,12 +4,12 @@ export type Role = (typeof ROLES)[number]
 export const PERMISSIONS = [
   'dashboard.view', 'tools.view', 'contributions.review',
   'users.view', 'users.manage', 'plans.manage', 'mail.view', 'mail.test', 'ai.view', 'ai.manage',
-  'settings.manage', 'roles.manage', 'audit.view',
+  'settings.manage', 'roles.manage', 'audit.view', 'landings.manage',
 ] as const
 export type Permission = (typeof PERMISSIONS)[number]
 
 const REVIEWER: Permission[] = ['dashboard.view', 'tools.view', 'contributions.review']
-const ADMIN: Permission[] = [...REVIEWER, 'users.view', 'users.manage', 'plans.manage', 'mail.view', 'mail.test', 'ai.view', 'ai.manage']
+const ADMIN: Permission[] = [...REVIEWER, 'users.view', 'users.manage', 'plans.manage', 'mail.view', 'mail.test', 'ai.view', 'ai.manage', 'landings.manage']
 
 /** Code checks permissions, never role names, so a new role is one line here. */
 export const ROLE_PERMISSIONS: Record<Role, readonly Permission[]> = {
