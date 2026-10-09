@@ -7,6 +7,10 @@ app **độc lập về code** (NestJS 12 + Fastify + MySQL/InnoDB, database ri�
 phục vụ bản Free của Chuyện Nhỏ; nằm chung repo Git `doc-tools` với frontend (`../frontend`),
 nối qua HTTP — không workspace, không `file:` dependency. **Tuyệt đối không trỏ app này vào database ERPCons.**
 
+Server (cũ và mới) chạy **MariaDB**; MySQL/MariaDB không khác gì với app (`mysql2`, SQL thô) —
+"MySQL" trong tài liệu nghĩa là "tương thích MySQL". Đừng dùng cú pháp chỉ có ở MySQL (vd. collation
+`utf8mb4_0900_ai_ci`).
+
 ## Lệnh
 
 ```bash

@@ -4,7 +4,7 @@ Repo độc lập cho API thống kê lượt mở, kho quy tắc có chữ ký 
 
 ## Chạy local
 
-Yêu cầu Node.js 24+, npm 11+ và MySQL 8.4. Chạy các lệnh ngay trong repo backend:
+Yêu cầu Node.js 24+, npm 11+ và MariaDB (hoặc MySQL tương thích). Chạy các lệnh ngay trong repo backend:
 
 ```sh
 npm ci
