@@ -1,4 +1,5 @@
 import { translate } from '@/i18n/runtime'
+import { formatSeconds } from './video-format'
 import type { VideoMetadata, VideoOptions } from '../types/video.types'
 
 export const VIDEO_LIMITS = { bytes: 100 * 1024 * 1024, duration: 600, pixels: 3840 * 2160, gifDuration: 20 } as const
@@ -29,7 +30,7 @@ export function validateVideoOptions(options: VideoOptions, metadata?: VideoMeta
   if (options.action === 'audio' && !['mp3', 'm4a', 'wav'].includes(options.format)) throw new Error(translate('video:errors.badAudioFormat'))
   if (options.action === 'gif' || options.action === 'trim') {
     if (!Number.isFinite(options.start) || !Number.isFinite(options.end) || options.start < 0 || options.end <= options.start) throw new Error(translate('video:errors.badRange'))
-    if (metadata && options.end > metadata.duration + 0.001) throw new Error(translate('video:errors.endPastDuration', { seconds: metadata.duration.toFixed(2) }))
+    if (metadata && options.end > metadata.duration + 0.001) throw new Error(translate('video:errors.endPastDuration', { seconds: formatSeconds(metadata.duration) }))
     if (options.action === 'gif' && (options.end - options.start > VIDEO_LIMITS.gifDuration || ![320, 480, 640].includes(options.width) || ![8, 12, 15].includes(options.fps))) throw new Error(translate('video:errors.gifLimits'))
   }
   if (metadata && options.action === 'audio' && !metadata.hasAudio) throw new Error(translate('video:errors.noAudio'))

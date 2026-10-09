@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
-import { ToolBoard } from '@/features/tools/hub'
+import { PrintPortal, ToolBoard } from '@/features/tools/hub'
 import { buildMonthGrid, HolidayLayerToggles, holidaysInRange, MonthCalendar, shiftMonth, useHolidayLayers, type Holiday } from '@/features/tools/vietnam'
 import { FamilyAgenda } from '../components/FamilyAgenda'
 import { FamilyDayPanel } from '../components/FamilyDayPanel'
@@ -23,7 +23,7 @@ const VIEWS: View[] = ['calendar', 'list', 'members', 'backup', 'safety']
 export default function FamilyCalendarPage() {
   // `vietnam` chứa tên ngày lễ mà holidaysInRange đọc qua translateKey.
   const { t } = useTranslation(['family', 'vietnam'])
-  const { space, error, saving, update, replace } = useFamilySpace()
+  const { space, error, saving, dropped, update, restore: restoreSpace } = useFamilySpace()
   const { layers, toggle } = useHolidayLayers()
   const [today] = useState(todayInVietnam)
   const [view, setView] = useState<View>('calendar')
@@ -44,7 +44,8 @@ export default function FamilyCalendarPage() {
     }
     return map
   }, [grid, layers])
-  const eventsByDate = useMemo(() => new Map(space && viewer ? grid.map((cell) => [cell.date, eventsForDate(space, cell.date, viewer.id)]) : []), [grid, space, viewer])
+  // Việc lặp hằng ngày (uống thuốc…) xếp cuối ô: nếu đứng đầu, nó chiếm chỗ hiển thị mọi ngày và đẩy lịch một lần vào "+N".
+  const eventsByDate = useMemo(() => new Map(space && viewer ? grid.map((cell) => [cell.date, eventsForDate(space, cell.date, viewer.id).sort((a, b) => Number(a.recurrence === 'daily') - Number(b.recurrence === 'daily'))]) : []), [grid, space, viewer])
 
   if (!space || !viewer) return <p role={error ? 'alert' : 'status'}>{error || t('page.loading')}</p>
   const senior = viewer.profile === 'SENIOR'
@@ -75,18 +76,19 @@ export default function FamilyCalendarPage() {
   const addSos = (sos: PendingSos) => update((current) => ({ ...current, sosQueue: [...current.sosQueue, sos], updatedAt: touch() }))
   const markSafe = (id: string) => update((current) => ({ ...current, sosQueue: current.sosQueue.map((sos) => sos.id === id ? { ...sos, status: 'SAFE' } : sos), updatedAt: touch() }))
   const updateLocation = (id: string, lastKnown: NonNullable<PendingSos['lastKnown']>) => update((current) => ({ ...current, sosQueue: current.sosQueue.map((sos) => sos.id === id ? { ...sos, lastKnown } : sos), updatedAt: touch() }))
-  const restore = async (next: typeof space) => { await replace(next); setViewerId(next.members[0]?.id ?? ''); setEditor(null); setView('calendar') }
+  const restore = async (next: typeof space) => { await restoreSpace(next); setViewerId(next.members[0]?.id ?? ''); setEditor(null); setView('calendar') }
   const print = (includeSensitive: boolean) => { setPrintSensitive(includeSensitive); requestAnimationFrame(() => window.print()) }
   const changeView = (next: View) => { setView(next); setEditor(null) }
 
   const form = editor ? <FamilyEventForm key={editor.key} members={space.members} draft={editor.draft} editing={editor.editing} onSave={saveEvent} onCancel={() => setEditor(null)} disabled={saving} /> : null
 
   return <>
-    <style>{`.family-print-only { display: none; } @media print { body * { visibility: hidden !important; } .family-print-only, .family-print-only * { visibility: visible !important; } .family-print-only { display: block !important; position: absolute; left: 0; top: 0; width: 100%; color: #111; background: white; } @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
+    <style>{`@media print { @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
     <ToolBoard>
       <div className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
         <p className="cn-family-storage"><Trans ns="family" i18nKey="page.storage" values={{ events: space.events.length, members: space.members.length }} components={{ strong: <strong /> }} /></p>
         {error ? <p role="alert">{error}</p> : null}
+        {dropped ? <p role="alert">{t('space.droppedItems', { total: dropped })}</p> : null}
         {notificationPermission === 'default' ? <div className="mb-3"><Button variant="outline-secondary" size="sm" onClick={() => void Notification.requestPermission().then(setNotificationPermission)}>{t('page.enableNotifications')}</Button></div> : null}
         {reminders.alerts.length ? <div className="erp-tool-panel mb-3" role="status"><strong>{t('page.remindersTitle')}</strong>{reminders.alerts.map((alert) => <div key={alert.key} className="d-flex justify-content-between gap-2 mt-2"><span>{alert.title} · {alert.date} {alert.time}</span><Button size="sm" variant="outline-secondary" onClick={() => reminders.dismiss(alert.key)}>{t('page.seen')}</Button></div>)}</div> : null}
         <div className="cn-family-toolbar family-no-print">
@@ -110,7 +112,7 @@ export default function FamilyCalendarPage() {
         {view === 'backup' ? <FamilyPortability space={space} onRestore={restore} onPrint={print} disabled={saving} /> : null}
         {view === 'safety' ? <FamilySafety space={space} onAddContact={addContact} onSos={addSos} onSafe={markSafe} onLocation={updateLocation} disabled={saving} /> : null}
       </div>
-      <FamilyPrint space={space} today={today} viewerId={viewer.id} includeSensitive={printSensitive} />
     </ToolBoard>
+    <PrintPortal><FamilyPrint space={space} today={today} viewerId={viewer.id} includeSensitive={printSensitive} /></PrintPortal>
   </>
 }

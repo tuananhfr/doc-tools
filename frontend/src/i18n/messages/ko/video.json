@@ -46,7 +46,8 @@
     "light": "약하게 · 화질 우선",
     "medium": "보통 · 균형",
     "strong": "강하게 · 용량 우선",
-    "maxEdge": "긴 변 최대 길이"
+    "maxEdge": "긴 변 최대 길이",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "오디오 추출",

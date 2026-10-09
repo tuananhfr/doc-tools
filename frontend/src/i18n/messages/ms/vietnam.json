@@ -97,7 +97,10 @@
     "rulesNone": "Belum ada set padanan alamat yang ditandatangani dan masih berkuat kuasa dalam sistem.",
     "manualLabel": "Atau masukkan sendiri, satu setiap baris: “wilayah lama|daerah lama|komun lama|wilayah baharu|komun baharu”",
     "manualInvalid": "Format jadual padanan salah (setiap baris perlu 5 bahagian, setiap bahagian maksimum 150 aksara) atau ada wilayah lama yang dipadankan kepada dua wilayah baharu yang berbeza.",
-    "csvFileName": "penukaran-alamat"
+    "csvFileName": "penukaran-alamat",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "Tidak dapat membaca fail XML.",
       "doctype": "XML mengisytiharkan entiti atau DOCTYPE yang tidak disokong.",
       "invalid": "Fail XML tidak sah.",
-      "noCommon": "Blok maklumat am invois tidak ditemui."
+      "noCommon": "Blok maklumat am invois tidak ditemui.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "Invois",
     "noNumber": "Tiada nombor",
@@ -128,7 +132,9 @@
       "name": "Barangan, perkhidmatan",
       "quantity": "Kuantiti",
       "amount": "Amaun"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "Teks selepas penukaran",
@@ -146,7 +152,8 @@
       "upper": "HURUF BESAR"
     },
     "contentLabel": "Kandungan",
-    "placeholder": "Tampal teks yang hendak ditukar…"
+    "placeholder": "Tampal teks yang hendak ditukar…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "Dalam perkataan",

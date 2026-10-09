@@ -46,13 +46,16 @@
       "noDraft": "ຍັງບໍ່ມີສະບັບຮ່າງທີ່ໃຊ້ໄດ້.",
       "opened": "ເປີດສະບັບຮ່າງແລ້ວ.",
       "unreadable": "ອ່ານສະບັບຮ່າງບໍ່ໄດ້.",
-      "cleared": "ລຶບສະບັບຮ່າງໃນອຸປະກອນແລ້ວ."
+      "cleared": "ລຶບສະບັບຮ່າງໃນອຸປະກອນແລ້ວ.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "ກວດເບິ່ງຂໍ້ມູນໃຫ້ລະອຽດກ່ອນສົ່ງ. ສະບັບຮ່າງຈະບັນທຶກໃນອຸປະກອນເມື່ອທ່ານກົດ ບັນທຶກ ເທົ່ານັ້ນ; ຮູບບໍ່ຖືກບັນທຶກ.",
     "print": {
       "kicker": "ຊີວະປະຫວັດຫຍໍ້",
       "summary": "ແນະນຳຕົວ"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "ຂຽນແບບຟອມເອກະສານ",
@@ -132,6 +135,13 @@
         "giver": "ຝ່າຍມອບ"
       },
       "signHint": "(ລາຍເຊັນ ແລະ ຊື່ ນາມສະກຸນ)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

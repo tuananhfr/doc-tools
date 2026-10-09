@@ -21,12 +21,13 @@ page.on('request', request => {
 await context.route('**/api/v1/tools/**', route => route.fulfill({ json: { ok: true, total: 0 } }))
 const report = { target: site, actor: 'anonymous Free user', environment: 'local production preview', counterApi: 'mocked', viewports: [], checks: [], limitations: ['Synthetic printed Vietnamese fixture; real handwriting and physical phones are not covered'] }
 
-async function home() { await page.goto(site + '/', { waitUntil: 'networkidle' }) }
+// `/` is the landing page; search and the category directory both live on `/cong-cu`.
+async function home() { await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' }) }
 async function find(query, slug) {
   await home()
-  await page.locator('#cn-home-search').fill(query)
-  await page.waitForFunction(expected => document.querySelector('#erp-tools-grid .erp-tool-card')?.getAttribute('href') === expected, '/' + slug)
-  await page.locator('#erp-tools-grid .erp-tool-card').first().click()
+  await page.locator('#tim-cong-cu').fill(query)
+  await page.waitForFunction(expected => document.querySelector('.erp-tools-grid .erp-tool-card')?.getAttribute('href') === expected, '/' + slug)
+  await page.locator('.erp-tools-grid .erp-tool-card').first().click()
   await page.waitForURL('**/' + slug)
   await page.locator('input[type=file]').first().waitFor({ state: 'attached' })
 }
@@ -92,20 +93,19 @@ try {
   await find('nen pfd gui zalo', 'nen-pdf')
   report.checks.push('typo -> compress PDF')
   await home()
-  await page.locator('#cn-home-search').fill('ghep pdf')
-  await page.waitForFunction(() => document.querySelector('#erp-tools-grid .erp-tool-card')?.getAttribute('href') === '/ghep-pdf')
+  await page.locator('#tim-cong-cu').fill('ghep pdf')
+  await page.waitForFunction(() => document.querySelector('.erp-tools-grid .erp-tool-card')?.getAttribute('href') === '/ghep-pdf')
   for (const [width, height] of [[1440, 900], [768, 1024], [390, 844], [320, 780]]) {
     await page.setViewportSize({ width, height })
-    await page.locator('#cn-home-search').focus()
+    await page.locator('#tim-cong-cu').focus()
     await capture(`search-${width}`)
   }
-  await page.locator('#cn-home-search').fill('đặt vé máy bay')
+  await page.locator('#tim-cong-cu').fill('đặt vé máy bay')
   await page.getByText('Không tìm thấy công cụ nào', { exact: true }).waitFor()
-  assert.equal(await page.locator('#erp-tools-grid').count(), 0)
+  assert.equal(await page.locator('.erp-tools-grid').count(), 0)
   report.checks.push('unsupported need -> no result')
   await page.setViewportSize({ width: 1440, height: 900 })
   await home()
-  await page.locator('.cn-catalog-all').click()
   await page.getByRole('button', { name: 'Tài liệu', exact: true }).click()
   await page.locator('.erp-tool-card').filter({ hasText: 'Lấy chữ từ bản scan' }).click()
   await page.waitForURL('**/ocr-van-ban')

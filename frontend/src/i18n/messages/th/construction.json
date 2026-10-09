@@ -37,6 +37,7 @@
     },
     "turnkey": "ราคาต่อหน่วยที่สองเป็นแบบเหมารวม ซึ่งรวมงานโครงสร้างแล้ว",
     "editFactors": "แก้ค่าสัมประสิทธิ์ตามใบเสนอราคาของผู้รับเหมา",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

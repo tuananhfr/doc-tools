@@ -1,6 +1,6 @@
 {
   "messageRisk": {
-    "levelHigh": "Several warning signs",
+    "levelHigh": "High risk — don't act on this content",
     "levelMedium": "Some warning signs",
     "levelLow": "No signs found by the rule set",
     "result": "Screening result",
@@ -12,7 +12,8 @@
     "messageLabel": "Message text",
     "linkPlaceholder": "Paste the link — no need to open it…",
     "messagePlaceholder": "Paste the suspicious message…",
-    "privacy": "Content is analyzed on your device; the tool never visits the link you paste."
+    "privacy": "Content is analyzed on your device; the tool never visits the link you paste.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "Couldn't read the link.",
@@ -30,6 +31,9 @@
     "easyJob": "Offers easy, high-paying work or online tasks.",
     "urgentTransfer": "Urges you to transfer or top up money quickly.",
     "installApp": "Asks you to install an app from the message.",
-    "link": "Link {{link}}: {{flags}}"
+    "link": "Link {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

@@ -120,7 +120,13 @@
     "defaultsNote": "Secara default, ICS dan PDF tidak menyertakan jadwal pribadi dan sensitif. Cadangan selalu berisi data lengkap; simpan file di tempat yang Anda percayai.",
     "restoreLabel": "Pulihkan dari cadangan JSON",
     "inspected": "Terbaca: {{members}} anggota, {{events}} jadwal, {{reminders}} pengingat. Kode keluarga: {{id}}.",
-    "restoreThis": "Pulihkan cadangan ini"
+    "restoreThis": "Pulihkan cadangan ini",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "Masukkan nama dan nomor telepon yang valid.",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "Data di perangkat tidak dapat dibuka. Periksa izin penyimpanan browser.",
     "saveFailed": "Perubahan tidak dapat disimpan. Ekspor cadangan dan periksa ruang penyimpanan perangkat.",
-    "restoreFailed": "Cadangan tidak dapat dipulihkan."
+    "restoreFailed": "Cadangan tidak dapat dipulihkan.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "Kalender Keluarga · 30 hari ke depan",

@@ -120,7 +120,13 @@
     "defaultsNote": "ICS 和 PDF 默认不含私密、敏感日程。备份始终包含全部数据；请把文件保存在你信任的地方。",
     "restoreLabel": "从 JSON 备份恢复",
     "inspected": "已读取：{{members}} 位成员、{{events}} 个日程、{{reminders}} 条提醒。家庭编号：{{id}}。",
-    "restoreThis": "恢复此备份"
+    "restoreThis": "恢复此备份",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "请输入有效的姓名和电话号码。",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "无法打开设备上的数据。请检查浏览器的存储权限。",
     "saveFailed": "无法保存修改。请导出备份并检查设备存储空间。",
-    "restoreFailed": "无法恢复备份。"
+    "restoreFailed": "无法恢复备份。",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "家庭日历 · 未来 30 天",

@@ -120,7 +120,13 @@
     "defaultsNote": "តាមលំនាំដើម ICS និង PDF មិនរួមបញ្ចូលការណាត់ឯកជន និងរសើបទេ។ ឯកសារបម្រុងទុកតែងតែមានទិន្នន័យពេញលេញ សូមរក្សាឯកសារនៅកន្លែងដែលអ្នកទុកចិត្ត។",
     "restoreLabel": "ស្តារពីឯកសារបម្រុងទុក JSON",
     "inspected": "បានអាន៖ សមាជិក {{members}} ការណាត់ {{events}} ការរំលឹក {{reminders}}។ លេខកូដគ្រួសារ៖ {{id}}។",
-    "restoreThis": "ស្តារកំណែនេះ"
+    "restoreThis": "ស្តារកំណែនេះ",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "សូមបញ្ចូលឈ្មោះ និងលេខទូរសព្ទត្រឹមត្រូវ។",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "មិនអាចបើកទិន្នន័យលើឧបករណ៍បានទេ។ សូមពិនិត្យសិទ្ធិផ្ទុករបស់កម្មវិធីរុករក។",
     "saveFailed": "មិនអាចរក្សាទុកការផ្លាស់ប្តូរបានទេ។ សូមនាំចេញឯកសារបម្រុងទុក ហើយពិនិត្យទំហំផ្ទុករបស់ឧបករណ៍។",
-    "restoreFailed": "មិនអាចស្តារឯកសារបម្រុងទុកបានទេ។"
+    "restoreFailed": "មិនអាចស្តារឯកសារបម្រុងទុកបានទេ។",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "ប្រតិទិនគ្រួសារ · 30 ថ្ងៃខាងមុខ",

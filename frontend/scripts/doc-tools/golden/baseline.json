@@ -1590,7 +1590,7 @@
       "output": {
         "title": "Đã lưu ảnh có số đo",
         "labels": [
-          "641 px"
+          "640 px"
         ],
         "file": {
           "name": "anh-hien-truong - đã đo.jpg",
@@ -2773,7 +2773,8 @@
         "between": {
           "value": "30 ngày",
           "notes": [
-            "= 4 tuần 2 ngày"
+            "= 4 tuần 2 ngày",
+            "Không có ngày lễ lớn nào trong khoảng này."
           ],
           "rows": [
             "21 ngày | Ngày làm việc (Thứ Hai – Thứ Sáu)",
@@ -2786,7 +2787,8 @@
           "value": "Thứ Sáu, 16/10/2026",
           "notes": [
             "= 02/10/2026 + 10 ngày làm việc",
-            "Tức 14 ngày lịch."
+            "Tức 14 ngày lịch.",
+            "Không có ngày lễ lớn nào trong khoảng này."
           ],
           "rows": []
         }

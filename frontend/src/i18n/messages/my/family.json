@@ -120,7 +120,13 @@
     "defaultsNote": "ICS နှင့် PDF တွင် ပုံမှန်အားဖြင့် ကိုယ်ပိုင်၊ ထိခိုက်လွယ်သော အစီအစဉ်များကို ချန်ထားပါသည်။ အရန်ဖိုင်တွင် ဒေတာအားလုံး အမြဲပါဝင်သဖြင့် ယုံကြည်ရသော နေရာတွင် သိမ်းထားပါ။",
     "restoreLabel": "JSON အရန်ဖိုင်မှ ပြန်ယူရန်",
     "inspected": "ဖတ်ပြီး- အဖွဲ့ဝင် {{members}} ဦး၊ အစီအစဉ် {{events}} ခု၊ သတိပေးချက် {{reminders}} ခု။ မိသားစုကုဒ်- {{id}}။",
-    "restoreThis": "ဤဖိုင်ကို ပြန်ယူရန်"
+    "restoreThis": "ဤဖိုင်ကို ပြန်ယူရန်",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "မှန်ကန်သော အမည်နှင့် ဖုန်းနံပါတ် ထည့်ပါ။",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "စက်ပေါ်ရှိ ဒေတာကို ဖွင့်၍ မရပါ။ ဘရောက်ဇာ၏ သိုလှောင်ခွင့်ကို စစ်ဆေးပါ။",
     "saveFailed": "ပြောင်းလဲမှုများကို သိမ်း၍ မရပါ။ အရန်ဖိုင် ထုတ်ယူပြီး စက်၏ သိုလှောင်နေရာကို စစ်ဆေးပါ။",
-    "restoreFailed": "အရန်ဖိုင်ကို ပြန်ယူ၍ မရပါ။"
+    "restoreFailed": "အရန်ဖိုင်ကို ပြန်ယူ၍ မရပါ။",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "မိသားစု ပြက္ခဒိန် · နောက် ရက် 30",

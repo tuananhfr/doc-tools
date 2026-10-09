@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import type { FamilyCategory, FamilyDataClass, FamilyEvent, FamilyMember, FamilyReminder, FamilyScope, Recurrence } from '../core/family'
+import { newId } from '@/utils/id'
 
 export interface FamilyEventDraft { date: string; title?: string; recurrence?: Recurrence; hint?: string }
 interface Props {
@@ -39,8 +40,8 @@ export function FamilyEventForm({ members, onSave, onCancel, disabled, draft, ed
     if (reminderMinutes !== '' && (!time || !Number.isInteger(Number(reminderMinutes)) || Number(reminderMinutes) < 0 || Number(reminderMinutes) > 1440)) { setError(t('form.reminderInvalid')); return }
     const timestamp = new Date().toISOString()
     // Sửa thì giữ nguyên id, ngày tạo và các lần đã đánh dấu xong: spec yêu cầu ID không đổi.
-    const event: FamilyEvent = { id: source?.id ?? crypto.randomUUID(), title: title.trim(), date, time, notes: notes.trim(), category, recurrence, scope, dataClass, memberIds: memberId ? [memberId] : [], completedDates: source?.completedDates ?? [], createdAt: source?.createdAt ?? timestamp, updatedAt: timestamp }
-    const reminder: FamilyReminder | null = reminderMinutes === '' ? null : { id: editing?.reminder?.id ?? crypto.randomUUID(), eventId: event.id, minutesBefore: Number(reminderMinutes), recipientMemberIds: event.memberIds, hideDetails: dataClass === 'SENSITIVE' }
+    const event: FamilyEvent = { id: source?.id ?? newId(), title: title.trim(), date, time, notes: notes.trim(), category, recurrence, scope, dataClass, memberIds: memberId ? [memberId] : [], completedDates: source?.completedDates ?? [], createdAt: source?.createdAt ?? timestamp, updatedAt: timestamp }
+    const reminder: FamilyReminder | null = reminderMinutes === '' ? null : { id: editing?.reminder?.id ?? newId(), eventId: event.id, minutesBefore: Number(reminderMinutes), recipientMemberIds: event.memberIds, hideDetails: dataClass === 'SENSITIVE' }
     try { await onSave(event, reminder); setError('') }
     catch { setError(t('form.saveFailed')) }
   }

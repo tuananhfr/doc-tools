@@ -59,3 +59,11 @@ export function vniToUnicode(input: string): string {
 export function removeVietnameseMarks(input: string): string {
   return input.normalize('NFD').replace(/\p{Mn}/gu, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').normalize('NFC')
 }
+
+// Chữ chỉ có trong tiếng Việt Unicode (ă đ ĩ ũ ơ ư + khối U+1EA0–1EF9) hoặc dấu tổ hợp. TCVN3/VNI chỉ dùng
+// ký tự ≤ U+00FF nên văn bản mã cũ không bao giờ chứa chúng; chuyển nhầm văn bản Unicode là hỏng dấu.
+const UNICODE_VIETNAMESE = /[ĂăĐđĨĩŨũƠơƯưẠ-ỹ̀-̣̃̉]/u
+
+export function isUnicodeVietnamese(input: string): boolean {
+  return UNICODE_VIETNAMESE.test(input)
+}

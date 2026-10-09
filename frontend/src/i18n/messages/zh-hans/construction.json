@@ -37,6 +37,7 @@
     },
     "turnkey": "第二个单价是全包价，已含毛坯部分",
     "editFactors": "按施工方报价修改系数",
-    "factorLabel": "{{label}}（%）"
+    "factorLabel": "{{label}}（%）",
+    "fixField": "Check the field “{{field}}”."
   }
 }

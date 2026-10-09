@@ -15,7 +15,8 @@
     "download": ".txt 다운로드",
     "interrupted": "음성 인식이 중단됐어요. 마이크 권한을 확인하고 다시 시도해 주세요.",
     "micFailed": "마이크를 열 수 없어요. 브라우저의 접근 권한을 확인해 주세요.",
-    "fileName": "음성 받아쓰기"
+    "fileName": "음성 받아쓰기",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "이 브라우저는 카메라를 지원하지 않아요.",
@@ -33,7 +34,9 @@
     "freeze": "화면 정지",
     "contrastOff": "대비 끄기",
     "contrastOn": "대비 높이기",
-    "closeCamera": "카메라 끄기"
+    "closeCamera": "카메라 끄기",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "기기에서 읽기",
@@ -43,6 +46,9 @@
     "unsupported": "이 브라우저는 텍스트 읽기를 지원하지 않아요.",
     "title": "읽을 텍스트",
     "content": "내용",
-    "rate": "속도: {{rate}}×"
+    "rate": "속도: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

@@ -132,7 +132,8 @@
     "allowModify": "Benarkan penyuntingan",
     "ownerPassword": "Kata laluan pemilik berasingan (simpan untuk membuang sekatan)",
     "protectNote": "Jika terlupa kata laluan, alat ini tidak dapat memulihkannya. Hantar kata laluan melalui saluran yang berbeza daripada fail.",
-    "removeNote": "Buang kunci hanya untuk fail milik anda atau yang anda dibenarkan memprosesnya. Untuk fail yang disekat kebenarannya, kata laluan pemilik diperlukan."
+    "removeNote": "Buang kunci hanya untuk fail milik anda atau yang anda dibenarkan memprosesnya. Untuk fail yang disekat kebenarannya, kata laluan pemilik diperlukan.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "Tidak dapat menetapkan kata laluan. Fail mungkin sudah dikunci atau rosak.",
     "restricted": "Fail ini menyekat penyuntingan. Kata laluan pemilik fail diperlukan.",
     "wrong": "Kata laluan tidak betul.",
-    "removeFailed": "Tidak dapat membuang kata laluan."
+    "removeFailed": "Tidak dapat membuang kata laluan.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "belum ada garisan tandatangan.",

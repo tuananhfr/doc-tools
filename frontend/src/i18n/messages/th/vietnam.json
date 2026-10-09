@@ -97,7 +97,10 @@
     "rulesNone": "ยังไม่มีชุดข้อมูลเทียบที่อยู่ที่ลงนามแล้วและยังมีผลในระบบ",
     "manualLabel": "หรือกรอกเอง บรรทัดละรายการ: “จังหวัดเดิม|อำเภอเดิม|ตำบลเดิม|จังหวัดใหม่|ตำบลใหม่”",
     "manualInvalid": "ตารางเทียบมีรูปแบบไม่ถูกต้อง (แต่ละบรรทัดต้องมีครบ 5 ส่วน แต่ละส่วนไม่เกิน 150 อักขระ) หรือมีจังหวัดเดิมที่ถูกระบุไปยังจังหวัดใหม่สองแห่งที่ต่างกัน",
-    "csvFileName": "แปลงที่อยู่"
+    "csvFileName": "แปลงที่อยู่",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "อ่านไฟล์ XML ไม่ได้",
       "doctype": "XML มีการประกาศ entity หรือ DOCTYPE ที่ไม่รองรับ",
       "invalid": "ไฟล์ XML ไม่ถูกต้อง",
-      "noCommon": "ไม่พบส่วนข้อมูลทั่วไปของใบกำกับภาษี"
+      "noCommon": "ไม่พบส่วนข้อมูลทั่วไปของใบกำกับภาษี",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "ใบกำกับภาษี",
     "noNumber": "ไม่มีเลขที่",
@@ -128,7 +132,9 @@
       "name": "สินค้า บริการ",
       "quantity": "จำนวน",
       "amount": "เป็นเงิน"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "ข้อความหลังแปลง",
@@ -146,7 +152,8 @@
       "upper": "ตัวพิมพ์ใหญ่"
     },
     "contentLabel": "เนื้อหา",
-    "placeholder": "วางข้อความที่ต้องการแปลง…"
+    "placeholder": "วางข้อความที่ต้องการแปลง…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "ตัวอักษร (ภาษาเวียดนาม)",

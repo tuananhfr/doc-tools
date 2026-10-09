@@ -120,7 +120,13 @@
     "defaultsNote": "ICS dan PDF secara lalai tidak menyertakan acara peribadi dan sensitif. Sandaran sentiasa mengandungi semua data; simpan fail di tempat yang anda percayai.",
     "restoreLabel": "Pulihkan daripada sandaran JSON",
     "inspected": "Telah dibaca: {{members}} ahli, {{events}} acara, {{reminders}} peringatan. Kod keluarga: {{id}}.",
-    "restoreThis": "Pulihkan sandaran ini"
+    "restoreThis": "Pulihkan sandaran ini",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "Masukkan nama dan nombor telefon yang sah.",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "Tidak dapat membuka data pada peranti ini. Semak kebenaran storan pelayar anda.",
     "saveFailed": "Tidak dapat menyimpan perubahan. Eksport sandaran dan semak ruang storan peranti.",
-    "restoreFailed": "Tidak dapat memulihkan sandaran."
+    "restoreFailed": "Tidak dapat memulihkan sandaran.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "Kalendar Keluarga · 30 hari akan datang",

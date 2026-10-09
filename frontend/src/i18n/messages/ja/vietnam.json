@@ -97,7 +97,10 @@
     "rulesNone": "システム上に、有効な署名済み住所照合データはまだありません。",
     "manualLabel": "または手動で入力（1行ずつ「旧省|旧県|旧社|新省|新社」）",
     "manualInvalid": "照合表の形式が正しくないか（各行5項目、各項目150文字まで）、同じ旧省が異なる2つの新省に割り当てられています。",
-    "csvFileName": "住所変換"
+    "csvFileName": "住所変換",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "XMLファイルを読み込めません。",
       "doctype": "XMLに未対応のエンティティ宣言または DOCTYPE が含まれています。",
       "invalid": "XMLファイルが正しくありません。",
-      "noCommon": "請求書の共通情報ブロックが見つかりません。"
+      "noCommon": "請求書の共通情報ブロックが見つかりません。",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "請求書",
     "noNumber": "番号なし",
@@ -128,7 +132,9 @@
       "name": "商品・サービス",
       "quantity": "数量",
       "amount": "金額"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "変換後のテキスト",
@@ -146,7 +152,8 @@
       "upper": "大文字"
     },
     "contentLabel": "内容",
-    "placeholder": "変換するテキストを貼り付け…"
+    "placeholder": "変換するテキストを貼り付け…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "文字表記",

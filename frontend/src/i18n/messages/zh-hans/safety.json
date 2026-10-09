@@ -12,7 +12,8 @@
     "messageLabel": "短信内容",
     "linkPlaceholder": "粘贴链接，无需打开…",
     "messagePlaceholder": "粘贴可疑短信…",
-    "privacy": "内容在本机分析；工具不会访问你粘贴的链接。"
+    "privacy": "内容在本机分析；工具不会访问你粘贴的链接。",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "无法读取该链接。",
@@ -30,6 +31,9 @@
     "easyJob": "招揽“轻松高薪”工作或网上任务。",
     "urgentTransfer": "催促紧急转账或充值。",
     "installApp": "要求从短信中安装应用。",
-    "link": "链接 {{link}}：{{flags}}"
+    "link": "链接 {{link}}：{{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

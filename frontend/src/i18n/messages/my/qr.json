@@ -244,7 +244,16 @@
     "amount": "ငွေပမာဏ (đ)၊ ကွက်လပ်ထားနိုင်သည်",
     "note": "ငွေလွှဲ မှတ်ချက်",
     "privacy": "ကုဒ်ကို သင့်စက်ပေါ်တွင် ဖန်တီးသည်။ အကောင့်အချက်အလက်ကို Chuyện Nhỏ ဆာဗာသို့ မပို့ပါ။",
-    "fieldTooLong": "QR အကွက် အလွန်ရှည်နေသည်"
+    "fieldTooLong": "QR အကွက် အလွန်ရှည်နေသည်",
+    "binError": "The BIN must be exactly 6 digits.",
+    "accountDigits": "The account number may contain digits only.",
+    "accountLength": "The account number must be 4 to 30 digits long.",
+    "amountInvalid": "Couldn't read the amount. Example: 150.000",
+    "amountInteger": "The amount must be a whole number of đồng.",
+    "amountRange": "The amount must be between 1 đ and 999.999.999.999 đ.",
+    "amountUnderstood": "Read as {{value}} đ",
+    "noteCounter": "{{used}}/{{max}} characters (accents and symbols removed)",
+    "noteTooLong": "The message is over {{max}} characters after removing accents — shorten it; no code was created."
   },
   "trace": {
     "title": "ERPCons ခြေရာခံခြင်း",

@@ -120,7 +120,13 @@
     "defaultsNote": "ICS ແລະ PDF ຕາມຄ່າເລີ່ມຕົ້ນຈະບໍ່ລວມລາຍການສ່ວນຕົວ, ລະອຽດອ່ອນ. ໄຟລ໌ສຳຮອງມີຂໍ້ມູນຄົບຖ້ວນສະເໝີ; ເກັບໄຟລ໌ໄວ້ບ່ອນທີ່ທ່ານໄວ້ວາງໃຈ.",
     "restoreLabel": "ກູ້ຄືນຈາກໄຟລ໌ສຳຮອງ JSON",
     "inspected": "ອ່ານແລ້ວ: {{members}} ສະມາຊິກ, {{events}} ລາຍການ, {{reminders}} ການແຈ້ງເຕືອນ. ລະຫັດຄອບຄົວ: {{id}}.",
-    "restoreThis": "ກູ້ຄືນສະບັບນີ້"
+    "restoreThis": "ກູ້ຄືນສະບັບນີ້",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "ໃສ່ຊື່ ແລະ ເບີໂທລະສັບທີ່ຖືກຕ້ອງ.",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "ເປີດຂໍ້ມູນໃນອຸປະກອນບໍ່ໄດ້. ກວດສອບສິດການເກັບຂໍ້ມູນຂອງບຣາວເຊີ.",
     "saveFailed": "ບັນທຶກການປ່ຽນແປງບໍ່ໄດ້. ກະລຸນາສົ່ງອອກໄຟລ໌ສຳຮອງ ແລະ ກວດສອບພື້ນທີ່ຂອງອຸປະກອນ.",
-    "restoreFailed": "ກູ້ຄືນໄຟລ໌ສຳຮອງບໍ່ໄດ້."
+    "restoreFailed": "ກູ້ຄືນໄຟລ໌ສຳຮອງບໍ່ໄດ້.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "ປະຕິທິນຄອບຄົວ · 30 ວັນຂ້າງໜ້າ",

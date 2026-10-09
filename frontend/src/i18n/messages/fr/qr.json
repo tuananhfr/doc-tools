@@ -262,7 +262,16 @@
     "amount": "Montant (đ), facultatif",
     "note": "Libellé du virement",
     "privacy": "Le code est créé sur votre appareil ; les informations du compte ne sont pas envoyées au serveur de Chuyện Nhỏ.",
-    "fieldTooLong": "Champ QR trop long"
+    "fieldTooLong": "Champ QR trop long",
+    "binError": "The BIN must be exactly 6 digits.",
+    "accountDigits": "The account number may contain digits only.",
+    "accountLength": "The account number must be 4 to 30 digits long.",
+    "amountInvalid": "Couldn't read the amount. Example: 150.000",
+    "amountInteger": "The amount must be a whole number of đồng.",
+    "amountRange": "The amount must be between 1 đ and 999.999.999.999 đ.",
+    "amountUnderstood": "Read as {{value}} đ",
+    "noteCounter": "{{used}}/{{max}} characters (accents and symbols removed)",
+    "noteTooLong": "The message is over {{max}} characters after removing accents — shorten it; no code was created."
   },
   "trace": {
     "title": "Traçabilité ERPCons",

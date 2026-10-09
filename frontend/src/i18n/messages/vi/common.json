@@ -206,5 +206,13 @@
         "line2": "All-in-one Experience"
       }
     }
+  },
+  "number": {
+    "understood": "Hiểu là: {{value}}",
+    "invalid": "Không đọc được con số này. Ví dụ: 1.500.000 hoặc 2,5.",
+    "integer": "Nhập số nguyên.",
+    "between": "Nhập số từ {{min}} đến {{max}}.",
+    "atLeast": "Nhập số từ {{min}} trở lên.",
+    "atMost": "Nhập số không quá {{max}}."
   }
 }

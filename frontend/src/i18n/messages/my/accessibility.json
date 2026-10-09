@@ -15,7 +15,8 @@
     "download": ".txt ဒေါင်းလုဒ်",
     "interrupted": "အသံမှတ်သားခြင်း ပြတ်တောက်သွားပါသည်။ မိုက်ခရိုဖုန်း ခွင့်ပြုချက်ကို စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။",
     "micFailed": "မိုက်ခရိုဖုန်းကို ဖွင့်၍ မရပါ။ ဘရောက်ဇာ၏ ဝင်ရောက်ခွင့်ကို စစ်ဆေးပါ။",
-    "fileName": "အသံမှစာသား"
+    "fileName": "အသံမှစာသား",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "ဤဘရောက်ဇာသည် ကင်မရာကို မပံ့ပိုးပါ။",
@@ -33,7 +34,9 @@
     "freeze": "ပုံရပ်ရန်",
     "contrastOff": "အလင်းအမှောင်ခြားနားမှု ပိတ်ရန်",
     "contrastOn": "အလင်းအမှောင်ခြားနားမှု မြှင့်ရန်",
-    "closeCamera": "ကင်မရာ ပိတ်ရန်"
+    "closeCamera": "ကင်မရာ ပိတ်ရန်",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "စက်ပေါ်တွင် ဖတ်ပြခြင်း",
@@ -43,6 +46,9 @@
     "unsupported": "ဤဘရောက်ဇာသည် စာသားဖတ်ပြခြင်းကို မပံ့ပိုးပါ။",
     "title": "ဖတ်ပြရမည့် စာသား",
     "content": "အကြောင်းအရာ",
-    "rate": "အမြန်နှုန်း- {{rate}}×"
+    "rate": "အမြန်နှုန်း- {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

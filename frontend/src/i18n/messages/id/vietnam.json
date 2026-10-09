@@ -97,7 +97,10 @@
     "rulesNone": "Belum ada tabel pencocokan alamat bertanda tangan yang masih berlaku di sistem.",
     "manualLabel": "Atau masukkan sendiri, satu per baris: “provinsi lama|distrik lama|kelurahan lama|provinsi baru|kelurahan baru”",
     "manualInvalid": "Format tabel pencocokan salah (tiap baris harus 5 bagian, tiap bagian maksimal 150 karakter) atau ada provinsi lama yang dipetakan ke dua provinsi baru yang berbeda.",
-    "csvFileName": "konversi-alamat"
+    "csvFileName": "konversi-alamat",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "File XML tidak dapat dibaca.",
       "doctype": "XML berisi deklarasi entitas atau DOCTYPE yang tidak didukung.",
       "invalid": "File XML tidak valid.",
-      "noCommon": "Blok informasi umum faktur tidak ditemukan."
+      "noCommon": "Blok informasi umum faktur tidak ditemukan.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "Faktur",
     "noNumber": "Tanpa nomor",
@@ -128,7 +132,9 @@
       "name": "Barang, jasa",
       "quantity": "Jml",
       "amount": "Jumlah harga"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "Teks setelah dikonversi",
@@ -146,7 +152,8 @@
       "upper": "HURUF KAPITAL"
     },
     "contentLabel": "Isi",
-    "placeholder": "Tempel teks yang akan dikonversi…"
+    "placeholder": "Tempel teks yang akan dikonversi…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "Terbilang",

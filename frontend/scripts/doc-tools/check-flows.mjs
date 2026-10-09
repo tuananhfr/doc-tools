@@ -54,9 +54,22 @@ async function add(list, expected) {
   await page.waitForTimeout(500)
 }
 
+/** OCR v2 dừng ở bước soát chữ trước khi có kết quả: xác nhận nguyên giá trị máy đọc rồi xuất. Công cụ khác đi thẳng. */
+async function settle(timeout) {
+  await page.locator('.cn-ocr-review, .erp-flow-result').first().waitFor({ timeout })
+  if (await page.locator('.cn-ocr-review').count()) {
+    for (let n = 0; await page.locator('.cn-ocr-review__word.needs-review').count(); n++) {
+      if (n > 500) throw new Error('bước soát OCR không kết thúc')
+      await page.getByRole('button', { name: 'Xác nhận và tiếp tục', exact: true }).click()
+    }
+    await page.getByRole('button', { name: 'Xuất kết quả đã kiểm tra', exact: true }).click()
+  }
+  await result().waitFor({ timeout })
+}
+
 async function run(timeout = 180000) {
   await runButton().click()
-  await result().waitFor({ timeout })
+  await settle(timeout)
   return { title: await page.locator('.erp-flow-result__title').innerText(), file: await page.locator('.erp-flow-result__file-name').innerText(), meta: await page.locator('.erp-flow-result__file-meta').innerText(), notes: await notes() }
 }
 
@@ -184,7 +197,7 @@ await add(['anh-van-ban.jpg'], 1)
 await runButton().click()
 await page.locator('.erp-flow-progress').waitFor({ timeout: 10000 })
 out.imageText.progress = await page.locator('.erp-flow-progress__text').innerText()
-await result().waitFor({ timeout: 300000 })
+await settle(300000)
 out.imageText.result = { title: await page.locator('.erp-flow-result__title').innerText(), file: await page.locator('.erp-flow-result__file-name').innerText(), notes: await notes() }
 const recognized = await page.locator('.erp-flow-result__text-body').inputValue()
 out.imageText.text = { chars: recognized.length, lines: recognized.split('\n').length, head: recognized.slice(0, 120) }

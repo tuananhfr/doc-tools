@@ -109,7 +109,7 @@
   "backup": {
     "invalidFile": "Tệp sao lưu không hợp lệ hoặc quá 20 MB.",
     "wrongVersion": "Không đọc được bản sao lưu đúng phiên bản.",
-    "confirmRestore": "Khôi phục gia đình {{id}} với {{count}} lịch? Dữ liệu đang dùng vẫn được giữ trong bộ nhớ thiết bị để có thể mở lại.",
+    "confirmRestore": "Khôi phục gia đình {{id}} với {{count}} lịch? Lịch đang dùng được cất vào mục “Các bản lịch đã lưu” để mở lại khi cần.",
     "restoreFailed": "Không khôi phục được. Dữ liệu đang dùng vẫn còn.",
     "title": "Sao lưu và xuất lịch",
     "intro": "Bản sao lưu JSON giữ thành viên, lịch, nhắc việc và tín hiệu SOS. Tệp ICS chỉ dùng để đưa lịch sang ứng dụng khác; không thay bản sao lưu.",
@@ -120,7 +120,13 @@
     "defaultsNote": "ICS và PDF mặc định bỏ lịch riêng tư, nhạy cảm. Bản sao lưu luôn gồm đầy đủ dữ liệu; giữ tệp ở nơi bạn tin cậy.",
     "restoreLabel": "Khôi phục từ bản sao lưu JSON",
     "inspected": "Đã đọc: {{members}} thành viên, {{events}} lịch, {{reminders}} nhắc việc. Mã gia đình: {{id}}.",
-    "restoreThis": "Khôi phục bản này"
+    "restoreThis": "Khôi phục bản này",
+    "droppedItems": "Có {{total}} mục hỏng trong tệp sẽ bị bỏ qua khi khôi phục.",
+    "confirmOpenSaved": "Mở bản lịch này ({{total}} lịch)? Lịch đang dùng vẫn được giữ trong danh sách bên dưới.",
+    "savedTitle": "Các bản lịch đã lưu trên thiết bị",
+    "savedItem": "Cập nhật {{date}} · {{members}} thành viên · {{events}} lịch",
+    "openSaved": "Mở bản này",
+    "savedEmpty": "Chưa có bản nào khác trên thiết bị này."
   },
   "safety": {
     "invalidContact": "Nhập tên và số điện thoại hợp lệ.",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "Không mở được dữ liệu trên thiết bị. Kiểm tra quyền lưu trữ của trình duyệt.",
     "saveFailed": "Không lưu được thay đổi. Hãy xuất bản sao lưu và kiểm tra dung lượng thiết bị.",
-    "restoreFailed": "Không khôi phục được bản sao lưu."
+    "restoreFailed": "Không khôi phục được bản sao lưu.",
+    "droppedItems": "Có {{total}} mục bị hỏng trong dữ liệu trên máy nên đã được bỏ ra; phần còn lại vẫn giữ nguyên. Hãy tải bản sao lưu mới."
   },
   "print": {
     "title": "Lịch Gia Đình · 30 ngày tới",

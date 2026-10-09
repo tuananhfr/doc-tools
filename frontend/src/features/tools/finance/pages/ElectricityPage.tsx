@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { formatRuleDate, ruleSnapshot, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
@@ -12,9 +12,17 @@ import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
 import { electricitySnapshot, parseElectricitySaved } from '../utils/electricity-saved'
 import { electricityBill, parseElectricityRules, validateElectricityTiers, waterBill } from '../utils/electricity'
 import { parseVatRule } from '../utils/vat-rule'
+import { formatRuleLines, parseRuleLines } from '../utils/rule-lines'
+import styles from './ElectricityPage.module.css'
 
 // Thuế điện có gói `vat` riêng, nên lượt kiểm nguồn đọc cả hai.
 const ELECTRICITY_KINDS = ['electricity', 'vat']
+const KWH: NumberRule = { kind: 'decimal', min: 0, max: 1_000_000 }
+const HOUSEHOLDS: NumberRule = { kind: 'integer', min: 1, max: 1000 }
+const PERCENT: NumberRule = { kind: 'decimal', min: 0, max: 100 }
+const WATER_RULES: Record<'cubicMeters' | 'price' | 'fee' | 'vat', NumberRule> = {
+  cubicMeters: { kind: 'decimal', min: 0, max: 1_000_000 }, price: { kind: 'money', min: 0, max: 1_000_000 }, fee: PERCENT, vat: PERCENT,
+}
 
 export default function ElectricityPage() {
   const { t } = useTranslation('finance')
@@ -34,13 +42,23 @@ export default function ElectricityPage() {
   // Gói `vat` riêng thắng `vatPercent` trong bảng giá: thuế đổi theo luật thuế, không theo kỳ điều chỉnh giá điện.
   const signedVat = vatRules.state === 'ready' ? { percent: vatRules.current.data.percent, from: vatRules.current as VerifiedRulePackage<unknown> }
     : verified?.data.vatPercent !== undefined ? { percent: verified.data.vatPercent, from: verified as VerifiedRulePackage<unknown> } : null
-  const parsed = lines.trim().split('\n').filter(Boolean).map((line) => {
-    const [threshold, rate] = line.split(',').map((part) => part.trim())
-    return { upTo: threshold === '*' ? null : /^\d+$/.test(threshold) ? Number(threshold) : Number.NaN, price: rate ? Number(rate) : Number.NaN }
-  })
-  const tiers = validateElectricityTiers(parsed)
-  const result = tiers && kwh !== '' ? electricityBill(Number(kwh), tiers, Number(vat), Number(households)) : null
-  const waterResult = water.cubicMeters !== '' && water.price !== '' ? waterBill(Number(water.cubicMeters), Number(water.price), Number(water.fee), Number(water.vat)) : null
+  const parsed = parseRuleLines(lines, 'money')
+  const tiers = parsed.ok ? validateElectricityTiers(parsed.lines.map((line) => ({ upTo: line.upTo, price: line.value }))) : null
+  const kwhValue = readNumber(kwh, KWH)
+  const vatValue = readNumber(vat, PERCENT)
+  const householdValue = readNumber(households, HOUSEHOLDS)
+  const result = tiers && kwhValue !== null && vatValue !== null && householdValue !== null ? electricityBill(kwhValue, tiers, vatValue, householdValue) : null
+  const waterValues = { cubicMeters: readNumber(water.cubicMeters, WATER_RULES.cubicMeters), price: readNumber(water.price, WATER_RULES.price), fee: readNumber(water.fee, WATER_RULES.fee), vat: readNumber(water.vat, WATER_RULES.vat) }
+  const waterResult = waterValues.cubicMeters !== null && waterValues.price !== null && waterValues.fee !== null && waterValues.vat !== null ? waterBill(waterValues.cubicMeters, waterValues.price, waterValues.fee, waterValues.vat) : null
+  // "—" trơn từng khiến người dùng không biết sai ở đâu: nói ra lý do cụ thể nhất.
+  const typedWrong = (text: string, value: number | null) => text.trim() !== '' && value === null
+  const electricityHint = !parsed.ok ? t('electricity.errors.line', { line: parsed.line })
+    : lines.trim() && !tiers ? t('electricity.errors.order')
+      : typedWrong(kwh, kwhValue) || typedWrong(households, householdValue) || typedWrong(vat, vatValue) ? t('electricity.errors.inputs')
+        : vat.trim() === '' ? t('electricity.errors.vat') : t('electricity.electricityHint')
+  const waterHint = (Object.keys(waterValues) as (keyof typeof waterValues)[]).some((key) => typedWrong(water[key], waterValues[key])) ? t('electricity.errors.inputs') : t('electricity.waterHint')
+  // Tiền hiển thị làm tròn tới đồng; tổng vẫn cộng từ số chưa làm tròn như cách hóa đơn tính.
+  const money = (value: number) => formatNumber(Math.round(value))
   const updateLines = (value: string) => { setLines(value); setUsingVerified(false) }
   const applyVat = () => {
     if (!signedVat) return
@@ -49,7 +67,7 @@ export default function ElectricityPage() {
   }
   const applyVerified = () => {
     if (!verified) return
-    setLines(verified.data.tiers.map((tier) => `${tier.upTo ?? '*'},${tier.price}`).join('\n'))
+    setLines(formatRuleLines(verified.data.tiers.map((tier) => ({ upTo: tier.upTo, value: tier.price }))))
     setUsingVerified(true)
     applyVat()
   }
@@ -67,9 +85,9 @@ export default function ElectricityPage() {
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
     <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
-    {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: formatNumber(waterResult.subtotal), fee: formatNumber(waterResult.fee), vat: formatNumber(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{t('electricity.waterHint')}</p> : <>
-    {result ? <><p className="erp-tool-result__note">{t('electricity.electricityBreakdown', { subtotal: formatNumber(result.subtotal), percent: formatNumber(Number(vat)), vat: formatNumber(result.vat) })}</p>
-      <div className="table-responsive"><table className="table table-sm"><thead><tr><th>{t('electricity.table.upTo')}</th><th>{t('electricity.table.units')}</th><th>{t('electricity.table.price')}</th><th>{t('electricity.table.amount')}</th></tr></thead><tbody>{result.rows.map((row, index) => <tr key={index}><td>{row.upTo ?? t('electricity.table.rest')}</td><td>{formatNumber(row.units)}</td><td>{formatNumber(row.price)}</td><td>{formatNumber(row.amount)}</td></tr>)}</tbody></table></div></> : <p className="erp-tool-result__note">{t('electricity.electricityHint')}</p>}
+    {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: money(waterResult.subtotal), fee: money(waterResult.fee), vat: money(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{waterHint}</p> : <>
+    {result ? <><p className="erp-tool-result__note">{t('electricity.electricityBreakdown', { subtotal: money(result.subtotal), percent: formatNumber(vatValue ?? 0), vat: money(result.vat) })}</p>
+      <div className={styles.breakdown}><table className="table table-sm"><thead><tr><th>{t('electricity.table.upTo')}</th><th>{t('electricity.table.units')}</th><th>{t('electricity.table.price')}</th><th>{t('electricity.table.amount')}</th></tr></thead><tbody>{result.rows.map((row, index) => <tr key={index}><td>{row.upTo ?? t('electricity.table.rest')}</td><td>{formatNumber(row.units)}</td><td>{formatNumber(row.price)}</td><td>{money(row.amount)}</td></tr>)}</tbody></table></div></> : <p className="erp-tool-result__note">{electricityHint}</p>}
     <p className="erp-tool-result__note">{usingVerified && verified ? t('electricity.tariffVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('electricity.tariffManual')} {appliedVat ? t('electricity.vatVerified', { percent: formatNumber(appliedVat.percent), date: formatRuleDate(appliedVat.from.effectiveFrom), source: appliedVat.from.source.title }) : t('electricity.vatManual')} {t('electricity.notIncluded')}</p>
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}</>}
   </div>}>
@@ -77,11 +95,11 @@ export default function ElectricityPage() {
       <label className="erp-flow-field__label">{t('electricity.billType')}<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="electricity">{t('electricity.modes.electricity')}</option><option value="water">{t('electricity.modes.water')}</option></Form.Select></label>
       {mode === 'water' ? <div className="erp-tool-form__grid mt-3">{([
         ['cubicMeters', t('electricity.water.cubicMeters')], ['price', t('electricity.water.price')], ['fee', t('electricity.water.fee')], ['vat', t('shared.vatPercent')],
-      ] as [keyof typeof water, string][]).map(([key, label]) => <label className="erp-flow-field__label" key={key}>{label}<Form.Control type="number" min="0" step="any" value={water[key]} onChange={(event) => setWater((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div> : <>
-      <label className="erp-flow-field__label">{t('electricity.kwh')}<Form.Control type="number" min="0" step="any" inputMode="decimal" value={kwh} onChange={(event) => setKwh(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">{t('electricity.households')}<Form.Control type="number" min="1" step="1" value={households} onChange={(event) => setHouseholds(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">{t('electricity.tiers')}<Form.Control as="textarea" rows={7} placeholder={'50,1800\n100,2200\n*,3000'} value={lines} onChange={(event) => updateLines(event.target.value)} /></label>
-      <label className="erp-flow-field__label mt-3">{t('shared.vatPercent')}<Form.Control type="number" min="0" max="100" step="any" value={vat} onChange={(event) => { setVat(event.target.value); setAppliedVat(null) }} /></label>
+      ] as [keyof typeof water, string][]).map(([key, label]) => <NumberField key={key} label={label} rule={WATER_RULES[key]} value={water[key]} onChange={(value) => setWater((current) => ({ ...current, [key]: value }))} />)}</div> : <>
+      <NumberField label={t('electricity.kwh')} rule={KWH} unit="kWh" value={kwh} onChange={setKwh} />
+      <NumberField className="mt-3" label={t('electricity.households')} rule={HOUSEHOLDS} value={households} onChange={setHouseholds} />
+      <label className="erp-flow-field__label mt-3">{t('electricity.tiers')}<Form.Control as="textarea" rows={7} placeholder={'50; 1.800\n100; 2.200\n*; 3.000'} value={lines} onChange={(event) => updateLines(event.target.value)} /></label>
+      <NumberField className="mt-3" label={t('shared.vatPercent')} rule={PERCENT} unit="%" value={vat} onChange={(value) => { setVat(value); setAppliedVat(null) }} />
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('electricity.applyTariff')}</Button>
         : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>{t('electricity.applyVat')}</Button> : null}
       <RuleStatus rules={electricityRules} label={t('electricity.ruleLabel')} noneText={t('electricity.ruleNone')} />

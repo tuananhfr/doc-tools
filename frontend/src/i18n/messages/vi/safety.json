@@ -1,6 +1,6 @@
 {
   "messageRisk": {
-    "levelHigh": "Nhiều dấu hiệu cần kiểm tra",
+    "levelHigh": "Nguy cơ cao — đừng làm theo nội dung này",
     "levelMedium": "Có dấu hiệu cần kiểm tra",
     "levelLow": "Chưa thấy dấu hiệu trong bộ quy tắc",
     "result": "Kết quả sàng lọc",
@@ -12,7 +12,8 @@
     "messageLabel": "Nội dung tin nhắn",
     "linkPlaceholder": "Dán đường dẫn, không cần mở…",
     "messagePlaceholder": "Dán tin nhắn nghi ngờ…",
-    "privacy": "Nội dung được phân tích trên máy; công cụ không truy cập đường dẫn bạn dán."
+    "privacy": "Nội dung được phân tích trên máy; công cụ không truy cập đường dẫn bạn dán.",
+    "check": "Kiểm tra"
   },
   "flags": {
     "unreadable": "Không đọc được đường dẫn.",
@@ -30,6 +31,9 @@
     "easyJob": "Mời việc nhẹ lương cao hoặc nhiệm vụ trực tuyến.",
     "urgentTransfer": "Giục chuyển hoặc nạp tiền gấp.",
     "installApp": "Yêu cầu cài ứng dụng từ tin nhắn.",
-    "link": "Link {{link}}: {{flags}}"
+    "link": "Link {{link}}: {{flags}}",
+    "scriptLink": "Đường dẫn chạy mã lệnh (javascript:, data:) — tuyệt đối không mở.",
+    "brandMisuse": "Tên miền mượn tên {{brand}} nhưng không phải địa chỉ chính thức ({{official}}).",
+    "lookalike": "Tên miền nhái tên {{brand}} (sai vài ký tự); địa chỉ chính thức là {{official}}."
   }
 }

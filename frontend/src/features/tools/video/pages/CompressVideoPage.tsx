@@ -10,7 +10,7 @@ export default function CompressVideoPage() {
   return <VideoWorkspace options={{ action: 'compress', quality, edge }} actionLabel={t('compress.action')} note={t('compress.note')}>
     <div className="erp-tool-form__grid">
       <label className="erp-flow-field__label">{t('compress.level')}<Form.Select value={quality} onChange={(event) => setQuality(Number(event.target.value) as typeof quality)}><option value={23}>{t('compress.light')}</option><option value={28}>{t('compress.medium')}</option><option value={32}>{t('compress.strong')}</option></Form.Select></label>
-      <label className="erp-flow-field__label">{t('compress.maxEdge')}<Form.Select value={edge} onChange={(event) => setEdge(Number(event.target.value) as typeof edge)}><option value={720}>720 px</option><option value={1080}>1080 px</option></Form.Select></label>
+      <label className="erp-flow-field__label">{t('compress.maxEdge')}<Form.Select value={edge} onChange={(event) => setEdge(Number(event.target.value) as typeof edge)}><option value={720}>{t('compress.edgeOption', { size: 720 })}</option><option value={1080}>{t('compress.edgeOption', { size: 1080 })}</option></Form.Select></label>
     </div>
   </VideoWorkspace>
 }

@@ -34,10 +34,11 @@ export const APP_HUB = HUB.replace(/\/doc-tools$/, '/tools')
  * khach la an 401 -> app coi nhu het phien va day ve /login. Tra 404 cho moi thu
  * ngoai `/me`: khung app chiu duoc 404, con du lieu gia sai hinh dang thi vo.
  */
-export async function mockSession(target, roles = ['authenticated', 'administrator']) {
+export async function mockSession(target) {
   await target.route('**/api/v1/**', (route) => {
     if (new URL(route.request().url()).pathname.endsWith('/api/v1/me')) {
-      return route.fulfill({ json: { ok: true, authenticated: true, csrfToken: 'qa', user: { id: 1, name: 'qa', email: null, roles } } })
+      // Hinh dang `AccountState` cua backend Chuyen Nho, khong phai `/me` cua Drupal: `email: null` lam AccountButton vo ca trang.
+      return route.fulfill({ json: { ok: true, user: { id: 'qa', email: 'qa@example.test', displayName: 'QA', publicAttribution: false, hasPassword: true }, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null } })
     }
     return route.fulfill({ status: 404, json: { ok: false, message: 'qa: not mocked' } })
   })

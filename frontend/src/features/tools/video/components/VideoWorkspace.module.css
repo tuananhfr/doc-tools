@@ -6,3 +6,7 @@
 .note { color: var(--cn-muted); font-size: 0.875rem; line-height: 1.65; }
 .progress { width: 100%; height: 12px; margin: 12px 0; accent-color: var(--cn-accent); }
 @media (max-width: 600px) { .preview { max-height: 260px; } }
+.mainActions { display: none; margin-top: 16px; }
+/* Cột phải xuống cuối trang ở cùng ngưỡng với tools-flow.css: đưa nút chạy lên ngay dưới thiết lập. */
+@media (max-width: 1024px) { .mainActions { display: block; } .sideActions { display: none; } }
+@container erp-tools (max-width: 1024px) { .mainActions { display: block; } .sideActions { display: none; } }

@@ -272,8 +272,8 @@ if (want('qr-create') || want('qr-read') || want('camera')) {
   qrFiles.push(file('van-ban.png', 'image/png', multi.bytes))
   o.overflow = await overflow()
 
-  // Thẻ "Quét mã QR" là link sang công cụ kia.
-  await page.locator('.erp-tool-tab', { hasText: 'Quét mã QR' }).click()
+  // Thẻ "Quét mã" là link sang công cụ kia.
+  await page.locator('.erp-tool-tab', { hasText: 'Quét mã' }).click()
   await page.locator('.erp-flow-picker').waitFor()
   o.tabGoes = new URL(page.url()).pathname
 }
@@ -632,7 +632,7 @@ if (!only) {
   const [dl] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Tải mã QR' }).click()])
   await dl.cancel()
   await page.waitForTimeout(400)
-  out.app = { path: new URL(page.url()).pathname, frame: (await page.locator('.erp-tools-guest').count()) === 0, nudge: await page.locator('.erp-doc-nudge').count(), tabHref: await page.locator('.erp-tool-tab', { hasText: 'Quét mã QR' }).getAttribute('href'), overflow: await overflow() }
+  out.app = { path: new URL(page.url()).pathname, frame: (await page.locator('.erp-tools-guest').count()) === 0, nudge: await page.locator('.erp-doc-nudge').count(), tabHref: await page.locator('.erp-tool-tab', { hasText: 'Quét mã' }).getAttribute('href'), overflow: await overflow() }
   await shot('app-qr-create')
 }
 

@@ -12,7 +12,8 @@
     "messageLabel": "Isi pesan",
     "linkPlaceholder": "Tempel tautan, tidak perlu dibuka…",
     "messagePlaceholder": "Tempel pesan yang mencurigakan…",
-    "privacy": "Konten dianalisis di perangkat; alat ini tidak membuka tautan yang Anda tempel."
+    "privacy": "Konten dianalisis di perangkat; alat ini tidak membuka tautan yang Anda tempel.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "Tautan tidak dapat dibaca.",
@@ -30,6 +31,9 @@
     "easyJob": "Menawarkan kerja ringan bergaji tinggi atau tugas online.",
     "urgentTransfer": "Mendesak transfer atau isi saldo segera.",
     "installApp": "Meminta memasang aplikasi dari pesan.",
-    "link": "Tautan {{link}}: {{flags}}"
+    "link": "Tautan {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

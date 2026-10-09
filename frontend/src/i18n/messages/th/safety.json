@@ -12,7 +12,8 @@
     "messageLabel": "เนื้อหาข้อความ",
     "linkPlaceholder": "วางลิงก์ ไม่ต้องเปิด…",
     "messagePlaceholder": "วางข้อความที่น่าสงสัย…",
-    "privacy": "เนื้อหาถูกวิเคราะห์บนเครื่อง เครื่องมือนี้ไม่เข้าไปที่ลิงก์ที่คุณวาง"
+    "privacy": "เนื้อหาถูกวิเคราะห์บนเครื่อง เครื่องมือนี้ไม่เข้าไปที่ลิงก์ที่คุณวาง",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "อ่านลิงก์ไม่ได้",
@@ -30,6 +31,9 @@
     "easyJob": "ชวนทำงานง่ายรายได้สูงหรือภารกิจออนไลน์",
     "urgentTransfer": "เร่งให้โอนหรือเติมเงินด่วน",
     "installApp": "ขอให้ติดตั้งแอปจากข้อความ",
-    "link": "ลิงก์ {{link}}: {{flags}}"
+    "link": "ลิงก์ {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

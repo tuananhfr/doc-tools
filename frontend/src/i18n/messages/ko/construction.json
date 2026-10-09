@@ -37,6 +37,7 @@
     },
     "turnkey": "두 번째 단가는 골조를 포함한 일괄 단가예요",
     "editFactors": "시공사 견적에 맞게 계수 수정",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

@@ -99,7 +99,10 @@
     "rulesNone": "There's no signed, currently valid address mapping set on the system yet.",
     "manualLabel": "Or enter your own, one per line: “old province|old district|old commune|new province|new commune”",
     "manualInvalid": "The mapping table has the wrong format (each line needs 5 parts, each up to 150 characters) or an old province is mapped to two different new provinces.",
-    "csvFileName": "address-conversion"
+    "csvFileName": "address-conversion",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the “Or enter your own” field.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -107,7 +110,8 @@
       "unreadable": "Couldn't read the XML file.",
       "doctype": "The XML declares entities or a DOCTYPE, which isn't supported.",
       "invalid": "Invalid XML file.",
-      "noCommon": "Couldn't find the invoice's general information block."
+      "noCommon": "Couldn't find the invoice's general information block.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "Invoice",
     "noNumber": "No number",
@@ -130,7 +134,9 @@
       "name": "Goods, services",
       "quantity": "Qty",
       "amount": "Amount"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "Converted text",
@@ -148,7 +154,8 @@
       "upper": "UPPERCASE"
     },
     "contentLabel": "Content",
-    "placeholder": "Paste the text to convert…"
+    "placeholder": "Paste the text to convert…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "In words",

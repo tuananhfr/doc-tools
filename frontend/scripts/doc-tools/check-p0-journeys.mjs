@@ -132,15 +132,15 @@ try {
       const started = Date.now(); const errorsBefore = errors.length
       await context.tracing.start({ screenshots: true, snapshots: true })
       try {
-        await page.goto(site + '/', { waitUntil: 'networkidle' }); result.steps++
+        // `/` is the landing page; search and the category directory both live on `/cong-cu`.
+        await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' }); result.steps++
         if (entry === 'search') {
-          await page.locator('#cn-home-search').fill(story.query); result.steps++
-          const card = page.locator('#erp-tools-grid .erp-tool-card').filter({ has: page.locator('.erp-tool-card__name', { hasText: story.name }) })
+          await page.locator('#tim-cong-cu').fill(story.query); result.steps++
+          const card = page.locator('.erp-tools-grid .erp-tool-card').filter({ has: page.locator('.erp-tool-card__name', { hasText: story.name }) })
           // The route is asserted after discovery, never used as the task entry.
-          const candidate = await card.count() ? card.first() : page.locator('#erp-tools-grid .erp-tool-card').filter({ hasText: story.name }).first()
+          const candidate = await card.count() ? card.first() : page.locator('.erp-tools-grid .erp-tool-card').filter({ hasText: story.name }).first()
           await candidate.click(); result.steps++
         } else {
-          await page.locator('.cn-catalog-all').click(); result.steps++
           await page.getByRole('button', { name: story.category, exact: true }).click(); result.steps++
           await page.locator('.erp-tool-card').filter({ hasText: story.name }).first().click(); result.steps++
         }

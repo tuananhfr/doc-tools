@@ -147,7 +147,10 @@ describe('compassShapes', () => {
     const needle = shapes.find((shape) => shape.kind === 'line' && shape.role === 'target-active')
     // Bắc chĩa sang phải ảnh, đối tượng hướng Đông → chĩa xuống ảnh.
     expect(needle?.kind === 'line' && needle.to.x).toBeCloseTo(0, 6)
-    expect(needle?.kind === 'line' && needle.to.y).toBeCloseTo(96, 6)
+    expect(needle?.kind === 'line' && needle.to.y).toBeCloseTo(60, 6)
+    const tip = shapes.find((shape) => shape.kind === 'circle' && shape.role === 'target-active')
+    expect(tip?.kind === 'circle' && tip.center.x).toBeCloseTo(0, 6)
+    expect(tip?.kind === 'circle' && tip.center.y).toBeCloseTo(96.5, 6)
     expect(shapes.filter((shape) => shape.kind === 'line' && shape.role === 'sector')).toHaveLength(8)
   })
 

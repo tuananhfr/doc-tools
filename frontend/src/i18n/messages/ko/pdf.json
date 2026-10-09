@@ -132,7 +132,8 @@
     "allowModify": "편집 허용",
     "ownerPassword": "별도 관리 비밀번호 (제한을 풀려면 보관 필요)",
     "protectNote": "비밀번호를 잊으면 이 도구로 복구할 수 없어요. 비밀번호는 파일과 다른 경로로 보내세요.",
-    "removeNote": "내가 소유했거나 처리 권한이 있는 파일만 잠금을 해제하세요. 권한이 제한된 파일은 관리 비밀번호가 필요해요."
+    "removeNote": "내가 소유했거나 처리 권한이 있는 파일만 잠금을 해제하세요. 권한이 제한된 파일은 관리 비밀번호가 필요해요.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "비밀번호를 설정하지 못했어요. 파일이 이미 잠겼거나 손상됐을 수 있어요.",
     "restricted": "편집 권한이 제한된 파일이에요. 파일 소유자의 관리 비밀번호가 필요해요.",
     "wrong": "비밀번호가 맞지 않아요.",
-    "removeFailed": "비밀번호를 해제하지 못했어요."
+    "removeFailed": "비밀번호를 해제하지 못했어요.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "아직 서명 획이 없어요.",

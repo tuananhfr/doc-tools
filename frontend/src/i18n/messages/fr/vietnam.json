@@ -101,7 +101,10 @@
     "rulesNone": "Aucune table de correspondance d'adresses signée et en vigueur n'est encore disponible sur le système.",
     "manualLabel": "Ou saisissez la vôtre, une ligne par entrée : « ancienne province|ancien district|ancienne commune|nouvelle province|nouvelle commune »",
     "manualInvalid": "La table de correspondance est mal formée (chaque ligne doit compter 5 parties de 150 caractères au plus) ou une ancienne province est rattachée à deux nouvelles provinces différentes.",
-    "csvFileName": "conversion-adresses"
+    "csvFileName": "conversion-adresses",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -109,7 +112,8 @@
       "unreadable": "Impossible de lire le fichier XML.",
       "doctype": "Le XML déclare des entités ou un DOCTYPE, ce qui n'est pas pris en charge.",
       "invalid": "Fichier XML non valide.",
-      "noCommon": "Le bloc d'informations générales de la facture est introuvable."
+      "noCommon": "Le bloc d'informations générales de la facture est introuvable.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "Facture",
     "noNumber": "Sans numéro",
@@ -132,7 +136,9 @@
       "name": "Biens, services",
       "quantity": "Qté",
       "amount": "Montant"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "Texte converti",
@@ -150,7 +156,8 @@
       "upper": "MAJUSCULES"
     },
     "contentLabel": "Contenu",
-    "placeholder": "Collez le texte à convertir…"
+    "placeholder": "Collez le texte à convertir…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "En toutes lettres",

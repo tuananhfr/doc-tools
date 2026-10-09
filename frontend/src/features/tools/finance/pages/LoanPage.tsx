@@ -1,27 +1,37 @@
-import { useId, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
-import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { downloadOutput, NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { calculateLoan, calculateSavings, type LoanMethod } from '../utils/loan'
 
+const PRINCIPAL: NumberRule = { kind: 'money', min: 1, max: 1e13 }
+const RATE: NumberRule = { kind: 'decimal', min: 0, max: 1000 }
+const LOAN_MONTHS: NumberRule = { kind: 'integer', min: 1, max: 600 }
+const SAVINGS_MONTHS: NumberRule = { kind: 'integer', min: 1, max: 120 }
+const RENEWALS: NumberRule = { kind: 'integer', min: 1, max: 100 }
+// Trên mức này gần như chắc là gõ nhầm lãi tháng vào ô lãi năm, hoặc thừa một chữ số.
+const UNUSUAL_RATE = 50
+
 export default function LoanPage() {
   const { t } = useTranslation('finance')
-  const principalId = useId()
-  const rateId = useId()
-  const monthsId = useId()
   const [principal, setPrincipal] = useState('')
   const [rate, setRate] = useState('')
   const [months, setMonths] = useState('')
   const [method, setMethod] = useState<LoanMethod>('annuity')
   const [mode, setMode] = useState<'loan' | 'savings'>('loan')
   const [renewals, setRenewals] = useState('1')
-  const schedule = principal && rate && months && mode === 'loan' ? calculateLoan(Number(principal), Number(rate), Number(months), method) : null
-  const savings = principal && rate && months && mode === 'savings' ? calculateSavings(Number(principal), Number(rate), Number(months), Number(renewals)) : null
+  const principalValue = readNumber(principal, PRINCIPAL)
+  const rateValue = readNumber(rate, RATE)
+  const monthsValue = readNumber(months, mode === 'loan' ? LOAN_MONTHS : SAVINGS_MONTHS)
+  const renewalsValue = readNumber(renewals, RENEWALS)
+  const ready = principalValue !== null && rateValue !== null && monthsValue !== null
+  const schedule = ready && mode === 'loan' ? calculateLoan(principalValue, rateValue, monthsValue, method) : null
+  const savings = ready && mode === 'savings' && renewalsValue !== null ? calculateSavings(principalValue, rateValue, monthsValue, renewalsValue) : null
 
   const downloadSchedule = () => {
     if (!schedule) return
-    const rows = [(['period', 'principal', 'interest', 'payment', 'balance'] as const).map((column) => t(`loan.file.columns.${column}`)), ...schedule.rows.map((row) => [row.month, row.principal, row.interest, row.payment, row.balance].map(String))]
+    const rows = [(['period', 'principal', 'interest', 'payment', 'balance'] as const).map((column) => t(`loan.file.columns.${column}`)), ...schedule.rows.map((row) => [row.month, row.principal, row.interest, row.payment, row.balance].map((value) => String(Math.round(value))))]
     downloadOutput({ name: `${t('loan.file.name')}.csv`, blob: new Blob(['\uFEFF', rows.map((row) => row.join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' }) })
   }
 
@@ -36,7 +46,8 @@ export default function LoanPage() {
         {schedule.rows.map((row) => <tr key={row.month}><td>{row.month}</td><td>{formatNumber(Math.round(row.principal))}</td><td>{formatNumber(Math.round(row.interest))}</td><td>{formatNumber(Math.round(row.balance))}</td></tr>)}
       </tbody></table></div>
     </> : savings ? <p className="erp-tool-result__note">{t('loan.savingsNote', { amount: formatNumber(Math.round(savings.interest)), months: savings.months })}</p> : <p className="erp-tool-result__note">{t('loan.hint')}</p>}
-    <p className="erp-tool-result__note">{t('loan.disclaimer')}</p>
+    {rateValue !== null && rateValue > UNUSUAL_RATE ? <p className="erp-tool-result__note" role="status">{t('loan.rateWarning', { rate: formatNumber(rateValue) })}</p> : null}
+    <p className="erp-tool-result__note">{mode === 'loan' ? t('loan.disclaimer') : t('loan.savingsDisclaimer')}</p>
   </div>}>
     <ToolPanel title={mode === 'loan' ? t('loan.loanTitle') : t('loan.savingsTitle')}>
       <label className="erp-flow-field__label">{t('loan.mode')}
@@ -45,22 +56,14 @@ export default function LoanPage() {
         </Form.Select>
       </label>
       <div className="erp-tool-form__grid">
-        <label className="erp-flow-field__label" htmlFor={principalId}>{mode === 'loan' ? t('loan.loanAmount') : t('loan.savingsAmount')}
-          <Form.Control id={principalId} inputMode="decimal" type="number" min="1" value={principal} onChange={(event) => setPrincipal(event.target.value)} />
-        </label>
-        <label className="erp-flow-field__label" htmlFor={rateId}>{t('loan.rate')}
-          <Form.Control id={rateId} inputMode="decimal" type="number" min="0" step="any" value={rate} onChange={(event) => setRate(event.target.value)} />
-        </label>
-        <label className="erp-flow-field__label" htmlFor={monthsId}>{mode === 'loan' ? t('loan.loanTerm') : t('loan.savingsTerm')}
-          <Form.Control id={monthsId} inputMode="numeric" type="number" min="1" max={mode === 'loan' ? 600 : 120} value={months} onChange={(event) => setMonths(event.target.value)} />
-        </label>
+        <NumberField label={mode === 'loan' ? t('loan.loanAmount') : t('loan.savingsAmount')} rule={PRINCIPAL} unit="đ" value={principal} onChange={setPrincipal} />
+        <NumberField label={t('loan.rate')} rule={RATE} unit="%" value={rate} onChange={setRate} />
+        <NumberField label={mode === 'loan' ? t('loan.loanTerm') : t('loan.savingsTerm')} rule={mode === 'loan' ? LOAN_MONTHS : SAVINGS_MONTHS} value={months} onChange={setMonths} />
         {mode === 'loan' ? <label className="erp-flow-field__label">{t('loan.method')}
           <Form.Select value={method} onChange={(event) => setMethod(event.target.value as LoanMethod)}>
             <option value="annuity">{t('loan.methods.annuity')}</option><option value="equal-principal">{t('loan.methods.equalPrincipal')}</option>
           </Form.Select>
-        </label> : <label className="erp-flow-field__label">{t('loan.renewals')}
-          <Form.Control type="number" min="1" max="100" value={renewals} onChange={(event) => setRenewals(event.target.value)} />
-        </label>}
+        </label> : <NumberField label={t('loan.renewals')} rule={RENEWALS} value={renewals} onChange={setRenewals} />}
       </div>
     </ToolPanel>
   </ToolBoard>

@@ -12,7 +12,8 @@
     "messageLabel": "訊息內容",
     "linkPlaceholder": "貼上連結，不需開啟…",
     "messagePlaceholder": "貼上可疑訊息…",
-    "privacy": "內容在你的裝置上分析；本工具不會開啟你貼上的連結。"
+    "privacy": "內容在你的裝置上分析；本工具不會開啟你貼上的連結。",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "無法讀取連結。",
@@ -30,6 +31,9 @@
     "easyJob": "提供輕鬆高薪的工作或線上任務。",
     "urgentTransfer": "催促緊急轉帳或儲值。",
     "installApp": "要求從訊息安裝應用程式。",
-    "link": "連結 {{link}}：{{flags}}"
+    "link": "連結 {{link}}：{{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

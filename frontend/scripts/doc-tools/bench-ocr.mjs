@@ -48,9 +48,10 @@ try {
     try {
       const input = path.join(directory, fixture.file)
       assert.equal(sha256(fs.readFileSync(input)), fixture.sha256, 'Fixture changed after generation')
-      await page.goto(site + '/', { waitUntil: 'networkidle' })
-      await page.locator('#cn-home-search').fill('Lấy chữ từ ảnh')
-      await page.locator('#erp-tools-grid .erp-tool-card').filter({ hasText: 'Lấy chữ từ ảnh' }).click()
+      // `/` is the landing page; tool search lives on `/cong-cu`.
+      await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' })
+      await page.locator('#tim-cong-cu').fill('Lấy chữ từ ảnh')
+      await page.locator('.erp-tools-grid .erp-tool-card').filter({ hasText: 'Lấy chữ từ ảnh' }).click()
       await page.locator('input[type=file]').first().setInputFiles(input)
       const recognitionStarted = Date.now()
       await page.locator('.erp-flow__run').click()

@@ -97,7 +97,10 @@
     "rulesNone": "Chưa có bộ đối chiếu địa chỉ đã ký, còn hiệu lực trên hệ thống.",
     "manualLabel": "Hoặc tự nhập, mỗi dòng: “tỉnh cũ|huyện cũ|xã cũ|tỉnh mới|xã mới”",
     "manualInvalid": "Bảng đối chiếu sai định dạng (mỗi dòng đủ 5 phần, mỗi phần tối đa 150 ký tự) hoặc có tỉnh cũ được ghi vào hai tỉnh mới khác nhau.",
-    "csvFileName": "doi-dia-chi"
+    "csvFileName": "doi-dia-chi",
+    "noTable": "Chưa có bảng đối chiếu",
+    "noTableNote": "Chưa có dữ liệu để đổi địa chỉ. Hãy áp dụng bảng đối chiếu đã ký (nếu hệ thống có) hoặc tự nhập bảng vào ô “Hoặc tự nhập”.",
+    "tableTitle": "Kết quả đổi địa chỉ"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "Không đọc được tệp XML.",
       "doctype": "XML có khai báo thực thể hoặc DOCTYPE không được hỗ trợ.",
       "invalid": "Tệp XML không hợp lệ.",
-      "noCommon": "Không thấy khối thông tin chung của hóa đơn."
+      "noCommon": "Không thấy khối thông tin chung của hóa đơn.",
+      "xlsx": "Không tạo được tệp Excel. Hãy thử lại hoặc tải bảng kê CSV."
     },
     "resultLabel": "Hóa đơn",
     "noNumber": "Không có số",
@@ -128,7 +132,9 @@
       "name": "Hàng hóa, dịch vụ",
       "quantity": "SL",
       "amount": "Thành tiền"
-    }
+    },
+    "downloadXlsx": "Tải bảng kê Excel (.xlsx)",
+    "discount": "Chiết khấu"
   },
   "legacyFont": {
     "resultLabel": "Văn bản sau chuyển đổi",
@@ -146,7 +152,8 @@
       "upper": "CHỮ HOA"
     },
     "contentLabel": "Nội dung",
-    "placeholder": "Dán văn bản cần chuyển đổi…"
+    "placeholder": "Dán văn bản cần chuyển đổi…",
+    "alreadyUnicode": "Văn bản này đã là tiếng Việt Unicode nên không chuyển, để tránh hỏng dấu. Nếu chỉ một phần là mã cũ, hãy dán riêng phần đó."
   },
   "numberWords": {
     "resultLabel": "Bằng chữ",

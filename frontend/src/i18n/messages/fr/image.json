@@ -437,7 +437,12 @@
     "panel": "Images à assembler",
     "choose": "Choisissez de 2 à 9 images",
     "columns": "Nombre de colonnes",
-    "gap": "Espacement (px)"
+    "gap": "Espacement (px)",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "L'image dépasse la taille autorisée.",
@@ -474,7 +479,8 @@
     "brushKeep": "Conserver",
     "brushSize": "Taille du pinceau : {{value}}",
     "undoBrush": "Annuler le pinceau",
-    "note": "L'image est traitée sur votre appareil. Un fond détaillé nécessite une retouche manuelle au pinceau ; les grandes images sont réduites à 2200 px maximum par côté."
+    "note": "L'image est traitée sur votre appareil. Un fond détaillé nécessite une retouche manuelle au pinceau ; les grandes images sont réduites à 2200 px maximum par côté.",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "image",

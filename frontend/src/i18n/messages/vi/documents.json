@@ -46,13 +46,16 @@
       "noDraft": "Chưa có bản nháp hợp lệ.",
       "opened": "Đã mở bản nháp.",
       "unreadable": "Bản nháp không đọc được.",
-      "cleared": "Đã xóa bản nháp trên thiết bị."
+      "cleared": "Đã xóa bản nháp trên thiết bị.",
+      "restored": "Đã mở lại bản nháp đang soạn dở."
     },
     "note": "Xem kỹ thông tin trước khi gửi. Bản nháp chỉ lưu trên thiết bị khi bạn bấm Lưu; ảnh không được lưu.",
     "print": {
       "kicker": "Hồ sơ ứng tuyển",
       "summary": "Giới thiệu"
-    }
+    },
+    "autoSave": "Tự lưu trên thiết bị này (không lưu ảnh).",
+    "confirmClear": "Xóa toàn bộ CV đang soạn? Không hoàn tác được."
   },
   "formTemplates": {
     "title": "Soạn mẫu giấy tờ",
@@ -132,6 +135,13 @@
         "giver": "Bên giao"
       },
       "signHint": "(Ký, ghi rõ họ tên)"
+    },
+    "confirmChangeKind": "Đổi loại giấy tờ sẽ xóa nội dung bạn đã nhập. Tiếp tục?",
+    "datePlaceholder": "ví dụ 09/10/2026",
+    "dateErrors": {
+      "from": "Ngày bắt đầu chưa đúng. Viết dạng ngày/tháng/năm, ví dụ 09/10/2026.",
+      "to": "Ngày kết thúc chưa đúng. Viết dạng ngày/tháng/năm, ví dụ 09/10/2026.",
+      "order": "Ngày kết thúc đang trước ngày bắt đầu."
     }
   }
 }

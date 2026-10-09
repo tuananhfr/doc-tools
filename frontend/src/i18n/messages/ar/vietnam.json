@@ -107,7 +107,10 @@
     "rulesNone": "لا يوجد جدول مطابقة عناوين موقّع وساري المفعول على النظام.",
     "manualLabel": "أو أدخله بنفسك، كل سطر: «المحافظة القديمة|المقاطعة القديمة|البلدية القديمة|المحافظة الجديدة|البلدية الجديدة»",
     "manualInvalid": "جدول المطابقة بتنسيق خاطئ (يجب أن يحتوي كل سطر على 5 أجزاء، وكل جزء 150 حرفًا كحد أقصى) أو توجد محافظة قديمة مُسندة إلى محافظتين جديدتين مختلفتين.",
-    "csvFileName": "تحويل-العناوين"
+    "csvFileName": "تحويل-العناوين",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -115,7 +118,8 @@
       "unreadable": "تعذّرت قراءة ملف XML.",
       "doctype": "يحتوي XML على تعريف كيانات أو DOCTYPE غير مدعوم.",
       "invalid": "ملف XML غير صالح.",
-      "noCommon": "لم يُعثر على كتلة المعلومات العامة للفاتورة."
+      "noCommon": "لم يُعثر على كتلة المعلومات العامة للفاتورة.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "الفاتورة",
     "noNumber": "بلا رقم",
@@ -138,7 +142,9 @@
       "name": "السلع والخدمات",
       "quantity": "الكمية",
       "amount": "المبلغ"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "النص بعد التحويل",
@@ -156,7 +162,8 @@
       "upper": "أحرف كبيرة"
     },
     "contentLabel": "المحتوى",
-    "placeholder": "الصق النص المراد تحويله…"
+    "placeholder": "الصق النص المراد تحويله…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "كتابةً",

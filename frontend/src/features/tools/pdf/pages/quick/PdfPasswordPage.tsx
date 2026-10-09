@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
@@ -6,6 +6,7 @@ import { protectPdf, removePdfPassword } from '../../services/pdf-password'
 
 export default function PdfPasswordPage() {
   const { t } = useTranslation('pdf')
+  const ids = useId()
   const [mode, setMode] = useState<'protect' | 'remove'>('protect')
   const [file, setFile] = useState<File | null>(null)
   const [password, setPassword] = useState('')
@@ -38,7 +39,8 @@ export default function PdfPasswordPage() {
       <label className="erp-flow-field__label mt-3">{t('password.pickFile')}<Form.Control type="file" accept="application/pdf,.pdf" onChange={(event) => { setFile((event.target as HTMLInputElement).files?.[0] || null); setMessage('') }} /></label>
       <label className="erp-flow-field__label mt-3">{mode === 'protect' ? t('password.openPassword') : t('password.givenPassword')}<Form.Control type="password" autoComplete="off" value={password} onChange={(event) => setPassword(event.target.value)} /></label>
       {mode === 'protect' ? <><label className="erp-flow-field__label mt-3">{t('password.repeat')}<Form.Control type="password" autoComplete="off" value={repeat} onChange={(event) => setRepeat(event.target.value)} /></label>
-        <div className="mt-3"><Form.Check label={t('password.allowPrint')} checked={printing} onChange={(event) => setPrinting(event.target.checked)} /><Form.Check label={t('password.allowCopy')} checked={copying} onChange={(event) => setCopying(event.target.checked)} /><Form.Check label={t('password.allowModify')} checked={modifying} onChange={(event) => setModifying(event.target.checked)} /></div>
+        {/* Form.Check thiếu `id` thì nhãn không gắn với ô: bấm chữ không tích được, trình đọc màn hình đọc ô không tên. */}
+        <fieldset className="mt-3"><legend className="erp-flow-field__label">{t('password.permissions')}</legend><Form.Check id={`${ids}-print`} label={t('password.allowPrint')} checked={printing} onChange={(event) => setPrinting(event.target.checked)} /><Form.Check id={`${ids}-copy`} label={t('password.allowCopy')} checked={copying} onChange={(event) => setCopying(event.target.checked)} /><Form.Check id={`${ids}-modify`} label={t('password.allowModify')} checked={modifying} onChange={(event) => setModifying(event.target.checked)} /></fieldset>
         {restricted ? <label className="erp-flow-field__label mt-3">{t('password.ownerPassword')}<Form.Control type="password" autoComplete="off" value={owner} onChange={(event) => setOwner(event.target.value)} /></label> : null}
         <p className="mt-3">{t('password.protectNote')}</p></> : <p className="mt-3">{t('password.removeNote')}</p>}
     </ToolPanel>

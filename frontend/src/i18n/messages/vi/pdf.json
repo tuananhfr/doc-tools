@@ -132,7 +132,8 @@
     "allowModify": "Cho phép chỉnh sửa",
     "ownerPassword": "Mật khẩu quản lý riêng (cần giữ để gỡ giới hạn)",
     "protectNote": "Nếu quên mật khẩu sẽ không thể khôi phục bằng công cụ này. Hãy gửi mật khẩu qua kênh khác với tệp.",
-    "removeNote": "Chỉ gỡ khóa cho tệp bạn sở hữu hoặc được phép xử lý. Với tệp hạn chế quyền, cần mật khẩu quản lý."
+    "removeNote": "Chỉ gỡ khóa cho tệp bạn sở hữu hoặc được phép xử lý. Với tệp hạn chế quyền, cần mật khẩu quản lý.",
+    "permissions": "Quyền của người mở tệp"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "Không đặt được mật khẩu. Tệp có thể đã khóa hoặc bị hỏng.",
     "restricted": "Tệp hạn chế quyền chỉnh sửa. Cần mật khẩu quản lý của chủ tệp.",
     "wrong": "Mật khẩu không đúng.",
-    "removeFailed": "Không gỡ được mật khẩu."
+    "removeFailed": "Không gỡ được mật khẩu.",
+    "notPdf": "Không phải tệp PDF. Hãy chọn một tệp .pdf.",
+    "notEncrypted": "Tệp không có mật khẩu, không cần gỡ."
   },
   "signatureImage": {
     "noStrokes": "chưa có nét ký nào.",

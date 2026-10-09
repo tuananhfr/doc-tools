@@ -12,7 +12,8 @@
     "messageLabel": "မက်ဆေ့ချ် အကြောင်းအရာ",
     "linkPlaceholder": "လင့်ခ်ကို ကပ်ပါ၊ ဖွင့်ရန် မလိုပါ…",
     "messagePlaceholder": "သံသယရှိသော မက်ဆေ့ချ်ကို ကပ်ပါ…",
-    "privacy": "အကြောင်းအရာကို စက်ပေါ်တွင် ခွဲခြမ်းစိတ်ဖြာပါသည်။ သင်ကပ်ထားသော လင့်ခ်ကို ကိရိယာက မဖွင့်ပါ။"
+    "privacy": "အကြောင်းအရာကို စက်ပေါ်တွင် ခွဲခြမ်းစိတ်ဖြာပါသည်။ သင်ကပ်ထားသော လင့်ခ်ကို ကိရိယာက မဖွင့်ပါ။",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "လင့်ခ်ကို ဖတ်၍ မရပါ။",
@@ -30,6 +31,9 @@
     "easyJob": "အလုပ်သက်သာ လစာများ သို့မဟုတ် အွန်လိုင်းတာဝန်များ ကမ်းလှမ်းသည်။",
     "urgentTransfer": "ငွေလွှဲ သို့မဟုတ် ငွေဖြည့်ရန် အလောတကြီး တိုက်တွန်းသည်။",
     "installApp": "မက်ဆေ့ချ်မှ အက်ပ်ထည့်သွင်းရန် တောင်းဆိုသည်။",
-    "link": "လင့်ခ် {{link}}- {{flags}}"
+    "link": "လင့်ခ် {{link}}- {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

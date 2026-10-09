@@ -12,7 +12,8 @@
     "messageLabel": "Text ng mensahe",
     "linkPlaceholder": "I-paste ang link — hindi na kailangang buksan…",
     "messagePlaceholder": "I-paste ang kahina-hinalang mensahe…",
-    "privacy": "Sa device mo sinusuri ang nilalaman; hindi binibisita ng tool ang link na i-paste mo."
+    "privacy": "Sa device mo sinusuri ang nilalaman; hindi binibisita ng tool ang link na i-paste mo.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "Hindi mabasa ang link.",
@@ -30,6 +31,9 @@
     "easyJob": "Nag-aalok ng madali at malaking-sahod na trabaho o online na task.",
     "urgentTransfer": "Minamadali kang magpadala o mag-top up ng pera.",
     "installApp": "Pinapa-install ka ng app mula sa mensahe.",
-    "link": "Link {{link}}: {{flags}}"
+    "link": "Link {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

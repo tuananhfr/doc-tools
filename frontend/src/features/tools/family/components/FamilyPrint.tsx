@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { dateTimeFormat } from '@/i18n/intl'
-import { dateOffset, eventsForDate, type FamilySpace } from '../core/family'
+import { dateOffset, eventsForDate, isShareable, type FamilySpace } from '../core/family'
 
 interface Props { space: FamilySpace; today: string; viewerId: string; includeSensitive: boolean }
 
@@ -14,7 +14,7 @@ export function FamilyPrint({ space, today, viewerId, includeSensitive }: Props)
   const { t } = useTranslation('family')
   const groups = Array.from({ length: 30 }, (_, index) => {
     const date = dateOffset(today, index)
-    const events = eventsForDate(space, date, viewerId).filter((event) => includeSensitive || (event.dataClass !== 'SENSITIVE' && event.scope !== 'PRIVATE'))
+    const events = eventsForDate(space, date, viewerId).filter((event) => includeSensitive || isShareable(event))
     return { date, events }
   }).filter((group) => group.events.length)
   return <section className="family-print-only">

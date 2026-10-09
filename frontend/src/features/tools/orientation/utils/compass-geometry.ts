@@ -119,12 +119,20 @@ export function compassShapes(spec: CompassSpec): CompassShape[] {
   // Kim Bắc: tam giác mảnh từ tâm.
   shapes.push({ kind: 'polygon', points: [at(0, 0.55), at(90, 0.06), at(-90, 0.06)], role: 'north' })
 
-  shapes.push(...needleShapes(spec, at, unit))
+  // Vành chữ bắt đầu ngay ngoài vòng 0,62 — thân kim dừng trước đó.
+  shapes.push(...needleShapes(spec, at, unit, 0.6))
   shapes.push({ kind: 'circle', center, radius: 3 * unit, role: 'ring', width: 0, fill: true })
   return shapes
 }
 
-function needleShapes(spec: CompassSpec, at: (deg: number, fraction: number) => Point, unit: number): CompassShape[] {
+/** Đầu kim nằm ở vành vạch độ: ngoài số độ (0,895) và trong mép đĩa. */
+const NEEDLE_TIP = 0.965
+
+/**
+ * Kim = thân từ tâm tới `reach` (phần đĩa không có chữ) + chấm ở vành ngoài + nhãn ngoài đĩa.
+ * Kim kéo liền qua các vành chữ thì đè mất tên sơn / hướng đúng ở chỗ người xem cần đọc.
+ */
+function needleShapes(spec: CompassSpec, at: (deg: number, fraction: number) => Point, unit: number, reach: number): CompassShape[] {
   const shapes: CompassShape[] = []
   if (spec.sun !== undefined && spec.sun !== null) {
     shapes.push({ kind: 'line', from: at(spec.sun, 0.62), to: at(spec.sun, 1.08), role: 'sun', width: 2 * unit, dash: [4 * unit, 3 * unit] })
@@ -133,9 +141,8 @@ function needleShapes(spec: CompassSpec, at: (deg: number, fraction: number) => 
   // Đối tượng đang chọn vẽ sau cùng để nằm trên.
   for (const needle of [...spec.needles].sort((a, b) => Number(a.active) - Number(b.active))) {
     const role: CompassRole = needle.active ? 'target-active' : 'target'
-    const end = at(needle.azimuth, 0.96)
-    shapes.push({ kind: 'line', from: spec.center, to: end, role, width: (needle.active ? 3.2 : 2) * unit })
-    shapes.push({ kind: 'circle', center: end, radius: (needle.active ? 5 : 3.5) * unit, role, width: 0, fill: true })
+    shapes.push({ kind: 'line', from: spec.center, to: at(needle.azimuth, reach), role, width: (needle.active ? 3.2 : 2) * unit })
+    shapes.push({ kind: 'circle', center: at(needle.azimuth, NEEDLE_TIP), radius: (needle.active ? 5 : 3.5) * unit, role, width: 0, fill: true })
     shapes.push({ kind: 'text', at: at(needle.azimuth, 1.16), text: needle.label, role, size: 11 * unit, weight: 700 })
   }
   return shapes
@@ -247,7 +254,8 @@ function luopanShapes(spec: CompassSpec, rings: CompassRings): CompassShape[] {
     outer = inner
   }
 
-  shapes.push(...needleShapes(spec, at, unit))
+  // Lõi trong vòng quái để trống — chỗ duy nhất thân kim không cắt qua chữ.
+  shapes.push(...needleShapes(spec, at, unit, CORE - 0.02))
   shapes.push({ kind: 'circle', center, radius: 3 * unit, role: 'ring', width: 0, fill: true })
   return shapes
 }

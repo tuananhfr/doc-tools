@@ -37,6 +37,7 @@
     },
     "turnkey": "Harga satuan kedua adalah borongan penuh, sudah termasuk struktur",
     "editFactors": "Ubah koefisien sesuai penawaran kontraktor",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

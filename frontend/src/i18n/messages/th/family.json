@@ -120,7 +120,13 @@
     "defaultsNote": "ICS และ PDF จะไม่รวมนัดหมายส่วนตัวและอ่อนไหวโดยค่าเริ่มต้น ไฟล์สำรองมีข้อมูลครบเสมอ เก็บไฟล์ไว้ในที่ที่คุณไว้ใจ",
     "restoreLabel": "กู้คืนจากไฟล์สำรอง JSON",
     "inspected": "อ่านแล้ว: {{members}} สมาชิก, {{events}} นัดหมาย, {{reminders}} การเตือน รหัสครอบครัว: {{id}}",
-    "restoreThis": "กู้คืนไฟล์นี้"
+    "restoreThis": "กู้คืนไฟล์นี้",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "กรอกชื่อและเบอร์โทรศัพท์ที่ถูกต้อง",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "เปิดข้อมูลในอุปกรณ์ไม่ได้ ตรวจสอบสิทธิ์การจัดเก็บของเบราว์เซอร์",
     "saveFailed": "บันทึกการเปลี่ยนแปลงไม่สำเร็จ โปรดส่งออกไฟล์สำรองและตรวจสอบพื้นที่ว่างของอุปกรณ์",
-    "restoreFailed": "กู้คืนไฟล์สำรองไม่สำเร็จ"
+    "restoreFailed": "กู้คืนไฟล์สำรองไม่สำเร็จ",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "ปฏิทินครอบครัว · 30 วันข้างหน้า",

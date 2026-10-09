@@ -1,22 +1,10 @@
-import { parseDecimal } from '@/features/tools/hub'
+import { parseDecimal, parseMoney } from '@/features/tools/hub'
 import { translate } from '@/i18n/runtime'
 import type { MoneyPreset, MoneyRow, MoneyUnit } from '../config/money-presets'
 import { numberFormat } from '@/i18n/intl'
 
-/**
- * Đọc một SỐ TIỀN người dùng gõ tay. Khác `parseDecimal` ở đúng một chỗ: dấu
- * chấm / phẩy theo sau bởi ĐÚNG ba chữ số là dấu nhóm nghìn — "150.000" là một
- * trăm năm mươi nghìn, không phải một trăm rưỡi. Với kích thước thì "1.500" là
- * 1,5 m; với tiền Việt thì gần như chắc chắn là một nghìn rưỡi.
- *
- * Vẫn là đoán, nên màn dùng hàm này phải in lại con số đã hiểu cạnh kết quả.
- */
-export function parseMoney(input: string): number | null {
-  const text = input.replace(/\s/g, '')
-  if (/^\d{1,3}([.,]\d{3})+$/.test(text) && !(text.includes('.') && text.includes(','))) return Number(text.replace(/[.,]/g, ''))
-  const value = parseDecimal(text)
-  return value === null || value < 0 ? null : value
-}
+// Bộ đọc tiền đã chuyển sang hub để trang tài chính dùng chung; giữ export cho code và test cũ.
+export { parseMoney }
 
 const AMOUNT: Intl.NumberFormatOptions = { maximumFractionDigits: 2 }
 

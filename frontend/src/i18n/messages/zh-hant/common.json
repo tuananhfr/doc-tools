@@ -206,5 +206,13 @@
         "line2": "一站式體驗"
       }
     }
+  },
+  "number": {
+    "understood": "Read as: {{value}}",
+    "invalid": "This is not a number we can read. Example: 1,500,000 or 2.5.",
+    "integer": "Enter a whole number.",
+    "between": "Enter a number from {{min}} to {{max}}.",
+    "atLeast": "Enter {{min}} or more.",
+    "atMost": "Enter at most {{max}}."
   }
 }

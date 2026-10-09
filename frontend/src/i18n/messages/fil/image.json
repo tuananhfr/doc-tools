@@ -406,7 +406,12 @@
     "panel": "Mga larawang pagsasamahin",
     "choose": "Pumili ng 2 hanggang 9 na larawan",
     "columns": "Bilang ng column",
-    "gap": "Pagitan (px)"
+    "gap": "Pagitan (px)",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "Lampas sa limitasyon ng laki ng file ang larawan.",
@@ -443,7 +448,8 @@
     "brushKeep": "Itabi",
     "brushSize": "Laki ng brush: {{value}}",
     "undoBrush": "I-undo ang brush",
-    "note": "Sa device pinoproseso ang larawan. Kailangang ayusin nang mano-mano gamit ang brush ang background na maraming detalye; pinaliliit ang malaking larawan hanggang 2200 px bawat gilid."
+    "note": "Sa device pinoproseso ang larawan. Kailangang ayusin nang mano-mano gamit ang brush ang background na maraming detalye; pinaliliit ang malaking larawan hanggang 2200 px bawat gilid.",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "larawan",

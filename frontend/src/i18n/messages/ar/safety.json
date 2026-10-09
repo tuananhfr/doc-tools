@@ -12,7 +12,8 @@
     "messageLabel": "نص الرسالة",
     "linkPlaceholder": "الصق الرابط، لا حاجة لفتحه…",
     "messagePlaceholder": "الصق الرسالة المشبوهة…",
-    "privacy": "يُحلَّل المحتوى على جهازك؛ ولا تزور الأداة الرابط الذي تلصقه."
+    "privacy": "يُحلَّل المحتوى على جهازك؛ ولا تزور الأداة الرابط الذي تلصقه.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "تعذّرت قراءة الرابط.",
@@ -30,6 +31,9 @@
     "easyJob": "يعرض عملًا سهلًا بأجر مرتفع أو مهامّ عبر الإنترنت.",
     "urgentTransfer": "يستعجلك لتحويل المال أو شحن الرصيد.",
     "installApp": "يطلب تثبيت تطبيق من رابط في الرسالة.",
-    "link": "الرابط {{link}}: {{flags}}"
+    "link": "الرابط {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

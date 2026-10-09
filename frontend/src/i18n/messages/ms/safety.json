@@ -12,7 +12,8 @@
     "messageLabel": "Teks mesej",
     "linkPlaceholder": "Tampal pautan, tidak perlu membukanya…",
     "messagePlaceholder": "Tampal mesej yang mencurigakan…",
-    "privacy": "Kandungan dianalisis pada peranti anda; alat ini tidak melawati pautan yang anda tampal."
+    "privacy": "Kandungan dianalisis pada peranti anda; alat ini tidak melawati pautan yang anda tampal.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "Tidak dapat membaca pautan.",
@@ -30,6 +31,9 @@
     "easyJob": "Menawarkan kerja mudah bergaji tinggi atau tugasan dalam talian.",
     "urgentTransfer": "Mendesak anda memindahkan atau menambah nilai wang dengan segera.",
     "installApp": "Meminta anda memasang aplikasi daripada mesej.",
-    "link": "Pautan {{link}}: {{flags}}"
+    "link": "Pautan {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

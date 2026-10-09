@@ -50,7 +50,8 @@ export function MethodPanel({ state, hasImage, disabled, anchorLabel, dispatch }
 
       {state.method === 'MANUAL' ? (
         <ManualDegree
-          key={hasImage ? (known?.targetId ?? 'none') : state.activeId}
+          // Mốc bị xoá (gõ sai) thì rơi về activeId — cùng khoá với lúc đang có số, ô nhập không bị dựng lại mất chữ đang gõ.
+          key={hasImage ? (known?.targetId ?? state.activeId) : state.activeId}
           label={anchorLabel}
           value={known?.source === 'MANUAL' ? known.azimuth : null}
           disabled={disabled}

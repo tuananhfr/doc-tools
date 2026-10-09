@@ -120,7 +120,13 @@
     "defaultsNote": "ICS 和 PDF 預設不含私人、敏感行程。備份一律包含完整資料；請將檔案存放在你信任的地方。",
     "restoreLabel": "從 JSON 備份還原",
     "inspected": "已讀取：{{members}} 位成員、{{events}} 個行程、{{reminders}} 則提醒。家庭代碼：{{id}}。",
-    "restoreThis": "還原此備份"
+    "restoreThis": "還原此備份",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "請輸入有效的姓名和電話號碼。",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "無法開啟裝置上的資料。請檢查瀏覽器的儲存權限。",
     "saveFailed": "無法儲存變更。請匯出備份並檢查裝置儲存空間。",
-    "restoreFailed": "無法還原備份。"
+    "restoreFailed": "無法還原備份。",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "家庭行事曆 · 未來 30 天",

@@ -13,7 +13,9 @@
     "front": "Front",
     "back": "Back",
     "add": "Add card",
-    "remove": "Delete"
+    "remove": "Delete",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "Focus",
@@ -22,11 +24,16 @@
     "pause": "Pause",
     "reset": "Reset",
     "switch": "Switch session",
-    "note": "The timer only runs while this page is open. When it reaches 00:00, choose Switch session to start the next round.",
+    "note": "The timer only runs while this page is open. When time is up you get a beep, a notification (if you allowed it) and the next session is set up automatically.",
     "title": "Duration",
     "focusMinutes": "Focus (minutes)",
     "breakMinutes": "Break (minutes)",
-    "invalid": "Focus 1–180 minutes; break 1–60 minutes."
+    "invalid": "Focus 1–180 minutes; break 1–60 minutes.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "Reference conversion",

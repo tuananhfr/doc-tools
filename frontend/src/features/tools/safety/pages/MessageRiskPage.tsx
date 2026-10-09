@@ -1,5 +1,5 @@
-import { useId, useState } from 'react'
-import { Form } from 'react-bootstrap'
+import { useId, useRef, useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { inspectLink, inspectMessage } from '../utils/message-risk'
@@ -7,15 +7,23 @@ import { inspectLink, inspectMessage } from '../utils/message-risk'
 export default function MessageRiskPage() {
   const { t } = useTranslation('safety')
   const inputId = useId()
+  const resultRef = useRef<HTMLDivElement>(null)
   const [kind, setKind] = useState<'message' | 'link'>('message')
   const [input, setInput] = useState('')
   const risk = input.trim() ? kind === 'link' ? inspectLink(input) : inspectMessage(input) : null
-  const label = risk?.level === 'high' ? t('messageRisk.levelHigh') : risk?.level === 'medium' ? t('messageRisk.levelMedium') : risk ? t('messageRisk.levelLow') : '—'
+  const label = !risk ? '—'
+    : risk.level === 'unreadable' ? t('flags.unreadable')
+      : risk.level === 'high' ? t('messageRisk.levelHigh') : risk.level === 'medium' ? t('messageRisk.levelMedium') : t('messageRisk.levelLow')
+  // Kết quả vẫn tính theo từng phím gõ; trên điện thoại cột kết quả nằm dưới ô nhập nên cần nút đưa người dùng tới đó.
+  const showResult = () => {
+    resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    resultRef.current?.focus({ preventScroll: true })
+  }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard side={<div ref={resultRef} tabIndex={-1} className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('messageRisk.result')}</p>
     <p className="erp-tool-result__value">{label}</p>
-    {risk?.flags.length ? <ul className="erp-tool-rows">{risk.flags.map((flag, index) => <li key={`${flag}-${index}`}>{flag}</li>)}</ul> : null}
+    {risk?.signals.length ? <ul className="erp-tool-rows">{risk.signals.map((item, index) => <li key={`${item.text}-${index}`}>{item.text}</li>)}</ul> : null}
     <p className="erp-tool-result__note">{t('messageRisk.note')}</p>
   </div>}>
     <ToolPanel title={t('messageRisk.title')}>
@@ -24,6 +32,7 @@ export default function MessageRiskPage() {
       </label>
       <label className="erp-flow-field__label mt-3" htmlFor={inputId}>{kind === 'link' ? t('messageRisk.kindLink') : t('messageRisk.messageLabel')}</label>
       <Form.Control id={inputId} as="textarea" rows={10} value={input} onChange={(event) => setInput(event.target.value)} placeholder={kind === 'link' ? t('messageRisk.linkPlaceholder') : t('messageRisk.messagePlaceholder')} />
+      <Button className="mt-3" disabled={!input.trim()} onClick={showResult}>{t('messageRisk.check')}</Button>
       <p className="erp-tool-result__note mt-3">{t('messageRisk.privacy')}</p>
     </ToolPanel>
   </ToolBoard>

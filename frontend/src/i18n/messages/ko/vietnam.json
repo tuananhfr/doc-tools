@@ -97,7 +97,10 @@
     "rulesNone": "시스템에 유효한 서명된 주소 대조표가 아직 없어요.",
     "manualLabel": "또는 직접 입력하세요. 한 줄에: “옛 성|옛 군|옛 사|새 성|새 사”",
     "manualInvalid": "대조표 형식이 잘못됐거나(각 줄 5개 항목, 항목당 최대 150자), 같은 옛 성이 서로 다른 두 새 성에 지정돼 있어요.",
-    "csvFileName": "주소-변환"
+    "csvFileName": "주소-변환",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "XML 파일을 읽을 수 없어요.",
       "doctype": "지원하지 않는 엔티티 선언이나 DOCTYPE이 있는 XML이에요.",
       "invalid": "올바르지 않은 XML 파일이에요.",
-      "noCommon": "송장의 공통 정보 블록을 찾을 수 없어요."
+      "noCommon": "송장의 공통 정보 블록을 찾을 수 없어요.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "전자 송장",
     "noNumber": "번호 없음",
@@ -128,7 +132,9 @@
       "name": "상품, 서비스",
       "quantity": "수량",
       "amount": "금액"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "변환된 텍스트",
@@ -146,7 +152,8 @@
       "upper": "대문자"
     },
     "contentLabel": "내용",
-    "placeholder": "변환할 텍스트를 붙여 넣으세요…"
+    "placeholder": "변환할 텍스트를 붙여 넣으세요…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "글자로 쓰기",

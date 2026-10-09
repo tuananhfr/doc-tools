@@ -68,3 +68,36 @@ describe('mặt la kinh', () => {
     if (arc.kind === 'arc') expect(arc.outer).toBeGreaterThan(150)
   })
 })
+
+describe('kim không đè lên chữ của mặt số', () => {
+  const distanceToSegment = (p: { x: number; y: number }, a: { x: number; y: number }, b: { x: number; y: number }) => {
+    const dx = b.x - a.x
+    const dy = b.y - a.y
+    const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy || 1)))
+    return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy))
+  }
+  const isNeedle = (shape: CompassShape) => shape.role === 'target' || shape.role === 'target-active'
+
+  const cases: [string, Partial<CompassSpec>][] = [
+    ['mặt la kinh có vòng sao', { rings: { stars: KHON_STARS } }],
+    ['mặt la kinh chưa có tuổi', { rings: { stars: null } }],
+    ['la bàn kỹ thuật có số độ', { rings: null, degrees: true, divisions: 16 }],
+    ['la bàn kỹ thuật 8 hướng', { rings: null, degrees: false }],
+  ]
+
+  for (const [name, patch] of cases) {
+    it(name, () => {
+      for (let azimuth = 0; azimuth < 360; azimuth += 2.5) {
+        const shapes = compassShapes({ ...spec(17, null), radius: 144, ...patch, needles: [{ azimuth, label: 'Nhà', active: true }] })
+        const labels = texts(shapes).filter((shape) => !isNeedle(shape))
+        for (const shape of shapes.filter(isNeedle)) {
+          for (const label of labels) {
+            // Ước lượng chữ bằng hình tròn bán kính nửa cỡ chữ quanh tâm — đủ chặt cho phương bán kính mà kim đi.
+            if (shape.kind === 'line') expect(distanceToSegment(label.at, shape.from, shape.to)).toBeGreaterThan(label.size / 2 + shape.width / 2)
+            if (shape.kind === 'circle') expect(Math.hypot(label.at.x - shape.center.x, label.at.y - shape.center.y)).toBeGreaterThan(label.size / 2 + shape.radius)
+          }
+        }
+      }
+    })
+  }
+})

@@ -125,7 +125,13 @@
     "defaultsNote": "يستبعد ICS وPDF افتراضيًا المواعيد الخاصة والحسّاسة. أما النسخة الاحتياطية فتتضمن جميع البيانات دائمًا؛ احفظ الملف في مكان تثق به.",
     "restoreLabel": "الاستعادة من نسخة احتياطية JSON",
     "inspected": "تمت القراءة: {{members}} فرد، {{events}} موعد، {{reminders}} تذكير. رمز العائلة: {{id}}.",
-    "restoreThis": "استعادة هذه النسخة"
+    "restoreThis": "استعادة هذه النسخة",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "أدخل اسمًا ورقم هاتف صالحين.",
@@ -154,7 +160,8 @@
   "space": {
     "loadFailed": "تعذّر فتح البيانات على الجهاز. تحقّق من أذونات التخزين في المتصفح.",
     "saveFailed": "تعذّر حفظ التغييرات. صدّر نسخة احتياطية وتحقّق من مساحة الجهاز.",
-    "restoreFailed": "تعذّرت استعادة النسخة الاحتياطية."
+    "restoreFailed": "تعذّرت استعادة النسخة الاحتياطية.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "تقويم العائلة · الأيام الثلاثون القادمة",

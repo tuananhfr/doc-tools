@@ -46,13 +46,16 @@
       "noDraft": "មិនទាន់មានសេចក្តីព្រាងត្រឹមត្រូវទេ។",
       "opened": "បានបើកសេចក្តីព្រាង។",
       "unreadable": "មិនអាចអានសេចក្តីព្រាងបានទេ។",
-      "cleared": "បានលុបសេចក្តីព្រាងលើឧបករណ៍។"
+      "cleared": "បានលុបសេចក្តីព្រាងលើឧបករណ៍។",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "សូមពិនិត្យព័ត៌មានឱ្យបានច្បាស់មុនពេលផ្ញើ។ សេចក្តីព្រាងត្រូវបានរក្សាទុកលើឧបករណ៍តែពេលអ្នកចុច «រក្សាទុក» ប៉ុណ្ណោះ រូបថតមិនត្រូវបានរក្សាទុកទេ។",
     "print": {
       "kicker": "ប្រវត្តិរូបសង្ខេប",
       "summary": "ការណែនាំខ្លួន"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "សរសេរគំរូឯកសាររដ្ឋបាល",
@@ -132,6 +135,13 @@
         "giver": "ភាគីប្រគល់"
       },
       "signHint": "(ហត្ថលេខា និងឈ្មោះពេញ)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

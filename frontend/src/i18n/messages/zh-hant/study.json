@@ -11,7 +11,9 @@
     "front": "正面",
     "back": "背面",
     "add": "新增卡片",
-    "remove": "刪除"
+    "remove": "刪除",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "專注",
@@ -24,7 +26,12 @@
     "title": "時長",
     "focusMinutes": "專注（分鐘）",
     "breakMinutes": "休息（分鐘）",
-    "invalid": "專注 1–180 分鐘；休息 1–60 分鐘。"
+    "invalid": "專注 1–180 分鐘；休息 1–60 分鐘。",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "參考換算",

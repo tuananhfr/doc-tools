@@ -37,6 +37,7 @@
     },
     "turnkey": "The second price is turnkey and already includes the structure",
     "editFactors": "Adjust factors to match the contractor's quote",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

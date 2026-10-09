@@ -37,6 +37,7 @@
     },
     "turnkey": "2つ目の単価は躯体工事込みの一式価格",
     "editFactors": "施工業者の見積もりに合わせて係数を編集",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

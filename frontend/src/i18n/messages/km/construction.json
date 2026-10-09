@@ -37,6 +37,7 @@
     },
     "turnkey": "តម្លៃឯកតាទីពីរជាកញ្ចប់ពេញ ដែលរួមបញ្ចូលផ្នែករចនាសម្ព័ន្ធរួចហើយ",
     "editFactors": "កែមេគុណតាមសម្រង់តម្លៃរបស់អ្នកម៉ៅការ",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

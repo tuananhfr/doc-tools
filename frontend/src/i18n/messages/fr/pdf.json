@@ -138,7 +138,8 @@
     "allowModify": "Autoriser la modification",
     "ownerPassword": "Mot de passe propriétaire distinct (à conserver pour lever les restrictions)",
     "protectNote": "En cas d'oubli, le mot de passe ne pourra pas être récupéré avec cet outil. Transmettez le mot de passe par un autre canal que le fichier.",
-    "removeNote": "Ne déverrouillez que les fichiers qui vous appartiennent ou que vous êtes autorisé à traiter. Pour un fichier à droits restreints, le mot de passe propriétaire est nécessaire."
+    "removeNote": "Ne déverrouillez que les fichiers qui vous appartiennent ou que vous êtes autorisé à traiter. Pour un fichier à droits restreints, le mot de passe propriétaire est nécessaire.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -1058,7 +1059,9 @@
     "protectFailed": "Impossible d'ajouter le mot de passe. Le fichier est peut-être déjà verrouillé ou endommagé.",
     "restricted": "Le fichier restreint la modification. Le mot de passe propriétaire de son auteur est nécessaire.",
     "wrong": "Mot de passe incorrect.",
-    "removeFailed": "Impossible de retirer le mot de passe."
+    "removeFailed": "Impossible de retirer le mot de passe.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "aucun trait de signature.",

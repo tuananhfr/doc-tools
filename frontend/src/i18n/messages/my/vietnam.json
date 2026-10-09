@@ -97,7 +97,10 @@
     "rulesNone": "စနစ်ပေါ်တွင် လက်မှတ်ထိုးထားပြီး အကျုံးဝင်ဆဲ လိပ်စာ တိုက်ဆိုင်ဇယား မရှိသေးပါ။",
     "manualLabel": "သို့မဟုတ် ကိုယ်တိုင်ထည့်ပါ၊ တစ်ကြောင်းစီ- “tỉnh ဟောင်း|huyện ဟောင်း|xã ဟောင်း|tỉnh အသစ်|xã အသစ်”",
     "manualInvalid": "တိုက်ဆိုင်ဇယား ဖော်မတ်မှားနေသည် (တစ်ကြောင်းလျှင် အပိုင်း 5 ခု ပြည့်ရမည်၊ အပိုင်းတစ်ခုလျှင် စာလုံး 150 အထိ) သို့မဟုတ် tỉnh ဟောင်းတစ်ခုကို မတူသော tỉnh အသစ် နှစ်ခုသို့ ချိတ်ထားသည်။",
-    "csvFileName": "လိပ်စာ-ပြောင်းလဲမှု"
+    "csvFileName": "လိပ်စာ-ပြောင်းလဲမှု",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "XML ဖိုင်ကို ဖတ်၍ မရပါ။",
       "doctype": "XML တွင် မပံ့ပိုးသော entity ကြေညာချက် သို့မဟုတ် DOCTYPE ပါဝင်နေသည်။",
       "invalid": "XML ဖိုင် မမှန်ကန်ပါ။",
-      "noCommon": "ငွေတောင်းခံလွှာ၏ အထွေထွေ အချက်အလက်အပိုင်းကို မတွေ့ပါ။"
+      "noCommon": "ငွေတောင်းခံလွှာ၏ အထွေထွေ အချက်အလက်အပိုင်းကို မတွေ့ပါ။",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "ငွေတောင်းခံလွှာ",
     "noNumber": "နံပါတ် မရှိ",
@@ -128,7 +132,9 @@
       "name": "ကုန်ပစ္စည်း၊ ဝန်ဆောင်မှု",
       "quantity": "အရေအတွက်",
       "amount": "ကျသင့်ငွေ"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "ပြောင်းပြီးသော စာသား",
@@ -146,7 +152,8 @@
       "upper": "စာလုံးကြီး (UPPERCASE)"
     },
     "contentLabel": "အကြောင်းအရာ",
-    "placeholder": "ပြောင်းလိုသော စာသားကို ကပ်ပါ…"
+    "placeholder": "ပြောင်းလိုသော စာသားကို ကပ်ပါ…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "စာဖြင့် (ဗီယက်နမ်ဘာသာ)",

@@ -11,7 +11,9 @@
     "front": "အရှေ့ဘက်",
     "back": "အနောက်ဘက်",
     "add": "ကတ် ထည့်ရန်",
-    "remove": "ဖျက်ရန်"
+    "remove": "ဖျက်ရန်",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "အာရုံစိုက်ချိန်",
@@ -24,7 +26,12 @@
     "title": "ကြာချိန်",
     "focusMinutes": "အာရုံစိုက်ချိန် (မိနစ်)",
     "breakMinutes": "အနားယူချိန် (မိနစ်)",
-    "invalid": "အာရုံစိုက်ချိန် 1–180 မိနစ်၊ အနားယူချိန် 1–60 မိနစ်။"
+    "invalid": "အာရုံစိုက်ချိန် 1–180 မိနစ်၊ အနားယူချိန် 1–60 မိနစ်။",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "ကိုးကားရန် ပြောင်းလဲမှု",

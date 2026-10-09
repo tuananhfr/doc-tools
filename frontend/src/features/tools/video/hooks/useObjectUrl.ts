@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 
-export function useObjectUrl(blob: Blob | null): string {
-  const [url, setUrl] = useState('')
+/** `null` cho tới khi có URL của ĐÚNG blob này — `src=""` làm trình duyệt tải lại cả trang. */
+export function useObjectUrl(blob: Blob | null): string | null {
+  const [entry, setEntry] = useState<{ blob: Blob; url: string } | null>(null)
   useEffect(() => {
-    if (!blob) { setUrl(''); return }
-    const next = URL.createObjectURL(blob)
-    setUrl(next)
-    return () => URL.revokeObjectURL(next)
+    if (!blob) { setEntry(null); return }
+    const url = URL.createObjectURL(blob)
+    setEntry({ blob, url })
+    return () => URL.revokeObjectURL(url)
   }, [blob])
-  return url
+  // Giữa lúc đổi blob và lúc effect chạy, URL cũ đã bị thu hồi.
+  return entry && entry.blob === blob ? entry.url : null
 }

@@ -15,7 +15,8 @@
     "download": "Télécharger le .txt",
     "interrupted": "La reconnaissance vocale a été interrompue. Vérifiez l'autorisation du micro et réessayez.",
     "micFailed": "Impossible d'ouvrir le micro. Vérifiez les autorisations de votre navigateur.",
-    "fileName": "transcription-dictee"
+    "fileName": "transcription-dictee",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "Ce navigateur ne prend pas en charge la caméra.",
@@ -33,7 +34,9 @@
     "freeze": "Figer l'image",
     "contrastOff": "Contraste normal",
     "contrastOn": "Contraste renforcé",
-    "closeCamera": "Éteindre la caméra"
+    "closeCamera": "Éteindre la caméra",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "Lecture sur l'appareil",
@@ -43,6 +46,9 @@
     "unsupported": "Ce navigateur ne prend pas en charge la lecture de texte à voix haute.",
     "title": "Texte à lire",
     "content": "Contenu",
-    "rate": "Vitesse : {{rate}}×"
+    "rate": "Vitesse : {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

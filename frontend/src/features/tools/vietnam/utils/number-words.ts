@@ -37,7 +37,9 @@ export function numberToVietnameseWords(input: string, options: NumberWordsOptio
     if (group === '000') return
     const position = groups.length - index - 1
     const unit = GROUP_UNITS[position % 3]
-    const billions = ' tỷ'.repeat(Math.floor(position / 3))
+    // "tỷ" chỉ đứng sau nhóm khác 0 cuối cùng của mỗi khối tỷ — gắn cho mọi nhóm thì 1.500.000.000 thành "một tỷ năm trăm triệu tỷ".
+    const closesBlock = groups.slice(index + 1, index + 1 + (position % 3)).every((next) => next === '000')
+    const billions = closesBlock ? ' tỷ'.repeat(Math.floor(position / 3)) : ''
     words.push(`${readGroup(group, words.length > 0, options)}${unit ? ` ${unit}` : ''}${billions}`.trim())
   })
   const result = `${negative ? 'âm ' : ''}${words.join(' ')}`

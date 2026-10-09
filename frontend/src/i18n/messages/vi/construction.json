@@ -37,6 +37,7 @@
     },
     "turnkey": "Đơn giá thứ hai là trọn gói, đã gồm phần thô",
     "editFactors": "Sửa hệ số theo báo giá nhà thầu",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Xem lại ô “{{field}}”."
   }
 }

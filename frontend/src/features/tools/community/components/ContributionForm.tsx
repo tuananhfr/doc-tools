@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { withBase } from '@/utils/url'
 import { ContributionAccountBox, defaultAttribution, useMe, useRefreshMyContributions } from '@/features/account'
+import { checkSourceUrl, findSensitive, SOURCE_URL_MAX, type SensitiveKind } from '../utils/contribution-check'
 
 interface Props { mode: 'idea' | 'regulation' }
 const STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
@@ -29,8 +30,17 @@ export function ContributionForm({ mode }: Props) {
   const [message, setMessage] = useState('')
   const [lookupMessage, setLookupMessage] = useState('')
   const [lookupStatus, setLookupStatus] = useState('')
+  const ids = { title: useId(), detail: useId(), url: useId(), consent: useId() }
+  const titleSensitive = findSensitive(title)
+  const detailSensitive = findSensitive(detail)
+  const urlCheck = checkSourceUrl(sourceUrl.trim())
+  const urlError = urlCheck === 'invalid' ? t('contribution.sourceUrlInvalid') : urlCheck === 'notHttps' ? t('contribution.sourceUrlNotHttps') : urlCheck === 'unsafe' ? t('contribution.sourceUrlUnsafe') : ''
+  const sensitiveError = (kinds: SensitiveKind[]) => kinds.length ? [...kinds.map((kind) => t(`contribution.sensitive.${kind}`)), t('contribution.sensitiveFix')].join(' ') : ''
+  const blocked = Boolean(titleSensitive.length || detailSensitive.length || (mode === 'regulation' && urlError))
+  const required = <span className="text-danger" aria-hidden="true"> *</span>
+  const fieldError = (id: string, error: string) => error ? <span id={`${id}-error`} className="erp-tool-form__error" role="alert">{error}</span> : null
   const submit = async () => {
-    if (!consent || !detail.trim() || busy) return
+    if (!consent || !title.trim() || !detail.trim() || blocked || busy) return
     setBusy(true); setMessage('')
     try {
       // The header lets the backend file it under the signed-in account; without it the cookie is ignored.
@@ -69,17 +79,18 @@ export function ContributionForm({ mode }: Props) {
   return <div className="erp-tool-panel">
     <h2 className="h5">{mode === 'idea' ? t('contribution.ideaTitle') : t('contribution.regulationTitle')}</h2>
     <p>{mode === 'idea' ? t('contribution.ideaIntro') : t('contribution.regulationIntro')}</p>
-    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaName') : t('contribution.regulationTopic')}<Form.Control maxLength={100} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
-    <label className="erp-flow-field__label mt-3">{mode === 'idea' ? t('contribution.ideaDetail') : t('contribution.regulationDetail')}<Form.Control as="textarea" rows={6} maxLength={4800} value={detail} onChange={(event) => setDetail(event.target.value)} /></label>
-    {mode === 'regulation' ? <><label className="erp-flow-field__label mt-3">{t('contribution.sourceUrl')}<Form.Control type="url" maxLength={2048} value={sourceUrl} onChange={(event) => setSourceUrl(event.target.value)} /></label><label className="erp-flow-field__label mt-3">{t('contribution.sourceType')}<Form.Select value={sourceType} onChange={(event) => setSourceType(event.target.value as typeof sourceType)}><option value="OFFICIAL_WEB">{t('contribution.sourceTypes.OFFICIAL_WEB')}</option><option value="OFFICIAL_DOCUMENT">{t('contribution.sourceTypes.OFFICIAL_DOCUMENT')}</option><option value="OFFICIAL_API">{t('contribution.sourceTypes.OFFICIAL_API')}</option><option value="OTHER">{t('contribution.sourceTypes.OTHER')}</option></Form.Select></label></> : null}
+    <p className="erp-flow-field__hint">{t('contribution.requiredNote')}</p>
+    <label className="erp-flow-field__label mt-3" htmlFor={ids.title}>{mode === 'idea' ? t('contribution.ideaName') : t('contribution.regulationTopic')}{required}<Form.Control id={ids.title} required aria-required="true" maxLength={100} value={title} isInvalid={titleSensitive.length > 0} aria-describedby={titleSensitive.length ? `${ids.title}-error` : undefined} onChange={(event) => setTitle(event.target.value)} />{fieldError(ids.title, sensitiveError(titleSensitive))}</label>
+    <label className="erp-flow-field__label mt-3" htmlFor={ids.detail}>{mode === 'idea' ? t('contribution.ideaDetail') : t('contribution.regulationDetail')}{required}<Form.Control id={ids.detail} as="textarea" rows={6} required aria-required="true" maxLength={4800} value={detail} isInvalid={detailSensitive.length > 0} aria-describedby={detailSensitive.length ? `${ids.detail}-error` : undefined} onChange={(event) => setDetail(event.target.value)} />{fieldError(ids.detail, sensitiveError(detailSensitive))}</label>
+    {mode === 'regulation' ? <><label className="erp-flow-field__label mt-3" htmlFor={ids.url}>{t('contribution.sourceUrl')}<Form.Control id={ids.url} type="url" maxLength={SOURCE_URL_MAX} value={sourceUrl} isInvalid={Boolean(urlError)} aria-describedby={urlError ? `${ids.url}-error` : undefined} onChange={(event) => setSourceUrl(event.target.value)} />{fieldError(ids.url, urlError)}</label><label className="erp-flow-field__label mt-3">{t('contribution.sourceType')}<Form.Select value={sourceType} onChange={(event) => setSourceType(event.target.value as typeof sourceType)}><option value="OFFICIAL_WEB">{t('contribution.sourceTypes.OFFICIAL_WEB')}</option><option value="OFFICIAL_DOCUMENT">{t('contribution.sourceTypes.OFFICIAL_DOCUMENT')}</option><option value="OFFICIAL_API">{t('contribution.sourceTypes.OFFICIAL_API')}</option><option value="OTHER">{t('contribution.sourceTypes.OTHER')}</option></Form.Select></label></> : null}
     {user ? <ContributionAccountBox user={user} attribution={attribution} onAttributionChange={setAttributionChoice} tracked={tracked} /> : null}
-    <Form.Check className="mt-3" checked={consent} onChange={(event) => setConsent(event.target.checked)} label={t('contribution.consent')} />
-    <Button className="mt-3" disabled={!consent || !title.trim() || !detail.trim() || busy || Boolean(receipt)} onClick={() => void submit()}>{busy ? t('contribution.sending') : t('contribution.submit')}</Button>
+    <Form.Check className="mt-3" id={ids.consent} required aria-required="true" checked={consent} onChange={(event) => setConsent(event.target.checked)} label={<>{t('contribution.consent')}{required}</>} />
+    <Button className="mt-3" disabled={!consent || !title.trim() || !detail.trim() || blocked || busy || Boolean(receipt)} onClick={() => void submit()}>{busy ? t('contribution.sending') : t('contribution.submit')}</Button>
     {message ? <p role="status" className="mt-3">{message}</p> : null}
     {receipt ? <p><strong>{t('contribution.receipt')}</strong> <code>{receipt}</code></p> : null}
     <hr />
     <h3 className="h6">{t('contribution.lookupTitle')}</h3><div className="d-flex flex-wrap gap-2"><Form.Control style={{ maxWidth: 340 }} aria-label={t('contribution.receiptLabel')} maxLength={32} value={lookup} onChange={(event) => setLookup(event.target.value)} /><Button variant="outline-secondary" onClick={() => void check()}>{t('contribution.lookup')}</Button></div>
     {lookupMessage ? <p role="status" className="mt-2">{lookupMessage}</p> : null}
-    {mode === 'regulation' && lookupStatus === 'NEEDS_SOURCE' ? <><p>{t('contribution.needsSource')}</p><Button variant="outline-primary" disabled={!sourceUrl.trim()} onClick={() => void addSource()}>{t('contribution.addSource')}</Button></> : null}
+    {mode === 'regulation' && lookupStatus === 'NEEDS_SOURCE' ? <><p>{t('contribution.needsSource')}</p><Button variant="outline-primary" disabled={!sourceUrl.trim() || urlCheck !== 'ok'} onClick={() => void addSource()}>{t('contribution.addSource')}</Button></> : null}
   </div>
 }

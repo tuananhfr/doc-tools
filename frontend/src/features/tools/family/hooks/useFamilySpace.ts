@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { translate } from '@/i18n/runtime'
-import { loadFamilySpace, saveFamilySpace } from '../storage/family-store'
+import { archiveFamilySpace, loadFamilySpace, saveFamilySpace } from '../storage/family-store'
 import { type FamilySpace, validateFamilySpace } from '../core/family'
 
 export function useFamilySpace() {
   const [space, setSpace] = useState<FamilySpace | null>(null)
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [dropped, setDropped] = useState(0)
   const current = useRef<FamilySpace | null>(null)
   const queue = useRef(Promise.resolve())
   const pending = useRef(0)
   useEffect(() => {
     let mounted = true
-    void loadFamilySpace().then((value) => { if (mounted) { current.current = value; setSpace(value) } }).catch(() => { if (mounted) setError(translate('family:space.loadFailed')) })
+    void loadFamilySpace().then((value) => { if (mounted) { current.current = value.space; setSpace(value.space); setDropped(value.dropped) } }).catch(() => { if (mounted) setError(translate('family:space.loadFailed')) })
     return () => { mounted = false }
   }, [])
   const persist = useCallback(async (next: FamilySpace, failure: string) => {
@@ -36,5 +37,11 @@ export function useFamilySpace() {
     current.current = next
     await persist(next, translate('family:space.restoreFailed'))
   }, [persist])
-  return { space, error, saving, update, replace }
+  // Khôi phục trùng mã gia đình sẽ ghi đè bản đang dùng trong kho — cất bản sao trước để còn mở lại được.
+  const restore = useCallback(async (next: FamilySpace) => {
+    const active = current.current
+    if (active && active.familyId === next.familyId && active !== next) await archiveFamilySpace(active)
+    await replace(next)
+  }, [replace])
+  return { space, error, saving, dropped, update, restore }
 }

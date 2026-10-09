@@ -132,7 +132,8 @@
     "allowModify": "編集を許可",
     "ownerPassword": "専用の管理パスワード（制限を解除するために保管が必要）",
     "protectNote": "パスワードを忘れると、このツールでは復元できません。パスワードはファイルとは別の手段で送ってください。",
-    "removeNote": "ロックを解除するのは、ご自身が所有するか処理を許可されたファイルだけにしてください。権限が制限されたファイルには管理パスワードが必要です。"
+    "removeNote": "ロックを解除するのは、ご自身が所有するか処理を許可されたファイルだけにしてください。権限が制限されたファイルには管理パスワードが必要です。",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "パスワードを設定できませんでした。ファイルがロックされているか、壊れている可能性があります。",
     "restricted": "ファイルは編集権限が制限されています。ファイル所有者の管理パスワードが必要です。",
     "wrong": "パスワードが正しくありません。",
-    "removeFailed": "パスワードを解除できませんでした。"
+    "removeFailed": "パスワードを解除できませんでした。",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "署名の線がありません。",

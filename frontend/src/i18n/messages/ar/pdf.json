@@ -147,7 +147,8 @@
     "allowModify": "السماح بالتعديل",
     "ownerPassword": "كلمة مرور إدارة منفصلة (احتفظ بها لإزالة القيود)",
     "protectNote": "إذا نسيت كلمة المرور فلن تتمكن من استعادتها بهذه الأداة. أرسل كلمة المرور عبر قناة مختلفة عن قناة الملف.",
-    "removeNote": "أزل القفل فقط عن الملفات التي تملكها أو المسموح لك بمعالجتها. للملفات المقيّدة الصلاحيات تلزم كلمة مرور الإدارة."
+    "removeNote": "أزل القفل فقط عن الملفات التي تملكها أو المسموح لك بمعالجتها. للملفات المقيّدة الصلاحيات تلزم كلمة مرور الإدارة.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -1355,7 +1356,9 @@
     "protectFailed": "تعذّر تعيين كلمة المرور. قد يكون الملف مقفلًا أو تالفًا.",
     "restricted": "الملف مقيّد الصلاحيات للتعديل. تلزم كلمة مرور الإدارة الخاصة بمالك الملف.",
     "wrong": "كلمة المرور غير صحيحة.",
-    "removeFailed": "تعذّرت إزالة كلمة المرور."
+    "removeFailed": "تعذّرت إزالة كلمة المرور.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "لا توجد خطوط توقيع بعد.",

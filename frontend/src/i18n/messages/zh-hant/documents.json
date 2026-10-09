@@ -46,13 +46,16 @@
       "noDraft": "還沒有有效的草稿。",
       "opened": "已開啟草稿。",
       "unreadable": "無法讀取草稿。",
-      "cleared": "已刪除裝置上的草稿。"
+      "cleared": "已刪除裝置上的草稿。",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "送出前請仔細檢查資訊。只有在你按「儲存」時，草稿才會儲存在裝置上；照片不會儲存。",
     "print": {
       "kicker": "個人履歷",
       "summary": "個人簡介"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "製作文件範本",
@@ -132,6 +135,13 @@
         "giver": "移交方"
       },
       "signHint": "（簽名並註明姓名）"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

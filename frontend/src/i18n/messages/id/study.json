@@ -11,7 +11,9 @@
     "front": "Sisi depan",
     "back": "Sisi belakang",
     "add": "Tambah kartu",
-    "remove": "Hapus"
+    "remove": "Hapus",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "Fokus",
@@ -24,7 +26,12 @@
     "title": "Durasi",
     "focusMinutes": "Fokus (menit)",
     "breakMinutes": "Istirahat (menit)",
-    "invalid": "Fokus 1–180 menit; istirahat 1–60 menit."
+    "invalid": "Fokus 1–180 menit; istirahat 1–60 menit.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "Konversi acuan",

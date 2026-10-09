@@ -15,7 +15,8 @@
     "download": "I-download ang .txt",
     "interrupted": "Naputol ang speech recognition. Tingnan ang pahintulot sa mikropono at subukan ulit.",
     "micFailed": "Hindi mabuksan ang mikropono. Tingnan ang mga pahintulot ng iyong browser.",
-    "fileName": "transkripsiyon-ng-diktasyon"
+    "fileName": "transkripsiyon-ng-diktasyon",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "Hindi sinusuportahan ng browser na ito ang camera.",
@@ -33,7 +34,9 @@
     "freeze": "I-freeze",
     "contrastOff": "Normal na contrast",
     "contrastOn": "Mataas na contrast",
-    "closeCamera": "Patayin ang camera"
+    "closeCamera": "Patayin ang camera",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "Basahin sa device",
@@ -43,6 +46,9 @@
     "unsupported": "Hindi sinusuportahan ng browser na ito ang pagbasa nang malakas ng text.",
     "title": "Text na babasahin",
     "content": "Nilalaman",
-    "rate": "Bilis: {{rate}}×"
+    "rate": "Bilis: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

@@ -375,7 +375,12 @@
     "panel": "ຮູບທີ່ຕ້ອງການລວມ",
     "choose": "ເລືອກແຕ່ 2 ຫາ 9 ຮູບ",
     "columns": "ຈຳນວນຖັນ",
-    "gap": "ໄລຍະຫ່າງ (px)"
+    "gap": "ໄລຍະຫ່າງ (px)",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "ຮູບເກີນຂີດຈຳກັດຂະໜາດໄຟລ໌.",
@@ -412,7 +417,8 @@
     "brushKeep": "ເກັບໄວ້",
     "brushSize": "ຂະໜາດແປງ: {{value}}",
     "undoBrush": "ຍົກເລີກແປງ",
-    "note": "ຮູບຖືກປະມວນຜົນໃນເຄື່ອງ. ພື້ນຫຼັງທີ່ມີລາຍລະອຽດຫຼາຍຕ້ອງປັບດ້ວຍແປງ; ຮູບໃຫຍ່ຈະຖືກຫຍໍ້ລົງສູງສຸດ 2200 px ຕໍ່ດ້ານ."
+    "note": "ຮູບຖືກປະມວນຜົນໃນເຄື່ອງ. ພື້ນຫຼັງທີ່ມີລາຍລະອຽດຫຼາຍຕ້ອງປັບດ້ວຍແປງ; ຮູບໃຫຍ່ຈະຖືກຫຍໍ້ລົງສູງສຸດ 2200 px ຕໍ່ດ້ານ.",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "ຮູບ",

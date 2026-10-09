@@ -253,7 +253,16 @@
     "amount": "Halaga (đ), puwedeng iwanang blangko",
     "note": "Mensahe ng transfer",
     "privacy": "Sa device mo ginagawa ang code; hindi ipinapadala sa server ng Chuyện Nhỏ ang impormasyon ng account.",
-    "fieldTooLong": "Masyadong mahaba ang QR field"
+    "fieldTooLong": "Masyadong mahaba ang QR field",
+    "binError": "The BIN must be exactly 6 digits.",
+    "accountDigits": "The account number may contain digits only.",
+    "accountLength": "The account number must be 4 to 30 digits long.",
+    "amountInvalid": "Couldn't read the amount. Example: 150.000",
+    "amountInteger": "The amount must be a whole number of đồng.",
+    "amountRange": "The amount must be between 1 đ and 999.999.999.999 đ.",
+    "amountUnderstood": "Read as {{value}} đ",
+    "noteCounter": "{{used}}/{{max}} characters (accents and symbols removed)",
+    "noteTooLong": "The message is over {{max}} characters after removing accents — shorten it; no code was created."
   },
   "trace": {
     "title": "ERPCons traceability",

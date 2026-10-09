@@ -13,9 +13,10 @@
     "text": "Text",
     "copy": "Copy",
     "download": "Download .txt",
-    "interrupted": "Speech recognition was interrupted. Check microphone permission and try again.",
-    "micFailed": "Couldn't open the microphone. Check your browser's permissions.",
-    "fileName": "dictation-transcript"
+    "interrupted": "Speech recognition was interrupted. Press Start dictating to try again.",
+    "micFailed": "The browser isn't allowed to use the microphone. Allow the microphone for this page and try again.",
+    "fileName": "dictation-transcript",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "This browser doesn't support the camera.",
@@ -33,7 +34,9 @@
     "freeze": "Freeze",
     "contrastOff": "Normal contrast",
     "contrastOn": "High contrast",
-    "closeCamera": "Turn off camera"
+    "closeCamera": "Turn off camera",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "Read on device",
@@ -43,6 +46,9 @@
     "unsupported": "This browser doesn't support reading text aloud.",
     "title": "Text to read",
     "content": "Content",
-    "rate": "Speed: {{rate}}×"
+    "rate": "Speed: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

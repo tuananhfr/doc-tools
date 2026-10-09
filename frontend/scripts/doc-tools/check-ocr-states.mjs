@@ -52,25 +52,26 @@ async function check(name, action, privateInput = false) {
   await context.setOffline(false)
 }
 try {
-  await page.goto(site + '/', { waitUntil: 'networkidle' })
+  // `/` is the landing page; search (and its zero-result events) live on `/cong-cu`.
+  await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' })
   report.build = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
   await check('quality-consent', async () => {
     const checkbox = page.locator('.cn-quality-consent input[type=checkbox]').first()
     assert(await checkbox.count()); assert(!await checkbox.isChecked())
-    await page.locator('#cn-home-search').fill('qzxv-no-result'); await page.locator('.cn-search-submit').click()
+    await page.locator('#tim-cong-cu').fill('qzxv-no-result'); await page.locator('.cn-search-submit').click()
     assert.equal(events.length, 0)
-    await checkbox.check(); await page.locator('#cn-home-search').fill('other-qzxv-no-result')
+    await checkbox.check(); await page.locator('#tim-cong-cu').fill('other-qzxv-no-result')
     await Promise.all([page.waitForResponse(response => response.url().endsWith('/tools/quality')), page.locator('.cn-search-submit').click()])
     assert(events.some(event => event.event === 'zero-result'))
     const count = events.length; await checkbox.uncheck()
-    await page.locator('#cn-home-search').fill('third-qzxv-no-result'); await page.locator('.cn-search-submit').click()
+    await page.locator('#tim-cong-cu').fill('third-qzxv-no-result'); await page.locator('.cn-search-submit').click()
     await page.waitForTimeout(100); assert.equal(events.length, count)
     await page.reload({ waitUntil: 'networkidle' }); assert(!await checkbox.isChecked())
     return { finiteEvents: events.length, defaultOff: true, revoked: true, reloadClearsConsent: true }
   })
   await check('search-table-handoff', async () => {
-    await page.locator('#cn-home-search').fill('Ảnh bảng sang Excel')
-    await page.locator('#erp-tools-grid .erp-tool-card').first().click()
+    await page.locator('#tim-cong-cu').fill('Ảnh bảng sang Excel')
+    await page.locator('.erp-tools-grid .erp-tool-card').first().click()
     assert.equal(await page.getByLabel('Loại nội dung', { exact: true }).inputValue(), 'table')
     assert.equal(await page.getByLabel('Định dạng tải về', { exact: true }).inputValue(), 'xlsx')
     return { optionsPreserved: true }

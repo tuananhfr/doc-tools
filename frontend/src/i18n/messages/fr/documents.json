@@ -46,13 +46,16 @@
       "noDraft": "Aucun brouillon valide pour l'instant.",
       "opened": "Brouillon ouvert.",
       "unreadable": "Le brouillon est illisible.",
-      "cleared": "Brouillon supprimé de cet appareil."
+      "cleared": "Brouillon supprimé de cet appareil.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "Vérifiez bien les informations avant l'envoi. Le brouillon n'est enregistré sur votre appareil que lorsque vous appuyez sur Enregistrer ; la photo n'est pas enregistrée.",
     "print": {
       "kicker": "Curriculum vitae",
       "summary": "Profil"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "Modèles de documents",
@@ -132,6 +135,13 @@
         "giver": "Partie remettante"
       },
       "signHint": "(Signature et nom complet)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

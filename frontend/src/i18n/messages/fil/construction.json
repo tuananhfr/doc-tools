@@ -37,6 +37,7 @@
     },
     "turnkey": "Turnkey ang ikalawang presyo at kasama na rito ang estruktura",
     "editFactors": "Iayon ang mga factor sa quotation ng kontratista",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

@@ -97,7 +97,10 @@
     "rulesNone": "មិនទាន់មានសំណុំផ្ទៀងផ្ទាត់អាសយដ្ឋានដែលបានចុះហត្ថលេខា និងនៅមានសុពលភាពលើប្រព័ន្ធទេ។",
     "manualLabel": "ឬបញ្ចូលដោយខ្លួនឯង មួយបន្ទាត់៖ “ខេត្តចាស់|ស្រុកចាស់|ឃុំចាស់|ខេត្តថ្មី|ឃុំថ្មី”",
     "manualInvalid": "តារាងផ្ទៀងផ្ទាត់ខុសទម្រង់ (បន្ទាត់នីមួយៗត្រូវមាន 5 ផ្នែក ផ្នែកនីមួយៗអតិបរមា 150 តួអក្សរ) ឬមានខេត្តចាស់ត្រូវបានកត់ទៅខេត្តថ្មីពីរផ្សេងគ្នា។",
-    "csvFileName": "បម្លែងអាសយដ្ឋាន"
+    "csvFileName": "បម្លែងអាសយដ្ឋាន",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "មិនអាចអានឯកសារ XML បានទេ។",
       "doctype": "XML មានការប្រកាស entity ឬ DOCTYPE ដែលមិនគាំទ្រ។",
       "invalid": "ឯកសារ XML មិនត្រឹមត្រូវ។",
-      "noCommon": "រកមិនឃើញផ្នែកព័ត៌មានទូទៅរបស់វិក្កយបត្រទេ។"
+      "noCommon": "រកមិនឃើញផ្នែកព័ត៌មានទូទៅរបស់វិក្កយបត្រទេ។",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "វិក្កយបត្រ",
     "noNumber": "គ្មានលេខ",
@@ -128,7 +132,9 @@
       "name": "ទំនិញ សេវាកម្ម",
       "quantity": "ចំនួន",
       "amount": "ទឹកប្រាក់"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "អត្ថបទក្រោយការបំប្លែង",
@@ -146,7 +152,8 @@
       "upper": "អក្សរធំ"
     },
     "contentLabel": "ខ្លឹមសារ",
-    "placeholder": "បិទភ្ជាប់អត្ថបទដែលត្រូវបំប្លែង…"
+    "placeholder": "បិទភ្ជាប់អត្ថបទដែលត្រូវបំប្លែង…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "ជាអក្សរ",

@@ -19,10 +19,11 @@ export function ManualDegree({ label, value, disabled, onChange }: ManualDegreeP
   const invalid = text.trim() !== '' && (parsed === null || !Number.isFinite(parsed))
 
   // Gõ tới đâu tính tới đó; số âm / quá 360 vẫn nhận và quy về [0, 360) — ORI-002.
+  // Gõ sai thì báo null để xoá kết quả cũ: giữ số trước đó là la bàn chỉ một hướng người dùng đã sửa đi.
   const update = (raw: string) => {
     setText(raw)
     const next = read(raw)
-    if (raw.trim() === '' || (next !== null && Number.isFinite(next))) onChange(next)
+    onChange(next !== null && Number.isFinite(next) ? next : null)
   }
 
   return (

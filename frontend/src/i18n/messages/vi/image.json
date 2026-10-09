@@ -375,7 +375,12 @@
     "panel": "Ảnh cần ghép",
     "choose": "Chọn từ 2 đến 9 ảnh",
     "columns": "Số cột",
-    "gap": "Khoảng cách (px)"
+    "gap": "Khoảng cách (px)",
+    "tooFew": "Cần ít nhất 2 ảnh, mới chọn {{total}} ảnh. Chọn lại cùng lúc từ 2 đến 9 ảnh.",
+    "tooMany": "Chỉ ghép được tối đa 9 ảnh, đang chọn {{total}} ảnh. Chọn lại không quá 9 ảnh.",
+    "blockNone": "Chọn từ 2 đến 9 ảnh để bật nút ghép.",
+    "blockGap": "Sửa ô Khoảng cách: cần số nguyên từ 0 đến 100 px.",
+    "corrupt": "{{name}}: ảnh bị hỏng hoặc không đọc được."
   },
   "removeMeta": {
     "tooLarge": "Ảnh vượt giới hạn dung lượng.",
@@ -412,7 +417,8 @@
     "brushKeep": "Giữ lại",
     "brushSize": "Cỡ cọ: {{value}}",
     "undoBrush": "Hoàn tác cọ",
-    "note": "Ảnh xử lý trên máy. Nền nhiều chi tiết cần cọ chỉnh tay; ảnh lớn được thu tối đa còn 2200 px mỗi cạnh."
+    "note": "Ảnh xử lý trên máy. Nền nhiều chi tiết cần cọ chỉnh tay; ảnh lớn được thu tối đa còn 2200 px mỗi cạnh.",
+    "undoBrushSteps": "Hoàn tác nét cọ ({{steps}})"
   },
   "file": {
     "fallback": "anh",

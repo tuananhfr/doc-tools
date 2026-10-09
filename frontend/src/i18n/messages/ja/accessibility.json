@@ -15,7 +15,8 @@
     "download": ".txt をダウンロード",
     "interrupted": "音声認識が中断されました。マイクの権限を確認して、もう一度お試しください。",
     "micFailed": "マイクを起動できませんでした。ブラウザのアクセス権限を確認してください。",
-    "fileName": "音声入力"
+    "fileName": "音声入力",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "このブラウザはカメラに対応していません。",
@@ -33,7 +34,9 @@
     "freeze": "静止",
     "contrastOff": "コントラスト強調をオフ",
     "contrastOn": "コントラストを強調",
-    "closeCamera": "カメラを停止"
+    "closeCamera": "カメラを停止",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "端末で読み上げ",
@@ -43,6 +46,9 @@
     "unsupported": "このブラウザはテキストの読み上げに対応していません。",
     "title": "読み上げるテキスト",
     "content": "内容",
-    "rate": "速度: {{rate}}×"
+    "rate": "速度: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

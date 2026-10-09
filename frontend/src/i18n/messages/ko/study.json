@@ -11,7 +11,9 @@
     "front": "앞면",
     "back": "뒷면",
     "add": "카드 추가",
-    "remove": "삭제"
+    "remove": "삭제",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "집중",
@@ -24,7 +26,12 @@
     "title": "시간 설정",
     "focusMinutes": "집중 (분)",
     "breakMinutes": "휴식 (분)",
-    "invalid": "집중은 1–180분, 휴식은 1–60분이에요."
+    "invalid": "집중은 1–180분, 휴식은 1–60분이에요.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "참고용 환산",

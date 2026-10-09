@@ -1030,3 +1030,30 @@ a.erp-tool-card:active {
     margin-left: 0;
   }
 }
+
+/*
+ * Ban in cua cong cu (PrintPortal, features/tools/hub): noi dung in nam ngay duoi <body>.
+ * Luc in an moi anh em bang display:none - khung cuon .erp-tools-guest (overflow + 100dvh)
+ * khong con trong bo cuc nen ban in chay du nhieu trang thay vi trang trang / bi cat.
+ */
+.erp-print-portal {
+  display: none;
+}
+
+@media print {
+  body.erp-print-host > :not(.erp-print-portal) {
+    display: none !important;
+  }
+
+  body.erp-print-host > .erp-print-portal {
+    display: block;
+    color: #111;
+    background: #fff;
+  }
+
+  /* advance-print.css / goods-issue.css (chep tu ERPCons) an `body *` bang visibility khi in. */
+  body.erp-print-host > .erp-print-portal,
+  body.erp-print-host > .erp-print-portal * {
+    visibility: visible !important;
+  }
+}

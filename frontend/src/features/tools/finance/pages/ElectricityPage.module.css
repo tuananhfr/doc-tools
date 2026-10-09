@@ -1,0 +1,34 @@
+/* Bảng chi tiết nằm trong cột kết quả rộng ~290px: padding 16px + tiêu đề viết hoa không ngắt dòng
+   của bảng chung đẩy cột cuối (cột người dùng cần nhất) ra ngoài khung mà không thấy thanh cuộn. */
+.breakdown {
+  overflow-x: auto;
+  border: 1px solid var(--erp-border);
+  border-radius: var(--erp-radius-md);
+  scrollbar-width: thin;
+}
+
+.breakdown > table {
+  font-size: 0.8125rem;
+}
+
+.breakdown > table > thead th {
+  padding: 6px 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: normal;
+  vertical-align: bottom;
+}
+
+.breakdown > table > tbody td {
+  padding: 6px 8px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.breakdown > table > tbody td:first-child {
+  white-space: normal;
+}
+
+.breakdown > table :is(th, td):not(:first-child) {
+  text-align: end;
+}

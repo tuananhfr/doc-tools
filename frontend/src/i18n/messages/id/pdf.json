@@ -132,7 +132,8 @@
     "allowModify": "Izinkan mengedit",
     "ownerPassword": "Kata sandi pengelola terpisah (simpan untuk mencabut batasan)",
     "protectNote": "Jika lupa kata sandi, file tidak bisa dipulihkan dengan alat ini. Kirim kata sandi lewat saluran yang berbeda dari file.",
-    "removeNote": "Hanya buka kunci file milik Anda atau yang Anda berhak proses. Untuk file dengan pembatasan hak, perlu kata sandi pengelola."
+    "removeNote": "Hanya buka kunci file milik Anda atau yang Anda berhak proses. Untuk file dengan pembatasan hak, perlu kata sandi pengelola.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "Kata sandi tidak dapat dipasang. File mungkin sudah terkunci atau rusak.",
     "restricted": "File membatasi hak pengeditan. Perlu kata sandi pengelola dari pemilik file.",
     "wrong": "Kata sandi salah.",
-    "removeFailed": "Kata sandi tidak dapat dihapus."
+    "removeFailed": "Kata sandi tidak dapat dihapus.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "belum ada goresan tanda tangan.",

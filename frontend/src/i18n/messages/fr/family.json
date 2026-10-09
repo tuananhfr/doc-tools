@@ -122,7 +122,13 @@
     "defaultsNote": "Par défaut, l'ICS et le PDF excluent les événements privés et sensibles. La sauvegarde contient toujours toutes les données ; gardez le fichier en lieu sûr.",
     "restoreLabel": "Restaurer depuis une sauvegarde JSON",
     "inspected": "Lu : {{members}} membres, {{events}} événements, {{reminders}} rappels. Code de la famille : {{id}}.",
-    "restoreThis": "Restaurer cette sauvegarde"
+    "restoreThis": "Restaurer cette sauvegarde",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "Saisissez un nom et un numéro de téléphone valides.",
@@ -151,7 +157,8 @@
   "space": {
     "loadFailed": "Impossible d'ouvrir les données de cet appareil. Vérifiez les autorisations de stockage du navigateur.",
     "saveFailed": "Impossible d'enregistrer les modifications. Exportez une sauvegarde et vérifiez l'espace libre de l'appareil.",
-    "restoreFailed": "Impossible de restaurer la sauvegarde."
+    "restoreFailed": "Impossible de restaurer la sauvegarde.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "Calendrier familial · 30 prochains jours",

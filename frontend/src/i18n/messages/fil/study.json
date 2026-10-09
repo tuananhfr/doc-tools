@@ -13,7 +13,9 @@
     "front": "Harap",
     "back": "Likod",
     "add": "Magdagdag ng card",
-    "remove": "Burahin"
+    "remove": "Burahin",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "Focus",
@@ -26,7 +28,12 @@
     "title": "Tagal",
     "focusMinutes": "Focus (minuto)",
     "breakMinutes": "Pahinga (minuto)",
-    "invalid": "Focus 1–180 minuto; pahinga 1–60 minuto."
+    "invalid": "Focus 1–180 minuto; pahinga 1–60 minuto.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "Sangguniang conversion",

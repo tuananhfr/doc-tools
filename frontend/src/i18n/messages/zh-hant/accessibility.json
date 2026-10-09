@@ -15,7 +15,8 @@
     "download": "下載 .txt",
     "interrupted": "語音辨識中斷了。請檢查麥克風權限後再試一次。",
     "micFailed": "無法開啟麥克風。請檢查瀏覽器的存取權限。",
-    "fileName": "語音轉文字"
+    "fileName": "語音轉文字",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "此瀏覽器不支援相機。",
@@ -33,7 +34,9 @@
     "freeze": "定格畫面",
     "contrastOff": "關閉高對比",
     "contrastOn": "提高對比",
-    "closeCamera": "關閉相機"
+    "closeCamera": "關閉相機",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "在裝置上朗讀",
@@ -43,6 +46,9 @@
     "unsupported": "此瀏覽器不支援文字朗讀。",
     "title": "要朗讀的文字",
     "content": "內容",
-    "rate": "速度：{{rate}}×"
+    "rate": "速度：{{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

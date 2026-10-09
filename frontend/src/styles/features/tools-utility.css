@@ -287,7 +287,9 @@
   grid-area: copy;
 }
 
-.erp-tool-row--code {
+/* --item: mot dong noi dung + nut thao tac (danh sach the ghi nho). */
+.erp-tool-row--code,
+.erp-tool-row--item {
   grid-template-areas: 'value copy';
 }
 

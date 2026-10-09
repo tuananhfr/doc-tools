@@ -26,9 +26,11 @@ export default function AddressConversionPage() {
   const verified = addressRules.state === 'ready' ? addressRules.current : null
   const manualRules = useMemo(() => parseAddressMappings(mappingText), [mappingText])
   const rules = usingVerified && verified ? verified.data : manualRules
+  // Không có bảng thì mọi dòng ra "không nhận ra tỉnh": báo "0/N đổi đủ" là đổ lỗi cho địa chỉ trong khi thiếu là dữ liệu.
+  const hasTable = Boolean(rules && (rules.provinces.length || rules.wards.length))
   const index = useMemo(() => rules ? indexAddressRules(rules) : null, [rules])
   const lines = addresses.split('\n').map((line) => line.trim()).filter(Boolean).slice(0, 500)
-  const results = index ? lines.map((line) => convertAddress(line, index)) : []
+  const results = index && hasTable ? lines.map((line) => convertAddress(line, index)) : []
   const full = results.filter((item) => item.status === 'full').length
   const statusLabel = (row: (typeof results)[number]) => t(`address.status.${row.status}`, { options: row.options.join(t('address.orSeparator')) })
   const saveAdapter: SaveAdapter = {
@@ -51,10 +53,10 @@ export default function AddressConversionPage() {
   }
   return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('address.resultLabel')}</p>
-    <p className="erp-tool-result__value">{t('address.resultValue', { full, total: lines.length })}</p>
-    <p className="erp-tool-result__note">{t('address.resultNote')}</p>
-    {results.length ? <><div className="table-responsive"><table className="table table-sm"><thead><tr><th>{t('address.columns.old')}</th><th>{t('address.columns.proposed')}</th><th>{t('address.columns.status')}</th></tr></thead><tbody>{results.map((row, at) => <tr key={at}><td>{row.input}</td><td>{row.output}</td><td>{statusLabel(row)}</td></tr>)}</tbody></table></div><Button variant="outline-secondary" onClick={download}>{t('address.downloadCsv')}</Button></> : null}
-    <p className="erp-tool-result__note mt-3">{usingVerified && verified ? t('address.verifiedNote', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('address.manualNote')}</p>
+    <p className="erp-tool-result__value">{hasTable ? t('address.resultValue', { full, total: lines.length }) : t('address.noTable')}</p>
+    <p className="erp-tool-result__note">{hasTable ? t('address.resultNote') : t('address.noTableNote')}</p>
+    {results.length ? <Button variant="outline-secondary" onClick={download}>{t('address.downloadCsv')}</Button> : null}
+    {hasTable ? <p className="erp-tool-result__note mt-3">{usingVerified && verified ? t('address.verifiedNote', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('address.manualNote')}</p> : null}
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('address.viewSource')}</a> : null}
   </div>}>
     <ToolPanel title={t('address.panelTitle')}>
@@ -64,6 +66,10 @@ export default function AddressConversionPage() {
       <label className="erp-flow-field__label mt-3">{t('address.manualLabel')}<Form.Control as="textarea" rows={6} maxLength={1000000} value={mappingText} onChange={(event) => { setMappingText(event.target.value); setUsingVerified(false) }} /></label>
       {manualRules === null ? <p role="alert">{t('address.manualInvalid')}</p> : null}
     </ToolPanel>
+    {/* Bảng ở cột chính: cột kết quả bên phải chỉ rộng 320px, ba cột địa chỉ dài trong đó bị cắt. */}
+    {results.length ? <ToolPanel title={t('address.tableTitle')}>
+      <div className="table-responsive"><table className="table table-sm mb-0"><thead><tr><th>{t('address.columns.old')}</th><th>{t('address.columns.proposed')}</th><th>{t('address.columns.status')}</th></tr></thead><tbody>{results.map((row, at) => <tr key={at}><td>{row.input}</td><td>{row.output}</td><td>{statusLabel(row)}</td></tr>)}</tbody></table></div>
+    </ToolPanel> : null}
     <SaveResultBar member={member} toolId="doi-dia-chi" adapter={saveAdapter} />
     <AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />
   </ToolBoard>

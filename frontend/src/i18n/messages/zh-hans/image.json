@@ -375,7 +375,12 @@
     "panel": "要拼接的图片",
     "choose": "选择 2 到 9 张图片",
     "columns": "列数",
-    "gap": "间距（px）"
+    "gap": "间距（px）",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "图片超出大小限制。",
@@ -412,7 +417,8 @@
     "brushKeep": "保留",
     "brushSize": "画笔大小：{{value}}",
     "undoBrush": "撤销画笔",
-    "note": "图片在本机处理。细节较多的背景需要手动用画笔修整；大图的每条边最多缩小到 2200 px。"
+    "note": "图片在本机处理。细节较多的背景需要手动用画笔修整；大图的每条边最多缩小到 2200 px。",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "图片",

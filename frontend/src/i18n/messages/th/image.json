@@ -375,7 +375,12 @@
     "panel": "รูปที่ต้องการต่อ",
     "choose": "เลือก 2 ถึง 9 รูป",
     "columns": "จำนวนคอลัมน์",
-    "gap": "ระยะห่าง (px)"
+    "gap": "ระยะห่าง (px)",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "รูปเกินขีดจำกัดขนาดไฟล์",
@@ -412,7 +417,8 @@
     "brushKeep": "เก็บไว้",
     "brushSize": "ขนาดแปรง: {{value}}",
     "undoBrush": "เลิกทำแปรง",
-    "note": "รูปถูกประมวลผลบนเครื่อง พื้นหลังที่มีรายละเอียดมากต้องใช้แปรงปรับเอง รูปใหญ่จะถูกย่อเหลือไม่เกิน 2200 px ต่อด้าน"
+    "note": "รูปถูกประมวลผลบนเครื่อง พื้นหลังที่มีรายละเอียดมากต้องใช้แปรงปรับเอง รูปใหญ่จะถูกย่อเหลือไม่เกิน 2200 px ต่อด้าน",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "รูปภาพ",

@@ -4,6 +4,14 @@ function removeVietnameseMarks(input: string): string {
   return input.normalize('NFD').replace(/\p{Mn}/gu, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').normalize('NFC')
 }
 
+/** Trần của ô nội dung chuyển khoản trong mã (trường 62-08). */
+export const VIETQR_NOTE_MAX = 50
+
+/** Nội dung đúng như sẽ nằm trong mã: bỏ dấu, ký hiệu thành dấu cách — để màn đếm ký tự theo chính chuỗi này. */
+export function vietQrNote(note: string): string {
+  return removeVietnameseMarks(note).replace(/[^A-Za-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
 export interface VietQrInput {
   bin: string
   account: string
@@ -30,7 +38,7 @@ export function buildVietQr(input: VietQrInput): string | null {
   const account = input.account.trim()
   const amount = input.amount.trim()
   if (!/^\d{6}$/.test(bin) || !/^\d{4,30}$/.test(account) || (amount && !/^[1-9]\d{0,11}$/.test(amount))) return null
-  const note = removeVietnameseMarks(input.note).replace(/[^A-Za-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 50)
+  const note = vietQrNote(input.note).slice(0, VIETQR_NOTE_MAX)
   try {
     const merchant = tlv('00', 'A000000727') + tlv('01', tlv('00', bin) + tlv('01', account)) + tlv('02', 'QRIBFTTA')
     let payload = tlv('00', '01') + tlv('01', amount ? '12' : '11') + tlv('38', merchant) + tlv('53', '704')

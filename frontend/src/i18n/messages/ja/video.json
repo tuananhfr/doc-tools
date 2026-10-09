@@ -46,7 +46,8 @@
     "light": "弱 · 画質優先",
     "medium": "中 · バランス",
     "strong": "強 · サイズ優先",
-    "maxEdge": "長辺の最大値"
+    "maxEdge": "長辺の最大値",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "音声を抽出",

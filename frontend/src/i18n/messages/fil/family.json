@@ -121,7 +121,13 @@
     "defaultsNote": "Bilang default, hindi kasama sa ICS at PDF ang pribado at sensitibong event. Laging kumpleto ang data sa backup; itago ang file sa lugar na pinagkakatiwalaan mo.",
     "restoreLabel": "I-restore mula sa JSON backup",
     "inspected": "Nabasa: {{members}} miyembro, {{events}} event, {{reminders}} paalala. Family code: {{id}}.",
-    "restoreThis": "I-restore ang bersyong ito"
+    "restoreThis": "I-restore ang bersyong ito",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "Maglagay ng wastong pangalan at numero ng telepono.",
@@ -150,7 +156,8 @@
   "space": {
     "loadFailed": "Hindi mabuksan ang data sa device. Tingnan ang pahintulot sa storage ng browser.",
     "saveFailed": "Hindi ma-save ang mga pagbabago. Mag-export ng backup at tingnan ang natitirang storage ng device.",
-    "restoreFailed": "Hindi ma-restore ang backup."
+    "restoreFailed": "Hindi ma-restore ang backup.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "Kalendaryo ng Pamilya · susunod na 30 araw",

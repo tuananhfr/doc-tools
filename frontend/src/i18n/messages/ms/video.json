@@ -46,7 +46,8 @@
     "light": "Ringan · utamakan gambar",
     "medium": "Sederhana · seimbang",
     "strong": "Kuat · utamakan saiz",
-    "maxEdge": "Sisi panjang maksimum"
+    "maxEdge": "Sisi panjang maksimum",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "Ekstrak audio",

@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
 import type { EmergencyContact, FamilySpace, PendingSos } from '../core/family'
 import { intlLocale } from '@/i18n/intl'
+import { newId } from '@/utils/id'
 
 interface Props { space: FamilySpace; onAddContact: (contact: EmergencyContact) => Promise<void>; onSos: (sos: PendingSos) => Promise<void>; onSafe: (id: string) => Promise<void>; onLocation: (id: string, location: NonNullable<PendingSos['lastKnown']>) => Promise<void>; disabled: boolean }
 
@@ -14,11 +15,11 @@ export function FamilySafety({ space, onAddContact, onSos, onSafe, onLocation, d
   const pending = space.sosQueue.filter((item) => item.status === 'PENDING_LOCAL')
   const addContact = async () => {
     if (!name.trim() || !/^[+0-9().\s-]{3,30}$/.test(phone)) { setError(t('safety.invalidContact')); return }
-    try { await onAddContact({ id: crypto.randomUUID(), name: name.trim(), phone: phone.trim() }); setName(''); setPhone(''); setError('') }
+    try { await onAddContact({ id: newId(), name: name.trim(), phone: phone.trim() }); setName(''); setPhone(''); setError('') }
     catch { setError(t('safety.contactFailed')) }
   }
   const saveSos = async () => {
-    try { await onSos({ id: crypto.randomUUID(), createdAt: new Date().toISOString(), status: 'PENDING_LOCAL' }); setError('') }
+    try { await onSos({ id: newId(), createdAt: new Date().toISOString(), status: 'PENDING_LOCAL' }); setError('') }
     catch { setError(t('safety.sosFailed')) }
   }
   const locate = (id: string) => {

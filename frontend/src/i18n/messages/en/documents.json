@@ -46,13 +46,16 @@
       "noDraft": "No valid draft yet.",
       "opened": "Draft opened.",
       "unreadable": "The draft couldn't be read.",
-      "cleared": "Draft deleted from this device."
+      "cleared": "Draft deleted from this device.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "Check the details carefully before sending. The draft is saved on your device only when you press Save; the photo isn't saved.",
     "print": {
       "kicker": "Curriculum vitae",
       "summary": "Profile"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "Form templates",
@@ -132,6 +135,13 @@
         "giver": "Handing-over party"
       },
       "signHint": "(Signature and full name)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

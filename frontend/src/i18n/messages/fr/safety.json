@@ -12,7 +12,8 @@
     "messageLabel": "Texte du message",
     "linkPlaceholder": "Collez le lien, inutile de l'ouvrir…",
     "messagePlaceholder": "Collez le message suspect…",
-    "privacy": "Le contenu est analysé sur votre appareil ; l'outil n'ouvre jamais le lien que vous collez."
+    "privacy": "Le contenu est analysé sur votre appareil ; l'outil n'ouvre jamais le lien que vous collez.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "Impossible de lire le lien.",
@@ -30,6 +31,9 @@
     "easyJob": "Propose un travail facile et bien payé ou des missions en ligne.",
     "urgentTransfer": "Vous presse de virer ou de recharger de l'argent.",
     "installApp": "Demande d'installer une application depuis le message.",
-    "link": "Lien {{link}} : {{flags}}"
+    "link": "Lien {{link}} : {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

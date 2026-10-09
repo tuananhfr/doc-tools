@@ -194,6 +194,50 @@ async function download(button = page.getByRole('button', { name: 'Tải về' }
 /** `bytes` là Buffer thô để công cụ sau dùng lại (mã QR) — không vào chữ ký. */
 const strip = ({ bytes: _bytes, ...signature }) => signature
 
+/**
+ * OCR v2 dừng ở bước soát chữ trước khi xuất: xác nhận NGUYÊN giá trị máy đọc (không sửa) để chữ ký
+ * vẫn là chữ OCR như baseline. Nút xác nhận tự nhảy sang chữ cần soát kế tiếp.
+ */
+async function ocrRun(timeout = 180000) {
+  const started = Date.now()
+  await page.locator('.erp-flow__run').click()
+  await page.locator('.cn-ocr-review, .erp-flow-result').first().waitFor({ timeout })
+  if (await page.locator('.cn-ocr-review').count()) {
+    const pending = page.locator('.cn-ocr-review__word.needs-review')
+    for (let n = 0; await pending.count(); n++) {
+      if (n > 500) throw new Error('bước soát OCR không kết thúc')
+      await page.getByRole('button', { name: 'Xác nhận và tiếp tục', exact: true }).click()
+    }
+    await page.getByRole('button', { name: 'Xuất kết quả đã kiểm tra', exact: true }).click()
+    await page.locator('.erp-flow-result').waitFor({ timeout })
+  }
+  timing = Date.now() - started
+  return { title: await text('.erp-flow-result__title') }
+}
+
+const ocrFlow = (slug, names) => async () => {
+  await open(slug)
+  await add(names)
+  const result = await ocrRun()
+  return { ...result, file: strip(await download()) }
+}
+
+/**
+ * Kết quả màn tính tại chỗ không vẽ lại ngay trong cùng nhịp với `fill` — đọc liền là còn số cũ.
+ * Chờ tới khi hai lần đọc cách nhau liên tiếp giống hệt và đã có giá trị.
+ */
+async function settled(read, timeout = 10000) {
+  const until = Date.now() + timeout
+  let last = await read()
+  for (;;) {
+    await page.waitForTimeout(250)
+    const next = await read()
+    if (JSON.stringify(next) === JSON.stringify(last) && next.value !== '—') return next
+    if (Date.now() > until) return next
+    last = next
+  }
+}
+
 const flow = (slug, names, before) => async () => {
   await open(slug)
   await add(names)
@@ -266,8 +310,8 @@ const TOOLS = {
     await page.mouse.click(box.x + box.width * 0.7, box.y + box.height * 0.8)
   }),
   'so-sanh-tai-lieu': flow('so-sanh-tai-lieu', ['hop-dong.pdf', 'hop-dong-v2.pdf']),
-  'ocr-van-ban': flow('ocr-van-ban', ['anh-van-ban.jpg']),
-  'anh-sang-van-ban': flow('anh-sang-van-ban', ['anh-van-ban.jpg']),
+  'ocr-van-ban': ocrFlow('ocr-van-ban', ['anh-van-ban.jpg']),
+  'anh-sang-van-ban': ocrFlow('anh-sang-van-ban', ['anh-van-ban.jpg']),
   'chuyen-doi-anh': flow('chuyen-doi-anh', ['anh-hien-truong.jpg'], () => page.getByRole('radio', { name: /^PNG/ }).check()),
   'nen-anh': flow('nen-anh', ['anh-hien-truong.jpg'], async () => {
     await page.getByRole('radio', { name: /^Mạnh/ }).check()
@@ -378,12 +422,12 @@ const TOOLS = {
     // Ngày cố định: mặc định của màn là HÔM NAY, không so được giữa hai lần chạy.
     await field('Từ ngày').fill('2026-10-01')
     await field('Đến ngày').fill('2026-10-31')
-    const between = await read()
+    const between = await settled(read)
     await page.getByRole('button', { name: 'Cộng / trừ ngày' }).click()
     await field('Ngày bắt đầu').fill('2026-10-02')
     await field('Số ngày').fill('10')
     await field('Loại ngày').selectOption('workday')
-    return { between, add: await read() }
+    return { between, add: await settled(read) }
   },
   'chuyen-doi-don-vi': async () => {
     await open('chuyen-doi-don-vi', '.erp-tool-rows')

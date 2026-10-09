@@ -46,13 +46,16 @@
       "noDraft": "有効な下書きがありません。",
       "opened": "下書きを開きました。",
       "unreadable": "下書きを読み込めません。",
-      "cleared": "端末の下書きを削除しました。"
+      "cleared": "端末の下書きを削除しました。",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "送る前に内容をよく確認してください。下書きは「保存」を押したときだけ端末に保存されます。写真は保存されません。",
     "print": {
       "kicker": "履歴書",
       "summary": "自己紹介"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "書類テンプレートを作成",
@@ -132,6 +135,13 @@
         "giver": "引渡者"
       },
       "signHint": "（署名・氏名）"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

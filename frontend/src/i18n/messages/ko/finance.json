@@ -44,6 +44,12 @@
     "aiResult": {
       "water": "수도 {{volume}} m³, 합계 {{total}} đ",
       "electricity": "전기 {{kwh}} kWh, 합계 {{total}} đ"
+    },
+    "errors": {
+      "line": "Line {{line}} of the tariff could not be read. Use the form “50; 1,984”.",
+      "order": "The tariff is not valid: thresholds must increase and the last line must be “*”.",
+      "vat": "Enter the tax rate (enter 0 if the bill has no tax).",
+      "inputs": "Some fields are not valid — see the fields marked in red."
     }
   },
   "groupSplit": {
@@ -62,7 +68,14 @@
     "samplePeople": {
       "0": "민준",
       "1": "서연"
-    }
+    },
+    "balanceTitle": "Balance per person",
+    "balanceReceive": "gets back {{amount}}",
+    "balancePay": "owes {{amount}}",
+    "balanceEven": "settled",
+    "duplicateNames": "Duplicate names: {{names}}. Give each person a distinct name, e.g. add a surname or a number.",
+    "invalid": "Each expense needs a payer, an amount above 0 and at least one participant; the group needs at least two people.",
+    "addedLater": "This expense was entered before {{names}} joined, so it does not include them. Tick their name above if they share it."
   },
   "loan": {
     "totalPayment": "총 상환액",
@@ -106,7 +119,9 @@
         "payment": "납입액",
         "balance": "잔액"
       }
-    }
+    },
+    "rateWarning": "An annual rate of {{rate}}% is unusually high — check that you did not enter a monthly rate or an extra digit.",
+    "savingsDisclaimer": "For reference only; actual interest depends on the deposit contract and the bank's rounding."
   },
   "payroll": {
     "fields": {
@@ -161,7 +176,16 @@
     "ruleNone": "시스템에 유효한 서명된 급여 규칙 패키지가 아직 없어요.",
     "enterParams": "급여 계산 매개변수 입력",
     "brackets": "세율표: “과세 소득 구간 상한 (đ), 세율 (%)”; 마지막 줄은 * 사용",
-    "aiResult": "세전 {{gross}} đ, 실수령 {{net}} đ"
+    "aiResult": "세전 {{gross}} đ, 실수령 {{net}} đ",
+    "errors": {
+      "bracketLine": "Line {{line}} of the tax brackets could not be read. Use the form “10,000,000; 5”.",
+      "bracketOrder": "The tax brackets are not valid: thresholds must increase, rates must be 0–100% and the last line must be “*”.",
+      "params": "Some parameters are not valid — see the fields marked in red.",
+      "salary": "Enter a salary to calculate.",
+      "inputs": "Some fields are not valid — see the fields marked in red.",
+      "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
+      "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
+    }
   },
   "unitPrice": {
     "resultLabel": "단위당 가격 비교",

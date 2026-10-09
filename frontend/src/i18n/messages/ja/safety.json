@@ -12,7 +12,8 @@
     "messageLabel": "メッセージの内容",
     "linkPlaceholder": "リンクを貼り付け（開く必要はありません）…",
     "messagePlaceholder": "怪しいメッセージを貼り付け…",
-    "privacy": "内容は端末内で分析されます。貼り付けたリンクにツールがアクセスすることはありません。"
+    "privacy": "内容は端末内で分析されます。貼り付けたリンクにツールがアクセスすることはありません。",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "リンクを読み取れません。",
@@ -30,6 +31,9 @@
     "easyJob": "楽で高収入な仕事やオンライン任務に誘っています。",
     "urgentTransfer": "至急の送金や入金を急かしています。",
     "installApp": "メッセージからアプリのインストールを求めています。",
-    "link": "リンク {{link}}: {{flags}}"
+    "link": "リンク {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

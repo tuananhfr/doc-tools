@@ -14,15 +14,20 @@ interface SpeechRecognizer {
   interimResults: boolean
   onresult: ((event: SpeechResultEvent) => void) | null
   onend: (() => void) | null
-  onerror: (() => void) | null
+  onerror: ((event: { error?: string }) => void) | null
   start(): void
   stop(): void
 }
 type SpeechWindow = Window & { SpeechRecognition?: new () => SpeechRecognizer; webkitSpeechRecognition?: new () => SpeechRecognizer }
 
+// Chrome tự ngắt sau vài giây im lặng (`no-speech`) và khi người dùng bấm Dừng (`aborted`): không phải lỗi, onend sẽ nghe tiếp.
+const BENIGN_ERRORS = new Set(['no-speech', 'aborted'])
+const DENIED_ERRORS = new Set(['not-allowed', 'service-not-allowed'])
+
 export default function DictationPage() {
   const { t } = useTranslation('accessibility')
   const [text, setText] = useState('')
+  const [interim, setInterim] = useState('')
   const [listening, setListening] = useState(false)
   const [error, setError] = useState('')
   const recognizer = useRef<SpeechRecognizer | null>(null)
@@ -37,6 +42,7 @@ export default function DictationPage() {
       recognizer.current?.stop()
       recognizer.current = null
       setListening(false)
+      setInterim('')
       return
     }
     const Constructor = (window as SpeechWindow).SpeechRecognition || (window as SpeechWindow).webkitSpeechRecognition
@@ -45,14 +51,28 @@ export default function DictationPage() {
       const instance = new Constructor()
       instance.lang = speechLanguage()
       instance.continuous = true
-      instance.interimResults = false
+      instance.interimResults = true
       instance.onresult = (event) => {
         const segments: string[] = []
-        for (let index = event.resultIndex; index < event.results.length; index++) if (event.results[index].isFinal) segments.push(event.results[index][0].transcript.trim())
+        let pending = ''
+        for (let index = event.resultIndex; index < event.results.length; index++) {
+          const result = event.results[index]
+          if (result.isFinal) segments.push(result[0].transcript.trim())
+          else pending += result[0].transcript
+        }
+        setInterim(pending.trim())
         if (segments.length) setText((current) => `${current}${current && !/\s$/.test(current) ? ' ' : ''}${segments.join(' ')} `)
       }
-      instance.onerror = () => { active.current = false; setListening(false); setError(t('dictation.interrupted')) }
+      instance.onerror = (event) => {
+        const code = event?.error ?? ''
+        if (BENIGN_ERRORS.has(code)) return
+        active.current = false
+        setListening(false)
+        setInterim('')
+        setError(DENIED_ERRORS.has(code) ? t('dictation.micFailed') : t('dictation.interrupted'))
+      }
       instance.onend = () => {
+        setInterim('')
         if (active.current) { try { instance.start() } catch { active.current = false; setListening(false) } }
       }
       active.current = true
@@ -60,7 +80,7 @@ export default function DictationPage() {
       instance.start()
       setListening(true)
       setError('')
-    } catch { active.current = false; setError(t('dictation.micFailed')) }
+    } catch { active.current = false; setError(t('dictation.interrupted')) }
   }
   const download = () => {
     const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }))
@@ -78,6 +98,8 @@ export default function DictationPage() {
     <ToolPanel title={t('dictation.title')}>
       <Button disabled={!supported} variant={listening ? 'outline-danger' : 'primary'} onClick={toggle}>{listening ? t('shared.stop') : t('dictation.start')}</Button>
       <label className="erp-flow-field__label mt-3">{t('dictation.text')}<Form.Control as="textarea" rows={10} maxLength={100_000} value={text} onChange={(event) => setText(event.target.value)} /></label>
+      {/* Chữ tạm KHÔNG ghi vào ô văn bản: trình duyệt còn sửa nó tới khi chốt, ghi vào là người dùng sửa dở bị đè. */}
+      {listening && interim ? <p className="erp-tool-result__note mt-2" data-testid="dictation-interim"><em>{t('dictation.interim')}: {interim}</em></p> : null}
       <div className="d-flex flex-wrap gap-2 mt-3"><Button variant="outline-secondary" disabled={!text} onClick={() => navigator.clipboard.writeText(text)}>{t('dictation.copy')}</Button><Button variant="outline-secondary" disabled={!text} onClick={download}>{t('dictation.download')}</Button></div>
     </ToolPanel>
   </ToolBoard>

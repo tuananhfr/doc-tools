@@ -120,7 +120,13 @@
     "defaultsNote": "ICS と PDF は初期設定でプライベート・機密の予定を除外します。バックアップには常にすべてのデータが含まれるので、信頼できる場所に保管してください。",
     "restoreLabel": "JSONバックアップから復元",
     "inspected": "読み込み結果: メンバー {{members}} 人、予定 {{events}} 件、リマインダー {{reminders}} 件。家族コード: {{id}}。",
-    "restoreThis": "このバックアップを復元"
+    "restoreThis": "このバックアップを復元",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "有効な名前と電話番号を入力してください。",
@@ -149,7 +155,8 @@
   "space": {
     "loadFailed": "端末のデータを開けませんでした。ブラウザのストレージ権限を確認してください。",
     "saveFailed": "変更を保存できませんでした。バックアップを書き出し、端末の空き容量を確認してください。",
-    "restoreFailed": "バックアップを復元できませんでした。"
+    "restoreFailed": "バックアップを復元できませんでした。",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "家族カレンダー · 今後 30 日間",

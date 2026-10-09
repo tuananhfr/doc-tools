@@ -11,7 +11,9 @@
     "front": "Mặt trước",
     "back": "Mặt sau",
     "add": "Thêm thẻ",
-    "remove": "Xóa"
+    "remove": "Xóa",
+    "confirmRemove": "Xóa thẻ “{{front}}”? Thẻ đã xóa không khôi phục được.",
+    "removeAria": "Xóa thẻ {{front}}"
   },
   "pomodoro": {
     "focus": "Tập trung",
@@ -20,11 +22,16 @@
     "pause": "Tạm dừng",
     "reset": "Đặt lại",
     "switch": "Chuyển phiên",
-    "note": "Bộ hẹn giờ chỉ chạy khi trang còn mở. Khi về 00:00, chọn chuyển phiên để bắt đầu lượt tiếp theo.",
+    "note": "Bộ hẹn giờ chỉ chạy khi trang còn mở. Hết giờ sẽ có tiếng bíp, thông báo (nếu bạn đã cho phép) và tự chuyển sang phiên tiếp theo.",
     "title": "Thời lượng",
     "focusMinutes": "Tập trung (phút)",
     "breakMinutes": "Nghỉ (phút)",
-    "invalid": "Tập trung 1–180 phút; nghỉ 1–60 phút."
+    "invalid": "Tập trung 1–180 phút; nghỉ 1–60 phút.",
+    "focusEndedTitle": "Hết giờ tập trung",
+    "breakEndedTitle": "Hết giờ nghỉ",
+    "nextBreak": "Đến lượt nghỉ {{minutes}} phút.",
+    "nextFocus": "Đến lượt tập trung {{minutes}} phút.",
+    "switched": "Đã chuyển phiên, bấm Bắt đầu để chạy tiếp."
   },
   "grades": {
     "gradeResult": "Quy đổi tham khảo",

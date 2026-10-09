@@ -46,13 +46,16 @@
       "noDraft": "Belum ada draf yang valid.",
       "opened": "Draf sudah dibuka.",
       "unreadable": "Draf tidak dapat dibaca.",
-      "cleared": "Draf di perangkat sudah dihapus."
+      "cleared": "Draf di perangkat sudah dihapus.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "Periksa kembali informasi sebelum mengirim. Draf hanya disimpan di perangkat saat Anda menekan Simpan; foto tidak ikut disimpan.",
     "print": {
       "kicker": "Daftar riwayat hidup",
       "summary": "Profil"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "Susun templat dokumen",
@@ -132,6 +135,13 @@
         "giver": "Pihak yang menyerahkan"
       },
       "signHint": "(Tanda tangan dan nama lengkap)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

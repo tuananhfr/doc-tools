@@ -46,7 +46,8 @@
     "light": "Magaan · uunahin ang kalidad",
     "medium": "Katamtaman · balanse",
     "strong": "Malakas · uunahin ang laki",
-    "maxEdge": "Pinakamahabang gilid"
+    "maxEdge": "Pinakamahabang gilid",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "Kunin ang audio",

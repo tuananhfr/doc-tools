@@ -46,13 +46,16 @@
       "noDraft": "မှန်ကန်သော မူကြမ်း မရှိသေးပါ။",
       "opened": "မူကြမ်းကို ဖွင့်ပြီးပါပြီ။",
       "unreadable": "မူကြမ်းကို ဖတ်၍ မရပါ။",
-      "cleared": "စက်ပေါ်ရှိ မူကြမ်းကို ဖျက်ပြီးပါပြီ။"
+      "cleared": "စက်ပေါ်ရှိ မူကြမ်းကို ဖျက်ပြီးပါပြီ။",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "မပို့မီ အချက်အလက်များကို သေချာစစ်ဆေးပါ။ မူကြမ်းကို သိမ်းရန် နှိပ်မှသာ စက်ပေါ်တွင် သိမ်းပါမည်။ ဓာတ်ပုံကို မသိမ်းပါ။",
     "print": {
       "kicker": "ကိုယ်ရေးရာဇဝင်",
       "summary": "ကိုယ်ရေးအကျဉ်း"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "စာရွက်စာတမ်း ပုံစံ ရေးရန်",
@@ -132,6 +135,13 @@
         "giver": "လွှဲအပ်သူဘက်"
       },
       "signHint": "(လက်မှတ်နှင့် အမည်အပြည့်အစုံ)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

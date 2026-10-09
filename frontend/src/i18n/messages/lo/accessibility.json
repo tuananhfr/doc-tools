@@ -15,7 +15,8 @@
     "download": "ດາວໂຫຼດ .txt",
     "interrupted": "ການຮັບຮູ້ສຽງເວົ້າຖືກຂັດຈັງຫວະ. ກວດສອບສິດການໃຊ້ໄມໂຄຣໂຟນ ແລ້ວລອງໃໝ່.",
     "micFailed": "ເປີດໄມໂຄຣໂຟນບໍ່ໄດ້. ກວດສອບສິດການເຂົ້າເຖິງຂອງບຣາວເຊີ.",
-    "fileName": "ຂໍ້ຄວາມຈາກການເວົ້າ"
+    "fileName": "ຂໍ້ຄວາມຈາກການເວົ້າ",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "ບຣາວເຊີນີ້ບໍ່ຮອງຮັບກ້ອງ.",
@@ -33,7 +34,9 @@
     "freeze": "ຢຸດພາບ",
     "contrastOff": "ປິດຄວາມຄົມຊັດ",
     "contrastOn": "ເພີ່ມຄວາມຄົມຊັດ",
-    "closeCamera": "ປິດກ້ອງ"
+    "closeCamera": "ປິດກ້ອງ",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "ອ່ານໃນອຸປະກອນ",
@@ -43,6 +46,9 @@
     "unsupported": "ບຣາວເຊີນີ້ບໍ່ຮອງຮັບການອ່ານຂໍ້ຄວາມ.",
     "title": "ຂໍ້ຄວາມທີ່ຕ້ອງການອ່ານ",
     "content": "ເນື້ອໃນ",
-    "rate": "ຄວາມໄວ: {{rate}}×"
+    "rate": "ຄວາມໄວ: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

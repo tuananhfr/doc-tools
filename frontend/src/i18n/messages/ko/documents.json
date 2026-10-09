@@ -46,13 +46,16 @@
       "noDraft": "올바른 초안이 없어요.",
       "opened": "초안을 열었어요.",
       "unreadable": "초안을 읽을 수 없어요.",
-      "cleared": "기기의 초안을 삭제했어요."
+      "cleared": "기기의 초안을 삭제했어요.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "보내기 전에 정보를 꼼꼼히 확인하세요. 초안은 저장을 눌렀을 때만 기기에 저장되고, 사진은 저장되지 않아요.",
     "print": {
       "kicker": "이력서",
       "summary": "자기소개"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "서류 양식 작성",
@@ -132,6 +135,13 @@
         "giver": "인계자"
       },
       "signHint": "(서명 및 성명)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

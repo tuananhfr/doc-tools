@@ -46,13 +46,16 @@
       "noDraft": "还没有有效的草稿。",
       "opened": "已打开草稿。",
       "unreadable": "无法读取草稿。",
-      "cleared": "已删除设备上的草稿。"
+      "cleared": "已删除设备上的草稿。",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "发送前请仔细检查信息。只有在你点击“保存”时草稿才会保存在设备上；照片不会保存。",
     "print": {
       "kicker": "个人简历",
       "summary": "个人简介"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "制作文书模板",
@@ -132,6 +135,13 @@
         "giver": "移交方"
       },
       "signHint": "（签字并注明姓名）"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

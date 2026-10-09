@@ -44,7 +44,19 @@
     "receiptLabel": "Mã biên nhận",
     "lookup": "Tra cứu",
     "needsSource": "Nhập URL HTTPS ở ô nguồn phía trên, rồi bổ sung bằng mã biên nhận này.",
-    "addSource": "Bổ sung nguồn"
+    "addSource": "Bổ sung nguồn",
+    "requiredNote": "Ô có dấu * là bắt buộc.",
+    "requiredMark": "bắt buộc",
+    "sourceUrlInvalid": "URL nguồn chưa hợp lệ. Hãy dán đầy đủ địa chỉ bắt đầu bằng https://",
+    "sourceUrlNotHttps": "URL nguồn phải bắt đầu bằng https://",
+    "sourceUrlUnsafe": "URL nguồn phải là trang công khai: không dùng địa chỉ IP, localhost hay mạng nội bộ, không có phần #…, tên đăng nhập, mật khẩu hay tham số token/key, email, số điện thoại.",
+    "sensitive": {
+      "email": "Có địa chỉ email trong nội dung.",
+      "phone": "Có số điện thoại trong nội dung.",
+      "secret": "Có vẻ có mật khẩu, token hoặc khoá API trong nội dung.",
+      "internalUrl": "Có đường dẫn nội bộ (localhost, IP mạng nội bộ) trong nội dung."
+    },
+    "sensitiveFix": "Hãy xoá trước khi gửi — máy chủ không nhận nội dung chứa thông tin cá nhân hoặc bí mật."
   },
   "ideas": {
     "published": "Ý tưởng đã công bố",

@@ -11,7 +11,9 @@
     "front": "ផ្នែកមុខ",
     "back": "ផ្នែកក្រោយ",
     "add": "បន្ថែមកាត",
-    "remove": "លុប"
+    "remove": "លុប",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "ផ្តោតអារម្មណ៍",
@@ -24,7 +26,12 @@
     "title": "រយៈពេល",
     "focusMinutes": "ផ្តោតអារម្មណ៍ (នាទី)",
     "breakMinutes": "សម្រាក (នាទី)",
-    "invalid": "ផ្តោតអារម្មណ៍ 1–180 នាទី សម្រាក 1–60 នាទី។"
+    "invalid": "ផ្តោតអារម្មណ៍ 1–180 នាទី សម្រាក 1–60 នាទី។",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "ការប្តូរពិន្ទុសម្រាប់យោង",

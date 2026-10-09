@@ -11,7 +11,9 @@
     "front": "ດ້ານໜ້າ",
     "back": "ດ້ານຫຼັງ",
     "add": "ເພີ່ມບັດ",
-    "remove": "ລຶບ"
+    "remove": "ລຶບ",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "ສຸມໃສ່",
@@ -24,7 +26,12 @@
     "title": "ໄລຍະເວລາ",
     "focusMinutes": "ສຸມໃສ່ (ນາທີ)",
     "breakMinutes": "ພັກ (ນາທີ)",
-    "invalid": "ສຸມໃສ່ 1–180 ນາທີ; ພັກ 1–60 ນາທີ."
+    "invalid": "ສຸມໃສ່ 1–180 ນາທີ; ພັກ 1–60 ນາທີ.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "ການປ່ຽນຄະແນນເພື່ອອ້າງອີງ",

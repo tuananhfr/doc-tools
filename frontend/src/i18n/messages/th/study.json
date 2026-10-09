@@ -11,7 +11,9 @@
     "front": "ด้านหน้า",
     "back": "ด้านหลัง",
     "add": "เพิ่มบัตร",
-    "remove": "ลบ"
+    "remove": "ลบ",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "โฟกัส",
@@ -24,7 +26,12 @@
     "title": "ระยะเวลา",
     "focusMinutes": "โฟกัส (นาที)",
     "breakMinutes": "พัก (นาที)",
-    "invalid": "โฟกัส 1–180 นาที พัก 1–60 นาที"
+    "invalid": "โฟกัส 1–180 นาที พัก 1–60 นาที",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "การแปลงคะแนนเพื่ออ้างอิง",

@@ -12,7 +12,8 @@
     "messageLabel": "메시지 내용",
     "linkPlaceholder": "링크를 붙여 넣으세요. 열 필요 없어요…",
     "messagePlaceholder": "의심스러운 메시지를 붙여 넣으세요…",
-    "privacy": "내용은 기기에서 분석되며, 붙여 넣은 링크에 접속하지 않아요."
+    "privacy": "내용은 기기에서 분석되며, 붙여 넣은 링크에 접속하지 않아요.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "링크를 읽을 수 없어요.",
@@ -30,6 +31,9 @@
     "easyJob": "쉬운 일에 높은 급여, 온라인 미션을 제안해요.",
     "urgentTransfer": "급하게 송금이나 충전을 재촉해요.",
     "installApp": "메시지로 앱 설치를 요구해요.",
-    "link": "링크 {{link}}: {{flags}}"
+    "link": "링크 {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

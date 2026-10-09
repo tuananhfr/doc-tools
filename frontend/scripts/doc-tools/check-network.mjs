@@ -85,6 +85,27 @@ async function run(timeout = 180000) {
   await page.locator('.erp-flow-result').waitFor({ timeout })
 }
 
+/** OCR v2 dừng ở bước soát chữ: xác nhận nguyên giá trị máy đọc rồi xuất — soát cũng phải không gửi gì ra ngoài. */
+async function ocrRun(timeout = 180000) {
+  await page.locator('.erp-flow__run').click()
+  await page.locator('.cn-ocr-review, .erp-flow-result').first().waitFor({ timeout })
+  if (await page.locator('.cn-ocr-review').count()) {
+    for (let n = 0; await page.locator('.cn-ocr-review__word.needs-review').count(); n++) {
+      if (n > 500) throw new Error('bước soát OCR không kết thúc')
+      await page.getByRole('button', { name: 'Xác nhận và tiếp tục', exact: true }).click()
+    }
+    await page.getByRole('button', { name: 'Xuất kết quả đã kiểm tra', exact: true }).click()
+    await page.locator('.erp-flow-result').waitFor({ timeout })
+  }
+}
+
+const ocrFlow = (slug, files) => async () => {
+  await open(slug)
+  await add(files)
+  await ocrRun()
+  await download()
+}
+
 async function download(button = page.getByRole('button', { name: 'Tải về' })) {
   const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), button.click()])
   const path = OUT + dl.suggestedFilename()
@@ -160,8 +181,8 @@ const TOOLS = {
     await download()
   },
   'so-sanh-tai-lieu': flow('so-sanh-tai-lieu', [pdfA, pdfB]),
-  'ocr-van-ban': flow('ocr-van-ban', [scan]),
-  'anh-sang-van-ban': flow('anh-sang-van-ban', [scan]),
+  'ocr-van-ban': ocrFlow('ocr-van-ban', [scan]),
+  'anh-sang-van-ban': ocrFlow('anh-sang-van-ban', [scan]),
   'chuyen-doi-anh': flow('chuyen-doi-anh', [photo], () => page.getByRole('radio', { name: /^PNG/ }).check()),
   'nen-anh': flow('nen-anh', [photo], () => page.getByRole('radio', { name: /^Mạnh/ }).check()),
   'xem-pdf': async () => {

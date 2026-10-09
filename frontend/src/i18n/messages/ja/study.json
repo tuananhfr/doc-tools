@@ -11,7 +11,9 @@
     "front": "表",
     "back": "裏",
     "add": "カードを追加",
-    "remove": "削除"
+    "remove": "削除",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "集中",
@@ -24,7 +26,12 @@
     "title": "時間設定",
     "focusMinutes": "集中（分）",
     "breakMinutes": "休憩（分）",
-    "invalid": "集中は 1〜180 分、休憩は 1〜60 分で設定してください。"
+    "invalid": "集中は 1〜180 分、休憩は 1〜60 分で設定してください。",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "参考換算",

@@ -15,7 +15,8 @@
     "download": "Muat turun .txt",
     "interrupted": "Pengecaman suara terganggu. Semak kebenaran mikrofon dan cuba lagi.",
     "micFailed": "Tidak dapat membuka mikrofon. Semak kebenaran akses pelayar anda.",
-    "fileName": "transkrip-imlak"
+    "fileName": "transkrip-imlak",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "Pelayar ini tidak menyokong kamera.",
@@ -33,7 +34,9 @@
     "freeze": "Bekukan imej",
     "contrastOff": "Kontras biasa",
     "contrastOn": "Kontras tinggi",
-    "closeCamera": "Matikan kamera"
+    "closeCamera": "Matikan kamera",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "Baca pada peranti",
@@ -43,6 +46,9 @@
     "unsupported": "Pelayar ini tidak menyokong bacaan teks.",
     "title": "Teks untuk dibaca",
     "content": "Kandungan",
-    "rate": "Kelajuan: {{rate}}×"
+    "rate": "Kelajuan: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

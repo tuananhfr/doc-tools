@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { PrintPortal, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { CvPreview } from '../components/CvPreview'
 import { emptyCv, emptyEntry, parseCvDraft, type CvDraft, type CvEntry } from '../models/cv'
 
@@ -23,15 +23,34 @@ export default function CvPage() {
   const [draft, setDraft] = useState<CvDraft>(emptyCv)
   const [photoUrl, setPhotoUrl] = useState<string | null>(null)
   const [message, setMessage] = useState('')
+  // Chưa đọc xong bản nháp cũ thì chưa tự lưu — kẻo bản trống ghi đè bản người dùng đã gõ hôm trước.
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => () => { if (photoUrl) URL.revokeObjectURL(photoUrl) }, [photoUrl])
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(storageKey)
+      if (raw) {
+        const value = parseCvDraft(JSON.parse(raw))
+        if (value) { setDraft(value); setMessage(t('cv.messages.restored')) } else setMessage(t('cv.messages.unreadable'))
+      }
+    } catch { setMessage(t('cv.messages.unreadable')) }
+    setLoaded(true)
+  }, [t])
+  useEffect(() => {
+    if (!loaded) return
+    const timer = window.setTimeout(() => { try { localStorage.setItem(storageKey, JSON.stringify(draft)) } catch { setMessage(t('cv.messages.saveFailed')) } }, 400)
+    return () => window.clearTimeout(timer)
+  }, [draft, loaded, t])
   const update = (key: keyof CvDraft, value: CvDraft[typeof key]) => setDraft((current) => ({ ...current, [key]: value }))
-  const save = () => { try { localStorage.setItem(storageKey, JSON.stringify(draft)); setMessage(t('cv.messages.saved')) } catch { setMessage(t('cv.messages.saveFailed')) } }
-  const load = () => { try { const value = parseCvDraft(JSON.parse(localStorage.getItem(storageKey) || 'null')); if (!value) { setMessage(t('cv.messages.noDraft')); return } setDraft(value); setMessage(t('cv.messages.opened')); } catch { setMessage(t('cv.messages.unreadable')) } }
-  const clear = () => { localStorage.removeItem(storageKey); setDraft(emptyCv()); setPhotoUrl(null); setMessage(t('cv.messages.cleared')) }
+  const clear = () => {
+    if (!window.confirm(t('cv.confirmClear'))) return
+    try { localStorage.removeItem(storageKey) } catch { /* bộ nhớ bị chặn: vẫn xoá trên màn hình */ }
+    setDraft(emptyCv()); setPhotoUrl(null); setMessage(t('cv.messages.cleared'))
+  }
   return <>
-    <style>{`.cn-cv-layout{display:grid;grid-template-columns:minmax(290px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}.cn-cv-print{background:#fff;color:#202c3a;min-height:297mm;padding:18mm 19mm;box-shadow:0 3px 25px #0001;font:14px/1.55 Arial,sans-serif;overflow-wrap:anywhere}.cn-cv-header{display:flex;justify-content:space-between;gap:20px;align-items:start}.cn-cv-header h1{font-size:32px;margin:0 0 4px;font-weight:700}.cn-cv-header img{width:28mm;height:36mm;object-fit:cover}.cn-cv-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:10px;margin:0 0 6px;color:#64748b}.cn-cv-role{font-size:17px;margin:0}.cn-cv-contact{display:flex;gap:5px 14px;flex-wrap:wrap;border-bottom:1px solid #ccd5de;padding:14px 0}.cn-cv-section{margin-top:22px;break-inside:avoid}.cn-cv-section h2{font-size:14px;text-transform:uppercase;letter-spacing:.09em;border-bottom:1px solid #ccd5de;padding-bottom:5px;margin-bottom:10px}.cn-cv-entry{display:grid;grid-template-columns:95px 1fr;gap:14px;margin:10px 0;break-inside:avoid}.cn-cv-entry__period{color:#596777}.cn-cv--modern{border-top:8px solid #183d45}.cn-cv--modern .cn-cv-section h2{color:#17605b;border-color:#17605b}@media(max-width:1000px){.cn-cv-layout{grid-template-columns:1fr}}@media(max-width:600px){.cn-cv-print{padding:24px;min-height:0}.cn-cv-entry{grid-template-columns:1fr;gap:0}}@media print{@page{size:A4;margin:0}body *{visibility:hidden!important}.cn-cv-print,.cn-cv-print *{visibility:visible!important}.cn-cv-print{position:absolute;left:0;top:0;width:210mm;min-height:297mm;box-shadow:none!important;page-break-after:auto}}`}</style>
+    <style>{`.cn-cv-layout{display:grid;grid-template-columns:minmax(290px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}.cn-cv-print{background:#fff;color:#202c3a;min-height:297mm;padding:18mm 19mm;box-shadow:0 3px 25px #0001;font:14px/1.55 Arial,sans-serif;overflow-wrap:anywhere}.cn-cv-header{display:flex;justify-content:space-between;gap:20px;align-items:start}.cn-cv-header h1{font-size:32px;margin:0 0 4px;font-weight:700}.cn-cv-header img{width:28mm;height:36mm;object-fit:cover}.cn-cv-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:10px;margin:0 0 6px;color:#64748b}.cn-cv-role{font-size:17px;margin:0}.cn-cv-contact{display:flex;gap:5px 14px;flex-wrap:wrap;border-bottom:1px solid #ccd5de;padding:14px 0}.cn-cv-section{margin-top:22px;break-inside:avoid}.cn-cv-section h2{font-size:14px;text-transform:uppercase;letter-spacing:.09em;border-bottom:1px solid #ccd5de;padding-bottom:5px;margin-bottom:10px}.cn-cv-entry{display:grid;grid-template-columns:95px 1fr;gap:14px;margin:10px 0;break-inside:avoid}.cn-cv-entry__period{color:#596777}.cn-cv--modern{border-top:8px solid #183d45}.cn-cv--modern .cn-cv-section h2{color:#17605b;border-color:#17605b}@media(max-width:1000px){.cn-cv-layout{grid-template-columns:1fr}}@media(max-width:600px){.cn-cv-print{padding:24px;min-height:0}.cn-cv-entry{grid-template-columns:1fr;gap:0}}@media print{@page{size:A4;margin:15mm 16mm}.erp-print-portal .cn-cv-print{width:auto;min-height:0;padding:0;box-shadow:none}.erp-print-portal .cn-cv-section{break-inside:auto}.erp-print-portal .cn-cv-section h2{break-after:avoid}}`}</style>
     <ToolBoard><div className="cn-cv-layout"><ToolPanel title={t('cv.title')}>
-      <div className="d-flex flex-wrap gap-2"><Button variant="outline-secondary" size="sm" onClick={save}>{t('cv.saveDraft')}</Button><Button variant="outline-secondary" size="sm" onClick={load}>{t('cv.openDraft')}</Button><Button variant="outline-danger" size="sm" onClick={clear}>{t('cv.clearDraft')}</Button></div>
+      <div className="d-flex flex-wrap align-items-center gap-2"><span className="erp-flow-field__hint">{t('cv.autoSave')}</span><Button variant="outline-danger" size="sm" onClick={clear}>{t('cv.clearDraft')}</Button></div>
       <label className="erp-flow-field__label mt-3">{t('cv.template')}<Form.Select value={draft.template} onChange={(event) => update('template', event.target.value as CvDraft['template'])}><option value="classic">{t('cv.templates.classic')}</option><option value="modern">{t('cv.templates.modern')}</option></Form.Select></label>
       {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
       <label className="erp-flow-field__label mt-3">{t('cv.photo')}<Form.Control type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => { const file = (event.target as HTMLInputElement).files?.[0]; setPhotoUrl(file ? URL.createObjectURL(file) : null) }} /></label>
@@ -40,5 +59,6 @@ export default function CvPage() {
       {(['skills', 'languages', 'certificates'] as const).map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.sections.${key}`)}<Form.Control as="textarea" rows={3} maxLength={3000} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
       <Button className="mt-3" onClick={() => window.print()}>{t('shared.print')}</Button><p role="status" className="mt-2">{message}</p>
     </ToolPanel><div><CvPreview draft={draft} photoUrl={photoUrl} /><p className="mt-3">{t('cv.note')}</p></div></div></ToolBoard>
+    <PrintPortal><CvPreview draft={draft} photoUrl={photoUrl} /></PrintPortal>
   </>
 }

@@ -132,7 +132,8 @@
     "allowModify": "允许编辑",
     "ownerPassword": "单独的权限密码（解除限制时需要，请妥善保管）",
     "protectNote": "如果忘记密码，无法用本工具恢复。请通过与文件不同的渠道发送密码。",
-    "removeNote": "只能为你拥有或有权处理的文件解锁。对于限制权限的文件，需要权限密码。"
+    "removeNote": "只能为你拥有或有权处理的文件解锁。对于限制权限的文件，需要权限密码。",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "无法设置密码。文件可能已加密或已损坏。",
     "restricted": "文件限制了编辑权限。需要文件所有者的权限密码。",
     "wrong": "密码不正确。",
-    "removeFailed": "无法移除密码。"
+    "removeFailed": "无法移除密码。",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "还没有任何签名笔画。",

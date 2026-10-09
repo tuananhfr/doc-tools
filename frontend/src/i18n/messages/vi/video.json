@@ -46,7 +46,8 @@
     "light": "Nhẹ · ưu tiên hình ảnh",
     "medium": "Vừa · cân bằng",
     "strong": "Mạnh · ưu tiên dung lượng",
-    "maxEdge": "Cạnh dài tối đa"
+    "maxEdge": "Cạnh dài tối đa",
+    "edgeOption": "{{size}} px (cạnh dài)"
   },
   "audio": {
     "action": "Tách âm thanh",

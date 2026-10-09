@@ -46,13 +46,16 @@
       "noDraft": "Wala pang wastong draft.",
       "opened": "Nabuksan ang draft.",
       "unreadable": "Hindi mabasa ang draft.",
-      "cleared": "Nabura ang draft sa device na ito."
+      "cleared": "Nabura ang draft sa device na ito.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "Suriing mabuti ang mga detalye bago ipadala. Sa device mo lang sine-save ang draft kapag pinindot mo ang I-save; hindi sine-save ang larawan.",
     "print": {
       "kicker": "Curriculum vitae",
       "summary": "Profile"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "Mga template ng form",
@@ -132,6 +135,13 @@
         "giver": "Panig na nagbibigay"
       },
       "signHint": "(Lagda at buong pangalan)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

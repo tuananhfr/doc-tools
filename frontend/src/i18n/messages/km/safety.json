@@ -12,7 +12,8 @@
     "messageLabel": "ខ្លឹមសារសារ",
     "linkPlaceholder": "បិទភ្ជាប់តំណ មិនចាំបាច់បើក…",
     "messagePlaceholder": "បិទភ្ជាប់សារដែលគួរឱ្យសង្ស័យ…",
-    "privacy": "ខ្លឹមសារត្រូវបានវិភាគនៅលើឧបករណ៍របស់អ្នក ហើយឧបករណ៍នេះមិនចូលទៅកាន់តំណដែលអ្នកបិទភ្ជាប់ទេ។"
+    "privacy": "ខ្លឹមសារត្រូវបានវិភាគនៅលើឧបករណ៍របស់អ្នក ហើយឧបករណ៍នេះមិនចូលទៅកាន់តំណដែលអ្នកបិទភ្ជាប់ទេ។",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "មិនអាចអានតំណបានទេ។",
@@ -30,6 +31,9 @@
     "easyJob": "អញ្ជើញធ្វើការងារស្រួលប្រាក់ខែខ្ពស់ ឬភារកិច្ចតាមអ៊ីនធឺណិត។",
     "urgentTransfer": "ជំរុញឱ្យផ្ទេរ ឬបញ្ចូលប្រាក់ជាបន្ទាន់។",
     "installApp": "ស្នើឱ្យដំឡើងកម្មវិធីពីសារ។",
-    "link": "តំណ {{link}}៖ {{flags}}"
+    "link": "តំណ {{link}}៖ {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

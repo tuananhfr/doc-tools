@@ -46,7 +46,8 @@
     "light": "轻度 · 画质优先",
     "medium": "中等 · 均衡",
     "strong": "强力 · 体积优先",
-    "maxEdge": "最大长边"
+    "maxEdge": "最大长边",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "提取音频",

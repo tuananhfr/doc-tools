@@ -97,7 +97,10 @@
     "rulesNone": "ຍັງບໍ່ມີຊຸດກວດທຽບທີ່ຢູ່ທີ່ມີລາຍເຊັນ ແລະ ຍັງມີຜົນໃນລະບົບ.",
     "manualLabel": "ຫຼື ໃສ່ເອງ, ແຕ່ລະແຖວ: “ແຂວງເກົ່າ|ເມືອງເກົ່າ|ຕາແສງເກົ່າ|ແຂວງໃໝ່|ຕາແສງໃໝ່”",
     "manualInvalid": "ຕາຕະລາງກວດທຽບຜິດຮູບແບບ (ແຕ່ລະແຖວຕ້ອງມີຄົບ 5 ສ່ວນ, ແຕ່ລະສ່ວນບໍ່ເກີນ 150 ຕົວອັກສອນ) ຫຼື ມີແຂວງເກົ່າຖືກບັນທຶກເຂົ້າສອງແຂວງໃໝ່ທີ່ແຕກຕ່າງກັນ.",
-    "csvFileName": "ແປງທີ່ຢູ່"
+    "csvFileName": "ແປງທີ່ຢູ່",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "ອ່ານໄຟລ໌ XML ບໍ່ໄດ້.",
       "doctype": "XML ມີການປະກາດ entity ຫຼື DOCTYPE ທີ່ບໍ່ຮອງຮັບ.",
       "invalid": "ໄຟລ໌ XML ບໍ່ຖືກຕ້ອງ.",
-      "noCommon": "ບໍ່ພົບສ່ວນຂໍ້ມູນທົ່ວໄປຂອງໃບເກັບເງິນ."
+      "noCommon": "ບໍ່ພົບສ່ວນຂໍ້ມູນທົ່ວໄປຂອງໃບເກັບເງິນ.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "ໃບເກັບເງິນ",
     "noNumber": "ບໍ່ມີເລກທີ",
@@ -128,7 +132,9 @@
       "name": "ສິນຄ້າ, ບໍລິການ",
       "quantity": "ຈຳນວນ",
       "amount": "ເປັນເງິນ"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "ຂໍ້ຄວາມຫຼັງການປ່ຽນ",
@@ -146,7 +152,8 @@
       "upper": "ຕົວພິມໃຫຍ່"
     },
     "contentLabel": "ເນື້ອໃນ",
-    "placeholder": "ວາງຂໍ້ຄວາມທີ່ຕ້ອງການປ່ຽນ…"
+    "placeholder": "ວາງຂໍ້ຄວາມທີ່ຕ້ອງການປ່ຽນ…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "ເປັນຕົວໜັງສື",

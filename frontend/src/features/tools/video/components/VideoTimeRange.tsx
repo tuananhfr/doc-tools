@@ -1,10 +1,16 @@
-import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { NumberField, readNumber, type NumberRule } from '@/features/tools/hub'
 
-export function VideoTimeRange({ start, end, onStart, onEnd }: { start: number; end: number; onStart: (value: number) => void; onEnd: (value: number) => void }) {
+// Ô chữ chứ không phải type="number": ô số của trình duyệt in "2.5" theo máy, không theo trang.
+export const SECONDS_RULE: NumberRule = { kind: 'decimal', min: 0 }
+
+/** Số giây đã gõ, `NaN` khi trống hoặc sai — engine báo lỗi khoảng thời gian. */
+export const readSeconds = (text: string) => readNumber(text, SECONDS_RULE) ?? Number.NaN
+
+export function VideoTimeRange({ start, end, onStart, onEnd }: { start: string; end: string; onStart: (value: string) => void; onEnd: (value: string) => void }) {
   const { t } = useTranslation('video')
   return <div className="erp-tool-form__grid">
-    <label className="erp-flow-field__label">{t('timeRange.start')}<Form.Control type="number" min={0} step="0.1" value={Number.isFinite(start) ? start : ''} onChange={(event) => onStart(event.target.value === '' ? Number.NaN : Number(event.target.value))} /></label>
-    <label className="erp-flow-field__label">{t('timeRange.end')}<Form.Control type="number" min={0} step="0.1" value={Number.isFinite(end) ? end : ''} onChange={(event) => onEnd(event.target.value === '' ? Number.NaN : Number(event.target.value))} /></label>
+    <NumberField label={t('timeRange.start')} value={start} onChange={onStart} rule={SECONDS_RULE} />
+    <NumberField label={t('timeRange.end')} value={end} onChange={onEnd} rule={SECONDS_RULE} />
   </div>
 }

@@ -15,7 +15,8 @@
     "download": "ดาวน์โหลด .txt",
     "interrupted": "การจดจำเสียงพูดหยุดชะงัก ตรวจสอบสิทธิ์การใช้ไมโครโฟนแล้วลองอีกครั้ง",
     "micFailed": "เปิดไมโครโฟนไม่ได้ ตรวจสอบสิทธิ์การเข้าถึงของเบราว์เซอร์",
-    "fileName": "ข้อความจากการพูด"
+    "fileName": "ข้อความจากการพูด",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "เบราว์เซอร์นี้ไม่รองรับกล้อง",
@@ -33,7 +34,9 @@
     "freeze": "หยุดภาพ",
     "contrastOff": "ปิดเพิ่มคอนทราสต์",
     "contrastOn": "เพิ่มคอนทราสต์",
-    "closeCamera": "ปิดกล้อง"
+    "closeCamera": "ปิดกล้อง",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "อ่านบนอุปกรณ์",
@@ -43,6 +46,9 @@
     "unsupported": "เบราว์เซอร์นี้ไม่รองรับการอ่านข้อความออกเสียง",
     "title": "ข้อความที่ต้องการให้อ่าน",
     "content": "เนื้อหา",
-    "rate": "ความเร็ว: {{rate}}×"
+    "rate": "ความเร็ว: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

@@ -37,6 +37,7 @@
     },
     "turnkey": "第二個單價為統包價，已包含結構體",
     "editFactors": "依承包商報價修改係數",
-    "factorLabel": "{{label}}（%）"
+    "factorLabel": "{{label}}（%）",
+    "fixField": "Check the field “{{field}}”."
   }
 }

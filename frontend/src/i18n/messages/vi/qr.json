@@ -244,7 +244,16 @@
     "amount": "Số tiền (đ), có thể để trống",
     "note": "Nội dung chuyển khoản",
     "privacy": "Mã được tạo trên máy bạn; thông tin tài khoản không gửi tới máy chủ của Chuyện Nhỏ.",
-    "fieldTooLong": "Trường QR quá dài"
+    "fieldTooLong": "Trường QR quá dài",
+    "binError": "Mã BIN gồm đúng 6 chữ số.",
+    "accountDigits": "Số tài khoản chỉ gồm chữ số.",
+    "accountLength": "Số tài khoản dài từ 4 đến 30 chữ số.",
+    "amountInvalid": "Chưa đọc được số tiền. Ví dụ: 150.000",
+    "amountInteger": "Số tiền phải là số đồng chẵn, không có phần lẻ.",
+    "amountRange": "Số tiền phải từ 1 đ đến 999.999.999.999 đ.",
+    "amountUnderstood": "Hiểu là {{value}} đ",
+    "noteCounter": "{{used}}/{{max}} ký tự (tính sau khi bỏ dấu)",
+    "noteTooLong": "Nội dung quá {{max}} ký tự sau khi bỏ dấu — hãy rút gọn, mã chưa được tạo."
   },
   "trace": {
     "title": "Truy xuất ERPCons",

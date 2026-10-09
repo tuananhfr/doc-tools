@@ -44,6 +44,12 @@
     "aiResult": {
       "water": "Tubig {{volume}} m³; kabuuan {{total}} đ",
       "electricity": "Kuryente {{kwh}} kWh; kabuuan {{total}} đ"
+    },
+    "errors": {
+      "line": "Line {{line}} of the tariff could not be read. Use the form “50; 1,984”.",
+      "order": "The tariff is not valid: thresholds must increase and the last line must be “*”.",
+      "vat": "Enter the tax rate (enter 0 if the bill has no tax).",
+      "inputs": "Some fields are not valid — see the fields marked in red."
     }
   },
   "groupSplit": {
@@ -62,7 +68,14 @@
     "samplePeople": {
       "0": "Juan",
       "1": "Maria"
-    }
+    },
+    "balanceTitle": "Balance per person",
+    "balanceReceive": "gets back {{amount}}",
+    "balancePay": "owes {{amount}}",
+    "balanceEven": "settled",
+    "duplicateNames": "Duplicate names: {{names}}. Give each person a distinct name, e.g. add a surname or a number.",
+    "invalid": "Each expense needs a payer, an amount above 0 and at least one participant; the group needs at least two people.",
+    "addedLater": "This expense was entered before {{names}} joined, so it does not include them. Tick their name above if they share it."
   },
   "loan": {
     "totalPayment": "Kabuuang babayaran",
@@ -106,7 +119,9 @@
         "payment": "Bayad",
         "balance": "Natitirang balanse"
       }
-    }
+    },
+    "rateWarning": "An annual rate of {{rate}}% is unusually high — check that you did not enter a monthly rate or an extra digit.",
+    "savingsDisclaimer": "For reference only; actual interest depends on the deposit contract and the bank's rounding."
   },
   "payroll": {
     "fields": {
@@ -161,7 +176,16 @@
     "ruleNone": "Wala pang signed at epektibong payroll rule package sa system.",
     "enterParams": "Ilagay ang mga parameter ng payroll",
     "brackets": "Tax table: “limit ng taxable income (đ), tax rate (%)”; gamitin ang * sa huling linya",
-    "aiResult": "Gross {{gross}} đ; Net {{net}} đ"
+    "aiResult": "Gross {{gross}} đ; Net {{net}} đ",
+    "errors": {
+      "bracketLine": "Line {{line}} of the tax brackets could not be read. Use the form “10,000,000; 5”.",
+      "bracketOrder": "The tax brackets are not valid: thresholds must increase, rates must be 0–100% and the last line must be “*”.",
+      "params": "Some parameters are not valid — see the fields marked in red.",
+      "salary": "Enter a salary to calculate.",
+      "inputs": "Some fields are not valid — see the fields marked in red.",
+      "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
+      "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
+    }
   },
   "unitPrice": {
     "resultLabel": "Paghahambing kada yunit",

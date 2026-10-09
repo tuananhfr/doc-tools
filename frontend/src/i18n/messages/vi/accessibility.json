@@ -13,9 +13,10 @@
     "text": "Văn bản",
     "copy": "Sao chép",
     "download": "Tải .txt",
-    "interrupted": "Nhận dạng giọng nói bị gián đoạn. Kiểm tra quyền micro và thử lại.",
-    "micFailed": "Không mở được micro. Kiểm tra quyền truy cập của trình duyệt.",
-    "fileName": "ghi-am-thanh-van-ban"
+    "interrupted": "Nhận dạng giọng nói bị gián đoạn. Bấm Bắt đầu đọc để thử lại.",
+    "micFailed": "Trình duyệt chưa được phép dùng micro. Hãy cho phép micro cho trang này rồi thử lại.",
+    "fileName": "ghi-am-thanh-van-ban",
+    "interim": "Đang nhận"
   },
   "magnifier": {
     "noCamera": "Trình duyệt này không hỗ trợ camera.",
@@ -33,7 +34,9 @@
     "freeze": "Dừng hình",
     "contrastOff": "Tắt tương phản",
     "contrastOn": "Tăng tương phản",
-    "closeCamera": "Tắt camera"
+    "closeCamera": "Tắt camera",
+    "backCamera": "Đang dùng camera sau.",
+    "frontCamera": "Đang dùng camera trước."
   },
   "readAloud": {
     "device": "Đọc trên thiết bị",
@@ -43,6 +46,9 @@
     "unsupported": "Trình duyệt này không hỗ trợ đọc văn bản.",
     "title": "Văn bản cần đọc",
     "content": "Nội dung",
-    "rate": "Tốc độ: {{rate}}×"
+    "rate": "Tốc độ: {{rate}}×",
+    "noVoice": "Thiết bị này chưa cài giọng đọc cho ngôn ngữ đang dùng, nên văn bản có thể bị đọc sai giọng hoặc không đọc được. Hãy cài thêm giọng trong phần cài đặt chuyển văn bản thành giọng nói của máy.",
+    "counter": "{{used}} / {{max}} ký tự",
+    "tooLong": "Chỉ {{max}} ký tự đầu được đọc — hãy chia văn bản thành nhiều phần."
   }
 }

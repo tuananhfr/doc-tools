@@ -15,7 +15,8 @@
     "download": "Unduh .txt",
     "interrupted": "Pengenalan suara terputus. Periksa izin mikrofon lalu coba lagi.",
     "micFailed": "Mikrofon tidak dapat dibuka. Periksa izin akses browser.",
-    "fileName": "transkrip-dikte"
+    "fileName": "transkrip-dikte",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "Browser ini tidak mendukung kamera.",
@@ -33,7 +34,9 @@
     "freeze": "Bekukan gambar",
     "contrastOff": "Matikan kontras",
     "contrastOn": "Tingkatkan kontras",
-    "closeCamera": "Matikan kamera"
+    "closeCamera": "Matikan kamera",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "Dibacakan di perangkat",
@@ -43,6 +46,9 @@
     "unsupported": "Browser ini tidak mendukung pembacaan teks.",
     "title": "Teks yang akan dibacakan",
     "content": "Isi",
-    "rate": "Kecepatan: {{rate}}×"
+    "rate": "Kecepatan: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

@@ -37,6 +37,7 @@
     },
     "turnkey": "Harga kedua ialah pakej penuh dan sudah termasuk struktur",
     "editFactors": "Laraskan faktor mengikut sebut harga kontraktor",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

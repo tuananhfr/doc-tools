@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { readFlashcards, reviewFlashcard, type Flashcard } from '../utils/flashcards'
+import { newId } from '@/utils/id'
 
 const STORAGE_KEY = 'chuyen-nho.flashcards.v1'
 
@@ -29,10 +30,16 @@ export default function FlashcardPage() {
   const due = cards.find((card) => card.dueAt <= now)
   const add = () => {
     if (!front.trim() || !back.trim() || cards.length >= 1000) return
-    setCards((current) => [...current, { id: crypto.randomUUID(), front: front.trim(), back: back.trim(), box: 0, dueAt: Date.now() }])
+    setCards((current) => [...current, { id: newId(), front: front.trim(), back: back.trim(), box: 0, dueAt: Date.now() }])
     setFront('')
     setBack('')
     setNow(Date.now())
+  }
+  const remove = (card: Flashcard) => {
+    // Xoá là mất hẳn (thẻ chỉ nằm trong localStorage, không có thùng rác) — hỏi lại trước.
+    const front = card.front.length > 80 ? `${card.front.slice(0, 80)}…` : card.front
+    if (!window.confirm(t('flashcard.confirmRemove', { front }))) return
+    setCards((current) => current.filter((item) => item.id !== card.id))
   }
   const grade = (remembered: boolean) => {
     if (!due) return
@@ -59,7 +66,7 @@ export default function FlashcardPage() {
         <Form.Control id={backId} as="textarea" rows={3} maxLength={1000} value={back} onChange={(event) => setBack(event.target.value)} />
       </label>
       <Button className="mt-3" disabled={!front.trim() || !back.trim() || cards.length >= 1000} onClick={add}>{t('flashcard.add')}</Button>
-      {cards.length ? <ul className="erp-tool-rows mt-3">{cards.map((card) => <li className="erp-tool-row" key={card.id}><span className="erp-tool-row__label">{card.front}</span><Button size="sm" variant="link" onClick={() => setCards((current) => current.filter((item) => item.id !== card.id))}>{t('flashcard.remove')}</Button></li>)}</ul> : null}
+      {cards.length ? <ul className="erp-tool-rows mt-3">{cards.map((card) => <li className="erp-tool-row erp-tool-row--item" key={card.id}><span className="erp-tool-row__value">{card.front}</span><Button size="sm" variant="link" className="erp-tool-copy" aria-label={t('flashcard.removeAria', { front: card.front.slice(0, 80) })} onClick={() => remove(card)}>{t('flashcard.remove')}</Button></li>)}</ul> : null}
     </ToolPanel>
   </ToolBoard>
 }

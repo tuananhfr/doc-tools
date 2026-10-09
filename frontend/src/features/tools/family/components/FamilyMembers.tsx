@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import type { FamilyMember, MemberProfile } from '../core/family'
+import { newId } from '@/utils/id'
 
 interface Props { members: FamilyMember[]; onAdd: (member: FamilyMember) => Promise<void>; disabled: boolean }
 
@@ -12,7 +13,7 @@ export function FamilyMembers({ members, onAdd, disabled }: Props) {
   const [error, setError] = useState('')
   const add = async () => {
     if (!name.trim() || members.length >= 100) return
-    try { await onAdd({ id: crypto.randomUUID(), name: name.trim(), profile }); setName(''); setError('') }
+    try { await onAdd({ id: newId(), name: name.trim(), profile }); setName(''); setError('') }
     catch { setError(t('members.saveFailed')) }
   }
   return <section className="erp-tool-panel">

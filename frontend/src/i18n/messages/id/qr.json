@@ -244,7 +244,16 @@
     "amount": "Jumlah (đ), boleh dikosongkan",
     "note": "Berita transfer",
     "privacy": "Kode dibuat di perangkat Anda; informasi rekening tidak dikirim ke server Chuyện Nhỏ.",
-    "fieldTooLong": "Kolom QR terlalu panjang"
+    "fieldTooLong": "Kolom QR terlalu panjang",
+    "binError": "The BIN must be exactly 6 digits.",
+    "accountDigits": "The account number may contain digits only.",
+    "accountLength": "The account number must be 4 to 30 digits long.",
+    "amountInvalid": "Couldn't read the amount. Example: 150.000",
+    "amountInteger": "The amount must be a whole number of đồng.",
+    "amountRange": "The amount must be between 1 đ and 999.999.999.999 đ.",
+    "amountUnderstood": "Read as {{value}} đ",
+    "noteCounter": "{{used}}/{{max}} characters (accents and symbols removed)",
+    "noteTooLong": "The message is over {{max}} characters after removing accents — shorten it; no code was created."
   },
   "trace": {
     "title": "Pelacakan ERPCons",

@@ -135,7 +135,8 @@
     "allowModify": "Payagan ang pag-edit",
     "ownerPassword": "Hiwalay na owner password (itago ito para maalis ang mga limitasyon)",
     "protectNote": "Kapag nakalimutan mo ang password, hindi na ito maibabalik ng tool na ito. Ipadala ang password sa ibang channel, hiwalay sa file.",
-    "removeNote": "Alisin lang ang lock ng file na pag-aari mo o pinapayagan kang iproseso. Kailangan ng owner password para sa file na may limitadong pahintulot."
+    "removeNote": "Alisin lang ang lock ng file na pag-aari mo o pinapayagan kang iproseso. Kailangan ng owner password para sa file na may limitadong pahintulot.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -959,7 +960,9 @@
     "protectFailed": "Hindi malagyan ng password. Maaaring naka-lock o sira ang file.",
     "restricted": "Limitado ang pahintulot sa pag-edit ng file. Kailangan ang owner password ng may-ari ng file.",
     "wrong": "Mali ang password.",
-    "removeFailed": "Hindi maalis ang password."
+    "removeFailed": "Hindi maalis ang password.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "wala pang guhit ng pirma.",

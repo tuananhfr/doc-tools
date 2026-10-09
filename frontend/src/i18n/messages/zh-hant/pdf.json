@@ -132,7 +132,8 @@
     "allowModify": "允許編輯",
     "ownerPassword": "獨立的權限密碼（解除限制時需要，請妥善保管）",
     "protectNote": "如果忘記密碼，將無法用本工具復原。請透過與檔案不同的管道傳送密碼。",
-    "removeNote": "只對你擁有或獲准處理的檔案解除鎖定。對於有權限限制的檔案，需要權限密碼。"
+    "removeNote": "只對你擁有或獲准處理的檔案解除鎖定。對於有權限限制的檔案，需要權限密碼。",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -860,7 +861,9 @@
     "protectFailed": "無法設定密碼。檔案可能已加鎖或已損毀。",
     "restricted": "檔案限制編輯權限。需要檔案擁有者的權限密碼。",
     "wrong": "密碼不正確。",
-    "removeFailed": "無法移除密碼。"
+    "removeFailed": "無法移除密碼。",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "還沒有任何簽名筆畫。",

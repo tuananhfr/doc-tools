@@ -21,7 +21,9 @@
     "front": "الوجه الأمامي",
     "back": "الوجه الخلفي",
     "add": "إضافة بطاقة",
-    "remove": "حذف"
+    "remove": "حذف",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "تركيز",
@@ -34,7 +36,12 @@
     "title": "المدة",
     "focusMinutes": "التركيز (دقائق)",
     "breakMinutes": "الاستراحة (دقائق)",
-    "invalid": "التركيز من 1 إلى 180 دقيقة؛ والاستراحة من 1 إلى 60 دقيقة."
+    "invalid": "التركيز من 1 إلى 180 دقيقة؛ والاستراحة من 1 إلى 60 دقيقة.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "تحويل استرشادي",

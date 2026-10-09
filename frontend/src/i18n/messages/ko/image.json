@@ -375,7 +375,12 @@
     "panel": "합칠 사진",
     "choose": "사진 2~9장 선택",
     "columns": "열 수",
-    "gap": "간격 (px)"
+    "gap": "간격 (px)",
+    "tooFew": "At least 2 images are needed; you picked {{total}}. Pick 2 to 9 images at once.",
+    "tooMany": "You can combine at most 9 images; you picked {{total}}. Pick no more than 9.",
+    "blockNone": "Pick 2 to 9 images to enable the button.",
+    "blockGap": "Fix the Gap field: it needs a whole number from 0 to 100 px.",
+    "corrupt": "{{name}}: the image is damaged or can't be read."
   },
   "removeMeta": {
     "tooLarge": "이미지가 용량 한도를 넘어요.",
@@ -412,7 +417,8 @@
     "brushKeep": "남기기",
     "brushSize": "브러시 크기: {{value}}",
     "undoBrush": "브러시 실행 취소",
-    "note": "이미지는 기기에서 처리돼요. 배경이 복잡하면 브러시로 직접 다듬어야 하며, 큰 이미지는 각 변이 최대 2200 px로 줄어들어요."
+    "note": "이미지는 기기에서 처리돼요. 배경이 복잡하면 브러시로 직접 다듬어야 하며, 큰 이미지는 각 변이 최대 2200 px로 줄어들어요.",
+    "undoBrushSteps": "Undo brush stroke ({{steps}})"
   },
   "file": {
     "fallback": "이미지",

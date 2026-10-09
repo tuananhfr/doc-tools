@@ -1,17 +1,21 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { Icon } from '@/components/ui'
 import { CopyButton, ToolBoard, ToolPanel } from '@/features/tools/hub'
-import { removeVietnameseMarks, tcvn3ToUnicode, vniToUnicode } from '../utils/legacy-font'
+import { isUnicodeVietnamese, removeVietnameseMarks, tcvn3ToUnicode, vniToUnicode } from '../utils/legacy-font'
 
 type Conversion = 'tcvn3' | 'tcvn3-upper' | 'vni' | 'nfc' | 'strip' | 'lower' | 'upper'
+
+const LEGACY_CONVERSIONS: readonly Conversion[] = ['tcvn3', 'tcvn3-upper', 'vni']
 
 export default function LegacyFontPage() {
   const { t } = useTranslation('vietnam')
   const inputId = useId()
   const [input, setInput] = useState('')
   const [conversion, setConversion] = useState<Conversion>('tcvn3')
-  const output = ({
+  const alreadyUnicode = LEGACY_CONVERSIONS.includes(conversion) && isUnicodeVietnamese(input)
+  const output = alreadyUnicode ? input : ({
     tcvn3: () => tcvn3ToUnicode(input),
     'tcvn3-upper': () => tcvn3ToUnicode(input, true),
     vni: () => vniToUnicode(input),
@@ -23,6 +27,7 @@ export default function LegacyFontPage() {
 
   return <ToolBoard side={<div className="erp-tool-result">
     <p className="erp-tool-result__label">{t('legacyFont.resultLabel')}</p>
+    {alreadyUnicode ? <p className="erp-flow-note erp-flow-note--warning mb-0" role="alert"><Icon name="exclamation-triangle" /><span>{t('legacyFont.alreadyUnicode')}</span></p> : null}
     <p className="erp-qr-payload" aria-live="polite">{output || '—'}</p>
     {output ? <CopyButton text={output} label={t('legacyFont.copy')} /> : null}
     <p className="erp-tool-result__note mt-3">{t('legacyFont.note')}</p>

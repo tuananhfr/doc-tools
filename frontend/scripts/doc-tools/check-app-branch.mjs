@@ -26,7 +26,8 @@ page.on('pageerror', (e) => errors.push(`${stage}: ${String(e)}`))
 const READY = '.erp-doc-drop, .erp-doc-page, .erp-flow-picker, .erp-flow__main, .erp-tool-panel, .erp-tools-grid'
 const overflow = () => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
 
-await page.goto(APP_HUB)
+// Gốc site là trang giới thiệu; trang chọn công cụ (lưới + ô tìm) ở `/cong-cu`.
+await page.goto(`${APP_HUB}/cong-cu`)
 await page.evaluate((t) => {
   const raw = localStorage.getItem('erpcons.app')
   const data = raw ? JSON.parse(raw) : { state: {}, version: 0 }
@@ -36,10 +37,12 @@ await page.evaluate((t) => {
 await page.reload()
 await page.locator('.erp-tools-grid').waitFor({ timeout: 30000 })
 
-const base = new URL(APP_HUB).pathname
+// Bỏ `/` cuối: app ở gốc thì pathname là `/`, cắt theo nó là mất luôn `/` đầu của đường dẫn công cụ.
+const base = new URL(APP_HUB).pathname.replace(/\/$/, '')
 // Trang chọn chỉ bày Top 12 — danh sách đầy đủ lấy thẳng từ danh mục trong mã nguồn.
 const catalog = fs.readFileSync(new URL('../../src/features/tools/hub/config/tool-list.ts', import.meta.url), 'utf8')
-const slugs = [...catalog.matchAll(/^    slug: '([^']+)'/gm)].map((found) => found[1])
+// Không neo đầu dòng: nhiều mục viết `id: '…', slug: '…'` trên cùng một dòng.
+const slugs = [...catalog.matchAll(/\bslug: '([^']+)'/g)].map((found) => found[1])
 const out = { theme, vw, tools: slugs.length, soon: await page.locator('.erp-tool-card.is-soon').count(), hub: { overflow: await overflow(), shell: await page.locator('.erp-sidebar, .app-sidebar, aside').count() } }
 await page.screenshot({ path: `${OUT}${theme}-${vw}-hub.png`, fullPage: true })
 

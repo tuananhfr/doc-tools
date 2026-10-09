@@ -44,7 +44,19 @@
     "receiptLabel": "Kod resit",
     "lookup": "Semak",
     "needsSource": "Masukkan URL HTTPS dalam ruangan sumber di atas, kemudian tambahkannya menggunakan kod resit ini.",
-    "addSource": "Tambah sumber"
+    "addSource": "Tambah sumber",
+    "requiredNote": "Fields marked * are required.",
+    "requiredMark": "required",
+    "sourceUrlInvalid": "The source URL isn't valid. Paste the full address starting with https://",
+    "sourceUrlNotHttps": "The source URL must start with https://",
+    "sourceUrlUnsafe": "The source URL must be a public page: no IP address, localhost or internal network, no #… part, user name, password or token/key parameter, email or phone number.",
+    "sensitive": {
+      "email": "The text contains an email address.",
+      "phone": "The text contains a phone number.",
+      "secret": "The text seems to contain a password, token or API key.",
+      "internalUrl": "The text contains an internal link (localhost, private network IP)."
+    },
+    "sensitiveFix": "Remove it before sending — the server doesn't accept personal or secret information."
   },
   "ideas": {
     "published": "Idea yang diterbitkan",

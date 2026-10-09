@@ -97,7 +97,10 @@
     "rulesNone": "系統上目前沒有已簽署且仍有效的地址對照表。",
     "manualLabel": "或自行輸入，每行：「舊省|舊縣|舊社|新省|新社」",
     "manualInvalid": "對照表格式錯誤（每行需有 5 個部分，每部分最多 150 個字元），或有舊省份被對應到兩個不同的新省份。",
-    "csvFileName": "地址轉換"
+    "csvFileName": "地址轉換",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -105,7 +108,8 @@
       "unreadable": "無法讀取 XML 檔案。",
       "doctype": "XML 含有不支援的實體宣告或 DOCTYPE。",
       "invalid": "XML 檔案無效。",
-      "noCommon": "找不到發票的一般資訊區塊。"
+      "noCommon": "找不到發票的一般資訊區塊。",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "發票",
     "noNumber": "無號碼",
@@ -128,7 +132,9 @@
       "name": "商品、服務",
       "quantity": "數量",
       "amount": "金額"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "轉換後的文字",
@@ -146,7 +152,8 @@
       "upper": "大寫"
     },
     "contentLabel": "內容",
-    "placeholder": "貼上要轉換的文字…"
+    "placeholder": "貼上要轉換的文字…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "越南語大寫",

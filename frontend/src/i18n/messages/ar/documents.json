@@ -46,13 +46,16 @@
       "noDraft": "لا توجد مسودة صالحة بعد.",
       "opened": "فُتحت المسودة.",
       "unreadable": "تعذّرت قراءة المسودة.",
-      "cleared": "حُذفت المسودة من الجهاز."
+      "cleared": "حُذفت المسودة من الجهاز.",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "راجع المعلومات جيدًا قبل الإرسال. لا تُحفظ المسودة على الجهاز إلا عند الضغط على «حفظ»؛ والصورة لا تُحفظ.",
     "print": {
       "kicker": "السيرة الذاتية",
       "summary": "نبذة شخصية"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "إنشاء نماذج المستندات",
@@ -132,6 +135,13 @@
         "giver": "الطرف المُسلِّم"
       },
       "signHint": "(التوقيع والاسم الكامل)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

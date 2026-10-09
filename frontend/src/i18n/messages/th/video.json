@@ -46,7 +46,8 @@
     "light": "เบา · เน้นภาพ",
     "medium": "กลาง · สมดุล",
     "strong": "แรง · เน้นขนาดไฟล์",
-    "maxEdge": "ด้านยาวสูงสุด"
+    "maxEdge": "ด้านยาวสูงสุด",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "แยกเสียง",

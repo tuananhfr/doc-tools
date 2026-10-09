@@ -46,7 +46,8 @@
     "light": "Légère · priorité à l'image",
     "medium": "Moyenne · équilibrée",
     "strong": "Forte · priorité à la taille",
-    "maxEdge": "Grand côté maximal"
+    "maxEdge": "Grand côté maximal",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "Extraire l'audio",

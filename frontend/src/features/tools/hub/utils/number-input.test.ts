@@ -1,5 +1,26 @@
 import { describe, expect, it } from 'vitest'
-import { formatQuantity, parseDecimal } from './number-input'
+import { checkNumber, formatQuantity, parseDecimal, readNumber } from './number-input'
+
+describe('checkNumber', () => {
+  const MONEY = { kind: 'money', min: 0, max: 1e12 } as const
+
+  it('ô tiền hiểu "30.000.000" là ba mươi triệu, không phải 30', () => {
+    expect(checkNumber('30.000.000', MONEY)).toEqual({ state: 'ok', value: 30_000_000 })
+    expect(readNumber('500.000.000', MONEY)).toBe(500_000_000)
+  })
+
+  it('ô số đo hiểu "0,9" là không phẩy chín, không phải 9', () => {
+    expect(readNumber('0,9', { kind: 'decimal', min: 0 })).toBe(0.9)
+  })
+
+  it('phân biệt ô trống, không đọc được, sai số nguyên và ngoài khoảng', () => {
+    expect(checkNumber('  ', MONEY)).toEqual({ state: 'empty' })
+    expect(checkNumber('ba triệu', MONEY)).toEqual({ state: 'invalid', value: null })
+    expect(checkNumber('1,5', { kind: 'integer', min: 0 })).toEqual({ state: 'integer', value: 1.5 })
+    expect(checkNumber('150', { kind: 'decimal', min: 0, max: 100 })).toEqual({ state: 'range', value: 150 })
+    expect(readNumber('150', { kind: 'decimal', min: 0, max: 100 })).toBeNull()
+  })
+})
 
 describe('parseDecimal', () => {
   it('nhận dấu thập phân là phẩy hoặc chấm', () => {

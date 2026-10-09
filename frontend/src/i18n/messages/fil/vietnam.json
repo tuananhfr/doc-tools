@@ -99,7 +99,10 @@
     "rulesNone": "Wala pang signed at epektibong talaan ng paghahambing ng address sa system.",
     "manualLabel": "O ilagay ang sarili mo, isa bawat linya: “lumang probinsya|lumang distrito|lumang commune|bagong probinsya|bagong commune”",
     "manualInvalid": "Mali ang format ng talaan (dapat 5 bahagi bawat linya, hanggang 150 character bawat bahagi) o may lumang probinsyang nakatala sa dalawang magkaibang bagong probinsya.",
-    "csvFileName": "conversion-ng-address"
+    "csvFileName": "conversion-ng-address",
+    "noTable": "No mapping table yet",
+    "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
+    "tableTitle": "Address conversion results"
   },
   "invoice": {
     "errors": {
@@ -107,7 +110,8 @@
       "unreadable": "Hindi mabasa ang XML file.",
       "doctype": "May entity declaration o DOCTYPE ang XML na hindi suportado.",
       "invalid": "Hindi wasto ang XML file.",
-      "noCommon": "Walang nahanap na bloke ng pangkalahatang impormasyon ng invoice."
+      "noCommon": "Walang nahanap na bloke ng pangkalahatang impormasyon ng invoice.",
+      "xlsx": "Couldn't create the Excel file. Try again or download the CSV list."
     },
     "resultLabel": "Invoice",
     "noNumber": "Walang numero",
@@ -130,7 +134,9 @@
       "name": "Produkto, serbisyo",
       "quantity": "Dami",
       "amount": "Halaga"
-    }
+    },
+    "downloadXlsx": "Download Excel list (.xlsx)",
+    "discount": "Discount"
   },
   "legacyFont": {
     "resultLabel": "Na-convert na text",
@@ -148,7 +154,8 @@
       "upper": "MALALAKING TITIK"
     },
     "contentLabel": "Nilalaman",
-    "placeholder": "I-paste ang text na iko-convert…"
+    "placeholder": "I-paste ang text na iko-convert…",
+    "alreadyUnicode": "This text is already Unicode Vietnamese, so it wasn't converted to avoid breaking the diacritics. If only part of it uses an old encoding, paste that part on its own."
   },
   "numberWords": {
     "resultLabel": "Sa salita",

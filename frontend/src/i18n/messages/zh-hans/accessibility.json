@@ -15,7 +15,8 @@
     "download": "下载 .txt",
     "interrupted": "语音识别已中断。请检查麦克风权限后重试。",
     "micFailed": "无法打开麦克风。请检查浏览器的访问权限。",
-    "fileName": "语音转文字"
+    "fileName": "语音转文字",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "此浏览器不支持摄像头。",
@@ -33,7 +34,9 @@
     "freeze": "定格画面",
     "contrastOff": "关闭高对比度",
     "contrastOn": "增强对比度",
-    "closeCamera": "关闭摄像头"
+    "closeCamera": "关闭摄像头",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "在设备上朗读",
@@ -43,6 +46,9 @@
     "unsupported": "此浏览器不支持文字朗读。",
     "title": "要朗读的文字",
     "content": "内容",
-    "rate": "语速：{{rate}}×"
+    "rate": "语速：{{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

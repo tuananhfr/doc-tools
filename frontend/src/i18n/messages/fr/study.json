@@ -15,7 +15,9 @@
     "front": "Recto",
     "back": "Verso",
     "add": "Ajouter une carte",
-    "remove": "Supprimer"
+    "remove": "Supprimer",
+    "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
+    "removeAria": "Delete card {{front}}"
   },
   "pomodoro": {
     "focus": "Concentration",
@@ -28,7 +30,12 @@
     "title": "Durée",
     "focusMinutes": "Concentration (minutes)",
     "breakMinutes": "Pause (minutes)",
-    "invalid": "Concentration : 1–180 minutes ; pause : 1–60 minutes."
+    "invalid": "Concentration : 1–180 minutes ; pause : 1–60 minutes.",
+    "focusEndedTitle": "Focus time is up",
+    "breakEndedTitle": "Break is over",
+    "nextBreak": "Time for a {{minutes}}-minute break.",
+    "nextFocus": "Time for {{minutes}} minutes of focus.",
+    "switched": "Switched sessions — press Start to continue."
   },
   "grades": {
     "gradeResult": "Conversion indicative",

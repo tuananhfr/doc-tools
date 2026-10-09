@@ -15,7 +15,8 @@
     "download": "ទាញយក .txt",
     "interrupted": "ការស្គាល់សំឡេងត្រូវបានរំខាន។ សូមពិនិត្យសិទ្ធិមីក្រូហ្វូន ហើយសាកល្បងម្តងទៀត។",
     "micFailed": "មិនអាចបើកមីក្រូហ្វូនបានទេ។ សូមពិនិត្យសិទ្ធិចូលប្រើរបស់កម្មវិធីរុករក។",
-    "fileName": "អត្ថបទពីការនិយាយ"
+    "fileName": "អត្ថបទពីការនិយាយ",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "កម្មវិធីរុករកនេះមិនគាំទ្រកាមេរ៉ាទេ។",
@@ -33,7 +34,9 @@
     "freeze": "បង្កករូបភាព",
     "contrastOff": "បិទកម្រិតពន្លឺផ្ទុយ",
     "contrastOn": "បង្កើនកម្រិតពន្លឺផ្ទុយ",
-    "closeCamera": "បិទកាមេរ៉ា"
+    "closeCamera": "បិទកាមេរ៉ា",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "អានលើឧបករណ៍",
@@ -43,6 +46,9 @@
     "unsupported": "កម្មវិធីរុករកនេះមិនគាំទ្រការអានអត្ថបទទេ។",
     "title": "អត្ថបទដែលត្រូវអាន",
     "content": "ខ្លឹមសារ",
-    "rate": "ល្បឿន៖ {{rate}}×"
+    "rate": "ល្បឿន៖ {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

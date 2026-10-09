@@ -37,6 +37,7 @@
     },
     "turnkey": "Le second prix est un prix clé en main, gros œuvre compris",
     "editFactors": "Ajuster les coefficients selon le devis de l'entrepreneur",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

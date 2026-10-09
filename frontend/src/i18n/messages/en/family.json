@@ -121,7 +121,13 @@
     "defaultsNote": "ICS and PDF leave out private and sensitive events by default. The backup always includes all data; keep the file somewhere you trust.",
     "restoreLabel": "Restore from a JSON backup",
     "inspected": "Read: {{members}} members, {{events}} events, {{reminders}} reminders. Family code: {{id}}.",
-    "restoreThis": "Restore this backup"
+    "restoreThis": "Restore this backup",
+    "droppedItems": "Damaged items in the file that will be skipped: {{total}}.",
+    "confirmOpenSaved": "Open this calendar ({{total}} entries)? The calendar in use stays in the list below.",
+    "savedTitle": "Calendars saved on this device",
+    "savedItem": "Updated {{date}} · {{members}} members · {{events}} entries",
+    "openSaved": "Open this one",
+    "savedEmpty": "No other calendars on this device yet."
   },
   "safety": {
     "invalidContact": "Enter a valid name and phone number.",
@@ -150,7 +156,8 @@
   "space": {
     "loadFailed": "Couldn't open the data on this device. Check your browser's storage permissions.",
     "saveFailed": "Couldn't save changes. Export a backup and check your device's free space.",
-    "restoreFailed": "Couldn't restore the backup."
+    "restoreFailed": "Couldn't restore the backup.",
+    "droppedItems": "Damaged items removed from the data on this device: {{total}}. Everything else was kept. Please download a fresh backup."
   },
   "print": {
     "title": "Family Calendar · next 30 days",

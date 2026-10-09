@@ -37,6 +37,7 @@
     },
     "turnkey": "سعر الوحدة الثاني هو تسليم مفتاح ويشمل الهيكل الأساسي",
     "editFactors": "عدّل المعاملات وفق عرض سعر المقاول",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }

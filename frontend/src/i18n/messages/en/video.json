@@ -46,7 +46,8 @@
     "light": "Light · best picture",
     "medium": "Medium · balanced",
     "strong": "Strong · smallest size",
-    "maxEdge": "Maximum long edge"
+    "maxEdge": "Maximum long edge",
+    "edgeOption": "{{size}} px (long edge)"
   },
   "audio": {
     "action": "Extract audio",

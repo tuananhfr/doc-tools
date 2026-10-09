@@ -135,7 +135,8 @@
     "allowModify": "Allow editing",
     "ownerPassword": "Separate owner password (keep it to lift restrictions)",
     "protectNote": "If you forget the password, this tool can't recover it. Send the password through a different channel than the file.",
-    "removeNote": "Only unlock files you own or are allowed to process. Files with restricted permissions need the owner password."
+    "removeNote": "Only unlock files you own or are allowed to process. Files with restricted permissions need the owner password.",
+    "permissions": "Permissions for people who open the file"
   },
   "pdfToImage": {
     "format": {
@@ -959,7 +960,9 @@
     "protectFailed": "Couldn't set the password. The file may already be locked or damaged.",
     "restricted": "The file restricts editing. You need the file owner's password.",
     "wrong": "Incorrect password.",
-    "removeFailed": "Couldn't remove the password."
+    "removeFailed": "Couldn't remove the password.",
+    "notPdf": "This is not a PDF file. Please choose a .pdf file.",
+    "notEncrypted": "This file has no password, so there is nothing to remove."
   },
   "signatureImage": {
     "noStrokes": "no signature strokes yet.",

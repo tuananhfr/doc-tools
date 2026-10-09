@@ -12,7 +12,8 @@
     "messageLabel": "ເນື້ອໃນຂໍ້ຄວາມ",
     "linkPlaceholder": "ວາງລິ້ງ, ບໍ່ຈຳເປັນຕ້ອງເປີດ…",
     "messagePlaceholder": "ວາງຂໍ້ຄວາມທີ່ສົງໄສ…",
-    "privacy": "ເນື້ອໃນຖືກວິເຄາະໃນເຄື່ອງ; ເຄື່ອງມືບໍ່ເຂົ້າເຖິງລິ້ງທີ່ທ່ານວາງ."
+    "privacy": "ເນື້ອໃນຖືກວິເຄາະໃນເຄື່ອງ; ເຄື່ອງມືບໍ່ເຂົ້າເຖິງລິ້ງທີ່ທ່ານວາງ.",
+    "check": "Check"
   },
   "flags": {
     "unreadable": "ອ່ານລິ້ງບໍ່ໄດ້.",
@@ -30,6 +31,9 @@
     "easyJob": "ຊວນເຮັດວຽກງ່າຍເງິນເດືອນສູງ ຫຼື ພາລະກິດອອນລາຍ.",
     "urgentTransfer": "ເລັ່ງໃຫ້ໂອນ ຫຼື ເຕີມເງິນດ່ວນ.",
     "installApp": "ຂໍໃຫ້ຕິດຕັ້ງແອັບຈາກຂໍ້ຄວາມ.",
-    "link": "ລິ້ງ {{link}}: {{flags}}"
+    "link": "ລິ້ງ {{link}}: {{flags}}",
+    "scriptLink": "A link that runs code (javascript:, data:) — never open it.",
+    "brandMisuse": "The domain borrows the name {{brand}} but isn't its official address ({{official}}).",
+    "lookalike": "The domain imitates {{brand}} with a few letters changed; the official address is {{official}}."
   }
 }

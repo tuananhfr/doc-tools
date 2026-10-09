@@ -46,13 +46,16 @@
       "noDraft": "ยังไม่มีฉบับร่างที่ใช้ได้",
       "opened": "เปิดฉบับร่างแล้ว",
       "unreadable": "อ่านฉบับร่างไม่ได้",
-      "cleared": "ลบฉบับร่างในอุปกรณ์แล้ว"
+      "cleared": "ลบฉบับร่างในอุปกรณ์แล้ว",
+      "restored": "Reopened the draft you were working on."
     },
     "note": "ตรวจสอบข้อมูลให้ดีก่อนส่ง ฉบับร่างจะบันทึกไว้ในอุปกรณ์เมื่อคุณกดบันทึกเท่านั้น และไม่มีการบันทึกรูปภาพ",
     "print": {
       "kicker": "ประวัติย่อ",
       "summary": "แนะนำตัว"
-    }
+    },
+    "autoSave": "Saved automatically on this device (the photo is not saved).",
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
   },
   "formTemplates": {
     "title": "เขียนแบบฟอร์มเอกสาร",
@@ -132,6 +135,13 @@
         "giver": "ฝ่ายส่งมอบ"
       },
       "signHint": "(ลงชื่อและชื่อ-นามสกุล)"
+    },
+    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "datePlaceholder": "e.g. 09/10/2026",
+    "dateErrors": {
+      "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
+      "order": "The end date is before the start date."
     }
   }
 }

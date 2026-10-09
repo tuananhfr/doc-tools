@@ -15,7 +15,8 @@
     "download": "تنزيل .txt",
     "interrupted": "انقطع التعرّف على الكلام. تحقّق من إذن الميكروفون وحاول مجددًا.",
     "micFailed": "تعذّر فتح الميكروفون. تحقّق من أذونات المتصفح.",
-    "fileName": "نص-الإملاء"
+    "fileName": "نص-الإملاء",
+    "interim": "Hearing"
   },
   "magnifier": {
     "noCamera": "هذا المتصفح لا يدعم الكاميرا.",
@@ -33,7 +34,9 @@
     "freeze": "تجميد الصورة",
     "contrastOff": "إيقاف التباين",
     "contrastOn": "زيادة التباين",
-    "closeCamera": "إيقاف الكاميرا"
+    "closeCamera": "إيقاف الكاميرا",
+    "backCamera": "Using the back camera.",
+    "frontCamera": "Using the front camera."
   },
   "readAloud": {
     "device": "القراءة على الجهاز",
@@ -43,6 +46,9 @@
     "unsupported": "هذا المتصفح لا يدعم قراءة النص بصوت عالٍ.",
     "title": "النص المراد قراءته",
     "content": "المحتوى",
-    "rate": "السرعة: {{rate}}×"
+    "rate": "السرعة: {{rate}}×",
+    "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
+    "counter": "{{used}} / {{max}} characters",
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
   }
 }

@@ -35,7 +35,7 @@
     },
     "kwh": "Điện tiêu thụ (kWh)",
     "households": "Số định mức hộ dùng chung công tơ",
-    "tiers": "Bảng giá: mỗi dòng là “ngưỡng kWh, đơn giá đ/kWh”",
+    "tiers": "Bảng giá: mỗi dòng là “ngưỡng kWh; đơn giá đ/kWh”",
     "applyTariff": "Áp dụng bảng giá đã ký",
     "applyVat": "Áp dụng thuế suất đã ký",
     "ruleLabel": "bảng giá điện",
@@ -44,6 +44,12 @@
     "aiResult": {
       "water": "Nước {{volume}} m³; tổng {{total}} đ",
       "electricity": "Điện {{kwh}} kWh; tổng {{total}} đ"
+    },
+    "errors": {
+      "line": "Dòng {{line}} của bảng giá chưa đọc được. Viết dạng “50; 1.984”.",
+      "order": "Bảng giá chưa hợp lệ: ngưỡng phải tăng dần và dòng cuối là “*”.",
+      "vat": "Nhập thuế suất (nhập 0 nếu hóa đơn không có thuế).",
+      "inputs": "Có ô chưa hợp lệ — xem ô báo đỏ."
     }
   },
   "groupSplit": {
@@ -62,7 +68,14 @@
     "samplePeople": {
       "0": "An",
       "1": "Bình"
-    }
+    },
+    "balanceTitle": "Số dư từng người",
+    "balanceReceive": "được nhận lại {{amount}}",
+    "balancePay": "phải trả thêm {{amount}}",
+    "balanceEven": "đã đủ",
+    "duplicateNames": "Tên bị trùng: {{names}}. Mỗi người cần một tên riêng, ví dụ thêm họ hoặc số.",
+    "invalid": "Mỗi khoản cần người trả, số tiền lớn hơn 0 và ít nhất một người cùng chia; nhóm cần ít nhất hai người.",
+    "addedLater": "Khoản này nhập trước khi thêm {{names}} nên chưa tính phần của họ. Tích tên ở trên nếu họ cùng chia."
   },
   "loan": {
     "totalPayment": "Tổng phải trả",
@@ -106,7 +119,9 @@
         "payment": "Phải trả",
         "balance": "Dư nợ"
       }
-    }
+    },
+    "rateWarning": "Lãi suất {{rate}}%/năm cao bất thường — kiểm tra xem có nhập nhầm lãi tháng hoặc thừa chữ số không.",
+    "savingsDisclaimer": "Kết quả tham khảo; tiền lãi thực tế phụ thuộc hợp đồng tiền gửi và cách làm tròn của ngân hàng."
   },
   "payroll": {
     "fields": {
@@ -160,8 +175,17 @@
     "ruleLabel": "tham số tính lương",
     "ruleNone": "Chưa có gói quy tắc lương đã ký, còn hiệu lực trên hệ thống.",
     "enterParams": "Nhập tham số tính lương",
-    "brackets": "Biểu thuế: “ngưỡng thu nhập tính thuế (đ), thuế suất (%)”; dòng cuối dùng *",
-    "aiResult": "Gross {{gross}} đ; Net {{net}} đ"
+    "brackets": "Biểu thuế: mỗi dòng là “ngưỡng thu nhập tính thuế (đ); thuế suất (%)”; dòng cuối dùng *",
+    "aiResult": "Gross {{gross}} đ; Net {{net}} đ",
+    "errors": {
+      "bracketLine": "Dòng {{line}} của biểu thuế chưa đọc được. Viết dạng “10.000.000; 5”.",
+      "bracketOrder": "Biểu thuế chưa hợp lệ: ngưỡng phải tăng dần, thuế suất từ 0 đến 100% và dòng cuối là “*”.",
+      "params": "Có tham số chưa hợp lệ — xem ô báo đỏ trong phần tham số.",
+      "salary": "Nhập mức lương để tính.",
+      "inputs": "Có ô chưa hợp lệ — xem ô báo đỏ.",
+      "exempt": "Phụ cấp miễn thuế không được lớn hơn lương Gross.",
+      "noGross": "Không tính được với số liệu này. Kiểm tra lại mức lương và các khoản kèm theo."
+    }
   },
   "unitPrice": {
     "resultLabel": "So sánh theo đơn vị",

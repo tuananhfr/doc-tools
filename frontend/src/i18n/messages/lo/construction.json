@@ -37,6 +37,7 @@
     },
     "turnkey": "ລາຄາທີສອງແມ່ນແບບເໝົາ, ລວມສ່ວນໂຄງສ້າງແລ້ວ",
     "editFactors": "ແກ້ໄຂຄ່າສຳປະສິດຕາມໃບສະເໜີລາຄາຂອງຜູ້ຮັບເໝົາ",
-    "factorLabel": "{{label}} (%)"
+    "factorLabel": "{{label}} (%)",
+    "fixField": "Check the field “{{field}}”."
   }
 }
