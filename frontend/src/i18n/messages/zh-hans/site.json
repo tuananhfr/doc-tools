@@ -893,5 +893,115 @@
     "updated": "最后更新：{{date}}",
     "toc": "目录",
     "summary": "摘要"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | 处理日常小事的工具",
+    "metaDescription": "文档、图像和日常生活工具。提供15种语言及浅色、深色界面，在浏览器中即可使用。",
+    "openTools": "打开工具",
+    "nav": {
+      "features": "实用工具",
+      "how": "使用方法",
+      "privacy": "隐私"
+    },
+    "hero": {
+      "title": "每天的小事，",
+      "highlight": "轻松处理。",
+      "body": "文档、图像和日常生活工具。",
+      "how": "查看使用方法",
+      "languages": "{{total}}种语言",
+      "themes": "浅色 / 深色界面"
+    },
+    "cases": {
+      "title": "日常小事，一处搞定。",
+      "body": "从工作文档到日常实用工具。",
+      "link": "查看工具",
+      "documents": {
+        "title": "文档与PDF",
+        "body": "编辑、合并和转换文档。"
+      },
+      "media": {
+        "title": "图像与视频",
+        "body": "编辑图片、压缩视频、制作GIF。"
+      },
+      "everyday": {
+        "title": "生活实用工具",
+        "body": "计算、查询并整理任务。"
+      }
+    },
+    "pdf": {
+      "title": "文档井然有序，工作更轻松。",
+      "body": "为日常文档处理提供实用工具。",
+      "link": "查看PDF工具",
+      "edit": {
+        "title": "编辑PDF",
+        "body": "修改文字、添加标记并整理页面。"
+      },
+      "merge": {
+        "title": "合并PDF",
+        "body": "将多个文件合并成一个文档。"
+      },
+      "split": {
+        "title": "拆分PDF",
+        "body": "将所需页面提取为独立文件。"
+      }
+    },
+    "steps": {
+      "title": "开始使用很简单。",
+      "body": "打开浏览器，选择您要完成的任务。",
+      "choose": {
+        "title": "选择工具",
+        "body": "找到适合当前任务的工具。"
+      },
+      "input": {
+        "title": "添加数据",
+        "body": "选择文件或输入信息。"
+      },
+      "result": {
+        "title": "获取结果",
+        "body": "检查结果并下载到设备。"
+      },
+      "note": "免费工具无需账户即可使用。"
+    },
+    "preferences": {
+      "title": "熟悉的语言，合适的界面。",
+      "body": "{{total}}种语言可选，支持浅色和深色界面。",
+      "choose": "选择语言",
+      "languageNote": "在此处或页面顶部选择语言。",
+      "light": "浅色",
+      "dark": "深色",
+      "themeNote": "随时切换界面，还提供户外模式。"
+    },
+    "privacy": {
+      "title": "您的数据，由您决定。",
+      "body": "使用前了解数据在哪里处理。",
+      "local": {
+        "title": "本地处理工具",
+        "body": "本地工具直接在浏览器中处理文件。"
+      },
+      "online": {
+        "title": "AI与在线存储",
+        "body": "单独的数据传输流程会提前说明。"
+      },
+      "choice": {
+        "title": "自主选择",
+        "body": "查看每个工具的数据处理方式。"
+      },
+      "link": "了解数据处理"
+    },
+    "closing": {
+      "title": "减少琐事，把时间留给重要的事。",
+      "body": "今天从一个小工具开始。"
+    },
+    "footer": {
+      "tagline": "每天的小事，轻松处理。",
+      "madeBy": "<productLink>ERPCons & LPC</productLink> 出品"
+    },
+    "preview": {
+      "pdf": "使用示例文档的PDF编辑界面。",
+      "directory": "Chuyện Nhỏ工具目录界面。",
+      "sample": "使用示例数据的越南语界面截图。",
+      "light": "浅色模式的工具目录。",
+      "dark": "深色模式的工具目录。"
+    }
   }
 }

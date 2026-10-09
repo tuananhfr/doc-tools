@@ -893,5 +893,115 @@
     "updated": "Cập nhật lần cuối: {{date}}",
     "toc": "Mục lục",
     "summary": "Tóm tắt"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Công cụ cho những việc mỗi ngày",
+    "metaDescription": "Công cụ cho tài liệu, hình ảnh và cuộc sống. Chọn trong 15 ngôn ngữ, dùng giao diện sáng hoặc tối và mở công cụ ngay trong trình duyệt.",
+    "openTools": "Mở công cụ",
+    "nav": {
+      "features": "Tiện ích",
+      "how": "Cách dùng",
+      "privacy": "Quyền riêng tư"
+    },
+    "hero": {
+      "title": "Việc nhỏ mỗi ngày,",
+      "highlight": "giải quyết nhẹ nhàng.",
+      "body": "Công cụ cho tài liệu, hình ảnh và cuộc sống.",
+      "how": "Xem cách sử dụng",
+      "languages": "{{total}} ngôn ngữ",
+      "themes": "Giao diện sáng / tối"
+    },
+    "cases": {
+      "title": "Một nơi cho những việc nhỏ.",
+      "body": "Từ tài liệu công việc đến tiện ích mỗi ngày.",
+      "link": "Xem công cụ",
+      "documents": {
+        "title": "Tài liệu & PDF",
+        "body": "Chỉnh sửa, ghép và chuyển đổi tài liệu."
+      },
+      "media": {
+        "title": "Ảnh & video",
+        "body": "Chỉnh ảnh, nén video, tạo GIF."
+      },
+      "everyday": {
+        "title": "Tiện ích đời sống",
+        "body": "Tính toán, tra cứu và sắp xếp công việc."
+      }
+    },
+    "pdf": {
+      "title": "Tài liệu gọn gàng. Công việc nhẹ hơn.",
+      "body": "Những công cụ thiết thực cho tài liệu mỗi ngày.",
+      "link": "Xem công cụ PDF",
+      "edit": {
+        "title": "Chỉnh sửa PDF",
+        "body": "Sửa chữ, đánh dấu và sắp xếp trang."
+      },
+      "merge": {
+        "title": "Ghép PDF",
+        "body": "Gộp nhiều tệp thành một tài liệu."
+      },
+      "split": {
+        "title": "Tách PDF",
+        "body": "Trích trang bạn cần thành một tệp riêng."
+      }
+    },
+    "steps": {
+      "title": "Bắt đầu thật đơn giản.",
+      "body": "Mở trình duyệt và chọn việc bạn cần làm.",
+      "choose": {
+        "title": "Chọn công cụ",
+        "body": "Tìm tiện ích phù hợp với việc cần làm."
+      },
+      "input": {
+        "title": "Thêm dữ liệu",
+        "body": "Chọn tệp hoặc nhập thông tin."
+      },
+      "result": {
+        "title": "Nhận kết quả",
+        "body": "Xem lại và tải kết quả về máy."
+      },
+      "note": "Các công cụ Free có thể dùng ngay, không cần tài khoản."
+    },
+    "preferences": {
+      "title": "Ngôn ngữ quen thuộc. Giao diện hợp với bạn.",
+      "body": "{{total}} lựa chọn ngôn ngữ, cùng giao diện sáng và tối.",
+      "choose": "Chọn ngôn ngữ",
+      "languageNote": "Chọn ngôn ngữ ngay tại đây hoặc trên thanh đầu trang.",
+      "light": "Sáng",
+      "dark": "Tối",
+      "themeNote": "Chuyển giao diện bất cứ lúc nào, có thêm chế độ ngoài trời."
+    },
+    "privacy": {
+      "title": "Dữ liệu của bạn. Bạn chủ động quyết định.",
+      "body": "Biết rõ dữ liệu được xử lý ở đâu trước khi sử dụng.",
+      "local": {
+        "title": "Công cụ xử lý cục bộ",
+        "body": "Tệp được xử lý ngay trong trình duyệt với các công cụ cục bộ."
+      },
+      "online": {
+        "title": "AI và lưu trữ online",
+        "body": "Có luồng gửi dữ liệu riêng, được thông báo trước."
+      },
+      "choice": {
+        "title": "Chủ động lựa chọn",
+        "body": "Xem thông tin xử lý dữ liệu của từng công cụ."
+      },
+      "link": "Tìm hiểu cách xử lý dữ liệu"
+    },
+    "closing": {
+      "title": "Bớt việc lặt vặt. Thêm thời gian cho điều quan trọng.",
+      "body": "Bắt đầu từ một công cụ nhỏ hôm nay."
+    },
+    "footer": {
+      "tagline": "Việc nhỏ mỗi ngày, giải quyết nhẹ nhàng.",
+      "madeBy": "Một sản phẩm từ <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "Giao diện công cụ chỉnh sửa PDF với tài liệu mẫu.",
+      "directory": "Giao diện danh mục công cụ Chuyện Nhỏ.",
+      "sample": "Ảnh chụp giao diện tiếng Việt với dữ liệu mẫu.",
+      "light": "Danh mục công cụ trong giao diện sáng.",
+      "dark": "Danh mục công cụ trong giao diện tối."
+    }
   }
 }

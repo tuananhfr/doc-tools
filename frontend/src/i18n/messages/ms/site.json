@@ -893,5 +893,115 @@
     "updated": "Kemas kini terakhir: {{date}}",
     "toc": "Kandungan",
     "summary": "Ringkasan"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Alat untuk urusan harian",
+    "metaDescription": "Alat untuk dokumen, imej dan kehidupan harian. Pilih daripada 15 bahasa serta paparan cerah atau gelap, terus dalam pelayar.",
+    "openTools": "Buka alat",
+    "nav": {
+      "features": "Alat",
+      "how": "Cara guna",
+      "privacy": "Privasi"
+    },
+    "hero": {
+      "title": "Urusan kecil setiap hari,",
+      "highlight": "jadi lebih mudah.",
+      "body": "Alat untuk dokumen, imej dan kehidupan harian.",
+      "how": "Lihat cara guna",
+      "languages": "{{total}} bahasa",
+      "themes": "Paparan cerah / gelap"
+    },
+    "cases": {
+      "title": "Satu tempat untuk urusan kecil.",
+      "body": "Daripada dokumen kerja hingga keperluan harian.",
+      "link": "Lihat alat",
+      "documents": {
+        "title": "Dokumen & PDF",
+        "body": "Sunting, gabung dan tukar format dokumen."
+      },
+      "media": {
+        "title": "Imej & video",
+        "body": "Sunting imej, mampatkan video dan cipta GIF."
+      },
+      "everyday": {
+        "title": "Keperluan harian",
+        "body": "Kira, cari maklumat dan susun tugasan anda."
+      }
+    },
+    "pdf": {
+      "title": "Dokumen kemas. Kerja lebih ringan.",
+      "body": "Alat praktikal untuk dokumen harian anda.",
+      "link": "Lihat alat PDF",
+      "edit": {
+        "title": "Sunting PDF",
+        "body": "Sunting teks, tambah tanda dan susun halaman."
+      },
+      "merge": {
+        "title": "Gabung PDF",
+        "body": "Gabungkan beberapa fail menjadi satu dokumen."
+      },
+      "split": {
+        "title": "Pisah PDF",
+        "body": "Ekstrak halaman yang diperlukan ke fail berasingan."
+      }
+    },
+    "steps": {
+      "title": "Mudah untuk bermula.",
+      "body": "Buka pelayar dan pilih perkara yang perlu dibuat.",
+      "choose": {
+        "title": "Pilih alat",
+        "body": "Cari alat yang sesuai dengan tugasan anda."
+      },
+      "input": {
+        "title": "Tambah data",
+        "body": "Pilih fail atau masukkan maklumat."
+      },
+      "result": {
+        "title": "Dapatkan hasil",
+        "body": "Semak dan muat turun hasil ke peranti anda."
+      },
+      "note": "Alat percuma boleh digunakan terus tanpa akaun."
+    },
+    "preferences": {
+      "title": "Bahasa biasa anda. Paparan pilihan anda.",
+      "body": "{{total}} pilihan bahasa dengan paparan cerah dan gelap.",
+      "choose": "Pilih bahasa",
+      "languageNote": "Pilih bahasa di sini atau di bahagian atas halaman.",
+      "light": "Cerah",
+      "dark": "Gelap",
+      "themeNote": "Tukar paparan pada bila-bila masa, dengan mod luar juga."
+    },
+    "privacy": {
+      "title": "Data anda. Pilihan anda.",
+      "body": "Ketahui tempat data diproses sebelum menggunakan alat.",
+      "local": {
+        "title": "Alat pemprosesan setempat",
+        "body": "Alat setempat memproses fail terus dalam pelayar."
+      },
+      "online": {
+        "title": "AI dan storan dalam talian",
+        "body": "Pemindahan data berasingan diterangkan terlebih dahulu."
+      },
+      "choice": {
+        "title": "Anda yang memilih",
+        "body": "Semak cara setiap alat memproses data."
+      },
+      "link": "Ketahui tentang pemprosesan data"
+    },
+    "closing": {
+      "title": "Kurangkan kerja remeh. Luangkan masa untuk yang penting.",
+      "body": "Mulakan dengan satu alat kecil hari ini."
+    },
+    "footer": {
+      "tagline": "Urusan kecil setiap hari jadi lebih mudah.",
+      "madeBy": "Satu produk daripada <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "Antara muka penyunting PDF dengan dokumen contoh.",
+      "directory": "Antara muka direktori alat Chuyện Nhỏ.",
+      "sample": "Tangkapan skrin bahasa Vietnam dengan data contoh.",
+      "light": "Direktori alat dalam paparan cerah.",
+      "dark": "Direktori alat dalam paparan gelap."
+    }
   }
 }

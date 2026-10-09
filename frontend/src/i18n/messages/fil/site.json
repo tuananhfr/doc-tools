@@ -902,5 +902,115 @@
     "updated": "Huling na-update: {{date}}",
     "toc": "Nilalaman",
     "summary": "Buod"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Mga tool para sa araw-araw",
+    "metaDescription": "Mga tool para sa dokumento, larawan at araw-araw na gawain. Pumili sa 15 wika at maliwanag o madilim na tema, sa iyong browser.",
+    "openTools": "Buksan ang mga tool",
+    "nav": {
+      "features": "Mga tool",
+      "how": "Paano gamitin",
+      "privacy": "Pagkapribado"
+    },
+    "hero": {
+      "title": "Maliliit na gawain,",
+      "highlight": "mas madaling tapusin.",
+      "body": "Mga tool para sa dokumento, larawan at araw-araw na gawain.",
+      "how": "Tingnan kung paano",
+      "languages": "{{total}} wika",
+      "themes": "Maliwanag / madilim na tema"
+    },
+    "cases": {
+      "title": "Isang lugar para sa maliliit na gawain.",
+      "body": "Mula sa mga dokumento sa trabaho hanggang sa pang-araw-araw.",
+      "link": "Tingnan ang mga tool",
+      "documents": {
+        "title": "Dokumento at PDF",
+        "body": "I-edit, pagsamahin at i-convert ang mga dokumento."
+      },
+      "media": {
+        "title": "Larawan at video",
+        "body": "I-edit ang larawan, paliitin ang video at gumawa ng GIF."
+      },
+      "everyday": {
+        "title": "Pang-araw-araw na tool",
+        "body": "Magkalkula, maghanap at ayusin ang mga gawain."
+      }
+    },
+    "pdf": {
+      "title": "Maayos na dokumento. Mas magaan na trabaho.",
+      "body": "Mga praktikal na tool para sa iyong mga dokumento.",
+      "link": "Tingnan ang mga PDF tool",
+      "edit": {
+        "title": "I-edit ang PDF",
+        "body": "Baguhin ang teksto, magdagdag ng marka at ayusin ang mga pahina."
+      },
+      "merge": {
+        "title": "Pagsamahin ang PDF",
+        "body": "Pagsamahin ang ilang file sa isang dokumento."
+      },
+      "split": {
+        "title": "Hatiin ang PDF",
+        "body": "Kunin ang mga pahinang kailangan sa hiwalay na file."
+      }
+    },
+    "steps": {
+      "title": "Madaling magsimula.",
+      "body": "Buksan ang browser at piliin ang kailangan mong gawin.",
+      "choose": {
+        "title": "Pumili ng tool",
+        "body": "Hanapin ang tool na angkop sa iyong gawain."
+      },
+      "input": {
+        "title": "Magdagdag ng datos",
+        "body": "Pumili ng file o ilagay ang impormasyon."
+      },
+      "result": {
+        "title": "Kunin ang resulta",
+        "body": "Suriin at i-download ang resulta sa iyong device."
+      },
+      "note": "Magagamit agad ang mga libreng tool kahit walang account."
+    },
+    "preferences": {
+      "title": "Pamilyar na wika. Temang gusto mo.",
+      "body": "{{total}} pagpipiliang wika, na may maliwanag at madilim na tema.",
+      "choose": "Pumili ng wika",
+      "languageNote": "Pumili ng wika dito o sa itaas ng pahina.",
+      "light": "Maliwanag",
+      "dark": "Madilim",
+      "themeNote": "Palitan ang tema anumang oras. May tema rin para sa labas."
+    },
+    "privacy": {
+      "title": "Datos mo. Ikaw ang magpapasya.",
+      "body": "Alamin kung saan pinoproseso ang datos bago gumamit.",
+      "local": {
+        "title": "Mga tool na lokal ang pagproseso",
+        "body": "Pinoproseso ng mga lokal na tool ang file sa browser."
+      },
+      "online": {
+        "title": "AI at online na imbakan",
+        "body": "Ipinaliliwanag muna ang hiwalay na pagpapadala ng datos."
+      },
+      "choice": {
+        "title": "Ikaw ang pumipili",
+        "body": "Tingnan kung paano pinoproseso ng bawat tool ang datos."
+      },
+      "link": "Alamin ang pagproseso ng datos"
+    },
+    "closing": {
+      "title": "Bawasan ang maliliit na gawain. Maglaan ng oras sa mahalaga.",
+      "body": "Magsimula sa isang maliit na tool ngayon."
+    },
+    "footer": {
+      "tagline": "Maliliit na gawain, mas madaling tapusin.",
+      "madeBy": "Isang produkto ng <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "Interface ng PDF editor na may halimbawang dokumento.",
+      "directory": "Interface ng talaan ng mga tool ng Chuyện Nhỏ.",
+      "sample": "Mga screenshot sa Vietnamese na may halimbawang datos.",
+      "light": "Talaan ng mga tool sa maliwanag na tema.",
+      "dark": "Talaan ng mga tool sa madilim na tema."
+    }
   }
 }

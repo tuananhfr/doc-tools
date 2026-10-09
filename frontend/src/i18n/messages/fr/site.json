@@ -911,5 +911,115 @@
     "updated": "Dernière mise à jour : {{date}}",
     "toc": "Sommaire",
     "summary": "Résumé"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Des outils pour le quotidien",
+    "metaDescription": "Des outils pour les documents, les images et le quotidien. Choisissez parmi 15 langues et les modes clair ou sombre, directement dans votre navigateur.",
+    "openTools": "Ouvrir les outils",
+    "nav": {
+      "features": "Outils",
+      "how": "Mode d’emploi",
+      "privacy": "Confidentialité"
+    },
+    "hero": {
+      "title": "Les petites tâches,",
+      "highlight": "en toute simplicité.",
+      "body": "Des outils pour les documents, les images et le quotidien.",
+      "how": "Voir comment faire",
+      "languages": "{{total}} langues",
+      "themes": "Mode clair / sombre"
+    },
+    "cases": {
+      "title": "Un endroit pour les petites tâches.",
+      "body": "Des documents de travail aux besoins du quotidien.",
+      "link": "Voir les outils",
+      "documents": {
+        "title": "Documents et PDF",
+        "body": "Modifier, fusionner et convertir des documents."
+      },
+      "media": {
+        "title": "Images et vidéos",
+        "body": "Retoucher des images, compresser des vidéos et créer des GIF."
+      },
+      "everyday": {
+        "title": "Outils du quotidien",
+        "body": "Calculer, rechercher et organiser vos tâches."
+      }
+    },
+    "pdf": {
+      "title": "Des documents en ordre. Du travail en moins.",
+      "body": "Des outils pratiques pour vos documents de tous les jours.",
+      "link": "Voir les outils PDF",
+      "edit": {
+        "title": "Modifier un PDF",
+        "body": "Modifier le texte, annoter et organiser les pages."
+      },
+      "merge": {
+        "title": "Fusionner des PDF",
+        "body": "Réunir plusieurs fichiers dans un document."
+      },
+      "split": {
+        "title": "Diviser un PDF",
+        "body": "Extraire les pages nécessaires dans un fichier distinct."
+      }
+    },
+    "steps": {
+      "title": "Commencer est simple.",
+      "body": "Ouvrez votre navigateur et choisissez votre tâche.",
+      "choose": {
+        "title": "Choisir un outil",
+        "body": "Trouvez l’outil adapté à votre besoin."
+      },
+      "input": {
+        "title": "Ajouter vos données",
+        "body": "Choisissez un fichier ou saisissez vos informations."
+      },
+      "result": {
+        "title": "Obtenir le résultat",
+        "body": "Vérifiez et téléchargez le résultat sur votre appareil."
+      },
+      "note": "Les outils gratuits s’utilisent sans compte."
+    },
+    "preferences": {
+      "title": "Votre langue. Votre interface.",
+      "body": "{{total}} langues au choix, avec les modes clair et sombre.",
+      "choose": "Choisir une langue",
+      "languageNote": "Choisissez une langue ici ou dans l’en-tête.",
+      "light": "Clair",
+      "dark": "Sombre",
+      "themeNote": "Changez de mode à tout moment, avec un mode extérieur en plus."
+    },
+    "privacy": {
+      "title": "Vos données. Votre décision.",
+      "body": "Sachez où vos données sont traitées avant d’utiliser un outil.",
+      "local": {
+        "title": "Traitement local",
+        "body": "Les outils locaux traitent les fichiers dans le navigateur."
+      },
+      "online": {
+        "title": "IA et stockage en ligne",
+        "body": "Les transferts de données sont expliqués à l’avance."
+      },
+      "choice": {
+        "title": "Vous gardez le choix",
+        "body": "Consultez le traitement des données de chaque outil."
+      },
+      "link": "Comprendre le traitement des données"
+    },
+    "closing": {
+      "title": "Moins de petites tâches. Plus de temps pour l’essentiel.",
+      "body": "Commencez avec un petit outil aujourd’hui."
+    },
+    "footer": {
+      "tagline": "Les petites tâches du quotidien, en toute simplicité.",
+      "madeBy": "Un produit de <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "Interface de l’éditeur PDF avec un document exemple.",
+      "directory": "Interface du catalogue d’outils Chuyện Nhỏ.",
+      "sample": "Captures de l’interface vietnamienne avec des données exemples.",
+      "light": "Catalogue d’outils en mode clair.",
+      "dark": "Catalogue d’outils en mode sombre."
+    }
   }
 }

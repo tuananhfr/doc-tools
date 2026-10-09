@@ -893,5 +893,115 @@
     "updated": "Terakhir diperbarui: {{date}}",
     "toc": "Daftar isi",
     "summary": "Ringkasan"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Alat untuk tugas sehari-hari",
+    "metaDescription": "Alat untuk dokumen, gambar, dan kehidupan sehari-hari. Pilih dari 15 bahasa serta tampilan terang atau gelap, langsung di browser.",
+    "openTools": "Buka alat",
+    "nav": {
+      "features": "Alat",
+      "how": "Cara pakai",
+      "privacy": "Privasi"
+    },
+    "hero": {
+      "title": "Urusan kecil setiap hari,",
+      "highlight": "jadi lebih mudah.",
+      "body": "Alat untuk dokumen, gambar, dan kehidupan sehari-hari.",
+      "how": "Lihat cara pakai",
+      "languages": "{{total}} bahasa",
+      "themes": "Tampilan terang / gelap"
+    },
+    "cases": {
+      "title": "Satu tempat untuk urusan kecil.",
+      "body": "Dari dokumen kerja hingga kebutuhan sehari-hari.",
+      "link": "Lihat alat",
+      "documents": {
+        "title": "Dokumen & PDF",
+        "body": "Edit, gabungkan, dan konversi dokumen."
+      },
+      "media": {
+        "title": "Gambar & video",
+        "body": "Edit gambar, kompres video, dan buat GIF."
+      },
+      "everyday": {
+        "title": "Kebutuhan sehari-hari",
+        "body": "Hitung, cari informasi, dan atur tugas Anda."
+      }
+    },
+    "pdf": {
+      "title": "Dokumen rapi. Pekerjaan lebih ringan.",
+      "body": "Alat praktis untuk dokumen sehari-hari.",
+      "link": "Lihat alat PDF",
+      "edit": {
+        "title": "Edit PDF",
+        "body": "Edit teks, tambahkan tanda, dan atur halaman."
+      },
+      "merge": {
+        "title": "Gabungkan PDF",
+        "body": "Gabungkan beberapa file menjadi satu dokumen."
+      },
+      "split": {
+        "title": "Pisahkan PDF",
+        "body": "Ekstrak halaman yang dibutuhkan ke file terpisah."
+      }
+    },
+    "steps": {
+      "title": "Memulai itu mudah.",
+      "body": "Buka browser dan pilih tugas yang ingin dilakukan.",
+      "choose": {
+        "title": "Pilih alat",
+        "body": "Temukan alat yang sesuai dengan tugas Anda."
+      },
+      "input": {
+        "title": "Tambahkan data",
+        "body": "Pilih file atau masukkan informasi."
+      },
+      "result": {
+        "title": "Dapatkan hasil",
+        "body": "Periksa dan unduh hasil ke perangkat Anda."
+      },
+      "note": "Alat gratis bisa langsung dipakai tanpa akun."
+    },
+    "preferences": {
+      "title": "Bahasa yang akrab. Tampilan pilihan Anda.",
+      "body": "{{total}} pilihan bahasa dengan tampilan terang dan gelap.",
+      "choose": "Pilih bahasa",
+      "languageNote": "Pilih bahasa di sini atau di bagian atas halaman.",
+      "light": "Terang",
+      "dark": "Gelap",
+      "themeNote": "Ganti tampilan kapan saja, tersedia juga mode luar ruangan."
+    },
+    "privacy": {
+      "title": "Data Anda. Pilihan Anda.",
+      "body": "Ketahui tempat data diproses sebelum memakai alat.",
+      "local": {
+        "title": "Alat pemrosesan lokal",
+        "body": "Alat lokal memproses file langsung di browser."
+      },
+      "online": {
+        "title": "AI dan penyimpanan online",
+        "body": "Pengiriman data terpisah dijelaskan terlebih dahulu."
+      },
+      "choice": {
+        "title": "Anda yang memilih",
+        "body": "Periksa cara setiap alat memproses data."
+      },
+      "link": "Pelajari pemrosesan data"
+    },
+    "closing": {
+      "title": "Kurangi urusan kecil. Luangkan waktu untuk yang penting.",
+      "body": "Mulai dengan satu alat kecil hari ini."
+    },
+    "footer": {
+      "tagline": "Urusan kecil setiap hari jadi lebih mudah.",
+      "madeBy": "Sebuah produk dari <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "Antarmuka editor PDF dengan dokumen contoh.",
+      "directory": "Antarmuka direktori alat Chuyện Nhỏ.",
+      "sample": "Tangkapan layar berbahasa Vietnam dengan data contoh.",
+      "light": "Direktori alat dalam tampilan terang.",
+      "dark": "Direktori alat dalam tampilan gelap."
+    }
   }
 }

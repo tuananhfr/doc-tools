@@ -893,5 +893,115 @@
     "updated": "最後更新：{{date}}",
     "toc": "目錄",
     "summary": "摘要"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | 處理日常小事的工具",
+    "metaDescription": "文件、影像和日常生活工具。提供15種語言及淺色、深色介面，在瀏覽器中即可使用。",
+    "openTools": "開啟工具",
+    "nav": {
+      "features": "實用工具",
+      "how": "使用方式",
+      "privacy": "隱私"
+    },
+    "hero": {
+      "title": "每天的小事，",
+      "highlight": "輕鬆處理。",
+      "body": "文件、影像和日常生活工具。",
+      "how": "查看使用方式",
+      "languages": "{{total}}種語言",
+      "themes": "淺色 / 深色介面"
+    },
+    "cases": {
+      "title": "日常小事，一處完成。",
+      "body": "從工作文件到日常實用工具。",
+      "link": "查看工具",
+      "documents": {
+        "title": "文件與PDF",
+        "body": "編輯、合併和轉換文件。"
+      },
+      "media": {
+        "title": "影像與影片",
+        "body": "編輯圖片、壓縮影片、製作GIF。"
+      },
+      "everyday": {
+        "title": "生活實用工具",
+        "body": "計算、查詢並整理工作。"
+      }
+    },
+    "pdf": {
+      "title": "文件井然有序，工作更輕鬆。",
+      "body": "為日常文件處理提供實用工具。",
+      "link": "查看PDF工具",
+      "edit": {
+        "title": "編輯PDF",
+        "body": "修改文字、加入標記並整理頁面。"
+      },
+      "merge": {
+        "title": "合併PDF",
+        "body": "將多個檔案合併成一份文件。"
+      },
+      "split": {
+        "title": "分割PDF",
+        "body": "將所需頁面擷取為獨立檔案。"
+      }
+    },
+    "steps": {
+      "title": "開始使用很簡單。",
+      "body": "開啟瀏覽器，選擇您要完成的工作。",
+      "choose": {
+        "title": "選擇工具",
+        "body": "找到適合目前工作的工具。"
+      },
+      "input": {
+        "title": "加入資料",
+        "body": "選擇檔案或輸入資訊。"
+      },
+      "result": {
+        "title": "取得結果",
+        "body": "檢查結果並下載到裝置。"
+      },
+      "note": "免費工具不需帳號即可使用。"
+    },
+    "preferences": {
+      "title": "熟悉的語言，合適的介面。",
+      "body": "{{total}}種語言可選，支援淺色和深色介面。",
+      "choose": "選擇語言",
+      "languageNote": "在此處或頁面頂端選擇語言。",
+      "light": "淺色",
+      "dark": "深色",
+      "themeNote": "隨時切換介面，另提供戶外模式。"
+    },
+    "privacy": {
+      "title": "您的資料，由您決定。",
+      "body": "使用前了解資料在哪裡處理。",
+      "local": {
+        "title": "本機處理工具",
+        "body": "本機工具直接在瀏覽器中處理檔案。"
+      },
+      "online": {
+        "title": "AI與線上儲存",
+        "body": "獨立的資料傳送流程會事先說明。"
+      },
+      "choice": {
+        "title": "自主選擇",
+        "body": "查看每個工具的資料處理方式。"
+      },
+      "link": "了解資料處理"
+    },
+    "closing": {
+      "title": "減少瑣事，把時間留給重要的事。",
+      "body": "今天從一個小工具開始。"
+    },
+    "footer": {
+      "tagline": "每天的小事，輕鬆處理。",
+      "madeBy": "<productLink>ERPCons & LPC</productLink> 出品"
+    },
+    "preview": {
+      "pdf": "使用範例文件的PDF編輯介面。",
+      "directory": "Chuyện Nhỏ工具目錄介面。",
+      "sample": "使用範例資料的越南語介面截圖。",
+      "light": "淺色模式的工具目錄。",
+      "dark": "深色模式的工具目錄。"
+    }
   }
 }

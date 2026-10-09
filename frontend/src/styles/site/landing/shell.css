@@ -1,0 +1,79 @@
+.cn-landing-shell {
+  --cn-landing-bg: #fbfcfe;
+  --cn-landing-card: #fff;
+  --cn-landing-button: #005be8;
+  --cn-landing-button-text: #fff;
+  --cn-landing-closing: #132b4e;
+  --cn-landing-closing-text: #f5f8ff;
+  --cn-landing-closing-muted: #c7d8f1;
+  --cn-landing-shadow: 0 18px 56px rgb(12 37 77 / 12%);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--cn-landing-bg);
+  color: var(--cn-ink);
+  font-family: var(--cn-font-family);
+  line-height: 1.65;
+}
+[data-theme='dark'] .cn-landing-shell { --cn-landing-bg: #101e33; --cn-landing-card: #182b45; --cn-landing-shadow: 0 18px 56px rgb(4 14 30 / 25%); }
+[data-theme='field'] .cn-landing-shell { --cn-landing-bg: #fff; }
+.cn-landing-scroll { min-height: 0; overflow-y: auto; overflow-x: clip; scroll-behavior: smooth; }
+.cn-landing-container { width: min(100% - 80px, 1320px); margin-inline: auto; }
+.cn-landing :is(h1, h2, h3, p, figure), .cn-landing-footer p { margin: 0; }
+.cn-landing :is(h1, h2, h3) { font-weight: 700; text-wrap: balance; }
+.cn-landing h2 { font-size: clamp(28px, 3.1vw, 46px); line-height: 1.25; letter-spacing: -.045em; }
+.cn-landing h3 { font-size: 21px; line-height: 1.4; letter-spacing: -.025em; }
+.cn-landing section[id] { scroll-margin-block-start: 28px; }
+.cn-landing-shell :is(a, button):focus-visible, .cn-landing-menu :is(a, button):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 4px; }
+.cn-landing-shell a { text-underline-offset: .25em; }
+.cn-landing-header { position: relative; z-index: 2; background: var(--cn-surface); border-bottom: 1px solid var(--cn-line); }
+.cn-landing-header-inner { min-height: 72px; display: flex; align-items: center; gap: 26px; }
+.cn-landing-nav { display: flex; align-items: center; gap: 26px; margin-inline: auto; }
+.cn-landing-nav a { padding-block: 12px; color: var(--cn-ink); font-size: 14px; text-decoration: none; white-space: nowrap; }
+.cn-landing-nav a:hover { color: var(--cn-accent); }
+.cn-landing-header-actions { display: flex; align-items: center; gap: 12px; margin-inline-start: auto; }
+.cn-landing-menu-toggle { display: inline-grid; place-items: center; width: 40px; height: 44px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 25px; }
+.cn-landing-menu-toggle:hover { background: var(--cn-tint); }
+.cn-landing-button { display: inline-flex; justify-content: center; align-items: center; gap: 14px; min-height: 52px; padding: 13px 25px; border: 1px solid transparent; border-radius: var(--cn-radius-button); background: var(--cn-landing-button); color: var(--cn-landing-button-text); font: 700 16px/1.45 var(--cn-font-family); text-decoration: none; white-space: nowrap; }
+.cn-landing-button:hover { background: var(--cn-accent-hover); color: var(--cn-landing-button-text); }
+.cn-landing-button:active { transform: translateY(1px); }
+.cn-landing-button--outline { background: transparent; color: var(--cn-accent); border-color: var(--cn-accent); min-height: 44px; padding: 9px 17px; font-size: 14px; }
+.cn-landing-button--outline:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-landing-button--inverse { background: var(--cn-landing-closing-text); color: var(--cn-landing-closing); }
+.cn-landing-button--inverse:hover { background: var(--cn-landing-closing-muted); color: var(--cn-landing-closing); }
+.cn-landing-text-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--cn-accent); font-size: 16px; font-weight: 700; }
+.cn-landing-actions { display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; }
+.cn-landing-menu-account { display: flex; align-items: center; gap: 20px; padding-top: 24px; }
+.cn-landing-footer { padding: 40px 0 24px; background: var(--cn-landing-closing); color: var(--cn-landing-closing-text); }
+.cn-landing-footer .cn-brand, .cn-landing-footer .cn-brand-accent { color: var(--cn-landing-closing-text); }
+.cn-landing-footer-main { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgb(199 216 241 / 25%); }
+.cn-landing-footer .cn-brand img { filter: brightness(0) invert(1); }
+.cn-landing-footer p { color: var(--cn-landing-closing-muted); font-size: 14px; margin-top: 12px; }
+.cn-landing-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 24px; max-width: 650px; }
+.cn-landing-footer a { color: var(--cn-landing-closing-text); text-decoration: none; }
+.cn-landing-footer a:hover { text-decoration: underline; }
+.cn-landing-footer nav a { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
+.cn-landing-footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding-top: 24px; color: var(--cn-landing-closing-muted); font-size: 13px; }
+.cn-landing-ecosystem-links { display: flex; gap: 24px; margin-inline-start: auto; }
+.cn-landing-footer .cn-quality-consent { color: var(--cn-landing-closing-muted); }
+.cn-landing-header-placeholder { min-height: 72px; background: var(--cn-surface); }
+.cn-landing-placeholder { min-height: 100dvh; background: var(--cn-hero); }
+@media (max-width: 1199px) { .cn-landing-nav { display: none; } .cn-landing-header-inner { gap: 18px; } }
+@media (max-width: 767px) {
+  .cn-landing-header-placeholder { min-height: 64px; }
+  .cn-landing-container { width: calc(100% - 36px); }
+  .cn-landing-header-inner { min-height: 64px; gap: 8px; }
+  .cn-landing-header-actions { gap: 4px; }
+  .cn-landing-open { display: none; }
+  .cn-landing-header .cn-brand { font-size: 19px; gap: 4px; letter-spacing: -.8px; }
+  .cn-landing-header .cn-brand img { width: 30px; height: 30px; }
+  .cn-landing-button { font-size: 15px; padding-inline: 21px; }
+  .cn-landing-text-link { font-size: 15px; }
+  .cn-landing-footer-main { display: grid; gap: 24px; }
+  .cn-landing-footer nav { justify-content: flex-start; gap: 6px 20px; }
+  .cn-landing-footer-bottom { align-items: flex-start; gap: 18px; }
+  .cn-landing-ecosystem-links { margin-inline-start: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) { .cn-landing-button { transition: transform .18s, background .18s; } }
+@media (prefers-reduced-motion: reduce) { .cn-landing-scroll { scroll-behavior: auto; } }

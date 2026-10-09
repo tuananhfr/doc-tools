@@ -902,5 +902,115 @@
     "updated": "Last updated: {{date}}",
     "toc": "Contents",
     "summary": "Summary"
+  },
+  "landing": {
+    "metaTitle": "Chuyện Nhỏ | Tools for everyday tasks",
+    "metaDescription": "Tools for documents, images and everyday life. Choose from 15 languages, switch between light and dark, and open a tool in your browser.",
+    "openTools": "Open tools",
+    "nav": {
+      "features": "Tools",
+      "how": "How it works",
+      "privacy": "Privacy"
+    },
+    "hero": {
+      "title": "Everyday little tasks,",
+      "highlight": "made a little easier.",
+      "body": "Tools for documents, images and everyday life.",
+      "how": "See how it works",
+      "languages": "{{total}} languages",
+      "themes": "Light / dark mode"
+    },
+    "cases": {
+      "title": "One place for the little things.",
+      "body": "From work documents to everyday essentials.",
+      "link": "Explore tools",
+      "documents": {
+        "title": "Documents & PDF",
+        "body": "Edit, merge and convert documents."
+      },
+      "media": {
+        "title": "Images & video",
+        "body": "Edit images, compress videos and create GIFs."
+      },
+      "everyday": {
+        "title": "Everyday essentials",
+        "body": "Calculate, look things up and organize your tasks."
+      }
+    },
+    "pdf": {
+      "title": "Tidy documents. Lighter work.",
+      "body": "Practical tools for your everyday documents.",
+      "link": "Explore PDF tools",
+      "edit": {
+        "title": "Edit PDF",
+        "body": "Edit text, add marks and organize pages."
+      },
+      "merge": {
+        "title": "Merge PDF",
+        "body": "Combine several files into one document."
+      },
+      "split": {
+        "title": "Split PDF",
+        "body": "Extract the pages you need into a separate file."
+      }
+    },
+    "steps": {
+      "title": "Getting started is simple.",
+      "body": "Open your browser and choose what you need to do.",
+      "choose": {
+        "title": "Choose a tool",
+        "body": "Find the right tool for your task."
+      },
+      "input": {
+        "title": "Add your data",
+        "body": "Choose a file or enter your information."
+      },
+      "result": {
+        "title": "Get your result",
+        "body": "Review and download the result to your device."
+      },
+      "note": "Free tools are ready to use without an account."
+    },
+    "preferences": {
+      "title": "Your language. Your preferred look.",
+      "body": "{{total}} language choices, with light and dark modes.",
+      "choose": "Choose a language",
+      "languageNote": "Choose a language here or in the header.",
+      "light": "Light",
+      "dark": "Dark",
+      "themeNote": "Switch the appearance anytime, with an outdoor mode too."
+    },
+    "privacy": {
+      "title": "Your data. Your choice.",
+      "body": "Know where your data is processed before you use a tool.",
+      "local": {
+        "title": "Local processing tools",
+        "body": "Local tools process your files directly in the browser."
+      },
+      "online": {
+        "title": "AI and online storage",
+        "body": "Separate data transfers are explained beforehand."
+      },
+      "choice": {
+        "title": "Stay in control",
+        "body": "Check how each tool processes data."
+      },
+      "link": "Learn about data processing"
+    },
+    "closing": {
+      "title": "Less busywork. More time for what matters.",
+      "body": "Start with one small tool today."
+    },
+    "footer": {
+      "tagline": "Everyday little tasks, made a little easier.",
+      "madeBy": "A product from <productLink>ERPCons & LPC</productLink>"
+    },
+    "preview": {
+      "pdf": "PDF editor interface with a sample document.",
+      "directory": "Chuyện Nhỏ tool directory interface.",
+      "sample": "Vietnamese interface screenshots with sample data.",
+      "light": "Tool directory in light mode.",
+      "dark": "Tool directory in dark mode."
+    }
   }
 }

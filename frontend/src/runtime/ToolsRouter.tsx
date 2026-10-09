@@ -7,7 +7,8 @@ import { ROUTES } from '@/constants/routes'
 import { localePrefix, localizePath, splitLocalePath, type Locale } from '@/i18n/locales'
 import { createBrowserRouter, createMemoryRouter, RouterProvider, type RouteObject } from 'react-router-dom'
 import { ToolsLayout } from '@/layouts/ToolsLayout'
-import ToolsHubPage from '@/features/tools/hub/pages/ToolsHubPage'
+import { LandingLayout } from '@/features/site/landing/LandingLayout'
+import { LandingPage } from '@/features/site/landing/LandingPage'
 import ToolDirectoryPage from '@/features/site/pages/ToolDirectoryPage'
 import CategoryHubPage from '@/features/site/pages/CategoryHubPage'
 import AboutPage from '@/features/site/pages/AboutPage'
@@ -29,8 +30,7 @@ const AiSettingsPage = dynamic(() => import('@/features/ai/pages/AiSettingsPage'
 const SavedPage = dynamic(() => import('@/features/cloud/pages/SavedPage'), { ssr: false, loading: ToolRouteFallback })
 // Own chrome outside ToolsLayout, and client-only: every admin screen depends on the staff session.
 const AdminApp = dynamic(() => import('@/features/admin/AdminApp'), { ssr: false, loading: () => <div className="cn-site cn-admin is-gate"><div className="cn-admin-gate-loading" aria-busy="true" /></div> })
-const routes: RouteObject[] = [{ path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
-  { index: true, element: <ToolsHubPage /> },
+const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children: [{ index: true, element: <LandingPage /> }] }, { path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <CategoryHubPage key="xay-dung" slug="xay-dung" /> },

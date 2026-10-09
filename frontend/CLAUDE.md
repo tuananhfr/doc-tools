@@ -56,7 +56,7 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
   vào đường SSR là build hoặc hydrate vỡ.
 - `src/proxy.ts` (middleware của Next) xử lý link cũ `/doc-tools/*` và `?tool=` trước SSR,
   và thêm dấu `/` cuối cho trang chủ khi có prefix.
-- Route: `/` trang chủ · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·
+- Route: `/` landing giới thiệu · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·
   `/<slug>` một công cụ · `/og/<slug>` ảnh chia sẻ PNG tiếng Việt (route Node, prerender
   cho công cụ `ready`, revalidate theo ngày, font cục bộ — không gọi ra ngoài) ·
   `/og/<slug>/<lang>` bản ngôn ngữ khác (xem mục Đa ngôn ngữ).
@@ -333,3 +333,11 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 | Next.js 16 khác bản quen thuộc | `node_modules/next/dist/docs/` (xem `AGENTS.md`) |
 
 Giữ tiếng Việt UTF-8 không BOM. Không commit / push khi chưa được yêu cầu rõ ràng.
+
+### Landing public homepage
+
+The `/` route uses `features/site/landing/LandingLayout` outside `ToolsLayout`, while retaining the shared providers and React Router. Its scroll owner is `.cn-landing-scroll`; navigation hashes target the seven sections inside that container. The directory and tool routes keep their existing shell and engines. Legacy `?tool=` links still resolve through `legacyToolPath`.
+
+Landing components are composed by `LandingPage`; copy lives under `landing` in all 15 `site.json` locales. This does not imply every existing tool namespace has a reviewed translation. Language controls reuse `LOCALES`, `localeHref` and `switchLocale`; theme controls reuse `useThemeMode`, including `field` mode. Local screenshots of the Vietnamese interface use sample data and are labeled accordingly. Artwork is in `public/landing`; live copy and controls must not be baked into those images.
+
+Landing CSS is scoped under `styles/site/landing`. Preserve the account/share entries in the landing menu, the website/legal links and `QualityConsent` in its footer, and the distinction between local processing and online AI/storage disclosures. The existing home components remain as historical code pending a separate cleanup request.

@@ -1,6 +1,6 @@
 # DocTools Frontend
 
-Repo độc lập cho Chuyện Nhỏ công khai, dùng Next.js và TypeScript. Trang chủ ở /, mỗi công cụ ở /<slug>; khi NEXT_PUBLIC_BASE_PATH rỗng, URL /doc-tools cũ chuyển hướng về /. Khi cấu hình /doc-tools, trang chủ và công cụ nằm dưới prefix này. Công cụ cũ từ ERPCons được giữ ranh giới route/engine; công cụ mới theo docs nằm trong các feature riêng. Manifest đối chiếu ở docs/upstream-manifest.json; tài liệu nguồn ở docs/upstream và tiến độ tích hợp ở docs/chuyen-nho-implementation-map.md.
+Repo độc lập cho Chuyện Nhỏ công khai, dùng Next.js và TypeScript. Landing giới thiệu ở /, danh mục đầy đủ ở /cong-cu, mỗi công cụ ở /<slug>; khi NEXT_PUBLIC_BASE_PATH rỗng, URL /doc-tools cũ chuyển hướng về /. Khi cấu hình /doc-tools, trang chủ và công cụ nằm dưới prefix này. Công cụ cũ từ ERPCons được giữ ranh giới route/engine; công cụ mới theo docs nằm trong các feature riêng. Manifest đối chiếu ở docs/upstream-manifest.json; tài liệu nguồn ở docs/upstream và tiến độ tích hợp ở docs/chuyen-nho-implementation-map.md.
 
 ## Chạy local
 
@@ -73,3 +73,9 @@ Bốn công cụ video Free (`/nen-video`, `/cat-video`, `/tao-gif`, `/tach-am-t
 - scripts/verify-parity.mjs và scripts/verify-extra.mjs so với ERPCons đang chạy ở port 3000; cần Chrome và Playwright có sẵn. Kết quả mặc định vào qa-output của repo, có thể đổi bằng QA_OUT.
 
 Repo giữ data router React Router bên trong Next.js để bảo toàn handoff, screen identity và cảnh báo rời trang. Engine chạy trong trình duyệt; tệp người dùng không tải lên API. Nội dung đề xuất chỉ được gửi khi người dùng xem và đồng ý gửi qua màn góp ý hoặc nháp kiểm nguồn AI (bản Pro). Lịch Gia Đình V1 lưu ở IndexedDB trên thiết bị, có sao lưu/ICS/in; chưa có đồng bộ hay chia sẻ qua mạng. Bản Free dùng link đăng nhập/Pro của ERPCons, chưa có tài khoản L2 local. Xem docs/verification.md để biết phạm vi kiểm chứng lần copy đầu tiên và docs/chuyen-nho-implementation-map.md cho các phần của tài liệu mới chưa hoàn tất.
+
+## Landing giới thiệu
+
+Trang `/` giới thiệu Chuyện Nhỏ bằng bảy phần: hero, nhóm tiện ích, công cụ PDF, cách dùng, ngôn ngữ/giao diện, xử lý dữ liệu và lời mời mở công cụ. Nút mở công cụ dẫn tới `/cong-cu`. Landing có khung cuộn riêng, không thay đổi luồng xử lý tệp trong các công cụ.
+
+Nội dung landing được dịch cho 15 locale trong `src/i18n/messages/*/site.json`. Chọn ngôn ngữ dùng cơ chế URL/cookie hiện có; giao diện hỗ trợ sáng, tối và ngoài trời. Screenshot trong landing là giao diện tiếng Việt với dữ liệu mẫu, không chứa dữ liệu người dùng. Minh họa nằm trong `public/landing/` và chữ/nút được dựng bằng HTML.
