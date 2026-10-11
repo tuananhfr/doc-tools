@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "Politique de confidentialité | Chuyện Nhỏ",
       "description": "Comment Chuyện Nhỏ collecte, utilise et protège les données personnelles, conformément à la loi vietnamienne de 2025 sur la protection des données personnelles."
+    },
+    "de-xuat-tien-ich": {
+      "title": "Suggest a tool",
+      "description": "Share a task you need help with and suggest a new tool for Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Feedback",
+      "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "Traitement des données",
       "support": "Aide",
       "terms": "Conditions",
-      "privacy": "Confidentialité"
+      "privacy": "Confidentialité",
+      "suggest": "Suggest a tool",
+      "feedback": "Feedback"
     }
   },
   "brand": {
@@ -585,7 +595,7 @@
         "points": {
           "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "L'adresse IP est seulement hachée de manière irréversible pour bloquer les envois automatisés, puis supprimée au bout d'environ 1 heure",
-          "feedback": "Les avis et suggestions ne sont envoyés que si vous cochez la case de consentement et cliquez sur Envoyer",
+          "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} outil à venir devra consulter le serveur ; sa carte l'indique clairement",
@@ -890,7 +900,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ collecte-t-il mes informations personnelles ?",
-        "answer": "Presque pas. Lorsque vous ouvrez un outil, le navigateur transmet son nom pour que nous comptions le nombre total d'utilisations ; l'adresse IP est seulement hachée de manière irréversible pour bloquer les envois automatisés, puis supprimée au bout d'environ 1 heure. Le contenu d'un avis n'est envoyé que si vous cochez la case de consentement et cliquez sur Envoyer."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
       },
       "xoa-du-lieu": {
         "question": "Comment supprimer mes données ?",

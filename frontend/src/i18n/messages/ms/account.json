@@ -222,7 +222,7 @@
     "title": "My <accent>proposals</accent>",
     "intro": "Proposals and feedback you sent while signed in. Ones sent while signed out are not listed here; look them up with their receipt code.",
     "newIdea": "Suggest a tool",
-    "newRegulation": "Regulation feedback",
+    "newRegulation": "Send feedback",
     "loadFailed": "Could not load your proposals.",
     "empty": {
       "title": "You have not sent any proposals yet",

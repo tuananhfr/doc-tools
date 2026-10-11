@@ -46,18 +46,6 @@
       "privacyNote": "질문은 직접 설정한 AI 제공업체로 내 키를 사용해 전송됩니다",
       "synonyms": "ai 도우미, 방법 묻기, 도구 추천"
     },
-    "idea-suggestion": {
-      "name": "도구 제안",
-      "description": "아이디어를 보내고 접수 번호로 승인 과정 확인",
-      "privacyNote": "제안 보내기를 눌렀을 때만 내용이 전송돼요",
-      "synonyms": "도구 의견, 새 아이디어, 기능 요청, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "규정 의견 보내기",
-      "description": "내용과 출처 URL을 보내 운영자가 확인하도록 요청",
-      "privacyNote": "제안 보내기를 눌렀을 때만 내용이 전송돼요",
-      "synonyms": "법령 업데이트, 새 법령, 데이터 의견"
-    },
     "remove-background": {
       "name": "이미지 배경 제거",
       "description": "단색 배경을 자동으로 지우고 브러시로 직접 다듬기",

@@ -41,7 +41,7 @@ export interface UserDetail {
   adminAudit: AuditRow[]
 }
 
-export const CONTRIBUTION_STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED', 'PUBLISHED', 'REJECTED', 'SUPERSEDED', 'REVOKED'] as const
+export const CONTRIBUTION_STATUSES = ['RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED', 'PUBLISHED', 'REJECTED', 'SUPERSEDED', 'REVOKED'] as const
 export type ContributionStatus = (typeof CONTRIBUTION_STATUSES)[number]
 
 export interface ContributionRow {
@@ -63,7 +63,7 @@ export interface ContributionDetail {
   trail: { action: string; actor: string; note: string | null; createdAt: string }[]
 }
 
-export type Transition = 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke'
+export type Transition = 'start' | 'resolve' | 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke'
 
 export const MAIL_STATUSES = ['pending', 'sending', 'sent', 'failed'] as const
 export type MailStatus = (typeof MAIL_STATUSES)[number]

@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "គោលការណ៍ឯកជនភាព | Chuyện Nhỏ",
       "description": "របៀបដែល Chuyện Nhỏ ប្រមូល ប្រើប្រាស់ និងការពារទិន្នន័យផ្ទាល់ខ្លួន ស្របតាមច្បាប់ស្តីពីការការពារទិន្នន័យផ្ទាល់ខ្លួនឆ្នាំ 2025 របស់វៀតណាម។"
+    },
+    "de-xuat-tien-ich": {
+      "title": "Suggest a tool",
+      "description": "Share a task you need help with and suggest a new tool for Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Feedback",
+      "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "ការដំណើរការទិន្នន័យ",
       "support": "ជំនួយ",
       "terms": "លក្ខខណ្ឌ",
-      "privacy": "ឯកជនភាព"
+      "privacy": "ឯកជនភាព",
+      "suggest": "Suggest a tool",
+      "feedback": "Feedback"
     }
   },
   "brand": {
@@ -573,7 +583,7 @@
         "points": {
           "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "អាសយដ្ឋាន IP ត្រូវបាន hash មួយទិសតែដើម្បីទប់ស្កាត់ការផ្ញើដោយស្វ័យប្រវត្តិ លុបដោយស្វ័យប្រវត្តិក្រោយប្រហែល 1 ម៉ោង",
-          "feedback": "មតិ និងសំណើត្រូវបានផ្ញើតែពេលអ្នកគូសធីកយល់ព្រម ហើយចុច «ផ្ញើ» ប៉ុណ្ណោះ",
+          "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "ឧបករណ៍ {{count}} ដែលនឹងមកដល់ឆាប់ៗនេះត្រូវការស្វែងរកលើម៉ាស៊ីនមេ កាតរបស់វាបញ្ជាក់ច្បាស់"
@@ -868,7 +878,7 @@
       },
       "thu-thap": {
         "question": "តើ Chuyện Nhỏ ប្រមូលព័ត៌មានផ្ទាល់ខ្លួនរបស់ខ្ញុំទេ?",
-        "answer": "ស្ទើរតែមិនប្រមូលទេ។ នៅពេលអ្នកបើកឧបករណ៍មួយ កម្មវិធីរុករកផ្ញើឈ្មោះឧបករណ៍ ដើម្បីឱ្យយើងរាប់ចំនួនការប្រើសរុប អាសយដ្ឋាន IP ត្រូវបាន hash មួយទិសតែដើម្បីទប់ស្កាត់ការផ្ញើដោយស្វ័យប្រវត្តិ ហើយលុបដោយស្វ័យប្រវត្តិក្រោយប្រហែល 1 ម៉ោង។ ខ្លឹមសារមតិត្រូវបានផ្ញើតែពេលអ្នកគូសធីកយល់ព្រម ហើយចុច «ផ្ញើ» ប៉ុណ្ណោះ។"
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
       },
       "xoa-du-lieu": {
         "question": "តើធ្វើដូចម្តេចដើម្បីលុបទិន្នន័យរបស់ខ្ញុំ?",

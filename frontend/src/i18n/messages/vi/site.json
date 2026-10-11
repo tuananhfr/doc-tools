@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "Chính sách quyền riêng tư | Chuyện Nhỏ",
       "description": "Chuyện Nhỏ thu thập, sử dụng và bảo vệ dữ liệu cá nhân như thế nào, theo Luật Bảo vệ dữ liệu cá nhân 2025."
+    },
+    "de-xuat-tien-ich": {
+      "title": "Đề xuất tiện ích",
+      "description": "Chia sẻ công việc bạn cần giải quyết và đề xuất tiện ích mới cho Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Góp ý",
+      "description": "Báo lỗi, đề nghị cải tiến hoặc góp ý dữ liệu và theo dõi bằng mã biên nhận."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "Xử lý dữ liệu",
       "support": "Hỗ trợ",
       "terms": "Điều khoản",
-      "privacy": "Quyền riêng tư"
+      "privacy": "Quyền riêng tư",
+      "suggest": "Đề xuất tiện ích",
+      "feedback": "Góp ý"
     }
   },
   "brand": {
@@ -573,7 +583,7 @@
         "points": {
           "visits": "Tên công cụ bạn mở, để đếm tổng lượt dùng. Không gắn với bạn hay tài khoản của bạn",
           "ip": "Địa chỉ IP chỉ được băm một chiều để chống gửi tự động, tự xoá sau khoảng 1 giờ",
-          "feedback": "Góp ý, đề xuất chỉ gửi khi bạn đánh dấu đồng ý và bấm Gửi",
+          "feedback": "Chỉ nội dung bạn nhập trong form đề xuất hoặc góp ý được gửi khi bạn đồng ý và bấm Gửi; tệp và kết quả trong công cụ không được đính kèm.",
           "account": "Khi bạn đăng nhập: email, phiên đăng nhập và đề xuất của bạn",
           "pro": "Bản Pro: mục bạn bấm lưu; trò chuyện AI đi tới nhà cung cấp AI bạn chọn",
           "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ"
@@ -868,7 +878,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ có thu thập thông tin cá nhân của tôi không?",
-        "answer": "Gần như không. Khi bạn mở một công cụ, trình duyệt báo tên công cụ để chúng tôi đếm tổng lượt dùng; địa chỉ IP chỉ được băm một chiều để chống gửi tự động và tự xoá sau khoảng 1 giờ. Nội dung góp ý chỉ gửi đi khi bạn đánh dấu đồng ý và bấm Gửi."
+        "answer": "Khi bạn mở một công cụ, trình duyệt báo tên công cụ để đếm tổng lượt dùng; IP được băm một chiều để chống gửi tự động và tự xoá sau khoảng 1 giờ. Form đề xuất và góp ý chỉ gửi nội dung bạn nhập khi bạn đồng ý và bấm Gửi, không đính kèm tệp hoặc kết quả đang làm."
       },
       "xoa-du-lieu": {
         "question": "Làm thế nào để xoá dữ liệu của tôi?",

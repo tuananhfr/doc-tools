@@ -37,14 +37,6 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['other'], noFile: true, status: 'ready', screen: 'assistant',
   },
   {
-    id: 'idea-suggestion', slug: 'de-xuat-tien-ich', icon: 'lightbulb',
-    categories: ['other'], noFile: true, status: 'ready', screen: 'idea-suggestion',
-  },
-  {
-    id: 'regulation-feedback', slug: 'gop-y-quy-dinh', icon: 'chat-left-text',
-    categories: ['data', 'other'], noFile: true, status: 'ready', screen: 'regulation-feedback',
-  },
-  {
     id: 'remove-background', slug: 'xoa-phong', icon: 'eraser',
     categories: ['image'], status: 'ready', screen: 'remove-background',
   },

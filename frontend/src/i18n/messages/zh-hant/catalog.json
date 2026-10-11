@@ -46,18 +46,6 @@
       "privacyNote": "提問會使用你的金鑰傳送到你設定的 AI 服務商",
       "synonyms": "ai助理,怎麼做,推薦工具,assistant"
     },
-    "idea-suggestion": {
-      "name": "建議新工具",
-      "description": "送出點子，並用收據編號追蹤審核進度",
-      "privacyNote": "只有在你按「送出建議」時才會傳送內容",
-      "synonyms": "工具建議,新點子,許願,roadmap"
-    },
-    "regulation-feedback": {
-      "name": "回報法規",
-      "description": "送出內容與來源網址，供營運人員審核",
-      "privacyNote": "只有在你按「送出建議」時才會傳送內容",
-      "synonyms": "法規更新,新法令,資料回報"
-    },
     "remove-background": {
       "name": "移除圖片背景",
       "description": "自動移除純色背景，並用筆刷手動修整",

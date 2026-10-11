@@ -8,7 +8,10 @@
       "APPROVED": "Đã phê duyệt",
       "PUBLISHED": "Đã công bố",
       "SUPERSEDED": "Đã có bản mới",
-      "REVOKED": "Đã thu hồi"
+      "REVOKED": "Đã thu hồi",
+      "RECEIVED": "Đã tiếp nhận",
+      "IN_PROGRESS": "Đang xử lý",
+      "RESOLVED": "Đã hoàn tất"
     },
     "sendFailed": "Không gửi được đề xuất.",
     "received": "Đã nhận đề xuất: {{status}}. Hãy giữ mã biên nhận để theo dõi.",
@@ -60,6 +63,43 @@
   },
   "ideas": {
     "published": "Ý tưởng đã công bố",
-    "empty": "Chưa có ý tưởng nào được duyệt và công bố."
+    "empty": "Chưa có ý tưởng nào được duyệt và công bố.",
+    "loading": "Đang tải ý tưởng…",
+    "failed": "Chưa tải được danh sách ý tưởng. Hãy thử lại.",
+    "retry": "Thử lại"
+  },
+  "feedback": {
+    "title": "Góp ý",
+    "intro": "Báo lỗi, đề nghị cải tiến hoặc góp ý dữ liệu cho Chuyện Nhỏ. Chúng tôi sẽ tiếp nhận và cập nhật trạng thái để bạn theo dõi.",
+    "category": "Bạn muốn góp ý về điều gì?",
+    "categories": {
+      "bug": "Báo lỗi",
+      "improvement": "Đề nghị cải tiến",
+      "data": "Dữ liệu chưa đúng"
+    },
+    "tool": "Công cụ liên quan",
+    "wholeSite": "Góp ý chung cho website",
+    "subject": "Vấn đề bạn gặp hoặc muốn cải thiện",
+    "detail": "Mô tả cách gặp vấn đề và kết quả bạn mong muốn",
+    "ideaProblem": "Bạn muốn giải quyết việc gì?",
+    "ideaExample": "Ví dụ thực tế và kết quả bạn mong muốn",
+    "privacy": "Chỉ nội dung bạn nhập được gửi đi. Tệp và kết quả đang làm trong công cụ không được đính kèm.",
+    "dataHint": "Nguồn chính thức giúp đối chiếu dữ liệu. Góp ý được kiểm tra trước, chưa làm thay đổi dữ liệu trong công cụ.",
+    "toolAction": "Góp ý về công cụ này",
+    "forTool": "Công cụ: {{name}}",
+    "close": "Đóng form góp ý",
+    "submit": "Gửi góp ý",
+    "thanks": "Cảm ơn bạn đã gửi!",
+    "newFeedback": "Gửi góp ý khác",
+    "newIdea": "Đề xuất tiện ích khác",
+    "saveReceipt": "Lưu mã biên nhận",
+    "accountTracking": "Theo dõi trong Đề xuất của tôi",
+    "sendFailed": "Chưa gửi được. Nội dung vẫn ở đây; hãy kiểm tra kết nối và thử lại.",
+    "duplicate": "Nội dung này đã được tiếp nhận. Hãy dùng mã biên nhận đã lưu hoặc xem Đề xuất của tôi nếu đã đăng nhập.",
+    "rateLimited": "Bạn đã gửi nhiều góp ý trong một giờ. Hãy giữ nội dung và thử lại sau.",
+    "addEvidenceHint": "Bổ sung nguồn cho đúng mã biên nhận đang được tra cứu. Nguồn hiện có vẫn được giữ lại.",
+    "searchSuggestion": "Chưa có tiện ích bạn cần? Đề xuất cho chúng tôi",
+    "existingTool": "Muốn góp ý cho công cụ hiện có?",
+    "needTool": "Cần một tiện ích mới? Gửi đề xuất"
   }
 }

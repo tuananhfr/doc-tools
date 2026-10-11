@@ -1,3 +1,5 @@
+import { isFeedback } from './feedback-workflow'
+
 export interface ProposedChange { field: string; before: string; after: string }
 export interface SourceRef { url: string; type: 'OFFICIAL_WEB' | 'OFFICIAL_DOCUMENT' | 'OFFICIAL_API' | 'OTHER' }
 export interface ContributionInput { toolId: string; domain: string; baseSnapshotId: string | null; proposedChanges: ProposedChange[]; sourceRefs: SourceRef[]; jurisdiction: string | null }
@@ -13,7 +15,7 @@ function safeSourceUrl(value: unknown): value is string {
   try {
     const url = new URL(value)
     const host = url.hostname.toLowerCase()
-    return url.protocol === 'https:' && !url.username && !url.password && !url.hash && !/^\d+\.\d+\.\d+\.\d+$/.test(host) && !host.endsWith('.local') && !host.endsWith('.internal') && host !== 'localhost' && !/[?&](?:token|key|sig|auth|session|access)[^=]*=/i.test(url.search) && !sensitivePattern.test(value)
+    return url.protocol === 'https:' && !url.username && !url.password && !url.hash && !host.includes(':') && host.includes('.') && !/^\d+\.\d+\.\d+\.\d+$/.test(host) && !host.endsWith('.local') && !host.endsWith('.internal') && host !== 'localhost' && !/[?&](?:token|key|sig|auth|session|access)[^=]*=/i.test(url.search) && !sensitivePattern.test(value)
   } catch { return false }
 }
 
@@ -37,6 +39,7 @@ export function parseContributionInput(value: unknown): ContributionInput | null
   }
   const sourceRefs = item.sourceRefs.length ? parseSourceRefs(item.sourceRefs) : []
   if (!sourceRefs) return null
+  if (isFeedback(item.domain) && (sourceRefs.length || item.baseSnapshotId || item.jurisdiction)) return null
   const proposedChanges = item.proposedChanges.map((change) => ({ field: change.field as string, before: change.before as string, after: change.after as string }))
   return { toolId: item.toolId, domain: item.domain, baseSnapshotId: item.baseSnapshotId ?? null, proposedChanges, sourceRefs, jurisdiction: item.jurisdiction ?? null } as ContributionInput
 }

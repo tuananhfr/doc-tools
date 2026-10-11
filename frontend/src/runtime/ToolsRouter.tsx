@@ -19,6 +19,8 @@ import GuidesPage from '@/features/site/pages/GuidesPage'
 import GuidePage from '@/features/site/pages/GuidePage'
 import LegalPage from '@/features/site/pages/LegalPage'
 import { AccountPage, LoginPage, MyContributionsPage } from '@/features/account'
+import CommunityPage from '@/features/community/pages/CommunityPage'
+import { ToolFeedback } from '@/features/community/components/ToolFeedback'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
 import { ToolFavourite } from './ToolFavourite'
@@ -31,6 +33,8 @@ const SavedPage = dynamic(() => import('@/features/cloud/pages/SavedPage'), { ss
 // Own chrome outside ToolsLayout, and client-only: every admin screen depends on the staff session.
 const AdminApp = dynamic(() => import('@/features/admin/AdminApp'), { ssr: false, loading: () => <div className="cn-site cn-admin is-gate"><div className="cn-admin-gate-loading" aria-busy="true" /></div> })
 const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children: [{ index: true, element: <LandingPage /> }] }, { path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
+  { path: 'de-xuat-tien-ich', element: <CommunityPage key="idea" mode="idea" /> },
+  { path: 'gop-y-quy-dinh', element: <CommunityPage key="feedback" mode="feedback" /> },
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <CategoryHubPage key="xay-dung" slug="xay-dung" /> },
@@ -49,7 +53,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   { path: 'tai-khoan/ai', element: <AiSettingsPage /> },
   { path: 'tai-khoan/da-luu', element: <SavedPage /> },
   { path: 'de-xuat-cua-toi', element: <MyContributionsPage /> },
-  { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} headerAction={ToolFavourite} /> },
+  { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} headerAction={ToolFavourite} feedbackAction={ToolFeedback} /> },
 ] }]
 
 export function ToolsRouter({ locale }: { locale: Locale }) {

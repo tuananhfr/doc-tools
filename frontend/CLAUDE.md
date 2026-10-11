@@ -132,6 +132,12 @@ Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_Q
 `next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin,ai,landings}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
 
+### Community functions
+
+Community functions live in `features/community`: `/de-xuat-tien-ich` and `/gop-y-quy-dinh` are static site routes, absent from the tool registry and MCP catalog. Both footers link to them; empty catalog/group searches link to suggestions. Runtime injects `ToolFeedback` into `ToolRoutePage` without remounting the screen. Its inline form retains its draft when closed and sends only entered text plus the tool slug, never files/results. Data feedback maps address/payroll/electricity slugs to rule domains; other data notes use `legal`, still requiring manual review and signed publication. No active snapshot is inferred.
+
+Bug/improvement feedback uses `RECEIVED → IN_PROGRESS → RESOLVED`; ideas/data keep their review statuses. Retry keys remain in RAM; receipt saving is an explicit text download. Lookup/evidence responses are bound to the verified receipt and invalidated on input changes/unmount. New community copy is Vietnamese/English, with the existing English fallback in other locales.
+
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
 
 Đăng nhập email + mã 6 số, phiên là cookie `cn_session` của backend. Trang `/dang-nhap`,

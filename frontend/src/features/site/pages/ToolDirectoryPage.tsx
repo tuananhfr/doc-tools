@@ -14,6 +14,7 @@ import { TrustStrip } from '../components/TrustStrip'
 
 export default function ToolDirectoryPage() {
   const { t } = useTranslation('site')
+  const { t: tCommunity } = useTranslation('community')
   const { filter, keyword, tools, onFilter, onKeyword, reset, readyCount, soonCount, showSoon, onShowSoon } = useCatalogSearch()
   const { recent } = useHubPrefs()
   usePageTitle(t('directory.metaTitle'))
@@ -37,7 +38,7 @@ export default function ToolDirectoryPage() {
         {tools.length > 0 ? (
           <ul className="erp-tools-grid" aria-label={t('directory.title')}>{tools.map((tool) => <li key={tool.id}><ToolCard tool={tool} /></li>)}</ul>
         ) : (
-          <StateView icon="search" title={t('results.empty')} description={t('results.emptyHint')} actions={<button type="button" className="cn-button" onClick={reset}>{t('results.showAll')}</button>} />
+          <StateView icon="search" title={t('results.empty')} description={t('results.emptyHint')} actions={<><button type="button" className="cn-button" onClick={reset}>{t('results.showAll')}</button><Link className="cn-button cn-button--ghost" to="/de-xuat-tien-ich">{tCommunity('feedback.searchSuggestion')}</Link></>} />
         )}
         <RecentTools recent={recent} />
       </section>

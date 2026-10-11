@@ -23,6 +23,7 @@ interface ToolRoutePageProps {
   screens: Record<ToolScreen, ComponentType>
   /** Nút cạnh tiêu đề (yêu thích của Pro) — tầng route truyền vào, cùng lý do như `screens`. */
   headerAction?: ComponentType<{ toolSlug: string }>
+  feedbackAction?: ComponentType<{ toolSlug: string; toolName: string }>
 }
 
 /**
@@ -32,7 +33,7 @@ interface ToolRoutePageProps {
  * chuyển giữa hai công cụ chung một màn (ghép ↔ tách) không dựng lại màn đó —
  * tệp đang làm còn nguyên.
  */
-export default function ToolRoutePage({ screens, headerAction: HeaderAction }: ToolRoutePageProps) {
+export default function ToolRoutePage({ screens, headerAction: HeaderAction, feedbackAction: FeedbackAction }: ToolRoutePageProps) {
   const { tool: slug } = useParams()
   const { base, kind } = useToolsBranch()
   const { backTo, backState } = useToolOrigin()
@@ -83,6 +84,8 @@ export default function ToolRoutePage({ screens, headerAction: HeaderAction }: T
         </div>
         {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
       </header>
+
+      {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
 
       {unsupported ? <ToolUnsupported toolName={tool.name} hubPath={base} /> : <Screen />}
     </div>

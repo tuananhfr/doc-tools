@@ -1,3 +1,4 @@
+import { isFeedback } from '../contributions/feedback-workflow'
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common'
 import { DatabaseService } from '../database/database.service'
 import { ContributionsRepository, type ContributionStatus } from '../contributions/contributions.repository'
@@ -7,11 +8,12 @@ import { AdminContributionsRepository, type ContributionFilter } from './admin-c
 import { ADMIN_PAGE_SIZE } from './admin-input'
 import type { StaffActor } from './admin.guard'
 
-export const TRANSITIONS = ['verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'] as const
+export const TRANSITIONS = ['start', 'resolve', 'verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'] as const
 export type Transition = (typeof TRANSITIONS)[number]
 
 /** The repository and the publish check speak English to the CLI; the admin screen needs codes and Vietnamese. */
 const FAILURES: [RegExp, string, string][] = [
+  [/^Feedback resolution note is required/, 'NOTE_REQUIRED', 'Cần ghi kết quả xử lý góp ý.'],
   [/^Contribution not found/, 'NOT_FOUND', 'Không tìm thấy đề xuất.'],
   [/^Cannot \w+ from /, 'INVALID_STATE', 'Trạng thái đề xuất đã đổi, không làm được bước này. Hãy tải lại.'],
   [/^Approver must differ/, 'SAME_PERSON', 'Người phê duyệt phải khác người xác minh.'],
@@ -71,6 +73,7 @@ export class AdminContributionsService {
       if (action === 'publish') {
         const row = await this.contributions.getForReview(id)
         if (!row) throw new Error('Contribution not found')
+        if (isFeedback(row.domain)) throw new Error(`Cannot publish from ${row.status}`)
         if (row.domain !== 'ideas') {
           await assertPublishablePackage(this.database, row.domain as string, digest ?? '')
           packageDigest = digest

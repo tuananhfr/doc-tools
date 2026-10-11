@@ -84,6 +84,8 @@ khu quản trị (`plans.manage`).
 Gói quy tắc chỉ ký / stage / kích hoạt bằng `src/cli/`. Duyệt đóng góp đi được cả CLI lẫn
 khu quản trị — cùng luật ba người, cùng `assertPublishablePackage()` (`contributions/publish-check.ts`).
 
+General feedback (`feedback-bug`, `feedback-improvement`) is handled separately by `feedback-workflow.ts`: `RECEIVED → IN_PROGRESS → RESOLVED`, or reject while open. Its side table `contribution_feedback_workflow` needs only CREATE, keeps the original review enum intact and supplies effective status to receipt/account/admin queries. These records cannot be verified, approved, published or given source evidence. Optional confidential `Idempotency-Key` retries derive the same HMAC receipt and return the current status without another submission; raw keys are not stored. Anonymous evidence now appends/deduplicates while NEEDS_SOURCE or NEEDS_REVIEW are open, with the same total limit as account evidence. See `docs/api.md`.
+
 Khu quản trị không có đăng nhập riêng: tài khoản có dòng trong `user_roles` đăng nhập bằng
 email + mật khẩu như mọi người, phiên chỉ sống 12 giờ (`STAFF_SESSION_SECONDS`). Mọi route
 `/admin/*` qua `@Staff(permission)` (`admin/admin.guard.ts`) và **đòi header tin cậy cả

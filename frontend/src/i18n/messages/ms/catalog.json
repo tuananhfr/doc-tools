@@ -46,18 +46,6 @@
       "privacyNote": "Soalan dihantar kepada penyedia AI yang anda tetapkan, menggunakan kunci anda",
       "synonyms": "pembantu ai, ai assistant, cara buat, alat mana, bantu pilih"
     },
-    "idea-suggestion": {
-      "name": "Cadangkan alat",
-      "description": "Hantar idea dan jejaki semakannya dengan kod resit",
-      "privacyNote": "Kandungan hanya dihantar apabila anda menekan Hantar cadangan",
-      "synonyms": "maklum balas alat, idea baharu, cadangan ciri, feature request, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "Maklum balas peraturan",
-      "description": "Hantar kandungan dan URL sumber untuk disemak oleh pengendali",
-      "privacyNote": "Kandungan hanya dihantar apabila anda menekan Hantar cadangan",
-      "synonyms": "kemas kini undang-undang, peraturan baharu, maklum balas data, pembetulan"
-    },
     "remove-background": {
       "name": "Buang latar imej",
       "description": "Buang latar warna polos secara automatik dan baiki dengan berus",

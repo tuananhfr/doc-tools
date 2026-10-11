@@ -4,8 +4,9 @@ import { DatabaseService } from '../database/database.service'
 import { vietnamToday } from '../rules/rule-dates'
 import { effectiveDigest, lockRulePublishing, publishPackage, unlockRulePublishing } from '../rules/rules.repository'
 import type { ContributionInput, ProposedChange, SourceRef } from './contribution-input'
+import { isFeedback, transitionFeedback, type ContributionAction, type FeedbackStatus } from './feedback-workflow'
 
-export type ContributionStatus = 'NEEDS_SOURCE' | 'NEEDS_REVIEW' | 'VERIFIED' | 'REJECTED' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'REVOKED'
+export type ContributionStatus = FeedbackStatus | 'NEEDS_SOURCE' | 'NEEDS_REVIEW' | 'VERIFIED' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'REVOKED'
 /** Statuses where the submitter may still add evidence; later the reviewer already decided on what was there. */
 export const EVIDENCE_OPEN: ContributionStatus[] = ['NEEDS_SOURCE', 'NEEDS_REVIEW']
 export const MAX_SOURCE_REFS = 10
@@ -41,20 +42,27 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     await this.database.pool.execute('DELETE FROM contribution_flood_locks WHERE seen_at <= ?', [now - 3600])
   }
 
-  async submit(input: ContributionInput, identity: SubmitIdentity, now: number): Promise<'CREATED' | 'DUPLICATE' | 'RATE_LIMITED'> {
+  async submit(input: ContributionInput, identity: SubmitIdentity, now: number): Promise<'CREATED' | 'DUPLICATE' | 'RATE_LIMITED' | 'KEY_CONFLICT' | { status: ContributionStatus; tracked: boolean }> {
     const connection = await this.database.pool.getConnection()
     try {
       await connection.beginTransaction()
       // The lock row serializes the rolling limit across API instances.
       await connection.execute('INSERT INTO contribution_flood_locks (ip_hash, seen_at) VALUES (?, ?) ON DUPLICATE KEY UPDATE seen_at = ?', [identity.floodKey, now, now])
-      const [existing] = await connection.execute<RowDataPacket[]>('SELECT id FROM contributions WHERE duplicate_hash = ?', [identity.duplicateHash])
-      if (existing.length) { await connection.commit(); return 'DUPLICATE' }
+      const [existing] = await connection.execute<RowDataPacket[]>('SELECT c.duplicate_hash, c.receipt_hash, COALESCE(f.status, c.status) AS status, s.user_id FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id WHERE c.duplicate_hash = ? OR c.receipt_hash = ?', [identity.duplicateHash, identity.receiptHash])
+      if (existing.length) {
+        await connection.commit()
+        const replay = existing.find(row => row.receipt_hash === identity.receiptHash)
+        if (!replay) return 'DUPLICATE'
+        if (replay.duplicate_hash !== identity.duplicateHash) return 'KEY_CONFLICT'
+        return { status: replay.status as ContributionStatus, tracked: Boolean(identity.submitter && replay.user_id === identity.submitter.userId) }
+      }
       const [events] = await connection.execute<RowDataPacket[]>('SELECT COUNT(*) AS count FROM contribution_flood_events WHERE ip_hash = ? AND expires > ?', [identity.floodKey, now])
       if (Number(events[0].count) >= identity.floodLimit) { await connection.commit(); return 'RATE_LIMITED' }
       await connection.execute('INSERT INTO contribution_flood_events (ip_hash, expires) VALUES (?, ?)', [identity.floodKey, now + 3600])
       const submitter = identity.submitter
       await connection.execute('INSERT INTO contributions (id, receipt_hash, duplicate_hash, tool_id, domain, risk, base_snapshot_id, proposed_changes, source_refs, jurisdiction, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [identity.id, identity.receiptHash, identity.duplicateHash, input.toolId, input.domain, identity.risk, input.baseSnapshotId, JSON.stringify(input.proposedChanges), JSON.stringify(input.sourceRefs), input.jurisdiction, identity.status])
-      if (submitter) await connection.execute('INSERT INTO contribution_submitters (contribution_id, user_id, attribution_consent) VALUES (?, ?, ?)', [identity.id, submitter.userId, submitter.attribution ? 1 : 0])
+      if (isFeedback(input.domain)) await connection.execute('INSERT INTO contribution_feedback_workflow (contribution_id, status) VALUES (?, ?)', [identity.id, 'RECEIVED'])
+      if (submitter) await connection.execute('INSERT INTO contribution_submitters (contribution_id, user_id, attribution_consent) VALUES (?, ?, ?)', [identity.id, submitter.userId, submitter.attribution && !isFeedback(input.domain) ? 1 : 0])
       await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor) VALUES (?, ?, ?)', [identity.id, 'SUBMITTED', submitter ? `user:${submitter.userId}` : 'anonymous'])
       await connection.commit()
       return 'CREATED'
@@ -63,21 +71,27 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
   }
 
   async status(receiptHash: string): Promise<{ status: ContributionStatus; createdAt: string } | null> {
-    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT status, created_at FROM contributions WHERE receipt_hash = ?', [receiptHash])
+    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT COALESCE(f.status, c.status) AS status, c.created_at FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id WHERE c.receipt_hash = ?', [receiptHash])
     if (!rows.length) return null
     return { status: rows[0].status as ContributionStatus, createdAt: (rows[0].created_at as Date).toISOString() }
   }
 
-  async addSources(receiptHash: string, sources: SourceRef[]): Promise<boolean> {
+  async addSources(receiptHash: string, sources: SourceRef[]): Promise<EvidenceResult> {
     const connection = await this.database.pool.getConnection()
     try {
       await connection.beginTransaction()
-      const [rows] = await connection.execute<RowDataPacket[]>('SELECT id, status FROM contributions WHERE receipt_hash = ? FOR UPDATE', [receiptHash])
-      if (!rows.length || rows[0].status !== 'NEEDS_SOURCE') { await connection.commit(); return false }
-      await connection.execute('UPDATE contributions SET source_refs = ?, status = ? WHERE id = ?', [JSON.stringify(sources), 'NEEDS_REVIEW', rows[0].id])
+      const [rows] = await connection.execute<RowDataPacket[]>('SELECT id, domain, status, source_refs FROM contributions WHERE receipt_hash = ? FOR UPDATE', [receiptHash])
+      if (!rows.length) { await connection.commit(); return 'NOT_FOUND' }
+      if (isFeedback(rows[0].domain) || !EVIDENCE_OPEN.includes(rows[0].status as ContributionStatus)) { await connection.commit(); return 'CLOSED' }
+      const current = rows[0].source_refs as SourceRef[]
+      const added = sources.filter((source, index) => !current.some((item) => item.url === source.url) && sources.findIndex((item) => item.url === source.url) === index)
+      const merged = [...current, ...added]
+      if (merged.length > MAX_SOURCE_REFS) { await connection.commit(); return 'TOO_MANY' }
+      if (!added.length) { await connection.commit(); return { status: rows[0].status as ContributionStatus, sourceRefs: current } }
+      await connection.execute('UPDATE contributions SET source_refs = ?, status = ? WHERE id = ?', [JSON.stringify(merged), 'NEEDS_REVIEW', rows[0].id])
       await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor) VALUES (?, ?, ?)', [rows[0].id, 'SOURCES_ADDED', 'receipt-holder'])
       await connection.commit()
-      return true
+      return { status: 'NEEDS_REVIEW', sourceRefs: merged }
     } catch (error) { await connection.rollback(); throw error }
     finally { connection.release() }
   }
@@ -86,8 +100,9 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     const [[{ total }]] = await this.database.pool.execute<RowDataPacket[]>('SELECT COUNT(*) AS total FROM contribution_submitters WHERE user_id = ?', [userId])
     // LIMIT placeholders break server-side prepared statements on MySQL 8; both values are integers we built.
     const [rows] = await this.database.pool.query<RowDataPacket[]>(
-      `SELECT c.id, c.tool_id, c.domain, c.status, c.proposed_changes, c.source_refs, s.attribution_consent, c.created_at
+      `SELECT c.id, c.tool_id, c.domain, COALESCE(f.status, c.status) AS status, c.proposed_changes, c.source_refs, s.attribution_consent, c.created_at
        FROM contribution_submitters s JOIN contributions c ON c.id = s.contribution_id
+       LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id
        WHERE s.user_id = ? ORDER BY s.created_at DESC, c.id DESC LIMIT ? OFFSET ?`, [userId, pageSize, (page - 1) * pageSize])
     return {
       total: Number(total),
@@ -104,10 +119,10 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     const connection = await this.database.pool.getConnection()
     try {
       await connection.beginTransaction()
-      const [rows] = await connection.execute<RowDataPacket[]>('SELECT c.status, c.source_refs FROM contributions c JOIN contribution_submitters s ON s.contribution_id = c.id WHERE c.id = ? AND s.user_id = ? FOR UPDATE', [id, userId])
+      const [rows] = await connection.execute<RowDataPacket[]>('SELECT c.domain, c.status, c.source_refs FROM contributions c JOIN contribution_submitters s ON s.contribution_id = c.id WHERE c.id = ? AND s.user_id = ? FOR UPDATE', [id, userId])
       if (!rows.length) { await connection.commit(); return 'NOT_FOUND' }
       const from = rows[0].status as ContributionStatus
-      if (!EVIDENCE_OPEN.includes(from)) { await connection.commit(); return 'CLOSED' }
+      if (isFeedback(rows[0].domain) || !EVIDENCE_OPEN.includes(from)) { await connection.commit(); return 'CLOSED' }
       const current = rows[0].source_refs as SourceRef[]
       const added = sources.filter((source, index) => !current.some((item) => item.url === source.url) && sources.findIndex((item) => item.url === source.url) === index)
       const merged = [...current, ...added]
@@ -122,7 +137,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
   }
 
   async getForReview(id: string) {
-    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT c.id, c.tool_id, c.domain, c.risk, c.base_snapshot_id, c.proposed_changes, c.source_refs, c.jurisdiction, c.status, c.reviewed_by, c.approved_by, c.published_digest, c.created_at, u.email AS submitter_email, s.attribution_consent FROM contributions c LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id WHERE c.id = ?', [id])
+    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT c.id, c.tool_id, c.domain, c.risk, c.base_snapshot_id, c.proposed_changes, c.source_refs, c.jurisdiction, COALESCE(f.status, c.status) AS status, c.reviewed_by, c.approved_by, c.published_digest, c.created_at, u.email AS submitter_email, s.attribution_consent FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id WHERE c.id = ?', [id])
     return rows[0] ?? null
   }
 
@@ -138,7 +153,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     return rows.map((row) => ({ id: row.id as string, text: (row.proposed_changes as { after: string }[])[0]?.after || '', author: (row.author as string | null) || null }))
   }
 
-  async transition(id: string, action: 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke', actor: string, note: string | null, digest: string | null) {
+  async transition(id: string, action: ContributionAction, actor: string, note: string | null, digest: string | null) {
     const connection = await this.database.pool.getConnection()
     try {
       if (action === 'publish') await lockRulePublishing(connection)
@@ -147,6 +162,12 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
       if (!rows.length) throw new Error('Contribution not found')
       const row = rows[0]
       const from = row.status as ContributionStatus
+      if (isFeedback(row.domain)) {
+        const status = await transitionFeedback(connection, id, action, actor, note)
+        await connection.commit()
+        return status
+      }
+      if (action === 'start' || action === 'resolve') throw new Error(`Cannot ${action} from ${from}`)
       const expected: Record<typeof action, ContributionStatus[]> = { verify: ['NEEDS_REVIEW'], approve: ['VERIFIED'], reject: ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED'], publish: ['APPROVED'], supersede: ['PUBLISHED'], revoke: ['PUBLISHED'] }
       if (!expected[action].includes(from)) throw new Error(`Cannot ${action} from ${from}`)
       if (action === 'verify') {

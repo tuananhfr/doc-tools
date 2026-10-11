@@ -9,6 +9,8 @@ export const SITE_NAVIGATION = [
 ] as const
 
 export const FOOTER_LINKS = [
+  { id: 'suggest', to: '/de-xuat-tien-ich' },
+  { id: 'feedback', to: '/gop-y-quy-dinh' },
   { id: 'about', to: '/ve-chung-toi' },
   { id: 'guides', to: '/huong-dan' },
   { id: 'data', to: '/xu-ly-du-lieu' },

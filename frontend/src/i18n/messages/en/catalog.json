@@ -46,18 +46,6 @@
       "privacyNote": "Questions go to the AI provider you set up, using your key",
       "synonyms": "ai assistant, how to, which tool, help me choose"
     },
-    "idea-suggestion": {
-      "name": "Suggest a tool",
-      "description": "Send an idea and track its review with a receipt code",
-      "privacyNote": "Content is sent only when you press Send suggestion",
-      "synonyms": "tool feedback, new idea, feature request, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "Regulation feedback",
-      "description": "Send content and a source URL for the operators to check",
-      "privacyNote": "Content is sent only when you press Send suggestion",
-      "synonyms": "law update, new regulation, data feedback, correction"
-    },
     "remove-background": {
       "name": "Remove image background",
       "description": "Remove plain-colored backgrounds automatically and refine with a brush",

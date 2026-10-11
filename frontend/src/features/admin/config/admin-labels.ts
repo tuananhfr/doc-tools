@@ -10,6 +10,9 @@ export const ROLE_HELP: Record<StaffRole, string> = {
 }
 
 export const CONTRIBUTION_STATUS: Record<ContributionStatus, { label: string; icon: string; tone: Tone }> = {
+  RECEIVED: { label: 'Đã tiếp nhận', icon: 'inbox', tone: 'info' },
+  IN_PROGRESS: { label: 'Đang xử lý', icon: 'tools', tone: 'info' },
+  RESOLVED: { label: 'Đã hoàn tất', icon: 'check-circle', tone: 'positive' },
   NEEDS_SOURCE: { label: 'Chờ nguồn', icon: 'link-45deg', tone: 'warning' },
   NEEDS_REVIEW: { label: 'Chờ xác minh', icon: 'hourglass-split', tone: 'info' },
   VERIFIED: { label: 'Đã xác minh', icon: 'check2', tone: 'info' },
@@ -22,6 +25,8 @@ export const CONTRIBUTION_STATUS: Record<ContributionStatus, { label: string; ic
 
 /** Steps a reviewer can take from each status; mirrors `expected` in ContributionsRepository.transition. */
 export const NEXT_STEPS: Partial<Record<ContributionStatus, Transition[]>> = {
+  RECEIVED: ['start', 'reject'],
+  IN_PROGRESS: ['resolve', 'reject'],
   NEEDS_SOURCE: ['reject'],
   NEEDS_REVIEW: ['verify', 'reject'],
   VERIFIED: ['approve', 'reject'],
@@ -30,6 +35,8 @@ export const NEXT_STEPS: Partial<Record<ContributionStatus, Transition[]>> = {
 }
 
 export const TRANSITION: Record<Transition, { label: string; help: string; danger?: boolean }> = {
+  start: { label: 'Bắt đầu xử lý', help: 'Tiếp nhận báo lỗi hoặc cải tiến để xử lý.' },
+  resolve: { label: 'Hoàn tất', help: 'Ghi kết quả xử lý trước khi đóng góp ý.' },
   verify: { label: 'Xác minh', help: 'Bạn đã đối chiếu nguồn và thấy đề xuất đúng. Ghi chú xác minh tối thiểu 10 ký tự.' },
   approve: { label: 'Phê duyệt', help: 'Người phê duyệt phải khác người đã xác minh.' },
   publish: { label: 'Công bố', help: 'Người công bố phải khác người xác minh và người phê duyệt. Dữ liệu quy định cần digest gói đã ký và đã stage bằng CLI.' },
@@ -73,6 +80,7 @@ export const AUDIT_ACTION: Record<string, string> = {
   // Account trail (user_audit) shares this table.
   LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá', EMAIL_CHANGED: 'Đổi email đăng nhập',
   SUBMITTED: 'Gửi đề xuất', SOURCES_ADDED: 'Thêm nguồn (mã biên nhận)', EVIDENCE_ADDED: 'Bổ sung nguồn', VERIFY: 'Xác minh', APPROVE: 'Phê duyệt',
+  START: 'Bắt đầu xử lý', RESOLVE: 'Hoàn tất góp ý', CONTRIBUTION_START: 'Bắt đầu xử lý góp ý', CONTRIBUTION_RESOLVE: 'Hoàn tất góp ý',
   PUBLISH: 'Công bố', REJECT: 'Từ chối', SUPERSEDE: 'Bị thay thế', REVOKE: 'Rút công bố',
 }
 

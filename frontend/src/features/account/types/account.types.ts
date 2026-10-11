@@ -26,7 +26,7 @@ export interface ProfileInput {
   publicAttribution: boolean
 }
 
-export const CONTRIBUTION_STATUSES = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
+export const CONTRIBUTION_STATUSES = ['RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] as const
 export type ContributionStatus = (typeof CONTRIBUTION_STATUSES)[number]
 
 export const SOURCE_TYPES = ['OFFICIAL_WEB', 'OFFICIAL_DOCUMENT', 'OFFICIAL_API', 'OTHER'] as const

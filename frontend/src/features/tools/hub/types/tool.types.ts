@@ -113,8 +113,6 @@ export type ToolScreen =
   | 'pdf-password'
   | 'cv'
   | 'remove-background'
-  | 'idea-suggestion'
-  | 'regulation-feedback'
   | 'assistant'
   | 'compress-video'
   | 'trim-video'

@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { StateView } from '@/components/ui/StateView'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
@@ -16,6 +17,7 @@ import { ToolSearch } from '../components/ToolSearch'
 
 export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
   const { t } = useTranslation('site')
+  const { t: tCommunity } = useTranslation('community')
   const page = HUB_PAGES[slug]
   const text = hubText(t, slug)
   const catalog = useToolCatalog()
@@ -45,7 +47,7 @@ export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
           {tools.length > 0 ? (
             <ul className="cn-hub-grid">{tools.map((tool) => <li key={tool.id}><HubToolCard tool={tool} /></li>)}</ul>
           ) : (
-            <StateView icon="search" title={t('results.empty')} description={t('hub.emptyHint')} actions={<button type="button" className="cn-button" onClick={reset}>{t('hub.showGroup')}</button>} />
+            <StateView icon="search" title={t('results.empty')} description={t('hub.emptyHint')} actions={<><button type="button" className="cn-button" onClick={reset}>{t('hub.showGroup')}</button><Link className="cn-button cn-button--ghost" to="/de-xuat-tien-ich">{tCommunity('feedback.searchSuggestion')}</Link></>} />
           )}
         </section>
         <HubAside items={page.aside} text={text.aside} />

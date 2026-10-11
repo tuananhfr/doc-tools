@@ -46,18 +46,6 @@
       "privacyNote": "質問は、あなたが設定したAIプロバイダーへあなたのキーで送信されます",
       "synonyms": "aiアシスタント, やり方 質問, ツール 相談"
     },
-    "idea-suggestion": {
-      "name": "ツールの提案",
-      "description": "アイデアを送り、受付番号で審査状況を確認",
-      "privacyNote": "「提案を送信」を押したときだけ内容が送信されます",
-      "synonyms": "ツール 要望, 新しいアイデア, ロードマップ, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "規定への意見",
-      "description": "内容と出典URLを送り、運営者が確認",
-      "privacyNote": "「提案を送信」を押したときだけ内容が送信されます",
-      "synonyms": "法令 更新, 新しい文書, データ 修正 依頼"
-    },
     "remove-background": {
       "name": "画像の背景削除",
       "description": "単色の背景を自動で消し、ブラシで手直し",

@@ -1,9 +1,5 @@
-/** Client-side mirror of the backend's first check, so an obvious mistake never costs a round trip. */
+import { checkSourceUrl } from '@/features/community/utils/contribution-check'
+
 export function isHttpsUrl(value: string): boolean {
-  try {
-    const url = new URL(value.trim())
-    return url.protocol === 'https:' && Boolean(url.hostname) && !url.username && !url.password
-  } catch {
-    return false
-  }
+  return Boolean(value.trim()) && checkSourceUrl(value.trim()) === 'ok'
 }

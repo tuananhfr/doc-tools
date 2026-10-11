@@ -27,7 +27,7 @@ export default function AdminContributionsPage() {
   const domains = [...new Set((list.data?.domains ?? []).map((row) => row.domain))].sort()
 
   return (
-    <AdminPage title="Duyệt đề xuất" description="Ý tưởng tiện ích và góp ý dữ liệu quy định. Mỗi đề xuất cần ba người khác nhau: xác minh, phê duyệt, công bố.">
+    <AdminPage title="Duyệt đề xuất" description="Báo lỗi và cải tiến: tiếp nhận, xử lý, hoàn tất. Ý tưởng và dữ liệu quy định giữ quy trình xác minh, phê duyệt, công bố bởi ba người khác nhau.">
       <Panel flush>
         <div className="cn-admin-filters">
           <div className="cn-admin-tabs" role="tablist" aria-label="Phạm vi">
@@ -40,7 +40,7 @@ export default function AdminContributionsPage() {
           </select>
           <select aria-label="Miền dữ liệu" value={domain ?? ''} onChange={(event) => update({ domain: event.target.value || null })}>
             <option value="">Mọi miền</option>
-            {domains.map((value) => <option key={value} value={value}>{value === 'ideas' ? 'Ý tưởng tiện ích' : value}</option>)}
+            {domains.map((value) => <option key={value} value={value}>{value === 'ideas' ? 'Ý tưởng tiện ích' : value === 'feedback-bug' ? 'Báo lỗi' : value === 'feedback-improvement' ? 'Cải tiến' : value}</option>)}
           </select>
         </div>
         {list.isPending ? <SkeletonRows /> : list.isError ? <LoadError error={list.error} onRetry={() => void list.refetch()} /> : list.data.items.length === 0 ? (
@@ -58,7 +58,7 @@ export default function AdminContributionsPage() {
                         <button type="button" className="cn-admin-rowlink" onClick={(event) => { event.stopPropagation(); update({ id: item.id }) }}>{item.summary || '(trống)'}</button>
                         <span className="cn-admin-sub">{item.toolId}{item.changeCount > 1 ? ` · ${item.changeCount} thay đổi` : ''}</span>
                       </td>
-                      <td>{item.domain === 'ideas' ? 'Ý tưởng' : item.domain}</td>
+                      <td>{item.domain === 'ideas' ? 'Ý tưởng' : item.domain === 'feedback-bug' ? 'Báo lỗi' : item.domain === 'feedback-improvement' ? 'Cải tiến' : item.domain}</td>
                       <td>{RISK_LABEL[item.risk]}</td>
                       <td className="is-num">{item.sourceCount}</td>
                       <td>{item.submitterEmail ?? <span className="cn-admin-sub">Khách</span>}</td>

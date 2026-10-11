@@ -46,18 +46,6 @@
       "privacyNote": "Vos questions partent vers le fournisseur d'IA que vous avez configuré, avec votre clé",
       "synonyms": "assistant ia, comment faire, quel outil, aide au choix"
     },
-    "idea-suggestion": {
-      "name": "Proposer un outil",
-      "description": "Envoyer une idée et suivre sa validation avec un code de reçu",
-      "privacyNote": "Le contenu n'est envoyé que lorsque vous appuyez sur Envoyer la proposition",
-      "synonyms": "suggestion d'outil, nouvelle idée, demande de fonctionnalité, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "Signaler une réglementation",
-      "description": "Envoyer un contenu et une URL source à vérifier par l'équipe",
-      "privacyNote": "Le contenu n'est envoyé que lorsque vous appuyez sur Envoyer la proposition",
-      "synonyms": "mise à jour juridique, nouveau texte, correction de données, réglementation"
-    },
     "remove-background": {
       "name": "Supprimer l'arrière-plan d'une image",
       "description": "Supprimer automatiquement un fond uni et retoucher au pinceau",

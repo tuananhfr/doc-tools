@@ -23,7 +23,9 @@ export class ContributionsController {
     if (!input) throw new BadRequestException({ ok: false, message: 'Đề xuất không hợp lệ hoặc chứa thông tin nhạy cảm.' })
     const user = isTrustedWrite(request) ? await this.sessions.current(request) : null
     const submitter = user ? { userId: user.id, attribution: (body as { attribution?: unknown }).attribution === true } : null
-    return this.contributions.submit(input, request.ip, submitter)
+    const key = request.headers['idempotency-key']
+    if (key !== undefined && (typeof key !== 'string' || !/^[A-Za-z0-9_-]{32}$/.test(key))) throw new BadRequestException({ ok: false, code: 'IDEMPOTENCY_INVALID', message: 'Mã lần gửi không hợp lệ.' })
+    return this.contributions.submit(input, request.ip, submitter, undefined, key)
   }
 
   @Get('receipt/:code')

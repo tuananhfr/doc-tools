@@ -46,18 +46,6 @@
       "privacyNote": "Pertanyaan dikirim ke penyedia AI yang Anda atur, memakai kunci Anda",
       "synonyms": "asisten ai, tanya cara, rekomendasi alat"
     },
-    "idea-suggestion": {
-      "name": "Usulkan alat baru",
-      "description": "Kirim ide dan pantau persetujuannya dengan kode tanda terima",
-      "privacyNote": "Isi hanya dikirim saat Anda menekan Kirim usulan",
-      "synonyms": "masukan alat, ide baru, saran fitur, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "Masukan peraturan",
-      "description": "Kirim isi dan URL sumber untuk diperiksa pengelola",
-      "privacyNote": "Isi hanya dikirim saat Anda menekan Kirim usulan",
-      "synonyms": "pembaruan hukum, peraturan baru, masukan data"
-    },
     "remove-background": {
       "name": "Hapus latar foto",
       "description": "Hapus latar warna polos otomatis dan rapikan manual dengan kuas",

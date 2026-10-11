@@ -36,7 +36,7 @@ describe('checkSourceUrl', () => {
     expect(checkSourceUrl('javascript:alert(1)')).toBe('notHttps')
     expect(checkSourceUrl(`https://a.vn/${'x'.repeat(2050)}`)).toBe('invalid')
     for (const url of ['https://user:pw@a.vn', 'https://a.vn/#muc-2', 'https://10.0.0.1/a', 'https://localhost/a', 'https://wiki.local/a',
-      'https://api.internal/a', 'https://a.vn/?token=1', 'https://a.vn/?access_key=1', 'https://a.vn/lien-he/an@example.com']) {
+      'https://api.internal/a', 'https://[::1]/a', 'https://[fd00::1]/a', 'https://intranet/a', 'https://a.vn/?token=1', 'https://a.vn/?access_key=1', 'https://a.vn/lien-he/an@example.com']) {
       expect(checkSourceUrl(url), url).toBe('unsafe')
     }
   })

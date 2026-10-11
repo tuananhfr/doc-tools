@@ -46,18 +46,6 @@
       "privacyNote": "Ipinapadala ang mga tanong sa AI provider na itinakda mo, gamit ang iyong key",
       "synonyms": "ai assistant, paano gawin, tulong sa pagpili ng tool"
     },
-    "idea-suggestion": {
-      "name": "Magmungkahi ng tool",
-      "description": "Magpadala ng ideya at subaybayan ang review gamit ang resibo code",
-      "privacyNote": "Ipinapadala lang ang nilalaman kapag pinindot mo ang Ipadala ang mungkahi",
-      "synonyms": "puna sa tool, bagong ideya, roadmap, suggestion"
-    },
-    "regulation-feedback": {
-      "name": "Puna sa regulasyon",
-      "description": "Magpadala ng nilalaman at source URL para suriin ng mga operator",
-      "privacyNote": "Ipinapadala lang ang nilalaman kapag pinindot mo ang Ipadala ang mungkahi",
-      "synonyms": "update sa batas, bagong regulasyon, puna sa data"
-    },
     "remove-background": {
       "name": "Alisin ang background ng larawan",
       "description": "Awtomatikong alisin ang plain na background at ayusin gamit ang brush",

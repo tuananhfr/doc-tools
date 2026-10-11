@@ -64,7 +64,7 @@ export const MCP_TOOLS = [
   {
     name: 'cn_my_contributions',
     description: 'Đề xuất người dùng đã gửi (trạng thái duyệt) và số nháp đang chờ họ xem. Dùng trước khi tạo nháp mới để tránh trùng.',
-    inputSchema: { type: 'object', properties: { status: { type: 'string', enum: ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] } } },
+    inputSchema: { type: 'object', properties: { status: { type: 'string', enum: ['RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED'] } } },
   },
 ] as const
 

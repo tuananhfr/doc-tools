@@ -46,18 +46,6 @@
       "privacyNote": "提问会使用你的密钥发送到你设置的 AI 服务商",
       "synonyms": "ai助手,怎么做,工具推荐"
     },
-    "idea-suggestion": {
-      "name": "工具建议",
-      "description": "提交想法，并凭回执编号跟进审核",
-      "privacyNote": "只有在你点击“提交建议”时才会发送内容",
-      "synonyms": "工具反馈,新想法,路线图,roadmap"
-    },
-    "regulation-feedback": {
-      "name": "规定反馈",
-      "description": "提交内容和来源网址，供运营人员核查",
-      "privacyNote": "只有在你点击“提交建议”时才会发送内容",
-      "synonyms": "法规更新,新文件,数据反馈"
-    },
     "remove-background": {
       "name": "去除图片背景",
       "description": "自动去除纯色背景，并可用画笔手动修整",

@@ -42,7 +42,7 @@ test('anonymous contributions stay in review and expose only receipt status', as
     const added = await api.inject({ method: 'POST', url: `/api/v1/contributions/receipt/${sourceReceipt}/sources`, payload: { sourceRefs: [{ url: 'https://example.com/update', type: 'OFFICIAL_WEB' }] } })
     assert.deepEqual(added.json(), { ok: true, status: 'NEEDS_REVIEW' })
     assert.equal((await api.inject({ method: 'GET', url: `/api/v1/contributions/receipt/${sourceReceipt}` })).json().contribution.status, 'NEEDS_REVIEW')
-    assert.equal((await api.inject({ method: 'POST', url: `/api/v1/contributions/receipt/${sourceReceipt}/sources`, payload: { sourceRefs: [{ url: 'https://example.com/update', type: 'OFFICIAL_WEB' }] } })).statusCode, 404)
+    assert.equal((await api.inject({ method: 'POST', url: `/api/v1/contributions/receipt/${sourceReceipt}/sources`, payload: { sourceRefs: [{ url: 'https://example.com/update', type: 'OFFICIAL_WEB' }] } })).statusCode, 200)
     const [rows] = await database.pool.execute('SELECT risk, status, proposed_changes, source_refs FROM contributions WHERE tool_id = ?', [toolId])
     assert.equal(rows.length, 2)
     assert.equal(rows[0].risk, 'HIGH')

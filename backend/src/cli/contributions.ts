@@ -1,3 +1,4 @@
+import { isFeedback, type ContributionAction } from '../contributions/feedback-workflow'
 import 'dotenv/config'
 import { DatabaseService } from '../database/database.service'
 import { ContributionsRepository } from '../contributions/contributions.repository'
@@ -5,7 +6,7 @@ import { assertPublishablePackage } from '../contributions/publish-check'
 
 async function main() {
   const [action, id, actor, ...rest] = process.argv.slice(2)
-  if (!['show', 'verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'].includes(action) || !/^[0-9a-f-]{36}$/.test(id || '')) throw new Error('Usage: contributions <show|verify|approve|reject|publish|supersede|revoke> <uuid> [operator] [note|digest]')
+  if (!['show', 'start', 'resolve', 'verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'].includes(action) || !/^[0-9a-f-]{36}$/.test(id || '')) throw new Error('Usage: contributions <show|start|resolve|verify|approve|reject|publish|supersede|revoke> <uuid> [operator] [note|digest]')
   if (action !== 'show' && !/^[a-zA-Z0-9._@-]{2,128}$/.test(actor || '')) throw new Error('Named operator is required')
   const database = new DatabaseService()
   await database.onModuleInit()
@@ -22,12 +23,13 @@ async function main() {
     if (action === 'publish') {
       const contribution = await repository.getForReview(id)
       if (!contribution) throw new Error('Contribution not found')
+      if (isFeedback(contribution.domain)) throw new Error(`Cannot publish from ${contribution.status}`)
       if (contribution.domain !== 'ideas') {
         await assertPublishablePackage(database, contribution.domain as string, note || '')
         digest = note
       }
     }
-    const result = await repository.transition(id, action as 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke', actor, action === 'publish' ? null : note, digest)
+    const result = await repository.transition(id, action as ContributionAction, actor, action === 'publish' ? null : note, digest)
     process.stdout.write(`${id} → ${result}\n`)
   } finally { await database.onModuleDestroy() }
 }

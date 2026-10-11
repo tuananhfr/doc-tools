@@ -46,18 +46,6 @@
       "privacyNote": "Câu hỏi gửi tới nhà cung cấp AI bạn tự cài, bằng khoá của bạn",
       "synonyms": "trợ lý ai, hỏi cách làm, tư vấn công cụ"
     },
-    "idea-suggestion": {
-      "name": "Đề xuất tiện ích",
-      "description": "Gửi ý tưởng và theo dõi duyệt bằng mã biên nhận",
-      "privacyNote": "Nội dung chỉ gửi khi bạn bấm Gửi đề xuất",
-      "synonyms": "góp ý công cụ, ý tưởng mới, roadmap"
-    },
-    "regulation-feedback": {
-      "name": "Góp ý quy định",
-      "description": "Gửi nội dung và URL nguồn để người vận hành kiểm tra",
-      "privacyNote": "Nội dung chỉ gửi khi bạn bấm Gửi đề xuất",
-      "synonyms": "cập nhật pháp luật, văn bản mới, góp ý dữ liệu"
-    },
     "remove-background": {
       "name": "Xóa phông nền ảnh",
       "description": "Xóa nền màu trơn tự động và chỉnh tay bằng cọ",

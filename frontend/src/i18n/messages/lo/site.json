@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ | Chuyện Nhỏ",
       "description": "Chuyện Nhỏ ເກັບກຳ, ນຳໃຊ້ ແລະ ປົກປ້ອງຂໍ້ມູນສ່ວນບຸກຄົນແນວໃດ, ຕາມກົດໝາຍວ່າດ້ວຍການປົກປ້ອງຂໍ້ມູນສ່ວນບຸກຄົນ 2025 ຂອງຫວຽດນາມ."
+    },
+    "de-xuat-tien-ich": {
+      "title": "Suggest a tool",
+      "description": "Share a task you need help with and suggest a new tool for Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Feedback",
+      "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "ການປະມວນຜົນຂໍ້ມູນ",
       "support": "ການຊ່ວຍເຫຼືອ",
       "terms": "ຂໍ້ກຳນົດ",
-      "privacy": "ຄວາມເປັນສ່ວນຕົວ"
+      "privacy": "ຄວາມເປັນສ່ວນຕົວ",
+      "suggest": "Suggest a tool",
+      "feedback": "Feedback"
     }
   },
   "brand": {
@@ -573,7 +583,7 @@
         "points": {
           "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "ທີ່ຢູ່ IP ຖືກ hash ແບບທາງດຽວເທົ່ານັ້ນ ເພື່ອປ້ອງກັນການສົ່ງອັດຕະໂນມັດ, ລຶບເອງຫຼັງປະມານ 1 ຊົ່ວໂມງ",
-          "feedback": "ຄຳຕິຊົມ, ຂໍ້ສະເໜີ ຈະສົ່ງສະເພາະເມື່ອທ່ານໝາຍຍິນຍອມ ແລະ ກົດສົ່ງ",
+          "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} ເຄື່ອງມືທີ່ຈະມາໄວໆນີ້ຈະຕ້ອງຄົ້ນຫາໃນເຊີບເວີ, ບັດຂອງມັນບອກໄວ້ຢ່າງຊັດເຈນ"
@@ -868,7 +878,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ ເກັບກຳຂໍ້ມູນສ່ວນບຸກຄົນຂອງຂ້ອຍບໍ?",
-        "answer": "ເກືອບບໍ່ມີ. ເມື່ອທ່ານເປີດເຄື່ອງມື, ບຣາວເຊີຈະແຈ້ງຊື່ເຄື່ອງມືເພື່ອໃຫ້ພວກເຮົານັບຈຳນວນການໃຊ້ທັງໝົດ; ທີ່ຢູ່ IP ຖືກ hash ແບບທາງດຽວເທົ່ານັ້ນ ເພື່ອປ້ອງກັນການສົ່ງອັດຕະໂນມັດ ແລະ ລຶບເອງຫຼັງປະມານ 1 ຊົ່ວໂມງ. ເນື້ອໃນຄຳຕິຊົມຈະສົ່ງສະເພາະເມື່ອທ່ານໝາຍຍິນຍອມ ແລະ ກົດສົ່ງ."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
       },
       "xoa-du-lieu": {
         "question": "ຈະລຶບຂໍ້ມູນຂອງຂ້ອຍແນວໃດ?",

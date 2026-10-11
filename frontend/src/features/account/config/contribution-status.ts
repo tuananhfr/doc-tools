@@ -4,6 +4,9 @@ export type StatusTone = 'warn' | 'info' | 'good' | 'bad' | 'muted'
 
 /** Icon + tone per status; the label comes from `community:contribution.status.*`, never color alone. */
 export const CONTRIBUTION_STATUS_LOOK: Record<ContributionStatus, { icon: string; tone: StatusTone }> = {
+  RECEIVED: { icon: 'inbox', tone: 'info' },
+  IN_PROGRESS: { icon: 'tools', tone: 'info' },
+  RESOLVED: { icon: 'check-circle', tone: 'good' },
   NEEDS_SOURCE: { icon: 'exclamation-triangle', tone: 'warn' },
   NEEDS_REVIEW: { icon: 'hourglass-split', tone: 'info' },
   VERIFIED: { icon: 'patch-check', tone: 'info' },

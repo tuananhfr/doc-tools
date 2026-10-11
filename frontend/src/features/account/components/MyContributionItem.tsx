@@ -21,6 +21,8 @@ export function MyContributionItem({ item, toolName }: Props) {
   const [added, setAdded] = useState(false)
   const more = item.changeCount - item.changes.length
   const headingId = `cn-contribution-${item.id}`
+  const isFeedback = item.domain === 'feedback-bug' || item.domain === 'feedback-improvement'
+  const name = toolName ?? (item.toolId === 'de-xuat-tien-ich' ? tCommunity('contribution.ideaTitle') : item.toolId === 'gop-y-quy-dinh' ? tCommunity('feedback.title') : null)
 
   return (
     <article className="cn-contribution" aria-labelledby={headingId}>
@@ -29,13 +31,13 @@ export function MyContributionItem({ item, toolName }: Props) {
         <time className="cn-contribution__date" dateTime={item.createdAt}>{dateTimeFormat(DATE_OPTIONS).format(new Date(item.createdAt))}</time>
       </div>
       <h3 id={headingId} className="cn-contribution__tool">
-        {toolName ? <Link to={`/${item.toolId}`}>{toolName}</Link> : item.toolId}
+        {name ? <Link to={`/${item.toolId}`}>{name}</Link> : item.toolId}
       </h3>
       <div className="cn-contribution__changes">
         {item.changes.map((change, index) => <p key={index}>{changeText(change)}</p>)}
         {more > 0 ? <p className="cn-contribution__more">{t('mine.moreChanges', { more })}</p> : null}
       </div>
-      <div className="cn-contribution__sources">
+      {isFeedback ? null : <div className="cn-contribution__sources">
         <span className="cn-contribution__label">{t('mine.sources')}</span>
         {item.sourceRefs.length ? (
           <ul>
@@ -47,14 +49,14 @@ export function MyContributionItem({ item, toolName }: Props) {
             ))}
           </ul>
         ) : <span className="cn-contribution__none">{t('mine.noSources')}</span>}
-      </div>
+      </div>}
       {item.status === 'NEEDS_SOURCE' && !adding ? <p className="cn-contribution__hint"><Icon name="info-circle" />{t('mine.needsSourceHint')}</p> : null}
       {added && !adding ? <p className="cn-form-notice" role="status"><Icon name="check2" />{t('mine.evidence.added')}</p> : null}
       {adding ? (
         <EvidenceForm contributionId={item.id} onDone={() => setAdding(false)} onAdded={() => setAdded(true)} />
       ) : (
         <div className="cn-contribution__foot">
-          {item.attribution ? <span className="cn-contribution__flag"><Icon name="person-check" />{t('mine.attributed')}</span> : <span className="cn-contribution__flag"><Icon name="incognito" />{t('mine.unattributed')}</span>}
+          {isFeedback ? null : item.attribution ? <span className="cn-contribution__flag"><Icon name="person-check" />{t('mine.attributed')}</span> : <span className="cn-contribution__flag"><Icon name="incognito" />{t('mine.unattributed')}</span>}
           {item.canAddEvidence ? (
             <button type="button" className="cn-button cn-button--ghost cn-contribution__add" onClick={() => { setAdded(false); setAdding(true) }}>
               <Icon name="link-45deg" />{t('mine.addEvidence')}

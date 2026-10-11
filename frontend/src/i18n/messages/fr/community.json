@@ -8,7 +8,10 @@
       "APPROVED": "Approuvé",
       "PUBLISHED": "Publié",
       "SUPERSEDED": "Remplacé par une version plus récente",
-      "REVOKED": "Retiré"
+      "REVOKED": "Retiré",
+      "RECEIVED": "Received",
+      "IN_PROGRESS": "In progress",
+      "RESOLVED": "Resolved"
     },
     "sendFailed": "Impossible d'envoyer la proposition.",
     "received": "Proposition reçue : {{status}}. Conservez le code de reçu pour en suivre l'état.",
@@ -60,6 +63,43 @@
   },
   "ideas": {
     "published": "Idées publiées",
-    "empty": "Aucune idée n'a encore été approuvée et publiée."
+    "empty": "Aucune idée n'a encore été approuvée et publiée.",
+    "loading": "Loading ideas…",
+    "failed": "Could not load ideas. Please try again.",
+    "retry": "Try again"
+  },
+  "feedback": {
+    "title": "Feedback",
+    "intro": "Report a problem, suggest an improvement or flag incorrect data in Chuyện Nhỏ. Track our response with your receipt code.",
+    "category": "What would you like to share?",
+    "categories": {
+      "bug": "Report a problem",
+      "improvement": "Suggest an improvement",
+      "data": "Incorrect data"
+    },
+    "tool": "Related tool",
+    "wholeSite": "General website feedback",
+    "subject": "What went wrong or could be improved?",
+    "detail": "Describe how it happened and the result you expected",
+    "ideaProblem": "What would you like to get done?",
+    "ideaExample": "A real example and the result you would like",
+    "privacy": "Only the text you enter is sent. Your tool files and results are never attached.",
+    "dataHint": "An official source helps us check the data. Feedback is reviewed first and does not change tool data immediately.",
+    "toolAction": "Give feedback on this tool",
+    "forTool": "Tool: {{name}}",
+    "close": "Close feedback form",
+    "submit": "Send feedback",
+    "thanks": "Thank you for sharing!",
+    "newFeedback": "Send more feedback",
+    "newIdea": "Suggest another tool",
+    "saveReceipt": "Save receipt code",
+    "accountTracking": "Track in My contributions",
+    "sendFailed": "Could not send yet. Your text is still here; check your connection and try again.",
+    "duplicate": "This content has already been received. Use your saved receipt code or check My contributions if you were signed in.",
+    "rateLimited": "You have sent several contributions this hour. Keep your text and try again later.",
+    "addEvidenceHint": "Add a source to the receipt currently being checked. Existing sources are kept.",
+    "searchSuggestion": "Missing a tool you need? Suggest it to us",
+    "existingTool": "Want to give feedback on an existing tool?",
+    "needTool": "Need a new tool? Send a suggestion"
   }
 }

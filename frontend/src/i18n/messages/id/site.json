@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "Kebijakan privasi | Chuyện Nhỏ",
       "description": "Bagaimana Chuyện Nhỏ mengumpulkan, menggunakan, dan melindungi data pribadi, sesuai Undang-Undang Perlindungan Data Pribadi Vietnam 2025."
+    },
+    "de-xuat-tien-ich": {
+      "title": "Suggest a tool",
+      "description": "Share a task you need help with and suggest a new tool for Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Feedback",
+      "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "Pemrosesan data",
       "support": "Bantuan",
       "terms": "Ketentuan",
-      "privacy": "Privasi"
+      "privacy": "Privasi",
+      "suggest": "Suggest a tool",
+      "feedback": "Feedback"
     }
   },
   "brand": {
@@ -573,7 +583,7 @@
         "points": {
           "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "Alamat IP hanya di-hash satu arah untuk mencegah pengiriman otomatis, terhapus otomatis setelah sekitar 1 jam",
-          "feedback": "Masukan dan usulan hanya dikirim jika Anda mencentang persetujuan dan menekan Kirim",
+          "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "{{count}} alat yang segera hadir akan memerlukan pencarian di server; kartunya menandai hal ini dengan jelas"
@@ -868,7 +878,7 @@
       },
       "thu-thap": {
         "question": "Apakah Chuyện Nhỏ mengumpulkan informasi pribadi saya?",
-        "answer": "Hampir tidak. Saat Anda membuka sebuah alat, browser mengirim nama alat agar kami dapat menghitung total penggunaan; alamat IP hanya di-hash satu arah untuk mencegah pengiriman otomatis dan terhapus otomatis setelah sekitar 1 jam. Isi masukan hanya dikirim jika Anda mencentang persetujuan dan menekan Kirim."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
       },
       "xoa-du-lieu": {
         "question": "Bagaimana cara menghapus data saya?",

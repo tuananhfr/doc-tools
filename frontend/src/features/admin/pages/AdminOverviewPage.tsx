@@ -8,7 +8,7 @@ import { useOverview } from '../hooks/useAdmin'
 import type { ContributionStatus, Permission } from '../types/admin.types'
 import { formatNumber } from '../utils/admin-format'
 
-const QUEUE: ContributionStatus[] = ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED']
+const QUEUE: ContributionStatus[] = ['RECEIVED', 'IN_PROGRESS', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED']
 
 export default function AdminOverviewPage() {
   const staff = useStaff()

@@ -63,8 +63,6 @@ const FamilyCalendarPage = dynamic(() => import('@/features/tools/family/pages/F
 const PdfPasswordPage = dynamic(() => import('@/features/tools/pdf/pages/quick/PdfPasswordPage'), { ssr: false, loading: () => <Loading /> })
 const CvPage = dynamic(() => import('@/features/tools/documents/pages/CvPage'), { ssr: false, loading: () => <Loading /> })
 const RemoveBackgroundPage = dynamic(() => import('@/features/tools/image/pages/RemoveBackgroundPage'), { ssr: false, loading: () => <Loading /> })
-const IdeaSuggestionPage = dynamic(() => import('@/features/tools/community/pages/IdeaSuggestionPage'), { ssr: false, loading: () => <Loading /> })
-const RegulationFeedbackPage = dynamic(() => import('@/features/tools/community/pages/RegulationFeedbackPage'), { ssr: false, loading: () => <Loading /> })
 const AssistantPage = dynamic(() => import('@/features/tools/byoai/pages/AssistantPage'), { ssr: false, loading: () => <Loading /> })
 const CompressVideoPage = dynamic(() => import('@/features/tools/video/pages/CompressVideoPage'), { ssr: false, loading: () => <Loading /> })
 const TrimVideoPage = dynamic(() => import('@/features/tools/video/pages/TrimVideoPage'), { ssr: false, loading: () => <Loading /> })
@@ -135,7 +133,5 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   'pdf-password': PdfPasswordPage,
   cv: CvPage,
   'remove-background': RemoveBackgroundPage,
-  'idea-suggestion': IdeaSuggestionPage,
-  'regulation-feedback': RegulationFeedbackPage,
   assistant: AssistantPage,
 }

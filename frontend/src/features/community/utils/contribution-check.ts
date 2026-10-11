@@ -28,7 +28,7 @@ export function checkSourceUrl(value: string): SourceUrlCheck {
   try { url = new URL(value) } catch { return 'invalid' }
   if (url.protocol !== 'https:') return 'notHttps'
   const host = url.hostname.toLowerCase()
-  const unsafe = url.username || url.password || url.hash || /^\d+\.\d+\.\d+\.\d+$/.test(host) || host.endsWith('.local') || host.endsWith('.internal')
+  const unsafe = host.includes(':') || !host.includes('.') || url.username || url.password || url.hash || /^\d+\.\d+\.\d+\.\d+$/.test(host) || host.endsWith('.local') || host.endsWith('.internal')
     || host === 'localhost' || /[?&](?:token|key|sig|auth|session|access)[^=]*=/i.test(url.search) || findSensitive(value).length > 0
   return unsafe ? 'unsafe' : 'ok'
 }

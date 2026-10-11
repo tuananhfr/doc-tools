@@ -84,6 +84,12 @@ export const SCHEMA = [
     published_digest CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NULL,
     INDEX (status, created_at), INDEX (domain, status)
   ) ENGINE=InnoDB`,
+  // Separate workflow avoids altering the existing review enum on deployed databases.
+  `CREATE TABLE IF NOT EXISTS contribution_feedback_workflow (
+    contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    status ENUM('RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'REJECTED') NOT NULL,
+    INDEX (status)
+  ) ENGINE=InnoDB`,
   `CREATE TABLE IF NOT EXISTS contribution_audit (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,

@@ -27,6 +27,8 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
   const meta = CONTRIBUTION_STATUS[item.status]
   const steps = NEXT_STEPS[item.status] ?? []
   const isIdea = item.domain === 'ideas'
+  const isFeedback = item.domain === 'feedback-bug' || item.domain === 'feedback-improvement'
+  const isText = isIdea || isFeedback
   // The API refuses these too; saying so up front saves a round trip and a confusing error.
   const blockedBy = (action: Transition) => {
     if (action === 'approve' && item.reviewedBy === staff.email) return 'Bạn đã xác minh đề xuất này.'
@@ -43,26 +45,26 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
   }
 
   return (
-    <AdminPage title={isIdea ? 'Ý tưởng tiện ích' : `Góp ý dữ liệu · ${item.domain}`} description={<>Công cụ <code>{item.toolId}</code> · gửi {formatDateTime(item.createdAt)} · {item.submitterEmail ?? 'khách (không đăng nhập)'}</>} actions={back}>
+    <AdminPage title={isIdea ? 'Ý tưởng tiện ích' : isFeedback ? item.domain === 'feedback-bug' ? 'Báo lỗi' : 'Đề nghị cải tiến' : `Góp ý dữ liệu · ${item.domain}`} description={<>Công cụ <code>{item.toolId}</code> · gửi {formatDateTime(item.createdAt)} · {item.submitterEmail ?? 'khách (không đăng nhập)'}</>} actions={back}>
       <div className="cn-admin-pills">
         <Pill tone={meta.tone} icon={meta.icon}>{meta.label}</Pill>
-        <Pill tone={item.risk === 'HIGH' ? 'danger' : item.risk === 'MEDIUM' ? 'warning' : 'neutral'} icon="exclamation-diamond">Rủi ro {RISK_LABEL[item.risk].toLowerCase()}</Pill>
-        {item.attribution === null ? null : <Pill tone="neutral" icon={item.attribution ? 'person-check' : 'person-dash'}>{item.attribution ? 'Muốn ghi tên' : 'Không ghi tên'}</Pill>}
+        {isFeedback ? null : <Pill tone={item.risk === 'HIGH' ? 'danger' : item.risk === 'MEDIUM' ? 'warning' : 'neutral'} icon="exclamation-diamond">Rủi ro {RISK_LABEL[item.risk].toLowerCase()}</Pill>}
+        {isFeedback || item.attribution === null ? null : <Pill tone="neutral" icon={item.attribution ? 'person-check' : 'person-dash'}>{item.attribution ? 'Muốn ghi tên' : 'Không ghi tên'}</Pill>}
       </div>
 
       <div className="cn-admin-grid is-wide-left">
         <div className="cn-admin-stack">
-          <Panel title={`Thay đổi đề xuất (${item.proposedChanges.length})`}>
+          <Panel title={isText ? 'Nội dung' : `Thay đổi đề xuất (${item.proposedChanges.length})`}>
             <div className="cn-admin-table-wrap">
               <table className="cn-admin-table is-compact is-diff">
-                <thead><tr><th>Trường</th>{isIdea ? null : <th>Hiện tại</th>}<th>{isIdea ? 'Nội dung' : 'Đề xuất'}</th></tr></thead>
+                <thead><tr><th>Trường</th>{isText ? null : <th>Hiện tại</th>}<th>{isText ? 'Nội dung' : 'Đề xuất'}</th></tr></thead>
                 <tbody>{item.proposedChanges.map((change, index) => (
-                  <tr key={`${change.field}-${index}`}><td><code>{change.field}</code></td>{isIdea ? null : <td className="is-before">{change.before || '—'}</td>}<td className="is-after">{change.after}</td></tr>
+                  <tr key={`${change.field}-${index}`}><td><code>{change.field}</code></td>{isText ? null : <td className="is-before">{change.before || '—'}</td>}<td className="is-after">{change.after}</td></tr>
                 ))}</tbody>
               </table>
             </div>
           </Panel>
-          <Panel title={`Nguồn (${item.sourceRefs.length})`}>
+          {isFeedback ? null : <Panel title={`Nguồn (${item.sourceRefs.length})`}>
             {item.sourceRefs.length ? (
               <ul className="cn-admin-sources">
                 {item.sourceRefs.map((source) => (
@@ -70,7 +72,7 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
                 ))}
               </ul>
             ) : <Empty icon="link-45deg" title="Chưa có nguồn" text={isIdea ? 'Ý tưởng không cần nguồn.' : 'Dữ liệu quy định cần nguồn trước khi xác minh.'} />}
-          </Panel>
+          </Panel>}
           <Panel title="Lịch sử">
             <AuditTimeline rows={trail.map((row, index) => ({ key: `${index}`, at: row.createdAt, action: row.action, who: row.actor.startsWith('user:') ? 'người gửi' : row.actor, note: row.note }))} />
           </Panel>
@@ -78,8 +80,8 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
 
         <Panel title="Bước tiếp theo">
           <dl className="cn-admin-facts">
-            <dt>Xác minh</dt><dd>{item.reviewedBy ?? '—'}</dd>
-            <dt>Phê duyệt</dt><dd>{item.approvedBy ?? '—'}</dd>
+            {isFeedback ? null : <><dt>Xác minh</dt><dd>{item.reviewedBy ?? '—'}</dd>
+            <dt>Phê duyệt</dt><dd>{item.approvedBy ?? '—'}</dd></>}
             {item.publishedDigest ? <><dt>Gói đã công bố</dt><dd><code>{item.publishedDigest.slice(0, 16)}…</code></dd></> : null}
             {item.baseSnapshotId ? <><dt>Dựa trên bản</dt><dd><code>{item.baseSnapshotId.slice(0, 16)}…</code></dd></> : null}
             {item.jurisdiction ? <><dt>Phạm vi</dt><dd>{item.jurisdiction}</dd></> : null}
@@ -104,8 +106,8 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
                 <label>Digest gói quy định (64 ký tự hex)<input type="text" required pattern="[0-9a-fA-F]{64}" value={digest} onChange={(event) => setDigest(event.target.value)} spellCheck={false} autoComplete="off" /></label>
               ) : null}
               {step === 'publish' ? null : (
-                <label>{step === 'verify' ? 'Ghi chú xác minh' : step === 'reject' ? 'Lý do từ chối' : 'Ghi chú (không bắt buộc)'}
-                  <textarea rows={3} maxLength={2000} required={step === 'verify' || step === 'reject'} minLength={step === 'verify' ? 10 : undefined} value={note} onChange={(event) => setNote(event.target.value)} />
+                <label>{step === 'verify' ? 'Ghi chú xác minh' : step === 'reject' ? 'Lý do từ chối' : step === 'resolve' ? 'Kết quả xử lý' : 'Ghi chú (không bắt buộc)'}
+                  <textarea rows={3} maxLength={2000} required={step === 'verify' || step === 'reject' || step === 'resolve'} minLength={step === 'verify' ? 10 : undefined} value={note} onChange={(event) => setNote(event.target.value)} />
                 </label>
               )}
               <div className="cn-admin-form__actions">

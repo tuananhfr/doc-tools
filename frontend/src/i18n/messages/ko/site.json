@@ -57,6 +57,14 @@
     "quyen-rieng-tu": {
       "title": "개인정보 처리방침 | Chuyện Nhỏ",
       "description": "2025년 개인정보 보호법에 따라 Chuyện Nhỏ가 개인 데이터를 수집, 이용, 보호하는 방법이에요."
+    },
+    "de-xuat-tien-ich": {
+      "title": "Suggest a tool",
+      "description": "Share a task you need help with and suggest a new tool for Chuyện Nhỏ."
+    },
+    "gop-y-quy-dinh": {
+      "title": "Feedback",
+      "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
     }
   },
   "nav": {
@@ -85,7 +93,9 @@
       "data": "데이터 처리",
       "support": "도움말",
       "terms": "약관",
-      "privacy": "개인정보"
+      "privacy": "개인정보",
+      "suggest": "Suggest a tool",
+      "feedback": "Feedback"
     }
   },
   "brand": {
@@ -573,7 +583,7 @@
         "points": {
           "visits": "The name of the tool you open, to count total usage. Never linked to you or your account",
           "ip": "IP 주소는 자동화된 전송을 막기 위해 단방향 해시 처리만 하고, 약 1시간 후 자동 삭제돼요",
-          "feedback": "의견·제안은 동의에 체크하고 보내기를 눌렀을 때만 전송돼요",
+          "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon": "출시 예정 도구 {{count}}개는 서버 조회가 필요하며, 카드에 분명히 표시돼요"
@@ -868,7 +878,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ가 내 개인 정보를 수집하나요?",
-        "answer": "거의 수집하지 않아요. 도구를 열면 브라우저가 전체 이용 횟수를 세기 위해 도구 이름을 알려 주고, IP 주소는 자동화된 전송을 막기 위해 단방향 해시 처리만 한 뒤 약 1시간 후 자동 삭제돼요. 의견 내용은 동의에 체크하고 보내기를 눌렀을 때만 전송돼요."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
       },
       "xoa-du-lieu": {
         "question": "내 데이터는 어떻게 지우나요?",
