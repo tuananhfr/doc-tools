@@ -1,11 +1,12 @@
 import { Offcanvas } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useMe } from '@/features/account'
 import { ADMIN_ROOT } from '@/features/admin'
 import { withBase } from '@/utils/url'
 import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
+import { SiteBrand } from './SiteBrand'
 
 interface MobileNavigationProps {
   open: boolean
@@ -18,12 +19,12 @@ export function MobileNavigation({ open, onClose }: MobileNavigationProps) {
   return (
     <Offcanvas id="cn-mobile-navigation" className="cn-mobile-navigation" show={open} onHide={onClose} placement="end" aria-labelledby="cn-navigation-title">
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title id="cn-navigation-title">Chuyện Nhỏ</Offcanvas.Title>
+        <Offcanvas.Title id="cn-navigation-title"><SiteBrand compact onClick={onClose} /></Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <GuestPrefs className="cn-mobile-preferences" />
         <nav aria-label={t('header.mobileNav')}>
-          {SITE_NAVIGATION.map((item) => <Link key={item.to} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</Link>)}
+          {SITE_NAVIGATION.map((item) => <NavLink key={item.to} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</NavLink>)}
         </nav>
         {data ? (
           <div className="cn-mobile-account">
