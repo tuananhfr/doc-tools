@@ -8,7 +8,7 @@
     "dev": "next dev --webpack -p 3002",
     "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs",
     "build": "next build --webpack && node scripts/prepare-offline.mjs",
-    "deploy": "npm run build && sudo systemctl restart doc-tools-frontend",
+    "deploy": "bash scripts/deploy.sh",
     "start": "next start -p 3002",
     "test": "vitest run",
     "lint": "tsc --noEmit"

@@ -31,22 +31,30 @@ Chạy npm run build rồi restart service frontend. Đổi base path cần buil
 
 ## Cập nhật trên server
 
-Lệnh npm run deploy dành cho server Linux đã có service doc-tools-frontend và dependencies được cài. Chọn Node.js 24 trong môi trường riêng của DocTools trước khi chạy:
+Lệnh npm run deploy dành cho server Linux đã có service doc-tools-frontend và dependencies được cài. Script tự nạp nvm từ ~/.nvm-doc-tools và chọn đúng phiên bản Node trong .nvmrc (24.21.0), kể cả khi phiên SSH đang dùng Node hệ thống cũ. Chạy bằng user lpc:
 
 ```sh
-export NVM_DIR="$HOME/.nvm-doc-tools"
-source "$NVM_DIR/nvm.sh" --no-use
-nvm use 24.21.0
-
 cd /var/www/doc-tools
 git pull --ff-only origin main
 cd frontend
 npm run deploy
 ```
 
-Lệnh deploy chạy npm run build, gồm build Next.js và tạo manifest offline, rồi gọi sudo systemctl restart doc-tools-frontend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Nếu restart thất bại, lệnh deploy báo lỗi; xem log service để xử lý. Lệnh npm run build vẫn chỉ build như trước, không gọi systemd.
+Lệnh deploy in phiên bản và đường dẫn Node đang dùng, kiểm tra runtime trước khi chạy npm run build, gồm build Next.js và tạo manifest offline, rồi gọi sudo systemctl restart doc-tools-frontend chỉ khi build thành công. Nếu thiếu nvm hoặc phiên bản Node đã ghim, script dừng với thông báo rõ ràng; không tự cài runtime. Server dùng nvm ở thư mục khác có thể đặt DOC_TOOLS_NVM_DIR trước khi deploy. Phiên bản Node chỉ được chọn trong tiến trình deploy, không đổi runtime mặc định của user hoặc các site khác.
 
-Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong frontend trước khi deploy. frontend/public/offline-manifest.json do build tự sinh và không nằm trong Git (đã gitignore), nên build không còn làm git pull bị chặn. Server nào còn bản cũ đang bị track thì lần pull đầu tiên sau thay đổi này chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools trước, rồi pull và build lại.
+Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Nếu restart thất bại, lệnh deploy báo lỗi; xem log service để xử lý. Lệnh npm run build vẫn chỉ build như trước, không tự chọn Node hoặc gọi systemd. Script không sửa cấu hình runtime của service systemd.
+
+Khi package.json hoặc package-lock.json thay đổi dependencies, chọn Node đã ghim rồi chạy npm ci trong frontend trước khi deploy:
+
+```sh
+export NVM_DIR="${DOC_TOOLS_NVM_DIR:-$HOME/.nvm-doc-tools}"
+source "$NVM_DIR/nvm.sh" --no-use
+nvm use
+npm ci
+npm run deploy
+```
+
+frontend/public/offline-manifest.json do build tự sinh và không nằm trong Git (đã gitignore), nên build không còn làm git pull bị chặn. Server nào còn bản cũ đang bị track thì lần pull đầu tiên sau thay đổi này chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools trước, rồi pull và build lại.
 
 Build ghi trực tiếp vào .next đang phục vụ, không giữ bản dự phòng. Build lỗi không restart service nhưng có thể ảnh hưởng file của bản đang chạy; cache không bảo đảm tránh tình huống này. Frontend có gián đoạn ngắn khi restart. Kiểm tra sau deploy:
 
