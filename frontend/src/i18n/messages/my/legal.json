@@ -46,7 +46,8 @@
         "items": {
           "estimates": "အိမ်ဆောက်ကုန်ကျစရိတ် ခန့်မှန်းခြင်း၊ လစာတွက်ခြင်း၊ လျှပ်စစ်မီတာခ- တရားဝင် ဈေးနှုန်းတင်ပြချက်၊ လစာစာရင်း သို့မဟုတ် ငွေတောင်းခံလွှာကို အစားမထိုးပါ။",
           "orientation": "အိမ်မျက်နှာမူရာနှင့် အသက်အလိုက် ကြည့်သည့်အပိုင်း- ရိုးရာ ဖုန်ရွှေ (feng shui) အရ ကိုးကားရန်သာ ဖြစ်ပြီး နည်းပညာဆိုင်ရာ ကောက်ချက် မဟုတ်ပါ။",
-          "ocr": "စာသားမှတ်သားခြင်း (OCR)၊ လိပ်စာပြောင်းလဲခြင်း၊ စည်းမျဉ်းရှာဖွေခြင်း- အမှားပါနိုင်သဖြင့် မူရင်းစာတမ်းနှင့် ပြန်စစ်ရန် လိုသည်။"
+          "ocr": "စာသားမှတ်သားခြင်း (OCR)၊ လိပ်စာပြောင်းလဲခြင်း၊ စည်းမျဉ်းရှာဖွေခြင်း- အမှားပါနိုင်သဖြင့် မူရင်းစာတမ်းနှင့် ပြန်စစ်ရန် လိုသည်။",
+          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
         }
       },
       "hanh-vi-cam": {
@@ -144,7 +145,8 @@
           "visits": "ကိရိယာ ဖွင့်သည့် အကြိမ်- စုစုပေါင်း အသုံးပြုမှုကို ရေတွက်ရန် ကိရိယာအမည်နှင့် အချိန်။ စုစုပေါင်း ရေတွက်ချက်ကိုသာ သိမ်းပြီး အသုံးပြုသူနှင့် မချိတ်ဆက်ပါ။",
           "ip": "IP လိပ်စာ- လျှို့ဝှက်ကီးဖြင့် တစ်လမ်းသွား hash လုပ်ပြီး အလိုအလျောက် ပို့ခြင်းကို ကန့်သတ်ရန်သာ သုံးကာ 1 နာရီခန့်အကြာတွင် အလိုအလျောက် ဖျက်သည်။",
           "feedback": "အကြံပြုချက်၊ အဆိုပြုချက် အကြောင်းအရာ- သင်သဘောတူကြောင်း အမှတ်ခြစ်ပြီး ပို့ရန် နှိပ်မှသာ၊ ကိရိယာကို သုံးသပ်တိုးတက်စေရန်။ လက်ခံဖြတ်ပိုင်းကုဒ်ကို hash ပုံစံဖြင့်သာ သိမ်းသည်။",
-          "logs": "ဝဘ်ဆာဗာ၏ နည်းပညာ မှတ်တမ်း (IP လိပ်စာ၊ ဘရောက်ဇာ အမျိုးအစား၊ ဖွင့်သော စာမျက်နှာ)- စနစ်လည်ပတ်မှုနှင့် လုံခြုံရေးအတွက်သာ သုံးပြီး လိုအပ်သော အချိန်တိုအတွင်းသာ သိမ်းသည်။"
+          "logs": "ဝဘ်ဆာဗာ၏ နည်းပညာ မှတ်တမ်း (IP လိပ်စာ၊ ဘရောက်ဇာ အမျိုးအစား၊ ဖွင့်သော စာမျက်နှာ)- စနစ်လည်ပတ်မှုနှင့် လုံခြုံရေးအတွက်သာ သုံးပြီး လိုအပ်သော အချိန်တိုအတွင်းသာ သိမ်းသည်။",
+          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
         }
       },
       "tai-khoan": {
@@ -196,7 +198,8 @@
           "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
-          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
+          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
         }
       },
       "quyen": {

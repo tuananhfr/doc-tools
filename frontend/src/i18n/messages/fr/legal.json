@@ -46,7 +46,8 @@
         "items": {
           "estimates": "Estimation du coût de construction d'une maison, calcul du salaire ou de la facture d'électricité : ils ne remplacent pas un devis, un bulletin de paie ou une facture officiels.",
           "orientation": "Orientation de la maison et interprétations selon l'âge : données à titre indicatif d'après le feng shui populaire, et non des conclusions techniques.",
-          "ocr": "Reconnaissance de texte (OCR), conversion d'adresses, consultation de réglementations : des erreurs sont possibles ; vérifiez par rapport aux documents originaux."
+          "ocr": "Reconnaissance de texte (OCR), conversion d'adresses, consultation de réglementations : des erreurs sont possibles ; vérifiez par rapport aux documents originaux.",
+          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
         }
       },
       "hanh-vi-cam": {
@@ -144,7 +145,8 @@
           "visits": "Ouvertures d'outils : nom de l'outil et horodatage, pour compter l'utilisation totale. Seuls des totaux agrégés sont conservés, sans lien avec un utilisateur.",
           "ip": "Adresse IP : hachée de manière irréversible avec une clé secrète, utilisée uniquement pour limiter les envois automatisés, et supprimée automatiquement après environ 1 heure.",
           "feedback": "Contenu des remarques et propositions : uniquement si vous cochez la case de consentement et appuyez sur Envoyer, afin de les examiner et d'améliorer les outils. Les codes de reçu ne sont conservés que sous forme hachée.",
-          "logs": "Journaux techniques du serveur web (adresse IP, type de navigateur, pages consultées) : utilisés uniquement pour le fonctionnement et la sécurité du système, et conservés pendant la courte durée nécessaire."
+          "logs": "Journaux techniques du serveur web (adresse IP, type de navigateur, pages consultées) : utilisés uniquement pour le fonctionnement et la sécurité du système, et conservés pendant la courte durée nécessaire.",
+          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
         }
       },
       "tai-khoan": {
@@ -196,7 +198,8 @@
           "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
-          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
+          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
         }
       },
       "quyen": {

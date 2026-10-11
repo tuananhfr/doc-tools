@@ -1,4 +1,7 @@
+import { ENTERTAINMENT_SCHEMA } from '../entertainment/entertainment.schema'
+
 export const SCHEMA = [
+  ...ENTERTAINMENT_SCHEMA,
   `CREATE TABLE IF NOT EXISTS quality_daily (
     day CHAR(10) CHARACTER SET ascii NOT NULL,
     event VARCHAR(32) CHARACTER SET ascii NOT NULL,

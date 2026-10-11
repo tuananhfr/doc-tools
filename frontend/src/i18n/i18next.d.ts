@@ -25,6 +25,7 @@ import type rules from './messages/vi/rules.json'
 import type account from './messages/vi/account.json'
 import type ai from './messages/vi/ai.json'
 import type cloud from './messages/vi/cloud.json'
+import type entertainment from './messages/vi/entertainment.json'
 
 // Vietnamese is the source language: keys missing there are type errors everywhere.
 declare module 'i18next' {
@@ -57,6 +58,7 @@ declare module 'i18next' {
       account: typeof account
       ai: typeof ai
       cloud: typeof cloud
+      entertainment: typeof entertainment
     }
   }
 }

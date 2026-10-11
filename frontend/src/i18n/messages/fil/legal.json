@@ -46,7 +46,8 @@
         "items": {
           "estimates": "Tantiyang gastos sa pagpapatayo ng bahay, pagkuwenta ng sahod, bill sa kuryente: hindi kapalit ng opisyal na quotation, payroll o resibo.",
           "orientation": "Direksyon ng bahay at pagtingin ayon sa edad: sanggunian batay sa katutubong feng shui, hindi teknikal na konklusyon.",
-          "ocr": "Pagkilala ng text (OCR), pag-convert ng address, pag-lookup ng mga regulasyon: maaaring may mali, kailangang suriin muli laban sa orihinal na dokumento."
+          "ocr": "Pagkilala ng text (OCR), pag-convert ng address, pag-lookup ng mga regulasyon: maaaring may mali, kailangang suriin muli laban sa orihinal na dokumento.",
+          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
         }
       },
       "hanh-vi-cam": {
@@ -144,7 +145,8 @@
           "visits": "Pagbukas ng tool: pangalan ng tool at oras, para mabilang ang kabuuang paggamit. Pinagsama-samang bilang lang ang sine-save, hindi nakakabit sa user.",
           "ip": "IP address: one-way na hina-hash gamit ang lihim na key, para lang limitahan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras.",
           "feedback": "Nilalaman ng puna at mungkahi: kapag nag-check ka lang ng pagpayag at pinindot ang Ipadala, para masuri at mapabuti ang mga tool. Sine-save lang ang resibo code bilang hash.",
-          "logs": "Teknikal na log ng web server (IP address, uri ng browser, page na binuksan): ginagamit lang para sa operasyon at seguridad ng sistema, at sine-save lang sa maikling panahong kailangan."
+          "logs": "Teknikal na log ng web server (IP address, uri ng browser, page na binuksan): ginagamit lang para sa operasyon at seguridad ng sistema, at sine-save lang sa maikling panahong kailangan.",
+          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
         }
       },
       "tai-khoan": {
@@ -196,7 +198,8 @@
           "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
-          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
+          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
         }
       },
       "quyen": {

@@ -72,7 +72,8 @@
     "construction": "Xây dựng",
     "family": "Gia đình",
     "guides": "Hướng dẫn",
-    "about": "Về chúng tôi"
+    "about": "Về chúng tôi",
+    "explore": "Khám phá"
   },
   "header": {
     "skipLink": "Đi tới nội dung",
@@ -485,6 +486,76 @@
           }
         }
       }
+    },
+    "kham-pha-giai-tri": {
+      "label": "Khám phá & Giải trí",
+      "title": "<accent>Khám phá</accent> từ những điều nhỏ",
+      "tagline": "Lịch âm đang có. Ba công cụ mới đang được kiểm chứng.",
+      "description": "Xem lịch âm-dương và khám phá bản thử nghiệm thần số học, bài Tây, Tarot. Nội dung mang tính tham khảo; các phần chưa có nguồn duyệt được ghi rõ.",
+      "metaTitle": "Khám phá & Giải trí | Chuyện Nhỏ",
+      "metaDescription": "Lịch âm-dương và nền kỹ thuật cho thần số học, bài Tây 52 lá, Tarot 78 lá.",
+      "caption": "Khám phá\nCó nguồn, có giới hạn.",
+      "searchPlaceholder": "Tìm lịch âm, Tarot, bài Tây…",
+      "highlights": {
+        "calendar": "Lịch âm-dương",
+        "numbers": "Thần số học",
+        "cards": "Bài Tây 52 lá",
+        "tarot": "Tarot 78"
+      },
+      "trust": {
+        "free": {
+          "title": "Không thu phí riêng",
+          "detail": "Không có paywall cho bốn chức năng này."
+        },
+        "source": {
+          "title": "Minh bạch nguồn",
+          "detail": "Nêu phiên bản và phần chưa được duyệt."
+        },
+        "choice": {
+          "title": "Chủ động dữ liệu",
+          "detail": "Gửi dữ liệu khi bạn chọn tính thử."
+        },
+        "reference": {
+          "title": "Chỉ tham khảo",
+          "detail": "Không khẳng định dự đoán tương lai."
+        }
+      },
+      "subgroups": {
+        "lich": "Lịch",
+        "kham-pha": "Khám phá"
+      },
+      "aside": {
+        "sandbox": {
+          "title": "Đang phát triển",
+          "items": {
+            "technical": "Sandbox chỉ thử phép tính, rút và lật lá.",
+            "content": "Luận giải chờ corpus và nguồn được duyệt.",
+            "privacy": "Chưa lưu lịch sử cá nhân hoặc kết nối AI mới."
+          }
+        }
+      },
+      "journey": {
+        "title": "Khám phá có giới hạn rõ ràng",
+        "motto": "Hiểu cách tính trước khi đọc kết quả.",
+        "steps": {
+          "choose": {
+            "title": "Chọn tiện ích",
+            "detail": "Lịch có sẵn, sandbox bật riêng."
+          },
+          "explore": {
+            "title": "Thử thao tác",
+            "detail": "Không cần AI để dùng nền kỹ thuật."
+          },
+          "source": {
+            "title": "Đọc nguồn",
+            "detail": "Kiểm tra phần đã có và còn thiếu."
+          },
+          "export": {
+            "title": "Xuất bản ghi",
+            "detail": "Luôn kèm cảnh báo tham khảo."
+          }
+        }
+      }
     }
   },
   "about": {
@@ -624,7 +695,8 @@
     "emptyHint": "Thử từ khoá khác hoặc bỏ bộ lọc.",
     "showAll": "Xem tất cả",
     "faqTitle": "Câu hỏi về dữ liệu",
-    "faqDescription": "Đọc đầy đủ ở <link>Chính sách quyền riêng tư</link>."
+    "faqDescription": "Đọc đầy đủ ở <link>Chính sách quyền riêng tư</link>.",
+    "entertainment": "Sandbox mới: tính thử gửi dữ liệu nhập tới backend sau khi bạn đồng ý; rút bài chỉ gửi cấu hình số lá. Phiên bài tạm có TTL; họ tên/ngày sinh không lưu database. PDF/ảnh tạo trên thiết bị."
   },
   "guidesPage": {
     "title": "Hướng dẫn <accent>sử dụng</accent>",
@@ -858,7 +930,7 @@
       },
       "may-chu": {
         "question": "Vì sao một số công cụ ghi “Xử lý trên máy chủ”?",
-        "answer": "Một số công cụ sắp ra mắt cần dữ liệu lớn hoặc cập nhật liên tục, như giá xây dựng hay quy hoạch, nên phải tra cứu trên máy chủ. Thẻ của chúng ghi rõ điều này để bạn biết trước. Các công cụ đang dùng được hiện đều xử lý trên thiết bị."
+        "answer": "Một số công cụ sắp ra mắt cần dữ liệu lớn hoặc cập nhật liên tục, như giá xây dựng hay quy hoạch, nên phải tra cứu trên máy chủ. Thẻ của chúng ghi rõ điều này để bạn biết trước. Các công cụ đang dùng được hiện đều xử lý trên thiết bị. Sandbox mới gọi backend khi bạn yêu cầu; họ tên/ngày sinh chỉ gửi sau xác nhận và không lưu database. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị."
       },
       "cai-dat": {
         "question": "Làm thế nào để cài Chuyện Nhỏ trên điện thoại?",
@@ -878,7 +950,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ có thu thập thông tin cá nhân của tôi không?",
-        "answer": "Khi bạn mở một công cụ, trình duyệt báo tên công cụ để đếm tổng lượt dùng; IP được băm một chiều để chống gửi tự động và tự xoá sau khoảng 1 giờ. Form đề xuất và góp ý chỉ gửi nội dung bạn nhập khi bạn đồng ý và bấm Gửi, không đính kèm tệp hoặc kết quả đang làm."
+        "answer": "Khi bạn mở một công cụ, trình duyệt báo tên công cụ để đếm tổng lượt dùng; IP được băm một chiều để chống gửi tự động và tự xoá sau khoảng 1 giờ. Form đề xuất và góp ý chỉ gửi nội dung bạn nhập khi bạn đồng ý và bấm Gửi, không đính kèm tệp hoặc kết quả đang làm. Sandbox mới gọi backend khi bạn yêu cầu; họ tên/ngày sinh chỉ gửi sau xác nhận và không lưu database. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị."
       },
       "xoa-du-lieu": {
         "question": "Làm thế nào để xoá dữ liệu của tôi?",

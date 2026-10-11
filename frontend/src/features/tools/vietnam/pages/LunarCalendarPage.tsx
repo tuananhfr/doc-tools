@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
 import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { CalendarSources } from '@/features/tools/entertainment/components/CalendarSources'
 import { HolidayLayerToggles } from '../components/HolidayLayerToggles'
 import { LunarDayDetails } from '../components/LunarDayDetails'
 import { MonthCalendar } from '../components/MonthCalendar'
@@ -76,6 +77,7 @@ export default function LunarCalendarPage() {
           </li>)}</ul>
         </ToolPanel>
       </div>
+      <CalendarSources date={selected} />
     </div>
   </ToolBoard>
 }

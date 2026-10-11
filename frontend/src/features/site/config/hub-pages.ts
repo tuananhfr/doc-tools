@@ -7,6 +7,13 @@ import type { HubPage, HubPageSlug } from '../types/hub-page.types'
  * Chữ ở `site:hubs.<slug>`, khoá theo id khai ở đây.
  */
 export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
+  'kham-pha-giai-tri': {
+    slug: 'kham-pha-giai-tri', art: { kind: 'icon', icon: 'stars' }, highlights: ['calendar', 'numbers', 'cards', 'tarot'],
+    trust: [{ id: 'free', icon: 'gift' }, { id: 'source', icon: 'journal-check' }, { id: 'choice', icon: 'person-check' }, { id: 'reference', icon: 'info-circle' }],
+    subgroups: [{ id: 'lich', toolIds: ['lunar-calendar'] }, { id: 'kham-pha', toolIds: ['numerology', 'playing-cards', 'tarot'] }],
+    aside: [{ kind: 'tips', id: 'sandbox', items: ['technical', 'content', 'privacy'] }, { kind: 'support' }],
+    journey: { flow: false, steps: [{ id: 'choose', icon: 'grid' }, { id: 'explore', icon: 'search' }, { id: 'source', icon: 'journal' }, { id: 'export', icon: 'download' }] },
+  },
   'xay-dung': {
     slug: 'xay-dung',
     art: { kind: 'image', src: '/brand/skyline-hero-v1.png', width: 1792, height: 896 },

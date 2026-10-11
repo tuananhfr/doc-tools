@@ -1,0 +1,1179 @@
+{
+  "source": "Wikimedia Commons",
+  "assets": [
+    {
+      "id": "CUPS_ACE",
+      "file": "tarot/CUPS_ACE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups01.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "4e70ba40c3e53396ec0bd705855fee92ee18ed663f3cd15c1eba913f0f4e6275"
+    },
+    {
+      "id": "CUPS_2",
+      "file": "tarot/CUPS_2.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups02.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "ffd6ffc5c99d5b0ce030e1e69c1dbcbedc1b554e1edc97b80c6904c3fde954c6"
+    },
+    {
+      "id": "CUPS_3",
+      "file": "tarot/CUPS_3.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups03.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "cb3a3222813ad0d50007848cb9b1996d9f041bb6a773558058e8b31c6c7d18fd"
+    },
+    {
+      "id": "CUPS_4",
+      "file": "tarot/CUPS_4.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups04.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "18392369f0ede5e071d3d67a78cbcb3e43f3540b09a0c8faded2f4a4bb8bb606"
+    },
+    {
+      "id": "CUPS_5",
+      "file": "tarot/CUPS_5.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups05.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "e907cb9acce3d8f1356bcbe79d213296cc873c5e84e554dbb7103e3ac4af7564"
+    },
+    {
+      "id": "CUPS_6",
+      "file": "tarot/CUPS_6.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups06.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "642f3168dc988282ac4b4bb3a22cb2c75cffa6f7689c84ed5562377f1ee265b9"
+    },
+    {
+      "id": "CUPS_7",
+      "file": "tarot/CUPS_7.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups07.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "cf38c73de026edad28bc0ef7a1d357c8847c577ab4048c047042fdf941690093"
+    },
+    {
+      "id": "CUPS_8",
+      "file": "tarot/CUPS_8.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups08.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "b6743b507a38aa978c0ffb82b25e217c35a75d08ebd34da2e2a2ea2fde9a3158"
+    },
+    {
+      "id": "CUPS_9",
+      "file": "tarot/CUPS_9.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups09.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "7644c66db4213d3f70a10e9fbff6b274d890c836e075c6ddaaf107617f41fb9b"
+    },
+    {
+      "id": "CUPS_10",
+      "file": "tarot/CUPS_10.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups10.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "1525f6a2273b12c4fb6619003419ce6d856f6520652a44626aa0381cf5a7e168"
+    },
+    {
+      "id": "CUPS_PAGE",
+      "file": "tarot/CUPS_PAGE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups11.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "9988e664efc0898a15a70160af62ec48df83022778cd5b0ef774b18b14d77c8b"
+    },
+    {
+      "id": "CUPS_KNIGHT",
+      "file": "tarot/CUPS_KNIGHT.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups12.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "6a578aa6e7669abc0562204c5dfc39f33223955600126c9f156b2fecbbb10dde"
+    },
+    {
+      "id": "CUPS_QUEEN",
+      "file": "tarot/CUPS_QUEEN.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups13.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "23d440ec91efb916c663bdce9a19e98b7bde8280ed7bdafa11b63a5ca7efe002"
+    },
+    {
+      "id": "CUPS_KING",
+      "file": "tarot/CUPS_KING.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cups14.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "91f356efe4d9728ab579bab7651ff80b6646bffd4f655533f30416c9aa746588"
+    },
+    {
+      "id": "PENTACLES_ACE",
+      "file": "tarot/PENTACLES_ACE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents01.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "04336630ebc8a2db8a3013039e15fd8859b6aa0dde2d5a511110fda9b8735d1c"
+    },
+    {
+      "id": "PENTACLES_2",
+      "file": "tarot/PENTACLES_2.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents02.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "7be83c45173682184db4c42c2ca9b87f4fa932bf9e6242be584b5f474c315223"
+    },
+    {
+      "id": "PENTACLES_3",
+      "file": "tarot/PENTACLES_3.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents03.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "8b572ac8d5d59e0c234131cfb2b6713fac9deaeee84e697913756402de321f64"
+    },
+    {
+      "id": "PENTACLES_4",
+      "file": "tarot/PENTACLES_4.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents04.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "1bed80a58b7781a18e0ccbdb56715f0d11a6f51ef71019a2b02496be50121ed4"
+    },
+    {
+      "id": "PENTACLES_5",
+      "file": "tarot/PENTACLES_5.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents05.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "cf87e40e801207119edd6838f23c6db117a4ed14a3932c3aa0e4dd3f0b6dbe2c"
+    },
+    {
+      "id": "PENTACLES_6",
+      "file": "tarot/PENTACLES_6.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents06.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "50aa20b6b3e6eb0f2bdc95e35d647d51976a002724c0742fd506373c15c516a3"
+    },
+    {
+      "id": "PENTACLES_7",
+      "file": "tarot/PENTACLES_7.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents07.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "bcdb53f2768663074dc3360006f3af78fa4dc73f21b12eb198e116f352593741"
+    },
+    {
+      "id": "PENTACLES_8",
+      "file": "tarot/PENTACLES_8.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents08.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "c515ddc4d57da7a27c3090218a98215aeb33c8b85c1fad3e3c7aae031f14fd9b"
+    },
+    {
+      "id": "PENTACLES_9",
+      "file": "tarot/PENTACLES_9.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents09.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "fdc5dd3504f939c625215d7c78f6ce24fc3be50fb6035c5ad802c358880ccc95"
+    },
+    {
+      "id": "PENTACLES_10",
+      "file": "tarot/PENTACLES_10.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents10.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "858e16eba50d81dc09b1219474f508183bf4a8a66bc9112524b6bd28ca28e02e"
+    },
+    {
+      "id": "PENTACLES_PAGE",
+      "file": "tarot/PENTACLES_PAGE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents11.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "d6bcc92d1cee2d172c395297540131dee0ddde20460fd41cfd17620739a693d3"
+    },
+    {
+      "id": "PENTACLES_KNIGHT",
+      "file": "tarot/PENTACLES_KNIGHT.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents12.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "ad814b58f586faa414b41bd836db6bb7c74c77040fe81cc2ae1e3ba6928280ed"
+    },
+    {
+      "id": "PENTACLES_QUEEN",
+      "file": "tarot/PENTACLES_QUEEN.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents13.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "fbde0a886150ad4d105f0d694bef0470564bdcda0deea192a13f2a8a854c2eac"
+    },
+    {
+      "id": "PENTACLES_KING",
+      "file": "tarot/PENTACLES_KING.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Pents14.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "580d700e00c990c7ccc016051d8a547c14be97867d6418e6ebc34db01d171231"
+    },
+    {
+      "id": "MAJOR_00",
+      "file": "tarot/MAJOR_00.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_00_Fool.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "f7f4b182d2566cfcc4fb1a8087d987d1d5ba29d41902cd03356adcdadbb2620c"
+    },
+    {
+      "id": "MAJOR_01",
+      "file": "tarot/MAJOR_01.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_01_Magician.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "91e12ac4550ea5ba81ffcf176cb0f0e2fe8ec190af511a5b3db070b22e020216"
+    },
+    {
+      "id": "MAJOR_02",
+      "file": "tarot/MAJOR_02.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_02_High_Priestess.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "7c80428131233457e7b213d94e70c20834cfc91e68029bac86abdaf351f35d5a"
+    },
+    {
+      "id": "MAJOR_03",
+      "file": "tarot/MAJOR_03.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_03_Empress.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "2bbc894dde4f25251944379b44e9a363ed782d94ecbeefc05896b670bc5f99f7"
+    },
+    {
+      "id": "MAJOR_04",
+      "file": "tarot/MAJOR_04.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_04_Emperor.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "faf0951bf4d60e59fb1aca374fe35fe822dce7e3d311e003a3a5947bc4a619df"
+    },
+    {
+      "id": "MAJOR_05",
+      "file": "tarot/MAJOR_05.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_05_Hierophant.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "cd8adc2b1195db2bad4244c355fe0bb9d042e39421bc4d728a68b888c614bae2"
+    },
+    {
+      "id": "MAJOR_06",
+      "file": "tarot/MAJOR_06.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_06_Lovers.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "567b05ac660fd51a98b64b2de4b973c873ef03c5122361145f56a99a114a34dd"
+    },
+    {
+      "id": "MAJOR_07",
+      "file": "tarot/MAJOR_07.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_07_Chariot.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "8c6a551b9d86339e282cb7e59d8253527ae44472faba086783341f20374aec8c"
+    },
+    {
+      "id": "MAJOR_08",
+      "file": "tarot/MAJOR_08.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_08_Strength.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "167de59e462c7b423734e80f6eab70bf4a167fc2335e3e7caf355bec5ccd1da9"
+    },
+    {
+      "id": "MAJOR_09",
+      "file": "tarot/MAJOR_09.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_09_Hermit.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "739dd2c93a4929e99a48fa2e2881f61970accc12c77a9b47061f03699c0113f3"
+    },
+    {
+      "id": "MAJOR_10",
+      "file": "tarot/MAJOR_10.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_10_Wheel_of_Fortune.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "0f2cac244ade379f1a65b133a0d3720571b00d6a096af54ceb3f42cb9edbba2f"
+    },
+    {
+      "id": "MAJOR_11",
+      "file": "tarot/MAJOR_11.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_11_Justice.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "a722bca07239a3f2eecd2cf3d2f82a36236950104d0d9e2e1725dbb405b30af9"
+    },
+    {
+      "id": "MAJOR_12",
+      "file": "tarot/MAJOR_12.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_12_Hanged_Man.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "3fbe3406aab02dce56385b982615d00295e77055a22a0c07d6e5bb7ae932b28d"
+    },
+    {
+      "id": "MAJOR_13",
+      "file": "tarot/MAJOR_13.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_13_Death.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "e8e9aa20fcf49c2f6077b345f57b62ff85f03c8e0d2af328c498ae164cecb257"
+    },
+    {
+      "id": "MAJOR_14",
+      "file": "tarot/MAJOR_14.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_14_Temperance.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "248fc40d55f66fb01b2f4990086ed10739a5de31379e19708ac236d565beef5f"
+    },
+    {
+      "id": "MAJOR_15",
+      "file": "tarot/MAJOR_15.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_15_Devil.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "b85551ae65c811c90a60a7a750c604acff5fdd794b4de23856a3f99d500773f3"
+    },
+    {
+      "id": "MAJOR_16",
+      "file": "tarot/MAJOR_16.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_16_Tower.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "7e7d5a138ff8e976b9c739a6f54a42804fb82ab4e82a92e328e63986ff061f7b"
+    },
+    {
+      "id": "MAJOR_17",
+      "file": "tarot/MAJOR_17.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_17_Star.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "abbbb92accdcc4cd66c1d84ac3e1ea17f9e8f1ba6ae442a2994d8cd9e1e527db"
+    },
+    {
+      "id": "MAJOR_18",
+      "file": "tarot/MAJOR_18.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_18_Moon.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "3890d95f119b1a95519d1cbcbf279de32b6bc247510147e8d6c70e6225d5dbf7"
+    },
+    {
+      "id": "MAJOR_19",
+      "file": "tarot/MAJOR_19.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_19_Sun.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "3cc836dc40561fa3f14b28a342e8b54def0e4aacd6015d0eada2e1b3521e33f6"
+    },
+    {
+      "id": "MAJOR_20",
+      "file": "tarot/MAJOR_20.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_20_Judgement.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "d3f318f1b010634fc126b0b71fb6390e3136e77eb1fdbe8d2330662b739ba748"
+    },
+    {
+      "id": "MAJOR_21",
+      "file": "tarot/MAJOR_21.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:RWS_Tarot_21_World.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "5ed78e922aed3197619df93048b1ae69b83e28892c28ede03a4f6fd760df1eb8"
+    },
+    {
+      "id": "SWORDS_ACE",
+      "file": "tarot/SWORDS_ACE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords01.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "b4ebe5a34f84022b31c11cc3afedc5b2d2c5197d6d3ad7c9e371da6bbc70859a"
+    },
+    {
+      "id": "SWORDS_2",
+      "file": "tarot/SWORDS_2.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords02.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "22c57877d34c961cc00f704a3cebdf90a3bb6a53c4565f370fcee7e8e5f6a833"
+    },
+    {
+      "id": "SWORDS_3",
+      "file": "tarot/SWORDS_3.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords03.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "689ed7e604c1df0c327c46569b04da8f20c89d9ceec5d8ffb8129aea0284794e"
+    },
+    {
+      "id": "SWORDS_4",
+      "file": "tarot/SWORDS_4.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords04.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "dd46c2e25580d999994e57d850f3c7c4e8678f3cc4d6447d533b99b661cc7dc5"
+    },
+    {
+      "id": "SWORDS_5",
+      "file": "tarot/SWORDS_5.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords05.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "66ddc3dc2e724dc0f3ea076181126e408c88a95f527d118a5b8d4720124544a8"
+    },
+    {
+      "id": "SWORDS_6",
+      "file": "tarot/SWORDS_6.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords06.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "45ad60a91eb8a865220445516ace3965a42f60f17f8295c6e7981e9f1dbd6fe0"
+    },
+    {
+      "id": "SWORDS_7",
+      "file": "tarot/SWORDS_7.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords07.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "0e1a459b3c03c852cd967238d1c03ffd8d01245ed6841cfd5672e0533dcfb01b"
+    },
+    {
+      "id": "SWORDS_8",
+      "file": "tarot/SWORDS_8.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords08.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "bc5cb3d7c691b232d43e4d5dd0b90191d50ac1259fd122d4899a65e7d3d12036"
+    },
+    {
+      "id": "SWORDS_9",
+      "file": "tarot/SWORDS_9.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords09.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "2c9c2bf0fb24bfc1c88f3394e2903c5d10ce1e844b55501d22f6482da21e6921"
+    },
+    {
+      "id": "SWORDS_10",
+      "file": "tarot/SWORDS_10.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords10.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "7cb00ad1dabffdab4dc820089c86248fdf1715b69511adfd020224c8546c65cb"
+    },
+    {
+      "id": "SWORDS_PAGE",
+      "file": "tarot/SWORDS_PAGE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords11.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "5c95d7e6aec9bf213dda56300261faed202f973700f982fe7c684c1f728cd28a"
+    },
+    {
+      "id": "SWORDS_KNIGHT",
+      "file": "tarot/SWORDS_KNIGHT.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords12.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "977126f6e307e9acf29cd8ea5a824fd4df904fa737e131c01133c29cafefbc8b"
+    },
+    {
+      "id": "SWORDS_QUEEN",
+      "file": "tarot/SWORDS_QUEEN.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords13.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "8f49de4f5bcc484ca3f9e794698ee34eebcb78264259effc3aaeff6117f4cd24"
+    },
+    {
+      "id": "SWORDS_KING",
+      "file": "tarot/SWORDS_KING.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Swords14.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "187dcba1ff8949cb4e1e0bdcee0ee13620ef8ac440cb2b8737d04e86eb2b74d9"
+    },
+    {
+      "id": "WANDS_ACE",
+      "file": "tarot/WANDS_ACE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands01.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "280b2e5436c036e18d1cf59df71acb3db9eed6f225872442ba134eb2bbe1ff2d"
+    },
+    {
+      "id": "WANDS_2",
+      "file": "tarot/WANDS_2.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands02.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "c68da7b56cbfbdd3eb3cd4c93b2cf3f5e5369cad4398b091e83f27b2867ca120"
+    },
+    {
+      "id": "WANDS_3",
+      "file": "tarot/WANDS_3.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands03.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "8916f2abbe68a5aabd9ae1238155690a9ae43f32276316352abba92e33937d08"
+    },
+    {
+      "id": "WANDS_4",
+      "file": "tarot/WANDS_4.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands04.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "a1354222f5eece5aa4af8960d229b603ad1bc915e9e11848e12764992ec10c85"
+    },
+    {
+      "id": "WANDS_5",
+      "file": "tarot/WANDS_5.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands05.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "5d1c3fee3238bdce4f619fc17d93ba4f7c4101c249118f70a0873ab65a12df70"
+    },
+    {
+      "id": "WANDS_6",
+      "file": "tarot/WANDS_6.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands06.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "5463bf257bc90717e20962314901c53d7f5c8be4559699ac58575f6b74f04088"
+    },
+    {
+      "id": "WANDS_7",
+      "file": "tarot/WANDS_7.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands07.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "3514d81077016a8c5c6a3ae0afc7f4e1acc31ce567cfb47872e27cf9a883d477"
+    },
+    {
+      "id": "WANDS_8",
+      "file": "tarot/WANDS_8.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands08.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "e2255fca22c9cbf023c62ace4e85a362684e7c72480d4722f03c516ee253df4a"
+    },
+    {
+      "id": "WANDS_9",
+      "file": "tarot/WANDS_9.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands09.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "c3cf8f9316e2ae941dd642a895808f31e201be9ae3723c6259864fccd763f8b5"
+    },
+    {
+      "id": "WANDS_10",
+      "file": "tarot/WANDS_10.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands10.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "5f65bb88266221c84a92bbc51b51f10128d3bb9f22a3295f8319218d8a7f8597"
+    },
+    {
+      "id": "WANDS_PAGE",
+      "file": "tarot/WANDS_PAGE.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands11.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "805d40c3deb9927af889eb7e9167b78a72467e06074efac7a044cb4ca71fe17a"
+    },
+    {
+      "id": "WANDS_KNIGHT",
+      "file": "tarot/WANDS_KNIGHT.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands12.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "6e3b82641cc7485c9b802f9b9708c41d4f0a040c09c387169606755460bb69f1"
+    },
+    {
+      "id": "WANDS_QUEEN",
+      "file": "tarot/WANDS_QUEEN.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands13.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "a6d9038c336bfe31dca27fe1a44ba5870f84e0dab90dcc34e0b31776324eebbc"
+    },
+    {
+      "id": "WANDS_KING",
+      "file": "tarot/WANDS_KING.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Wands14.jpg",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "artist": "Pamela Colman Smith",
+      "sha256": "85a5ee095228839fdfb9545e70bfec9955e7e7fff023616cd8bdcb7d57059962"
+    },
+    {
+      "id": "HA",
+      "file": "cards/HA.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "c4b53fe712b9a08e09c4891f328b465e561d8c104aad003a86463319fe75654e"
+    },
+    {
+      "id": "H2",
+      "file": "cards/H2.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "d96641ba6e599bc4e22e1d264e78e0103e263f23d951ce5d22136f6f66acdb52"
+    },
+    {
+      "id": "H3",
+      "file": "cards/H3.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "1ca2d54422f90eb588d4bd8ba40751e9af99f53a6203785af8923f6c2fd06452"
+    },
+    {
+      "id": "H4",
+      "file": "cards/H4.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "6f4aef5b37f7f814f13d61f104e145765e13aabfb9d519e75cecea7d4ba90519"
+    },
+    {
+      "id": "H5",
+      "file": "cards/H5.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "c8dc1ce51b422f982960fb36b2ec72b5faecefa448513317020e2805b60882f4"
+    },
+    {
+      "id": "H6",
+      "file": "cards/H6.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "96f04dad743f4c0783f932eb0f0423a589b433322e476a86fc1f3d0a9afe914f"
+    },
+    {
+      "id": "H7",
+      "file": "cards/H7.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "635d3d0a0a0bfd81fa8abf7643e1f3a893dc0ed3420e77e4a1b643451e481d84"
+    },
+    {
+      "id": "H8",
+      "file": "cards/H8.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "1423148bd7acacc2ca056344b7b91355247c1c1bb6b4e4838b0421b25539487f"
+    },
+    {
+      "id": "H9",
+      "file": "cards/H9.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "de9521385da314cd3427e4472f60350df16d3aa532c1cf0544e98c51c7df803a"
+    },
+    {
+      "id": "H10",
+      "file": "cards/H10.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "91a843f0660627bff0026813df39dc6e7cf7df4063691fec18e4ba691f571221"
+    },
+    {
+      "id": "HJ",
+      "file": "cards/HJ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "71390349e2d26d1ee887ee20ce0506f08dab86f576f2aac160283a68a37cb08f"
+    },
+    {
+      "id": "HQ",
+      "file": "cards/HQ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "20e287caf04b79191866bf5c419d5a53b12a01f7f4edda00f0527783a1963bab"
+    },
+    {
+      "id": "HK",
+      "file": "cards/HK.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "040443a77020a9327cdc3a0af487bde6978419578da1ff5376d6c2bda1fcd4e9"
+    },
+    {
+      "id": "DA",
+      "file": "cards/DA.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "1a49d77853f3aea5a16095c4c8a4b3b98ee6cc520ce6104f478209cb66a807ea"
+    },
+    {
+      "id": "D2",
+      "file": "cards/D2.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "2128e60aa48538b6f5d655a2c8e5254e1d9368912a576bd350cdb6b900f0af8a"
+    },
+    {
+      "id": "D3",
+      "file": "cards/D3.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "8005224cad63ae81e2a539098f10acc76fa962273266bd141dfc8627d36d072d"
+    },
+    {
+      "id": "D4",
+      "file": "cards/D4.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "4030d2881539792607b358024f2637125366a2435c4df0c74fdd23a58e03564a"
+    },
+    {
+      "id": "D5",
+      "file": "cards/D5.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "891a5b39ad7adbc2577918f0ce601795d52592a0a6830cba67c8dd45f212d1b2"
+    },
+    {
+      "id": "D6",
+      "file": "cards/D6.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "72c220550e68274e91f3cb0a6d24b302822f07c2e0d7a3673b6a4e97c46bde35"
+    },
+    {
+      "id": "D7",
+      "file": "cards/D7.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "f817a9bed596d3294ed2ae69db1ede951fdf4bb19d69c330cce09a687bf02099"
+    },
+    {
+      "id": "D8",
+      "file": "cards/D8.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "17f69d324a96ae044e9189e2dc39081d6f5c2fbd2f96014fae2da3e5f84637b1"
+    },
+    {
+      "id": "D9",
+      "file": "cards/D9.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "024f0dd9033bae05cc9ef280720e1539389e1bde97d37fd371295a4c3972a615"
+    },
+    {
+      "id": "D10",
+      "file": "cards/D10.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "a364218da77416b10173ac9036fba3551fafcad2c94e9238af963167016b4600"
+    },
+    {
+      "id": "DJ",
+      "file": "cards/DJ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "d3316a2adfbb99aa9f86a622b4f6efb63862f3bfcc4a5d95b0fd41025cceb6d4"
+    },
+    {
+      "id": "DQ",
+      "file": "cards/DQ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "8aae41bfb848374858cbd004af687baae41ffefd3144eb05ecd34e67a8699612"
+    },
+    {
+      "id": "DK",
+      "file": "cards/DK.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "fe4538b6b126233606a873fbfa8148a950d2853a821790603aa2a582eac178f1"
+    },
+    {
+      "id": "CA",
+      "file": "cards/CA.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "34699f8363c12e86e53e9c5cd95f17bf49e2b7d28891535e0a5e32287c46369f"
+    },
+    {
+      "id": "C2",
+      "file": "cards/C2.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "ae19c48283ac8cd91b523f29cfad315d3913b19bb74de4d9bcb449ad90903343"
+    },
+    {
+      "id": "C3",
+      "file": "cards/C3.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "a31413a019b40ff984972f17d6d0c46d84d7a3853749ca4f6adea296163ae683"
+    },
+    {
+      "id": "C4",
+      "file": "cards/C4.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "7d95b8789e3e741e975d5005112bf1da58e4dc5d4000e2f4b08b629231ae912f"
+    },
+    {
+      "id": "C5",
+      "file": "cards/C5.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "09a0dd9b8c34bf9d1b479da09bc451882a946720f418e74f2c8986659377ee29"
+    },
+    {
+      "id": "C6",
+      "file": "cards/C6.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "5373ed5f76dfe098dd532420575361af92419ba67152e50d1cb8d6ca66f59d2f"
+    },
+    {
+      "id": "C7",
+      "file": "cards/C7.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "735e22e198fd614eb9b6e50c73ee88b095631e70a6e35b1f9907049faf2aa3e6"
+    },
+    {
+      "id": "C8",
+      "file": "cards/C8.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "9b5ada21c5ffcd088f1e214d34b001eb9b8de9fb40c31283b9b9e635ae3604d9"
+    },
+    {
+      "id": "C9",
+      "file": "cards/C9.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "4c0506e5f1e04c2ed6b93d30efa65b6d0b0de54e212ed543020d7e57f146e824"
+    },
+    {
+      "id": "C10",
+      "file": "cards/C10.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "eb7b3f1fb52354e1af13cb003251d4d84df8c293e06720bc68f1269260f84806"
+    },
+    {
+      "id": "CJ",
+      "file": "cards/CJ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "9dd080218929d46b5861dc6d1050b81f77253a8bcdc8098e40c7e5fa7507a894"
+    },
+    {
+      "id": "CQ",
+      "file": "cards/CQ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "14c639b39d0a785f1013e2b25edde0b901d54f4430dbea5938a8967a3a76be01"
+    },
+    {
+      "id": "CK",
+      "file": "cards/CK.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "78d09493f3ad2472df12e16051d7c3de6cd4885493c504ad7a71f855633fafd4"
+    },
+    {
+      "id": "SA",
+      "file": "cards/SA.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "cba6f2bc19783f0ad01511dcc3f0910aebd0df8550773afc94344d32284d84d2"
+    },
+    {
+      "id": "S2",
+      "file": "cards/S2.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "8222ff42671215591b4dcd36d5d1a6b6563d841f908605e40823267f499a13d6"
+    },
+    {
+      "id": "S3",
+      "file": "cards/S3.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "9b3bf9147d93c3e5bdb0114cc4d190d3710c9153baab007a923dd76b0b8a0641"
+    },
+    {
+      "id": "S4",
+      "file": "cards/S4.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "3e136a5f44c15b246cd7c6343439843eca145de252a51ae5f976dd9d071c760b"
+    },
+    {
+      "id": "S5",
+      "file": "cards/S5.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "cdad319640cb35be290cc424a113d4e96bacdad4646f0a43a432a80fd8247ec3"
+    },
+    {
+      "id": "S6",
+      "file": "cards/S6.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "c24abf1c7a35e47ddfeb0761ec80ea5822427266a3c4e6755af9310d9a90b2fd"
+    },
+    {
+      "id": "S7",
+      "file": "cards/S7.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "a012a2b2bc50a0ad04d196969f9596ab0676b242d2e31dea21af0990131718e7"
+    },
+    {
+      "id": "S8",
+      "file": "cards/S8.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "e85c187b7f8f7052fca582ce9a9307c2ccbe4064b6498743dd7c25f03af6f91b"
+    },
+    {
+      "id": "S9",
+      "file": "cards/S9.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "61eda7ea57a684acf192f0672a9b2c17f22a4b7ac3c00c33994858e6fe352295"
+    },
+    {
+      "id": "S10",
+      "file": "cards/S10.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "83c4df0cea8820ef535fa1e6a31b4aed96dffe57cda3b285423745e0be295050"
+    },
+    {
+      "id": "SJ",
+      "file": "cards/SJ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "584faade1b974a00abd1001046b0f4d1f7c16b07f6d5e22519513ded3391b147"
+    },
+    {
+      "id": "SQ",
+      "file": "cards/SQ.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "8f047a0401b55cc95e4d1838b06e7fb7c96e1c63c00e7ee9097698bc68127980"
+    },
+    {
+      "id": "SK",
+      "file": "cards/SK.svg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "artist": "Dmitry Fomin",
+      "sha256": "0b95f750cd1016f48a4296839bd5891e029566d5b2442ef902e3da3eed6da784"
+    }
+  ],
+  "backs": {
+    "author": "Chuyen Nho",
+    "note": "Original SVG patterns"
+  }
+}

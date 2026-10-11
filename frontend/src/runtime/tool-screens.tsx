@@ -57,6 +57,9 @@ const MagnifierPage = dynamic(() => import('@/features/tools/accessibility/pages
 const FormTemplatesPage = dynamic(() => import('@/features/tools/documents/pages/FormTemplatesPage'), { ssr: false, loading: () => <Loading /> })
 const ElectricityPage = dynamic(() => import('@/features/tools/finance/pages/ElectricityPage'), { ssr: false, loading: () => <Loading /> })
 const LunarCalendarPage = dynamic(() => import('@/features/tools/vietnam/pages/LunarCalendarPage'), { ssr: false, loading: () => <Loading /> })
+const NumerologyPage = dynamic(() => import('@/features/tools/entertainment/pages/NumerologyPage'), { ssr: false, loading: () => <Loading /> })
+const PlayingCardsPage = dynamic(() => import('@/features/tools/entertainment/pages/PlayingCardsPage'), { ssr: false, loading: () => <Loading /> })
+const TarotPage = dynamic(() => import('@/features/tools/entertainment/pages/TarotPage'), { ssr: false, loading: () => <Loading /> })
 const PayrollPage = dynamic(() => import('@/features/tools/finance/pages/PayrollPage'), { ssr: false, loading: () => <Loading /> })
 const AddressConversionPage = dynamic(() => import('@/features/tools/vietnam/pages/AddressConversionPage'), { ssr: false, loading: () => <Loading /> })
 const FamilyCalendarPage = dynamic(() => import('@/features/tools/family/pages/FamilyCalendarPage'), { ssr: false, loading: () => <Loading /> })
@@ -127,6 +130,9 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   'form-templates': FormTemplatesPage,
   electricity: ElectricityPage,
   'lunar-calendar': LunarCalendarPage,
+  numerology: NumerologyPage,
+  'playing-cards': PlayingCardsPage,
+  tarot: TarotPage,
   payroll: PayrollPage,
   'address-conversion': AddressConversionPage,
   'family-calendar': FamilyCalendarPage,

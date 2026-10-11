@@ -99,7 +99,7 @@
 .cn-footer nav a:hover { color: var(--cn-accent); }
 .cn-footer-motto { font-size: 11px; color: var(--cn-muted); white-space: nowrap; }
 [data-theme='dark'] .cn-brand img { background: #eef5ff; border-radius: 50%; }
-@media (max-width: 1279px) {
+@media (max-width: 1399px) {
   .cn-header-content { gap: 16px; }
   .cn-desktop-navigation { gap: 14px; }
   .cn-header-products .cn-button { padding-inline: 12px; }
@@ -107,7 +107,7 @@
   .cn-header-actions { gap: 4px; }
   .cn-desktop-navigation a { font-size: 11px; }
 }
-@media (max-width: 1099px) {
+@media (max-width: 1199px) {
   .cn-desktop-navigation { display: none; }
   .cn-menu-toggle { display: inline-grid; }
   .cn-header-actions { margin-left: auto; }

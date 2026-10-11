@@ -46,7 +46,8 @@
         "items": {
           "estimates": "建房费用估算、工资计算、电费计算：不能代替正式的报价、工资表或发票。",
           "orientation": "房屋朝向及按年龄查看部分：依据民间风水，仅供参考，不是技术结论。",
-          "ocr": "文字识别（OCR）、地址转换、规定查询：可能存在错误，需要对照原始文件核对。"
+          "ocr": "文字识别（OCR）、地址转换、规定查询：可能存在错误，需要对照原始文件核对。",
+          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
         }
       },
       "hanh-vi-cam": {
@@ -144,7 +145,8 @@
           "visits": "工具打开次数：工具名称和时间，用于统计总使用次数。只保存汇总计数，不与用户关联。",
           "ip": "IP 地址：使用密钥进行单向哈希处理，仅用于限制自动提交，约 1 小时后自动删除。",
           "feedback": "反馈、建议内容：仅在你勾选同意并点击“提交”后接收，用于审核和改进工具。回执编号仅以哈希形式保存。",
-          "logs": "Web 服务器的技术日志（IP 地址、浏览器类型、访问的页面）：仅用于系统运营和安全，在必要的短时间内保存。"
+          "logs": "Web 服务器的技术日志（IP 地址、浏览器类型、访问的页面）：仅用于系统运营和安全，在必要的短时间内保存。",
+          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
         }
       },
       "tai-khoan": {
@@ -196,7 +198,8 @@
           "account": "Account: until you delete it. A sign-in session expires after 30 days without use (staff accounts: 12 hours).",
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
-          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept."
+          "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
         }
       },
       "quyen": {

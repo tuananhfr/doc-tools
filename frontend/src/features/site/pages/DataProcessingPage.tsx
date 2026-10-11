@@ -81,6 +81,7 @@ export default function DataProcessingPage() {
 
       <section className="cn-container cn-page-section" aria-label={t('data.flowLabel')}>
         <QualityConsent disclosure />
+        <p className="cn-section-description">{t('data.entertainment')}</p>
         <ul className="cn-data-columns">
           {columns.map((column) => (
             <li key={column.tone} className={`cn-data-column cn-data-column--${column.tone}`}>

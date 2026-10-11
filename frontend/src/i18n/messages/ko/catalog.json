@@ -432,6 +432,24 @@
     "code-manager": {
       "name": "코드 관리",
       "description": "QR 코드·바코드 목록을 만들고 파일로 내보내기"
+    },
+    "numerology": {
+      "name": "Numerology · Sandbox",
+      "description": "Test Pythagorean calculations with steps; no approved interpretations",
+      "synonyms": "numerology, thần số học, số chủ đạo",
+      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
+    },
+    "playing-cards": {
+      "name": "52 playing cards · Sandbox",
+      "description": "Test shuffling, drawing, revealing and export; no approved interpretations",
+      "synonyms": "bài tây, playing cards, cartomancy",
+      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
+    },
+    "tarot": {
+      "name": "78 Tarot cards · Sandbox",
+      "description": "Test drawing 1/3/5/7/10 card IDs; no approved imagery or interpretations",
+      "synonyms": "tarot, trải bài",
+      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
     }
   }
 }

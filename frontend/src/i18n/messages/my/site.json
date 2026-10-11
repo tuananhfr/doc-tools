@@ -72,7 +72,8 @@
     "construction": "ဆောက်လုပ်ရေး",
     "family": "မိသားစု",
     "guides": "လမ်းညွှန်များ",
-    "about": "ကျွန်ုပ်တို့အကြောင်း"
+    "about": "ကျွန်ုပ်တို့အကြောင်း",
+    "explore": "Explore"
   },
   "header": {
     "skipLink": "အကြောင်းအရာသို့ သွားရန်",
@@ -485,6 +486,76 @@
           }
         }
       }
+    },
+    "kham-pha-giai-tri": {
+      "label": "Explore & Entertainment",
+      "title": "<accent>Explore</accent> the small things",
+      "tagline": "Lunar calendar available. Three new tools under verification.",
+      "description": "Use the lunar calendar and explore technical prototypes for numerology, playing cards and Tarot. Reference only; unapproved content is clearly marked.",
+      "metaTitle": "Explore & Entertainment | Chuyện Nhỏ",
+      "metaDescription": "Lunar-solar calendar and technical foundations for numerology, 52 playing cards and 78 Tarot cards.",
+      "caption": "Explore\nWith sources and limits.",
+      "searchPlaceholder": "Search lunar calendar, Tarot, playing cards…",
+      "highlights": {
+        "calendar": "Lunar calendar",
+        "numbers": "Numerology",
+        "cards": "52 playing cards",
+        "tarot": "Tarot 78"
+      },
+      "trust": {
+        "free": {
+          "title": "No separate payment",
+          "detail": "No paywall for these four features."
+        },
+        "source": {
+          "title": "Transparent sources",
+          "detail": "Versions and pending approval are visible."
+        },
+        "choice": {
+          "title": "Your data choice",
+          "detail": "Input is sent only when you request calculation."
+        },
+        "reference": {
+          "title": "Reference only",
+          "detail": "No claims of predicting the future."
+        }
+      },
+      "subgroups": {
+        "lich": "Calendar",
+        "kham-pha": "Explore"
+      },
+      "aside": {
+        "sandbox": {
+          "title": "Under development",
+          "items": {
+            "technical": "Sandbox tests calculations, drawing and revealing.",
+            "content": "Interpretations await approved sources and corpus.",
+            "privacy": "No new personal-history storage or AI connection."
+          }
+        }
+      },
+      "journey": {
+        "title": "Explore with clear limits",
+        "motto": "Understand the method before reading the result.",
+        "steps": {
+          "choose": {
+            "title": "Choose a tool",
+            "detail": "Calendar available; sandbox enabled separately."
+          },
+          "explore": {
+            "title": "Try the flow",
+            "detail": "The foundation works without AI."
+          },
+          "source": {
+            "title": "Read sources",
+            "detail": "Check available and pending content."
+          },
+          "export": {
+            "title": "Export a record",
+            "detail": "A reference notice is always included."
+          }
+        }
+      }
     }
   },
   "about": {
@@ -624,7 +695,8 @@
     "emptyHint": "အခြား ရှာဖွေစကားလုံး စမ်းပါ သို့မဟုတ် စစ်ထုတ်မှုကို ဖြုတ်ပါ။",
     "showAll": "အားလုံး ကြည့်ရန်",
     "faqTitle": "ဒေတာဆိုင်ရာ မေးခွန်းများ",
-    "faqDescription": "<link>ကိုယ်ရေးကိုယ်တာ မူဝါဒ</link> တွင် အပြည့်အစုံ ဖတ်ပါ။"
+    "faqDescription": "<link>ကိုယ်ရေးကိုယ်တာ မူဝါဒ</link> တွင် အပြည့်အစုံ ဖတ်ပါ။",
+    "entertainment": "New sandbox: calculation sends input to the backend after consent; card draws send only draw settings. Temporary draws expire; names and birth dates are not stored in the database. PDFs/images are created on-device."
   },
   "guidesPage": {
     "title": "အသုံးပြုနည်း <accent>လမ်းညွှန်</accent>",
@@ -858,7 +930,7 @@
       },
       "may-chu": {
         "question": "အချို့ကိရိယာများတွင် “ဆာဗာပေါ်တွင် လုပ်ဆောင်သည်” ဟု အဘယ်ကြောင့် ဖော်ပြထားသနည်း။",
-        "answer": "မကြာမီ လာမည့် အချို့ကိရိယာများသည် ဆောက်လုပ်ရေး ဈေးနှုန်း သို့မဟုတ် မြို့ပြစီမံကိန်း ကဲ့သို့ ဒေတာ အများအပြား သို့မဟုတ် အဆက်မပြတ် အပ်ဒိတ်ဖြစ်သော ဒေတာ လိုသဖြင့် ဆာဗာပေါ်တွင် ရှာဖွေရမည်။ ကြိုသိနိုင်ရန် ၎င်းတို့၏ ကတ်တွင် ရှင်းရှင်းလင်းလင်း ဖော်ပြထားသည်။ ယခု သုံးနိုင်သော ကိရိယာအားလုံးသည် စက်ပေါ်တွင် လုပ်ဆောင်သည်။"
+        "answer": "မကြာမီ လာမည့် အချို့ကိရိယာများသည် ဆောက်လုပ်ရေး ဈေးနှုန်း သို့မဟုတ် မြို့ပြစီမံကိန်း ကဲ့သို့ ဒေတာ အများအပြား သို့မဟုတ် အဆက်မပြတ် အပ်ဒိတ်ဖြစ်သော ဒေတာ လိုသဖြင့် ဆာဗာပေါ်တွင် ရှာဖွေရမည်။ ကြိုသိနိုင်ရန် ၎င်းတို့၏ ကတ်တွင် ရှင်းရှင်းလင်းလင်း ဖော်ပြထားသည်။ ယခု သုံးနိုင်သော ကိရိယာအားလုံးသည် စက်ပေါ်တွင် လုပ်ဆောင်သည်။ New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "cai-dat": {
         "question": "Chuyện Nhỏ ကို ဖုန်းပေါ်တွင် မည်သို့ ထည့်သွင်းရမည်နည်း။",
@@ -878,7 +950,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ သည် ကျွန်ုပ်၏ ကိုယ်ရေးအချက်အလက်ကို စုဆောင်းပါသလား။",
-        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "xoa-du-lieu": {
         "question": "ကျွန်ုပ်၏ ဒေတာကို မည်သို့ ဖျက်ရမည်နည်း။",

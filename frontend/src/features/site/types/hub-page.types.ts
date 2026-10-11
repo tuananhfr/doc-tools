@@ -1,4 +1,4 @@
-export type HubPageSlug = 'xay-dung' | 'gia-dinh' | 'tai-lieu-pdf'
+export type HubPageSlug = 'xay-dung' | 'gia-dinh' | 'tai-lieu-pdf' | 'kham-pha-giai-tri'
 
 export interface HubSubgroup {
   /** Giá trị của `?nhom=` trên URL. */

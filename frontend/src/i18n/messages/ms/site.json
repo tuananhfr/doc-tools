@@ -72,7 +72,8 @@
     "construction": "Pembinaan",
     "family": "Keluarga",
     "guides": "Panduan",
-    "about": "Tentang kami"
+    "about": "Tentang kami",
+    "explore": "Explore"
   },
   "header": {
     "skipLink": "Langkau ke kandungan",
@@ -485,6 +486,76 @@
           }
         }
       }
+    },
+    "kham-pha-giai-tri": {
+      "label": "Explore & Entertainment",
+      "title": "<accent>Explore</accent> the small things",
+      "tagline": "Lunar calendar available. Three new tools under verification.",
+      "description": "Use the lunar calendar and explore technical prototypes for numerology, playing cards and Tarot. Reference only; unapproved content is clearly marked.",
+      "metaTitle": "Explore & Entertainment | Chuyện Nhỏ",
+      "metaDescription": "Lunar-solar calendar and technical foundations for numerology, 52 playing cards and 78 Tarot cards.",
+      "caption": "Explore\nWith sources and limits.",
+      "searchPlaceholder": "Search lunar calendar, Tarot, playing cards…",
+      "highlights": {
+        "calendar": "Lunar calendar",
+        "numbers": "Numerology",
+        "cards": "52 playing cards",
+        "tarot": "Tarot 78"
+      },
+      "trust": {
+        "free": {
+          "title": "No separate payment",
+          "detail": "No paywall for these four features."
+        },
+        "source": {
+          "title": "Transparent sources",
+          "detail": "Versions and pending approval are visible."
+        },
+        "choice": {
+          "title": "Your data choice",
+          "detail": "Input is sent only when you request calculation."
+        },
+        "reference": {
+          "title": "Reference only",
+          "detail": "No claims of predicting the future."
+        }
+      },
+      "subgroups": {
+        "lich": "Calendar",
+        "kham-pha": "Explore"
+      },
+      "aside": {
+        "sandbox": {
+          "title": "Under development",
+          "items": {
+            "technical": "Sandbox tests calculations, drawing and revealing.",
+            "content": "Interpretations await approved sources and corpus.",
+            "privacy": "No new personal-history storage or AI connection."
+          }
+        }
+      },
+      "journey": {
+        "title": "Explore with clear limits",
+        "motto": "Understand the method before reading the result.",
+        "steps": {
+          "choose": {
+            "title": "Choose a tool",
+            "detail": "Calendar available; sandbox enabled separately."
+          },
+          "explore": {
+            "title": "Try the flow",
+            "detail": "The foundation works without AI."
+          },
+          "source": {
+            "title": "Read sources",
+            "detail": "Check available and pending content."
+          },
+          "export": {
+            "title": "Export a record",
+            "detail": "A reference notice is always included."
+          }
+        }
+      }
     }
   },
   "about": {
@@ -624,7 +695,8 @@
     "emptyHint": "Cuba kata kunci lain atau buang penapis.",
     "showAll": "Lihat semua",
     "faqTitle": "Soalan tentang data",
-    "faqDescription": "Baca selengkapnya di <link>Dasar privasi</link>."
+    "faqDescription": "Baca selengkapnya di <link>Dasar privasi</link>.",
+    "entertainment": "New sandbox: calculation sends input to the backend after consent; card draws send only draw settings. Temporary draws expire; names and birth dates are not stored in the database. PDFs/images are created on-device."
   },
   "guidesPage": {
     "title": "Panduan <accent>penggunaan</accent>",
@@ -858,7 +930,7 @@
       },
       "may-chu": {
         "question": "Mengapa sesetengah alat bertanda “Diproses di pelayan”?",
-        "answer": "Sesetengah alat yang akan datang memerlukan data yang besar atau dikemas kini secara berterusan, seperti harga pembinaan atau perancangan, jadi perlu dicari di pelayan. Kadnya menyatakan perkara ini dengan jelas supaya anda tahu lebih awal. Alat yang boleh digunakan sekarang semuanya diproses pada peranti."
+        "answer": "Sesetengah alat yang akan datang memerlukan data yang besar atau dikemas kini secara berterusan, seperti harga pembinaan atau perancangan, jadi perlu dicari di pelayan. Kadnya menyatakan perkara ini dengan jelas supaya anda tahu lebih awal. Alat yang boleh digunakan sekarang semuanya diproses pada peranti. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "cai-dat": {
         "question": "Bagaimana cara memasang Chuyện Nhỏ pada telefon?",
@@ -878,7 +950,7 @@
       },
       "thu-thap": {
         "question": "Adakah Chuyện Nhỏ mengumpul maklumat peribadi saya?",
-        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "xoa-du-lieu": {
         "question": "Bagaimana cara memadam data saya?",

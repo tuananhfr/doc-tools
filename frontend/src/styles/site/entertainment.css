@@ -1,0 +1,58 @@
+.cn-ent { max-width: 58rem; }
+.cn-ent-notice { border-inline-start: 3px solid var(--cn-accent); padding: 1rem 1.25rem; background: var(--cn-tint); margin-bottom: 1.5rem; border-radius: .5rem; }
+.cn-ent-notice strong { font-size: 1rem; }
+.cn-ent-notice p { margin: .65rem 0; line-height: 1.7; }
+.cn-ent-form, .cn-ent-status, .cn-ent-result, .cn-ent-reading { padding: 1.5rem; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: .75rem; }
+.cn-ent-form fieldset { display: grid; gap: 1.25rem; min-width: 0; border: 0; padding: 0; margin: 0; }
+.cn-ent-form legend, .cn-ent h2 { font-size: 1.2rem; font-weight: 700; margin: 0; }
+.cn-ent-form label { display: grid; gap: .5rem; font-weight: 600; }
+.cn-ent-form input:not([type=checkbox]), .cn-ent-form select { width: 100%; min-width: 0; min-height: 48px; padding: .65rem .8rem; border: 1px solid var(--cn-line); border-radius: .5rem; background: var(--cn-surface); color: var(--cn-ink); font-size: 1rem; }
+.cn-ent-form .cn-ent-check { display: flex; gap: .75rem; align-items: flex-start; font-weight: 400; }
+.cn-ent-check input { flex-shrink: 0; width: 18px; height: 18px; margin-top: .2rem; accent-color: var(--cn-accent); }
+.cn-ent p { line-height: 1.7; }
+.cn-ent-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+.cn-ent button.cn-button, .cn-ent-calendar button.cn-button { min-height: 48px; }
+.cn-ent button.cn-button:disabled, .cn-ent fieldset:disabled button { opacity: .5; cursor: not-allowed; }
+.cn-ent-deck { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; grid-template-columns: repeat(3, minmax(0, 180px)); justify-content: center; align-items: start; gap: 1.25rem; }
+.cn-ent-deck[data-count="1"] { grid-template-columns: minmax(0, 180px); }
+.cn-ent-card-slot { display: grid; gap: .65rem; min-width: 0; text-align: center; font-size: .875rem; }
+.cn-ent-card { aspect-ratio: 2 / 3; width: 100%; border: 1px solid var(--cn-line); border-radius: .5rem; background: #fff; color: var(--cn-ink); padding: .25rem; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; box-shadow: 0 2px 6px #00000012; }
+.cn-ent-card--tarot { aspect-ratio: 500 / 839; }
+.cn-ent-card:focus-visible { outline: 3px solid var(--cn-accent); outline-offset: 4px; }
+.cn-ent-card:disabled { cursor: default; }
+.cn-ent-card-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.cn-ent-card-image.is-reversed { transform: rotate(180deg); }
+.cn-ent-card-caption { min-height: 2.5rem; overflow-wrap: anywhere; line-height: 1.45; }
+.cn-ent-card-caption strong, .cn-ent-card-caption small { display: block; }
+.cn-ent-card-caption small { margin-top: .25rem; color: var(--cn-muted); }
+.cn-ent-card-fallback { display: grid; gap: .5rem; padding: .5rem; overflow-wrap: anywhere; color: #172b4d; }
+.cn-ent-zoom-hint { text-align: center; font-size: .875rem; color: var(--cn-muted); }
+.cn-ent-artwork-dialog { max-width: 440px; }
+.cn-ent-artwork-dialog .modal-content { background: var(--cn-surface); color: var(--cn-ink); border-color: var(--cn-line); }
+.cn-ent-artwork-dialog .modal-header { border-color: var(--cn-line); gap: 1rem; }
+.cn-ent-artwork-dialog .modal-title { font-size: 1.125rem; }
+.cn-ent-artwork-dialog .btn-close { min-width: 44px; min-height: 44px; padding: 0; margin: -.5rem -.5rem -.5rem auto; flex-shrink: 0; }
+.cn-ent-artwork-large { height: min(65dvh, 620px); min-height: 180px; }
+.cn-ent-artwork-large .cn-ent-card-fallback { text-align: center; background: #fff; }
+.cn-ent-artwork-orientation { text-align: center; margin: .75rem 0 0; }
+.cn-ent-no-meaning { padding: 1rem 0; border-block: 1px solid var(--cn-line); }
+.cn-ent-source { margin: 1.5rem 0; }
+.cn-ent-source summary { min-height: 44px; cursor: pointer; color: var(--cn-accent); }
+.cn-ent-source dl div { margin: .5rem 0; }
+.cn-ent-source dd { margin: .25rem 0; overflow-wrap: anywhere; }
+.cn-ent-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 1.5rem 0; gap: .75rem; }
+.cn-ent-metrics > div { padding: 1rem; background: var(--cn-tint); border-radius: .5rem; min-width: 0; }
+.cn-ent-metrics dd { margin: .65rem 0 0; }
+.cn-ent-metrics strong { font-size: 2rem; }
+.cn-ent-metrics small { display: block; margin-top: .5rem; line-height: 1.6; }
+.cn-ent-export { margin-bottom: 1.5rem; }
+@media (max-width: 575px) {
+  .cn-ent-form, .cn-ent-status, .cn-ent-result, .cn-ent-reading { padding: 1rem; }
+  .cn-ent-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .cn-ent-deck { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+  .cn-ent-card-slot { font-size: .75rem; gap: .5rem; }
+  .cn-ent-card { padding: .125rem; border-radius: .375rem; }
+  .cn-ent-metrics { grid-template-columns: minmax(0, 1fr); }
+}
+.cn-ent-calendar { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid var(--cn-border, #dce3ed); }
+.cn-ent-calendar h2 { font-size: 1.25rem; }

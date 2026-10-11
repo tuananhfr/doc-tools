@@ -432,6 +432,24 @@
     "code-manager": {
       "name": "Quản lý mã",
       "description": "Tạo danh sách mã QR, mã vạch và xuất tệp"
+    },
+    "numerology": {
+      "name": "Thần số học · Sandbox",
+      "description": "Thử công thức Pythagorean có bước tính; chưa có luận giải được duyệt",
+      "synonyms": "numerology, thần số học, số chủ đạo",
+      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
+    },
+    "playing-cards": {
+      "name": "Bài Tây 52 lá · Sandbox",
+      "description": "Thử xào, rút, lật và xuất bộ lá; chưa có luận giải được duyệt",
+      "synonyms": "bài tây, playing cards, cartomancy",
+      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
+    },
+    "tarot": {
+      "name": "Tarot 78 lá · Sandbox",
+      "description": "Thử rút 1/3/5/7/10 lá theo manifest; chưa có hình ảnh và luận giải được duyệt",
+      "synonyms": "tarot, trải bài",
+      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
     }
   }
 }

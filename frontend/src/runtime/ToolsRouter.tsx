@@ -39,6 +39,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <CategoryHubPage key="xay-dung" slug="xay-dung" /> },
   { path: 'gia-dinh', element: <CategoryHubPage key="gia-dinh" slug="gia-dinh" /> },
+  { path: 'kham-pha-giai-tri', element: <CategoryHubPage key="kham-pha-giai-tri" slug="kham-pha-giai-tri" /> },
   { path: 'tai-lieu-pdf', element: <CategoryHubPage key="tai-lieu-pdf" slug="tai-lieu-pdf" /> },
   { path: 've-chung-toi', element: <AboutPage /> },
   { path: 'ho-tro', element: <SupportPage /> },

@@ -72,7 +72,8 @@
     "construction": "營建",
     "family": "家庭",
     "guides": "指南",
-    "about": "關於我們"
+    "about": "關於我們",
+    "explore": "Explore"
   },
   "header": {
     "skipLink": "跳至內容",
@@ -485,6 +486,76 @@
           }
         }
       }
+    },
+    "kham-pha-giai-tri": {
+      "label": "Explore & Entertainment",
+      "title": "<accent>Explore</accent> the small things",
+      "tagline": "Lunar calendar available. Three new tools under verification.",
+      "description": "Use the lunar calendar and explore technical prototypes for numerology, playing cards and Tarot. Reference only; unapproved content is clearly marked.",
+      "metaTitle": "Explore & Entertainment | Chuyện Nhỏ",
+      "metaDescription": "Lunar-solar calendar and technical foundations for numerology, 52 playing cards and 78 Tarot cards.",
+      "caption": "Explore\nWith sources and limits.",
+      "searchPlaceholder": "Search lunar calendar, Tarot, playing cards…",
+      "highlights": {
+        "calendar": "Lunar calendar",
+        "numbers": "Numerology",
+        "cards": "52 playing cards",
+        "tarot": "Tarot 78"
+      },
+      "trust": {
+        "free": {
+          "title": "No separate payment",
+          "detail": "No paywall for these four features."
+        },
+        "source": {
+          "title": "Transparent sources",
+          "detail": "Versions and pending approval are visible."
+        },
+        "choice": {
+          "title": "Your data choice",
+          "detail": "Input is sent only when you request calculation."
+        },
+        "reference": {
+          "title": "Reference only",
+          "detail": "No claims of predicting the future."
+        }
+      },
+      "subgroups": {
+        "lich": "Calendar",
+        "kham-pha": "Explore"
+      },
+      "aside": {
+        "sandbox": {
+          "title": "Under development",
+          "items": {
+            "technical": "Sandbox tests calculations, drawing and revealing.",
+            "content": "Interpretations await approved sources and corpus.",
+            "privacy": "No new personal-history storage or AI connection."
+          }
+        }
+      },
+      "journey": {
+        "title": "Explore with clear limits",
+        "motto": "Understand the method before reading the result.",
+        "steps": {
+          "choose": {
+            "title": "Choose a tool",
+            "detail": "Calendar available; sandbox enabled separately."
+          },
+          "explore": {
+            "title": "Try the flow",
+            "detail": "The foundation works without AI."
+          },
+          "source": {
+            "title": "Read sources",
+            "detail": "Check available and pending content."
+          },
+          "export": {
+            "title": "Export a record",
+            "detail": "A reference notice is always included."
+          }
+        }
+      }
     }
   },
   "about": {
@@ -624,7 +695,8 @@
     "emptyHint": "試試其他關鍵字，或取消篩選。",
     "showAll": "查看全部",
     "faqTitle": "資料相關問題",
-    "faqDescription": "完整內容請參閱<link>隱私權政策</link>。"
+    "faqDescription": "完整內容請參閱<link>隱私權政策</link>。",
+    "entertainment": "New sandbox: calculation sends input to the backend after consent; card draws send only draw settings. Temporary draws expire; names and birth dates are not stored in the database. PDFs/images are created on-device."
   },
   "guidesPage": {
     "title": "使用<accent>指南</accent>",
@@ -858,7 +930,7 @@
       },
       "may-chu": {
         "question": "為什麼有些工具標示「在伺服器上處理」？",
-        "answer": "一些即將推出的工具需要龐大或持續更新的資料，例如營建價格或都市計畫，因此必須在伺服器上查詢。這些工具的卡片會清楚標示，讓你事先知道。目前可用的工具都在裝置上處理。"
+        "answer": "一些即將推出的工具需要龐大或持續更新的資料，例如營建價格或都市計畫，因此必須在伺服器上查詢。這些工具的卡片會清楚標示，讓你事先知道。目前可用的工具都在裝置上處理。 New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "cai-dat": {
         "question": "如何在手機上安裝 Chuyện Nhỏ？",
@@ -878,7 +950,7 @@
       },
       "thu-thap": {
         "question": "Chuyện Nhỏ 會蒐集我的個人資訊嗎？",
-        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "xoa-du-lieu": {
         "question": "如何刪除我的資料？",

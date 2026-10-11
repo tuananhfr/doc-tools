@@ -4,6 +4,7 @@ export const SITE_NAVIGATION = [
   { id: 'tools', to: '/cong-cu' },
   { id: 'construction', to: '/xay-dung' },
   { id: 'family', to: '/gia-dinh' },
+  { id: 'explore', to: '/kham-pha-giai-tri' },
   { id: 'guides', to: '/huong-dan' },
   { id: 'about', to: '/ve-chung-toi' },
 ] as const
