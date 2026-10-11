@@ -85,5 +85,27 @@
   "mergeDown": "Merge with the cell below",
   "csvHint": "CSV prefixes leading-zero identifiers and formula-like values with an apostrophe to prevent spreadsheet conversion. Choose XLSX to preserve the exact string values.",
   "modelUnavailable": "The recognition model could not be downloaded. Check your connection and try again.",
-  "cellProposal": "Proposed from: {{pass}}"
+  "cellProposal": "Proposed from: {{pass}}",
+  "advanced": "Advanced options",
+  "workflow": "Text extraction steps",
+  "steps": {
+    "choose": "Choose file",
+    "recognize": "Recognize",
+    "review": "Review",
+    "download": "Download"
+  },
+  "selectedCell": "Cell being reviewed",
+  "cellValue": "Selected cell value",
+  "previousCell": "Previous cell",
+  "nextCell": "Next cell",
+  "fullTable": "Full table and merged cells",
+  "editStructure": "Edit rows, columns and merged cells",
+  "tableVerified": "Table confirmed.",
+  "tableUnverified": "Review and confirm this table.",
+  "fieldVerified": "Confirmed",
+  "fullSource": "Full original page",
+  "wordPosition": "Word {{current}} / {{total}}",
+  "nextRequired": "Next word to review",
+  "finishStructuredReview": "Some tables or fields still need confirmation or valid values. See the data checks above.",
+  "discardDraft": "Discard unconfirmed change"
 }

@@ -85,5 +85,27 @@
   "mergeDown": "Gộp với ô bên dưới",
   "csvHint": "CSV thêm dấu nháy đơn trước mã có số 0 đầu và nội dung giống công thức để tránh bảng tính tự đổi giá trị. Chọn XLSX để giữ giá trị chuỗi nguyên vẹn.",
   "modelUnavailable": "Chưa tải được bộ nhận dạng. Kiểm tra kết nối rồi thử lại.",
-  "cellProposal": "Đề xuất từ: {{pass}}"
+  "cellProposal": "Đề xuất từ: {{pass}}",
+  "advanced": "Tùy chọn nâng cao",
+  "workflow": "Các bước lấy chữ",
+  "steps": {
+    "choose": "Chọn tệp",
+    "recognize": "Nhận chữ",
+    "review": "Kiểm tra",
+    "download": "Tải về"
+  },
+  "selectedCell": "Ô đang kiểm tra",
+  "cellValue": "Giá trị ô đang chọn",
+  "previousCell": "Ô trước",
+  "nextCell": "Ô tiếp",
+  "fullTable": "Xem toàn bảng và ô gộp",
+  "editStructure": "Chỉnh số hàng, cột và ô gộp",
+  "tableVerified": "Bảng đã được xác nhận.",
+  "tableUnverified": "Bảng còn cần đối chiếu và xác nhận.",
+  "fieldVerified": "Đã xác nhận",
+  "fullSource": "Xem ảnh gốc toàn trang",
+  "wordPosition": "Từ {{current}} / {{total}}",
+  "nextRequired": "Từ cần kiểm tra tiếp",
+  "finishStructuredReview": "Còn bảng hoặc trường dữ liệu chưa hợp lệ hoặc chưa xác nhận. Xem mục Kiểm tra dữ liệu bên trên.",
+  "discardDraft": "Bỏ thay đổi chưa xác nhận"
 }

@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { chromium, outDir } from './lib/qa.mjs'
+import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 import { structuredMetrics } from './lib/ocr-metrics.mjs'
 
 const site = process.env.SITE ?? 'http://localhost:3016', out = outDir('ocr-layout')
@@ -11,12 +11,13 @@ const manifest = JSON.parse(fs.readFileSync(path.join(fixtures, 'manifest.json')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 } }), page = await context.newPage()
 const errors = []; page.on('pageerror', error => errors.push(String(error)))
-await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, total: 0 } }))
-const report = { target: site, kind: 'raw table proposals before correction', cases: [], errors, limitations: ['Synthetic fixtures with generated ground truth', 'No region or bbox accuracy measurement', 'Review-screen time is not human correction time', 'Geometric proposals require manual confirmation'] }
+await mockFreeSession(context)
+const report = { createdAt: new Date().toISOString(), target: site, kind: 'raw table proposals before correction', fixtureManifestSha256: createHash('sha256').update(fs.readFileSync(path.join(fixtures, 'manifest.json'))).digest('hex'), cases: [], errors, limitations: ['Synthetic fixtures with generated ground truth', 'No region or bbox accuracy measurement', 'Review-screen time is not human correction time', 'Geometric proposals require manual confirmation'] }
 try {
   await page.goto(site + '/', { waitUntil: 'networkidle' })
   report.build = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
-  for (const fixture of manifest.cases) {
+  if (process.env.EXPECTED_BUILD) assert.equal(report.build, process.env.EXPECTED_BUILD, 'Unexpected served build')
+  for (const fixture of manifest.cases.filter(item => !process.env.ONLY || process.env.ONLY.split(',').includes(item.id))) {
     const file = path.join(fixtures, fixture.file), bytes = fs.readFileSync(file)
     assert.equal(createHash('sha256').update(bytes).digest('hex'), fixture.sha256)
     await page.goto(site + '/anh-sang-van-ban', { waitUntil: 'networkidle' })
@@ -30,10 +31,13 @@ try {
     }))
     const metrics = structuredMetrics(fixture.groundTruth.cells, proposal, ['row','column'])
     report.cases.push({ id: fixture.id, inputSha256: fixture.sha256, reviewScreenMs: Date.now()-started, metrics, proposal })
+    fs.writeFileSync(path.join(out, 'results.json'), JSON.stringify(report, null, 2) + '\n', 'utf8')
     console.log(JSON.stringify({ id: fixture.id, correct: metrics.correct, total: metrics.total, extra: metrics.extra }))
     await page.screenshot({ path: path.join(out, fixture.id + '-review.png') })
   }
   assert.equal(errors.length, 0)
+  assert(report.cases.length > 0, 'No cases selected')
+  assert.equal(await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version), report.build, 'Served build changed during benchmark')
   report.status = 'baseline-measured'
 } catch (error) { report.status = 'runner-failed'; report.error = String(error); process.exitCode = 1 }
 finally {

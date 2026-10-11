@@ -9,6 +9,20 @@ function words(values: { text: string; x: number; width: number }[]) {
   return ocrWords([line], 1, point => point, { width: 200, height: 100 })
 }
 describe('OCR pass consensus', () => {
+  it('proposes a stronger aligned reading without changing raw text or its score', () => {
+    const original = words([{ text: 'BIẾN', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 64, confidenceLevel: 'MEDIUM' as const }))
+    const [result] = mergeOcrPasses([{ pass: 'original', words: original, engineVersion: 'test' }, { pass: 'contrast', words: words([{ text: 'BIÊN', x: 0, width: 60 }]), engineVersion: 'test' }])
+    expect(result).toMatchObject({ rawText: 'BIẾN', normalizedText: 'BIÊN', confidence: 64, proposedCandidateId: 'contrast:0:0' })
+    expect(needsOcrReview(result)).toBe(true)
+  })
+  it('inserts recovered words between their neighboring original words', () => {
+    const original = words([{ text: 'Một', x: 0, width: 30 }, { text: 'ba', x: 140, width: 30 }])
+    const alternative = words([{ text: 'Một', x: 0, width: 30 }, { text: 'hai', x: 60, width: 30 }, { text: 'ba', x: 140, width: 30 }])
+    const result = mergeOcrPasses([{ pass: 'original', words: original, engineVersion: 'test' }, { pass: 'contrast', words: alternative, engineVersion: 'test' }])
+    expect(result.map(word => word.rawText)).toEqual(['Một', 'hai', 'ba'])
+    expect(needsOcrReview(result[1])).toBe(true)
+    expect(result[1].id.split(':')[0]).toBe('0')
+  })
   it('limits numeric crop comparisons to their selected target words', () => {
     const original = words([{ text: 'Tiền', x: 0, width: 30 }, { text: '100', x: 40, width: 50 }])
     const result = mergeOcrPasses([{ pass: 'original', words: original, engineVersion: 'test' }, { pass: 'numeric', words: words([{ text: '100', x: 40, width: 50 }]), targetWordIds: [original[1].id], engineVersion: 'test' }])

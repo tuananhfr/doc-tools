@@ -10,5 +10,5 @@ export interface OcrPipelineOptions {
   perspective?: Quad
 }
 
-export const OCR_PIPELINE_VERSION = '2.0.0'
+export const OCR_PIPELINE_VERSION = '2.1.0'
 export const DEFAULT_OCR_OPTIONS: OcrPipelineOptions = { profile: 'printed', maxPasses: 2 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import type { OcrReviewPage } from '../../hooks/useOcrReview'
@@ -24,6 +24,7 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
   const [draft, setDraft] = useState<string | null>(null)
   const [previewReady, setPreviewReady] = useState(false)
   const [structuredReady, setStructuredReady] = useState(false)
+  const editor = useRef<HTMLDivElement>(null)
   const item = pages[pageIndex]
   const word = item.result.words[wordIndex]
   const remaining = pages.reduce((count, page) => count + page.result.words.filter(needsOcrReview).length, 0)
@@ -32,7 +33,7 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
     setHistory(previous => [...previous.slice(-19), pages])
     setPages(pages.map((page, index) => index === pageIndex ? { ...page, result } : page))
   }
-  const selectWord = (index: number) => { setWordIndex(index); setDraft(null) }
+  const selectWord = (index: number) => { setWordIndex(index); setDraft(null); editor.current?.scrollIntoView({ block: 'nearest' }) }
   const confirm = () => {
     if (!word) return
     const words = item.result.words.map((current, index) => index === wordIndex ? confirmOcrWord(current, draft ?? current.verifiedValue ?? current.normalizedText) : current)
@@ -46,8 +47,9 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
     setDraft(null)
     const next = updated.flatMap((page, p) => page.result.words.flatMap((current, w) => needsOcrReview(current) ? [{ p, w }] : []))[0]
     if (next) { setPageIndex(next.p); setWordIndex(next.w) }
+    editor.current?.scrollIntoView({ block: 'nearest' })
   }
-  return <section className="cn-ocr-review" aria-labelledby="ocr-review-title">
+  return <section className={`cn-ocr-review${item.result.pipeline?.profile === 'table' ? ' cn-ocr-review--table' : ''}`} aria-labelledby="ocr-review-title">
     <header>
       <p className="cn-ocr-review__eyebrow">{t('ocrReview.step')}</p>
       <h2 id="ocr-review-title">{t('ocrReview.title')}</h2>
@@ -79,22 +81,30 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
         </button>)}
         {!word ? <p>{t('ocrReview.empty')}</p> : null}
       </div>
-      {word ? <div className="cn-ocr-review__editor">
+      {word ? <div className="cn-ocr-review__editor" ref={editor}>
+        <div className="cn-ocr-review__navigation"><span>{o('wordPosition', { current: wordIndex + 1, total: item.result.words.length })}</span>
+          <button type="button" className="btn btn-outline-secondary" disabled={draft !== null || remaining === 0} onClick={() => {
+            const next = item.result.words.findIndex((current, index) => index > wordIndex && needsOcrReview(current))
+            selectWord(next < 0 ? Math.max(0, item.result.words.findIndex(needsOcrReview)) : next)
+          }}>{o('nextRequired')}</button>
+        </div>
         <span>{t('ocrReview.original')}</span>
         <OcrWordPreview item={item} word={word} onReady={setPreviewReady} />
         <p className="cn-ocr-review__raw">{t('ocrReview.recognized')}: <strong>{word.rawText}</strong></p>
-        <p>{t('ocrReview.confidence')}: {Math.round(word.confidence)}/100 · {t(`ocrReview.level.${word.confidenceLevel}`)}</p>
-        <OcrCandidates word={word} onSelect={setDraft} />
+        {word.reviewReasons?.includes('disagreement') ? <p className="cn-ocr-review__hint" role="status">{o('disagreement')}</p> : null}
         <label htmlFor="ocr-word-value">{t('ocrReview.value')}</label>
         <input id="ocr-word-value" className="form-control" value={draft ?? word.verifiedValue ?? word.normalizedText} onChange={event => setDraft(event.target.value)} />
-        <p className="cn-ocr-review__hint">{t('ocrReview.discardHint')}</p>
         <Button disabled={!previewReady} onClick={confirm}>{t('ocrReview.confirm')}</Button>
+        {draft !== null ? <Button variant="outline-secondary" onClick={() => setDraft(null)}>{o('discardDraft')}</Button> : null}
+        <p className="cn-ocr-review__hint">{t('ocrReview.discardHint')}</p>
+        <p className="cn-ocr-review__confidence">{t('ocrReview.confidence')}: {Math.round(word.confidence)}/100 · {t(`ocrReview.level.${word.confidenceLevel}`)}</p>
+        <OcrCandidates word={word} onSelect={setDraft} />
       </div> : null}
     </div>
     <fieldset disabled={draft !== null} className="cn-ocr-structured">
-      {item.result.layout?.tables.length || item.result.layout?.fields.length || item.result.pipeline?.profile === 'table' ? <OcrPagePreview item={item} onReady={setStructuredReady} /> : null}
+      {item.result.layout?.tables.length || item.result.layout?.fields.length || item.result.pipeline?.profile === 'table' ? <details className="cn-ocr-source"><summary>{o('fullSource')}</summary><OcrPagePreview item={item} onReady={setStructuredReady} /></details> : null}
       <fieldset disabled={!structuredReady}>
-      {item.result.layout?.tables.map(table => <OcrTableReview key={table.id} table={table} words={item.result.words}
+      {item.result.layout?.tables.map(table => <OcrTableReview key={table.id} table={table} words={item.result.words} item={item}
         onChange={next => update({ ...item.result, layout: { ...item.result.layout!, tables: item.result.layout!.tables.map(current => current.id === next.id ? next : current) } })}
         onConfirm={() => update(confirmOcrTable(item.result, table))} />)}
       {item.result.pipeline?.profile === 'table' && !item.result.layout?.tables.length ? <div><p>{o('tableMissing')}</p><Button variant="outline-primary" onClick={() => update({ ...item.result, layout: { regions: item.result.layout?.regions ?? [], fields: [], tables: [resizeOcrTable({ id: 'table-0', rows: 0, columns: 0, cells: [], origin: 'manual', verifiedAt: null }, 2, 2)] } })}>{o('createTable')}</Button></div> : null}
@@ -108,6 +118,7 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
       ...(page.result.layout?.tables ?? []).flatMap(table => [[`${index}:${table.id}`, `${t('ocrReview.page')} ${index + 1}: ${o('table')}`], ...table.cells.map(cell => [`${index}:${cell.id}`, `${t('ocrReview.page')} ${index + 1}: ${o('cell', { row: cell.row + 1, column: cell.column + 1 })}`])]),
     ]))} />
     <footer>
+      {findings.some(finding => finding.severity === 'error') ? <p role="status">{o('finishStructuredReview')}</p> : null}
       <p>{t('ocrReview.privacy')}</p>
       <Button disabled={remaining > 0 || draft !== null || findings.some(finding => finding.severity === 'error')} onClick={() => onComplete(pages)}>{t('ocrReview.export')}</Button>
     </footer>

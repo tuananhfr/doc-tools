@@ -4,18 +4,22 @@ import type { OcrWordResult } from '../../types/ocr-result.types'
 import type { OcrReviewPage } from '../../hooks/useOcrReview'
 import { renderPreview, PDF_CSS_SCALE } from '../../services/page-preview'
 
-export function OcrWordPreview({ item, word, onReady }: { item: OcrReviewPage; word: OcrWordResult; onReady: (ready: boolean) => void }) {
+export function OcrWordPreview({ item, word, onReady, dpi = 300 }: { item: OcrReviewPage; word: Pick<OcrWordResult, 'previewBox'>; onReady: (ready: boolean) => void; dpi?: number }) {
   const { t } = useTranslation('pdf')
   const output = useRef<HTMLCanvasElement>(null)
   const [image, setImage] = useState<HTMLCanvasElement | null>(null)
   const [failed, setFailed] = useState(false)
   useEffect(() => {
     let live = true
+    let rendered: HTMLCanvasElement | null = null
     setImage(null)
     setFailed(false)
-    renderPreview(item.source, item.page, (300 / 72) / PDF_CSS_SCALE).then(canvas => { if (live) setImage(canvas) }, () => { if (live) setFailed(true) })
-    return () => { live = false }
-  }, [item.source, item.page])
+    renderPreview(item.source, item.page, (dpi / 72) / PDF_CSS_SCALE).then(canvas => {
+      if (live) { rendered = canvas; setImage(canvas) }
+      else { canvas.width = 1; canvas.height = 1 }
+    }, () => { if (live) setFailed(true) })
+    return () => { live = false; if (rendered) { rendered.width = 1; rendered.height = 1 } }
+  }, [item.source, item.page, dpi])
   useEffect(() => {
     const canvas = output.current
     onReady(false)

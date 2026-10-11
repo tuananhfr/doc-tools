@@ -76,7 +76,7 @@
 .cn-ocr-options details[open] summary { margin-bottom: .75rem; }
 .cn-ocr-candidates { border: 1px solid var(--cn-line, #d6e3f4); border-radius: .75rem; padding: .75rem; min-width: 0; }
 .cn-ocr-candidates legend { float: none; width: auto; font-size: 1rem; padding: 0 .25rem; }
-.cn-ocr-candidates > div { display: flex; gap: .75rem; align-items: center; justify-content: space-between; padding: .35rem 0; }
+.cn-ocr-candidates details > div { display: flex; gap: .75rem; align-items: center; justify-content: space-between; padding: .35rem 0; }
 .cn-ocr-candidates span { overflow-wrap: anywhere; }
 .cn-ocr-structured { min-width: 0; border: 0; padding: 0; margin-top: 1.5rem; }
 .cn-ocr-table, .cn-ocr-fields, .cn-ocr-validation { margin: 1.25rem 0; }
@@ -92,7 +92,7 @@
 .cn-ocr-fields label { display: grid; flex: 1 1 12rem; gap: .25rem; min-width: 0; }
 .cn-ocr-validation { background: #fff8e8; border-left: 3px solid #b65a00; padding: 1rem; overflow-wrap: anywhere; }
 .cn-ocr-review > .btn { margin-bottom: 1rem; }
-@media (max-width: 575px) { .cn-ocr-candidates > div { align-items: stretch; flex-direction: column; } .cn-ocr-fields .btn { width: 100%; } }
+@media (max-width: 575px) { .cn-ocr-candidates details > div { align-items: stretch; flex-direction: column; } .cn-ocr-fields .btn { width: 100%; } }
 .cn-quality-consent { grid-column: 1 / -1; font-size: .875rem; padding: 1rem 0; max-width: 70ch; }
 .cn-quality-consent label { display: flex; gap: .6rem; align-items: start; font-weight: 600; }
 .cn-quality-consent input { margin-top: .25rem; flex-shrink: 0; }
@@ -107,3 +107,36 @@
 .cn-ocr-corners__coordinates { display: flex; gap: .5rem; margin-bottom: .4rem; }
 .cn-ocr-corners__coordinates label { min-width: 0; flex: 1; }
 .cn-ocr-corners__coordinates input { width: 100%; }
+.cn-ocr-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 0; margin: 0 0 20px; list-style: none; font-size: 14px; }
+.cn-ocr-steps li { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.cn-ocr-steps li > span { display: grid; place-items: center; flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--cn-tint); color: var(--cn-accent); font-weight: 700; }
+.cn-ocr-review { display: flex; flex-direction: column; gap: 12px; }
+.cn-ocr-review--table .cn-ocr-structured { order: 1; }
+.cn-ocr-review--table .cn-ocr-review__body { order: 2; }
+.cn-ocr-review .cn-ocr-validation { order: 3; }
+.cn-ocr-review footer { order: 4; }
+.cn-ocr-review__navigation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.cn-ocr-review__navigation span { font-weight: 600; }
+.cn-ocr-review :is(summary, button, select, input), .cn-ocr-advanced summary { min-height: 44px; }
+.cn-ocr-review summary, .cn-ocr-advanced summary { align-content: center; cursor: pointer; }
+.cn-ocr-table__size[hidden] { display: none; }
+.cn-ocr-table__scroll:not(.is-editing-structure) td > div { display: none; }
+.cn-ocr-table__structure { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.cn-ocr-table__structure input { width: 20px; }
+.cn-ocr-cell-editor { display: none; }
+.cn-ocr-advanced > label { margin: 12px 0; }
+@media (max-width: 767px) {
+  .cn-ocr-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
+  .cn-ocr-review__editor { order: -1; }
+  .cn-ocr-review__words { max-height: 140px; }
+  .cn-ocr-review__preview { min-height: 72px; }
+  .cn-ocr-review__preview canvas { max-height: 140px; width: auto; }
+  .cn-ocr-review__editor { gap: 8px; }
+  .cn-ocr-review__editor :is(.cn-ocr-review__hint, .cn-ocr-candidates p) { font-size: 13px; }
+  .cn-ocr-review footer .btn, .cn-ocr-table > .btn { width: 100%; }
+  .cn-ocr-cell-editor { display: grid; gap: 10px; margin: 16px 0; }
+  .cn-ocr-cell-editor > label { display: grid; gap: 6px; }
+  .cn-ocr-cell-editor__navigation { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .cn-ocr-cell-editor__navigation .btn { min-width: 0; white-space: normal; }
+  .cn-ocr-cell-editor__navigation span { flex-shrink: 0; }
+}

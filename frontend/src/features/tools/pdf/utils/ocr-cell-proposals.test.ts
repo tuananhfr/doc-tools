@@ -7,6 +7,12 @@ import type { OcrPageResult } from '../types/ocr-result.types'
 
 const words = (text: string) => ocrWords([{ bbox: { x0: 10, y0: 5, x1: 70, y1: 20 }, baseline: { x0: 10, y0: 18, x1: 70, y1: 18 }, words: [{ text, confidence: 95, bbox: { x0: 10, y0: 5, x1: 70, y1: 20 } }] }], 1, point => point, { width: 100, height: 30 })
 describe('OCR cell alternatives', () => {
+  it('does not blank a populated cell when a comparison pass misses its text', () => {
+    const grid = resizeOcrTable({ id: 't', origin: 'manual', rows: 0, columns: 0, cells: [], verifiedAt: null }, 1, 1)
+    grid.cells[0].rawText = '0012'
+    const proposed = proposeOcrCells(grid, { pass: 'grid', words: [], engineVersion: 'test' }, { pass: 'original', words: words('0012'), engineVersion: 'test' })
+    expect(proposed.cells[0]).toMatchObject({ rawText: '0012', verified: null, proposal: { value: '0012', pass: 'original' } })
+  })
   it('keeps original text immutable and blocks an alternative until explicit grid confirmation', () => {
     const original = words('1oo'), alternative = words('100'), grid = resizeOcrTable({ id: 't', origin: 'manual', rows: 0, columns: 0, cells: [], verifiedAt: null }, 1, 1)
     grid.cells[0].rawText = '1oo'; grid.cells[0].wordIds = [original[0].id]

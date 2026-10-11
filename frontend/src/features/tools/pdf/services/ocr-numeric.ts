@@ -3,9 +3,10 @@ import type { Point } from '../utils/page-geometry'
 import { ocrWords } from '../utils/ocr-review'
 import { recognizeCanvas } from './ocr'
 import type { OcrMatrix } from '../types/ocr-profile.types'
+import { numericTargets } from '../utils/ocr-numeric-targets'
 
 export async function numericOcrPass(original: HTMLCanvasElement, words: OcrWordResult[], pxPerPt: number, toBase: (point: Point) => Point, signal: AbortSignal, onProgress: (progress: number) => void) {
-  const selected = words.filter(word => /^\d[\d.,/\-+\s]*$/u.test(word.normalizedText)).slice(0, 12), results: OcrWordResult[] = []
+  const selected = numericTargets(words), results: OcrWordResult[] = []
   const crops: { targetWordId: string; toOriginal: OcrMatrix }[] = []
   for (const [index, word] of selected.entries()) {
     signal.throwIfAborted()

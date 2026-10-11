@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { chromium, outDir } from './lib/qa.mjs'
+import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 import { generateBenchmarkFixtures } from './fixtures/ocr-benchmark.mjs'
 import { normalizeOcrText, textMetrics, fieldMetrics, aggregateMetrics } from './lib/ocr-metrics.mjs'
 
@@ -15,7 +15,7 @@ const manifest = JSON.parse(manifestBytes)
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true })
-await context.route('**/api/v1/tools/**', route => route.fulfill({ json: { ok: true, total: 0 } }))
+await mockFreeSession(context)
 const page = await context.newPage()
 page.on('dialog', dialog => void dialog.accept())
 const errors = []; const unexpectedWrites = []
@@ -35,6 +35,7 @@ const report = { version: 1, createdAt: new Date().toISOString(), target: site, 
 try {
   await page.goto(site + '/', { waitUntil: 'networkidle' })
   report.build = await page.evaluate(async () => (await (await fetch('offline-manifest.json')).json()).version)
+  if (process.env.EXPECTED_BUILD) assert.equal(report.build, process.env.EXPECTED_BUILD, 'Unexpected served build')
   const modelBytes = await page.evaluate(async url => {
     const response = await fetch(url)
     if (!response.ok) throw new Error('Language model unavailable')
@@ -69,12 +70,15 @@ try {
         for (let i = 0; i < await buttons.count(); i++) {
           await buttons.nth(i).click()
           const rawText = await page.locator('.cn-ocr-review__raw strong').innerText()
-          const label = await page.locator('.cn-ocr-review__raw + p').innerText()
+          const label = await page.locator('.cn-ocr-review__confidence').innerText()
           const confidence = Number(label.match(/(\d+)\/100/)?.[1] ?? NaN)
           assert(Number.isFinite(confidence) && confidence >= 0 && confidence <= 100, 'Confidence is absent or invalid')
-          result.words.push({ index: i, rawText, confidence, requiresReview: (await buttons.nth(i).getAttribute('class')).includes('needs-review') })
+          const proposedText = await page.locator('#ocr-word-value').inputValue()
+          result.words.push({ index: i, rawText, proposedText, confidence, requiresReview: (await buttons.nth(i).getAttribute('class')).includes('needs-review') })
         }
         result.rawText = result.words.map(word => word.rawText).join(' ')
+        result.proposedText = result.words.map(word => word.proposedText).join(' ')
+        result.proposedMetrics = textMetrics(fixture.expectedText, result.proposedText)
         await buttons.first().click()
         await page.locator('.cn-ocr-review__editor').scrollIntoViewIfNeeded()
         await page.screenshot({ path: path.join(out, fixture.id + '-review.png') })
@@ -90,7 +94,7 @@ try {
         const download = await pending
         const output = path.join(out, fixture.id + '.txt'); await download.saveAs(output)
         const text = new TextDecoder('utf-8', { fatal: true }).decode(fs.readFileSync(output))
-        assert.equal(normalizeOcrText(text), normalizeOcrText(result.rawText), 'Export differs from observed unchanged OCR')
+        assert.equal(normalizeOcrText(text), normalizeOcrText(result.proposedText), 'Export differs from observed proposals confirmed without correction')
         result.exportSha256 = sha256(fs.readFileSync(output)); result.exportStatus = 'passed'; result.status = 'measured'
       }
       result.metrics = textMetrics(fixture.expectedText, result.rawText)

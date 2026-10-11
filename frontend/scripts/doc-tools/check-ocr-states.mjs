@@ -1,7 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import assert from 'node:assert/strict'
-import { chromium, outDir } from './lib/qa.mjs'
+import { createHash } from 'node:crypto'
+import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 
 const site = process.env.SITE ?? 'http://localhost:3016', out = outDir('ocr-states')
 const fixtures = process.env.OCR_FIXTURES ?? path.join(process.env.LOCALAPPDATA, 'Temp/erpcons-doc-tools/out/ocr-fixtures-v2')
@@ -9,7 +10,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(fixtures, 'manifest.json')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 390, height: 844 }, acceptDownloads: true })
 const page = await context.newPage(), events = [], unexpectedWrites = [], errors = []
-await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, total: 0, tools: {} } }))
+await mockFreeSession(context)
 context.on('request', request => {
   if (request.method() !== 'POST') return
   const url = new URL(request.url()), body = JSON.parse(request.postData() ?? '{}'), keys = Object.keys(body).sort().join(',')
@@ -18,11 +19,12 @@ context.on('request', request => {
   unexpectedWrites.push(url.pathname)
 })
 page.on('pageerror', error => errors.push(String(error)))
-const report = { target: site, actor: 'anonymous Free user', cases: [], errors, unexpectedWrites, limitations: ['Emulated mobile viewport; no physical-device performance claim', 'Real handwriting has no approved transcript and is not scored'] }
+const report = { createdAt: new Date().toISOString(), target: site, actor: 'anonymous Free user', fixtureManifestSha256: createHash('sha256').update(fs.readFileSync(path.join(fixtures, 'manifest.json'))).digest('hex'), cases: [], errors, unexpectedWrites, limitations: ['Emulated mobile viewport; no physical-device performance claim', 'Real handwriting has no approved transcript and is not scored'] }
 const receipt = path.join(fixtures, 'baseline-v1/RECEIPT-CLEAN.png')
 async function open(profile, passes = '2', file = receipt) {
   await page.goto(site + '/anh-sang-van-ban', { waitUntil: 'networkidle' })
   await page.getByLabel('Loại nội dung', { exact: true }).selectOption(profile)
+  await page.locator('.cn-ocr-advanced > summary').click()
   await page.getByLabel('Số lượt đối chiếu', { exact: true }).selectOption(passes)
   await page.getByLabel('Định dạng tải về', { exact: true }).selectOption('json')
   await page.locator('input[type=file]').first().setInputFiles(file)
@@ -55,9 +57,16 @@ try {
   // `/` is the landing page; search (and its zero-result events) live on `/cong-cu`.
   await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' })
   report.build = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
+  if (process.env.EXPECTED_BUILD) assert.equal(report.build, process.env.EXPECTED_BUILD)
   await check('quality-consent', async () => {
     const checkbox = page.locator('.cn-quality-consent input[type=checkbox]').first()
-    assert(await checkbox.count()); assert(!await checkbox.isChecked())
+    if (!await checkbox.count()) {
+      assert.notEqual(process.env.EXPECT_QUALITY_EVENTS, '1', 'Expected quality events enabled build')
+      await page.locator('#tim-cong-cu').fill('qzxv-no-result'); await page.locator('.cn-search-submit').click()
+      assert.equal(events.length, 0)
+      return { featureEnabled: false, defaultOff: true, noQualityEvents: true, optInBrowserBranch: 'not applicable to this disabled build; covered by unit tests' }
+    }
+    assert(!await checkbox.isChecked())
     await page.locator('#tim-cong-cu').fill('qzxv-no-result'); await page.locator('.cn-search-submit').click()
     assert.equal(events.length, 0)
     await checkbox.check(); await page.locator('#tim-cong-cu').fill('other-qzxv-no-result')
@@ -84,10 +93,20 @@ try {
     await page.locator('.erp-flow-progress__cancel').click(); await page.locator('.erp-flow__run').waitFor()
     return { retryReachedReview: true }
   })
+  await check('handwriting-availability-boundary', async () => {
+    await open('mixed', '2')
+    assert(await page.getByText(/Chưa có model chữ tay đã kiểm chứng/).count())
+    assert.equal(await page.getByLabel('Loại nội dung', { exact: true }).locator('option[value=handwriting]').count(), 0)
+    await read()
+    assert.equal(await page.locator('.cn-ocr-review__word').count(), await page.locator('.cn-ocr-review__word.needs-review').count())
+    assert(await page.getByRole('button', { name: 'Xuất kết quả đã kiểm tra', exact: true }).isDisabled())
+    await page.locator('.erp-flow-progress__cancel').click()
+    return { syntheticPrintedInput: true, noHandwritingAccuracyClaim: true, mixedProfileRequiresFullReview: true, verifiedHandwritingOptionUnavailable: true }
+  })
   await check('language-download-recovery', async () => {
     const cold = await browser.newContext({ serviceWorkers: 'block' }), coldPage = await cold.newPage()
     try {
-      await cold.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, total: 0 } }))
+      await mockFreeSession(cold)
       await cold.route('**/vie.traineddata.gz', route => route.fulfill({ status: 503, body: 'Unavailable' }))
       await coldPage.goto(site + '/anh-sang-van-ban', { waitUntil: 'networkidle' })
       await coldPage.locator('input[type=file]').first().setInputFiles(receipt)
@@ -117,6 +136,7 @@ try {
     const before = JSON.parse(fs.readFileSync(path.join(out, 'numeric.json'), 'utf8')).pages[0]
     await page.getByRole('button', { name: 'Làm lại', exact: true }).click()
     await page.getByLabel('Loại nội dung', { exact: true }).selectOption('printed')
+    if (await page.locator('.cn-ocr-advanced').getAttribute('open') === null) await page.locator('.cn-ocr-advanced > summary').click()
     await page.getByLabel('Số lượt đối chiếu', { exact: true }).selectOption('1')
     await read(); await confirmWords()
     const after = (await jsonOutput('changed-profile')).pages[0]
@@ -132,14 +152,14 @@ try {
     const fields = page.locator('.cn-ocr-fields > div')
     assert.equal(await fields.count(), 3)
     for (const [index, value] of ['Nguyễn Văn An', '1250000', '31/02/2024'].entries()) {
-      await fields.nth(index).locator('input').fill(value); await fields.nth(index).locator('button').click()
+      await fields.nth(index).locator('input').fill(value); if (await fields.nth(index).locator('button').isEnabled()) await fields.nth(index).locator('button').click()
     }
     assert(await page.getByText(/Ngày không hợp lệ/).count())
     assert(await page.getByRole('button', { name: 'Xuất kết quả đã kiểm tra', exact: true }).isDisabled())
     await fields.nth(2).locator('input').fill('29/02/2024'); await fields.nth(2).locator('button').click()
     await confirmWords()
     for (const [index, value] of ['Nguyễn Văn An', '1250000', '29/02/2024'].entries()) {
-      await fields.nth(index).locator('input').fill(value); await fields.nth(index).locator('button').click()
+      await fields.nth(index).locator('input').fill(value); if (await fields.nth(index).locator('button').isEnabled()) await fields.nth(index).locator('button').click()
     }
     await page.locator('.cn-ocr-fields').scrollIntoViewIfNeeded(); await page.screenshot({ path: path.join(out, 'form-390.png') })
     for (const zoom of [1.25, 1.5]) {
@@ -188,7 +208,8 @@ try {
     await confirmWords(); await jsonOutput('offline')
     return { offlineReloadAndDownload: true }
   })
-  report.status = report.cases.every(item => item.status === 'passed') && !errors.length && !unexpectedWrites.length ? 'passed' : 'failed'
+  assert.equal(await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version), report.build)
+  report.status = report.cases.length > 0 && report.cases.every(item => item.status === 'passed') && !errors.length && !unexpectedWrites.length ? 'passed' : 'failed'
 } finally {
   if (report.status !== 'passed') process.exitCode = 1
   fs.writeFileSync(path.join(out, 'results.json'), JSON.stringify(report, null, 2) + '\n', 'utf8')

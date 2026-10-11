@@ -6,7 +6,7 @@ import { unzipSync, strFromU8 } from 'fflate'
 import ExcelJS from 'exceljs'
 import { PDFDocument } from 'pdf-lib'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs'
-import { chromium, outDir } from './lib/qa.mjs'
+import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 import { structuredMetrics } from './lib/ocr-metrics.mjs'
 
 const site = process.env.SITE ?? 'http://localhost:3016'
@@ -15,7 +15,7 @@ const out = outDir('ocr-v2'), hash = bytes => createHash('sha256').update(bytes)
 const manifest = JSON.parse(fs.readFileSync(path.join(fixtures, 'manifest.json'), 'utf8'))
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ acceptDownloads: true, viewport: { width: 1440, height: 900 } })
-await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, total: 0, tools: {} } }))
+await mockFreeSession(context)
 const page = await context.newPage(), errors = [], writes = []
 page.on('pageerror', error => errors.push(String(error)))
 context.on('request', request => {
@@ -23,7 +23,7 @@ context.on('request', request => {
   const url = new URL(request.url()), body = JSON.parse(request.postData() ?? '{}')
   if (url.origin !== new URL(site).origin || !url.pathname.endsWith('/api/v1/tools/visits') || Object.keys(body).length !== 1 || typeof body.tool !== 'string') writes.push(url.pathname)
 })
-const report = { target: site, actor: 'anonymous Free user', kind: 'automated fixture review, not a human accuracy measurement', cases: [], rawTableMetrics: null, errors, writes }
+const report = { createdAt: new Date().toISOString(), target: site, actor: 'anonymous Free user', kind: 'automated fixture review, not a human accuracy measurement', fixtureManifestSha256: hash(fs.readFileSync(path.join(fixtures, 'manifest.json'))), cases: [], rawTableMetrics: null, errors, writes }
 async function confirmWords() {
   let count = 0
   while (await page.locator('.cn-ocr-review__word.needs-review').count()) {
@@ -34,13 +34,14 @@ async function confirmWords() {
   return count
 }
 async function discover() {
-  await page.goto(site + '/', { waitUntil: 'networkidle' })
-  await page.locator('#cn-home-search').fill('Lấy chữ từ ảnh')
-  await page.locator('#erp-tools-grid .erp-tool-card').filter({ hasText: 'Lấy chữ từ ảnh' }).click()
+  await page.goto(site + '/cong-cu', { waitUntil: 'networkidle' })
+  await page.locator('#tim-cong-cu').fill('Lấy chữ từ ảnh')
+  await page.locator('.erp-tools-grid .erp-tool-card').filter({ hasText: 'Lấy chữ từ ảnh' }).click()
 }
 try {
   await discover()
   report.build = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
+  if (process.env.EXPECTED_BUILD) assert.equal(report.build, process.env.EXPECTED_BUILD)
   for (const format of ['text', 'pdf', 'docx', 'json', 'xlsx', 'csv']) {
     const table = ['xlsx', 'csv'].includes(format)
     await discover()
@@ -69,6 +70,8 @@ try {
         return { row: Number(match[1]) - 1, column: Number(match[2]) - 1, rowSpan: cell.rowSpan, columnSpan: cell.colSpan, text: input.value }
       }))
       report.rawTableMetrics = structuredMetrics(truth, raw, ['row', 'column'])
+      const full = page.locator('.cn-ocr-table__full'); if (await full.getAttribute('open') === null) await full.locator('summary').click()
+      await page.getByLabel('Chỉnh số hàng, cột và ô gộp', { exact: true }).check()
       await page.locator('.cn-ocr-table__size input').nth(0).fill('6')
       await page.locator('.cn-ocr-table__size input').nth(1).fill('4')
       for (const cell of truth) {

@@ -24,8 +24,22 @@ export function mergeOcrPasses(passes: OcrPassWords[]): OcrWordResult[] {
       if (matches.length > 1) next.push({ ...candidate(word, pass), id: `${pass.pass}:group:${word.id}`, rawText: joined, score: Math.min(...matches.map(item => item.confidence)) })
       return { ...word, candidates: [...word.candidates, ...next], reviewReasons: [...reasons] }
     })
-    const extras = aligned.unmatched.map((word, index) => ({ ...word, id: `extra-${pass.pass}-${index}:${word.id}`, candidates: [candidate(word, pass)], reviewReasons: ['unmatched'] as OcrWordResult['reviewReasons'] }))
-    words = [...words, ...extras]
+    for (const [index, word] of aligned.unmatched.entries()) {
+      const box = word.previewBox, cy = box.y + box.height / 2
+      const sameLine = words.filter(current => Math.abs(current.previewBox.y + current.previewBox.height / 2 - cy) <= Math.max(box.height, current.previewBox.height) / 2)
+      const anchor = sameLine[0]
+      const insertion = words.findIndex(current => {
+        const other = current.previewBox, otherY = other.y + other.height / 2
+        return sameLine.includes(current) ? other.x > box.x : otherY > cy + Math.max(box.height, other.height) / 2
+      })
+      const extra = { ...word, id: `${anchor?.id.split(':')[0] ?? `extra-${pass.pass}-${index}`}:extra-${pass.pass}-${index}`, candidates: [candidate(word, pass)], reviewReasons: ['unmatched'] as OcrWordResult['reviewReasons'] }
+      words.splice(insertion < 0 ? words.length : insertion, 0, extra)
+    }
   }
-  return words
+  return words.map(word => {
+    const best = word.candidates.reduce((selected, current) => current.score > selected.score ? current : selected)
+    if (comparable(best.rawText) === comparable(word.rawText) || best.score < 85 || best.score < word.confidence + 10) return word
+    return { ...word, normalizedText: best.rawText.trim().normalize('NFC'), proposedCandidateId: best.id, contentType: /\p{N}/u.test(word.rawText + best.rawText) ? 'numeric' as const : word.contentType,
+      reviewReasons: [...new Set([...(word.reviewReasons ?? []), 'disagreement' as const])] }
+  })
 }

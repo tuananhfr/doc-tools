@@ -69,7 +69,7 @@ export async function recognizePipeline(source: SourceFile, page: PageRef, onPro
       return visualToBase({ x: pixel.x/pxPerPt, y: pixel.y/pxPerPt }, base, turn)
     })
     const proposal = passes.find(pass => pass.pass === geometry.id && pass.pass !== 'original') ?? passes.find(pass => pass.pass === 'grid')
-    if (proposal) layout.tables = layout.tables.map(table => proposeOcrCells(table, proposal))
+    if (proposal) layout.tables = layout.tables.map(table => proposeOcrCells(table, proposal, passes[0]))
     return { runs: words.map(word => word.run), ocr: { sourceId: source.id, pageIndex: page.pageIndex, sourceHash, engine: 'tesseract', engineVersion: passes[0].engineVersion, pass: 'original', words, qualityFlags,
       layout, pipeline: { version: OCR_PIPELINE_VERSION, profile: options.profile, fingerprint: ocrFingerprint(sourceHash, page, options), rotation: turn, passes: [...variants.map(variant => ({ id: variant.id, toOriginal: variant.toOriginal, operations: variant.operations ?? [variant.id] })), ...(numeric ? [{ id: 'numeric' as const, toOriginal: variants[0].toOriginal, crops: numericCrops }] : [])] } } }
   } finally {

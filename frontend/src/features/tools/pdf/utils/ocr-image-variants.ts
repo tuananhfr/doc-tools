@@ -48,23 +48,35 @@ export function rulingLines(image: GrayImage) {
   return { rows: rowBands.map(band => band.center), columns: columnBands.map(band => band.center), rowBands, columnBands }
 }
 
-export function suppressRulingPixels(rgba: Uint8ClampedArray, width: number, height: number): Uint8ClampedArray {
+export function suppressRulingPixels(rgba: Uint8ClampedArray, width: number, height: number, layout?: GrayImage): Uint8ClampedArray {
   const gray = new Uint8Array(width * height)
   for (let index = 0; index < gray.length; index++) gray[index] = (77 * rgba[index * 4] + 150 * rgba[index * 4 + 1] + 29 * rgba[index * 4 + 2]) >> 8
-  const lines = rulingLines({ width, height, data: gray }), output = new Uint8ClampedArray(rgba)
+  const detected = rulingLines(layout ?? { width, height, data: gray })
+  const scaleX = layout ? width / layout.width : 1, scaleY = layout ? height / layout.height : 1
+  const scaleBand = (band: { start: number; end: number; center: number }, scale: number) => ({ start: Math.floor(band.start * scale - (layout ? scale : 0)), end: Math.ceil(band.end * scale + (layout ? scale : 0)), center: band.center * scale })
+  const lines = { ...detected, rowBands: detected.rowBands.map(band => scaleBand(band, scaleY)), columnBands: detected.columnBands.map(band => scaleBand(band, scaleX)) }, output = new Uint8ClampedArray(rgba)
   if (lines.rows.length < 3 || lines.columns.length < 2) return output
   const erase = (x: number, y: number, vertical: boolean, start: number, end: number) => {
     const beforeX = vertical ? start - 2 : x, beforeY = vertical ? y : start - 2
     const afterX = vertical ? end + 2 : x, afterY = vertical ? y : end + 2
-    if (beforeX < 0 || beforeY < 0 || afterX >= width || afterY >= height) return
-    const before = gray[beforeY * width + beforeX], after = gray[afterY * width + afterX]
+    const sample = (x: number, y: number) => x < 0 || y < 0 || x >= width || y >= height ? 255 : gray[y * width + x]
+    const before = sample(beforeX, beforeY), after = sample(afterX, afterY)
     // Crossing glyph strokes stay intact; only isolated ruling pixels are suppressed.
     if (before < 210 || after < 210) return
     const offset = (y * width + x) * 4
     const value = Math.round((before + after) / 2)
     output[offset] = output[offset + 1] = output[offset + 2] = value
   }
-  for (const band of lines.rowBands) for (let y = band.start; y <= band.end; y++) for (let x = 0; x < width; x++) erase(x, y, false, band.start, band.end)
-  for (const band of lines.columnBands) for (let x = band.start; x <= band.end; x++) for (let y = 0; y < height; y++) erase(x, y, true, band.start, band.end)
+  for (const band of lines.rowBands) for (let y = Math.max(0, band.start - 2); y <= Math.min(height - 1, band.end + 2); y++) for (let x = 0; x < width; x++) erase(x, y, false, band.start - 2, band.end + 2)
+  for (const band of lines.columnBands) for (let x = Math.max(0, band.start - 2); x <= Math.min(width - 1, band.end + 2); x++) for (let y = 0; y < height; y++) erase(x, y, true, band.start - 2, band.end + 2)
+  // Isolated junctions otherwise survive as punctuation after both lines are removed.
+  for (const row of lines.rowBands) for (const column of lines.columnBands) {
+    const sample = (x: number, y: number) => x < 0 || y < 0 || x >= width || y >= height ? 255 : gray[y * width + x]
+    if ([sample(column.start - 4, row.start - 4), sample(column.end + 4, row.start - 4), sample(column.start - 4, row.end + 4), sample(column.end + 4, row.end + 4)].some(value => value < 210)) continue
+    for (let y = Math.max(0, row.start - 2); y <= Math.min(height - 1, row.end + 2); y++) for (let x = Math.max(0, column.start - 2); x <= Math.min(width - 1, column.end + 2); x++) {
+      const offset = (y * width + x) * 4
+      output[offset] = output[offset + 1] = output[offset + 2] = 255
+    }
+  }
   return output
 }

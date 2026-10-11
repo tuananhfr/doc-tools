@@ -5,6 +5,7 @@ import { estimateSkew, toGray } from '../utils/scan-analysis'
 import { perspectiveMatrix, validPaperCorners } from '../utils/ocr-perspective'
 import { CANVAS_CAP } from '../utils/canvas-cap'
 import { detectPaperCorners } from '../utils/ocr-paper'
+import { detectGridCorners } from '../utils/ocr-grid-corners'
 
 export interface OcrImageVariant { id: OcrPass; canvas: HTMLCanvasElement; toOriginal: OcrMatrix; operations?: OcrPass[]; layoutSample?: import('../utils/scan-analysis').GrayImage }
 
@@ -19,23 +20,26 @@ export function sampledGray(canvas: HTMLCanvasElement) {
 export function preprocessOcr(canvas: HTMLCanvasElement, options: OcrPipelineOptions): OcrImageVariant[] {
   const variants: OcrImageVariant[] = [{ id: 'original', canvas, toOriginal: IDENTITY }]
   if (options.maxPasses === 1) return variants
-  const paper = options.perspective ?? detectPaperCorners(sampledGray(canvas))
+  const sample = sampledGray(canvas)
+  const paper = options.perspective ?? detectPaperCorners(sample) ?? (options.profile === 'table' ? detectGridCorners(sample) : null)
   if (paper) {
     const corners = paper.map(point => ({ x: point.x * canvas.width, y: point.y * canvas.height })) as typeof paper
     if (!validPaperCorners(corners, canvas.width, canvas.height)) throw new Error('OCR_INVALID_CORNERS')
-    const fromOriginal = perspectiveMatrix(corners, [{ x: 0, y: 0 }, { x: canvas.width, y: 0 }, { x: canvas.width, y: canvas.height }, { x: 0, y: canvas.height }])
+    const pad = Math.max(8, Math.min(canvas.width, canvas.height) * .025)
+    const fromOriginal = perspectiveMatrix(corners, [{ x: pad, y: pad }, { x: canvas.width - pad, y: pad }, { x: canvas.width - pad, y: canvas.height - pad }, { x: pad, y: canvas.height - pad }])
     const toOriginal = invertMatrix(fromOriginal), variant = document.createElement('canvas')
     variant.width = canvas.width; variant.height = canvas.height
     const context = variant.getContext('2d')!, input = canvas.getContext('2d')!.getImageData(0, 0, canvas.width, canvas.height), output = context.createImageData(canvas.width, canvas.height)
+    const pixel = (x: number, y: number, channel: number) => x >= 0 && y >= 0 && x < canvas.width && y < canvas.height ? input.data[(y * canvas.width + x) * 4 + channel] : 255
     for (let y = 0; y < variant.height; y++) for (let x = 0; x < variant.width; x++) {
       const source = transformPoint(toOriginal, { x, y }), target = (y * variant.width + x) * 4
-      const sx = Math.round(source.x), sy = Math.round(source.y)
-      for (let channel = 0; channel < 3; channel++) output.data[target + channel] = sx >= 0 && sy >= 0 && sx < canvas.width && sy < canvas.height ? input.data[(sy * canvas.width + sx) * 4 + channel] : 255
+      const sx = Math.floor(source.x), sy = Math.floor(source.y), fx = source.x - sx, fy = source.y - sy
+      for (let channel = 0; channel < 3; channel++) output.data[target + channel] = (pixel(sx, sy, channel) * (1 - fx) + pixel(sx + 1, sy, channel) * fx) * (1 - fy) + (pixel(sx, sy + 1, channel) * (1 - fx) + pixel(sx + 1, sy + 1, channel) * fx) * fy
       output.data[target + 3] = 255
     }
     context.putImageData(output, 0, 0); variants.push({ id: 'perspective', canvas: variant, toOriginal })
   } else {
-    const skew = estimateSkew(sampledGray(canvas))
+    const skew = estimateSkew(sample)
     if (skew !== null) {
       const rotation = expandedRotation(canvas.width, canvas.height, -skew), variant = document.createElement('canvas')
       const scale = Math.min(1, CANVAS_CAP.maxSide / Math.max(rotation.width, rotation.height), Math.sqrt(CANVAS_CAP.maxArea / (rotation.width * rotation.height)))
@@ -52,7 +56,7 @@ export function preprocessOcr(canvas: HTMLCanvasElement, options: OcrPipelineOpt
     const geometry = variants[1]
     geometry.layoutSample = sampledGray(geometry.canvas)
     const context = geometry.canvas.getContext('2d')!, pixels = context.getImageData(0, 0, geometry.canvas.width, geometry.canvas.height)
-    pixels.data.set(enhancePixels(suppressRulingPixels(pixels.data, geometry.canvas.width, geometry.canvas.height), 'contrast'))
+    pixels.data.set(enhancePixels(suppressRulingPixels(pixels.data, geometry.canvas.width, geometry.canvas.height, geometry.layoutSample), 'contrast'))
     context.putImageData(pixels, 0, 0); geometry.operations = [geometry.id, 'grid', 'contrast']
   }
   while (variants.length < options.maxPasses) {

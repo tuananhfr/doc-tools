@@ -19,6 +19,7 @@ export interface OcrWordResult {
   id: string
   rawText: string
   normalizedText: string
+  proposedCandidateId?: string
   confidence: number
   confidenceLevel: OcrConfidence
   bbox: Quad

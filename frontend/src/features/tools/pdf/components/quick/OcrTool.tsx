@@ -15,6 +15,7 @@ import { DEFAULT_OCR_OPTIONS, type OcrPipelineOptions } from '../../types/ocr-pr
 
 const DOCUMENTS: readonly QuickKind[] = ['pdf', 'image']
 const IMAGES: readonly QuickKind[] = ['image']
+const STEPS = ['choose', 'recognize', 'review', 'download'] as const
 
 export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
   const { t } = useTranslation('pdf')
@@ -27,18 +28,21 @@ export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
   const [output, setOutput] = useState<OcrOutput>(tableIntent ? 'xlsx' : imagesOnly ? 'text' : 'pdf')
   const [options, setOptions] = useState<OcrPipelineOptions>({ ...DEFAULT_OCR_OPTIONS, profile: tableIntent ? 'table' : DEFAULT_OCR_OPTIONS.profile })
   const [invalidCorners, setInvalidCorners] = useState(false)
-  return <QuickToolShell quick={quick} accept={accept} multiple reorder
+  return <><ol className="cn-ocr-steps" aria-label={o('workflow')}>
+    {STEPS.map((step, index) => <li key={step}><span aria-hidden="true">{index + 1}</span>{o(`steps.${step}`)}</li>)}
+  </ol><QuickToolShell quick={quick} accept={accept} multiple reorder
     waitingLabel={review.pages ? o('waitingReview') : undefined}
     pickerTitle={t(imagesOnly ? 'imageToText.pickerTitle' : 'ocrPage.pickerTitle')}
     runLabel={t(imagesOnly ? 'imageToText.run' : 'ocrPage.run')} runIcon="card-text" blocked={invalidCorners ? o('invalidCorners') : (output === 'csv' || output === 'xlsx') && options.profile !== 'table' ? o('tableRequired') : null}
     task={() => ocrTask(quick.items, output, review.request, options)}
     stage={() => review.pages ? <OcrReview pages={review.pages} onComplete={review.complete} /> : undefined}
     options={<>
-      <OcrProfileOptions value={options} onChange={setOptions} />
-      <OcrCornerPicker item={quick.items[0]} onChange={perspective => setOptions(current => ({ ...current, perspective, maxPasses: perspective && current.maxPasses === 1 ? 2 : current.maxPasses }))} onInvalid={setInvalidCorners} />
-      <OcrQualityPreview items={quick.items} />
       <OcrOutputOptions value={output} onChange={setOutput} />
+      <OcrProfileOptions value={options} onChange={setOptions}>
+      <OcrCornerPicker item={quick.items[0]} onChange={perspective => setOptions(current => ({ ...current, perspective, maxPasses: perspective && current.maxPasses === 1 ? 2 : current.maxPasses }))} onInvalid={setInvalidCorners} />
       <p className="erp-flow-field__hint">{t('ocrReview.handwriting')}</p>
       <OcrReadiness />
-    </>} />
+      </OcrProfileOptions>
+      <OcrQualityPreview items={quick.items} />
+    </>} /></>
 }
