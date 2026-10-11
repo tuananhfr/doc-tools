@@ -39,9 +39,17 @@
 .cn-directory .cn-tool-search { max-width: 660px; }
 .cn-directory-catalog { padding-block: 24px 32px; }
 .cn-directory .cn-tool-filters { margin-bottom: 15px; }
+.cn-directory-controls { position: sticky; top: 0; z-index: 1; background: var(--cn-surface); padding-block: 12px 4px; border-bottom: 1px solid var(--cn-line); }
+.cn-directory-controls .cn-tool-filters { margin-block: 10px 0; }
+.cn-catalog-availability { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 13px; color: var(--cn-muted); }
+.cn-catalog-availability label { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+.cn-directory-controls .cn-tool-filters { flex-wrap: wrap; overflow: visible; }
+.cn-filter-mobile { display: none; }
 @media (max-width: 1279px) { .cn-catalog .erp-tools-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 1023px) { .cn-catalog .erp-tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 767px) {
+  .cn-tool-filters--compact .cn-filter { display: none; }
+  .cn-tool-filters--compact .cn-filter-mobile { display: block; min-height: 44px; font-size: 16px; }
   .cn-tool-search { gap: 5px; padding-left: 11px; }
   .cn-tool-search input { font-size: 16px; height: 38px; }
   .cn-tool-search input::placeholder { font-size: 11px; }
@@ -51,9 +59,9 @@
   .cn-catalog-heading h2 { font-size: 21px; letter-spacing: -.8px; }
   .cn-catalog-all { font-size: 12px; margin-top: 8px; }
   .cn-filter { min-height: 40px; padding-inline: 13px; font-size: 12px; }
-  .cn-catalog .erp-tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .cn-catalog .erp-tool-card { grid-template-columns: minmax(0, 1fr) 10px; gap: 8px; min-height: 165px; padding: 14px; align-items: start; }
-  .cn-catalog .erp-tool-tile { grid-column: 1 / -1; width: 40px; height: 42px; font-size: 25px; }
+  .cn-catalog .erp-tools-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .cn-catalog .erp-tool-card { grid-template-columns: 40px minmax(0, 1fr) 10px; gap: 10px; min-height: 88px; padding: 12px; align-items: center; }
+  .cn-catalog .erp-tool-tile { width: 40px; height: 42px; font-size: 25px; }
   .cn-catalog .erp-tool-card__text { gap: 5px; }
   .cn-catalog .erp-tool-card__go { padding-top: 3px; }
   .cn-recent { align-items: flex-start; flex-direction: column; gap: 10px; }

@@ -967,5 +967,10 @@
       "MEDIUM": "ปานกลาง",
       "LOW": "ต่ำ"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

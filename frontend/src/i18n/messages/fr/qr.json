@@ -112,7 +112,8 @@
     "engineLoading": "Chargement du moteur de codes-barres…",
     "previewLabel": "Code-barres {{kind}} de {{value}}",
     "styleTitle": "Type de code",
-    "listTitle": "Liste des codes"
+    "listTitle": "Liste des codes",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

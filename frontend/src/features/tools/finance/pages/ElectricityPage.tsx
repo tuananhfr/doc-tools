@@ -14,6 +14,8 @@ import { electricityBill, parseElectricityRules, validateElectricityTiers, water
 import { parseVatRule } from '../utils/vat-rule'
 import { formatRuleLines, parseRuleLines } from '../utils/rule-lines'
 import styles from './ElectricityPage.module.css'
+import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
+import { editableRuleLines } from '../utils/editable-rule-lines'
 
 // Thuế điện có gói `vat` riêng, nên lượt kiểm nguồn đọc cả hai.
 const ELECTRICITY_KINDS = ['electricity', 'vat']
@@ -82,7 +84,7 @@ export default function ElectricityPage() {
       return true
     },
   }
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard after={<AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
     <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
     {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: money(waterResult.subtotal), fee: money(waterResult.fee), vat: money(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{waterHint}</p> : <>
@@ -98,7 +100,7 @@ export default function ElectricityPage() {
       ] as [keyof typeof water, string][]).map(([key, label]) => <NumberField key={key} label={label} rule={WATER_RULES[key]} value={water[key]} onChange={(value) => setWater((current) => ({ ...current, [key]: value }))} />)}</div> : <>
       <NumberField label={t('electricity.kwh')} rule={KWH} unit="kWh" value={kwh} onChange={setKwh} />
       <NumberField className="mt-3" label={t('electricity.households')} rule={HOUSEHOLDS} value={households} onChange={setHouseholds} />
-      <label className="erp-flow-field__label mt-3">{t('electricity.tiers')}<Form.Control as="textarea" rows={7} placeholder={'50; 1.800\n100; 2.200\n*; 3.000'} value={lines} onChange={(event) => updateLines(event.target.value)} /></label>
+      <StructuredTextRows label={t('electricity.tiers')} columns={[t('electricity.table.upTo'), t('electricity.table.price')]} separator=";" decode={editableRuleLines} value={lines} onChange={updateLines} />
       <NumberField className="mt-3" label={t('shared.vatPercent')} rule={PERCENT} unit="%" value={vat} onChange={(value) => { setVat(value); setAppliedVat(null) }} />
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('electricity.applyTariff')}</Button>
         : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>{t('electricity.applyVat')}</Button> : null}
@@ -107,6 +109,5 @@ export default function ElectricityPage() {
       </>}
     </ToolPanel>
     <SaveResultBar member={member} toolId="tien-dien" adapter={saveAdapter} />
-    <AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />
   </ToolBoard>
 }

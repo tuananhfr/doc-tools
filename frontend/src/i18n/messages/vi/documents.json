@@ -63,7 +63,8 @@
     "names": {
       "leave": "Đơn xin nghỉ phép",
       "authorization": "Giấy ủy quyền",
-      "handover": "Biên bản bàn giao"
+      "handover": "Biên bản bàn giao",
+      "receipt": "Biên nhận tiền"
     },
     "fields": {
       "recipient": "Kính gửi",
@@ -86,7 +87,11 @@
       "receiver": "Bên nhận (họ tên, chức vụ)",
       "items": "Danh mục bàn giao (mỗi dòng một mục)",
       "note": "Ghi chú",
-      "placeDrawn": "Nơi lập"
+      "placeDrawn": "Nơi lập",
+      "sender": "Người giao tiền",
+      "amount": "Số tiền (đồng)",
+      "receivedDate": "Ngày nhận tiền",
+      "purpose": "Nội dung nhận tiền"
     },
     "authorizationWarning": "Một số việc yêu cầu công chứng hoặc chứng thực. Kiểm tra với nơi tiếp nhận trước khi sử dụng.",
     "defaultWarning": "Mẫu tham khảo; hãy kiểm tra yêu cầu của nơi tiếp nhận trước khi nộp.",
@@ -132,9 +137,18 @@
         "attorney": "Người được ủy quyền",
         "principal": "Người ủy quyền",
         "receiver": "Bên nhận",
-        "giver": "Bên giao"
+        "giver": "Bên giao",
+        "sender": "Người giao tiền"
       },
-      "signHint": "(Ký, ghi rõ họ tên)"
+      "signHint": "(Ký, ghi rõ họ tên)",
+      "receipt": {
+        "sender": "Người giao tiền: {{value}}",
+        "receiver": "Người nhận tiền: {{value}}",
+        "amount": "Số tiền đã nhận: {{value}} đồng",
+        "words": "Bằng chữ (đồng): {{value}}",
+        "purpose": "Nội dung nhận tiền: {{value}}",
+        "confirmation": "Hai bên xác nhận đã giao và nhận đủ số tiền nêu trên. Biên nhận được lập thành hai bản, mỗi bên giữ một bản."
+      }
     },
     "confirmChangeKind": "Đổi loại giấy tờ sẽ xóa nội dung bạn đã nhập. Tiếp tục?",
     "datePlaceholder": "ví dụ 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "Ngày bắt đầu chưa đúng. Viết dạng ngày/tháng/năm, ví dụ 09/10/2026.",
       "to": "Ngày kết thúc chưa đúng. Viết dạng ngày/tháng/năm, ví dụ 09/10/2026.",
       "order": "Ngày kết thúc đang trước ngày bắt đầu."
+    },
+    "receiptErrors": {
+      "required": "Điền người giao, người nhận, số tiền và ngày nhận để in biên nhận.",
+      "amount": "Số tiền phải là số nguyên dương, tối đa 999.999.999.999.999 đồng.",
+      "date": "Ngày nhận không hợp lệ. Nhập theo ngày/tháng/năm."
     }
   }
 }

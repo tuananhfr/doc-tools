@@ -160,7 +160,9 @@
     "metaDescription": "Semua alat PDF, gambar, kode QR, dan utilitas gratis dari Chuyện Nhỏ. Tidak perlu akun, diproses langsung di perangkat.",
     "title": "Semua alat",
     "lead": "{{count}} alat gratis. Pilih yang Anda perlukan, langsung pakai di browser.",
-    "catalogLabel": "Katalog alat"
+    "catalogLabel": "Katalog alat",
+    "available": "{{count}} available tools",
+    "showSoon": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "Saat satu alat belum cukup…",

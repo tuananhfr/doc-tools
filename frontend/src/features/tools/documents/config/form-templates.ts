@@ -1,13 +1,21 @@
-export type FormKind = 'leave' | 'authorization' | 'handover'
+export type FormKind = 'leave' | 'authorization' | 'handover' | 'receipt'
 export type FormFieldLabel =
   | 'recipient' | 'name' | 'department' | 'from' | 'to' | 'reason' | 'handover' | 'placeWritten'
   | 'fromName' | 'fromId' | 'fromAddress' | 'toName' | 'toId' | 'toAddress' | 'scope' | 'term'
   | 'giver' | 'receiver' | 'items' | 'note' | 'placeDrawn'
+  | 'sender' | 'amount' | 'receivedDate' | 'purpose'
 /** `label` là khoá `documents:formTemplates.fields.*`; `initial` là khoá `formTemplates.print.initial.*` — in vào giấy tờ nên theo ngôn ngữ trang. */
 export interface FormField { key: string; label: FormFieldLabel; initial?: 'board'; multiline?: boolean }
 export interface FormTemplate { fields: FormField[] }
 
 export const FORM_TEMPLATES: Record<FormKind, FormTemplate> = {
+  receipt: {
+    fields: [
+      { key: 'sender', label: 'sender' }, { key: 'receiver', label: 'receiver' },
+      { key: 'amount', label: 'amount' }, { key: 'date', label: 'receivedDate' },
+      { key: 'purpose', label: 'purpose', multiline: true }, { key: 'place', label: 'placeDrawn' },
+    ],
+  },
   leave: {
     fields: [
       { key: 'recipient', label: 'recipient', initial: 'board' }, { key: 'name', label: 'name' }, { key: 'department', label: 'department' },

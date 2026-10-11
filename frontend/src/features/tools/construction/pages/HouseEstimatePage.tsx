@@ -20,6 +20,7 @@ const DEFAULT_FACTOR_TEXT = Object.fromEntries(FIELDS.map((key) => [key, String(
 
 export default function HouseEstimatePage() {
   const { t } = useTranslation('construction')
+  const { t: tc } = useTranslation('common')
   const id = useId()
   const [values, setValues] = useState({ floorArea: '80', upperFloors: '2', rooftopRoomArea: '20', terraceArea: '40', yardArea: '0', basePrice: '', finishingPrice: '', pileCost: '' })
   const [factorText, setFactorText] = useState(DEFAULT_FACTOR_TEXT)
@@ -51,7 +52,8 @@ export default function HouseEstimatePage() {
     <p className="erp-tool-result__note">{t('houseEstimate.disclaimer')}</p>
   </div>}>
     <ToolPanel title={t('houseEstimate.title')}>
-      <div className="erp-tool-form__grid">{INPUTS.map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>
+      <div className="erp-tool-form__grid">{INPUTS.filter(key => ['floorArea', 'upperFloors', 'basePrice', 'finishingPrice'].includes(key)).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>
+      <details className="mt-3"><summary>{tc('workspace.advanced')}</summary><div className="erp-tool-form__grid">{INPUTS.filter(key => !['floorArea', 'upperFloors', 'basePrice', 'finishingPrice'].includes(key)).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div></details>
       <Form.Check className="mt-3" id={`${id}-turnkey`} label={t('houseEstimate.turnkey')} checked={turnkey} onChange={(event) => setTurnkey(event.target.checked)} />
       <details className="mt-3"><summary>{t('houseEstimate.editFactors')}</summary><div className="erp-tool-form__grid mt-3">{FIELDS.map((key) => <NumberField key={key} label={t('houseEstimate.factorLabel', { label: t(`houseEstimate.parts.${key}`) })} rule={FACTOR} unit="%" value={factorText[key]} onChange={(value) => setFactorText((current) => ({ ...current, [key]: value }))} />)}</div></details>
     </ToolPanel>

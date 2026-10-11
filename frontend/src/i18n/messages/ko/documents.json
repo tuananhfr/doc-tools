@@ -63,7 +63,8 @@
     "names": {
       "leave": "휴가 신청서",
       "authorization": "위임장",
-      "handover": "인수인계서"
+      "handover": "인수인계서",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "수신",
@@ -86,7 +87,11 @@
       "receiver": "인수자 (이름, 직위)",
       "items": "인계 목록 (한 줄에 한 항목)",
       "note": "비고",
-      "placeDrawn": "작성 장소"
+      "placeDrawn": "작성 장소",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "일부 업무는 공증이나 인증이 필요해요. 사용하기 전에 제출처에 확인하세요.",
     "defaultWarning": "참고용 양식이에요. 제출하기 전에 제출처의 요구 사항을 확인하세요.",
@@ -132,9 +137,18 @@
         "attorney": "수임인",
         "principal": "위임인",
         "receiver": "인수자",
-        "giver": "인계자"
+        "giver": "인계자",
+        "sender": "Sender"
       },
-      "signHint": "(서명 및 성명)"
+      "signHint": "(서명 및 성명)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

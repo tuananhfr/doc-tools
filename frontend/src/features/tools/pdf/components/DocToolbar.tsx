@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
 import { ConfirmAction, Icon } from '@/components/ui'
@@ -45,6 +45,7 @@ function ToolButton({ icon, label, hint, disabled, danger, onClick }: ToolButton
       className={`erp-doc-tool${danger ? ' erp-doc-tool--danger' : ''}`}
       disabled={disabled}
       title={hint ?? label}
+      aria-label={label}
       onClick={onClick}
     >
       <Icon name={icon} />
@@ -87,6 +88,8 @@ export function DocToolbar({
   onReset,
 }: DocToolbarProps) {
   const { t } = useTranslation('pdf')
+  const { t: tc } = useTranslation('common')
+  const [expanded, setExpanded] = useState(false)
   const root = useRef<HTMLDivElement>(null)
   const none = selectedCount === 0
   const notSingle = selectedCount !== 1
@@ -109,6 +112,13 @@ export function DocToolbar({
 
   return (
     <div ref={root} className="erp-doc-toolbar" role="toolbar" aria-label={t('toolbar.label')}>
+      <div className="erp-doc-toolbar__primary">
+        <ToolButton icon="plus-lg" label={t('toolbar.addFiles')} disabled={!!loading} onClick={onAddFiles} />
+        <ToolButton icon="arrow-90deg-left" label={t('toolbar.undo')} disabled={!canUndo} onClick={onUndo} />
+        {selectedCount ? <ToolButton icon="arrow-clockwise" label={t('toolbar.rotateRight')} onClick={() => onRotate(90)} /> : null}
+        <button type="button" className="erp-doc-tool" aria-expanded={expanded} onClick={() => setExpanded(value => !value)}><Icon name="three-dots" /><span>{tc('workspace.advanced')}</span></button>
+      </div>
+      <div className={`erp-doc-toolbar__actions${expanded ? ' is-open' : ''}`}>
       <ToolGroup label={t('toolbar.files')}>
         <ToolButton icon="plus-lg" label={t('toolbar.addFiles')} hint={t('toolbar.addFilesHint')} disabled={!!loading} onClick={onAddFiles} />
         <ToolButton icon="box-arrow-in-left" label={t('toolbar.insertBefore')} hint={notSingle ? needOne : t('toolbar.insertBeforeHint')} disabled={notSingle || !!loading} onClick={() => onInsert('before')} />
@@ -136,6 +146,7 @@ export function DocToolbar({
         <ToolButton icon="arrow-90deg-left" label={t('toolbar.undo')} hint={t('toolbar.undoHint')} disabled={!canUndo} onClick={onUndo} />
         <ToolButton icon="arrow-90deg-right" label={t('toolbar.redo')} hint={t('toolbar.redoHint')} disabled={!canRedo} onClick={onRedo} />
       </ToolGroup>
+      </div>
 
       <div className="erp-doc-toolbar__status" aria-live="polite">
         {loading ? (

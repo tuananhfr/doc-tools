@@ -35,7 +35,7 @@
     },
     "kwh": "Électricité consommée (kWh)",
     "households": "Nombre de foyers partageant le compteur",
-    "tiers": "Grille tarifaire : une ligne par « seuil en kWh, prix en đ/kWh »",
+    "tiers": "Your electricity tariff",
     "applyTariff": "Appliquer la grille signée",
     "applyVat": "Appliquer le taux signé",
     "ruleLabel": "grille tarifaire de l'électricité",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "Comparaison au prix unitaire",

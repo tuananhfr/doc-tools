@@ -35,7 +35,7 @@
     },
     "kwh": "전력 사용량 (kWh)",
     "households": "계량기를 함께 쓰는 세대 수",
-    "tiers": "요금표: 한 줄에 “kWh 구간 상한, 단가 đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "서명된 요금표 적용",
     "applyVat": "서명된 세율 적용",
     "ruleLabel": "전기 요금표",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "단위당 가격 비교",

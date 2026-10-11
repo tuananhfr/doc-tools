@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
+import { editableRuleLines } from '../utils/editable-rule-lines'
 import { Button, Form } from 'react-bootstrap'
 import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
@@ -55,6 +57,7 @@ const PAYROLL_KINDS = ['payroll']
 
 export default function PayrollPage() {
   const { t } = useTranslation('finance')
+  const { t: tc } = useTranslation('common')
   const me = useMe()
   const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [mode, setMode] = useState<'gross' | 'net'>('gross')
@@ -107,7 +110,7 @@ export default function PayrollPage() {
     },
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard after={<AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('payroll.resultLabel')}</p>
     <p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : '—'}</p>
     {result ? <div className="table-responsive"><table className="table table-sm"><tbody>
@@ -125,16 +128,17 @@ export default function PayrollPage() {
       <div className="erp-tool-form__grid mt-3">
         <NumberField label={t('payroll.dependents')} rule={DEPENDENTS} value={dependents} onChange={setDependents} />
         <label className="erp-flow-field__label">{t('payroll.region')}<Form.Select value={region} onChange={(event) => setRegion(Number(event.target.value) as typeof region)}>{[1, 2, 3, 4].map((value) => <option value={value} key={value}>{t('payroll.regionOption', { region: value })}</option>)}</Form.Select></label>
+      </div>
+      <details className="mt-3"><summary>{tc('workspace.advanced')}</summary><div className="erp-tool-form__grid">
         <NumberField label={t('payroll.insuranceBase')} rule={SALARY} unit="đ" value={insuranceBase} onChange={setInsuranceBase} />
         <NumberField label={t('payroll.exempt')} rule={SALARY} unit="đ" value={exempt} onChange={setExempt} />
-      </div>
+      </div></details>
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('payroll.applyParams')}</Button> : null}
       <RuleStatus rules={payrollRules} label={t('payroll.ruleLabel')} noneText={t('payroll.ruleNone')} />
       <details className="mt-3"><summary>{t('payroll.enterParams')}</summary><div className="erp-tool-form__grid mt-3">{RULE_FIELDS.map((key) => <NumberField key={key} label={t(`payroll.fields.${key}`)} rule={FIELD_RULES[key]} unit={FIELD_RULES[key] === RATE ? '%' : 'đ'} value={fields[key]} onChange={(value) => updateField(key, value)} />)}</div>
-        <label className="erp-flow-field__label mt-3">{t('payroll.brackets')}<Form.Control as="textarea" rows={6} placeholder={'10.000.000; 5\n30.000.000; 10\n*; 20'} value={bracketText} onChange={(event) => { setBracketText(event.target.value); setUsingVerified(false) }} /></label>
+        <StructuredTextRows label={t('payroll.brackets')} columns={[t('payroll.bracketLimit'), t('payroll.bracketRate')]} separator=";" decode={editableRuleLines} value={bracketText} onChange={value => { setBracketText(value); setUsingVerified(false) }} />
       </details>
     </ToolPanel>
     <SaveResultBar member={member} toolId="luong" adapter={saveAdapter} />
-    <AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />
   </ToolBoard>
 }

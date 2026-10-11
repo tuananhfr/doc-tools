@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Mga form at talaan",
-      "description": "Gumawa ng leave request, sulat ng awtorisasyon at talaan ng turnover para i-print",
-      "synonyms": "leave form, authorization letter, turnover, handover"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "leave form, authorization letter, turnover, handover, money receipt, payment receipt"
     },
     "dictation": {
       "name": "Boses patungong text",

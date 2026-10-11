@@ -112,7 +112,8 @@
     "engineLoading": "Memuat mesin penggambar kode…",
     "previewLabel": "Barcode {{kind}} untuk {{value}}",
     "styleTitle": "Jenis kode",
-    "listTitle": "Daftar kode"
+    "listTitle": "Daftar kode",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

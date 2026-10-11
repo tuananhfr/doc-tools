@@ -44,6 +44,10 @@ export async function mockSession(target) {
   })
 }
 
+export async function mockFreeSession(target) {
+  await target.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null, total: 0, tools: {} } }))
+}
+
 /** Thu muc anh chup / tep tai ve cua mot script (QA_OUT de doi goc). */
 export function outDir(name) {
   const dir = (process.env.QA_OUT ?? path.join(ROOT, 'out')).replaceAll('\\', '/').replace(/\/?$/, '/') + name + '/'

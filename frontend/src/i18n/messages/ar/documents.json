@@ -63,7 +63,8 @@
     "names": {
       "leave": "طلب إجازة",
       "authorization": "توكيل",
-      "handover": "محضر تسليم واستلام"
+      "handover": "محضر تسليم واستلام",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "إلى",
@@ -86,7 +87,11 @@
       "receiver": "الطرف المستلِم (الاسم، المنصب)",
       "items": "قائمة التسليم (بند في كل سطر)",
       "note": "ملاحظات",
-      "placeDrawn": "مكان الإعداد"
+      "placeDrawn": "مكان الإعداد",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "بعض المعاملات تتطلب توثيقًا أو تصديقًا. تحقّق مع الجهة المستلمة قبل الاستخدام.",
     "defaultWarning": "نموذج استرشادي؛ تحقّق من متطلبات الجهة المستلمة قبل التقديم.",
@@ -132,9 +137,18 @@
         "attorney": "الوكيل",
         "principal": "المُوكِّل",
         "receiver": "الطرف المُستلِم",
-        "giver": "الطرف المُسلِّم"
+        "giver": "الطرف المُسلِّم",
+        "sender": "Sender"
       },
-      "signHint": "(التوقيع والاسم الكامل)"
+      "signHint": "(التوقيع والاسم الكامل)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

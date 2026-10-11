@@ -14,6 +14,7 @@ import {
 } from '@/features/tools/hub'
 import type { QuickKind, QuickSources } from '../../hooks/useQuickSources'
 import { handOffFiles } from '../../services/handoff'
+import { useToolOrigin } from '@/features/tools/hub/hooks/useToolOrigin'
 import { UnlockPdfModal } from '../UnlockPdfModal'
 
 interface QuickToolShellProps {
@@ -36,6 +37,7 @@ interface QuickToolShellProps {
   blocked: string | null
   /** Dựng việc cần chạy từ tệp + tuỳ chọn LÚC BẤM. */
   task: () => FlowTask
+  mobilePreview?: boolean
 }
 
 const PDF_MIME = 'application/pdf'
@@ -52,9 +54,10 @@ const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept'> & { hin
  * tải, và "Sửa tiếp" sang trình chỉnh sửa. Trang công cụ chỉ còn khai tuỳ chọn
  * và việc cần chạy.
  */
-export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, waitingLabel, runLabel, runIcon, blocked, task }: QuickToolShellProps) {
+export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, waitingLabel, runLabel, runIcon, blocked, task, mobilePreview }: QuickToolShellProps) {
   const { t } = useTranslation('pdf')
   const navigate = useNavigate()
+  const { capture } = useToolOrigin()
   const { base } = useToolsBranch()
   const run = useFlowRun()
   const nudge = useDownloadNudge()
@@ -85,7 +88,7 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
 
   const editFurther = (output: FlowOutput) => {
     handOffFiles([new File([output.blob], output.name, { type: PDF_MIME })])
-    navigate(toolPathOf(base, 'edit-pdf'))
+    navigate(toolPathOf(base, 'edit-pdf'), { state: capture() })
   }
 
   const picker = PICKER[accept.length > 1 ? 'pdf+image' : accept[0]]
@@ -93,6 +96,7 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
   return (
     <>
       <ToolFlow
+        mobilePreview={mobilePreview}
         picker={{ accept: picker.accept, hint: t(`picker.${picker.hint}`), multiple, title: pickerTitle }}
         files={files}
         loading={quick.loading}

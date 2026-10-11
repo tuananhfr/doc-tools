@@ -38,7 +38,8 @@
     "unknown": "Đã có lỗi xảy ra."
   },
   "crumb": {
-    "label": "Vị trí"
+    "label": "Vị trí",
+    "backTools": "Về công cụ"
   },
   "tool": {
     "privacyNoFile": "Chạy trên máy bạn, không gửi nội dung đi",
@@ -214,5 +215,17 @@
     "between": "Nhập số từ {{min}} đến {{max}}.",
     "atLeast": "Nhập số từ {{min}} trở lên.",
     "atMost": "Nhập số không quá {{max}}."
+  },
+  "workspace": {
+    "input": "Nhập thông tin",
+    "preview": "Xem trước",
+    "advanced": "Tùy chọn thêm",
+    "customize": "Màu sắc và nền",
+    "rawInput": "Nhập dạng văn bản",
+    "addRow": "Thêm dòng",
+    "removeRow": "Xóa dòng {{number}}",
+    "row": "Dòng {{number}}",
+    "remaining": "Áp dụng cho phần còn lại",
+    "unsaved": "Thông tin đang nhập chưa được lưu. Rời trang sẽ làm mất nội dung này."
   }
 }

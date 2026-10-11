@@ -35,7 +35,7 @@
     },
     "kwh": "الاستهلاك (kWh)",
     "households": "عدد الأسر التي تتشارك العدّاد",
-    "tiers": "جدول الأسعار: كل سطر بصيغة «حد kWh، سعر الوحدة đ/kWh»",
+    "tiers": "Your electricity tariff",
     "applyTariff": "تطبيق جدول الأسعار الموقّع",
     "applyVat": "تطبيق نسبة الضريبة الموقّعة",
     "ruleLabel": "جدول أسعار الكهرباء",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "مقارنة حسب الوحدة",

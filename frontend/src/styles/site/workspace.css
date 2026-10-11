@@ -26,14 +26,15 @@
 .cn-tool-workspace .progress-bar { background-color: #005be8; }
 body:has(.cn-shell--tool) > .modal :is(.modal-content, .dropdown-menu) { font-family: var(--cn-font-family); }
 @media (max-width: 767px) {
-  .cn-shell--tool .erp-tools-guest__main { padding: 16px 16px 32px; }
-  .cn-tool-workspace > .erp-tool-crumb { gap: 6px 8px; margin-bottom: 20px; }
+  .cn-shell--tool .erp-tools-guest__main { padding: 8px 12px 24px; }
+  .cn-tool-workspace > .erp-tool-crumb { gap: 6px 8px; margin-bottom: 8px; }
+  .cn-tool-workspace .erp-tool-crumb__prefs, .cn-tool-workspace .erp-tool-crumb__action { display: none; }
   .cn-tool-crumb-current { display: none; }
   .cn-tool-workspace .erp-tool-crumb__sep { display: none; }
   .cn-tool-workspace .erp-tool-crumb__action { margin-left: 0; flex: none; }
-  .cn-tool-intro { gap: 12px; margin-bottom: 22px; }
+  .cn-tool-intro { gap: 10px; margin-bottom: 14px; }
   .cn-tool-intro__icon { width: 44px; height: 44px; font-size: 22px; border-radius: 8px; }
-  .cn-tool-workspace .erp-tool-crumb__title { font-size: 26px; letter-spacing: -.7px; }
+  .cn-tool-workspace .erp-tool-crumb__title { font-size: 22px; letter-spacing: -.5px; }
   .cn-tool-description { font-size: 13px; }
   .cn-tool-privacy { font-size: 11px; }
   .cn-tool-workspace :is(.form-control, .form-select) { font-size: 16px; }

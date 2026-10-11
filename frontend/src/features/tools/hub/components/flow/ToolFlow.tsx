@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
@@ -35,6 +35,7 @@ interface ToolFlowProps {
   onDownloaded?: () => void
   resultExtra?: ReactNode
   waitingLabel?: string
+  mobilePreview?: boolean
 }
 
 /**
@@ -63,9 +64,11 @@ export function ToolFlow({
   onDownloaded,
   resultExtra,
   waitingLabel,
+  mobilePreview = false,
 }: ToolFlowProps) {
   const { state } = run
   const { t } = useTranslation('common')
+  const [panel, setPanel] = useState('input')
 
   if (state.phase === 'done') {
     return <FlowResult result={state.result} onRestart={run.reset} onEdit={onEdit} onDownloaded={onDownloaded} extra={resultExtra} />
@@ -74,7 +77,8 @@ export function ToolFlow({
   const running = state.phase === 'running'
 
   return (
-    <div className="erp-flow">
+    <div className={`erp-flow${mobilePreview && stage ? ' cn-flow-workspace' : ''}`} data-panel={panel}>
+      {mobilePreview && stage ? <div className="cn-flow-switch">{(['input', 'preview'] as const).map(value => <button type="button" key={value} aria-pressed={panel === value} onClick={() => setPanel(value)}>{t(`workspace.${value}`)}</button>)}</div> : null}
       <div className="erp-flow__main">
         <FilePicker {...picker} compact={files.length > 0} loading={loading} disabled={running} onFiles={onAddFiles} extra={pickerExtra} />
 
@@ -98,7 +102,7 @@ export function ToolFlow({
           </div>
         ) : null}
 
-        {stage ?? (files.length > 0 ? <FileList files={files} disabled={running} onRemove={onRemove} onMove={onMove} onClear={onClear} /> : null)}
+        <div className="erp-flow__stage">{stage ?? (files.length > 0 ? <FileList files={files} disabled={running} onRemove={onRemove} onMove={onMove} onClear={onClear} /> : null)}</div>
       </div>
 
       <aside className="erp-flow__side" aria-label={t('flow.side')}>
@@ -131,6 +135,7 @@ export function ToolFlow({
           </>
         )}
       </aside>
+      {mobilePreview && stage ? <div className="cn-flow-preview-run">{running ? <FlowProgress progress={state.progress} onCancel={run.cancel} waitingLabel={waitingLabel} /> : <><Button className="cn-flow-preview-run__button" disabled={blocked !== null || loading !== null} onClick={onRun}><Icon name={runIcon} className="me-2" />{runLabel}</Button>{blocked ? <p>{blocked}</p> : null}</>}</div> : null}
     </div>
   )
 }

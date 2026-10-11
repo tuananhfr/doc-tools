@@ -112,7 +112,8 @@
     "engineLoading": "코드 생성기를 불러오는 중…",
     "previewLabel": "{{value}}의 {{kind}} 바코드",
     "styleTitle": "코드 형식",
-    "listTitle": "코드 목록"
+    "listTitle": "코드 목록",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

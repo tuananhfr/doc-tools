@@ -7,7 +7,7 @@ import { SiteFooter } from '@/features/site/components/SiteFooter'
 
 export function ToolsLayout() {
   const { tool: slug } = useParams()
-  const { pathname, hash } = useLocation()
+  const { pathname, hash, state } = useLocation()
   const isTool = slug !== undefined
   useEffect(() => {
     if (isTool) return
@@ -15,8 +15,13 @@ export function ToolsLayout() {
     if (target) {
       target.scrollIntoView({ block: 'start' })
       if (target instanceof HTMLInputElement) target.focus({ preventScroll: true })
-    } else document.querySelector('.erp-tools-guest')?.scrollTo({ top: 0 })
-  }, [pathname, hash, isTool])
+    } else {
+      const scrollTop = typeof state?.catalogScroll === 'number' && Number.isFinite(state.catalogScroll) ? Math.max(0, state.catalogScroll) : 0
+      let secondFrame = 0
+      const firstFrame = requestAnimationFrame(() => { secondFrame = requestAnimationFrame(() => document.querySelector('.erp-tools-guest')?.scrollTo({ top: scrollTop })) })
+      return () => { cancelAnimationFrame(firstFrame); cancelAnimationFrame(secondFrame) }
+    }
+  }, [pathname, hash, isTool, state])
 
   return (
     <div className={`cn-site cn-shell${isTool ? ' cn-shell--tool' : ''}`}>

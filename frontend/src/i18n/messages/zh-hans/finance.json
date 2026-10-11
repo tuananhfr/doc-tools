@@ -35,7 +35,7 @@
     },
     "kwh": "用电量（kWh）",
     "households": "共用电表的户数定额",
-    "tiers": "电价表：每行为“kWh 阈值, 单价 đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "使用已签名的电价表",
     "applyVat": "使用已签名的税率",
     "ruleLabel": "电价表",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "按单位比较",

@@ -38,7 +38,8 @@
     "unknown": "အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။"
   },
   "crumb": {
-    "label": "တည်နေရာ"
+    "label": "တည်နေရာ",
+    "backTools": "Back to tools"
   },
   "tool": {
     "privacyNoFile": "သင့်စက်ပေါ်တွင် လုပ်ဆောင်ပြီး အကြောင်းအရာကို မပို့ပါ",
@@ -214,5 +215,17 @@
     "between": "Enter a number from {{min}} to {{max}}.",
     "atLeast": "Enter {{min}} or more.",
     "atMost": "Enter at most {{max}}."
+  },
+  "workspace": {
+    "input": "Enter details",
+    "preview": "Preview",
+    "advanced": "More options",
+    "customize": "Colors and background",
+    "rawInput": "Enter as text",
+    "addRow": "Add row",
+    "removeRow": "Remove row {{number}}",
+    "row": "Row {{number}}",
+    "remaining": "Apply to the remainder",
+    "unsaved": "Your entered details have not been saved. Leaving will discard them."
   }
 }

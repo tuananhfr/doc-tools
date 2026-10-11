@@ -112,7 +112,8 @@
     "engineLoading": "جارٍ تحميل أداة رسم الرموز…",
     "previewLabel": "باركود {{kind}} للقيمة {{value}}",
     "styleTitle": "نمط الرمز",
-    "listTitle": "قائمة الرموز"
+    "listTitle": "قائمة الرموز",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

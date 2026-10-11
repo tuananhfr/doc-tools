@@ -160,7 +160,9 @@
     "metaDescription": "Chuyện Nhỏ の PDF、画像、QRコード、便利ツールがすべて無料。アカウント不要で、端末上ですぐに処理します。",
     "title": "すべてのツール",
     "lead": "{{count}} 個の無料ツール。やりたいことを選んで、ブラウザですぐに使えます。",
-    "catalogLabel": "ツール一覧"
+    "catalogLabel": "ツール一覧",
+    "available": "{{count}} available tools",
+    "showSoon": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "ひとつのツールでは足りないときは…",

@@ -967,5 +967,10 @@
       "MEDIUM": "Trung bình",
       "LOW": "Thấp"
     }
+  },
+  "reader": {
+    "page": "Trang",
+    "searchExport": "Tìm và tải xuống",
+    "edit": "Chỉnh sửa PDF"
   }
 }

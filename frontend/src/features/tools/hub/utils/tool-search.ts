@@ -1,31 +1,11 @@
-import { normalizeTextSearch } from '@/utils/text-search'
-import { SEARCH_INTENTS, SEARCH_TYPOS } from '../config/intent-registry'
+import { SEARCH_INTENTS } from '../config/intent-registry'
 import { HANDWRITING_RECOGNITION_AVAILABLE } from '../config/tool-capabilities'
 import type { ToolDefinition, ToolFilter } from '../types/tool.types'
+import { closeWord, meaningfulWords, searchWords, unsupportedQuery } from './search-language'
 
-const STOPWORDS = new Set('toi minh ban muon can lam cach nao co the giup cho voi mot hai ba cac nhung tep file qua nay duoc khong de thi va tu'.split(' '))
-const tokensOf = (text: string): string[] => [...new Set(normalizeTextSearch(text).replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(/\s+/).filter(Boolean))]
-const queryTokens = (text: string) => tokensOf(text).flatMap(token => (SEARCH_TYPOS[token] ?? token).split(' ')).filter(token => !STOPWORDS.has(token))
-const INTENTS = SEARCH_INTENTS.map(intent => ({ intent, phrases: [intent.canonical, ...intent.aliases].map(queryTokens),
-  required: intent.requiredTerms?.map(group => group.map(queryTokens)), excluded: intent.excludedTerms?.map(queryTokens) }))
-
-function closeWord(a: string, b: string): boolean {
-  if (a === b) return true
-  if (a.length < 5 || b.length < 5 || Math.abs(a.length - b.length) > 1) return false
-  if (a.length === b.length) {
-    const different = [...a].map((char, i) => char === b[i] ? -1 : i).filter(i => i >= 0)
-    return different.length === 1 || (different.length === 2 && different[1] === different[0] + 1 && a[different[0]] === b[different[1]] && a[different[1]] === b[different[0]])
-  }
-  const [short, long] = a.length < b.length ? [a, b] : [b, a]
-  let skipped = false
-  let index = 0
-  for (const char of long) {
-    if (char === short[index]) index++
-    else if (skipped) return false
-    else skipped = true
-  }
-  return index === short.length
-}
+const tokensOf = meaningfulWords
+const INTENTS = SEARCH_INTENTS.map(intent => ({ intent, phrases: [intent.canonical, ...intent.aliases].map(meaningfulWords),
+  required: intent.requiredTerms?.map(group => group.map(searchWords)), excluded: intent.excludedTerms?.map(searchWords) }))
 
 function intentScore(query: string[], words: string[]): number {
   if (!words.length || words.some(word => !query.some(token => closeWord(token, word)))) return 0
@@ -37,14 +17,19 @@ function intentScore(query: string[], words: string[]): number {
 export function searchTools<T extends ToolDefinition>(catalog: readonly T[], keyword: string, filter: ToolFilter = 'all'): T[] {
   const available = catalog.filter(tool => filter === 'all' || tool.categories.includes(filter))
   if (!keyword.trim()) return [...available]
-  const query = queryTokens(keyword.slice(0, 4000))
+  const text = keyword.slice(0, 4000)
+  const query = meaningfulWords(text)
+  const allWords = searchWords(text)
   if (!query.length) return []
+  if (unsupportedQuery(text)) return []
   if (!HANDWRITING_RECOGNITION_AVAILABLE && query.includes('tay') && (query.includes('viet') || query.includes('chu'))) return []
   const ready = available.filter(tool => tool.status === 'ready')
-  const contains = (words: string[]) => words.every(word => query.includes(word))
+  const contains = (words: string[]) => words.length > 0 && words.every(word => allWords.some(token => closeWord(token, word)))
   const intents = INTENTS.map(({ intent, phrases, required, excluded }) => {
+    if (excluded?.some(contains)) return { intent, score: 0 }
+    if (intent.id === 'image.compress' && /\bnền\b/u.test(text.normalize('NFC').toLowerCase()) && !/\bnén\b/u.test(text.normalize('NFC').toLowerCase())) return { intent, score: 0 }
     const operationMatch = phrases.some(words => words.length >= 2 && contains(words))
-    const conceptScore = required?.every(group => group.some(contains)) && !excluded?.some(contains) ? 80 + required.length + (operationMatch ? 20 : 0) : 0
+    const conceptScore = required?.every(group => group.some(contains)) ? 90 + required.length * 5 + (operationMatch ? 20 : 0) : 0
     return { intent, score: Math.max(conceptScore, ...phrases.map(words => intentScore(query, words))) }
   })
     .filter(item => item.score > 0).sort((a, b) => b.score - a.score)

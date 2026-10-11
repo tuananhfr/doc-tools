@@ -16,6 +16,7 @@ import type { ToolScreen } from '../types/tool.types'
 import { pdfEngineSupported } from '../utils/browser-support'
 import { trackRecentTool } from '../utils/hub-prefs'
 import { resolveToolRoute, toolPageTitle, toolPath } from '../utils/tool-lookup'
+import { useToolOrigin } from '../hooks/useToolOrigin'
 
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
@@ -34,6 +35,7 @@ interface ToolRoutePageProps {
 export default function ToolRoutePage({ screens, headerAction: HeaderAction }: ToolRoutePageProps) {
   const { tool: slug } = useParams()
   const { base, kind } = useToolsBranch()
+  const { backTo, backState } = useToolOrigin()
   const sessionAction = useGuestSessionAction()
   const { t } = useTranslation('common')
   const { tool, redirect } = resolveToolRoute(slug, useToolCatalog())
@@ -57,9 +59,9 @@ export default function ToolRoutePage({ screens, headerAction: HeaderAction }: T
   return (
     <div className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
       <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
-        <Link className="erp-tool-crumb__back" to={base}>
+        <Link className="erp-tool-crumb__back" to={kind === 'public' ? backTo : base} state={backState}>
           <Icon name="arrow-left" />
-          Chuyện Nhỏ
+          {t('crumb.backTools')}
         </Link>
         <Icon name="chevron-right" className="erp-tool-crumb__sep" />
         <span className="cn-tool-crumb-current">{tool.name}</span>

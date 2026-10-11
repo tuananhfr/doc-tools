@@ -112,7 +112,8 @@
     "engineLoading": "กำลังโหลดตัววาดโค้ด…",
     "previewLabel": "บาร์โค้ด {{kind}} ของ {{value}}",
     "styleTitle": "ชนิดโค้ด",
-    "listTitle": "รายการโค้ด"
+    "listTitle": "รายการโค้ด",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

@@ -1,6 +1,7 @@
 .cn-tool-workspace .erp-flow { gap: 24px; }
 .cn-tool-workspace :is(.erp-flow__side, .erp-tool-panel) { padding: 24px; border-color: var(--cn-line); border-radius: var(--cn-radius-card); box-shadow: var(--erp-shadow1); }
 .cn-tool-workspace .erp-flow__main { gap: 20px; }
+.cn-tool-workspace .erp-flow__after { grid-column: 1 / -1; min-width: 0; }
 .cn-tool-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { justify-content: center; min-height: 320px; padding: 44px 28px; border: 1.5px dashed var(--erp-border-strong); border-radius: var(--cn-radius-card); }
 .cn-tool-workspace .erp-flow-picker__icon { width: 64px; height: 64px; border-radius: 16px; background: var(--cn-icon); color: var(--cn-accent); font-size: 28px; }
 .cn-tool-workspace .erp-flow-picker__title { font-size: 20px; font-weight: 700; }

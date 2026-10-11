@@ -7,7 +7,7 @@
 //   THEME=dark VIEW=360x780 node scripts/doc-tools/check-page-tools.mjs
 import { createRequire } from 'node:module'
 import fs from 'node:fs'
-import { chromium, FIX, outDir, HUB } from './lib/qa.mjs'
+import { mockFreeSession, chromium, FIX, outDir, HUB } from './lib/qa.mjs'
 
 const appRequire = createRequire(import.meta.url)
 const { PDFDocument, PDFName, PDFDict, PDFRawStream, PDFArray, decodePDFRawStream } = appRequire('pdf-lib')
@@ -21,6 +21,7 @@ const mobile = vw <= 576
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: vw, height: vh }, hasTouch: mobile, isMobile: mobile, deviceScaleFactor: mobile ? 2 : 1, acceptDownloads: true })
+await mockFreeSession(context)
 const page = await context.newPage()
 page.on('dialog', (dialog) => dialog.accept())
 const errors = []

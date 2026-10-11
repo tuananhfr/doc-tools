@@ -71,6 +71,7 @@ export default function SignPdfPage() {
       {/* Nét ký và chỗ đặt chỉ nằm trong RAM: rời màn là phải ký lại từ đầu. */}
       <ToolLeaveGuard active={strokes.length > 0 || pages > 0} />
       <QuickToolShell
+      mobilePreview
         quick={quick}
         accept={ACCEPT}
         multiple={false}

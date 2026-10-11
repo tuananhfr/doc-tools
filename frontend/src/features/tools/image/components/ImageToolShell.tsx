@@ -20,6 +20,7 @@ interface ImageToolShellProps {
   blocked: string | null
   /** Dựng việc cần chạy từ ảnh + tuỳ chọn LÚC BẤM. */
   task: () => FlowTask
+  mobilePreview?: boolean
 }
 
 const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
@@ -29,7 +30,7 @@ const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
  * luồng của "Chuyện Nhỏ" và mời khách đăng nhập sau khi tải. Trang công cụ chỉ
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
-export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task }: ImageToolShellProps) {
+export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview }: ImageToolShellProps) {
   const { t } = useTranslation('image')
   const nudge = useDownloadNudge()
 
@@ -49,6 +50,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
 
   return (
     <ToolFlow
+      mobilePreview={mobilePreview}
       picker={{ accept: ACCEPT, hint: t('shell.hint'), multiple, title: pickerTitle }}
       files={files}
       loading={images.loading}

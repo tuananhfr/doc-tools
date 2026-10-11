@@ -69,6 +69,7 @@ export default function StampPdfPage() {
 
   return (
     <QuickToolShell
+      mobilePreview
       quick={quick}
       accept={ACCEPT}
       multiple={false}

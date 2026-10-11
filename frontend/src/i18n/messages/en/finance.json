@@ -35,7 +35,7 @@
     },
     "kwh": "Electricity used (kWh)",
     "households": "Number of household quotas sharing the meter",
-    "tiers": "Tariff: one line per tier, “kWh threshold; price per kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "Apply signed price table",
     "applyVat": "Apply signed tax rate",
     "ruleLabel": "electricity price table",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "Unit price comparison",

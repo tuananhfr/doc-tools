@@ -14,10 +14,32 @@
 .cn-tool-workspace--editor .erp-doc-export__section { padding: 20px; }
 .cn-tool-workspace--editor .erp-doc-page { border-radius: var(--cn-radius-card); border-color: var(--cn-line); }
 .cn-tool-workspace--editor .erp-doc-page.is-selected { border-color: var(--cn-accent); }
+.erp-doc-toolbar__actions { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.erp-doc-toolbar__primary { display: none; }
+.cn-pdf-reader { min-width: 0; }
+.cn-pdf-reader__actions, .cn-pdf-reader__controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.cn-pdf-reader__controls { padding: 8px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); }
+.cn-pdf-reader__page { display: flex; align-items: center; gap: 8px; }
+.cn-pdf-reader__page select { width: auto; }
+.cn-pdf-reader__stage { height: clamp(320px, 70dvh, 1000px); overflow: auto; padding: 12px; background: var(--cn-tint); border: 1px solid var(--cn-line); border-radius: 8px; }
+.cn-pdf-reading:not(.cn-pdf-reading--panel) .erp-doc-tools__body { grid-template-columns: minmax(0, 1fr); }
+.cn-pdf-reading:not(.cn-pdf-reading--panel) .erp-doc-export { display: none; }
+.cn-pdf-reading .erp-doc-jump { display: none; }
 @media (max-width: 767px) {
-  .cn-tool-workspace--editor .erp-doc-drop { min-height: 320px; padding: 32px 18px; }
+  .cn-tool-workspace--editor .erp-doc-drop { min-height: 220px; padding: 24px 16px; }
   .cn-tool-workspace--editor .erp-doc-drop__title { font-size: 20px; }
   .cn-tool-workspace--editor .erp-doc-export__section { padding: 18px; }
+  .cn-tool-workspace--editor .erp-doc-toolbar { display: block; }
+  .erp-doc-toolbar__primary { display: flex; gap: 4px; flex-wrap: wrap; }
+  .erp-doc-toolbar__primary .erp-doc-tool { padding: 8px; gap: 6px; }
+  .erp-doc-toolbar__actions { display: none; }
+  .erp-doc-toolbar__actions.is-open { display: flex; gap: 8px; padding-block: 8px; max-height: clamp(100px, 30dvh, 240px); overflow-y: auto; }
+  .erp-doc-toolbar__actions .erp-doc-toolbar__group { display: flex; flex-wrap: wrap; }
+  .cn-tool-workspace--editor .erp-doc-toolbar .erp-doc-tool__label { position: static; width: auto; height: auto; clip: auto; overflow: visible; white-space: normal; font-size: 12px; }
+  .erp-doc-toolbar__actions .erp-doc-tool { padding: 8px; gap: 6px; }
+  .erp-doc-toolbar__status { margin-top: 4px; }
+  .cn-pdf-reader__stage { height: 60dvh; min-height: 280px; }
+  .cn-pdf-reading--panel .erp-doc-tools__body { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 576px) {
   .cn-tool-workspace--editor .erp-doc-toolbar { padding: 8px; }

@@ -4,7 +4,7 @@
 // Camera dùng thiết bị giả của Chrome (`--use-fake-device-for-media-stream`).
 import { createRequire } from 'node:module'
 import fs from 'node:fs'
-import { chromium, outDir, HUB } from './lib/qa.mjs'
+import { mockFreeSession, chromium, outDir, HUB } from './lib/qa.mjs'
 
 const appRequire = createRequire(import.meta.url)
 const { PDFDocument } = appRequire('pdf-lib')
@@ -19,6 +19,7 @@ const want = (name) => !only || only.includes(name)
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] })
 const context = await browser.newContext({ viewport: { width: vw, height: vh }, hasTouch: mobile, isMobile: mobile, deviceScaleFactor: mobile ? 2 : 1, acceptDownloads: true, permissions: ['camera'] })
+await mockFreeSession(context)
 // Ghi lại mọi luồng camera đã mở để kiểm chúng có được TẮT khi đóng cửa sổ chụp.
 await context.addInitScript(() => {
   window.__streams = []

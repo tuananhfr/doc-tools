@@ -160,7 +160,9 @@
     "metaDescription": "Chuyện Nhỏ 的全部免费 PDF、图片、二维码和实用工具。无需账号，直接在设备上处理。",
     "title": "所有工具",
     "lead": "{{count}} 个免费工具。选择你要做的事，直接在浏览器中使用。",
-    "catalogLabel": "工具目录"
+    "catalogLabel": "工具目录",
+    "available": "{{count}} available tools",
+    "showSoon": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "当一个工具还不够时……",

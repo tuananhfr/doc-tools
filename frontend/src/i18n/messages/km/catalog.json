@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "គំរូពាក្យសុំ និងកំណត់ហេតុ",
-      "description": "សរសេរពាក្យសុំច្បាប់ លិខិតប្រគល់សិទ្ធិ និងកំណត់ហេតុប្រគល់ទទួលដើម្បីបោះពុម្ព",
-      "synonyms": "ពាក្យសុំច្បាប់, លិខិតប្រគល់សិទ្ធិ, កំណត់ហេតុប្រគល់ទទួល"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "ពាក្យសុំច្បាប់, លិខិតប្រគល់សិទ្ធិ, កំណត់ហេតុប្រគល់ទទួល, money receipt, payment receipt"
     },
     "dictation": {
       "name": "ថតសំឡេងជាអត្ថបទ",

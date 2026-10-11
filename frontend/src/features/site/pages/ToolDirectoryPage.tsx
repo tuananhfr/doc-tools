@@ -14,7 +14,7 @@ import { TrustStrip } from '../components/TrustStrip'
 
 export default function ToolDirectoryPage() {
   const { t } = useTranslation('site')
-  const { filter, keyword, tools, onFilter, onKeyword, reset } = useCatalogSearch()
+  const { filter, keyword, tools, onFilter, onKeyword, reset, readyCount, soonCount, showSoon, onShowSoon } = useCatalogSearch()
   const { recent } = useHubPrefs()
   usePageTitle(t('directory.metaTitle'))
 
@@ -25,11 +25,14 @@ export default function ToolDirectoryPage() {
           <Link className="cn-directory-back" to="/"><Icon name="arrow-left" /> Chuyện Nhỏ</Link>
           <h1 id="cn-directory-title">{t('directory.title')}</h1>
           <p>{t('directory.lead', { count: READY_TOOL_COUNT })}</p>
-          <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
         </div>
       </section>
+      <div className="cn-directory-controls"><div className="cn-container">
+        <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
+        <ToolFilters compact filter={filter} onFilter={onFilter} />
+      </div></div>
       <section className="cn-container cn-catalog cn-directory-catalog" aria-label={t('directory.catalogLabel')}>
-        <ToolFilters filter={filter} onFilter={onFilter} />
+        <div className="cn-catalog-availability"><span>{t('directory.available', { count: readyCount })}</span>{soonCount ? <label><input type="checkbox" checked={showSoon} onChange={event => onShowSoon(event.target.checked)} /> {t('directory.showSoon', { count: soonCount })}</label> : null}</div>
         <p id="cn-directory-results" className="cn-results-count" tabIndex={-1} role="status">{keyword ? t('results.countFor', { count: tools.length, keyword }) : t('results.count', { count: tools.length })}</p>
         {tools.length > 0 ? (
           <ul className="erp-tools-grid" aria-label={t('directory.title')}>{tools.map((tool) => <li key={tool.id}><ToolCard tool={tool} /></li>)}</ul>

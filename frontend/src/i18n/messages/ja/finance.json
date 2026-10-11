@@ -35,7 +35,7 @@
     },
     "kwh": "電力使用量（kWh）",
     "households": "メーターを共用する世帯の定数",
-    "tiers": "料金表: 各行に「kWh の上限, 単価 đ/kWh」",
+    "tiers": "Your electricity tariff",
     "applyTariff": "署名済みの料金表を適用",
     "applyVat": "署名済みの税率を適用",
     "ruleLabel": "電気料金表",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "単位あたりの比較",

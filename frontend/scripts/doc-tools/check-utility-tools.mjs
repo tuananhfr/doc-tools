@@ -23,6 +23,7 @@ const errors = []
 async function start(args = []) {
   const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--use-fake-ui-for-media-stream', ...args] })
   const context = await browser.newContext(contextOptions)
+  await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null, total: 0, tools: {} } }))
   // Ghi lại mọi luồng camera đã mở để kiểm chúng có được TẮT khi rời màn.
   await context.addInitScript(() => {
     window.__streams = []
@@ -147,7 +148,8 @@ async function lumaFrame(width, height, codeBase64) {
       c.fillStyle = '#fff'
       c.fillRect(0, 0, width, height)
       const bitmap = await createImageBitmap(new Blob([Uint8Array.from(atob(codeBase64), (char) => char.charCodeAt(0))]))
-      c.drawImage(bitmap, (width - 360) / 2, (height - 360) / 2, 360, 360)
+      // Keep the complete code inside the portrait crop, including its quiet zone.
+      c.drawImage(bitmap, (width - 144) / 2, (height - 144) / 2, 144, 144)
       const rgba = c.getImageData(0, 0, width, height).data
       const luma = new Uint8Array(width * height)
       for (let i = 0; i < luma.length; i++) luma[i] = Math.round(0.299 * rgba[i * 4] + 0.587 * rgba[i * 4 + 1] + 0.114 * rgba[i * 4 + 2])
@@ -206,6 +208,7 @@ if (want('qr-create') || want('qr-read') || want('camera')) {
 
   // Mỗi màu: bấm ô màu -> tải PNG -> soi chữ ký, kích thước, màu của ô định vị và nền.
   const swatches = page.locator('.erp-qr-color')
+  await page.locator('.erp-flow__after details').evaluate(element => { element.open = true })
   o.colors = []
   for (let index = 0; index < (await swatches.count()); index++) {
     await swatches.nth(index).click()
@@ -652,11 +655,14 @@ if (want('camera')) {
   const movie = `${OUT}camera-qr.y4m`.replaceAll('/', '\\')
   fs.writeFileSync(movie, Buffer.concat([Buffer.from('YUV4MPEG2 W640 H480 F15:1 Ip A1:1 C420jpeg\n'), ...Array.from({ length: 15 }, () => [Buffer.from('FRAME\n'), luma, chroma]).flat()]))
   ;({ browser, context, page } = await start(['--use-fake-device-for-media-stream', `--use-file-for-fake-video-capture=${movie}`]))
-
-  await open('doc-ma-qr', '.erp-flow-picker')
+  await page.goto(`${HUB}/cong-cu`)
+  await setTheme()
+  await page.reload()
+  await page.locator('a.erp-tool-card[href$="/doc-ma-qr"]').click()
+  await page.locator('.erp-flow-picker').waitFor()
   await page.getByRole('button', { name: 'Quét bằng camera' }).click()
-  await page.locator('.erp-camera__view').waitFor()
-  o.starting = await text('.erp-camera__status')
+  await page.locator('.erp-qr-scanner').waitFor()
+  o.starting = await text('.erp-qr-scanner__footer')
   const hit = page.locator('.erp-scan-hit')
   const found = await hit
     .first()
@@ -664,7 +670,7 @@ if (want('camera')) {
     .then(() => true)
     .catch(() => false)
   o.found = found
-  o.live = { video: await page.locator('.erp-camera__video').evaluate((v) => `${v.videoWidth}x${v.videoHeight} hidden=${v.hidden}`), hint: await text('.erp-tool-panel .erp-flow-field__hint'), extraButton: await page.getByRole('button', { name: 'Quét bằng camera' }).count() }
+  o.live = { video: await page.locator('.erp-qr-scanner__video').evaluate((v) => `${v.videoWidth}x${v.videoHeight} hidden=${v.hidden}`), hint: await text('.erp-qr-scanner__instruction'), extraButton: await page.getByRole('button', { name: 'Quét bằng camera' }).count() }
   if (found) o.hit = { text: await text('.erp-scan-hit__text'), format: await text('.erp-scan-hit__format') }
   // Mã vẫn nằm trước ống kính vài giây: không được đẻ dòng trùng.
   await page.waitForTimeout(4000)
@@ -674,12 +680,13 @@ if (want('camera')) {
 
   await page.getByRole('button', { name: 'Tắt camera' }).click()
   await page.waitForTimeout(600)
-  o.afterOff = { panel: await page.locator('.erp-camera__view').count(), tracks: await page.evaluate(() => window.__streams.flatMap((stream) => stream.getTracks().map((track) => track.readyState))), hits: await hit.count() }
+  o.afterOff = { panel: await page.locator('.erp-qr-scanner').count(), tracks: await page.evaluate(() => window.__streams.flatMap((stream) => stream.getTracks().map((track) => track.readyState))), hits: await hit.count() }
 
   // Rời màn khi camera còn bật: luồng phải tắt.
   await page.getByRole('button', { name: 'Quét bằng camera' }).click()
-  await page.waitForFunction(() => document.querySelector('.erp-camera__video') && !document.querySelector('.erp-camera__video').hidden, null, { timeout: 30000 })
-  await page.locator('.erp-tool-crumb__back').click()
+  await page.waitForFunction(() => document.querySelector('.erp-qr-scanner__video')?.videoWidth > 0, null, { timeout: 30000 })
+  await page.waitForFunction(() => window.__streams.some(stream => stream.getTracks().some(track => track.readyState === 'live')))
+  await page.goBack()
   await page.locator('.erp-tools-grid').waitFor()
   await page.waitForTimeout(600)
   o.afterLeave = await page.evaluate(() => window.__streams.flatMap((stream) => stream.getTracks().map((track) => track.readyState)))
@@ -687,3 +694,4 @@ if (want('camera')) {
 }
 
 console.log(JSON.stringify({ ...out, errors }, null, 1))
+if (out.camera && (!out.camera.found || out.camera.afterWait !== 1 || !out.camera.afterLeave.length || [...out.camera.afterOff.tracks, ...out.camera.afterLeave].some(state => state !== 'ended'))) process.exitCode = 1

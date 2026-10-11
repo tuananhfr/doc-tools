@@ -35,7 +35,7 @@
     },
     "kwh": "ไฟฟ้าที่ใช้ (kWh)",
     "households": "จำนวนครัวเรือนที่ใช้มิเตอร์ร่วมกัน",
-    "tiers": "ตารางราคา: แต่ละบรรทัดคือ “เพดาน kWh, ราคาต่อหน่วย đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "ใช้ตารางราคาที่ลงนามแล้ว",
     "applyVat": "ใช้อัตราภาษีที่ลงนามแล้ว",
     "ruleLabel": "ตารางราคาค่าไฟฟ้า",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "เปรียบเทียบตามหน่วย",

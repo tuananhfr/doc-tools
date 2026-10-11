@@ -112,7 +112,8 @@
     "engineLoading": "ကုဒ်ဆွဲသည့် အစိတ်အပိုင်းကို ဖွင့်နေသည်…",
     "previewLabel": "{{value}} ၏ {{kind}} ဘားကုဒ်",
     "styleTitle": "ကုဒ်ပုံစံ",
-    "listTitle": "ကုဒ်စာရင်း"
+    "listTitle": "ကုဒ်စာရင်း",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

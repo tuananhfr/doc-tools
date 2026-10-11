@@ -5,7 +5,7 @@
 //   THEME=dark VIEW=360x800 ONLY=batch,mark,photo node scripts/doc-tools/check-image-extra.mjs
 import { createRequire } from 'node:module'
 import fs from 'node:fs'
-import { chromium, outDir, HUB, FIX } from './lib/qa.mjs'
+import { mockFreeSession, chromium, outDir, HUB, FIX } from './lib/qa.mjs'
 
 const appRequire = createRequire(import.meta.url)
 const { PDFDocument } = appRequire('pdf-lib')
@@ -22,6 +22,7 @@ let stage = 'init'
 const errors = []
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: vw, height: vh }, hasTouch: mobile, isMobile: mobile, deviceScaleFactor: mobile ? 2 : 1, acceptDownloads: true })
+await mockFreeSession(context)
 const page = await context.newPage()
 page.on('console', (m) => m.type() === 'error' && errors.push(`${stage}: ${m.text().slice(0, 200)}`))
 page.on('pageerror', (e) => errors.push(`${stage}: ${String(e)}`))

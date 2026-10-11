@@ -35,7 +35,7 @@
     },
     "kwh": "Điện tiêu thụ (kWh)",
     "households": "Số định mức hộ dùng chung công tơ",
-    "tiers": "Bảng giá: mỗi dòng là “ngưỡng kWh; đơn giá đ/kWh”",
+    "tiers": "Bảng giá điện do bạn nhập",
     "applyTariff": "Áp dụng bảng giá đã ký",
     "applyVat": "Áp dụng thuế suất đã ký",
     "ruleLabel": "bảng giá điện",
@@ -185,7 +185,9 @@
       "inputs": "Có ô chưa hợp lệ — xem ô báo đỏ.",
       "exempt": "Phụ cấp miễn thuế không được lớn hơn lương Gross.",
       "noGross": "Không tính được với số liệu này. Kiểm tra lại mức lương và các khoản kèm theo."
-    }
+    },
+    "bracketLimit": "Thu nhập tính thuế đến (đ)",
+    "bracketRate": "Thuế suất (%)"
   },
   "unitPrice": {
     "resultLabel": "So sánh theo đơn vị",

@@ -35,7 +35,7 @@
     },
     "kwh": "Nakonsumong kuryente (kWh)",
     "households": "Bilang ng household quota na naghahati sa metro",
-    "tiers": "Rate table: bawat linya ay “limit ng kWh, presyo đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "Gamitin ang signed na rate table",
     "applyVat": "Gamitin ang signed na tax rate",
     "ruleLabel": "rate table ng kuryente",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "Paghahambing kada yunit",

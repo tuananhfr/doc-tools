@@ -35,7 +35,7 @@
     },
     "kwh": "Penggunaan elektrik (kWh)",
     "households": "Bilangan kuota isi rumah yang berkongsi meter",
-    "tiers": "Jadual harga: setiap baris ialah “had kWh, harga đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "Gunakan jadual harga yang ditandatangani",
     "applyVat": "Gunakan kadar cukai yang ditandatangani",
     "ruleLabel": "jadual harga elektrik",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "Perbandingan harga seunit",

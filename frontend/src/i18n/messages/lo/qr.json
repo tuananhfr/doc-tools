@@ -112,7 +112,8 @@
     "engineLoading": "ກຳລັງໂຫຼດຕົວແຕ້ມລະຫັດ…",
     "previewLabel": "ບາໂຄດ {{kind}} ຂອງ {{value}}",
     "styleTitle": "ຮູບແບບລະຫັດ",
-    "listTitle": "ລາຍການລະຫັດ"
+    "listTitle": "ລາຍການລະຫັດ",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

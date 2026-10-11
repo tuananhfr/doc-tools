@@ -1,4 +1,5 @@
 import { Icon } from '@/components/ui'
+import { useTranslation } from 'react-i18next'
 
 interface BarcodePreviewProps {
   /** SVG của mã; null = chưa có gì để vẽ. */
@@ -9,6 +10,7 @@ interface BarcodePreviewProps {
 
 /** Xem trước bằng chính SVG sẽ tải về — nền trắng ở cả ba theme, như tem in ra. */
 export function BarcodePreview({ svg, label, placeholder }: BarcodePreviewProps) {
+  const { t } = useTranslation('qr')
   if (!svg) {
     return (
       <div className="erp-qr-preview erp-qr-preview--empty erp-barcode-preview--empty">
@@ -20,6 +22,7 @@ export function BarcodePreview({ svg, label, placeholder }: BarcodePreviewProps)
   return (
     <div className="erp-barcode-preview">
       <img className="erp-barcode-preview__code" src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`} alt={label} />
+      <p className="small mt-2 mb-0">{t('barcode.previewFit')}</p>
     </div>
   )
 }

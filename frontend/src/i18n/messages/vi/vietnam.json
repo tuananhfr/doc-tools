@@ -100,7 +100,15 @@
     "csvFileName": "doi-dia-chi",
     "noTable": "Chưa có bảng đối chiếu",
     "noTableNote": "Chưa có dữ liệu để đổi địa chỉ. Hãy áp dụng bảng đối chiếu đã ký (nếu hệ thống có) hoặc tự nhập bảng vào ô “Hoặc tự nhập”.",
-    "tableTitle": "Kết quả đổi địa chỉ"
+    "tableTitle": "Kết quả đổi địa chỉ",
+    "manualTitle": "Tự nhập bảng đối chiếu địa chỉ",
+    "mappingFields": {
+      "oldProvince": "Tỉnh/thành cũ",
+      "oldDistrict": "Quận/huyện cũ",
+      "oldWard": "Phường/xã cũ",
+      "newProvince": "Tỉnh/thành mới",
+      "newWard": "Phường/xã mới"
+    }
   },
   "invoice": {
     "errors": {

@@ -1,4 +1,4 @@
-import type { MouseEvent } from 'react'
+import { useId, type MouseEvent } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -10,6 +10,7 @@ import { localeHref, switchLocale } from '@/i18n/switch-locale'
 const SHORT_LABEL: Partial<Record<Locale, string>> = { 'zh-hans': '简', 'zh-hant': '繁' }
 
 export function LanguagePicker() {
+  const id = useId()
   const { t } = useTranslation()
   const locale = useLocale()
   // Pathname only: the server router has no query or hash, so including them breaks hydration.
@@ -21,7 +22,7 @@ export function LanguagePicker() {
   }
   return (
     <Dropdown align="end" className="cn-language">
-      <Dropdown.Toggle variant="ghost" size="sm" id="tools-language" className="cn-language__toggle" aria-label={t('language.current', { name: current.label })}>
+      <Dropdown.Toggle variant="ghost" size="sm" id={`${id}-language`} className="cn-language__toggle" aria-label={t('language.current', { name: current.label })}>
         <Icon name="globe2" />
         <span className="cn-language__name">{current.label}</span>
         <span className="cn-language__code" aria-hidden="true">{SHORT_LABEL[locale] ?? locale.toUpperCase()}</span>

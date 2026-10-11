@@ -163,7 +163,11 @@
     "title": "Lahat ng tool",
     "lead_one": "{{count}} libreng tool. Piliin ang kailangan mo at gamitin agad sa browser.",
     "lead_other": "{{count}} libreng tool. Piliin ang kailangan mo at gamitin agad sa browser.",
-    "catalogLabel": "Katalogo ng tool"
+    "catalogLabel": "Katalogo ng tool",
+    "available_one": "{{count}} available tools",
+    "available_other": "{{count}} available tools",
+    "showSoon_one": "Show {{count}} upcoming tools",
+    "showSoon_other": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "Kapag kulang ang isang tool…",

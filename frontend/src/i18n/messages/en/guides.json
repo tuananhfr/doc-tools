@@ -275,7 +275,7 @@
         },
         "backup": {
           "title": "Back up",
-          "detail": "The “Backup” tab has “Download backup” (a full file for restoring), “Download ICS” to import into your phone calendar, and printing the next 30 days."
+          "detail": "The “Backup” tab has “Download backup” (a full file for restoring), “Add to phone calendar (.ics)” to import into your phone calendar, and printing the next 30 days."
         }
       },
       "tips": {

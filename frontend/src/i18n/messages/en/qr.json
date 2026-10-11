@@ -112,7 +112,8 @@
     "engineLoading": "Loading the barcode engine…",
     "previewLabel": "{{kind}} barcode for {{value}}",
     "styleTitle": "Code style",
-    "listTitle": "Code list"
+    "listTitle": "Code list",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

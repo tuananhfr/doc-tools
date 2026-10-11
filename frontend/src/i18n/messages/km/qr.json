@@ -112,7 +112,8 @@
     "engineLoading": "កំពុងផ្ទុកកម្មវិធីគូរកូដ…",
     "previewLabel": "បាកូដ {{kind}} នៃ {{value}}",
     "styleTitle": "ប្រភេទកូដ",
-    "listTitle": "បញ្ជីកូដ"
+    "listTitle": "បញ្ជីកូដ",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

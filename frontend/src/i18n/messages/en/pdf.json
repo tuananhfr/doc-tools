@@ -1071,5 +1071,10 @@
       "MEDIUM": "Medium",
       "LOW": "Low"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

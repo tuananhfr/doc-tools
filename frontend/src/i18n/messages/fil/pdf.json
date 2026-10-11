@@ -1071,5 +1071,10 @@
       "MEDIUM": "Katamtaman",
       "LOW": "Mababa"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

@@ -1487,5 +1487,10 @@
       "MEDIUM": "متوسطة",
       "LOW": "منخفضة"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

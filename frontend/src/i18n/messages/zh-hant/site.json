@@ -160,7 +160,9 @@
     "metaDescription": "Chuyện Nhỏ 所有免費的 PDF、影像、QR 碼和實用工具。不需要帳號，直接在裝置上處理。",
     "title": "所有工具",
     "lead": "{{count}} 個免費工具。選擇你要做的事，直接在瀏覽器中使用。",
-    "catalogLabel": "工具目錄"
+    "catalogLabel": "工具目錄",
+    "available": "{{count}} available tools",
+    "showSoon": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "當一個工具不夠用時…",

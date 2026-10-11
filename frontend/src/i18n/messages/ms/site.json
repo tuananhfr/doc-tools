@@ -160,7 +160,9 @@
     "metaDescription": "Semua alat PDF, imej, kod QR dan utiliti percuma Chuyện Nhỏ. Tidak perlu akaun, diproses terus pada peranti.",
     "title": "Semua alat",
     "lead": "{{count}} alat percuma. Pilih tugasan yang anda perlukan, terus guna dalam pelayar.",
-    "catalogLabel": "Katalog alat"
+    "catalogLabel": "Katalog alat",
+    "available": "{{count}} available tools",
+    "showSoon": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "Apabila satu alat tidak mencukupi…",

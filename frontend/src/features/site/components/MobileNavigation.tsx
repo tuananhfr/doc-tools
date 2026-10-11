@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useMe } from '@/features/account'
 import { ADMIN_ROOT } from '@/features/admin'
 import { withBase } from '@/utils/url'
+import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
 
 interface MobileNavigationProps {
@@ -20,6 +21,7 @@ export function MobileNavigation({ open, onClose }: MobileNavigationProps) {
         <Offcanvas.Title id="cn-navigation-title">Chuyện Nhỏ</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
+        <GuestPrefs className="cn-mobile-preferences" />
         <nav aria-label={t('header.mobileNav')}>
           {SITE_NAVIGATION.map((item) => <Link key={item.to} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</Link>)}
         </nav>

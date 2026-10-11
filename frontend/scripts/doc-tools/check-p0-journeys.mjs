@@ -23,7 +23,7 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex')
 const fileHashes = new Map([...fixtures.cases, ...fixtures.pdfs, fixtures.photo, fixtures.scan, fixtures.compressiblePdf].map(item => [item.file, item.sha256]))
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width, height }, hasTouch: width < 600, acceptDownloads: true })
-await context.route('**/api/v1/tools/**', route => route.fulfill({ json: { ok: true, total: 0 } }))
+await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null, total: 0, tools: {} } }))
 const page = await context.newPage()
 page.on('dialog', dialog => void dialog.accept())
 const errors = []; const unexpectedWrites = []
@@ -141,7 +141,10 @@ try {
           const candidate = await card.count() ? card.first() : page.locator('.erp-tools-grid .erp-tool-card').filter({ hasText: story.name }).first()
           await candidate.click(); result.steps++
         } else {
-          await page.getByRole('button', { name: story.category, exact: true }).click(); result.steps++
+          const category = page.locator('.cn-filter-mobile:visible')
+          if (await category.count()) await category.selectOption({ label: story.category })
+          else await page.getByRole('button', { name: story.category, exact: true }).click()
+          result.steps++
           await page.locator('.erp-tool-card').filter({ hasText: story.name }).first().click(); result.steps++
         }
         await page.waitForURL('**/' + story.slug)

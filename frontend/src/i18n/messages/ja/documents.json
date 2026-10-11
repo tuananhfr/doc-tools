@@ -63,7 +63,8 @@
     "names": {
       "leave": "休暇届",
       "authorization": "委任状",
-      "handover": "引継書"
+      "handover": "引継書",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "宛先",
@@ -86,7 +87,11 @@
       "receiver": "受取り側（氏名・役職）",
       "items": "引継ぎ項目（1行に1項目）",
       "note": "備考",
-      "placeDrawn": "作成地"
+      "placeDrawn": "作成地",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "公証や認証が必要な手続きもあります。使用前に提出先に確認してください。",
     "defaultWarning": "参考用のテンプレートです。提出前に提出先の要件を確認してください。",
@@ -132,9 +137,18 @@
         "attorney": "受任者",
         "principal": "委任者",
         "receiver": "受領者",
-        "giver": "引渡者"
+        "giver": "引渡者",
+        "sender": "Sender"
       },
-      "signHint": "（署名・氏名）"
+      "signHint": "（署名・氏名）",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

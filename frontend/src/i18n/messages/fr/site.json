@@ -166,7 +166,13 @@
     "lead_one": "{{count}} outil gratuit. Choisissez ce dont vous avez besoin et utilisez-le directement dans le navigateur.",
     "lead_many": "{{count}} outils gratuits. Choisissez ce dont vous avez besoin et utilisez-le directement dans le navigateur.",
     "lead_other": "{{count}} outils gratuits. Choisissez ce dont vous avez besoin et utilisez-le directement dans le navigateur.",
-    "catalogLabel": "Catalogue d'outils"
+    "catalogLabel": "Catalogue d'outils",
+    "available_one": "{{count}} available tools",
+    "available_many": "{{count}} available tools",
+    "available_other": "{{count}} available tools",
+    "showSoon_one": "Show {{count}} upcoming tools",
+    "showSoon_many": "Show {{count}} upcoming tools",
+    "showSoon_other": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "Quand un seul outil ne suffit plus…",

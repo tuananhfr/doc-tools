@@ -160,7 +160,9 @@
     "metaDescription": "Tất cả công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí của Chuyện Nhỏ. Không cần tài khoản, xử lý ngay trên thiết bị.",
     "title": "Tất cả công cụ",
     "lead": "{{count}} công cụ miễn phí. Chọn việc bạn cần, dùng ngay trong trình duyệt.",
-    "catalogLabel": "Danh mục công cụ"
+    "catalogLabel": "Danh mục công cụ",
+    "available": "{{count}} công cụ đang dùng được",
+    "showSoon": "Hiện {{count}} công cụ sắp có"
   },
   "ecosystem": {
     "title": "Khi một công cụ là chưa đủ…",

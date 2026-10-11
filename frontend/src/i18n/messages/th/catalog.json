@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "แบบฟอร์มคำร้อง บันทึก",
-      "description": "เขียนใบลา หนังสือมอบอำนาจ และบันทึกส่งมอบงานเพื่อพิมพ์",
-      "synonyms": "ใบลา, หนังสือมอบอำนาจ, บันทึกส่งมอบ, แบบฟอร์ม"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "ใบลา, หนังสือมอบอำนาจ, บันทึกส่งมอบ, แบบฟอร์ม, money receipt, payment receipt"
     },
     "dictation": {
       "name": "แปลงเสียงเป็นข้อความ",

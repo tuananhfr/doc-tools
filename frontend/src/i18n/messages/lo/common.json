@@ -38,7 +38,8 @@
     "unknown": "ເກີດຂໍ້ຜິດພາດຂຶ້ນ."
   },
   "crumb": {
-    "label": "ຕຳແໜ່ງ"
+    "label": "ຕຳແໜ່ງ",
+    "backTools": "Back to tools"
   },
   "tool": {
     "privacyNoFile": "ເຮັດວຽກໃນເຄື່ອງຂອງທ່ານ, ບໍ່ສົ່ງເນື້ອໃນອອກໄປ",
@@ -214,5 +215,17 @@
     "between": "Enter a number from {{min}} to {{max}}.",
     "atLeast": "Enter {{min}} or more.",
     "atMost": "Enter at most {{max}}."
+  },
+  "workspace": {
+    "input": "Enter details",
+    "preview": "Preview",
+    "advanced": "More options",
+    "customize": "Colors and background",
+    "rawInput": "Enter as text",
+    "addRow": "Add row",
+    "removeRow": "Remove row {{number}}",
+    "row": "Row {{number}}",
+    "remaining": "Apply to the remainder",
+    "unsaved": "Your entered details have not been saved. Leaving will discard them."
   }
 }

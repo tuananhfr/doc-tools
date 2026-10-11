@@ -63,7 +63,8 @@
     "names": {
       "leave": "请假申请",
       "authorization": "授权委托书",
-      "handover": "交接记录"
+      "handover": "交接记录",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "致",
@@ -86,7 +87,11 @@
       "receiver": "接收方（姓名、职务）",
       "items": "交接清单（每行一项）",
       "note": "备注",
-      "placeDrawn": "制作地点"
+      "placeDrawn": "制作地点",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "部分事项需要公证或认证。使用前请向受理单位确认。",
     "defaultWarning": "参考模板；提交前请确认受理单位的要求。",
@@ -132,9 +137,18 @@
         "attorney": "受托人",
         "principal": "委托人",
         "receiver": "接收方",
-        "giver": "移交方"
+        "giver": "移交方",
+        "sender": "Sender"
       },
-      "signHint": "（签字并注明姓名）"
+      "signHint": "（签字并注明姓名）",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

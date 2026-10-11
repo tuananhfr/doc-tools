@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Borang & rekod",
-      "description": "Sediakan permohonan cuti, surat kuasa dan rekod serah terima untuk dicetak",
-      "synonyms": "borang cuti, permohonan cuti, surat kuasa, rekod serah terima, templat borang"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "borang cuti, permohonan cuti, surat kuasa, rekod serah terima, templat borang, money receipt, payment receipt"
     },
     "dictation": {
       "name": "Suara ke teks",

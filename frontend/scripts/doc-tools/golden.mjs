@@ -25,6 +25,7 @@ const OUT = outDir('golden')
 const BASELINE = path.join(import.meta.dirname, 'golden', 'baseline.json')
 const update = process.env.UPDATE === '1'
 const only = process.env.ONLY ? process.env.ONLY.split(',') : null
+const deferred = process.env.NON_OCR === '1' ? ['ocr-van-ban', 'anh-sang-van-ban'] : []
 
 /** Số ký tự chữ giữ lại trong chữ ký — đủ để thấy lệch, không làm baseline phình. */
 const TEXT_KEEP = 1500
@@ -35,6 +36,7 @@ const GRID_TOLERANCE = 8
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true })
+await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null, total: 0, tools: {} } }))
 const page = await context.newPage()
 page.on('dialog', (dialog) => void dialog.accept())
 const errors = []
@@ -361,9 +363,9 @@ const TOOLS = {
   'xem-pdf': async () => {
     await page.goto(`${HUB}/xem-pdf`)
     await page.locator('input[type=file]').first().setInputFiles([fix('hop-dong.pdf')])
-    await page.locator('.erp-doc-page').first().waitFor({ timeout: 60000 })
+    await page.locator('.cn-pdf-reader__stage canvas').waitFor({ timeout: 60000 })
     await page.waitForTimeout(1500)
-    return { pages: await page.locator('.erp-doc-page').count() }
+    return { pages: await page.locator('.cn-pdf-reader__page option').count() }
   },
   'chinh-sua-pdf': async () => {
     await page.goto(`${HUB}/chinh-sua-pdf`)
@@ -472,12 +474,16 @@ const report = {}
 
 // Chỉ cần một trang cùng origin để giải mã ảnh; không chờ lưới thẻ — trang chọn công cụ hỏng không được kéo golden hỏng theo.
 await page.goto(HUB)
+const actualBuild = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
+if (process.env.EXPECTED_BUILD && actualBuild !== process.env.EXPECTED_BUILD) throw new Error('Unexpected application build')
 
 for (const [key, drive] of Object.entries(TOOLS)) {
+  if (deferred.includes(key.split('#')[0])) continue
   if (only && !only.includes(key.split('#')[0])) continue
   inputs.length = 0
   timing = null
   outBytes = null
+  fs.writeFileSync(path.join(OUT, 'progress.json'), JSON.stringify({ build: actualBuild, running: key, report }, null, 2), 'utf8')
   try {
     const output = await drive()
     const input = {}
@@ -527,6 +533,8 @@ const summary = {
   recorded: by('recorded').length,
 }
 
-console.log(JSON.stringify({ summary, report, errors }, null, 2))
+const result = { build: actualBuild, scope: deferred.length ? 'non-ocr' : 'full', deferred, createdAt: new Date().toISOString(), summary, report, errors }
+fs.writeFileSync(path.join(OUT, 'results.json'), JSON.stringify(result, null, 2), 'utf8')
+console.log(JSON.stringify({ summary, errors }))
 if (summary.mismatch.length > 0) process.exit(1)
 if (summary.failed.length > 0 || summary.fixtureChanged.length > 0 || summary.noBaseline.length > 0) process.exit(2)

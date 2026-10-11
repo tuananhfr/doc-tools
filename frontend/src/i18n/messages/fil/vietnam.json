@@ -102,7 +102,15 @@
     "csvFileName": "conversion-ng-address",
     "noTable": "No mapping table yet",
     "noTableNote": "There's no data to convert addresses with yet. Apply the signed mapping table (if the system has one) or enter your own table in the field provided.",
-    "tableTitle": "Address conversion results"
+    "tableTitle": "Address conversion results",
+    "manualTitle": "Enter an address mapping",
+    "mappingFields": {
+      "oldProvince": "Old province/city",
+      "oldDistrict": "Old district",
+      "oldWard": "Old ward",
+      "newProvince": "New province/city",
+      "newWard": "New ward"
+    }
   },
   "invoice": {
     "errors": {

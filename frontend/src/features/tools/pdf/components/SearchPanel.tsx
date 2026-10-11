@@ -17,6 +17,7 @@ interface SearchPanelProps {
   /** Khối OCR — chỉ hiện khi chưa tìm hoặc có trang không có lớp chữ. */
   ocrSection?: ReactNode
   ocrRunning?: boolean
+  readOnly?: boolean
 }
 
 function StatusLine({ search }: { search: TextSearch }) {
@@ -78,7 +79,7 @@ function HitFlags({ hit, replace }: { hit: SearchHit; replace: FindReplace }) {
   return null
 }
 
-export function SearchPanel({ search, replace, inputRef, onOpenHit, onStep, ocrSection, ocrRunning = false }: SearchPanelProps) {
+export function SearchPanel({ search, replace, inputRef, onOpenHit, onStep, ocrSection, ocrRunning = false, readOnly = false }: SearchPanelProps) {
   const { t } = useTranslation('pdf')
   const groups: { pageNumber: number; hits: SearchHit[] }[] = []
   for (const hit of search.hits) {
@@ -121,15 +122,15 @@ export function SearchPanel({ search, replace, inputRef, onOpenHit, onStep, ocrS
           checked={search.options.matchCase}
           onChange={(event) => search.setOptions({ ...search.options, matchCase: event.target.checked })}
         />
-        <Form.Check
+        {!readOnly ? <Form.Check
           id="doc-search-replace"
           type="switch"
           label={t('search.replace')}
           checked={replace.open}
           onChange={(event) => replace.setOpen(event.target.checked)}
-        />
+        /> : null}
       </div>
-      {replace.open ? <ReplaceBar replace={replace} /> : null}
+      {!readOnly && replace.open ? <ReplaceBar replace={replace} /> : null}
 
       <StatusLine search={search} />
       {search.active && search.textless > 0 ? (
@@ -159,7 +160,7 @@ export function SearchPanel({ search, replace, inputRef, onOpenHit, onStep, ocrS
                 <li className="erp-doc-search__page">{t('search.page', { page: group.pageNumber })}</li>
                 {group.hits.map((hit, index) => (
                   <li key={hit.id} className="erp-doc-search__row">
-                    {replace.open ? (
+                    {!readOnly && replace.open ? (
                       <Form.Check
                         id={`doc-hit-${hit.id}`}
                         className="erp-doc-search__pick"
@@ -178,7 +179,7 @@ export function SearchPanel({ search, replace, inputRef, onOpenHit, onStep, ocrS
                       {hit.snippet.before}
                       <mark>{hit.snippet.match}</mark>
                       {hit.snippet.after}
-                      {replace.open ? <HitFlags hit={hit} replace={replace} /> : null}
+                      {!readOnly && replace.open ? <HitFlags hit={hit} replace={replace} /> : null}
                     </button>
                   </li>
                 ))}

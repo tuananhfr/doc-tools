@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Templat surat, berita acara",
-      "description": "Susun surat cuti, surat kuasa, dan berita acara serah terima untuk dicetak",
-      "synonyms": "surat cuti, surat kuasa, berita acara serah terima"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "surat cuti, surat kuasa, berita acara serah terima, money receipt, payment receipt"
     },
     "dictation": {
       "name": "Rekam suara jadi teks",

@@ -5,6 +5,8 @@ import { useToolsBranch } from '../hooks/tools-branch'
 import type { ToolDefinition } from '../types/tool.types'
 import { toolPath } from '../utils/tool-lookup'
 import { ToolTile } from './ToolTile'
+import { useToolOrigin } from '../hooks/useToolOrigin'
+import { useState } from 'react'
 
 /**
  * Thẻ một công cụ. Công cụ chưa làm KHÔNG phải link: thẻ vẫn có mặt để người
@@ -13,6 +15,8 @@ import { ToolTile } from './ToolTile'
 export function ToolCard({ tool }: { tool: ToolDefinition }) {
   const { base } = useToolsBranch()
   const { t } = useTranslation('common')
+  const { capture } = useToolOrigin()
+  const [originState, setOriginState] = useState<ReturnType<typeof capture>>()
   const body = (
     <>
       <ToolTile tool={tool} />
@@ -36,7 +40,7 @@ export function ToolCard({ tool }: { tool: ToolDefinition }) {
   }
 
   return (
-    <Link className="erp-tool-card" to={toolPath(base, tool)}>
+    <Link className="erp-tool-card" to={toolPath(base, tool)} state={originState} onPointerDown={() => setOriginState(capture())} onFocus={() => setOriginState(capture())}>
       {body}
       <Icon name="chevron-right" className="erp-tool-card__go" />
     </Link>

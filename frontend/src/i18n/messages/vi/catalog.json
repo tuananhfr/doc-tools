@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Mẫu đơn, biên bản",
-      "description": "Soạn đơn nghỉ phép, giấy ủy quyền và biên bản bàn giao để in",
-      "synonyms": "đơn xin nghỉ, giấy ủy quyền, biên bản bàn giao"
+      "description": "Soạn đơn nghỉ phép, giấy ủy quyền, biên bản bàn giao và biên nhận tiền để in",
+      "synonyms": "đơn xin nghỉ, giấy ủy quyền, biên bản bàn giao, biên nhận tiền, giấy nhận tiền"
     },
     "dictation": {
       "name": "Ghi âm thành văn bản",

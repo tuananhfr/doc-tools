@@ -10,6 +10,7 @@ import { leavesToolScreen } from '../utils/tool-lookup'
 interface ToolLeaveGuardProps {
   /** Công cụ đang giữ tệp chưa lưu ở đâu ngoài RAM của tab. */
   active: boolean
+  message?: string
 }
 
 /**
@@ -20,7 +21,7 @@ interface ToolLeaveGuardProps {
  * Back) đi qua router nên chặn bằng `useBlocker` và hỏi bằng hộp thoại của app;
  * đóng tab / F5 / gõ URL khác thì chỉ trình duyệt hỏi được (`beforeunload`).
  */
-export function ToolLeaveGuard({ active }: ToolLeaveGuardProps) {
+export function ToolLeaveGuard({ active, message }: ToolLeaveGuardProps) {
   const { base, kind } = useToolsBranch()
   const { t } = useTranslation('common')
 
@@ -49,7 +50,7 @@ export function ToolLeaveGuard({ active }: ToolLeaveGuardProps) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="mb-0">{t('leave.body')}</p>
+        <p className="mb-0">{message ?? t('leave.body')}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="outline-secondary" autoFocus onClick={() => blocker.reset?.()}>

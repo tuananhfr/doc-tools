@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Forms & records",
-      "description": "Write leave requests, authorization letters and handover records to print",
-      "synonyms": "leave request, letter of authorization, handover record, form template"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "leave request, letter of authorization, handover record, form template, money receipt, payment receipt"
     },
     "dictation": {
       "name": "Speech to text",

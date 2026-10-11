@@ -112,7 +112,8 @@
     "engineLoading": "正在載入條碼繪製元件…",
     "previewLabel": "{{value}} 的 {{kind}} 條碼",
     "styleTitle": "條碼樣式",
-    "listTitle": "條碼清單"
+    "listTitle": "條碼清單",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

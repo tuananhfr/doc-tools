@@ -2,7 +2,7 @@
 // Danh thiếp đi MỘT VÒNG: tạo -> tải PNG -> màn "Đọc QR" đọc lại đúng chuỗi vCard.
 //
 //   THEME=dark VIEW=360x800 ONLY=money,date,vcard node scripts/doc-tools/check-money-date.mjs
-import { chromium, outDir, HUB } from './lib/qa.mjs'
+import { mockFreeSession, chromium, outDir, HUB } from './lib/qa.mjs'
 
 const OUT = outDir('money-date')
 const theme = process.env.THEME ?? 'light'
@@ -15,6 +15,7 @@ let stage = 'init'
 const errors = []
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: vw, height: vh }, hasTouch: mobile, isMobile: mobile, deviceScaleFactor: mobile ? 2 : 1, acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] })
+await mockFreeSession(context)
 const page = await context.newPage()
 page.on('console', (m) => m.type() === 'error' && errors.push(`${stage}: ${m.text().slice(0, 200)}`))
 page.on('pageerror', (e) => errors.push(`${stage}: ${String(e)}`))

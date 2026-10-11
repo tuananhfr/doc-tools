@@ -1,4 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { useToolsBranch } from '@/features/tools/hub/hooks/tools-branch'
+import { toolPath } from '@/features/tools/hub/utils/tool-lookup'
+import { DocReader } from '../components/DocReader'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '@/components/ui'
@@ -73,10 +77,16 @@ function describeRejected(rejected: RejectedFile[], t: TFunction<'pdf'>) {
  *
  * Khung, tiêu đề tab và đường về trang chọn công cụ do "Chuyện Nhỏ"
  * (`features/tools/hub`) lo. Trang này mở ở hai slug (Chỉnh sửa PDF, Xem PDF) và
- * không phân biệt chúng; việc làm nhanh một bước đã có công cụ riêng (`pages/quick/`).
+ * preserves the file session while switching between reader and editor presentation.
  */
 export default function DocToolsPage() {
   const { t } = useTranslation('pdf')
+  const { tool: slug } = useParams()
+  const { base } = useToolsBranch()
+  const location = useLocation()
+  const reading = slug === 'xem-pdf'
+  const [readerId, setReaderId] = useState<string | null>(null)
+  const [readerPanel, setReaderPanel] = useState(false)
   const toast = useToast()
   const workspace = useDocWorkspace()
   const [pendingReplace, setPendingReplace] = useState<PendingReplace | null>(null)
@@ -128,9 +138,10 @@ export default function DocToolsPage() {
   const openHit = useCallback(
     (hit: SearchHit) => {
       search.setActiveId(hit.id)
-      setPreviewId(hit.pageId)
+      if (reading) setReaderId(hit.pageId)
+      else setPreviewId(hit.pageId)
     },
-    [search],
+    [search, reading],
   )
 
   const stepHit = useCallback(
@@ -322,6 +333,8 @@ export default function DocToolsPage() {
   }
 
   const previewIndex = previewId ? pages.findIndex((page) => page.id === previewId) : -1
+  const readerIndex = Math.max(0, pages.findIndex(page => page.id === (search.activeHit?.pageId ?? readerId)))
+  const readerPage = pages[readerIndex]
   const previewPage = previewIndex >= 0 ? pages[previewIndex] : undefined
   const previewSource = previewPage ? workspace.sources[previewPage.sourceId] : undefined
   const previewHits = useMemo(() => search.hits.filter((hit) => hit.pageId === previewId), [search.hits, previewId])
@@ -337,12 +350,13 @@ export default function DocToolsPage() {
       // Ctrl+F cả khi đang gõ ở ô khác: tìm của trình duyệt không thấy chữ trong canvas trang.
       if (mod && key === 'f') {
         event.preventDefault()
+        if (reading) setReaderPanel(true)
         setSideTab('search')
         requestAnimationFrame(() => searchInput.current?.select())
         return
       }
       // Hộp thoại đang mở: Delete / Ctrl+Z ở đây sẽ xoá, hoàn tác trang nằm KHUẤT sau nó.
-      if (isTyping(event.target)) return
+      if (reading || isTyping(event.target)) return
 
       if (mod && key === 'z' && !event.shiftKey) undo()
       else if (mod && (key === 'y' || (key === 'z' && event.shiftKey))) redo()
@@ -354,17 +368,21 @@ export default function DocToolsPage() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [pages.length, selected.length, dialogOpen, undo, redo, remove, selectAll, clearSelection])
+  }, [reading, pages.length, selected.length, dialogOpen, undo, redo, remove, selectAll, clearSelection])
 
   return (
-    <div className="erp-doc-tools">
+    <div className={`erp-doc-tools${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}`}>
       <ToolLeaveGuard active={pages.length > 0} />
       <div className="erp-doc-tools__main">
         {pages.length === 0 ? (
           <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
         ) : (
           <>
-            <DocToolbar
+            {reading ? <div className="cn-pdf-reader__actions">
+              <button type="button" className="btn btn-outline-secondary" onClick={() => void pickAndAdd()}>{t('toolbar.addFiles')}</button>
+              <button type="button" className="btn btn-outline-secondary" aria-expanded={readerPanel} onClick={() => { setReaderPanel(value => !value); setSideTab('search'); if (!readerPanel) requestAnimationFrame(() => document.querySelector('.erp-doc-export')?.scrollIntoView({ block: 'start' })) }}>{t('reader.searchExport')}</button>
+              <Link className="btn btn-primary" to={toolPath(base, { slug: 'chinh-sua-pdf' })} state={location.state}>{t('reader.edit')}</Link>
+            </div> : <DocToolbar
               pageCount={pages.length}
               selectedCount={selected.length}
               canUndo={workspace.canUndo}
@@ -384,8 +402,8 @@ export default function DocToolsPage() {
               onUndo={undo}
               onRedo={redo}
               onReset={workspace.reset}
-            />
-            {suggestHiddenFor !== sessionKey ? (
+            />}
+            {!reading && suggestHiddenFor !== sessionKey ? (
               <SuggestionBar
                 suggestions={suggestions}
                 disabled={exporter.busy !== null}
@@ -394,7 +412,7 @@ export default function DocToolsPage() {
               />
             ) : null}
             <div className="erp-doc-tools__body">
-              <PageGrid
+              {reading && readerPage && workspace.sources[readerPage.sourceId] ? <DocReader page={readerPage} source={workspace.sources[readerPage.sourceId]} position={readerIndex + 1} total={pages.length} stamp={stamp} hits={search.hits} activeHitId={search.activeHit?.id ?? null} onPage={index => { search.setActiveId(null); setReaderId(pages[index].id) }} /> : <PageGrid
                 pages={pages}
                 sources={workspace.sources}
                 stamp={stamp}
@@ -405,7 +423,7 @@ export default function DocToolsPage() {
                 onShift={workspace.shift}
                 onMove={workspace.move}
                 onDropFiles={(files, placement) => void handleFiles(files, placement)}
-              />
+              />}
               <DocSidePanel
                 activeTab={activeTab}
                 onTabChange={setSideTab}
@@ -414,6 +432,7 @@ export default function DocToolsPage() {
                 decorationCount={Number(!!resolved.headerFooter) + Number(!!resolved.watermark)}
                 searchPanel={
                   <SearchPanel
+                    readOnly={reading}
                     search={search}
                     replace={replace}
                     inputRef={searchInput}

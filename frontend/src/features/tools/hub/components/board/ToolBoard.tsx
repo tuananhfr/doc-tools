@@ -8,6 +8,7 @@ interface ToolBoardProps {
   side?: ReactNode
   /** Tên cột phải cho trình đọc màn hình. */
   sideLabel?: string
+  after?: ReactNode
 }
 
 /**
@@ -15,7 +16,7 @@ interface ToolBoardProps {
  * trái, kết quả bên phải, kết quả đổi theo từng phím gõ. Dùng lại lưới hai cột
  * của luồng ba bước để mọi công cụ của "Chuyện Nhỏ" cùng một trục.
  */
-export function ToolBoard({ children, side, sideLabel }: ToolBoardProps) {
+export function ToolBoard({ children, side, sideLabel, after }: ToolBoardProps) {
   const { t } = useTranslation('common')
   return (
     <div className={`erp-flow${side ? '' : ' erp-flow--single'}`}>
@@ -25,6 +26,7 @@ export function ToolBoard({ children, side, sideLabel }: ToolBoardProps) {
           {side}
         </aside>
       ) : null}
+      {after ? <div className="erp-flow__after">{after}</div> : null}
     </div>
   )
 }

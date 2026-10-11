@@ -967,5 +967,10 @@
       "MEDIUM": "보통",
       "LOW": "낮음"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

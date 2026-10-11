@@ -175,7 +175,19 @@
     "lead_few": "{{count}} أدوات مجانية. اختر ما تحتاجه واستخدمه مباشرة في المتصفح.",
     "lead_many": "{{count}} أداة مجانية. اختر ما تحتاجه واستخدمه مباشرة في المتصفح.",
     "lead_other": "{{count}} أداة مجانية. اختر ما تحتاجه واستخدمه مباشرة في المتصفح.",
-    "catalogLabel": "فهرس الأدوات"
+    "catalogLabel": "فهرس الأدوات",
+    "available_zero": "{{count}} available tools",
+    "available_one": "{{count}} available tools",
+    "available_two": "{{count}} available tools",
+    "available_few": "{{count}} available tools",
+    "available_many": "{{count}} available tools",
+    "available_other": "{{count}} available tools",
+    "showSoon_zero": "Show {{count}} upcoming tools",
+    "showSoon_one": "Show {{count}} upcoming tools",
+    "showSoon_two": "Show {{count}} upcoming tools",
+    "showSoon_few": "Show {{count}} upcoming tools",
+    "showSoon_many": "Show {{count}} upcoming tools",
+    "showSoon_other": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "عندما لا تكفي أداة واحدة…",

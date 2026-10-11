@@ -967,5 +967,10 @@
       "MEDIUM": "Sederhana",
       "LOW": "Rendah"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

@@ -15,7 +15,7 @@ export interface SearchIntent {
   handoff?: { profile: 'table'; output: 'xlsx' }
 }
 
-export const INTENT_REGISTRY_VERSION = 2
+export const INTENT_REGISTRY_VERSION = 3
 
 export const SEARCH_INTENTS: readonly SearchIntent[] = [
   {
@@ -30,7 +30,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'pdf.compress', canonical: 'Nén PDF', preferredTool: 'compress-pdf', acceptableTools: [], forbiddenTools: ['remove-background', 'compress-video'],
-    requiredTerms: [['pdf'], ['nén', 'nặng', 'nhẹ', 'giảm dung lượng', 'giảm kích thước']], excludedTerms: ['video', 'ảnh'],
+    requiredTerms: [['pdf'], ['nén', 'nặng', 'nhẹ', 'nhỏ', 'giảm dung lượng', 'giảm kích thước']], excludedTerms: ['video', 'ảnh'],
     aliases: ['giảm dung lượng PDF', 'làm file PDF nhỏ lại', 'file nặng quá không gửi được', 'gửi hồ sơ nhẹ hơn', 'nén PDF gửi Zalo', 'PDF quá lớn để gửi email'],
     inputProfiles: ['pdf'], expectedOutcome: 'PDF được nén; thông báo nếu dung lượng không giảm', risk: 'low',
   },
@@ -42,13 +42,13 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'pdf.split', canonical: 'Tách PDF', preferredTool: 'split-pdf', acceptableTools: ['organize-pdf'], forbiddenTools: ['merge-pdf'],
-    requiredTerms: [['pdf'], ['tách', 'chia', 'lấy trang']],
+    requiredTerms: [['pdf', 'hợp đồng', 'hồ sơ'], ['trang', 'tách', 'chia']],
     aliases: ['lấy vài trang trong PDF', 'tách một trang PDF', 'chia PDF thành nhiều file', 'chỉ gửi trang cần thiết'],
     inputProfiles: ['pdf'], expectedOutcome: 'PDF chứa các trang đã chọn', risk: 'low',
   },
   {
     id: 'image.text', canonical: 'Lấy chữ từ ảnh', preferredTool: 'image-to-text', acceptableTools: ['ocr'], forbiddenTools: ['scan-to-pdf', 'dictation'],
-    requiredTerms: [['ảnh', 'hình'], ['chữ', 'văn bản', 'ocr'], ['lấy', 'chép', 'đọc', 'trích', 'copy', 'gõ']],
+    requiredTerms: [['ảnh', 'hình', 'chụp', 'trang sách'], ['chữ', 'văn bản', 'ocr'], ['lấy', 'chép', 'đọc', 'trích', 'copy', 'gõ']],
     aliases: ['lấy chữ trong ảnh', 'chép chữ từ ảnh chụp', 'ảnh sang văn bản', 'đọc chữ trong ảnh', 'không muốn gõ lại chữ trong ảnh'],
     inputProfiles: ['image'], expectedOutcome: 'Văn bản tiếng Việt để kiểm tra, sửa và tải về', risk: 'review',
   },
@@ -60,7 +60,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'image.pdf', canonical: 'Ảnh sang PDF', preferredTool: 'scan-to-pdf', acceptableTools: [], forbiddenTools: ['image-to-text', 'merge-pdf'],
-    requiredTerms: [['ảnh', 'hình'], ['pdf'], ['ghép', 'gộp', 'gom', 'chuyển', 'đổi', 'chụp']],
+    requiredTerms: [['ảnh', 'hình'], ['pdf', 'chung một file'], ['ghép', 'gộp', 'gom', 'chuyển', 'đổi', 'chụp', 'thành', 'chung']],
     aliases: ['ghép ảnh thành PDF', 'chụp giấy tờ thành PDF', 'gom ảnh vào một PDF', 'đổi ảnh sang PDF'],
     inputProfiles: ['image-multiple'], expectedOutcome: 'PDF chứa các ảnh theo thứ tự chọn', risk: 'low',
   },
@@ -72,6 +72,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'image.id', canonical: 'Ảnh thẻ', preferredTool: 'id-photo', acceptableTools: [], forbiddenTools: ['collage'],
+    requiredTerms: [['ảnh', 'hình', 'hồ sơ'], ['3x4', '4x6', '3 x 4', '4 x 6', 'thẻ']],
     aliases: ['ảnh 3x4', 'ảnh 4x6', 'làm ảnh thẻ tại nhà', 'ảnh hồ sơ 3 x 4'],
     inputProfiles: ['portrait-image'], expectedOutcome: 'Ảnh theo kích thước người dùng chọn', risk: 'low',
   },
@@ -82,16 +83,19 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'image.watermark', canonical: 'Đóng dấu ảnh', preferredTool: 'mark-image', acceptableTools: [], forbiddenTools: ['redact-pdf'],
+    requiredTerms: [['ảnh', 'hình'], ['logo', 'đóng dấu', 'số điện thoại', 'watermark', 'thêm chữ']],
     aliases: ['thêm chữ vào ảnh', 'thêm chữ lên ảnh', 'đóng watermark ảnh', 'gắn logo lên ảnh', 'đánh dấu ảnh sản phẩm'],
     inputProfiles: ['image'], expectedOutcome: 'Ảnh có chữ hoặc logo đã chọn', risk: 'low',
   },
   {
     id: 'qr.create', canonical: 'Tạo mã QR', preferredTool: 'qr-create', acceptableTools: [], forbiddenTools: ['qr-read', 'barcode-create'],
+      requiredTerms: [['qr', 'mã'], ['tạo', 'menu', 'wifi', 'đường link', 'thành']], excludedTerms: ['đọc qr', 'barcode'],
     aliases: ['link thành QR', 'tạo QR cho đường link', 'chia sẻ wifi bằng QR', 'mã QR wifi'],
     inputProfiles: ['url', 'text', 'wifi'], expectedOutcome: 'Mã QR có thể tải về', risk: 'low',
   },
   {
     id: 'qr.read', canonical: 'Đọc mã QR', preferredTool: 'qr-read', acceptableTools: [], forbiddenTools: ['qr-create'],
+      requiredTerms: [['qr', 'barcode', 'mã vạch'], ['đọc', 'quét', 'xem nội dung']], excludedTerms: ['menu', 'wifi', 'tạo'],
     aliases: ['quét QR trong ảnh', 'đọc QR từ ảnh chụp', 'xem nội dung mã QR'],
     inputProfiles: ['image-qr'], expectedOutcome: 'Nội dung mã; không tự mở liên kết', risk: 'review',
   },
@@ -107,6 +111,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'pdf.redact', canonical: 'Che thông tin PDF', preferredTool: 'redact-pdf', acceptableTools: [], forbiddenTools: ['stamp-pdf'],
+    requiredTerms: [['pdf', 'hồ sơ'], ['che', 'ẩn', 'xóa thông tin']],
     aliases: ['che số căn cước trong PDF', 'ẩn thông tin riêng tư trong PDF', 'xóa thông tin nhạy cảm PDF'],
     inputProfiles: ['pdf'], expectedOutcome: 'PDF có vùng thông tin bị loại bỏ', risk: 'review',
   },
@@ -118,16 +123,19 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'video.audio', canonical: 'Tách âm thanh', preferredTool: 'extract-audio', acceptableTools: [], forbiddenTools: ['dictation'],
+    requiredTerms: [['video', 'clip'], ['tách tiếng', 'tách âm thanh', 'lấy nhạc', 'mp3']],
     aliases: ['lấy nhạc từ video', 'video sang MP3', 'tách tiếng khỏi video'],
     inputProfiles: ['video'], expectedOutcome: 'Tệp âm thanh', risk: 'low',
   },
   {
     id: 'home.estimate', canonical: 'Ước tính chi phí xây nhà', preferredTool: 'house-estimate', acceptableTools: [], forbiddenTools: ['construction-price', 'structure-calc'],
+    requiredTerms: [['xây nhà', 'xây căn nhà'], ['tiền', 'chi phí', 'khái toán', 'ước']],
     aliases: ['xây nhà hết bao nhiêu tiền', 'khái toán xây nhà', 'tính chi phí xây nhà'],
     inputProfiles: ['area', 'user-prices'], expectedOutcome: 'Ước tính theo tham số; không phải báo giá chính thức', risk: 'review',
   },
   {
     id: 'home.calendar', canonical: 'Lịch gia đình', preferredTool: 'family-calendar', acceptableTools: [], forbiddenTools: ['family-reminders', 'family-health'],
+    requiredTerms: [['nhắc', 'lịch', 'tkb', 'thời khóa biểu'], ['thuốc', 'passport', 'hộ chiếu', 'con', 'đứa nhỏ', 'gia đình']],
     aliases: ['nhắc uống thuốc', 'lịch uống thuốc cho ông', 'ghi lịch uống thuốc', 'nhắc hộ chiếu sắp hết hạn', 'lưu lịch gia đình'],
     inputProfiles: ['user-events'], expectedOutcome: 'Lịch lưu trên thiết bị; không hứa thông báo nền tự động', risk: 'review',
   },
@@ -143,8 +151,39 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'date.count', canonical: 'Tính ngày', preferredTool: 'date-calc', acceptableTools: [], forbiddenTools: ['lunar-calendar'],
+    requiredTerms: [['ngày'], ['hạn', 'cộng', 'kể từ', 'cách nhau', 'giữa', 'thời hạn']],
     aliases: ['hai ngày cách nhau bao lâu', 'tính số ngày giữa hai mốc', 'cộng thêm ngày vào ngày hiện tại'],
     inputProfiles: ['dates'], expectedOutcome: 'Khoảng cách hoặc ngày sau khi cộng', risk: 'low',
+  },
+  {
+    id: 'money.tax', canonical: 'Tính tiền và thuế', preferredTool: 'money-calc', acceptableTools: [], forbiddenTools: ['payroll'],
+    requiredTerms: [['thuế', 'vat'], ['tính', 'giá', 'bao gồm']], aliases: ['Tính VAT', 'tính lại giá gốc', 'giá đã bao gồm thuế'],
+    inputProfiles: ['amounts'], expectedOutcome: 'Số tiền và thuế theo tham số người dùng nhập', risk: 'review',
+  },
+  {
+    id: 'home.orientation', canonical: 'Hướng nhà', preferredTool: 'house-orientation', acceptableTools: [], forbiddenTools: [],
+    requiredTerms: [['hướng'], ['nhà', 'la bàn']], aliases: ['xem hướng nhà', 'la bàn'],
+    inputProfiles: ['orientation'], expectedOutcome: 'Hướng theo giá trị nhập hoặc cảm biến được cho phép', risk: 'review',
+  },
+  {
+    id: 'image.metadata', canonical: 'Xóa vị trí trong ảnh', preferredTool: 'remove-metadata', acceptableTools: [], forbiddenTools: ['remove-background'],
+    requiredTerms: [['ảnh', 'hình'], ['gps', 'tọa độ', 'metadata', 'exif'], ['xóa', 'gỡ', 'bỏ']], aliases: ['xóa tọa độ GPS', 'gỡ EXIF khỏi ảnh'],
+    inputProfiles: ['image'], expectedOutcome: 'Ảnh đã gỡ metadata', risk: 'low',
+  },
+  {
+    id: 'text.count', canonical: 'Đếm ký tự', preferredTool: 'char-count', acceptableTools: [], forbiddenTools: ['number-words'],
+    requiredTerms: [['đếm', 'tính số'], ['chữ', 'từ', 'ký tự']], aliases: ['tính số chữ bài văn', 'đếm từ trong bài'],
+    inputProfiles: ['text'], expectedOutcome: 'Số ký tự, từ và dòng', risk: 'low',
+  },
+  {
+    id: 'unit.convert', canonical: 'Đổi đơn vị', preferredTool: 'unit-convert', acceptableTools: [], forbiddenTools: [],
+    requiredTerms: [['đổi', 'chuyển'], ['mét', 'hecta', 'kilôgam', 'đơn vị', 'kg', 'cm']], aliases: ['đổi mét vuông sang hecta', 'chuyển đơn vị đo'],
+    inputProfiles: ['number'], expectedOutcome: 'Giá trị theo đơn vị đã chọn', risk: 'low',
+  },
+  {
+    id: 'document.receipt', canonical: 'Tạo biên nhận', preferredTool: 'form-templates', acceptableTools: [], forbiddenTools: [],
+    requiredTerms: [['biên nhận', 'giấy xác nhận'], ['tạo', 'tiền', 'nhận']], aliases: ['giấy xác nhận đã nhận tiền', 'biên nhận tiền'],
+    inputProfiles: ['user-fields'], expectedOutcome: 'Biên nhận có thể xem trước và in', risk: 'review',
   },
 ]
 

@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "申请书、记录模板",
-      "description": "编写请假申请、授权委托书和交接记录以便打印",
-      "synonyms": "请假条,授权委托书,交接单,文书模板"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "请假条,授权委托书,交接单,文书模板, money receipt, payment receipt"
     },
     "dictation": {
       "name": "语音转文字",

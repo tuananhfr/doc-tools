@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "نماذج الطلبات والمحاضر",
-      "description": "أنشئ طلب إجازة وتوكيلًا ومحضر تسليم وطباعتها",
-      "synonyms": "طلب إجازة, توكيل, محضر تسليم, نموذج"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "طلب إجازة, توكيل, محضر تسليم, نموذج, money receipt, payment receipt"
     },
     "dictation": {
       "name": "تحويل الصوت إلى نص",

@@ -967,5 +967,10 @@
       "MEDIUM": "အလယ်အလတ်",
       "LOW": "နိမ့်"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

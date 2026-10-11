@@ -35,7 +35,7 @@
     },
     "kwh": "Pemakaian listrik (kWh)",
     "households": "Jumlah kuota rumah tangga yang berbagi satu meteran",
-    "tiers": "Tabel tarif: tiap baris berisi “batas kWh, harga satuan đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "Terapkan tabel tarif bertanda tangan",
     "applyVat": "Terapkan tarif pajak bertanda tangan",
     "ruleLabel": "tabel tarif listrik",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "Perbandingan per satuan",

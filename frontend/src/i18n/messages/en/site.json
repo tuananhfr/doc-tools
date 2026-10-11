@@ -163,7 +163,11 @@
     "title": "All tools",
     "lead_one": "{{count}} free tool. Pick the task you need and use it right in your browser.",
     "lead_other": "{{count}} free tools. Pick the task you need and use it right in your browser.",
-    "catalogLabel": "Tool catalog"
+    "catalogLabel": "Tool catalog",
+    "available_one": "{{count}} available tool",
+    "available_other": "{{count}} available tools",
+    "showSoon_one": "Show {{count}} upcoming tool",
+    "showSoon_other": "Show {{count}} upcoming tools"
   },
   "ecosystem": {
     "title": "When one tool isn't enough…",

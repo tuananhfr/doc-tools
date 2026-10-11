@@ -63,7 +63,8 @@
     "names": {
       "leave": "ពាក្យសុំច្បាប់ឈប់សម្រាក",
       "authorization": "លិខិតប្រគល់សិទ្ធិ",
-      "handover": "កំណត់ហេតុប្រគល់ទទួល"
+      "handover": "កំណត់ហេតុប្រគល់ទទួល",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "សូមគោរពជូន",
@@ -86,7 +87,11 @@
       "receiver": "ភាគីទទួល (ឈ្មោះ តួនាទី)",
       "items": "បញ្ជីប្រគល់ទទួល (មួយបន្ទាត់មួយធាតុ)",
       "note": "កំណត់ចំណាំ",
-      "placeDrawn": "ទីកន្លែងធ្វើ"
+      "placeDrawn": "ទីកន្លែងធ្វើ",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "ការងារខ្លះតម្រូវឱ្យមានការបញ្ជាក់ពីសារការី ឬការបញ្ជាក់ច្បាប់ចម្លង។ សូមពិនិត្យជាមួយកន្លែងទទួលមុនពេលប្រើ។",
     "defaultWarning": "គំរូសម្រាប់យោង សូមពិនិត្យតម្រូវការរបស់កន្លែងទទួលមុនពេលដាក់ស្នើ។",
@@ -132,9 +137,18 @@
         "attorney": "អ្នកទទួលសិទ្ធិ",
         "principal": "អ្នកផ្ទេរសិទ្ធិ",
         "receiver": "ភាគីទទួល",
-        "giver": "ភាគីប្រគល់"
+        "giver": "ភាគីប្រគល់",
+        "sender": "Sender"
       },
-      "signHint": "(ហត្ថលេខា និងឈ្មោះពេញ)"
+      "signHint": "(ហត្ថលេខា និងឈ្មោះពេញ)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

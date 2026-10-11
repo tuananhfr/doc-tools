@@ -112,7 +112,8 @@
     "engineLoading": "Nilo-load ang barcode renderer…",
     "previewLabel": "{{kind}} na barcode ng {{value}}",
     "styleTitle": "Estilo ng code",
-    "listTitle": "Listahan ng code"
+    "listTitle": "Listahan ng code",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

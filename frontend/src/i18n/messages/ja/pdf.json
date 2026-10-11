@@ -967,5 +967,10 @@
       "MEDIUM": "中",
       "LOW": "低"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

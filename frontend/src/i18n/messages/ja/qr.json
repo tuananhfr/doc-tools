@@ -112,7 +112,8 @@
     "engineLoading": "コード描画エンジンを読み込んでいます…",
     "previewLabel": "{{value}} の {{kind}} バーコード",
     "styleTitle": "コードの形式",
-    "listTitle": "コード一覧"
+    "listTitle": "コード一覧",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

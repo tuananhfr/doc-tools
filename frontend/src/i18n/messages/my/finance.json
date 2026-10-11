@@ -35,7 +35,7 @@
     },
     "kwh": "သုံးစွဲသော လျှပ်စစ် (kWh)",
     "households": "မီတာတစ်လုံး မျှသုံးသော အိမ်ထောင်စု ခွဲတမ်းအရေအတွက်",
-    "tiers": "ဈေးနှုန်းဇယား- လိုင်းတစ်ကြောင်းစီသည် “kWh အကန့်အသတ်၊ ယူနစ်ဈေး đ/kWh” ဖြစ်သည်",
+    "tiers": "Your electricity tariff",
     "applyTariff": "လက်မှတ်ထိုးထားသော ဈေးနှုန်းဇယား သုံးရန်",
     "applyVat": "လက်မှတ်ထိုးထားသော အခွန်နှုန်း သုံးရန်",
     "ruleLabel": "လျှပ်စစ်ဈေးနှုန်းဇယား",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "ယူနစ်အလိုက် နှိုင်းယှဉ်ချက်",

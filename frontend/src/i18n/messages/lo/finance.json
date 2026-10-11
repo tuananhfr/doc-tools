@@ -35,7 +35,7 @@
     },
     "kwh": "ໄຟຟ້າທີ່ໃຊ້ (kWh)",
     "households": "ຈຳນວນຄົວເຮືອນທີ່ໃຊ້ໝໍ້ນັບໄຟຮ່ວມກັນ",
-    "tiers": "ຕາຕະລາງລາຄາ: ແຕ່ລະແຖວແມ່ນ “ຂີດ kWh, ລາຄາ đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "ນຳໃຊ້ຕາຕະລາງລາຄາທີ່ມີລາຍເຊັນ",
     "applyVat": "ນຳໃຊ້ອັດຕາອາກອນທີ່ມີລາຍເຊັນ",
     "ruleLabel": "ຕາຕະລາງລາຄາໄຟຟ້າ",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "ປຽບທຽບຕາມຫົວໜ່ວຍ",

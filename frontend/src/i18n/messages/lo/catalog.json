@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "ແບບຟອມໃບຄຳຮ້ອງ, ບົດບັນທຶກ",
-      "description": "ຂຽນໃບຂໍລາພັກ, ໃບມອບສິດ ແລະ ບົດບັນທຶກການມອບຮັບເພື່ອພິມ",
-      "synonyms": "ໃບຂໍລາພັກ, ໃບມອບສິດ, ບົດບັນທຶກມອບຮັບ, ແບບຟອມ"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "ໃບຂໍລາພັກ, ໃບມອບສິດ, ບົດບັນທຶກມອບຮັບ, ແບບຟອມ, money receipt, payment receipt"
     },
     "dictation": {
       "name": "ບັນທຶກສຽງເປັນຂໍ້ຄວາມ",

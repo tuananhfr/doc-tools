@@ -63,7 +63,8 @@
     "names": {
       "leave": "Leave request",
       "authorization": "Letter of authorization",
-      "handover": "Handover record"
+      "handover": "Handover record",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "To",
@@ -86,7 +87,11 @@
       "receiver": "Receiving (name, position)",
       "items": "Items handed over (one per line)",
       "note": "Notes",
-      "placeDrawn": "Place drawn up"
+      "placeDrawn": "Place drawn up",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "Some matters require notarization or certification. Check with the receiving office before using it.",
     "defaultWarning": "Reference template; check the receiving office's requirements before submitting.",
@@ -132,9 +137,18 @@
         "attorney": "Authorized person",
         "principal": "Principal",
         "receiver": "Receiving party",
-        "giver": "Handing-over party"
+        "giver": "Handing-over party",
+        "sender": "Sender"
       },
-      "signHint": "(Signature and full name)"
+      "signHint": "(Signature and full name)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import { inspect } from './lib/inspect-pdf.mjs'
-import { chromium, FIX, outDir, BASE } from './lib/qa.mjs'
+import { mockFreeSession, chromium, FIX, outDir, BASE } from './lib/qa.mjs'
 
 
 const OUT = outDir('password')
@@ -11,6 +11,7 @@ const mobile = vw <= 576
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: vw, height: vh }, acceptDownloads: true, hasTouch: mobile, isMobile: mobile, deviceScaleFactor: mobile ? 2 : 1 })
+await mockFreeSession(context)
 const page = await context.newPage()
 const errors = []
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))

@@ -1175,5 +1175,10 @@
       "MEDIUM": "Moyen",
       "LOW": "Faible"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

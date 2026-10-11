@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { PrintPortal, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { CvPreview } from '../components/CvPreview'
 import { emptyCv, emptyEntry, parseCvDraft, type CvDraft, type CvEntry } from '../models/cv'
+import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview'
 
 const storageKey = 'chuyen-nho-cv-draft-v1'
 const identityFields = ['name', 'role', 'phone', 'email', 'location', 'link'] as const
@@ -49,7 +50,7 @@ export default function CvPage() {
   }
   return <>
     <style>{`.cn-cv-layout{display:grid;grid-template-columns:minmax(290px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}.cn-cv-print{background:#fff;color:#202c3a;min-height:297mm;padding:18mm 19mm;box-shadow:0 3px 25px #0001;font:14px/1.55 Arial,sans-serif;overflow-wrap:anywhere}.cn-cv-header{display:flex;justify-content:space-between;gap:20px;align-items:start}.cn-cv-header h1{font-size:32px;margin:0 0 4px;font-weight:700}.cn-cv-header img{width:28mm;height:36mm;object-fit:cover}.cn-cv-kicker{text-transform:uppercase;letter-spacing:.14em;font-size:10px;margin:0 0 6px;color:#64748b}.cn-cv-role{font-size:17px;margin:0}.cn-cv-contact{display:flex;gap:5px 14px;flex-wrap:wrap;border-bottom:1px solid #ccd5de;padding:14px 0}.cn-cv-section{margin-top:22px;break-inside:avoid}.cn-cv-section h2{font-size:14px;text-transform:uppercase;letter-spacing:.09em;border-bottom:1px solid #ccd5de;padding-bottom:5px;margin-bottom:10px}.cn-cv-entry{display:grid;grid-template-columns:95px 1fr;gap:14px;margin:10px 0;break-inside:avoid}.cn-cv-entry__period{color:#596777}.cn-cv--modern{border-top:8px solid #183d45}.cn-cv--modern .cn-cv-section h2{color:#17605b;border-color:#17605b}@media(max-width:1000px){.cn-cv-layout{grid-template-columns:1fr}}@media(max-width:600px){.cn-cv-print{padding:24px;min-height:0}.cn-cv-entry{grid-template-columns:1fr;gap:0}}@media print{@page{size:A4;margin:15mm 16mm}.erp-print-portal .cn-cv-print{width:auto;min-height:0;padding:0;box-shadow:none}.erp-print-portal .cn-cv-section{break-inside:auto}.erp-print-portal .cn-cv-section h2{break-after:avoid}}`}</style>
-    <ToolBoard><div className="cn-cv-layout"><ToolPanel title={t('cv.title')}>
+    <ToolBoard><ResponsivePreview action={<Button onClick={() => window.print()}>{t('shared.print')}</Button>} preview={<><CvPreview draft={draft} photoUrl={photoUrl} /><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={t('cv.title')}>
       <div className="d-flex flex-wrap align-items-center gap-2"><span className="erp-flow-field__hint">{t('cv.autoSave')}</span><Button variant="outline-danger" size="sm" onClick={clear}>{t('cv.clearDraft')}</Button></div>
       <label className="erp-flow-field__label mt-3">{t('cv.template')}<Form.Select value={draft.template} onChange={(event) => update('template', event.target.value as CvDraft['template'])}><option value="classic">{t('cv.templates.classic')}</option><option value="modern">{t('cv.templates.modern')}</option></Form.Select></label>
       {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
@@ -58,7 +59,7 @@ export default function CvPage() {
       <EntryEditor kind="experience" entries={draft.experience} onChange={(value) => update('experience', value)} /><EntryEditor kind="education" entries={draft.education} onChange={(value) => update('education', value)} />
       {(['skills', 'languages', 'certificates'] as const).map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.sections.${key}`)}<Form.Control as="textarea" rows={3} maxLength={3000} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
       <Button className="mt-3" onClick={() => window.print()}>{t('shared.print')}</Button><p role="status" className="mt-2">{message}</p>
-    </ToolPanel><div><CvPreview draft={draft} photoUrl={photoUrl} /><p className="mt-3">{t('cv.note')}</p></div></div></ToolBoard>
+    </ToolPanel></ResponsivePreview></ToolBoard>
     <PrintPortal><CvPreview draft={draft} photoUrl={photoUrl} /></PrintPortal>
   </>
 }

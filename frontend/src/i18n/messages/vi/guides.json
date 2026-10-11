@@ -151,7 +151,7 @@
         },
         "colors": {
           "title": "Chọn màu và tải",
-          "detail": "Chọn màu ở “Màu sắc”, rồi bấm “Tải mã QR” để lấy ảnh PNG, hoặc “Tải bản SVG để in” cho bản in sắc nét."
+          "detail": "Mở “Màu sắc và nền” bên dưới kết quả để đổi màu, rồi bấm “Tải mã QR” để lấy ảnh PNG, hoặc “Tải bản SVG để in” cho bản in sắc nét."
         },
         "barcode": {
           "title": "Tạo mã vạch",
@@ -275,7 +275,7 @@
         },
         "backup": {
           "title": "Sao lưu",
-          "detail": "Thẻ “Sao lưu” có “Tải bản sao lưu” (tệp đầy đủ để khôi phục), “Tải ICS” để nhập vào lịch điện thoại, và in lịch 30 ngày tới."
+          "detail": "Thẻ “Sao lưu” có “Tải bản sao lưu (.json)” (tệp đầy đủ để khôi phục), “Thêm vào lịch điện thoại (.ics)” để nhập vào lịch điện thoại, và in lịch 30 ngày tới."
         }
       },
       "tips": {

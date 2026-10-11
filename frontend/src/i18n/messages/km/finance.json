@@ -35,7 +35,7 @@
     },
     "kwh": "អគ្គិសនីប្រើប្រាស់ (kWh)",
     "households": "ចំនួនគ្រួសារប្រើកុងទ័ររួមគ្នា",
-    "tiers": "តារាងតម្លៃ៖ បន្ទាត់នីមួយៗជា “កម្រិត kWh, តម្លៃឯកតា đ/kWh”",
+    "tiers": "Your electricity tariff",
     "applyTariff": "អនុវត្តតារាងតម្លៃដែលបានចុះហត្ថលេខា",
     "applyVat": "អនុវត្តអត្រាពន្ធដែលបានចុះហត្ថលេខា",
     "ruleLabel": "តារាងតម្លៃអគ្គិសនី",
@@ -185,7 +185,9 @@
       "inputs": "Some fields are not valid — see the fields marked in red.",
       "exempt": "Tax-exempt allowances cannot exceed the gross salary.",
       "noGross": "Cannot calculate with these numbers. Check the salary and the related amounts."
-    }
+    },
+    "bracketLimit": "Taxable income up to (VND)",
+    "bracketRate": "Tax rate (%)"
   },
   "unitPrice": {
     "resultLabel": "ប្រៀបធៀបតាមឯកតា",

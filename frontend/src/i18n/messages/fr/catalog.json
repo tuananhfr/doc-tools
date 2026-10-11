@@ -103,8 +103,8 @@
     },
     "form-templates": {
       "name": "Modèles de demandes et procès-verbaux",
-      "description": "Rédiger une demande de congé, une procuration ou un procès-verbal de passation à imprimer",
-      "synonyms": "demande de congé, procuration, procès-verbal de passation, modèle de lettre"
+      "description": "Prepare leave requests, authorizations, handover records and money receipts for printing",
+      "synonyms": "demande de congé, procuration, procès-verbal de passation, modèle de lettre, money receipt, payment receipt"
     },
     "dictation": {
       "name": "Dictée vocale",

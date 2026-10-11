@@ -63,7 +63,8 @@
     "names": {
       "leave": "ခွင့်တိုင်စာ",
       "authorization": "လုပ်ပိုင်ခွင့် လွှဲအပ်စာ",
-      "handover": "လွှဲပြောင်းအပ်နှံမှု မှတ်တမ်း"
+      "handover": "လွှဲပြောင်းအပ်နှံမှု မှတ်တမ်း",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "သို့",
@@ -86,7 +87,11 @@
       "receiver": "လက်ခံသူ (အမည်၊ ရာထူး)",
       "items": "လွှဲပြောင်းသည့် ပစ္စည်းစာရင်း (တစ်ကြောင်းလျှင် တစ်ခု)",
       "note": "မှတ်ချက်",
-      "placeDrawn": "ပြုလုပ်သည့်နေရာ"
+      "placeDrawn": "ပြုလုပ်သည့်နေရာ",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "အချို့ကိစ္စများအတွက် နိုတာရီ သို့မဟုတ် တရားဝင်အတည်ပြုချက် လိုအပ်ပါသည်။ မသုံးမီ လက်ခံမည့်နေရာနှင့် စစ်ဆေးပါ။",
     "defaultWarning": "ကိုးကားရန် ပုံစံသာ ဖြစ်သည်။ မတင်သွင်းမီ လက်ခံမည့်နေရာ၏ လိုအပ်ချက်များကို စစ်ဆေးပါ။",
@@ -132,9 +137,18 @@
         "attorney": "လုပ်ပိုင်ခွင့်ရသူ",
         "principal": "လုပ်ပိုင်ခွင့်ပေးသူ",
         "receiver": "လက်ခံသူဘက်",
-        "giver": "လွှဲအပ်သူဘက်"
+        "giver": "လွှဲအပ်သူဘက်",
+        "sender": "Sender"
       },
-      "signHint": "(လက်မှတ်နှင့် အမည်အပြည့်အစုံ)"
+      "signHint": "(လက်မှတ်နှင့် အမည်အပြည့်အစုံ)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

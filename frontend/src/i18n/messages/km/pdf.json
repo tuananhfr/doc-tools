@@ -967,5 +967,10 @@
       "MEDIUM": "មធ្យម",
       "LOW": "ទាប"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

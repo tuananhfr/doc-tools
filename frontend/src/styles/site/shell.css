@@ -102,6 +102,9 @@
   .cn-header-actions { gap: 2px; }
   .cn-header-products, .cn-header-search { display: none; }
   .cn-header .erp-tools-prefs { gap: 4px; }
+  .cn-header-actions > .erp-tools-prefs { display: none; }
+  .cn-header :is(.cn-icon-button, .cn-account-button) { min-width: 44px; min-height: 44px; }
+  .cn-menu-toggle { min-width: 44px; min-height: 44px; }
   .cn-icon-button, .cn-header .erp-tools-prefs__toggle { width: 34px; height: 36px; font-size: 18px; }
   .cn-language { font-size: 11px; gap: 3px; }
   .cn-language__toggle { min-height: 36px; padding: 0 6px; gap: 3px; font-size: 12px; }

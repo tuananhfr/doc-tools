@@ -37,6 +37,8 @@ const cases = SEARCH_STORIES.map(story => {
 const positive = cases.filter(item => item.expected)
 const negative = cases.filter(item => !item.expected)
 const report = { version: SEARCH_STORIES_VERSION, scope: 'Vietnamese source benchmark; draft stories, no release thresholds', cases, metrics: { positives: positive.length, negatives: negative.length, top1: positive.filter(item => item.top1).length / positive.length, top3: positive.filter(item => item.acceptableTop3).length / positive.length, zeroResult: positive.filter(item => item.zeroResult).length / positive.length, falseMatch: negative.filter(item => !item.zeroResult).length / negative.length } }
+report.build = process.env.EXPECTED_BUILD ?? null
+report.createdAt = new Date().toISOString()
 const out = process.env.SEARCH_REPORT
 if (out) {
   const file = path.resolve(out)

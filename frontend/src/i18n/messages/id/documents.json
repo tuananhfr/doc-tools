@@ -63,7 +63,8 @@
     "names": {
       "leave": "Surat permohonan cuti",
       "authorization": "Surat kuasa",
-      "handover": "Berita acara serah terima"
+      "handover": "Berita acara serah terima",
+      "receipt": "Money receipt"
     },
     "fields": {
       "recipient": "Kepada Yth.",
@@ -86,7 +87,11 @@
       "receiver": "Pihak yang menerima (nama, jabatan)",
       "items": "Daftar serah terima (satu entri per baris)",
       "note": "Catatan",
-      "placeDrawn": "Tempat dibuat"
+      "placeDrawn": "Tempat dibuat",
+      "sender": "Sender",
+      "amount": "Amount (VND)",
+      "receivedDate": "Date received",
+      "purpose": "Payment purpose"
     },
     "authorizationWarning": "Beberapa urusan memerlukan notaris atau legalisasi. Tanyakan ke pihak penerima sebelum dipakai.",
     "defaultWarning": "Templat acuan; periksa persyaratan pihak penerima sebelum mengajukan.",
@@ -132,9 +137,18 @@
         "attorney": "Penerima kuasa",
         "principal": "Pemberi kuasa",
         "receiver": "Pihak yang menerima",
-        "giver": "Pihak yang menyerahkan"
+        "giver": "Pihak yang menyerahkan",
+        "sender": "Sender"
       },
-      "signHint": "(Tanda tangan dan nama lengkap)"
+      "signHint": "(Tanda tangan dan nama lengkap)",
+      "receipt": {
+        "sender": "Sender: {{value}}",
+        "receiver": "Receiver: {{value}}",
+        "amount": "Amount received: {{value}} VND",
+        "words": "In words (Vietnamese, VND): {{value}}",
+        "purpose": "Payment purpose: {{value}}",
+        "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
+      }
     },
     "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
     "datePlaceholder": "e.g. 09/10/2026",
@@ -142,6 +156,11 @@
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "to": "The end date is not valid. Use day/month/year, e.g. 09/10/2026.",
       "order": "The end date is before the start date."
+    },
+    "receiptErrors": {
+      "required": "Enter both parties, amount and date before printing.",
+      "amount": "Enter a positive whole VND amount, at most 999,999,999,999,999.",
+      "date": "Enter a valid date as day/month/year."
     }
   }
 }

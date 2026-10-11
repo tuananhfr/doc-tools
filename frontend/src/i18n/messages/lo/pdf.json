@@ -967,5 +967,10 @@
       "MEDIUM": "ປານກາງ",
       "LOW": "ຕ່ຳ"
     }
+  },
+  "reader": {
+    "page": "Page",
+    "searchExport": "Search and download",
+    "edit": "Edit PDF"
   }
 }

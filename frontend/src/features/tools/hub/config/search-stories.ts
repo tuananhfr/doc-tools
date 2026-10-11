@@ -1,4 +1,4 @@
-export const SEARCH_STORIES_VERSION = 2
+export const SEARCH_STORIES_VERSION = 3
 
 export interface SearchStory {
   id: string
@@ -18,6 +18,8 @@ export interface SearchStory {
 
 type Seed = readonly [id: string, intent: string | null, query: string, tool: string | null, level: SearchStory['difficulty']]
 const SEEDS: readonly Seed[] = [
+  ['DOC001', 'document.receipt', 'Tạo biên nhận', 'form-templates', 'L1'],
+  ['DOC002', 'document.receipt', 'Tôi cần giấy xác nhận đã nhận tiền', 'form-templates', 'L2'],
   ['PDF001', 'pdf.compress', 'Nén PDF', 'compress-pdf', 'L0'],
   ['PDF002', 'pdf.compress', 'Làm file PDF nhỏ lại', 'compress-pdf', 'L1'],
   ['PDF003', 'pdf.compress', 'File nặng quá không gửi được', 'compress-pdf', 'L2'],

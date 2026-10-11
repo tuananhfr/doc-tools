@@ -112,7 +112,8 @@
     "engineLoading": "Memuatkan enjin kod bar…",
     "previewLabel": "Kod bar {{kind}} bagi {{value}}",
     "styleTitle": "Gaya kod",
-    "listTitle": "Senarai kod"
+    "listTitle": "Senarai kod",
+    "previewFit": "Preview fits the screen. Printed dimensions follow your selected settings."
   },
   "barcodeKinds": {
     "code128": {

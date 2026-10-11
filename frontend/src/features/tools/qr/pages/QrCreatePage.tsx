@@ -20,6 +20,7 @@ import { buildPayload, INITIAL_QR_FORM } from '../utils/qr-payload'
  */
 export default function QrCreatePage() {
   const { t } = useTranslation('qr')
+  const { t: tc } = useTranslation('common')
   const toast = useToast()
   const nudge = useDownloadNudge()
   const [form, setForm] = useState<QrForm>(INITIAL_QR_FORM)
@@ -78,13 +79,16 @@ export default function QrCreatePage() {
           {nudge.extra}
         </>
       }
+      after={<ToolPanel title={tc('workspace.customize')}>
+        <details><summary>{tc('workspace.customize')}</summary>
+          <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
+          {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
+        </details>
+      </ToolPanel>}
     >
       <QrModeTabs current="qr-create" />
       <ToolPanel title={t('shared.contentPanel')}>
         <QrContentForm form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
-        <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
-        {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p>
-          : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
       </ToolPanel>
     </ToolBoard>
   )

@@ -112,7 +112,8 @@
     "engineLoading": "Đang nạp bộ vẽ mã…",
     "previewLabel": "Mã vạch {{kind}} của {{value}}",
     "styleTitle": "Kiểu mã",
-    "listTitle": "Danh sách mã"
+    "listTitle": "Danh sách mã",
+    "previewFit": "Mã được thu nhỏ để vừa màn hình. Kích thước bản in theo tùy chọn đã chọn."
   },
   "barcodeKinds": {
     "code128": {

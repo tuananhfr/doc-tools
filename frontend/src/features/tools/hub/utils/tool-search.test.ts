@@ -3,8 +3,12 @@ import { SEARCH_INTENTS } from '../config/intent-registry'
 import { SEARCH_STORIES } from '../config/search-stories'
 import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { searchTools } from './tool-search'
+import { SEARCH_REGRESSIONS } from '../config/search-regressions'
 
 describe('search intent proposals', () => {
+  it.each(SEARCH_REGRESSIONS)('finds the job in "%s"', (query, id) => {
+    expect(searchTools(VI_TOOL_CATALOG, query)[0]?.id ?? null).toBe(id)
+  })
   it('passes table intent options without changing the shared catalog', () => {
     const result = searchTools(VI_TOOL_CATALOG, 'Ảnh bảng sang Excel')[0]
     expect(result.searchParams).toBe('ocrProfile=table&ocrOutput=xlsx')

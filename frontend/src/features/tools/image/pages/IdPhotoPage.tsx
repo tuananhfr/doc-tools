@@ -61,6 +61,7 @@ export default function IdPhotoPage() {
 
   return (
     <ImageToolShell
+      mobilePreview
       images={images}
       run={run}
       multiple={false}

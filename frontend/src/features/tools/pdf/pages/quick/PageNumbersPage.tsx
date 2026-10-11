@@ -51,6 +51,7 @@ export default function PageNumbersPage() {
 
   return (
     <QuickToolShell
+      mobilePreview
       quick={quick}
       accept={ACCEPT}
       multiple={false}
