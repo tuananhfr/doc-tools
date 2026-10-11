@@ -490,10 +490,10 @@
     "kham-pha-giai-tri": {
       "label": "Explore & Entertainment",
       "title": "<accent>Explore</accent> the small things",
-      "tagline": "Lunar calendar available. Three new tools under verification.",
-      "description": "Use the lunar calendar and explore technical prototypes for numerology, playing cards and Tarot. Reference only; unapproved content is clearly marked.",
+      "tagline": "Use the calendar, calculate numbers and draw cards here.",
+      "description": "Use the lunar calendar, calculate numerology numbers or draw playing cards and Tarot. No account required.",
       "metaTitle": "Explore & Entertainment | Chuyện Nhỏ",
-      "metaDescription": "Lunar-solar calendar and technical foundations for numerology, 52 playing cards and 78 Tarot cards.",
+      "metaDescription": "Use the solar-lunar calendar, calculate numerology numbers, or draw and reveal playing cards and Tarot. Free to use, no account required.",
       "caption": "Explore\nWith sources and limits.",
       "searchPlaceholder": "Search lunar calendar, Tarot, playing cards…",
       "highlights": {
@@ -505,15 +505,15 @@
       "trust": {
         "free": {
           "title": "No separate payment",
-          "detail": "No paywall for these four features."
+          "detail": "Free to use, no account required."
         },
         "source": {
           "title": "Transparent sources",
-          "detail": "Versions and pending approval are visible."
+          "detail": "See calculation steps and method information."
         },
         "choice": {
           "title": "Your data choice",
-          "detail": "Input is sent only when you request calculation."
+          "detail": "Inputs are sent only when you calculate or draw cards."
         },
         "reference": {
           "title": "Reference only",
@@ -525,12 +525,12 @@
         "kham-pha": "Explore"
       },
       "aside": {
-        "sandbox": {
-          "title": "Under development",
+        "usage": {
+          "title": "Using these tools",
           "items": {
-            "technical": "Sandbox tests calculations, drawing and revealing.",
-            "content": "Interpretations await approved sources and corpus.",
-            "privacy": "No new personal-history storage or AI connection."
+            "features": "Choose a calendar, calculate numbers or draw and reveal cards.",
+            "content": "Playing cards and Tarot show your cards; interpretations are not included.",
+            "privacy": "Names, birth dates and account history are not stored."
           }
         }
       },
@@ -540,18 +540,18 @@
         "steps": {
           "choose": {
             "title": "Choose a tool",
-            "detail": "Calendar available; sandbox enabled separately."
+            "detail": "Open the tool you want to use."
           },
           "explore": {
-            "title": "Try the flow",
-            "detail": "The foundation works without AI."
+            "title": "Enter or choose",
+            "detail": "Enter a birth date or choose how many cards to draw."
           },
           "source": {
             "title": "Read sources",
             "detail": "Check available and pending content."
           },
           "export": {
-            "title": "Export a record",
+            "title": "Download results",
             "detail": "A reference notice is always included."
           }
         }
@@ -696,7 +696,7 @@
     "showAll": "Lihat semua",
     "faqTitle": "Soalan tentang data",
     "faqDescription": "Baca selengkapnya di <link>Dasar privasi</link>.",
-    "entertainment": "New sandbox: calculation sends input to the backend after consent; card draws send only draw settings. Temporary draws expire; names and birth dates are not stored in the database. PDFs/images are created on-device."
+    "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
   },
   "guidesPage": {
     "title": "Panduan <accent>penggunaan</accent>",
@@ -930,7 +930,7 @@
       },
       "may-chu": {
         "question": "Mengapa sesetengah alat bertanda “Diproses di pelayan”?",
-        "answer": "Sesetengah alat yang akan datang memerlukan data yang besar atau dikemas kini secara berterusan, seperti harga pembinaan atau perancangan, jadi perlu dicari di pelayan. Kadnya menyatakan perkara ini dengan jelas supaya anda tahu lebih awal. Alat yang boleh digunakan sekarang semuanya diproses pada peranti. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "cai-dat": {
         "question": "Bagaimana cara memasang Chuyện Nhỏ pada telefon?",
@@ -950,7 +950,7 @@
       },
       "thu-thap": {
         "question": "Adakah Chuyện Nhỏ mengumpul maklumat peribadi saya?",
-        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results. New sandboxes call the backend on request; names and birth dates are sent after confirmation without database storage. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Opening a tool sends its name for aggregate usage counts; IP addresses are hashed for abuse prevention and expire after about one hour. Suggestion and feedback forms send only the text you enter after you consent and press Send, never tool files or results. Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
       },
       "xoa-du-lieu": {
         "question": "Bagaimana cara memadam data saya?",

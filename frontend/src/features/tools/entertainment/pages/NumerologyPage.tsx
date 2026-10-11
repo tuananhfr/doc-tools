@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SandboxGate } from '../components/SandboxGate'
+import { EntertainmentFrame } from '../components/EntertainmentFrame'
 import { NumerologyResult } from '../components/NumerologyResult'
 import { EntertainmentFailure } from '../components/EntertainmentFailure'
 import { entResult } from '../services/entertainment.api'
-import type { NumerologyResult as Calculation, SandboxEnvelope } from '../types/entertainment.types'
+import type { NumerologyResult as Calculation, EntertainmentEnvelope } from '../types/entertainment.types'
 
 function NumerologyWorkspace() {
   const { t } = useTranslation('entertainment')
   const [name, setName] = useState(''); const [birth, setBirth] = useState(''); const [year, setYear] = useState(() => String(new Date(Date.now() + 7 * 3600_000).getUTCFullYear()))
   const [consent, setConsent] = useState(false); const [busy, setBusy] = useState(false); const [error, setError] = useState<unknown>(null)
-  const [result, setResult] = useState<SandboxEnvelope<Calculation> | null>(null); const running = useRef(false)
+  const [result, setResult] = useState<EntertainmentEnvelope<Calculation> | null>(null); const running = useRef(false)
   const calculate = async () => {
     if (running.current || !consent) return
     running.current = true; setBusy(true); setError(null)
@@ -26,4 +26,4 @@ function NumerologyWorkspace() {
     <p>{t('numerology.method')}</p><label className="cn-ent-check"><input type="checkbox" required checked={consent} onChange={event => setConsent(event.target.checked)} /><span>{t('numerology.consent')}</span></label>
     <button type="submit" className="cn-button" disabled={!consent || !birth || !year}>{t(busy ? 'actions.calculating' : 'numerology.calculate')}</button></fieldset>{error ? <EntertainmentFailure error={error} /> : null}</form>
 }
-export default function NumerologyPage() { return <SandboxGate><NumerologyWorkspace /></SandboxGate> }
+export default function NumerologyPage() { return <EntertainmentFrame><NumerologyWorkspace /></EntertainmentFrame> }

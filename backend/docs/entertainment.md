@@ -1,0 +1,13 @@
+# Entertainment tools
+
+Numerology, playing-card draws, Tarot draws and lunar-calendar comparison are available to guests without opt-in environment variables. The frontend catalog marks the three new tools ready; normal tool metadata and sitemap generation apply. Retired NEXT_PUBLIC_ENT_SANDBOX and ENT_SANDBOX_ENABLED settings are ignored, including if a server still has them set to zero. Deploy both backend and frontend for this API contract change, using the existing deploy scripts. Do not edit secrets or database settings.
+
+The tools provide calculations, card identities/artwork and calendar conversion. Interpretations and traditional day-selection rules are not implemented. Public availability does not imply predictive accuracy or expert approval of the draft methods. Sources and method versions remain explicit.
+
+All routes are under /api/v1/ent. GET tools lists available tools and method versions. POST numerology/calculate accepts birth_date, optional name and personal_year. POST cards/draw and tarot/draw accept spread and reversed. GET almanac/day takes date. POST reports takes draw_key and replays the original snapshot. Responses retain ok, request_id, rule_version, source_ids, disclaimer_id and result. Sandbox release/verification fields have been removed. Existing stored snapshots are normalized at read time without changing cards, orientations, expiry or request ID.
+
+Trusted-origin writes, body limits, validation and the 30 requests/minute hashed-IP limiter remain. Draw keys are expiring capabilities; same-key retries preserve an immutable CSPRNG draw. ENT_SESSION_TTL_SECONDS defaults to 900 and accepts 60..3600. Expired keys return 410; mismatched settings return 409. Names and birth dates are processed in memory after consent and are not stored in the database or account history. Temporary draw rows and old rate windows are cleaned by subsequent operations. PDF/PNG exports are created on-device and contain the reference notice.
+
+Artwork sources and licenses are in frontend/docs/entertainment-artwork.md. No new AI or account-history integration is included.
+
+Verification: backend build, then node --test tests/entertainment-engine.test.cjs tests/entertainment-http.test.cjs with isolated MySQL fixtures. Frontend npm test, npm run lint and npm run build without an entertainment flag, followed by responsive screenshots and browser journeys. Never run unrelated account lifecycle jobs for this feature.

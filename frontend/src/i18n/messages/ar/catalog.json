@@ -434,22 +434,22 @@
       "description": "أنشئ قوائم برموز QR والباركود وصدّرها في ملف"
     },
     "numerology": {
-      "name": "Numerology · Sandbox",
-      "description": "Test Pythagorean calculations with steps; no approved interpretations",
+      "name": "Numerology",
+      "description": "Calculate numbers from your birth date and name, with calculation steps",
       "synonyms": "numerology, thần số học, số chủ đạo",
-      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
+      "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
     },
     "playing-cards": {
-      "name": "52 playing cards · Sandbox",
-      "description": "Test shuffling, drawing, revealing and export; no approved interpretations",
+      "name": "52 playing cards",
+      "description": "Shuffle, draw and reveal playing cards; enlarge images and download results",
       "synonyms": "bài tây, playing cards, cartomancy",
-      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
+      "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
     },
     "tarot": {
-      "name": "78 Tarot cards · Sandbox",
-      "description": "Test drawing 1/3/5/7/10 card IDs; no approved imagery or interpretations",
+      "name": "78 Tarot cards",
+      "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
-      "privacyNote": "Sandbox calls the backend on request; no account history is saved"
+      "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
     }
   }
 }

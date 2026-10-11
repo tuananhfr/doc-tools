@@ -4,11 +4,12 @@ import type { RowDataPacket } from 'mysql2'
 import { configuration } from '../config/configuration'
 import { DatabaseService } from '../database/database.service'
 import { drawCards } from './engines/deck-engine'
-import { entError, RULE_VERSIONS, sandboxEnvelope, sessionKey } from './entertainment-policy'
-import type { DeckKind, DrawInput, DrawResult, SandboxEnvelope } from './entertainment.types'
+import { entError, RULE_VERSIONS, entertainmentEnvelope, sessionKey } from './entertainment-policy'
+import type { DeckKind, DrawInput, DrawResult, EntertainmentEnvelope } from './entertainment.types'
 
-function parseSnapshot(value: unknown): SandboxEnvelope<DrawResult> {
-  return (typeof value === 'string' ? JSON.parse(value) : value) as SandboxEnvelope<DrawResult>
+function parseSnapshot(value: unknown): EntertainmentEnvelope<DrawResult> {
+  const snapshot = (typeof value === 'string' ? JSON.parse(value) : value) as EntertainmentEnvelope<DrawResult>
+  return { ok: snapshot.ok, request_id: snapshot.request_id, rule_version: snapshot.rule_version, source_ids: snapshot.source_ids, disclaimer_id: snapshot.disclaimer_id, result: snapshot.result }
 }
 
 @Injectable()
@@ -23,7 +24,7 @@ export class EntertainmentRepository {
     const [rows] = await this.db.pool.execute<RowDataPacket[]>('SELECT hits FROM ent_request_limits WHERE actor_hash = ? AND window_id = ?', [actor, window])
     if (Number(rows[0]?.hits) > 30) entError(429, 'RATE_LIMITED')
   }
-  async draw(kind: DeckKind, input: DrawInput, key: string, ip: string): Promise<SandboxEnvelope<DrawResult>> {
+  async draw(kind: DeckKind, input: DrawInput, key: string, ip: string): Promise<EntertainmentEnvelope<DrawResult>> {
     const { expires } = sessionKey(key)
     const keyHash = this.digest(key)
     const bodyHash = createHash('sha256').update(JSON.stringify({ kind, ...input })).digest('hex')
@@ -35,7 +36,7 @@ export class EntertainmentRepository {
     const existing = await read()
     if (existing) { if (existing.request_hash !== bodyHash) entError(409, 'IDEMPOTENCY_CONFLICT'); return parseSnapshot(existing.snapshot) }
     await this.rate(ip)
-    const snapshot = sandboxEnvelope(RULE_VERSIONS[kind], drawCards(kind, input, expires))
+    const snapshot = entertainmentEnvelope(RULE_VERSIONS[kind], drawCards(kind, input, expires))
     // The unique key chooses a single immutable draw even when two retries arrive together.
     await this.db.pool.execute('INSERT IGNORE INTO ent_draw_sessions (key_hash, request_hash, snapshot, expires_at) VALUES (?, ?, ?, ?)', [keyHash, bodyHash, JSON.stringify(snapshot), expires])
     const stored = await read()

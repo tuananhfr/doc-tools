@@ -16,7 +16,7 @@ export function ReportActions({ title, lines, disabled = false, drawKey }: { tit
       const { exportReport } = await import('../services/report-export')
       const blob = await exportReport(report, format)
       const url = URL.createObjectURL(blob); const link = document.createElement('a')
-      link.href = url; link.download = `chuyen-nho-sandbox.${format}`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
+      link.href = url; link.download = `chuyen-nho-ket-qua.${format}`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000)
     } catch (failure) { setError(failure) }
     finally { setBusy(false) }
   }

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { entResult, newDrawKey } from '../services/entertainment.api'
-import type { DeckKind, DrawResult, SandboxEnvelope } from '../types/entertainment.types'
+import type { DeckKind, DrawResult, EntertainmentEnvelope } from '../types/entertainment.types'
 
 export function useDraw(kind: DeckKind) {
-  const [result, setResult] = useState<SandboxEnvelope<DrawResult> | null>(null)
+  const [result, setResult] = useState<EntertainmentEnvelope<DrawResult> | null>(null)
   const [error, setError] = useState<unknown>(null); const [busy, setBusy] = useState(false)
   const [expired, setExpired] = useState(false); const [revealed, setRevealed] = useState<string[]>([])
   const attempt = useRef<{ key: string; spread: number; reversed: boolean } | null>(null)

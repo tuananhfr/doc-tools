@@ -1,5 +1,5 @@
 import { withBase } from '@/utils/url'
-import type { SandboxEnvelope, SandboxState } from '../types/entertainment.types'
+import type { EntertainmentEnvelope } from '../types/entertainment.types'
 
 export class EntertainmentError extends Error { constructor(public code: string) { super(code) } }
 export function newDrawKey() { return `${Date.now().toString(36)}_${crypto.randomUUID().replace(/-/g, '')}` }
@@ -11,9 +11,8 @@ export async function entRequest<T>(path: string, body?: unknown, key?: string, 
   if (!response.ok || value.ok !== true) throw new EntertainmentError(value.code ?? `HTTP_${response.status}`)
   return value
 }
-export async function entResult<T>(path: string, body: unknown, key?: string): Promise<SandboxEnvelope<T>> {
-  const value = await entRequest<SandboxEnvelope<T>>(path, body, key)
-  if (value.public_release !== 'BLOCKED' || value.verification_level !== 'TECHNICAL_SANDBOX' || value.disclaimer_id !== 'cn-ent-reference-v1' || typeof value.rule_version !== 'string' || !Array.isArray(value.source_ids) || !value.result) throw new EntertainmentError('INVALID_RESPONSE')
+export async function entResult<T>(path: string, body: unknown, key?: string): Promise<EntertainmentEnvelope<T>> {
+  const value = await entRequest<EntertainmentEnvelope<T>>(path, body, key)
+  if (value.disclaimer_id !== 'cn-ent-reference-v1' || typeof value.rule_version !== 'string' || !Array.isArray(value.source_ids) || !value.result) throw new EntertainmentError('INVALID_RESPONSE')
   return value
 }
-export const sandboxState = (signal: AbortSignal) => entRequest<SandboxState>('tools', undefined, undefined, signal)

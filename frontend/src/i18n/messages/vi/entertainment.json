@@ -1,44 +1,32 @@
 {
-  "disclaimer": "Nội dung chỉ mang tính tham khảo, giải trí và khám phá văn hóa. Không có cơ sở khoa học xác lập khả năng dự đoán tương lai; không thay thế tư vấn chuyên môn hoặc là căn cứ duy nhất cho quyết định quan trọng. AI không làm tăng độ chính xác dự đoán.",
-  "sandbox": {
-    "title": "Sandbox kỹ thuật · chưa duyệt phát hành",
-    "description": "Đây là bản thử nghiệm công thức và thao tác. Chưa có corpus luận giải được chuyên gia duyệt; không đưa ra dự đoán hoặc lời khuyên cá nhân.",
-    "back": "Về Khám phá & Giải trí"
-  },
-  "gate": {
-    "loading": "Đang kiểm tra sandbox…",
-    "enabled": "Sandbox đã bật",
-    "disabled": "Sandbox chưa được bật",
-    "error": "Chưa kết nối được sandbox",
-    "disabledHint": "Các chức năng mới đang được kiểm chứng nội bộ. Lịch âm hiện có vẫn sử dụng bình thường.",
-    "errorHint": "Kiểm tra kết nối rồi thử lại. Dữ liệu nhập chưa được gửi."
-  },
+  "disclaimer": "Nội dung chỉ mang tính tham khảo và giải trí, không dự đoán tương lai hoặc thay thế tư vấn chuyên môn.",
   "actions": {
     "retry": "Thử lại",
     "restart": "Bắt đầu phiên mới",
     "pdf": "Tải PDF",
     "png": "Tải ảnh PNG",
     "exporting": "Đang xuất…",
-    "calculating": "Đang tính…"
+    "calculating": "Đang tính…",
+    "checking": "Đang kiểm tra…"
   },
   "source": {
-    "title": "Xem nguồn và phiên bản",
+    "title": "Thông tin phương pháp",
     "version": "Phiên bản phương pháp",
-    "sources": "Nguồn đặc tả",
+    "sources": "Tài liệu triển khai",
     "request": "Mã yêu cầu",
-    "pending": "Nguồn đặc tả kỹ thuật chưa phải nguồn luận giải đã được chuyên gia phê duyệt. Phần luận giải chưa được mở."
+    "pending": "Thông tin này mô tả phương pháp tính và cách rút lá; không phải nội dung dự đoán tương lai."
   },
   "report": {
     "local": "PDF và ảnh được tạo trên thiết bị, kèm nguồn và cảnh báo tham khảo. Việc tải không lưu lịch sử vào tài khoản."
   },
   "cards": {
-    "title": "Bài Tây 52 lá · Sandbox",
-    "configure": "Chọn số lá để thử",
+    "title": "Bài Tây 52 lá",
+    "configure": "Chọn số lá",
     "spread": "Số lá",
-    "amount": "{{number}} lá · vị trí đánh số",
-    "allowReversed": "Thử hướng xuôi/ngược (chỉ thao tác kỹ thuật)",
-    "profile": "Bộ ID từ manifest đặc tả. Vị trí được đánh số, chưa có ý nghĩa trải bài hoặc trường phái được duyệt.",
-    "noMeaning": "Chưa có bộ luận giải và nguồn được duyệt. Bản này chỉ thử rút, lật và xuất danh sách lá.",
+    "amount": "{{number}} lá",
+    "allowReversed": "Cho phép lá Tarot ngược",
+    "profile": "Chọn số lá, xào và rút bài. Chạm từng lá để lật, rồi chạm lại để xem ảnh lớn.",
+    "noMeaning": "Hiển thị các lá bạn rút. Chức năng hiện chưa có phần luận giải.",
     "draw": "Xào và rút bài",
     "drawing": "Đang rút bài…",
     "result": "Bộ lá của phiên này",
@@ -47,28 +35,28 @@
     "tap": "Chạm để lật",
     "reversed": "Ngược",
     "upright": "Xuôi",
-    "revealHint": "Lật từng lá hoặc lật tất cả. Gửi lại yêu cầu không đổi bộ lá.",
-    "complete": "Đã lật đủ lá. Có thể xuất bản ghi kỹ thuật.",
+    "revealHint": "Chạm từng lá để lật hoặc chọn Lật tất cả.",
+    "complete": "Đã lật đủ lá. Bạn có thể xem ảnh lớn hoặc tải kết quả.",
     "expired": "Phiên đã hết hạn. Bắt đầu phiên mới để tiếp tục; bộ lá cũ không được rút lại bằng mã cũ.",
     "revealAll": "Lật tất cả"
   },
   "tarot": {
-    "title": "Tarot 78 lá · Sandbox"
+    "title": "Tarot 78 lá"
   },
   "numerology": {
-    "title": "Thần số học · Sandbox",
-    "configure": "Nhập dữ liệu để thử công thức",
+    "title": "Thần số học",
+    "configure": "Nhập ngày sinh và họ tên",
     "birth": "Ngày sinh dương lịch",
     "name": "Họ tên (không bắt buộc)",
     "year": "Năm cần tính chỉ số cá nhân",
-    "consent": "Tôi đồng ý gửi dữ liệu vừa nhập tới backend để tính thử. Họ tên và ngày sinh không được lưu trong database hoặc lịch sử tài khoản.",
-    "method": "Phương pháp dự thảo: cộng toàn bộ chữ số rồi rút gọn; giữ 11/22/33 ở từng bước. Tên chuẩn hóa NFC, bỏ dấu, Đ→D; chỉ A–Z; AEIOU là nguyên âm, Y là phụ âm. Đây chưa phải quy tắc chuyên môn được duyệt.",
-    "calculate": "Tính thử",
-    "result": "Kết quả tính kỹ thuật",
+    "consent": "Tôi đồng ý gửi dữ liệu vừa nhập để tính chỉ số. Họ tên và ngày sinh không được lưu vào cơ sở dữ liệu hoặc lịch sử tài khoản.",
+    "method": "Cộng chữ số rồi rút gọn, giữ các số 11/22/33. Họ tên được bỏ dấu và tính theo chữ A–Z; AEIOU là nguyên âm, Y là phụ âm.",
+    "calculate": "Tính chỉ số",
+    "result": "Các chỉ số của bạn",
     "normalized": "Tên sau chuẩn hóa",
     "steps": "Các bước rút gọn",
     "noVowels": "Không có chữ phù hợp để tính",
-    "noMeaning": "Chỉ hiển thị phép tính. Chưa có nội dung diễn giải tính cách hay dự đoán được duyệt.",
+    "noMeaning": "Hiển thị chỉ số và cách tính. Chức năng hiện chưa có phần diễn giải từng chỉ số.",
     "metrics": {
       "life_path": "Đường đời",
       "birthday": "Ngày sinh",
@@ -79,12 +67,12 @@
     }
   },
   "calendar": {
-    "title": "Nguồn, phiên bản và bản ghi lịch",
-    "method": "Bộ đổi lịch hiện có dùng UTC+7, phạm vi 1800–2199. Đối chiếu kỹ thuật không thay thế kiểm chứng độc lập với nguồn lịch chuẩn.",
+    "title": "Nguồn và tải lịch",
+    "method": "Quy đổi âm–dương theo múi giờ Việt Nam (UTC+7), hỗ trợ năm 1800–2199.",
     "version": "Phiên bản nền: cn-lunar-utc7-draft-v1",
-    "pending": "Tiết khí hiển thị, trực/sao và chọn ngày theo việc đang chờ dữ liệu có nguồn và quy tắc được duyệt. Không tự tạo kết luận ngày tốt.",
-    "check": "Đối chiếu engine backend",
-    "checked": "Hai engine cho cùng ngày âm lịch; đây là kiểm tra tính nhất quán kỹ thuật.",
+    "pending": "Phần này cung cấp quy đổi âm–dương; chưa có tra cứu trực/sao hoặc chọn ngày theo việc.",
+    "check": "Kiểm tra ngày âm lịch",
+    "checked": "Ngày âm lịch khớp với kết quả từ máy chủ.",
     "mismatch": "Hai engine chưa khớp. Hãy gửi góp ý để kiểm tra trước khi dùng.",
     "solar": "Ngày dương",
     "lunar": "Ngày âm",
@@ -97,8 +85,7 @@
     "INVALID_BIRTH_DATE": "Ngày sinh không tồn tại, trước năm 1800 hoặc ở tương lai.",
     "SESSION_EXPIRED": "Mã phiên đã hết hạn. Hãy bắt đầu phiên mới.",
     "IDEMPOTENCY_CONFLICT": "Mã phiên đã được dùng cho cấu hình khác. Hãy bắt đầu phiên mới.",
-    "RATE_LIMITED": "Bạn đã gửi nhiều yêu cầu. Đợi một phút rồi thử lại.",
-    "SANDBOX_DISABLED": "Backend chưa bật sandbox. Chức năng thử nghiệm hiện chưa sử dụng được."
+    "RATE_LIMITED": "Bạn đã gửi nhiều yêu cầu. Đợi một phút rồi thử lại."
   },
   "artwork": {
     "zoom": "Xem lớn: {{name}}",

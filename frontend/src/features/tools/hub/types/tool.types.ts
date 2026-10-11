@@ -123,7 +123,6 @@ export type ToolScreen =
   | 'tarot'
 
 interface ToolBase {
-  sandboxScreen?: ToolScreen
   searchParams?: string
   id: string
   /** Không dấu, đúng chữ người Việt gõ tìm — đổi slug là gãy mọi link đã phát ra. Chung cho mọi ngôn ngữ. */

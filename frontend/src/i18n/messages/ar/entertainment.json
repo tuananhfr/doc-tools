@@ -1,44 +1,32 @@
 {
-  "disclaimer": "For reference, entertainment and cultural exploration only. There is no established scientific basis for predicting the future; this does not replace professional advice or serve as the sole basis for important decisions. AI does not improve prediction accuracy.",
-  "sandbox": {
-    "title": "Technical sandbox · release pending",
-    "description": "This tests calculations and interactions. No interpretation corpus has been approved; it provides no predictions or personal advice.",
-    "back": "Back to Explore & Entertainment"
-  },
-  "gate": {
-    "loading": "Checking sandbox…",
-    "enabled": "Sandbox enabled",
-    "disabled": "Sandbox is disabled",
-    "error": "Cannot connect to sandbox",
-    "disabledHint": "New features are undergoing internal verification. The existing lunar calendar remains available.",
-    "errorHint": "Check your connection and retry. Your input has not been sent."
-  },
+  "disclaimer": "For reference and entertainment only. This content does not predict the future or replace professional advice.",
   "actions": {
     "retry": "Retry",
     "restart": "Start a new session",
     "pdf": "Download PDF",
     "png": "Download PNG",
     "exporting": "Exporting…",
-    "calculating": "Calculating…"
+    "calculating": "Calculating…",
+    "checking": "Checking…"
   },
   "source": {
-    "title": "Sources and version",
+    "title": "Method information",
     "version": "Method version",
-    "sources": "Specification sources",
+    "sources": "Implementation references",
     "request": "Request ID",
-    "pending": "A technical specification is not an expert-approved interpretation source. Interpretations are unavailable."
+    "pending": "This information describes the calculations and card draw process, not predictions about the future."
   },
   "report": {
     "local": "PDFs and images are created on your device with sources and the reference notice. Downloads do not save account history."
   },
   "cards": {
-    "title": "52 playing cards · Sandbox",
-    "configure": "Choose the number of cards",
+    "title": "52 playing cards",
+    "configure": "Choose your cards",
     "spread": "Number of cards",
-    "amount": "{{number}} cards · numbered positions",
-    "allowReversed": "Test upright/reversed orientation (technical only)",
-    "profile": "Card IDs follow the supplied manifest. Positions are numbered, with no approved spread meanings or school.",
-    "noMeaning": "An approved interpretation corpus is unavailable. This only tests drawing, revealing and exporting card identities.",
+    "amount": "{{number}} cards",
+    "allowReversed": "Allow reversed Tarot cards",
+    "profile": "Choose a card count, shuffle and draw. Tap a card to reveal it, then tap again to see a larger image.",
+    "noMeaning": "Shows the cards you drew. Card interpretations are not included yet.",
     "draw": "Shuffle and draw",
     "drawing": "Drawing…",
     "result": "Cards in this session",
@@ -47,28 +35,28 @@
     "tap": "Tap to reveal",
     "reversed": "Reversed",
     "upright": "Upright",
-    "revealHint": "Reveal one card or all cards. Retrying does not change the draw.",
-    "complete": "All cards revealed. You can export the technical record.",
+    "revealHint": "Tap each card to reveal it or choose Reveal all.",
+    "complete": "All cards are revealed. View a larger image or download the result.",
     "expired": "This session expired. Start a new session; an expired key cannot draw again.",
     "revealAll": "Reveal all"
   },
   "tarot": {
-    "title": "78 Tarot cards · Sandbox"
+    "title": "78 Tarot cards"
   },
   "numerology": {
-    "title": "Numerology · Sandbox",
-    "configure": "Enter data to test calculations",
+    "title": "Numerology",
+    "configure": "Enter your birth date and name",
     "birth": "Solar birth date",
     "name": "Full name (optional)",
     "year": "Personal year to calculate",
-    "consent": "I agree to send this input to the backend for a test calculation. My name and birth date are not stored in the database or account history.",
-    "method": "Draft method: sum all digits, then reduce, preserving 11/22/33 at each step. Names use NFC, accent removal and Đ→D; A–Z only; AEIOU are vowels and Y is a consonant. This method is not expert-approved.",
-    "calculate": "Test calculation",
-    "result": "Technical calculation result",
+    "consent": "I agree to send these inputs to calculate my numbers. Names and birth dates are not stored in the database or account history.",
+    "method": "Add the digits and reduce, keeping 11/22/33. Names use unaccented A–Z letters; AEIOU are vowels and Y is a consonant.",
+    "calculate": "Calculate numbers",
+    "result": "Your numbers",
     "normalized": "Normalized name",
     "steps": "Reduction steps",
     "noVowels": "No eligible letters to calculate",
-    "noMeaning": "Only calculations are shown. No personality interpretation or prediction has been approved.",
+    "noMeaning": "Shows numbers and calculation steps. Interpretations of each number are not included yet.",
     "metrics": {
       "life_path": "Life path",
       "birthday": "Birthday",
@@ -79,12 +67,12 @@
     }
   },
   "calendar": {
-    "title": "Calendar sources, version and record",
-    "method": "The existing converter uses UTC+7, covering 1800–2199. Engine agreement does not replace independent calendar reference validation.",
+    "title": "Sources and calendar download",
+    "method": "Solar–lunar conversion uses Vietnam time (UTC+7), for years 1800–2199.",
     "version": "Foundation version: cn-lunar-utc7-draft-v1",
-    "pending": "Solar-term display, folk stars and task-specific date selection await sourced, approved data. No favorable-date verdict is invented.",
-    "check": "Compare backend engine",
-    "checked": "Both engines returned the same lunar date; this is a technical consistency check.",
+    "pending": "This section provides solar–lunar conversion; traditional day-selection rules are not included.",
+    "check": "Check lunar date",
+    "checked": "The lunar date matches the server result.",
     "mismatch": "The engines disagree. Send feedback for review before relying on this result.",
     "solar": "Solar date",
     "lunar": "Lunar date",
@@ -97,8 +85,7 @@
     "INVALID_BIRTH_DATE": "The birth date is invalid, before 1800 or in the future.",
     "SESSION_EXPIRED": "This session key expired. Start a new session.",
     "IDEMPOTENCY_CONFLICT": "This key belongs to another configuration. Start a new session.",
-    "RATE_LIMITED": "Too many requests. Wait one minute and retry.",
-    "SANDBOX_DISABLED": "The backend sandbox is disabled. This experimental feature is unavailable."
+    "RATE_LIMITED": "Too many requests. Wait one minute and retry."
   },
   "artwork": {
     "zoom": "Enlarge: {{name}}",

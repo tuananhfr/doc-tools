@@ -47,7 +47,7 @@
           "estimates": "Perkiraan biaya membangun rumah, perhitungan gaji, tagihan listrik: tidak menggantikan penawaran harga, slip gaji, atau faktur resmi.",
           "orientation": "Arah rumah dan bagian yang dilihat menurut usia: acuan menurut fengsui tradisional, bukan kesimpulan teknis.",
           "ocr": "Pengenalan teks (OCR), konversi alamat, pencarian peraturan: bisa keliru, perlu dicek ulang dengan dokumen aslinya.",
-          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
+          "entertainment": "Numerology shows numbers and calculation steps. Playing cards and Tarot show the cards you drew, without interpretations. Content is for reference and entertainment, does not predict the future and does not replace professional advice."
         }
       },
       "hanh-vi-cam": {
@@ -146,7 +146,7 @@
           "ip": "Alamat IP: di-hash satu arah dengan kunci rahasia, hanya untuk membatasi pengiriman otomatis, dan terhapus otomatis setelah sekitar 1 jam.",
           "feedback": "Isi masukan dan usulan: hanya jika Anda mencentang persetujuan dan menekan Kirim, untuk ditinjau dan meningkatkan alat. Kode tanda terima hanya disimpan dalam bentuk hash.",
           "logs": "Log teknis server web (alamat IP, jenis browser, halaman yang dibuka): hanya dipakai untuk operasional dan keamanan sistem, disimpan dalam waktu singkat yang diperlukan.",
-          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
         }
       },
       "tai-khoan": {
@@ -199,7 +199,7 @@
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
           "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
-          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. Account history is not stored."
         }
       },
       "quyen": {

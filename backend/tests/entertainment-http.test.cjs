@@ -9,7 +9,7 @@ const { EntertainmentModule } = require('../dist/entertainment/entertainment.mod
 const { DatabaseService } = require('../dist/database/database.service')
 const { createHttpAdapter } = require('../dist/config/http-adapter')
 
-test('guest entertainment sandbox HTTP and MySQL contracts', async t => {
+test('guest entertainment HTTP and MySQL contracts', async t => {
   const app = await NestFactory.create(EntertainmentModule, createHttpAdapter(), { logger: false, bodyParser: false })
   app.setGlobalPrefix('api/v1')
   const ip = `198.19.${randomBytes(1)[0]}.${randomBytes(1)[0]}`
@@ -24,14 +24,15 @@ test('guest entertainment sandbox HTTP and MySQL contracts', async t => {
     const request = (path, payload, drawKey, trusted = true) => api.inject({ method: payload === undefined ? 'GET' : 'POST', url: `/api/v1/ent/${path}`, payload, remoteAddress: '127.0.0.1', headers: { 'x-forwarded-for': ip, ...(trusted ? { 'x-cn-request': '1' } : {}), ...(drawKey ? { 'idempotency-key': drawKey } : {}) } })
     const settings = { spread: 3, reversed: false }
     const input = { birth_date: '2000-02-29', name: 'Đặng Thị Ánh', personal_year: 2026 }
-    await t.test('flags default to disabled and never claim public release', async () => {
+    await t.test('tools and execution are available without an opt-in flag', async () => {
       delete process.env.ENT_SANDBOX_ENABLED
       const state = await request('tools')
-      assert.equal(state.json().sandbox_enabled, false)
-      assert.equal(state.json().public_release, 'BLOCKED')
+      assert.ok(state.json().tools.every(tool => tool.available === true))
+      assert.equal('sandbox_enabled' in state.json(), false)
       assert.equal(state.json().sources[0].corpus_available, false)
-      assert.equal((await request('cards/draw', settings, key())).statusCode, 503)
-      process.env.ENT_SANDBOX_ENABLED = '1'
+      assert.equal((await request('cards/draw', settings, key())).statusCode, 200)
+      process.env.ENT_SANDBOX_ENABLED = '0'
+      assert.equal((await request('cards/draw', settings, key())).statusCode, 200)
     })
     await t.test('write guard and route body limit reject unsafe requests', async () => {
       assert.equal((await request('cards/draw', settings, key(), false)).statusCode, 403)
@@ -43,7 +44,8 @@ test('guest entertainment sandbox HTTP and MySQL contracts', async t => {
       assert.equal(response.statusCode, 200, response.payload)
       assert.equal(response.headers['cache-control'], 'no-store')
       assert.equal(response.json().result.normalized_name, 'DANGTHIANH')
-      assert.equal(response.json().verification_level, 'TECHNICAL_SANDBOX')
+      assert.equal('verification_level' in response.json(), false)
+      assert.equal('public_release' in response.json(), false)
       assert.equal(response.json().disclaimer_id, 'cn-ent-reference-v1')
       assert.equal((await request('numerology/calculate', { ...input, birth_date: '1900-02-29' })).statusCode, 422)
     })
@@ -71,6 +73,12 @@ test('guest entertainment sandbox HTTP and MySQL contracts', async t => {
     await t.test('report lookup is idempotent and never creates another draw', async () => {
       for (let i = 0; i < 3; i++) assert.deepEqual((await request('reports', { draw_key: drawKey })).json(), snapshot)
       assert.equal((await request('reports', { draw_key: key() })).statusCode, 404)
+    })
+    await t.test('legacy snapshots keep the same cards and request identity', async () => {
+      const legacy = { ...snapshot, verification_level: 'TECHNICAL_SANDBOX', public_release: 'BLOCKED' }
+      await database.pool.execute('UPDATE ent_draw_sessions SET snapshot = ? WHERE key_hash = ?', [JSON.stringify(legacy), digest(drawKey)])
+      assert.deepEqual((await request('reports', { draw_key: drawKey })).json(), snapshot)
+      assert.deepEqual((await request('tarot/draw', { spread: 10, reversed: true }, drawKey)).json(), snapshot)
     })
     await t.test('expired keys reject both draw and report even without stored rows', async () => {
       const expired = key(3600_001)

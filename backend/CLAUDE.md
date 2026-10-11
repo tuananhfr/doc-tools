@@ -233,6 +233,6 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 Giữ tiếng Việt UTF-8 không BOM. `.env`, `dist/`, `node_modules/` không vào Git. Không
 commit / push khi chưa được yêu cầu rõ ràng.
 
-### Entertainment sandbox
+### Entertainment tools
 
-`src/entertainment` owns the draft numerology, card/Tarot draw and calendar parity APIs. `ENT_SANDBOX_ENABLED` defaults off; no interpretation content is approved. Draws use expiring timestamped capability keys, immutable MySQL snapshots and CSPRNG sampling. Names/birth dates are processed in memory only. Four additive schema tables provide source/version foundations, temporary snapshots and hashed-IP rate limits. Read `docs/entertainment-sandbox.md` before enabling the sandbox or changing its data contract; history/BYO-AI and corpus approval remain separate work.
+`src/entertainment` owns guest numerology, card/Tarot draw and calendar comparison APIs. These tools are available without opt-in flags. Draws use expiring timestamped capability keys, immutable MySQL snapshots and CSPRNG sampling. Names/birth dates are processed in memory only. Read `docs/entertainment.md` before changing the data contract; interpretations, history and BYO-AI remain separate work.

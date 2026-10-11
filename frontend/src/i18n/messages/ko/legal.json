@@ -47,7 +47,7 @@
           "estimates": "주택 건축비 개략 견적, 급여 계산, 전기 요금: 공식 견적서, 급여 명세서 또는 청구서를 대신하지 않습니다.",
           "orientation": "집 방향과 나이별 풀이: 민간 풍수에 따른 참고 정보이며, 기술적 결론이 아닙니다.",
           "ocr": "텍스트 인식(OCR), 주소 변환, 규정 조회: 오류가 있을 수 있으므로 원본 문서와 대조해 검토해야 합니다.",
-          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
+          "entertainment": "Numerology shows numbers and calculation steps. Playing cards and Tarot show the cards you drew, without interpretations. Content is for reference and entertainment, does not predict the future and does not replace professional advice."
         }
       },
       "hanh-vi-cam": {
@@ -146,7 +146,7 @@
           "ip": "IP 주소: 비밀 키로 단방향 해시 처리하며, 자동화된 전송을 제한하는 용도로만 쓰고 약 1시간 후 자동으로 삭제합니다.",
           "feedback": "의견·제안 내용: 이용자가 동의에 체크하고 보내기를 눌렀을 때만, 검토와 도구 개선을 위해 처리합니다. 접수 번호는 해시 형태로만 저장합니다.",
           "logs": "웹 서버 기술 로그(IP 주소, 브라우저 종류, 열린 페이지): 시스템 운영과 보안에만 사용하며, 필요한 짧은 기간 동안만 보관합니다.",
-          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
         }
       },
       "tai-khoan": {
@@ -199,7 +199,7 @@
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
           "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
-          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. Account history is not stored."
         }
       },
       "quyen": {

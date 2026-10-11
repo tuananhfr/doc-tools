@@ -47,7 +47,7 @@
           "estimates": "Khái toán chi phí xây nhà, tính lương, tiền điện: không thay cho báo giá, bảng lương hay hoá đơn chính thức.",
           "orientation": "Hướng nhà và phần xem theo tuổi: tham khảo theo phong thuỷ dân gian, không phải kết luận kỹ thuật.",
           "ocr": "Nhận dạng chữ (OCR), chuyển đổi địa chỉ, tra cứu quy định: có thể sai sót, cần soát lại với văn bản gốc.",
-          "entertainment": "Sandbox Thần số học, Bài Tây và Tarot chỉ thử phép tính hoặc thao tác. Chưa có corpus luận giải được duyệt. Nội dung không xác lập khả năng dự đoán tương lai, không thay thế tư vấn chuyên môn; AI không làm tăng độ chính xác dự đoán."
+          "entertainment": "Thần số học hiển thị chỉ số và cách tính; Bài Tây và Tarot hiển thị bộ lá bạn rút, chưa có phần luận giải. Nội dung chỉ mang tính tham khảo và giải trí, không dự đoán tương lai hoặc thay thế tư vấn chuyên môn."
         }
       },
       "hanh-vi-cam": {
@@ -146,7 +146,7 @@
           "ip": "Địa chỉ IP: được băm một chiều bằng khoá bí mật, chỉ để giới hạn gửi tự động, và tự xoá sau khoảng 1 giờ.",
           "feedback": "Nội dung góp ý, đề xuất: chỉ khi bạn đánh dấu đồng ý và bấm Gửi, để xem xét và cải thiện công cụ. Mã biên nhận chỉ được lưu dưới dạng băm.",
           "logs": "Nhật ký kỹ thuật của máy chủ web (địa chỉ IP, loại trình duyệt, trang được mở): chỉ dùng cho vận hành và an ninh hệ thống, lưu trong thời gian ngắn cần thiết.",
-          "entertainment": "Sandbox tính thử chỉ gửi họ tên/ngày sinh khi bạn xác nhận; backend xử lý trong bộ nhớ và không lưu các dữ liệu này vào database hoặc lịch sử tài khoản. Phiên rút bài lưu cấu hình và bộ lá, mã phiên được băm; giới hạn tần suất dùng IP được băm. Báo cáo PDF/PNG tạo trên thiết bị. Chưa kết nối AI mới."
+          "entertainment": "Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị."
         }
       },
       "tai-khoan": {
@@ -199,7 +199,7 @@
           "saved": "Mục đã lưu: trong thời gian dùng Pro; khi Pro hết, giữ ở chế độ chỉ đọc 90 ngày rồi xoá, có thư báo ít nhất 7 ngày trước.",
           "uploads": "Ảnh đính kèm cho trợ lý AI: xoá ngay sau khi gửi, chậm nhất sau 7 ngày.",
           "mail": "Thư gửi cho bạn: nội dung thư (kể cả mã xác nhận) bị xoá khỏi hàng đợi ngay khi gửi xong; chỉ giữ địa chỉ nhận, loại thư và trạng thái gửi.",
-          "entertainment": "Phiên bài mặc định hết hạn truy cập sau 15 phút, cấu hình tối đa một giờ. Bản ghi hết hạn được dọn ở lần rút bài tiếp theo; IP băm phục vụ giới hạn tần suất được dọn khi có yêu cầu giới hạn tần suất tiếp theo. Sandbox chưa có lịch sử tài khoản."
+          "entertainment": "Phiên bài mặc định hết hạn truy cập sau 15 phút, cấu hình tối đa một giờ. Bản ghi hết hạn được dọn ở lần rút bài tiếp theo; IP băm phục vụ giới hạn tần suất được dọn khi có yêu cầu giới hạn tần suất tiếp theo. Không lưu lịch sử vào tài khoản."
         }
       },
       "quyen": {

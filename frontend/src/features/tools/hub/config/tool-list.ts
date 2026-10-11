@@ -16,9 +16,9 @@ import type { ToolEntry } from '../types/tool.types'
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
 export const ALL_TOOLS: ToolEntry[] = [
-  { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', status: 'soon', sandboxScreen: 'numerology' },
-  { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', status: 'soon', sandboxScreen: 'playing-cards' },
-  { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', status: 'soon', sandboxScreen: 'tarot' },
+  { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'numerology' },
+  { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'playing-cards' },
+  { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'tarot' },
   {
     id: 'compress-video', slug: 'nen-video', icon: 'file-earmark-play',
     categories: ['other'], status: 'ready', screen: 'compress-video',

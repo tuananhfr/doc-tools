@@ -118,8 +118,10 @@ describe('processingRows', () => {
     expect(filterProcessingRows(rows, 'all', 'tai lieu')).toHaveLength(3)
   })
 
-  it('never marks a ready tool as server-side', () => {
+  it('discloses the live entertainment tools as server-side', () => {
     const rows = processingRows(VI_TOOL_CATALOG, new Map())
-    expect(rows.filter((row) => row.mode === 'server' && row.tool.status === 'ready')).toEqual([])
+    const liveServer = rows.filter((row) => row.mode === 'server' && row.tool.status === 'ready')
+    expect(liveServer.map((row) => row.tool.id).sort()).toEqual(['numerology', 'playing-cards', 'tarot'])
+    expect(liveServer.every((row) => Boolean(row.note))).toBe(true)
   })
 })

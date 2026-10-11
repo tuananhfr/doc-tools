@@ -47,7 +47,7 @@
           "estimates": "التقدير التقريبي لتكلفة بناء المنزل، وحساب الرواتب، وفاتورة الكهرباء: لا تغني عن عروض الأسعار أو كشوف الرواتب أو الفواتير الرسمية.",
           "orientation": "اتجاه المنزل والجزء الخاص بالعمر: استرشادي وفق الفنغ شوي الشعبي، وليس استنتاجًا فنيًا.",
           "ocr": "التعرّف على النص (OCR) وتحويل العناوين والبحث في اللوائح: قد تحتوي على أخطاء، ويلزم مراجعتها مع النص الأصلي.",
-          "entertainment": "Numerology, playing-card and Tarot sandboxes test calculations or interactions only. No approved interpretation corpus is available. They do not establish predictive accuracy or replace professional advice; AI does not improve predictive accuracy."
+          "entertainment": "Numerology shows numbers and calculation steps. Playing cards and Tarot show the cards you drew, without interpretations. Content is for reference and entertainment, does not predict the future and does not replace professional advice."
         }
       },
       "hanh-vi-cam": {
@@ -146,7 +146,7 @@
           "ip": "عنوان IP: يُجزَّأ أحاديًا (hash) بمفتاح سري، لتقييد الإرسال الآلي فقط، ويُحذف تلقائيًا بعد نحو ساعة واحدة.",
           "feedback": "محتوى الملاحظات والاقتراحات: فقط عندما تحدّد خانة الموافقة وتضغط «إرسال»، بغرض المراجعة وتحسين الأدوات. يُحفظ رقم الإيصال بصيغة مجزّأة (hash) فقط.",
           "logs": "السجلات الفنية لخادم الويب (عنوان IP، نوع المتصفح، الصفحة المفتوحة): تُستخدم فقط لتشغيل النظام وأمنه، وتُحفظ لأقصر مدة لازمة.",
-          "entertainment": "Sandbox calculations send names and birth dates only after confirmation; the backend processes them in memory without storing them in the database or account history. Draw sessions store settings and cards under a hashed key; rate limits use hashed IPs. PDF/PNG reports are created on-device. No new AI integration is connected."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
         }
       },
       "tai-khoan": {
@@ -199,7 +199,7 @@
           "saved": "Saved items: while you have Pro; after Pro ends they stay read-only for 90 days and are then deleted, with an email at least 7 days before.",
           "uploads": "Images attached for the AI assistant: deleted right after sending, at the latest after 7 days.",
           "mail": "Emails we send you: the content (including confirmation codes) is removed from the queue as soon as it is sent; only the recipient, the type of email and the delivery status are kept.",
-          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. No account history is available in this sandbox."
+          "entertainment": "Draw sessions expire after 15 minutes by default, configurable up to one hour. Expired records are removed by the next draw; old hashed-IP rate windows are removed by the next rate-limited operation. Account history is not stored."
         }
       },
       "quyen": {

@@ -1,7 +1,4 @@
 .cn-ent { max-width: 58rem; }
-.cn-ent-notice { border-inline-start: 3px solid var(--cn-accent); padding: 1rem 1.25rem; background: var(--cn-tint); margin-bottom: 1.5rem; border-radius: .5rem; }
-.cn-ent-notice strong { font-size: 1rem; }
-.cn-ent-notice p { margin: .65rem 0; line-height: 1.7; }
 .cn-ent-form, .cn-ent-status, .cn-ent-result, .cn-ent-reading { padding: 1.5rem; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: .75rem; }
 .cn-ent-form fieldset { display: grid; gap: 1.25rem; min-width: 0; border: 0; padding: 0; margin: 0; }
 .cn-ent-form legend, .cn-ent h2 { font-size: 1.2rem; font-weight: 700; margin: 0; }
@@ -56,3 +53,5 @@
 }
 .cn-ent-calendar { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid var(--cn-border, #dce3ed); }
 .cn-ent-calendar h2 { font-size: 1.25rem; }
+
+.cn-ent-reference { margin: 1.25rem 0 0; font-size: .875rem; color: var(--cn-muted); }

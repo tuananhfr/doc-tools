@@ -434,22 +434,22 @@
       "description": "Tạo danh sách mã QR, mã vạch và xuất tệp"
     },
     "numerology": {
-      "name": "Thần số học · Sandbox",
-      "description": "Thử công thức Pythagorean có bước tính; chưa có luận giải được duyệt",
+      "name": "Thần số học",
+      "description": "Tính chỉ số từ ngày sinh và họ tên, kèm các bước tính",
       "synonyms": "numerology, thần số học, số chủ đạo",
-      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
+      "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
     },
     "playing-cards": {
-      "name": "Bài Tây 52 lá · Sandbox",
-      "description": "Thử xào, rút, lật và xuất bộ lá; chưa có luận giải được duyệt",
+      "name": "Bài Tây 52 lá",
+      "description": "Xào, rút và lật bài Tây; chạm xem ảnh lớn và tải kết quả",
       "synonyms": "bài tây, playing cards, cartomancy",
-      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
+      "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
     },
     "tarot": {
-      "name": "Tarot 78 lá · Sandbox",
-      "description": "Thử rút 1/3/5/7/10 lá theo manifest; chưa có hình ảnh và luận giải được duyệt",
+      "name": "Tarot 78 lá",
+      "description": "Rút và lật Tarot với ảnh đầy đủ, hỗ trợ lá xuôi/ngược",
       "synonyms": "tarot, trải bài",
-      "privacyNote": "Sandbox gọi backend khi bạn yêu cầu; chưa lưu lịch sử vào tài khoản"
+      "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
     }
   }
 }
