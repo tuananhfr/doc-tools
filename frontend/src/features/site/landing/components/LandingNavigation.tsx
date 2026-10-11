@@ -2,16 +2,19 @@ import { Offcanvas } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AccountButton } from '@/features/account'
+import { SiteBrand } from '@/features/site/components/SiteBrand'
 import { SiteShare } from '@/features/site/components/SiteShare'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '@/features/site/config/site-navigation'
+import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { LANDING_NAVIGATION } from '../config/landing-content'
 
 export function LandingNavigation({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useTranslation('site')
   return (
     <Offcanvas id="cn-landing-menu" show={open} onHide={onClose} placement="end" className="cn-mobile-navigation cn-landing-menu" aria-labelledby="cn-landing-menu-title">
-      <Offcanvas.Header closeButton><Offcanvas.Title id="cn-landing-menu-title">Chuyện Nhỏ</Offcanvas.Title></Offcanvas.Header>
+      <Offcanvas.Header closeButton><Offcanvas.Title id="cn-landing-menu-title"><SiteBrand compact onClick={onClose} /></Offcanvas.Title></Offcanvas.Header>
       <Offcanvas.Body>
+        <GuestPrefs className="cn-mobile-preferences" />
         <nav aria-label={t('header.mainNav')}>
           {LANDING_NAVIGATION.map(item => <Link key={item.key} to={item.hash} onClick={onClose}>{t(`landing.nav.${item.key}`)}</Link>)}
           {SITE_NAVIGATION.map(item => <Link key={item.id} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</Link>)}
