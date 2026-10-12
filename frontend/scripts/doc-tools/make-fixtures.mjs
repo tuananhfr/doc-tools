@@ -8,7 +8,7 @@ import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { FIX } from './lib/qa.mjs'
 
-const STEPS = ['base', 'big', 'a2', 'password', 'bang-ke', 'danh-sach', 'bo-cuc', 'ocr', 'scan-heavy', 'scan-mess', 'pages-1000']
+const STEPS = ['base', 'big', 'a2', 'password', 'bang-ke', 'danh-sach', 'bo-cuc', 'ocr', 'scan-heavy', 'scan-mess', 'pages-1000', 'malicious']
 
 for (const step of STEPS) {
   const run = spawnSync(process.execPath, [fileURLToPath(new URL(`./fixtures/${step}.mjs`, import.meta.url))], { stdio: 'inherit' })
