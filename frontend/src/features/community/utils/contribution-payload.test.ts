@@ -17,4 +17,7 @@ describe('contribution context', () => {
   it('keeps idea publication separate from tool feedback', () => {
     expect(contributionPayload({ ...input, mode: 'idea' })).toMatchObject({ toolId: 'de-xuat-tien-ich', domain: 'ideas', sourceRefs: [], jurisdiction: null, attribution: true })
   })
+  it('files a new-tool suggestion from tool feedback as an anonymous idea without sources', () => {
+    expect(contributionPayload({ ...input, category: 'tool' })).toEqual({ toolId: 'de-xuat-tien-ich', domain: 'ideas', baseSnapshotId: null, jurisdiction: null, proposedChanges: [{ field: 'idea', before: '', after: 'Không tải được kết quả\nNén xong nhưng nút tải không hoạt động' }], sourceRefs: [], attribution: false })
+  })
 })

@@ -1,6 +1,6 @@
 import type { ContributionStatus } from '@/features/account/types/account.types'
 
-export type FeedbackCategory = 'bug' | 'improvement' | 'data'
+export type FeedbackCategory = 'bug' | 'improvement' | 'tool' | 'data'
 export type SourceType = 'OFFICIAL_WEB' | 'OFFICIAL_DOCUMENT' | 'OFFICIAL_API' | 'OTHER'
 export interface SourceRef { url: string; type: SourceType }
 export interface ToolContext { toolSlug: string; toolName: string }

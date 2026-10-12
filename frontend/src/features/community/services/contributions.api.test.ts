@@ -32,4 +32,9 @@ describe('contribution API failures and retry identity', () => {
     await expect(submitContribution(payload, 'k'.repeat(32))).rejects.toThrow('INVALID_RESPONSE')
     await expect(addReceiptSource('a'.repeat(32), { url: 'https://example.com/doc', type: 'OFFICIAL_WEB' }, signal())).rejects.toThrow('EVIDENCE_CLOSED')
   })
+  it('accepts the merged-duplicate receipt from the server', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(JSON.stringify({ ok: true, receiptCode: 'r'.repeat(32), status: 'DEDUPED', tracked: false })))
+    const payload = contributionPayload({ mode: 'feedback', category: 'bug', title: 'Test', detail: 'Expected result', source: null, attribution: false })
+    await expect(submitContribution(payload, 'k'.repeat(32))).resolves.toMatchObject({ status: 'DEDUPED' })
+  })
 })
