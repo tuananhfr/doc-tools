@@ -1,10 +1,12 @@
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
+import { useSearchParams } from 'react-router-dom'
 import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
 import { NumberField } from '../components/NumberField'
 import { MONEY_GROUPS, MONEY_PRESETS, type MoneyGroup, type MoneyUnit } from '../config/money-presets'
 import { evaluatePreset, formatMoneyValue, presetCode } from '../utils/money'
+import { moneyCalcGroupFromQuery, moneyCalcGroupQuery } from '../utils/money-group-query'
 
 const FIRST_PRESET: Record<MoneyGroup, string> = { percent: 'percent-of', tax: 'vat-add', profit: 'margin', split: 'split' }
 
@@ -20,7 +22,15 @@ const UNIT_SUFFIX = { money: 'money.suffix.money', percent: 'money.suffix.percen
 export default function MoneyCalcPage() {
   const { t } = useTranslation('utility')
   const presetSelect = useId()
-  const [group, setGroup] = useState<MoneyGroup>('percent')
+  /* Nhóm phép tính nằm trên URL (`?nhom=vat`) để tìm kiếm / chia sẻ mở thẳng đúng tab; không có thì
+     Phần trăm như cũ. URL là nguồn duy nhất: bấm lại link `?nhom=` khi đang ở trang không remount màn. */
+  const [params, setParams] = useSearchParams()
+  const group: MoneyGroup = moneyCalcGroupFromQuery(params.get('nhom')) ?? 'percent'
+  const setGroup = (next: MoneyGroup) => setParams((current) => {
+    const updated = new URLSearchParams(current)
+    updated.set('nhom', moneyCalcGroupQuery(next))
+    return updated
+  }, { replace: true, preventScrollReset: true })
   const [chosen, setChosen] = useState(FIRST_PRESET)
   /** Chữ đã gõ, theo từng phép tính: đổi phép rồi quay lại vẫn còn số cũ. */
   const [texts, setTexts] = useState<Record<string, Record<string, string>>>({})
