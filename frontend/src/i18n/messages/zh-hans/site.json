@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "在服务器上处理",
-    "device": "在设备上"
+    "device": "在设备上",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "最近使用"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "{{count}} 个即将推出的工具需要在服务器上查询，其卡片会明确标注"
+          "soon": "{{count}} 个即将推出的工具需要在服务器上查询，其卡片会明确标注",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "在设备上",
       "model": "在设备上，需下载识别模型",
-      "server": "需要服务器"
+      "server": "需要服务器",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "即将推出。需要在服务器上查询数据；推出前会明确说明发送的数据。",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "为什么有些工具标注“在服务器上处理”？",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "如何在手机上安装 Chuyện Nhỏ？",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "没有网络时能使用 Chuyện Nhỏ 吗？",
-        "answer": "在联网状态下首次打开后，浏览器会缓存页面和工具代码，因此网络不稳定时通常仍能重新打开。文字识别、视频处理等较大的组件会在首次使用时下载，所以请在联网时先试用一次。"
+        "answer": "在联网状态下首次打开后，浏览器会缓存页面和工具代码，因此网络不稳定时通常仍能重新打开。文字识别、视频处理等较大的组件会在首次使用时下载，所以请在联网时先试用一次。 Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "遇到错误怎么办？",
@@ -1087,5 +1094,13 @@
       "light": "浅色模式的工具目录。",
       "dark": "深色模式的工具目录。"
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "ပုံနှိပ်ရန် / PDF သိမ်းရန်"
+    "print": "ပုံနှိပ်ရန် / PDF သိမ်းရန်",
+    "downloadPdf": "Download PDF",
+    "downloadDocx": "Download DOCX",
+    "exporting": "Preparing file…",
+    "exportFailed": "Export failed. Your input is retained. Check the photo, font connection or document length and retry."
   },
   "cv": {
     "title": "CV ရေးရန်",
@@ -10,7 +14,10 @@
     "template": "CV ပုံစံ",
     "templates": {
       "classic": "ရိုးရာ",
-      "modern": "ခေတ်မီ"
+      "modern": "ခေတ်မီ",
+      "compact": "Compact",
+      "executive": "Executive",
+      "sidebar": "Two columns"
     },
     "fields": {
       "name": "အမည်အပြည့်အစုံ",
@@ -47,15 +54,19 @@
       "opened": "မူကြမ်းကို ဖွင့်ပြီးပါပြီ။",
       "unreadable": "မူကြမ်းကို ဖတ်၍ မရပါ။",
       "cleared": "စက်ပေါ်ရှိ မူကြမ်းကို ဖျက်ပြီးပါပြီ။",
-      "restored": "Reopened the draft you were working on."
+      "restored": "Reopened the draft you were working on.",
+      "memoryOnly": "Device saving is off; your current CV remains in this session."
     },
-    "note": "မပို့မီ အချက်အလက်များကို သေချာစစ်ဆေးပါ။ မူကြမ်းကို သိမ်းရန် နှိပ်မှသာ စက်ပေါ်တွင် သိမ်းပါမည်။ ဓာတ်ပုံကို မသိမ်းပါ။",
+    "note": "Check the details before sending. Automatic saving requires Remember this draft on this device; the photo is not saved.",
     "print": {
       "kicker": "ကိုယ်ရေးရာဇဝင်",
       "summary": "ကိုယ်ရေးအကျဉ်း"
     },
     "autoSave": "Saved automatically on this device (the photo is not saved).",
-    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
+    "remember": "Remember this draft on this device",
+    "availableDraft": "A previously saved draft is available. Open it to continue.",
+    "memoryOnly": "Details stay in this open session; the photo is not saved."
   },
   "formTemplates": {
     "title": "စာရွက်စာတမ်း ပုံစံ ရေးရန်",
@@ -64,7 +75,9 @@
       "leave": "ခွင့်တိုင်စာ",
       "authorization": "လုပ်ပိုင်ခွင့် လွှဲအပ်စာ",
       "handover": "လွှဲပြောင်းအပ်နှံမှု မှတ်တမ်း",
-      "receipt": "Money receipt"
+      "receipt": "Money receipt",
+      "agreement": "Agreement",
+      "employment": "Employment contract"
     },
     "fields": {
       "recipient": "သို့",
@@ -91,7 +104,27 @@
       "sender": "Sender",
       "amount": "Amount (VND)",
       "receivedDate": "Date received",
-      "purpose": "Payment purpose"
+      "purpose": "Payment purpose",
+      "partyA": "Party A and representative",
+      "partyB": "Party B and representative",
+      "subject": "Subject",
+      "terms": "Terms agreed by the parties",
+      "effectiveDate": "Effective date",
+      "company": "Employer name and address",
+      "representative": "Signing representative and position",
+      "employee": "Employee name",
+      "employeeDetails": "Birth date, gender, residence and identity details",
+      "work": "Job and position",
+      "workplace": "Work location",
+      "duration": "Contract type, starting date and duration",
+      "salary": "Agreed salary",
+      "paySchedule": "Payment method, schedule, allowances and additions",
+      "salaryReview": "Salary review",
+      "hours": "Working and rest time",
+      "safety": "Protective equipment",
+      "insurance": "Social, health and unemployment insurance",
+      "training": "Training and skills development",
+      "additionalTerms": "Additional terms agreed by the parties"
     },
     "authorizationWarning": "အချို့ကိစ္စများအတွက် နိုတာရီ သို့မဟုတ် တရားဝင်အတည်ပြုချက် လိုအပ်ပါသည်။ မသုံးမီ လက်ခံမည့်နေရာနှင့် စစ်ဆေးပါ။",
     "defaultWarning": "ကိုးကားရန် ပုံစံသာ ဖြစ်သည်။ မတင်သွင်းမီ လက်ခံမည့်နေရာ၏ လိုအပ်ချက်များကို စစ်ဆေးပါ။",
@@ -138,7 +171,11 @@
         "principal": "လုပ်ပိုင်ခွင့်ပေးသူ",
         "receiver": "လက်ခံသူဘက်",
         "giver": "လွှဲအပ်သူဘက်",
-        "sender": "Sender"
+        "sender": "Sender",
+        "partyA": "Party A",
+        "partyB": "Party B",
+        "employer": "Employer",
+        "employee": "Employee"
       },
       "signHint": "(လက်မှတ်နှင့် အမည်အပြည့်အစုံ)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
       }
     },
-    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "confirmChangeKind": "Switch document type? Your current draft stays in this session so you can return.",
     "datePlaceholder": "e.g. 09/10/2026",
     "dateErrors": {
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",

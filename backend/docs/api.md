@@ -208,3 +208,38 @@ Source-check tools (since agent prompt `PROMPT_VERSION` 2; it is now 3, which ad
 CLI: `npm run ai -- status` (GoClaw reachability, MCP registration, `background.provider`), `npm run ai -- register-mcp` (creates or updates the `chuyen-nho` MCP server from `MCP_PUBLIC_URL`), `npm run ai -- sync-agents` (pushes the current prompt files and `tools_config` to agents below `PROMPT_VERSION`), `npm run ai -- reconcile` (runs the reconciliation below once).
 
 Reconciliation (`AiReconcileService`) runs hourly when GoClaw is configured, first 5 minutes after start. For every agent we created it switches the agent OFF in GoClaw when Pro has ended (`expired`; the provider is kept so a renewal resumes without the key), when the provider or agent drifted (`drift`; provider marked `failed`, as in `/ai/session`), or when our record says inactive but GoClaw runs it (`stray`). It never switches anything on. A GoClaw error skips that member until the next hour (`errors`).
+
+
+## Optional Free dynamic QR
+
+
+
+Static QR: enter content, preview, download locally. Batch label printing also stays local.
+
+Dynamic QR: choose a destination and expiry (or no expiry), review the destination and storage notice, then create the link. The QR contains an opaque URL, never a management credential. Scanning this branch requires a network connection.
+
+The server stores destination URL, timestamps and a management-key hash. It does not receive documents, photos, label designs or AI content. Guests can create and download without login. Management depends on a secret returned once to the creator; saving it on the device is a user choice.
+
+## Endpoints
+
+- `POST /api/v1/codes`: JSON `{ destination_url, expires_at }`, trusted-origin write guard, 2 KiB body cap; creation returns HTTP 201 with `{ok:true,...}`. HTTPS destination only, no URL credentials or private/local hosts. Response `{ id, resolve_url, manage_key, expires_at }`.
+- `GET /api/v1/codes/:public_token/resolve`: 302 to destination while active; 410 after expiry/revocation; 404 for unknown token. Never fetches destination content on the server.
+- `POST /api/v1/codes/:id/revoke`: JSON `{ manage_key }`; constant-time credential comparison, trusted-origin guard, repeat calls idempotent. Credentials are excluded from query strings and application logs.
+
+Public IDs and management secrets use cryptographic randomness. Database stores only secret hashes. No existing endpoint changes.
+
+## Database and limits
+
+New `code_links` table: `id`, unique `public_token_hash`, `manage_key_hash`, `destination_url`, nullable `expires_at`, nullable `revoked_at`, `created_at`.
+
+New `code_request_limits` table for atomic per-actor/IP-hash rate control. Actor hashing reuses the existing private hashing configuration. Starting budget: 10 new links per hour per guest actor, configurable. Existing canonical reads do not create records.
+
+Tables use `CREATE TABLE IF NOT EXISTS`; no ALTER/DROP of current tables. Local QA uses tagged fixtures and cleanup. No production mutation in this implementation task.
+
+## Required checks
+
+Guest download; static QR regression; exact payload roundtrip; expiry/revocation; credential isolation; unsafe URL/body/origin rejection; atomic rate limit under concurrent requests; no management key in public replies; no document/photo/network leakage.
+
+## Approved scope alternative (not selected)
+
+Keep only local static QR, barcode and printable labels in Chuyện Nhỏ; leave dynamic code lifecycle/asset management in ERPCons. This needs no new server API but excludes dynamic expiry/revocation from the Free scope.

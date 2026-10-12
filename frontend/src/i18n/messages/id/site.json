@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "Diproses di server",
-    "device": "Di perangkat"
+    "device": "Di perangkat",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "Baru dipakai"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "{{count}} alat yang segera hadir akan memerlukan pencarian di server; kartunya menandai hal ini dengan jelas"
+          "soon": "{{count}} alat yang segera hadir akan memerlukan pencarian di server; kartunya menandai hal ini dengan jelas",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "Di perangkat",
       "model": "Di perangkat, mengunduh model pengenal",
-      "server": "Memerlukan server"
+      "server": "Memerlukan server",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "Segera hadir. Perlu mencari data di server; data yang dikirim akan dijelaskan sebelum dirilis.",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "Mengapa beberapa alat bertanda “Diproses di server”?",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "Bagaimana cara memasang Chuyện Nhỏ di ponsel?",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "Bisakah saya memakai Chuyện Nhỏ tanpa internet?",
-        "answer": "Setelah dibuka pertama kali dengan koneksi internet, browser menyimpan halaman dan kode alat sehingga biasanya tetap bisa dibuka saat koneksi tidak stabil. Bagian yang berat seperti pengenalan teks atau pemrosesan video diunduh saat pertama kali dipakai, jadi cobalah sekali saat ada koneksi."
+        "answer": "Setelah dibuka pertama kali dengan koneksi internet, browser menyimpan halaman dan kode alat sehingga biasanya tetap bisa dibuka saat koneksi tidak stabil. Bagian yang berat seperti pengenalan teks atau pemrosesan video diunduh saat pertama kali dipakai, jadi cobalah sekali saat ada koneksi. Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "Saya mengalami galat, apa yang harus dilakukan?",
@@ -1087,5 +1094,13 @@
       "light": "Direktori alat dalam tampilan terang.",
       "dark": "Direktori alat dalam tampilan gelap."
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

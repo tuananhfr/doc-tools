@@ -2,6 +2,7 @@ import { appConfig } from '@/config/app.config'
 import type { ToolCategory, ToolEntry, ToolFilter, ToolScreen, ToolTone } from '../types/tool.types'
 import { enabledTools } from '../utils/tool-registry'
 import { ALL_TOOLS } from './tool-list'
+import { isExternalCapability, isProductEntry } from '@/features/site/config/product-registry'
 
 /**
  * Danh mục đang chạy = mọi công cụ trừ những cái bị tắt bằng cờ
@@ -10,7 +11,7 @@ import { ALL_TOOLS } from './tool-list'
  *
  * Chưa có chữ: màn hiển thị lấy danh mục đã gắn ngôn ngữ qua `useToolCatalog()`.
  */
-export const TOOL_CATALOG: ToolEntry[] = enabledTools(ALL_TOOLS, appConfig.toolsOff)
+export const TOOL_CATALOG: ToolEntry[] = enabledTools(ALL_TOOLS.filter(entry => !isProductEntry(entry) && !isExternalCapability(entry)), appConfig.toolsOff)
 
 /**
  * Màn nào chạy bằng pdf.js — khai theo MÀN chứ không theo công cụ, vì hai công

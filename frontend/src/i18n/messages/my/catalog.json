@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "QR Code ဖန်တီးရန်",
       "description": "စာသား သို့မဟုတ် လင့်ခ်မှ QR ကုဒ် ဖန်တီးပါ",
-      "synonyms": "qr ကုဒ်, qr link, qr code generator"
+      "synonyms": "qr ကုဒ်, qr link, qr code generator",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "ဘားကုဒ် ဖန်တီးရန်",
@@ -430,8 +431,10 @@
       "description": "အတည်ပြုပြီးသော ဒေတာ ပံ့ပိုးသူများကို အသိအမှတ်ပြုပါ"
     },
     "code-manager": {
-      "name": "ကုဒ် စီမံခန့်ခွဲရန်",
-      "description": "QR ကုဒ်၊ ဘားကုဒ် စာရင်း ဖန်တီးပြီး ဖိုင်ထုတ်ပါ"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

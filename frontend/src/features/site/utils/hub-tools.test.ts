@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { ALL_TOOLS } from '@/features/tools/hub/config/tool-list'
+import { TOOL_CATALOG } from '@/features/tools/hub/config/tool-catalog'
 import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
 import site from '@/i18n/messages/vi/site.json'
 import { HUB_PAGE_LIST } from '../config/hub-pages'
@@ -50,7 +50,7 @@ describe('readyFirst', () => {
 
 describe('real hub pages', () => {
   it('only lists tool ids that exist', () => {
-    const ids = new Set(ALL_TOOLS.map((item) => item.id))
+    const ids = new Set(TOOL_CATALOG.map((item) => item.id))
     for (const hubPage of HUB_PAGE_LIST) {
       for (const group of hubPage.subgroups) for (const id of group.toolIds) expect(ids, `${hubPage.slug}/${group.id}`).toContain(id)
     }
@@ -59,7 +59,7 @@ describe('real hub pages', () => {
   it('spotlights only ready tools', () => {
     for (const hubPage of HUB_PAGE_LIST) {
       for (const aside of hubPage.aside) {
-        if (aside.kind === 'spotlight') expect(ALL_TOOLS.find((item) => item.id === aside.toolId)?.status).toBe('ready')
+        if (aside.kind === 'spotlight') expect(TOOL_CATALOG.find((item) => item.id === aside.toolId)?.status).toBe('ready')
       }
     }
   })
@@ -93,7 +93,7 @@ describe('real hub pages', () => {
 
 describe('SITE_PAGE_SLUGS', () => {
   it('never takes a tool slug', () => {
-    const toolSlugs = new Set(ALL_TOOLS.map((item) => item.slug))
+    const toolSlugs = new Set(TOOL_CATALOG.map((item) => item.slug))
     for (const slug of SITE_PAGE_SLUGS) expect(toolSlugs.has(slug), slug).toBe(false)
     expect(new Set(SITE_PAGE_SLUGS).size).toBe(SITE_PAGE_SLUGS.length)
   })

@@ -146,7 +146,8 @@
           "ip": "IP လိပ်စာ- လျှို့ဝှက်ကီးဖြင့် တစ်လမ်းသွား hash လုပ်ပြီး အလိုအလျောက် ပို့ခြင်းကို ကန့်သတ်ရန်သာ သုံးကာ 1 နာရီခန့်အကြာတွင် အလိုအလျောက် ဖျက်သည်။",
           "feedback": "အကြံပြုချက်၊ အဆိုပြုချက် အကြောင်းအရာ- သင်သဘောတူကြောင်း အမှတ်ခြစ်ပြီး ပို့ရန် နှိပ်မှသာ၊ ကိရိယာကို သုံးသပ်တိုးတက်စေရန်။ လက်ခံဖြတ်ပိုင်းကုဒ်ကို hash ပုံစံဖြင့်သာ သိမ်းသည်။",
           "logs": "ဝဘ်ဆာဗာ၏ နည်းပညာ မှတ်တမ်း (IP လိပ်စာ၊ ဘရောက်ဇာ အမျိုးအစား၊ ဖွင့်သော စာမျက်နှာ)- စနစ်လည်ပတ်မှုနှင့် လုံခြုံရေးအတွက်သာ သုံးပြီး လိုအပ်သော အချိန်တိုအတွင်းသာ သိမ်းသည်။",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

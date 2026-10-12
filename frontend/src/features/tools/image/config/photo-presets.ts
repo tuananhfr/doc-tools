@@ -21,13 +21,14 @@ export const PHOTO_SIZES: PhotoSize[] = [
 
 /** Nhãn khổ giấy nằm ở `idPhoto.paper.<id>` / `idPhoto.paperName.<id>` của namespace `image`. */
 export interface PaperSize extends Size {
-  id: 'a4' | 'a5' | '10x15' | '13x18'
+  id: 'a4' | 'a5' | '10x15' | '10x15-exact' | '13x18'
 }
 
 export const PAPER_SIZES: PaperSize[] = [
   { id: 'a4', width: 210, height: 297 },
   { id: 'a5', width: 148, height: 210 },
   { id: '10x15', width: 102, height: 152 },
+  { id: '10x15-exact', width: 100, height: 150 },
   { id: '13x18', width: 127, height: 178 },
 ]
 

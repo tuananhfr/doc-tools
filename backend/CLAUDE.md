@@ -236,3 +236,7 @@ commit / push khi chưa được yêu cầu rõ ràng.
 ### Entertainment tools
 
 `src/entertainment` owns guest numerology, card/Tarot draw and calendar comparison APIs. These tools are available without opt-in flags. Draws use expiring timestamped capability keys, immutable MySQL snapshots and CSPRNG sampling. Names/birth dates are processed in memory only. Read `docs/entertainment.md` before changing the data contract; interpretations, history and BYO-AI remain separate work.
+
+## Free dynamic QR (12/10/2026)
+
+The codes module adds POST /codes, GET /codes/:token/resolve and POST /codes/:id/revoke without changing existing APIs. code_links and code_request_limits are CREATE-only additions. Only public HTTPS destinations are accepted; the server never fetches them. Management credentials and public tokens are hashed at rest. codes.guestHourly is an atomic per-IP-hash UTC-hour budget; default 10. SITE_PUBLIC_URL defines scan URLs. Tests use an isolated module and two application instances; avoid AppModule lifecycle jobs when testing local fixtures. See docs/api.md.

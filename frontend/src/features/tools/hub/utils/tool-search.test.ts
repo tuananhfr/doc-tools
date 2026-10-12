@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest'
 import { SEARCH_INTENTS } from '../config/intent-registry'
 import { SEARCH_STORIES } from '../config/search-stories'
-import { VI_TOOL_CATALOG } from './tool-catalog.fixture'
+import { isProductEntry } from '@/features/site/config/product-registry'
+import { VI_PRODUCT_CATALOG, VI_TOOL_CATALOG } from './tool-catalog.fixture'
 import { searchTools } from './tool-search'
 import { SEARCH_REGRESSIONS } from '../config/search-regressions'
 
 describe('search intent proposals', () => {
   it.each(SEARCH_REGRESSIONS)('finds the job in "%s"', (query, id) => {
-    expect(searchTools(VI_TOOL_CATALOG, query)[0]?.id ?? null).toBe(id)
+    const catalog = id && isProductEntry({ id }) ? VI_PRODUCT_CATALOG : VI_TOOL_CATALOG
+    expect(searchTools(catalog, query)[0]?.id ?? null).toBe(id)
+    if (catalog === VI_PRODUCT_CATALOG) expect(searchTools(VI_TOOL_CATALOG, query)).toEqual([])
   })
   it('passes table intent options without changing the shared catalog', () => {
     const result = searchTools(VI_TOOL_CATALOG, 'Ảnh bảng sang Excel')[0]
@@ -16,7 +19,8 @@ describe('search intent proposals', () => {
     expect(searchTools(VI_TOOL_CATALOG, 'đọc chữ viết tay từ ảnh')).toEqual([])
   })
   it.each(SEARCH_STORIES)('$id: $query', story => {
-    const results = searchTools(VI_TOOL_CATALOG, story.query)
+    const catalog = story.preferredTool && isProductEntry({ id: story.preferredTool }) ? VI_PRODUCT_CATALOG : VI_TOOL_CATALOG
+    const results = searchTools(catalog, story.query)
     if (story.preferredTool) expect(results[0]?.id).toBe(story.preferredTool)
     else expect(results).toEqual([])
     expect(results.every(tool => tool.status === 'ready')).toBe(true)
@@ -26,7 +30,7 @@ describe('search intent proposals', () => {
   it('only references existing usable preferred tools', () => {
     expect(new Set(SEARCH_INTENTS.map(intent => intent.id)).size).toBe(SEARCH_INTENTS.length)
     for (const intent of SEARCH_INTENTS) {
-      expect(VI_TOOL_CATALOG.find(tool => tool.id === intent.preferredTool)?.status).toBe('ready')
+      expect([...VI_TOOL_CATALOG, ...VI_PRODUCT_CATALOG].find(tool => tool.id === intent.preferredTool)?.status).toBe('ready')
       expect(intent.forbiddenTools).not.toContain(intent.preferredTool)
     }
   })

@@ -146,7 +146,8 @@
           "ip": "IP address: one-way na hina-hash gamit ang lihim na key, para lang limitahan ang automated na pagpapadala, at awtomatikong binubura pagkalipas ng mga 1 oras.",
           "feedback": "Nilalaman ng puna at mungkahi: kapag nag-check ka lang ng pagpayag at pinindot ang Ipadala, para masuri at mapabuti ang mga tool. Sine-save lang ang resibo code bilang hash.",
           "logs": "Teknikal na log ng web server (IP address, uri ng browser, page na binuksan): ginagamit lang para sa operasyon at seguridad ng sistema, at sine-save lang sa maikling panahong kailangan.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

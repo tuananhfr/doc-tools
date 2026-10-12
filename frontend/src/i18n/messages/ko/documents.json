@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "인쇄 / PDF로 저장"
+    "print": "인쇄 / PDF로 저장",
+    "downloadPdf": "Download PDF",
+    "downloadDocx": "Download DOCX",
+    "exporting": "Preparing file…",
+    "exportFailed": "Export failed. Your input is retained. Check the photo, font connection or document length and retry."
   },
   "cv": {
     "title": "이력서 작성",
@@ -10,7 +14,10 @@
     "template": "이력서 양식",
     "templates": {
       "classic": "클래식",
-      "modern": "모던"
+      "modern": "모던",
+      "compact": "Compact",
+      "executive": "Executive",
+      "sidebar": "Two columns"
     },
     "fields": {
       "name": "이름",
@@ -47,15 +54,19 @@
       "opened": "초안을 열었어요.",
       "unreadable": "초안을 읽을 수 없어요.",
       "cleared": "기기의 초안을 삭제했어요.",
-      "restored": "Reopened the draft you were working on."
+      "restored": "Reopened the draft you were working on.",
+      "memoryOnly": "Device saving is off; your current CV remains in this session."
     },
-    "note": "보내기 전에 정보를 꼼꼼히 확인하세요. 초안은 저장을 눌렀을 때만 기기에 저장되고, 사진은 저장되지 않아요.",
+    "note": "Check the details before sending. Automatic saving requires Remember this draft on this device; the photo is not saved.",
     "print": {
       "kicker": "이력서",
       "summary": "자기소개"
     },
     "autoSave": "Saved automatically on this device (the photo is not saved).",
-    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
+    "remember": "Remember this draft on this device",
+    "availableDraft": "A previously saved draft is available. Open it to continue.",
+    "memoryOnly": "Details stay in this open session; the photo is not saved."
   },
   "formTemplates": {
     "title": "서류 양식 작성",
@@ -64,7 +75,9 @@
       "leave": "휴가 신청서",
       "authorization": "위임장",
       "handover": "인수인계서",
-      "receipt": "Money receipt"
+      "receipt": "Money receipt",
+      "agreement": "Agreement",
+      "employment": "Employment contract"
     },
     "fields": {
       "recipient": "수신",
@@ -91,7 +104,27 @@
       "sender": "Sender",
       "amount": "Amount (VND)",
       "receivedDate": "Date received",
-      "purpose": "Payment purpose"
+      "purpose": "Payment purpose",
+      "partyA": "Party A and representative",
+      "partyB": "Party B and representative",
+      "subject": "Subject",
+      "terms": "Terms agreed by the parties",
+      "effectiveDate": "Effective date",
+      "company": "Employer name and address",
+      "representative": "Signing representative and position",
+      "employee": "Employee name",
+      "employeeDetails": "Birth date, gender, residence and identity details",
+      "work": "Job and position",
+      "workplace": "Work location",
+      "duration": "Contract type, starting date and duration",
+      "salary": "Agreed salary",
+      "paySchedule": "Payment method, schedule, allowances and additions",
+      "salaryReview": "Salary review",
+      "hours": "Working and rest time",
+      "safety": "Protective equipment",
+      "insurance": "Social, health and unemployment insurance",
+      "training": "Training and skills development",
+      "additionalTerms": "Additional terms agreed by the parties"
     },
     "authorizationWarning": "일부 업무는 공증이나 인증이 필요해요. 사용하기 전에 제출처에 확인하세요.",
     "defaultWarning": "참고용 양식이에요. 제출하기 전에 제출처의 요구 사항을 확인하세요.",
@@ -138,7 +171,11 @@
         "principal": "위임인",
         "receiver": "인수자",
         "giver": "인계자",
-        "sender": "Sender"
+        "sender": "Sender",
+        "partyA": "Party A",
+        "partyB": "Party B",
+        "employer": "Employer",
+        "employee": "Employee"
       },
       "signHint": "(서명 및 성명)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
       }
     },
-    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "confirmChangeKind": "Switch document type? Your current draft stays in this session so you can return.",
     "datePlaceholder": "e.g. 09/10/2026",
     "dateErrors": {
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",

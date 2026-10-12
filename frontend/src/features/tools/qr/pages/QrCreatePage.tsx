@@ -18,7 +18,27 @@ import { buildPayload, INITIAL_QR_FORM } from '../utils/qr-payload'
  * TẠO MÃ QR — mã vẽ lại theo từng phím gõ, không có nút "Tạo". Thứ nằm trong mã
  * được in ra nguyên văn bên dưới: người dùng thấy đúng chuỗi mà máy quét sẽ đọc.
  */
+import DynamicQrPage from './DynamicQrPage'
+import LabelSheetPage from './LabelSheetPage'
+
 export default function QrCreatePage() {
+  const { t } = useTranslation('qr')
+  const [dynamic, setDynamic] = useState(false)
+  const [labels, setLabels] = useState(false)
+  const [openedLabels, setOpenedLabels] = useState(false)
+  return <>
+    <div className="cn-qr-mode-switch mb-3" role="group" aria-label={t('dynamic.mode')}>
+      <Button variant={dynamic || labels ? 'outline-secondary' : 'primary'} aria-label={t('dynamic.static')} aria-pressed={!dynamic && !labels} onClick={() => { setDynamic(false); setLabels(false) }}>{t('dynamic.staticShort')}</Button>
+      <Button variant={dynamic && !labels ? 'primary' : 'outline-secondary'} aria-label={t('dynamic.dynamic')} aria-pressed={dynamic && !labels} onClick={() => { setDynamic(true); setLabels(false) }}>{t('dynamic.dynamicShort')}</Button>
+      <Button variant={labels ? 'primary' : 'outline-secondary'} aria-label={t('labels.tab')} aria-pressed={labels} onClick={() => { setLabels(true); setOpenedLabels(true) }}>{t('labels.short')}</Button>
+    </div>
+    <div hidden={dynamic || labels}><StaticQrCreatePage /></div>
+    <div hidden={!dynamic || labels}><DynamicQrPage /></div>
+    {openedLabels ? <div hidden={!labels}><LabelSheetPage /></div> : null}
+  </>
+}
+
+function StaticQrCreatePage() {
   const { t } = useTranslation('qr')
   const { t: tc } = useTranslation('common')
   const toast = useToast()

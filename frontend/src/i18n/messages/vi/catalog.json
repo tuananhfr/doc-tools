@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "Tạo QR Code",
       "description": "Tạo mã QR từ chữ hoặc đường dẫn",
-      "synonyms": "mã qr, qr link"
+      "synonyms": "mã qr, qr link",
+      "privacyNote": "QR tĩnh trên thiết bị; QR động chỉ gửi URL và hạn dùng khi bạn đồng ý, cần mạng."
     },
     "barcode-create": {
       "name": "Tạo mã vạch",
@@ -430,8 +431,10 @@
       "description": "Ghi nhận người góp dữ liệu đã được xác minh"
     },
     "code-manager": {
-      "name": "Quản lý mã",
-      "description": "Tạo danh sách mã QR, mã vạch và xuất tệp"
+      "name": "Quản lý QR động",
+      "description": "Tạo QR động Free, đặt hạn và thu hồi bằng khóa quản lý; mở lại mã bằng biên nhận hoặc bản lưu trên thiết bị.",
+      "synonyms": "qr động, hạn dùng, thu hồi qr, quản lý mã",
+      "privacyNote": "Server giữ đường dẫn và bản băm khóa sau khi bạn đồng ý; không nhận ảnh/tài liệu."
     },
     "numerology": {
       "name": "Thần số học",
@@ -450,6 +453,11 @@
       "description": "Rút và lật Tarot với ảnh đầy đủ, hỗ trợ lá xuôi/ngược",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
+    },
+    "quick-design": {
+      "name": "Thiết kế nhanh",
+      "description": "Tạo bảng tên, watermark, voucher, nhãn, poster và vùng in cốc/hộp/túi; xuất PDF, ảnh hoặc ZIP trên thiết bị.",
+      "synonyms": "logo, nhãn, thiết kế, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

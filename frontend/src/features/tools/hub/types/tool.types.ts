@@ -45,7 +45,7 @@ export type ToolStatus = (typeof TOOL_STATUS)[keyof typeof TOOL_STATUS]
  * `server` chỉ dành cho công cụ "Sắp có" cần dữ liệu máy chủ (quy hoạch, giá…),
  * để trang "Cách xử lý dữ liệu" nói trước điều đó.
  */
-export type ToolProcessing = 'browser' | 'browser-model' | 'server'
+export type ToolProcessing = 'browser' | 'browser-model' | 'hybrid' | 'server'
 
 /**
  * Màn thật của một công cụ đã dùng được. `editor` = trình chỉnh sửa PDF đầy đủ;
@@ -75,6 +75,7 @@ export type ToolScreen =
   | 'mark-image'
   | 'id-photo'
   | 'measure-image'
+  | 'code-manager'
   | 'qr-create'
   | 'qr-read'
   | 'barcode-create'
@@ -98,6 +99,7 @@ export type ToolScreen =
   | 'vietqr'
   | 'invoice-xml'
   | 'remove-metadata'
+  | 'quick-design'
   | 'collage'
   | 'message-risk'
   | 'flashcards'

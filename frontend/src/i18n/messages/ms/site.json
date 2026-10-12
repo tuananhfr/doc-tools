@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "Diproses di pelayan",
-    "device": "Pada peranti"
+    "device": "Pada peranti",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "Digunakan baru-baru ini"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "{{count}} alat akan datang akan memerlukan carian di pelayan, dan kadnya menyatakan perkara ini dengan jelas"
+          "soon": "{{count}} alat akan datang akan memerlukan carian di pelayan, dan kadnya menyatakan perkara ini dengan jelas",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "Pada peranti",
       "model": "Pada peranti, memuat turun pengecam",
-      "server": "Memerlukan pelayan"
+      "server": "Memerlukan pelayan",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "Akan datang. Memerlukan carian data di pelayan; data yang dihantar akan dinyatakan dengan jelas sebelum dilancarkan.",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "Mengapa sesetengah alat bertanda “Diproses di pelayan”?",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "Bagaimana cara memasang Chuyện Nhỏ pada telefon?",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "Bolehkah saya menggunakan Chuyện Nhỏ tanpa Internet?",
-        "answer": "Selepas kali pertama dibuka dengan internet, pelayar menyimpan halaman dan kod alat terlebih dahulu, jadi biasanya masih boleh dibuka semula apabila sambungan tidak stabil. Bahagian berat seperti pengecaman teks atau pemprosesan video dimuat turun pada penggunaan pertama, jadi cubalah sekali semasa ada internet."
+        "answer": "Selepas kali pertama dibuka dengan internet, pelayar menyimpan halaman dan kod alat terlebih dahulu, jadi biasanya masih boleh dibuka semula apabila sambungan tidak stabil. Bahagian berat seperti pengecaman teks atau pemprosesan video dimuat turun pada penggunaan pertama, jadi cubalah sekali semasa ada internet. Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "Saya menghadapi ralat, apa yang perlu dilakukan?",
@@ -1087,5 +1094,13 @@
       "light": "Direktori alat dalam paparan cerah.",
       "dark": "Direktori alat dalam paparan gelap."
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

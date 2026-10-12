@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "ဆာဗာပေါ်တွင် လုပ်ဆောင်သည်",
-    "device": "စက်ပေါ်တွင်"
+    "device": "စက်ပေါ်တွင်",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "မကြာသေးမီက သုံးခဲ့သည်"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "မကြာမီ လာမည့် ကိရိယာ {{count}} ခုသည် ဆာဗာပေါ်တွင် ရှာဖွေရန် လိုမည်ဖြစ်ပြီး ၎င်းတို့၏ ကတ်တွင် ရှင်းရှင်းလင်းလင်း ဖော်ပြထားသည်"
+          "soon": "မကြာမီ လာမည့် ကိရိယာ {{count}} ခုသည် ဆာဗာပေါ်တွင် ရှာဖွေရန် လိုမည်ဖြစ်ပြီး ၎င်းတို့၏ ကတ်တွင် ရှင်းရှင်းလင်းလင်း ဖော်ပြထားသည်",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "စက်ပေါ်တွင်",
       "model": "စက်ပေါ်တွင်၊ မှတ်သားသည့် မော်ဒယ် ဒေါင်းလုဒ်သည်",
-      "server": "ဆာဗာ လိုသည်"
+      "server": "ဆာဗာ လိုသည်",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "မကြာမီ လာမည်။ ဆာဗာပေါ်တွင် ဒေတာ ရှာဖွေရန် လိုသည်၊ ထုတ်ဝေမီ ပို့မည့်ဒေတာကို ရှင်းရှင်းလင်းလင်း ဖော်ပြမည်။",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "အချို့ကိရိယာများတွင် “ဆာဗာပေါ်တွင် လုပ်ဆောင်သည်” ဟု အဘယ်ကြောင့် ဖော်ပြထားသနည်း။",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "Chuyện Nhỏ ကို ဖုန်းပေါ်တွင် မည်သို့ ထည့်သွင်းရမည်နည်း။",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "အင်တာနက် မရှိဘဲ Chuyện Nhỏ ကို သုံးနိုင်ပါသလား။",
-        "answer": "အင်တာနက်ဖြင့် ပထမဆုံး ဖွင့်ပြီးနောက် ဘရောက်ဇာက စာမျက်နှာနှင့် ကိရိယာ၏ ကုဒ်ကို သိမ်းထားသဖြင့် အင်တာနက် မတည်ငြိမ်ချိန်တွင်လည်း များသောအားဖြင့် ပြန်ဖွင့်နိုင်သည်။ စာသားမှတ်သားခြင်း သို့မဟုတ် ဗီဒီယို လုပ်ဆောင်ခြင်း ကဲ့သို့ လေးလံသော အပိုင်းများကို ပထမအကြိမ် သုံးချိန်တွင် ဒေါင်းလုဒ်သဖြင့် အင်တာနက်ရှိစဉ် တစ်ကြိမ် စမ်းသုံးထားပါ။"
+        "answer": "အင်တာနက်ဖြင့် ပထမဆုံး ဖွင့်ပြီးနောက် ဘရောက်ဇာက စာမျက်နှာနှင့် ကိရိယာ၏ ကုဒ်ကို သိမ်းထားသဖြင့် အင်တာနက် မတည်ငြိမ်ချိန်တွင်လည်း များသောအားဖြင့် ပြန်ဖွင့်နိုင်သည်။ စာသားမှတ်သားခြင်း သို့မဟုတ် ဗီဒီယို လုပ်ဆောင်ခြင်း ကဲ့သို့ လေးလံသော အပိုင်းများကို ပထမအကြိမ် သုံးချိန်တွင် ဒေါင်းလုဒ်သဖြင့် အင်တာနက်ရှိစဉ် တစ်ကြိမ် စမ်းသုံးထားပါ။ Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "အမှား ကြုံရလျှင် ဘာလုပ်ရမလဲ။",
@@ -1087,5 +1094,13 @@
       "light": "အလင်းပုံစံရှိ ကိရိယာစာရင်း။",
       "dark": "အမှောင်ပုံစံရှိ ကိရိယာစာရင်း။"
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

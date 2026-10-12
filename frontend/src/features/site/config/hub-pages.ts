@@ -26,10 +26,10 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     ],
     subgroups: [
       { id: 'khai-toan', toolIds: ['house-estimate', 'structure-calc'] },
-      { id: 'quy-hoach', toolIds: ['planning-lookup', 'house-orientation'] },
-      { id: 'gia-vat-lieu', toolIds: ['construction-price', 'supplier-lookup'] },
-      { id: 'phap-ly', toolIds: ['construction-law', 'construction-standards'] },
-      { id: 'ban-ve', toolIds: ['measure-image', 'dossier-check', 'drawing-convert', 'drawing-area'] },
+      { id: 'quy-hoach', toolIds: ['house-orientation'] },
+      { id: 'gia-vat-lieu', toolIds: [] },
+      { id: 'phap-ly', toolIds: [] },
+      { id: 'ban-ve', toolIds: ['measure-image', 'drawing-convert', 'drawing-area'] },
       { id: 'hien-truong', toolIds: ['site-diary'] },
     ],
     aside: [
@@ -60,7 +60,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
       { id: 'devices', icon: 'phone' },
     ],
     subgroups: [
-      { id: 'lich', toolIds: ['family-calendar', 'lunar-calendar', 'family-reminders', 'special-days'] },
+      { id: 'lich', toolIds: ['lunar-calendar', 'family-reminders', 'special-days'] },
       { id: 'chi-tieu', toolIds: ['electricity', 'group-split', 'family-budget'] },
       { id: 'nha-cua', toolIds: ['house-orientation', 'house-chores'] },
       { id: 'hoc-tap', toolIds: ['flashcards', 'study'] },
@@ -68,7 +68,6 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
       { id: 'ket-noi', toolIds: ['family-share', 'family-album'] },
     ],
     aside: [
-      { kind: 'spotlight', id: 'familyCalendar', toolId: 'family-calendar', points: ['schedules', 'contacts', 'backup', 'ics'] },
       { kind: 'spotlight', id: 'houseOrientation', toolId: 'house-orientation', points: ['direction', 'compass', 'lookup'] },
       { kind: 'support' },
     ],

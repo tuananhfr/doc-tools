@@ -21,11 +21,13 @@ import LegalPage from '@/features/site/pages/LegalPage'
 import { AccountPage, LoginPage, MyContributionsPage } from '@/features/account'
 import CommunityPage from '@/features/community/pages/CommunityPage'
 import { ToolFeedback } from '@/features/community/components/ToolFeedback'
+import {WORKSPACE_REGISTRY} from './workspace-registry'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
 import { ToolFavourite } from './ToolFavourite'
 import { ADMIN_ROOT } from '@/features/admin'
 
+const FamilyCalendarProductPage = dynamic(() => import('@/features/site/pages/FamilyCalendarProductPage'), { ssr: false, loading: ToolRouteFallback })
 const ToolRoutePage = dynamic(() => import('@/features/tools/hub/pages/ToolRoutePage'), { ssr: false, loading: ToolRouteFallback })
 // Client-only: the page is about the signed-in member's AI key, nothing to prerender.
 const AiSettingsPage = dynamic(() => import('@/features/ai/pages/AiSettingsPage'), { ssr: false, loading: ToolRouteFallback })
@@ -36,6 +38,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   { path: 'de-xuat-tien-ich', element: <CommunityPage key="idea" mode="idea" /> },
   { path: 'gop-y-quy-dinh', element: <CommunityPage key="feedback" mode="feedback" /> },
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
+  { path: 'lich-gia-dinh', element: <FamilyCalendarProductPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <CategoryHubPage key="xay-dung" slug="xay-dung" /> },
   { path: 'gia-dinh', element: <CategoryHubPage key="gia-dinh" slug="gia-dinh" /> },
@@ -54,7 +57,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   { path: 'tai-khoan/ai', element: <AiSettingsPage /> },
   { path: 'tai-khoan/da-luu', element: <SavedPage /> },
   { path: 'de-xuat-cua-toi', element: <MyContributionsPage /> },
-  { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} headerAction={ToolFavourite} feedbackAction={ToolFeedback} /> },
+  { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} workspaceVersions={Object.fromEntries(Object.entries(WORKSPACE_REGISTRY).map(([id,entry])=>[id,entry.version]))} headerAction={ToolFavourite} feedbackAction={ToolFeedback} /> },
 ] }]
 
 export function ToolsRouter({ locale }: { locale: Locale }) {

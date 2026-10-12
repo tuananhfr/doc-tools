@@ -146,7 +146,8 @@
           "ip": "អាសយដ្ឋាន IP៖ ត្រូវបាន hash មួយទិសដោយប្រើសោសម្ងាត់ សម្រាប់តែកំណត់ការផ្ញើដោយស្វ័យប្រវត្តិប៉ុណ្ណោះ ហើយលុបដោយស្វ័យប្រវត្តិក្រោយប្រហែល 1 ម៉ោង។",
           "feedback": "ខ្លឹមសារមតិ និងសំណើ៖ តែពេលអ្នកគូសធីកយល់ព្រម ហើយចុច «ផ្ញើ» ប៉ុណ្ណោះ ដើម្បីពិនិត្យ និងកែលម្អឧបករណ៍។ លេខបង្កាន់ដៃត្រូវបានរក្សាទុកតែជាទម្រង់ hash ប៉ុណ្ណោះ។",
           "logs": "កំណត់ហេតុបច្ចេកទេសរបស់ម៉ាស៊ីនមេគេហទំព័រ (អាសយដ្ឋាន IP ប្រភេទកម្មវិធីរុករក ទំព័រដែលបានបើក)៖ ប្រើតែសម្រាប់ប្រតិបត្តិការ និងសន្តិសុខប្រព័ន្ធ រក្សាទុកក្នុងរយៈពេលខ្លីដែលចាំបាច់។",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

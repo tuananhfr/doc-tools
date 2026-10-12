@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { intlLocale } from '@/i18n/intl'
-import type { FormKind } from '../config/form-templates'
+import { FORM_TEMPLATES, type FormKind } from '../config/form-templates'
 import { receiptAmount, receiptWords } from '../utils/receipt'
 import { parseFormDate } from '../utils/form-dates'
 import { formatNumber } from '@/utils/format'
 
 interface Props { kind: FormKind; values: Record<string, string> }
 const value = (values: Record<string, string>, key: string) => values[key]?.trim() || '…………'
-const SIGNATURES = { leave: ['approver', 'applicant'], authorization: ['attorney', 'principal'], handover: ['receiver', 'giver'], receipt: ['receiver', 'sender'] } as const
+const SIGNATURES = { leave: ['approver', 'applicant'], authorization: ['attorney', 'principal'], handover: ['receiver', 'giver'], receipt: ['receiver', 'sender'], agreement: ['partyA', 'partyB'], employment: ['employer', 'employee'] } as const
 const cell = { border: '1px solid #555', padding: 6 }
 
 // Giấy tờ in ra theo ngôn ngữ trang; chỉ phần người dùng gõ giữ nguyên.
@@ -40,6 +40,8 @@ export function FormPreview({ kind, values }: Props) {
       <p>{t('formTemplates.print.receipt.words', { value: receiptWords(values.amount ?? '') ?? '…………' })}</p>
       <p>{t('formTemplates.print.receipt.purpose', { value: v('purpose') })}</p>
       <p>{t('formTemplates.print.receipt.confirmation')}</p>
+    </> : kind === 'agreement' || kind === 'employment' ? <>
+      {FORM_TEMPLATES[kind].fields.filter(field => field.key !== 'place').map(field => <p key={field.key}><strong>{t(`formTemplates.fields.${field.label}`)}:</strong><br /><span style={{ whiteSpace: 'pre-line' }}>{v(field.key)}</span></p>)}
     </> : <>
       <p>{t('formTemplates.print.handover.intro')}</p><p><strong>{t('formTemplates.print.handover.giver')}</strong> {v('giver')}<br /><strong>{t('formTemplates.print.handover.receiver')}</strong> {v('receiver')}</p>
       <p>{t('formTemplates.print.handover.itemsIntro')}</p>

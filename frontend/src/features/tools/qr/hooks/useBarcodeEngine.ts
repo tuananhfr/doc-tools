@@ -14,9 +14,10 @@ function engineOnce(): Promise<BarcodeEngine> {
 
 export type EngineState = { status: 'loading' } | { status: 'ready'; engine: BarcodeEngine } | { status: 'failed' }
 
-export function useBarcodeEngine(): EngineState {
+export function useBarcodeEngine(enabled = true): EngineState {
   const [state, setState] = useState<EngineState>({ status: 'loading' })
   useEffect(() => {
+    if(!enabled)return
     let alive = true
     engineOnce().then(
       (engine) => alive && setState({ status: 'ready', engine }),
@@ -25,6 +26,6 @@ export function useBarcodeEngine(): EngineState {
     return () => {
       alive = false
     }
-  }, [])
+  }, [enabled])
   return state
 }

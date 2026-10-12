@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "สร้าง QR Code",
       "description": "สร้าง QR code จากข้อความหรือลิงก์",
-      "synonyms": "คิวอาร์โค้ด, qr code, qr ลิงก์"
+      "synonyms": "คิวอาร์โค้ด, qr code, qr ลิงก์",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "สร้างบาร์โค้ด",
@@ -430,8 +431,10 @@
       "description": "ยกย่องผู้ร่วมส่งข้อมูลที่ได้รับการยืนยันแล้ว"
     },
     "code-manager": {
-      "name": "จัดการรหัส",
-      "description": "สร้างรายการ QR code และบาร์โค้ด แล้วส่งออกไฟล์"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

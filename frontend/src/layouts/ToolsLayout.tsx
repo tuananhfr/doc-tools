@@ -4,11 +4,12 @@ import { Loading } from '@/components/ui'
 import { PUBLIC_TOOLS_BRANCH, ToolsBranchOutlet } from '@/features/tools/hub'
 import { SiteHeader } from '@/features/site/components/SiteHeader'
 import { SiteFooter } from '@/features/site/components/SiteFooter'
+import { PRODUCT_REGISTRY } from '@/features/site/config/product-registry'
 
 export function ToolsLayout() {
   const { tool: slug } = useParams()
   const { pathname, hash, state } = useLocation()
-  const isTool = slug !== undefined
+  const isTool = slug !== undefined || PRODUCT_REGISTRY.some(product => pathname === '/' + product.slug)
   useEffect(() => {
     if (isTool) return
     const target = hash ? document.getElementById(hash.slice(1)) : null

@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "បោះពុម្ព / រក្សាទុកជា PDF"
+    "print": "បោះពុម្ព / រក្សាទុកជា PDF",
+    "downloadPdf": "Download PDF",
+    "downloadDocx": "Download DOCX",
+    "exporting": "Preparing file…",
+    "exportFailed": "Export failed. Your input is retained. Check the photo, font connection or document length and retry."
   },
   "cv": {
     "title": "សរសេរ CV",
@@ -10,7 +14,10 @@
     "template": "គំរូ CV",
     "templates": {
       "classic": "បុរាណ",
-      "modern": "ទំនើប"
+      "modern": "ទំនើប",
+      "compact": "Compact",
+      "executive": "Executive",
+      "sidebar": "Two columns"
     },
     "fields": {
       "name": "គោត្តនាម និងនាម",
@@ -47,15 +54,19 @@
       "opened": "បានបើកសេចក្តីព្រាង។",
       "unreadable": "មិនអាចអានសេចក្តីព្រាងបានទេ។",
       "cleared": "បានលុបសេចក្តីព្រាងលើឧបករណ៍។",
-      "restored": "Reopened the draft you were working on."
+      "restored": "Reopened the draft you were working on.",
+      "memoryOnly": "Device saving is off; your current CV remains in this session."
     },
-    "note": "សូមពិនិត្យព័ត៌មានឱ្យបានច្បាស់មុនពេលផ្ញើ។ សេចក្តីព្រាងត្រូវបានរក្សាទុកលើឧបករណ៍តែពេលអ្នកចុច «រក្សាទុក» ប៉ុណ្ណោះ រូបថតមិនត្រូវបានរក្សាទុកទេ។",
+    "note": "Check the details before sending. Automatic saving requires Remember this draft on this device; the photo is not saved.",
     "print": {
       "kicker": "ប្រវត្តិរូបសង្ខេប",
       "summary": "ការណែនាំខ្លួន"
     },
     "autoSave": "Saved automatically on this device (the photo is not saved).",
-    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
+    "remember": "Remember this draft on this device",
+    "availableDraft": "A previously saved draft is available. Open it to continue.",
+    "memoryOnly": "Details stay in this open session; the photo is not saved."
   },
   "formTemplates": {
     "title": "សរសេរគំរូឯកសាររដ្ឋបាល",
@@ -64,7 +75,9 @@
       "leave": "ពាក្យសុំច្បាប់ឈប់សម្រាក",
       "authorization": "លិខិតប្រគល់សិទ្ធិ",
       "handover": "កំណត់ហេតុប្រគល់ទទួល",
-      "receipt": "Money receipt"
+      "receipt": "Money receipt",
+      "agreement": "Agreement",
+      "employment": "Employment contract"
     },
     "fields": {
       "recipient": "សូមគោរពជូន",
@@ -91,7 +104,27 @@
       "sender": "Sender",
       "amount": "Amount (VND)",
       "receivedDate": "Date received",
-      "purpose": "Payment purpose"
+      "purpose": "Payment purpose",
+      "partyA": "Party A and representative",
+      "partyB": "Party B and representative",
+      "subject": "Subject",
+      "terms": "Terms agreed by the parties",
+      "effectiveDate": "Effective date",
+      "company": "Employer name and address",
+      "representative": "Signing representative and position",
+      "employee": "Employee name",
+      "employeeDetails": "Birth date, gender, residence and identity details",
+      "work": "Job and position",
+      "workplace": "Work location",
+      "duration": "Contract type, starting date and duration",
+      "salary": "Agreed salary",
+      "paySchedule": "Payment method, schedule, allowances and additions",
+      "salaryReview": "Salary review",
+      "hours": "Working and rest time",
+      "safety": "Protective equipment",
+      "insurance": "Social, health and unemployment insurance",
+      "training": "Training and skills development",
+      "additionalTerms": "Additional terms agreed by the parties"
     },
     "authorizationWarning": "ការងារខ្លះតម្រូវឱ្យមានការបញ្ជាក់ពីសារការី ឬការបញ្ជាក់ច្បាប់ចម្លង។ សូមពិនិត្យជាមួយកន្លែងទទួលមុនពេលប្រើ។",
     "defaultWarning": "គំរូសម្រាប់យោង សូមពិនិត្យតម្រូវការរបស់កន្លែងទទួលមុនពេលដាក់ស្នើ។",
@@ -138,7 +171,11 @@
         "principal": "អ្នកផ្ទេរសិទ្ធិ",
         "receiver": "ភាគីទទួល",
         "giver": "ភាគីប្រគល់",
-        "sender": "Sender"
+        "sender": "Sender",
+        "partyA": "Party A",
+        "partyB": "Party B",
+        "employer": "Employer",
+        "employee": "Employee"
       },
       "signHint": "(ហត្ថលេខា និងឈ្មោះពេញ)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
       }
     },
-    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "confirmChangeKind": "Switch document type? Your current draft stays in this session so you can return.",
     "datePlaceholder": "e.g. 09/10/2026",
     "dateErrors": {
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",

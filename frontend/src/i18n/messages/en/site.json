@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -144,7 +148,8 @@
   },
   "processing": {
     "server": "Processed on a server",
-    "device": "On your device"
+    "device": "On your device",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "Recently used"
@@ -664,7 +669,8 @@
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} upcoming tool will need server lookups; its card says so clearly",
-          "soon_other": "{{count}} upcoming tools will need server lookups; their cards say so clearly"
+          "soon_other": "{{count}} upcoming tools will need server lookups; their cards say so clearly",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -691,7 +697,8 @@
     "modes": {
       "device": "On your device",
       "model": "On your device, downloads a recognition model",
-      "server": "Needs a server"
+      "server": "Needs a server",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "Coming soon. Needs to look up data on a server; what's sent will be stated clearly before launch.",
@@ -941,7 +948,7 @@
       },
       "may-chu": {
         "question": "Why do some tools say “Processed on a server”?",
-        "answer": "PDF and image tools process files on your device. Numerology and card draws need an internet connection for server processing; they do not send your files. Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "PDF and image tools process files on your device. Numerology and card draws need an internet connection for server processing; they do not send your files. Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "How do I install Chuyện Nhỏ on my phone?",
@@ -949,7 +956,7 @@
       },
       "offline": {
         "question": "Can I use Chuyện Nhỏ without an internet connection?",
-        "answer": "After the first visit with a connection, your browser caches the site and the tools' code, so they usually still open when your connection is spotty. Heavy parts such as text recognition or video processing are downloaded on first use, so try them once while you're online."
+        "answer": "After the first visit with a connection, your browser caches the site and the tools' code, so they usually still open when your connection is spotty. Heavy parts such as text recognition or video processing are downloaded on first use, so try them once while you're online. Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "I ran into an error. What should I do?",
@@ -1098,5 +1105,13 @@
       "light": "Tool directory in light mode.",
       "dark": "Tool directory in dark mode."
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

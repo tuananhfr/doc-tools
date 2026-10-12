@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "產生 QR Code",
       "description": "以文字或連結產生 QR 碼",
-      "synonyms": "qr碼,qr code,連結qr"
+      "synonyms": "qr碼,qr code,連結qr",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "產生條碼",
@@ -430,8 +431,10 @@
       "description": "表揚提供已驗證資料的貢獻者"
     },
     "code-manager": {
-      "name": "條碼管理",
-      "description": "建立 QR 碼、條碼清單並匯出檔案"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

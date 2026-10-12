@@ -14,6 +14,7 @@ import { HubHero } from '../components/HubHero'
 import { HubJourney } from '../components/HubJourney'
 import { HubToolCard } from '../components/HubToolCard'
 import { ToolSearch } from '../components/ToolSearch'
+import { FamilyProductLink } from '../components/FamilyProductLink'
 
 export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
   const { t } = useTranslation('site')
@@ -33,6 +34,7 @@ export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
       <HubHero page={page} text={text} />
       <div className="cn-container cn-hub-body">
         <section className="cn-hub-main" aria-label={t('hub.listLabel', { label: text.label.toLowerCase() })}>
+          {slug === 'gia-dinh' ? <FamilyProductLink /> : null}
           <ToolSearch qualityTracking id={`tim-${slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultsId)?.focus()} />
           <div className="cn-tool-filters cn-hub-filters" role="group" aria-label={t('hub.subgroupFilter')}>
             {chips.map((chip) => (

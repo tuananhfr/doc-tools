@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "Penjana kod QR",
       "description": "Cipta kod QR daripada teks atau pautan",
-      "synonyms": "kod qr, qr pautan, qr code, penjana qr"
+      "synonyms": "kod qr, qr pautan, qr code, penjana qr",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "Penjana kod bar",
@@ -430,8 +431,10 @@
       "description": "Penghargaan kepada penyumbang data yang telah disahkan"
     },
     "code-manager": {
-      "name": "Pengurus kod",
-      "description": "Cipta senarai kod QR dan kod bar serta eksport fail"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

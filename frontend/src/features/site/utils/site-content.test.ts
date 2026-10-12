@@ -121,7 +121,7 @@ describe('processingRows', () => {
   it('discloses the live entertainment tools as server-side', () => {
     const rows = processingRows(VI_TOOL_CATALOG, new Map())
     const liveServer = rows.filter((row) => row.mode === 'server' && row.tool.status === 'ready')
-    expect(liveServer.map((row) => row.tool.id).sort()).toEqual(['numerology', 'playing-cards', 'tarot'])
+    expect(liveServer.map((row) => row.tool.id).sort()).toEqual(['code-manager', 'numerology', 'playing-cards', 'tarot'])
     expect(liveServer.every((row) => Boolean(row.note))).toBe(true)
   })
 })

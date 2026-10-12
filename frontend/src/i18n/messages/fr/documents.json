@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "Imprimer / Enregistrer en PDF"
+    "print": "Imprimer / Enregistrer en PDF",
+    "downloadPdf": "Download PDF",
+    "downloadDocx": "Download DOCX",
+    "exporting": "Preparing file…",
+    "exportFailed": "Export failed. Your input is retained. Check the photo, font connection or document length and retry."
   },
   "cv": {
     "title": "Créer un CV",
@@ -10,7 +14,10 @@
     "template": "Modèle de CV",
     "templates": {
       "classic": "Classique",
-      "modern": "Moderne"
+      "modern": "Moderne",
+      "compact": "Compact",
+      "executive": "Executive",
+      "sidebar": "Two columns"
     },
     "fields": {
       "name": "Nom et prénom",
@@ -47,15 +54,19 @@
       "opened": "Brouillon ouvert.",
       "unreadable": "Le brouillon est illisible.",
       "cleared": "Brouillon supprimé de cet appareil.",
-      "restored": "Reopened the draft you were working on."
+      "restored": "Reopened the draft you were working on.",
+      "memoryOnly": "Device saving is off; your current CV remains in this session."
     },
-    "note": "Vérifiez bien les informations avant l'envoi. Le brouillon n'est enregistré sur votre appareil que lorsque vous appuyez sur Enregistrer ; la photo n'est pas enregistrée.",
+    "note": "Check the details before sending. Automatic saving requires Remember this draft on this device; the photo is not saved.",
     "print": {
       "kicker": "Curriculum vitae",
       "summary": "Profil"
     },
     "autoSave": "Saved automatically on this device (the photo is not saved).",
-    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
+    "remember": "Remember this draft on this device",
+    "availableDraft": "A previously saved draft is available. Open it to continue.",
+    "memoryOnly": "Details stay in this open session; the photo is not saved."
   },
   "formTemplates": {
     "title": "Modèles de documents",
@@ -64,7 +75,9 @@
       "leave": "Demande de congé",
       "authorization": "Procuration",
       "handover": "Procès-verbal de passation",
-      "receipt": "Money receipt"
+      "receipt": "Money receipt",
+      "agreement": "Agreement",
+      "employment": "Employment contract"
     },
     "fields": {
       "recipient": "À l'attention de",
@@ -91,7 +104,27 @@
       "sender": "Sender",
       "amount": "Amount (VND)",
       "receivedDate": "Date received",
-      "purpose": "Payment purpose"
+      "purpose": "Payment purpose",
+      "partyA": "Party A and representative",
+      "partyB": "Party B and representative",
+      "subject": "Subject",
+      "terms": "Terms agreed by the parties",
+      "effectiveDate": "Effective date",
+      "company": "Employer name and address",
+      "representative": "Signing representative and position",
+      "employee": "Employee name",
+      "employeeDetails": "Birth date, gender, residence and identity details",
+      "work": "Job and position",
+      "workplace": "Work location",
+      "duration": "Contract type, starting date and duration",
+      "salary": "Agreed salary",
+      "paySchedule": "Payment method, schedule, allowances and additions",
+      "salaryReview": "Salary review",
+      "hours": "Working and rest time",
+      "safety": "Protective equipment",
+      "insurance": "Social, health and unemployment insurance",
+      "training": "Training and skills development",
+      "additionalTerms": "Additional terms agreed by the parties"
     },
     "authorizationWarning": "Certaines démarches exigent une légalisation ou une certification. Renseignez-vous auprès de l'organisme destinataire avant utilisation.",
     "defaultWarning": "Modèle de référence ; vérifiez les exigences de l'organisme destinataire avant de le déposer.",
@@ -138,7 +171,11 @@
         "principal": "Mandant",
         "receiver": "Partie réceptrice",
         "giver": "Partie remettante",
-        "sender": "Sender"
+        "sender": "Sender",
+        "partyA": "Party A",
+        "partyB": "Party B",
+        "employer": "Employer",
+        "employee": "Employee"
       },
       "signHint": "(Signature et nom complet)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
       }
     },
-    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "confirmChangeKind": "Switch document type? Your current draft stays in this session so you can return.",
     "datePlaceholder": "e.g. 09/10/2026",
     "dateErrors": {
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",

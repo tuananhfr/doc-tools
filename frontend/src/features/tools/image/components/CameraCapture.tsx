@@ -13,6 +13,7 @@ import { CropBox } from './CropBox'
 
 interface CameraCaptureProps {
   show: boolean
+  maxShots?: number
   onClose: () => void
   /** Ảnh đã chụp (và đã cắt nếu có), theo đúng thứ tự chụp. */
   onDone: (files: File[]) => void
@@ -38,15 +39,16 @@ const pad = (value: number) => String(value).padStart(2, '0')
  * Bấm vào ảnh thu nhỏ để cắt tay hoặc bỏ ảnh đó. Camera chỉ bật trong lúc cửa
  * sổ này mở.
  */
-export function CameraCapture({ show, onClose, onDone }: CameraCaptureProps) {
+export function CameraCapture({ show, onClose, onDone, maxShots = MAX_SHOTS }: CameraCaptureProps) {
   return (
     <Modal show={show} onHide={onClose} size="lg" fullscreen="sm-down" centered backdrop="static" keyboard={false} className="erp-camera" aria-labelledby="erp-camera-title">
-      <CameraSession onClose={onClose} onDone={onDone} />
+      <CameraSession onClose={onClose} onDone={onDone} maxShots={maxShots} />
     </Modal>
   )
 }
 
-function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
+function CameraSession({ onClose, onDone, maxShots = MAX_SHOTS }: Omit<CameraCaptureProps, 'show'>) {
+  const shotLimit=Math.min(MAX_SHOTS,Math.max(1,Math.floor(maxShots)))
   const { t } = useTranslation('image')
   const toast = useToast()
   const { video, state: cameraState, canRetry, torch, toggleTorch, retry, capture } = useCamera()
@@ -62,7 +64,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
 
   const review = shots.find((shot) => shot.id === reviewing) ?? null
   const live = cameraState.phase === 'live'
-  const full = shots.length >= MAX_SHOTS
+  const full = shots.length >= shotLimit
 
   const shoot = async () => {
     setBusy('shooting')
@@ -173,7 +175,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
               ))}
             </ol>
 
-            <button type="button" className="erp-camera__shutter" aria-label={t('camera.shutter')} title={full ? t('camera.full', { count: MAX_SHOTS }) : t('camera.shutter')} disabled={!live || busy !== null || full} onClick={() => void shoot()}>
+            <button type="button" className="erp-camera__shutter" aria-label={t('camera.shutter')} title={full ? t('camera.full', { count: shotLimit }) : t('camera.shutter')} disabled={!live || busy !== null || full} onClick={() => void shoot()}>
               <span className="erp-camera__shutter-core" />
             </button>
 
@@ -201,7 +203,7 @@ function CameraSession({ onClose, onDone }: Omit<CameraCaptureProps, 'show'>) {
             : shots.length === 0
               ? t('camera.none')
               : full
-                ? t('camera.fullStatus', { count: MAX_SHOTS })
+                ? t('camera.fullStatus', { count: shotLimit })
                 : t('camera.shotCount', { count: shots.length })}
         </p>
       </Modal.Body>

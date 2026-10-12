@@ -146,7 +146,8 @@
           "ip": "عنوان IP: يُجزَّأ أحاديًا (hash) بمفتاح سري، لتقييد الإرسال الآلي فقط، ويُحذف تلقائيًا بعد نحو ساعة واحدة.",
           "feedback": "محتوى الملاحظات والاقتراحات: فقط عندما تحدّد خانة الموافقة وتضغط «إرسال»، بغرض المراجعة وتحسين الأدوات. يُحفظ رقم الإيصال بصيغة مجزّأة (hash) فقط.",
           "logs": "السجلات الفنية لخادم الويب (عنوان IP، نوع المتصفح، الصفحة المفتوحة): تُستخدم فقط لتشغيل النظام وأمنه، وتُحفظ لأقصر مدة لازمة.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

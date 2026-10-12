@@ -1,8 +1,14 @@
 import { useId, useState } from 'react'
-import { Form, InputGroup } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { FlowChoice, parseDecimal, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
 import { CropStage } from '../components/CropStage'
+import { CameraCapture } from '../components/CameraCapture'
+import MixedPhotoPage from './MixedPhotoPage'
+import { PortraitAppearanceControls } from '../components/PortraitAppearanceControls'
+import { ORIGINAL_PORTRAIT, portraitIsOriginal, styledPortrait } from '../services/portrait-appearance'
+import { usePortraitPreviews } from '../hooks/usePortraitPreviews'
+import { fullRect } from '../utils/crop-rect'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { PhotoSheetPreview } from '../components/PhotoSheetPreview'
 import { GAP_LIMIT, PAPER_SIZES, PHOTO_SIZES, SHEET_MARGIN } from '../config/photo-presets'
@@ -21,6 +27,9 @@ export default function IdPhotoPage() {
   const ids = useId()
   const images = useImageFiles({ multiple: false })
   const run = useFlowRun()
+  const [mixed, setMixed] = useState(false)
+  const [camera, setCamera] = useState(false)
+  const [appearance, setAppearance] = useState(ORIGINAL_PORTRAIT)
   const [photoId, setPhotoId] = useState('3x4')
   const [paperId, setPaperId] = useState('a4')
   const [output, setOutput] = useState<PhotoOutput>('pdf')
@@ -34,6 +43,7 @@ export default function IdPhotoPage() {
   const item = images.items[0] ?? null
   const crop = usePhotoCrop(item, photo.width / photo.height)
   const ready = item !== null && crop.rect !== null
+  const portrait = usePortraitPreviews(item && crop.rect ? [{ id: item.id, source: item.file, rect: crop.rect, photo, appearance }] : [])
 
   const gap = parseDecimal(gapText)
   const gapOk = gap !== null && gap >= GAP_LIMIT.min && gap <= GAP_LIMIT.max
@@ -60,23 +70,35 @@ export default function IdPhotoPage() {
   const capacityBlocked = sheet && gapOk && copiesOk && layout.capacity > 0 && overCapacity
 
   return (
+    <>
+    <div className="cn-mixed-photo-toolbar"><Button variant="outline-secondary" onClick={() => setMixed(true)}>{t('mixedPhoto.open')}</Button></div>
+    <MixedPhotoPage visible={mixed} initialFiles={images.items.map(image => image.file)} onBack={() => setMixed(false)} />
+    <div hidden={mixed}>
     <ImageToolShell
       mobilePreview
       images={images}
       run={run}
       multiple={false}
+      pickerExtra={<Button variant="outline-secondary" onClick={() => setCamera(true)}>{t('mixedPhoto.camera')}</Button>}
       pickerTitle={t('idPhoto.pickerTitle')}
       stage={
         ready && crop.rect ? (
-          <CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={run.state.phase === 'running'} onRectChange={crop.setRect} />
+          <div><CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={run.state.phase === 'running'} onRectChange={crop.setRect} />{portrait.previews[item.id] ? <figure className="cn-portrait-preview"><img src={portrait.previews[item.id]} alt={t('portrait.preview')} /><figcaption>{t('portrait.preview')}</figcaption></figure> : null}</div>
         ) : undefined
       }
       runLabel={output === 'single' ? t('idPhoto.runSingle') : t('idPhoto.runSheet', { count: layout.cells.length })}
       runIcon="person-badge"
-      blocked={blocked}
+      blocked={portrait.failed ? t('portrait.failed') : blocked}
       task={() => {
         if (!ready || !crop.rect) throw new Error(t('shared.noImageSelected'))
-        return idPhotoTask(item, crop.rect, { output, photo, layout, guides, paperLabel })
+        if (portraitIsOriginal(appearance)) return idPhotoTask(item, crop.rect, { output, photo, layout, guides, paperLabel })
+        const selected = item, rect = crop.rect
+        return async step => {
+          const edited = await styledPortrait(selected.file, rect, photo, appearance)
+          step.signal.throwIfAborted()
+          const file = new File([edited.blob], selected.name, { type: 'image/jpeg' })
+          return idPhotoTask({ ...selected, ...edited.size, file, size: file.size, format: 'jpeg' }, fullRect(edited.size), { output, photo, layout, guides, paperLabel })(step)
+        }
       }}
       options={
         ready ? (
@@ -100,6 +122,7 @@ export default function IdPhotoPage() {
               ) : null}
             </div>
 
+            <PortraitAppearanceControls value={appearance} onChange={patch => setAppearance(current => ({ ...current, ...patch }))} />
             <FlowChoice legend={t('idPhoto.outputLegend')} value={output} options={outputs} onChange={setOutput} />
 
             {sheet ? (
@@ -151,5 +174,8 @@ export default function IdPhotoPage() {
         ) : undefined
       }
     />
+    </div>
+    {camera ? <CameraCapture show maxShots={1} onClose={() => setCamera(false)} onDone={files => { setCamera(false); void images.addFiles(files) }} /> : null}
+    </>
   )
 }

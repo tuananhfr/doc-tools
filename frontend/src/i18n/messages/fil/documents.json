@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "I-print / I-save bilang PDF"
+    "print": "I-print / I-save bilang PDF",
+    "downloadPdf": "Download PDF",
+    "downloadDocx": "Download DOCX",
+    "exporting": "Preparing file…",
+    "exportFailed": "Export failed. Your input is retained. Check the photo, font connection or document length and retry."
   },
   "cv": {
     "title": "Gumawa ng CV",
@@ -10,7 +14,10 @@
     "template": "Template ng CV",
     "templates": {
       "classic": "Klasiko",
-      "modern": "Moderno"
+      "modern": "Moderno",
+      "compact": "Compact",
+      "executive": "Executive",
+      "sidebar": "Two columns"
     },
     "fields": {
       "name": "Buong pangalan",
@@ -47,15 +54,19 @@
       "opened": "Nabuksan ang draft.",
       "unreadable": "Hindi mabasa ang draft.",
       "cleared": "Nabura ang draft sa device na ito.",
-      "restored": "Reopened the draft you were working on."
+      "restored": "Reopened the draft you were working on.",
+      "memoryOnly": "Device saving is off; your current CV remains in this session."
     },
-    "note": "Suriing mabuti ang mga detalye bago ipadala. Sa device mo lang sine-save ang draft kapag pinindot mo ang I-save; hindi sine-save ang larawan.",
+    "note": "Check the details before sending. Automatic saving requires Remember this draft on this device; the photo is not saved.",
     "print": {
       "kicker": "Curriculum vitae",
       "summary": "Profile"
     },
     "autoSave": "Saved automatically on this device (the photo is not saved).",
-    "confirmClear": "Clear the whole CV you are writing? This cannot be undone."
+    "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
+    "remember": "Remember this draft on this device",
+    "availableDraft": "A previously saved draft is available. Open it to continue.",
+    "memoryOnly": "Details stay in this open session; the photo is not saved."
   },
   "formTemplates": {
     "title": "Mga template ng form",
@@ -64,7 +75,9 @@
       "leave": "Aplikasyon sa leave",
       "authorization": "Sulat ng awtorisasyon",
       "handover": "Talaan ng turnover",
-      "receipt": "Money receipt"
+      "receipt": "Money receipt",
+      "agreement": "Agreement",
+      "employment": "Employment contract"
     },
     "fields": {
       "recipient": "Para kay",
@@ -91,7 +104,27 @@
       "sender": "Sender",
       "amount": "Amount (VND)",
       "receivedDate": "Date received",
-      "purpose": "Payment purpose"
+      "purpose": "Payment purpose",
+      "partyA": "Party A and representative",
+      "partyB": "Party B and representative",
+      "subject": "Subject",
+      "terms": "Terms agreed by the parties",
+      "effectiveDate": "Effective date",
+      "company": "Employer name and address",
+      "representative": "Signing representative and position",
+      "employee": "Employee name",
+      "employeeDetails": "Birth date, gender, residence and identity details",
+      "work": "Job and position",
+      "workplace": "Work location",
+      "duration": "Contract type, starting date and duration",
+      "salary": "Agreed salary",
+      "paySchedule": "Payment method, schedule, allowances and additions",
+      "salaryReview": "Salary review",
+      "hours": "Working and rest time",
+      "safety": "Protective equipment",
+      "insurance": "Social, health and unemployment insurance",
+      "training": "Training and skills development",
+      "additionalTerms": "Additional terms agreed by the parties"
     },
     "authorizationWarning": "May ilang usapin na nangangailangan ng notaryo o sertipikasyon. Alamin muna sa tatanggap na opisina bago ito gamitin.",
     "defaultWarning": "Sangguniang template; alamin ang mga kinakailangan ng tatanggap na opisina bago magsumite.",
@@ -138,7 +171,11 @@
         "principal": "Nagbibigay ng kapangyarihan",
         "receiver": "Panig na tumatanggap",
         "giver": "Panig na nagbibigay",
-        "sender": "Sender"
+        "sender": "Sender",
+        "partyA": "Party A",
+        "partyB": "Party B",
+        "employer": "Employer",
+        "employee": "Employee"
       },
       "signHint": "(Lagda at buong pangalan)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Both parties confirm payment of the amount above. Each party retains one copy."
       }
     },
-    "confirmChangeKind": "Changing the document type clears what you have entered. Continue?",
+    "confirmChangeKind": "Switch document type? Your current draft stays in this session so you can return.",
     "datePlaceholder": "e.g. 09/10/2026",
     "dateErrors": {
       "from": "The start date is not valid. Use day/month/year, e.g. 09/10/2026.",

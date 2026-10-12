@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "ដំណើរការលើម៉ាស៊ីនមេ",
-    "device": "លើឧបករណ៍"
+    "device": "លើឧបករណ៍",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "ប្រើថ្មីៗ"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "ឧបករណ៍ {{count}} ដែលនឹងមកដល់ឆាប់ៗនេះត្រូវការស្វែងរកលើម៉ាស៊ីនមេ កាតរបស់វាបញ្ជាក់ច្បាស់"
+          "soon": "ឧបករណ៍ {{count}} ដែលនឹងមកដល់ឆាប់ៗនេះត្រូវការស្វែងរកលើម៉ាស៊ីនមេ កាតរបស់វាបញ្ជាក់ច្បាស់",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "លើឧបករណ៍",
       "model": "លើឧបករណ៍ មានទាញយកម៉ូដែលស្គាល់អក្សរ",
-      "server": "ត្រូវការម៉ាស៊ីនមេ"
+      "server": "ត្រូវការម៉ាស៊ីនមេ",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "ឆាប់ៗនេះ។ ត្រូវការស្វែងរកទិន្នន័យលើម៉ាស៊ីនមេ នឹងបញ្ជាក់ច្បាស់ពីទិន្នន័យដែលផ្ញើចេញមុនពេលចេញផ្សាយ។",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "ហេតុអ្វីបានជាឧបករណ៍ខ្លះសរសេរថា “ដំណើរការលើម៉ាស៊ីនមេ”?",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "តើធ្វើដូចម្តេចដើម្បីដំឡើង Chuyện Nhỏ លើទូរសព្ទ?",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "តើខ្ញុំអាចប្រើ Chuyện Nhỏ ពេលគ្មានអ៊ីនធឺណិតបានទេ?",
-        "answer": "បន្ទាប់ពីបើកលើកដំបូងដែលមានអ៊ីនធឺណិត កម្មវិធីរុករករក្សាទុកទំព័រ និងកូដរបស់ឧបករណ៍ជាមុន ដូច្នេះជាធម្មតានៅតែអាចបើកវិញបាន ពេលអ៊ីនធឺណិតមិនស្ថិរភាព។ ផ្នែកធ្ងន់ៗដូចជាការស្គាល់អក្សរ ឬការដំណើរការវីដេអូ ត្រូវបានទាញយកនៅលើកដំបូងដែលប្រើ ដូច្នេះសូមសាកល្បងប្រើម្តងពេលមានអ៊ីនធឺណិត។"
+        "answer": "បន្ទាប់ពីបើកលើកដំបូងដែលមានអ៊ីនធឺណិត កម្មវិធីរុករករក្សាទុកទំព័រ និងកូដរបស់ឧបករណ៍ជាមុន ដូច្នេះជាធម្មតានៅតែអាចបើកវិញបាន ពេលអ៊ីនធឺណិតមិនស្ថិរភាព។ ផ្នែកធ្ងន់ៗដូចជាការស្គាល់អក្សរ ឬការដំណើរការវីដេអូ ត្រូវបានទាញយកនៅលើកដំបូងដែលប្រើ ដូច្នេះសូមសាកល្បងប្រើម្តងពេលមានអ៊ីនធឺណិត។ Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "ខ្ញុំជួបកំហុស តើត្រូវធ្វើដូចម្តេច?",
@@ -1087,5 +1094,13 @@
       "light": "បញ្ជីឧបករណ៍នៅលើផ្ទៃភ្លឺ។",
       "dark": "បញ្ជីឧបករណ៍នៅលើផ្ទៃងងឹត។"
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

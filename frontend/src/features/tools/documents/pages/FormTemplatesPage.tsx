@@ -4,6 +4,8 @@ import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { PrintPortal, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { FormPreview } from '../components/FormPreview'
+import { DocumentExportActions } from '../components/DocumentExportActions'
+import { formDocument } from '../services/form-document'
 import { FORM_TEMPLATES, type FormKind } from '../config/form-templates'
 import { leaveDateProblem } from '../utils/form-dates'
 import { receiptProblem, receiptWords } from '../utils/receipt'
@@ -20,6 +22,7 @@ export default function FormTemplatesPage() {
   const { t: tc } = useTranslation('common')
   const id = useId()
   const [kind, setKind] = useState<FormKind>('leave')
+  const [drafts, setDrafts] = useState<Partial<Record<FormKind, Record<string, string>>>>({})
   const [values, setValues] = useState<Record<string, string>>(() => initial('leave', t))
   const template = FORM_TEMPLATES[kind]
   // Đổi loại giấy tờ là dựng lại toàn bộ ô — hỏi trước nếu người dùng đã gõ gì khác giá trị mặc định.
@@ -27,13 +30,14 @@ export default function FormTemplatesPage() {
     const defaults = initial(kind, t)
     const edited = Object.entries(values).some(([key, value]) => value.trim() !== (defaults[key] ?? '').trim())
     if (edited && !window.confirm(t('formTemplates.confirmChangeKind'))) return
-    setKind(next); setValues(initial(next, t))
+    setDrafts(current => ({ ...current, [kind]: values }))
+    setKind(next); setValues(drafts[next] ?? initial(next, t))
   }
   const dateProblem = kind === 'leave' ? leaveDateProblem(values.from ?? '', values.to ?? '') : null
   const receiptError = kind === 'receipt' ? receiptProblem(values) : null
   const defaults = initial(kind, t)
   const edited = Object.entries(values).some(([key, value]) => value.trim() !== (defaults[key] ?? '').trim())
-  const print = <Button disabled={Boolean(dateProblem || receiptError)} onClick={() => window.print()}>{t('shared.print')}</Button>
+  const print = <DocumentExportActions disabled={Boolean(dateProblem || receiptError)} build={() => formDocument(kind, values, t)} />
   return <>
     <style>{`.cn-form-layout { display: grid; grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr); gap: 24px; align-items: start; } .cn-form-preview { min-width: 0; box-shadow: 0 2px 20px rgba(0,0,0,.06); } @media (max-width: 900px) { .cn-form-layout { grid-template-columns: 1fr; } } @media print { @page { size: A4; margin: 20mm; } .erp-print-portal .cn-form-print { padding: 0 !important; } }`}</style>
     <ToolBoard>

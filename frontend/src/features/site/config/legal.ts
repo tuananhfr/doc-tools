@@ -22,7 +22,7 @@ export interface LegalText {
   sections: Record<string, { heading: string; paragraphs?: Record<string, string>; items?: Record<string, string>; link?: string }>
 }
 
-export const LEGAL_UPDATED = '08/10/2026'
+export const LEGAL_UPDATED = '12/10/2026'
 
 /** Phần tài khoản / Pro / trợ lý AI là bản nháp chưa qua pháp chế; đổi thành `false` khi đã duyệt. */
 export const LEGAL_DRAFT = true
@@ -57,7 +57,7 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
     sections: [
       { id: 'chung-toi', paragraphs: ['controller'] },
       { id: 'nguyen-tac', items: ['device', 'minimal', 'anonymous', 'noTracking'] },
-      { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs', 'entertainment'] },
+      { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs', 'entertainment', 'dynamicQr'] },
       { id: 'tai-khoan', items: ['email', 'password', 'session', 'profile', 'contributions', 'plan'] },
       { id: 'pro', paragraphs: ['intro'], items: ['key', 'chat', 'memory', 'uploads', 'checks', 'saved'] },
       { id: 'tren-thiet-bi', paragraphs: ['local'], link: { to: '/xu-ly-du-lieu' } },

@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "Créer un QR code",
       "description": "Créer un QR code à partir d'un texte ou d'un lien",
-      "synonyms": "qr code, code qr, qr lien, générateur qr"
+      "synonyms": "qr code, code qr, qr lien, générateur qr",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "Créer un code-barres",
@@ -430,8 +431,10 @@
       "description": "Remercier les contributeurs dont les données ont été vérifiées"
     },
     "code-manager": {
-      "name": "Gestion des codes",
-      "description": "Créer des listes de QR codes et de codes-barres et exporter des fichiers"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

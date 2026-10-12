@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "Gumawa ng QR code",
       "description": "Gumawa ng QR code mula sa text o link",
-      "synonyms": "qr code, qr link, qr generator"
+      "synonyms": "qr code, qr link, qr generator",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "Gumawa ng barcode",
@@ -430,8 +431,10 @@
       "description": "Pagkilala sa mga nag-ambag ng beripikadong data"
     },
     "code-manager": {
-      "name": "Pamahalaan ang mga code",
-      "description": "Gumawa ng listahan ng QR code at barcode at i-export ang file"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

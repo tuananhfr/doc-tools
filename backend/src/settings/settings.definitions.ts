@@ -9,6 +9,7 @@ interface ChoiceListSetting { type: 'choices'; default: readonly string[]; choic
 export type SettingDefinition = BooleanSetting | IntegerSetting | ChoiceListSetting
 
 export const SETTINGS = {
+  'codes.guestHourly': { type: 'integer', default: 10, min: 1, max: 100, unit: 'mã/giờ', label: 'Trần tạo QR động Free', help: 'Tính theo IP đã băm trong từng giờ UTC; dùng chung giữa các instance.' },
   'auth.signupOpen': { type: 'boolean', default: true, label: 'Cho phép tạo tài khoản mới', help: 'Tắt thì email chưa có tài khoản không nhận được mã đăng nhập; tài khoản cũ vẫn đăng nhập bình thường.' },
   'contributions.guestHourly': { type: 'integer', default: 5, min: 1, max: 100, unit: 'đề xuất/giờ', label: 'Trần đề xuất của khách', help: 'Tính theo địa chỉ IP, cửa sổ trượt một giờ.' },
   'contributions.accountHourly': { type: 'integer', default: 10, min: 1, max: 200, unit: 'đề xuất/giờ', label: 'Trần đề xuất của tài khoản', help: 'Tính theo tài khoản, cửa sổ trượt một giờ.' },

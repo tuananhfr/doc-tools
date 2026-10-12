@@ -1,6 +1,10 @@
 {
   "shared": {
-    "print": "In / Lưu PDF"
+    "print": "In / Lưu PDF",
+    "downloadPdf": "Tải PDF",
+    "downloadDocx": "Tải DOCX",
+    "exporting": "Đang tạo tệp…",
+    "exportFailed": "Chưa xuất được tệp. Nội dung vẫn còn; hãy kiểm tra ảnh, kết nối tải phông hoặc giảm nội dung rồi thử lại."
   },
   "cv": {
     "title": "Soạn CV",
@@ -10,7 +14,10 @@
     "template": "Mẫu CV",
     "templates": {
       "classic": "Cổ điển",
-      "modern": "Hiện đại"
+      "modern": "Hiện đại",
+      "compact": "Gọn gàng",
+      "executive": "Trang trọng",
+      "sidebar": "Hai cột"
     },
     "fields": {
       "name": "Họ và tên",
@@ -47,15 +54,19 @@
       "opened": "Đã mở bản nháp.",
       "unreadable": "Bản nháp không đọc được.",
       "cleared": "Đã xóa bản nháp trên thiết bị.",
-      "restored": "Đã mở lại bản nháp đang soạn dở."
+      "restored": "Đã mở lại bản nháp đang soạn dở.",
+      "memoryOnly": "Đã tắt lưu trên thiết bị; CV đang soạn vẫn còn trong phiên này."
     },
-    "note": "Xem kỹ thông tin trước khi gửi. Bản nháp chỉ lưu trên thiết bị khi bạn bấm Lưu; ảnh không được lưu.",
+    "note": "Kiểm tra thông tin trước khi gửi. Chỉ tự lưu khi bạn bật Nhớ bản nháp trên thiết bị này; ảnh không được lưu.",
     "print": {
       "kicker": "Hồ sơ ứng tuyển",
       "summary": "Giới thiệu"
     },
     "autoSave": "Tự lưu trên thiết bị này (không lưu ảnh).",
-    "confirmClear": "Xóa toàn bộ CV đang soạn? Không hoàn tác được."
+    "confirmClear": "Xóa toàn bộ CV đang soạn? Không hoàn tác được.",
+    "remember": "Nhớ bản nháp trên thiết bị này",
+    "availableDraft": "Có bản nháp đã lưu trước đây. Bạn có thể mở lại để tiếp tục.",
+    "memoryOnly": "Thông tin chỉ giữ trong phiên đang mở; ảnh không được lưu."
   },
   "formTemplates": {
     "title": "Soạn mẫu giấy tờ",
@@ -64,7 +75,9 @@
       "leave": "Đơn xin nghỉ phép",
       "authorization": "Giấy ủy quyền",
       "handover": "Biên bản bàn giao",
-      "receipt": "Biên nhận tiền"
+      "receipt": "Biên nhận tiền",
+      "agreement": "Thỏa thuận",
+      "employment": "Hợp đồng lao động"
     },
     "fields": {
       "recipient": "Kính gửi",
@@ -91,7 +104,27 @@
       "sender": "Người giao tiền",
       "amount": "Số tiền (đồng)",
       "receivedDate": "Ngày nhận tiền",
-      "purpose": "Nội dung nhận tiền"
+      "purpose": "Nội dung nhận tiền",
+      "partyA": "Bên A (thông tin và người đại diện)",
+      "partyB": "Bên B (thông tin và người đại diện)",
+      "subject": "Nội dung thỏa thuận",
+      "terms": "Điều khoản do các bên thống nhất",
+      "effectiveDate": "Thời điểm có hiệu lực",
+      "company": "Tên và địa chỉ người sử dụng lao động",
+      "representative": "Người đại diện giao kết và chức danh",
+      "employee": "Họ tên người lao động",
+      "employeeDetails": "Ngày sinh, giới tính, nơi cư trú và giấy tờ định danh",
+      "work": "Công việc và chức danh",
+      "workplace": "Địa điểm làm việc",
+      "duration": "Loại hợp đồng, ngày bắt đầu và thời hạn",
+      "salary": "Mức lương do các bên thỏa thuận",
+      "paySchedule": "Hình thức, kỳ hạn trả lương, phụ cấp và khoản bổ sung",
+      "salaryReview": "Chế độ nâng bậc, nâng lương",
+      "hours": "Thời gian làm việc và nghỉ ngơi",
+      "safety": "Trang bị bảo hộ lao động",
+      "insurance": "Bảo hiểm xã hội, y tế và thất nghiệp",
+      "training": "Đào tạo và phát triển kỹ năng",
+      "additionalTerms": "Điều khoản bổ sung do các bên thống nhất"
     },
     "authorizationWarning": "Một số việc yêu cầu công chứng hoặc chứng thực. Kiểm tra với nơi tiếp nhận trước khi sử dụng.",
     "defaultWarning": "Mẫu tham khảo; hãy kiểm tra yêu cầu của nơi tiếp nhận trước khi nộp.",
@@ -138,7 +171,11 @@
         "principal": "Người ủy quyền",
         "receiver": "Bên nhận",
         "giver": "Bên giao",
-        "sender": "Người giao tiền"
+        "sender": "Người giao tiền",
+        "partyA": "Đại diện bên A",
+        "partyB": "Đại diện bên B",
+        "employer": "Người sử dụng lao động",
+        "employee": "Người lao động"
       },
       "signHint": "(Ký, ghi rõ họ tên)",
       "receipt": {
@@ -150,7 +187,7 @@
         "confirmation": "Hai bên xác nhận đã giao và nhận đủ số tiền nêu trên. Biên nhận được lập thành hai bản, mỗi bên giữ một bản."
       }
     },
-    "confirmChangeKind": "Đổi loại giấy tờ sẽ xóa nội dung bạn đã nhập. Tiếp tục?",
+    "confirmChangeKind": "Chuyển loại giấy tờ? Bản đang soạn được giữ trong phiên để bạn quay lại.",
     "datePlaceholder": "ví dụ 09/10/2026",
     "dateErrors": {
       "from": "Ngày bắt đầu chưa đúng. Viết dạng ngày/tháng/năm, ví dụ 09/10/2026.",

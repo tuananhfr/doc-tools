@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -152,7 +156,8 @@
   },
   "processing": {
     "server": "تُعالَج على الخادم",
-    "device": "على الجهاز"
+    "device": "على الجهاز",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "المستخدمة مؤخرًا"
@@ -692,7 +697,8 @@
           "soon_two": "أداتان قادمتان ستحتاجان إلى البحث على الخادم، وبطاقتاهما توضّحان ذلك",
           "soon_few": "{{count}} أدوات قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
           "soon_many": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
-          "soon_other": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك"
+          "soon_other": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -719,7 +725,8 @@
     "modes": {
       "device": "على الجهاز",
       "model": "على الجهاز، مع تنزيل نموذج تعرّف",
-      "server": "تحتاج إلى خادم"
+      "server": "تحتاج إلى خادم",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "قريبًا. تحتاج إلى البحث في بيانات على الخادم؛ وسنوضّح البيانات المُرسَلة قبل الإطلاق.",
@@ -985,7 +992,7 @@
       },
       "may-chu": {
         "question": "لماذا تحمل بعض الأدوات وسم «تُعالَج على الخادم»؟",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "كيف أثبّت Chuyện Nhỏ على الهاتف؟",
@@ -993,7 +1000,7 @@
       },
       "offline": {
         "question": "هل يمكنني استخدام Chuyện Nhỏ دون اتصال بالإنترنت؟",
-        "answer": "بعد الفتح الأول مع اتصال بالإنترنت، يحفظ المتصفح الصفحة وشفرة الأدوات، لذا يمكن عادةً فتحها مجددًا حتى مع اتصال متقطع. أما الأجزاء الثقيلة مثل التعرّف على النص أو معالجة الفيديو فتُنزَّل عند الاستخدام الأول، لذا جرّبها مرة واحدة أثناء الاتصال."
+        "answer": "بعد الفتح الأول مع اتصال بالإنترنت، يحفظ المتصفح الصفحة وشفرة الأدوات، لذا يمكن عادةً فتحها مجددًا حتى مع اتصال متقطع. أما الأجزاء الثقيلة مثل التعرّف على النص أو معالجة الفيديو فتُنزَّل عند الاستخدام الأول، لذا جرّبها مرة واحدة أثناء الاتصال. Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "واجهت خطأً، ماذا أفعل؟",
@@ -1142,5 +1149,13 @@
       "light": "دليل الأدوات في الوضع الفاتح.",
       "dark": "دليل الأدوات في الوضع الداكن."
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

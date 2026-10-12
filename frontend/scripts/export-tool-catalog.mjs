@@ -15,6 +15,7 @@ const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'))
 export async function buildToolCatalog() {
   // Both files hold data with `import type` only, so Node's type stripping can load them directly.
   const { ALL_TOOLS } = await import(pathToFileURL(path.join(root, 'src/features/tools/hub/config/tool-list.ts')).href)
+  const { isProductEntry, isExternalCapability } = await import(pathToFileURL(path.join(root, 'src/features/site/config/product-registry.ts')).href)
   const { GUIDES } = await import(pathToFileURL(path.join(root, 'src/features/site/config/guides.ts')).href)
   const messagesDir = path.join(root, 'src/i18n/messages')
   const locales = fs.readdirSync(messagesDir).filter((name) => fs.existsSync(path.join(messagesDir, name, 'catalog.json'))).sort()
@@ -23,7 +24,7 @@ export async function buildToolCatalog() {
 
   return {
     locales,
-    tools: ALL_TOOLS.map((tool) => ({
+    tools: ALL_TOOLS.filter(tool => !isProductEntry(tool) && !isExternalCapability(tool)).map((tool) => ({
       id: tool.id, slug: tool.slug, status: tool.status, noFile: Boolean(tool.noFile), categories: tool.categories,
       text: Object.fromEntries(locales.flatMap((locale) => {
         const text = catalog[locale].tools?.[tool.id]

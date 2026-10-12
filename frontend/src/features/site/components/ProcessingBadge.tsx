@@ -6,6 +6,7 @@ import { toolProcessing } from '@/features/tools/hub/utils/tool-registry'
 /** Nơi tệp được xử lý. Nhãn phải đúng với `processing` của danh mục, vì đó là lời hứa với người dùng. */
 export function ProcessingBadge({ tool }: { tool: ToolDefinition }) {
   const { t } = useTranslation('site')
+  if (toolProcessing(tool) === 'hybrid') return <span className="cn-processing cn-processing--server"><Icon name="arrows-expand" />{t('processing.hybrid')}</span>
   if (toolProcessing(tool) === 'server') {
     return <span className="cn-processing cn-processing--server"><Icon name="cloud-arrow-up" />{t('processing.server')}</span>
   }

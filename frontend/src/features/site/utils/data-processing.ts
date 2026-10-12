@@ -3,10 +3,10 @@ import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
 import { toolProcessing } from '@/features/tools/hub/utils/tool-registry'
 import { readyFirst } from './hub-tools'
 
-export type ProcessingMode = 'device' | 'model' | 'server'
+export type ProcessingMode = 'device' | 'model' | 'hybrid' | 'server'
 export type ProcessingFilter = ProcessingMode | 'all'
 
-export const PROCESSING_FILTERS: readonly ProcessingFilter[] = ['all', 'device', 'model', 'server']
+export const PROCESSING_FILTERS: readonly ProcessingFilter[] = ['all', 'device', 'model', 'hybrid', 'server']
 
 /** Ghi chú mặc định khi danh mục không có `privacyNote`; chữ ở `site:data.notes.<id>`. */
 export type ProcessingNote = 'server' | 'model' | 'noFile' | 'device'
@@ -20,7 +20,7 @@ export interface ProcessingRow {
   defaultNote: ProcessingNote
 }
 
-const MODE_OF = { browser: 'device', 'browser-model': 'model', server: 'server' } as const
+const MODE_OF = { browser: 'device', hybrid: 'hybrid', 'browser-model': 'model', server: 'server' } as const
 
 function defaultNote(tool: ToolDefinition, mode: ProcessingMode): ProcessingNote {
   if (mode === 'server' || mode === 'model') return mode

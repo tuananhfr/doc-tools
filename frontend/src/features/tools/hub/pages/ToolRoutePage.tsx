@@ -21,6 +21,7 @@ import { useToolOrigin } from '../hooks/useToolOrigin'
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
   screens: Record<ToolScreen, ComponentType>
+  workspaceVersions?: Readonly<Record<string, number>>
   /** Nút cạnh tiêu đề (yêu thích của Pro) — tầng route truyền vào, cùng lý do như `screens`. */
   headerAction?: ComponentType<{ toolSlug: string }>
   feedbackAction?: ComponentType<{ toolSlug: string; toolName: string }>
@@ -33,7 +34,7 @@ interface ToolRoutePageProps {
  * chuyển giữa hai công cụ chung một màn (ghép ↔ tách) không dựng lại màn đó —
  * tệp đang làm còn nguyên.
  */
-export default function ToolRoutePage({ screens, headerAction: HeaderAction, feedbackAction: FeedbackAction }: ToolRoutePageProps) {
+export default function ToolRoutePage({ screens, workspaceVersions, headerAction: HeaderAction, feedbackAction: FeedbackAction }: ToolRoutePageProps) {
   const { tool: slug } = useParams()
   const { base, kind } = useToolsBranch()
   const { backTo, backState } = useToolOrigin()
@@ -58,7 +59,7 @@ export default function ToolRoutePage({ screens, headerAction: HeaderAction, fee
   const unsupported = PDF_ENGINE_SCREENS.has(tool.screen) && !pdfEngineSupported()
 
   return (
-    <div className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
+    <div data-workspace-version={workspaceVersions?.[tool.id]} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
       <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
         <Link className="erp-tool-crumb__back" to={kind === 'public' ? backTo : base} state={backState}>
           <Icon name="arrow-left" />

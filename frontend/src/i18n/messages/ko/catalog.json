@@ -300,7 +300,8 @@
     "qr-create": {
       "name": "QR 코드 만들기",
       "description": "텍스트나 링크로 QR 코드 만들기",
-      "synonyms": "qr 코드, qr 링크, qr 생성"
+      "synonyms": "qr 코드, qr 링크, qr 생성",
+      "privacyNote": "Static QR on device; dynamic QR sends the URL and expiry only with consent and requires a network."
     },
     "barcode-create": {
       "name": "바코드 만들기",
@@ -430,8 +431,10 @@
       "description": "검증된 데이터를 기여한 사람 소개"
     },
     "code-manager": {
-      "name": "코드 관리",
-      "description": "QR 코드·바코드 목록을 만들고 파일로 내보내기"
+      "name": "Manage dynamic QR",
+      "description": "Create Free dynamic QR, set expiry and revoke using a management key; reopen a receipt or an explicit device save.",
+      "synonyms": "dynamic qr, expiry, revoke qr, code manager",
+      "privacyNote": "The server stores destinations and key hashes after consent; no photos/documents."
     },
     "numerology": {
       "name": "Numerology",
@@ -450,6 +453,11 @@
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
       "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+    },
+    "quick-design": {
+      "name": "Quick design",
+      "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
+      "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
   }
 }

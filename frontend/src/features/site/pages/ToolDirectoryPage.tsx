@@ -11,11 +11,14 @@ import { useCatalogSearch } from '../hooks/useCatalogSearch'
 import { ToolSearch } from '../components/ToolSearch'
 import { RecentTools } from '../components/RecentTools'
 import { TrustStrip } from '../components/TrustStrip'
+import { FamilyProductLink } from '../components/FamilyProductLink'
+import { useProductMatches } from '../hooks/useProductMatches'
 
 export default function ToolDirectoryPage() {
   const { t } = useTranslation('site')
   const { t: tCommunity } = useTranslation('community')
   const { filter, keyword, tools, onFilter, onKeyword, reset, readyCount, soonCount, showSoon, onShowSoon } = useCatalogSearch()
+  const productMatches = useProductMatches(keyword)
   const { recent } = useHubPrefs()
   usePageTitle(t('directory.metaTitle'))
 
@@ -40,6 +43,7 @@ export default function ToolDirectoryPage() {
         ) : (
           <StateView icon="search" title={t('results.empty')} description={t('results.emptyHint')} actions={<><button type="button" className="cn-button" onClick={reset}>{t('results.showAll')}</button><Link className="cn-button cn-button--ghost" to="/de-xuat-tien-ich">{tCommunity('feedback.searchSuggestion')}</Link></>} />
         )}
+        {productMatches.length ? <FamilyProductLink /> : null}
         <RecentTools recent={recent} />
       </section>
       <TrustStrip />

@@ -146,7 +146,8 @@
           "ip": "Địa chỉ IP: được băm một chiều bằng khoá bí mật, chỉ để giới hạn gửi tự động, và tự xoá sau khoảng 1 giờ.",
           "feedback": "Nội dung góp ý, đề xuất: chỉ khi bạn đánh dấu đồng ý và bấm Gửi, để xem xét và cải thiện công cụ. Mã biên nhận chỉ được lưu dưới dạng băm.",
           "logs": "Nhật ký kỹ thuật của máy chủ web (địa chỉ IP, loại trình duyệt, trang được mở): chỉ dùng cho vận hành và an ninh hệ thống, lưu trong thời gian ngắn cần thiết.",
-          "entertainment": "Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị."
+          "entertainment": "Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị.",
+          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn."
         }
       },
       "tai-khoan": {

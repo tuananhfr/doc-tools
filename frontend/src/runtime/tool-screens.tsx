@@ -25,6 +25,7 @@ const BatchImagePage = dynamic(() => import('@/features/tools/image/pages/BatchI
 const MarkImagePage = dynamic(() => import('@/features/tools/image/pages/MarkImagePage'), { ssr: false, loading: () => <Loading /> })
 const IdPhotoPage = dynamic(() => import('@/features/tools/image/pages/IdPhotoPage'), { ssr: false, loading: () => <Loading /> })
 const MeasureImagePage = dynamic(() => import('@/features/tools/image/pages/MeasureImagePage'), { ssr: false, loading: () => <Loading /> })
+const DynamicQrPage = dynamic(() => import('@/features/tools/qr/pages/DynamicQrPage'), { ssr: false, loading: () => <Loading /> })
 const QrCreatePage = dynamic(() => import('@/features/tools/qr/pages/QrCreatePage'), { ssr: false, loading: () => <Loading /> })
 const QrReadPage = dynamic(() => import('@/features/tools/qr/pages/QrReadPage'), { ssr: false, loading: () => <Loading /> })
 const BarcodeCreatePage = dynamic(() => import('@/features/tools/qr/pages/BarcodeCreatePage'), { ssr: false, loading: () => <Loading /> })
@@ -48,6 +49,7 @@ const ReadAloudPage = dynamic(() => import('@/features/tools/accessibility/pages
 const VietQrPage = dynamic(() => import('@/features/tools/qr/pages/VietQrPage'), { ssr: false, loading: () => <Loading /> })
 const InvoiceXmlPage = dynamic(() => import('@/features/tools/vietnam/pages/InvoiceXmlPage'), { ssr: false, loading: () => <Loading /> })
 const RemoveMetadataPage = dynamic(() => import('@/features/tools/image/pages/RemoveMetadataPage'), { ssr: false, loading: () => <Loading /> })
+const QuickDesignPage = dynamic(() => import('@/features/tools/design/pages/QuickDesignPage'), { ssr: false, loading: () => <Loading /> })
 const CollagePage = dynamic(() => import('@/features/tools/image/pages/CollagePage'), { ssr: false, loading: () => <Loading /> })
 const MessageRiskPage = dynamic(() => import('@/features/tools/safety/pages/MessageRiskPage'), { ssr: false, loading: () => <Loading /> })
 const FlashcardPage = dynamic(() => import('@/features/tools/study/pages/FlashcardPage'), { ssr: false, loading: () => <Loading /> })
@@ -98,6 +100,7 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   'mark-image': MarkImagePage,
   'id-photo': IdPhotoPage,
   'measure-image': MeasureImagePage,
+  'code-manager': DynamicQrPage,
   'qr-create': QrCreatePage,
   'qr-read': QrReadPage,
   'barcode-create': BarcodeCreatePage,
@@ -121,6 +124,7 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   vietqr: VietQrPage,
   'invoice-xml': InvoiceXmlPage,
   'remove-metadata': RemoveMetadataPage,
+  'quick-design': QuickDesignPage,
   collage: CollagePage,
   'message-risk': MessageRiskPage,
   flashcards: FlashcardPage,

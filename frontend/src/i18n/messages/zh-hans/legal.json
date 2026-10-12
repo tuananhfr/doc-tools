@@ -146,7 +146,8 @@
           "ip": "IP 地址：使用密钥进行单向哈希处理，仅用于限制自动提交，约 1 小时后自动删除。",
           "feedback": "反馈、建议内容：仅在你勾选同意并点击“提交”后接收，用于审核和改进工具。回执编号仅以哈希形式保存。",
           "logs": "Web 服务器的技术日志（IP 地址、浏览器类型、访问的页面）：仅用于系统运营和安全，在必要的短时间内保存。",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

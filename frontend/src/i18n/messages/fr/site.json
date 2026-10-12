@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -146,7 +150,8 @@
   },
   "processing": {
     "server": "Traitement sur le serveur",
-    "device": "Sur l'appareil"
+    "device": "Sur l'appareil",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "Utilisés récemment"
@@ -671,7 +676,8 @@
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} outil à venir devra consulter le serveur ; sa carte l'indique clairement",
           "soon_many": "{{count}} outils à venir devront consulter le serveur ; leurs cartes l'indiquent clairement",
-          "soon_other": "{{count}} outils à venir devront consulter le serveur ; leurs cartes l'indiquent clairement"
+          "soon_other": "{{count}} outils à venir devront consulter le serveur ; leurs cartes l'indiquent clairement",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -698,7 +704,8 @@
     "modes": {
       "device": "Sur l'appareil",
       "model": "Sur l'appareil, avec module de reconnaissance téléchargé",
-      "server": "Nécessite un serveur"
+      "server": "Nécessite un serveur",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "Bientôt disponible. Doit consulter des données sur le serveur ; les données envoyées seront clairement indiquées avant le lancement.",
@@ -952,7 +959,7 @@
       },
       "may-chu": {
         "question": "Pourquoi certains outils indiquent-ils « Traitement sur le serveur » ?",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "Comment installer Chuyện Nhỏ sur mon téléphone ?",
@@ -960,7 +967,7 @@
       },
       "offline": {
         "question": "Puis-je utiliser Chuyện Nhỏ sans connexion Internet ?",
-        "answer": "Après une première ouverture en ligne, le navigateur garde en mémoire la page et le code des outils : ils se rouvrent donc généralement même avec une connexion instable. Les parties lourdes, comme la reconnaissance de texte ou le traitement vidéo, sont téléchargées à la première utilisation : essayez-les une fois lorsque vous êtes connecté."
+        "answer": "Après une première ouverture en ligne, le navigateur garde en mémoire la page et le code des outils : ils se rouvrent donc généralement même avec une connexion instable. Les parties lourdes, comme la reconnaissance de texte ou le traitement vidéo, sont téléchargées à la première utilisation : essayez-les une fois lorsque vous êtes connecté. Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "J'ai rencontré une erreur, que faire ?",
@@ -1109,5 +1116,13 @@
       "light": "Catalogue d’outils en mode clair.",
       "dark": "Catalogue d’outils en mode sombre."
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

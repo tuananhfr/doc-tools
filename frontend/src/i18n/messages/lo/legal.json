@@ -146,7 +146,8 @@
           "ip": "ທີ່ຢູ່ IP: ຖືກແຮຊແບບທາງດຽວດ້ວຍກະແຈລັບ, ໃຊ້ສະເພາະເພື່ອຈຳກັດການສົ່ງອັດຕະໂນມັດ, ແລະ ລຶບອັດຕະໂນມັດຫຼັງຈາກປະມານ 1 ຊົ່ວໂມງ.",
           "feedback": "ເນື້ອໃນຄຳເຫັນ, ຂໍ້ສະເໜີ: ສະເພາະເມື່ອທ່ານໝາຍຍິນຍອມ ແລະ ກົດ ສົ່ງ, ເພື່ອພິຈາລະນາ ແລະ ປັບປຸງເຄື່ອງມື. ລະຫັດໃບຮັບຖືກເກັບໄວ້ໃນຮູບແບບແຮຊເທົ່ານັ້ນ.",
           "logs": "ບັນທຶກທາງເຕັກນິກຂອງເຊີບເວີເວັບ (ທີ່ຢູ່ IP, ປະເພດບຣາວເຊີ, ໜ້າທີ່ເປີດ): ໃຊ້ສະເພາະສຳລັບການດຳເນີນງານ ແລະ ຄວາມປອດໄພຂອງລະບົບ, ເກັບໄວ້ໃນໄລຍະສັ້ນທີ່ຈຳເປັນ.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

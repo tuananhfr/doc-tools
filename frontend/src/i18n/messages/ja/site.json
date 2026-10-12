@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Feedback",
       "description": "Report problems, suggest improvements or flag incorrect data and track your feedback by receipt."
+    },
+    "lich-gia-dinh": {
+      "title": "Family Calendar · Chuyện Nhỏ",
+      "description": "Manage family schedules, tasks and contacts on your device."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "サーバーで処理",
-    "device": "端末上で処理"
+    "device": "端末上で処理",
+    "hybrid": "On device / server for dynamic QR"
   },
   "recent": {
     "title": "最近使ったツール"
@@ -657,7 +662,8 @@
           "feedback": "Only the text you enter in suggestion or feedback forms is sent when you consent and press Send; tool files and results are never attached.",
           "account": "If you sign in: your email, sign-in session and your suggestions",
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
-          "soon": "近日公開の {{count}} 個のツールはサーバーでの照会が必要になり、カードにその旨を明記します"
+          "soon": "近日公開の {{count}} 個のツールはサーバーでの照会が必要になり、カードにその旨を明記します",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "端末上",
       "model": "端末上（認識モデルを読み込み）",
-      "server": "サーバーが必要"
+      "server": "サーバーが必要",
+      "hybrid": "On device / server for dynamic QR"
     },
     "notes": {
       "server": "近日公開。サーバーでのデータ照会が必要です。公開前に送信されるデータを明記します。",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "一部のツールに「サーバーで処理」と表示されているのはなぜですか？",
-        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+        "answer": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device. Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
       },
       "cai-dat": {
         "question": "スマートフォンに Chuyện Nhỏ をインストールするには？",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "インターネットがなくても Chuyện Nhỏ を使えますか？",
-        "answer": "ネットにつながった状態で一度開くと、ブラウザがページとツールのコードを保存するため、通信が不安定でも再び開けることがほとんどです。文字認識や動画処理などの重い部分は初回利用時にダウンロードされるので、ネットにつながっているときに一度試しておいてください。"
+        "answer": "ネットにつながった状態で一度開くと、ブラウザがページとツールのコードを保存するため、通信が不安定でも再び開けることがほとんどです。文字認識や動画処理などの重い部分は初回利用時にダウンロードされるので、ネットにつながっているときに一度試しておいてください。 Dynamic QR creation, revocation and redirects require a network."
       },
       "loi": {
         "question": "エラーが出たらどうすればいいですか？",
@@ -1087,5 +1094,13 @@
       "light": "ライト表示のツール一覧。",
       "dark": "ダーク表示のツール一覧。"
     }
+  },
+  "familyProduct": {
+    "navigation": "Product navigation",
+    "back": "Family",
+    "label": "A family product",
+    "title": "Family Calendar",
+    "description": "Manage family schedules, tasks and contacts on your device.",
+    "open": "Open Family Calendar"
   }
 }

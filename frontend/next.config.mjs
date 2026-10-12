@@ -14,6 +14,7 @@ const config = {
   async rewrites() {
     const backend = process.env.BACKEND_URL ?? 'http://127.0.0.1:3003'
     return [
+      { source: '/api/v1/codes/:path*', destination: backend + '/api/v1/codes/:path*' },
       { source: '/api/v1/tools/:path*', destination: backend + '/api/v1/tools/:path*' },
       { source: '/api/v1/rules/:path*', destination: backend + '/api/v1/rules/:path*' },
       { source: '/api/v1/contributions/:path*', destination: backend + '/api/v1/contributions/:path*' },

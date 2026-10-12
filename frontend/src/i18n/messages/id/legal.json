@@ -146,7 +146,8 @@
           "ip": "Alamat IP: di-hash satu arah dengan kunci rahasia, hanya untuk membatasi pengiriman otomatis, dan terhapus otomatis setelah sekitar 1 jam.",
           "feedback": "Isi masukan dan usulan: hanya jika Anda mencentang persetujuan dan menekan Kirim, untuk ditinjau dan meningkatkan alat. Kode tanda terima hanya disimpan dalam bentuk hash.",
           "logs": "Log teknis server web (alamat IP, jenis browser, halaman yang dibuka): hanya dipakai untuk operasional dan keamanan sistem, disimpan dalam waktu singkat yang diperlukan.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

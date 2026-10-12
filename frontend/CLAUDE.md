@@ -383,3 +383,7 @@ Landing CSS is scoped under `styles/site/landing`. Preserve the account/share en
 ### Entertainment tools
 
 `features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. Copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). No interpretation corpus is implemented. Legal and privacy copy must match `backend/docs/entertainment.md`.
+
+## Incremental workspace adapters (12/10/2026)
+
+Runtime metadata lives in src/runtime/workspace-registry.ts and references native feature template configs. Keep the existing router and local FlowTask/FlowResult contracts. Family Calendar is a separate product at its legacy URL; advanced construction capabilities belong to ERPCons. Optional dynamic QR is the only new server branch: explicit storage consent, one-time management key, opt-in device receipt, /api/v1/codes proxy. Static codes and label printing stay local. See docs/workspace-repair-v1-1.md and backend/docs/api.md. OCR is a separate work package.

@@ -65,6 +65,10 @@
     "gop-y-quy-dinh": {
       "title": "Góp ý",
       "description": "Báo lỗi, đề nghị cải tiến hoặc góp ý dữ liệu và theo dõi bằng mã biên nhận."
+    },
+    "lich-gia-dinh": {
+      "title": "Lịch Gia Đình · Chuyện Nhỏ",
+      "description": "Quản lý lịch, việc cần làm và liên hệ của gia đình trên thiết bị của bạn."
     }
   },
   "nav": {
@@ -142,7 +146,8 @@
   },
   "processing": {
     "server": "Xử lý trên máy chủ",
-    "device": "Trên thiết bị"
+    "device": "Trên thiết bị",
+    "hybrid": "Trên thiết bị / server khi chọn QR động"
   },
   "recent": {
     "title": "Dùng gần đây"
@@ -657,7 +662,8 @@
           "feedback": "Chỉ nội dung bạn nhập trong form đề xuất hoặc góp ý được gửi khi bạn đồng ý và bấm Gửi; tệp và kết quả trong công cụ không được đính kèm.",
           "account": "Khi bạn đăng nhập: email, phiên đăng nhập và đề xuất của bạn",
           "pro": "Bản Pro: mục bạn bấm lưu; trò chuyện AI đi tới nhà cung cấp AI bạn chọn",
-          "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ"
+          "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ",
+          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn."
         }
       },
       "local": {
@@ -684,7 +690,8 @@
     "modes": {
       "device": "Trên thiết bị",
       "model": "Trên thiết bị, có tải bộ nhận dạng",
-      "server": "Cần máy chủ"
+      "server": "Cần máy chủ",
+      "hybrid": "Trên thiết bị / server khi chọn QR động"
     },
     "notes": {
       "server": "Sắp có. Cần tra cứu dữ liệu trên máy chủ; sẽ ghi rõ dữ liệu gửi đi trước khi ra mắt.",
@@ -930,7 +937,7 @@
       },
       "may-chu": {
         "question": "Vì sao một số công cụ ghi “Xử lý trên máy chủ”?",
-        "answer": "Các công cụ PDF/ảnh xử lý tệp trên thiết bị. Thần số học và rút bài cần kết nối mạng để máy chủ xử lý yêu cầu; không gửi tệp của bạn. Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị."
+        "answer": "Các công cụ PDF/ảnh xử lý tệp trên thiết bị. Thần số học và rút bài cần kết nối mạng để máy chủ xử lý yêu cầu; không gửi tệp của bạn. Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị. QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn."
       },
       "cai-dat": {
         "question": "Làm thế nào để cài Chuyện Nhỏ trên điện thoại?",
@@ -938,7 +945,7 @@
       },
       "offline": {
         "question": "Tôi có dùng Chuyện Nhỏ khi không có Internet được không?",
-        "answer": "Sau lần mở đầu tiên có mạng, trình duyệt lưu sẵn trang và mã của công cụ nên thường vẫn mở lại được khi mạng chập chờn. Phần nặng như nhận dạng chữ hay xử lý video được tải về ở lần dùng đầu, nên hãy dùng thử một lần khi có mạng."
+        "answer": "Sau lần mở đầu tiên có mạng, trình duyệt lưu sẵn trang và mã của công cụ nên thường vẫn mở lại được khi mạng chập chờn. Phần nặng như nhận dạng chữ hay xử lý video được tải về ở lần dùng đầu, nên hãy dùng thử một lần khi có mạng. QR động không tạo, thu hồi hoặc chuyển hướng được khi mất mạng."
       },
       "loi": {
         "question": "Tôi gặp lỗi, phải làm sao?",
@@ -1087,5 +1094,13 @@
       "light": "Danh mục công cụ trong giao diện sáng.",
       "dark": "Danh mục công cụ trong giao diện tối."
     }
+  },
+  "familyProduct": {
+    "navigation": "Điều hướng sản phẩm",
+    "back": "Gia đình",
+    "label": "Sản phẩm dành cho gia đình",
+    "title": "Lịch Gia Đình",
+    "description": "Quản lý lịch, việc cần làm và liên hệ của gia đình trên thiết bị của bạn.",
+    "open": "Mở Lịch Gia Đình"
   }
 }

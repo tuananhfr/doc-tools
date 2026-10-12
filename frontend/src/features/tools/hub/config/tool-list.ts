@@ -16,6 +16,7 @@ import type { ToolEntry } from '../types/tool.types'
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
 export const ALL_TOOLS: ToolEntry[] = [
+  { id: 'quick-design', slug: 'thiet-ke-nhanh', icon: 'palette2', categories: ['image'], noFile: true, status: 'ready', screen: 'quick-design' },
   { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'numerology' },
   { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'playing-cards' },
   { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'tarot' },
@@ -531,7 +532,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     screen: 'id-photo',
   },
   {
-    id: 'qr-create',
+    id: 'qr-create', processing: 'hybrid',
     slug: 'tao-ma-qr',
    
    
@@ -751,6 +752,6 @@ export const ALL_TOOLS: ToolEntry[] = [
   },
   {
     id: 'code-manager', slug: 'quan-ly-ma', icon: 'upc-scan',
-    categories: ['data'], processing: 'server', noFile: true, status: 'soon',
+    categories: ['data'], processing: 'server', noFile: true, status: 'ready', screen: 'code-manager',
   },
 ]

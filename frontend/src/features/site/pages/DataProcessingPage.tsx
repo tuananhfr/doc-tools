@@ -17,7 +17,7 @@ import { DATA_FAQ_IDS, FAQ_ITEMS } from '../config/support-faq'
 import { filterProcessingRows, PROCESSING_FILTERS, processingRows, type ProcessingFilter, type ProcessingMode } from '../utils/data-processing'
 import { localizeFaq, pickFaq } from '../utils/faq'
 
-const MODE_ICON: Record<ProcessingMode, string> = { device: 'check-circle-fill', model: 'cpu', server: 'cloud-arrow-up' }
+const MODE_ICON: Record<ProcessingMode, string> = { device: 'check-circle-fill', model: 'cpu', server: 'cloud-arrow-up', hybrid: 'arrows-expand' }
 
 export default function DataProcessingPage() {
   const { t: tc } = useTranslation('catalog')
@@ -28,7 +28,7 @@ export default function DataProcessingPage() {
   const allRows = useMemo(() => processingRows(catalog, new Map(TOOL_FILTERS.map((value) => [value as string, tc(`groups.${value}`)]))), [catalog, tc])
   const dataFaq = useMemo(() => localizeFaq(t, pickFaq(FAQ_ITEMS, DATA_FAQ_IDS)), [t])
   const deviceReady = allRows.filter((row) => row.tool.status === 'ready' && row.mode !== 'server').length
-  const serverSoon = allRows.filter((row) => row.mode === 'server').length
+  const serverSoon = allRows.filter((row) => row.mode === 'server' && row.tool.status === 'soon').length
   const [filter, setFilter] = useState<ProcessingFilter>('all')
   const [keyword, setKeyword] = useState('')
   const rows = useMemo(() => filterProcessingRows(allRows, filter, keyword), [allRows, filter, keyword])
@@ -46,6 +46,7 @@ export default function DataProcessingPage() {
         t('data.columns.server.points.feedback'),
         t('data.columns.server.points.account'),
         t('data.columns.server.points.pro'),
+        t('data.columns.server.points.dynamicQr'),
         ...(serverSoon ? [t('data.columns.server.points.soon', { count: serverSoon })] : []),
       ],
     },

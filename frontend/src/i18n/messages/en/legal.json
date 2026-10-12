@@ -146,7 +146,8 @@
           "ip": "IP address: one-way hashed with a secret key, used only to limit automated submissions, and deleted automatically after about 1 hour.",
           "feedback": "Feedback and suggestions: only when you tick the consent box and press Send, so we can review them and improve the tools. Receipt codes are stored only in hashed form.",
           "logs": "Web server technical logs (IP address, browser type, pages opened): used only for system operation and security, and kept for the short time necessary.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

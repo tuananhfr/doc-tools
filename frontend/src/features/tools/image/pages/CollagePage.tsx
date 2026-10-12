@@ -5,10 +5,14 @@ import { downloadOutput, NumberField, readNumber, ToolBoard, ToolPanel } from '@
 import { CollageFileError, makeImageCollage } from '../services/collage'
 import { COLLAGE_GAP_RULE, collageBlock, collageFileProblem } from '../utils/collage-input'
 
+import {GraphicWorkspace} from '@/features/tools/design/components/GraphicWorkspace'
+import {SHOP_LAYOUTS} from '@/features/tools/design/config/graphic-templates'
+
 export default function CollagePage() {
   const { t } = useTranslation('image')
   const ids = useId()
   const [files, setFiles] = useState<File[]>([])
+  const [shop, setShop] = useState(false)
   const [columns, setColumns] = useState(2)
   const [gapText, setGapText] = useState('12')
   const [busy, setBusy] = useState(false)
@@ -39,7 +43,10 @@ export default function CollagePage() {
     }
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" role="status">
+  return <>
+    <div hidden={shop}><Button variant="outline-secondary" className="mb-3" disabled={busy} onClick={()=>setShop(true)}>{t('shop.open')}</Button></div>
+    <div hidden={!shop}><GraphicWorkspace files={files} onFiles={setFiles} templates={SHOP_LAYOUTS} onBack={()=>setShop(false)}/></div>
+    <div hidden={shop}><ToolBoard side={<div className="erp-tool-result" role="status">
     <p className="erp-tool-result__label">{t('collage.resultLabel')}</p>
     <p className="erp-tool-result__value">{files.length ? t('shared.imageCount', { count: files.length }) : '—'}</p>
     <p className="erp-tool-result__note">{message || t('collage.idle')}</p>
@@ -59,5 +66,6 @@ export default function CollagePage() {
         <NumberField label={t('collage.gap')} value={gapText} onChange={setGapText} rule={COLLAGE_GAP_RULE} unit="px" />
       </div>
     </ToolPanel>
-  </ToolBoard>
+  </ToolBoard></div>
+  </>
 }

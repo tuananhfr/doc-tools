@@ -146,7 +146,8 @@
           "ip": "IP 주소: 비밀 키로 단방향 해시 처리하며, 자동화된 전송을 제한하는 용도로만 쓰고 약 1시간 후 자동으로 삭제합니다.",
           "feedback": "의견·제안 내용: 이용자가 동의에 체크하고 보내기를 눌렀을 때만, 검토와 도구 개선을 위해 처리합니다. 접수 번호는 해시 형태로만 저장합니다.",
           "logs": "웹 서버 기술 로그(IP 주소, 브라우저 종류, 열린 페이지): 시스템 운영과 보안에만 사용하며, 필요한 짧은 기간 동안만 보관합니다.",
-          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device."
+          "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
         }
       },
       "tai-khoan": {

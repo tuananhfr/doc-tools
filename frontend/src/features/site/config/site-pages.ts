@@ -1,7 +1,7 @@
 import { HUB_PAGE_LIST } from './hub-pages'
 
 /** Trang nội dung một cột; tiêu đề, mô tả ở `site:pages.<slug>`, dùng chung cho thẻ `<title>` của Next và tab khi điều hướng phía client. */
-export const SITE_PAGES = ['ve-chung-toi', 'ho-tro', 'xu-ly-du-lieu', 'cai-dat', 'huong-dan', 'dieu-khoan', 'quyen-rieng-tu', 'de-xuat-tien-ich', 'gop-y-quy-dinh'] as const
+export const SITE_PAGES = ['ve-chung-toi', 'ho-tro', 'xu-ly-du-lieu', 'cai-dat', 'huong-dan', 'dieu-khoan', 'quyen-rieng-tu', 'de-xuat-tien-ich', 'gop-y-quy-dinh', 'lich-gia-dinh'] as const
 
 export type SitePageSlug = (typeof SITE_PAGES)[number]
 

@@ -1,0 +1,7 @@
+import { describe, expect, it } from 'vitest'
+import { mixedPhotoLayout } from './mixed-photo-layout'
+describe('mixed physical photo sheets',()=>{
+  it('places both children in different sizes on the same A4 sheet without overlaps',()=>{const requests=[{id:'child-a',photo:{width:30,height:40},copies:4},{id:'child-b',photo:{width:40,height:60},copies:2}],layout=mixedPhotoLayout({width:210,height:297},requests);expect(layout.pages).toHaveLength(1);expect(layout.pages[0]).toHaveLength(6);expect(layout.pages[0].filter(p=>p.id==='child-b').every(p=>p.width===40&&p.height===60)).toBe(true);for(const a of layout.pages[0])for(const b of layout.pages[0])if(a!==b)expect(a.x+a.width<=b.x||b.x+b.width<=a.x||a.y+a.height<=b.y||b.y+b.height<=a.y).toBe(true)})
+  it('creates additional sheets rather than silently discarding requested copies',()=>{const layout=mixedPhotoLayout({width:100,height:150},[{id:'photo',photo:{width:40,height:60},copies:10}]);expect(layout.pages.length).toBeGreaterThan(1);expect(layout.pages.flat()).toHaveLength(10);expect(layout.pages.flat().every(p=>p.x>=5&&p.y>=5&&p.x+p.width<=95&&p.y+p.height<=145)).toBe(true)})
+  it('rejects impossible sizes, invalid quantities and excessive resource requests',()=>{for(const request of [{id:'large',photo:{width:300,height:400},copies:1},{id:'bad',photo:{width:30,height:40},copies:1.5},{id:'many',photo:{width:30,height:40},copies:501}])expect(()=>mixedPhotoLayout({width:210,height:297},[request])).toThrow()})
+})

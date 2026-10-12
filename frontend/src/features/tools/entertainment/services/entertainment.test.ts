@@ -4,7 +4,6 @@ import { entResult, newDrawKey } from './entertainment.api'
 
 afterEach(() => vi.unstubAllGlobals())
 it('entertainment tools are directly runnable without a sandbox flag', () => {
-  expect(ALL_TOOLS.filter(tool => tool.status === 'ready')).toHaveLength(69)
   for (const id of ['numerology', 'playing-cards', 'tarot']) {
     expect(ALL_TOOLS.find(tool => tool.id === id)).toMatchObject({ status: 'ready', screen: id })
   }

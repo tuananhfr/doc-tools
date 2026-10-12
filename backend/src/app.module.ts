@@ -12,5 +12,6 @@ import { CloudModule } from './cloud/cloud.module'
 import { LifecycleModule } from './lifecycle/lifecycle.module'
 import { LandingsModule } from './landings/landings.module'
 import { EntertainmentModule } from './entertainment/entertainment.module'
-@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule] })
+import { CodesModule } from './codes/codes.module'
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule, CodesModule] })
 export class AppModule {}
