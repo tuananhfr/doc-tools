@@ -5,6 +5,7 @@ import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '
 import { formatNumber } from '@/utils/format'
 import { DEFAULT_FACTORS, estimateHouse, type FactorKey, type Factors } from '../utils/house-estimate'
 import styles from './HouseEstimatePage.module.css'
+import { SourceFreshness } from '@/features/tools/rules/components/SourceFreshness'
 
 const FIELDS: FactorKey[] = ['foundation', 'basement', 'ground', 'upper', 'rooftopRoom', 'terrace', 'roof', 'yard']
 const INPUTS = ['floorArea', 'upperFloors', 'rooftopRoomArea', 'terraceArea', 'yardArea', 'basePrice', 'finishingPrice', 'pileCost'] as const
@@ -50,6 +51,7 @@ export default function HouseEstimatePage() {
       <div className={styles.breakdown}><table className="table table-sm"><thead><tr><th>{t('houseEstimate.columns.item')}</th><th>{t('houseEstimate.columns.area')}</th><th>{t('houseEstimate.columns.factor')}</th><th>{t('houseEstimate.columns.converted')}</th></tr></thead><tbody>{result.rows.map((row) => <tr key={row.name}><td>{row.name}</td><td>{formatNumber(row.area)} m²</td><td>{row.factor}%</td><td>{formatNumber(row.convertedArea)} m²</td></tr>)}</tbody></table></div>
     </> : <p className="erp-tool-result__note" role="status">{problem}</p>}
     <p className="erp-tool-result__note">{t('houseEstimate.disclaimer')}</p>
+    <SourceFreshness reference />
   </div>}>
     <ToolPanel title={t('houseEstimate.title')}>
       <div className="erp-tool-form__grid">{INPUTS.filter(key => ['floorArea', 'upperFloors', 'basePrice', 'finishingPrice'].includes(key)).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>

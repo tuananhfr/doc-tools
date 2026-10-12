@@ -11,6 +11,7 @@ import { AiSourceCheckPanel } from '@/features/ai'
 import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
 import { addressSnapshot, parseAddressSaved } from '../utils/address-saved'
 import { convertAddress, indexAddressRules, parseAddressMappings, parseAddressRules} from '../utils/address-conversion'
+import { SourceFreshness } from '@/features/tools/rules/components/SourceFreshness'
 
 const csvField = (value: string) => `"${(/^[=+\-@\t\r]/.test(value) ? `'${value}` : value).replace(/"/g, '""')}"`
 
@@ -64,6 +65,7 @@ export default function AddressConversionPage() {
       <label className="erp-flow-field__label">{t('address.addressesLabel')}<Form.Control as="textarea" rows={6} maxLength={100000} value={addresses} onChange={(event) => setAddresses(event.target.value)} placeholder={t('address.addressesPlaceholder')} /></label>
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={() => setUsingVerified(true)} disabled={usingVerified}>{t(usingVerified ? 'address.usingVerified' : 'address.applyVerified')}</Button> : null}
       <RuleStatus rules={addressRules} label={t('address.rulesLabel')} noneText={t('address.rulesNone')} />
+      <SourceFreshness rules={addressRules} />
       <details className="mt-3"><summary>{t('address.manualTitle')}</summary><StructuredTextRows label={t('address.manualTitle')} columns={(['oldProvince', 'oldDistrict', 'oldWard', 'newProvince', 'newWard'] as const).map(key => t(`address.mappingFields.${key}`))} separator="|" value={mappingText} onChange={value => { setMappingText(value); setUsingVerified(false) }} /></details>
       {manualRules === null ? <p role="alert">{t('address.manualInvalid')}</p> : null}
     </ToolPanel>

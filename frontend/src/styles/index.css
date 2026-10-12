@@ -168,6 +168,7 @@
 @import './site/workspace-calendar.css';
 @import './site/workspace-family.css';
 @import './site/documents.css';
+@import './site/trust.css';
 
 @import './site/landing/shell.css';
 @import './site/landing/sections.css';

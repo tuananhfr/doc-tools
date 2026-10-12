@@ -14,6 +14,7 @@ import { SaveResultBar, type SaveAdapter } from '@/features/cloud'
 import { parsePayrollSaved, payrollSnapshot } from '../utils/payroll-saved'
 import { grossToNet, netToGross, validatePayrollRules, type PayrollRules } from '../utils/payroll'
 import { formatRuleLines, parseRuleLines } from '../utils/rule-lines'
+import { SourceFreshness } from '@/features/tools/rules/components/SourceFreshness'
 
 type RuleField = 'selfDeduct' | 'dependentDeduct' | 'referenceSalary' | 'minWage1' | 'minWage2' | 'minWage3' | 'minWage4' | 'employeeSocial' | 'employeeHealth' | 'employeeUnemployment' | 'employerSocial' | 'employerHealth' | 'employerUnemployment'
 const RULE_FIELDS: RuleField[] = [
@@ -135,6 +136,7 @@ export default function PayrollPage() {
       </div></details>
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('payroll.applyParams')}</Button> : null}
       <RuleStatus rules={payrollRules} label={t('payroll.ruleLabel')} noneText={t('payroll.ruleNone')} />
+      <SourceFreshness rules={payrollRules} />
       <details className="mt-3"><summary>{t('payroll.enterParams')}</summary><div className="erp-tool-form__grid mt-3">{RULE_FIELDS.map((key) => <NumberField key={key} label={t(`payroll.fields.${key}`)} rule={FIELD_RULES[key]} unit={FIELD_RULES[key] === RATE ? '%' : 'đ'} value={fields[key]} onChange={(value) => updateField(key, value)} />)}</div>
         <StructuredTextRows label={t('payroll.brackets')} columns={[t('payroll.bracketLimit'), t('payroll.bracketRate')]} separator=";" decode={editableRuleLines} value={bracketText} onChange={value => { setBracketText(value); setUsingVerified(false) }} />
       </details>

@@ -16,6 +16,7 @@ import { formatRuleLines, parseRuleLines } from '../utils/rule-lines'
 import styles from './ElectricityPage.module.css'
 import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
 import { editableRuleLines } from '../utils/editable-rule-lines'
+import { SourceFreshness } from '@/features/tools/rules/components/SourceFreshness'
 
 // Thuế điện có gói `vat` riêng, nên lượt kiểm nguồn đọc cả hai.
 const ELECTRICITY_KINDS = ['electricity', 'vat']
@@ -105,6 +106,7 @@ export default function ElectricityPage() {
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('electricity.applyTariff')}</Button>
         : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>{t('electricity.applyVat')}</Button> : null}
       <RuleStatus rules={electricityRules} label={t('electricity.ruleLabel')} noneText={t('electricity.ruleNone')} />
+      <SourceFreshness rules={electricityRules} />
       {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
       </>}
     </ToolPanel>

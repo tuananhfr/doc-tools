@@ -1,0 +1,38 @@
+/* Khung nguồn/độ mới và dòng năng lực công cụ (WP6). Chữ vàng của .alert-warning trên nền nhạt
+   không đạt 4.5:1, nên cảnh báo dùng viền + nền vàng và chữ màu mực. */
+.cn-freshness {
+  margin-top: var(--cn-space-3);
+  padding: var(--cn-space-3) var(--cn-space-4);
+  border: 1px solid var(--cn-line);
+  border-radius: var(--cn-radius-card);
+  background: var(--cn-surface);
+  color: var(--cn-ink);
+  font-family: var(--cn-font-family);
+  font-size: var(--cn-font-body);
+  line-height: 1.5;
+}
+.cn-freshness__facts { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cn-space-1); }
+.cn-freshness__term { color: var(--cn-muted); }
+.cn-freshness a { display: inline-flex; align-items: center; min-height: var(--cn-tap); }
+.cn-freshness__warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--cn-space-2);
+  margin: var(--cn-space-2) 0 0;
+  padding: var(--cn-space-2) var(--cn-space-3);
+  border-left: 4px solid var(--erp-warning);
+  border-radius: var(--erp-radius-sm);
+  background: var(--erp-warning-soft);
+  color: var(--cn-ink);
+}
+.cn-freshness__warning .bi { color: var(--erp-warning); flex: none; margin-top: 3px; }
+
+.cn-tool-capability { display: flex; flex-wrap: wrap; gap: var(--cn-space-1) var(--cn-space-3); list-style: none; margin: var(--cn-space-1) 0 0; padding: 0; color: var(--cn-muted); font-size: 14px; }
+.cn-tool-capability li { display: inline-flex; align-items: center; gap: var(--cn-space-1); }
+.cn-tool-capability li[data-offline="yes"] { color: var(--cn-positive); font-weight: 600; }
+.cn-tool-offline-notice { display: flex; align-items: flex-start; gap: var(--cn-space-2); margin: var(--cn-space-2) 0 0; padding: var(--cn-space-2) var(--cn-space-3); border-left: 4px solid var(--erp-warning); background: var(--erp-warning-soft); color: var(--cn-ink); font-size: 16px; }
+.cn-tool-offline-notice[data-offline-notice="online"], .cn-tool-offline-notice[data-offline-notice="yes"] { border-left-color: var(--cn-positive); background: transparent; }
+
+.cn-offline-assets { display: grid; gap: var(--cn-space-2); margin-top: var(--cn-space-3); }
+.cn-offline-assets .btn { min-height: var(--cn-tap); justify-self: start; }
+.cn-offline-assets__note { margin: 0; color: var(--cn-muted); font-size: 14px; }

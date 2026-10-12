@@ -4,5 +4,22 @@
     "invalid": "システム上のデータパッケージが検証（署名・有効期限・形式）を通過しなかったため、使用されません。管理者にお知らせください。",
     "unavailable": "サーバーから署名済みデータを読み込めませんでした。手動で入力することもできます。",
     "upcoming": "{{date}}から{{source}}に基づく新しい{{label}}が適用されます。"
+  },
+  "freshness": {
+    "label": "Data source and freshness",
+    "source": "Source:",
+    "effective": "In effect from {{from}}",
+    "effectiveRange": "In effect from {{from}} to {{to}}",
+    "checked": "Last checked: {{date}}",
+    "document": "{{number}} — {{issuer}} ({{jurisdiction}})",
+    "article": "Provision: {{article}}",
+    "evidence": "View the original document",
+    "stale": "May be out of date — last checked on {{date}}, more than {{days}} days ago. Compare with the official source before relying on it.",
+    "unchecked": "This source has no check date. Compare with the official source before relying on it.",
+    "expired": "The source document is no longer in effect. The figures may no longer apply.",
+    "superseded": "The source document has been replaced by a newer one. The figures may no longer apply.",
+    "revoked": "This source has been withdrawn. Do not rely on these figures for decisions.",
+    "registryUnavailable": "Could not load the source record; showing the details carried in the signed data package.",
+    "reference": "The default figures are reference conventions with no checked official source and no check date. Replace them with your own."
   }
 }
