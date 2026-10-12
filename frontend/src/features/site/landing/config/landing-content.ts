@@ -21,3 +21,6 @@ export const PRIVACY_ROWS = [
   { key: 'online', icon: 'cloud' },
   { key: 'choice', icon: 'sliders' },
 ] as const
+
+/** 6–8 việc thường dùng ở màn đầu (spec v3 §05 HOME); nhãn là tên công cụ trong catalog. */
+export const COMMON_TASK_IDS = ['compress-pdf', 'merge-pdf', 'scan-to-pdf', 'image-to-text', 'id-photo', 'qr-create', 'read-aloud', 'money-calc'] as const

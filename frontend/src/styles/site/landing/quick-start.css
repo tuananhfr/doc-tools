@@ -1,0 +1,15 @@
+/* Ô tìm + việc thường dùng ở hero trang chủ. Ô nhập 16px để iOS không tự phóng to; mọi chỗ chạm ≥44px. */
+.cn-landing-quick { display: grid; gap: var(--cn-space-3, 12px); max-width: 720px; margin: 0 auto var(--cn-space-5, 24px); }
+.cn-landing-quick .cn-tool-search input { height: var(--cn-tap, 44px); font-size: var(--cn-font-body, 16px); }
+.cn-landing-quick .cn-search-submit { min-height: var(--cn-tap, 44px); }
+.cn-landing-quick .cn-search-clear { min-width: var(--cn-tap, 44px); min-height: var(--cn-tap, 44px); }
+.cn-landing-quick__tasks { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--cn-space-2, 8px); }
+.cn-landing-quick__tasks a { display: inline-flex; align-items: center; gap: var(--cn-space-2, 8px); min-height: var(--cn-tap, 44px); padding: 6px var(--cn-space-4, 16px); border: 1px solid var(--cn-line); border-radius: 999px; background: var(--cn-surface); color: var(--cn-ink); font-size: 15px; font-weight: 500; line-height: 1.25; text-decoration: none; }
+.cn-landing-quick__tasks a:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-landing-quick__tasks a:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: 2px; }
+.cn-landing-quick__tasks .bi { flex: none; color: var(--cn-accent); }
+@media (max-width: 767px) {
+  .cn-landing-quick { margin-bottom: var(--cn-space-4, 16px); }
+  .cn-landing-quick__tasks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-landing-quick__tasks a { justify-content: flex-start; padding-inline: var(--cn-space-3, 12px); font-size: 14px; text-align: start; }
+}
