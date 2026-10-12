@@ -385,6 +385,10 @@ từng feature. Giữ nguyên router và hợp đồng `FlowTask` / `FlowResult`
   kéo vào đây.
 - QR động là nhánh server mới **duy nhất**: đồng ý lưu trữ rõ ràng, khoá quản lý hiện một lần,
   biên nhận trên máy (tuỳ chọn), proxy `/api/v1/codes`. QR tĩnh và in nhãn vẫn chạy cục bộ.
+- Chuyển tệp giữa công cụ đi qua `features/tools/shared/handoff.ts` (`handOff(screen, files)` / `takeHandoff(screen)`):
+  chỉ RAM, có đích, lấy một lần, hết hạn 60 s. `pdf/services/handoff.ts` chỉ còn hàm bọc cho đích `editor`.
+- Chọn mẫu bằng `TemplatePicker` (hub) đặt vào ô `templates` của `ResponsivePreview`; thumbnail phải dựng bằng
+  renderer xem trước thật (`CvPreview`/`FormPreview` thu nhỏ, `renderGraphicSheet` 30 DPI trên ảnh proxy).
 - Chi tiết ở `docs/workspace-repair-v1-1.md` và `../backend/docs/api.md`.
 
 ## Thêm một công cụ
