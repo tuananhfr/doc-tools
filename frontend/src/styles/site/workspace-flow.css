@@ -15,14 +15,14 @@
 .cn-tool-workspace .erp-flow-picker--compact .erp-flow-picker__actions { margin-top: 0; }
 .cn-tool-workspace :is(.erp-flow-options__title, .erp-tool-panel__title) { font-size: 16px; font-weight: 700; }
 .cn-tool-workspace .erp-flow-options__title { margin-bottom: 16px; }
-.cn-tool-workspace .erp-flow__run { min-height: 48px; font-size: 14px; }
+.cn-tool-workspace .erp-flow__run { min-height: var(--cn-cta); font-size: 14px; }
 .cn-tool-workspace .erp-flow-choice__item:has(input:checked) { border-color: var(--cn-accent); background: var(--cn-tint); }
 .cn-tool-workspace .erp-flow-files { border-color: var(--cn-line); box-shadow: var(--erp-shadow1); }
 .cn-tool-workspace .erp-flow-files__head { min-height: 56px; padding-inline: 20px 12px; }
 .cn-tool-workspace .erp-flow-result { max-width: 640px; margin-top: 0; padding: 36px; gap: 20px; border-color: var(--cn-line); border-radius: var(--cn-radius-card); box-shadow: var(--erp-shadow1); }
 .cn-tool-workspace .erp-flow-result__title { font-size: 26px; font-weight: 700; }
 .cn-tool-workspace .erp-flow-result__file { padding: 16px; }
-.cn-tool-workspace .erp-flow-result__download { min-height: 48px; }
+.cn-tool-workspace .erp-flow-result__download { min-height: var(--cn-cta); }
 .cn-tool-workspace .erp-flow-progress { gap: 12px; padding-top: 4px; }
 .cn-tool-workspace .erp-flow-progress__bar { height: 8px; border-radius: 8px; }
 .cn-tool-workspace .erp-tool-tabs { padding: 5px; gap: 5px; }

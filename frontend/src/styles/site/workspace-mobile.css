@@ -29,4 +29,8 @@
   .cn-tool-workspace :is(.btn, .erp-tool-tab) { min-height: 44px; }
   .cn-tool-workspace .erp-tool-form__grid { grid-template-columns: minmax(0, 1fr); }
   .cn-tool-workspace :is(.erp-page-stage__nav, .erp-page-stage__actions) { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+  /* Spec v3 "Sticky export": Download stays on screen while the result card scrolls. FlowResult only mounts with a result, so this never shows on an empty tool. */
+  .cn-tool-workspace .erp-flow-result__actions { position: sticky; bottom: 0; z-index: 1; padding-block: var(--cn-space-3) calc(var(--cn-space-3) + env(safe-area-inset-bottom)); background: var(--cn-surface); border-top: 1px solid var(--cn-line); }
+  /* Back into normal flow while the user types, so the bar never sits on top of the on-screen keyboard. */
+  .cn-tool-workspace:has(:is(input:not([type='checkbox'], [type='radio'], [type='file'], [type='range']), select, textarea:not([readonly])):focus) .erp-flow-result__actions { position: static; }
 }
