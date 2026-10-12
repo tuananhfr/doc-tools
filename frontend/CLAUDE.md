@@ -143,7 +143,7 @@ là `/doc-tools` trên lpc.vn; code vẫn phải chạy đúng khi có prefix. �
 
 ### Gọi backend
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{codes,tools,rules,contributions,auth,admin,ai,ent,landings}/*`,
+`next.config.mjs` rewrite `<basePath>/api/v1/{codes,tools,rules,sources,contributions,auth,admin,ai,ent,landings}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope
 phẳng `{ok, ...}` — giữ nguyên. Module backend mới có route công khai mà quên thêm dòng ở đây
 thì dev / production đều 404 (chỉ `/api/v1/mcp/` cố ý không qua Next — Apache proxy thẳng).
@@ -396,6 +396,9 @@ Ba chỗ, thiếu một là công cụ không hiện hoặc type-check vỡ:
 2. `features/tools/hub/types/tool.types.ts` — thêm giá trị vào union `ToolScreen`.
 3. `runtime/tool-screens.tsx` — `dynamic(..., { ssr: false })` + một dòng trong `TOOL_SCREENS`.
 
+`device` bắt buộc (`{ offline: 'yes'|'after-first-use'|'no', needs? }`), phân loại theo luật R1–R3 ở đầu
+`hub/config/tool-device.test.ts`; `'yes'` chỉ khi `scripts/doc-tools/check-offline.mjs` qua.
+
 Công cụ mới đặt trong feature riêng `features/tools/<nhóm>/`. Tắt một công cụ trên
 production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 Công cụ thuộc một nhóm việc có thanh tab (QR, tính toán, ảnh) → thêm id vào `hub/config/workspace-tabs.ts`.
@@ -449,6 +452,8 @@ Thanh tab do `ToolRoutePage` vẽ (`WorkspaceTabs`, tab là link giữa slug) �
   Trang dùng `useSignedRules(kind, parse)` + `RuleStatus` (`features/tools/rules/`): trạng
   thái `ready / none / invalid / unavailable` phải báo khác nhau, gói sắp hiệu lực hiện câu
   báo trước. `parse` là hằng ngoài component. Ngày so hiệu lực là ngày Việt Nam, khớp backend.
+  Gói ký có thể mang `sourceId` (tuỳ chọn, nằm trong phần ký) trỏ sang `/api/v1/sources/:id`;
+  `SourceFreshness` hiện nguồn + ngày kiểm, quá `sources.staleDays` (mặc định 90) thì cảnh báo vàng.
   Đổi địa chỉ KHÔNG có bảng tỉnh viết cứng: tỉnh lấy từ gói `addresses` (hoặc suy ra từ
   `wards`); thuế điện lấy gói `vat` trước, rồi `vatPercent` trong gói điện.
   Không đưa số liệu trong archive vào như luật hiện hành.
