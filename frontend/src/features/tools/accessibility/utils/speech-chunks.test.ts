@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { speechChunksFrom, splitSpeechText } from './speech-chunks'
+import { neighbourChunkStart, speechChunksFrom, splitSpeechText } from './speech-chunks'
 import { encodeWav } from './wav'
 
 const texts = (text: string, max?: number) => splitSpeechText(text, max).map((chunk) => chunk.text)
@@ -56,5 +56,27 @@ describe('encodeWav', () => {
     expect(view.getUint32(24, true)).toBe(22050)
     expect(view.getUint32(40, true)).toBe(8)
     expect([44, 46, 48, 50].map((offset) => view.getInt16(offset, true))).toEqual([0, 32767, -32767, 0])
+  })
+})
+
+describe('neighbourChunkStart', () => {
+  const text = 'Câu một. Câu hai rất dài. Câu ba.'
+  const chunks = splitSpeechText(text)
+
+  it('jumps from the middle of a sentence to the previous and next sentence starts', () => {
+    const middle = text.indexOf('rất')
+    expect(neighbourChunkStart(chunks, middle, -1)).toBe(0)
+    expect(neighbourChunkStart(chunks, middle, 1)).toBe(text.indexOf('Câu ba'))
+  })
+
+  it('returns null past either end and for empty text', () => {
+    expect(neighbourChunkStart(chunks, 0, -1)).toBeNull()
+    expect(neighbourChunkStart(chunks, text.indexOf('Câu ba'), 1)).toBeNull()
+    expect(neighbourChunkStart([], 0, 1)).toBeNull()
+  })
+
+  it('feeds speechChunksFrom so a seek resumes exactly at the sentence start', () => {
+    const target = neighbourChunkStart(chunks, 0, 1)!
+    expect(speechChunksFrom(chunks, target).map(({ chunk, from }) => text.slice(from, chunk.end))).toEqual(['Câu hai rất dài.', 'Câu ba.'])
   })
 })

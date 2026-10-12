@@ -93,3 +93,11 @@ export function speechChunksFrom(chunks: SpeechChunk[], offset: number): { chunk
     .map((chunk) => ({ chunk, from: Math.max(chunk.start, offset) }))
     .filter(({ chunk, from }) => /[\p{L}\p{N}]/u.test(chunk.text.slice(from - chunk.start)))
 }
+
+/** Đầu câu trước / sau câu chứa `offset` (nút Câu trước / Câu sau); `null` khi không còn câu theo hướng đó. */
+export function neighbourChunkStart(chunks: readonly SpeechChunk[], offset: number, direction: -1 | 1): number | null {
+  if (!chunks.length) return null
+  let current = 0
+  for (const [index, chunk] of chunks.entries()) if (chunk.start <= offset) current = index
+  return chunks[current + direction]?.start ?? null
+}
