@@ -630,7 +630,9 @@
     "summary": "{{photos}} photos on {{sheets}} sheets",
     "run": "Create mixed photo sheets",
     "invalid": "Check each size and copy count. Maximum 500 copies and 50 sheets; each photo must fit the paper.",
-    "outputTitle": "Mixed photo sheets"
+    "outputTitle": "Mixed photo sheets",
+    "addSize": "Add another size of this photo",
+    "itemLabel": "{{position}}. {{name}}"
   },
   "portrait": {
     "options": "Background and clothing",
@@ -701,7 +703,9 @@
       "cup": "Cup print area",
       "box": "Box print area",
       "bag": "Bag print area",
-      "grid": "Image grid"
+      "grid": "Image grid",
+      "seal": "Decorative round stamp",
+      "gift": "Gift card / tag"
     },
     "slots_zero": "{{count}} images per layout",
     "slots_one": "{{count}} images per layout",
@@ -726,6 +730,11 @@
     "exportNote_two": "{{count}} sheets at {{width}} × {{height}} mm. All images are split in their original order.",
     "exportNote_few": "{{count}} sheets at {{width}} × {{height}} mm. All images are split in their original order.",
     "exportNote_many": "{{count}} sheets at {{width}} × {{height}} mm. All images are split in their original order.",
-    "exportNote_other": "{{count}} sheets at {{width}} × {{height}} mm. All images are split in their original order."
+    "exportNote_other": "{{count}} sheets at {{width}} × {{height}} mm. All images are split in their original order.",
+    "sealNotice": "This round stamp only decorates labels, cards and packaging — it does not replace a registered seal and must not be stamped on official papers."
+  },
+  "handoff": {
+    "toIdPhoto": "Make an ID photo from this",
+    "toCv": "Use as CV photo"
   }
 }

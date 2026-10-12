@@ -133,7 +133,8 @@
     "preview": "ເບິ່ງຕົວຢ່າງ",
     "share": "ແບ່ງປັນ",
     "edit": "ແກ້ໄຂຕໍ່",
-    "restart": "ເຮັດໃໝ່"
+    "restart": "ເຮັດໃໝ່",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "ອອກຈາກໜ້ານີ້ບໍ?",

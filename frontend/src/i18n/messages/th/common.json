@@ -133,7 +133,8 @@
     "preview": "ดูตัวอย่าง",
     "share": "แชร์",
     "edit": "แก้ไขต่อ",
-    "restart": "เริ่มใหม่"
+    "restart": "เริ่มใหม่",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "ออกจากหน้านี้หรือไม่",

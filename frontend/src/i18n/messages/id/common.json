@@ -133,7 +133,8 @@
     "preview": "Pratinjau",
     "share": "Bagikan",
     "edit": "Edit lagi",
-    "restart": "Ulangi"
+    "restart": "Ulangi",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "Tinggalkan halaman ini?",

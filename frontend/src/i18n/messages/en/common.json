@@ -135,7 +135,8 @@
     "preview": "Preview",
     "share": "Share",
     "edit": "Keep editing",
-    "restart": "Start over"
+    "restart": "Start over",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "Leave this page?",

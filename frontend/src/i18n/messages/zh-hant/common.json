@@ -133,7 +133,8 @@
     "preview": "預覽",
     "share": "分享",
     "edit": "繼續編輯",
-    "restart": "重新開始"
+    "restart": "重新開始",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "要離開此頁面嗎？",

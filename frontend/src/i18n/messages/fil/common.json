@@ -135,7 +135,8 @@
     "preview": "Preview",
     "share": "Ibahagi",
     "edit": "Ituloy ang pag-edit",
-    "restart": "Ulitin"
+    "restart": "Ulitin",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "Aalis sa page na ito?",

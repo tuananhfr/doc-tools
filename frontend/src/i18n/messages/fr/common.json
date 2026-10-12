@@ -137,7 +137,8 @@
     "preview": "Aperçu",
     "share": "Partager",
     "edit": "Continuer à modifier",
-    "restart": "Recommencer"
+    "restart": "Recommencer",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "Quitter cette page ?",

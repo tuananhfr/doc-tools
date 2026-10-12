@@ -143,7 +143,8 @@
     "preview": "معاينة",
     "share": "مشاركة",
     "edit": "متابعة التعديل",
-    "restart": "البدء من جديد"
+    "restart": "البدء من جديد",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "مغادرة هذه الصفحة؟",

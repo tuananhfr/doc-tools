@@ -133,7 +133,8 @@
     "preview": "Xem trước",
     "share": "Chia sẻ",
     "edit": "Sửa tiếp",
-    "restart": "Làm lại"
+    "restart": "Làm lại",
+    "keepsInput": "Nội dung và tùy chọn vẫn được giữ: bấm “{{action}}” để sửa rồi tải bản khác."
   },
   "leave": {
     "title": "Rời trang này?",

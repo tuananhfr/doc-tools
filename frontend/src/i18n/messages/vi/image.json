@@ -460,7 +460,9 @@
     "summary": "{{photos}} ảnh trên {{sheets}} tờ",
     "run": "Tạo tờ ảnh hỗn hợp",
     "invalid": "Kiểm tra kích thước và số bản của từng ảnh. Tối đa 500 bản, 50 tờ; ảnh phải vừa khổ giấy.",
-    "outputTitle": "Tờ ảnh hỗn hợp"
+    "outputTitle": "Tờ ảnh hỗn hợp",
+    "addSize": "Thêm cỡ khác cho ảnh này",
+    "itemLabel": "{{position}}. {{name}}"
   },
   "portrait": {
     "options": "Nền và áo",
@@ -531,11 +533,18 @@
       "cup": "Vùng in cốc",
       "box": "Vùng in hộp",
       "bag": "Vùng in túi",
-      "grid": "Lưới ảnh"
+      "grid": "Lưới ảnh",
+      "seal": "Dấu tròn trang trí",
+      "gift": "Thiệp / thẻ quà tặng"
     },
     "slots_other": "{{count}} ảnh mỗi bố cục",
     "dimensions_other": "{{width}} × {{height}} mm · {{count}} bản",
     "fileCount_other": "{{count}} ảnh đã chọn",
-    "exportNote_other": "{{count}} bản, khổ {{width}} × {{height}} mm. Nhiều ảnh được chia đủ và giữ nguyên thứ tự."
+    "exportNote_other": "{{count}} bản, khổ {{width}} × {{height}} mm. Nhiều ảnh được chia đủ và giữ nguyên thứ tự.",
+    "sealNotice": "Dấu tròn này chỉ để trang trí nhãn, thiệp, bao bì — không thay con dấu đã đăng ký và không dùng để đóng lên giấy tờ."
+  },
+  "handoff": {
+    "toIdPhoto": "Làm ảnh thẻ từ ảnh này",
+    "toCv": "Dùng làm ảnh trong CV"
   }
 }

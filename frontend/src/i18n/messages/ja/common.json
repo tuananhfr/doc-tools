@@ -133,7 +133,8 @@
     "preview": "プレビュー",
     "share": "共有",
     "edit": "続けて編集",
-    "restart": "やり直す"
+    "restart": "やり直す",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "このページを離れますか？",

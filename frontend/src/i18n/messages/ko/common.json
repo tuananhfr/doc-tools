@@ -133,7 +133,8 @@
     "preview": "미리 보기",
     "share": "공유",
     "edit": "계속 편집",
-    "restart": "다시 하기"
+    "restart": "다시 하기",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "이 페이지를 떠날까요?",

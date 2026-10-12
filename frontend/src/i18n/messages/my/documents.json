@@ -66,7 +66,8 @@
     "confirmClear": "Clear the whole CV you are writing? This cannot be undone.",
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
-    "memoryOnly": "Details stay in this open session; the photo is not saved."
+    "memoryOnly": "Details stay in this open session; the photo is not saved.",
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
   },
   "formTemplates": {
     "title": "စာရွက်စာတမ်း ပုံစံ ရေးရန်",

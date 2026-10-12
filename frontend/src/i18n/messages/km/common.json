@@ -133,7 +133,8 @@
     "preview": "មើលជាមុន",
     "share": "ចែករំលែក",
     "edit": "កែបន្ត",
-    "restart": "ធ្វើឡើងវិញ"
+    "restart": "ធ្វើឡើងវិញ",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "ចាកចេញពីទំព័រនេះ?",

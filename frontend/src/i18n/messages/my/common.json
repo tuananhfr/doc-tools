@@ -133,7 +133,8 @@
     "preview": "အစမ်းကြည့်ရန်",
     "share": "မျှဝေရန်",
     "edit": "ဆက်ပြင်ရန်",
-    "restart": "ပြန်စရန်"
+    "restart": "ပြန်စရန်",
+    "keepsInput": "Your input and settings are kept: press “{{action}}” to change them and download another version."
   },
   "leave": {
     "title": "ဤစာမျက်နှာမှ ထွက်မလား။",
