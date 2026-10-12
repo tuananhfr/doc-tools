@@ -4,7 +4,7 @@ import { DatabaseService } from '../database/database.service'
 import { vietnamToday } from '../rules/rule-dates'
 import { effectiveDigest, lockRulePublishing, publishPackage, unlockRulePublishing } from '../rules/rules.repository'
 import type { ContributionInput, ProposedChange, SourceRef } from './contribution-input'
-import { isFeedback, transitionFeedback, type ContributionAction, type FeedbackStatus } from './feedback-workflow'
+import { isFeedback, legacyFeedbackStatus, transitionFeedback, type ContributionAction, type FeedbackStatus } from './feedback-workflow'
 
 export type ContributionStatus = FeedbackStatus | 'NEEDS_SOURCE' | 'NEEDS_REVIEW' | 'VERIFIED' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'REVOKED'
 /** Statuses where the submitter may still add evidence; later the reviewer already decided on what was there. */
@@ -48,7 +48,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
       await connection.beginTransaction()
       // The lock row serializes the rolling limit across API instances.
       await connection.execute('INSERT INTO contribution_flood_locks (ip_hash, seen_at) VALUES (?, ?) ON DUPLICATE KEY UPDATE seen_at = ?', [identity.floodKey, now, now])
-      const [existing] = await connection.execute<RowDataPacket[]>('SELECT c.duplicate_hash, c.receipt_hash, COALESCE(f.status, c.status) AS status, s.user_id FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id WHERE c.duplicate_hash = ? OR c.receipt_hash = ?', [identity.duplicateHash, identity.receiptHash])
+      const [existing] = await connection.execute<RowDataPacket[]>('SELECT c.duplicate_hash, c.receipt_hash, COALESCE(f.status, c.status) AS status, s.user_id FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id WHERE c.duplicate_hash = ? OR c.receipt_hash = ?', [identity.duplicateHash, identity.receiptHash])
       if (existing.length) {
         await connection.commit()
         const replay = existing.find(row => row.receipt_hash === identity.receiptHash)
@@ -61,7 +61,11 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
       await connection.execute('INSERT INTO contribution_flood_events (ip_hash, expires) VALUES (?, ?)', [identity.floodKey, now + 3600])
       const submitter = identity.submitter
       await connection.execute('INSERT INTO contributions (id, receipt_hash, duplicate_hash, tool_id, domain, risk, base_snapshot_id, proposed_changes, source_refs, jurisdiction, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [identity.id, identity.receiptHash, identity.duplicateHash, input.toolId, input.domain, identity.risk, input.baseSnapshotId, JSON.stringify(input.proposedChanges), JSON.stringify(input.sourceRefs), input.jurisdiction, identity.status])
-      if (isFeedback(input.domain)) await connection.execute('INSERT INTO contribution_feedback_workflow (contribution_id, status) VALUES (?, ?)', [identity.id, 'RECEIVED'])
+      if (isFeedback(input.domain)) {
+        const feedbackStatus: FeedbackStatus = 'RECEIVED'
+        await connection.execute('INSERT INTO contribution_feedback_state (contribution_id, status, duplicate_of, updated_at) VALUES (?, ?, ?, ?)', [identity.id, feedbackStatus, null, now])
+        await connection.execute('INSERT INTO contribution_feedback_workflow (contribution_id, status) VALUES (?, ?)', [identity.id, legacyFeedbackStatus(feedbackStatus)])
+      }
       if (submitter) await connection.execute('INSERT INTO contribution_submitters (contribution_id, user_id, attribution_consent) VALUES (?, ?, ?)', [identity.id, submitter.userId, submitter.attribution && !isFeedback(input.domain) ? 1 : 0])
       await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor) VALUES (?, ?, ?)', [identity.id, 'SUBMITTED', submitter ? `user:${submitter.userId}` : 'anonymous'])
       await connection.commit()
@@ -71,7 +75,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
   }
 
   async status(receiptHash: string): Promise<{ status: ContributionStatus; createdAt: string } | null> {
-    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT COALESCE(f.status, c.status) AS status, c.created_at FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id WHERE c.receipt_hash = ?', [receiptHash])
+    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT COALESCE(f.status, c.status) AS status, c.created_at FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id WHERE c.receipt_hash = ?', [receiptHash])
     if (!rows.length) return null
     return { status: rows[0].status as ContributionStatus, createdAt: (rows[0].created_at as Date).toISOString() }
   }
@@ -102,7 +106,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     const [rows] = await this.database.pool.query<RowDataPacket[]>(
       `SELECT c.id, c.tool_id, c.domain, COALESCE(f.status, c.status) AS status, c.proposed_changes, c.source_refs, s.attribution_consent, c.created_at
        FROM contribution_submitters s JOIN contributions c ON c.id = s.contribution_id
-       LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id
+       LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id
        WHERE s.user_id = ? ORDER BY s.created_at DESC, c.id DESC LIMIT ? OFFSET ?`, [userId, pageSize, (page - 1) * pageSize])
     return {
       total: Number(total),
@@ -137,7 +141,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
   }
 
   async getForReview(id: string) {
-    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT c.id, c.tool_id, c.domain, c.risk, c.base_snapshot_id, c.proposed_changes, c.source_refs, c.jurisdiction, COALESCE(f.status, c.status) AS status, c.reviewed_by, c.approved_by, c.published_digest, c.created_at, u.email AS submitter_email, s.attribution_consent FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id WHERE c.id = ?', [id])
+    const [rows] = await this.database.pool.execute<RowDataPacket[]>('SELECT c.id, c.tool_id, c.domain, c.risk, c.base_snapshot_id, c.proposed_changes, c.source_refs, c.jurisdiction, COALESCE(f.status, c.status) AS status, c.reviewed_by, c.approved_by, c.published_digest, c.created_at, u.email AS submitter_email, s.attribution_consent, f.duplicate_of, (SELECT COUNT(*) FROM contribution_feedback_state d WHERE d.duplicate_of = c.id) AS duplicate_count FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id WHERE c.id = ?', [id])
     return rows[0] ?? null
   }
 
@@ -153,7 +157,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     return rows.map((row) => ({ id: row.id as string, text: (row.proposed_changes as { after: string }[])[0]?.after || '', author: (row.author as string | null) || null }))
   }
 
-  async transition(id: string, action: ContributionAction, actor: string, note: string | null, digest: string | null) {
+  async transition(id: string, action: ContributionAction, actor: string, note: string | null, digest: string | null, duplicateOf: string | null = null) {
     const connection = await this.database.pool.getConnection()
     try {
       if (action === 'publish') await lockRulePublishing(connection)
@@ -163,11 +167,11 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
       const row = rows[0]
       const from = row.status as ContributionStatus
       if (isFeedback(row.domain)) {
-        const status = await transitionFeedback(connection, id, action, actor, note)
+        const status = await transitionFeedback(connection, id, action, actor, note, duplicateOf)
         await connection.commit()
         return status
       }
-      if (action === 'start' || action === 'resolve') throw new Error(`Cannot ${action} from ${from}`)
+      if (action === 'start' || action === 'resolve' || action === 'triage' || action === 'release' || action === 'dedupe') throw new Error(`Cannot ${action} from ${from}`)
       const expected: Record<typeof action, ContributionStatus[]> = { verify: ['NEEDS_REVIEW'], approve: ['VERIFIED'], reject: ['NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED'], publish: ['APPROVED'], supersede: ['PUBLISHED'], revoke: ['PUBLISHED'] }
       if (!expected[action].includes(from)) throw new Error(`Cannot ${action} from ${from}`)
       if (action === 'verify') {

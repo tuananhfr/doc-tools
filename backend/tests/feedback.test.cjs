@@ -12,6 +12,55 @@ const { DatabaseService } = require('../dist/database/database.service')
 const { ContributionsRepository } = require('../dist/contributions/contributions.repository')
 const { parseContributionInput, parseSourceRefs } = require('../dist/contributions/contribution-input')
 
+/** App + throwaway users for the WP5 feedback tests; `close()` removes every row they made. */
+async function feedbackHarness(prefix) {
+  const app = await NestFactory.create(AppModule, createHttpAdapter(), { logger: false, bodyParser: false })
+  app.setGlobalPrefix('api/v1')
+  await app.init()
+  const api = app.getHttpAdapter().getInstance(); await api.ready()
+  const database = app.get(DatabaseService)
+  const tag = randomBytes(7).toString('hex')
+  const toolId = `${prefix}-${tag}`
+  const ip = `198.51.100.${randomBytes(1)[0] || 1}`
+  const users = []
+  const hash = value => createHash('sha256').update(value).digest('hex')
+  const floodHash = value => createHmac('sha256', process.env.VISIT_HASH_SECRET).update(value).digest('hex')
+  const person = async (role) => {
+    const id = randomUUID(); const token = randomBytes(32).toString('base64url'); const now = Math.floor(Date.now() / 1000)
+    await database.pool.execute('INSERT INTO users (id, email) VALUES (?, ?)', [id, `${prefix}-${randomBytes(5).toString('hex')}@example.test`])
+    await database.pool.execute('INSERT INTO user_sessions (token_hash, user_id, created_at, expires_at, last_seen_at) VALUES (?, ?, ?, ?, ?)', [hash(token), id, now, now + 3600, now])
+    if (role) await database.pool.execute('INSERT INTO user_roles (user_id, role, granted_by) VALUES (?, ?, ?)', [id, role, 'qa'])
+    const user = { id, cookie: `cn_session=${token}` }; users.push(user); return user
+  }
+  const headers = user => ({ ...(user ? { cookie: user.cookie } : {}), 'x-cn-request': '1', origin: 'https://site.test', 'x-forwarded-for': ip })
+  const send = (payload, user, key = randomBytes(24).toString('base64url')) => api.inject({ method: 'POST', url: '/api/v1/contributions', remoteAddress: '127.0.0.1', headers: { ...headers(user), 'idempotency-key': key }, payload })
+  const bug = text => ({ toolId, domain: 'feedback-bug', proposedChanges: [{ field: 'bug', before: '', after: text }], sourceRefs: [] })
+  const admin = (user, method, path, payload) => api.inject({ method, url: `/api/v1/admin${path}`, headers: headers(user), payload })
+  const idOf = async code => { const [[row]] = await database.pool.execute('SELECT id FROM contributions WHERE receipt_hash = ?', [hash(code)]); return row.id }
+  const state = async id => { const [[row]] = await database.pool.execute('SELECT s.status, s.duplicate_of, s.triaged_by, w.status AS legacy FROM contribution_feedback_state s JOIN contribution_feedback_workflow w ON w.contribution_id = s.contribution_id WHERE s.contribution_id = ?', [id]); return row }
+  const close = async () => {
+    try {
+      const [rows] = await database.pool.execute('SELECT id FROM contributions WHERE tool_id = ?', [toolId])
+      for (const { id } of rows) {
+        for (const table of ['contribution_feedback_state', 'contribution_feedback_workflow', 'contribution_feedback_keys', 'contribution_submitters', 'contribution_audit']) await database.pool.execute(`DELETE FROM ${table} WHERE contribution_id = ?`, [id])
+        await database.pool.execute('DELETE FROM admin_audit WHERE target_type = ? AND target_id = ?', ['contribution', id])
+      }
+      await database.pool.execute('DELETE FROM contributions WHERE tool_id = ?', [toolId])
+      await database.pool.execute("DELETE FROM app_settings WHERE setting_key = 'feedback.autoDedupe'")
+      for (const user of users) {
+        for (const table of ['user_sessions', 'user_roles']) await database.pool.execute(`DELETE FROM ${table} WHERE user_id = ?`, [user.id])
+        await database.pool.execute('DELETE FROM admin_audit WHERE actor_id = ?', [user.id])
+        await database.pool.execute('DELETE FROM users WHERE id = ?', [user.id])
+      }
+      for (const key of [floodHash(`contribution:${ip}`), ...users.map(user => floodHash(`contribution-user:${user.id}`))]) {
+        await database.pool.execute('DELETE FROM contribution_flood_events WHERE ip_hash = ?', [key])
+        await database.pool.execute('DELETE FROM contribution_flood_locks WHERE ip_hash = ?', [key])
+      }
+    } finally { await app.close() }
+  }
+  return { api, database, tag, toolId, person, headers, send, bug, admin, idOf, state, close }
+}
+
 test('source and general-feedback validation reject incompatible or private inputs', () => {
   for (const url of ['https://[::1]/a', 'https://[fd00::1]/a', 'https://[2001:db8::1]/a', 'https://intranet/a', 'https://127.0.0.1/a']) assert.equal(parseSourceRefs([{ url, type: 'OTHER' }]), null, url)
   assert.ok(parseSourceRefs([{ url: 'https://example.com/doc', type: 'OFFICIAL_WEB' }]))
@@ -94,7 +143,7 @@ test('feedback API separates internal handling from data review and retries safe
     if (database) {
       const [rows] = await database.pool.execute('SELECT id FROM contributions WHERE tool_id = ?', [toolId])
       for (const { id } of rows) {
-        for (const table of ['contribution_feedback_workflow', 'contribution_submitters', 'contribution_audit']) await database.pool.execute(`DELETE FROM ${table} WHERE contribution_id = ?`, [id])
+        for (const table of ['contribution_feedback_state', 'contribution_feedback_workflow', 'contribution_feedback_keys', 'contribution_submitters', 'contribution_audit']) await database.pool.execute(`DELETE FROM ${table} WHERE contribution_id = ?`, [id])
         await database.pool.execute('DELETE FROM admin_audit WHERE target_type = ? AND target_id = ?', ['contribution', id])
       }
       await database.pool.execute('DELETE FROM contributions WHERE tool_id = ?', [toolId])
@@ -152,4 +201,52 @@ test('feedback state migration copies legacy rows once and keys them for dedupe'
     await database.pool.execute('DELETE FROM contributions WHERE tool_id = ?', [toolId]).catch(() => undefined)
     await database.onModuleDestroy()
   }
+})
+
+test('feedback workflow: triage, release, manual merge and the rollback copy', async () => {
+  const h = await feedbackHarness('qa-triage')
+  try {
+    const owner = await h.person('owner'); const member = await h.person(null)
+    const step = (id, payload) => h.admin(owner, 'POST', `/contributions/${id}/transition`, payload)
+    const first = await h.send(h.bug(`Nút tải không chạy ${h.tag}`), member)
+    assert.equal(first.statusCode, 200, first.payload); assert.equal(first.json().status, 'RECEIVED')
+    const original = await h.idOf(first.json().receiptCode)
+    assert.deepEqual({ ...await h.state(original) }, { status: 'RECEIVED', duplicate_of: null, triaged_by: null, legacy: 'RECEIVED' })
+    assert.equal((await step(original, { action: 'release' })).json().code, 'INVALID_STATE')
+    assert.equal((await step(original, { action: 'triage', note: 'Reproduced on Android' })).json().status, 'TRIAGED')
+    const triaged = await h.state(original)
+    assert.equal(triaged.status, 'TRIAGED'); assert.equal(triaged.legacy, 'RECEIVED'); assert.ok(triaged.triaged_by)
+    assert.equal((await step(original, { action: 'triage' })).json().code, 'INVALID_STATE')
+    assert.equal((await step(original, { action: 'start' })).json().status, 'IN_PROGRESS')
+    assert.equal((await step(original, { action: 'resolve', note: 'Download button fixed' })).json().status, 'RESOLVED')
+    assert.equal((await step(original, { action: 'release' })).json().status, 'RELEASED')
+    assert.equal((await h.state(original)).legacy, 'RESOLVED')
+    assert.equal((await step(original, { action: 'release' })).json().code, 'INVALID_STATE')
+    assert.equal((await h.api.inject({ method: 'GET', url: `/api/v1/contributions/receipt/${first.json().receiptCode}` })).json().contribution.status, 'RELEASED')
+
+    const other = await h.idOf((await h.send(h.bug(`Ảnh xem trước bị mờ ${h.tag}`), member)).json().receiptCode)
+    const third = await h.idOf((await h.send(h.bug(`Ảnh xem trước bị mờ trên iPhone ${h.tag}`), member)).json().receiptCode)
+    const fourth = await h.idOf((await h.send(h.bug(`Xem trước mờ sau khi nén ${h.tag}`), member)).json().receiptCode)
+    assert.equal((await step(other, { action: 'dedupe' })).statusCode, 400, 'target is required')
+    assert.equal((await step(other, { action: 'dedupe', duplicateOf: other })).json().code, 'DUPLICATE_TARGET')
+    assert.equal((await step(third, { action: 'dedupe', duplicateOf: other })).json().status, 'DEDUPED')
+    assert.equal((await step(other, { action: 'dedupe', duplicateOf: third })).json().code, 'DUPLICATE_TARGET', 'no merge loops')
+    // Merging into a copy points at that copy's original, so reading a chain is one hop.
+    assert.equal((await step(fourth, { action: 'dedupe', duplicateOf: third, note: 'Same blur report' })).json().status, 'DEDUPED')
+    assert.equal((await h.state(fourth)).duplicate_of, other)
+    assert.equal((await h.state(fourth)).legacy, 'RESOLVED')
+    assert.equal((await step(fourth, { action: 'start' })).json().code, 'INVALID_STATE')
+    const detail = (await h.admin(owner, 'GET', `/contributions/${other}`)).json().contribution
+    assert.equal(detail.duplicateCount, 2); assert.equal(detail.duplicateOf, null)
+    assert.equal((await h.admin(owner, 'GET', `/contributions/${fourth}`)).json().contribution.duplicateOf, other)
+    const queue = (await h.admin(owner, 'GET', '/contributions?queue=open&domain=feedback-bug')).json().items.map(item => item.id)
+    assert.ok(queue.includes(other)); assert.ok(!queue.includes(fourth))
+    assert.ok((await h.admin(owner, 'GET', '/contributions?status=DEDUPED&domain=feedback-bug')).json().items.some(item => item.id === fourth))
+    const mine = (await h.api.inject({ method: 'GET', url: '/api/v1/me/contributions', headers: h.headers(member) })).json()
+    assert.ok(mine.items.some(item => item.id === fourth && item.status === 'DEDUPED' && !item.canAddEvidence))
+    const idea = await h.send({ toolId: h.toolId, domain: 'ideas', proposedChanges: [{ field: 'idea', before: '', after: `Công cụ ghép ảnh dọc ${h.tag}` }], sourceRefs: [] }, member)
+    const ideaId = await h.idOf(idea.json().receiptCode)
+    for (const action of ['triage', 'release']) assert.equal((await step(ideaId, { action })).json().code, 'INVALID_STATE')
+    assert.equal((await step(ideaId, { action: 'dedupe', duplicateOf: other })).json().code, 'INVALID_STATE')
+  } finally { await h.close() }
 })

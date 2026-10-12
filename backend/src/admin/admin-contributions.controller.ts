@@ -5,7 +5,7 @@ import { body, invalid, parseChoice, parseNote, parsePage, parseUuid } from './a
 import { AdminContributionsService, TRANSITIONS } from './admin-contributions.service'
 import { Actor, Staff, type StaffActor } from './admin.guard'
 
-const STATUSES: ContributionStatus[] = ['RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED']
+const STATUSES: ContributionStatus[] = ['RECEIVED', 'TRIAGED', 'IN_PROGRESS', 'RESOLVED', 'RELEASED', 'DEDUPED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'REJECTED', 'APPROVED', 'PUBLISHED', 'SUPERSEDED', 'REVOKED']
 
 @Controller('admin/contributions')
 export class AdminContributionsController {
@@ -32,6 +32,7 @@ export class AdminContributionsController {
     if (!action) invalid('Thiếu bước duyệt.')
     const note = parseNote(data.note, 2000, action === 'verify' || action === 'reject' || action === 'resolve')
     const digest = typeof data.digest === 'string' ? data.digest.trim().toLowerCase() : null
-    return this.contributions.transition(actor, parseUuid(id), action, note, digest)
+    const duplicateOf = action === 'dedupe' ? parseUuid(data.duplicateOf) : null
+    return this.contributions.transition(actor, parseUuid(id), action, note, digest, duplicateOf)
   }
 }

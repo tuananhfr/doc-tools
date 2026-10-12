@@ -7,7 +7,7 @@ import type { ProposedChange, SourceRef } from '../contributions/contribution-in
 export interface ContributionFilter { status?: ContributionStatus; domain?: string; queue?: 'open' }
 
 // What still needs a person; the review screen opens on this.
-const OPEN: ContributionStatus[] = ['RECEIVED', 'IN_PROGRESS', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED']
+const OPEN: ContributionStatus[] = ['RECEIVED', 'TRIAGED', 'IN_PROGRESS', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED']
 
 @Injectable()
 export class AdminContributionsRepository {
@@ -20,10 +20,10 @@ export class AdminContributionsRepository {
     else if (filter.queue) { where.push(`COALESCE(f.status, c.status) IN (${OPEN.map(() => '?').join(', ')})`); params.push(...OPEN) }
     if (filter.domain) { where.push('c.domain = ?'); params.push(filter.domain) }
     const clause = where.length ? `WHERE ${where.join(' AND ')}` : ''
-    const [[{ total }]] = await this.database.pool.query<RowDataPacket[]>(`SELECT COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id ${clause}`, params)
+    const [[{ total }]] = await this.database.pool.query<RowDataPacket[]>(`SELECT COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id ${clause}`, params)
     const [rows] = await this.database.pool.query<RowDataPacket[]>(
       `SELECT c.id, c.tool_id, c.domain, c.risk, COALESCE(f.status, c.status) AS status, c.proposed_changes, c.source_refs, c.created_at, u.email AS submitter_email
-       FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id
+       FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id LEFT JOIN contribution_submitters s ON s.contribution_id = c.id LEFT JOIN users u ON u.id = s.user_id
        ${clause} ORDER BY c.created_at DESC, c.id LIMIT ? OFFSET ?`, [...params, pageSize, (page - 1) * pageSize])
     return {
       total: Number(total),
@@ -40,7 +40,7 @@ export class AdminContributionsRepository {
   }
 
   async domains() {
-    const [rows] = await this.database.pool.query<RowDataPacket[]>('SELECT c.domain, COALESCE(f.status, c.status) AS status, COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id GROUP BY c.domain, COALESCE(f.status, c.status)')
+    const [rows] = await this.database.pool.query<RowDataPacket[]>('SELECT c.domain, COALESCE(f.status, c.status) AS status, COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id GROUP BY c.domain, COALESCE(f.status, c.status)')
     return rows.map((row) => ({ domain: row.domain as string, status: row.status as ContributionStatus, total: Number(row.total) }))
   }
 

@@ -40,7 +40,7 @@ export class AdminUsersRepository {
 
   async contributions(userId: string) {
     const [rows] = await this.database.pool.execute<RowDataPacket[]>(
-      `SELECT c.id, c.tool_id, c.domain, COALESCE(f.status, c.status) AS status, c.created_at, s.attribution_consent FROM contribution_submitters s JOIN contributions c ON c.id = s.contribution_id LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id
+      `SELECT c.id, c.tool_id, c.domain, COALESCE(f.status, c.status) AS status, c.created_at, s.attribution_consent FROM contribution_submitters s JOIN contributions c ON c.id = s.contribution_id LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id
        WHERE s.user_id = ? ORDER BY s.created_at DESC LIMIT 20`, [userId])
     return rows.map((row) => ({ id: row.id as string, toolId: row.tool_id as string, domain: row.domain as string, status: row.status as string, attribution: Boolean(row.attribution_consent), createdAt: iso(row.created_at)! }))
   }

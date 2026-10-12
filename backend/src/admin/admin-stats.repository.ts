@@ -23,7 +23,7 @@ export class AdminStatsRepository {
       SUM(last_login_at >= NOW() - INTERVAL 7 DAY) AS active7, SUM(status = 'disabled') AS disabled FROM users`)
     const pro = await this.one(`SELECT COUNT(*) AS active, SUM(ends_at <= ?) AS expiring7 FROM (
       SELECT user_id, MAX(ends_at) AS ends_at FROM user_plans WHERE plan = 'pro' AND revoked_at IS NULL AND starts_at <= ? AND ends_at > ? GROUP BY user_id) AS active`, [now + 7 * 86400, now, now])
-    const [contributionRows] = await this.database.pool.query<RowDataPacket[]>('SELECT COALESCE(f.status, c.status) AS status, COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_workflow f ON f.contribution_id = c.id GROUP BY COALESCE(f.status, c.status)')
+    const [contributionRows] = await this.database.pool.query<RowDataPacket[]>('SELECT COALESCE(f.status, c.status) AS status, COUNT(*) AS total FROM contributions c LEFT JOIN contribution_feedback_state f ON f.contribution_id = c.id GROUP BY COALESCE(f.status, c.status)')
     const [mailRows] = await this.database.pool.query<RowDataPacket[]>('SELECT status, COUNT(*) AS total FROM mail_outbox WHERE created_at >= ? GROUP BY status', [now - 7 * 86400])
     const staff = await this.one('SELECT COUNT(*) AS total FROM user_roles')
     const toNumber = (value: unknown) => Number(value ?? 0)

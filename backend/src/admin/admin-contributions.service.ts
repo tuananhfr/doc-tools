@@ -8,11 +8,12 @@ import { AdminContributionsRepository, type ContributionFilter } from './admin-c
 import { ADMIN_PAGE_SIZE } from './admin-input'
 import type { StaffActor } from './admin.guard'
 
-export const TRANSITIONS = ['start', 'resolve', 'verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'] as const
+export const TRANSITIONS = ['triage', 'start', 'resolve', 'release', 'dedupe', 'verify', 'approve', 'reject', 'publish', 'supersede', 'revoke'] as const
 export type Transition = (typeof TRANSITIONS)[number]
 
 /** The repository and the publish check speak English to the CLI; the admin screen needs codes and Vietnamese. */
 const FAILURES: [RegExp, string, string][] = [
+  [/^Duplicate target/, 'DUPLICATE_TARGET', 'Không gộp được: đích phải là một góp ý khác và không tạo vòng gộp.'],
   [/^Feedback resolution note is required/, 'NOTE_REQUIRED', 'Cần ghi kết quả xử lý góp ý.'],
   [/^Contribution not found/, 'NOT_FOUND', 'Không tìm thấy đề xuất.'],
   [/^Cannot \w+ from /, 'INVALID_STATE', 'Trạng thái đề xuất đã đổi, không làm được bước này. Hãy tải lại.'],
@@ -62,12 +63,13 @@ export class AdminContributionsService {
         reviewedBy: row.reviewed_by as string | null, approvedBy: row.approved_by as string | null, publishedDigest: row.published_digest as string | null,
         submitterEmail: row.submitter_email as string | null, attribution: row.attribution_consent === null ? null : Boolean(row.attribution_consent),
         createdAt: (row.created_at as Date).toISOString(),
+        duplicateOf: (row.duplicate_of ?? null) as string | null, duplicateCount: Number(row.duplicate_count ?? 0),
       },
       trail: await this.repository.trail(id),
     }
   }
 
-  async transition(actor: StaffActor, id: string, action: Transition, note: string | null, digest: string | null) {
+  async transition(actor: StaffActor, id: string, action: Transition, note: string | null, digest: string | null, duplicateOf: string | null = null) {
     try {
       let packageDigest: string | null = null
       if (action === 'publish') {
@@ -80,8 +82,8 @@ export class AdminContributionsService {
         }
       }
       // Same separation of duties as the CLI: the staff email is the identity compared across steps.
-      const status = await this.contributions.transition(id, action, actor.label, action === 'publish' ? null : note, packageDigest)
-      await this.audit.record(actor, `CONTRIBUTION_${action.toUpperCase()}`, 'contribution', id, note ?? packageDigest)
+      const status = await this.contributions.transition(id, action, actor.label, action === 'publish' ? null : note, packageDigest, duplicateOf)
+      await this.audit.record(actor, `CONTRIBUTION_${action.toUpperCase()}`, 'contribution', id, note ?? packageDigest ?? duplicateOf)
       return { ok: true, status }
     } catch (error) { translate(error) }
   }
