@@ -382,7 +382,7 @@ Landing CSS is scoped under `styles/site/landing`. Preserve the account/share en
 
 ### Entertainment tools
 
-`features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. Copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). No interpretation corpus is implemented. Legal and privacy copy must match `backend/docs/entertainment.md`.
+`features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. UI copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). The Vietnamese interpretation corpus is keyed by card/orientation or metric/value; UI and export share it. See `docs/entertainment-interpretations.md` before changing meanings, spread positions, method conventions or provenance. Legal and privacy copy must match `backend/docs/entertainment.md`.
 
 ## Incremental workspace adapters (12/10/2026)
 

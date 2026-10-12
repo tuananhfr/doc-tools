@@ -15,7 +15,14 @@ export class EntertainmentController {
   @Get('tools')
   @Header('Cache-Control', 'no-store')
   tools() {
-    return { ok: true, sources: [{ id: SOURCE_ID, status: 'DRAFT', corpus_available: false }], tools: Object.entries(RULE_VERSIONS).map(([kind, version]) => ({ kind, rule_version: version, available: true, interpretation_available: false })) }
+    return {
+      ok: true,
+      sources: [
+        { id: SOURCE_ID, status: 'DRAFT', corpus_available: false },
+        { id: 'cn-ent-interpretation-vi-v1', status: 'EDITORIAL', corpus_available: true, language: 'vi' },
+      ],
+      tools: Object.entries(RULE_VERSIONS).map(([kind, version]) => ({ kind, rule_version: version, available: true, interpretation_available: kind !== 'calendar' })),
+    }
   }
   @Post('numerology/calculate')
   @HttpCode(200)

@@ -26,7 +26,6 @@
     "amount": "{{number}} lá",
     "allowReversed": "Cho phép lá Tarot ngược",
     "profile": "Chọn số lá, xào và rút bài. Chạm từng lá để lật, rồi chạm lại để xem ảnh lớn.",
-    "noMeaning": "Hiển thị các lá bạn rút. Chức năng hiện chưa có phần luận giải.",
     "draw": "Xào và rút bài",
     "drawing": "Đang rút bài…",
     "result": "Bộ lá của phiên này",
@@ -38,7 +37,8 @@
     "revealHint": "Chạm từng lá để lật hoặc chọn Lật tất cả.",
     "complete": "Đã lật đủ lá. Bạn có thể xem ảnh lớn hoặc tải kết quả.",
     "expired": "Phiên đã hết hạn. Bắt đầu phiên mới để tiếp tục; bộ lá cũ không được rút lại bằng mã cũ.",
-    "revealAll": "Lật tất cả"
+    "revealAll": "Lật tất cả",
+    "meaningHint": "Lật từng lá để đọc ý nghĩa và lời khuyên. Lật đủ các lá để xem tổng quan."
   },
   "tarot": {
     "title": "Tarot 78 lá"
@@ -56,7 +56,6 @@
     "normalized": "Tên sau chuẩn hóa",
     "steps": "Các bước rút gọn",
     "noVowels": "Không có chữ phù hợp để tính",
-    "noMeaning": "Hiển thị chỉ số và cách tính. Chức năng hiện chưa có phần diễn giải từng chỉ số.",
     "metrics": {
       "life_path": "Đường đời",
       "birthday": "Ngày sinh",
@@ -224,5 +223,17 @@
       "SQ": "Q Bích",
       "SK": "K Bích"
     }
+  },
+  "reading": {
+    "sources": "Nguồn bộ luận giải",
+    "overview": "Tóm tắt kết quả",
+    "cardTitle": "Luận giải từng lá",
+    "numberTitle": "Diễn giải từng chỉ số",
+    "language": "Bộ luận giải hiện có bằng tiếng Việt.",
+    "summaryNote": "Tổng quan tóm tắt ý nghĩa của các lá hoặc chỉ số đã có trong kết quả. Đây là nội dung tham khảo, không phải kết luận chắc chắn.",
+    "revealFirst": "Lật một lá để đọc ý nghĩa của lá đó.",
+    "overviewAfterReveal": "Lật đủ các lá để xem tổng quan.",
+    "unavailable": "Chưa có nội dung phù hợp cho kết quả này.",
+    "notCalculated": "Chưa tính được"
   }
 }

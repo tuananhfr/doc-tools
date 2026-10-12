@@ -55,3 +55,28 @@
 .cn-ent-calendar h2 { font-size: 1.25rem; }
 
 .cn-ent-reference { margin: 1.25rem 0 0; font-size: .875rem; color: var(--cn-muted); }
+.cn-ent-spread-guide { padding: 1rem; background: var(--cn-tint); border-radius: .5rem; line-height: 1.65; }
+.cn-ent-spread-guide ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1.75rem; margin: .65rem 0 0; padding-inline-start: 1.3rem; }
+.cn-ent-overview { margin-block: 1.5rem; padding: 1.25rem; background: var(--cn-tint); border-radius: .5rem; }
+.cn-ent h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.5; margin: 0; }
+.cn-ent-overview ul { margin: .75rem 0; padding-inline-start: 1.25rem; line-height: 1.75; }
+.cn-ent-overview li + li { margin-block-start: .5rem; }
+.cn-ent-reading-note { font-size: .875rem; color: var(--cn-muted); }
+.cn-ent-interpretations { margin-block: 1.5rem; }
+.cn-ent-meaning { border-block-start: 1px solid var(--cn-line); }
+.cn-ent-meaning:last-child { border-block-end: 1px solid var(--cn-line); }
+.cn-ent-meaning summary { padding: 1rem .25rem; min-height: 48px; cursor: pointer; font-weight: 600; line-height: 1.6; overflow-wrap: anywhere; }
+.cn-ent-meaning summary:focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 2px; }
+.cn-ent-meaning-role { display: block; padding-inline-start: 1rem; font-size: .875rem; font-weight: 400; color: var(--cn-muted); }
+.cn-ent-meaning-body { padding: 0 .25rem 1rem; max-width: 65ch; text-align: start; }
+.cn-ent-keywords { color: var(--cn-accent); font-weight: 600; }
+.cn-ent-meaning-facts { display: grid; gap: .75rem; margin: 1rem 0; line-height: 1.7; }
+.cn-ent-meaning-facts dt { font-size: .875rem; color: var(--cn-muted); }
+.cn-ent-meaning-facts dd { margin: .2rem 0 0; }
+.cn-ent-reading-source ul { padding-inline-start: 1.25rem; line-height: 1.9; }
+.cn-ent-reading-source a { overflow-wrap: anywhere; }
+.cn-ent-reading-version { font-size: .8rem; color: var(--cn-muted); overflow-wrap: anywhere; }
+@media (max-width: 575px) {
+  .cn-ent-spread-guide ol { grid-template-columns: minmax(0, 1fr); }
+  .cn-ent-overview { padding: 1rem; }
+}

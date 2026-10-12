@@ -1,0 +1,45 @@
+import { INTERPRETATION_SOURCES, INTERPRETATION_VERSION, type InterpretationKind } from '../config/interpretation-sources'
+import { SPREAD_METHOD_NOTE } from '../config/draw-spreads'
+import { NUMEROLOGY_METHOD_NOTE } from '../config/numerology-method'
+import type { CardIdentity } from '../types/entertainment.types'
+import type { drawReading } from './card-reading'
+import type { numerologyReading } from './numerology-reading'
+import type { ReadingSummary } from './reading-summary'
+
+function summaryLines(summary: ReadingSummary | null): string[] {
+  return summary ? ['Tổng quan', ...summary.items.map(item => `${item.role ? `${item.role} · ` : ''}${item.label}: ${item.text}`), ...(summary.advice ? [`Lời khuyên từ ${summary.advice.label}: ${summary.advice.text}`] : [])] : []
+}
+
+export function readingSourceLines(kind: InterpretationKind): string[] {
+  return [
+    `Bộ luận giải tiếng Việt: ${INTERPRETATION_VERSION}`,
+    'Chuyện Nhỏ biên soạn nội dung từ ý nghĩa truyền thống, kèm ví dụ và lời khuyên. Các tác giả nguồn không xác nhận kết quả riêng này.',
+    kind === 'numerology' ? NUMEROLOGY_METHOD_NOTE : SPREAD_METHOD_NOTE,
+    ...INTERPRETATION_SOURCES[kind].map(source => `${source.title}: ${source.url}`),
+  ]
+}
+
+export function drawReadingLines(reading: ReturnType<typeof drawReading>, kind: 'cards' | 'tarot', labelOf: (card: CardIdentity) => string): string[] {
+  return [
+    ...(reading.spread ? [reading.spread.title] : []),
+    ...summaryLines(reading.summary),
+    ...reading.cards.flatMap(({ card, position, meaning }) => [
+      `${card.position}. ${labelOf(card)}${kind === 'tarot' ? ` (${card.orientation === 'REVERSED' ? 'Ngược' : 'Xuôi'})` : ''}${position ? ` · ${position.title}` : ''}`,
+      ...(position ? [position.description] : []),
+      ...(meaning ? [meaning.keywords.join(' · '), meaning.text, `Lời khuyên: ${meaning.advice}`] : ['Chưa có nội dung phù hợp cho lá này.']),
+    ]),
+    ...readingSourceLines(kind),
+  ]
+}
+
+export function numerologyReadingLines(reading: ReturnType<typeof numerologyReading>, nameOf: (id: string) => string): string[] {
+  return [
+    ...summaryLines(reading.summary),
+    ...reading.metrics.flatMap(({ metric, meaning, role }) => [
+      `${nameOf(metric.id)}: ${metric.value ?? 'Không tính được'}${metric.steps.length ? ` (${metric.steps.join(' → ')})` : ''}`,
+      ...(role ? [role.description] : []),
+      ...(meaning ? [meaning.keywords.join(' · '), meaning.text, `${metric.id === 'personal_year' ? 'Nên tập trung' : 'Điểm mạnh'}: ${meaning.strength}`, `${metric.id === 'personal_year' ? 'Cần tránh' : 'Điểm dễ vướng'}: ${meaning.growth}`, `Lời khuyên: ${meaning.advice}`] : [metric.value === null ? 'Không có chữ phù hợp để tính chỉ số này; không gán luận giải.' : 'Chưa có nội dung cho giá trị này.']),
+    ]),
+    ...readingSourceLines('numerology'),
+  ]
+}

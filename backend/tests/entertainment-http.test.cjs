@@ -30,6 +30,9 @@ test('guest entertainment HTTP and MySQL contracts', async t => {
       assert.ok(state.json().tools.every(tool => tool.available === true))
       assert.equal('sandbox_enabled' in state.json(), false)
       assert.equal(state.json().sources[0].corpus_available, false)
+      assert.equal(state.json().sources[1].corpus_available, true)
+      assert.equal(state.json().tools.find(tool => tool.kind === 'tarot').interpretation_available, true)
+      assert.equal(state.json().tools.find(tool => tool.kind === 'calendar').interpretation_available, false)
       assert.equal((await request('cards/draw', settings, key())).statusCode, 200)
       process.env.ENT_SANDBOX_ENABLED = '0'
       assert.equal((await request('cards/draw', settings, key())).statusCode, 200)

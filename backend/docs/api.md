@@ -1,5 +1,9 @@
 # Public tool counter API
 
+## Entertainment reference tools
+
+See `entertainment.md` for the `/api/v1/ent` contract. `GET /ent/tools` now reports `interpretation_available: true` for Tarot, playing cards and numerology, and `false` for calendar. Its source list keeps the draft calculation source and adds `{id:"cn-ent-interpretation-vi-v1",status:"EDITORIAL",corpus_available:true,language:"vi"}`. Availability refers to deterministic Vietnamese content delivered by the frontend, not a server interpretation endpoint. Existing calculation/draw/report envelopes and stored snapshots are unchanged.
+
 ## Optional quality aggregates
 
 `POST /api/v1/tools/quality` accepts exactly `{event,tool}`. Events: `zero-result`, `reformulation`, `tool-opened`, `completion`, `download`. Tools: `none`, `compress-pdf`, `merge-pdf`, `split-pdf`, `scan-to-pdf`, `compress-image`, `ocr`, `image-to-text`, `qr-create`. Search events must use `none`; other events must name a supported tool. Unknown fields or dimensions return 400 `{ok:false,message}`. Success is 200 `{ok:true}`, `Cache-Control: no-store`, with the existing 1 KiB limit. No public reporting endpoint exists.

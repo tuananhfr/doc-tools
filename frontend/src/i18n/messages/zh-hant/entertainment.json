@@ -26,7 +26,6 @@
     "amount": "{{number}} cards",
     "allowReversed": "Allow reversed Tarot cards",
     "profile": "Choose a card count, shuffle and draw. Tap a card to reveal it, then tap again to see a larger image.",
-    "noMeaning": "Shows the cards you drew. Card interpretations are not included yet.",
     "draw": "Shuffle and draw",
     "drawing": "Drawing…",
     "result": "Cards in this session",
@@ -38,7 +37,8 @@
     "revealHint": "Tap each card to reveal it or choose Reveal all.",
     "complete": "All cards are revealed. View a larger image or download the result.",
     "expired": "This session expired. Start a new session; an expired key cannot draw again.",
-    "revealAll": "Reveal all"
+    "revealAll": "Reveal all",
+    "meaningHint": "Reveal a card to read its meaning and advice. Reveal all cards to see the overview. Readings are currently in Vietnamese."
   },
   "tarot": {
     "title": "78 Tarot cards"
@@ -56,7 +56,6 @@
     "normalized": "Normalized name",
     "steps": "Reduction steps",
     "noVowels": "No eligible letters to calculate",
-    "noMeaning": "Shows numbers and calculation steps. Interpretations of each number are not included yet.",
     "metrics": {
       "life_path": "Life path",
       "birthday": "Birthday",
@@ -224,5 +223,17 @@
       "SQ": "Q of Spades",
       "SK": "K of Spades"
     }
+  },
+  "reading": {
+    "sources": "Interpretation sources",
+    "overview": "Result overview",
+    "cardTitle": "Card interpretations",
+    "numberTitle": "Number interpretations",
+    "language": "The interpretation library is currently available in Vietnamese.",
+    "summaryNote": "The overview summarizes the meanings of the cards or numbers in this result. It is reference material, not a certain conclusion.",
+    "revealFirst": "Reveal a card to read its meaning.",
+    "overviewAfterReveal": "Reveal all cards to see the overview.",
+    "unavailable": "No matching interpretation is available for this result.",
+    "notCalculated": "Not calculated"
   }
 }
