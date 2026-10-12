@@ -12,7 +12,7 @@ import { normalizeOcrText } from './lib/ocr-metrics.mjs'
 const require = createRequire(import.meta.url)
 const { RGBLuminanceSource, BinaryBitmap, HybridBinarizer, QRCodeReader } = require('@zxing/library')
 const specification = JSON.parse(fs.readFileSync(new URL('./benchmark/p0-journeys.json', import.meta.url), 'utf8'))
-const site = (process.env.SITE ?? 'http://localhost:3012').replace(/\/$/, '')
+const site = (process.env.SITE ?? 'http://localhost:3002').replace(/\/$/, '')
 const [width, height] = (process.env.VIEW ?? '1440x900').split('x').map(Number)
 const out = outDir(`p0-journeys-${width}`)
 const directory = process.env.OCR_FIXTURES ?? outDir('ocr-fixtures')

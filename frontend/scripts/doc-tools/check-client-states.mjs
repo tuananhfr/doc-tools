@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { PDFDocument } from 'pdf-lib'
 import { chromium, FIX, outDir } from './lib/qa.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:37061'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const out = outDir('client-states')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, acceptDownloads: true })

@@ -5,7 +5,7 @@ import { PDFDocument } from 'pdf-lib'
 import { chromium, FIX, outDir } from './lib/qa.mjs'
 import { buildToolCatalog } from '../export-tool-catalog.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:37061'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const mode = process.env.MODE ?? 'journeys'
 const height = Number(process.env.HEIGHT ?? 844)
 const widths = (process.env.WIDTHS ?? (mode === 'sweep' ? '320,360,390,430,768,1366,1920' : '320,390,430')).split(',').map(Number)
@@ -75,10 +75,11 @@ try {
 
     await check(page, 'directory-and-return', async () => {
       await open('cong-cu')
-      assert.equal(await page.locator('a.erp-tool-card').count(), 68)
+      // Đếm từ catalog thay vì số cứng: số công cụ đổi theo từng đợt phát hành.
+      assert.equal(await page.locator('a.erp-tool-card').count(), catalog.tools.filter(tool => tool.status === 'ready').length)
       assert.equal(await page.locator('.erp-tool-card.is-soon').count(), 0)
       await page.locator('.cn-catalog-availability input').check()
-      assert.equal(await page.locator('.erp-tool-card.is-soon').count(), 19)
+      assert.equal(await page.locator('.erp-tool-card.is-soon').count(), catalog.tools.filter(tool => tool.status === 'soon').length)
       await page.locator('.cn-catalog-availability input').uncheck()
       await page.locator('.cn-filter-mobile').selectOption('document')
       await page.locator('#tim-cong-cu').fill('ghép pdf')

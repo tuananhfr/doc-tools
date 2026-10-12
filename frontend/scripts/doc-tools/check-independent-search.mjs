@@ -3,7 +3,7 @@ import path from 'node:path'
 import assert from 'node:assert/strict'
 import { chromium, outDir } from './lib/qa.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:37061'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const out = outDir('independent-search')
 const source = JSON.parse(fs.readFileSync(new URL('../../qa-output/2026-10-11-baseline/chuyen-nho-qa-20261011/exploratory/results-reviewed.json', import.meta.url), 'utf8'))
 const browser = await chromium.launch({ channel: 'chrome', headless: true })

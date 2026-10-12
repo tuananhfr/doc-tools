@@ -6,7 +6,7 @@ import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 import { generateBenchmarkFixtures } from './fixtures/ocr-benchmark.mjs'
 import { normalizeOcrText, textMetrics, fieldMetrics, aggregateMetrics } from './lib/ocr-metrics.mjs'
 
-const site = (process.env.SITE ?? 'http://localhost:3012').replace(/\/$/, '')
+const site = (process.env.SITE ?? 'http://localhost:3002').replace(/\/$/, '')
 const out = outDir('ocr-benchmark')
 const directory = process.env.OCR_FIXTURES ?? outDir('ocr-fixtures')
 if (!fs.existsSync(path.join(directory, 'manifest.json'))) await generateBenchmarkFixtures(directory)

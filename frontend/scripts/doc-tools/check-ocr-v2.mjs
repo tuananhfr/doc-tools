@@ -9,7 +9,7 @@ import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs'
 import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 import { structuredMetrics } from './lib/ocr-metrics.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:3016'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const fixtures = process.env.OCR_FIXTURES ?? path.join(process.env.LOCALAPPDATA, 'Temp/erpcons-doc-tools/out/ocr-fixtures-v2')
 const out = outDir('ocr-v2'), hash = bytes => createHash('sha256').update(bytes).digest('hex')
 const manifest = JSON.parse(fs.readFileSync(path.join(fixtures, 'manifest.json'), 'utf8'))

@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:3016', out = outDir('ocr-states')
+const site = process.env.SITE ?? 'http://localhost:3002', out = outDir('ocr-states')
 const fixtures = process.env.OCR_FIXTURES ?? path.join(process.env.LOCALAPPDATA, 'Temp/erpcons-doc-tools/out/ocr-fixtures-v2')
 const manifest = JSON.parse(fs.readFileSync(path.join(fixtures, 'manifest.json'), 'utf8'))
 const browser = await chromium.launch({ channel: 'chrome', headless: true })

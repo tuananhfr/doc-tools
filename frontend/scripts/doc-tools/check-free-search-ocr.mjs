@@ -7,7 +7,7 @@ import { chromium, outDir } from './lib/qa.mjs'
 const require = createRequire(import.meta.url)
 const { PDFDocument } = require('pdf-lib')
 const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs')
-const site = (process.env.SITE ?? 'http://localhost:3012').replace(/\/$/, '')
+const site = (process.env.SITE ?? 'http://localhost:3002').replace(/\/$/, '')
 const out = outDir('free-search-ocr')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true })

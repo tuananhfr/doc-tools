@@ -12,11 +12,13 @@ const site = (process.env.SITE ?? 'http://localhost:3002').replace(/\/$/, '')
 const widths = (process.env.WIDTHS ?? '360,390,768,1366').split(',').map(Number)
 const themes = (process.env.THEMES ?? 'light,dark').split(',')
 const height = Number(process.env.HEIGHT ?? 844)
-// Trang site + một công cụ đại diện cho mỗi nhóm của spec (menu-consolidation-map.csv).
-const PAGES = [
+// Trang site + một công cụ đại diện cho mỗi nhóm của spec (menu-consolidation-map.csv) + 5 trang nhóm của WP1.
+// `ROUTES=/a,/b` để chụp một phần.
+const PAGES = process.env.ROUTES ? process.env.ROUTES.split(',') : [
   '/', '/cong-cu', '/tai-lieu-pdf', '/xay-dung', '/gia-dinh', '/kham-pha-giai-tri',
   '/ghep-pdf', '/nen-anh', '/anh-the', '/thiet-ke-nhanh', '/tao-cv', '/tao-ma-qr',
   '/doc-to-van-ban', '/tinh-tien', '/khai-toan-nha', '/tarot',
+  '/hinh-anh', '/ma-qr', '/doc-va-nghe', '/tinh-toan', '/mau-giay-to',
 ]
 const out = outDir(process.env.OUT_NAME ?? 's0-baseline')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
@@ -46,6 +48,8 @@ for (const theme of themes) {
         Object.assign(row, await page.evaluate(measure))
         await page.screenshot({ path: path.join(out, `${name}.png`), animations: 'disabled' })
         row.screenshot = `${name}.png`
+        // Trang trắng (hydrate hỏng, chunk lỗi, JSON thô) vẫn chụp được và cho số "đẹp" — tính là lỗi.
+        if (!row.targetsInViewport || row.dataTheme == null) row.error = `blank page: targetsInViewport=${row.targetsInViewport}, dataTheme=${row.dataTheme}`
       } catch (error) {
         row.error = String(error)
       }

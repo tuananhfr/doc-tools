@@ -172,7 +172,7 @@ async function download(button = page.getByRole('button', { name: 'Tải về' }
   return { name: dl.suggestedFilename(), ...scanOutput(fs.readFileSync(path)) }
 }
 
-await page.goto(HUB)
+await page.goto(`${HUB}/cong-cu`)
 await page.locator('.erp-tools-grid').waitFor()
 // To + chất lượng cao: nén lại nhẹ hơn hẳn. Nhỏ + chất lượng thấp: nén lại chỉ nặng thêm.
 const bigGps = withGps(await makePhoto(2400, 1600, 'image/jpeg', 0.98))

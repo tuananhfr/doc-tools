@@ -3,7 +3,7 @@ import path from 'node:path'
 import assert from 'node:assert/strict'
 import { chromium, outDir, mockFreeSession } from './lib/qa.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:37061'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const out = outDir('media-tools')
 const fixture = path.resolve('qa-output/2026-10-11-mobile-ux/final-checks/qa-motion-audio.webm')
 const browser = await chromium.launch({ channel: 'chrome', headless: true })

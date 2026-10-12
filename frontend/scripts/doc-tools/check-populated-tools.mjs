@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { chromium, FIX, outDir } from './lib/qa.mjs'
 import { buildToolCatalog } from '../export-tool-catalog.mjs'
 
-const site = process.env.SITE ?? 'http://localhost:37061'
+const site = process.env.SITE ?? 'http://localhost:3002'
 const out = outDir('populated-tools')
 const deferred = new Set(['ocr', 'image-to-text', 'pdf-to-excel'])
 const catalog = await buildToolCatalog()

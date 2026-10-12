@@ -59,7 +59,11 @@ khách vẫn dùng selector cũ:
   nhập của `check-tool-routes`, `check-flows` (`FULL=1`), `check-utility-tools`, `check-suggestions`
   (`FULL=1`). Chạy với ERPCons thì vẫn dùng selector khung app cũ (`.erp-shell`, `.erp-sider__item`).
 
-Chuyển cho WP1 (sau khi gộp menu/hub thì sửa selector một lượt) và WP7 (gate phát hành).
+```bash
+git add scripts/doc-tools docs/s0-audit/README.md
+git commit -m "test(qa): rewrite tool route checks for the new site and flag blank pages in baselines"
+```
+
 
 ## Quyết định đã chốt (12/10/2026)
 
