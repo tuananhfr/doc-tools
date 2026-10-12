@@ -118,12 +118,12 @@
 
   --bs-font-sans-serif: var(--erp-font-family);
   --bs-body-font-family: var(--erp-font-family);
-  --bs-body-font-size: 0.875rem; /* Body 14px (muc 09) */
+  --bs-body-font-size: var(--cn-font-body, 1rem); /* Chu than 16px, 18px khi bat "Chu lon" (Chuyen Nho Q6, thay Body 14px muc 09) */
   --bs-body-line-height: 1.55;
 }
 
-/* Field Mode: chu toi thieu 16px, tang do day vien (muc 06 & 11). */
+/* Field Mode: tang do day vien (muc 06 & 11). Chu than 16px da la mac dinh moi theme; dat lai co chu o day
+   (cung do uu tien voi :root, nap sau) se de mat che do "Chu lon". */
 [data-theme='field'] {
-  --bs-body-font-size: 1rem;
   --bs-border-color: var(--erp-border-strong);
 }
