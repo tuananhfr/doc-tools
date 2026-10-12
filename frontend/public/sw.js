@@ -41,7 +41,8 @@ self.addEventListener('install', event => event.waitUntil((async () => {
   installedCache = CACHE_PREFIX + manifest.version
   const cache = await caches.open(installedCache)
   await cache.addAll(manifest.assets)
-  await carryOver(cache, manifest)
+  // Best effort: a failed copy (e.g. storage quota) must not block the update; the asset is re-fetched on demand.
+  try { await carryOver(cache, manifest) } catch {}
   const metadata = await caches.open(METADATA_CACHE)
   await metadata.put(pendingKey, new Response(installedCache))
   await metadata.put(localesKey, new Response(JSON.stringify(manifest.locales ?? [])))

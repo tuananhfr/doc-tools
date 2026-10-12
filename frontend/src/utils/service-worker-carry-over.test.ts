@@ -51,6 +51,16 @@ describe('service worker install carries runtime downloads across deploys', () =
     expect(await fresh.match('/tien-dien')).toBeUndefined()
     expect(await fresh.match('/vendor/tts/removed-voice.onnx')).toBeUndefined()
   })
+  it('still installs when the copy runs out of storage, leaving that download to be fetched again', async () => {
+    const caches = new FakeCaches()
+    await (await caches.open(PREFIX + 'metadata')).put('/__sw-active-cache', new Response(PREFIX + 'old'))
+    await (await caches.open(PREFIX + 'old')).put('/vendor/tts/voice.onnx', new Response('model'))
+    const fresh = await caches.open(PREFIX + 'new')
+    fresh.put = async () => { throw new DOMException('full', 'QuotaExceededError') }
+    await install(caches, manifest)
+    expect(await fresh.match('/vendor/tts/voice.onnx')).toBeUndefined()
+    expect(await (await caches.open(PREFIX + 'metadata')).match('/__sw-pending-cache')).toBeDefined()
+  })
   it('installs normally on a first visit', async () => {
     const caches = new FakeCaches()
     await install(caches, manifest)
