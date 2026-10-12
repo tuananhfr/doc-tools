@@ -147,6 +147,7 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
           </Button>
         </div>
       </div>
+      <p className="erp-flow-field__hint erp-flow-result__keeps">{t('result.keepsInput', { action: t('result.restart') })}</p>
 
       {extra}
 
