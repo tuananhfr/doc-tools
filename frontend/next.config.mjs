@@ -5,6 +5,8 @@ const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? '').trim().replace(/\/+$/
 if (basePath && !/^\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+$/.test(basePath)) throw new Error('NEXT_PUBLIC_BASE_PATH must be empty or an absolute path without a trailing slash')
 const config = {
   basePath,
+  // scripts/deploy.sh builds into .next-new and renames it only after a green build; `next start` keeps reading .next.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
   skipTrailingSlashRedirect: Boolean(basePath),
   reactStrictMode: true,
   agentRules: false,

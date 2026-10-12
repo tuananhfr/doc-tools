@@ -30,8 +30,9 @@ npx vitest run src/features/tools/rules/services/signed-rules.test.ts   # một 
 - `public/offline-manifest.json` do `npm run build` sinh và đã gitignore (từng bị track,
   build xong là chặn `git pull` trên server). Service worker chỉ đăng ký ở production nên
   dev không cần file này.
-- `npm run deploy` chỉ dành cho server Linux (build rồi `sudo systemctl restart
-  doc-tools-frontend`); quy trình ở README.
+- `npm run deploy` chỉ dành cho server Linux: build vào `.next-new`, đổi tên khi xanh, giữ
+  `.next-prev`, health check, tự rollback (`--dry-run` / `--rollback`); `scripts/deploy.test.sh`
+  kiểm script này trong thư mục tạm. Quy trình ở README.
 
 Kiểm thử đầu-cuối (không chạy trong CI, cần app đang chạy + Chrome + Playwright):
 `scripts/doc-tools/check-*.mjs` và `golden.mjs` đọc `BASE` (vd

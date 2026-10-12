@@ -31,7 +31,13 @@ restart MariaDB chung. Push `main` không deploy gì; người deploy tự kéo 
 
 - Code ở `/var/www/doc-tools`, chạy bằng user `lpc`, Node 24.21.0 qua nvm ở
   `~/.nvm-doc-tools` (Node hệ thống là 14 — nạp nvm trước khi build). Deploy: `git pull` →
-  `npm ci` khi lock đổi → `npm run deploy` trong từng thư mục (build rồi `sudo systemctl restart`).
+  `npm ci` khi lock đổi → `npm run deploy` trong từng thư mục. `deploy.sh` build vào thư mục phụ
+  (`frontend/.next-new`, `backend/dist-new`), chỉ đổi tên + restart khi build xanh, giữ bản trước ở
+  `.next-prev` / `dist-prev`, rồi health check (`/`, `/cong-cu`, `_buildManifest.js` của build mới;
+  backend `/api/v1/tools/stats`); health hỏng thì tự quay về bản trước và để bản hỏng ở `*-failed`.
+  Xem trước: `bash scripts/deploy.sh --dry-run`. Quay về tay: `bash scripts/deploy.sh --rollback`.
+  Cần trống ≥ 1 GB cho bản build thứ hai (`DEPLOY_MIN_FREE_MB`). Migration chỉ tạo bảng mới — rollback
+  code không cần rollback DB.
 - systemd `doc-tools-backend` (`127.0.0.1:3003`) và `doc-tools-frontend`
   (`next start --hostname localhost --port 3002`). Trên máy này `localhost` ra **`[::1]`**, nên
   vhost Apache trỏ `http://[::1]:3002`; trỏ `127.0.0.1:3002` là 503.

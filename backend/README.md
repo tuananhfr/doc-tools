@@ -28,7 +28,7 @@ cd backend
 npm run deploy
 ```
 
-Lệnh deploy chạy npm run build rồi gọi sudo systemctl restart doc-tools-backend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong backend trước khi deploy. Bảng mới được tạo khi service khởi động, không cần migrate tay. Build ghi đè dist đang chạy; API gián đoạn ngắn khi restart. Kiểm tra sau deploy:
+Lệnh deploy chạy npm run build rồi gọi sudo systemctl restart doc-tools-backend chỉ khi build thành công. Nếu sudo yêu cầu mật khẩu, nhập mật khẩu của user server. Khi package.json hoặc package-lock.json thay đổi dependencies, chạy npm ci trong backend trước khi deploy. Bảng mới được tạo khi service khởi động, không cần migrate tay. Build ghi vào dist-new, chỉ đổi tên thành dist (bản cũ thành dist-prev) khi build xanh; sau restart script gọi /api/v1/tools/stats và tự quay về dist-prev nếu hỏng. Xem trước: bash scripts/deploy.sh --dry-run; quay về tay: bash scripts/deploy.sh --rollback. API gián đoạn ngắn khi restart. Kiểm tra sau deploy:
 
 ```sh
 sudo systemctl status doc-tools-backend --no-pager -l

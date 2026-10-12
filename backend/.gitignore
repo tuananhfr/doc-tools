@@ -10,3 +10,7 @@ dist/
 qa-output/
 data/ai-uploads/
 data/landing-assets/
+# scripts/deploy.sh: staging, previous (rollback) and unhealthy builds.
+dist-new/
+dist-prev/
+dist-failed/

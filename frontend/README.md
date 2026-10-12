@@ -56,7 +56,7 @@ npm run deploy
 
 frontend/public/offline-manifest.json do build tự sinh và không nằm trong Git (đã gitignore), nên build không còn làm git pull bị chặn. Server nào còn bản cũ đang bị track thì lần pull đầu tiên sau thay đổi này chạy git restore -- frontend/public/offline-manifest.json từ /var/www/doc-tools trước, rồi pull và build lại.
 
-Build ghi trực tiếp vào .next đang phục vụ, không giữ bản dự phòng. Build lỗi không restart service nhưng có thể ảnh hưởng file của bản đang chạy; cache không bảo đảm tránh tình huống này. Frontend có gián đoạn ngắn khi restart. Kiểm tra sau deploy:
+Build ghi vào .next-new; .next đang phục vụ không bị đụng tới khi build lỗi. Build xanh thì .next đổi tên thành .next-prev, .next-new thành .next, manifest offline được chép ra public/, rồi restart và health check (/, /cong-cu, _buildManifest.js của build mới). Health hỏng thì script tự đưa .next-prev trở lại và giữ bản hỏng ở .next-failed (tắt bằng DEPLOY_AUTO_ROLLBACK=0). Xem trước mọi bước: bash scripts/deploy.sh --dry-run. Quay về bản trước bằng tay: bash scripts/deploy.sh --rollback. Frontend vẫn có gián đoạn ngắn khi restart. Kiểm tra sau deploy:
 
 ```sh
 sudo systemctl status doc-tools-frontend --no-pager -l

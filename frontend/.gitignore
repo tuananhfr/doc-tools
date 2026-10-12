@@ -1,5 +1,11 @@
 node_modules/
 .next/
+# scripts/deploy.sh: bản đang build, bản trước (rollback) và bản hỏng health check.
+.next-new/
+.next-prev/
+.next-failed/
+.next-spike/
+.next-keep/
 out/
 dist/
 *.tsbuildinfo
