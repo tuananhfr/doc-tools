@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import type { CvTemplateId } from '../config/cv-templates'
 import { emptyCv, type CvDraft } from '../models/cv'
+import { withCvTemplate } from '../utils/template-switch'
 import { forgetCvDraft, readCvStorage, storeCvDraft } from '../services/cv-draft-storage'
 
 export function useCvDraft() {
@@ -21,6 +23,7 @@ export function useCvDraft() {
     return () => window.clearTimeout(timer)
   }, [draft, loaded, remember])
   const update = (key: keyof CvDraft, value: CvDraft[typeof key]) => setDraft(current => ({ ...current, [key]: value }))
+  const changeTemplate = (template: CvTemplateId) => setDraft(current => withCvTemplate(current, template))
   const changeRemember = (next: boolean) => {
     try {
       if (next) storeCvDraft(localStorage, draft, true)
@@ -37,5 +40,5 @@ export function useCvDraft() {
     setDraft(emptyCv()); setRemember(false); setAvailableDraft(null); setMessage('cv.messages.cleared')
     return true
   }
-  return { draft, update, remember, changeRemember, availableDraft, restore, clear, message }
+  return { draft, update, changeTemplate, remember, changeRemember, availableDraft, restore, clear, message }
 }
