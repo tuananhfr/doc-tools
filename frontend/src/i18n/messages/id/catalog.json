@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Hapus latar foto",
-      "description": "Hapus latar warna polos otomatis dan rapikan manual dengan kuas",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "hapus background, latar transparan, foto produk, remove background"
     },
     "cv": {

@@ -79,7 +79,7 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   {
     id: 'image.background', canonical: 'Xóa nền ảnh', preferredTool: 'remove-background', acceptableTools: [], forbiddenTools: ['compress-image'],
     aliases: ['xóa phông', 'tách nền ảnh', 'ảnh nền trong suốt', 'xóa nền màu trơn'],
-    inputProfiles: ['image'], expectedOutcome: 'Ảnh đã xóa nền màu trơn hoặc chỉnh bằng cọ', risk: 'review',
+    inputProfiles: ['image'], expectedOutcome: 'Ảnh được AI xóa nền trên thiết bị, chỉnh mép bằng cọ', risk: 'review',
   },
   {
     id: 'image.watermark', canonical: 'Đóng dấu ảnh', preferredTool: 'mark-image', acceptableTools: [], forbiddenTools: ['redact-pdf'],

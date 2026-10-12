@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "ລຶບພື້ນຫຼັງຮູບ",
-      "description": "ລຶບພື້ນຫຼັງສີລຽບອັດຕະໂນມັດ ແລະ ປັບແຕ່ງດ້ວຍແປງ",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "ແຍກພື້ນຫຼັງ, ພື້ນຫຼັງໂປ່ງໃສ, ຮູບສິນຄ້າ, remove background"
     },
     "cv": {

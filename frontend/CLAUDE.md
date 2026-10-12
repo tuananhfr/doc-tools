@@ -54,6 +54,11 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
 - **Engine chỉ chạy trên trình duyệt**: mọi màn công cụ nạp bằng
   `dynamic(() => import(...), { ssr: false })`. Import tĩnh pdf.js / tesseract / ffmpeg
   vào đường SSR là build hoặc hydrate vỡ.
+- `/xoa-phong` tự động dùng U2-NetP trong worker CPU/WASM một luồng. Model được track ở
+  `public/vendor/background-removal/`; runtime sinh từ npm bằng `scripts/prepare-background-removal.mjs`.
+  Chỉ tải khi chọn ảnh; kết thúc worker sau mỗi lượt, khi hủy hoặc rời trang để không giữ
+  heap WASM. Cọ dùng alpha mềm; thuật toán màu ở `background-removal.ts` vẫn phục vụ ảnh thẻ.
+  Nguồn, giấy phép và giới hạn RAM ở `docs/background-removal.md`.
 - `src/proxy.ts` (middleware của Next) xử lý link cũ `/doc-tools/*` và `?tool=` trước SSR,
   và thêm dấu `/` cuối cho trang chủ khi có prefix.
 - Route: `/` landing giới thiệu · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·
@@ -111,8 +116,9 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
 
 ### Base path
 
-`NEXT_PUBLIC_BASE_PATH` chốt lúc build: rỗng khi local, `/doc-tools` trên lpc.vn. Đổi là
-phải build lại.
+`NEXT_PUBLIC_BASE_PATH` chốt lúc build: rỗng cả local lẫn production
+(`chuyennho.tekshot.ai`, domain riêng — xem `../CLAUDE.md` mục Production). Trước 09/10/2026
+là `/doc-tools` trên lpc.vn; code vẫn phải chạy đúng khi có prefix. Đổi là phải build lại.
 
 - Hằng `ROUTES` và leave guard luôn gốc ở `/`; React Router nhận `basename`.
 - Mọi URL trình duyệt tự dựng (fetch API, asset trong `public/`, worker) **phải** qua
@@ -382,7 +388,7 @@ Landing CSS is scoped under `styles/site/landing`. Preserve the account/share en
 
 ### Entertainment tools
 
-`features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. UI copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). The Vietnamese interpretation corpus is keyed by card/orientation or metric/value; UI and export share it. See `docs/entertainment-interpretations.md` before changing meanings, spread positions, method conventions or provenance. Legal and privacy copy must match `backend/docs/entertainment.md`.
+`features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. UI copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). The Vietnamese interpretation corpus is keyed by card/orientation or metric/value; UI and export share it. Conclusions use separate editorial card-role cues and number-theme links, show expandable reasoning, and separate Personal Year from core traits. See `docs/entertainment-interpretations.md` before changing meanings, synthesis rules, spread positions, method conventions or provenance. Legal and privacy copy must match `backend/docs/entertainment.md`.
 
 ## Incremental workspace adapters (12/10/2026)
 

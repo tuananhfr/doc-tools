@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "画像の背景削除",
-      "description": "単色の背景を自動で消し、ブラシで手直し",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "背景 透過, 切り抜き, 商品写真, remove background"
     },
     "cv": {

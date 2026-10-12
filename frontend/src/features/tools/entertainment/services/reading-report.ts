@@ -1,13 +1,21 @@
 import { INTERPRETATION_SOURCES, INTERPRETATION_VERSION, type InterpretationKind } from '../config/interpretation-sources'
 import { SPREAD_METHOD_NOTE } from '../config/draw-spreads'
 import { NUMEROLOGY_METHOD_NOTE } from '../config/numerology-method'
+import { CONCLUSION_METHOD_NOTE, CONCLUSION_VERSION } from '../config/conclusion-method'
 import type { CardIdentity } from '../types/entertainment.types'
 import type { drawReading } from './card-reading'
 import type { numerologyReading } from './numerology-reading'
 import type { ReadingSummary } from './reading-summary'
 
 function summaryLines(summary: ReadingSummary | null): string[] {
-  return summary ? ['Tổng quan', ...summary.items.map(item => `${item.role ? `${item.role} · ` : ''}${item.label}: ${item.text}`), ...(summary.advice ? [`Lời khuyên từ ${summary.advice.label}: ${summary.advice.text}`] : [])] : []
+  if (!summary) return []
+  const { conclusion } = summary
+  return [
+    'Kết luận chung', ...conclusion.paragraphs,
+    ...(conclusion.advice ? [`Lời khuyên: ${conclusion.advice}`] : []),
+    ...(conclusion.period ? [conclusion.period.title, conclusion.period.text, `Nên làm trong năm này: ${conclusion.period.advice}`] : []),
+    ...(summary.items.length ? ['Vì sao có nhận xét này?', ...summary.items.map(item => `${item.role ? `${item.role} · ` : ''}${item.label}: ${item.text}`)] : []),
+  ]
 }
 
 export function readingSourceLines(kind: InterpretationKind): string[] {
@@ -15,6 +23,8 @@ export function readingSourceLines(kind: InterpretationKind): string[] {
     `Bộ luận giải tiếng Việt: ${INTERPRETATION_VERSION}`,
     'Chuyện Nhỏ biên soạn nội dung từ ý nghĩa truyền thống, kèm ví dụ và lời khuyên. Các tác giả nguồn không xác nhận kết quả riêng này.',
     kind === 'numerology' ? NUMEROLOGY_METHOD_NOTE : SPREAD_METHOD_NOTE,
+    `Phiên bản kết luận: ${CONCLUSION_VERSION}`,
+    CONCLUSION_METHOD_NOTE,
     ...INTERPRETATION_SOURCES[kind].map(source => `${source.title}: ${source.url}`),
   ]
 }

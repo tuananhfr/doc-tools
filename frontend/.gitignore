@@ -12,5 +12,6 @@ qa-output/
 public/vendor/ffmpeg/
 # Sinh lại mỗi lần build bởi scripts/prepare-pdfjs.mjs (bộ giải mã WASM của pdf.js).
 public/vendor/pdfjs/
+public/vendor/background-removal/ort-*/
 # Sinh mỗi lần build bởi scripts/prepare-offline.mjs; track thì server build xong là chặn git pull.
 public/offline-manifest.json

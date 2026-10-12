@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Xóa phông nền ảnh",
-      "description": "Xóa nền màu trơn tự động và chỉnh tay bằng cọ",
+      "description": "AI tự động xóa nền ảnh trên thiết bị, chỉnh mép bằng cọ",
       "synonyms": "tách nền, nền trong suốt, ảnh sản phẩm"
     },
     "cv": {

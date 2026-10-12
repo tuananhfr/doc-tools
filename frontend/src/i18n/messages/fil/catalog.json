@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Alisin ang background ng larawan",
-      "description": "Awtomatikong alisin ang plain na background at ayusin gamit ang brush",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "remove background, transparent background, larawan ng produkto, tanggal background"
     },
     "cv": {

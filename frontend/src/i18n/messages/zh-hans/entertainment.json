@@ -38,7 +38,7 @@
     "complete": "All cards are revealed. View a larger image or download the result.",
     "expired": "This session expired. Start a new session; an expired key cannot draw again.",
     "revealAll": "Reveal all",
-    "meaningHint": "Reveal a card to read its meaning and advice. Reveal all cards to see the overview. Readings are currently in Vietnamese."
+    "meaningHint": "Reveal each card to read its meaning and advice. Reveal all cards to see the overall conclusion. Readings are currently in Vietnamese."
   },
   "tarot": {
     "title": "78 Tarot cards"
@@ -230,10 +230,12 @@
     "cardTitle": "Card interpretations",
     "numberTitle": "Number interpretations",
     "language": "The interpretation library is currently available in Vietnamese.",
-    "summaryNote": "The overview summarizes the meanings of the cards or numbers in this result. It is reference material, not a certain conclusion.",
+    "summaryNote": "This conclusion is for reference and follows the meanings of the cards or numbers in this result.",
     "revealFirst": "Reveal a card to read its meaning.",
-    "overviewAfterReveal": "Reveal all cards to see the overview.",
+    "overviewAfterReveal": "Reveal all cards to see the overall conclusion.",
     "unavailable": "No matching interpretation is available for this result.",
-    "notCalculated": "Not calculated"
+    "notCalculated": "Not calculated",
+    "conclusion": "Overall conclusion",
+    "reasoning": "Why this conclusion?"
   }
 }

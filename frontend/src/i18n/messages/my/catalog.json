@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "ပုံနောက်ခံ ဖယ်ရှားရန်",
-      "description": "အရောင်တစ်မျိုးတည်း နောက်ခံကို အလိုအလျောက် ဖယ်ပြီး စုတ်တံဖြင့် ကိုယ်တိုင် ပြင်ပါ",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "နောက်ခံ ဖယ်, ဖောက်ထွင်းမြင်ရသော နောက်ခံ, remove background, ကုန်ပစ္စည်းပုံ"
     },
     "cv": {

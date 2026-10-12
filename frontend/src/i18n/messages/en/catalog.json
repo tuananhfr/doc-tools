@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Remove image background",
-      "description": "Remove plain-colored backgrounds automatically and refine with a brush",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "remove background, transparent background, background eraser, product photo"
     },
     "cv": {

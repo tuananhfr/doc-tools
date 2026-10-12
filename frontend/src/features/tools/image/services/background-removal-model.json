@@ -1,0 +1,9 @@
+{
+  "model": "U2-NetP",
+  "inputSize": 320,
+  "file": "u2netp-309c8469.onnx",
+  "sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "source": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx",
+  "runtimeVersion": "1.30.0",
+  "runtimeFiles": ["ort-wasm-simd-threaded.mjs", "ort-wasm-simd-threaded.wasm"]
+}

@@ -38,7 +38,7 @@
     "complete": "Đã lật đủ lá. Bạn có thể xem ảnh lớn hoặc tải kết quả.",
     "expired": "Phiên đã hết hạn. Bắt đầu phiên mới để tiếp tục; bộ lá cũ không được rút lại bằng mã cũ.",
     "revealAll": "Lật tất cả",
-    "meaningHint": "Lật từng lá để đọc ý nghĩa và lời khuyên. Lật đủ các lá để xem tổng quan."
+    "meaningHint": "Lật từng lá để đọc ý nghĩa và lời khuyên. Lật đủ các lá để xem kết luận chung."
   },
   "tarot": {
     "title": "Tarot 78 lá"
@@ -230,10 +230,12 @@
     "cardTitle": "Luận giải từng lá",
     "numberTitle": "Diễn giải từng chỉ số",
     "language": "Bộ luận giải hiện có bằng tiếng Việt.",
-    "summaryNote": "Tổng quan tóm tắt ý nghĩa của các lá hoặc chỉ số đã có trong kết quả. Đây là nội dung tham khảo, không phải kết luận chắc chắn.",
+    "summaryNote": "Kết luận mang tính tham khảo, dựa trên ý nghĩa của lá bài hoặc chỉ số trong kết quả.",
     "revealFirst": "Lật một lá để đọc ý nghĩa của lá đó.",
-    "overviewAfterReveal": "Lật đủ các lá để xem tổng quan.",
+    "overviewAfterReveal": "Lật đủ các lá để xem kết luận chung.",
     "unavailable": "Chưa có nội dung phù hợp cho kết quả này.",
-    "notCalculated": "Chưa tính được"
+    "notCalculated": "Chưa tính được",
+    "conclusion": "Kết luận chung",
+    "reasoning": "Vì sao có nhận xét này?"
   }
 }

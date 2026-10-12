@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Buang latar imej",
-      "description": "Buang latar warna polos secara automatik dan baiki dengan berus",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "buang latar, remove background, latar telus, pemadam latar, foto produk"
     },
     "cv": {

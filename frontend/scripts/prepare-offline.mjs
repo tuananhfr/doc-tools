@@ -33,6 +33,11 @@ const optionalAssets = [
   ...JSON.parse(fs.readFileSync('public' + videoVendor + 'assets.json', 'utf8')).assets.map(({ name }) => withBase(videoVendor + name)),
   withBase('/vendor/tesseract/vie.traineddata.gz'),
 ]
+const backgroundModel = JSON.parse(fs.readFileSync('src/features/tools/image/services/background-removal-model.json', 'utf8'))
+optionalAssets.push(
+  withBase(`/vendor/background-removal/${backgroundModel.file}`),
+  ...backgroundModel.runtimeFiles.map(name => withBase(`/vendor/background-removal/ort-${backgroundModel.runtimeVersion}/${name}`)),
+)
 const pageUrls = pages.map(url => withBase(url.slice('/vi'.length) || '/'))
 // Prefixed languages are not precached; the worker sends their unvisited pages to the Vietnamese twin when offline.
 const locales = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && /^\/[a-z][a-z-]*$/.test(url) && url !== '/vi').map(([url]) => url.slice(1))

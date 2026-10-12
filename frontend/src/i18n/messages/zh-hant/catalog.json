@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "移除圖片背景",
-      "description": "自動移除純色背景，並用筆刷手動修整",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "去背,透明背景,商品圖,remove background"
     },
     "cv": {

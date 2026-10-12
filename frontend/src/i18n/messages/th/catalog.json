@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "ลบพื้นหลังรูป",
-      "description": "ลบพื้นหลังสีเรียบอัตโนมัติและปรับเองด้วยแปรง",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "ลบพื้นหลัง, ตัดพื้นหลัง, พื้นหลังโปร่งใส, รูปสินค้า, remove background"
     },
     "cv": {

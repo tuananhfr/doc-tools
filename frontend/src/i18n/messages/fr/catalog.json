@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "Supprimer l'arrière-plan d'une image",
-      "description": "Supprimer automatiquement un fond uni et retoucher au pinceau",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "détourer, fond transparent, supprimer fond, photo produit, remove background"
     },
     "cv": {

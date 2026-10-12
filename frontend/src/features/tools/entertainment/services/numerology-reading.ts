@@ -1,6 +1,6 @@
 import { NUMEROLOGY_MEANINGS, type NumerologyMetricId } from '../data/numerology-meanings'
 import type { Metric, NumerologyResult } from '../types/entertainment.types'
-import { firstSentence, type ReadingSummary } from './reading-summary'
+import { numerologyConclusion } from './numerology-conclusion'
 import { NUMEROLOGY_METRIC_ROLES } from '../config/numerology-method'
 
 export function numerologyMeaning(metric: Metric) {
@@ -11,9 +11,6 @@ export function numerologyMeaning(metric: Metric) {
 
 export function numerologyReading(result: NumerologyResult) {
   const metrics = result.metrics.map(metric => ({ metric, meaning: numerologyMeaning(metric), role: Object.hasOwn(NUMEROLOGY_METRIC_ROLES, metric.id) ? NUMEROLOGY_METRIC_ROLES[metric.id] : undefined }))
-  const known = metrics.filter(item => item.metric.value !== null)
-  const summary: ReadingSummary | null = known.length && known.every(item => item.meaning)
-    ? { items: known.map(({ metric, meaning, role }) => ({ label: `${role?.name ?? metric.id}${metric.id === 'personal_year' ? ` ${result.personal_year}` : ''}: ${metric.value}`, role: '', text: firstSentence(meaning!.text) })) }
-    : null
+  const summary = numerologyConclusion(metrics, result.personal_year)
   return { metrics, summary }
 }

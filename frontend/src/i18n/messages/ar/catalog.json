@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "إزالة خلفية الصورة",
-      "description": "أزل الخلفية أحادية اللون تلقائيًا وعدّلها يدويًا بالفرشاة",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "إزالة الخلفية, خلفية شفافة, صور المنتجات, remove background"
     },
     "cv": {

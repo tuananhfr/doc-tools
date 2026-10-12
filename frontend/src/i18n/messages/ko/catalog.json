@@ -48,7 +48,7 @@
     },
     "remove-background": {
       "name": "이미지 배경 제거",
-      "description": "단색 배경을 자동으로 지우고 브러시로 직접 다듬기",
+      "description": "AI removes image backgrounds on your device; refine edges with a brush",
       "synonyms": "배경 지우기, 누끼, 투명 배경, 제품 사진, remove background"
     },
     "cv": {
