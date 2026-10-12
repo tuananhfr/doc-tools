@@ -224,6 +224,20 @@ Dynamic QR: choose a destination and expiry (or no expiry), review the destinati
 
 The server stores destination URL, timestamps and a management-key hash. It does not receive documents, photos, label designs or AI content. Guests can create and download without login. Management depends on a secret returned once to the creator; saving it on the device is a user choice.
 
+## Read aloud from a link (flag-gated)
+
+Off by default: `app_settings.read.linkEnabled = false` until Legal signs the copyright terms. While off, `POST /read/extract` returns 404 `READ_DISABLED` and the web app hides the Link tab.
+
+- `GET /api/v1/read/config`: `{ok:true, linkEnabled}`, `no-store`. Public, read-only.
+- `POST /api/v1/read/extract`: JSON exactly `{ url }` (HTTPS, max 2048 chars), header `X-CN-Request: 1` + trusted Origin, 4 KiB body cap, `Referrer-Policy: no-referrer`. Response 200 `{ok:true, document:{title, sourceUrl, checkedAt, segments:[{id, text, kind}]}, warnings}` where `kind` is `heading|paragraph|list-item|quote` and `warnings` may contain `TOO_LARGE` (article cut at 100 000 chars / 2000 segments).
+- Errors `{ok:false, code, message}`: 400 `READ_INPUT_INVALID`, 403 `UNTRUSTED_REQUEST`, 404 `READ_DISABLED`, 413 body too large, 422 `UNSUPPORTED|ROBOTS_DENIED|PAYWALL|NO_ARTICLE|TOO_LARGE`, 429 `READ_RATE_LIMITED`, 503 `READ_BUSY`.
+
+Fetch rules (`src/net/safe-fetch.ts`): HTTPS on port 443 only, no URL credentials, no single-label or private-suffix hosts; DNS is resolved once and every address must be public (private, loopback, link-local, metadata, CGNAT, NAT64, 6to4, ULA, multicast and IPv4-mapped forms are blocked); the socket connects to the pinned address while TLS still verifies the host name; every redirect (max 3) is checked again; HTML/XHTML only; 2 MiB after decompression; 10 s deadline; no cookies, no login, fixed user agent `ChuyenNhoReader/1.0`. Blocked, unresolved and network failures all return the same `422 UNSUPPORTED` so the endpoint cannot probe internal hosts.
+
+robots.txt is checked for every origin a redirect visits (agent `ChuyenNhoReader`, then `*`); 4xx means allow, 5xx / 429 / timeout means deny. Paywall signals (HTTP 401/402, JSON-LD `isAccessibleForFree: false`, `article:content_tier` locked or metered) return `PAYWALL` with no text: the service never bypasses access controls.
+
+Nothing is stored: no URL, page or extracted text in the database or logs. The only table is `read_request_limits` (HMAC of IP per UTC hour, budget `read.guestHourly`, default 20), same pattern as `code_request_limits`.
+
 ## Endpoints
 
 - `POST /api/v1/codes`: JSON `{ destination_url, expires_at }`, trusted-origin write guard, 2 KiB body cap; creation returns HTTP 201 with `{ok:true,...}`. HTTPS destination only, no URL credentials or private/local hosts. Response `{ id, resolve_url, manage_key, expires_at }`.

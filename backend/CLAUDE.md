@@ -77,6 +77,7 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `landings` | `GET /landings/:key` · `GET /landings/assets/:id` · `/admin/landings/*` | Trang giới thiệu Chuyện Nhỏ cho từng website ngành: nháp + bản xuất bản (bảng `landing_pages`, khoá lạc quan `baseRev` → 409), ảnh PNG/JPEG/WebP lưu đĩa theo sha256 ở `LANDING_ASSET_DIR` (bảng `landing_assets`). Khuôn nội dung trong `landing-content.ts` phải khớp bản sao type `frontend/src/features/site-landing/types` |
 | `sources` | `GET /sources/:id` · `/admin/sources` (GET/POST/GET :id/PUT :id) | Sổ nguồn pháp lý (`legal_sources`) cho gói quy tắc ký: `GET /sources/:id` công khai, CRUD `/admin/sources` (`rules.manage`), không xoá — thôi dùng thì `revoked`. Gói ký có thể mang `sourceId` (tuỳ chọn, trong phần được ký); `rules stage` từ chối `sourceId` chưa có trong bảng |
 | `codes` | `POST /codes` · `GET /codes/:token/resolve` · `POST /codes/:id/revoke` | QR động bản Free (xem mục QR động) |
+| `read` | `GET /read/config` · `POST /read/extract` | Đọc to từ link (cờ `read.linkEnabled`, tắt mặc định): tải trang HTTPS công khai qua `net/safe-fetch.ts`, robots.txt, chặn paywall, readability tự viết; không lưu nội dung (xem mục Bẫy) |
 | `entertainment` | `/ent/{tools,numerology/calculate,cards/draw,tarot/draw,almanac/day,reports}` | Thần số học, bài tây, Tarot, so lịch cho khách (xem mục Giải trí) |
 | `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
@@ -245,6 +246,11 @@ app — test fixture cục bộ thì tránh job lifecycle của `AppModule`. Chi
 - `data/tool-catalog.json` sinh từ frontend (`node scripts/export-tool-catalog.mjs`); sửa
   danh mục / chữ catalog mà quên xuất lại là test `tool-catalog-export.test.ts` bên frontend đỏ.
 - `nodemailer` ≥ 10 tự mang type — đừng cài `@types/nodemailer` (xung đột khai báo).
+- **Mọi URL do người dùng đưa phải qua `net/safe-fetch.ts`**, đừng `fetch`/`https.get` thẳng: nó chặn dải
+  riêng/loopback/link-local/metadata/NAT64/6to4 (`net/ip-policy.ts`), resolve DNS MỘT lần rồi nối thẳng vào IP
+  đã ghim (SNI + `Host` giữ tên ⇒ chứng chỉ vẫn kiểm theo tên), kiểm lại từng redirect, chỉ cổng 443, cắt byte
+  SAU giải nén. Seam `dial`/`ca` của `SafeFetchNetwork` chỉ dành cho test (chứng chỉ sinh trong RAM ở `tests/helpers/test-tls.cjs`).
+  `/read/extract` trả cùng `422 UNSUPPORTED` cho mọi lỗi mạng/chặn để API không thành công cụ dò mạng nội bộ.
 
 ## Luật nghiệp vụ không được phá
 
