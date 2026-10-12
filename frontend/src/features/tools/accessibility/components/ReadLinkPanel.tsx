@@ -65,7 +65,9 @@ export function ReadLinkPanel({ onSource, onPasteInstead }: ReadLinkPanelProps) 
     }
   }
 
-  return <form className="mt-3" onSubmit={(event) => { event.preventDefault(); void submit() }}>
+  // noValidate: kiểm tra `type="url"` của trình duyệt chặn im lặng link thiếu "https://" — chính trường hợp
+  // normalizeReadLink sinh ra để nhận; lỗi thật đã có thông báo INVALID riêng.
+  return <form className="mt-3" noValidate onSubmit={(event) => { event.preventDefault(); void submit() }}>
     <label className="erp-flow-field__label" htmlFor={inputId}>{t('readAloud.link.label')}</label>
     <Form.Control id={inputId} type="url" inputMode="url" autoComplete="url" spellCheck={false} placeholder={t('readAloud.link.placeholder')}
       value={value} aria-describedby={noteId} aria-invalid={failure === 'INVALID' || undefined} disabled={busy}
