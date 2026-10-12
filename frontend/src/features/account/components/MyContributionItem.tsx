@@ -51,6 +51,7 @@ export function MyContributionItem({ item, toolName }: Props) {
         ) : <span className="cn-contribution__none">{t('mine.noSources')}</span>}
       </div>}
       {item.status === 'NEEDS_SOURCE' && !adding ? <p className="cn-contribution__hint"><Icon name="info-circle" />{t('mine.needsSourceHint')}</p> : null}
+      {item.status === 'DEDUPED' ? <p className="cn-contribution__hint"><Icon name="link-45deg" />{t('mine.dedupedHint')}</p> : null}
       {added && !adding ? <p className="cn-form-notice" role="status"><Icon name="check2" />{t('mine.evidence.added')}</p> : null}
       {adding ? (
         <EvidenceForm contributionId={item.id} onDone={() => setAdding(false)} onAdded={() => setAdded(true)} />

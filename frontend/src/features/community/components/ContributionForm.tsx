@@ -61,6 +61,7 @@ export function ContributionForm({ mode, context }: { mode: 'idea' | 'feedback';
     {submission.receipt ? <section className="cn-community-success" aria-labelledby={`${id}-success`}>
       <h2 id={`${id}-success`}>{t('feedback.thanks')}</h2>
       <p role="status">{t('contribution.received', { status: t(`contribution.status.${submission.receipt.status}`) })}</p>
+      {submission.receipt.status === 'DEDUPED' ? <p className="cn-community-deduped">{t('feedback.dedupedNote')}</p> : null}
       <label htmlFor={`${id}-receipt`}>{t('contribution.receipt')}<input id={`${id}-receipt`} readOnly value={submission.receipt.receiptCode} onFocus={event => event.target.select()} /></label>
       {submission.receipt.tracked ? <p><Link to="/de-xuat-cua-toi">{t('feedback.accountTracking')}</Link></p> : null}
       <div className="cn-community-actions"><button type="button" className="cn-button cn-button--ghost" onClick={saveReceipt}>{t('feedback.saveReceipt')}</button><button type="button" className="cn-button" onClick={reset}>{t(mode === 'idea' ? 'feedback.newIdea' : 'feedback.newFeedback')}</button></div>
@@ -69,11 +70,12 @@ export function ContributionForm({ mode, context }: { mode: 'idea' | 'feedback';
       {context ? <p className="cn-community-context">{t('feedback.forTool', { name: context.toolName })}</p> : null}
       <p className="cn-field-help">{t('feedback.privacy')}{' '}{t('contribution.requiredNote')}</p>
       {mode === 'feedback' ? <>
-        <fieldset className="cn-community-category"><legend>{t('feedback.category')}</legend><div>{(['bug', 'improvement', 'data'] as const).map(value => <label key={value} className={category === value ? 'is-selected' : undefined}><input type="radio" name={`${id}-category`} checked={category === value} onChange={() => setCategory(value)} /><span>{t(`feedback.categories.${value}`)}</span></label>)}</div></fieldset>
-        {!context ? <label htmlFor={`${id}-tool`}>{t('feedback.tool')}<select id={`${id}-tool`} value={toolSlug} onChange={event => setToolSlug(event.target.value)}><option value="">{t('feedback.wholeSite')}</option>{tools.map(tool => <option key={tool.slug} value={tool.slug}>{tool.name}</option>)}</select></label> : null}
+        <fieldset className="cn-community-category"><legend>{t('feedback.category')}</legend><div>{(['bug', 'improvement', 'tool', 'data'] as const).map(value => <label key={value} className={category === value ? 'is-selected' : undefined}><input type="radio" name={`${id}-category`} checked={category === value} onChange={() => setCategory(value)} /><span>{t(`feedback.categories.${value}`)}</span></label>)}</div></fieldset>
+        {!context && category !== 'tool' ? <label htmlFor={`${id}-tool`}>{t('feedback.tool')}<select id={`${id}-tool`} value={toolSlug} onChange={event => setToolSlug(event.target.value)}><option value="">{t('feedback.wholeSite')}</option>{tools.map(tool => <option key={tool.slug} value={tool.slug}>{tool.name}</option>)}</select></label> : null}
+        {category === 'tool' ? <p className="cn-field-help cn-community-tool-hint">{t('feedback.toolHint')}</p> : null}
       </> : null}
-      {field('title', t(mode === 'idea' ? 'feedback.ideaProblem' : 'feedback.subject'), title, setTitle, titleError)}
-      {field('detail', t(mode === 'idea' ? 'feedback.ideaExample' : 'feedback.detail'), detail, setDetail, detailError)}
+      {field('title', t(mode === 'idea' || category === 'tool' ? 'feedback.ideaProblem' : 'feedback.subject'), title, setTitle, titleError)}
+      {field('detail', t(mode === 'idea' || category === 'tool' ? 'feedback.ideaExample' : 'feedback.detail'), detail, setDetail, detailError)}
       {isData ? <><p className="cn-field-help">{t('feedback.dataHint')}</p><SourceFields url={sourceUrl} type={sourceType} onUrl={setSourceUrl} onType={setSourceType} /></> : null}
       {user && mode === 'idea' ? <ContributionAccountBox user={user} attribution={attribution} onAttributionChange={setAttributionChoice} tracked={false} /> : user ? <p className="cn-field-help">{t('feedback.accountTracking')}</p> : null}
       <label className="cn-community-consent"><input type="checkbox" required checked={consent} onChange={event => setConsent(event.target.checked)} /><span>{t('contribution.consent')}</span></label>
