@@ -60,7 +60,7 @@ export function useContribution(id: string | null) {
 export function useTransition(id: string) {
   const client = useQueryClient()
   return useMutation({
-    mutationFn: ({ action, note, digest }: { action: Transition; note: string; digest: string }) => adminService.transition(id, action, note, digest),
+    mutationFn: ({ action, note, digest, duplicateOf }: { action: Transition; note: string; digest: string; duplicateOf?: string }) => adminService.transition(id, action, note, digest, duplicateOf),
     // Failures too: a 409 means someone else moved it, and the screen should show where it is now.
     onSettled: () => Promise.all([client.invalidateQueries({ queryKey: key.contributions }), client.invalidateQueries({ queryKey: key.overview })]),
   })

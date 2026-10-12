@@ -41,7 +41,7 @@ export interface UserDetail {
   adminAudit: AuditRow[]
 }
 
-export const CONTRIBUTION_STATUSES = ['RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED', 'PUBLISHED', 'REJECTED', 'SUPERSEDED', 'REVOKED'] as const
+export const CONTRIBUTION_STATUSES = ['RECEIVED', 'TRIAGED', 'IN_PROGRESS', 'RESOLVED', 'RELEASED', 'DEDUPED', 'NEEDS_SOURCE', 'NEEDS_REVIEW', 'VERIFIED', 'APPROVED', 'PUBLISHED', 'REJECTED', 'SUPERSEDED', 'REVOKED'] as const
 export type ContributionStatus = (typeof CONTRIBUTION_STATUSES)[number]
 
 export interface ContributionRow {
@@ -59,11 +59,13 @@ export interface ContributionDetail {
     sourceRefs: { url: string; type: string }[]
     reviewedBy: string | null; approvedBy: string | null; publishedDigest: string | null
     submitterEmail: string | null; attribution: boolean | null; createdAt: string
+    /** Feedback merged into another report points at that report's original; `duplicateCount` = copies pointing here. */
+    duplicateOf: string | null; duplicateCount: number
   }
   trail: { action: string; actor: string; note: string | null; createdAt: string }[]
 }
 
-export type Transition = 'start' | 'resolve' | 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke'
+export type Transition = 'triage' | 'start' | 'resolve' | 'release' | 'dedupe' | 'verify' | 'approve' | 'reject' | 'publish' | 'supersede' | 'revoke'
 
 export const MAIL_STATUSES = ['pending', 'sending', 'sent', 'failed'] as const
 export type MailStatus = (typeof MAIL_STATUSES)[number]

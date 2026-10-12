@@ -11,8 +11,11 @@ export const ROLE_HELP: Record<StaffRole, string> = {
 
 export const CONTRIBUTION_STATUS: Record<ContributionStatus, { label: string; icon: string; tone: Tone }> = {
   RECEIVED: { label: 'Đã tiếp nhận', icon: 'inbox', tone: 'info' },
+  TRIAGED: { label: 'Đã phân loại', icon: 'funnel', tone: 'info' },
   IN_PROGRESS: { label: 'Đang xử lý', icon: 'tools', tone: 'info' },
   RESOLVED: { label: 'Đã hoàn tất', icon: 'check-circle', tone: 'positive' },
+  RELEASED: { label: 'Đã phát hành', icon: 'rocket-takeoff', tone: 'positive' },
+  DEDUPED: { label: 'Đã gộp (trùng)', icon: 'link-45deg', tone: 'neutral' },
   NEEDS_SOURCE: { label: 'Chờ nguồn', icon: 'link-45deg', tone: 'warning' },
   NEEDS_REVIEW: { label: 'Chờ xác minh', icon: 'hourglass-split', tone: 'info' },
   VERIFIED: { label: 'Đã xác minh', icon: 'check2', tone: 'info' },
@@ -25,8 +28,10 @@ export const CONTRIBUTION_STATUS: Record<ContributionStatus, { label: string; ic
 
 /** Steps a reviewer can take from each status; mirrors `expected` in ContributionsRepository.transition. */
 export const NEXT_STEPS: Partial<Record<ContributionStatus, Transition[]>> = {
-  RECEIVED: ['start', 'reject'],
+  RECEIVED: ['triage', 'start', 'dedupe', 'reject'],
+  TRIAGED: ['start', 'dedupe', 'reject'],
   IN_PROGRESS: ['resolve', 'reject'],
+  RESOLVED: ['release'],
   NEEDS_SOURCE: ['reject'],
   NEEDS_REVIEW: ['verify', 'reject'],
   VERIFIED: ['approve', 'reject'],
@@ -35,6 +40,9 @@ export const NEXT_STEPS: Partial<Record<ContributionStatus, Transition[]>> = {
 }
 
 export const TRANSITION: Record<Transition, { label: string; help: string; danger?: boolean }> = {
+  triage: { label: 'Phân loại', help: 'Đã đọc và xác nhận góp ý cần xử lý. Ghi chú (không bắt buộc) để lưu nhận định ban đầu.' },
+  release: { label: 'Đã phát hành', help: 'Bản sửa đã lên site; người gửi thấy trạng thái này khi tra mã biên nhận.' },
+  dedupe: { label: 'Gộp vào #…', help: 'Nhập mã (UUID) của góp ý gốc. Góp ý này đóng lại và trỏ về bản gốc; nếu bản đích cũng đã gộp thì trỏ thẳng tới bản gốc của nó.' },
   start: { label: 'Bắt đầu xử lý', help: 'Tiếp nhận báo lỗi hoặc cải tiến để xử lý.' },
   resolve: { label: 'Hoàn tất', help: 'Ghi kết quả xử lý trước khi đóng góp ý.' },
   verify: { label: 'Xác minh', help: 'Bạn đã đối chiếu nguồn và thấy đề xuất đúng. Ghi chú xác minh tối thiểu 10 ký tự.' },
@@ -81,6 +89,8 @@ export const AUDIT_ACTION: Record<string, string> = {
   LOGIN: 'Đăng nhập', DISABLED: 'Bị khoá', ENABLED: 'Được mở khoá', DELETED: 'Bị xoá', EMAIL_CHANGED: 'Đổi email đăng nhập',
   SUBMITTED: 'Gửi đề xuất', SOURCES_ADDED: 'Thêm nguồn (mã biên nhận)', EVIDENCE_ADDED: 'Bổ sung nguồn', VERIFY: 'Xác minh', APPROVE: 'Phê duyệt',
   START: 'Bắt đầu xử lý', RESOLVE: 'Hoàn tất góp ý', CONTRIBUTION_START: 'Bắt đầu xử lý góp ý', CONTRIBUTION_RESOLVE: 'Hoàn tất góp ý',
+  TRIAGE: 'Phân loại góp ý', RELEASE: 'Phát hành bản sửa', DEDUPE: 'Gộp vào góp ý khác', DEDUPED: 'Tự gộp vào góp ý trùng',
+  CONTRIBUTION_TRIAGE: 'Phân loại góp ý', CONTRIBUTION_RELEASE: 'Phát hành bản sửa', CONTRIBUTION_DEDUPE: 'Gộp góp ý trùng',
   PUBLISH: 'Công bố', REJECT: 'Từ chối', SUPERSEDE: 'Bị thay thế', REVOKE: 'Rút công bố',
 }
 

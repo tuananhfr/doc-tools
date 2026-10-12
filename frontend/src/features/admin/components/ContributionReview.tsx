@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useToast } from '@/components/ui'
 import { CONTRIBUTION_STATUS, NEXT_STEPS, RISK_LABEL, TRANSITION } from '../config/admin-labels'
@@ -19,6 +20,7 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
   const [step, setStep] = useState<Transition | null>(null)
   const [note, setNote] = useState('')
   const [digest, setDigest] = useState('')
+  const [target, setTarget] = useState('')
   const back = <button type="button" className="cn-admin-button is-ghost" onClick={onBack}><Icon name="arrow-left" />Danh sách</button>
 
   if (detail.isPending) return <AdminPage title="Đề xuất" actions={back}><SkeletonRows rows={8} /></AdminPage>
@@ -39,8 +41,8 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
   const submit = (event: FormEvent) => {
     event.preventDefault()
     if (!step) return
-    transition.mutate({ action: step, note: note.trim(), digest: digest.trim() }, {
-      onSuccess: () => { toast.success(`${TRANSITION[step].label}: xong.`); setStep(null); setNote(''); setDigest('') },
+    transition.mutate({ action: step, note: note.trim(), digest: digest.trim(), duplicateOf: target }, {
+      onSuccess: () => { toast.success(`${TRANSITION[step].label}: xong.`); setStep(null); setNote(''); setDigest(''); setTarget('') },
     })
   }
 
@@ -50,6 +52,8 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
         <Pill tone={meta.tone} icon={meta.icon}>{meta.label}</Pill>
         {isFeedback ? null : <Pill tone={item.risk === 'HIGH' ? 'danger' : item.risk === 'MEDIUM' ? 'warning' : 'neutral'} icon="exclamation-diamond">Rủi ro {RISK_LABEL[item.risk].toLowerCase()}</Pill>}
         {isFeedback || item.attribution === null ? null : <Pill tone="neutral" icon={item.attribution ? 'person-check' : 'person-dash'}>{item.attribution ? 'Muốn ghi tên' : 'Không ghi tên'}</Pill>}
+        {item.duplicateOf ? <Pill tone="neutral" icon="link-45deg">Trùng với <Link to={{ search: `?id=${item.duplicateOf}` }}>#{item.duplicateOf.slice(0, 8)}</Link></Pill> : null}
+        {item.duplicateCount ? <Pill tone="info" icon="people">{item.duplicateCount} lượt báo trùng</Pill> : null}
       </div>
 
       <div className="cn-admin-grid is-wide-left">
@@ -104,6 +108,9 @@ export function ContributionReview({ id, onBack }: { id: string; onBack: () => v
               <p className="cn-admin-lead">{TRANSITION[step].help}</p>
               {step === 'publish' && !isIdea ? (
                 <label>Digest gói quy định (64 ký tự hex)<input type="text" required pattern="[0-9a-fA-F]{64}" value={digest} onChange={(event) => setDigest(event.target.value)} spellCheck={false} autoComplete="off" /></label>
+              ) : null}
+              {step === 'dedupe' ? (
+                <label>Mã góp ý gốc (UUID)<input type="text" required pattern="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}" value={target} onChange={(event) => setTarget(event.target.value.trim().toLowerCase())} spellCheck={false} autoComplete="off" /></label>
               ) : null}
               {step === 'publish' ? null : (
                 <label>{step === 'verify' ? 'Ghi chú xác minh' : step === 'reject' ? 'Lý do từ chối' : step === 'resolve' ? 'Kết quả xử lý' : 'Ghi chú (không bắt buộc)'}

@@ -27,7 +27,7 @@ export default function AdminContributionsPage() {
   const domains = [...new Set((list.data?.domains ?? []).map((row) => row.domain))].sort()
 
   return (
-    <AdminPage title="Duyệt đề xuất" description="Báo lỗi và cải tiến: tiếp nhận, xử lý, hoàn tất. Ý tưởng và dữ liệu quy định giữ quy trình xác minh, phê duyệt, công bố bởi ba người khác nhau.">
+    <AdminPage title="Duyệt đề xuất" description="Báo lỗi và cải tiến: tiếp nhận, phân loại, xử lý, hoàn tất, phát hành; góp ý trùng gộp vào bản gốc. Ý tưởng và dữ liệu quy định giữ quy trình xác minh, phê duyệt, công bố bởi ba người khác nhau.">
       <Panel flush>
         <div className="cn-admin-filters">
           <div className="cn-admin-tabs" role="tablist" aria-label="Phạm vi">

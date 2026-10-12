@@ -67,7 +67,7 @@ export const adminService = {
 
   contributions: (params: ContributionQuery) => call<ContributionList>(`/contributions${query({ ...params })}`),
   contribution: (id: string) => call<ContributionDetail>(`/contributions/${id}`),
-  transition: (id: string, action: Transition, note: string, digest: string) => call<{ status: string }>(`/contributions/${id}/transition`, 'POST', { action, note, digest }),
+  transition: (id: string, action: Transition, note: string, digest: string, duplicateOf = '') => call<{ status: string }>(`/contributions/${id}/transition`, 'POST', { action, note, digest, ...(duplicateOf ? { duplicateOf } : {}) }),
 
   tools: (days: number) => call<ToolsStats>(`/tools?days=${days}`),
 
