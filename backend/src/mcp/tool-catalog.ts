@@ -3,7 +3,7 @@ import { join } from 'node:path'
 
 interface ToolText { name: string; description: string; synonyms: string[]; privacyNote?: string }
 interface GuideText { title: string; summary: string; intro: string; steps: { title: string; detail: string }[]; tips: string[]; notes: string[] }
-export interface CatalogTool { id: string; slug: string; status: string; noFile: boolean; categories: string[]; text: Record<string, ToolText> }
+export interface CatalogTool { id: string; slug: string; status: string; noFile: boolean; categories: string[]; device?: { offline: 'yes' | 'after-first-use' | 'no'; needs?: string[] }; text: Record<string, ToolText> }
 interface CatalogGuide { slug: string; toolIds: string[]; text: Record<string, GuideText> }
 interface Catalog { locales: string[]; tools: CatalogTool[]; guides: CatalogGuide[] }
 
@@ -31,6 +31,9 @@ const words = (value: string) => fold(value).split(/[^\p{L}\p{N}]+/u).filter((wo
  * Plain keyword scoring over name, synonyms and description in the asked language plus Vietnamese and
  * English. The model reads the descriptions and picks; the site's intent search is not repeated here.
  */
+// The assistant must not tell someone on a train that a network-only tool works offline.
+const capability = (tool: CatalogTool) => ({ offline: tool.device?.offline ?? null, needs: tool.device?.needs ?? [] })
+
 export function findTools(query: string, locale: string | undefined, limit: number) {
   const terms = [...new Set(words(query.slice(0, 500)))]
   const ready = toolCatalog().tools.filter((tool) => tool.status === 'ready')
@@ -54,7 +57,7 @@ export function findTools(query: string, locale: string | undefined, limit: numb
   const picked = terms.length ? scored.filter((entry) => entry.score > 0).sort((a, b) => b.score - a.score) : scored
   return picked.slice(0, limit).map(({ tool }) => {
     const text = textFor(tool.text, locale)
-    return { slug: tool.slug, name: text?.name ?? tool.id, description: text?.description ?? '', needsFile: !tool.noFile }
+    return { slug: tool.slug, name: text?.name ?? tool.id, description: text?.description ?? '', needsFile: !tool.noFile, ...capability(tool) }
   })
 }
 
@@ -65,6 +68,7 @@ export function toolGuide(slug: string, locale: string | undefined) {
   const guides = toolCatalog().guides.filter((guide) => guide.toolIds.includes(tool.id)).map((guide) => textFor(guide.text, locale)).filter(Boolean)
   return {
     slug: tool.slug, name: text?.name ?? tool.id, description: text?.description ?? '', needsFile: !tool.noFile,
+    ...capability(tool),
     // Free tools run in the browser; the note says what, if anything, leaves the device.
     privacy: text?.privacyNote ?? 'Chạy ngay trong trình duyệt; tệp không rời máy người dùng.',
     guides,

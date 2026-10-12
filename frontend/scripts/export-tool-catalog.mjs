@@ -26,6 +26,7 @@ export async function buildToolCatalog() {
     locales,
     tools: ALL_TOOLS.filter(tool => !isProductEntry(tool) && !isExternalCapability(tool)).map((tool) => ({
       id: tool.id, slug: tool.slug, status: tool.status, noFile: Boolean(tool.noFile), categories: tool.categories,
+      ...(tool.status === 'ready' ? { device: tool.device } : {}),
       text: Object.fromEntries(locales.flatMap((locale) => {
         const text = catalog[locale].tools?.[tool.id]
         if (!text?.name) return []
