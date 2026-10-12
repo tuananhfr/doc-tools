@@ -1,18 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { speechLanguage } from '@/i18n/intl'
 import type { ReadingHighlight } from '../types/reading.types'
 import { speechChunksFrom, splitSpeechText, type SpeechChunk } from '../utils/speech-chunks'
+import { pickVoice } from '../utils/voice-select'
 
 // Chrome nạp danh sách giọng bất đồng bộ; có trình duyệt không bao giờ bắn `voiceschanged` khi máy không có giọng nào.
 const VOICE_WAIT_MS = 1500
 
-export type VoiceState = 'loading' | 'ok' | 'missing'
 export type DeviceStatus = 'idle' | 'speaking' | 'paused'
-
-function hasVoiceFor(lang: string): boolean {
-  const base = lang.toLowerCase().split('-')[0]
-  return window.speechSynthesis.getVoices().some((voice) => voice.lang.toLowerCase().replace('_', '-').split('-')[0] === base)
-}
 
 /** Safari/Firefox có khi báo `charLength` = 0: tự đo từ bắt đầu ở `index`. */
 function wordLength(text: string, index: number, reported: number): number {
@@ -22,14 +16,15 @@ function wordLength(text: string, index: number, reported: number): number {
 
 /**
  * Giọng của máy (Web Speech). Mọi đoạn được xếp hàng ngay trong lượt bấm, vì iOS chỉ cho `speak()` trong thao tác của người dùng.
- * Tạm dừng / đổi tốc độ = huỷ rồi đọc lại từ chỗ đang đọc: `pause()`/`resume()` gốc treo hẳn trên Chrome Android
+ * Tạm dừng / đổi tốc độ / nhảy câu = huỷ rồi đọc lại từ vị trí mới: `pause()`/`resume()` gốc treo hẳn trên Chrome Android
  * và giọng online, còn tốc độ của một lượt đã xếp hàng không đổi được.
  */
 export function useDeviceSpeech(rate: number) {
   const supported = typeof window !== 'undefined' && 'speechSynthesis' in window
   const [status, setStatus] = useState<DeviceStatus>('idle')
   const [failed, setFailed] = useState(false)
-  const [voice, setVoice] = useState<VoiceState>('loading')
+  // `null` = còn chờ trình duyệt nạp danh sách giọng; mảng rỗng = máy không có giọng nào.
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[] | null>(null)
   const [highlight, setHighlight] = useState<ReadingHighlight | null>(null)
   // `cancel()` bắn `end`/`error` của lượt cũ SAU khi lượt mới đã bắt đầu; chỉ lượt mang số hiện tại được đổi trạng thái.
   const run = useRef(0)
@@ -38,6 +33,8 @@ export function useDeviceSpeech(rate: number) {
   const position = useRef(0)
   const rateRef = useRef(rate)
   const statusRef = useRef<DeviceStatus>('idle')
+  // Giọng chốt lúc bấm Đọc: đọc lại từ giữa (tạm dừng, đổi tốc độ, nhảy câu) phải giữ đúng giọng đó.
+  const speech = useRef<{ lang: string; voice: SpeechSynthesisVoice | null }>({ lang: '', voice: null })
 
   const changeStatus = useCallback((next: DeviceStatus) => {
     statusRef.current = next
@@ -54,8 +51,8 @@ export function useDeviceSpeech(rate: number) {
     if (!supported) return
     const synth = window.speechSynthesis
     const check = (final: boolean) => {
-      if (hasVoiceFor(speechLanguage())) setVoice('ok')
-      else if (final || synth.getVoices().length) setVoice('missing')
+      const list = synth.getVoices()
+      if (list.length || final) setVoices(list)
     }
     const onChange = () => check(false)
     check(false)
@@ -74,7 +71,9 @@ export function useDeviceSpeech(rate: number) {
     remaining.forEach(({ chunk, from }, index) => {
       const spoken = chunk.text.slice(from - chunk.start)
       const utterance = new SpeechSynthesisUtterance(spoken)
-      utterance.lang = speechLanguage()
+      utterance.lang = speech.current.lang
+      // Chỉ đặt `lang` thì trình duyệt tự chọn giọng — thường là giọng mặc định của máy, kể cả khi có giọng Việt.
+      if (speech.current.voice) utterance.voice = speech.current.voice
       utterance.rate = rateRef.current
       utterance.onstart = () => {
         if (run.current !== current) return
@@ -106,12 +105,21 @@ export function useDeviceSpeech(rate: number) {
     if (statusRef.current === 'speaking') start(position.current)
   }, [rate, start])
 
-  const speak = (text: string) => {
+  /** Phải gọi trong thao tác bấm. `lang` theo NỘI DUNG (trang /en đọc truyện Việt vẫn phải ra giọng Việt). */
+  const speak = (text: string, lang: string, offset = 0) => {
     if (!supported) return
     chunks.current = splitSpeechText(text)
-    position.current = 0
+    speech.current = { lang, voice: pickVoice(window.speechSynthesis.getVoices(), lang) }
+    position.current = offset
     setFailed(false)
-    start(0)
+    start(offset)
+  }
+
+  /** Nhảy tới câu khác; phải gọi trong thao tác bấm. Đang tạm dừng thì nhảy xong đọc luôn. */
+  const seek = (offset: number) => {
+    if (statusRef.current === 'idle') return
+    position.current = offset
+    start(offset)
   }
 
   const pause = () => {
@@ -132,5 +140,5 @@ export function useDeviceSpeech(rate: number) {
     changeStatus('idle')
   }
 
-  return { supported, status, failed, voice, highlight, speak, pause, resume, stop }
+  return { supported, status, failed, voices, highlight, speak, seek, pause, resume, stop }
 }

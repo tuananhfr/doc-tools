@@ -10,6 +10,7 @@ import { useDeviceSpeech } from '../hooks/useDeviceSpeech'
 import { usePiperSpeech } from '../hooks/usePiperSpeech'
 import { PIPER_DOWNLOAD_BYTES, piperSupported } from '../services/piper-tts'
 import type { PiperErrorCode } from '../types/piper-tts.types'
+import { voiceCheck } from '../utils/voice-select'
 
 const MAX_CHARS = 20000
 // Kéo thanh tốc độ bắn hàng chục giá trị; mỗi giá trị là một lần co giãn / đọc lại nên chỉ áp giá trị dừng tay.
@@ -51,7 +52,7 @@ export default function ReadAloudPage() {
   const read = () => {
     setSaved(false)
     setReading(input)
-    if (engine === 'device') device.speak(input)
+    if (engine === 'device') device.speak(input, speechLanguage())
     else piper.speak(input)
   }
   const pause = () => { if (engine === 'device') device.pause(); else piper.pause() }
@@ -84,7 +85,7 @@ export default function ReadAloudPage() {
       {engine === 'piper' ? <Button variant="outline-secondary" disabled={!canRead} onClick={() => void save()}>{t('readAloud.exportWav')}</Button> : null}
     </div>
     {engine === 'device' ? <>
-      {device.supported && device.voice === 'missing' ? <p role="status" className="erp-tool-result__note mt-3"><strong>{t('readAloud.noVoice')}</strong></p> : null}
+      {device.supported && voiceCheck(device.voices, speechLanguage()).state === 'missing' ? <p role="status" className="erp-tool-result__note mt-3"><strong>{t('readAloud.noVoice')}</strong></p> : null}
       {device.failed ? <p role="alert" className="erp-tool-result__note mt-3"><strong>{t('readAloud.deviceFailed')}</strong></p> : null}
       <p className="erp-tool-result__note mt-3">{device.supported ? t('readAloud.voiceNote') : t('readAloud.unsupported')}</p>
     </> : <>

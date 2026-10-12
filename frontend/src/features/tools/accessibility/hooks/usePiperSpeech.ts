@@ -3,7 +3,7 @@ import { PiperPlayer, SENTENCE_GAP_SECONDS } from '../services/piper-player'
 import { loadPiperSynth, PIPER_SAMPLE_RATE, PiperTtsError, type PiperSynth } from '../services/piper-tts'
 import type { PiperErrorCode } from '../types/piper-tts.types'
 import type { ReadingHighlight } from '../types/reading.types'
-import { splitSpeechText } from '../utils/speech-chunks'
+import { speechChunksFrom, splitSpeechText } from '../utils/speech-chunks'
 import { normalizeVietnameseText } from '../utils/vi-text-normalize'
 import { encodeWav } from '../utils/wav'
 
@@ -62,9 +62,10 @@ export function usePiperSpeech(rate: number) {
     return synth
   }
 
-  /** Phải gọi ngay trong thao tác bấm, vì `PiperPlayer` tạo AudioContext. */
-  const speak = (text: string) => {
-    const chunks = splitSpeechText(text)
+  /** Phải gọi ngay trong thao tác bấm, vì `PiperPlayer` tạo AudioContext. `offset` > 0 = đọc từ giữa bài (nhảy câu, đọc tiếp). */
+  const speak = (text: string, offset = 0) => {
+    // Chỉ sinh phần sau `offset`, nhưng giữ khoảng của cả câu để bôi đúng câu và để "Câu trước" tính từ câu đang đọc.
+    const chunks = speechChunksFrom(splitSpeechText(text), offset).map(({ chunk, from }) => ({ text: chunk.text.slice(from - chunk.start), start: chunk.start, end: chunk.end }))
     if (!chunks.length) return
     const controller = begin()
     const audio = new PiperPlayer(rateRef.current)
