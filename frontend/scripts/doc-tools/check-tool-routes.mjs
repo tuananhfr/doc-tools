@@ -170,7 +170,8 @@ await page.waitForTimeout(1200)
 const before = await page.locator('.erp-doc-page').count()
 await go('xem-pdf')
 await page.waitForTimeout(600)
-checks.switch = { ...(await where()), before, after: await page.locator('.erp-doc-page').count() }
+// `/xem-pdf` vẽ trình đọc từng trang thay cho lưới: đếm số trang ở ô chọn trang của nó.
+checks.switch = { ...(await where()), before, after: await page.locator('.cn-pdf-reader__page option').count() }
 expectThat('switch', before > 0 && checks.switch.path === '/xem-pdf' && checks.switch.after === before, checks.switch)
 await page.goBack()
 await page.waitForTimeout(600)
@@ -197,7 +198,8 @@ await page.reload().catch(() => undefined)
 await page.waitForTimeout(600)
 checks.leave.reload = { dialog: native, pagesAfterDismiss: await page.locator('.erp-doc-page').count() }
 await page.locator('.erp-tool-crumb__back').click()
-if (await leaveModal.count()) await leaveModal.getByRole('button', { name: 'Rời trang' }).click()
+// Huỷ reload thì tệp còn nên hộp hỏi hiện ra sau cú bấm một nhịp — chờ nó thay vì đếm ngay.
+if (await leaveModal.waitFor({ timeout: 3000 }).then(() => true, () => false)) await leaveModal.getByRole('button', { name: 'Rời trang' }).click()
 await page.locator('.erp-tools-grid').waitFor()
 checks.leave.proceed = await where()
 // Chưa thả tệp nào thì không có gì để mất: rời thẳng, không hỏi.
