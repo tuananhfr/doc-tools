@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { SEARCH_INTENTS } from '../config/intent-registry'
+import { SEARCH_INTENTS, SEARCH_INTENT_TEXT_FALLBACK } from '../config/intent-registry'
 import { SEARCH_STORIES } from '../config/search-stories'
 import { isProductEntry } from '@/features/site/config/product-registry'
 import { VI_PRODUCT_CATALOG, VI_TOOL_CATALOG } from './tool-catalog.fixture'
@@ -41,6 +41,15 @@ describe('search intent proposals', () => {
 
   it('does not replace a disabled tool with an unrelated alternative', () => {
     expect(searchTools(VI_TOOL_CATALOG.filter(tool => tool.id !== 'compress-pdf'), 'file nặng quá không gửi được')).toEqual([])
+  })
+
+  it('falls back to text ranking for a switched-off intent tool only when the flag is on, never to a forbidden tool', () => {
+    const base = VI_TOOL_CATALOG.find(tool => tool.id === 'organize-pdf')!
+    const video = VI_TOOL_CATALOG.find(tool => tool.id === 'compress-video')!
+    const catalog = [{ ...base, id: 'pdf-shrinker', name: 'Thu nhỏ PDF', description: '', synonyms: ['nén pdf'] }, { ...video, synonyms: ['nén pdf'] }]
+    expect(SEARCH_INTENT_TEXT_FALLBACK).toBe(false)
+    expect(searchTools(catalog, 'Nén PDF')).toEqual([])
+    expect(searchTools(catalog, 'Nén PDF', 'all', { intentFallback: true }).map(tool => tool.id)).toEqual(['pdf-shrinker'])
   })
 
   it('treats decomposed Vietnamese and invisible characters consistently', () => {

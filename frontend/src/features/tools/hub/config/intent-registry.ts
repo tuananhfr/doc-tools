@@ -15,7 +15,13 @@ export interface SearchIntent {
   handoff?: { profile: 'table'; output: 'xlsx' }
 }
 
-export const INTENT_REGISTRY_VERSION = 3
+export const INTENT_REGISTRY_VERSION = 4
+
+/**
+ * Ý định khớp nhưng công cụ của nó bị tắt (`NEXT_PUBLIC_TOOLS_OFF`): `false` = không gợi gì (hành vi đã
+ * duyệt), `true` = rơi về xếp hạng chữ, vẫn bỏ công cụ ý định cấm. Bật `true` cần BA duyệt (roadmap v3 WP1).
+ */
+export const SEARCH_INTENT_TEXT_FALLBACK = false
 
 export const SEARCH_INTENTS: readonly SearchIntent[] = [
   {
@@ -111,8 +117,9 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
   },
   {
     id: 'pdf.redact', canonical: 'Che thông tin PDF', preferredTool: 'redact-pdf', acceptableTools: [], forbiddenTools: ['stamp-pdf'],
-    requiredTerms: [['pdf', 'hồ sơ'], ['che', 'ẩn', 'xóa thông tin']],
-    aliases: ['che số căn cước trong PDF', 'ẩn thông tin riêng tư trong PDF', 'xóa thông tin nhạy cảm PDF'],
+    // "xóa số căn cước" là che, không phải bỏ trang: "trong" lệch một chữ với "trang" nên Tách PDF từng thắng.
+    requiredTerms: [['pdf', 'hồ sơ'], ['che', 'ẩn', 'xóa thông tin', 'xóa số', 'căn cước', 'cccd']],
+    aliases: ['che số căn cước trong PDF', 'ẩn thông tin riêng tư trong PDF', 'xóa thông tin nhạy cảm PDF', 'xóa số căn cước trong PDF'],
     inputProfiles: ['pdf'], expectedOutcome: 'PDF có vùng thông tin bị loại bỏ', risk: 'review',
   },
   {
@@ -184,6 +191,28 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
     id: 'document.receipt', canonical: 'Tạo biên nhận', preferredTool: 'form-templates', acceptableTools: [], forbiddenTools: [],
     requiredTerms: [['biên nhận', 'giấy xác nhận'], ['tạo', 'tiền', 'nhận']], aliases: ['giấy xác nhận đã nhận tiền', 'biên nhận tiền'],
     inputProfiles: ['user-fields'], expectedOutcome: 'Biên nhận có thể xem trước và in', risk: 'review',
+  },
+  {
+    id: 'read.aloud', canonical: 'Đọc to văn bản', preferredTool: 'read-aloud', acceptableTools: [], forbiddenTools: ['dictation', 'number-words', 'image-to-text'],
+    // "nghe" đủ để nhận ra việc; loại nhạc / video / ghi âm vì đó là phát hoặc thu âm, không phải đọc chữ.
+    requiredTerms: [['nghe', 'đọc thành tiếng', 'đọc truyện', 'giọng đọc']], excludedTerms: ['nhạc', 'mp3', 'video', 'ghi âm'],
+    aliases: ['đọc to', 'đọc truyện cho bà nghe', 'nghe file PDF', 'đọc văn bản thành tiếng', 'nghe thay vì đọc'],
+    inputProfiles: ['text'], expectedOutcome: 'Nghe văn bản bằng giọng của thiết bị hoặc giọng tải về máy', risk: 'low',
+  },
+  {
+    id: 'date.lunar', canonical: 'Đổi ngày âm dương', preferredTool: 'lunar-calendar', acceptableTools: [], forbiddenTools: ['date-calc'],
+    // Không để "dương" đứng một mình: "lượng" lệch một chữ với "dương" ("âm lượng" từng ra Lịch âm).
+    requiredTerms: [['âm', 'âm lịch', 'lịch âm'], ['đổi', 'chuyển', 'xem', 'tra', 'ngày giỗ', 'ngày dương', 'dương lịch']],
+    excludedTerms: ['ghi âm', 'âm thanh', 'tách âm', 'âm nhạc'],
+    aliases: ['đổi ngày dương sang âm', 'đổi ngày âm sang dương', 'xem ngày âm hôm nay', 'tra ngày giỗ'],
+    inputProfiles: ['dates'], expectedOutcome: 'Ngày âm lịch / dương lịch tương ứng', risk: 'low',
+  },
+  {
+    id: 'label.print', canonical: 'In tem nhãn', preferredTool: 'qr-create', acceptableTools: ['barcode-create', 'quick-design'], forbiddenTools: ['qr-read'],
+    // Tạo QR có thẻ "In nhãn QR / Barcode" (tờ tem PDF); mã vạch và Thiết kế nhanh (mẫu nhãn) là lựa chọn kế.
+    requiredTerms: [['tem', 'nhãn'], ['in', 'dán', 'sản phẩm', 'hàng hóa']],
+    aliases: ['in tem sản phẩm', 'in nhãn mã vạch', 'in tem QR dán hàng'],
+    inputProfiles: ['text'], expectedOutcome: 'Tờ tem QR / mã vạch PDF để in', risk: 'low',
   },
 ]
 

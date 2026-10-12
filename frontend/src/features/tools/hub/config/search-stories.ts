@@ -1,4 +1,4 @@
-export const SEARCH_STORIES_VERSION = 3
+export const SEARCH_STORIES_VERSION = 4
 
 export interface SearchStory {
   id: string
@@ -118,6 +118,12 @@ const SEEDS: readonly Seed[] = [
   ['MONEY003', 'money.words', 'Đổi số sang chữ tiếng Việt', 'number-words', 'L1'],
   ['MONEY004', 'money.split', 'Tính mỗi người trả bao nhiêu', 'group-split', 'L2'],
   ['DATE002', 'date.count', 'Tính số ngày giữa hai mốc', 'date-calc', 'L1'],
+  ['READ001', 'read.aloud', 'Đọc truyện PDF cho bà nghe', 'read-aloud', 'L3'],
+  ['READ002', 'read.aloud', 'Đọc to', 'read-aloud', 'L0'],
+  ['DATE003', 'date.lunar', 'Đổi ngày dương sang âm', 'lunar-calendar', 'L1'],
+  ['PDF034', 'pdf.redact', 'xoa so can cuoc trong pdf', 'redact-pdf', 'L4'],
+  ['QR008', 'label.print', 'In tem sản phẩm', 'qr-create', 'L2'],
+  ['MONEY005', 'money.tax', 'tinh vat', 'money-calc', 'L4'],
   ['NEG008', null, 'Bẻ khóa mật khẩu PDF của người khác', null, 'L3'],
   ['NEG009', null, 'Đọc chữ tay chính xác tuyệt đối không cần kiểm tra', null, 'L3'],
   ['NEG010', null, 'Tự chuyển khoản theo số tiền trong ảnh', null, 'L3'],
