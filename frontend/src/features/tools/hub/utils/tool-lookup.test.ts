@@ -101,6 +101,21 @@ describe('legacyToolPath', () => {
   it('only points at tools that open', () => {
     for (const slug of Object.values(LEGACY_TOOL_QUERY)) expect(resolveToolRoute(slug).tool).not.toBeNull()
   })
+
+  it('opens every ready tool by id or slug, and the short "compress" link (CN-014)', () => {
+    expect(legacyToolPath('/', 'compress')).toBe('/nen-pdf')
+    expect(legacyToolPath('/', 'compress-pdf')).toBe('/nen-pdf')
+    expect(legacyToolPath('/', ' Compress-PDF ')).toBe('/nen-pdf')
+    expect(legacyToolPath('/', 'nen-pdf')).toBe('/nen-pdf')
+    for (const tool of TOOL_CATALOG.filter((item) => item.status === 'ready')) expect(legacyToolPath('/', tool.id)).toBe('/' + tool.slug)
+  })
+
+  it('sends coming-soon, switched-off and unknown values to the start page', () => {
+    expect(legacyToolPath('/', 'family-reminders')).toBe('/')
+    expect(legacyToolPath('/', 'nhac-viec')).toBe('/')
+    expect(legacyToolPath('/', 'compress', TOOL_CATALOG.filter((tool) => tool.id !== 'compress-pdf'))).toBe('/')
+    expect(legacyToolPath('/', 'compress-pdf', TOOL_CATALOG.filter((tool) => tool.id !== 'compress-pdf'))).toBe('/')
+  })
 })
 
 describe('filterTools', () => {

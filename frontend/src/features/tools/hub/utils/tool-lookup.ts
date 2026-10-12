@@ -67,10 +67,15 @@ export function toolNeedsFullWidth(slug: string | undefined, catalog: readonly T
   return resolveToolRoute(slug, catalog).tool?.screen === 'editor'
 }
 
-/** Đường dẫn chuẩn của một link `?tool=` cũ; giá trị lạ về trang chọn công cụ. */
-export function legacyToolPath(base: string, query: string): string {
-  const slug = LEGACY_TOOL_QUERY[query.trim().toLowerCase()]
-  return slug ? toolPath(base, { slug }) : base
+/**
+ * Đường dẫn chuẩn của một link `?tool=` cũ: alias lịch sử, id hoặc slug của công cụ "Dùng ngay".
+ * Công cụ đã tắt / "Sắp có" / giá trị lạ về trang chọn — đừng đưa người ta tới slug sẽ bật ngược về đó.
+ */
+export function legacyToolPath(base: string, query: string, catalog: readonly ToolEntry[] = TOOL_CATALOG): string {
+  const key = query.trim().toLowerCase()
+  const wanted = LEGACY_TOOL_QUERY[key] ?? key
+  const tool = catalog.find((item) => item.status === 'ready' && (item.slug === wanted || item.id === wanted))
+  return tool ? toolPath(base, tool) : base
 }
 
 /** Filter the directory or rank usable tools for a search query. */

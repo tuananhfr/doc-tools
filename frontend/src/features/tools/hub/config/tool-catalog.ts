@@ -76,12 +76,17 @@ export const CATEGORY_TONE: Record<ToolCategory, ToolTone> = {
   other: 'neutral',
 }
 
-/** Link `?tool=` phát ra trước khi mỗi công cụ có đường dẫn riêng. */
+/**
+ * Link `?tool=` phát ra trước khi mỗi công cụ có đường dẫn riêng (ERPCons chỉ từng nhận bốn giá trị đầu),
+ * cộng `compress` của link "nén PDF" cũ (CN-014). Id và slug của mọi công cụ đang chạy được
+ * `legacyToolPath` nhận thẳng, không cần khai ở đây.
+ */
 export const LEGACY_TOOL_QUERY: Record<string, string> = {
   merge: 'ghep-pdf',
   split: 'tach-pdf',
   'image-to-pdf': 'anh-sang-pdf',
   'pdf-to-word': 'pdf-sang-word',
+  compress: 'nen-pdf',
 }
 
 /** Mẹo ở cột phải (`catalog:tips.<khoá>`) — chỉ viết việc trình chỉnh sửa làm được thật. */
