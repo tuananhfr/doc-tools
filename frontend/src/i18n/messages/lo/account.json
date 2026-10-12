@@ -249,6 +249,7 @@
       "submitting": "Adding…",
       "cancel": "Cancel",
       "added": "Source added. The proposal is waiting for review."
-    }
+    },
+    "dedupedHint": "This matches another report and was merged into it; follow-up happens on the original."
   }
 }

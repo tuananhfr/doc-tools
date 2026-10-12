@@ -249,6 +249,7 @@
       "submitting": "Đang thêm…",
       "cancel": "Huỷ",
       "added": "Đã thêm nguồn. Đề xuất đang chờ kiểm tra."
-    }
+    },
+    "dedupedHint": "Góp ý này trùng với một góp ý khác nên được gộp vào đó; việc xử lý theo dõi ở góp ý gốc."
   }
 }

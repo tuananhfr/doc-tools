@@ -11,7 +11,10 @@
       "REVOKED": "Đã thu hồi",
       "RECEIVED": "Đã tiếp nhận",
       "IN_PROGRESS": "Đang xử lý",
-      "RESOLVED": "Đã hoàn tất"
+      "RESOLVED": "Đã hoàn tất",
+      "TRIAGED": "Đã phân loại",
+      "RELEASED": "Đã phát hành bản sửa",
+      "DEDUPED": "Đã gộp với góp ý trùng"
     },
     "sendFailed": "Không gửi được đề xuất.",
     "received": "Đã nhận đề xuất: {{status}}. Hãy giữ mã biên nhận để theo dõi.",
@@ -75,7 +78,8 @@
     "categories": {
       "bug": "Báo lỗi",
       "improvement": "Đề nghị cải tiến",
-      "data": "Dữ liệu chưa đúng"
+      "data": "Dữ liệu chưa đúng",
+      "tool": "Đề xuất công cụ mới"
     },
     "tool": "Công cụ liên quan",
     "wholeSite": "Góp ý chung cho website",
@@ -100,6 +104,8 @@
     "addEvidenceHint": "Bổ sung nguồn cho đúng mã biên nhận đang được tra cứu. Nguồn hiện có vẫn được giữ lại.",
     "searchSuggestion": "Chưa có tiện ích bạn cần? Đề xuất cho chúng tôi",
     "existingTool": "Muốn góp ý cho công cụ hiện có?",
-    "needTool": "Cần một tiện ích mới? Gửi đề xuất"
+    "needTool": "Cần một tiện ích mới? Gửi đề xuất",
+    "toolHint": "Ý tưởng công cụ mới được xem xét như mục Đề xuất tiện ích; ý tưởng được duyệt có thể hiện công khai, không kèm tên bạn.",
+    "dedupedNote": "Góp ý giống hệt đã được xử lý trước đây. Chúng tôi vẫn lưu ý kiến của bạn và gộp vào góp ý đó để biết vấn đề còn gặp lại."
   }
 }

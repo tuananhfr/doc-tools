@@ -11,7 +11,10 @@
       "REVOKED": "ຖອນຄືນແລ້ວ",
       "RECEIVED": "Received",
       "IN_PROGRESS": "In progress",
-      "RESOLVED": "Resolved"
+      "RESOLVED": "Resolved",
+      "TRIAGED": "Triaged",
+      "RELEASED": "Fix released",
+      "DEDUPED": "Merged with a matching report"
     },
     "sendFailed": "ສົ່ງຂໍ້ສະເໜີບໍ່ໄດ້.",
     "received": "ໄດ້ຮັບຂໍ້ສະເໜີແລ້ວ: {{status}}. ກະລຸນາເກັບລະຫັດໃບຮັບໄວ້ເພື່ອຕິດຕາມ.",
@@ -75,7 +78,8 @@
     "categories": {
       "bug": "Report a problem",
       "improvement": "Suggest an improvement",
-      "data": "Incorrect data"
+      "data": "Incorrect data",
+      "tool": "Suggest a new tool"
     },
     "tool": "Related tool",
     "wholeSite": "General website feedback",
@@ -100,6 +104,8 @@
     "addEvidenceHint": "Add a source to the receipt currently being checked. Existing sources are kept.",
     "searchSuggestion": "Missing a tool you need? Suggest it to us",
     "existingTool": "Want to give feedback on an existing tool?",
-    "needTool": "Need a new tool? Send a suggestion"
+    "needTool": "Need a new tool? Send a suggestion",
+    "toolHint": "New tool ideas are reviewed like Suggest a tool; an approved idea may be shown publicly, without your name.",
+    "dedupedNote": "The same feedback was handled before. We kept yours and linked it to that report, so we know the problem came back."
   }
 }
