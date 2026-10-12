@@ -61,6 +61,11 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
   Chỉ tải khi chọn ảnh; kết thúc worker sau mỗi lượt, khi hủy hoặc rời trang để không giữ
   heap WASM. Cọ dùng alpha mềm; thuật toán màu ở `background-removal.ts` vẫn phục vụ ảnh thẻ.
   Nguồn, giấy phép và giới hạn RAM ở `docs/background-removal.md`.
+- `/doc-to-van-ban` có giọng Piper tiếng Việt (model 63 MB track ở `public/vendor/tts/`,
+  phonemizer espeak-ng WASM sinh bằng `scripts/prepare-tts.mjs`) và **dùng chung runtime ort
+  của `/xoa-phong`** — đổi phiên bản `onnxruntime-web` phải sửa cả hai cấu hình. Emscripten của
+  phonemizer không nhận ra module worker, nên byte được đưa qua `wasmBinary`/`getPreloadedPackage`.
+  `AudioContext` phải tạo ngay trong lượt bấm (Safari). Chi tiết, giấy phép còn mở ở `docs/read-aloud-tts.md`.
 - `src/proxy.ts` (middleware của Next) xử lý link cũ `/doc-tools/*` và `?tool=` trước SSR,
   và thêm dấu `/` cuối cho trang chủ khi có prefix.
 - Route: `/` landing giới thiệu · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·

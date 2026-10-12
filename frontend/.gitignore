@@ -15,3 +15,5 @@ public/vendor/pdfjs/
 public/vendor/background-removal/ort-*/
 # Sinh mỗi lần build bởi scripts/prepare-offline.mjs; track thì server build xong là chặn git pull.
 public/offline-manifest.json
+# Sinh lại bởi scripts/prepare-tts.mjs (chép bộ phiên âm espeak-ng WASM từ node_modules).
+public/vendor/tts/piper-phonemize-*/

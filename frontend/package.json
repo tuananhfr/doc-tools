@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs",
-    "predev": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs",
+    "postinstall": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
+    "predev": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
     "dev": "next dev --webpack -p 3002",
-    "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs",
+    "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
     "build": "next build --webpack && node scripts/prepare-offline.mjs",
     "deploy": "bash scripts/deploy.sh",
     "start": "next start -p 3002",
@@ -14,6 +14,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@diffusionstudio/piper-wasm": "1.0.0",
     "@embedpdf/pdfium": "2.15.1",
     "@ffmpeg/core": "0.12.10",
     "@ffmpeg/ffmpeg": "0.12.15",

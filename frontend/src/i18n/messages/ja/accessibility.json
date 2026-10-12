@@ -49,6 +49,24 @@
     "rate": "速度: {{rate}}×",
     "noVoice": "This device has no voice installed for the current language, so the text may be read with the wrong voice or not at all. Add a voice in your device's text-to-speech settings.",
     "counter": "{{used}} / {{max}} characters",
-    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts."
+    "tooLong": "Only the first {{max}} characters will be read — split the text into several parts.",
+    "engine": "Voice",
+    "engineDevice": "Device voice",
+    "enginePiper": "Chuyen Nho voice",
+    "piperNote": "A Vietnamese voice that runs on your device and sounds the same everywhere. The first use downloads about {{size}} MB; later uses reuse the copy stored in your browser.",
+    "piperVietnameseOnly": "This voice can only read Vietnamese.",
+    "piperLoading": "Downloading voice: {{percent}}%",
+    "piperPreparing": "Preparing voice…",
+    "exporting": "Creating audio file: {{done}}/{{total}} parts",
+    "exportWav": "Download audio (WAV)",
+    "exportDone": "Audio file created.",
+    "fileName": "read-aloud",
+    "piperUnsupported": "This browser can't run the Chuyen Nho voice. Use the device voice instead.",
+    "piperModelFailed": "Couldn't download the voice. Check your connection and try again.",
+    "piperFailed": "Couldn't create audio for this text.",
+    "piperTimeout": "Creating audio took too long and was stopped. Try a shorter text.",
+    "deviceFailed": "The browser stopped reading part-way. Press \"Read text aloud\" to start again.",
+    "credit": "Piper vi_VN-vais1000 voice (VAIS-1000 data, CC BY 4.0) and espeak-ng phonemizer (GPL-3.0).",
+    "license": "Licenses and source code"
   }
 }

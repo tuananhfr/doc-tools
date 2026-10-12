@@ -1,0 +1,22 @@
+{
+  "voice": "vi_VN-vais1000-medium",
+  "espeakVoice": "vi",
+  "sampleRate": 22050,
+  "noiseScale": 0.667,
+  "noiseW": 0.8,
+  "model": {
+    "file": "vi_VN-vais1000-medium-ec7c89e2.onnx",
+    "sha256": "ec7c89e2c85f4d1edc24b6120c18aaf1bda614f06b511567eb9c7c0de15e2dab",
+    "bytes": 63201294,
+    "source": "https://huggingface.co/rhasspy/piper-voices/resolve/main/vi/vi_VN/vais1000/medium/vi_VN-vais1000-medium.onnx"
+  },
+  "phonemizer": {
+    "package": "@diffusionstudio/piper-wasm",
+    "version": "1.0.0",
+    "wasm": { "file": "piper_phonemize.wasm", "sha256": "b777cd107a91d2bcc6a1ea46f2c26a662a7407394fe84589198aeaa83dd7a9d6", "bytes": 635212 },
+    "data": { "file": "piper_phonemize.data", "sha256": "29f1025eb23a5b5c192cd14a6efbce4509402ff265405072ee6f7d1a09b78f8c", "bytes": 18077249 }
+  },
+  "runtimeVersion": "1.30.0",
+  "runtimeBytes": 14264278,
+  "runtimeDir": "/vendor/background-removal/ort-1.30.0/"
+}

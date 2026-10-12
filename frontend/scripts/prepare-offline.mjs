@@ -38,6 +38,11 @@ optionalAssets.push(
   withBase(`/vendor/background-removal/${backgroundModel.file}`),
   ...backgroundModel.runtimeFiles.map(name => withBase(`/vendor/background-removal/ort-${backgroundModel.runtimeVersion}/${name}`)),
 )
+const ttsVoice = JSON.parse(fs.readFileSync('src/features/tools/accessibility/config/piper-voice.json', 'utf8'))
+optionalAssets.push(
+  withBase(`/vendor/tts/${ttsVoice.model.file}`),
+  ...[ttsVoice.phonemizer.wasm, ttsVoice.phonemizer.data].map(({ file }) => withBase(`/vendor/tts/piper-phonemize-${ttsVoice.phonemizer.version}/${file}`)),
+)
 const pageUrls = pages.map(url => withBase(url.slice('/vi'.length) || '/'))
 // Prefixed languages are not precached; the worker sends their unvisited pages to the Vietnamese twin when offline.
 const locales = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && /^\/[a-z][a-z-]*$/.test(url) && url !== '/vi').map(([url]) => url.slice(1))

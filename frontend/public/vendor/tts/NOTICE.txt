@@ -1,0 +1,27 @@
+Chuyen Nho read-aloud tool - third-party software and data
+
+Voice model: Piper vi_VN-vais1000-medium (rhasspy/piper-voices)
+File: vi_VN-vais1000-medium-ec7c89e2.onnx
+SHA-256: ec7c89e2c85f4d1edc24b6120c18aaf1bda614f06b511567eb9c7c0de15e2dab
+Source: https://huggingface.co/rhasspy/piper-voices/tree/main/vi/vi_VN/vais1000/medium
+Training data: VAIS-1000 Vietnamese Speech Synthesis Corpus, licensed CC BY 4.0
+https://ieee-dataport.org/documents/vais-1000-vietnamese-speech-synthesis-corpus
+https://creativecommons.org/licenses/by/4.0/
+Model card: MODEL_CARD-vais1000 (in this directory). The card states the voice was fine-tuned
+from the U.S. English "lessac" Piper voice; see docs/read-aloud-tts.md for the open licensing review.
+Piper (architecture and training code): https://github.com/rhasspy/piper, MIT.
+
+Phonemizer: @diffusionstudio/piper-wasm 1.0.0 (npm, declared MIT)
+Files: piper-phonemize-1.0.0/piper_phonemize.wasm, piper-phonemize-1.0.0/piper_phonemize.data
+The WebAssembly build links piper-phonemize (MIT) with eSpeak NG and embeds its language data.
+eSpeak NG is GPL-3.0-or-later; license: COPYING.GPLv3 (in this directory).
+Build recipe: https://github.com/diffusion-studio/piper-wasm (README, June 2024)
+Sources: https://github.com/rhasspy/espeak-ng and https://github.com/wide-video/piper-phonemize
+The upstream recipe clones both repositories at their default branch without a pinned commit, so it
+is not evidence that a rebuild reproduces the published binary byte-for-byte.
+
+ONNX Runtime Web 1.30.0 (MIT) is shared with the background-removal tool; see
+../background-removal/LICENSE-ONNXRUNTIME.
+
+Assets are served unchanged; scripts/prepare-tts.mjs verifies their SHA-256 checksums.
+This notice accompanies the third-party assets and does not replace their licenses.

@@ -49,6 +49,24 @@
     "rate": "Tốc độ: {{rate}}×",
     "noVoice": "Thiết bị này chưa cài giọng đọc cho ngôn ngữ đang dùng, nên văn bản có thể bị đọc sai giọng hoặc không đọc được. Hãy cài thêm giọng trong phần cài đặt chuyển văn bản thành giọng nói của máy.",
     "counter": "{{used}} / {{max}} ký tự",
-    "tooLong": "Chỉ {{max}} ký tự đầu được đọc — hãy chia văn bản thành nhiều phần."
+    "tooLong": "Chỉ {{max}} ký tự đầu được đọc — hãy chia văn bản thành nhiều phần.",
+    "engine": "Giọng đọc",
+    "engineDevice": "Giọng của máy",
+    "enginePiper": "Giọng Chuyện Nhỏ",
+    "piperNote": "Giọng tiếng Việt chạy ngay trên máy bạn, nghe như nhau trên mọi thiết bị. Lần đầu cần tải khoảng {{size}} MB, các lần sau dùng bản đã lưu trong trình duyệt.",
+    "piperVietnameseOnly": "Giọng này chỉ đọc được tiếng Việt.",
+    "piperLoading": "Đang tải giọng đọc: {{percent}}%",
+    "piperPreparing": "Đang chuẩn bị giọng đọc…",
+    "exporting": "Đang tạo tệp âm thanh: {{done}}/{{total}} đoạn",
+    "exportWav": "Tải tệp âm thanh (WAV)",
+    "exportDone": "Đã tạo tệp âm thanh.",
+    "fileName": "doc-van-ban",
+    "piperUnsupported": "Trình duyệt này không chạy được giọng Chuyện Nhỏ. Hãy dùng giọng của máy.",
+    "piperModelFailed": "Không tải được giọng đọc. Kiểm tra kết nối mạng rồi thử lại.",
+    "piperFailed": "Không tạo được âm thanh cho văn bản này.",
+    "piperTimeout": "Tạo âm thanh quá lâu nên đã dừng. Hãy thử với đoạn văn ngắn hơn.",
+    "deviceFailed": "Trình duyệt dừng đọc giữa chừng. Hãy bấm \"Đọc văn bản\" để đọc lại.",
+    "credit": "Giọng đọc Piper vi_VN-vais1000 (dữ liệu VAIS-1000, CC BY 4.0), bộ phiên âm espeak-ng (GPL-3.0).",
+    "license": "Giấy phép và mã nguồn"
   }
 }
