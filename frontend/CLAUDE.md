@@ -164,8 +164,11 @@ gợi ý đề xuất. Runtime chèn `ToolFeedback` vào `ToolRoutePage` mà kh�
   giờ gửi tệp / kết quả.
 - Góp ý dữ liệu: slug địa chỉ / lương / tiền điện ánh xạ sang domain quy tắc tương ứng, còn lại
   dùng `legal` — vẫn phải duyệt tay + phát hành bằng gói ký. Không suy ra snapshot đang áp dụng.
-- Góp ý lỗi / cải tiến đi `RECEIVED → IN_PROGRESS → RESOLVED`; ý tưởng và dữ liệu giữ trạng
-  thái duyệt cũ. Khoá gửi lại chỉ trong RAM; lưu biên nhận là tải tệp chữ do người dùng bấm.
+- Góp ý lỗi / cải tiến đi `RECEIVED → TRIAGED → IN_PROGRESS → RESOLVED → RELEASED` (+ `REJECTED`,
+  `DEDUPED`); gửi trùng bản đã đóng nhận 200 `DEDUPED` (câu báo `feedback.dedupedNote`), trùng bản
+  đang mở vẫn 409. Loại "Đề xuất công cụ mới" trong form góp ý đi luồng `ideas`, luôn ẩn danh. Trang
+  công cụ không có footer đầy đủ, chỉ `ToolFooterLinks`. Ý tưởng và dữ liệu giữ trạng thái duyệt cũ.
+  Khoá gửi lại chỉ trong RAM; lưu biên nhận là tải tệp chữ do người dùng bấm.
   Kết quả tra / bổ sung nguồn gắn với biên nhận đã xác minh, bị huỷ khi đổi input hoặc unmount.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
