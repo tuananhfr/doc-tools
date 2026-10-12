@@ -7,6 +7,7 @@ import { withBase } from '@/utils/url'
 import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
 import { SiteBrand } from './SiteBrand'
+import { HubGroupLinks } from './HubGroupLinks'
 
 interface MobileNavigationProps {
   open: boolean
@@ -26,6 +27,7 @@ export function MobileNavigation({ open, onClose }: MobileNavigationProps) {
         <nav aria-label={t('header.mobileNav')}>
           {SITE_NAVIGATION.map((item) => <NavLink key={item.to} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</NavLink>)}
         </nav>
+        <HubGroupLinks showTitle onNavigate={onClose} />
         {data ? (
           <div className="cn-mobile-account">
             <Link to={data.user ? '/tai-khoan' : '/dang-nhap'} onClick={onClose}>{data.user ? t('header.account') : t('header.signIn')}</Link>

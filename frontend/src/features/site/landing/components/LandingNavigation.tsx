@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { AccountButton } from '@/features/account'
 import { SiteBrand } from '@/features/site/components/SiteBrand'
 import { SiteShare } from '@/features/site/components/SiteShare'
+import { HubGroupLinks } from '@/features/site/components/HubGroupLinks'
 import { SITE_NAVIGATION, PRODUCT_LINKS } from '@/features/site/config/site-navigation'
 import { GuestPrefs } from '@/features/tools/hub/components/GuestPrefs'
 import { LANDING_NAVIGATION } from '../config/landing-content'
@@ -19,6 +20,7 @@ export function LandingNavigation({ open, onClose }: { open: boolean; onClose: (
           {LANDING_NAVIGATION.map(item => <Link key={item.key} to={item.hash} onClick={onClose}>{t(`landing.nav.${item.key}`)}</Link>)}
           {SITE_NAVIGATION.map(item => <Link key={item.id} to={item.to} onClick={onClose}>{t(`nav.${item.id}`)}</Link>)}
         </nav>
+        <HubGroupLinks showTitle onNavigate={onClose} />
         <div className="cn-landing-menu-account"><AccountButton /><SiteShare /></div>
         <div className="cn-mobile-products"><a href={PRODUCT_LINKS.erpcons} target="_blank" rel="noopener noreferrer">ERPCons</a><a href={PRODUCT_LINKS.tekshot} target="_blank" rel="noopener noreferrer">TekShot AI</a></div>
       </Offcanvas.Body>

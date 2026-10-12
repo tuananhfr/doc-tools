@@ -7,6 +7,7 @@ import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
 import site from '@/i18n/messages/vi/site.json'
 import { HUB_PAGE_LIST } from '../config/hub-pages'
 import { SITE_PAGE_SLUGS } from '../config/site-pages'
+import { HUB_NAVIGATION } from '../config/site-navigation'
 import type { HubPage } from '../types/hub-page.types'
 import { readyFirst, resolveHubTools, searchHubTools } from './hub-tools'
 
@@ -105,6 +106,12 @@ describe('SITE_PAGE_SLUGS', () => {
 describe('WP1 hub pages', () => {
   const NEW_HUBS = ['hinh-anh', 'ma-qr', 'doc-va-nghe', 'tinh-toan', 'mau-giay-to']
   const router = fs.readFileSync(path.resolve(import.meta.dirname, '../../../runtime/ToolsRouter.tsx'), 'utf8')
+
+  it('lists every hub exactly once in the group menu, PDF first', () => {
+    expect([...HUB_NAVIGATION].sort()).toEqual(HUB_PAGE_LIST.map((hubPage) => hubPage.slug).sort())
+    expect(new Set(HUB_NAVIGATION).size).toBe(HUB_NAVIGATION.length)
+    expect(HUB_NAVIGATION[0]).toBe('tai-lieu-pdf')
+  })
 
   it('adds the spec groups as site pages', () => {
     for (const slug of NEW_HUBS) expect(SITE_PAGE_SLUGS).toContain(slug)

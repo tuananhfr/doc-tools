@@ -1,0 +1,8 @@
+/* Hàng "Nhóm công cụ" (HubGroupLinks): chip ở /cong-cu, danh sách dọc trong menu trượt. Chạm ≥44px. */
+.cn-hub-links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cn-space-2, 8px); margin-top: var(--cn-space-3, 12px); }
+.cn-hub-links__title { flex-basis: 100%; margin: 0; color: var(--cn-muted); font-size: 14px; font-weight: 600; }
+.cn-hub-links a { display: inline-flex; align-items: center; min-height: var(--cn-tap, 44px); padding: 0 var(--cn-space-4, 16px); border: 1px solid var(--cn-line); border-radius: 999px; background: var(--cn-surface); color: var(--cn-ink); font-size: 14px; text-decoration: none; }
+.cn-hub-links a:hover { background: var(--cn-tint); color: var(--cn-accent); }
+.cn-hub-links a:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: 2px; }
+.cn-mobile-navigation .cn-hub-links { display: grid; gap: var(--cn-space-1, 4px); margin-top: var(--cn-space-4, 16px); padding-top: var(--cn-space-4, 16px); border-top: 1px solid var(--cn-line); }
+.cn-mobile-navigation .cn-hub-links a { min-height: var(--cn-tap, 44px); padding: 10px 12px; border: 0; border-radius: var(--cn-radius-button); background: none; font-size: 16px; }

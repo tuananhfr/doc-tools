@@ -12,6 +12,7 @@ import { ToolSearch } from '../components/ToolSearch'
 import { RecentTools } from '../components/RecentTools'
 import { TrustStrip } from '../components/TrustStrip'
 import { FamilyProductLink } from '../components/FamilyProductLink'
+import { HubGroupLinks } from '../components/HubGroupLinks'
 import { useProductMatches } from '../hooks/useProductMatches'
 
 export default function ToolDirectoryPage() {
@@ -34,6 +35,7 @@ export default function ToolDirectoryPage() {
       <div className="cn-directory-controls"><div className="cn-container">
         <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
         <ToolFilters compact filter={filter} onFilter={onFilter} />
+        <HubGroupLinks showTitle />
       </div></div>
       <section className="cn-container cn-catalog cn-directory-catalog" aria-label={t('directory.catalogLabel')}>
         <div className="cn-catalog-availability"><span>{t('directory.available', { count: readyCount })}</span>{soonCount ? <label><input type="checkbox" checked={showSoon} onChange={event => onShowSoon(event.target.checked)} /> {t('directory.showSoon', { count: soonCount })}</label> : null}</div>
