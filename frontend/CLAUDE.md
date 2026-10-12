@@ -426,6 +426,13 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
   `workspace-*.css`. Modal Bootstrap của công cụ ăn token qua `body:has(.cn-shell--tool)`.
 - Khung công cụ: `ToolsLayout` = header website + vùng cuộn công cụ + footer (chỉ trang
   website); màn công cụ có tiêu đề, mô tả và dòng "xử lý cục bộ" chung.
+- Token không màu ở `:root` (`styles/site/tokens.css`): `--cn-space-1..5` (4/8/12/16/24), `--cn-font-body`
+  (16px; 18px khi `<html data-text-size="large">`), `--cn-tap` 44px cho mọi vùng chạm, `--cn-cta` 48px cho
+  nút chính. Kích thước mới dùng token này, không viết 38/40px.
+- "Chữ lớn" (`features/tools/hub/utils/text-size.ts`, khoá `cn.textSize`) đặt thuộc tính trước hydrate bằng
+  `TEXT_SIZE_BOOT_SCRIPT` trong `app/[lang]/layout.tsx`; đổi trong menu giao diện của `GuestPrefs`.
+- Gate a11y: `node scripts/doc-tools/check-a11y.mjs` (360/390/430 × light/dark/field; `TEXT_SIZE=large`;
+  thêm trang bằng `PAGES=`) phải exit 0 trước khi phát hành. Không nới ngưỡng trong script để cho xanh.
 
 ## Ràng buộc nghiệp vụ
 

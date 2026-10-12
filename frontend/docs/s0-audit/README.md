@@ -67,6 +67,16 @@ Q1 TOOL-REPAIR-PLAN: không gộp, luồng riêng · Q2 đọc link: có, sau c�
 Q4 thêm DEDUPED/TRIAGED/RELEASED · Q5 module sources + sourceId tuỳ chọn · Q6 chữ 16px + pref chữ lớn ·
 Q7 giữ Pro, không CTA Pro ở giải trí · Q8 13 locale chép en.
 
+## Sau WP2a (token & a11y nền)
+
+`check-a11y.mjs` trên 16 trang + một trạng thái có kết quả (`/nen-anh`), 360/390/430 × light/dark/field:
+trước WP2a 1.831 lỗi P0 (chữ thân 14px ở 96 lượt đo — theme Field vốn đã 16px, 1.566 vùng chạm < 44px,
+168 chữ dưới AA, nút Tải ra ngoài màn hình khi chữ 200%); sau WP2a 0 P0, cả ở chế độ "Chữ lớn". Kết quả ở
+`qa-output/wp2a-before/` và `qa-output/wp2a-after*/` (không vào git). `capture-baseline` sau WP2a:
+`qa-output/wp2a-2026-10-12/metrics.json` — chữ thân 14 → 16px, không trang nào tràn ngang, vùng chạm
+< 44px trung bình/trang 5,38 → 0,44 (360/390), 13,75 → 3,44 (768), 14 → 4 (1366; còn lại là link trong
+câu và ô tick mà số đo thô vẫn đếm).
+
 ## Ký duyệt
 
 | Vai | Người | Ngày | Kết luận |
