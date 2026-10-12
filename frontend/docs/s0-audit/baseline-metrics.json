@@ -1,0 +1,2343 @@
+{
+  "site": "http://localhost:3002",
+  "createdAt": "2026-10-12T14:32:24.511Z",
+  "leaked": [],
+  "rows": [
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 7,
+      "smallExamples": [
+        "a.cn-brand 140x31",
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 32x44",
+        "button 30x40",
+        "button 30x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 30x40"
+      ],
+      "screenshot": "light-360-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.cn-directory-back 88x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40",
+        "input 13x13"
+      ],
+      "screenshot": "light-360-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 17,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-360-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-360-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 16,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "a.cn-button 286x40",
+        "input 202x38"
+      ],
+      "screenshot": "light-360-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-360-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 7,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-360-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-360-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 14,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-360-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-360-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "light",
+      "width": 360,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 8,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input 18x18"
+      ],
+      "screenshot": "light-360-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 7,
+      "smallExamples": [
+        "a.cn-brand 140x31",
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 32x44",
+        "button 30x40",
+        "button 30x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 30x40"
+      ],
+      "screenshot": "light-390-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.cn-directory-back 88x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40",
+        "input 13x13"
+      ],
+      "screenshot": "light-390-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 17,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-390-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-390-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 16,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "a.cn-button 316x40",
+        "input 232x38"
+      ],
+      "screenshot": "light-390-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "light-390-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 7,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-390-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-390-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 14,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "light-390-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "light-390-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "light",
+      "width": 390,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 8,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input 18x18"
+      ],
+      "screenshot": "light-390-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "button 36x40",
+        "button 36x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 36x40",
+        "button.cn-landing-menu-toggle 40x44",
+        "a.cn-landing-hero-note 276x21"
+      ],
+      "screenshot": "light-768-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-768-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 21,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-768-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 19,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-768-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 21,
+      "targetsUnder44": 20,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-768-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 17,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-768-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 19,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 24,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "light",
+      "width": 768,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-768-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "button 36x40",
+        "button 36x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 36x40",
+        "button.cn-landing-menu-toggle 40x44",
+        "a.cn-landing-hero-note 276x21"
+      ],
+      "screenshot": "light-1366-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 43,
+      "targetsUnder44": 21,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-1366-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-1366-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 27,
+      "targetsUnder44": 20,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-1366-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-1366-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 26,
+      "targetsUnder44": 19,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "light-1366-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 23,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 25,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 28,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 24,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 34,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "light",
+      "width": 1366,
+      "dataTheme": "light",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "light-1366-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 7,
+      "smallExamples": [
+        "a.cn-brand 140x31",
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 32x44",
+        "button 30x40",
+        "button 30x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 30x40"
+      ],
+      "screenshot": "dark-360-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.cn-directory-back 88x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40",
+        "input 13x13"
+      ],
+      "screenshot": "dark-360-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 17,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-360-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-360-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 16,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "a.cn-button 286x40",
+        "input 202x38"
+      ],
+      "screenshot": "dark-360-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 202x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-360-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 7,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-360-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-360-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 14,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-360-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-360-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "dark",
+      "width": 360,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 8,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input 18x18"
+      ],
+      "screenshot": "dark-360-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 7,
+      "smallExamples": [
+        "a.cn-brand 140x31",
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 32x44",
+        "button 30x40",
+        "button 30x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 30x40"
+      ],
+      "screenshot": "dark-390-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.cn-directory-back 88x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40",
+        "input 13x13"
+      ],
+      "screenshot": "dark-390-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 17,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-390-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-390-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 16,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "a.cn-button 316x40",
+        "input 232x38"
+      ],
+      "screenshot": "dark-390-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a 58x19",
+        "a 49x19",
+        "input 232x38",
+        "button.cn-search-submit 81x40"
+      ],
+      "screenshot": "dark-390-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 7,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-390-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 12,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-390-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 14,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 9,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 2,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40"
+      ],
+      "screenshot": "dark-390-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input.form-check-input 16x16"
+      ],
+      "screenshot": "dark-390-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "dark",
+      "width": 390,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 8,
+      "targetsUnder44": 3,
+      "smallExamples": [
+        "a.cn-brand 136x32",
+        "a.erp-tool-crumb__back 85x40",
+        "input 18x18"
+      ],
+      "screenshot": "dark-390-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 10,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "button 36x40",
+        "button 36x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 36x40",
+        "button.cn-landing-menu-toggle 40x44",
+        "a.cn-landing-hero-note 276x21"
+      ],
+      "screenshot": "dark-768-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-768-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 21,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-768-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 19,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-768-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 21,
+      "targetsUnder44": 20,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-768-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 17,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 74x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-768-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 19,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 24,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "dark",
+      "width": 768,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 15,
+      "targetsUnder44": 11,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-768-tarot.png"
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 13,
+      "targetsUnder44": 5,
+      "smallExamples": [
+        "button 36x40",
+        "button 36x40",
+        "button.cn-landing-theme-more.dropdown-toggle.btn.btn-ghost 36x40",
+        "button.cn-landing-menu-toggle 40x44",
+        "a.cn-landing-hero-note 276x21"
+      ],
+      "screenshot": "dark-1366-home.png"
+    },
+    {
+      "route": "/cong-cu",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 43,
+      "targetsUnder44": 21,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-1366-cong-cu.png"
+    },
+    {
+      "route": "/tai-lieu-pdf",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-1366-tai-lieu-pdf.png"
+    },
+    {
+      "route": "/xay-dung",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 27,
+      "targetsUnder44": 20,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-1366-xay-dung.png"
+    },
+    {
+      "route": "/gia-dinh",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 29,
+      "targetsUnder44": 22,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-1366-gia-dinh.png"
+    },
+    {
+      "route": "/kham-pha-giai-tri",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 26,
+      "targetsUnder44": 19,
+      "smallExamples": [
+        "button.cn-language__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 130x38",
+        "button.erp-tools-prefs__toggle.dropdown-toggle.btn.btn-ghost.btn-sm 38x38",
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40"
+      ],
+      "screenshot": "dark-1366-kham-pha-giai-tri.png"
+    },
+    {
+      "route": "/ghep-pdf",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 18,
+      "targetsUnder44": 9,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-ghep-pdf.png"
+    },
+    {
+      "route": "/nen-anh",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 12,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-nen-anh.png"
+    },
+    {
+      "route": "/anh-the",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-anh-the.png"
+    },
+    {
+      "route": "/thiet-ke-nhanh",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 23,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-thiet-ke-nhanh.png"
+    },
+    {
+      "route": "/tao-cv",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 25,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-tao-cv.png"
+    },
+    {
+      "route": "/tao-ma-qr",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 28,
+      "targetsUnder44": 14,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-tao-ma-qr.png"
+    },
+    {
+      "route": "/doc-to-van-ban",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 22,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-doc-to-van-ban.png"
+    },
+    {
+      "route": "/tinh-tien",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 24,
+      "targetsUnder44": 13,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-tinh-tien.png"
+    },
+    {
+      "route": "/khai-toan-nha",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 34,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-khai-toan-nha.png"
+    },
+    {
+      "route": "/tarot",
+      "theme": "dark",
+      "width": 1366,
+      "dataTheme": "dark",
+      "rootOverflow": 0,
+      "scrollerOverflow": 0,
+      "bodyFontPx": 14,
+      "targetsInViewport": 20,
+      "targetsUnder44": 10,
+      "smallExamples": [
+        "button.cn-icon-button.cn-share-toggle.dropdown-toggle.btn.btn-ghost 38x40",
+        "a.cn-icon-button.cn-header-search 38x38",
+        "a.cn-button.cn-button--navy 81x40",
+        "a.cn-button 91x40",
+        "a.cn-account-button 38x38"
+      ],
+      "screenshot": "dark-1366-tarot.png"
+    }
+  ]
+}
