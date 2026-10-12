@@ -4,7 +4,7 @@ import { createCanvas, decodeImage, encodeCanvas, releaseCanvas } from '@/featur
 import type { GraphicJob } from '../types/graphic.types'
 import { graphicDimensions } from '../utils/graphic-layout'
 
-async function checkedImage(file: File) {
+export async function checkedImage(file: File) {
   if (file.size > MAX_IMAGE_BYTES) throw new Error('IMAGE_FILE_LIMIT: ' + file.name)
   const header = new Uint8Array(await file.slice(0, IMAGE_HEADER_BYTES).arrayBuffer()), format = detectImageFormat(header)
   if (!format) throw new Error('INVALID_IMAGE: ' + file.name)
@@ -31,6 +31,24 @@ function textBlock(context: CanvasRenderingContext2D, text: string, x: number, y
   return lines.length * size * 1.3
 }
 
+// Hai vòng tròn của dấu trang trí; độ dày theo DPI để thumbnail 30 DPI và bản in 300 DPI giống nhau.
+function sealRings(context: CanvasRenderingContext2D, width: number, height: number, accent: string, scale: number) {
+  const radius = Math.min(width, height) / 2
+  context.save(); context.strokeStyle = accent
+  context.lineWidth = 10 * scale; context.beginPath(); context.arc(width / 2, height / 2, radius - 8 * scale, 0, Math.PI * 2); context.stroke()
+  context.lineWidth = 3 * scale; context.beginPath(); context.arc(width / 2, height / 2, radius - 26 * scale, 0, Math.PI * 2); context.stroke()
+  context.restore()
+}
+
+// Khung thiệp quà tặng: viền đặc ở nửa lề + viền nét đứt bên trong.
+function giftFrame(context: CanvasRenderingContext2D, width: number, height: number, margin: number, accent: string, scale: number) {
+  const outer = margin / 2, inner = outer + 14 * scale
+  context.save(); context.strokeStyle = accent
+  context.lineWidth = 8 * scale; context.strokeRect(outer, outer, width - outer * 2, height - outer * 2)
+  context.setLineDash([12 * scale, 10 * scale]); context.lineWidth = 3 * scale; context.strokeRect(inner, inner, width - inner * 2, height - inner * 2)
+  context.restore()
+}
+
 export async function renderGraphicSheet(job: GraphicJob, files: File[], dpi = 300, type: 'png' | 'jpeg' = 'png', signal?: AbortSignal): Promise<Blob> {
   signal?.throwIfAborted(); await document.fonts.load('600 36px "Be Vietnam Pro"'); await document.fonts.ready
   const size = graphicDimensions(job.template, dpi), frame = createCanvas(size), context = frame.context, scale = dpi / 300
@@ -39,7 +57,9 @@ export async function renderGraphicSheet(job: GraphicJob, files: File[], dpi = 3
   try {
     if (job.brand.background !== 'transparent') { context.fillStyle = job.brand.background; context.fillRect(0, 0, size.width, size.height) }
     else if (type === 'jpeg') { context.fillStyle = '#fff'; context.fillRect(0, 0, size.width, size.height) }
-    const centered = ['logo', 'cup', 'box', 'bag', 'label'].includes(kind), watermark = kind === 'watermark', voucher = kind === 'voucher'
+    const centered = ['logo', 'cup', 'box', 'bag', 'label', 'seal', 'gift'].includes(kind), watermark = kind === 'watermark', voucher = kind === 'voucher'
+    if (kind === 'seal') sealRings(context, size.width, size.height, job.brand.accent, scale)
+    if (kind === 'gift') giftFrame(context, size.width, size.height, margin, job.brand.accent, scale)
     const font = (voucher ? 82 : kind === 'logo' ? 96 : kind === 'label' ? 50 : 60) * scale
     const textWidth = usable - (!centered && job.logo ? 140 * scale : 0)
     let top = margin

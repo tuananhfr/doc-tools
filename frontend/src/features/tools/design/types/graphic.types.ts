@@ -1,6 +1,6 @@
 export interface GraphicTemplate {
     id: string;
-    kind: 'grid' | 'logo' | 'watermark' | 'voucher' | 'label' | 'poster' | 'cup' | 'box' | 'bag';
+    kind: 'grid' | 'logo' | 'watermark' | 'voucher' | 'label' | 'poster' | 'cup' | 'box' | 'bag' | 'seal' | 'gift';
     widthMm: number;
     heightMm: number;
     slots: number;

@@ -9,4 +9,7 @@ export const DESIGN_TEMPLATES: readonly GraphicTemplate[] = [
     { id: 'cup', kind: 'cup', widthMm: 200, heightMm: 90, slots: 1, columns: 1, marginMm: 5 },
     { id: 'box', kind: 'box', widthMm: 200, heightMm: 200, slots: 1, columns: 1, marginMm: 8 },
     { id: 'bag', kind: 'bag', widthMm: 200, heightMm: 250, slots: 1, columns: 1, marginMm: 10 },
+    // Dấu tròn TRANG TRÍ (nhãn, thiệp, bao bì) — không vẽ quốc huy / ngôi sao / số đăng ký để không giống con dấu pháp nhân.
+    { id: 'seal', kind: 'seal', widthMm: 50, heightMm: 50, slots: 1, columns: 1, marginMm: 6 },
+    { id: 'gift', kind: 'gift', widthMm: 148, heightMm: 105, slots: 1, columns: 1, marginMm: 8 },
 ];
