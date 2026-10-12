@@ -6,6 +6,11 @@
 import fs from 'node:fs'
 import { chromium, outDir, APP_HUB, mockSession } from './lib/qa.mjs'
 
+if (!APP_HUB) {
+  console.log('Bỏ qua: repo này không có nhánh công cụ trong khung app — đặt APP_HUB khi chạy với ERPCons.')
+  process.exit(0)
+}
+
 const OUT = outDir('app-branch')
 const theme = process.env.THEME ?? 'light'
 const [vw, vh] = (process.env.VIEW ?? '1440x900').split('x').map(Number)

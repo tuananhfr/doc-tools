@@ -245,7 +245,7 @@ out.password = await names()
 
 // 9. Đã đăng nhập, nhánh trong app (`/tools`): luồng nằm trong khung app, tải xong không mời
 //    đăng nhập, "Sửa tiếp" ở lại nhánh đó.
-if (full) {
+if (full && APP_HUB) {
   await mockSession(page)
   await open('ghep-pdf', APP_HUB)
   await add(['hop-dong.pdf', 'phu-luc.pdf'], 2)

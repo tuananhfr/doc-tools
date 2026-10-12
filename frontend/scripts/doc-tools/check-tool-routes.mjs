@@ -143,14 +143,16 @@ const frames = (target) => target.evaluate(() => ({ guest: document.querySelecto
   await guest.locator('.erp-tools-hero__trials').waitFor({ timeout: 15000 })
   checks.guestNoWait.buttonAfter = await guest.locator('.erp-tools-hero__trials').innerText()
   // Khách mở link của nhánh trong app: về trang đăng nhập.
-  await guest.goto(`${APP_HUB}/ghep-pdf`)
-  await guest.waitForURL(/\/login/, { timeout: 15000 }).catch(() => undefined)
-  checks.guestAppBranch = pathOf(guest)
+  if (APP_HUB) {
+    await guest.goto(`${APP_HUB}/ghep-pdf`)
+    await guest.waitForURL(/\/login/, { timeout: 15000 }).catch(() => undefined)
+    checks.guestAppBranch = pathOf(guest)
+  }
   await slow.close()
 }
 
 // Đã đăng nhập (API giả).
-{
+if (APP_HUB) {
   const signed = await browser.newContext({ viewport: { width: vw, height: vh } })
   await mockSession(signed)
   const app = await signed.newPage()

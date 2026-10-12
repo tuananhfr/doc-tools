@@ -625,7 +625,7 @@ if (want('note')) {
 }
 
 // ---------- 9. Trong khung app (đã đăng nhập) ----------
-if (!only) {
+if (!only && APP_HUB) {
   stage = 'app'
   await mockSession(context)
   await page.goto(`${APP_HUB}/tao-ma-qr`)

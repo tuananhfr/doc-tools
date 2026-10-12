@@ -1,12 +1,12 @@
 // Thanh gợi ý + lời mời đăng nhập của TRÌNH CHỈNH SỬA (`/doc-tools/chinh-sua-pdf`).
 // Gợi ý chỉ còn dựa vào tệp vừa thả: việc làm nhanh theo slug (ghép, tách, ảnh -> PDF,
 // PDF -> Word) đã có công cụ riêng — xem `check-flows.mjs`.
-// FULL=1: thêm bước đã đăng nhập (API giả) ở nhánh trong app — xuất xong không mời đăng nhập.
+// FULL=1 + APP_HUB: thêm bước đã đăng nhập (API giả) ở nhánh trong app — xuất xong không mời đăng nhập.
 import { createRequire } from 'node:module'
 import fs from 'node:fs'
-import { chromium, FIX, outDir, BASE, mockSession } from './lib/qa.mjs'
-// Trình chỉnh sửa TRONG khung app: cùng slug, gốc `/tools` thay cho `/doc-tools`.
-const APP_BASE = BASE.replace('/doc-tools/', '/tools/')
+import { chromium, FIX, outDir, BASE, APP_HUB, mockSession } from './lib/qa.mjs'
+// Trình chỉnh sửa TRONG khung app (chỉ ERPCons có): cùng slug với BASE, gốc là APP_HUB.
+const APP_BASE = APP_HUB ? `${APP_HUB}/${new URL(BASE).pathname.split('/').filter(Boolean).pop()}` : null
 const appRequire = createRequire(import.meta.url)
 const { PDFDocument } = appRequire('pdf-lib')
 const OUT = outDir('suggestions')
@@ -107,7 +107,7 @@ await page.getByRole('button', { name: 'Ẩn gợi ý' }).click()
 out.hide.barAfterClose = await page.locator('.erp-doc-suggest').count()
 
 // 6. Đã đăng nhập → xuất xong không mời.
-if (full) {
+if (full && APP_BASE) {
   await mockSession(page)
   await page.goto(APP_BASE)
   await page.locator('.erp-doc-drop__title').waitFor()

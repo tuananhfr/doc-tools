@@ -18,13 +18,16 @@ import path from 'node:path'
 const ROOT = path.join(os.tmpdir(), 'erpcons-doc-tools')
 
 export const FIX = (process.env.FIXTURES ?? path.join(ROOT, 'fixtures')).replaceAll('\\', '/').replace(/\/?$/, '/')
-// `/doc-tools` la trang chon cong cu ("Chuyen Nho"); cac script tha tep can TRINH CHINH SUA.
-export const BASE = process.env.BASE ?? 'http://localhost:3000/doc-tools/chinh-sua-pdf'
+// `chinh-sua-pdf` la trinh chinh sua; cac script tha tep can man nay. App chay o cong 3002, basePath rong.
+export const BASE = process.env.BASE ?? 'http://localhost:3002/chinh-sua-pdf'
 export const ORIGIN = new URL(BASE).origin
-/** Trang chon cong cu — suy tu BASE de van dung khi app nam trong thu muc con (`/erpcons/`). */
-export const HUB = BASE.replace(/\/[^/]+\/?$/, '')
-/** Cung trang chon cong cu nhung TRONG khung app (`/tools`) — phai co phien, xem `mockSession`. */
-export const APP_HUB = HUB.replace(/\/doc-tools$/, '/tools')
+/** Goc site (trang gioi thieu) — suy tu BASE de van dung khi co basePath. */
+export const HUB = ORIGIN + new URL(BASE).pathname.replace(/\/[^/]*\/?$/, '')
+/**
+ * Nhanh cong cu TRONG khung app (`/tools`) chi co o ERPCons. Repo nay khong co nen mac dinh null
+ * va cac script bo qua phan do; dat APP_HUB khi chay voi ERPCons.
+ */
+export const APP_HUB = process.env.APP_HUB ?? null
 
 /**
  * Gia mot phien DA DANG NHAP (dev noi Drupal that, khong co tai khoan thu).
