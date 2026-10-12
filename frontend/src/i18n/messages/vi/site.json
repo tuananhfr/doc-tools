@@ -77,7 +77,8 @@
     "family": "Gia đình",
     "guides": "Hướng dẫn",
     "about": "Về chúng tôi",
-    "explore": "Khám phá"
+    "explore": "Khám phá",
+    "groups": "Nhóm công cụ"
   },
   "header": {
     "skipLink": "Đi tới nội dung",
@@ -441,8 +442,7 @@
         "gop-tach": "Gộp, tách, nén",
         "chuyen-doi": "Chuyển đổi",
         "ocr": "OCR & so sánh",
-        "ky-bao-mat": "Ký & bảo mật",
-        "soan-thao": "Soạn văn bản"
+        "ky-bao-mat": "Ký & bảo mật"
       },
       "aside": {
         "erpcons": {
@@ -558,6 +558,363 @@
           "export": {
             "title": "Tải kết quả",
             "detail": "Luôn kèm cảnh báo tham khảo."
+          }
+        }
+      }
+    },
+    "hinh-anh": {
+      "label": "Hình ảnh",
+      "title": "<accent>Hình ảnh</accent> gọn gàng, đúng cỡ",
+      "tagline": "Cắt, nén, đổi định dạng và ghép ảnh ngay trên trình duyệt.",
+      "description": "Cắt, xoay, nén, đổi định dạng, đóng dấu hoặc xoá nền ảnh. Ảnh được xử lý trên thiết bị của bạn.",
+      "metaTitle": "Công cụ hình ảnh | Chuyện Nhỏ",
+      "metaDescription": "Cắt, xoay, nén, đổi định dạng, ghép ảnh, xoá nền và làm ảnh thẻ miễn phí. Ảnh xử lý ngay trên trình duyệt, không cần tài khoản.",
+      "caption": "Hình ảnh\nGọn nhẹ, đúng kích thước.",
+      "searchPlaceholder": "Tìm nén ảnh, ảnh thẻ, xoá nền…",
+      "highlights": {
+        "convert": "Đổi định dạng",
+        "compress": "Nén ảnh",
+        "crop": "Cắt & xoay",
+        "background": "Xoá nền",
+        "idPhoto": "Ảnh thẻ",
+        "design": "Thiết kế nhanh"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Không cần tài khoản."
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Mở trình duyệt là dùng."
+        },
+        "onDevice": {
+          "title": "Xử lý trên máy",
+          "detail": "Ảnh không tải lên máy chủ."
+        },
+        "exif": {
+          "title": "Giữ thông tin ảnh",
+          "detail": "Chỉ công cụ Xóa vị trí trong ảnh mới gỡ EXIF."
+        }
+      },
+      "subgroups": {
+        "chinh-sua": "Cắt, nén, đổi định dạng",
+        "ghep-thiet-ke": "Ghép & thiết kế",
+        "nen-metadata": "Nền & vị trí",
+        "anh-the": "Ảnh thẻ",
+        "do-lay-chu": "Đo & lấy chữ"
+      },
+      "aside": {
+        "tips": {
+          "title": "Mẹo dùng",
+          "items": {
+            "originals": "Ảnh gốc giữ nguyên: kết quả luôn là tệp mới.",
+            "exif": "Gửi ảnh ra ngoài? Xoá vị trí GPS trước.",
+            "batch": "Nhiều ảnh cùng cỡ: dùng Ảnh hàng loạt."
+          }
+        }
+      },
+      "journey": {
+        "title": "Từ ảnh gốc đến ảnh dùng được",
+        "motto": "Chọn ảnh, chỉnh,\nxem trước rồi tải.",
+        "steps": {
+          "pick": {
+            "title": "Chọn ảnh",
+            "detail": "Từ máy tính hoặc thư viện ảnh."
+          },
+          "edit": {
+            "title": "Chỉnh",
+            "detail": "Cắt, nén, đổi định dạng hoặc xoá nền."
+          },
+          "preview": {
+            "title": "Xem trước",
+            "detail": "So với ảnh gốc trước khi tải."
+          },
+          "download": {
+            "title": "Tải về",
+            "detail": "Lưu ảnh mới về máy."
+          }
+        }
+      }
+    },
+    "ma-qr": {
+      "label": "QR & Mã",
+      "title": "<accent>QR & mã vạch</accent> cho việc hằng ngày",
+      "tagline": "Tạo, quét và in mã ngay trên trình duyệt.",
+      "description": "Tạo mã QR, mã vạch, VietQR chuyển khoản hoặc quét mã từ ảnh. QR tĩnh và mã vạch tạo trên thiết bị; QR động chỉ lưu đường dẫn khi bạn đồng ý.",
+      "metaTitle": "QR & Mã vạch | Chuyện Nhỏ",
+      "metaDescription": "Tạo mã QR, mã vạch EAN-13, Code 128, VietQR chuyển khoản, in tem nhãn và quét mã từ ảnh. Miễn phí, không cần tài khoản.",
+      "caption": "QR & Mã\nTạo và quét là hai việc.",
+      "searchPlaceholder": "Tìm QR wifi, mã vạch, VietQR…",
+      "highlights": {
+        "qr": "QR đường dẫn, wifi",
+        "barcode": "EAN-13, Code 128",
+        "scan": "Quét mã từ ảnh",
+        "labels": "In tem nhãn",
+        "vietqr": "VietQR chuyển khoản",
+        "dynamic": "QR động có hạn dùng"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Không cần tài khoản."
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Mở trình duyệt là dùng."
+        },
+        "onDevice": {
+          "title": "Tạo trên máy",
+          "detail": "QR tĩnh, mã vạch và tờ tem không gửi đi đâu."
+        },
+        "consent": {
+          "title": "Hỏi trước khi lưu",
+          "detail": "QR động chỉ lưu đường dẫn khi bạn đồng ý."
+        }
+      },
+      "subgroups": {
+        "tao-ma": "Tạo mã",
+        "quet-ma": "Quét mã",
+        "qr-dong": "QR động"
+      },
+      "aside": {
+        "tips": {
+          "title": "Trước khi in",
+          "items": {
+            "printTest": "In thử một tem và quét bằng điện thoại trước khi in cả lô.",
+            "contrast": "Mã tối trên nền sáng dễ quét nhất.",
+            "noAutoOpen": "Quét xong, đường dẫn không tự mở: bạn xem rồi mới bấm."
+          }
+        }
+      },
+      "journey": {
+        "title": "Một mã, đúng việc",
+        "motto": "Nhập nội dung, quét thử\nrồi mới in.",
+        "steps": {
+          "content": {
+            "title": "Nhập nội dung",
+            "detail": "Đường dẫn, chữ, wifi hoặc số tài khoản."
+          },
+          "style": {
+            "title": "Chọn kiểu",
+            "detail": "Màu, cỡ và định dạng tải về."
+          },
+          "check": {
+            "title": "Quét thử",
+            "detail": "Kiểm bằng camera điện thoại."
+          },
+          "print": {
+            "title": "Tải hoặc in",
+            "detail": "PNG, SVG, PDF hoặc tờ tem."
+          }
+        }
+      }
+    },
+    "doc-va-nghe": {
+      "label": "Đọc & Nghe",
+      "title": "<accent>Đọc & nghe</accent> dễ hơn",
+      "tagline": "Nghe văn bản, đọc chính tả và phóng to chữ nhỏ.",
+      "description": "Dán văn bản để nghe đọc to, nói để ghi thành chữ, hoặc dùng camera làm kính lúp. Không cần cài đặt.",
+      "metaTitle": "Đọc & Nghe | Chuyện Nhỏ",
+      "metaDescription": "Nghe đọc to văn bản tiếng Việt, ghi âm thành văn bản và phóng to chữ nhỏ bằng camera. Miễn phí, không cần tài khoản.",
+      "caption": "Đọc & Nghe\nCho mắt và tai đỡ mệt.",
+      "searchPlaceholder": "Tìm đọc to, ghi âm, kính lúp…",
+      "highlights": {
+        "readAloud": "Đọc to văn bản",
+        "dictation": "Ghi âm thành chữ",
+        "magnifier": "Kính lúp camera"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Không cần tài khoản."
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Mở trình duyệt là dùng."
+        },
+        "voices": {
+          "title": "Giọng đọc tiếng Việt",
+          "detail": "Giọng của thiết bị, hoặc giọng tải về máy một lần."
+        },
+        "browser": {
+          "title": "Nói rõ khi gửi đi",
+          "detail": "Ghi âm thành chữ dùng dịch vụ nhận dạng giọng nói của trình duyệt."
+        }
+      },
+      "subgroups": {
+        "nghe": "Nghe",
+        "ghi": "Ghi thành chữ",
+        "nhin-ro": "Nhìn rõ"
+      },
+      "aside": {
+        "tips": {
+          "title": "Nghe dễ hơn",
+          "items": {
+            "paste": "Dán văn bản cần nghe vào ô nhập rồi bấm nghe.",
+            "speed": "Chỉnh tốc độ đọc cho vừa tai.",
+            "voice": "Thiết bị không có giọng Việt? Chọn giọng tải về máy."
+          }
+        }
+      },
+      "journey": {
+        "title": "Nghe thay vì đọc",
+        "motto": "Dán chữ, bấm nghe,\ndừng khi cần.",
+        "steps": {
+          "paste": {
+            "title": "Dán văn bản",
+            "detail": "Chép từ tin nhắn, bài viết hoặc tài liệu."
+          },
+          "listen": {
+            "title": "Bấm nghe",
+            "detail": "Câu đang đọc được tô sáng."
+          },
+          "adjust": {
+            "title": "Chỉnh",
+            "detail": "Đổi giọng và tốc độ đọc."
+          }
+        }
+      }
+    },
+    "tinh-toan": {
+      "label": "Tính toán",
+      "title": "<accent>Tính nhanh</accent>, có phép tính để soát",
+      "tagline": "VAT, phần trăm, đơn vị, ngày và diện tích.",
+      "description": "Tính VAT, phần trăm, lãi vay, đổi đơn vị, đếm ngày và tính diện tích. Nhiều công cụ ghi rõ phép tính để bạn đối chiếu.",
+      "metaTitle": "Công cụ tính toán | Chuyện Nhỏ",
+      "metaDescription": "Tính VAT, phần trăm, lãi gộp, vay trả góp, đổi đơn vị, đếm ngày và tính diện tích. Miễn phí, chạy trên trình duyệt.",
+      "caption": "Tính toán\nSố rõ, phép tính rõ.",
+      "searchPlaceholder": "Tìm tính VAT, đổi đơn vị, tính ngày…",
+      "highlights": {
+        "vat": "VAT & chiết khấu",
+        "percent": "Phần trăm",
+        "units": "Đổi đơn vị",
+        "dates": "Đếm ngày",
+        "area": "Diện tích, thể tích",
+        "loan": "Vay trả góp"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Không cần tài khoản."
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Mở trình duyệt là dùng."
+        },
+        "onDevice": {
+          "title": "Tính trên máy",
+          "detail": "Phần lớn phép tính chạy ngay trên máy; thẻ ghi rõ khi cần máy chủ."
+        },
+        "reference": {
+          "title": "Để tham khảo",
+          "detail": "Kiểm lại trước khi dùng cho chứng từ."
+        }
+      },
+      "subgroups": {
+        "tien-thue": "Tiền & thuế",
+        "vay": "Vay & tiết kiệm",
+        "do-luong": "Đo lường",
+        "ngay": "Ngày & lịch",
+        "hoc-tap": "Học tập"
+      },
+      "aside": {
+        "tips": {
+          "title": "Tính cho đúng",
+          "items": {
+            "check": "Đọc lại phép tính ở ô kết quả.",
+            "vat": "VAT: chọn đúng giá trước hay sau thuế.",
+            "units": "Đổi về cùng đơn vị trước khi so giá."
+          }
+        }
+      },
+      "journey": {
+        "title": "Ba bước, một con số",
+        "motto": "Nhập số, soát phép tính,\nchép kết quả.",
+        "steps": {
+          "enter": {
+            "title": "Nhập số",
+            "detail": "Gõ theo cách quen thuộc, có dấu chấm nghìn."
+          },
+          "check": {
+            "title": "Soát phép tính",
+            "detail": "Xem số đã hiểu và công thức."
+          },
+          "copy": {
+            "title": "Chép kết quả",
+            "detail": "Một chạm để dán vào nơi khác."
+          }
+        }
+      }
+    },
+    "mau-giay-to": {
+      "label": "Mẫu giấy tờ",
+      "title": "<accent>Giấy tờ</accent> soạn nhanh, in ngay",
+      "tagline": "CV, đơn từ, biên bản và biên nhận.",
+      "description": "Soạn CV, đơn xin nghỉ, giấy uỷ quyền, biên bản bàn giao và biên nhận tiền theo mẫu, xem trước rồi in hoặc lưu PDF.",
+      "metaTitle": "Mẫu giấy tờ: CV, đơn, biên bản | Chuyện Nhỏ",
+      "metaDescription": "Tạo CV xin việc, đơn xin nghỉ phép, giấy uỷ quyền, biên bản bàn giao và biên nhận tiền. Xem trước, in hoặc lưu PDF trên thiết bị.",
+      "caption": "Mẫu giấy tờ\nĐiền là có bản in.",
+      "searchPlaceholder": "Tìm CV, đơn xin nghỉ, biên nhận…",
+      "highlights": {
+        "cv": "CV xin việc",
+        "leave": "Đơn xin nghỉ",
+        "authorization": "Giấy uỷ quyền",
+        "handover": "Biên bản bàn giao",
+        "receipt": "Biên nhận tiền"
+      },
+      "trust": {
+        "free": {
+          "title": "Miễn phí",
+          "detail": "Không cần tài khoản."
+        },
+        "noInstall": {
+          "title": "Không cần cài đặt",
+          "detail": "Mở trình duyệt là dùng."
+        },
+        "onDevice": {
+          "title": "Soạn trên máy",
+          "detail": "Nội dung không gửi lên máy chủ."
+        },
+        "print": {
+          "title": "In hoặc lưu PDF",
+          "detail": "Xem trước rồi mới in."
+        }
+      },
+      "subgroups": {
+        "cv": "CV",
+        "don-bien-ban": "Đơn & biên bản",
+        "ho-tro-soan": "Hỗ trợ soạn"
+      },
+      "aside": {
+        "tips": {
+          "title": "Trước khi in",
+          "items": {
+            "check": "Đọc lại tên, ngày và số tiền trước khi in.",
+            "numberWords": "Cần ghi số tiền bằng chữ? Dùng Đọc số thành chữ.",
+            "sign": "Ký tay sau khi in nếu giấy tờ cần chữ ký."
+          }
+        }
+      },
+      "journey": {
+        "title": "Từ mẫu đến bản in",
+        "motto": "Chọn mẫu, điền,\nxem trước rồi in.",
+        "steps": {
+          "choose": {
+            "title": "Chọn mẫu",
+            "detail": "CV hoặc loại đơn bạn cần."
+          },
+          "fill": {
+            "title": "Điền nội dung",
+            "detail": "Chỉ những ô cần thiết."
+          },
+          "preview": {
+            "title": "Xem trước",
+            "detail": "Soát lại trước khi in."
+          },
+          "print": {
+            "title": "In hoặc lưu PDF",
+            "detail": "Lưu trên thiết bị của bạn."
           }
         }
       }
@@ -1093,6 +1450,11 @@
       "sample": "Ảnh chụp giao diện tiếng Việt với dữ liệu mẫu.",
       "light": "Danh mục công cụ trong giao diện sáng.",
       "dark": "Danh mục công cụ trong giao diện tối."
+    },
+    "quick": {
+      "title": "Bạn cần làm gì?",
+      "placeholder": "Ví dụ: nén PDF, ảnh 3x4, đọc to văn bản",
+      "common": "Việc thường dùng"
     }
   },
   "familyProduct": {

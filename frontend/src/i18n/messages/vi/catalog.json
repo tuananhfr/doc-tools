@@ -464,5 +464,10 @@
       "description": "Tạo bảng tên, watermark, voucher, nhãn, poster và vùng in cốc/hộp/túi; xuất PDF, ảnh hoặc ZIP trên thiết bị.",
       "synonyms": "logo, nhãn, thiết kế, voucher, watermark, poster, cup, box, bag"
     }
+  },
+  "workspaceTabs": {
+    "qr": "Các việc với mã QR và mã vạch",
+    "calc": "Các phép tính",
+    "image": "Các việc với ảnh"
   }
 }

@@ -464,5 +464,10 @@
       "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
       "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
     }
+  },
+  "workspaceTabs": {
+    "qr": "QR code and barcode tasks",
+    "calc": "Calculators",
+    "image": "Image tasks"
   }
 }

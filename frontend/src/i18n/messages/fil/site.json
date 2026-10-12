@@ -77,7 +77,8 @@
     "family": "Pamilya",
     "guides": "Mga gabay",
     "about": "Tungkol sa amin",
-    "explore": "Explore"
+    "explore": "Explore",
+    "groups": "Tool groups"
   },
   "header": {
     "skipLink": "Pumunta sa nilalaman",
@@ -446,8 +447,7 @@
         "gop-tach": "Pagsamahin, hatiin, i-compress",
         "chuyen-doi": "I-convert",
         "ocr": "OCR at paghahambing",
-        "ky-bao-mat": "Pirma at seguridad",
-        "soan-thao": "Pagsulat ng dokumento"
+        "ky-bao-mat": "Pirma at seguridad"
       },
       "aside": {
         "erpcons": {
@@ -563,6 +563,363 @@
           "export": {
             "title": "Download results",
             "detail": "A reference notice is always included."
+          }
+        }
+      }
+    },
+    "hinh-anh": {
+      "label": "Images",
+      "title": "<accent>Images</accent> tidy and the right size",
+      "tagline": "Crop, compress, convert and combine images in your browser.",
+      "description": "Crop, rotate, compress, convert, watermark or remove the background of images. Images are processed on your device.",
+      "metaTitle": "Image tools | Chuyện Nhỏ",
+      "metaDescription": "Crop, rotate, compress, convert and combine images, remove backgrounds and make ID photos for free. Images are processed in your browser, no account required.",
+      "caption": "Images\nLight and the right size.",
+      "searchPlaceholder": "Search compress image, ID photo, remove background…",
+      "highlights": {
+        "convert": "Convert formats",
+        "compress": "Compress images",
+        "crop": "Crop & rotate",
+        "background": "Remove background",
+        "idPhoto": "ID photos",
+        "design": "Quick design"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "No account required."
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Open your browser and start."
+        },
+        "onDevice": {
+          "title": "Processed on your device",
+          "detail": "Images are not uploaded to a server."
+        },
+        "exif": {
+          "title": "Photo details kept",
+          "detail": "Only Remove location from photos strips EXIF."
+        }
+      },
+      "subgroups": {
+        "chinh-sua": "Crop, compress, convert",
+        "ghep-thiet-ke": "Combine & design",
+        "nen-metadata": "Background & location",
+        "anh-the": "ID photos",
+        "do-lay-chu": "Measure & extract text"
+      },
+      "aside": {
+        "tips": {
+          "title": "Tips",
+          "items": {
+            "originals": "Your original stays untouched: results are new files.",
+            "exif": "Sharing a photo? Remove its GPS location first.",
+            "batch": "Many images at one size: use Batch images."
+          }
+        }
+      },
+      "journey": {
+        "title": "From original to ready to use",
+        "motto": "Pick, adjust,\npreview, download.",
+        "steps": {
+          "pick": {
+            "title": "Pick images",
+            "detail": "From your computer or photo library."
+          },
+          "edit": {
+            "title": "Adjust",
+            "detail": "Crop, compress, convert or remove the background."
+          },
+          "preview": {
+            "title": "Preview",
+            "detail": "Compare with the original before downloading."
+          },
+          "download": {
+            "title": "Download",
+            "detail": "Save the new image to your device."
+          }
+        }
+      }
+    },
+    "ma-qr": {
+      "label": "QR & Codes",
+      "title": "<accent>QR codes & barcodes</accent> for everyday tasks",
+      "tagline": "Create, scan and print codes in your browser.",
+      "description": "Create QR codes, barcodes and VietQR transfer codes, or scan codes from images. Static QR codes and barcodes are made on your device; dynamic QR codes store a link only when you agree.",
+      "metaTitle": "QR codes & barcodes | Chuyện Nhỏ",
+      "metaDescription": "Create QR codes, EAN-13 and Code 128 barcodes, VietQR transfer codes, print label sheets and scan codes from images. Free, no account required.",
+      "caption": "QR & Codes\nCreating and scanning are two jobs.",
+      "searchPlaceholder": "Search Wi-Fi QR, barcode, VietQR…",
+      "highlights": {
+        "qr": "QR for links, Wi-Fi",
+        "barcode": "EAN-13, Code 128",
+        "scan": "Scan codes from images",
+        "labels": "Print label sheets",
+        "vietqr": "VietQR transfers",
+        "dynamic": "Dynamic QR with expiry"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "No account required."
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Open your browser and start."
+        },
+        "onDevice": {
+          "title": "Made on your device",
+          "detail": "Static QR codes, barcodes and label sheets are not sent anywhere."
+        },
+        "consent": {
+          "title": "Asked before storing",
+          "detail": "Dynamic QR codes store a link only when you agree."
+        }
+      },
+      "subgroups": {
+        "tao-ma": "Create codes",
+        "quet-ma": "Scan codes",
+        "qr-dong": "Dynamic QR"
+      },
+      "aside": {
+        "tips": {
+          "title": "Before printing",
+          "items": {
+            "printTest": "Print one label and scan it with a phone before printing the whole batch.",
+            "contrast": "Dark codes on a light background scan best.",
+            "noAutoOpen": "Scanned links never open by themselves: you check first, then tap."
+          }
+        }
+      },
+      "journey": {
+        "title": "One code, the right job",
+        "motto": "Enter the content, test scan,\nthen print.",
+        "steps": {
+          "content": {
+            "title": "Enter content",
+            "detail": "A link, text, Wi-Fi or an account number."
+          },
+          "style": {
+            "title": "Choose a style",
+            "detail": "Colour, size and download format."
+          },
+          "check": {
+            "title": "Test scan",
+            "detail": "Check it with a phone camera."
+          },
+          "print": {
+            "title": "Download or print",
+            "detail": "PNG, SVG, PDF or a label sheet."
+          }
+        }
+      }
+    },
+    "doc-va-nghe": {
+      "label": "Read & Listen",
+      "title": "<accent>Reading & listening</accent> made easier",
+      "tagline": "Listen to text, dictate and magnify small print.",
+      "description": "Paste text to hear it read aloud, speak to turn your voice into text, or use the camera as a magnifier. Nothing to install.",
+      "metaTitle": "Read & Listen | Chuyện Nhỏ",
+      "metaDescription": "Listen to Vietnamese text read aloud, turn speech into text and magnify small print with your camera. Free, no account required.",
+      "caption": "Read & Listen\nEasier on eyes and ears.",
+      "searchPlaceholder": "Search read aloud, dictation, magnifier…",
+      "highlights": {
+        "readAloud": "Read text aloud",
+        "dictation": "Speech to text",
+        "magnifier": "Camera magnifier"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "No account required."
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Open your browser and start."
+        },
+        "voices": {
+          "title": "Vietnamese voices",
+          "detail": "Your device voice, or a voice downloaded to your device once."
+        },
+        "browser": {
+          "title": "Clear about what is sent",
+          "detail": "Speech to text uses your browser's speech recognition service."
+        }
+      },
+      "subgroups": {
+        "nghe": "Listen",
+        "ghi": "Speech to text",
+        "nhin-ro": "See clearly"
+      },
+      "aside": {
+        "tips": {
+          "title": "Easier listening",
+          "items": {
+            "paste": "Paste the text into the box, then press listen.",
+            "speed": "Adjust the reading speed to suit you.",
+            "voice": "No Vietnamese voice on your device? Choose the downloadable voice."
+          }
+        }
+      },
+      "journey": {
+        "title": "Listen instead of reading",
+        "motto": "Paste, press listen,\npause any time.",
+        "steps": {
+          "paste": {
+            "title": "Paste text",
+            "detail": "Copy from a message, an article or a document."
+          },
+          "listen": {
+            "title": "Press listen",
+            "detail": "The sentence being read is highlighted."
+          },
+          "adjust": {
+            "title": "Adjust",
+            "detail": "Change the voice and reading speed."
+          }
+        }
+      }
+    },
+    "tinh-toan": {
+      "label": "Calculators",
+      "title": "<accent>Quick sums</accent> with the working shown",
+      "tagline": "VAT, percentages, units, dates and areas.",
+      "description": "Work out VAT, percentages and loans, convert units, count days and calculate areas. Many tools show the calculation so you can check it.",
+      "metaTitle": "Calculators | Chuyện Nhỏ",
+      "metaDescription": "Calculate VAT, percentages, gross margin and loan repayments, convert units, count days and work out areas. Free, runs in your browser.",
+      "caption": "Calculators\nClear numbers, clear working.",
+      "searchPlaceholder": "Search VAT, unit converter, count days…",
+      "highlights": {
+        "vat": "VAT & discounts",
+        "percent": "Percentages",
+        "units": "Unit conversion",
+        "dates": "Day counting",
+        "area": "Area & volume",
+        "loan": "Loan repayments"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "No account required."
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Open your browser and start."
+        },
+        "onDevice": {
+          "title": "Calculated on your device",
+          "detail": "Most calculations run on your device; cards say when a server is needed."
+        },
+        "reference": {
+          "title": "For reference",
+          "detail": "Double-check before using results on documents."
+        }
+      },
+      "subgroups": {
+        "tien-thue": "Money & tax",
+        "vay": "Loans & savings",
+        "do-luong": "Measurements",
+        "ngay": "Dates & calendar",
+        "hoc-tap": "Study"
+      },
+      "aside": {
+        "tips": {
+          "title": "Getting it right",
+          "items": {
+            "check": "Read the calculation shown with the result.",
+            "vat": "VAT: pick whether your price is before or after tax.",
+            "units": "Convert to the same unit before comparing prices."
+          }
+        }
+      },
+      "journey": {
+        "title": "Three steps, one number",
+        "motto": "Enter numbers, check the working,\ncopy the result.",
+        "steps": {
+          "enter": {
+            "title": "Enter numbers",
+            "detail": "Type them the way you usually do, with thousand separators."
+          },
+          "check": {
+            "title": "Check the working",
+            "detail": "See the numbers understood and the formula."
+          },
+          "copy": {
+            "title": "Copy the result",
+            "detail": "One tap to paste it elsewhere."
+          }
+        }
+      }
+    },
+    "mau-giay-to": {
+      "label": "Document templates",
+      "title": "<accent>Paperwork</accent> written fast, printed now",
+      "tagline": "CVs, requests, records and receipts.",
+      "description": "Write a CV, a leave request, a letter of authorization, a handover record or a money receipt from a template, preview it, then print or save as PDF.",
+      "metaTitle": "Document templates: CV, requests, records | Chuyện Nhỏ",
+      "metaDescription": "Create a CV, leave request, letter of authorization, handover record or money receipt. Preview, print or save as PDF on your device.",
+      "caption": "Document templates\nFill in, then print.",
+      "searchPlaceholder": "Search CV, leave request, receipt…",
+      "highlights": {
+        "cv": "CV",
+        "leave": "Leave request",
+        "authorization": "Letter of authorization",
+        "handover": "Handover record",
+        "receipt": "Money receipt"
+      },
+      "trust": {
+        "free": {
+          "title": "Free",
+          "detail": "No account required."
+        },
+        "noInstall": {
+          "title": "Nothing to install",
+          "detail": "Open your browser and start."
+        },
+        "onDevice": {
+          "title": "Written on your device",
+          "detail": "Your content is not sent to a server."
+        },
+        "print": {
+          "title": "Print or save as PDF",
+          "detail": "Preview before printing."
+        }
+      },
+      "subgroups": {
+        "cv": "CV",
+        "don-bien-ban": "Requests & records",
+        "ho-tro-soan": "Writing helpers"
+      },
+      "aside": {
+        "tips": {
+          "title": "Before printing",
+          "items": {
+            "check": "Check names, dates and amounts before printing.",
+            "numberWords": "Need an amount in words? Use Number to words.",
+            "sign": "Sign by hand after printing if the document needs a signature."
+          }
+        }
+      },
+      "journey": {
+        "title": "From template to printout",
+        "motto": "Choose, fill in,\npreview, print.",
+        "steps": {
+          "choose": {
+            "title": "Choose a template",
+            "detail": "A CV or the request you need."
+          },
+          "fill": {
+            "title": "Fill in",
+            "detail": "Only the fields that matter."
+          },
+          "preview": {
+            "title": "Preview",
+            "detail": "Check it before printing."
+          },
+          "print": {
+            "title": "Print or save as PDF",
+            "detail": "Saved on your device."
           }
         }
       }
@@ -1104,6 +1461,11 @@
       "sample": "Mga screenshot sa Vietnamese na may halimbawang datos.",
       "light": "Talaan ng mga tool sa maliwanag na tema.",
       "dark": "Talaan ng mga tool sa madilim na tema."
+    },
+    "quick": {
+      "title": "What do you need to do?",
+      "placeholder": "For example: compress PDF, 3x4 photo, read text aloud",
+      "common": "Common tasks"
     }
   },
   "familyProduct": {

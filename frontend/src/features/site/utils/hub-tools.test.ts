@@ -1,5 +1,8 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { TOOL_CATALOG } from '@/features/tools/hub/config/tool-catalog'
+import { VI_TOOL_CATALOG } from '@/features/tools/hub/utils/tool-catalog.fixture'
 import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
 import site from '@/i18n/messages/vi/site.json'
 import { HUB_PAGE_LIST } from '../config/hub-pages'
@@ -96,5 +99,31 @@ describe('SITE_PAGE_SLUGS', () => {
     const toolSlugs = new Set(TOOL_CATALOG.map((item) => item.slug))
     for (const slug of SITE_PAGE_SLUGS) expect(toolSlugs.has(slug), slug).toBe(false)
     expect(new Set(SITE_PAGE_SLUGS).size).toBe(SITE_PAGE_SLUGS.length)
+  })
+})
+
+describe('WP1 hub pages', () => {
+  const NEW_HUBS = ['hinh-anh', 'ma-qr', 'doc-va-nghe', 'tinh-toan', 'mau-giay-to']
+  const router = fs.readFileSync(path.resolve(import.meta.dirname, '../../../runtime/ToolsRouter.tsx'), 'utf8')
+
+  it('adds the spec groups as site pages', () => {
+    for (const slug of NEW_HUBS) expect(SITE_PAGE_SLUGS).toContain(slug)
+  })
+
+  it('moves CV and forms from the PDF hub to the templates hub', () => {
+    const toolsOf = (slug: string) => HUB_PAGE_LIST.find((hubPage) => hubPage.slug === slug)!.subgroups.flatMap((group) => group.toolIds)
+    expect(toolsOf('tai-lieu-pdf')).not.toContain('cv')
+    expect(toolsOf('tai-lieu-pdf')).not.toContain('form-templates')
+    expect(toolsOf('mau-giay-to')).toEqual(expect.arrayContaining(['cv', 'form-templates']))
+  })
+
+  it('gives every hub a ready tool, a Next page and a router route before :tool', () => {
+    const toolRoute = router.indexOf("path: ':tool'")
+    for (const hubPage of HUB_PAGE_LIST) {
+      expect(resolveHubTools(hubPage, VI_TOOL_CATALOG).all.some((item) => item.status === 'ready'), hubPage.slug).toBe(true)
+      expect(fs.existsSync(path.resolve(import.meta.dirname, '../../../app/[lang]', hubPage.slug, 'page.tsx')), hubPage.slug).toBe(true)
+      const at = router.indexOf(`path: '${hubPage.slug}'`)
+      expect(at > 0 && at < toolRoute, hubPage.slug).toBe(true)
+    }
   })
 })
