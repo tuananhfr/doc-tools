@@ -1,4 +1,4 @@
-export type FaqId = 'mien-phi' | 'tai-khoan' | 'luu-tep' | 'may-chu' | 'cai-dat' | 'offline' | 'loi' | 'an-toan' | 'thu-thap' | 'xoa-du-lieu' | 'ben-thu-ba' | 'de-xuat'
+export type FaqId = 'mien-phi' | 'tai-khoan' | 'luu-tep' | 'may-chu' | 'doc-link' | 'cai-dat' | 'offline' | 'loi' | 'an-toan' | 'thu-thap' | 'xoa-du-lieu' | 'ben-thu-ba' | 'de-xuat'
 export type FaqLinkId = 'processingPerTool' | 'installPerDevice' | 'dataHandling' | 'privacyPolicy' | 'suggest'
 
 /** Một câu hỏi trong config; chữ ở `site:faq.items.<id>`, nhãn link ở `site:faq.links.<label>`. */
@@ -25,6 +25,7 @@ export const FAQ_ITEMS: readonly FaqEntry[] = [
   { id: 'tai-khoan' },
   { id: 'luu-tep' },
   { id: 'may-chu', link: { to: '/xu-ly-du-lieu', label: 'processingPerTool' } },
+  { id: 'doc-link', link: { to: '/xu-ly-du-lieu', label: 'dataHandling' } },
   { id: 'cai-dat', link: { to: '/cai-dat', label: 'installPerDevice' } },
   { id: 'offline' },
   { id: 'loi' },

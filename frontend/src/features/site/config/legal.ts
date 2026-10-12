@@ -22,7 +22,7 @@ export interface LegalText {
   sections: Record<string, { heading: string; paragraphs?: Record<string, string>; items?: Record<string, string>; link?: string }>
 }
 
-export const LEGAL_UPDATED = '12/10/2026'
+export const LEGAL_UPDATED = '13/10/2026'
 
 /** Phần tài khoản / Pro / trợ lý AI là bản nháp chưa qua pháp chế; đổi thành `false` khi đã duyệt. */
 export const LEGAL_DRAFT = true
@@ -44,7 +44,7 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
       { id: 'hanh-vi-cam', items: ['unlawful', 'unauthorized', 'abuse', 'content'] },
       { id: 'gop-y', paragraphs: ['use'] },
       { id: 'so-huu-tri-tue', paragraphs: ['ownership'] },
-      { id: 'lien-ket', paragraphs: ['external'] },
+      { id: 'lien-ket', paragraphs: ['external', 'readLink'] },
       { id: 'trach-nhiem', paragraphs: ['asIs', 'consumer'] },
       { id: 'quyen-rieng-tu', paragraphs: ['policy'], link: { to: '/quyen-rieng-tu' } },
       { id: 'thay-doi', paragraphs: ['updates'] },
@@ -57,7 +57,7 @@ export const LEGAL_DOCUMENTS: Record<LegalSlug, LegalDocument> = {
     sections: [
       { id: 'chung-toi', paragraphs: ['controller'] },
       { id: 'nguyen-tac', items: ['device', 'minimal', 'anonymous', 'noTracking'] },
-      { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs', 'entertainment', 'dynamicQr'] },
+      { id: 'du-lieu', items: ['visits', 'ip', 'feedback', 'logs', 'entertainment', 'dynamicQr', 'readLink'] },
       { id: 'tai-khoan', items: ['email', 'password', 'session', 'profile', 'contributions', 'plan'] },
       { id: 'pro', paragraphs: ['intro'], items: ['key', 'chat', 'memory', 'uploads', 'checks', 'saved'] },
       { id: 'tren-thiet-bi', paragraphs: ['local'], link: { to: '/xu-ly-du-lieu' } },

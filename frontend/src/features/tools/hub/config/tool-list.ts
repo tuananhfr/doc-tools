@@ -185,6 +185,9 @@ export const ALL_TOOLS: ToolEntry[] = [
   {
     id: 'read-aloud',
     slug: 'doc-to-van-ban',
+    // Tab Link (WP4-B) gửi đường dẫn lên máy chủ khi cờ `read.linkEnabled` bật. Cờ đổi lúc chạy còn
+    // danh mục chốt lúc build, nên khai `hybrid` luôn: nói thừa an toàn hơn hứa "chỉ trên máy" sai.
+    processing: 'hybrid',
    
    
     icon: 'volume-up',

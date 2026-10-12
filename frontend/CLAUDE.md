@@ -143,7 +143,7 @@ là `/doc-tools` trên lpc.vn; code vẫn phải chạy đúng khi có prefix. �
 
 ### Gọi backend
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{codes,tools,rules,sources,contributions,auth,admin,ai,ent,landings}/*`,
+`next.config.mjs` rewrite `<basePath>/api/v1/{codes,tools,rules,sources,contributions,auth,admin,ai,ent,landings,read}/*`,
 `/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope
 phẳng `{ok, ...}` — giữ nguyên. Module backend mới có route công khai mà quên thêm dòng ở đây
 thì dev / production đều 404 (chỉ `/api/v1/mcp/` cố ý không qua Next — Apache proxy thẳng).
@@ -153,6 +153,11 @@ thì dev / production đều 404 (chỉ `/api/v1/mcp/` cố ý không qua Next �
   công cụ cố định, bỏ credentials + referrer; không bao giờ gửi hay xếp hàng câu tìm kiếm, tài
   liệu, nội dung sửa OCR. Lời công bố dùng chung namespace `quality` ở trang quyền riêng tư,
   hỗ trợ và xử lý dữ liệu.
+- **Đọc từ link** (`/read/*`, cờ `read.linkEnabled` ở `app_settings`, tắt mặc định): tab Link của `/doc-to-van-ban`
+  chỉ hiện khi `GET /read/config` trả đúng `linkEnabled: true` (mặc định ẩn cả lúc SSR để khỏi lệch hydrate).
+  Hằng build-time `READ_LINK_TAB_ENABLED` của WP4-A đã bỏ — đừng khai lại công tắc thứ hai. `ReadLinkPanel`
+  gửi đúng `{url}` qua `read-extract.api.ts` (không cookie, không referrer), kiểm phản hồi bằng
+  `readSourceFromExtract` rồi trả `ReadSource` qua `onSource`; mọi lỗi kèm nút "Dán văn bản thay thế".
 
 ### Cộng đồng (`features/community`)
 

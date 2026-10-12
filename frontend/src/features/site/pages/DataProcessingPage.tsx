@@ -47,6 +47,7 @@ export default function DataProcessingPage() {
         t('data.columns.server.points.account'),
         t('data.columns.server.points.pro'),
         t('data.columns.server.points.dynamicQr'),
+        t('data.columns.server.points.readLink'),
         ...(serverSoon ? [t('data.columns.server.points.soon', { count: serverSoon })] : []),
       ],
     },
