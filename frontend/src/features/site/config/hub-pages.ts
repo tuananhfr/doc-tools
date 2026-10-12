@@ -10,7 +10,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
   'kham-pha-giai-tri': {
     slug: 'kham-pha-giai-tri', art: { kind: 'icon', icon: 'stars' }, highlights: ['calendar', 'numbers', 'cards', 'tarot'],
     trust: [{ id: 'free', icon: 'gift' }, { id: 'source', icon: 'journal-check' }, { id: 'choice', icon: 'person-check' }, { id: 'reference', icon: 'info-circle' }],
-    subgroups: [{ id: 'lich', toolIds: ['lunar-calendar'] }, { id: 'kham-pha', toolIds: ['numerology', 'playing-cards', 'tarot'] }],
+    subgroups: [{ id: 'lich', toolIds: ['lunar-calendar'] }, { id: 'kham-pha', toolIds: ['numerology', 'playing-cards', 'tarot', 'spin-wheel'] }],
     aside: [{ kind: 'tips', id: 'usage', items: ['features', 'content', 'privacy'] }, { kind: 'support' }],
     journey: { flow: false, steps: [{ id: 'choose', icon: 'grid' }, { id: 'explore', icon: 'search' }, { id: 'source', icon: 'journal' }, { id: 'export', icon: 'download' }] },
   },

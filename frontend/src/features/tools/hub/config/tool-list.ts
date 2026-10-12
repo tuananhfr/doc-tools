@@ -20,6 +20,7 @@ export const ALL_TOOLS: ToolEntry[] = [
   { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'numerology' },
   { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'playing-cards' },
   { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'tarot' },
+  { id: 'spin-wheel', slug: 'vong-quay', icon: 'pie-chart', categories: ['other'], noFile: true, status: 'ready', screen: 'spin-wheel' },
   {
     id: 'compress-video', slug: 'nen-video', icon: 'file-earmark-play',
     categories: ['other'], status: 'ready', screen: 'compress-video',

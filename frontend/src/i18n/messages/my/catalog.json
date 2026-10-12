@@ -454,6 +454,11 @@
       "synonyms": "tarot, trải bài",
       "privacyNote": "The server draws cards on request and keeps the draw only briefly; nothing is saved to your account"
     },
+    "spin-wheel": {
+      "name": "Random spin wheel",
+      "description": "Enter options and spin to pick one at random: what to eat, who pays. Runs on your device",
+      "synonyms": "spin wheel, wheel of names, random picker, draw lots, decide, who pays, lunch picker"
+    },
     "quick-design": {
       "name": "Quick design",
       "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",

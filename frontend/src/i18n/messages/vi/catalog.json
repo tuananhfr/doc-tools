@@ -454,6 +454,11 @@
       "synonyms": "tarot, trải bài",
       "privacyNote": "Máy chủ rút bài khi bạn yêu cầu và chỉ giữ bản rút trong thời gian ngắn; không lưu vào tài khoản"
     },
+    "spin-wheel": {
+      "name": "Vòng quay ngẫu nhiên",
+      "description": "Nhập các lựa chọn rồi quay để chọn ngẫu nhiên: trưa nay ăn gì, ai trả tiền. Chạy trên thiết bị",
+      "synonyms": "vòng quay, vòng quay may mắn, bốc thăm, chọn ngẫu nhiên, random, ăn gì, ai trả tiền, spin wheel"
+    },
     "quick-design": {
       "name": "Thiết kế nhanh",
       "description": "Tạo bảng tên, watermark, voucher, nhãn, poster và vùng in cốc/hộp/túi; xuất PDF, ảnh hoặc ZIP trên thiết bị.",

@@ -123,6 +123,7 @@ export type ToolScreen =
   | 'numerology'
   | 'playing-cards'
   | 'tarot'
+  | 'spin-wheel'
 
 interface ToolBase {
   searchParams?: string

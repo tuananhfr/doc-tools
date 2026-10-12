@@ -62,6 +62,7 @@ const LunarCalendarPage = dynamic(() => import('@/features/tools/vietnam/pages/L
 const NumerologyPage = dynamic(() => import('@/features/tools/entertainment/pages/NumerologyPage'), { ssr: false, loading: () => <Loading /> })
 const PlayingCardsPage = dynamic(() => import('@/features/tools/entertainment/pages/PlayingCardsPage'), { ssr: false, loading: () => <Loading /> })
 const TarotPage = dynamic(() => import('@/features/tools/entertainment/pages/TarotPage'), { ssr: false, loading: () => <Loading /> })
+const SpinWheelPage = dynamic(() => import('@/features/tools/entertainment/pages/SpinWheelPage'), { ssr: false, loading: () => <Loading /> })
 const PayrollPage = dynamic(() => import('@/features/tools/finance/pages/PayrollPage'), { ssr: false, loading: () => <Loading /> })
 const AddressConversionPage = dynamic(() => import('@/features/tools/vietnam/pages/AddressConversionPage'), { ssr: false, loading: () => <Loading /> })
 const FamilyCalendarPage = dynamic(() => import('@/features/tools/family/pages/FamilyCalendarPage'), { ssr: false, loading: () => <Loading /> })
@@ -137,6 +138,7 @@ export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
   numerology: NumerologyPage,
   'playing-cards': PlayingCardsPage,
   tarot: TarotPage,
+  'spin-wheel': SpinWheelPage,
   payroll: PayrollPage,
   'address-conversion': AddressConversionPage,
   'family-calendar': FamilyCalendarPage,
