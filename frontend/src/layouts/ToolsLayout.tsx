@@ -4,6 +4,7 @@ import { Loading } from '@/components/ui'
 import { PUBLIC_TOOLS_BRANCH, ToolsBranchOutlet } from '@/features/tools/hub'
 import { SiteHeader } from '@/features/site/components/SiteHeader'
 import { SiteFooter } from '@/features/site/components/SiteFooter'
+import { ToolFooterLinks } from '@/features/site/components/ToolFooterLinks'
 import { PRODUCT_REGISTRY } from '@/features/site/config/product-registry'
 
 export function ToolsLayout() {
@@ -32,7 +33,7 @@ export function ToolsLayout() {
           <main id="cn-main" tabIndex={-1} className={`erp-tools-guest__main${isTool ? '' : ' cn-site-main'}`}>
             <Suspense fallback={<Loading />}><ToolsBranchOutlet branch={PUBLIC_TOOLS_BRANCH} /></Suspense>
           </main>
-          {isTool ? null : <SiteFooter />}
+          {isTool ? <ToolFooterLinks /> : <SiteFooter />}
         </div>
       </div>
     </div>
