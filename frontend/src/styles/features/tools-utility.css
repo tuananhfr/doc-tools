@@ -1306,6 +1306,8 @@
 .erp-read-text--normal, .cn-tool-workspace .form-control.erp-read-text--normal { font-size: var(--cn-font-body, 16px); }
 .erp-read-text--large, .cn-tool-workspace .form-control.erp-read-text--large { font-size: calc(var(--cn-font-body, 16px) * 1.25); }
 .erp-read-text--xlarge, .cn-tool-workspace .form-control.erp-read-text--xlarge { font-size: calc(var(--cn-font-body, 16px) * 1.5); }
+/* Dải nút thẻ nhập / cỡ chữ: `.erp-tool-tab` dùng chung chỉ cao 40px ở màn rộng. */
+.cn-tool-workspace .erp-read-tabs .erp-tool-tab { min-height: var(--cn-tap, 44px); }
 
 .erp-read-player { display: flex; flex-direction: column; gap: 8px; }
 .erp-read-player__row { display: flex; flex-wrap: wrap; gap: 8px; }

@@ -141,7 +141,7 @@ export default function ReadAloudPage() {
         { value: 'device', label: t('readAloud.engineDevice'), icon: 'phone' },
         { value: 'piper', label: t('readAloud.enginePiper'), icon: 'soundwave' },
       ]} />
-      <div className="mt-3">
+      <div className="erp-read-tabs mt-3">
         <ToolSegments label={t('readAloud.inputMode')} value={tab} onChange={changeTab} disabled={busy}
           options={INPUT_TABS.map((value) => ({ value, label: t(TAB_LABEL[value]), icon: TAB_ICON[value] }))} />
       </div>

@@ -25,11 +25,13 @@ export function ReadSettings({ rate, onRate, fontScale, onFontScale, remember, o
       <Form.Range min={READ_RATE.min} max={READ_RATE.max} step={READ_RATE.step} value={rate} onChange={(event) => onRate(Number(event.target.value))} />
     </label>
     <p className="erp-flow-field__label mt-3">{t('readAloud.fontSize')}</p>
-    <ToolSegments label={t('readAloud.fontSize')} value={fontScale} onChange={onFontScale} options={[
-      { value: 'normal', label: t('readAloud.fontNormal') },
-      { value: 'large', label: t('readAloud.fontLarge') },
-      { value: 'xlarge', label: t('readAloud.fontXLarge') },
-    ]} />
+    <div className="erp-read-tabs">
+      <ToolSegments label={t('readAloud.fontSize')} value={fontScale} onChange={onFontScale} options={[
+        { value: 'normal', label: t('readAloud.fontNormal') },
+        { value: 'large', label: t('readAloud.fontLarge') },
+        { value: 'xlarge', label: t('readAloud.fontXLarge') },
+      ]} />
+    </div>
     <Form.Check type="switch" id={rememberId} className="erp-read-remember mt-3" checked={remember} onChange={(event) => onRemember(event.target.checked)} label={t('readAloud.remember')} />
     <p className="erp-tool-result__note mb-0">{t('readAloud.rememberHint')}</p>
   </>
