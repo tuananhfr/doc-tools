@@ -125,6 +125,16 @@ export type ToolScreen =
   | 'tarot'
   | 'spin-wheel'
 
+/** Mức dùng được khi mất mạng — phải trung thực: nghi ngờ thì hạ mức, `check-offline.mjs` là bằng chứng để nâng. */
+export type ToolOffline = 'yes' | 'after-first-use' | 'no'
+export type ToolDeviceNeed = 'camera' | 'mic' | 'network'
+
+/** `offline: 'no'` khi và chỉ khi `needs` có `'network'` (test `tool-device.test.ts` giữ luật này). */
+export interface ToolDevice {
+  offline: ToolOffline
+  needs?: ToolDeviceNeed[]
+}
+
 interface ToolBase {
   searchParams?: string
   id: string
@@ -145,6 +155,8 @@ interface ToolBase {
 export interface ReadyToolEntry extends ToolBase {
   status: 'ready'
   screen: ToolScreen
+  /** Bắt buộc với công cụ đã chạy: dòng năng lực dưới tiêu đề và MCP đọc từ đây. */
+  device: ToolDevice
 }
 
 export interface SoonToolEntry extends ToolBase {

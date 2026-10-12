@@ -16,75 +16,75 @@ import type { ToolEntry } from '../types/tool.types'
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
 export const ALL_TOOLS: ToolEntry[] = [
-  { id: 'quick-design', slug: 'thiet-ke-nhanh', icon: 'palette2', categories: ['image'], noFile: true, status: 'ready', screen: 'quick-design' },
-  { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'numerology' },
-  { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'playing-cards' },
-  { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', status: 'ready', screen: 'tarot' },
-  { id: 'spin-wheel', slug: 'vong-quay', icon: 'pie-chart', categories: ['other'], noFile: true, status: 'ready', screen: 'spin-wheel' },
+  { id: 'quick-design', slug: 'thiet-ke-nhanh', icon: 'palette2', categories: ['image'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'quick-design' },
+  { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'numerology' },
+  { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'playing-cards' },
+  { id: 'tarot', slug: 'tarot', icon: 'stars', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'tarot' },
+  { id: 'spin-wheel', slug: 'vong-quay', icon: 'pie-chart', categories: ['other'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'spin-wheel' },
   {
     id: 'compress-video', slug: 'nen-video', icon: 'file-earmark-play',
-    categories: ['other'], status: 'ready', screen: 'compress-video',
+    categories: ['other'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'compress-video',
   },
   {
     id: 'trim-video', slug: 'cat-video', icon: 'scissors',
-    categories: ['other'], status: 'ready', screen: 'trim-video',
+    categories: ['other'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'trim-video',
   },
   {
     id: 'video-gif', slug: 'tao-gif', icon: 'film',
-    categories: ['other'], status: 'ready', screen: 'video-gif',
+    categories: ['other'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'video-gif',
   },
   {
     id: 'extract-audio', slug: 'tach-am-thanh', icon: 'soundwave',
-    categories: ['other'], status: 'ready', screen: 'extract-audio',
+    categories: ['other'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'extract-audio',
   },
   {
     id: 'assistant', slug: 'tro-ly', icon: 'chat-dots',
-    categories: ['other'], noFile: true, status: 'ready', screen: 'assistant',
+    categories: ['other'], noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'assistant',
   },
   {
     id: 'remove-background', slug: 'xoa-phong', icon: 'eraser',
-    categories: ['image'], status: 'ready', screen: 'remove-background',
+    categories: ['image'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'remove-background',
   },
   {
     id: 'cv', slug: 'tao-cv', icon: 'person-vcard',
-    categories: ['document', 'other'], noFile: true, status: 'ready', screen: 'cv',
+    categories: ['document', 'other'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'cv',
   },
   {
     id: 'pdf-password', slug: 'mat-khau-pdf', icon: 'file-earmark-lock',
-    categories: ['document'], status: 'ready', screen: 'pdf-password',
+    categories: ['document'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'pdf-password',
   },
   {
     id: 'family-calendar', slug: 'lich-gia-dinh', icon: 'calendar-heart',
-    categories: ['date', 'home'], noFile: true, status: 'ready', screen: 'family-calendar',
+    categories: ['date', 'home'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'family-calendar',
   },
   {
     id: 'address-conversion', slug: 'doi-dia-chi', icon: 'geo-alt',
-    categories: ['data', 'other'], noFile: true, status: 'ready', screen: 'address-conversion',
+    categories: ['data', 'other'], noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'address-conversion',
   },
   {
     id: 'payroll', slug: 'luong', icon: 'wallet',
-    categories: ['money'], noFile: true, status: 'ready', screen: 'payroll',
+    categories: ['money'], noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'payroll',
   },
   {
     id: 'lunar-calendar', slug: 'lich-am', icon: 'moon',
-    categories: ['date', 'other'], noFile: true, status: 'ready', screen: 'lunar-calendar',
+    categories: ['date', 'other'], noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'lunar-calendar',
   },
   {
     id: 'electricity', slug: 'tien-dien', icon: 'lightning-charge',
-    categories: ['money', 'home'], noFile: true, status: 'ready', screen: 'electricity',
+    categories: ['money', 'home'], noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'electricity',
   },
   {
     id: 'form-templates', slug: 'mau-don', icon: 'file-earmark-text',
-    categories: ['document', 'other'], noFile: true, status: 'ready', screen: 'form-templates',
+    categories: ['document', 'other'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'form-templates',
   },
   {
     id: 'dictation', slug: 'ghi-am', icon: 'mic',
     categories: ['other'], noFile: true,
-    status: 'ready', screen: 'dictation',
+    device: { offline: 'no', needs: ['mic', 'network'] }, status: 'ready', screen: 'dictation',
   },
   {
     id: 'magnifier', slug: 'kinh-lup', icon: 'search',
-    categories: ['other'], noFile: true, status: 'ready', screen: 'magnifier',
+    categories: ['other'], noFile: true, device: { offline: 'yes', needs: ['camera'] }, status: 'ready', screen: 'magnifier',
   },
   {
     id: 'house-estimate',
@@ -95,7 +95,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['construction', 'home', 'money'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'house-estimate',
   },
   {
@@ -107,7 +107,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['money', 'other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'number-words',
   },
   {
@@ -119,7 +119,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['money'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'loan',
   },
   {
@@ -131,7 +131,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['money', 'home'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'unit-price',
   },
   {
@@ -143,7 +143,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['calc', 'other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'study',
   },
   {
@@ -155,7 +155,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['date', 'other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'pomodoro',
   },
   {
@@ -167,7 +167,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['money', 'home'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'group-split',
   },
   {
@@ -179,7 +179,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['data', 'other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'legacy-font',
   },
   {
@@ -190,7 +190,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'volume-up',
     categories: ['other'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'read-aloud',
   },
   {
@@ -202,7 +202,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['money', 'other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'vietqr',
   },
   {
@@ -213,7 +213,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'filetype-xml',
     categories: ['data', 'money'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'invoice-xml',
   },
   {
@@ -224,7 +224,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'geo-alt',
     categories: ['image', 'other'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'remove-metadata',
   },
   {
@@ -235,7 +235,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'grid-3x3-gap',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'collage',
   },
   {
@@ -247,7 +247,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'message-risk',
   },
   {
@@ -259,7 +259,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['other'],
    
     noFile: true,
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'flashcards',
   },
   {
@@ -272,7 +272,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     priority: 1,
    
    
-    status: 'ready',
+    device: { offline: 'after-first-use', needs: ['camera'] }, status: 'ready',
     screen: 'images-to-pdf',
   },
   {
@@ -284,7 +284,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['document'],
     priority: 2,
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'merge-pdf',
   },
   {
@@ -296,7 +296,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['document'],
     priority: 3,
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'split-pdf',
   },
   {
@@ -308,7 +308,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['document'],
     priority: 4,
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'compress-pdf',
   },
   {
@@ -322,7 +322,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     priority: 6,
    
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'convert-file',
   },
   {
@@ -333,7 +333,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'image',
     categories: ['document', 'image'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'pdf-to-image',
   },
   {
@@ -344,7 +344,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'grid-3x3-gap',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'organize-pdf',
   },
   {
@@ -355,7 +355,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'hash',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'page-numbers',
   },
   {
@@ -366,7 +366,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'droplet-half',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'stamp-pdf',
   },
   {
@@ -377,7 +377,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'eye-slash',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'redact-pdf',
   },
   {
@@ -389,7 +389,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['document'],
     processing: 'browser-model',
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'editor',
   },
   {
@@ -402,7 +402,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     processing: 'browser-model',
     priority: 7,
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'ocr',
   },
   {
@@ -413,7 +413,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'layout-split',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'compare-pdf',
   },
   {
@@ -424,7 +424,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'pen',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'sign-pdf',
   },
   {
@@ -437,7 +437,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     processing: 'browser-model',
     priority: 5,
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'editor',
   },
   {
@@ -449,7 +449,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['image', 'document'],
     processing: 'browser-model',
    
-    status: 'ready',
+    device: { offline: 'after-first-use' }, status: 'ready',
     screen: 'image-to-text',
   },
   {
@@ -460,7 +460,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'rulers',
     categories: ['image', 'calc', 'construction'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'measure-image',
   },
   {
@@ -472,7 +472,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['image'],
     priority: 9,
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'convert-image',
   },
   {
@@ -484,7 +484,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['image'],
     priority: 8,
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'compress-image',
   },
   {
@@ -495,7 +495,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'crop',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'crop-image',
   },
   {
@@ -506,7 +506,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'collection',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'batch-image',
   },
   {
@@ -517,7 +517,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'eye-slash',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'mark-image',
   },
   {
@@ -528,7 +528,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'person-badge',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use', needs: ['camera'] }, status: 'ready',
     screen: 'id-photo',
   },
   {
@@ -540,7 +540,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['data'],
     priority: 10,
    
-    status: 'ready',
+    device: { offline: 'no', needs: ['network'] }, status: 'ready',
     screen: 'qr-create',
     noFile: true,
   },
@@ -552,7 +552,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'upc',
     categories: ['data'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'barcode-create',
     noFile: true,
   },
@@ -564,7 +564,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'qr-code-scan',
     categories: ['data'],
    
-    status: 'ready',
+    device: { offline: 'yes', needs: ['camera'] }, status: 'ready',
     screen: 'qr-read',
   },
   {
@@ -576,7 +576,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['calc'],
     priority: 11,
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'quick-calc',
     noFile: true,
   },
@@ -588,7 +588,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'cash-coin',
     categories: ['money'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'money-calc',
     noFile: true,
   },
@@ -600,7 +600,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'calendar-check',
     categories: ['date'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'date-calc',
     noFile: true,
   },
@@ -612,7 +612,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'compass',
     categories: ['home', 'construction'],
    
-    status: 'ready',
+    device: { offline: 'after-first-use', needs: ['camera'] }, status: 'ready',
     screen: 'house-orientation',
   },
   {
@@ -623,7 +623,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'journal-check',
     categories: ['other'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'quick-note',
     noFile: true,
   },
@@ -635,7 +635,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'fonts',
     categories: ['document'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'char-count',
     noFile: true,
   },
@@ -648,7 +648,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     categories: ['calc'],
     priority: 12,
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'unit-convert',
     noFile: true,
   },
@@ -660,7 +660,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'palette',
     categories: ['image'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'color',
     noFile: true,
   },
@@ -672,7 +672,7 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'shuffle',
     categories: ['data'],
    
-    status: 'ready',
+    device: { offline: 'yes' }, status: 'ready',
     screen: 'random-code',
     noFile: true,
   },
@@ -752,6 +752,6 @@ export const ALL_TOOLS: ToolEntry[] = [
   },
   {
     id: 'code-manager', slug: 'quan-ly-ma', icon: 'upc-scan',
-    categories: ['data'], processing: 'server', noFile: true, status: 'ready', screen: 'code-manager',
+    categories: ['data'], processing: 'server', noFile: true, device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'code-manager',
   },
 ]
