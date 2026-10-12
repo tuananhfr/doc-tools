@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "Bacakan teks",
       "description": "Pakai suara pembaca perangkat untuk mendengarkan teks",
-      "synonyms": "text to speech, teks ke suara, bacakan"
+      "synonyms": "text to speech, teks ke suara, bacakan",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR transfer bank",

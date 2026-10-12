@@ -15,9 +15,6 @@ export const READ_DOCX_XML_MAX_BYTES = 50 * 1024 * 1024
 /** OCR một trang mất vài chục giây trên điện thoại; quá số này thì phần còn lại bị bỏ và báo ra. */
 export const READ_OCR_MAX_PAGES = 20
 
-/** Thẻ "Link bài viết" cần máy chủ tải trang hộ (WP4-B, chờ Legal). Tắt thì thẻ không hiện. */
-export const READ_LINK_TAB_ENABLED = false
-
 export const READ_REMEMBER_KEY = 'cn.readAloud.remember'
 export const READ_POSITIONS_KEY = 'cn.readAloud.positions'
 export const READ_POSITIONS_MAX = 20

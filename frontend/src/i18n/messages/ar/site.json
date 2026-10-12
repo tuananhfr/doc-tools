@@ -1055,7 +1055,8 @@
           "soon_few": "{{count}} أدوات قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
           "soon_many": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
           "soon_other": "{{count}} أداة قادمة ستحتاج إلى البحث على الخادم، وبطاقاتها توضّح ذلك",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when enabled): only the address you paste is sent, so the server can fetch that public page for you and return the article text; the address and the content are not stored. Pasted text and files are still read on your device."
         }
       },
       "local": {
@@ -1382,6 +1383,10 @@
       "de-xuat": {
         "question": "أريد اقتراح أداة جديدة؟",
         "answer": "نرحّب بذلك كثيرًا. استخدم أداة «اقترح أداة»: ستحصل على رقم إيصال لمتابعة حالة المراجعة لاحقًا."
+      },
+      "doc-link": {
+        "question": "Does reading an article from a link send anything?",
+        "answer": "Yes, but only when you use the Link tab (the feature may be switched off). Chuyện Nhỏ sends the address you paste; the server fetches that public HTTPS page, respects robots.txt, does not bypass paywalls and returns only the article text. The address and the content are not stored; your IP address is only hashed to limit how often you can use it. Pasted text and opened files are still processed on your device."
       }
     },
     "links": {

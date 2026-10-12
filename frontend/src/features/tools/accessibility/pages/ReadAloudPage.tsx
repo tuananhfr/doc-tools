@@ -11,10 +11,11 @@ import { ReadPastePanel } from '../components/ReadPastePanel'
 import { ReadPlayerControls } from '../components/ReadPlayerControls'
 import { ReadSettings } from '../components/ReadSettings'
 import { ReadVoicePanel } from '../components/ReadVoicePanel'
-import { READ_LINK_TAB_ENABLED, READ_PART_CHARS } from '../config/read-listen'
+import { READ_PART_CHARS } from '../config/read-listen'
 import { useDeviceSpeech } from '../hooks/useDeviceSpeech'
 import { useOnline } from '../hooks/useOnline'
 import { usePiperSpeech } from '../hooks/usePiperSpeech'
+import { useReadLinkEnabled } from '../hooks/useReadLinkEnabled'
 import { useReadPosition } from '../hooks/useReadPosition'
 import { piperSupported } from '../services/piper-tts'
 import type { ReadEngine, ReadFontScale, ReadInputTab, ReadSource } from '../types/read-listen.types'
@@ -30,7 +31,6 @@ const ReadFilePanel = lazy(() => import('../components/ReadFilePanel'))
 // Kéo thanh tốc độ bắn hàng chục giá trị; mỗi giá trị là một lần co giãn / đọc lại nên chỉ áp giá trị dừng tay.
 const RATE_SETTLE_MS = 300
 const formatCount = (value: number) => numberFormat().format(value)
-const INPUT_TABS = readInputTabs(READ_LINK_TAB_ENABLED)
 const TAB_LABEL = { text: 'readAloud.tabPaste', file: 'readAloud.tabFile', link: 'readAloud.tabLink' } as const satisfies Record<ReadInputTab, string>
 const TAB_ICON = { text: 'clipboard', file: 'file-earmark-text', link: 'link-45deg' } as const satisfies Record<ReadInputTab, string>
 
@@ -54,6 +54,10 @@ export default function ReadAloudPage() {
   const device = useDeviceSpeech(settledRate)
   const piper = usePiperSpeech(settledRate)
   const online = useOnline()
+  // Cờ `read.linkEnabled` của máy chủ (mặc định tắt, chờ Legal) thay hằng build-time của WP4-A: bật/tắt
+  // không cần build lại, và tắt ở máy chủ là thẻ biến mất ngay lần mở sau.
+  const linkEnabled = useReadLinkEnabled()
+  const inputTabs = readInputTabs(linkEnabled)
   const { enabled: remember, setEnabled: setRemember, recall, save: savePosition } = useReadPosition()
 
   // Mỗi thẻ giữ nguồn riêng: đổi thẻ rồi quay lại không mất chữ / tệp đã nạp (spec v3 §06).
@@ -143,7 +147,7 @@ export default function ReadAloudPage() {
       ]} />
       <div className="erp-read-tabs mt-3">
         <ToolSegments label={t('readAloud.inputMode')} value={tab} onChange={changeTab} disabled={busy}
-          options={INPUT_TABS.map((value) => ({ value, label: t(TAB_LABEL[value]), icon: TAB_ICON[value] }))} />
+          options={inputTabs.map((value) => ({ value, label: t(TAB_LABEL[value]), icon: TAB_ICON[value] }))} />
       </div>
       {active ? <>
         <p className="erp-flow-field__label mt-3">{t('readAloud.content')}</p>
@@ -159,7 +163,7 @@ export default function ReadAloudPage() {
           <ReadFilePanel source={fileSource} onSource={setFileSource} onPasteInstead={pasteInstead} disabled={busy} />
         </Suspense>
       </div> : null}
-      {READ_LINK_TAB_ENABLED && visited.has('link') ? <div hidden={active || tab !== 'link'}>
+      {linkEnabled && visited.has('link') ? <div hidden={active || tab !== 'link'}>
         <ReadLinkPanel onSource={setLinkSource} onPasteInstead={pasteInstead} />
       </div> : null}
       {!active && tab !== 'text' && source ? source.warnings.map((code) => <ReadErrorNotice key={code} code={code} onPasteInstead={pasteInstead} />) : null}

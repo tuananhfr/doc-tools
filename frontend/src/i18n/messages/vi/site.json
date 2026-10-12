@@ -1020,7 +1020,8 @@
           "account": "Khi bạn đăng nhập: email, phiên đăng nhập và đề xuất của bạn",
           "pro": "Bản Pro: mục bạn bấm lưu; trò chuyện AI đi tới nhà cung cấp AI bạn chọn",
           "soon": "{{count}} công cụ sắp có sẽ cần tra cứu trên máy chủ, thẻ của chúng ghi rõ",
-          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn."
+          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn.",
+          "readLink": "Đọc to từ link (khi được bật): chỉ đường dẫn bạn dán được gửi để máy chủ tải trang công khai đó hộ bạn và trả về phần chữ của bài; đường dẫn và nội dung không được lưu. Văn bản dán và tệp vẫn đọc trên thiết bị."
         }
       },
       "local": {
@@ -1327,6 +1328,10 @@
       "de-xuat": {
         "question": "Tôi muốn đề xuất một công cụ mới?",
         "answer": "Rất hoan nghênh. Hãy dùng công cụ Đề xuất tiện ích: bạn nhận một mã biên nhận để tra cứu tình trạng xem xét sau đó."
+      },
+      "doc-link": {
+        "question": "Đọc to từ link bài báo có gửi gì đi không?",
+        "answer": "Có, nhưng chỉ khi bạn dùng thẻ Link (tính năng này có thể đang tắt). Chuyện Nhỏ gửi đường dẫn bạn dán; máy chủ tải trang HTTPS công khai đó, tôn trọng robots.txt, không vượt tường phí và chỉ trả về phần chữ của bài. Đường dẫn và nội dung không được lưu; địa chỉ IP chỉ được băm để giới hạn số lượt. Dán văn bản hoặc mở tệp thì vẫn xử lý trên thiết bị."
       }
     },
     "links": {

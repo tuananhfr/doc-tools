@@ -113,6 +113,18 @@
       "OCR_UNCERTAIN": "Chữ nhận dạng từ ảnh scan có thể sai. Chỉ nghe được sau khi bạn kiểm tra.",
       "OFFLINE": "Đang mất mạng. Giọng online và lần tải giọng Chuyện Nhỏ đầu tiên cần mạng; văn bản vẫn xem được.",
       "TOO_LARGE": "Nội dung quá lớn để xử lý trên thiết bị này. Hãy chia nhỏ tệp hoặc dán từng phần."
+    },
+    "link": {
+      "label": "Đường dẫn bài viết (HTTPS)",
+      "placeholder": "https://…",
+      "fetch": "Lấy nội dung",
+      "fetching": "Đang tải bài…",
+      "privacy": "Máy chủ Chuyện Nhỏ sẽ tải trang này hộ bạn và chỉ trả về phần chữ của bài. Không lưu đường dẫn hay nội dung. Trang trả phí hoặc chặn đọc tự động sẽ không được tải.",
+      "loaded": "Đã lấy nội dung từ {{host}}. Hãy xem lại trước khi nghe.",
+      "errors": {
+        "INVALID": "Hãy nhập đường dẫn bắt đầu bằng https://",
+        "RATE_LIMITED": "Bạn đã đọc nhiều link trong giờ này hoặc máy chủ đang bận. Hãy thử lại sau."
+      }
     }
   }
 }

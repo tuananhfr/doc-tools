@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "Liên kết bên ngoài",
         "paragraphs": {
-          "external": "Trang có liên kết tới ERPCons, TekShot AI và các trang khác. Nội dung và chính sách của những trang đó do bên vận hành tương ứng chịu trách nhiệm."
+          "external": "Trang có liên kết tới ERPCons, TekShot AI và các trang khác. Nội dung và chính sách của những trang đó do bên vận hành tương ứng chịu trách nhiệm.",
+          "readLink": "Khi dùng tính năng đọc từ đường dẫn, bạn chịu trách nhiệm về việc được phép đọc nội dung đó. Chuyện Nhỏ chỉ tải trang công khai theo yêu cầu của bạn, tôn trọng robots.txt, không vượt tường phí, không lưu hay phát lại nội dung; quyền đối với bài viết thuộc về bên đăng tải."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "Nội dung góp ý, đề xuất: chỉ khi bạn đánh dấu đồng ý và bấm Gửi, để xem xét và cải thiện công cụ. Mã biên nhận chỉ được lưu dưới dạng băm.",
           "logs": "Nhật ký kỹ thuật của máy chủ web (địa chỉ IP, loại trình duyệt, trang được mở): chỉ dùng cho vận hành và an ninh hệ thống, lưu trong thời gian ngắn cần thiết.",
           "entertainment": "Thần số học gửi họ tên/ngày sinh khi bạn xác nhận; máy chủ tính toán và không lưu các dữ liệu này. Rút bài chỉ gửi số lá và lựa chọn xuôi/ngược. Bộ lá được giữ tạm theo mã phiên; PDF/PNG tạo trên thiết bị.",
-          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn."
+          "dynamicQr": "QR tĩnh xử lý trên thiết bị. Nhánh QR động Free chỉ gửi đường dẫn HTTPS và hạn dùng sau khi bạn đồng ý; server giữ đích, thời gian và bản băm khóa quản lý đến khi người vận hành xóa. QR động cần mạng; khóa chỉ lưu trên thiết bị khi bạn chọn.",
+          "readLink": "Đọc to từ đường dẫn (khi tính năng được bật): đường dẫn bạn dán được gửi tới máy chủ để tải trang công khai đó và trích phần chữ của bài. Máy chủ không lưu đường dẫn, nội dung trang hay kết quả; chỉ giữ bản băm địa chỉ IP để giới hạn số lượt và tự xoá trong vòng 2 giờ."
         }
       },
       "tai-khoan": {

@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "텍스트 소리 내어 읽기",
       "description": "기기의 읽기 음성으로 텍스트 듣기",
-      "synonyms": "text to speech, tts, 텍스트 읽기, 음성 변환"
+      "synonyms": "text to speech, tts, 텍스트 읽기, 음성 변환",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR 송금",

@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "외부 링크",
         "paragraphs": {
-          "external": "사이트에는 ERPCons, TekShot AI 및 기타 사이트로 가는 링크가 있습니다. 해당 사이트의 콘텐츠와 정책은 각 운영자가 책임집니다."
+          "external": "사이트에는 ERPCons, TekShot AI 및 기타 사이트로 가는 링크가 있습니다. 해당 사이트의 콘텐츠와 정책은 각 운영자가 책임집니다.",
+          "readLink": "When you read from a link, you are responsible for being allowed to read that content. Chuyện Nhỏ only fetches public pages at your request, respects robots.txt, does not bypass paywalls and does not store or republish the content; rights in the article belong to its publisher."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "의견·제안 내용: 이용자가 동의에 체크하고 보내기를 눌렀을 때만, 검토와 도구 개선을 위해 처리합니다. 접수 번호는 해시 형태로만 저장합니다.",
           "logs": "웹 서버 기술 로그(IP 주소, 브라우저 종류, 열린 페이지): 시스템 운영과 보안에만 사용하며, 필요한 짧은 기간 동안만 보관합니다.",
           "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when the feature is enabled): the address you paste is sent to the server to fetch that public page and extract the article text. The server stores neither the address, the page content nor the result; it keeps only a hash of your IP address to limit usage, deleted within 2 hours."
         }
       },
       "tai-khoan": {

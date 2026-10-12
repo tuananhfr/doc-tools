@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "ပြင်ပ လင့်ခ်များ",
         "paragraphs": {
-          "external": "ဆိုက်တွင် ERPCons၊ TekShot AI နှင့် အခြားဆိုက်များသို့ လင့်ခ်များ ပါရှိသည်။ ထိုဆိုက်များ၏ အကြောင်းအရာနှင့် မူဝါဒများအတွက် သက်ဆိုင်ရာ လည်ပတ်သူက တာဝန်ယူသည်။"
+          "external": "ဆိုက်တွင် ERPCons၊ TekShot AI နှင့် အခြားဆိုက်များသို့ လင့်ခ်များ ပါရှိသည်။ ထိုဆိုက်များ၏ အကြောင်းအရာနှင့် မူဝါဒများအတွက် သက်ဆိုင်ရာ လည်ပတ်သူက တာဝန်ယူသည်။",
+          "readLink": "When you read from a link, you are responsible for being allowed to read that content. Chuyện Nhỏ only fetches public pages at your request, respects robots.txt, does not bypass paywalls and does not store or republish the content; rights in the article belong to its publisher."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "အကြံပြုချက်၊ အဆိုပြုချက် အကြောင်းအရာ- သင်သဘောတူကြောင်း အမှတ်ခြစ်ပြီး ပို့ရန် နှိပ်မှသာ၊ ကိရိယာကို သုံးသပ်တိုးတက်စေရန်။ လက်ခံဖြတ်ပိုင်းကုဒ်ကို hash ပုံစံဖြင့်သာ သိမ်းသည်။",
           "logs": "ဝဘ်ဆာဗာ၏ နည်းပညာ မှတ်တမ်း (IP လိပ်စာ၊ ဘရောက်ဇာ အမျိုးအစား၊ ဖွင့်သော စာမျက်နှာ)- စနစ်လည်ပတ်မှုနှင့် လုံခြုံရေးအတွက်သာ သုံးပြီး လိုအပ်သော အချိန်တိုအတွင်းသာ သိမ်းသည်။",
           "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when the feature is enabled): the address you paste is sent to the server to fetch that public page and extract the article text. The server stores neither the address, the page content nor the result; it keeps only a hash of your IP address to limit usage, deleted within 2 hours."
         }
       },
       "tai-khoan": {

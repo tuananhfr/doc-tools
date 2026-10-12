@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "朗讀文字",
       "description": "用裝置的語音朗讀文字",
-      "synonyms": "文字轉語音,text to speech,朗讀"
+      "synonyms": "文字轉語音,text to speech,朗讀",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR 轉帳",

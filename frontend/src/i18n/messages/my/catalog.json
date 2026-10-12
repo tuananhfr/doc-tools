@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "စာသားကို အသံထွက်ဖတ်ရန်",
       "description": "စက်၏ ဖတ်ပြသည့်အသံဖြင့် စာသားကို နားထောင်ပါ",
-      "synonyms": "text to speech, စာသား နားထောင်, စာဖတ်ပြ"
+      "synonyms": "text to speech, စာသား နားထောင်, စာဖတ်ပြ",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR ငွေလွှဲ",

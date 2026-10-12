@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "អានអត្ថបទឮៗ",
       "description": "ប្រើសំឡេងអានរបស់ឧបករណ៍ដើម្បីស្តាប់អត្ថបទ",
-      "synonyms": "text to speech, ស្តាប់អត្ថបទ, អានអត្ថបទ"
+      "synonyms": "text to speech, ស្តាប់អត្ថបទ, អានអត្ថបទ",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR ផ្ទេរប្រាក់",

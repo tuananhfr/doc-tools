@@ -1027,7 +1027,8 @@
           "pro": "Pro: items you choose to save; AI chats go to the AI provider you chose",
           "soon_one": "{{count}} upcoming tool will need server lookups; its card says so clearly",
           "soon_other": "{{count}} upcoming tools will need server lookups; their cards say so clearly",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when enabled): only the address you paste is sent, so the server can fetch that public page for you and return the article text; the address and the content are not stored. Pasted text and files are still read on your device."
         }
       },
       "local": {
@@ -1338,6 +1339,10 @@
       "de-xuat": {
         "question": "I'd like to suggest a new tool.",
         "answer": "Please do! Use the Suggest a tool page: you'll get a receipt code to check the review status later."
+      },
+      "doc-link": {
+        "question": "Does reading an article from a link send anything?",
+        "answer": "Yes, but only when you use the Link tab (the feature may be switched off). Chuyện Nhỏ sends the address you paste; the server fetches that public HTTPS page, respects robots.txt, does not bypass paywalls and returns only the article text. The address and the content are not stored; your IP address is only hashed to limit how often you can use it. Pasted text and opened files are still processed on your device."
       }
     },
     "links": {

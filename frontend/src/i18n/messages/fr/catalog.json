@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "Lire un texte à voix haute",
       "description": "Écouter un texte avec la voix de l'appareil",
-      "synonyms": "synthèse vocale, text to speech, tts, écouter un texte"
+      "synonyms": "synthèse vocale, text to speech, tts, écouter un texte",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR virement",

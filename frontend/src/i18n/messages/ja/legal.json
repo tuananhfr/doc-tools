@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "外部リンク",
         "paragraphs": {
-          "external": "本サイトには ERPCons、TekShot AI およびその他のサイトへのリンクがあります。それらのサイトの内容とポリシーについては、各運営者が責任を負います。"
+          "external": "本サイトには ERPCons、TekShot AI およびその他のサイトへのリンクがあります。それらのサイトの内容とポリシーについては、各運営者が責任を負います。",
+          "readLink": "When you read from a link, you are responsible for being allowed to read that content. Chuyện Nhỏ only fetches public pages at your request, respects robots.txt, does not bypass paywalls and does not store or republish the content; rights in the article belong to its publisher."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "ご意見・提案の内容: あなたが同意にチェックを入れて「送信」を押した場合のみ、ツールの検討と改善のために使用します。受付番号はハッシュ化した形でのみ保存します。",
           "logs": "Webサーバーの技術ログ（IPアドレス、ブラウザの種類、開かれたページ）: システムの運用とセキュリティのためにのみ使用し、必要な短期間だけ保存します。",
           "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when the feature is enabled): the address you paste is sent to the server to fetch that public page and extract the article text. The server stores neither the address, the page content nor the result; it keeps only a hash of your IP address to limit usage, deleted within 2 hours."
         }
       },
       "tai-khoan": {

@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "ອ່ານຂໍ້ຄວາມອອກສຽງ",
       "description": "ໃຊ້ສຽງອ່ານຂອງອຸປະກອນເພື່ອຟັງຂໍ້ຄວາມ",
-      "synonyms": "text to speech, ຟັງຂໍ້ຄວາມ, ອ່ານຂໍ້ຄວາມ"
+      "synonyms": "text to speech, ຟັງຂໍ້ຄວາມ, ອ່ານຂໍ້ຄວາມ",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR ໂອນເງິນ",

@@ -113,6 +113,18 @@
       "OCR_UNCERTAIN": "Text recognised from scanned pages may be wrong. You can listen only after checking it.",
       "OFFLINE": "You are offline. Online voices and the first download of the Chuyen Nho voice need a connection; you can still read the text.",
       "TOO_LARGE": "This content is too large to process on this device. Split the file or paste one part at a time."
+    },
+    "link": {
+      "label": "Article address (HTTPS)",
+      "placeholder": "https://…",
+      "fetch": "Get the text",
+      "fetching": "Loading the article…",
+      "privacy": "The Chuyện Nhỏ server fetches this page for you and returns only the article text. The address and the content are not stored. Paid pages and pages that block automated reading are not fetched.",
+      "loaded": "Text loaded from {{host}}. Check it before listening.",
+      "errors": {
+        "INVALID": "Enter an address that starts with https://",
+        "RATE_LIMITED": "You have read many links this hour or the server is busy. Try again later."
+      }
     }
   }
 }

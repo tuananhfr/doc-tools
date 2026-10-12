@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "Liens externes",
         "paragraphs": {
-          "external": "Le site contient des liens vers ERPCons, TekShot AI et d'autres sites. Le contenu et les politiques de ces sites relèvent de la responsabilité de leurs exploitants respectifs."
+          "external": "Le site contient des liens vers ERPCons, TekShot AI et d'autres sites. Le contenu et les politiques de ces sites relèvent de la responsabilité de leurs exploitants respectifs.",
+          "readLink": "When you read from a link, you are responsible for being allowed to read that content. Chuyện Nhỏ only fetches public pages at your request, respects robots.txt, does not bypass paywalls and does not store or republish the content; rights in the article belong to its publisher."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "Contenu des remarques et propositions : uniquement si vous cochez la case de consentement et appuyez sur Envoyer, afin de les examiner et d'améliorer les outils. Les codes de reçu ne sont conservés que sous forme hachée.",
           "logs": "Journaux techniques du serveur web (adresse IP, type de navigateur, pages consultées) : utilisés uniquement pour le fonctionnement et la sécurité du système, et conservés pendant la courte durée nécessaire.",
           "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when the feature is enabled): the address you paste is sent to the server to fetch that public page and extract the article text. The server stores neither the address, the page content nor the result; it keeps only a hash of your IP address to limit usage, deleted within 2 hours."
         }
       },
       "tai-khoan": {

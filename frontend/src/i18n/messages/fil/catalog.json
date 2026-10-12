@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "Basahin nang malakas",
       "description": "Gamitin ang boses ng device para pakinggan ang text",
-      "synonyms": "text to speech, pakinggan ang text, read aloud"
+      "synonyms": "text to speech, pakinggan ang text, read aloud",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR bank transfer",

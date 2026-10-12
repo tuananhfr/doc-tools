@@ -74,7 +74,8 @@
       "lien-ket": {
         "heading": "外部連結",
         "paragraphs": {
-          "external": "本網站含有連往 ERPCons、TekShot AI 及其他網站的連結。這些網站的內容與政策由各自的營運方負責。"
+          "external": "本網站含有連往 ERPCons、TekShot AI 及其他網站的連結。這些網站的內容與政策由各自的營運方負責。",
+          "readLink": "When you read from a link, you are responsible for being allowed to read that content. Chuyện Nhỏ only fetches public pages at your request, respects robots.txt, does not bypass paywalls and does not store or republish the content; rights in the article belong to its publisher."
         }
       },
       "trach-nhiem": {
@@ -147,7 +148,8 @@
           "feedback": "意見、建議內容：僅在你勾選同意並按下「送出」時，用於審閱及改進工具。收據編號只以雜湊形式儲存。",
           "logs": "網頁伺服器的技術日誌（IP 位址、瀏覽器類型、開啟的頁面）：僅用於系統營運與安全，保存期間以必要的短時間為限。",
           "entertainment": "Numerology sends names and birth dates after your consent; the server calculates without storing these inputs. Card draws send only the card count and orientation choice. Draws are held temporarily under a session key; PDF/PNG files are created on-device.",
-          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in."
+          "dynamicQr": "Static QR runs on device. Free dynamic QR sends the HTTPS destination and expiry only after consent. The server retains destination, times and a management-key hash until operator deletion. Dynamic QR requires a network; device key storage is opt-in.",
+          "readLink": "Read aloud from a link (when the feature is enabled): the address you paste is sent to the server to fetch that public page and extract the article text. The server stores neither the address, the page content nor the result; it keeps only a hash of your IP address to limit usage, deleted within 2 hours."
         }
       },
       "tai-khoan": {

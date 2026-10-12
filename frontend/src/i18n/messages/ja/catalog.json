@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "テキスト読み上げ",
       "description": "端末の音声でテキストを聞く",
-      "synonyms": "text to speech, 読み上げ, 音声"
+      "synonyms": "text to speech, 読み上げ, 音声",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR 振込",

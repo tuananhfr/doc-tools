@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "Read text aloud",
       "description": "Listen to pasted text or a PDF, Word or TXT file with your device voice or the Chuyen Nho voice",
-      "synonyms": "text to speech, tts, listen to text, read aloud"
+      "synonyms": "text to speech, tts, listen to text, read aloud",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR bank transfer",

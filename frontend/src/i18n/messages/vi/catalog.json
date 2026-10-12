@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "Đọc to văn bản",
       "description": "Nghe văn bản dán vào hoặc tệp PDF, Word, TXT bằng giọng của thiết bị hoặc giọng Chuyện Nhỏ",
-      "synonyms": "text to speech, nghe chữ, đọc văn bản"
+      "synonyms": "text to speech, nghe chữ, đọc văn bản",
+      "privacyNote": "Văn bản và tệp đọc trên thiết bị; thẻ Link (khi bật) gửi đường dẫn để máy chủ tải bài hộ, không lưu."
     },
     "vietqr": {
       "name": "VietQR chuyển khoản",

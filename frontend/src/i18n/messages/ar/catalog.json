@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "قراءة النص بصوت عالٍ",
       "description": "استخدم صوت الجهاز للاستماع إلى النص",
-      "synonyms": "تحويل النص إلى كلام, استماع, قراءة النص, text to speech"
+      "synonyms": "تحويل النص إلى كلام, استماع, قراءة النص, text to speech",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR للتحويل البنكي",

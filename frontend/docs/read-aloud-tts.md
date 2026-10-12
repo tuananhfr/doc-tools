@@ -44,8 +44,9 @@ Each read or export starts a worker and terminates it when done, stopped or unmo
 
 ## Input sources, voice choice and player (WP4-A)
 
-- Tabs: Paste text / File / Article link. The link tab is hidden (`READ_LINK_TAB_ENABLED = false` in
-  `config/read-listen.ts`) until WP4-B ships the server-side safe fetch. Tabs are hidden, not unmounted, so switching
+- Tabs: Paste text / File / Article link. The link tab shows only when `GET /api/v1/read/config` returns `linkEnabled: true` (`app_settings.read.linkEnabled`,
+  off by default until Legal signs; see `backend/docs/api.md`). `ReadLinkPanel` sends only `{url}` and fills a
+  `ReadSource` of kind `link`; every error offers "paste text instead". Tabs are hidden, not unmounted, so switching
   keeps the pasted text, the loaded file and an unfinished OCR review.
 - File tab (`components/ReadFilePanel.tsx`, lazy): kind is sniffed from the first bytes (`utils/read-source.ts`).
   TXT: BOM → strict UTF-8 → windows-1258, NFC, NUL = binary → `UNSUPPORTED`. DOCX: only `word/document.xml` is

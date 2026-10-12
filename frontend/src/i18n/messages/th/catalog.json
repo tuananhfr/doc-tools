@@ -148,7 +148,8 @@
     "read-aloud": {
       "name": "อ่านข้อความออกเสียง",
       "description": "ใช้เสียงอ่านของอุปกรณ์เพื่อฟังข้อความ",
-      "synonyms": "text to speech, ฟังข้อความ, อ่านออกเสียง"
+      "synonyms": "text to speech, ฟังข้อความ, อ่านออกเสียง",
+      "privacyNote": "Text and files are read on your device; the Link tab (when enabled) sends the address so the server can fetch the article, nothing is stored."
     },
     "vietqr": {
       "name": "VietQR โอนเงิน",
