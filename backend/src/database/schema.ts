@@ -96,6 +96,24 @@ export const SCHEMA = [
     status ENUM('RECEIVED', 'IN_PROGRESS', 'RESOLVED', 'REJECTED') NOT NULL,
     INDEX (status)
   ) ENGINE=InnoDB`,
+  // Feedback status lives here, not in the ENUM table above: a VARCHAR takes new states without ALTER.
+  // The ENUM table is still written with the nearest old status so the previous build can run (rollback).
+  `CREATE TABLE IF NOT EXISTS contribution_feedback_state (
+    contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    status VARCHAR(24) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    duplicate_of CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NULL,
+    triaged_by VARCHAR(128) NULL,
+    updated_at BIGINT UNSIGNED NOT NULL,
+    INDEX (status), INDEX (duplicate_of)
+  ) ENGINE=InnoDB`,
+  // One row per meaning-level key, pointing at the first report; `contributions.duplicate_hash` is UNIQUE
+  // forever, so a second copy of closed feedback could not be stored under it.
+  `CREATE TABLE IF NOT EXISTS contribution_feedback_keys (
+    feedback_key CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    INDEX (contribution_id)
+  ) ENGINE=InnoDB`,
   `CREATE TABLE IF NOT EXISTS contribution_audit (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     contribution_id CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,

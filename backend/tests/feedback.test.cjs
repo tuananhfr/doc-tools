@@ -111,3 +111,45 @@ test('feedback API separates internal handling from data review and retries safe
     await app.close()
   }
 })
+
+const { migrateFeedbackState } = require('../dist/database/migrations')
+const { feedbackKey, normalizeFeedbackText } = require('../dist/contributions/feedback-workflow')
+
+test('feedback keys ignore spacing and case but keep Vietnamese marks', () => {
+  assert.equal(normalizeFeedbackText('  Nút TẢI\n\n không   chạy '), 'nút tải không chạy')
+  const changes = text => [{ field: 'bug', before: '', after: text }]
+  assert.equal(feedbackKey('nen-anh', 'feedback-bug', changes('Nút tải không chạy')), feedbackKey('nen-anh', 'feedback-bug', changes('nút  TẢI không chạy ')))
+  assert.notEqual(feedbackKey('nen-anh', 'feedback-bug', changes('Nút tải không chạy')), feedbackKey('nen-anh', 'feedback-bug', changes('Nút tai khong chay')))
+  assert.notEqual(feedbackKey('nen-anh', 'feedback-bug', changes('x')), feedbackKey('nen-anh', 'feedback-improvement', changes('x')))
+  assert.notEqual(feedbackKey('nen-anh', 'feedback-bug', changes('x')), feedbackKey('ghep-pdf', 'feedback-bug', changes('x')))
+})
+
+test('feedback state migration copies legacy rows once and keys them for dedupe', async () => {
+  const database = new DatabaseService()
+  const tag = randomBytes(7).toString('hex')
+  const toolId = `qa-migrate-${tag}`
+  const id = randomUUID()
+  const hash = value => createHash('sha256').update(value).digest('hex')
+  const changes = [{ field: 'bug', before: '', after: `Legacy report ${tag}` }]
+  try {
+    await database.onModuleInit()
+    // A row as the pre-WP5 build wrote it: the ENUM table only, no state or key row.
+    await database.pool.execute('INSERT INTO contributions (id, receipt_hash, duplicate_hash, tool_id, domain, risk, proposed_changes, source_refs, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, hash(`r${tag}`), hash(`d${tag}`), toolId, 'feedback-bug', 'LOW', JSON.stringify(changes), '[]', 'NEEDS_REVIEW'])
+    await database.pool.execute('INSERT INTO contribution_feedback_workflow (contribution_id, status) VALUES (?, ?)', [id, 'IN_PROGRESS'])
+    await migrateFeedbackState(database.pool)
+    await migrateFeedbackState(database.pool)
+    const [states] = await database.pool.execute('SELECT status, duplicate_of FROM contribution_feedback_state WHERE contribution_id = ?', [id])
+    assert.deepEqual(states.map(row => ({ status: row.status, duplicateOf: row.duplicate_of })), [{ status: 'IN_PROGRESS', duplicateOf: null }])
+    const [keys] = await database.pool.execute('SELECT feedback_key FROM contribution_feedback_keys WHERE contribution_id = ?', [id])
+    assert.deepEqual(keys.map(row => row.feedback_key), [feedbackKey(toolId, 'feedback-bug', changes)])
+    // A status already moved in the new table is never overwritten by a later start.
+    await database.pool.execute("UPDATE contribution_feedback_state SET status = 'RELEASED' WHERE contribution_id = ?", [id])
+    await migrateFeedbackState(database.pool)
+    const [[after]] = await database.pool.execute('SELECT status FROM contribution_feedback_state WHERE contribution_id = ?', [id])
+    assert.equal(after.status, 'RELEASED')
+  } finally {
+    for (const table of ['contribution_feedback_state', 'contribution_feedback_workflow', 'contribution_feedback_keys']) await database.pool.execute(`DELETE FROM ${table} WHERE contribution_id = ?`, [id]).catch(() => undefined)
+    await database.pool.execute('DELETE FROM contributions WHERE tool_id = ?', [toolId]).catch(() => undefined)
+    await database.onModuleDestroy()
+  }
+})

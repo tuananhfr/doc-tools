@@ -1,7 +1,7 @@
 import { Injectable, type OnModuleInit, type OnModuleDestroy } from '@nestjs/common'
 import { createPool, type Pool } from 'mysql2/promise'
 import { configuration } from '../config/configuration'
-import { migrateLegacyRuleActive } from './migrations'
+import { migrateFeedbackState, migrateLegacyRuleActive } from './migrations'
 import { SCHEMA } from './schema'
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
@@ -9,6 +9,7 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   async onModuleInit() {
     for (const statement of SCHEMA) await this.pool.query(statement)
     await migrateLegacyRuleActive(this.pool)
+    await migrateFeedbackState(this.pool)
   }
   async onModuleDestroy() { await this.pool.end() }
 }
