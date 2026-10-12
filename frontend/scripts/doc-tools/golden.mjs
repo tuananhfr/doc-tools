@@ -15,6 +15,7 @@ import { createRequire } from 'node:module'
 import fs from 'node:fs'
 import path from 'node:path'
 import { chromium, FIX, HUB, outDir } from './lib/qa.mjs'
+import { QA_RULE_DATA, QA_SOURCE_TITLE, signRulePackage } from './lib/qa-rules.mjs'
 
 const appRequire = createRequire(import.meta.url)
 const { PDFDocument, PDFName, PDFRawStream } = appRequire('pdf-lib')
@@ -35,8 +36,17 @@ const TEXT_SIMILARITY = 0.97
 const GRID_TOLERANCE = 8
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true })
-const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true })
+// Bản production đăng ký service worker; request do SW gửi đi không qua context.route → chặn SW.
+const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true, serviceWorkers: 'block' })
 await context.route('**/api/v1/**', route => route.fulfill({ json: { ok: true, user: null, plan: { pro: false, endsAt: null }, capabilities: ['tool.use'], staff: null, total: 0, tools: {} } }))
+// Gói quy tắc ký bằng khoá QA (lib/qa-rules.mjs): chỉ trang build với NEXT_PUBLIC_RULE_SIGNING_KEY_SPKI
+// của khoá đó mới chấp nhận. `vat` không có gói → trang dùng thuế suất nhập tay, đúng như khi chưa công bố.
+// Route khai SAU route chung nên được ưu tiên.
+await context.route('**/api/v1/rules/*', (route) => {
+  const kind = new URL(route.request().url()).pathname.split('/').pop()
+  const data = QA_RULE_DATA[kind]
+  return route.fulfill({ json: { ok: true, package: data ? signRulePackage(kind, data) : null, upcoming: null } })
+})
 const page = await context.newPage()
 page.on('dialog', (dialog) => void dialog.accept())
 const errors = []
@@ -259,6 +269,33 @@ const staged = (slug, names, before) => async () => {
 
 let qrPng = null
 
+/**
+ * Chọn mẫu: WP3 thay dropdown bằng TemplatePicker (nút `aria-pressed`). Nhãn trỏ vào SELECT thì
+ * chọn option; không thì bấm nút trùng tên trong nhóm — golden chạy được cả trước lẫn sau WP3.
+ */
+async function pickTemplate(group, name) {
+  const labelled = page.getByLabel(group, { exact: true })
+  if ((await labelled.count()) && (await labelled.first().evaluate((element) => element.tagName === 'SELECT'))) {
+    await labelled.first().selectOption({ label: name })
+    return
+  }
+  const scope = (await page.getByRole('group', { name: group }).count()) ? page.getByRole('group', { name: group }) : page.locator('body')
+  await scope.locator('[aria-pressed]').filter({ hasText: name }).first().click()
+  await page.locator('[aria-pressed="true"]').filter({ hasText: name }).first().waitFor({ timeout: 5000 })
+}
+
+/** UI03 / CN-006: đổi mẫu không được làm mất chữ đã nhập — mất là ném lỗi, mục ra `failed`. */
+async function keepsInput(values, lookup = field) {
+  for (const [label, expected] of Object.entries(values)) {
+    const actual = await lookup(label).inputValue()
+    if (actual !== expected) throw new Error(`mất dữ liệu sau khi đổi mẫu: ${label} = "${actual}"`)
+  }
+}
+
+const exportButton = (name) => page.locator('.cn-document-export').first().getByRole('button', { name, exact: true })
+const resultRows = async () => ({ value: await text('.erp-tool-result__value'), rows: await page.locator('.erp-tool-result tbody tr').allInnerTexts() })
+const QR_ID = '00000000-0000-4000-8000-000000000001'
+
 /** Mỗi mục: tệp mẫu + tuỳ chọn CỐ ĐỊNH. Đổi tuỳ chọn ở đây = đổi baseline, phải UPDATE=1. */
 const TOOLS = {
   'anh-sang-pdf': flow('anh-sang-pdf', ['anh-hien-truong.jpg', 'anh-van-ban.jpg']),
@@ -464,6 +501,82 @@ const TOOLS = {
     // Bỏ id và mốc giờ: lần nào cũng khác.
     return { version: stored?.version, notes: (stored?.notes ?? []).map((note) => ({ title: note.title, body: note.body, tasks: note.tasks.length, keys: Object.keys(note).sort() })) }
   },
+  'tao-cv': async () => {
+    await open('tao-cv', '.cn-cv-workspace')
+    // Chữ đã gõ trong textarea nhập vào tên truy cập của nhãn bọc nó, nên tên đúng nguyên văn không còn khớp.
+    const cvField = (label) => (label === 'Giới thiệu ngắn' ? page.getByRole('textbox', { name: /^Giới thiệu ngắn/ }) : field(label))
+    const values = { 'Họ và tên': 'Nguyễn Văn An', 'Vị trí ứng tuyển': 'Kỹ sư giám sát công trình', 'Số điện thoại': '0900000000', Email: 'an.nguyen@example.com', 'Nơi ở': 'Hà Nội', 'Giới thiệu ngắn': 'Tám năm giám sát kết cấu nhà cao tầng.' }
+    for (const [label, value] of Object.entries(values)) await cvField(label).fill(value)
+    // UI03: đổi mẫu ba lần, chữ đã nhập phải còn nguyên sau mỗi lần.
+    for (const name of ['Hiện đại', 'Hai cột', 'Cổ điển']) {
+      await pickTemplate('Mẫu CV', name)
+      await keepsInput(values, cvField)
+    }
+    const pdf = strip(await download(exportButton('Tải PDF')))
+    // UI04 / CN-016: tải xong vẫn sửa tiếp được, đổi mẫu rồi tải bản khác.
+    await field('Vị trí ứng tuyển').fill('Chỉ huy trưởng công trường')
+    await pickTemplate('Mẫu CV', 'Gọn gàng')
+    await keepsInput({ ...values, 'Vị trí ứng tuyển': 'Chỉ huy trưởng công trường' }, cvField)
+    const docx = strip(await download(exportButton('Tải DOCX')))
+    return { pdf, docx }
+  },
+  'mau-don': async () => {
+    await open('mau-don', '.cn-document-export')
+    await pickTemplate('Loại giấy tờ', 'Biên nhận tiền')
+    const values = { 'Người giao tiền': 'Trần Thị Bình', 'Bên nhận (họ tên, chức vụ)': 'Lê Văn Cường, thủ quỹ', 'Nội dung nhận tiền': 'Tạm ứng vật tư đợt 1', 'Nơi lập': 'Hà Nội' }
+    for (const [label, value] of Object.entries(values)) await field(label).fill(value)
+    await field('Số tiền (đồng)').fill('15000000')
+    // Ngày cố định: để trống thì bản in lấy ngày chạy và chữ ký đổi mỗi ngày.
+    await field('Ngày nhận tiền').fill('5/10/2026')
+    return { pdf: strip(await download(exportButton('Tải PDF'))) }
+  },
+  'tien-dien': async () => {
+    await open('tien-dien', '.erp-tool-result')
+    await page.getByRole('button', { name: 'Áp dụng bảng giá đã ký' }).click()
+    await field('Điện tiêu thụ (kWh)').fill('175')
+    const result = await settled(resultRows)
+    // TRUST01: kết quả phải nói rõ đang dùng gói ký của nguồn nào.
+    return { ...result, source: (await page.locator('.erp-tool-result').innerText()).includes(QA_SOURCE_TITLE) }
+  },
+  luong: async () => {
+    await open('luong', '.erp-tool-result')
+    await page.getByRole('button', { name: 'Áp dụng tham số đã ký' }).click()
+    await field('Lương Gross (đ/tháng)').fill('30000000')
+    await field('Người phụ thuộc').fill('1')
+    const result = await settled(resultRows)
+    return { ...result, source: (await page.locator('.erp-tool-result').innerText()).includes(QA_SOURCE_TITLE) }
+  },
+  'quan-ly-ma': async () => {
+    // API giả: golden không được tạo mã thật trên backend.
+    await page.route('**/api/v1/codes', (route) => route.request().method() === 'POST'
+      ? route.fulfill({ json: { ok: true, id: QR_ID, resolve_url: `${new URL(HUB).origin}/api/v1/codes/${'A'.repeat(32)}/resolve`, manage_key: 'B'.repeat(43), expires_at: null } })
+      : route.fallback())
+    try {
+      await open('quan-ly-ma', 'input[type=url]')
+      await field('Đường dẫn đích HTTPS').fill('https://example.com/ho-so/123')
+      await page.getByLabel('Tôi đồng ý lưu đường dẫn và các thông tin trên để tạo QR động.').check()
+      await page.getByRole('button', { name: 'Tạo QR động' }).click()
+      await page.locator('.erp-qr-payload').waitFor({ timeout: 15000 })
+      return { payload: await text('.erp-qr-payload'), file: strip(await download(page.getByRole('button', { name: 'Tải mã QR' }))) }
+    } finally {
+      await page.unroute('**/api/v1/codes')
+    }
+  },
+  'quan-ly-ma#rate-limit': async () => {
+    // CN-020: server quá tải / vượt trần phải ra câu người dùng đọc được và giữ nguyên chữ đã nhập.
+    await page.route('**/api/v1/codes', (route) => route.fulfill({ status: 429, json: { ok: false, code: 'CODE_RATE_LIMITED', message: 'rate limited' } }))
+    try {
+      await open('quan-ly-ma', 'input[type=url]')
+      await field('Đường dẫn đích HTTPS').fill('https://example.com/ho-so/456')
+      await page.getByLabel('Tôi đồng ý lưu đường dẫn và các thông tin trên để tạo QR động.').check()
+      await page.getByRole('button', { name: 'Tạo QR động' }).click()
+      const alert = page.getByRole('alert').filter({ hasText: 'giới hạn' })
+      await alert.waitFor({ timeout: 15000 })
+      return { alert: squash(await alert.innerText()), destinationKept: await field('Đường dẫn đích HTTPS').inputValue() }
+    } finally {
+      await page.unroute('**/api/v1/codes')
+    }
+  },
 }
 
 // ---------- Chạy ----------
@@ -474,7 +587,9 @@ const report = {}
 
 // Chỉ cần một trang cùng origin để giải mã ảnh; không chờ lưới thẻ — trang chọn công cụ hỏng không được kéo golden hỏng theo.
 await page.goto(HUB)
-const actualBuild = await page.evaluate(async () => (await (await fetch('/offline-manifest.json')).json()).version)
+// Manifest chỉ có sau `npm run build`; dev server không có → ghi 'dev' thay vì ngã cả golden.
+const manifest = await page.request.get(new URL('offline-manifest.json', HUB + '/').href).catch(() => null)
+const actualBuild = manifest?.ok() ? (await manifest.json()).version : 'dev'
 if (process.env.EXPECTED_BUILD && actualBuild !== process.env.EXPECTED_BUILD) throw new Error('Unexpected application build')
 
 for (const [key, drive] of Object.entries(TOOLS)) {

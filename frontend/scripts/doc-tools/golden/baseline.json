@@ -1,6 +1,6 @@
 {
-  "recorded": "2026-10-03",
-  "chrome": "154.0.8037.93",
+  "recorded": "2026-10-12",
+  "chrome": "155.0.8059.39",
   "tools": {
     "anh-sang-pdf": {
       "input": {
@@ -3306,6 +3306,172 @@
       "info": {
         "ms": 111,
         "bytes": 974
+      }
+    },
+    "tao-cv": {
+      "input": {},
+      "output": {
+        "pdf": {
+          "name": "Nguyễn Văn An.pdf",
+          "kind": "pdf",
+          "pages": 1,
+          "sizes": [
+            "595x842/0"
+          ],
+          "images": 0,
+          "fields": 0,
+          "textLength": 139,
+          "text": "Nguyễn Văn An Kỹ sư giám sát công trình 0900000000 · an.nguyen@example.com · Hà Nội Giới thiệu Tám năm giám sát kết cấu nhà cao tầng. 1 / 1"
+        },
+        "docx": {
+          "name": "Nguyễn Văn An.docx",
+          "kind": "docx",
+          "textLength": 134,
+          "text": "Nguyễn Văn An Chỉ huy trưởng công trường 0900000000 · an.nguyen@example.com · Hà Nội Giới thiệu Tám năm giám sát kết cấu nhà cao tầng."
+        }
+      },
+      "info": {
+        "ms": null,
+        "bytes": 10638
+      }
+    },
+    "mau-don": {
+      "input": {},
+      "output": {
+        "pdf": {
+          "name": "Biên nhận tiền.pdf",
+          "kind": "pdf",
+          "pages": 1,
+          "sizes": [
+            "595x842/0"
+          ],
+          "images": 0,
+          "fields": 0,
+          "textLength": 515,
+          "text": "CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc Hà Nội, ngày 5 tháng 10 năm 2026 Biên nhận tiền Người giao tiền: Trần Thị Bình Người nhận tiền: Lê Văn Cường, thủ quỹ Số tiền đã nhận: 15.000.000 đồng Bằng chữ (đồng): Mười lăm triệu Nội dung nhận tiền: Tạm ứng vật tư đợt 1 Hai bên xác nhận đã giao và nhận đủ số tiền nêu trên. Biên nhận được lập thành hai bản, mỗi bên giữ một bản. Bên nhận Người giao tiền (Ký, ghi rõ họ tên) Mẫu tham khảo; hãy kiểm tra yêu cầu của nơi tiếp nhận trước khi nộp. 1 / 1"
+        }
+      },
+      "info": {
+        "ms": null,
+        "bytes": 17847
+      }
+    },
+    "tien-dien": {
+      "input": {},
+      "output": {
+        "value": "302.500 đ",
+        "rows": [
+          "50\t50\t1.000\t50.000",
+          "100\t50\t1.500\t75.000",
+          "Còn lại\t75\t2.000\t150.000"
+        ],
+        "source": true
+      },
+      "info": {
+        "ms": null,
+        "bytes": null
+      }
+    },
+    "luong": {
+      "input": {},
+      "output": {
+        "value": "Thực nhận 25.882.500 đ",
+        "rows": [
+          "Gross\t30.000.000 đ",
+          "BHXH người lao động\t2.400.000 đ",
+          "BHYT người lao động\t450.000 đ",
+          "BHTN người lao động\t300.000 đ",
+          "Giảm trừ\t15.400.000 đ",
+          "Thu nhập tính thuế\t11.450.000 đ",
+          "Bậc 1 · 5%\t250.000 đ",
+          "Bậc 2 · 10%\t500.000 đ",
+          "Bậc 3 · 15%\t217.500 đ",
+          "Thuế TNCN\t967.500 đ",
+          "Doanh nghiệp đóng thêm\t6.450.000 đ",
+          "Tổng chi phí doanh nghiệp\t36.450.000 đ"
+        ],
+        "source": true
+      },
+      "info": {
+        "ms": null,
+        "bytes": null
+      }
+    },
+    "quan-ly-ma": {
+      "input": {},
+      "output": {
+        "payload": "https://example.com/ho-so/123",
+        "file": {
+          "name": "qr-00000000-0000-4000-8000-000000000001.png",
+          "kind": "png",
+          "width": 1035,
+          "height": 1035,
+          "grid": [
+            208,
+            213,
+            219,
+            192,
+            198,
+            208,
+            190,
+            197,
+            206,
+            207,
+            213,
+            218,
+            191,
+            198,
+            207,
+            137,
+            149,
+            166,
+            142,
+            154,
+            170,
+            184,
+            192,
+            202,
+            181,
+            189,
+            199,
+            123,
+            137,
+            156,
+            136,
+            149,
+            166,
+            185,
+            192,
+            203,
+            206,
+            211,
+            217,
+            188,
+            195,
+            204,
+            190,
+            197,
+            206,
+            209,
+            213,
+            220
+          ]
+        }
+      },
+      "info": {
+        "ms": null,
+        "bytes": 27805
+      }
+    },
+    "quan-ly-ma#rate-limit": {
+      "input": {},
+      "output": {
+        "alert": "Đã đạt giới hạn tạo QR trong giờ này. Hãy thử lại sau.",
+        "destinationKept": "https://example.com/ho-so/456"
+      },
+      "info": {
+        "ms": null,
+        "bytes": null
       }
     }
   }
