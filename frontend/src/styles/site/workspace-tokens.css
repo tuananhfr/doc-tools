@@ -31,3 +31,6 @@
 [data-theme='dark'] :is(.cn-shell--tool, body:has(.cn-shell--tool) > .modal) {
   --erp-action-secondary-hover: #b4d4ff;
 }
+/* Outline buttons keep ERPCons brand/danger hues that drop to 2.9:1 and 3.7:1 on the dark surface; use the dark-theme accents instead. */
+[data-theme='dark'] :is(.cn-shell--tool, body:has(.cn-shell--tool) > .modal) .btn-outline-primary { --bs-btn-color: var(--cn-accent); --bs-btn-border-color: var(--cn-accent); }
+[data-theme='dark'] :is(.cn-shell--tool, body:has(.cn-shell--tool) > .modal) .btn-outline-danger { --bs-btn-color: #ff8e9c; --bs-btn-border-color: #ff8e9c; }

@@ -52,8 +52,9 @@
 .cn-admin-topbar { display: none; }
 .cn-admin-scrim { display: none; }
 .cn-admin-main { max-width: 1280px; padding: 28px 32px 56px; outline: none; }
-.cn-skip-link { position: absolute; left: 12px; top: -48px; z-index: 50; padding: 8px 12px; border-radius: var(--cn-radius-button); background: var(--cn-surface); }
-.cn-skip-link:focus { top: 12px; }
+/* Scoped: unscoped, this rule repainted the public site's skip link white-on-white. */
+.cn-admin > .cn-skip-link { position: absolute; left: 12px; top: -48px; z-index: 50; padding: 8px 12px; border-radius: var(--cn-radius-button); background: var(--cn-surface); }
+.cn-admin > .cn-skip-link:focus { top: 12px; }
 
 @media (max-width: 991.98px) {
   .cn-admin:not(.is-gate) { grid-template-columns: minmax(0, 1fr); }
