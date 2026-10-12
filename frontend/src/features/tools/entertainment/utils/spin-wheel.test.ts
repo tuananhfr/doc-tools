@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseOptions, randomFraction, randomIndex, sliceAtPointer, spinTarget, WHEEL_LIMITS } from './spin-wheel'
+import { angleFromTransform, bordersCrossed, forwardDelta, parseOptions, randomFraction, randomIndex, sliceAtPointer, spinTarget, WHEEL_LIMITS } from './spin-wheel'
 import { MAX_SAVED_LISTS, parseWheelLists, saveWheelList, type WheelList } from '../services/wheel-lists.store'
 
 describe('parseOptions', () => {
@@ -62,6 +62,29 @@ describe('spinTarget', () => {
         }
       }
     }
+  })
+})
+
+describe('tick tracking', () => {
+  it('reads the rotation back from a computed matrix', () => {
+    const matrix = (deg: number) => {
+      const rad = (deg * Math.PI) / 180
+      return `matrix(${Math.cos(rad)}, ${Math.sin(rad)}, ${-Math.sin(rad)}, ${Math.cos(rad)}, 0, 0)`
+    }
+    for (const deg of [0, 45, 179, 181, 359]) expect(angleFromTransform(matrix(deg))).toBeCloseTo(deg, 6)
+    expect(angleFromTransform('none')).toBeNull()
+  })
+
+  it('unwraps travel across the 0/360 seam', () => {
+    expect(forwardDelta(350, 10)).toBe(20)
+    expect(forwardDelta(10, 40)).toBe(30)
+  })
+
+  it('counts each slice border passed once', () => {
+    expect(bordersCrossed(0, 89, 4)).toBe(0)
+    expect(bordersCrossed(89, 91, 4)).toBe(1)
+    expect(bordersCrossed(10, 370, 4)).toBe(4)
+    expect(bordersCrossed(0, 6 * 360, 30)).toBe(180)
   })
 })
 

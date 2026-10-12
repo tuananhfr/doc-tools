@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { parseOptions, randomFraction, randomIndex, spinTarget, WHEEL_LIMITS } from '../utils/spin-wheel'
+import { playWin, primeWheelSound, readSoundPreference, writeSoundPreference } from '../services/wheel-sound'
 
 const SPIN_MS = 4200
 const SPIN_TURNS = 6
@@ -19,10 +20,14 @@ export function useSpinWheel(initialText: string) {
   const [rotation, setRotation] = useState(0)
   const [durationMs, setDurationMs] = useState(SPIN_MS)
   const [spinning, setSpinning] = useState(false)
+  const [soundOn, setSoundOnState] = useState(readSoundPreference)
   const timer = useRef<number | undefined>(undefined)
   const pending = useRef<string | null>(null)
+  const soundRef = useRef(soundOn)
 
   useEffect(() => () => window.clearTimeout(timer.current), [])
+  // finishSpin is stable and may fire from a stale timer, so it reads the switch through a ref.
+  useEffect(() => { soundRef.current = soundOn }, [soundOn])
 
   const parsed = useMemo(() => parseOptions(text), [text])
   // Edited text can drop an eliminated option; only names still in the list count as removed.
@@ -42,10 +47,12 @@ export function useSpinWheel(initialText: string) {
     setSpinning(false)
     setWinner(chosen)
     setHistory((current) => [...current, chosen])
+    if (soundRef.current) playWin()
   }, [])
 
   const spin = useCallback(() => {
     if (!canSpin) return
+    if (soundOn) primeWheelSound()
     if (leaving) setRemoved((current) => [...current, leaving])
     const index = randomIndex(pool.length)
     const chosen = pool[index]
@@ -59,7 +66,12 @@ export function useSpinWheel(initialText: string) {
     pending.current = chosen
     window.clearTimeout(timer.current)
     timer.current = window.setTimeout(finishSpin, duration ? duration + SPIN_FALLBACK_MS : 0)
-  }, [canSpin, leaving, pool, rotation, finishSpin])
+  }, [canSpin, leaving, pool, rotation, finishSpin, soundOn])
+
+  const setSoundOn = useCallback((on: boolean) => {
+    setSoundOnState(on)
+    writeSoundPreference(on)
+  }, [])
 
   const restore = useCallback(() => {
     setRemoved([])
@@ -78,7 +90,9 @@ export function useSpinWheel(initialText: string) {
     text, setText, replaceText, parsed,
     wheelOptions: active, pool,
     eliminate, setEliminate, removedCount: parsed.options.length - active.length,
-    history, winner, rotation, durationMs, spinning, canSpin, spin, finishSpin, restore,
+    history, winner, rotation, durationMs, spinning, canSpin, spin, finishSpin, restore, soundOn, setSoundOn,
+    // Highlighted only after the wheel stops, never mid-spin.
+    winnerIndex: !spinning && winner !== null ? active.indexOf(winner) : -1,
   }
 }
 

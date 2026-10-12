@@ -98,22 +98,25 @@
 }
 
 /* Spin wheel. Slice colours stay fixed across themes: white labels keep >= 4.5:1 on every one. */
-.cn-wheel-stage { align-items: center; text-align: center; }
+/* Slice palette as tokens: the confetti reads the same six colours. */
+.cn-wheel-stage { --cn-wheel-c0: #005be8; --cn-wheel-c1: #0c254d; --cn-wheel-c2: #0c7a65; --cn-wheel-c3: #c42238; --cn-wheel-c4: #a34a00; --cn-wheel-c5: #4a5a70; position: relative; align-items: center; text-align: center; }
 .cn-wheel-stage .erp-tool-panel__head { align-self: stretch; text-align: start; }
-.cn-wheel { position: relative; width: min(100%, 440px); aspect-ratio: 1; margin-inline: auto; }
+/* A rotated square's bounding box is up to 41% wider; clip it here or a mid-turn wheel makes the page scroll sideways.
+   The margin keeps the pointer and the drop shadow, which sit just outside the box. */
+.cn-wheel { position: relative; width: min(100%, 440px); aspect-ratio: 1; margin-inline: auto; overflow: clip; overflow-clip-margin: 24px; }
 .cn-wheel-disc { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 6px 20px #0c254d1f; transition-property: transform; transition-timing-function: cubic-bezier(.12, .62, .1, 1); will-change: transform; }
 .cn-wheel-disc svg { display: block; width: 100%; height: 100%; }
 /* Pointer at 12 o'clock, overlapping the rim; the maths in spin-wheel.ts assumes this position. */
 .cn-wheel-pointer { position: absolute; z-index: 1; top: -6px; left: 50%; width: 28px; height: 34px; transform: translateX(-50%); background: var(--cn-ink); clip-path: polygon(0 0, 100% 0, 50% 100%); filter: drop-shadow(0 2px 2px #0c254d33); }
 .cn-wheel-slice { stroke: var(--cn-surface); stroke-width: 1; }
-.cn-wheel-slice--0 { fill: #005be8; }
-.cn-wheel-slice--1 { fill: #0c254d; }
-.cn-wheel-slice--2 { fill: #0c7a65; }
-.cn-wheel-slice--3 { fill: #c42238; }
-.cn-wheel-slice--4 { fill: #a34a00; }
-.cn-wheel-slice--5 { fill: #4a5a70; }
+.cn-wheel-slice--0 { fill: var(--cn-wheel-c0); }
+.cn-wheel-slice--1 { fill: var(--cn-wheel-c1); }
+.cn-wheel-slice--2 { fill: var(--cn-wheel-c2); }
+.cn-wheel-slice--3 { fill: var(--cn-wheel-c3); }
+.cn-wheel-slice--4 { fill: var(--cn-wheel-c4); }
+.cn-wheel-slice--5 { fill: var(--cn-wheel-c5); }
 /* Navy and the dark surface are nearly the same colour: lift that slice and outline the rim so the wheel keeps its edge. */
-[data-theme='dark'] .cn-wheel-slice--1 { fill: #2a4d84; }
+[data-theme='dark'] .cn-wheel-stage { --cn-wheel-c1: #2a4d84; }
 [data-theme='dark'] .cn-wheel-disc { box-shadow: 0 0 0 3px var(--cn-line); }
 .cn-wheel-label { fill: #fff; font-family: var(--cn-font-family); font-weight: 700; text-anchor: middle; dominant-baseline: central; }
 .cn-wheel-empty { fill: var(--cn-tint); stroke: var(--cn-line); stroke-width: 2; stroke-dasharray: 6 5; }
@@ -123,6 +126,14 @@
 .cn-wheel-result__label { font-size: .875rem; color: var(--cn-muted); }
 .cn-wheel-result__value { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.2; color: var(--cn-ink); overflow-wrap: anywhere; }
 .cn-wheel-result__hint { color: var(--cn-muted); }
+.cn-wheel-sector { transition: opacity 300ms ease; }
+.cn-wheel-sector.is-dimmed { opacity: .3; }
+.cn-wheel-sector.is-winner { animation: cn-wheel-flash 420ms ease-in-out 3; }
+@keyframes cn-wheel-flash { 50% { filter: brightness(1.45); } }
+.cn-wheel-result__value { animation: cn-wheel-pop 420ms cubic-bezier(.2, 1.4, .4, 1); }
+@keyframes cn-wheel-pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* Covers the stage so pieces can fly past the wheel; never takes clicks. */
+.cn-wheel-confetti { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .cn-wheel-spin { min-width: 12rem; min-height: 52px; }
 .cn-wheel-spin:active:not(:disabled) { transform: translateY(1px); }
 /* The side column is already a card; its panels become plain sections so cards do not nest.
@@ -145,6 +156,7 @@
 .cn-wheel-list-actions { display: flex; flex-wrap: wrap; gap: .25rem; align-items: center; }
 @media (prefers-reduced-motion: reduce) {
   .cn-wheel-disc { transition: none; }
+  .cn-wheel-sector.is-winner, .cn-wheel-result__value { animation: none; }
 }
 @media (max-width: 575px) {
   .cn-wheel-spin { width: 100%; }

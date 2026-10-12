@@ -7,9 +7,13 @@ import type { SpinWheelState } from '../hooks/useSpinWheel'
 export function WheelSettings({ wheel }: { wheel: SpinWheelState }) {
   const { t } = useTranslation('entertainment')
   const switchId = useId()
+  const soundId = useId()
   const lastOne = wheel.eliminate && !wheel.spinning && wheel.pool.length === 1 ? wheel.pool[0] : null
 
   return <ToolPanel title={t('wheel.settingsTitle')}>
+    <Form.Check type="switch" id={soundId} checked={wheel.soundOn}
+      label={t('wheel.sound')} onChange={(event) => wheel.setSoundOn(event.target.checked)} />
+    <p className="cn-wheel-help">{t('wheel.soundHelp')}</p>
     <Form.Check type="switch" id={switchId} checked={wheel.eliminate} disabled={wheel.spinning}
       label={t('wheel.eliminate')} onChange={(event) => wheel.setEliminate(event.target.checked)} />
     <p className="cn-wheel-help">{t('wheel.eliminateHelp')}</p>

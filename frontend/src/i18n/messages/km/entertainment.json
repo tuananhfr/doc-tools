@@ -259,6 +259,8 @@
     "overLimit": "Only the first {{max}} options are used.",
     "clipped": "Options longer than {{length}} characters were shortened.",
     "settingsTitle": "Settings",
+    "sound": "Sound",
+    "soundHelp": "Clicks while the wheel turns and a short tune when it stops.",
     "eliminate": "Remove the last winner",
     "eliminateHelp": "The winning option leaves the wheel on the next spin. Useful for drawing an order, such as who pays each time.",
     "lastOne": "Only one option left: {{name}}.",

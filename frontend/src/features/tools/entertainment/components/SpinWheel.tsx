@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useWheelTicks } from '../hooks/useWheelTicks'
 
 const CENTER = 100
 const RADIUS = 96
@@ -30,18 +32,24 @@ interface SpinWheelProps {
   options: string[]
   rotation: number
   durationMs: number
+  spinning: boolean
+  soundOn: boolean
+  /** Slice to light up after a spin; -1 for none. */
+  winnerIndex: number
   onSpinEnd: () => void
 }
 
-export function SpinWheel({ options, rotation, durationMs, onSpinEnd }: SpinWheelProps) {
+export function SpinWheel({ options, rotation, durationMs, spinning, soundOn, winnerIndex, onSpinEnd }: SpinWheelProps) {
   const { t } = useTranslation('entertainment')
+  const disc = useRef<HTMLDivElement>(null)
+  useWheelTicks(disc, spinning && soundOn && durationMs > 0, options.length)
   const count = options.length
   const slice = 360 / Math.max(count, 1)
   const label = labelStyle(count)
 
   return <div className="cn-wheel" role="img" aria-label={count >= 2 ? t('wheel.wheelLabel', { total: count }) : t('wheel.emptyWheel')}>
     <span className="cn-wheel-pointer" aria-hidden="true" />
-    <div className="cn-wheel-disc" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: `${durationMs}ms` }}
+    <div ref={disc} className="cn-wheel-disc" style={{ transform: `rotate(${rotation}deg)`, transitionDuration: `${durationMs}ms` }}
       onTransitionEnd={(event) => { if (event.target === event.currentTarget && event.propertyName === 'transform') onSpinEnd() }}>
       <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
         {count < 2
@@ -51,7 +59,8 @@ export function SpinWheel({ options, rotation, durationMs, onSpinEnd }: SpinWhee
             // Labels on the left half are anchored from the other side so they never read upside down.
             const leftHalf = mid > 180
             const text = option.length > label.chars ? `${option.slice(0, label.chars - 1)}…` : option
-            return <g key={option}>
+            const state = winnerIndex < 0 ? '' : index === winnerIndex ? ' is-winner' : ' is-dimmed'
+            return <g key={option} className={`cn-wheel-sector${state}`}>
               <path className={`cn-wheel-slice cn-wheel-slice--${paletteIndex(index, count)}`} d={slicePath(index * slice, (index + 1) * slice)} />
               <text className="cn-wheel-label" x={CENTER + (leftHalf ? -1 : 1) * RADIUS * 0.6} y={CENTER} fontSize={label.size} transform={`rotate(${leftHalf ? mid + 90 : mid - 90} ${CENTER} ${CENTER})`}>{text}</text>
             </g>

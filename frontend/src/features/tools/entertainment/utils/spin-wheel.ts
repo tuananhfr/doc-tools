@@ -72,3 +72,24 @@ export function spinTarget(current: number, index: number, count: number, turns:
   const landing = mod(-(index + offset) * slice, 360)
   return current + turns * 360 + mod(landing - mod(current, 360), 360)
 }
+
+/** Rotation in [0, 360) from a computed `matrix(a, b, c, d, e, f)`; null for `none` or anything unparsable. */
+export function angleFromTransform(transform: string): number | null {
+  const match = /^matrix\(([^,]+),\s*([^,]+),/.exec(transform)
+  if (!match) return null
+  const a = Number(match[1])
+  const b = Number(match[2])
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return null
+  return mod((Math.atan2(b, a) * 180) / Math.PI, 360)
+}
+
+/** Forward travel between two sampled angles; the wheel only turns clockwise and less than a turn per frame. */
+export function forwardDelta(previous: number, current: number): number {
+  return mod(current - previous, 360)
+}
+
+/** Slice borders the pointer passed while the wheel moved from `from` to `to` (absolute, increasing degrees). */
+export function bordersCrossed(from: number, to: number, count: number): number {
+  const slice = 360 / count
+  return Math.max(0, Math.floor(to / slice) - Math.floor(from / slice))
+}

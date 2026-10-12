@@ -259,6 +259,8 @@
     "overLimit": "Chỉ dùng {{max}} lựa chọn đầu tiên.",
     "clipped": "Lựa chọn dài hơn {{length}} ký tự đã được cắt bớt.",
     "settingsTitle": "Cài đặt",
+    "sound": "Âm thanh",
+    "soundHelp": "Tiếng tạch khi vòng quay chạy và một đoạn nhạc ngắn khi có kết quả.",
     "eliminate": "Loại lựa chọn vừa trúng",
     "eliminateHelp": "Lựa chọn vừa trúng sẽ rời vòng quay ở lượt sau. Hợp khi cần bốc thứ tự, ví dụ ai trả tiền lần lượt.",
     "lastOne": "Chỉ còn một lựa chọn: {{name}}.",
