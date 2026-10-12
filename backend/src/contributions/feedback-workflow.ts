@@ -79,3 +79,21 @@ export async function transitionFeedback(connection: PoolConnection, id: string,
   await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor, note) VALUES (?, ?, ?, ?)', [id, action.toUpperCase(), actor, target ? (note ? `${target} · ${note}` : target) : note])
   return to
 }
+
+/**
+ * What a new feedback with this key becomes. ON DUPLICATE KEY UPDATE takes the key row with an exclusive
+ * lock at once (INSERT IGNORE would take a shared one and two identical reports would deadlock), so the
+ * second of two simultaneous reports waits and then sees the first as open.
+ */
+export async function claimFeedbackKey(connection: PoolConnection, key: string, id: string, now: number): Promise<{ kind: 'NEW' } | { kind: 'OPEN' } | { kind: 'CLOSED'; original: string }> {
+  await connection.execute('INSERT INTO contribution_feedback_keys (feedback_key, contribution_id, created_at) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE feedback_key = feedback_key', [key, id, now])
+  const [[row]] = await connection.execute<RowDataPacket[]>('SELECT contribution_id FROM contribution_feedback_keys WHERE feedback_key = ? FOR UPDATE', [key])
+  if (row.contribution_id === id) return { kind: 'NEW' }
+  const original = await originalFeedback(connection, row.contribution_id as string)
+  if (!original) {
+    // The first report is gone (only test cleanup deletes); this one takes the key over.
+    await connection.execute('UPDATE contribution_feedback_keys SET contribution_id = ?, created_at = ? WHERE feedback_key = ?', [id, now, key])
+    return { kind: 'NEW' }
+  }
+  return FEEDBACK_OPEN.includes(original.status) ? { kind: 'OPEN' } : { kind: 'CLOSED', original: original.id }
+}

@@ -250,3 +250,49 @@ test('feedback workflow: triage, release, manual merge and the rollback copy', a
     assert.equal((await step(ideaId, { action: 'dedupe', duplicateOf: other })).json().code, 'INVALID_STATE')
   } finally { await h.close() }
 })
+
+test('feedback submit dedupes by meaning: open copies refused, closed ones kept and linked', async () => {
+  const h = await feedbackHarness('qa-dedupe')
+  try {
+    const owner = await h.person('owner'); const member = await h.person(null)
+    const step = (id, payload) => h.admin(owner, 'POST', `/contributions/${id}/transition`, payload)
+    const text = `Nút tải không chạy ${h.tag}`
+    const firstKey = randomBytes(24).toString('base64url')
+    const first = await h.send(h.bug(text), member, firstKey)
+    assert.equal(first.json().status, 'RECEIVED', first.payload)
+    const original = await h.idOf(first.json().receiptCode)
+    const copy = await h.send(h.bug(`  nút TẢI   không chạy ${h.tag} `), member)
+    assert.equal(copy.statusCode, 409); assert.equal(copy.json().code, 'DUPLICATE_CONTRIBUTION')
+    assert.equal((await h.send({ ...h.bug(text), domain: 'feedback-improvement' }, member)).json().status, 'RECEIVED', 'another kind is another report')
+    assert.equal((await step(original, { action: 'triage' })).json().status, 'TRIAGED')
+    assert.equal((await h.send(h.bug(text), member)).json().code, 'DUPLICATE_CONTRIBUTION', 'triaged is still open')
+    assert.equal((await step(original, { action: 'start' })).json().status, 'IN_PROGRESS')
+    assert.equal((await step(original, { action: 'resolve', note: 'Download button fixed' })).json().status, 'RESOLVED')
+    // A lost-response retry of the first request still gets its own receipt back, not a merge.
+    assert.deepEqual((await h.send(h.bug(text), member, firstKey)).json(), { ok: true, receiptCode: first.json().receiptCode, status: 'RESOLVED', tracked: true })
+
+    const again = await h.send(h.bug(text), member)
+    assert.equal(again.statusCode, 200, again.payload)
+    assert.equal(again.json().status, 'DEDUPED'); assert.equal(again.json().tracked, true)
+    const second = await h.idOf(again.json().receiptCode)
+    assert.equal((await h.state(second)).duplicate_of, original); assert.equal((await h.state(second)).legacy, 'RESOLVED')
+    const [audit] = await h.database.pool.execute('SELECT action, actor, note FROM contribution_audit WHERE contribution_id = ? ORDER BY id', [second])
+    assert.deepEqual(audit.map(row => row.action), ['SUBMITTED', 'DEDUPED']); assert.equal(audit[1].note, original)
+    assert.equal((await h.api.inject({ method: 'GET', url: `/api/v1/contributions/receipt/${again.json().receiptCode}` })).json().contribution.status, 'DEDUPED')
+    assert.equal((await h.admin(owner, 'GET', `/contributions/${original}`)).json().contribution.duplicateCount, 1)
+
+    assert.equal((await step(original, { action: 'release' })).json().status, 'RELEASED')
+    const third = await h.send(h.bug(text.toUpperCase()), member)
+    assert.equal(third.json().status, 'DEDUPED')
+    assert.equal((await h.state(await h.idOf(third.json().receiptCode))).duplicate_of, original, 'copies link to the original, not to each other')
+
+    assert.equal((await h.admin(owner, 'PUT', '/settings/feedback.autoDedupe', { value: false })).statusCode, 200)
+    assert.equal((await h.send(h.bug(text), member)).json().code, 'DUPLICATE_CONTRIBUTION', 'switched off = the old 409')
+    assert.equal((await h.admin(owner, 'DELETE', '/settings/feedback.autoDedupe')).statusCode, 200)
+
+    // Two identical reports at the same moment open one case, not two.
+    const race = h.bug(`Hai người cùng báo ${h.tag}`)
+    const pair = await Promise.all([h.send(race, member), h.send(race, owner)])
+    assert.deepEqual(pair.map(response => response.statusCode).sort(), [200, 409])
+  } finally { await h.close() }
+})

@@ -4,7 +4,7 @@ import { DatabaseService } from '../database/database.service'
 import { vietnamToday } from '../rules/rule-dates'
 import { effectiveDigest, lockRulePublishing, publishPackage, unlockRulePublishing } from '../rules/rules.repository'
 import type { ContributionInput, ProposedChange, SourceRef } from './contribution-input'
-import { isFeedback, legacyFeedbackStatus, transitionFeedback, type ContributionAction, type FeedbackStatus } from './feedback-workflow'
+import { claimFeedbackKey, isFeedback, legacyFeedbackStatus, transitionFeedback, type ContributionAction, type FeedbackStatus } from './feedback-workflow'
 
 export type ContributionStatus = FeedbackStatus | 'NEEDS_SOURCE' | 'NEEDS_REVIEW' | 'VERIFIED' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'REVOKED'
 /** Statuses where the submitter may still add evidence; later the reviewer already decided on what was there. */
@@ -17,6 +17,10 @@ export interface SubmitIdentity {
   floodKey: string; floodLimit: number
   risk: 'LOW' | 'MEDIUM' | 'HIGH'; status: ContributionStatus
   submitter: { userId: string; attribution: boolean } | null
+  /** Meaning-level key for general feedback (null for ideas and rule data, which keep the exact-payload rule). */
+  feedbackKey: string | null
+  /** Off = a copy of closed feedback is refused like before (`feedback.autoDedupe`). */
+  dedupeClosed: boolean
 }
 
 export interface OwnContributionRow {
@@ -42,7 +46,7 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
     await this.database.pool.execute('DELETE FROM contribution_flood_locks WHERE seen_at <= ?', [now - 3600])
   }
 
-  async submit(input: ContributionInput, identity: SubmitIdentity, now: number): Promise<'CREATED' | 'DUPLICATE' | 'RATE_LIMITED' | 'KEY_CONFLICT' | { status: ContributionStatus; tracked: boolean }> {
+  async submit(input: ContributionInput, identity: SubmitIdentity, now: number): Promise<'CREATED' | 'DEDUPED' | 'DUPLICATE' | 'RATE_LIMITED' | 'KEY_CONFLICT' | { status: ContributionStatus; tracked: boolean }> {
     const connection = await this.database.pool.getConnection()
     try {
       await connection.beginTransaction()
@@ -56,20 +60,31 @@ export class ContributionsRepository implements OnModuleInit, OnModuleDestroy {
         if (replay.duplicate_hash !== identity.duplicateHash) return 'KEY_CONFLICT'
         return { status: replay.status as ContributionStatus, tracked: Boolean(identity.submitter && replay.user_id === identity.submitter.userId) }
       }
+      let duplicateOf: string | null = null
+      if (identity.feedbackKey) {
+        const match = await claimFeedbackKey(connection, identity.feedbackKey, identity.id, now)
+        if (match.kind === 'OPEN' || (match.kind === 'CLOSED' && !identity.dedupeClosed)) { await connection.commit(); return 'DUPLICATE' }
+        if (match.kind === 'CLOSED') duplicateOf = match.original
+      }
       const [events] = await connection.execute<RowDataPacket[]>('SELECT COUNT(*) AS count FROM contribution_flood_events WHERE ip_hash = ? AND expires > ?', [identity.floodKey, now])
-      if (Number(events[0].count) >= identity.floodLimit) { await connection.commit(); return 'RATE_LIMITED' }
+      if (Number(events[0].count) >= identity.floodLimit) {
+        // A key row claimed above would point at a contribution that is never written.
+        if (identity.feedbackKey) await connection.rollback(); else await connection.commit()
+        return 'RATE_LIMITED'
+      }
       await connection.execute('INSERT INTO contribution_flood_events (ip_hash, expires) VALUES (?, ?)', [identity.floodKey, now + 3600])
       const submitter = identity.submitter
       await connection.execute('INSERT INTO contributions (id, receipt_hash, duplicate_hash, tool_id, domain, risk, base_snapshot_id, proposed_changes, source_refs, jurisdiction, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [identity.id, identity.receiptHash, identity.duplicateHash, input.toolId, input.domain, identity.risk, input.baseSnapshotId, JSON.stringify(input.proposedChanges), JSON.stringify(input.sourceRefs), input.jurisdiction, identity.status])
       if (isFeedback(input.domain)) {
-        const feedbackStatus: FeedbackStatus = 'RECEIVED'
-        await connection.execute('INSERT INTO contribution_feedback_state (contribution_id, status, duplicate_of, updated_at) VALUES (?, ?, ?, ?)', [identity.id, feedbackStatus, null, now])
+        const feedbackStatus: FeedbackStatus = duplicateOf ? 'DEDUPED' : 'RECEIVED'
+        await connection.execute('INSERT INTO contribution_feedback_state (contribution_id, status, duplicate_of, updated_at) VALUES (?, ?, ?, ?)', [identity.id, feedbackStatus, duplicateOf, now])
         await connection.execute('INSERT INTO contribution_feedback_workflow (contribution_id, status) VALUES (?, ?)', [identity.id, legacyFeedbackStatus(feedbackStatus)])
       }
       if (submitter) await connection.execute('INSERT INTO contribution_submitters (contribution_id, user_id, attribution_consent) VALUES (?, ?, ?)', [identity.id, submitter.userId, submitter.attribution && !isFeedback(input.domain) ? 1 : 0])
       await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor) VALUES (?, ?, ?)', [identity.id, 'SUBMITTED', submitter ? `user:${submitter.userId}` : 'anonymous'])
+      if (duplicateOf) await connection.execute('INSERT INTO contribution_audit (contribution_id, action, actor, note) VALUES (?, ?, ?, ?)', [identity.id, 'DEDUPED', 'system', duplicateOf])
       await connection.commit()
-      return 'CREATED'
+      return duplicateOf ? 'DEDUPED' : 'CREATED'
     } catch (error) { await connection.rollback(); throw error }
     finally { connection.release() }
   }

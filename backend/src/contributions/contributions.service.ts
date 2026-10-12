@@ -5,7 +5,7 @@ import { SettingsService } from '../settings/settings.service'
 import type { ContributionInput, ProposedChange, SourceRef } from './contribution-input'
 import { contributionRisk } from './contribution-input'
 import { ContributionsRepository, EVIDENCE_OPEN, MAX_SOURCE_REFS } from './contributions.repository'
-import { isFeedback } from './feedback-workflow'
+import { feedbackKey, isFeedback } from './feedback-workflow'
 
 export const MINE_PAGE_SIZE = 20
 // A contribution may carry 50 changes of 5000 characters; the list only needs a glimpse of each.
@@ -34,8 +34,15 @@ export class ContributionsService {
     const secret = configuration().visitHashSecret
     const receiptCode = key ? createHmac('sha256', secret).update(`contribution-receipt:${key}`).digest().subarray(0, 24).toString('base64url') : randomBytes(24).toString('base64url')
     const status = isFeedback(input.domain) || input.sourceRefs.length || input.domain === 'ideas' ? 'NEEDS_REVIEW' : 'NEEDS_SOURCE'
+    const receiptHash = hash(receiptCode)
+    const feedback = isFeedback(input.domain)
     const result = await this.repository.submit(input, {
-      id, receiptHash: hash(receiptCode), duplicateHash: hash(stable(input)),
+      id, receiptHash,
+      // Feedback keeps a per-receipt value in the old UNIQUE column (same key + same text = same value, so
+      // retries still replay); its real duplicate check is the meaning-level feedbackKey.
+      duplicateHash: feedback ? hash(`feedback:${receiptHash}:${stable(input)}`) : hash(stable(input)),
+      feedbackKey: feedback ? feedbackKey(input.toolId, input.domain, input.proposedChanges) : null,
+      dedupeClosed: feedback ? await this.settings.get('feedback.autoDedupe') : false,
       floodKey: createHmac('sha256', secret).update(submitter ? `contribution-user:${submitter.userId}` : `contribution:${ip}`).digest('hex'),
       // Per account rather than per IP, so an office behind one address does not lock its staff out.
       floodLimit: await this.settings.get(submitter ? 'contributions.accountHourly' : 'contributions.guestHourly'),
@@ -45,6 +52,7 @@ export class ContributionsService {
     if (result === 'KEY_CONFLICT') throw new ConflictException({ ok: false, code: 'IDEMPOTENCY_CONFLICT', message: 'Mã lần gửi đã được dùng cho nội dung khác.' })
     if (typeof result === 'object') return { ok: true, receiptCode, status: result.status, tracked: result.tracked }
     if (result === 'RATE_LIMITED') throw new HttpException({ ok: false, code: 'RATE_LIMITED', message: 'Bạn đã gửi quá nhiều đề xuất. Hãy thử lại sau một giờ.' }, HttpStatus.TOO_MANY_REQUESTS)
+    if (result === 'DEDUPED') return { ok: true, receiptCode, status: 'DEDUPED', tracked: Boolean(submitter) }
     return { ok: true, receiptCode, status: isFeedback(input.domain) ? 'RECEIVED' : status, tracked: Boolean(submitter) }
   }
 
