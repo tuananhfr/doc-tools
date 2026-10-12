@@ -91,3 +91,54 @@ test('applies the published package in effect today, schedules future ones and f
     else process.env.RULE_SIGNING_PUBLIC_KEY_PEM = previousKey
   }
 })
+
+test('serves packages with and without sourceId through /rules', async () => {
+  const { readFileSync } = require('node:fs')
+  const { join } = require('node:path')
+  const { generateKeyPairSync: keys, sign: signWith } = require('node:crypto')
+  const { publicKey, privateKey } = keys('ed25519')
+  const previousKey = process.env.RULE_SIGNING_PUBLIC_KEY_PEM
+  process.env.RULE_SIGNING_PUBLIC_KEY_PEM = publicKey.export({ format: 'pem', type: 'spki' })
+  const withIdKind = `qa-${randomBytes(8).toString('hex')}`
+  const plainKind = `qa-${randomBytes(8).toString('hex')}`
+  const app = await NestFactory.create(AppModule, createHttpAdapter(), { logger: false, bodyParser: false })
+  app.setGlobalPrefix('api/v1')
+  let database
+  const digests = []
+  try {
+    await app.init()
+    const api = app.getHttpAdapter().getInstance()
+    await api.ready()
+    database = app.get(DatabaseService)
+    const repository = app.get(RulesRepository)
+    const publish = async (kind, extra) => {
+      const unsigned = { version: 1, kind, keyId: 'qa', effectiveFrom: '2020-01-01', publishedAt: '2026-01-01T00:00:00Z', source: { title: 'QA source', url: 'https://example.com/qa', retrievedAt: '2026-01-01T00:00:00Z', sha256: 'b'.repeat(64) }, data: { value: 1 }, ...extra }
+      const item = { ...unsigned, signature: signWith(null, Buffer.from(canonical(unsigned)), privateKey).toString('base64url') }
+      const { digest } = verifyRulePackage(item, process.env.RULE_SIGNING_PUBLIC_KEY_PEM)
+      digests.push(digest)
+      await repository.stage(item, digest, 'qa')
+      await repository.publish(kind, digest, 'qa')
+    }
+    await publish(withIdKind, { sourceId: 'qa-fixture-source' })
+    await publish(plainKind, {})
+    const withId = (await api.inject({ method: 'GET', url: `/api/v1/rules/${withIdKind}` })).json()
+    const plain = (await api.inject({ method: 'GET', url: `/api/v1/rules/${plainKind}` })).json()
+    assert.equal(withId.package.sourceId, 'qa-fixture-source')
+    assert.equal('sourceId' in plain.package, false)
+    assert.equal(verifyRulePackage(withId.package, process.env.RULE_SIGNING_PUBLIC_KEY_PEM).item.sourceId, 'qa-fixture-source')
+    // The CLI-signed fixture is parsed by the same code the server uses when reading rows back.
+    const fixture = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'rule-package-source-id.json'), 'utf8'))
+    assert.equal(verifyRulePackage(fixture, readFileSync(join(__dirname, 'fixtures', 'rule-signing-fixture.pub.pem'), 'utf8')).item.sourceId, 'qa-fixture-source')
+  } finally {
+    if (database) {
+      for (const kind of [withIdKind, plainKind]) {
+        await database.pool.execute('DELETE FROM rule_published WHERE kind = ?', [kind])
+        await database.pool.execute('DELETE FROM rule_audit WHERE kind = ?', [kind])
+      }
+      for (const digest of digests) await database.pool.execute('DELETE FROM rule_packages WHERE digest = ?', [digest])
+    }
+    await app.close()
+    if (previousKey === undefined) delete process.env.RULE_SIGNING_PUBLIC_KEY_PEM
+    else process.env.RULE_SIGNING_PUBLIC_KEY_PEM = previousKey
+  }
+})

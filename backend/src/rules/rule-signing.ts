@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { canonical, verifyRulePackage, type RulePackage } from './rule-package'
 import { wardsFromCsv } from './wards-csv'
+import { isSourceId } from '../sources/source-id'
 
 export function generateSigningKeys() {
   const { publicKey, privateKey } = generateKeyPairSync('ed25519')
@@ -22,6 +23,8 @@ interface SignSpec {
   keyId: string
   effectiveFrom: string
   effectiveTo?: string
+  /** Optional registry id; `rules stage` refuses it when the registry has no such row. */
+  sourceId?: string
   source: { title: string; url: string; retrievedAt: string; sha256?: string }
   evidenceFile?: string
   data?: unknown
@@ -36,6 +39,7 @@ export async function buildFromSpec(specPath: string): Promise<{ unsigned: Omit<
   const resolve = (file: string) => path.resolve(path.dirname(specPath), file)
   const sources = [spec.data !== undefined, Boolean(spec.dataFile), Boolean(spec.wardsCsv)].filter(Boolean).length
   if (sources !== 1) throw new Error('Spec needs exactly one of data, dataFile or wardsCsv')
+  if (spec.sourceId !== undefined && !isSourceId(spec.sourceId)) throw new Error('sourceId must be 3-64 lowercase letters, digits or dashes')
   const notes: string[] = []
   let data = spec.data
   if (spec.dataFile) data = JSON.parse(await readFile(resolve(spec.dataFile), 'utf8')) as unknown
@@ -49,6 +53,7 @@ export async function buildFromSpec(specPath: string): Promise<{ unsigned: Omit<
   const unsigned = {
     version: 1 as const, kind: spec.kind, keyId: spec.keyId, effectiveFrom: spec.effectiveFrom,
     ...(spec.effectiveTo ? { effectiveTo: spec.effectiveTo } : {}),
+    ...(spec.sourceId ? { sourceId: spec.sourceId } : {}),
     publishedAt: new Date().toISOString(),
     source: { title: spec.source.title, url: spec.source.url, retrievedAt: spec.source.retrievedAt, sha256: evidenceHash },
     data,

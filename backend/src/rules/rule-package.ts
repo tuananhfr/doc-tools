@@ -1,4 +1,5 @@
 import { createHash, createPublicKey, verify } from 'node:crypto'
+import { isSourceId } from '../sources/source-id'
 
 export interface RulePackage {
   version: 1
@@ -6,6 +7,8 @@ export interface RulePackage {
   keyId: string
   effectiveFrom: string
   effectiveTo?: string
+  /** Registry entry (`legal_sources.source_id`) behind the figures; absent in packages signed before it existed. */
+  sourceId?: string
   publishedAt: string
   source: { title: string; url: string; retrievedAt: string; sha256: string }
   data: unknown
@@ -43,9 +46,12 @@ export function parseRulePackage(value: unknown): RulePackage {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Rule package must be an object')
   const item = value as Record<string, unknown>
   const keys = Object.keys(item).sort()
-  if (keys.join(',') !== ['data', 'effectiveFrom', 'effectiveTo', 'keyId', 'kind', 'publishedAt', 'signature', 'source', 'version'].filter(key => key !== 'effectiveTo' || item.effectiveTo !== undefined).sort().join(',')) throw new Error('Rule package fields are invalid')
+  const optional = new Set(['effectiveTo', 'sourceId'])
+  const expected = ['data', 'effectiveFrom', 'effectiveTo', 'keyId', 'kind', 'publishedAt', 'signature', 'source', 'sourceId', 'version'].filter(key => !optional.has(key) || item[key] !== undefined).sort().join(',')
+  if (keys.join(',') !== expected) throw new Error('Rule package fields are invalid')
   if (item.version !== 1 || typeof item.kind !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(item.kind)) throw new Error('Invalid rule kind or version')
   if (typeof item.keyId !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(item.keyId)) throw new Error('Invalid key ID')
+  if (item.sourceId !== undefined && !isSourceId(item.sourceId)) throw new Error('Invalid source ID')
   if (!isDate(item.effectiveFrom) || (item.effectiveTo !== undefined && (!isDate(item.effectiveTo) || item.effectiveTo < item.effectiveFrom))) throw new Error('Invalid effective dates')
   if (typeof item.publishedAt !== 'string' || Number.isNaN(Date.parse(item.publishedAt))) throw new Error('Invalid publication date')
   if (!item.source || typeof item.source !== 'object' || Array.isArray(item.source)) throw new Error('Invalid source')

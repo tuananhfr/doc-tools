@@ -84,6 +84,7 @@ async function checkPackage(file: string) {
   print(`${item.kind}:${digest}`)
   print(`  signature: valid (key ${item.keyId}); ${describeDates(item, today)}`)
   print(`  source: ${item.source.title} <${item.source.url}>`)
+  print(`  registry source: ${item.sourceId ?? '(none — signed before the source registry)'}`)
   const check = checkRuleData(item.kind, item.data)
   report(check)
   try {
