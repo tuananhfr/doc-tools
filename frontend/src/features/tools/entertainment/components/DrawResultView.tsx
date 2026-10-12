@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { withBase } from '@/utils/url'
 import type { useDraw } from '../hooks/useDraw'
 import type { CardIdentity } from '../types/entertainment.types'
 import { getCardArtwork } from '../services/card-artwork'
@@ -12,8 +14,19 @@ import { ReportActions } from './ReportActions'
 import { ResultProvenance } from './ResultProvenance'
 import { SpreadGuide } from './SpreadGuide'
 
+const REVEAL_ALL_STAGGER_MS = 120
+
 export function DrawResultView({ draw }: { draw: ReturnType<typeof useDraw> }) {
   const { t } = useTranslation('entertainment')
+  const [flipDelays, setFlipDelays] = useState<Record<string, number>>({})
+  const drawn = draw.result?.result
+  useEffect(() => {
+    // Warm the cache so the face is decoded before the flip reaches its midpoint; the draw response already names every card.
+    drawn?.cards.forEach(card => {
+      const artwork = getCardArtwork(card.id)
+      if (artwork?.kind === drawn.kind) new Image().src = withBase(artwork.path)
+    })
+  }, [drawn])
   if (!draw.result) return null
   const result = draw.result.result
   const kind = result.kind
@@ -26,15 +39,21 @@ export function DrawResultView({ draw }: { draw: ReturnType<typeof useDraw> }) {
   const reading = drawReading(result, labelOf)
   const title = t(kind === 'cards' ? 'cards.title' : 'tarot.title')
   const lines = [...drawReadingLines(reading, kind, labelOf), `${t('source.version')}: ${draw.result.rule_version}`, `${t('source.sources')}: ${draw.result.source_ids.join(', ')}`, `${t('source.request')}: ${draw.result.request_id}`]
+  const revealAll = () => {
+    const pending = result.cards.filter(card => !draw.revealed.includes(card.id))
+    setFlipDelays(Object.fromEntries(pending.map((card, index) => [card.id, index * REVEAL_ALL_STAGGER_MS])))
+    draw.revealAll()
+  }
+  const reset = () => { setFlipDelays({}); draw.reset() }
   return <section className="cn-ent-reading" aria-labelledby={`${kind}-result`}>
     <h2 id={`${kind}-result`}>{t('cards.result')}</h2>
     <p role="status">{t(draw.expired ? 'cards.expired' : complete ? 'cards.complete' : 'cards.revealHint')}</p>
     <SpreadGuide amount={result.cards.length} />
-    <ul className="cn-ent-deck" data-count={result.cards.length}>{result.cards.map(card => <CardFace key={card.id} kind={kind} card={card} revealed={draw.revealed.includes(card.id)} expired={draw.expired} onReveal={() => draw.reveal(card.id)} />)}</ul>
+    <ul className="cn-ent-deck" data-count={result.cards.length}>{result.cards.map(card => <CardFace key={card.id} kind={kind} card={card} revealed={draw.revealed.includes(card.id)} expired={draw.expired} flipDelay={flipDelays[card.id] ?? 0} onReveal={() => draw.reveal(card.id)} />)}</ul>
     <p className="cn-ent-zoom-hint">{t('artwork.hint')}</p>
     <div className="cn-ent-actions">
-      <button className="cn-button" disabled={complete || draw.expired} onClick={draw.revealAll}>{t('cards.revealAll')}</button>
-      <button className="cn-button cn-button--ghost" onClick={draw.reset}>{t('actions.restart')}</button>
+      <button className="cn-button" disabled={complete || draw.expired} onClick={revealAll}>{t('cards.revealAll')}</button>
+      <button className="cn-button cn-button--ghost" onClick={reset}>{t('actions.restart')}</button>
     </div>
     {complete ? <ReadingOverview summary={reading.summary} /> : <p className="cn-ent-reading-note">{t('reading.overviewAfterReveal')}</p>}
     <CardInterpretations reading={reading} revealed={draw.revealed} labelOf={labelOf} />

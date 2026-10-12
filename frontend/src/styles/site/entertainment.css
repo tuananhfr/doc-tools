@@ -13,10 +13,19 @@
 .cn-ent-deck { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; grid-template-columns: repeat(3, minmax(0, 180px)); justify-content: center; align-items: start; gap: 1.25rem; }
 .cn-ent-deck[data-count="1"] { grid-template-columns: minmax(0, 180px); }
 .cn-ent-card-slot { display: grid; gap: .65rem; min-width: 0; text-align: center; font-size: .875rem; }
-.cn-ent-card { aspect-ratio: 2 / 3; width: 100%; border: 1px solid var(--cn-line); border-radius: .5rem; background: #fff; color: var(--cn-ink); padding: .25rem; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; box-shadow: 0 2px 6px #00000012; }
+/* The faces carry the card chrome so border and shadow turn with the card; the button stays flat and only owns perspective + focus. No overflow:hidden here, it would clip the near edge mid-turn. */
+.cn-ent-card { aspect-ratio: 2 / 3; width: 100%; display: block; padding: 0; border: 0; border-radius: .5rem; background: none; color: var(--cn-ink); cursor: pointer; perspective: 900px; }
 .cn-ent-card--tarot { aspect-ratio: 500 / 839; }
 .cn-ent-card:focus-visible { outline: 3px solid var(--cn-accent); outline-offset: 4px; }
 .cn-ent-card:disabled { cursor: default; }
+.cn-ent-card-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 560ms cubic-bezier(.2, .7, .2, 1) var(--cn-ent-flip-delay, 0ms); }
+.cn-ent-card.is-revealed .cn-ent-card-inner { transform: rotateY(180deg); }
+.cn-ent-card-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: .25rem; border: 1px solid var(--cn-line); border-radius: inherit; background: #fff; overflow: hidden; box-shadow: 0 2px 6px #00000012; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.cn-ent-card-front { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  /* reset.css shortens durations only; without this, "reveal all" would still trickle in one card at a time. */
+  .cn-ent-card-inner { transition-delay: 0ms; }
+}
 .cn-ent-card-image { display: block; width: 100%; height: 100%; object-fit: contain; }
 .cn-ent-card-image.is-reversed { transform: rotate(180deg); }
 .cn-ent-card-caption { min-height: 2.5rem; overflow-wrap: anywhere; line-height: 1.45; }
@@ -48,7 +57,8 @@
   .cn-ent-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
   .cn-ent-deck { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
   .cn-ent-card-slot { font-size: .75rem; gap: .5rem; }
-  .cn-ent-card { padding: .125rem; border-radius: .375rem; }
+  .cn-ent-card { border-radius: .375rem; }
+  .cn-ent-card-face { padding: .125rem; }
   .cn-ent-metrics { grid-template-columns: minmax(0, 1fr); }
 }
 .cn-ent-calendar { margin-block: 1.5rem; padding-block: 1rem; border-block: 1px solid var(--cn-border, #dce3ed); }
