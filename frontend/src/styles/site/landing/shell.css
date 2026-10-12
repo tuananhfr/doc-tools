@@ -33,7 +33,7 @@
 .cn-landing-nav a { padding-block: 12px; color: var(--cn-ink); font-size: 14px; text-decoration: none; white-space: nowrap; }
 .cn-landing-nav a:hover { color: var(--cn-accent); }
 .cn-landing-header-actions { display: flex; align-items: center; gap: 12px; margin-inline-start: auto; }
-.cn-landing-menu-toggle { display: inline-grid; place-items: center; width: 40px; height: 44px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 25px; }
+.cn-landing-menu-toggle { display: inline-grid; place-items: center; width: var(--cn-tap); height: 44px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 25px; }
 .cn-landing-menu-toggle:hover { background: var(--cn-tint); }
 .cn-landing-button { display: inline-flex; justify-content: center; align-items: center; gap: 14px; min-height: 52px; padding: 13px 25px; border: 1px solid transparent; border-radius: var(--cn-radius-button); background: var(--cn-landing-button); color: var(--cn-landing-button-text); font: 700 16px/1.45 var(--cn-font-family); text-decoration: none; white-space: nowrap; }
 .cn-landing-button:hover { background: var(--cn-accent-hover); color: var(--cn-landing-button-text); }
@@ -53,9 +53,10 @@
 .cn-landing-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 24px; max-width: 650px; }
 .cn-landing-footer a { color: var(--cn-landing-closing-text); text-decoration: none; }
 .cn-landing-footer a:hover { text-decoration: underline; }
-.cn-landing-footer nav a { min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; }
+.cn-landing-footer nav a { min-height: var(--cn-tap); min-width: var(--cn-tap); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
 .cn-landing-footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding-top: 24px; color: var(--cn-landing-closing-muted); font-size: 13px; }
 .cn-landing-ecosystem-links { display: flex; gap: 24px; margin-inline-start: auto; }
+.cn-landing-ecosystem-links a { display: inline-flex; align-items: center; min-height: var(--cn-tap); }
 .cn-landing-footer .cn-quality-consent { color: var(--cn-landing-closing-muted); }
 .cn-landing-header-placeholder { min-height: 72px; background: var(--cn-surface); }
 .cn-landing-placeholder { min-height: 100dvh; background: var(--cn-hero); }

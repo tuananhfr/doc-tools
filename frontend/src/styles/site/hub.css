@@ -2,7 +2,7 @@
 .cn-breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; list-style: none; padding: 0; margin: 0; font-size: 12px; color: var(--cn-muted); }
 .cn-breadcrumb li { display: inline-flex; align-items: center; gap: 6px; }
 .cn-breadcrumb .bi { font-size: 10px; }
-.cn-breadcrumb a { color: var(--cn-muted); text-decoration: none; }
+.cn-breadcrumb a { display: inline-flex; align-items: center; min-height: var(--cn-tap); color: var(--cn-muted); text-decoration: none; }
 .cn-breadcrumb a:hover { color: var(--cn-accent); text-decoration: underline; }
 .cn-breadcrumb [aria-current] { color: var(--cn-ink); }
 
@@ -42,7 +42,7 @@
 .cn-processing { display: inline-flex; align-items: center; gap: 5px; align-self: flex-start; padding: 3px 10px; border-radius: 999px; font-size: 11px; line-height: 1.5; white-space: nowrap; }
 .cn-processing--device { color: var(--cn-positive); background: color-mix(in srgb, var(--cn-positive) 11%, var(--cn-surface)); }
 .cn-processing--server { color: var(--cn-accent); background: var(--cn-tint); }
-.cn-hub-card-cta { display: flex; justify-content: center; align-items: center; gap: 6px; min-height: 38px; border-radius: var(--cn-radius-button); background: var(--cn-tint); color: var(--cn-accent); font-size: 12px; font-weight: 700; text-decoration: none; }
+.cn-hub-card-cta { display: flex; justify-content: center; align-items: center; gap: 6px; min-height: var(--cn-tap); border-radius: var(--cn-radius-button); background: var(--cn-tint); color: var(--cn-accent); font-size: 12px; font-weight: 700; text-decoration: none; }
 a.cn-hub-card-cta::after { content: ''; position: absolute; inset: 0; border-radius: var(--cn-radius-card); }
 .cn-hub-card:hover a.cn-hub-card-cta { background: var(--cn-accent); color: var(--cn-on-accent); text-decoration: none; }
 [data-theme='dark'] .cn-hub-card:hover a.cn-hub-card-cta { color: var(--cn-surface); }
@@ -77,14 +77,14 @@ a.cn-hub-card-cta::after { content: ''; position: absolute; inset: 0; border-rad
 [data-theme='dark'] .cn-hub-tips li::before { color: var(--cn-surface); }
 .cn-hub-privacy { background: color-mix(in srgb, var(--cn-positive) 8%, var(--cn-surface)); }
 .cn-hub-privacy h2 { color: var(--cn-positive); }
-.cn-hub-privacy a { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--cn-accent); text-decoration: none; }
+.cn-hub-privacy a { display: inline-flex; align-items: center; gap: 6px; min-height: var(--cn-tap); font-size: 12px; color: var(--cn-accent); text-decoration: none; }
 .cn-hub-privacy a:hover { text-decoration: underline; }
 .cn-hub-support { display: flex; gap: 12px; align-items: flex-start; }
 .cn-hub-support > .bi { font-size: 30px; line-height: 1; color: var(--cn-accent); }
 .cn-hub-support h2 { font-size: 15px; }
 .cn-hub-support-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 12px; }
-.cn-hub-support-links > a:not(.cn-button) { color: var(--cn-accent); }
-.cn-button--ghost { background: transparent; border-color: var(--cn-accent); color: var(--cn-accent); min-height: 36px; padding-block: 7px; }
+.cn-hub-support-links > a:not(.cn-button) { display: inline-flex; align-items: center; min-height: var(--cn-tap); color: var(--cn-accent); }
+.cn-button--ghost { background: transparent; border-color: var(--cn-accent); color: var(--cn-accent); min-height: var(--cn-tap); padding-block: 7px; }
 .cn-button--ghost:hover { background: var(--cn-tint); color: var(--cn-accent); }
 
 .cn-hub-journey { margin-bottom: 32px; padding: 20px 24px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); }
@@ -131,7 +131,7 @@ a.cn-hub-card-cta::after { content: ''; position: absolute; inset: 0; border-rad
   .cn-hub-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 10px; padding: 14px; }
   .cn-hub-card-head { grid-column: 1 / -1; }
   .cn-hub-card .cn-processing { justify-self: start; }
-  .cn-hub-card-cta { min-height: 36px; padding-inline: 14px; }
+  .cn-hub-card-cta { min-height: var(--cn-tap); padding-inline: 14px; }
   .cn-hub-aside { grid-template-columns: minmax(0, 1fr); }
   .cn-hub-journey { padding: 18px 16px; margin-bottom: 24px; }
   .cn-hub-journey h2 { font-size: 16px; }

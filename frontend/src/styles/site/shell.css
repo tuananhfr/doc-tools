@@ -8,7 +8,7 @@
 .cn-container { width: min(100% - 64px, 1320px); margin-inline: auto; }
 .cn-header { background: var(--cn-surface); border-bottom: 1px solid var(--cn-line); position: relative; z-index: 2; }
 .cn-header-content { height: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
-.cn-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--cn-ink); text-decoration: none; font-size: 24px; font-weight: 700; letter-spacing: -1px; white-space: nowrap; }
+.cn-brand { display: inline-flex; align-items: center; gap: 8px; min-height: var(--cn-tap); color: var(--cn-ink); text-decoration: none; font-size: 24px; font-weight: 700; letter-spacing: -1px; white-space: nowrap; }
 .cn-brand:hover { color: var(--cn-ink); }
 .cn-brand img { display: block; object-fit: contain; flex: none; }
 .cn-brand-accent { color: var(--cn-accent); }
@@ -17,7 +17,7 @@
 .cn-desktop-navigation a:hover, .cn-desktop-navigation a[aria-current] { color: var(--cn-accent); }
 .cn-header-actions { display: flex; align-items: center; gap: 10px; }
 .cn-header-products { display: flex; gap: 8px; }
-.cn-button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 40px; padding: 10px 17px; border: 1px solid transparent; border-radius: var(--cn-radius-button); background: #005be8; color: var(--cn-on-accent); font: 700 12px/1.45 var(--cn-font-family); text-decoration: none; white-space: nowrap; cursor: pointer; }
+.cn-button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: var(--cn-tap); padding: 10px 17px; border: 1px solid transparent; border-radius: var(--cn-radius-button); background: #005be8; color: var(--cn-on-accent); font: 700 14px/1.45 var(--cn-font-family); text-decoration: none; white-space: nowrap; cursor: pointer; }
 .cn-button:hover { color: var(--cn-on-accent); background: var(--cn-accent-hover); }
 .cn-button:active { transform: translateY(1px); }
 .cn-button--navy { background: var(--cn-navy); }
@@ -25,7 +25,7 @@
 .cn-button--red:hover { background: #b9172d; }
 .cn-button--outline { background: transparent; border-color: #b3c7de; color: var(--cn-on-accent); }
 .cn-button--outline:hover { background: rgb(255 255 255 / 12%); }
-.cn-icon-button { display: inline-grid; place-items: center; flex: none; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: var(--cn-ink); font-size: 20px; text-decoration: none; }
+.cn-icon-button { display: inline-grid; place-items: center; flex: none; width: var(--cn-tap); height: var(--cn-tap); border: 0; border-radius: 50%; background: transparent; color: var(--cn-ink); font-size: 20px; text-decoration: none; }
 .cn-icon-button:hover { background: var(--cn-tint); color: var(--cn-accent); }
 .cn-share-toggle::after { display: none; }
 .cn-share-toggle[aria-expanded="true"] { background: var(--cn-tint); color: var(--cn-accent); }
@@ -44,7 +44,7 @@
 .cn-share-status { margin: 10px 0 0; color: var(--cn-ink); font-size: 12px; line-height: 1.6; }
 .cn-share-status:empty { margin: 0; }
 .cn-language { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: inherit; }
-.cn-language__toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 0 10px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 14px; font-weight: 500; }
+.cn-language__toggle { display: inline-flex; align-items: center; gap: 6px; min-height: var(--cn-tap); padding: 0 10px; border: 0; border-radius: var(--cn-radius-button); background: transparent; color: var(--cn-ink); font-size: 14px; font-weight: 500; }
 .cn-language__toggle:hover, .cn-language__toggle[aria-expanded="true"] { background: var(--cn-tint); color: var(--cn-ink); }
 .cn-language__toggle .bi { font-size: 17px; }
 .cn-language__code { display: none; }
@@ -52,7 +52,7 @@
 .cn-language__menu .dropdown-item { padding-block: 8px; }
 .cn-language__menu .dropdown-item.active { background: var(--cn-tint); color: var(--cn-accent); font-weight: 600; }
 .cn-header .erp-tools-prefs { gap: 10px; }
-.cn-header .erp-tools-prefs__toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; padding: 0; color: var(--cn-ink); background: transparent; border: 0; border-radius: 50%; font-size: 19px; }
+.cn-header .erp-tools-prefs__toggle { display: inline-grid; place-items: center; width: var(--cn-tap); height: var(--cn-tap); padding: 0; color: var(--cn-ink); background: transparent; border: 0; border-radius: 50%; font-size: 19px; }
 .cn-header .erp-tools-prefs__toggle::after { display: none; }
 .cn-header .dropdown-menu { font-family: var(--cn-font-family); }
 .cn-menu-toggle { display: none; }
@@ -94,8 +94,9 @@
 .cn-brand--compact { font-size: 16px; letter-spacing: -.6px; gap: 3px; }
 .cn-brand--compact img { width: 32px; height: 32px; }
 .cn-footer-brand > span a { color: var(--cn-ink); font-weight: 700; text-decoration: none; }
-.cn-footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
-.cn-footer nav a { font-size: 11px; text-decoration: none; color: var(--cn-muted); }
+.cn-footer nav { display: flex; flex-wrap: wrap; gap: 0 18px; }
+/* Footer links are standalone targets, not links inside a sentence: they need the full 44px. */
+.cn-footer nav a { display: inline-flex; align-items: center; justify-content: center; min-width: var(--cn-tap); min-height: var(--cn-tap); font-size: 11px; text-decoration: none; color: var(--cn-muted); }
 .cn-footer nav a:hover { color: var(--cn-accent); }
 .cn-footer-motto { font-size: 11px; color: var(--cn-muted); white-space: nowrap; }
 [data-theme='dark'] .cn-brand img { background: #eef5ff; border-radius: 50%; }
@@ -119,6 +120,8 @@
 @media (max-width: 767px) {
   .cn-site { --cn-header-height: 60px; }
   .cn-container { width: calc(100% - 32px); }
+  /* 14px labels no longer fit one line in the widest hub buttons (316px at 12px); wrap instead of overflowing. */
+  .cn-button { white-space: normal; text-align: center; }
   .cn-header-content { gap: 8px; }
   .cn-brand { font-size: 21px; gap: 4px; letter-spacing: -.8px; }
   .cn-brand img { width: 40px; height: 40px; }
@@ -136,7 +139,7 @@
   .cn-footer-content, .cn-footer-brand { flex-direction: column; align-items: flex-start; gap: 12px; }
   .cn-brand--compact { font-size: 16px; }
   .cn-brand--compact img { width: 32px; height: 32px; }
-  .cn-footer nav { gap: 16px; }
+  .cn-footer nav { gap: 0 16px; }
 }
 /* Up to 399px the full-size brand plus prefs, share, account and menu overflow the row. */
 @media (max-width: 399px) {

@@ -31,8 +31,9 @@
   .cn-landing-header .cn-language__name { display: none; }
   .cn-landing-header .cn-language__code { display: none; }
   .cn-landing-header .cn-language__toggle::after { display: none; }
-  .cn-landing-header .cn-language__toggle { padding-inline: 6px; width: 32px; }
-  .cn-landing-theme.is-compact button { min-width: 30px; width: 30px; min-height: 38px; }
+  .cn-landing-header .cn-language__toggle { padding-inline: 6px; width: var(--cn-tap); }
+  /* Three 44px theme buttons do not fit beside brand + language + menu at 360px; the slide-in menu keeps the theme picker. */
+  .cn-landing-header .cn-landing-theme.is-compact { display: none; }
   .cn-landing-languages { padding: 22px 16px; }
   .cn-landing-languages ul { gap: 8px; }
   .cn-landing-theme-previews { gap: 14px; }

@@ -8,7 +8,7 @@
 .cn-landing-hero h1 { max-width: 1100px; margin-inline: auto; font-size: clamp(34px, 4.4vw, 64px); line-height: 1.23; letter-spacing: -.055em; }
 .cn-landing-hero h1 span { display: block; color: var(--cn-accent); }
 .cn-landing-hero-copy > p { margin: 22px auto 26px; max-width: 780px; font-size: 21px; color: var(--cn-muted); text-wrap: balance; }
-.cn-landing-hero-note { display: flex; justify-content: center; align-items: center; gap: 7px; width: fit-content; max-width: 100%; margin: 20px auto 0; font-size: 13px; color: var(--cn-muted); text-decoration: none; flex-wrap: wrap; }
+.cn-landing-hero-note { display: flex; justify-content: center; align-items: center; gap: 7px; min-height: var(--cn-tap); width: fit-content; max-width: 100%; margin: 20px auto 0; font-size: 13px; color: var(--cn-muted); text-decoration: none; flex-wrap: wrap; }
 .cn-landing-hero-note:hover { color: var(--cn-accent); }
 .cn-landing-hero > .cn-landing-preview { width: min(68%, 960px); margin: 30px auto 0; }
 .cn-landing-preview { min-width: 0; }

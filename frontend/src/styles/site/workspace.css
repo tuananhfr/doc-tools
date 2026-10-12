@@ -4,7 +4,7 @@
 .cn-tool-workspace > .erp-tool-crumb, .cn-tool-intro { max-width: 1200px; margin-inline: auto; }
 .cn-tool-workspace--editor > .erp-tool-crumb, .cn-tool-workspace--editor > .cn-tool-intro { max-width: none; }
 .cn-tool-workspace > .erp-tool-crumb { gap: 8px 12px; margin-bottom: 24px; }
-.cn-tool-workspace .erp-tool-crumb__back { min-height: 40px; color: var(--cn-muted); font-size: 12px; }
+.cn-tool-workspace .erp-tool-crumb__back { min-height: var(--cn-tap); color: var(--cn-muted); font-size: 12px; }
 .cn-tool-crumb-current { color: var(--cn-muted); font-size: 12px; }
 .cn-tool-workspace .erp-tool-crumb__sep { color: var(--cn-muted); font-size: 10px; }
 .cn-tool-workspace .erp-tool-crumb__prefs { margin-left: auto; }
@@ -39,3 +39,8 @@ body:has(.cn-shell--tool) > .modal :is(.modal-content, .dropdown-menu) { font-fa
   .cn-tool-privacy { font-size: 11px; }
   .cn-tool-workspace :is(.form-control, .form-select) { font-size: 16px; }
 }
+/* Bootstrap draws a 16px box for checks and a 24px track for ranges; make the whole row the touch target without touching tool markup. */
+.cn-tool-workspace .form-check { display: flex; align-items: center; gap: var(--cn-space-2); min-height: var(--cn-tap); padding-inline-start: 0; }
+.cn-tool-workspace .form-check-inline { display: inline-flex; }
+.cn-tool-workspace .form-check > .form-check-input { float: none; flex: none; margin: 0; }
+.cn-tool-workspace .form-range { height: var(--cn-tap); }
