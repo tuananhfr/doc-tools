@@ -147,7 +147,7 @@
     },
     "read-aloud": {
       "name": "Đọc to văn bản",
-      "description": "Dùng giọng đọc của thiết bị để nghe văn bản",
+      "description": "Nghe văn bản dán vào hoặc tệp PDF, Word, TXT bằng giọng của thiết bị hoặc giọng Chuyện Nhỏ",
       "synonyms": "text to speech, nghe chữ, đọc văn bản"
     },
     "vietqr": {

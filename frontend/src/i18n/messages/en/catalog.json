@@ -147,7 +147,7 @@
     },
     "read-aloud": {
       "name": "Read text aloud",
-      "description": "Listen to text using your device's voice",
+      "description": "Listen to pasted text or a PDF, Word or TXT file with your device voice or the Chuyen Nho voice",
       "synonyms": "text to speech, tts, listen to text, read aloud"
     },
     "vietqr": {

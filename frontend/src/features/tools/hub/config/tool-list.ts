@@ -190,7 +190,6 @@ export const ALL_TOOLS: ToolEntry[] = [
     icon: 'volume-up',
     categories: ['other'],
    
-    noFile: true,
     status: 'ready',
     screen: 'read-aloud',
   },
