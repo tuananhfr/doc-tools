@@ -21,8 +21,10 @@ npx vitest run src/features/tools/rules/services/signed-rules.test.ts   # một 
 
 - **Bắt buộc `--webpack`**, không Turbopack: `next.config.mjs` dựa vào
   `NormalModuleReplacementPlugin` (thay `useHubPrefs`, nạp `pdfium.wasm` dạng `?url`).
-- `scripts/prepare-video.mjs` tự chạy ở `postinstall` / `predev` / `prebuild`, chép core
-  FFmpeg vào `public/vendor/ffmpeg/`. Thiếu thư mục đó thì chạy lại `npm ci`.
+- `postinstall` / `predev` / `prebuild` chạy ba script `scripts/prepare-{video,pdfjs,background-removal}.mjs`,
+  chép core FFmpeg, file phụ của pdf.js và runtime xoá nền vào `public/vendor/`. Thiếu thư mục
+  nào ở đó thì chạy lại `npm ci`. `prepare-ocr-models.mjs` **không** nằm trong chuỗi này (chỉ
+  chép model HTR đã duyệt — hiện chưa có).
 - Vitest chỉ nhận `src/**/*.test.ts`, môi trường `node` (không DOM) — file `.test.tsx` bị
   bỏ qua im lặng. `TZ` cố định `Asia/Ho_Chi_Minh` trong `vitest.config.ts`.
 - `public/offline-manifest.json` do `npm run build` sinh và đã gitignore (từng bị track,
@@ -113,6 +115,9 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
 - Offline chỉ precache vi. Trang ngôn ngữ khác chưa mở mà mất mạng thì `sw.js` chuyển sang
   bản vi cùng slug (danh sách locale lấy từ `offline-manifest.json`); trả shell `/` ở URL
   `/<lang>/...` là React Router báo 404.
+- Namespace mới (`ocr`, `quality`, `entertainment`, chữ cộng đồng, `landing` trong `site.json`)
+  hiện chỉ có vi + en thật; locale khác chép bản en chờ duyệt dịch. Có mặt ở cả 15 locale
+  **không** có nghĩa là đã dịch.
 
 ### Base path
 
@@ -131,22 +136,35 @@ là `/doc-tools` trên lpc.vn; code vẫn phải chạy đúng khi có prefix. �
 
 ### Gọi backend
 
-OCR Free V2 uses `ocr-pipeline` for bounded local comparison passes, original-image transforms and explicit word/field/table review. Processed cell proposals retain their pass and candidate IDs separately from immutable raw text; export requires confirmation. Manual fields link to their editable text-layer words. `ocr-export` exports reviewed TXT/PDF/DOCX/XLSX/CSV/JSON; rich results and corrections stay in RAM. Cache fingerprints include source hash, page rotation, profile and pipeline version. Handwriting HTR is disabled pending model/license/browser/ground-truth evidence; mixed mode is a Tesseract experiment requiring full review.
+`next.config.mjs` rewrite `<basePath>/api/v1/{codes,tools,rules,contributions,auth,admin,ai,ent,landings}/*`,
+`/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope
+phẳng `{ok, ...}` — giữ nguyên. Module backend mới có route công khai mà quên thêm dòng ở đây
+thì dev / production đều 404 (chỉ `/api/v1/mcp/` cố ý không qua Next — Apache proxy thẳng).
 
-Optional quality aggregates use `/api/v1/tools/quality` only when `NEXT_PUBLIC_QUALITY_EVENTS=1` AND the user consents for the current memory session. Only fixed event/tool dimensions are sent, with credentials/referrer omitted. No query, document or OCR correction is sent or queued. Disclosures share the `quality` namespace across privacy, support and data-processing pages. New `ocr`/`quality` namespaces currently have Vietnamese/English copy; other locales use the English copy pending translation review.
+- **Số đếm chất lượng** (`/api/v1/tools/quality`) chỉ gửi khi `NEXT_PUBLIC_QUALITY_EVENTS=1`
+  **và** người dùng đồng ý trong phiên hiện tại (chỉ nhớ trong RAM). Chỉ gửi chiều sự kiện /
+  công cụ cố định, bỏ credentials + referrer; không bao giờ gửi hay xếp hàng câu tìm kiếm, tài
+  liệu, nội dung sửa OCR. Lời công bố dùng chung namespace `quality` ở trang quyền riêng tư,
+  hỗ trợ và xử lý dữ liệu.
 
-`next.config.mjs` rewrite `<basePath>/api/v1/{tools,rules,contributions,auth,admin,ai,landings}/*`,
-`/api/v1/me` và `/api/v1/me/*` sang `BACKEND_URL` (mặc định `http://127.0.0.1:3003`). Envelope phẳng `{ok, ...}` — giữ nguyên.
+### Cộng đồng (`features/community`)
 
-### Community functions
+`/de-xuat-tien-ich` và `/gop-y-quy-dinh` là trang site tĩnh, **không** có trong danh mục công
+cụ lẫn catalog MCP; footer cả hai khung link tới chúng, tìm danh mục / nhóm không ra kết quả thì
+gợi ý đề xuất. Runtime chèn `ToolFeedback` vào `ToolRoutePage` mà không remount màn công cụ.
 
-Community functions live in `features/community`: `/de-xuat-tien-ich` and `/gop-y-quy-dinh` are static site routes, absent from the tool registry and MCP catalog. Both footers link to them; empty catalog/group searches link to suggestions. Runtime injects `ToolFeedback` into `ToolRoutePage` without remounting the screen. Its inline form retains its draft when closed and sends only entered text plus the tool slug, never files/results. Data feedback maps address/payroll/electricity slugs to rule domains; other data notes use `legal`, still requiring manual review and signed publication. No active snapshot is inferred.
-
-Bug/improvement feedback uses `RECEIVED → IN_PROGRESS → RESOLVED`; ideas/data keep their review statuses. Retry keys remain in RAM; receipt saving is an explicit text download. Lookup/evidence responses are bound to the verified receipt and invalidated on input changes/unmount. New community copy is Vietnamese/English, with the existing English fallback in other locales.
+- Form góp ý tại chỗ giữ nháp khi đóng, chỉ gửi chữ người dùng gõ + slug công cụ — không bao
+  giờ gửi tệp / kết quả.
+- Góp ý dữ liệu: slug địa chỉ / lương / tiền điện ánh xạ sang domain quy tắc tương ứng, còn lại
+  dùng `legal` — vẫn phải duyệt tay + phát hành bằng gói ký. Không suy ra snapshot đang áp dụng.
+- Góp ý lỗi / cải tiến đi `RECEIVED → IN_PROGRESS → RESOLVED`; ý tưởng và dữ liệu giữ trạng
+  thái duyệt cũ. Khoá gửi lại chỉ trong RAM; lưu biên nhận là tải tệp chữ do người dùng bấm.
+  Kết quả tra / bổ sung nguồn gắn với biên nhận đã xác minh, bị huỷ khi đổi input hoặc unmount.
 
 ### Tài khoản (`features/account`, spec `../docs/pro/pro-spec.md`)
 
-Đăng nhập email + mã 6 số, phiên là cookie `cn_session` của backend. Trang `/dang-nhap`,
+Đăng nhập email + mật khẩu (mã 6 số chỉ dùng khi tạo tài khoản / quên mật khẩu), phiên là
+cookie `cn_session` của backend. Trang `/dang-nhap`,
 `/tai-khoan`, `/de-xuat-cua-toi` nằm trong `ACCOUNT_PAGES` (`site-pages.ts`): vẫn thuộc `SITE_PAGE_SLUGS` để kiểm
 trùng slug, nhưng sitemap lọc ra và metadata đặt `noindex`.
 
@@ -303,6 +321,62 @@ proxy (nginx, Apache, Cloudflare, Next, PHP) ở `docs/landing-host-proxy.md`.
 - Type `LandingDoc` là bản sao của `backend/src/landings/landing-content.ts`; trần độ dài ở
   `admin/config/landing-form.ts` cũng chép từ đó. Thêm trường thì sửa cả ba chỗ.
 
+### Trang chủ (`features/site/landing`, route `/`)
+
+`/` dùng `LandingLayout` **ngoài** `ToolsLayout` nhưng vẫn chung provider + React Router; danh
+mục và trang công cụ giữ khung + engine cũ. Hộp cuộn là `.cn-landing-scroll` — hash điều hướng
+nhắm bảy section bên trong hộp đó. Link cũ `?tool=` vẫn đi qua `legacyToolPath`.
+
+- `LandingPage` chỉ ghép component; chữ ở khoá `landing` của `site.json` (15 locale). Nút đổi
+  ngôn ngữ dùng lại `LOCALES` / `localeHref` / `switchLocale`, nút theme dùng lại
+  `useThemeMode` (có cả chế độ `field`).
+- Ảnh minh hoạ ở `public/landing` là ảnh chụp giao diện tiếng Việt với dữ liệu mẫu (có ghi
+  chú như vậy) — không nướng chữ hay nút đang chạy vào ảnh.
+- CSS scoped dưới `styles/site/landing`. Phải giữ: mục tài khoản / chia sẻ trong menu, link
+  website / pháp lý + `QualityConsent` ở footer, và ranh giới giữa "xử lý trên máy" với lời công
+  bố AI / lưu trữ online.
+- Các component trang chủ cũ vẫn nằm trong repo là code lịch sử, chờ một yêu cầu dọn riêng —
+  đừng tự xoá.
+
+### OCR Free V2 (`ocr-pipeline`, `ocr-export`)
+
+- `ocr-pipeline` chạy các lượt so sánh cục bộ có giới hạn, biến đổi trên ảnh gốc, rồi bắt người
+  dùng duyệt rõ từng từ / trường / bảng. Đề xuất ô đã xử lý giữ id lượt + id ứng viên **tách
+  khỏi** chữ thô bất biến; xuất phải có xác nhận. Trường nhập tay liên kết với từ của lớp chữ
+  sửa được.
+- `ocr-export` xuất TXT/PDF/DOCX/XLSX/CSV/JSON đã duyệt; kết quả giàu và nội dung sửa chỉ ở RAM.
+  Khoá cache gồm hash nguồn, góc xoay trang, profile và phiên bản pipeline — đổi pipeline mà
+  không tăng phiên bản là đọc nhầm cache cũ.
+- HTR chữ viết tay **đang tắt** tới khi đủ bằng chứng model / giấy phép / trình duyệt /
+  ground-truth (`scripts/doc-tools/benchmark/handwriting-models.json`, `prepare-ocr-models.mjs`).
+  Chế độ hỗn hợp chỉ là thử nghiệm Tesseract, bắt duyệt toàn bộ.
+
+### Giải trí (`features/tools/entertainment`)
+
+Ba màn nạp lười `/than-so-hoc`, `/bai-tay`, `/tarot` + panel nguồn / xuất gắn vào `/lich-am`.
+Cả ba là mục `ready` bình thường trong danh mục, dùng metadata route công cụ chung;
+`/kham-pha-giai-tri` gom chúng với âm lịch. Không cần cờ bật.
+
+- POST bỏ cookie tài khoản; tính toán cần người dùng đồng ý nhập liệu rõ ràng; báo cáo PDF/PNG
+  vẽ trên máy. Chữ giao diện ở namespace `entertainment`.
+- Kho diễn giải tiếng Việt khoá theo lá + chiều / chỉ số + giá trị, UI và bản xuất dùng chung.
+  Kết luận dùng gợi ý vai lá + liên kết chủ đề số (biên tập riêng), có phần lập luận mở rộng
+  được, và tách Năm cá nhân khỏi nét cốt lõi.
+- Đọc `docs/entertainment-interpretations.md` trước khi đổi nghĩa lá / số, luật tổng hợp, vị trí
+  trải bài, quy ước phương pháp hay nguồn gốc. Chữ pháp lý / quyền riêng tư phải khớp
+  `../backend/docs/entertainment.md`.
+
+### Workspace adapter (`runtime/workspace-registry.ts`)
+
+Metadata runtime của công cụ nằm ở `workspace-registry.ts`, trỏ tới config template gốc của
+từng feature. Giữ nguyên router và hợp đồng `FlowTask` / `FlowResult` cục bộ.
+
+- Lịch Gia Đình là sản phẩm riêng ở URL cũ; tính năng xây dựng nâng cao thuộc ERPCons — đừng
+  kéo vào đây.
+- QR động là nhánh server mới **duy nhất**: đồng ý lưu trữ rõ ràng, khoá quản lý hiện một lần,
+  biên nhận trên máy (tuỳ chọn), proxy `/api/v1/codes`. QR tĩnh và in nhãn vẫn chạy cục bộ.
+- Chi tiết ở `docs/workspace-repair-v1-1.md` và `../backend/docs/api.md`.
+
 ## Thêm một công cụ
 
 Ba chỗ, thiếu một là công cụ không hiện hoặc type-check vỡ:
@@ -377,19 +451,3 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 | Next.js 16 khác bản quen thuộc | `node_modules/next/dist/docs/` (xem `AGENTS.md`) |
 
 Giữ tiếng Việt UTF-8 không BOM. Không commit / push khi chưa được yêu cầu rõ ràng.
-
-### Landing public homepage
-
-The `/` route uses `features/site/landing/LandingLayout` outside `ToolsLayout`, while retaining the shared providers and React Router. Its scroll owner is `.cn-landing-scroll`; navigation hashes target the seven sections inside that container. The directory and tool routes keep their existing shell and engines. Legacy `?tool=` links still resolve through `legacyToolPath`.
-
-Landing components are composed by `LandingPage`; copy lives under `landing` in all 15 `site.json` locales. This does not imply every existing tool namespace has a reviewed translation. Language controls reuse `LOCALES`, `localeHref` and `switchLocale`; theme controls reuse `useThemeMode`, including `field` mode. Local screenshots of the Vietnamese interface use sample data and are labeled accordingly. Artwork is in `public/landing`; live copy and controls must not be baked into those images.
-
-Landing CSS is scoped under `styles/site/landing`. Preserve the account/share entries in the landing menu, the website/legal links and `QualityConsent` in its footer, and the distinction between local processing and online AI/storage disclosures. The existing home components remain as historical code pending a separate cleanup request.
-
-### Entertainment tools
-
-`features/tools/entertainment` contains three lazy screens under `/than-so-hoc`, `/bai-tay`, `/tarot`, plus the source/export panel attached to `/lich-am`. All three are ordinary ready catalog entries and use the common tool route metadata; `/kham-pha-giai-tri` groups them with the lunar calendar. No opt-in entertainment flags are required. POSTs omit account cookies, calculations need explicit input consent, and report PDF/PNG rendering stays on-device. UI copy uses the `entertainment` namespace (VI/EN, English fallback elsewhere). The Vietnamese interpretation corpus is keyed by card/orientation or metric/value; UI and export share it. Conclusions use separate editorial card-role cues and number-theme links, show expandable reasoning, and separate Personal Year from core traits. See `docs/entertainment-interpretations.md` before changing meanings, synthesis rules, spread positions, method conventions or provenance. Legal and privacy copy must match `backend/docs/entertainment.md`.
-
-## Incremental workspace adapters (12/10/2026)
-
-Runtime metadata lives in src/runtime/workspace-registry.ts and references native feature template configs. Keep the existing router and local FlowTask/FlowResult contracts. Family Calendar is a separate product at its legacy URL; advanced construction capabilities belong to ERPCons. Optional dynamic QR is the only new server branch: explicit storage consent, one-time management key, opt-in device receipt, /api/v1/codes proxy. Static codes and label printing stay local. See docs/workspace-repair-v1-1.md and backend/docs/api.md. OCR is a separate work package.

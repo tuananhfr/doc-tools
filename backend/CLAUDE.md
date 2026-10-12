@@ -52,18 +52,18 @@ npm run accounts -- grant-role <email> <owner|admin|reviewer> <operator>   # t�
 npm run accounts -- change-email <email> <email mới> <operator>   # khi không còn admin nào đăng nhập được; thư nằm trong outbox chờ API gửi
 npm run mail -- dkim-keygen <thư mục ngoài repo> [selector]   # in sẵn .env + bản ghi DNS SPF/DKIM/DMARC
 npm run mail -- test <email>                           # gửi thử qua MAIL_TRANSPORT đang đặt
+npm run ai -- status | register-mcp | sync-agents | reconcile   # GoClaw: xem mục Bẫy trước khi chạy
+node dist/cli/quality.js <YYYY-MM-DD> <YYYY-MM-DD>     # xuất báo cáo chất lượng (không có npm script)
 ```
 
 ## Kiến trúc
-
-Optional `/api/v1/tools/quality` accepts only fixed aggregate event/tool dimensions; it has no public report endpoint. `QualityRepository` stores daily counters and short-lived daily rotating HMAC hourly rate-limit buckets in two dedicated tables. `cli/quality` exports reports for trusted operators. No raw queries, documents, corrections or user tracking identifiers are accepted.
 
 `src/main.ts` chỉ ghép app (prefix `api/v1`, `bodyParser: false`). Mỗi module
 chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM):
 
 | Module | Đường dẫn | Việc |
 | --- | --- | --- |
-| `tools` | `POST /tools/visits` · `GET /tools/stats` | Bộ đếm lượt mở công cụ |
+| `tools` | `POST /tools/visits` · `GET /tools/stats` · `POST /tools/quality` | Bộ đếm lượt mở công cụ · số đếm chất lượng tổng hợp (tuỳ chọn, xem mục Chất lượng) |
 | `rules` | `GET /rules/:kind` | `{ok, package, upcoming}`: gói đang hiệu lực + gói sắp hiệu lực gần nhất, đã xác minh chữ ký |
 | `contributions` | `POST /contributions` · `GET /contributions/receipt/:code` · `POST /contributions/receipt/:code/sources` · `GET /contributions/ideas` · `GET /me/contributions` · `POST /me/contributions/:id/evidence` | Nhận đề xuất (khách hoặc có tài khoản), tra trạng thái theo mã biên nhận, "Đề xuất của tôi" + bổ sung nguồn, ý tưởng đã duyệt |
 | `auth` | `POST /auth/{login,otp/request,password/setup,logout}` · `PUT /me/password` · `POST /me/sessions/end-others` · `DELETE /me` | Đăng nhập email + mật khẩu; mã 6 số chỉ để tạo tài khoản / quên mật khẩu (chung một bước `password/setup`); tự xoá tài khoản xác nhận bằng mật khẩu |
@@ -75,6 +75,8 @@ chia `controller` / `service` / `repository` (SQL thô qua `mysql2`, không ORM)
 | `cloud` | `/me/saved` · `/me/saved/bookmarks/:toolId` | Kết quả đã lưu + công cụ yêu thích của tài khoản Pro (bảng `saved_items`); lịch sử kiểm nguồn ở `GET /ai/history` (module `ai`) |
 | `lifecycle` | — | Job mỗi giờ quanh lúc hết Pro: thư nhắc 7 ngày trước, mục đã lưu chỉ-đọc 90 ngày, thư báo rồi mới xoá (bảng `plan_notices`) |
 | `landings` | `GET /landings/:key` · `GET /landings/assets/:id` · `/admin/landings/*` | Trang giới thiệu Chuyện Nhỏ cho từng website ngành: nháp + bản xuất bản (bảng `landing_pages`, khoá lạc quan `baseRev` → 409), ảnh PNG/JPEG/WebP lưu đĩa theo sha256 ở `LANDING_ASSET_DIR` (bảng `landing_assets`). Khuôn nội dung trong `landing-content.ts` phải khớp bản sao type `frontend/src/features/site-landing/types` |
+| `codes` | `POST /codes` · `GET /codes/:token/resolve` · `POST /codes/:id/revoke` | QR động bản Free (xem mục QR động) |
+| `entertainment` | `/ent/{tools,numerology/calculate,cards/draw,tarot/draw,almanac/day,reports}` | Thần số học, bài tây, Tarot, so lịch cho khách (xem mục Giải trí) |
 | `mcp` | `GET /mcp/sse` · `POST /mcp/messages` | Máy chủ MCP (SSE, viết tay) cho agent: `cn_find_tools` / `cn_tool_guide` / `cn_open_tool`, đọc `data/tool-catalog.json` |
 
 Bản Pro theo spec `../docs/pro/pro-spec.md` (bậc Khách / Tài khoản / Pro). Code kiểm
@@ -84,13 +86,44 @@ khu quản trị (`plans.manage`).
 Gói quy tắc chỉ ký / stage / kích hoạt bằng `src/cli/`. Duyệt đóng góp đi được cả CLI lẫn
 khu quản trị — cùng luật ba người, cùng `assertPublishablePackage()` (`contributions/publish-check.ts`).
 
-General feedback (`feedback-bug`, `feedback-improvement`) is handled separately by `feedback-workflow.ts`: `RECEIVED → IN_PROGRESS → RESOLVED`, or reject while open. Its side table `contribution_feedback_workflow` needs only CREATE, keeps the original review enum intact and supplies effective status to receipt/account/admin queries. These records cannot be verified, approved, published or given source evidence. Optional confidential `Idempotency-Key` retries derive the same HMAC receipt and return the current status without another submission; raw keys are not stored. Anonymous evidence now appends/deduplicates while NEEDS_SOURCE or NEEDS_REVIEW are open, with the same total limit as account evidence. See `docs/api.md`.
+Góp ý chung (`feedback-bug`, `feedback-improvement`) đi luồng riêng ở `feedback-workflow.ts`:
+`RECEIVED → IN_PROGRESS → RESOLVED`, hoặc từ chối khi còn mở. Trạng thái nằm ở bảng phụ
+`contribution_feedback_workflow` (chỉ cần quyền CREATE, enum duyệt gốc giữ nguyên) và được
+ghép vào truy vấn biên nhận / tài khoản / quản trị. Góp ý **không** verify / approve / publish
+hay bổ sung nguồn được. `Idempotency-Key` (tuỳ chọn, không lưu thô) gửi lại sẽ sinh cùng mã
+biên nhận HMAC và trả trạng thái hiện tại, không tạo đề xuất mới. Bổ sung nguồn của khách được
+nối thêm + khử trùng khi đề xuất còn `NEEDS_SOURCE`/`NEEDS_REVIEW`, chung trần tổng với tài
+khoản. Chi tiết ở `docs/api.md`.
 
 Khu quản trị không có đăng nhập riêng: tài khoản có dòng trong `user_roles` đăng nhập bằng
 email + mật khẩu như mọi người, phiên chỉ sống 12 giờ (`STAFF_SESSION_SECONDS`). Mọi route
 `/admin/*` qua `@Staff(permission)` (`admin/admin.guard.ts`) và **đòi header tin cậy cả
 với GET** — để trang lạ không đọc được dữ liệu quản trị bằng cookie. Mọi lệnh ghi phải
 `AdminAuditRepository.record()`.
+
+### Chất lượng (`tools/quality.*`)
+
+`POST /tools/quality` là tuỳ chọn và chỉ nhận một tập **cố định** chiều sự kiện / công cụ —
+không nhận câu tìm kiếm, tài liệu, nội dung sửa OCR hay định danh theo dõi người dùng nào.
+Không có endpoint báo cáo công khai: `QualityRepository` giữ bộ đếm theo ngày + xô giới hạn
+theo giờ khoá bằng HMAC xoay mỗi ngày (hai bảng riêng); báo cáo chỉ xuất bằng `cli/quality`.
+
+### Giải trí (`src/entertainment`, `/ent/*`)
+
+Thần số học, rút bài tây / Tarot, so lịch cho khách — không cần cờ bật. Lượt rút dùng khoá
+capability có mốc thời gian + hạn, snapshot MySQL bất biến và lấy mẫu bằng CSPRNG. Tên / ngày
+sinh chỉ xử lý trong RAM. Catalog quảng bá thư viện diễn giải (biên tập, tiếng Việt) của
+frontend **tách khỏi** nguồn tính toán; snapshot lượt chạy không đổi. Lịch sử và BYO-AI là
+việc riêng, chưa làm. Đọc `docs/entertainment.md` trước khi đổi hợp đồng dữ liệu — chữ pháp
+lý / quyền riêng tư bên frontend phải khớp file đó.
+
+### QR động (`src/codes`)
+
+Thêm mới, không đổi API cũ. Bảng `code_links` + `code_request_limits` chỉ CREATE. Chỉ nhận
+đích HTTPS công khai, máy chủ **không bao giờ** tải đích đó. Khoá quản lý và token công khai
+lưu dạng băm. `codes.guestHourly` (`app_settings`, mặc định 10) là ngân sách nguyên tử theo
+băm IP / giờ UTC. URL quét dựng từ `SITE_PUBLIC_URL`. Test dùng module cô lập + hai instance
+app — test fixture cục bộ thì tránh job lifecycle của `AppModule`. Chi tiết ở `docs/api.md`.
 
 ### Bẫy
 
@@ -232,11 +265,3 @@ với GET** — để trang lạ không đọc được dữ liệu quản trị
 
 Giữ tiếng Việt UTF-8 không BOM. `.env`, `dist/`, `node_modules/` không vào Git. Không
 commit / push khi chưa được yêu cầu rõ ràng.
-
-### Entertainment tools
-
-`src/entertainment` owns guest numerology, card/Tarot draw and calendar comparison APIs. These tools are available without opt-in flags. Draws use expiring timestamped capability keys, immutable MySQL snapshots and CSPRNG sampling. Names/birth dates are processed in memory only. Read `docs/entertainment.md` before changing the data contract. The tools catalog advertises the frontend's Vietnamese EDITORIAL interpretation library separately from calculation sources; execution snapshots stay unchanged. History and BYO-AI remain separate work.
-
-## Free dynamic QR (12/10/2026)
-
-The codes module adds POST /codes, GET /codes/:token/resolve and POST /codes/:id/revoke without changing existing APIs. code_links and code_request_limits are CREATE-only additions. Only public HTTPS destinations are accepted; the server never fetches them. Management credentials and public tokens are hashed at rest. codes.guestHourly is an atomic per-IP-hash UTC-hour budget; default 10. SITE_PUBLIC_URL defines scan URLs. Tests use an isolated module and two application instances; avoid AppModule lifecycle jobs when testing local fixtures. See docs/api.md.

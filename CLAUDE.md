@@ -14,7 +14,8 @@ mục rồi đọc `CLAUDE.md` của nó trước khi làm. Lịch sử Git riê
 
 - Chạy `npm ci` / `npm test` / `npm run build` / `npm run lint` **trong từng thư mục**. Không
   thêm npm workspace hay dependency `file:` nối hai app; chúng chỉ nói chuyện qua HTTP
-  (frontend rewrite `/api/v1/{tools,rules,contributions}` sang `BACKEND_URL`).
+  (frontend rewrite các nhánh `/api/v1/*` của backend sang `BACKEND_URL` — danh sách đủ ở
+  `frontend/next.config.mjs`; thêm module backend có route công khai mới là phải thêm dòng ở đó).
 - `docs/` ở đây (gitignore) là bộ tài liệu gốc: spec `.docx`, archive mã nguồn
   Chuyện Nhỏ (`*.zip`), `UI-UX/`. Archive chỉ là tham chiếu chức năng — không chép nguyên
   đường dẫn, khoá, cách lưu trữ hay dữ liệu pháp lý/giá vào production. Bản đồ archive →
