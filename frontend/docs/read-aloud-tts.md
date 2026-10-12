@@ -1,6 +1,6 @@
 # Read aloud: Chuyen Nho voice (Piper)
 
-`/doc-to-van-ban` offers two engines. "Device voice" uses the browser's Web Speech API. "Chuyen Nho voice" runs the Piper `vi_VN-vais1000-medium` VITS model in a dedicated browser worker with ONNX Runtime Web 1.30.0 (WASM, one thread) and an espeak-ng phonemizer compiled to WebAssembly. Text, audio and the exported WAV never leave the browser; the server only serves static assets.
+`/doc-to-van-ban` reads pasted text or a PDF, DOCX or TXT file and offers two engines. "Device voice" uses the browser's Web Speech API. "Chuyen Nho voice" runs the Piper `vi_VN-vais1000-medium` VITS model in a dedicated browser worker with ONNX Runtime Web 1.30.0 (WASM, one thread) and an espeak-ng phonemizer compiled to WebAssembly. Text, audio and the exported WAV never leave the browser; the server only serves static assets.
 
 ## Assets and provenance
 
@@ -41,6 +41,30 @@ While reading or paused, the textarea is replaced by a read-only view (`ReadingV
 Native `speechSynthesis.pause()` / `resume()` is not used: it hangs on Chrome Android and with online voices. Chrome's online "Google tiếng Việt" voice sends no boundary events, so it only gets the sentence highlight and resumes from the start of the sentence. A speed change re-speaks from a timer, outside a user gesture; iOS accepts this once the first `speak()` of the page came from a tap, but this has not been tested on a real iPhone.
 
 Each read or export starts a worker and terminates it when done, stopped or unmounted, like `/xoa-phong`. There is no queue of pending reads.
+
+## Input sources, voice choice and player (WP4-A)
+
+- Tabs: Paste text / File / Article link. The link tab is hidden (`READ_LINK_TAB_ENABLED = false` in
+  `config/read-listen.ts`) until WP4-B ships the server-side safe fetch. Tabs are hidden, not unmounted, so switching
+  keeps the pasted text, the loaded file and an unfinished OCR review.
+- File tab (`components/ReadFilePanel.tsx`, lazy): kind is sniffed from the first bytes (`utils/read-source.ts`).
+  TXT: BOM → strict UTF-8 → windows-1258, NFC, NUL = binary → `UNSUPPORTED`. DOCX: only `word/document.xml` is
+  inflated, after checking its declared size (zip bomb → `TOO_LARGE`); a regex tokenizer keeps paragraph/table order and
+  skips `mc:Fallback` (`utils/docx-text.ts`). PDF reuses the PDF tool engine (`services/pdf-to-text.ts`): text layer per
+  page; pages without text go through `recognizePipeline` (max 20) and the PDF tool's `OcrReview`; nothing is spoken
+  until every flagged word is confirmed. OCR results are not written to the shared `ocr-store`.
+- Text over 20,000 characters is split into parts (`splitReadParts`, paragraph → sentence → space); hard cap
+  1,000,000 characters → `TOO_LARGE`. Pasted text is no longer cut silently.
+- Device voice: the language comes from the TEXT (`detectSpeechLang`: Vietnamese-only letters), not the page locale, and
+  `utterance.voice` is set explicitly (`pickVoice`: installed before online, exact region, default). An online voice is
+  named with a privacy/network notice. No voice → `TTS_UNAVAILABLE` and, for Vietnamese, a button to switch to Piper.
+- Player: previous/next sentence restart from the target sentence start (`neighbourChunkStart` + `seek` / Piper
+  `speak(text, offset)`); speed 0.75–1.5 in 0.05 steps; reading text size normal / ×1.25 / ×1.5 of `--cn-font-body`.
+- "Remember where I stopped" is opt-in. `localStorage` `cn.readAloud.positions` keeps at most 20
+  `{FNV-1a hash + length → offset, time}` entries and never the text; turning it off deletes them.
+- Error codes (`types/read-listen.types.ts`): `PAYWALL ROBOTS_DENIED UNSUPPORTED NO_ARTICLE TTS_UNAVAILABLE
+  OCR_UNCERTAIN OFFLINE TOO_LARGE`, rendered by `ReadErrorNotice` with `data-code` and a "paste the text instead" button.
+- Not verified on real phones yet (Android Chrome, iOS Safari): see the WP4-A plan's manual follow-up.
 
 ## Download and offline
 
