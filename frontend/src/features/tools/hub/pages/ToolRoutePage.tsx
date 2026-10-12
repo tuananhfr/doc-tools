@@ -6,6 +6,7 @@ import { Icon } from '@/components/ui'
 import { GuestPrefs } from '../components/GuestPrefs'
 import { GuestSessionAction } from '../components/GuestSessionAction'
 import { ToolUnsupported } from '../components/ToolUnsupported'
+import { WorkspaceTabs } from '../components/WorkspaceTabs'
 import { PDF_ENGINE_SCREENS } from '../config/tool-catalog'
 import { useToolsBranch } from '../hooks/tools-branch'
 import { useGuestSessionAction } from '../hooks/useGuestSessionAction'
@@ -17,6 +18,7 @@ import { pdfEngineSupported } from '../utils/browser-support'
 import { trackRecentTool } from '../utils/hub-prefs'
 import { resolveToolRoute, toolPageTitle, toolPath } from '../utils/tool-lookup'
 import { useToolOrigin } from '../hooks/useToolOrigin'
+import { workspaceTabsFor } from '../utils/workspace-tabs'
 
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
@@ -40,7 +42,9 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   const { backTo, backState } = useToolOrigin()
   const sessionAction = useGuestSessionAction()
   const { t } = useTranslation('common')
-  const { tool, redirect } = resolveToolRoute(slug, useToolCatalog())
+  const { t: tCatalog } = useTranslation('catalog')
+  const catalog = useToolCatalog()
+  const { tool, redirect } = resolveToolRoute(slug, catalog)
 
   const readySlug = tool?.slug ?? null
 
@@ -57,6 +61,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   /* Hỏi TRƯỚC khi vẽ `Screen`: vẽ ra là nạp chunk pdf.js, mà trên trình duyệt
      cũ chunk đó ném lỗi ngay lúc nạp (xem `utils/browser-support.ts`). */
   const unsupported = PDF_ENGINE_SCREENS.has(tool.screen) && !pdfEngineSupported()
+  const workspace = workspaceTabsFor(tool.id, catalog, base)
 
   return (
     <div data-workspace-version={workspaceVersions?.[tool.id]} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
@@ -87,6 +92,10 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
       </header>
 
       {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
+
+      {/* Ô này luôn có mặt (kể cả null) để `Screen` đứng cùng vị trí với mọi công cụ: đổi giữa hai slug
+          chung một màn vẫn không dựng lại màn. */}
+      {workspace ? <WorkspaceTabs label={tCatalog(`workspaceTabs.${workspace.groupId}`)} tabs={workspace.tabs} /> : null}
 
       {unsupported ? <ToolUnsupported toolName={tool.name} hubPath={base} /> : <Screen />}
     </div>

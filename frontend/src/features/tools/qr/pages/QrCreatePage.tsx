@@ -5,7 +5,6 @@ import { Icon, useToast } from '@/components/ui'
 import { CopyButton, downloadOutput, ToolBoard, ToolPanel, useDownloadNudge } from '@/features/tools/hub'
 import { QrColorPicker } from '../components/QrColorPicker'
 import { QrContentForm } from '../components/QrContentForm'
-import { QrModeTabs } from '../components/QrModeTabs'
 import { QrPreview } from '../components/QrPreview'
 import { QR_COLORS, qrBackgroundColor, qrContrast, type QrBackground } from '../config/qr-colors'
 import { qrPdfBlob, qrPngBlob, qrSvgBlob } from '../services/qr-render'
@@ -106,7 +105,6 @@ function StaticQrCreatePage() {
         </details>
       </ToolPanel>}
     >
-      <QrModeTabs current="qr-create" />
       <ToolPanel title={t('shared.contentPanel')}>
         <QrContentForm form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
       </ToolPanel>

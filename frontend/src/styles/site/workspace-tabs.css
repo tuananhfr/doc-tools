@@ -1,0 +1,9 @@
+/* Thanh tab nhóm việc (WorkspaceTabs). Khác `.erp-tool-tabs` của màn công cụ (chia đều bề ngang ở mobile):
+   bảy tab ảnh ở 360px chia đều thành chữ một từ một dòng, nên ở đây cuộn ngang, tab giữ một dòng. */
+.cn-workspace-tabs-row { max-width: 1200px; margin: 0 auto var(--cn-space-4, 16px); }
+.cn-tool-workspace .cn-workspace-tabs { display: inline-flex; flex-wrap: nowrap; max-width: 100%; gap: var(--cn-space-1, 4px); padding: var(--cn-space-1, 4px); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.cn-tool-workspace .cn-workspace-tabs .erp-tool-tab { flex: 0 0 auto; flex-direction: row; gap: var(--cn-space-2, 8px); min-height: var(--cn-tap, 44px); padding: 0 var(--cn-space-3, 12px); font-size: 14px; white-space: nowrap; }
+@media (max-width: 575px) {
+  .cn-workspace-tabs-row { margin-bottom: var(--cn-space-3, 12px); }
+  .cn-tool-workspace .cn-workspace-tabs { display: flex; }
+}

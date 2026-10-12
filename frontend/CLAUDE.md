@@ -395,6 +395,8 @@ Ba chỗ, thiếu một là công cụ không hiện hoặc type-check vỡ:
 
 Công cụ mới đặt trong feature riêng `features/tools/<nhóm>/`. Tắt một công cụ trên
 production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
+Công cụ thuộc một nhóm việc có thanh tab (QR, tính toán, ảnh) → thêm id vào `hub/config/workspace-tabs.ts`.
+Thanh tab do `ToolRoutePage` vẽ (`WorkspaceTabs`, tab là link giữa slug) — màn công cụ không tự vẽ tab nhóm.
 
 ## Code copy từ ERPCons — giữ nguyên hành vi
 

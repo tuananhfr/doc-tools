@@ -5,7 +5,6 @@ import { Icon } from '@/components/ui'
 import { FilePicker, ToolBoard } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
 import { QrCamera } from '../components/QrCamera'
-import { QrModeTabs } from '../components/QrModeTabs'
 import { ScanResultList } from '../components/ScanResultList'
 import { scanImage, scanLimitReason, type ScanRead } from '../services/qr-scan'
 import type { ScanHit } from '../types/qr.types'
@@ -104,8 +103,6 @@ export default function QrReadPage() {
         </>
       }
     >
-      <QrModeTabs current="qr-read" />
-
       <FilePicker
         accept={ACCEPT}
         multiple

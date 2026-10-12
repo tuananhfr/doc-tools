@@ -7,7 +7,6 @@ import { BarcodeBatch } from '../components/BarcodeBatch'
 import { BarcodeOptions } from '../components/BarcodeOptions'
 import { BarcodePreview } from '../components/BarcodePreview'
 import { Gs1Notice } from '../components/Gs1Notice'
-import { QrModeTabs } from '../components/QrModeTabs'
 import { barcodeKind } from '../config/barcode-kinds'
 import { useBarcodeEngine } from '../hooks/useBarcodeEngine'
 import type { BarcodeLook } from '../services/barcode-render'
@@ -109,7 +108,6 @@ export default function BarcodeCreatePage() {
         )
       }
     >
-      <QrModeTabs current="barcode-create" />
       <ToolSegments label={t('barcode.modeLabel')} value={mode} options={MODES.map((item) => ({ ...item, label: t(`barcode.modes.${item.value}`) }))} onChange={setMode} />
 
       {mode === 'single' ? (
