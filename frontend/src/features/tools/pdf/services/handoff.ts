@@ -1,18 +1,15 @@
-/**
- * "Sửa tiếp" ở màn kết quả của công cụ nhanh: tệp vừa dựng được đưa sang trình
- * chỉnh sửa. Tệp chỉ sống trong RAM của tab nên không đi qua URL hay
- * `history.state` được (state của router bị tuần tự hoá) — giữ tạm ở đây cho
- * tới khi trình chỉnh sửa mount và lấy đi.
- */
-let pending: File[] = []
+import { handOff, takeHandoff as takeFor } from '@/features/tools/shared'
 
+/**
+ * Đường cũ của "Sửa tiếp" công cụ PDF nhanh → trình chỉnh sửa. Handoff đã chuyển sang
+ * `tools/shared/handoff.ts` (dùng chung cho ảnh thẻ, CV…); giữ hai hàm này để chỗ gọi cũ
+ * (`QuickToolShell`, `DocToolsPage`) không phải sửa. Đích là màn `editor`.
+ */
 export function handOffFiles(files: File[]): void {
-  pending = files
+  handOff('editor', files)
 }
 
 /** Lấy MỘT lần: F5 hay quay lại trình chỉnh sửa lần sau không nạp lại tệp cũ. */
 export function takeHandoff(): File[] {
-  const files = pending
-  pending = []
-  return files
+  return takeFor('editor')
 }
