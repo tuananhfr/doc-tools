@@ -87,8 +87,11 @@ Gói quy tắc chỉ ký / stage / kích hoạt bằng `src/cli/`. Duyệt đón
 khu quản trị — cùng luật ba người, cùng `assertPublishablePackage()` (`contributions/publish-check.ts`).
 
 Góp ý chung (`feedback-bug`, `feedback-improvement`) đi luồng riêng ở `feedback-workflow.ts`:
-`RECEIVED → IN_PROGRESS → RESOLVED`, hoặc từ chối khi còn mở. Trạng thái nằm ở bảng phụ
-`contribution_feedback_workflow` (chỉ cần quyền CREATE, enum duyệt gốc giữ nguyên) và được
+`RECEIVED → TRIAGED → IN_PROGRESS → RESOLVED → RELEASED`, từ chối hoặc gộp (`DEDUPED`, trỏ
+`duplicate_of`) khi còn mở. Trạng thái nằm ở bảng phụ `contribution_feedback_state` (VARCHAR, không
+ALTER); bảng ENUM cũ `contribution_feedback_workflow` vẫn được ghi trạng thái gần nhất để rollback
+được — đừng bỏ lệnh ghi đó. Trùng góp ý so theo nghĩa (`contribution_feedback_keys`): trùng bản đang
+mở → 409, trùng bản đã đóng → nhận + `DEDUPED` (tắt bằng `feedback.autoDedupe`). Trạng thái được
 ghép vào truy vấn biên nhận / tài khoản / quản trị. Góp ý **không** verify / approve / publish
 hay bổ sung nguồn được. `Idempotency-Key` (tuỳ chọn, không lưu thô) gửi lại sẽ sinh cùng mã
 biên nhận HMAC và trả trạng thái hiện tại, không tạo đề xuất mới. Bổ sung nguồn của khách được
