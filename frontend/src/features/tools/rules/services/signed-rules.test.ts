@@ -1,6 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createHash, generateKeyPairSync, sign, webcrypto } from 'node:crypto'
-import { fetchVerifiedRules, formatRuleDate, signedRuleDigest, verifySignedRulePackage, vietnamToday, type SignedRulePackage } from './signed-rules'
+import { createHash, createPublicKey, generateKeyPairSync, sign, webcrypto } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { fetchVerifiedRules, formatRuleDate, signedRuleDigest, SOURCE_ID_PATTERN, verifySignedRulePackage, vietnamToday, type SignedRulePackage } from './signed-rules'
 
 Object.defineProperty(globalThis, 'crypto', { value: webcrypto, configurable: true })
 
@@ -73,5 +75,44 @@ describe('fetchVerifiedRules', () => {
   it('drops a broken upcoming package without hiding the current one', async () => {
     serve({ ok: true, package: signed('2026-01-01', { tiers: [1] }), upcoming: { ...signed('2027-01-01', { tiers: [2] }), signature: 'AAAA' } })
     expect(await fetchVerifiedRules('electricity', parseTiers, '2026-10-06')).toMatchObject({ state: 'ready', upcoming: null })
+  })
+})
+
+const FIXTURES = fileURLToPath(new URL('../../../../../../backend/tests/fixtures/', import.meta.url))
+const fixture = (name: string) => JSON.parse(readFileSync(FIXTURES + name, 'utf8')) as SignedRulePackage
+const fixtureKey = createPublicKey(readFileSync(FIXTURES + 'rule-signing-fixture.pub.pem', 'utf8')).export({ format: 'der', type: 'spki' }).toString('base64url')
+
+describe('packages from the backend CLI (with and without sourceId)', () => {
+  function serveFixture(item: SignedRulePackage) {
+    vi.stubEnv('NEXT_PUBLIC_RULE_SIGNING_KEY_SPKI', fixtureKey)
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ ok: true, package: item, upcoming: null }))))
+  }
+
+  it('verifies a package signed before sourceId existed', async () => {
+    serveFixture(fixture('rule-package-legacy.json'))
+    const result = await fetchVerifiedRules('electricity', parseTiers, '2026-10-12')
+    expect(result.state).toBe('ready')
+    if (result.state === 'ready') expect(result.current.sourceId).toBeUndefined()
+  })
+
+  it('verifies a package carrying a sourceId and exposes it', async () => {
+    serveFixture(fixture('rule-package-source-id.json'))
+    const result = await fetchVerifiedRules('electricity', parseTiers, '2026-10-12')
+    expect(result.state).toBe('ready')
+    if (result.state === 'ready') expect(result.current.sourceId).toBe('qa-fixture-source')
+  })
+
+  it('rejects a tampered or malformed sourceId', async () => {
+    serveFixture({ ...fixture('rule-package-source-id.json'), sourceId: 'qa-other-source' })
+    expect((await fetchVerifiedRules('electricity', parseTiers, '2026-10-12')).state).toBe('invalid')
+    serveFixture({ ...fixture('rule-package-source-id.json'), sourceId: 'Bad Id' })
+    expect((await fetchVerifiedRules('electricity', parseTiers, '2026-10-12')).state).toBe('invalid')
+  })
+
+  it('uses the same id pattern as the backend', () => {
+    expect(SOURCE_ID_PATTERN.test('evn-2025-05')).toBe(true)
+    expect(SOURCE_ID_PATTERN.test('-bad')).toBe(false)
+    expect(SOURCE_ID_PATTERN.test('ab')).toBe(false)
+    expect(SOURCE_ID_PATTERN.test('a'.repeat(65))).toBe(false)
   })
 })

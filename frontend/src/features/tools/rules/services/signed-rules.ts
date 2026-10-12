@@ -6,6 +6,8 @@ export interface SignedRulePackage<T = unknown> {
   keyId: string
   effectiveFrom: string
   effectiveTo?: string
+  /** Mã nguồn trong sổ nguồn pháp lý (`/api/v1/sources/:id`); gói ký trước khi có sổ thì không có. */
+  sourceId?: string
   publishedAt: string
   source: { title: string; url: string; retrievedAt: string; sha256: string }
   data: T
@@ -13,6 +15,9 @@ export interface SignedRulePackage<T = unknown> {
 }
 
 export interface VerifiedRulePackage<T = unknown> extends SignedRulePackage<T> { digest: string }
+
+/** Khớp `SOURCE_ID_PATTERN` của backend — lệch nhau thì gói backend nhận mà trình duyệt bỏ (hoặc ngược lại). */
+export const SOURCE_ID_PATTERN = /^[a-z0-9](?:[a-z0-9-]{1,62})[a-z0-9]$/
 
 /** Gói đang dùng rút gọn cho phần kiểm nguồn AI: đủ để gọi tên gói, không kèm dữ liệu. */
 export function ruleSnapshot(item: VerifiedRulePackage | null) {
@@ -81,6 +86,8 @@ export async function signedRuleDigest<T>(value: SignedRulePackage<T>): Promise<
 async function acceptPackage<T>(value: unknown, key: string, kind: string, parse: RuleDataParser<T>, dateOk: (item: SignedRulePackage<unknown>) => boolean): Promise<VerifiedRulePackage<T> | null> {
   if (!value || typeof value !== 'object') return null
   const item = value as SignedRulePackage<unknown>
+  // Chữ ký đã phủ `sourceId`, nhưng mã sai dạng thì đừng đem đi ghép URL tra nguồn.
+  if (item.sourceId !== undefined && (typeof item.sourceId !== 'string' || !SOURCE_ID_PATTERN.test(item.sourceId))) return null
   if (typeof item.effectiveFrom !== 'string' || !dateOk(item) || !await verifySignature(item, key, kind)) return null
   const data = parse(item.data)
   return data === null ? null : { ...item, data, digest: await signedRuleDigest(item) }
