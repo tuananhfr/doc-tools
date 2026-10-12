@@ -53,3 +53,10 @@ export function numerologyReadingLines(reading: ReturnType<typeof numerologyRead
     ...readingSourceLines('numerology'),
   ]
 }
+
+// Readings are made for Vietnamese users, so the stamp stays in Vietnam time even when the device clock is set elsewhere.
+const REPORT_TIME = new Intl.DateTimeFormat('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', dateStyle: 'short', timeStyle: 'short' })
+
+export function reportTimeLine(label: string, at: Date): string {
+  return `${label}: ${REPORT_TIME.format(at)}`
+}

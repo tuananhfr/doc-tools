@@ -17,7 +17,9 @@
     "pending": "Thông tin này mô tả phương pháp tính và cách rút lá; không phải nội dung dự đoán tương lai."
   },
   "report": {
-    "local": "PDF và ảnh được tạo trên thiết bị, kèm nguồn và cảnh báo tham khảo. Việc tải không lưu lịch sử vào tài khoản."
+    "local": "PDF và ảnh được tạo trên thiết bị, kèm nguồn và cảnh báo tham khảo. Việc tải không lưu lịch sử vào tài khoản.",
+    "drawnAt": "Thời điểm rút (giờ Việt Nam)",
+    "calculatedAt": "Thời điểm tính (giờ Việt Nam)"
   },
   "cards": {
     "title": "Bài Tây 52 lá",
@@ -36,7 +38,7 @@
     "upright": "Xuôi",
     "revealHint": "Chạm từng lá để lật hoặc chọn Lật tất cả.",
     "complete": "Đã lật đủ lá. Bạn có thể xem ảnh lớn hoặc tải kết quả.",
-    "expired": "Phiên đã hết hạn. Bắt đầu phiên mới để tiếp tục; bộ lá cũ không được rút lại bằng mã cũ.",
+    "expired": "Phiên rút đã hết hạn nên máy chủ không còn giữ bản rút này. Bạn vẫn lật, xem và tải kết quả được trên máy; muốn rút bộ mới thì bắt đầu phiên mới.",
     "revealAll": "Lật tất cả",
     "meaningHint": "Lật từng lá để đọc ý nghĩa và lời khuyên. Lật đủ các lá để xem kết luận chung."
   },
@@ -80,7 +82,7 @@
   },
   "errors": {
     "NETWORK_ERROR": "Chưa hoàn tất yêu cầu. Dữ liệu nhập được giữ lại; hãy thử lại.",
-    "UNSUPPORTED_NAME": "Tên có chữ chưa có ánh xạ, hoặc không có chữ để tính. Hãy dùng tên Latin có hỗ trợ hoặc để trống tên.",
+    "UNSUPPORTED_NAME": "Tên chỉ được gồm chữ cái tiếng Việt hoặc Latin, dấu cách, dấu nháy (') và gạch nối (-). Hãy bỏ số, ký hiệu, emoji hoặc chữ viết khác, hoặc để trống tên.",
     "INVALID_BIRTH_DATE": "Ngày sinh không tồn tại, trước năm 1800 hoặc ở tương lai.",
     "SESSION_EXPIRED": "Mã phiên đã hết hạn. Hãy bắt đầu phiên mới.",
     "IDEMPOTENCY_CONFLICT": "Mã phiên đã được dùng cho cấu hình khác. Hãy bắt đầu phiên mới.",
@@ -230,7 +232,8 @@
     "cardTitle": "Luận giải từng lá",
     "numberTitle": "Diễn giải từng chỉ số",
     "language": "Bộ luận giải hiện có bằng tiếng Việt.",
-    "summaryNote": "Kết luận mang tính tham khảo, dựa trên ý nghĩa của lá bài hoặc chỉ số trong kết quả.",
+    "summaryNote": "Kết luận mang tính tham khảo, dựa trên ý nghĩa của các lá bài trong kết quả.",
+    "numberSummaryNote": "Kết luận mang tính tham khảo, dựa trên ý nghĩa của các chỉ số trong kết quả.",
     "revealFirst": "Lật một lá để đọc ý nghĩa của lá đó.",
     "overviewAfterReveal": "Lật đủ các lá để xem kết luận chung.",
     "unavailable": "Chưa có nội dung phù hợp cho kết quả này.",

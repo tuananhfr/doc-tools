@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { withBase } from '@/utils/url'
+import { DRAW_SPREADS } from '../config/draw-spreads'
 import type { useDraw } from '../hooks/useDraw'
 import type { CardIdentity } from '../types/entertainment.types'
 import { getCardArtwork } from '../services/card-artwork'
 import { drawReading } from '../services/card-reading'
-import { drawReadingLines } from '../services/reading-report'
+import { drawReadingLines, reportTimeLine } from '../services/reading-report'
 import { CardFace } from './CardFace'
 import { CardInterpretations } from './CardInterpretations'
 import { ReadingOverview } from './ReadingOverview'
@@ -38,7 +39,8 @@ export function DrawResultView({ draw }: { draw: ReturnType<typeof useDraw> }) {
   }
   const reading = drawReading(result, labelOf)
   const title = t(kind === 'cards' ? 'cards.title' : 'tarot.title')
-  const lines = [...drawReadingLines(reading, kind, labelOf), `${t('source.version')}: ${draw.result.rule_version}`, `${t('source.sources')}: ${draw.result.source_ids.join(', ')}`, `${t('source.request')}: ${draw.result.request_id}`]
+  const lines = [...(draw.drawnAt ? [reportTimeLine(t('report.drawnAt'), draw.drawnAt)] : []), ...drawReadingLines(reading, kind, labelOf)]
+  const positions = DRAW_SPREADS[result.cards.length]?.positions
   const revealAll = () => {
     const pending = result.cards.filter(card => !draw.revealed.includes(card.id))
     setFlipDelays(Object.fromEntries(pending.map((card, index) => [card.id, index * REVEAL_ALL_STAGGER_MS])))
@@ -47,18 +49,19 @@ export function DrawResultView({ draw }: { draw: ReturnType<typeof useDraw> }) {
   const reset = () => { setFlipDelays({}); draw.reset() }
   return <section className="cn-ent-reading" aria-labelledby={`${kind}-result`}>
     <h2 id={`${kind}-result`}>{t('cards.result')}</h2>
-    <p role="status">{t(draw.expired ? 'cards.expired' : complete ? 'cards.complete' : 'cards.revealHint')}</p>
+    <p role="status">{t(complete ? 'cards.complete' : 'cards.revealHint')}</p>
+    {draw.expired ? <p className="cn-ent-reading-note">{t('cards.expired')}</p> : null}
     <SpreadGuide amount={result.cards.length} />
-    <ul className="cn-ent-deck" data-count={result.cards.length}>{result.cards.map(card => <CardFace key={card.id} kind={kind} card={card} revealed={draw.revealed.includes(card.id)} expired={draw.expired} flipDelay={flipDelays[card.id] ?? 0} onReveal={() => draw.reveal(card.id)} />)}</ul>
+    <ul className="cn-ent-deck" data-count={result.cards.length}>{result.cards.map(card => <CardFace key={card.id} kind={kind} card={card} positionTitle={positions?.[card.position - 1]?.title} revealed={draw.revealed.includes(card.id)} flipDelay={flipDelays[card.id] ?? 0} onReveal={() => draw.reveal(card.id)} />)}</ul>
     <p className="cn-ent-zoom-hint">{t('artwork.hint')}</p>
     <div className="cn-ent-actions">
-      <button className="cn-button" disabled={complete || draw.expired} onClick={revealAll}>{t('cards.revealAll')}</button>
+      <button className="cn-button" disabled={complete} onClick={revealAll}>{t('cards.revealAll')}</button>
       <button className="cn-button cn-button--ghost" onClick={reset}>{t('actions.restart')}</button>
     </div>
     {complete ? <ReadingOverview summary={reading.summary} /> : <p className="cn-ent-reading-note">{t('reading.overviewAfterReveal')}</p>}
     <CardInterpretations reading={reading} revealed={draw.revealed} labelOf={labelOf} />
     <ReadingSources kind={kind} />
     <ResultProvenance result={draw.result} />
-    <ReportActions title={title} lines={lines} disabled={!complete || draw.expired} drawKey={draw.drawKey} />
+    <ReportActions title={title} lines={lines} disabled={!complete} drawKey={draw.expired ? undefined : draw.drawKey} />
   </section>
 }

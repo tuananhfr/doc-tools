@@ -446,13 +446,13 @@
       "name": "Bài Tây 52 lá",
       "description": "Xào, rút và lật bài Tây; chạm xem ảnh lớn và tải kết quả",
       "synonyms": "bài tây, playing cards, cartomancy",
-      "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
+      "privacyNote": "Máy chủ rút bài khi bạn yêu cầu và chỉ giữ bản rút trong thời gian ngắn; không lưu vào tài khoản"
     },
     "tarot": {
       "name": "Tarot 78 lá",
       "description": "Rút và lật Tarot với ảnh đầy đủ, hỗ trợ lá xuôi/ngược",
       "synonyms": "tarot, trải bài",
-      "privacyNote": "Máy chủ xử lý khi bạn yêu cầu; không lưu họ tên/ngày sinh hoặc lịch sử tài khoản"
+      "privacyNote": "Máy chủ rút bài khi bạn yêu cầu và chỉ giữ bản rút trong thời gian ngắn; không lưu vào tài khoản"
     },
     "quick-design": {
       "name": "Thiết kế nhanh",

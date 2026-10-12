@@ -446,13 +446,13 @@
       "name": "52 playing cards",
       "description": "Shuffle, draw and reveal playing cards; enlarge images and download results",
       "synonyms": "bài tây, playing cards, cartomancy",
-      "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+      "privacyNote": "The server draws cards on request and keeps the draw only briefly; nothing is saved to your account"
     },
     "tarot": {
       "name": "78 Tarot cards",
       "description": "Draw and reveal Tarot with full artwork and upright/reversed cards",
       "synonyms": "tarot, trải bài",
-      "privacyNote": "Processed by the server on request; names, birth dates and account history are not stored"
+      "privacyNote": "The server draws cards on request and keeps the draw only briefly; nothing is saved to your account"
     },
     "quick-design": {
       "name": "Quick design",

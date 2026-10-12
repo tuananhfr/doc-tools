@@ -24,7 +24,7 @@ function metricPhrase(item: InterpretedMetric) {
 
 function pairedParagraph(first: InterpretedMetric, second: InterpretedMetric) {
   const link = numberConclusionLink(cueFor(first).family, cueFor(second).family)
-  return { text: `${metricPhrase(first)} ${metricPhrase(second)} ${link.text}`, advice: link.advice }
+  return { phrases: `${metricPhrase(first)} ${metricPhrase(second)}`, link: link.text, advice: link.advice }
 }
 
 export function numerologyConclusion(metrics: readonly InterpretedMetric[], year: number): ReadingSummary | null {
@@ -35,14 +35,19 @@ export function numerologyConclusion(metrics: readonly InterpretedMetric[], year
   const core = coreOrder.flatMap(id => { const item = find(id); return item ? [item] : [] })
   const primaryIds = pairOrder.find(([first, second]) => find(first) && find(second))
   const primary = primaryIds ? pairedParagraph(find(primaryIds[0])!, find(primaryIds[1])!) : null
-  const paragraphs = primary ? [primary.text] : core.length ? [metricPhrase(core[0])] : []
+  // Different metric pairs can share a family pair; repeating its link sentence reads like a copy-paste bug.
+  const usedLinks = new Set<string>()
+  const withLink = (phrases: string, link: string) => usedLinks.has(link) ? phrases : (usedLinks.add(link), `${phrases} ${link}`)
+  const paragraphs = primary ? [withLink(primary.phrases, primary.link)] : core.length ? [metricPhrase(core[0])] : []
   const usedIds: readonly string[] = primaryIds ?? (core[0] ? [core[0].metric.id] : [])
   const remaining = core.filter(item => !usedIds.includes(item.metric.id))
-  if (remaining.length >= 2) paragraphs.push(pairedParagraph(remaining[0], remaining[1]).text)
-  else if (remaining.length === 1 && remaining[0].metric.id !== 'birthday') {
+  if (remaining.length >= 2) {
+    const second = pairedParagraph(remaining[0], remaining[1])
+    paragraphs.push(withLink(second.phrases, second.link))
+  } else if (remaining.length === 1 && remaining[0].metric.id !== 'birthday') {
     const anchor = core[0]
     const link = numberConclusionLink(cueFor(anchor).family, cueFor(remaining[0]).family)
-    paragraphs.push(`${metricPhrase(remaining[0])} ${link.text}`)
+    paragraphs.push(withLink(metricPhrase(remaining[0]), link.text))
   }
   const personalYear = find('personal_year')
   const life = find('life_path')

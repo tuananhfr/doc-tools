@@ -12,7 +12,9 @@
 .cn-ent button.cn-button:disabled, .cn-ent fieldset:disabled button { opacity: .5; cursor: not-allowed; }
 .cn-ent-deck { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; grid-template-columns: repeat(3, minmax(0, 180px)); justify-content: center; align-items: start; gap: 1.25rem; }
 .cn-ent-deck[data-count="1"] { grid-template-columns: minmax(0, 180px); }
-.cn-ent-card-slot { display: grid; gap: .65rem; min-width: 0; text-align: center; font-size: .875rem; }
+/* Subgrid shares label/card/caption tracks across a row, so a position name that wraps to two lines does not push only its own card down. */
+.cn-ent-card-slot { display: grid; grid-row: span 3; grid-template-rows: subgrid; gap: .65rem; min-width: 0; text-align: center; font-size: .875rem; }
+.cn-ent-card-slot > :first-child { align-self: end; }
 /* The faces carry the card chrome so border and shadow turn with the card; the button stays flat and only owns perspective + focus. No overflow:hidden here, it would clip the near edge mid-turn. */
 .cn-ent-card { aspect-ratio: 2 / 3; width: 100%; display: block; padding: 0; border: 0; border-radius: .5rem; background: none; color: var(--cn-ink); cursor: pointer; perspective: 900px; }
 .cn-ent-card--tarot { aspect-ratio: 500 / 839; }

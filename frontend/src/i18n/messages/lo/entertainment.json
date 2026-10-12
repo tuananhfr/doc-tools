@@ -17,7 +17,9 @@
     "pending": "This information describes the calculations and card draw process, not predictions about the future."
   },
   "report": {
-    "local": "PDFs and images are created on your device with sources and the reference notice. Downloads do not save account history."
+    "local": "PDFs and images are created on your device with sources and the reference notice. Downloads do not save account history.",
+    "drawnAt": "Drawn at (Vietnam time)",
+    "calculatedAt": "Calculated at (Vietnam time)"
   },
   "cards": {
     "title": "52 playing cards",
@@ -36,7 +38,7 @@
     "upright": "Upright",
     "revealHint": "Tap each card to reveal it or choose Reveal all.",
     "complete": "All cards are revealed. View a larger image or download the result.",
-    "expired": "This session expired. Start a new session; an expired key cannot draw again.",
+    "expired": "This draw session has expired, so the server no longer keeps it. You can still reveal, view and download the result on this device; start a new session to draw again.",
     "revealAll": "Reveal all",
     "meaningHint": "Reveal each card to read its meaning and advice. Reveal all cards to see the overall conclusion. Readings are currently in Vietnamese."
   },
@@ -80,7 +82,7 @@
   },
   "errors": {
     "NETWORK_ERROR": "The request did not complete. Your input is retained; retry.",
-    "UNSUPPORTED_NAME": "This name contains unsupported characters or no eligible letters. Use a supported Latin name or leave it empty.",
+    "UNSUPPORTED_NAME": "Names may only contain Vietnamese or Latin letters, spaces, apostrophes (') and hyphens (-). Remove digits, symbols, emoji or other scripts, or leave the name empty.",
     "INVALID_BIRTH_DATE": "The birth date is invalid, before 1800 or in the future.",
     "SESSION_EXPIRED": "This session key expired. Start a new session.",
     "IDEMPOTENCY_CONFLICT": "This key belongs to another configuration. Start a new session.",
@@ -230,7 +232,8 @@
     "cardTitle": "Card interpretations",
     "numberTitle": "Number interpretations",
     "language": "The interpretation library is currently available in Vietnamese.",
-    "summaryNote": "This conclusion is for reference and follows the meanings of the cards or numbers in this result.",
+    "summaryNote": "This conclusion is for reference and follows the meanings of the cards in this result.",
+    "numberSummaryNote": "This conclusion is for reference and follows the meanings of the numbers in this result.",
     "revealFirst": "Reveal a card to read its meaning.",
     "overviewAfterReveal": "Reveal all cards to see the overall conclusion.",
     "unavailable": "No matching interpretation is available for this result.",

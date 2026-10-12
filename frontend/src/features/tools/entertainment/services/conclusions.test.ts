@@ -141,6 +141,14 @@ describe('numerology conclusion synthesis', () => {
     expect(summary.conclusion.paragraphs.join(' ')).not.toContain('xung khắc')
   })
 
+  it('states a shared link sentence once when two metric pairs map to the same themes', () => {
+    const summary = numerologyReading(numbers([metric('life_path', 6), metric('soul_urge', 2), metric('expression', 2), metric('personality', 6)])).summary!
+    const link = 'Bạn dễ nhường hoặc nhận thêm việc chỉ để mọi người vui.'
+    expect(summary.conclusion.paragraphs).toHaveLength(2)
+    expect(summary.conclusion.paragraphs[0]).toContain(link)
+    expect(summary.conclusion.paragraphs.join(' ').split(link)).toHaveLength(2)
+  })
+
   it('works with name-based metrics absent and never invents the missing inner desire', () => {
     const result = numbers([metric('life_path', 6), metric('birthday', 2), metric('personal_year', 5), metric('expression', 1), metric('soul_urge', null), metric('personality', 1)])
     const before = JSON.stringify(result)

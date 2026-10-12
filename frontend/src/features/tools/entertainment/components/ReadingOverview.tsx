@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import type { ReadingSummary } from '../services/reading-summary'
 
-export function ReadingOverview({ summary }: { summary: ReadingSummary | null }) {
+export function ReadingOverview({ summary, subject = 'cards' }: { summary: ReadingSummary | null; subject?: 'cards' | 'numbers' }) {
   const { t } = useTranslation('entertainment')
   if (!summary) return null
   const { conclusion } = summary
@@ -22,6 +22,6 @@ export function ReadingOverview({ summary }: { summary: ReadingSummary | null })
         <ul>{summary.items.map((item, index) => <li key={index}><strong>{item.role ? `${item.role} · ` : ''}{item.label}:</strong> {item.text}</li>)}</ul>
       </details> : null}
     </div>
-    <p className="cn-ent-reading-note">{t('reading.summaryNote')}</p>
+    <p className="cn-ent-reading-note">{t(subject === 'numbers' ? 'reading.numberSummaryNote' : 'reading.summaryNote')}</p>
   </section>
 }
