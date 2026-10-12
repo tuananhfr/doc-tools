@@ -1,9 +1,11 @@
 import { ENTERTAINMENT_SCHEMA } from '../entertainment/entertainment.schema'
 
 import { CODES_SCHEMA } from '../codes/codes.schema'
+import { READ_SCHEMA } from '../read/read.schema'
 
 export const SCHEMA = [
   ...CODES_SCHEMA,
+  ...READ_SCHEMA,
   ...ENTERTAINMENT_SCHEMA,
   `CREATE TABLE IF NOT EXISTS quality_daily (
     day CHAR(10) CHARACTER SET ascii NOT NULL,

@@ -10,6 +10,8 @@ export type SettingDefinition = BooleanSetting | IntegerSetting | ChoiceListSett
 
 export const SETTINGS = {
   'codes.guestHourly': { type: 'integer', default: 10, min: 1, max: 100, unit: 'mã/giờ', label: 'Trần tạo QR động Free', help: 'Tính theo IP đã băm trong từng giờ UTC; dùng chung giữa các instance.' },
+  'read.linkEnabled': { type: 'boolean', default: false, label: 'Đọc bài từ đường dẫn', help: 'Máy chủ tải trang HTTPS công khai hộ người dùng (tôn trọng robots.txt, không vượt tường phí, không lưu nội dung). Chỉ bật khi pháp chế đã duyệt điều khoản bản quyền.' },
+  'read.guestHourly': { type: 'integer', default: 20, min: 1, max: 200, unit: 'lượt/giờ', label: 'Trần đọc link mỗi IP', help: 'Tính theo IP đã băm trong từng giờ UTC; dùng chung giữa các instance. Lượt bị chặn (robots, tường phí) vẫn bị tính.' },
   'auth.signupOpen': { type: 'boolean', default: true, label: 'Cho phép tạo tài khoản mới', help: 'Tắt thì email chưa có tài khoản không nhận được mã đăng nhập; tài khoản cũ vẫn đăng nhập bình thường.' },
   'contributions.guestHourly': { type: 'integer', default: 5, min: 1, max: 100, unit: 'đề xuất/giờ', label: 'Trần đề xuất của khách', help: 'Tính theo địa chỉ IP, cửa sổ trượt một giờ.' },
   'contributions.accountHourly': { type: 'integer', default: 10, min: 1, max: 200, unit: 'đề xuất/giờ', label: 'Trần đề xuất của tài khoản', help: 'Tính theo tài khoản, cửa sổ trượt một giờ.' },

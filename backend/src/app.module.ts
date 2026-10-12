@@ -13,6 +13,7 @@ import { LifecycleModule } from './lifecycle/lifecycle.module'
 import { LandingsModule } from './landings/landings.module'
 import { EntertainmentModule } from './entertainment/entertainment.module'
 import { CodesModule } from './codes/codes.module'
+import { ReadModule } from './read/read.module'
 import { SourcesModule } from './sources/sources.module'
-@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule, CodesModule, SourcesModule] })
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule, CodesModule, SourcesModule, ReadModule] })
 export class AppModule {}
