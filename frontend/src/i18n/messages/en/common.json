@@ -12,6 +12,12 @@
     "darkShort": "Dark",
     "fieldShort": "Outdoor"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "Confirm",
     "cancel": "Cancel",

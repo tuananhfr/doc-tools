@@ -12,6 +12,12 @@
     "darkShort": "어둡게",
     "fieldShort": "야외"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "확인",
     "cancel": "취소",

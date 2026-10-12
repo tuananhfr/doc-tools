@@ -12,6 +12,12 @@
     "darkShort": "Sombre",
     "fieldShort": "Extérieur"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "Confirmer",
     "cancel": "Annuler",

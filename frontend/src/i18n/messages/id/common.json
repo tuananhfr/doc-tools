@@ -12,6 +12,12 @@
     "darkShort": "Gelap",
     "fieldShort": "Luar ruangan"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "Konfirmasi",
     "cancel": "Batal",

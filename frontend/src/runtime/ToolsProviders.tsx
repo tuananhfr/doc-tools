@@ -7,6 +7,7 @@ import 'dayjs/locale/vi'
 import { ToastProvider } from '@/components/ui'
 import { useAppStore } from '@/store/app.store'
 import { applyThemeMode } from '@/styles/theme'
+import { applyTextSize, useTextSize } from '@/features/tools/hub/hooks/useTextSize'
 import { I18nProvider } from '@/i18n/I18nProvider'
 import type { Locale } from '@/i18n/locales'
 import type { LocaleResources } from '@/i18n/resources'
@@ -16,6 +17,8 @@ export function ToolsProviders({ locale, resources, children }: { locale: Locale
   const [client] = useState(() => new QueryClient({ defaultOptions: { queries: { staleTime: 60000, refetchOnWindowFocus: false, retry: false }, mutations: { retry: false } } }))
   const mode = useAppStore(state => state.theme)
   useEffect(() => applyThemeMode(mode), [mode])
+  const { size: textSize } = useTextSize()
+  useEffect(() => applyTextSize(textSize), [textSize])
   useEffect(() => {
     void configureServiceWorker().catch(error => console.warn('DocTools service worker setup failed', error))
   }, [])

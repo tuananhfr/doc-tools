@@ -12,6 +12,12 @@
     "darkShort": "داكن",
     "fieldShort": "خارجي"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "تأكيد",
     "cancel": "إلغاء",

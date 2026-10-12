@@ -12,6 +12,12 @@
     "darkShort": "深色",
     "fieldShort": "户外"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "确认",
     "cancel": "取消",

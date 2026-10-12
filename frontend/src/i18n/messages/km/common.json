@@ -12,6 +12,12 @@
     "darkShort": "ងងឹត",
     "fieldShort": "ខាងក្រៅ"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "បញ្ជាក់",
     "cancel": "បោះបង់",

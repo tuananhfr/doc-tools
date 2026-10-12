@@ -16,6 +16,7 @@ import { LOCALE_CODES, isLocale, localeInfo } from '@/i18n/locales'
 import { BOOT_NAMESPACES, loadResources } from '@/i18n/resources'
 import { getServerT, pageLocale } from '@/i18n/server'
 import { webManifestPath } from '@/features/site/server/web-manifest'
+import { TEXT_SIZE_BOOT_SCRIPT } from '@/features/tools/hub/utils/text-size'
 
 type Props = { children: ReactNode; params: Promise<{ lang: string }> }
 
@@ -42,7 +43,11 @@ export default async function RootLayout({ children, params }: Props) {
   const { tag, dir } = localeInfo(lang)
   const resources = await loadResources(lang, BOOT_NAMESPACES)
   return <html lang={tag} dir={dir} data-theme="light" data-bs-theme="light" suppressHydrationWarning style={themeCssVars(themeTokens.light) as CSSProperties}>
-    <head>{process.env.NODE_ENV === 'development' && <Script id="doctools-development-worker" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: developmentWorkerBootstrap() }} />}</head>
+    <head>
+      {/* "Chữ lớn" phải có trước lần vẽ đầu — đợi hydrate là trang nhảy cỡ chữ. Không có CSP nên script inline được. */}
+      <script dangerouslySetInnerHTML={{ __html: TEXT_SIZE_BOOT_SCRIPT }} />
+      {process.env.NODE_ENV === 'development' && <Script id="doctools-development-worker" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: developmentWorkerBootstrap() }} />}
+    </head>
     <body><ToolsProviders locale={lang} resources={resources}><ToolsRouter locale={lang} />{children}</ToolsProviders></body>
   </html>
 }

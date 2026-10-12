@@ -12,6 +12,12 @@
     "darkShort": "Tối",
     "fieldShort": "Ngoài trời"
   },
+  "textSize": {
+    "label": "Cỡ chữ",
+    "normal": "Chữ thường",
+    "large": "Chữ lớn",
+    "toggle": "Giao diện: {{theme}} · Cỡ chữ: {{size}}"
+  },
   "ui": {
     "confirm": "Xác nhận",
     "cancel": "Hủy",

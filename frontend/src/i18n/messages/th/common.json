@@ -12,6 +12,12 @@
     "darkShort": "มืด",
     "fieldShort": "กลางแจ้ง"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "ยืนยัน",
     "cancel": "ยกเลิก",

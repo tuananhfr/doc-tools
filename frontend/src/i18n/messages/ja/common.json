@@ -12,6 +12,12 @@
     "darkShort": "ダーク",
     "fieldShort": "屋外"
   },
+  "textSize": {
+    "label": "Text size",
+    "normal": "Normal text",
+    "large": "Large text",
+    "toggle": "Theme: {{theme}} · Text size: {{size}}"
+  },
   "ui": {
     "confirm": "確認",
     "cancel": "キャンセル",
