@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react'
 import type { ReadingHighlight } from '../types/reading.types'
+import type { ReadFontScale } from '../types/read-listen.types'
 
 interface ReadingViewProps {
   text: string
   highlight: ReadingHighlight | null
   label: string
   describedBy?: string
+  fontScale?: ReadFontScale
 }
 
 /** Văn bản đang đọc, chỉ để xem: `textarea` không tô được một phần chữ, và sửa giữa chừng làm lệch vị trí đang đọc. */
-export function ReadingView({ text, highlight, label, describedBy }: ReadingViewProps) {
+export function ReadingView({ text, highlight, label, describedBy, fontScale = 'normal' }: ReadingViewProps) {
   const box = useRef<HTMLDivElement>(null)
   const mark = useRef<HTMLElement>(null)
   const start = highlight?.start
@@ -39,7 +41,7 @@ export function ReadingView({ text, highlight, label, describedBy }: ReadingView
     {text.slice(highlight.end)}
   </> : text
 
-  return <div ref={box} className="form-control erp-read-view" role="region" tabIndex={0} aria-label={label} aria-describedby={describedBy}>
+  return <div ref={box} className={`form-control erp-read-view erp-read-text--${fontScale}`} role="region" tabIndex={0} aria-label={label} aria-describedby={describedBy}>
     {body}
   </div>
 }

@@ -1301,3 +1301,25 @@
   background: color-mix(in srgb, var(--erp-warning) 55%, transparent);
   border-radius: 2px;
 }
+/* Co chu khung doc / o nhap: nhan theo co chu than (WP2a doi --cn-font-body khi bat "Chu lon"). */
+.erp-read-text--normal { font-size: var(--cn-font-body, 16px); }
+.erp-read-text--large { font-size: calc(var(--cn-font-body, 16px) * 1.25); }
+.erp-read-text--xlarge { font-size: calc(var(--cn-font-body, 16px) * 1.5); }
+
+.erp-read-player { display: flex; flex-direction: column; gap: 8px; }
+.erp-read-player__row { display: flex; flex-wrap: wrap; gap: 8px; }
+.erp-read-player__row .btn { flex: 1 1 0; }
+/* Nguoi lon tuoi bam bang ngon tay: moi nut cua trinh phat va cau bao >= vung cham chung. */
+.erp-read-player .btn,
+.erp-read-notice__action { min-height: var(--cn-tap, 44px); }
+
+.erp-read-notice {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--erp-border);
+  border-left: 4px solid var(--erp-warning);
+  border-radius: var(--erp-radius-md);
+  background: var(--erp-surface);
+}
+
+.erp-read-remember { min-height: var(--cn-tap, 44px); display: flex; align-items: center; gap: 8px; }
