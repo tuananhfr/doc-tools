@@ -1,0 +1,41 @@
+﻿test_id,source,priority,scenario,device,expected,owner_wp,duplicate_of,local_checks,manual_remainder,actual,evidence,status
+NAV01,v3,P0,Các tác vụ trùng workspace nhưng URL cũ còn hoạt động,PC/Mobile,Pass scenario without data loss or unsupported claims,WP1,,vitest:tool-lookup.test.ts + script:check-legacy-links,,,,NOT_RUN
+NAV02,v3,P0,"Search không dấu, lỗi gõ, intent đời thường",Mobile,Pass scenario without data loss or unsupported claims,WP1,,vitest:tool-search.test.ts,,,,NOT_RUN
+UI01,v3,P0,"360px, font 200%, không cắt nút Tải",Android/iPhone,Pass scenario without data loss or unsupported claims,WP2a,,script:check-a11y,360px + font 200% trên Android/iPhone thật,,,NOT_RUN
+UI02,v3,P0,"WCAG AA contrast text, focus, keyboard",PC/Mobile,Pass scenario without data loss or unsupported claims,WP2a,,vitest(has):contrastRatio + script:check-a11y,Screen reader (TalkBack/VoiceOver) + bàn phím trên thiết bị thật,,,NOT_RUN
+UI03,v3,P0,Đổi 5 thumbnail template không mất input,Mobile,Pass scenario without data loss or unsupported claims,WP3,,script:golden,Đổi 5 thumbnail mẫu trên điện thoại thật,,,NOT_RUN
+UI04,v3,P0,Tải xong tiếp tục sửa và tải bản khác,Mobile/PC,Pass scenario without data loss or unsupported claims,WP3,,script:golden,Tải rồi sửa tiếp trên điện thoại thật (trình tải iOS),,,NOT_RUN
+READ01,v3,P0,Dán link bài báo public HTTPS → extract đúng phần bài,Mobile,Pass scenario without data loss or unsupported claims,WP4-B,,backend:read.test.cjs,Link bài báo thật trên internet khi bật read.linkEnabled (canary) + Legal duyệt,,,NOT_RUN
+READ02,v3,P0,Link localhost/redirect private bị chặn,Backend,Pass scenario without data loss or unsupported claims,WP4-B,,backend:read.test.cjs,,,,NOT_RUN
+READ03,v3,P0,"Paywall/robots block → không vượt, fallback dán text",Mobile,Pass scenario without data loss or unsupported claims,WP4-B,,backend:read.test.cjs,Trang paywall/robots thật trên internet,,,NOT_RUN
+READ04,v3,P0,PDF scan → OCR confidence và nghe sau kiểm tra,Mobile,Pass scenario without data loss or unsupported claims,WP4-A,,,PDF scan thật → OCR + nghe trên điện thoại,,,NOT_RUN
+READ05,v3,P0,"DOCX/TXT → thứ tự đọc đúng, dấu tiếng Việt",PC/Mobile,Pass scenario without data loss or unsupported claims,WP4-A,,vitest:read-source.test.ts,Nghe DOCX/TXT tiếng Việt trên thiết bị thật,,,NOT_RUN
+READ06,v3,P0,Không có giọng Việt hoặc offline → thông báo trung thực,iOS/Android,Pass scenario without data loss or unsupported claims,WP4-A,,,Tắt giọng Việt / tắt mạng trên iOS + Android thật,,,NOT_RUN
+READ07,v3,P0,"Play/pause/speed/resume, font lớn",Tablet/Senior,Pass scenario without data loss or unsupported claims,WP4-A,,vitest:speech-chunks.test.ts,Play/pause/tốc độ/tiếp tục với font lớn trên tablet,,,NOT_RUN
+FEED01,v3,P0,Góp ý ẩn danh không gửi file tự động,Mobile,Pass scenario without data loss or unsupported claims,WP5,,vitest:contribution-payload.test.ts + backend:feedback.test.cjs,,,,NOT_RUN
+FEED02,v3,P0,Góp ý spam/duplicate được xử lý,Backend,Pass scenario without data loss or unsupported claims,WP5,,backend:feedback.test.cjs,,,,NOT_RUN
+TRUST01,v3,P0,Dữ liệu giá/pháp lý stale → hiện thời điểm,PC/Mobile,Pass scenario without data loss or unsupported claims,WP6,,vitest(has):isStale + vitest:signed-rules.test.ts + backend:rules.test.cjs + script:golden,Thời điểm nguồn trên gói ký thật của production,,,NOT_RUN
+SEC01,v3,P0,Malicious PDF/image/URL bị từ chối an toàn,Backend,Pass scenario without data loss or unsupported claims,WP7,,script:check-malicious + backend:read.test.cjs,,,,NOT_RUN
+OFF01,v3,P0,Tool offline chỉ hiển thị đúng capability,Mobile,Pass scenario without data loss or unsupported claims,WP6,,vitest(has):device&offline,"Chế độ máy bay trên điện thoại thật, mở từng công cụ offline",,,NOT_RUN
+REG01,v3,P0,PDF/Ảnh/QR/CV/Ảnh thẻ regression golden,PC/Mobile,Pass scenario without data loss or unsupported claims,WP7,,script:golden,Golden trên Chrome Android / Safari iOS thật,,,NOT_RUN
+REL01,v3,P0,Feature flag canary/rollback và migration,Release,Pass scenario without data loss or unsupported claims,WP7,,script:deploy-test-frontend + script:deploy-test-backend + script:no-alter,Diễn tập deploy + rollback trên production; canary read.linkEnabled,,,NOT_RUN
+CN-001,v2,P0,"Mobile anonymous tìm ""đọc truyện pdf cho bà nghe""",PC/MOBILE/TABLET,"Find Read Aloud, open file, play if voice supported; graceful fallback",WP1+WP4-A,,vitest:tool-search.test.ts + vitest:read-source.test.ts,Phát giọng đọc trên điện thoại thật,,,NOT_RUN
+CN-002,v2,P0,Scan PDF thiếu text layer,PC/MOBILE/TABLET,OCR preview & low-confidence warning before speech,WP4-A,READ04,= READ04,= READ04,,,NOT_RUN
+CN-003,v2,P0,Voice unavailable/offline,PC/MOBILE/TABLET,"Explain limitation, text reader remains usable",WP4-A,READ06,= READ06,= READ06,,,NOT_RUN
+CN-004,v2,P0,Tăng font 200% / screen reader,PC/MOBILE/TABLET,"No clipped CTA, labels/keyboard operable",WP2a,UI01,= UI01,= UI01,,,NOT_RUN
+CN-005,v2,P0,Ghép 8 ảnh thử 4 mẫu,PC/MOBILE/TABLET,"No re-upload, instant preview",WP3,,,Ghép 8 ảnh với 4 mẫu trên điện thoại (chưa có kiểm tự động cho ghép ảnh),,,NOT_RUN
+CN-006,v2,P0,Tạo CV đổi mẫu 3 lần,PC/MOBILE/TABLET,Input retained; PDF/DOCX valid,WP3,UI03,= UI03,= UI03,,,NOT_RUN
+CN-007,v2,P0,Ảnh thẻ chụp trực tiếp và in mixed sizes,PC/MOBILE/TABLET,Physical size verified,WP3,,script:golden,In và đo kích thước ảnh thẻ bằng thước,,,NOT_RUN
+CN-008,v2,P0,PDF nhiều thao tác liên tục,PC/MOBILE/TABLET,"Original immutable, undo/export correct",WP7,,script:golden,Chuỗi thao tác dài + hoàn tác trên trình chỉnh sửa PDF,,,NOT_RUN
+CN-009,v2,P0,Tài liệu hỗn hợp bảng/chữ tay,PC/MOBILE/TABLET,Critical values flagged; layout retained,WP7,,,Tài liệu thật có bảng + chữ viết tay,,,NOT_RUN
+CN-010,v2,P0,Mất mạng trong local workflow,PC/MOBILE/TABLET,Continues if offline capable; else truthful error,WP6,OFF01,= OFF01,= OFF01,,,NOT_RUN
+CN-011,v2,P0,Mở thông tin pháp lý cũ,PC/MOBILE/TABLET,Source freshness and warning shown,WP6,TRUST01,= TRUST01,= TRUST01,,,NOT_RUN
+CN-012,v2,P0,Anonymous góp ý không file,PC/MOBILE/TABLET,"Accepted, no PII auto-capture",WP5,FEED01,= FEED01,= FEED01,,,NOT_RUN
+CN-013,v2,P0,Malicious PDF / decompression bomb,PC/MOBILE/TABLET,Safe reject; worker isolation,WP7,SEC01,= SEC01,= SEC01,,,NOT_RUN
+CN-014,v2,P0,"Deep link cũ ""nén PDF""",PC/MOBILE/TABLET,Lands in correct operation,WP1,NAV01,= NAV01,= NAV01,,,NOT_RUN
+CN-015,v2,P0,Tarot/Bài Tây free luận giải,PC/MOBILE/TABLET,"No login/paywall, source/disclaimer",WP7,,script:check-pro-cta,Đọc lại câu miễn trừ với BA,,,NOT_RUN
+CN-016,v2,P0,Download then change template,PC/MOBILE/TABLET,Session remains editable,WP3,UI04,= UI04,= UI04,,,NOT_RUN
+CN-017,v2,P0,Camera denied,PC/MOBILE/TABLET,Upload fallback without dead-end,WP3,,,Từ chối quyền camera trên điện thoại thật,,,NOT_RUN
+CN-018,v2,P0,User sends duplicate feedback,PC/MOBILE/TABLET,"Dedup/triage, no data loss",WP5,FEED02,= FEED02,= FEED02,,,NOT_RUN
+CN-019,v2,P0,iPhone Safari/Android Chrome/tablet,PC/MOBILE/TABLET,Core journeys pass on actual support matrix,WP7,,,"Ma trận thiết bị thật: iPhone Safari, Android Chrome, tablet",,,NOT_RUN
+CN-020,v2,P0,Server overload,PC/MOBILE/TABLET,"Queue/rate limit, user-readable recovery",WP7,,script:load-test + script:golden,Load test production (không chạy qua đêm),,,NOT_RUN
