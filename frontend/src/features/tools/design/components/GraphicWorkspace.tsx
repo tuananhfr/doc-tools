@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { ToolBoard, ToolPanel } from '@/features/tools/hub';
+import { TemplatePicker, ToolBoard, ToolPanel } from '@/features/tools/hub';
 import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview';
 import { FlowProgress } from '@/features/tools/hub/components/flow/FlowProgress';
 import { FlowResult } from '@/features/tools/hub/components/flow/FlowResult';
@@ -11,21 +11,27 @@ import { GRAPHIC_LIMITS } from '../types/graphic.types';
 import { graphicDimensions,graphicSheets } from '../utils/graphic-layout';
 import { graphicTask, type GraphicOutput } from '../services/graphic-export';
 import { useGraphicPreview } from '../hooks/useGraphicPreview';
+import { useTemplateThumbnails } from '../hooks/useTemplateThumbnails';
 import { Icon } from '@/components/ui';
 import { BRAND_PRESET_KEY, readBrandPreset, saveBrandPreset } from '../utils/brand-preset';
 const initialBrand: GraphicBrand = { title: '', subtitle: '', accent: '#005bea', background: '#ffffff', fit: 'contain' };
-export function GraphicWorkspace({ files, onFiles, templates, onBack, design = false }: {
+export function GraphicWorkspace({ files, onFiles, templates, onBack, design = false, visible = true }: {
     files: File[];
     onFiles: (files: File[]) => void;
     templates: readonly GraphicTemplate[];
     onBack?: () => void;
     design?: boolean;
+    /** `false` khi màn đang ẩn (ghép ảnh đơn giản): không vẽ thumbnail cho thứ người dùng không thấy. */
+    visible?: boolean;
 }) {
     const { t } = useTranslation('image'), { t: tc } = useTranslation('common'), [templateId, setTemplateId] = useState(templates[0].id), [brand, setBrand] = useState(initialBrand), [logo, setLogo] = useState<File | null>(null), [format, setFormat] = useState<GraphicOutput>('zip'), [page, setPage] = useState(0), [notice, setNotice] = useState(''), [dimensions, setDimensions] = useState<{
         width: number;
         height: number;
     } | null>(null), run = useFlowRun();
     const baseTemplate = templates.find(item => item.id === templateId) ?? templates[0], template = dimensions ? { ...baseTemplate, widthMm: dimensions.width, heightMm: dimensions.height } : baseTemplate, job = { template, brand, files, logo }, preview = useGraphicPreview(job, page);
+    const thumbnails = useTemplateThumbnails({ brand, files, logo }, templates, visible);
+    const chooseTemplate = (id: string) => { setTemplateId(id); setPage(0); setDimensions(null); };
+    const picker = <TemplatePicker label={t('shop.layout')} value={baseTemplate.id} onChange={chooseTemplate} items={templates.map(item => ({ id: item.id, label: design ? t(`shop.templates.${item.kind}`) : t('shop.slots', { count: item.slots }), preview: thumbnails[item.id] ? <img src={thumbnails[item.id]} alt=""/> : null }))}/>;
     let pages = 1,dimensionsValid=true;
     try {
         pages = graphicSheets(job).length;graphicDimensions(template,300);
@@ -36,14 +42,14 @@ export function GraphicWorkspace({ files, onFiles, templates, onBack, design = f
     const action = run.state.phase === 'running' ? <FlowProgress progress={run.state.progress} onCancel={run.cancel}/> : <Button disabled={Boolean(blocked)} onClick={() => void run.start(graphicTask(job, format))}>{t('shop.run')}</Button>;
     return <>
     {onBack ? <Button className="mb-3" variant="outline-secondary" disabled={run.state.phase === 'running'} onClick={onBack}>{t('shop.back')}</Button> : null}
-    {run.state.phase === 'done' ? <FlowResult result={run.state.result} onRestart={run.reset}/> : <ToolBoard><ResponsivePreview action={action} preview={<>
+    {run.state.phase === 'done' ? <FlowResult result={run.state.result} onRestart={run.reset}/> : <ToolBoard><ResponsivePreview action={action} templates={picker} preview={<>
       <div className="cn-graphic-preview">{preview.url ? <img src={preview.url} alt={t('shop.preview')}/> : <p>{preview.error ? t('shop.previewFailed') : t('shop.previewWaiting')}</p>}</div>
       {pages > 1 ? <div className="cn-graphic-page-controls"><Button variant="outline-secondary" disabled={page === 0} onClick={() => setPage(value => Math.max(0, value - 1))}>{t('shop.previous')}</Button><span>{page + 1}/{pages}</span><Button variant="outline-secondary" disabled={page >= pages - 1} onClick={() => setPage(value => Math.min(pages - 1, value + 1))}>{t('shop.next')}</Button></div> : null}
       <p className="erp-flow-field__hint mt-3">{t('shop.dimensions', { width: template.widthMm, height: template.heightMm, count: pages })}</p>
+      {template.kind === 'seal' ? <p className="erp-flow-field__hint mt-2" role="note">{t('shop.sealNotice')}</p> : null}
     </>}><ToolPanel title={t(design ? 'shop.designPanel' : 'shop.panel')}>
       <label className="erp-flow-field__label">{t('shop.files')}<Form.Control type="file" multiple accept="image/jpeg,image/png,image/webp" onChange={e => { onFiles([...(e.target as HTMLInputElement).files ?? []]); setPage(0); }}/></label>
       {files.length ? <details className="mt-2"><summary>{t('shop.fileCount', { count: files.length })}</summary><ol>{files.map((file, index) => <li key={index}>{file.name}<Button size="sm" variant="link" disabled={index === 0} aria-label={t('shop.moveUp', { name: file.name })} onClick={() => { const next = [...files]; [next[index - 1], next[index]] = [next[index], next[index - 1]]; onFiles(next); }}><Icon name="arrow-up"/></Button><Button size="sm" variant="link" aria-label={t('shop.remove', { name: file.name })} onClick={() => { onFiles(files.filter((_, i) => i !== index)); setPage(0); }}><Icon name="x"/></Button></li>)}</ol></details> : null}
-      <label className="erp-flow-field__label mt-3">{t('shop.layout')}<Form.Select aria-label={t('shop.layout')} value={templateId} onChange={e => { setTemplateId(e.target.value); setPage(0); setDimensions(null); }}>{templates.map(item => <option key={item.id} value={item.id}>{design ? t(`shop.templates.${item.kind}`) : t('shop.slots', { count: item.slots })}</option>)}</Form.Select></label>
       <label className="erp-flow-field__label mt-3">{t('shop.title')}<Form.Control maxLength={80} value={brand.title} onChange={e => update({ title: e.target.value })}/></label>
       <label className="erp-flow-field__label mt-3">{t('shop.subtitle')}<Form.Control maxLength={160} value={brand.subtitle} onChange={e => update({ subtitle: e.target.value })}/></label>
       <label className="erp-flow-field__label mt-3">{t('shop.logo')}<Form.Control type="file" accept="image/jpeg,image/png,image/webp" onChange={e => setLogo((e.target as HTMLInputElement).files?.[0] ?? null)}/></label>

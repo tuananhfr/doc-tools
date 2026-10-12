@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import type { GraphicJob } from '../types/graphic.types';
 import { renderGraphicSheet } from '../services/graphic-render';
 import { graphicSheets } from '../utils/graphic-layout';
-const fileIds=new WeakMap<File,number>()
-let lastFileId=0
-function fileIdentity(file:File){let id=fileIds.get(file);if(id===undefined){id=++lastFileId;fileIds.set(file,id)}return id}
+import { fileIdentity } from '../utils/file-identity';
 export function useGraphicPreview(job: GraphicJob, page: number) {
     const [preview, setPreview] = useState<{
         url: string;
