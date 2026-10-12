@@ -1,0 +1,413 @@
+{
+  "createdAt": "2026-10-12T19:54:03.741Z",
+  "site": "http://localhost:3002",
+  "evidenceDir": "qa-output/release-2026-10-12",
+  "counts": {
+    "PASS": 10,
+    "PARTIAL_PASS": 22,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "MANUAL": 8
+  },
+  "fail": [],
+  "blocked": [],
+  "manual": [
+    "READ04",
+    "READ06",
+    "CN-002",
+    "CN-003",
+    "CN-005",
+    "CN-009",
+    "CN-017",
+    "CN-019"
+  ],
+  "gates": {
+    "NAV01": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "vitest:tool-lookup.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "script:check-legacy-links",
+          "ok": true,
+          "detail": "exit 0 {\"checked\":1541,\"failures\":0,\"missingLegacyKeys\":[]}",
+          "log": "qa-output/release-2026-10-12/check-legacy-links.log"
+        }
+      ]
+    },
+    "NAV02": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "vitest:tool-search.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        }
+      ]
+    },
+    "UI01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:check-a11y",
+          "ok": true,
+          "detail": "exit 0 {\"p0\":0,\"p1\":0,\"errors\":0,\"byRule\":{}}",
+          "log": "qa-output/release-2026-10-12/check-a11y.log"
+        }
+      ]
+    },
+    "UI02": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest(has):contrastRatio",
+          "ok": true,
+          "detail": "2/2 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "script:check-a11y",
+          "ok": true,
+          "detail": "exit 0 {\"p0\":0,\"p1\":0,\"errors\":0,\"byRule\":{}}",
+          "log": "qa-output/release-2026-10-12/check-a11y.log"
+        }
+      ]
+    },
+    "UI03": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "UI04": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "READ01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "backend:read.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-read.test.cjs.log"
+        }
+      ]
+    },
+    "READ02": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "backend:read.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-read.test.cjs.log"
+        }
+      ]
+    },
+    "READ03": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "backend:read.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-read.test.cjs.log"
+        }
+      ]
+    },
+    "READ04": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "READ05": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest:read-source.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        }
+      ]
+    },
+    "READ06": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "READ07": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest:speech-chunks.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        }
+      ]
+    },
+    "FEED01": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "vitest:contribution-payload.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "backend:feedback.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-feedback.test.cjs.log"
+        }
+      ]
+    },
+    "FEED02": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "backend:feedback.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-feedback.test.cjs.log"
+        }
+      ]
+    },
+    "TRUST01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest(has):isStale",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "vitest:signed-rules.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "backend:rules.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-rules.test.cjs.log"
+        },
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "SEC01": {
+      "status": "PASS",
+      "checks": [
+        {
+          "check": "script:check-malicious",
+          "ok": true,
+          "detail": "exit 0 {\"ran\":15,\"failed\":[]}",
+          "log": "qa-output/release-2026-10-12/check-malicious.log"
+        },
+        {
+          "check": "backend:read.test.cjs",
+          "ok": true,
+          "detail": "exit 0",
+          "log": "qa-output/release-2026-10-12/backend-read.test.cjs.log"
+        }
+      ]
+    },
+    "OFF01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest(has):device&offline",
+          "ok": true,
+          "detail": "2/2 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        }
+      ]
+    },
+    "REG01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "REL01": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:deploy-test-frontend",
+          "ok": true,
+          "detail": "exit 0 deploy.test: 28 passed, 0 failed",
+          "log": "qa-output/release-2026-10-12/deploy-test-frontend.log"
+        },
+        {
+          "check": "script:deploy-test-backend",
+          "ok": true,
+          "detail": "exit 0 deploy.test: 16 passed, 0 failed",
+          "log": "qa-output/release-2026-10-12/deploy-test-backend.log"
+        },
+        {
+          "check": "script:no-alter",
+          "ok": true,
+          "detail": "exit 0 no ALTER/DROP",
+          "log": "qa-output/release-2026-10-12/no-alter.log"
+        }
+      ]
+    },
+    "CN-001": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "vitest:tool-search.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        },
+        {
+          "check": "vitest:read-source.test.ts",
+          "ok": true,
+          "detail": "1/1 file dat",
+          "log": "qa-output/release-2026-10-12/vitest.log"
+        }
+      ]
+    },
+    "CN-005": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "CN-007": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "CN-008": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "CN-009": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "CN-015": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:check-pro-cta",
+          "ok": true,
+          "detail": "exit 0 {\"strict\":6,\"infoWithPro\":[\"tien-dien\",\"luong\"],\"failed\":[]}",
+          "log": "qa-output/release-2026-10-12/check-pro-cta.log"
+        }
+      ]
+    },
+    "CN-017": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "CN-019": {
+      "status": "MANUAL",
+      "checks": []
+    },
+    "CN-020": {
+      "status": "PARTIAL_PASS",
+      "checks": [
+        {
+          "check": "script:load-test",
+          "ok": true,
+          "detail": "exit 0 {\"ok\":true,\"p99LimitMs\":2000,\"ip\":\"198.51.100.128\",\"scenarios\":{\"visits\":{\"sent\":3000,\"ok2xx\":3000,\"c4xx\":0,\"c5xx\":0,\"non2xx\":0,\"errors\":0,\"timeouts\":0,\"p99\":65,\"codes\":{\"200\":3000},\"counted\":120},\"co",
+          "log": "qa-output/release-2026-10-12/load-test.log"
+        },
+        {
+          "check": "script:golden",
+          "ok": true,
+          "detail": "exit 0 {\"summary\":{\"mode\":\"compare\",\"baseline\":{\"recorded\":\"2026-10-12\",\"chrome\":\"155.0.8059.39\"},\"chrome\":\"155.0.8059.39\",\"ran\":41,\"match\":41,\"mismatch\":[],\"failed\":[],\"fixtureChanged\":[],\"noBaseline\":[],\"r",
+          "log": "qa-output/release-2026-10-12/golden.log"
+        }
+      ]
+    },
+    "CN-002": {
+      "status": "MANUAL",
+      "duplicateOf": "READ04"
+    },
+    "CN-003": {
+      "status": "MANUAL",
+      "duplicateOf": "READ06"
+    },
+    "CN-004": {
+      "status": "PARTIAL_PASS",
+      "duplicateOf": "UI01"
+    },
+    "CN-006": {
+      "status": "PARTIAL_PASS",
+      "duplicateOf": "UI03"
+    },
+    "CN-010": {
+      "status": "PARTIAL_PASS",
+      "duplicateOf": "OFF01"
+    },
+    "CN-011": {
+      "status": "PARTIAL_PASS",
+      "duplicateOf": "TRUST01"
+    },
+    "CN-012": {
+      "status": "PASS",
+      "duplicateOf": "FEED01"
+    },
+    "CN-013": {
+      "status": "PASS",
+      "duplicateOf": "SEC01"
+    },
+    "CN-014": {
+      "status": "PASS",
+      "duplicateOf": "NAV01"
+    },
+    "CN-016": {
+      "status": "PARTIAL_PASS",
+      "duplicateOf": "UI04"
+    },
+    "CN-018": {
+      "status": "PASS",
+      "duplicateOf": "FEED02"
+    }
+  }
+}
