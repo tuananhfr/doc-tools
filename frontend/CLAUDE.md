@@ -21,8 +21,8 @@ npx vitest run src/features/tools/rules/services/signed-rules.test.ts   # một 
 
 - **Bắt buộc `--webpack`**, không Turbopack: `next.config.mjs` dựa vào
   `NormalModuleReplacementPlugin` (thay `useHubPrefs`, nạp `pdfium.wasm` dạng `?url`).
-- `postinstall` / `predev` / `prebuild` chạy ba script `scripts/prepare-{video,pdfjs,background-removal}.mjs`,
-  chép core FFmpeg, file phụ của pdf.js và runtime xoá nền vào `public/vendor/`. Thiếu thư mục
+- `postinstall` / `predev` / `prebuild` chạy bốn script `scripts/prepare-{video,pdfjs,background-removal,tts}.mjs`,
+  chép core FFmpeg, file phụ của pdf.js, runtime xoá nền và phonemizer đọc văn bản vào `public/vendor/`. Thiếu thư mục
   nào ở đó thì chạy lại `npm ci`. `prepare-ocr-models.mjs` **không** nằm trong chuỗi này (chỉ
   chép model HTR đã duyệt — hiện chưa có).
 - Vitest chỉ nhận `src/**/*.test.ts`, môi trường `node` (không DOM) — file `.test.tsx` bị
@@ -409,6 +409,10 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
   plugin `shareMeta` của Vite (thay bằng route `/og/[tool]`), `routes/tools.routes.tsx`
   (thay bằng `runtime/`), nhánh `/tools` trong app. Comment đầu `tool-list.ts` về
   `shareMeta` cũng là dư âm từ đó.
+- `features/inventory/trace` (thẻ tra mã `/trace/*` của ERPCons) chỉ được `qr/ScanResultList`
+  vẽ khi nhánh là `kind: 'app'`. Repo này chỉ dựng nhánh `public` nên thẻ không bao giờ hiện,
+  và `/trace` cũng không có trong rewrite. Đây là phần còn lại của bản copy, không phải tính năng
+  đang chạy; đừng nối nó vào backend.
 - Comment trong code copy sang viết tiếng Việt; code lớp vỏ mới (`runtime/`, `site/`)
   viết tiếng Anh — theo phong cách của file đang sửa.
 
@@ -455,6 +459,9 @@ production không cần sửa code: `NEXT_PUBLIC_TOOLS_OFF=<id>,<id>`.
 | Engine video | `docs/video-engine.md` |
 | Gắn trang giới thiệu vào website khác (mẫu proxy) | `docs/landing-host-proxy.md` |
 | Phạm vi đã kiểm chứng | `docs/verification.md`, `docs/repo-split-verification.md` |
+| Benchmark OCR Free + journey P0 (cách chạy, bộ mẫu, gate) | `docs/free-quality-benchmark.md` |
+| Nguồn và giấy phép ảnh lá bài tây / Tarot | `docs/entertainment-artwork.md` |
+| Ảnh minh hoạ còn thiếu của các trang site (kích thước, prompt vẽ) | `docs/site-illustrations.md` |
 | Next.js 16 khác bản quen thuộc | `node_modules/next/dist/docs/` (xem `AGENTS.md`) |
 
 Giữ tiếng Việt UTF-8 không BOM. Không commit / push khi chưa được yêu cầu rõ ràng.
