@@ -38,3 +38,5 @@ export type { WorkspaceTabGroup, WorkspaceTabGroupId } from './config/workspace-
 export { ToolCapability } from './components/ToolCapability'
 export { useOnlineStatus } from './hooks/useOnlineStatus'
 export type { ToolDevice, ToolDeviceNeed, ToolOffline } from './types/tool.types'
+export { OfflineAssetsButton } from './components/OfflineAssetsButton'
+export type { OfflineAssetGroup } from './config/offline-asset-groups'

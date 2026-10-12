@@ -16,6 +16,8 @@ function harness() {
       match: async (request: string | { url: string }) => entries.get(key(request))?.clone(),
       put: async (request: string | { url: string }, response: Response) => { entries.set(key(request), response.clone()) },
       addAll: async (urls: string[]) => { for (const url of urls) entries.set(key(url), new Response(url)) },
+      // carryOver() của bản cài mới duyệt cache cũ — bộ giả phải có đủ hai hàm mà CacheStorage thật có.
+      keys: async () => [...entries.keys()].map((url) => ({ url })),
     }
   })
   const fetch = vi.fn(async (_request: unknown, _options?: unknown) => new Response('network'))
@@ -23,7 +25,7 @@ function harness() {
   function restart() {
     const handlers: Record<string, (event: any) => void> = {}
     vm.runInNewContext(script, {
-      URL, Response, fetch, caches: { open },
+      URL, Response, fetch, caches: { open, has: async (name: string) => storage.has(name) },
       self: { registration: { scope: origin + '/doc-tools/' }, location: { origin }, clients: { claim },
         addEventListener: (name: string, listener: (event: any) => void) => { handlers[name] = listener } },
     })

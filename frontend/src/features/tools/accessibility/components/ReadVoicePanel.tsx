@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { OfflineAssetsButton } from '@/features/tools/hub'
 import { numberFormat } from '@/i18n/intl'
 import { withBase } from '@/utils/url'
 import { PIPER_DOWNLOAD_BYTES } from '../services/piper-tts'
@@ -46,6 +47,7 @@ export function ReadVoicePanel({ engine, notices, language, vietnamese, voiceNam
       {exported ? <p role="status" className="erp-tool-result__note mt-3">{t('readAloud.exportDone')}</p> : null}
       {canUsePiper ? <p className="erp-tool-result__note mt-3">{t('readAloud.piperNote', { size: numberFormat().format(Math.round(PIPER_DOWNLOAD_BYTES / 1e6)) })}</p> : null}
       {!vietnamese ? <p className="erp-tool-result__note mt-2">{t('readAloud.piperVietnameseOnly')}</p> : null}
+      {canUsePiper ? <OfflineAssetsButton group="tts" bytes={PIPER_DOWNLOAD_BYTES} /> : null}
       <p className="erp-tool-result__note mt-2">{t('readAloud.credit')} <a href={withBase('/vendor/tts/NOTICE.txt')} target="_blank" rel="noopener noreferrer">{t('readAloud.license')}</a></p>
     </>}
   </>

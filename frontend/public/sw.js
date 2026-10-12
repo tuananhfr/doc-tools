@@ -18,11 +18,30 @@ function currentCacheName() {
   activeCache ??= readCacheName(activeKey).then(name => name ?? CACHE_PREFIX + 'runtime')
   return activeCache
 }
+// The cache name changes with every build, so anything cached at runtime (voice/OCR models a user
+// downloaded, hashed fonts) would vanish on each deploy. Copy what the new build still ships as
+// optional assets, plus content-hashed media, from the cache that was active until now. Pages are
+// not copied: they come fresh from the precache list.
+async function carryOver(cache, manifest) {
+  const previousName = await readCacheName(activeKey)
+  if (!previousName || previousName === installedCache || !await caches.has(previousName)) return
+  const previous = await caches.open(previousName)
+  const optional = new Set(manifest.optionalAssets ?? [])
+  const mediaPath = appPath('/_next/static/media/')
+  for (const request of await previous.keys()) {
+    const { pathname } = new URL(request.url)
+    if (!optional.has(pathname) && !pathname.startsWith(mediaPath)) continue
+    if (await cache.match(request)) continue
+    const response = await previous.match(request)
+    if (response) await cache.put(request, response)
+  }
+}
 self.addEventListener('install', event => event.waitUntil((async () => {
   const manifest = await fetch(appPath('/offline-manifest.json'), { cache: 'no-store' }).then(response => response.json())
   installedCache = CACHE_PREFIX + manifest.version
   const cache = await caches.open(installedCache)
   await cache.addAll(manifest.assets)
+  await carryOver(cache, manifest)
   const metadata = await caches.open(METADATA_CACHE)
   await metadata.put(pendingKey, new Response(installedCache))
   await metadata.put(localesKey, new Response(JSON.stringify(manifest.locales ?? [])))

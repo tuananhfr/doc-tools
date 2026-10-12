@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const basePath = JSON.parse(fs.readFileSync('.next/required-server-files.json', 'utf8')).config.basePath ?? ''
 const withBase = url => basePath + url
@@ -28,23 +29,19 @@ for (const url of pages) {
 }
 const brand = fs.readdirSync('public/brand').filter((name) => /\.(png|webp|svg)$/.test(name)).map((name) => '/brand/' + name)
 const videoVendor = '/vendor/ffmpeg/core-0.12.10-wrapper-0.12.15/'
-// Keep the large video core lazy; the worker's normal runtime cache stores it after use.
-const optionalAssets = [
-  ...JSON.parse(fs.readFileSync('public' + videoVendor + 'assets.json', 'utf8')).assets.map(({ name }) => withBase(videoVendor + name)),
-  withBase('/vendor/tesseract/vie.traineddata.gz'),
-]
-const backgroundModel = JSON.parse(fs.readFileSync('src/features/tools/image/services/background-removal-model.json', 'utf8'))
-optionalAssets.push(
-  withBase(`/vendor/background-removal/${backgroundModel.file}`),
-  ...backgroundModel.runtimeFiles.map(name => withBase(`/vendor/background-removal/ort-${backgroundModel.runtimeVersion}/${name}`)),
-)
-const ttsVoice = JSON.parse(fs.readFileSync('src/features/tools/accessibility/config/piper-voice.json', 'utf8'))
-optionalAssets.push(
-  withBase(`/vendor/tts/${ttsVoice.model.file}`),
-  ...[ttsVoice.phonemizer.wasm, ttsVoice.phonemizer.data].map(({ file }) => withBase(`/vendor/tts/piper-phonemize-${ttsVoice.phonemizer.version}/${file}`)),
-)
+// Group builder lives in the app source so the download button and this script cannot drift apart.
+const { optionalAssetGroups } = await import(pathToFileURL(path.resolve('src/features/tools/hub/config/offline-asset-groups.ts')).href)
+// Keep the large engines lazy; the worker's runtime cache stores them after first use or an explicit download.
+const optionalGroups = optionalAssetGroups({
+  videoVendor,
+  videoAssets: JSON.parse(fs.readFileSync('public' + videoVendor + 'assets.json', 'utf8')).assets,
+  backgroundModel: JSON.parse(fs.readFileSync('src/features/tools/image/services/background-removal-model.json', 'utf8')),
+  ttsVoice: JSON.parse(fs.readFileSync('src/features/tools/accessibility/config/piper-voice.json', 'utf8')),
+  withBase,
+})
+const optionalAssets = [...new Set(Object.values(optionalGroups).flat())]
 const pageUrls = pages.map(url => withBase(url.slice('/vi'.length) || '/'))
 // Prefixed languages are not precached; the worker sends their unvisited pages to the Vietnamese twin when offline.
 const locales = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && /^\/[a-z][a-z-]*$/.test(url) && url !== '/vi').map(([url]) => url.slice(1))
-const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets, locales }
+const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets, optionalGroups, locales }
 fs.writeFileSync('public/offline-manifest.json', JSON.stringify(manifest), 'utf8')
