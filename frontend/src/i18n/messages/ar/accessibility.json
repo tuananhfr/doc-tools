@@ -67,6 +67,11 @@
     "piperTimeout": "Creating audio took too long and was stopped. Try a shorter text.",
     "deviceFailed": "The browser stopped reading part-way. Press \"Read text aloud\" to start again.",
     "credit": "Piper vi_VN-vais1000 voice (VAIS-1000 data, CC BY 4.0) and espeak-ng phonemizer (GPL-3.0).",
-    "license": "Licenses and source code"
+    "license": "Licenses and source code",
+    "pause": "Pause",
+    "resume": "Resume",
+    "paused": "Paused",
+    "readingView": "Text being read",
+    "editHint": "The highlighted sentence is being read. Press Stop to edit the text."
   }
 }

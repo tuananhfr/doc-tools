@@ -1278,3 +1278,26 @@
   .erp-qr-scanner-modal .erp-qr-scanner--detected .erp-qr-scanner__zoom { bottom: 12px; }
   .erp-qr-scanner-modal .erp-qr-scanner--detected .erp-qr-scanner__actions { flex-direction: column; }
 }
+
+/* ---------- Doc van ban: khung doc, boi cau / tu dang doc ---------- */
+
+/* Cao bang textarea 12 dong ma no thay the, de bam Doc khong lam trang nhay. */
+.erp-read-view {
+  position: relative;
+  height: calc(12 * 1.5em + 0.75rem + 2px);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.erp-read-view__sentence {
+  padding: 0;
+  color: inherit;
+  background: color-mix(in srgb, var(--erp-warning) 30%, transparent);
+  border-radius: 2px;
+}
+
+.erp-read-view__word {
+  background: color-mix(in srgb, var(--erp-warning) 55%, transparent);
+  border-radius: 2px;
+}

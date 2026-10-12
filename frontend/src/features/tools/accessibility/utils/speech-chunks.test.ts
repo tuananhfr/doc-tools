@@ -1,23 +1,50 @@
 import { describe, expect, it } from 'vitest'
-import { splitSpeechText } from './speech-chunks'
+import { speechChunksFrom, splitSpeechText } from './speech-chunks'
 import { encodeWav } from './wav'
 
+const texts = (text: string, max?: number) => splitSpeechText(text, max).map((chunk) => chunk.text)
+
 describe('splitSpeechText', () => {
-  it('packs short sentences together and keeps paragraphs apart', () => {
-    expect(splitSpeechText('Xin chào. Tôi là Đức!\n\nĐoạn hai?', 40)).toEqual(['Xin chào. Tôi là Đức!', 'Đoạn hai?'])
+  it('reads one sentence per chunk and keeps paragraphs apart', () => {
+    expect(texts('Xin chào. Tôi là Đức!\n\nĐoạn hai?', 40)).toEqual(['Xin chào.', 'Tôi là Đức!', 'Đoạn hai?'])
+  })
+
+  it('keeps offsets into the original text', () => {
+    const text = '  Câu một.   Câu hai!\nCâu  ba'
+    for (const chunk of splitSpeechText(text)) expect(text.slice(chunk.start, chunk.end)).toBe(chunk.text)
+    expect(splitSpeechText(text).map((chunk) => chunk.start)).toEqual([2, 13, 22])
+  })
+
+  it('does not break after titles, place prefixes or abbreviations inside a sentence', () => {
+    expect(texts('UBND TP. Hà Nội họp tại Q. 1 với ThS. Lan, v.v. và nhiều người. Hết.'))
+      .toEqual(['UBND TP. Hà Nội họp tại Q. 1 với ThS. Lan, v.v. và nhiều người.', 'Hết.'])
   })
 
   it('never returns a chunk over the limit, preferring commas then spaces', () => {
     const long = 'một hai ba bốn năm sáu bảy tám chín mười, '.repeat(12) + 'hết.'
-    const chunks = splitSpeechText(long, 100)
+    const chunks = texts(long, 100)
     expect(chunks.every((chunk) => chunk.length <= 100)).toBe(true)
     expect(chunks.join(' ').replace(/\s+/g, ' ')).toBe(long.trim().replace(/\s+/g, ' '))
-    expect(splitSpeechText('a'.repeat(250), 100).map((chunk) => chunk.length)).toEqual([100, 100, 50])
+    expect(texts('a'.repeat(250), 100).map((chunk) => chunk.length)).toEqual([100, 100, 50])
   })
 
   it('drops punctuation-only pieces that a voice cannot read', () => {
-    expect(splitSpeechText('Một. ... ! \n — \nHai.')).toEqual(['Một. ... !', 'Hai.'])
-    expect(splitSpeechText('   ')).toEqual([])
+    expect(texts('Một. ... ! \n — \nHai.')).toEqual(['Một.', 'Hai.'])
+    expect(texts('   ')).toEqual([])
+  })
+})
+
+describe('speechChunksFrom', () => {
+  it('resumes inside the current chunk and keeps later chunks whole', () => {
+    const text = 'Câu một rất dài. Câu hai.'
+    const resumed = speechChunksFrom(splitSpeechText(text), text.indexOf('rất'))
+    expect(resumed.map(({ chunk, from }) => text.slice(from, chunk.end))).toEqual(['rất dài.', 'Câu hai.'])
+    expect(resumed[0].chunk.start).toBe(0)
+  })
+
+  it('skips a remainder that has nothing left to read', () => {
+    const text = 'Câu một. Câu hai.'
+    expect(speechChunksFrom(splitSpeechText(text), text.indexOf('.')).map(({ chunk }) => chunk.text)).toEqual(['Câu hai.'])
   })
 })
 

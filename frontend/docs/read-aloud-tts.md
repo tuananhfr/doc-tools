@@ -23,10 +23,22 @@ The npm `main` field of `piper-wasm` is broken (`/build/...`), so the worker imp
 
 ## Processing
 
-1. `normalizeVietnameseText` (pure, tested) expands administrative abbreviations, spells unknown acronyms in Vietnamese, reads phone numbers digit by digit, adds "ngày/tháng" to dates and speaks email/URL symbols. Without it espeak reads "UBND" with English phonemes and "31/12" without "tháng".
-2. `splitSpeechText` splits into chunks of at most 220 characters (sentences, then commas, then spaces). The device engine queues all chunks inside the click handler, because iOS only allows `speak()` in a user gesture and Chrome rejects or cuts long utterances.
-3. Piper playback creates the `AudioContext` in the click handler, synthesizes chunk by chunk and keeps at most 8 seconds of audio scheduled ahead. Speed changes apply to the next synthesized chunk (`length_scale = 1 / rate`).
+1. `splitSpeechText` splits the **original** text into one chunk per sentence (long sentences split at commas, then spaces, max 220 characters) and keeps each chunk's `start`/`end` offsets, so the highlight marks what the user typed. It does not break after "TP.", "Q.", "P.", "ThS."… before a name or number, nor after a period followed by a lowercase letter ("v.v. và"). The device engine queues all chunks inside the click handler, because iOS only allows `speak()` in a user gesture and Chrome rejects or cuts long utterances.
+2. Piper only: `normalizeVietnameseText` (pure, tested) runs **per chunk**, after splitting, because it changes the text length. It expands administrative abbreviations, spells unknown acronyms in Vietnamese, reads phone numbers digit by digit, adds "ngày/tháng" to dates and speaks email/URL symbols. Without it espeak reads "UBND" with English phonemes and "31/12" without "tháng".
+3. Piper playback (`PiperPlayer`) creates the `AudioContext` in the click handler, synthesizes chunk by chunk and keeps at most 8 seconds of audio scheduled ahead.
 4. "Download audio (WAV)" synthesizes every chunk and writes 16-bit mono PCM at 22,050 Hz. 20,000 characters is roughly 25 minutes and 66 MB of WAV, held in memory until download.
+
+## Pause, speed and highlight
+
+While reading or paused, the textarea is replaced by a read-only view (`ReadingView`) that marks the current sentence and, when known, the current word, and scrolls only its own box. Press Stop to edit again. The speed slider is applied 300 ms after the last movement.
+
+| | Piper | Device voice |
+| --- | --- | --- |
+| Pause / resume | `AudioContext.suspend()` / `resume()`: exact sample, the synthesis loop waits because the clock is frozen | `cancel()`, then speak again from the last word boundary, or from the start of the sentence when the voice sends no boundaries |
+| Speed while reading | Already scheduled audio is time-stretched with WSOLA (`utils/time-stretch.ts`, keeps pitch) from the sample being heard; later chunks are synthesized at the new `length_scale` | `cancel()` and speak again from the current word |
+| Highlight | Sentence, from the AudioContext clock and a timeline of chunk start times (`utils/reading-timeline.ts`). No word highlight: Piper returns no timing per word | Sentence on `onstart`; word on `onboundary` |
+
+Native `speechSynthesis.pause()` / `resume()` is not used: it hangs on Chrome Android and with online voices. Chrome's online "Google tiếng Việt" voice sends no boundary events, so it only gets the sentence highlight and resumes from the start of the sentence. A speed change re-speaks from a timer, outside a user gesture; iOS accepts this once the first `speak()` of the page came from a tap, but this has not been tested on a real iPhone.
 
 Each read or export starts a worker and terminates it when done, stopped or unmounted, like `/xoa-phong`. There is no queue of pending reads.
 

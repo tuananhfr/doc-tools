@@ -65,7 +65,9 @@ nguyên để bảo toàn handoff tệp giữa công cụ, screen identity và c
   phonemizer espeak-ng WASM sinh bằng `scripts/prepare-tts.mjs`) và **dùng chung runtime ort
   của `/xoa-phong`** — đổi phiên bản `onnxruntime-web` phải sửa cả hai cấu hình. Emscripten của
   phonemizer không nhận ra module worker, nên byte được đưa qua `wasmBinary`/`getPreloadedPackage`.
-  `AudioContext` phải tạo ngay trong lượt bấm (Safari). Chi tiết, giấy phép còn mở ở `docs/read-aloud-tts.md`.
+  `AudioContext` phải tạo ngay trong lượt bấm (Safari). Chia đoạn trên văn bản GỐC (giữ offset để
+  bôi vàng) rồi mới chuẩn hoá từng đoạn — chuẩn hoá cả bài trước là lệch vị trí bôi. Chi tiết, giấy
+  phép còn mở ở `docs/read-aloud-tts.md`.
 - `src/proxy.ts` (middleware của Next) xử lý link cũ `/doc-tools/*` và `?tool=` trước SSR,
   và thêm dấu `/` cuối cho trang chủ khi có prefix.
 - Route: `/` landing giới thiệu · `/cong-cu` danh mục đầy đủ (lọc bằng query `q`, `nhom`) ·
