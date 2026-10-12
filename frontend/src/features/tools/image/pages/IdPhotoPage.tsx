@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { FlowChoice, parseDecimal, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
@@ -10,6 +10,9 @@ import { ORIGINAL_PORTRAIT, portraitIsOriginal, styledPortrait } from '../servic
 import { usePortraitPreviews } from '../hooks/usePortraitPreviews'
 import { fullRect } from '../utils/crop-rect'
 import { ImageToolShell } from '../components/ImageToolShell'
+import { HandoffButton } from '../components/HandoffButton'
+import { outputFile } from '../utils/handoff-file'
+import { takeHandoff } from '@/features/tools/shared'
 import { PhotoSheetPreview } from '../components/PhotoSheetPreview'
 import { GAP_LIMIT, PAPER_SIZES, PHOTO_SIZES, SHEET_MARGIN } from '../config/photo-presets'
 import { useImageFiles } from '../hooks/useImageFiles'
@@ -37,6 +40,11 @@ export default function IdPhotoPage() {
   const [copiesText, setCopiesText] = useState('8')
   const [gapText, setGapText] = useState('2')
   const [guides, setGuides] = useState(true)
+  // Ảnh từ "Làm ảnh thẻ từ ảnh này" (cắt ảnh, xoá nền): chỉ lúc mount, `takeHandoff` trả đúng một lần nên StrictMode không nạp đôi.
+  useEffect(() => {
+    const files = takeHandoff('id-photo')
+    if (files.length) void images.addFiles(files)
+  }, [images.addFiles])
 
   const photo = PHOTO_SIZES.find((size) => size.id === photoId) ?? PHOTO_SIZES[0]
   const paper = PAPER_SIZES.find((size) => size.id === paperId) ?? PAPER_SIZES[0]
@@ -88,6 +96,7 @@ export default function IdPhotoPage() {
       }
       runLabel={output === 'single' ? t('idPhoto.runSingle') : t('idPhoto.runSheet', { count: layout.cells.length })}
       runIcon="person-badge"
+      resultActions={(result) => output === 'single' ? <HandoffButton target="cv" label={t('handoff.toCv')} file={() => outputFile(result)} /> : null}
       blocked={portrait.failed ? t('portrait.failed') : blocked}
       task={() => {
         if (!ready || !crop.rect) throw new Error(t('shared.noImageSelected'))

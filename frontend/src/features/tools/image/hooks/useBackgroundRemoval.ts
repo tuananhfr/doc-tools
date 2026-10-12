@@ -149,5 +149,20 @@ export function useBackgroundRemoval() {
       downloadOutput({ name: outputName, blob }); setMessage(t('removeBg.done'))
     }, 'image/png')
   }
-  return { canvas, name, phase, busy, brush, setBrush, radius, setRadius, background, changeBackground, message, undoSteps, open, cancel, retry, canRetry: (phase === 'error' || phase === 'cancelled') && Boolean(file.current), brushAt, startStroke, endStroke, undo, save }
+  // Ảnh cho công cụ khác (ảnh thẻ): cùng điểm ảnh với nút tải, `fill` trải nền dưới vùng trong suốt.
+  const toFile = (fill: string | null) => new Promise<File | null>(resolve => {
+    const target = canvas.current, current = state.current
+    if (!target || !current || phase !== 'ready') { resolve(null); return }
+    const flat = fill ? document.createElement('canvas') : null
+    if (flat && fill) {
+      flat.width = target.width; flat.height = target.height
+      const context = flat.getContext('2d')!
+      context.fillStyle = fill; context.fillRect(0, 0, flat.width, flat.height); context.drawImage(target, 0, 0)
+    }
+    ;(flat ?? target).toBlob(blob => {
+      if (flat) { flat.width = 0; flat.height = 0 }
+      resolve(blob && state.current === current ? new File([blob], `${name.replace(/\.[^.]+$/, '')}-xoa-phong.png`, { type: 'image/png' }) : null)
+    }, 'image/png')
+  })
+  return { canvas, name, phase, busy, brush, setBrush, radius, setRadius, background, changeBackground, message, undoSteps, open, cancel, retry, canRetry: (phase === 'error' || phase === 'cancelled') && Boolean(file.current), brushAt, startStroke, endStroke, undo, save, toFile }
 }

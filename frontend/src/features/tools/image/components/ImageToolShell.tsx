@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ToolFlow, useDownloadNudge, type FlowFile, type FlowRun, type FlowTask } from '@/features/tools/hub'
+import { ToolFlow, useDownloadNudge, type FlowFile, type FlowOutput, type FlowRun, type FlowTask } from '@/features/tools/hub'
 import type { ImageFiles } from '../hooks/useImageFiles'
 import { sizeLabel } from '../utils/image-format'
 
@@ -22,6 +22,8 @@ interface ImageToolShellProps {
   task: () => FlowTask
   mobilePreview?: boolean
   pickerExtra?: ReactNode
+  /** Nút làm tiếp ở màn kết quả (vd. "Làm ảnh thẻ từ ảnh này"), dựng từ tệp vừa tạo. */
+  resultActions?: (output: FlowOutput) => ReactNode
 }
 
 const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
@@ -31,9 +33,11 @@ const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
  * luồng của "Chuyện Nhỏ" và mời khách đăng nhập sau khi tải. Trang công cụ chỉ
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
-export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview, pickerExtra }: ImageToolShellProps) {
+export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview, pickerExtra, resultActions }: ImageToolShellProps) {
   const { t } = useTranslation('image')
   const nudge = useDownloadNudge()
+  const done = run.state.phase === 'done' ? run.state.result.output : null
+  const actions = done && resultActions ? resultActions(done) : null
 
   const files: FlowFile[] = images.items.map((item) => ({
     id: item.id,
@@ -78,7 +82,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
       run={run}
       onRun={() => void run.start(task())}
       onDownloaded={nudge.onDownloaded}
-      resultExtra={nudge.extra}
+      resultExtra={<>{actions ? <div className="d-flex flex-wrap gap-2 mt-3">{actions}</div> : null}{nudge.extra}</>}
     />
   )
 }

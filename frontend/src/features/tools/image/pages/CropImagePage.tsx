@@ -3,6 +3,8 @@ import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
 import { CropOptions } from '../components/CropOptions'
 import { CropStage } from '../components/CropStage'
 import { ImageToolShell } from '../components/ImageToolShell'
+import { HandoffButton } from '../components/HandoffButton'
+import { outputFile } from '../utils/handoff-file'
 import { useCropEdit } from '../hooks/useCropEdit'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { cropTask } from '../services/edit-tasks'
@@ -35,6 +37,7 @@ export default function CropImagePage() {
         options={ready ? <CropOptions item={item} state={state} onChange={crop.update} onReset={crop.reset} /> : undefined}
         runLabel={t('shared.saveImage')}
         runIcon="check2-circle"
+        resultActions={(result) => <HandoffButton target="id-photo" label={t('handoff.toIdPhoto')} file={() => outputFile(result)} />}
         blocked={ready && isPristine(state, item) ? t('crop.blocked') : null}
         task={() => {
           if (!ready) throw new Error(t('shared.noImageSelected'))
