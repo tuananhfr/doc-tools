@@ -7,6 +7,7 @@ import { MAX_RULE_DATA_LENGTH, verifyRulePackage, type RulePackage } from '../ru
 import { checkRuleData, compareRuleData, type RuleCheck } from '../rules/rule-kinds'
 import { buildFromSpec, generateSigningKeys, signRulePackage } from '../rules/rule-signing'
 import { vietnamToday } from '../rules/rule-dates'
+import { SourcesRepository } from '../sources/sources.repository'
 
 const USAGE = `Usage:
   rules keygen <out-dir>
@@ -27,10 +28,10 @@ function publicKeyPem(): string {
   return key
 }
 
-async function withRepository<T>(run: (repository: RulesRepository) => Promise<T>): Promise<T> {
+async function withRepository<T>(run: (repository: RulesRepository, database: DatabaseService) => Promise<T>): Promise<T> {
   const database = new DatabaseService()
   await database.onModuleInit()
-  try { return await run(new RulesRepository(database)) }
+  try { return await run(new RulesRepository(database), database) }
   finally { await database.onModuleDestroy() }
 }
 
@@ -131,7 +132,11 @@ async function main() {
     const check = checkRuleData(item.kind, item.data)
     report(check)
     if (check.errors.length) throw new Error('Not staged: fix the errors above')
-    await withRepository(repository => repository.stage(item, digest, actor))
+    await withRepository(async (repository, database) => {
+      // A package pointing at a registry row nobody created would show "nguồn không tải được" forever.
+      if (item.sourceId && !await new SourcesRepository(database).get(item.sourceId)) throw new Error(`Not staged: source ${item.sourceId} is not in the registry (create it under /admin/sources first)`)
+      await repository.stage(item, digest, actor)
+    })
     print(`Staged ${item.kind}:${digest} (${describeDates(item, vietnamToday())})`)
     return
   }

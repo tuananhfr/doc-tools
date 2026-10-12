@@ -5,7 +5,7 @@ export type StaffRole = 'owner' | 'admin' | 'reviewer'
 export type Permission =
   | 'dashboard.view' | 'tools.view' | 'contributions.review'
   | 'users.view' | 'users.manage' | 'plans.manage' | 'mail.view' | 'mail.test' | 'ai.view' | 'ai.manage'
-  | 'settings.manage' | 'roles.manage' | 'audit.view' | 'landings.manage'
+  | 'settings.manage' | 'roles.manage' | 'audit.view' | 'landings.manage' | 'rules.manage'
 
 export interface Staff { id: string; email: string; role: StaffRole; permissions: Permission[] }
 

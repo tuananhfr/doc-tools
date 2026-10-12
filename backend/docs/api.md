@@ -247,3 +247,22 @@ Guest download; static QR regression; exact payload roundtrip; expiry/revocation
 ## Approved scope alternative (not selected)
 
 Keep only local static QR, barcode and printable labels in Chuyện Nhỏ; leave dynamic code lifecycle/asset management in ERPCons. This needs no new server API but excludes dynamic expiry/revocation from the Free scope.
+
+## Nguồn pháp lý (`sources`)
+
+| Method | Path | Quyền | Ghi chú |
+| --- | --- | --- | --- |
+| GET | `/api/v1/sources/:id` | công khai | `{ ok, source, staleDays }`; nháp và id lạ → 404 `SOURCE_NOT_FOUND`. Không trả `reviewer`, `createdBy/At`, `updatedBy/At`. `no-store`. |
+| GET | `/api/v1/admin/sources` | `rules.manage` | `{ ok, items }` gồm cả nháp và người duyệt |
+| POST | `/api/v1/admin/sources` | `rules.manage` | Body ≤ 8 KiB: `sourceId` + các trường dưới. 201 / 400 `{field}` / 409 `SOURCE_EXISTS`. Audit `SOURCE_CREATED`. |
+| GET | `/api/v1/admin/sources/:id` | `rules.manage` | |
+| PUT | `/api/v1/admin/sources/:id` | `rules.manage` | Ghi đè toàn bộ trường (không có `sourceId`). Audit `SOURCE_UPDATED`. |
+
+Trường: `issuer` (2–200), `documentNumber` (1–100), `jurisdiction` (2–100), `article` (≤200 hoặc null),
+`validFrom`/`validTo` (`YYYY-MM-DD` hoặc null, `validTo ≥ validFrom`), `checkedAt` (`YYYY-MM-DD`, không ở
+tương lai theo giờ Việt Nam), `reviewer` (2–128), `evidenceUrl` (https công khai, không user/pass, không IP),
+`status` ∈ `draft|verified|superseded|revoked`. Không có DELETE: gói ký có `sourceId` phải tra được mãi;
+thôi dùng thì đặt `revoked`. Ngưỡng "có thể đã cũ" là setting `sources.staleDays` (mặc định 90).
+
+Gói quy tắc ký có thể mang khoá tuỳ chọn `sourceId` (nằm trong phần được ký). Gói ký trước khi có khoá
+này vẫn hợp lệ. `rules stage` từ chối gói có `sourceId` chưa có trong bảng.

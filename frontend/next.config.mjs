@@ -17,6 +17,7 @@ const config = {
       { source: '/api/v1/codes/:path*', destination: backend + '/api/v1/codes/:path*' },
       { source: '/api/v1/tools/:path*', destination: backend + '/api/v1/tools/:path*' },
       { source: '/api/v1/rules/:path*', destination: backend + '/api/v1/rules/:path*' },
+      { source: '/api/v1/sources/:path*', destination: backend + '/api/v1/sources/:path*' },
       { source: '/api/v1/contributions/:path*', destination: backend + '/api/v1/contributions/:path*' },
       { source: '/api/v1/auth/:path*', destination: backend + '/api/v1/auth/:path*' },
       { source: '/api/v1/me', destination: backend + '/api/v1/me' },

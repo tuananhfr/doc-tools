@@ -384,4 +384,23 @@ export const SCHEMA = [
     created_by VARCHAR(128) NOT NULL,
     created_at BIGINT UNSIGNED NOT NULL
   ) ENGINE=InnoDB`,
+  // Registry of the legal documents behind signed rule packages. Rows are never deleted: a package
+  // signed with a sourceId must keep resolving, so a withdrawn source becomes status 'revoked'.
+  `CREATE TABLE IF NOT EXISTS legal_sources (
+    source_id VARCHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL PRIMARY KEY,
+    issuer VARCHAR(200) NOT NULL,
+    document_number VARCHAR(100) NOT NULL,
+    jurisdiction VARCHAR(100) NOT NULL,
+    article VARCHAR(200) NULL,
+    valid_from DATE NULL,
+    valid_to DATE NULL,
+    checked_at DATE NOT NULL,
+    reviewer VARCHAR(128) NOT NULL,
+    evidence_url VARCHAR(2048) NOT NULL,
+    status VARCHAR(16) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    created_by VARCHAR(128) NOT NULL,
+    created_at BIGINT UNSIGNED NOT NULL,
+    updated_by VARCHAR(128) NOT NULL,
+    updated_at BIGINT UNSIGNED NOT NULL
+  ) ENGINE=InnoDB`,
 ]
