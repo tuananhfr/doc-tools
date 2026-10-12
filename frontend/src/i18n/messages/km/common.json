@@ -49,7 +49,34 @@
   },
   "tool": {
     "privacyNoFile": "ដំណើរការលើឧបករណ៍របស់អ្នក មិនផ្ញើខ្លឹមសារចេញទេ",
-    "privacyFile": "ដំណើរការលើឧបករណ៍របស់អ្នក ឯកសារមិនត្រូវបានផ្ញើចេញទេ"
+    "privacyFile": "ដំណើរការលើឧបករណ៍របស់អ្នក ឯកសារមិនត្រូវបានផ្ញើចេញទេ",
+    "device": {
+      "label": "Device requirements",
+      "offline": {
+        "yes": "Works offline",
+        "after-first-use": "Works offline after one use while online",
+        "no": "Needs an internet connection for full use"
+      },
+      "needs": {
+        "camera": "Uses the camera",
+        "mic": "Uses the microphone"
+      },
+      "notice": {
+        "yes": "You are offline. This tool still works.",
+        "after-first-use": "You are offline. This tool only works if this device downloaded what it needs during an earlier use while online.",
+        "no": "You are offline. This tool needs a connection and may not produce a result until you are back online."
+      },
+      "backOnline": "You are back online."
+    },
+    "offlineAssets": {
+      "prepare": "Download for offline use",
+      "preparing": "Downloading {{done}}/{{total}}…",
+      "size": "about {{size}} MB",
+      "ready": "Downloaded — this tool works offline on this device.",
+      "failed": "The download did not finish. Check your connection and try again.",
+      "unsupported": "This browser cannot keep files for offline use.",
+      "eviction": "The browser may delete downloaded files when the device runs low on storage; download again if that happens."
+    }
   },
   "session": {
     "openInApp": "បើកក្នុង ERPcons",

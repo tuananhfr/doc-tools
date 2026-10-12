@@ -19,6 +19,7 @@ import { trackRecentTool } from '../utils/hub-prefs'
 import { resolveToolRoute, toolPageTitle, toolPath } from '../utils/tool-lookup'
 import { useToolOrigin } from '../hooks/useToolOrigin'
 import { workspaceTabsFor } from '../utils/workspace-tabs'
+import { ToolCapability } from '../components/ToolCapability'
 
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
@@ -87,6 +88,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
             <Icon name="shield-check" />
             {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
           </p>
+          <ToolCapability device={tool.device} />
         </div>
         {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
       </header>

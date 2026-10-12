@@ -1302,7 +1302,7 @@
       },
       "offline": {
         "question": "Tôi có dùng Chuyện Nhỏ khi không có Internet được không?",
-        "answer": "Sau lần mở đầu tiên có mạng, trình duyệt lưu sẵn trang và mã của công cụ nên thường vẫn mở lại được khi mạng chập chờn. Phần nặng như nhận dạng chữ hay xử lý video được tải về ở lần dùng đầu, nên hãy dùng thử một lần khi có mạng. QR động không tạo, thu hồi hoặc chuyển hướng được khi mất mạng."
+        "answer": "Mỗi công cụ ghi rõ ngay dưới tên: dùng được khi mất mạng, chỉ dùng được khi mất mạng nếu đã dùng một lần lúc có mạng, hay cần mạng. Sau lần mở đầu có mạng, trình duyệt lưu sẵn trang và mã của công cụ. Phần nặng như bộ xử lý PDF, nhận dạng chữ, xử lý video hay giọng đọc được tải ở lần dùng đầu; riêng Đọc to có nút tải trước để dùng khi mất mạng. Trình duyệt có thể tự xoá phần đã tải khi máy thiếu dung lượng. Tiền điện, lương, đổi địa chỉ, QR động và các công cụ cần máy chủ không dùng được khi mất mạng."
       },
       "loi": {
         "question": "Tôi gặp lỗi, phải làm sao?",

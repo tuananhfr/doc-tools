@@ -1313,7 +1313,7 @@
       },
       "offline": {
         "question": "Can I use Chuyện Nhỏ without an internet connection?",
-        "answer": "After the first visit with a connection, your browser caches the site and the tools' code, so they usually still open when your connection is spotty. Heavy parts such as text recognition or video processing are downloaded on first use, so try them once while you're online. Dynamic QR creation, revocation and redirects require a network."
+        "answer": "Each tool says right under its name whether it works offline, works offline only after one use while online, or needs a connection. After the first visit online, the browser keeps the pages and code of the tools. Heavy parts such as the PDF engine, text recognition, video processing and the reading voice download on first use; Read aloud has a button to download them ahead of time. The browser may delete downloaded parts when storage runs low. Electricity bills, payroll, address conversion, dynamic QR codes and other tools that need the server do not work offline."
       },
       "loi": {
         "question": "I ran into an error. What should I do?",

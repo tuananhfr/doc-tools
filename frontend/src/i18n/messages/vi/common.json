@@ -49,7 +49,34 @@
   },
   "tool": {
     "privacyNoFile": "Chạy trên máy bạn, không gửi nội dung đi",
-    "privacyFile": "Xử lý trên máy bạn, tệp không tải lên"
+    "privacyFile": "Xử lý trên máy bạn, tệp không tải lên",
+    "device": {
+      "label": "Khả năng dùng trên máy",
+      "offline": {
+        "yes": "Dùng được khi mất mạng",
+        "after-first-use": "Dùng được khi mất mạng nếu đã dùng một lần lúc có mạng",
+        "no": "Cần mạng để dùng đầy đủ"
+      },
+      "needs": {
+        "camera": "Dùng camera",
+        "mic": "Dùng micro"
+      },
+      "notice": {
+        "yes": "Bạn đang mất mạng. Công cụ này vẫn dùng được.",
+        "after-first-use": "Bạn đang mất mạng. Công cụ này chỉ chạy được nếu máy đã tải phần cần thiết trong một lần dùng trước, lúc có mạng.",
+        "no": "Bạn đang mất mạng. Công cụ này cần mạng nên có thể không cho kết quả cho tới khi có mạng lại."
+      },
+      "backOnline": "Đã có mạng lại."
+    },
+    "offlineAssets": {
+      "prepare": "Tải để dùng khi mất mạng",
+      "preparing": "Đang tải {{done}}/{{total}}…",
+      "size": "khoảng {{size}} MB",
+      "ready": "Đã tải xong — công cụ này dùng được khi mất mạng trên máy này.",
+      "failed": "Tải chưa xong. Kiểm tra mạng rồi bấm lại.",
+      "unsupported": "Trình duyệt này chưa cho lưu sẵn để dùng khi mất mạng.",
+      "eviction": "Trình duyệt có thể tự xoá phần đã tải khi máy thiếu dung lượng; khi đó cần tải lại."
+    }
   },
   "session": {
     "openInApp": "Mở trong ERPcons",
