@@ -181,6 +181,10 @@
     "available": "{{count}} available tools",
     "showSoon": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "នៅពេលឧបករណ៍មួយមិនទាន់គ្រប់គ្រាន់…",
     "description": "ពីកិច្ចការតូចៗថ្ងៃនេះ ដល់ការងារធំជាងនៅថ្ងៃស្អែក។",

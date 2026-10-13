@@ -181,6 +181,10 @@
     "available": "{{count}} available tools",
     "showSoon": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "도구 하나로 부족할 때…",
     "description": "오늘의 작은 일부터 내일의 더 큰 일까지.",

@@ -181,6 +181,10 @@
     "available": "{{count}} available tools",
     "showSoon": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "ひとつのツールでは足りないときは…",
     "description": "今日の小さな作業から、明日のもっと大きな仕事まで。",

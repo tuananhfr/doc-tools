@@ -181,6 +181,10 @@
     "available": "{{count}} available tools",
     "showSoon": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "Apabila satu alat tidak mencukupi…",
     "description": "Daripada tugasan kecil hari ini, kepada kerja yang lebih besar esok.",

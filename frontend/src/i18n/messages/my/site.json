@@ -181,6 +181,10 @@
     "available": "{{count}} available tools",
     "showSoon": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "ကိရိယာတစ်ခုတည်းနှင့် မလုံလောက်သည့်အခါ…",
     "description": "ယနေ့ အလုပ်သေးသေးလေးများမှ နက်ဖြန် ပိုကြီးသော အလုပ်များအထိ။",

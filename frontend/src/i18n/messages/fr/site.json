@@ -191,6 +191,10 @@
     "showSoon_many": "Show {{count}} upcoming tools",
     "showSoon_other": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "Quand un seul outil ne suffit plus…",
     "description": "Des petites tâches d'aujourd'hui aux grands projets de demain.",

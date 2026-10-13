@@ -186,6 +186,10 @@
     "showSoon_one": "Show {{count}} upcoming tool",
     "showSoon_other": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "When one tool isn't enough…",
     "description": "From small tasks today to bigger work tomorrow.",

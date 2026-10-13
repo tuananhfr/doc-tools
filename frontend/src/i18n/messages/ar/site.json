@@ -206,6 +206,10 @@
     "showSoon_many": "Show {{count}} upcoming tools",
     "showSoon_other": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "عندما لا تكفي أداة واحدة…",
     "description": "من المهام الصغيرة اليوم، إلى أعمال أكبر غدًا.",

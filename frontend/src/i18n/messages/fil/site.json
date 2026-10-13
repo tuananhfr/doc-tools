@@ -186,6 +186,10 @@
     "showSoon_one": "Show {{count}} upcoming tools",
     "showSoon_other": "Show {{count}} upcoming tools"
   },
+  "partners": {
+    "title": "Our partners",
+    "disclosure": "Partner spotlight"
+  },
   "ecosystem": {
     "title": "Kapag kulang ang isang tool…",
     "description": "Mula sa maliliit na gawain ngayon, hanggang sa mas malalaking trabaho bukas.",

@@ -3,6 +3,7 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { legacyToolPath } from '@/features/tools/hub/utils/tool-lookup'
 import { HeroSection } from './components/HeroSection'
+import { PartnersSection } from './components/PartnersSection'
 import { UseCasesSection } from './components/UseCasesSection'
 import { PdfSection } from './components/PdfSection'
 import { HowItWorksSection } from './components/HowItWorksSection'
@@ -16,5 +17,5 @@ export function LandingPage() {
   usePageTitle(t('landing.metaTitle'))
   const legacy = params.get('tool')
   if (legacy !== null) return <Navigate to={legacyToolPath('/', legacy)} replace />
-  return <><HeroSection /><UseCasesSection /><PdfSection /><HowItWorksSection /><PreferencesSection /><PrivacySection /><ClosingSection /></>
+  return <><HeroSection /><PartnersSection /><UseCasesSection /><PdfSection /><HowItWorksSection /><PreferencesSection /><PrivacySection /><ClosingSection /></>
 }

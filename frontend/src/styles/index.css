@@ -177,3 +177,7 @@
 @import './site/hub-nav.css';
 @import './site/workspace-tabs.css';
 @import './site/landing/quick-start.css';
+
+@import './site/landing/partners.css';
+
+@import './site/partner-banner.css';

@@ -181,6 +181,10 @@
     "available": "{{count}} công cụ đang dùng được",
     "showSoon": "Hiện {{count}} công cụ sắp có"
   },
+  "partners": {
+    "title": "Đối tác đồng hành",
+    "disclosure": "Giới thiệu đối tác"
+  },
   "ecosystem": {
     "title": "Khi một công cụ là chưa đủ…",
     "description": "Từ những việc nhỏ hôm nay, đến công việc lớn hơn ngày mai.",

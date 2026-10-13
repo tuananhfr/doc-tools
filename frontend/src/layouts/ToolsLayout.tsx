@@ -5,12 +5,15 @@ import { PUBLIC_TOOLS_BRANCH, ToolsBranchOutlet } from '@/features/tools/hub'
 import { SiteHeader } from '@/features/site/components/SiteHeader'
 import { SiteFooter } from '@/features/site/components/SiteFooter'
 import { ToolFooterLinks } from '@/features/site/components/ToolFooterLinks'
+import { PartnerBanner } from '@/features/site/components/PartnerBanner'
+import { HUB_PAGE_LIST } from '@/features/site/config/hub-pages'
 import { PRODUCT_REGISTRY } from '@/features/site/config/product-registry'
 
 export function ToolsLayout() {
   const { tool: slug } = useParams()
   const { pathname, hash, state } = useLocation()
   const isTool = slug !== undefined || PRODUCT_REGISTRY.some(product => pathname === '/' + product.slug)
+  const showPartnerBanner = isTool || pathname === '/cong-cu' || HUB_PAGE_LIST.some(page => pathname === '/' + page.slug)
   useEffect(() => {
     if (isTool) return
     const target = hash ? document.getElementById(hash.slice(1)) : null
@@ -33,6 +36,7 @@ export function ToolsLayout() {
           <main id="cn-main" tabIndex={-1} className={`erp-tools-guest__main${isTool ? '' : ' cn-site-main'}`}>
             <Suspense fallback={<Loading />}><ToolsBranchOutlet branch={PUBLIC_TOOLS_BRANCH} /></Suspense>
           </main>
+          {showPartnerBanner ? <PartnerBanner /> : null}
           {isTool ? <ToolFooterLinks /> : <SiteFooter />}
         </div>
       </div>

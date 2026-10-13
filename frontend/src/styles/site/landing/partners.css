@@ -1,0 +1,32 @@
+.cn-landing-partners { padding-block: 72px 0; }
+.cn-landing-partners-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.cn-landing-partners-heading h2 { font-size: clamp(28px, 2.4vw, 36px); }
+.cn-landing-partners-heading > span { color: var(--cn-muted); font-size: 13px; }
+.cn-landing-partners-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.cn-landing-partner { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding: 32px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-landing-card); }
+.cn-landing-partner-logo { display: flex; align-items: center; width: min(280px, 100%); min-height: 108px; }
+.cn-landing-partner-logo img { display: block; width: 100%; height: auto; }
+.cn-landing-partner-logo .cn-landing-partner-logo--dark { display: none; }
+.cn-landing-partner h3 { font-size: 21px; line-height: 1.5; }
+.cn-landing-partner > p { margin-top: auto; color: var(--cn-muted); font-size: 16px; }
+.cn-landing-partner-actions { display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px; width: 100%; }
+.cn-landing-partner-actions .cn-landing-button { min-height: 48px; padding: 11px 20px; font-size: 15px; white-space: normal; text-align: center; }
+.cn-landing-partner--erp .cn-landing-partner-primary { background: var(--cn-red); color: #fff; }
+.cn-landing-partner--erp .cn-landing-partner-primary:hover { background: #bb2034; }
+.cn-landing-partner--erp .cn-landing-partner-secondary { border-color: var(--cn-red); color: var(--cn-red); }
+.cn-landing-partner--erp .cn-landing-partner-secondary:hover { background: color-mix(in srgb, var(--cn-red) 8%, transparent); }
+[data-theme='dark'] .cn-landing-partner-logo .cn-landing-partner-logo--light { display: none; }
+[data-theme='dark'] .cn-landing-partner-logo .cn-landing-partner-logo--dark { display: block; }
+[data-theme='dark'] .cn-landing-partner--erp .cn-landing-partner-secondary { border-color: #ff8798; color: #ff8798; }
+@media (max-width: 1023px) {
+  .cn-landing-partner { padding: 24px; }
+  .cn-landing-partner h3 { font-size: 19px; }
+}
+@media (max-width: 767px) {
+  .cn-landing-partners { padding-top: 48px; }
+  .cn-landing-partners-heading { flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .cn-landing-partners-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .cn-landing-partner { gap: 20px; }
+  .cn-landing-partner-logo { width: min(250px, 100%); min-height: 96px; }
+  .cn-landing-partner-actions .cn-landing-button { flex: 1 1 160px; }
+}
