@@ -1,4 +1,5 @@
 import { useCallback, useState, type ReactNode } from 'react'
+import { useEmbed } from '@/features/embed'
 import { useAuthStore } from '@/store/auth.store'
 import { LoginNudge } from '../components/LoginNudge'
 
@@ -15,11 +16,13 @@ interface DownloadNudge {
  */
 export function useDownloadNudge(): DownloadNudge {
   const guest = useAuthStore((state) => state.status) === 'unauthenticated'
+  // Embedded in ERPCons the user is already signed in there; a Chuyện Nhỏ login prompt is noise.
+  const embedded = useEmbed().host !== null
   const [nudge, setNudge] = useState<'hidden' | 'shown' | 'dismissed'>('hidden')
 
   const onDownloaded = useCallback(() => {
-    if (guest) setNudge((current) => (current === 'hidden' ? 'shown' : current))
-  }, [guest])
+    if (guest && !embedded) setNudge((current) => (current === 'hidden' ? 'shown' : current))
+  }, [guest, embedded])
 
   return { onDownloaded, extra: nudge === 'shown' ? <LoginNudge onDismiss={() => setNudge('dismissed')} /> : null }
 }

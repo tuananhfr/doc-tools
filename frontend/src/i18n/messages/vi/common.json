@@ -284,5 +284,8 @@
     "exitFullscreenShort": "Thoát",
     "closeShort": "Đóng",
     "fullscreenUnavailable": "Trình duyệt không bật được toàn màn hình. Bạn vẫn có thể làm việc ở chế độ mở rộng."
+  },
+  "embed": {
+    "saveToCde": "Lưu vào Hồ sơ CDE"
   }
 }

@@ -1,3 +1,4 @@
+import { parseEmbedHosts } from '@/features/embed/embed-mode'
 import { withBase } from '@/utils/url'
 
 export const appConfig = {
@@ -9,5 +10,7 @@ export const appConfig = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3002',
   docTools: process.env.NEXT_PUBLIC_DOC_TOOLS !== '0',
   toolsOff: (process.env.NEXT_PUBLIC_TOOLS_OFF ?? '').split(',').map(id => id.trim()).filter(Boolean),
+  /** Origins allowed to embed the tools (`?embed=erpcons`); the same NEXT_PUBLIC_EMBED_HOSTS env var feeds `frame-ancestors` in next.config.mjs. */
+  embedHosts: parseEmbedHosts(process.env.NEXT_PUBLIC_EMBED_HOSTS),
   dateFormat: 'DD/MM/YYYY', dateTimeFormat: 'DD/MM/YYYY HH:mm', locale: 'vi-VN', currency: 'VND',
 } as const

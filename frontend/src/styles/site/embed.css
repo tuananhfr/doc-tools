@@ -1,0 +1,19 @@
+/*
+ * Embed mode (ERPCons /tools iframe): the host page owns header, navigation and footer.
+ * Keyed off html[data-embed], which the boot script sets before first paint.
+ */
+html[data-embed] .cn-header,
+html[data-embed] .cn-footer,
+html[data-embed] .cn-tool-footer,
+html[data-embed] .cn-partner-banner,
+html[data-embed] .erp-tool-crumb__prefs,
+html[data-embed] .erp-tool-crumb__action,
+html[data-embed] .cn-favourite,
+html[data-embed] .cn-tool-feedback {
+  display: none !important;
+}
+
+/* The header row is gone, so the frame must take the only row instead of the 64px header track. */
+html[data-embed] .cn-shell {
+  grid-template-rows: minmax(0, 1fr);
+}

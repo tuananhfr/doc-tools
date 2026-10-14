@@ -17,6 +17,7 @@ import { BOOT_NAMESPACES, loadResources } from '@/i18n/resources'
 import { getServerT, pageLocale } from '@/i18n/server'
 import { webManifestPath } from '@/features/site/server/web-manifest'
 import { TEXT_SIZE_BOOT_SCRIPT } from '@/features/tools/hub/utils/text-size'
+import { EMBED_BOOT_SCRIPT } from '@/features/embed/embed-mode'
 
 type Props = { children: ReactNode; params: Promise<{ lang: string }> }
 
@@ -46,6 +47,7 @@ export default async function RootLayout({ children, params }: Props) {
     <head>
       {/* "Chữ lớn" phải có trước lần vẽ đầu — đợi hydrate là trang nhảy cỡ chữ. Không có CSP nên script inline được. */}
       <script dangerouslySetInnerHTML={{ __html: TEXT_SIZE_BOOT_SCRIPT }} />
+      <script dangerouslySetInnerHTML={{ __html: EMBED_BOOT_SCRIPT }} />
       {process.env.NODE_ENV === 'development' && <Script id="doctools-development-worker" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: developmentWorkerBootstrap() }} />}
     </head>
     <body><ToolsProviders locale={lang} resources={resources}><ToolsRouter locale={lang} />{children}</ToolsProviders></body>

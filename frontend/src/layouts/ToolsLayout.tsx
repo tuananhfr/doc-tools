@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { Loading } from '@/components/ui'
+import { useEmbedBridge } from '@/features/embed'
 import { PUBLIC_TOOLS_BRANCH, ToolsBranchOutlet } from '@/features/tools/hub'
 import { SiteHeader } from '@/features/site/components/SiteHeader'
 import { SiteFooter } from '@/features/site/components/SiteFooter'
@@ -10,6 +11,7 @@ import { HUB_PAGE_LIST } from '@/features/site/config/hub-pages'
 import { PRODUCT_REGISTRY } from '@/features/site/config/product-registry'
 
 export function ToolsLayout() {
+  useEmbedBridge()
   const { tool: slug } = useParams()
   const { pathname, hash, state } = useLocation()
   const isTool = slug !== undefined || PRODUCT_REGISTRY.some(product => pathname === '/' + product.slug)

@@ -288,5 +288,8 @@
     "exitFullscreenShort": "Exit",
     "closeShort": "Close",
     "fullscreenUnavailable": "Fullscreen could not be enabled in this browser. You can continue working in the expanded workspace."
+  },
+  "embed": {
+    "saveToCde": "Save to CDE records"
   }
 }

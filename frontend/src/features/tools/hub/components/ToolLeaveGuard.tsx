@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useBlocker } from 'react-router-dom'
 import { Icon } from '@/components/ui'
+import { setDirtySource } from '@/features/embed'
 import { useAuthStore } from '@/store/auth.store'
 import { useToolsBranch } from '../hooks/tools-branch'
 import { leavesToolScreen } from '../utils/tool-lookup'
@@ -38,6 +39,13 @@ export function ToolLeaveGuard({ active, message }: ToolLeaveGuardProps) {
     window.addEventListener('beforeunload', warn)
     return () => window.removeEventListener('beforeunload', warn)
   }, [active])
+
+  const dirtyId = useId()
+  // Embedded: the host page cannot see this guard, and removing the iframe skips `beforeunload`.
+  useEffect(() => {
+    setDirtySource(dirtyId, active)
+    return () => setDirtySource(dirtyId, false)
+  }, [dirtyId, active])
 
   const blocked = blocker.state === 'blocked'
 

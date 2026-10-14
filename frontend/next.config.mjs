@@ -3,6 +3,10 @@ import { fileURLToPath } from 'node:url'
 const require = createRequire(import.meta.url)
 const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? '').trim().replace(/\/+$/, '')
 if (basePath && !/^\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+$/.test(basePath)) throw new Error('NEXT_PUBLIC_BASE_PATH must be empty or an absolute path without a trailing slash')
+// Mirrors parseEmbedHosts (src/features/embed/embed-mode.ts); a .mjs config cannot import the TS helper. Everyone else may not frame the site.
+const embedHosts = (process.env.NEXT_PUBLIC_EMBED_HOSTS ?? '').split(',').map(item => item.trim()).filter(Boolean).flatMap((item) => {
+  try { return [new URL(item).origin] } catch { return [] }
+})
 const config = {
   basePath,
   // scripts/deploy.sh builds into .next-new and renames it only after a green build; `next start` keeps reading .next.
@@ -15,6 +19,10 @@ const config = {
   experimental: { globalNotFound: true },
   async headers() {
     return [
+      {
+        source: '/:path*',
+        headers: [{ key: 'Content-Security-Policy', value: ["frame-ancestors 'self'", ...embedHosts].join(' ') }],
+      },
       {
         source: '/vendor/office/:path*',
         headers: [

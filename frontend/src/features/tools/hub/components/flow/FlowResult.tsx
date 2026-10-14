@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, type ReactNode } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
+import { SaveToHostButton } from '@/features/embed'
 import { formatFileSize } from '@/utils/format'
 import { megabytes, TOOL_LIMITS } from '../../config/limits'
 import type { FlowNote, FlowOutput, FlowResult as Result, FlowTone } from '../../types/flow.types'
@@ -137,6 +138,7 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
               {t('result.share')}
             </Button>
           ) : null}
+          <SaveToHostButton output={output} />
           {onEdit ? (
             <Button variant="outline-secondary" onClick={() => onEdit(output)}>
               <Icon name="pencil-square" className="me-2" />

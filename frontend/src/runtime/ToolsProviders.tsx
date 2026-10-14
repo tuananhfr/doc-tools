@@ -8,6 +8,7 @@ import { ToastProvider } from '@/components/ui'
 import { useAppStore } from '@/store/app.store'
 import { applyThemeMode } from '@/styles/theme'
 import { applyTextSize, useTextSize } from '@/features/tools/hub/hooks/useTextSize'
+import { initEmbed } from '@/features/embed'
 import { I18nProvider } from '@/i18n/I18nProvider'
 import type { Locale } from '@/i18n/locales'
 import type { LocaleResources } from '@/i18n/resources'
@@ -20,6 +21,7 @@ export function ToolsProviders({ locale, resources, children }: { locale: Locale
   const { size: textSize } = useTextSize()
   useEffect(() => applyTextSize(textSize), [textSize])
   useEffect(() => {
+    initEmbed()
     void configureServiceWorker().catch(error => console.warn('DocTools service worker setup failed', error))
   }, [])
   return <I18nProvider locale={locale} resources={resources}><ToastProvider><QueryClientProvider client={client}>{children}</QueryClientProvider></ToastProvider></I18nProvider>
