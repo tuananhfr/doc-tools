@@ -4,6 +4,7 @@ import { appConfig } from '@/config/app.config'
 import { useAppStore } from '@/store/app.store'
 import { wrap, type EmbedCapability, type GuestMessage } from './embed-protocol'
 import { EMBED_HOST_ID, EMBED_STORAGE_KEY, EMBED_THEME_PARAM, resolveEmbedHost } from './embed-mode'
+import { createHostAi } from './host-ai'
 
 export interface EmbedState {
   host: string | null
@@ -35,6 +36,8 @@ export function useEmbed(): EmbedState {
 export function postToHost(message: GuestMessage): void {
   if (state.host) window.parent.postMessage(wrap(message), state.host)
 }
+
+export const hostAi = createHostAi(postToHost)
 
 const dirtySources = new Set<string>()
 

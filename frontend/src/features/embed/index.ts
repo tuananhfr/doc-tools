@@ -1,5 +1,7 @@
 export { EMBED_BOOT_SCRIPT, toEmbedPath } from './embed-mode'
-export { initEmbed, postToHost, setDirtySource, setEmbedState, useEmbed } from './embed-state'
+export { hostAi, initEmbed, postToHost, setDirtySource, setEmbedState, useEmbed } from './embed-state'
+export { HostAiError, type HostAiRequest } from './host-ai'
+export { AI_TEXT_MAX, QR_TEXT_MAX, type AiTask } from './embed-protocol'
 export { useEmbedBridge } from './useEmbedBridge'
 export type { EmbedState } from './embed-state'
 export { SaveToHostButton } from './SaveToHostButton'

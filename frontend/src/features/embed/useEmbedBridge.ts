@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { useAppStore } from '@/store/app.store'
 import { acceptHostEvent, isEmbedPath } from './embed-protocol'
 import { toEmbedPath } from './embed-mode'
-import { postToHost, setEmbedState, useEmbed } from './embed-state'
+import { hostAi, postToHost, setEmbedState, useEmbed } from './embed-state'
 
 /** Mounted once in ToolsLayout: reports route changes to the host and applies host settings. */
 export function useEmbedBridge(): void {
@@ -26,6 +26,9 @@ export function useEmbedBridge(): void {
           break
         case 'theme':
           useAppStore.getState().setTheme(message.payload.mode)
+          break
+        case 'ai-result':
+          hostAi.settle(message.payload)
           break
       }
     }
