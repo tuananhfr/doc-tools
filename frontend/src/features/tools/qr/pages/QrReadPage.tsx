@@ -2,12 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
+import { postToHost, useEmbed } from '@/features/embed'
 import { FilePicker, ToolBoard } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
 import { QrCamera } from '../components/QrCamera'
 import { ScanResultList } from '../components/ScanResultList'
 import { scanImage, scanLimitReason, type ScanRead } from '../services/qr-scan'
 import type { ScanHit } from '../types/qr.types'
+import { traceReportText } from '../utils/trace-report'
 
 /** Ảnh không cho ra kết quả, kèm lý do để người dùng biết nên đổi ảnh hay đổi tệp. */
 interface ScanMiss {
@@ -28,14 +30,19 @@ export default function QrReadPage() {
   const [loading, setLoading] = useState<{ done: number; total: number } | null>(null)
   const [camera, setCamera] = useState(false)
 
+  const reportsTrace = useEmbed().capabilities.includes('trace')
+
   /** Mã vừa đọc lên đầu danh sách; mã đã có thì chỉ đưa lên đầu, không thêm dòng trùng. */
   const addRead = useCallback((read: ScanRead) => {
+    // Gửi ngoài hàm cập nhật state: updater có thể chạy hai lần (StrictMode) nên không được có tác dụng phụ.
+    const report = reportsTrace ? traceReportText(read.text) : null
+    if (report) postToHost({ type: 'qr-scanned', payload: { text: report } })
     setHits((current) => {
       if (current[0]?.text === read.text && current[0].format === read.format) return current
       const rest = current.filter((hit) => hit.text !== read.text || hit.format !== read.format)
       return [{ id: newId(), text: read.text, format: read.format, at: Date.now() }, ...rest]
     })
-  }, [])
+  }, [reportsTrace])
 
   const busy = useRef(false)
   const scanFiles = useCallback(

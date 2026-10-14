@@ -5,6 +5,7 @@ import { CopyButton, useToolsBranch } from '@/features/tools/hub'
 import type { ScanHit } from '../types/qr.types'
 import { gs1PrefixNote, gs1Valid } from '../utils/barcode-check'
 import { formatLabel, readScanContent } from '../utils/scan-content'
+import { TRACEABLE_KINDS } from '../utils/trace-report'
 
 interface ScanResultListProps {
   hits: ScanHit[]
@@ -15,7 +16,6 @@ interface ScanResultListProps {
 const GS1_FORMATS = new Set(['EAN_13', 'EAN_8', 'UPC_A', 'ITF'])
 
 /** Nội dung có thể là mã của một đối tượng ERPCons — Wi-Fi, số điện thoại, email thì không. */
-const TRACEABLE = new Set(['text', 'url'])
 
 function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
   const { t } = useTranslation('qr')
@@ -69,7 +69,7 @@ function ScanResult({ hit, onRemove }: { hit: ScanHit; onRemove: () => void }) {
         </p>
       ) : null}
 
-      {inApp && TRACEABLE.has(content.kind) ? <TraceScanCard value={hit.text} /> : null}
+      {inApp && TRACEABLE_KINDS.has(content.kind) ? <TraceScanCard value={hit.text} /> : null}
 
       <div className="erp-scan-hit__actions">
         {content.kind === 'url' ? (
