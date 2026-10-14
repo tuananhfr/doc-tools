@@ -172,5 +172,34 @@
     "sent": "Đã gửi để duyệt. Theo dõi ở",
     "sentLink": "Đề xuất của tôi",
     "loadFailed": "Không tải được nháp đề xuất."
+  },
+  "host": {
+    "title": "Hỏi AI của ERPCons",
+    "privacy": "Câu hỏi và ảnh đính kèm được gửi tới AI của ERPCons bằng tài khoản ERP của bạn. Mỗi lần hỏi là một lượt riêng, AI không nhớ câu trước.",
+    "askLabel": "Câu hỏi",
+    "askPlaceholder": "Nhập câu hỏi, có thể đính kèm ảnh chụp tài liệu…",
+    "counter": "{{used}}/{{max}} ký tự",
+    "attach": "Đính kèm ảnh",
+    "attachHint": "Tối đa {{max}} ảnh JPG, PNG hoặc WebP, mỗi ảnh không quá 10 MB.",
+    "removeImage": "Bỏ ảnh {{name}}",
+    "imageRejected": "Không đính kèm được: {{names}}. Chỉ nhận ảnh JPG, PNG, WebP không quá 10 MB, tối đa {{max}} ảnh.",
+    "send": "Gửi",
+    "thinking": "AI đang trả lời, có thể mất vài phút…",
+    "answerTitle": "Trả lời",
+    "retry": "Thử lại",
+    "errors": {
+      "rate-limited": "Bạn đã dùng AI quá nhiều trong một giờ. Thử lại sau ít phút.",
+      "invalid": "Nội dung không hợp lệ hoặc quá dài. Rút gọn rồi gửi lại.",
+      "failed": "AI chưa trả lời được. Thử lại sau ít phút.",
+      "timeout": "Chờ quá lâu chưa có kết quả. Thử lại sau."
+    },
+    "check": {
+      "title": "AI soát kết quả",
+      "text": "Muốn chắc hơn? Nhờ AI của ERPCons soát lại kết quả này theo quy định hiện hành. Chỉ kết quả và tên nguồn số liệu được gửi đi.",
+      "run": "AI soát kết quả",
+      "body": "Kết quả công cụ:\n{{result}}\n\n{{source}}",
+      "source": "Nguồn số liệu công cụ dùng: {{title}}, hiệu lực từ {{from}} ({{url}}).",
+      "noSource": "Công cụ không có bộ số liệu đã ký: biểu giá / mức đóng do người dùng tự nhập."
+    }
   }
 }

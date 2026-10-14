@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { StateView } from '@/components/ui/StateView'
+import { HostAiAsk, useEmbed } from '@/features/embed'
 import { AI_SETTINGS_PATH } from '../config/ai-routes'
 import { useAiSetup } from '../hooks/useAiSetup'
 import { AiError } from '../services/ai.service'
@@ -18,8 +19,12 @@ interface AiAssistantProps {
 /** The whole assistant screen: invite, setup prompt or the live chat, in that order of gates. */
 export function AiAssistant({ member, loginTo }: AiAssistantProps) {
   const { t } = useTranslation('ai')
-  const allowed = Boolean(member?.signedIn && member.pro)
+  const viaHost = useEmbed().capabilities.includes('ai')
+  // Embedded in ERPCons: the host answers, so neither the Pro gate nor our /ai setup applies.
+  const allowed = !viaHost && Boolean(member?.signedIn && member.pro)
   const setup = useAiSetup(allowed)
+
+  if (viaHost) return <div className="cn-ai"><HostAiAsk /></div>
 
   if (!member) return <div className="cn-ai"><Skeleton rows={4} /></div>
   if (!allowed) return <div className="cn-ai"><ProInvite signedIn={member.signedIn} loginTo={loginTo} /></div>

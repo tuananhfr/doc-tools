@@ -172,5 +172,34 @@
     "sent": "Sent for review. Follow it in",
     "sentLink": "My proposals",
     "loadFailed": "Could not load the draft proposals."
+  },
+  "host": {
+    "title": "Ask ERPCons AI",
+    "privacy": "Your question and attached images go to ERPCons AI under your ERP account. Each question is a separate turn; the AI does not remember earlier ones.",
+    "askLabel": "Question",
+    "askPlaceholder": "Type a question, optionally attach photos of a document…",
+    "counter": "{{used}}/{{max}} characters",
+    "attach": "Attach images",
+    "attachHint": "Up to {{max}} JPG, PNG or WebP images, at most 10 MB each.",
+    "removeImage": "Remove image {{name}}",
+    "imageRejected": "Could not attach: {{names}}. Only JPG, PNG or WebP images up to 10 MB, at most {{max}} images.",
+    "send": "Send",
+    "thinking": "The AI is answering, this can take a few minutes…",
+    "answerTitle": "Answer",
+    "retry": "Try again",
+    "errors": {
+      "rate-limited": "You have used the AI too often this hour. Try again in a few minutes.",
+      "invalid": "The content is invalid or too long. Shorten it and send again.",
+      "failed": "The AI could not answer. Try again in a few minutes.",
+      "timeout": "No result after a long wait. Try again later."
+    },
+    "check": {
+      "title": "AI result check",
+      "text": "Want to be sure? Ask ERPCons AI to check this result against current regulations. Only the result and the name of the data source are sent.",
+      "run": "Check result with AI",
+      "body": "Tool result:\n{{result}}\n\n{{source}}",
+      "source": "Data source used by the tool: {{title}}, effective from {{from}} ({{url}}).",
+      "noSource": "The tool has no signed data set: tariffs / contribution rates were entered by the user."
+    }
   }
 }
