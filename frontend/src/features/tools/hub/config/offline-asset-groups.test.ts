@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { optionalAssetGroups } from './offline-asset-groups'
 
 const input = {
+  officeAssets: ['/vendor/office/app-1/index.html', '/vendor/office/app-1/app.wasm'],
   videoVendor: '/vendor/ffmpeg/core-x/',
   videoAssets: [{ name: 'ffmpeg-core.js' }, { name: 'ffmpeg-core.wasm' }],
   backgroundModel: { file: 'u2netp.onnx', runtimeVersion: '1.30.0', runtimeFiles: ['ort.mjs', 'ort.wasm'] },
@@ -12,6 +13,7 @@ const input = {
 describe('optionalAssetGroups', () => {
   it('names every lazy asset group with base-prefixed paths', () => {
     expect(optionalAssetGroups(input)).toEqual({
+      office: ['/base/vendor/office/app-1/index.html', '/base/vendor/office/app-1/app.wasm'],
       video: ['/base/vendor/ffmpeg/core-x/ffmpeg-core.js', '/base/vendor/ffmpeg/core-x/ffmpeg-core.wasm'],
       ocr: ['/base/vendor/tesseract/vie.traineddata.gz'],
       'background-removal': ['/base/vendor/background-removal/u2netp.onnx', '/base/vendor/background-removal/ort-1.30.0/ort.mjs', '/base/vendor/background-removal/ort-1.30.0/ort.wasm'],

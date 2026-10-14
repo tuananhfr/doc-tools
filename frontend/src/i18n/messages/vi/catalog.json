@@ -464,6 +464,24 @@
       "name": "Thiết kế nhanh",
       "description": "Tạo bảng tên, watermark, voucher, nhãn, poster và vùng in cốc/hộp/túi; xuất PDF, ảnh hoặc ZIP trên thiết bị.",
       "synonyms": "logo, nhãn, thiết kế, voucher, watermark, poster, cup, box, bag"
+    },
+    "office-word": {
+      "name": "Soạn văn bản",
+      "description": "Mở, chỉnh sửa và lưu tệp Word (.docx) ngay trên máy",
+      "pageTitle": "Soạn văn bản Word miễn phí",
+      "synonyms": "word, docx, soạn văn bản, sửa văn bản, wordcraft"
+    },
+    "office-sheet": {
+      "name": "Bảng tính",
+      "description": "Mở, chỉnh sửa và lưu bảng tính Excel (.xlsx) ngay trên máy",
+      "pageTitle": "Bảng tính Excel miễn phí",
+      "synonyms": "excel, xlsx, bảng tính, sửa bảng tính, gridcraft"
+    },
+    "office-slide": {
+      "name": "Trình chiếu",
+      "description": "Mở, chỉnh sửa và lưu tệp PowerPoint (.pptx) ngay trên máy",
+      "pageTitle": "Chỉnh sửa PowerPoint miễn phí",
+      "synonyms": "powerpoint, pptx, trình chiếu, slide, deckcraft"
     }
   },
   "workspaceTabs": {

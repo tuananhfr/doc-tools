@@ -464,6 +464,24 @@
       "name": "Quick design",
       "description": "Create nameplates, watermarks, vouchers, labels, posters and flat cup/box/bag print areas; export PDF, images or ZIP on device.",
       "synonyms": "logo, labels, design, voucher, watermark, poster, cup, box, bag"
+    },
+    "office-word": {
+      "name": "Word editor",
+      "description": "Open, edit and save Word (.docx) files on your device",
+      "pageTitle": "Free Word document editor",
+      "synonyms": "word, docx, document editor, edit document, wordcraft"
+    },
+    "office-sheet": {
+      "name": "Spreadsheet",
+      "description": "Open, edit and save Excel (.xlsx) spreadsheets on your device",
+      "pageTitle": "Free Excel spreadsheet editor",
+      "synonyms": "excel, xlsx, spreadsheet, edit spreadsheet, gridcraft"
+    },
+    "office-slide": {
+      "name": "Presentation",
+      "description": "Open, edit and save PowerPoint (.pptx) files on your device",
+      "pageTitle": "Free PowerPoint editor",
+      "synonyms": "powerpoint, pptx, presentation, slide, deckcraft"
     }
   },
   "workspaceTabs": {

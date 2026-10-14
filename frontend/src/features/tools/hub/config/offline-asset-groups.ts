@@ -1,6 +1,7 @@
-export type OfflineAssetGroup = 'video' | 'ocr' | 'background-removal' | 'tts'
+export type OfflineAssetGroup = 'video' | 'ocr' | 'background-removal' | 'tts' | 'office'
 
 interface OfflineAssetInput {
+  officeAssets: string[]
   videoVendor: string
   videoAssets: { name: string }[]
   backgroundModel: { file: string; runtimeVersion: string; runtimeFiles: string[] }
@@ -12,11 +13,12 @@ interface OfflineAssetInput {
  * Nhóm tệp nặng không precache, theo tên để nút "Tải để dùng khi mất mạng" biết lấy gì.
  * File này không import gì vì `prepare-offline.mjs` nạp thẳng bằng Node (bỏ kiểu), không qua bundler.
  */
-export function optionalAssetGroups({ videoVendor, videoAssets, backgroundModel, ttsVoice, withBase }: OfflineAssetInput): Record<OfflineAssetGroup, string[]> {
+export function optionalAssetGroups({ officeAssets, videoVendor, videoAssets, backgroundModel, ttsVoice, withBase }: OfflineAssetInput): Record<OfflineAssetGroup, string[]> {
   // Piper chạy trên chính bộ ONNX runtime của tách nền: lệch phiên bản thì tải trước xong vẫn hỏng khi mất mạng.
   if (ttsVoice.runtimeVersion !== backgroundModel.runtimeVersion) throw new Error(`Piper runtime ${ttsVoice.runtimeVersion} differs from the shipped ONNX runtime ${backgroundModel.runtimeVersion}`)
   const ort = backgroundModel.runtimeFiles.map((name) => withBase(`/vendor/background-removal/ort-${backgroundModel.runtimeVersion}/${name}`))
   return {
+    office: officeAssets.map(withBase),
     video: videoAssets.map(({ name }) => withBase(videoVendor + name)),
     ocr: [withBase('/vendor/tesseract/vie.traineddata.gz')],
     'background-removal': [withBase(`/vendor/background-removal/${backgroundModel.file}`), ...ort],

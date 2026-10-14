@@ -261,5 +261,28 @@
     "row": "Dòng {{number}}",
     "remaining": "Áp dụng cho phần còn lại",
     "unsaved": "Thông tin đang nhập chưa được lưu. Rời trang sẽ làm mất nội dung này."
+  },
+  "office": {
+    "beta": "Beta",
+    "heading": "Mở tệp và bắt đầu chỉnh sửa",
+    "languageNote": "Giao diện trình soạn thảo bằng tiếng Anh, dùng tốt nhất trên máy tính.",
+    "fileNote": "Mở và lưu tệp {{extension}} bằng nút của trình soạn thảo. Tệp không tải lên máy chủ.",
+    "download": "Lần đầu tải khoảng {{size}} MB, chỉ khi bạn mở trình soạn thảo.",
+    "open": "Mở trình soạn thảo",
+    "opening": "Đang mở trình soạn thảo…",
+    "close": "Đóng trình soạn thảo",
+    "closeTitle": "Đóng trình soạn thảo?",
+    "confirmClose": "Đóng và bỏ thay đổi chưa lưu",
+    "leave": "Mọi thay đổi chưa lưu sẽ mất khi đóng trình soạn thảo hoặc rời trang. Hãy lưu tệp trước khi tiếp tục.",
+    "unsupported": "Trình duyệt này không có WebGPU hoặc WebGL2. Hãy dùng phiên bản Chrome, Edge, Firefox hoặc Safari mới hơn.",
+    "unavailable": "Không tải được trình soạn thảo. Hãy kiểm tra kết nối mạng rồi thử lại. Khi mất mạng, bạn cần đã mở trình soạn thảo một lần trước đó.",
+    "limit": "Bản thử nghiệm: tệp phức tạp có thể hiển thị khác bản gốc. Hãy giữ một bản sao của tệp ban đầu.",
+    "minimize": "Thu nhỏ",
+    "expand": "Mở rộng",
+    "fullscreen": "Toàn màn hình",
+    "exitFullscreen": "Thoát toàn màn hình",
+    "exitFullscreenShort": "Thoát",
+    "closeShort": "Đóng",
+    "fullscreenUnavailable": "Trình duyệt không bật được toàn màn hình. Bạn vẫn có thể làm việc ở chế độ mở rộng."
   }
 }

@@ -133,7 +133,22 @@ const staged = (slug, files, before) => async () => {
 let qrPng = null
 
 /** Mỗi công cụ: mở, đưa tệp / nội dung vào, chạy tới khi có kết quả, tải về nếu có. */
+async function officeOpen(slug, extension) {
+  await open(slug, '.cn-office')
+  await page.getByRole('button', { name: 'Mở trình soạn thảo', exact: true }).click()
+  const frame = await (await page.locator('.cn-office-frame').elementHandle()).contentFrame()
+  await frame.waitForFunction(() => Boolean(window.wasmBindings) && !document.querySelector('[id$="_loading"]'))
+  const canvas = frame.locator('canvas')
+  await canvas.click({ position: { x: 400, y: 350 } })
+  const chooser = page.waitForEvent('filechooser')
+  await canvas.press('Control+o')
+  await (await chooser).setFiles(outDir('office-editors') + 'fixtures/' + MARKER + '.' + extension)
+  await page.waitForTimeout(1000)
+}
 const TOOLS = {
+  'soan-van-ban': () => officeOpen('soan-van-ban', 'docx'),
+  'bang-tinh': () => officeOpen('bang-tinh', 'xlsx'),
+  'trinh-chieu': () => officeOpen('trinh-chieu', 'pptx'),
   'anh-sang-pdf': flow('anh-sang-pdf', [photo, scan]),
   'ghep-pdf': flow('ghep-pdf', [pdfA, pdfB]),
   'tach-pdf': flow('tach-pdf', [pdfA], () => page.getByRole('textbox', { name: 'Khoảng trang' }).fill('1')),

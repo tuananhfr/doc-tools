@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
-    "predev": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
+    "postinstall": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs && node scripts/prepare-office.mjs",
+    "predev": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs && node scripts/prepare-office.mjs",
     "dev": "next dev --webpack -p 3002",
-    "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs",
+    "prebuild": "node scripts/prepare-video.mjs && node scripts/prepare-pdfjs.mjs && node scripts/prepare-background-removal.mjs && node scripts/prepare-tts.mjs && node scripts/prepare-office.mjs",
     "build": "next build --webpack && node scripts/prepare-offline.mjs",
     "deploy": "bash scripts/deploy.sh",
     "start": "next start -p 3002",

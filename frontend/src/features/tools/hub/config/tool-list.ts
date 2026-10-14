@@ -16,6 +16,9 @@ import type { ToolEntry } from '../types/tool.types'
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
 export const ALL_TOOLS: ToolEntry[] = [
+  { id: 'office-word', slug: 'soan-van-ban', icon: 'file-earmark-word', categories: ['document'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'office-word' },
+  { id: 'office-sheet', slug: 'bang-tinh', icon: 'file-earmark-spreadsheet', categories: ['document'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'office-sheet' },
+  { id: 'office-slide', slug: 'trinh-chieu', icon: 'file-earmark-slides', categories: ['document'], device: { offline: 'after-first-use' }, status: 'ready', screen: 'office-slide' },
   { id: 'quick-design', slug: 'thiet-ke-nhanh', icon: 'palette2', categories: ['image'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'quick-design' },
   { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'numerology' },
   { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'playing-cards' },

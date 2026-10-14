@@ -40,7 +40,7 @@ describe('danh mục thật', () => {
     const found = (keyword: string) => filterTools(VI_TOOL_CATALOG, 'all', keyword).map((item) => item.id)
     expect(found('nối pdf')).toContain('merge-pdf')
     expect(found('giam dung luong')).toEqual(expect.arrayContaining(['compress-pdf', 'compress-image']))
-    expect(found('docx')).toEqual(['convert-file'])
+    expect(found('docx')).toEqual(['office-word', 'convert-file'])
     expect(found('mã vạch')).toEqual(['barcode-create', 'qr-read'])
     expect(found('mat khau')).toEqual(['pdf-password', 'random-code'])
   })

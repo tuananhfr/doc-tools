@@ -11,6 +11,7 @@ import type { ReadyToolEntry, ToolOffline } from '../types/tool.types'
 const EXPECTED: Record<ToolOffline, string[]> = {
   no: ['numerology', 'playing-cards', 'tarot', 'lunar-calendar', 'assistant', 'electricity', 'payroll', 'address-conversion', 'qr-create', 'code-manager', 'dictation'],
   'after-first-use': [
+    'office-word', 'office-sheet', 'office-slide',
     'view-pdf', 'edit-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'pdf-to-image', 'organize-pdf', 'page-numbers',
     'stamp-pdf', 'redact-pdf', 'sign', 'compare', 'ocr', 'image-to-text', 'scan-to-pdf', 'pdf-password',
     'compress-video', 'trim-video', 'video-gif', 'extract-audio', 'remove-background', 'read-aloud', 'house-orientation', 'id-photo',

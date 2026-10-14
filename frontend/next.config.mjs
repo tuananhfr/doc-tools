@@ -13,6 +13,26 @@ const config = {
   poweredByHeader: false,
   // The root layout sits under app/[lang]; unmatched URLs need app/global-not-found.tsx.
   experimental: { globalNotFound: true },
+  async headers() {
+    return [
+      {
+        source: '/vendor/office/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Cross-Origin-Resource-Policy', value: 'cross-origin' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/vendor/office/:app/index.html',
+        headers: [{ key: 'Cache-Control', value: 'no-cache' }],
+      },
+      {
+        source: '/vendor/office/:app/:file(.*\\.wasm)',
+        headers: [{ key: 'Content-Type', value: 'application/wasm' }],
+      },
+    ]
+  },
   async rewrites() {
     const backend = process.env.BACKEND_URL ?? 'http://127.0.0.1:3003'
     return [

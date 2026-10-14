@@ -23,3 +23,8 @@ public/vendor/background-removal/ort-*/
 public/offline-manifest.json
 # Sinh lại bởi scripts/prepare-tts.mjs (chép bộ phiên âm espeak-ng WASM từ node_modules).
 public/vendor/tts/piper-phonemize-*/
+
+# Pinned upstream web builds, prepared by scripts/prepare-office.mjs.
+public/vendor/office/
+
+.next-office-qa/

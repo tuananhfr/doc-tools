@@ -261,5 +261,28 @@
     "row": "Row {{number}}",
     "remaining": "Apply to the remainder",
     "unsaved": "Your entered details have not been saved. Leaving will discard them."
+  },
+  "office": {
+    "beta": "Beta",
+    "heading": "Open a file and start editing",
+    "languageNote": "The editor interface is in English and works best on desktop.",
+    "fileNote": "Open and save {{extension}} files using the editor controls. Files are not uploaded to a server.",
+    "download": "The first download is about {{size}} MB, only when you open the editor.",
+    "open": "Open editor",
+    "opening": "Opening editor…",
+    "close": "Close editor",
+    "closeTitle": "Close the editor?",
+    "confirmClose": "Close and discard unsaved changes",
+    "leave": "Unsaved changes will be lost when you close the editor or leave this page. Save your file before continuing.",
+    "unsupported": "This browser has neither WebGPU nor WebGL2. Use a newer version of Chrome, Edge, Firefox or Safari.",
+    "unavailable": "The editor could not load. Check your connection and try again. Offline use requires opening the editor at least once while online.",
+    "limit": "Beta: complex files may look different from the original. Keep a copy of your original file.",
+    "minimize": "Minimize",
+    "expand": "Expand",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "exitFullscreenShort": "Exit",
+    "closeShort": "Close",
+    "fullscreenUnavailable": "Fullscreen could not be enabled in this browser. You can continue working in the expanded workspace."
   }
 }

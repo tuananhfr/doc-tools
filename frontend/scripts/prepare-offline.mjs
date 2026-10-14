@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { OFFICE_APPS } from '../src/features/tools/office/config/office-apps.ts'
 
 // scripts/deploy.sh builds into another directory and publishes the manifest only after the swap.
 const dist = process.env.NEXT_DIST_DIR || '.next'
@@ -35,7 +36,12 @@ const videoVendor = '/vendor/ffmpeg/core-0.12.10-wrapper-0.12.15/'
 // Group builder lives in the app source so the download button and this script cannot drift apart.
 const { optionalAssetGroups } = await import(pathToFileURL(path.resolve('src/features/tools/hub/config/offline-asset-groups.ts')).href)
 // Keep the large engines lazy; the worker's runtime cache stores them after first use or an explicit download.
+const officeAssets = Object.values(OFFICE_APPS).flatMap(({ id, version }) => {
+  const vendor = '/vendor/office/' + id + '-' + version + '/'
+  return JSON.parse(fs.readFileSync('public' + vendor + 'assets.json', 'utf8')).assets.map(({ name }) => vendor + name)
+})
 const optionalGroups = optionalAssetGroups({
+  officeAssets,
   videoVendor,
   videoAssets: JSON.parse(fs.readFileSync('public' + videoVendor + 'assets.json', 'utf8')).assets,
   backgroundModel: JSON.parse(fs.readFileSync('src/features/tools/image/services/background-removal-model.json', 'utf8')),

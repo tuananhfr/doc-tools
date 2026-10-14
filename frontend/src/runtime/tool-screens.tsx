@@ -3,6 +3,10 @@ import dynamic from 'next/dynamic'
 import type { ComponentType } from 'react'
 import { Loading } from '@/components/ui'
 import type { ToolScreen } from '@/features/tools/hub/types/tool.types'
+const OfficeEditorPage = dynamic(() => import('@/features/tools/office/pages/OfficeEditorPage'), { ssr: false, loading: () => <Loading /> })
+const OfficeWordPage = () => <OfficeEditorPage app="office-word" />
+const OfficeSheetPage = () => <OfficeEditorPage app="office-sheet" />
+const OfficeSlidePage = () => <OfficeEditorPage app="office-slide" />
 const DocToolsPage = dynamic(() => import('@/features/tools/pdf/pages/DocToolsPage'), { ssr: false, loading: () => <Loading /> })
 const MergePdfPage = dynamic(() => import('@/features/tools/pdf/pages/quick/MergePdfPage'), { ssr: false, loading: () => <Loading /> })
 const SplitPdfPage = dynamic(() => import('@/features/tools/pdf/pages/quick/SplitPdfPage'), { ssr: false, loading: () => <Loading /> })
@@ -75,6 +79,9 @@ const TrimVideoPage = dynamic(() => import('@/features/tools/video/pages/TrimVid
 const VideoGifPage = dynamic(() => import('@/features/tools/video/pages/VideoGifPage'), { ssr: false, loading: () => <Loading /> })
 const ExtractAudioPage = dynamic(() => import('@/features/tools/video/pages/ExtractAudioPage'), { ssr: false, loading: () => <Loading /> })
 export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
+  'office-word': OfficeWordPage,
+  'office-sheet': OfficeSheetPage,
+  'office-slide': OfficeSlidePage,
   'compress-video': CompressVideoPage,
   'trim-video': TrimVideoPage,
   'video-gif': VideoGifPage,
