@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui/Icon'
 import { AI_TEXT_MAX, HostAiAnswer, useHostAi } from '@/features/embed'
+import type { AiTask } from '@/features/embed/embed-protocol'
 import type { RuleSnapshot } from '../types/ai.types'
-import { hostCheckTask, hostSourceCheckText } from '../utils/host-source-check'
+import { hostCheckSubject, hostCheckTask, hostSourceCheckText } from '../utils/host-source-check'
 
 interface HostSourceCheckProps {
   domain: string
@@ -12,10 +13,15 @@ interface HostSourceCheckProps {
 
 /** Embedded in ERPCons: one-shot check of the current result by the host's AI; no drafts, no chat. */
 export function HostSourceCheck({ domain, snapshot, currentResult }: HostSourceCheckProps) {
-  const { t } = useTranslation('ai')
-  const { state, run } = useHostAi()
   const task = hostCheckTask(domain)
   if (!task || currentResult.trim() === '') return null
+  // Remount per subject: drops the old verdict and aborts a turn still running for the old figures.
+  return <HostSourceCheckTurn key={hostCheckSubject(currentResult, snapshot)} task={task} snapshot={snapshot} currentResult={currentResult} />
+}
+
+function HostSourceCheckTurn({ task, snapshot, currentResult }: { task: AiTask; snapshot: RuleSnapshot | null; currentResult: string }) {
+  const { t } = useTranslation('ai')
+  const { state, run } = useHostAi()
 
   const check = () => run({ task, text: hostSourceCheckText(currentResult, snapshot, (key, values) => t(key, values), AI_TEXT_MAX) })
 

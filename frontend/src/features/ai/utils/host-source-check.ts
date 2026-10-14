@@ -21,3 +21,8 @@ export function hostSourceCheckText(result: string, snapshot: RuleSnapshot | nul
     : t('host.check.noSource')
   return t('host.check.body', { result: result.trim(), source }).slice(0, max)
 }
+
+/** What a verdict is about: when it changes, the previous answer no longer describes the screen. */
+export function hostCheckSubject(result: string, snapshot: RuleSnapshot | null): string {
+  return JSON.stringify([result.trim(), snapshot?.id ?? null])
+}

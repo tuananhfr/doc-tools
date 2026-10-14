@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { hostCheckTask, hostSourceCheckText } from './host-source-check'
+import { hostCheckSubject, hostCheckTask, hostSourceCheckText } from './host-source-check'
 
 const TEMPLATES: Record<string, string> = {
   'host.check.body': 'R:\n{{result}}\n\n{{source}}',
@@ -27,5 +27,19 @@ describe('hostSourceCheckText', () => {
   })
   it('never exceeds the host limit', () => {
     expect(hostSourceCheckText('x'.repeat(5000), snapshot, t, 4000)).toHaveLength(4000)
+  })
+})
+
+describe('hostCheckSubject', () => {
+  it('stays the same while the result and its source do not change', () => {
+    expect(hostCheckSubject('120 kWh = 300.000 đ', snapshot)).toBe(hostCheckSubject('120 kWh = 300.000 đ', { ...snapshot }))
+  })
+  it('changes when the result changes, so an old verdict never sits under a new figure', () => {
+    expect(hostCheckSubject('500 kWh = 1.500.000 đ', snapshot)).not.toBe(hostCheckSubject('120 kWh = 300.000 đ', snapshot))
+  })
+  it('changes when the signed source arrives or changes', () => {
+    const subject = hostCheckSubject('X', snapshot)
+    expect(hostCheckSubject('X', null)).not.toBe(subject)
+    expect(hostCheckSubject('X', { ...snapshot, id: 's2' })).not.toBe(subject)
   })
 })
