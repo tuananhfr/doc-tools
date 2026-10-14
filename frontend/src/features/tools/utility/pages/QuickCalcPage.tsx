@@ -34,7 +34,7 @@ export default function QuickCalcPage() {
   const setValues = (patch: Record<string, string>) => setTexts((current) => ({ ...current, [formula.id]: { ...current[formula.id], ...patch } }))
 
   return (
-    <ToolBoard
+    <ToolBoard layout="compact"
       side={
         <div className="erp-tool-result" role="status">
           <p className="erp-tool-result__label">{t(groupInfo.label)}</p>

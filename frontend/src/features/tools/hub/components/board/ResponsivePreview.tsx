@@ -13,7 +13,7 @@ export function ResponsivePreview({ children, preview, action, templates }: { ch
     <div className="cn-responsive-preview__tabs" role="tablist">
       {(['input', 'preview'] as const).map(value => <button type="button" role="tab" key={value} id={`${id}-${value}-tab`} aria-controls={`${id}-${value}`} aria-selected={view === value} onClick={() => setView(value)}>{t(`workspace.${value}`)}</button>)}
     </div>
-    <section className="cn-responsive-preview__input" id={`${id}-input`} aria-labelledby={`${id}-input-tab`}>{children}</section>
-    <section className="cn-responsive-preview__output" id={`${id}-preview`} aria-labelledby={`${id}-preview-tab`}>{action ? <div className="cn-preview-action">{action}</div> : null}{templates}{preview}</section>
+    <section className="cn-responsive-preview__input" id={`${id}-input`} role="tabpanel" aria-labelledby={`${id}-input-tab`}>{children}</section>
+    <section className="cn-responsive-preview__output" id={`${id}-preview`} role="tabpanel" aria-labelledby={`${id}-preview-tab`}>{action ? <div className="cn-preview-action">{action}</div> : null}{templates}{preview}</section>
   </div>
 }

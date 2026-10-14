@@ -1,0 +1,13 @@
+.cn-tool-workspace .cn-video-workspace .erp-tool-result__value--empty { font-size: 26px; }
+.cn-tool-workspace .cn-magnifier-stage { display: grid; place-items: center; width: min(100%, 64dvh); margin: 16px auto 0; overflow: hidden; border-radius: var(--cn-radius-button); background: #111; aspect-ratio: 4 / 3; }
+.cn-tool-workspace .cn-magnifier-stage[hidden] { display: none; }
+.cn-tool-workspace[data-tool-screen='magnifier'] .erp-tool-result__value { font-size: 26px; }
+.cn-tool-workspace .cn-read-player { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--cn-line); }
+.cn-tool-workspace[data-tool-screen='read-aloud'] .erp-tool-result__value { font-size: 24px; line-height: 1.4; }
+.cn-tool-workspace[data-tool-screen='dictation'] .erp-tool-result__value { font-size: 24px; line-height: 1.4; }
+.cn-tool-workspace .cn-video-workspace a[target="_blank"] { display: inline-flex; align-items: center; min-height: var(--cn-tap); }
+.cn-tool-workspace .cn-video-workspace video { max-height: min(32dvh, 320px); margin-top: 12px; }
+.cn-tool-workspace .cn-video-workspace .erp-flow-picker__hint { max-width: 55ch; }
+@media (max-width: 767px) {
+  .cn-tool-workspace .cn-video-workspace video { max-height: 240px; }
+}

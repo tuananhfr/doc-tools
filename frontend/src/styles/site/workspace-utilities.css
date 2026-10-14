@@ -1,0 +1,29 @@
+.cn-tool-workspace[data-tool-screen='char-count'] .erp-count-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cn-tool-workspace[data-tool-screen='number-words'] .erp-tool-result__value { font-size: 24px; line-height: 1.5; }
+.cn-tool-workspace[data-tool-screen='invoice-xml'] .erp-tool-result__value { font-size: 26px; }
+.cn-tool-workspace[data-tool-screen='address-conversion'] textarea { min-height: 180px; }
+.cn-tool-workspace[data-tool-screen='legacy-font'] textarea { min-height: 240px; }
+.cn-tool-workspace[data-tool-screen='qr-create'] .erp-qr-preview, .cn-tool-workspace[data-tool-screen='vietqr'] .erp-qr-preview { width: min(100%, 280px); margin-inline: auto; }
+.cn-tool-workspace .erp-qr-preview__hint { font-size: 14px; }
+.cn-tool-workspace .erp-qr-payload { font-size: 14px; overflow-wrap: anywhere; max-height: 160px; overflow-y: auto; }
+.cn-tool-workspace .erp-tool-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.cn-tool-workspace .erp-tool-row { gap: 12px; }
+.cn-tool-workspace .erp-code-strength { font-size: 14px; line-height: 1.5; }
+.cn-tool-workspace .erp-tool-row__label { font-size: 14px; line-height: 1.5; }
+.cn-tool-workspace .erp-tool-row__value { font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.cn-tool-workspace .erp-notes__notice, .cn-tool-workspace .erp-note-item__meta { font-size: 14px; line-height: 1.5; }
+.cn-tool-workspace .cn-ent { margin-inline: auto; max-width: 1200px; }
+.cn-tool-workspace .cn-ent-form { max-width: 760px; margin-inline: auto; }
+.cn-tool-workspace .cn-ent :is(input:not([type='checkbox']), select) { font-size: var(--cn-font-body); }
+.cn-tool-workspace .cn-ent-card-caption { font-size: 14px; }
+.cn-tool-workspace .cn-ent-card-caption small { font-size: 14px; }
+.cn-tool-workspace .cn-wheel-stage { min-height: 420px; }
+.cn-tool-workspace[data-tool-screen='pomodoro'] .erp-tool-result__value { font-size: clamp(44px, 5vw, 64px); }
+@media (min-width: 1200px) {
+  .cn-tool-workspace .erp-notes { grid-template-columns: minmax(280px, .6fr) minmax(0, 1.4fr); gap: 24px; }
+}
+@media (max-width: 767px) {
+  .cn-tool-workspace[data-tool-screen='legacy-font'] textarea { min-height: 180px; }
+  .cn-tool-workspace .cn-wheel-stage { min-height: 320px; }
+  .cn-tool-workspace .erp-tool-row { gap: 8px; }
+}

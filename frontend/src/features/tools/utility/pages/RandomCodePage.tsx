@@ -96,7 +96,7 @@ export default function RandomCodePage() {
   const setCount = (value: number) => apply({ ...settings, count: { ...settings.count, [mode]: value } })
 
   return (
-    <ToolBoard
+    <ToolBoard layout="balanced"
       side={
         <>
           <div className="erp-tool-side-head">

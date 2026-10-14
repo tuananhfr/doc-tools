@@ -12,7 +12,7 @@ export default function SpinWheelPage() {
   const { t } = useTranslation('entertainment')
   const wheel = useSpinWheel(t('wheel.sample'))
 
-  return <ToolBoard sideLabel={t('wheel.optionsTitle')} side={<div className="cn-wheel-side">
+  return <ToolBoard layout="compact" sideLabel={t('wheel.optionsTitle')} side={<div className="cn-wheel-side">
     <WheelOptionsEditor text={wheel.text} parsed={wheel.parsed} disabled={wheel.spinning} onChange={wheel.setText} />
     <WheelSettings wheel={wheel} />
     <WheelSavedLists options={wheel.parsed.options} disabled={wheel.spinning} onLoad={(list) => wheel.replaceText(list.options.join('\n'))} />

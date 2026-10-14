@@ -42,7 +42,7 @@ export default function HouseEstimatePage() {
     : badFactor ? t('houseEstimate.fixField', { field: t('houseEstimate.factorLabel', { label: t(`houseEstimate.parts.${badFactor}`) }) }) : t('houseEstimate.checkInput')
   const setValue = (key: keyof typeof values, value: string) => setValues((current) => ({ ...current, [key]: value }))
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('houseEstimate.result')}</p>
     <p className="erp-tool-result__value">{result && (n('basePrice') > 0 || n('finishingPrice') > 0) ? t('houseEstimate.money', { amount: formatNumber(Math.round(result.total)) }) : t('houseEstimate.enterPrice')}</p>
     {result ? <>

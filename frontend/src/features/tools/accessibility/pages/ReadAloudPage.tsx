@@ -127,18 +127,14 @@ export default function ReadAloudPage() {
           : piper.phase === 'exporting' && piper.exported ? t('readAloud.exporting', { done: formatCount(piper.exported.done), total: formatCount(piper.exported.total) })
             : t('shared.ready')
 
-  return <ToolBoard side={<div className="erp-tool-result">
+  return <ToolBoard layout="balanced" side={<div className="erp-tool-result">
     <p className="erp-tool-result__label">{t('readAloud.device')}</p>
     <p className="erp-tool-result__value" role="status" aria-live="polite">{status}</p>
     {percent !== null ? <ProgressBar now={percent} aria-label={t('readAloud.piperLoading', { percent })} className="mt-2" /> : null}
-    <ReadPlayerControls speaking={speaking} paused={paused} busy={busy} canRead={canRead}
-      previous={previous} next={next} resumeOffset={resumeOffset}
-      onRead={() => read()} onResumeSaved={() => { if (resumeOffset !== null) read(resumeOffset) }}
-      onPause={pause} onResume={resume} onStop={stop} onJump={jump}
-      extra={engine === 'piper' ? <Button variant="outline-secondary" disabled={!canRead} onClick={() => void downloadWav()}>{t('readAloud.exportWav')}</Button> : null} />
     <ReadVoicePanel engine={engine} notices={notices} language={languageName(lang, speechLanguage())} vietnamese={lang.toLowerCase().startsWith('vi')}
       voiceName={voice.state === 'ok' ? voice.name : null} deviceFailed={device.failed} piperError={piper.error} exported={exported}
       canUsePiper={canUsePiper} onUsePiper={() => changeEngine('piper')} onPasteInstead={tab === 'text' ? undefined : pasteInstead} />
+    <ReadSettings rate={rate} onRate={setRate} fontScale={fontScale} onFontScale={setFontScale} remember={remember} onRemember={setRemember} />
   </div>}>
     <ToolPanel title={t('readAloud.title')}>
       <ToolSegments label={t('readAloud.engine')} value={engine} onChange={changeEngine} options={[
@@ -174,7 +170,13 @@ export default function ReadAloudPage() {
         </Form.Select>
         <p className="erp-tool-result__note mt-1">{t('readAloud.partsNote', { total: formatCount(parts.length), max: formatCount(READ_PART_CHARS) })}</p>
       </div> : null}
-      <ReadSettings rate={rate} onRate={setRate} fontScale={fontScale} onFontScale={setFontScale} remember={remember} onRemember={setRemember} />
+      <div className="cn-read-player">
+        <ReadPlayerControls speaking={speaking} paused={paused} busy={busy} canRead={canRead}
+          previous={previous} next={next} resumeOffset={resumeOffset}
+          onRead={() => read()} onResumeSaved={() => { if (resumeOffset !== null) read(resumeOffset) }}
+          onPause={pause} onResume={resume} onStop={stop} onJump={jump}
+          extra={engine === 'piper' ? <Button variant="outline-secondary" disabled={!canRead} onClick={() => void downloadWav()}>{t('readAloud.exportWav')}</Button> : null} />
+      </div>
     </ToolPanel>
   </ToolBoard>
 }

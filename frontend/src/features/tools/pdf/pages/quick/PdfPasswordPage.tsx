@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -36,7 +37,7 @@ export default function PdfPasswordPage() {
   return <ToolBoard side={<div className="erp-tool-result" role="status"><p className="erp-tool-result__label">{t('password.result')}</p><p className="erp-tool-result__value">{file?.name || t('password.noFile')}</p><p className="erp-tool-result__note">{message || t('password.privacy')}</p><Button disabled={!file || busy} onClick={() => void run()}>{busy ? t('password.busy') : mode === 'protect' ? t('password.protectRun') : t('password.removeRun')}</Button></div>}>
     <ToolPanel title={t('password.title')}>
       <Form.Select aria-label={t('password.mode')} value={mode} onChange={(event) => { setMode(event.target.value as typeof mode); setMessage('') }}><option value="protect">{t('password.protect')}</option><option value="remove">{t('password.remove')}</option></Form.Select>
-      <label className="erp-flow-field__label mt-3">{t('password.pickFile')}<Form.Control type="file" accept="application/pdf,.pdf" onChange={(event) => { setFile((event.target as HTMLInputElement).files?.[0] || null); setMessage('') }} /></label>
+      <label className="erp-flow-field__label mt-3">{t('password.pickFile')}<FileInput accept="application/pdf,.pdf" onChange={(event) => { setFile((event.target as HTMLInputElement).files?.[0] || null); setMessage('') }} /></label>
       <label className="erp-flow-field__label mt-3">{mode === 'protect' ? t('password.openPassword') : t('password.givenPassword')}<Form.Control type="password" autoComplete="off" value={password} onChange={(event) => setPassword(event.target.value)} /></label>
       {mode === 'protect' ? <><label className="erp-flow-field__label mt-3">{t('password.repeat')}<Form.Control type="password" autoComplete="off" value={repeat} onChange={(event) => setRepeat(event.target.value)} /></label>
         {/* Form.Check thiếu `id` thì nhãn không gắn với ô: bấm chữ không tích được, trình đọc màn hình đọc ô không tên. */}

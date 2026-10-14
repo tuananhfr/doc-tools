@@ -29,7 +29,7 @@ export default function UnitConvertPage() {
   const setPair = (patch: Partial<Pair>) => setPairs((current) => ({ ...current, [group.id]: { ...current[group.id], ...patch } }))
 
   return (
-    <ToolBoard
+    <ToolBoard layout="compact"
       sideLabel={t('unitConvert.allUnits')}
       side={
         <>

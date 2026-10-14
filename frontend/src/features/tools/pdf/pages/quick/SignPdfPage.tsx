@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { Fragment, useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -135,8 +136,8 @@ export default function SignPdfPage() {
             ) : (
               <Form.Group key="image" controlId={`${ids}-image`} className="erp-flow-field">
                 <Form.Label className="erp-flow-field__label">{t('sign.image')}</Form.Label>
-                <Form.Control
-                  type="file"
+                <FileInput
+                  id={`${ids}-image`}
                   accept=".png,.jpg,.jpeg,image/png,image/jpeg"
                   isInvalid={!!stamp.error}
                   aria-describedby={`${ids}-image-help`}

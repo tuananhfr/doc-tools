@@ -48,7 +48,7 @@ export default function VietQrPage() {
     : hint ? <span id={`${id}-note`} className="erp-flow-field__hint">{hint}</span> : null
   const describedBy = (id: string, error: string, hint = '') => error || hint ? `${id}-note` : undefined
 
-  return <ToolBoard side={<>
+  return <ToolBoard mobilePreview layout="compact" side={<>
     <QrPreview matrix={matrix} color="#102e57" placeholder={t('vietqr.placeholder')} />
     {payload ? <div className="erp-flow-field"><span className="erp-flow-field__label">{t('shared.codeContent')}</span><p className="erp-qr-payload">{payload}</p><CopyButton text={payload} label={t('vietqr.copy')} /></div> : null}
     <div className="d-flex flex-wrap gap-2 mt-3"><Button disabled={!matrix} onClick={() => void download('png')}>{t('shared.downloadPng')}</Button><Button variant="outline-secondary" disabled={!matrix} onClick={() => void download('svg')}>{t('vietqr.downloadSvg')}</Button></div>

@@ -169,6 +169,10 @@
 @import './site/workspace-family.css';
 @import './site/documents.css';
 @import './site/template-picker.css';
+@import './site/workspace-documents.css';
+@import './site/workspace-images.css';
+@import './site/workspace-utilities.css';
+@import './site/workspace-media.css';
 @import './site/trust.css';
 
 @import './site/landing/shell.css';

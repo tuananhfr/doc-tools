@@ -82,7 +82,7 @@ export default function QrReadPage() {
   }, [scanFiles])
 
   return (
-    <ToolBoard
+    <ToolBoard layout="balanced"
       sideLabel={t('read.results')}
       side={
         <>

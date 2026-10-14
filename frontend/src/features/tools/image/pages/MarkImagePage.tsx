@@ -22,7 +22,7 @@ export default function MarkImagePage() {
     <>
       {/* Khung che và dấu chỉ nằm trong RAM: rời màn là phải vẽ lại từ đầu. */}
       <ToolLeaveGuard active={ready && hasMarks(state)} />
-      <ImageToolShell
+      <ImageToolShell mobilePreview initialPanel="preview"
         images={images}
         run={run}
         multiple={false}

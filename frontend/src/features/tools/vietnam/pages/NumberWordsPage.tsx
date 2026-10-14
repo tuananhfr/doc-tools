@@ -13,7 +13,7 @@ export default function NumberWordsPage() {
   const words = input ? numberToVietnameseWords(input, { zeroWord, fourWord }) : null
 
   return (
-    <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+    <ToolBoard layout="balanced" side={<div className="erp-tool-result" aria-live="polite">
       <p className="erp-tool-result__label">{t('numberWords.resultLabel')}</p>
       <p className="erp-tool-result__value">{words ?? '—'}</p>
       <p className="erp-tool-result__note">{t(words === null && input ? 'numberWords.invalid' : 'numberWords.note')}</p>

@@ -73,7 +73,7 @@ export default function BarcodeCreatePage() {
     engine.status === 'failed' ? t('barcode.engineFailed') : engine.status === 'loading' ? t('barcode.engineLoading') : t('shared.enterToCreate')
 
   return (
-    <ToolBoard
+    <ToolBoard mobilePreview={mode === 'single'} layout={mode === 'single' ? 'compact' : 'balanced'}
       sideLabel={t('barcode.side')}
       side={
         mode === 'single' ? (

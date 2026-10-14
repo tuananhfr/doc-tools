@@ -11,6 +11,7 @@ import { FamilyPortability } from '../components/FamilyPortability'
 import { FamilyPrint } from '../components/FamilyPrint'
 import { FamilySafety } from '../components/FamilySafety'
 import { useFamilySpace } from '../hooks/useFamilySpace'
+import { useFamilyEditorFocus } from '../hooks/useFamilyEditorFocus'
 import { useForegroundReminders } from '../hooks/useForegroundReminders'
 import { eventsForDate, type EmergencyContact, type FamilyEvent, type FamilyMember, type FamilyReminder, type PendingSos } from '../core/family'
 
@@ -31,6 +32,7 @@ export default function FamilyCalendarPage() {
   const [cursor, setCursor] = useState(() => ({ year: Number(today.slice(0, 4)), month: Number(today.slice(5, 7)) }))
   const [selected, setSelected] = useState(today)
   const [editor, setEditor] = useState<Editor | null>(null)
+  const workspace = useFamilyEditorFocus(Boolean(editor), view)
   const [printSensitive, setPrintSensitive] = useState(false)
   const [notificationPermission, setNotificationPermission] = useState(() => typeof Notification === 'undefined' ? 'unsupported' : Notification.permission)
   const reminders = useForegroundReminders(space, viewerId || space?.members[0]?.id || '')
@@ -85,7 +87,7 @@ export default function FamilyCalendarPage() {
   return <>
     <style>{`@media print { @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
     <ToolBoard>
-      <div className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
+      <div ref={workspace} className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
         <p className="cn-family-storage"><Trans ns="family" i18nKey="page.storage" values={{ events: space.events.length, members: space.members.length }} components={{ strong: <strong /> }} /></p>
         {error ? <p role="alert">{error}</p> : null}
         {dropped ? <p role="alert">{t('space.droppedItems', { total: dropped })}</p> : null}

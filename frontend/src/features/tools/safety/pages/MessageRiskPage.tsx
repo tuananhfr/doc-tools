@@ -20,7 +20,7 @@ export default function MessageRiskPage() {
     resultRef.current?.focus({ preventScroll: true })
   }
 
-  return <ToolBoard side={<div ref={resultRef} tabIndex={-1} className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div ref={resultRef} tabIndex={-1} className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('messageRisk.result')}</p>
     <p className="erp-tool-result__value">{label}</p>
     {risk?.signals.length ? <ul className="erp-tool-rows">{risk.signals.map((item, index) => <li key={`${item.text}-${index}`}>{item.text}</li>)}</ul> : null}

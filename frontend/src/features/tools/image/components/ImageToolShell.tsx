@@ -21,6 +21,7 @@ interface ImageToolShellProps {
   /** Dựng việc cần chạy từ ảnh + tuỳ chọn LÚC BẤM. */
   task: () => FlowTask
   mobilePreview?: boolean
+  initialPanel?: 'input' | 'preview'
   pickerExtra?: ReactNode
   /** Nút làm tiếp ở màn kết quả (vd. "Làm ảnh thẻ từ ảnh này"), dựng từ tệp vừa tạo. */
   resultActions?: (output: FlowOutput) => ReactNode
@@ -33,7 +34,7 @@ const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
  * luồng của "Chuyện Nhỏ" và mời khách đăng nhập sau khi tải. Trang công cụ chỉ
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
-export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview, pickerExtra, resultActions }: ImageToolShellProps) {
+export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview, initialPanel, pickerExtra, resultActions }: ImageToolShellProps) {
   const { t } = useTranslation('image')
   const nudge = useDownloadNudge()
   const done = run.state.phase === 'done' ? run.state.result.output : null
@@ -56,6 +57,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
   return (
     <ToolFlow
       mobilePreview={mobilePreview}
+      initialPanel={initialPanel}
       pickerExtra={pickerExtra}
       picker={{ accept: ACCEPT, hint: t('shell.hint'), multiple, title: pickerTitle }}
       files={files}

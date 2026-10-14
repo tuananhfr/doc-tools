@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useDeferredValue, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -45,15 +46,19 @@ export default function CvPage() {
   return <>
 
     <div className="cn-cv-workspace"><ToolBoard><ResponsivePreview action={<DocumentExportActions build={buildDocument} />} templates={picker} preview={<><CvPreview draft={draft} photoUrl={photoUrl} /><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={t('cv.title')}>
-      <div className="d-flex flex-wrap align-items-center gap-2"><Form.Check id="cn-cv-remember" type="checkbox" label={t('cv.remember')} checked={remember} onChange={event => changeRemember(event.target.checked)} /><Button variant="outline-danger" size="sm" onClick={clear}>{t('cv.clearDraft')}</Button></div>
       {availableDraft ? <div className="cn-cv-restore"><p>{t('cv.availableDraft')}</p><Button variant="outline-secondary" onClick={restore}>{t('cv.openDraft')}</Button></div> : null}
-      <p className="erp-flow-field__hint mt-2">{t(remember ? 'cv.autoSave' : 'cv.memoryOnly')}</p>
-      {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
-      <label className="erp-flow-field__label mt-3">{t('cv.photo')}<Form.Control type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => { const file = (event.target as HTMLInputElement).files?.[0]; setPhotoUrl(file ? URL.createObjectURL(file) : null); setPhotoFromHandoff(false) }} /></label>
+      <div className="cn-document-fields">
+        {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
+      </div>
+      <label className="erp-flow-field__label mt-3">{t('cv.photo')}<FileInput accept="image/jpeg,image/png,image/webp" onChange={(event) => { const file = (event.target as HTMLInputElement).files?.[0]; setPhotoUrl(file ? URL.createObjectURL(file) : null); setPhotoFromHandoff(false) }} /></label>
       {photoFromHandoff ? <p className="erp-flow-field__hint mt-1" role="status">{t('cv.photoFromHandoff')}</p> : null}
       <label className="erp-flow-field__label mt-3">{t('cv.summary')}<Form.Control as="textarea" rows={4} maxLength={3000} value={draft.summary} onChange={(event) => update('summary', event.target.value)} /></label>
       <EntryEditor kind="experience" entries={draft.experience} onChange={(value) => update('experience', value)} /><EntryEditor kind="education" entries={draft.education} onChange={(value) => update('education', value)} />
       {(['skills', 'languages', 'certificates'] as const).map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.sections.${key}`)}<Form.Control as="textarea" rows={3} maxLength={3000} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
+      <details className="cn-cv-draft mt-3"><summary>{t('cv.remember')}</summary>
+        <div className="d-flex flex-wrap align-items-center gap-2"><Form.Check id="cn-cv-remember" type="checkbox" label={t('cv.remember')} checked={remember} onChange={event => changeRemember(event.target.checked)} /><Button variant="outline-danger" size="sm" onClick={clear}>{t('cv.clearDraft')}</Button></div>
+        <p className="erp-flow-field__hint mt-2">{t(remember ? 'cv.autoSave' : 'cv.memoryOnly')}</p>
+      </details>
       <div className="mt-3"><DocumentExportActions build={buildDocument} /></div><p role="status" className="mt-2">{message ? t(message) : null}</p>
     </ToolPanel></ResponsivePreview></ToolBoard></div>
     <PrintPortal><CvPreview draft={draft} photoUrl={photoUrl} /></PrintPortal>

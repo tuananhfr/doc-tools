@@ -49,7 +49,7 @@ export default function FlashcardPage() {
     setNow(timestamp)
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="balanced" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('flashcard.reviewDue', { count: cards.filter((card) => card.dueAt <= now).length })}</p>
     <p className="erp-tool-result__value">{due?.front ?? t('flashcard.noneDue')}</p>
     {due ? <>

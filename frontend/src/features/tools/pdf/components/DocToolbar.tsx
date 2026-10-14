@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { Spinner } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
 import { ConfirmAction, Icon } from '@/components/ui'
@@ -90,6 +90,7 @@ export function DocToolbar({
   const { t } = useTranslation('pdf')
   const { t: tc } = useTranslation('common')
   const [expanded, setExpanded] = useState(false)
+  const advancedId = useId()
   const root = useRef<HTMLDivElement>(null)
   const none = selectedCount === 0
   const notSingle = selectedCount !== 1
@@ -115,37 +116,34 @@ export function DocToolbar({
       <div className="erp-doc-toolbar__primary">
         <ToolButton icon="plus-lg" label={t('toolbar.addFiles')} disabled={!!loading} onClick={onAddFiles} />
         <ToolButton icon="arrow-90deg-left" label={t('toolbar.undo')} disabled={!canUndo} onClick={onUndo} />
-        {selectedCount ? <ToolButton icon="arrow-clockwise" label={t('toolbar.rotateRight')} onClick={() => onRotate(90)} /> : null}
-        <button type="button" className="erp-doc-tool" aria-expanded={expanded} onClick={() => setExpanded(value => !value)}><Icon name="three-dots" /><span>{tc('workspace.advanced')}</span></button>
+        <ToolButton icon="arrow-90deg-right" label={t('toolbar.redo')} disabled={!canRedo} onClick={onRedo} />
+        {selectedCount ? <>
+          <ToolButton icon="arrow-clockwise" label={t('toolbar.rotateRight')} onClick={() => onRotate(90)} />
+          <ToolButton icon="copy" label={t('toolbar.duplicate')} onClick={onDuplicate} />
+          <ToolButton icon="trash3" label={t('toolbar.remove')} danger onClick={onRemove} />
+        </> : null}
+        <button type="button" className="erp-doc-tool" aria-expanded={expanded} aria-controls={advancedId} onClick={() => setExpanded(value => !value)}><Icon name="three-dots" /><span>{tc('workspace.advanced')}</span></button>
       </div>
-      <div className={`erp-doc-toolbar__actions${expanded ? ' is-open' : ''}`}>
-      <ToolGroup label={t('toolbar.files')}>
-        <ToolButton icon="plus-lg" label={t('toolbar.addFiles')} hint={t('toolbar.addFilesHint')} disabled={!!loading} onClick={onAddFiles} />
-        <ToolButton icon="box-arrow-in-left" label={t('toolbar.insertBefore')} hint={notSingle ? needOne : t('toolbar.insertBeforeHint')} disabled={notSingle || !!loading} onClick={() => onInsert('before')} />
-        <ToolButton icon="box-arrow-in-right" label={t('toolbar.insertAfter')} hint={notSingle ? needOne : t('toolbar.insertAfterHint')} disabled={notSingle || !!loading} onClick={() => onInsert('after')} />
-        <ToolButton icon="arrow-left-right" label={t('toolbar.replace')} hint={notSingle ? needOne : t('toolbar.replaceHint')} disabled={notSingle || !!loading} onClick={onReplace} />
-      </ToolGroup>
+      <div id={advancedId} className={`erp-doc-toolbar__actions${expanded ? ' is-open' : ''}`}>
+        <ToolGroup label={t('toolbar.files')}>
+          <ToolButton icon="box-arrow-in-left" label={t('toolbar.insertBefore')} hint={notSingle ? needOne : t('toolbar.insertBeforeHint')} disabled={notSingle || !!loading} onClick={() => onInsert('before')} />
+          <ToolButton icon="box-arrow-in-right" label={t('toolbar.insertAfter')} hint={notSingle ? needOne : t('toolbar.insertAfterHint')} disabled={notSingle || !!loading} onClick={() => onInsert('after')} />
+          <ToolButton icon="arrow-left-right" label={t('toolbar.replace')} hint={notSingle ? needOne : t('toolbar.replaceHint')} disabled={notSingle || !!loading} onClick={onReplace} />
+        </ToolGroup>
 
-      <ToolGroup label={t('toolbar.selection')}>
-        <ToolButton icon="arrow-counterclockwise" label={t('toolbar.rotateLeft')} disabled={none} onClick={() => onRotate(-90)} />
-        <ToolButton icon="arrow-clockwise" label={t('toolbar.rotateRight')} disabled={none} onClick={() => onRotate(90)} />
-        <ToolButton icon="copy" label={t('toolbar.duplicate')} disabled={none} onClick={onDuplicate} />
-        <ToolButton icon="layout-split" label={t('toolbar.combine', { size: 2 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 2 })} disabled={cannotCombine} onClick={() => onCombine(2)} />
-        <ToolButton icon="grid" label={t('toolbar.combine', { size: 4 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 4 })} disabled={cannotCombine} onClick={() => onCombine(4)} />
-        <ToolButton
-          icon="magic"
-          label={t('toolbar.cleanScan')}
-          hint={none ? t('toolbar.cleanScanAll') : t('toolbar.cleanScanSelected')}
-          disabled={!!loading}
-          onClick={onCleanScan}
-        />
-        <ToolButton icon="trash3" label={t('toolbar.remove')} danger disabled={none} onClick={onRemove} />
-      </ToolGroup>
+        <ToolGroup label={t('toolbar.selection')}>
+          <ToolButton icon="arrow-counterclockwise" label={t('toolbar.rotateLeft')} disabled={none} onClick={() => onRotate(-90)} />
+          <ToolButton icon="layout-split" label={t('toolbar.combine', { size: 2 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 2 })} disabled={cannotCombine} onClick={() => onCombine(2)} />
+          <ToolButton icon="grid" label={t('toolbar.combine', { size: 4 })} hint={cannotCombine ? needImages : t('toolbar.combineHint', { size: 4 })} disabled={cannotCombine} onClick={() => onCombine(4)} />
+          <ToolButton
+            icon="magic"
+            label={t('toolbar.cleanScan')}
+            hint={none ? t('toolbar.cleanScanAll') : t('toolbar.cleanScanSelected')}
+            disabled={!!loading}
+            onClick={onCleanScan}
+          />
+        </ToolGroup>
 
-      <ToolGroup label={t('toolbar.history')}>
-        <ToolButton icon="arrow-90deg-left" label={t('toolbar.undo')} hint={t('toolbar.undoHint')} disabled={!canUndo} onClick={onUndo} />
-        <ToolButton icon="arrow-90deg-right" label={t('toolbar.redo')} hint={t('toolbar.redoHint')} disabled={!canRedo} onClick={onRedo} />
-      </ToolGroup>
       </div>
 
       <div className="erp-doc-toolbar__status" aria-live="polite">

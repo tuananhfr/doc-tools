@@ -44,7 +44,7 @@ export default function GroupSplitPage() {
   const money = (value: number) => t('shared.amount', { amount: formatNumber(Math.round(Math.abs(value))) })
   const duplicateText = duplicates.length ? t('groupSplit.duplicateNames', { names: duplicates.join(', ') }) : ''
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('groupSplit.resultLabel')}</p>
     {result ? <>
       {result.transfers.length ? <ul className="erp-tool-rows">

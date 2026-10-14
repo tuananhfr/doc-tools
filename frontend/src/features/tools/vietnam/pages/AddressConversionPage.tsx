@@ -53,7 +53,7 @@ export default function AddressConversionPage() {
     const anchor = document.createElement('a'); anchor.href = url; anchor.download = `${t('address.csvFileName')}.csv`; anchor.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <ToolBoard after={<AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />} side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} />} side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('address.resultLabel')}</p>
     <p className="erp-tool-result__value">{hasTable ? t('address.resultValue', { full, total: lines.length }) : t('address.noTable')}</p>
     <p className="erp-tool-result__note">{hasTable ? t('address.resultNote') : t('address.noTableNote')}</p>

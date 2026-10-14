@@ -16,11 +16,11 @@ export function SuggestionBar({ suggestions, disabled, onRun, onDismiss }: Sugge
   if (suggestions.length === 0) return null
 
   return (
-    <section className="erp-doc-suggest" aria-label={t('suggest.label')}>
-      <span className="erp-doc-suggest__label">
+    <details className="erp-doc-suggest" aria-label={t('suggest.label')}>
+      <summary className="erp-doc-suggest__label">
         <Icon name="lightbulb" className="me-2" />
         {t('suggest.title')}
-      </span>
+      </summary>
       <div className="erp-doc-suggest__actions">
         {suggestions.map((item) => (
           <Button key={item.id} variant="outline-secondary" size="sm" disabled={disabled} onClick={() => onRun(item.id)}>
@@ -30,6 +30,6 @@ export function SuggestionBar({ suggestions, disabled, onRun, onDismiss }: Sugge
         ))}
       </div>
       <CloseButton className="erp-doc-suggest__close" aria-label={t('suggest.dismiss')} onClick={onDismiss} />
-    </section>
+    </details>
   )
 }

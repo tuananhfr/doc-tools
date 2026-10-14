@@ -69,7 +69,7 @@ function StaticQrCreatePage() {
   }
 
   return (
-    <ToolBoard
+    <ToolBoard mobilePreview layout="compact"
       sideLabel={t('qrCreate.side')}
       side={
         <>
@@ -98,15 +98,13 @@ function StaticQrCreatePage() {
           {nudge.extra}
         </>
       }
-      after={<ToolPanel title={tc('workspace.customize')}>
-        <details><summary>{tc('workspace.customize')}</summary>
-          <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
-          {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
-        </details>
-      </ToolPanel>}
     >
       <ToolPanel title={t('shared.contentPanel')}>
         <QrContentForm form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
+        <details className="cn-qr-customize"><summary>{tc('workspace.customize')}</summary>
+          <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
+          {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
+        </details>
       </ToolPanel>
     </ToolBoard>
   )

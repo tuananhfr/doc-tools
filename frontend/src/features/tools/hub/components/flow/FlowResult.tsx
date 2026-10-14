@@ -74,12 +74,14 @@ export function FlowResult({ result, onRestart, onEdit, onDownloaded, extra }: F
 
   return (
     <section className="erp-flow-result" aria-labelledby="erp-flow-result-title">
-      <span className={`erp-flow-result__badge erp-flow-result__badge--${tone}`}>
-        <Icon name={BADGE_ICON[tone]} />
-      </span>
-      <h2 id="erp-flow-result-title" ref={heading} tabIndex={-1} className="erp-flow-result__title">
-        {result.title}
-      </h2>
+      <div className="cn-result-heading">
+        <span className={`erp-flow-result__badge erp-flow-result__badge--${tone}`}>
+          <Icon name={BADGE_ICON[tone]} />
+        </span>
+        <h2 id="erp-flow-result-title" ref={heading} tabIndex={-1} className="erp-flow-result__title">
+          {result.title}
+        </h2>
+      </div>
 
       <div className="erp-flow-result__file">
         <span className="erp-flow-result__file-icon">

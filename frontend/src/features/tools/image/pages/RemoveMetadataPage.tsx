@@ -1,5 +1,6 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { removeImageMetadata } from '../services/remove-metadata'
@@ -24,7 +25,7 @@ export default function RemoveMetadataPage() {
     }
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" role="status">
+  return <ToolBoard layout="compact" side={<div className="erp-tool-result" role="status">
     <p className="erp-tool-result__label">{t('removeMeta.outputLabel')}</p>
     <p className="erp-tool-result__value">{file ? file.name : '—'}</p>
     <p className="erp-tool-result__note">{message || t('removeMeta.idle')}</p>
@@ -32,7 +33,7 @@ export default function RemoveMetadataPage() {
   </div>}>
     <ToolPanel title={t('removeMeta.panel')}>
       <label className="erp-flow-field__label">{t('removeMeta.choose')}
-        <Form.Control type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => { setFile((event.target as HTMLInputElement).files?.[0] ?? null); setMessage('') }} />
+        <FileInput accept="image/jpeg,image/png,image/webp" onChange={(event) => { setFile((event.target as HTMLInputElement).files?.[0] ?? null); setMessage('') }} />
       </label>
       <p className="erp-tool-result__note mt-3">{t('removeMeta.note')}</p>
     </ToolPanel>

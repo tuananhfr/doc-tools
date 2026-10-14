@@ -44,7 +44,7 @@ export default function MoneyCalcPage() {
   const setValue = (key: string, value: string) => setTexts((current) => ({ ...current, [preset.id]: { ...current[preset.id], [key]: value } }))
 
   return (
-    <ToolBoard
+    <ToolBoard layout="compact"
       side={
         <div className="erp-tool-result" role="status">
           {outcome.ok ? (

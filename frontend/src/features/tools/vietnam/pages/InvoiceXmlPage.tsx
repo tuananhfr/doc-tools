@@ -1,5 +1,5 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useState } from 'react'
-import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
@@ -40,7 +40,7 @@ export default function InvoiceXmlPage() {
     }
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('invoice.resultLabel')}</p>
     <p className="erp-tool-result__value">{invoice ? invoice.number || t('invoice.noNumber') : '—'}</p>
     {invoice ? <>
@@ -58,7 +58,7 @@ export default function InvoiceXmlPage() {
   </div>}>
     <ToolPanel title={t('invoice.panelTitle')}>
       <label className="erp-flow-field__label">{t('invoice.pickFile')}
-        <Form.Control type="file" accept=".xml,text/xml,application/xml" onChange={(event) => void open((event.target as HTMLInputElement).files?.[0])} />
+        <FileInput accept=".xml,text/xml,application/xml" onChange={(event) => void open((event.target as HTMLInputElement).files?.[0])} />
       </label>
       {/* Số giữ trên một dòng, tên hàng được bẻ từ: cột Thành tiền không bị đẩy khuất trên màn hẹp; vẫn rộng quá thì khung cuộn ngang. */}
       {invoice ? <div className="table-responsive mt-3"><table className="table table-sm"><thead><tr><th>{t('invoice.columns.ordinal')}</th><th className="text-wrap">{t('invoice.columns.name')}</th><th className="text-end text-nowrap">{t('invoice.columns.quantity')}</th><th className="text-end text-nowrap">{t('invoice.columns.amount')}</th></tr></thead><tbody>

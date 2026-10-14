@@ -21,7 +21,7 @@ export default function StudyPage() {
     ? admissionScore([subject1, subject2, subject3], regionBonus, categoryBonus) : null
   const update = (index: number, value: string) => setValues((current) => current.map((item, position) => position === index ? value : item))
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="compact" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{mode === 'grade' ? t('grades.gradeResult') : t('grades.admissionResult')}</p>
     <p className="erp-tool-result__value">{mode === 'grade' ? grade ? `${grade.letter} · ${formatQuantity(grade.gradePoint)}/4` : '—' : admission ? formatQuantity(admission.total) : '—'}</p>
     {admission && mode === 'admission' ? <p className="erp-tool-result__note">{t('grades.breakdown', { raw: formatQuantity(admission.raw), bonus: formatQuantity(admission.adjustedBonus) })}</p> : null}

@@ -85,7 +85,7 @@ export default function ElectricityPage() {
       return true
     },
   }
-  return <ToolBoard after={<AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
     <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
     {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: money(waterResult.subtotal), fee: money(waterResult.fee), vat: money(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{waterHint}</p> : <>

@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { Fragment, useId, useMemo, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -108,8 +109,8 @@ export default function StampPdfPage() {
             <Fragment key="image">
               <Form.Group controlId={`${ids}-image`} className="erp-flow-field">
                 <Form.Label className="erp-flow-field__label">{t('stamp.image')}</Form.Label>
-                <Form.Control
-                  type="file"
+                <FileInput
+                  id={`${ids}-image`}
                   accept=".png,.jpg,.jpeg,image/png,image/jpeg"
                   isInvalid={!!stamp.error}
                   aria-describedby={`${ids}-image-help`}

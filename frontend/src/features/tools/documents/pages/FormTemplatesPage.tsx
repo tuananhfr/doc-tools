@@ -41,9 +41,11 @@ export default function FormTemplatesPage() {
     <ToolBoard>
       <ResponsivePreview action={print} templates={picker} preview={<><div className="cn-form-preview"><FormPreview kind={kind} values={values} /></div><p className="mt-3">{kind === 'authorization' ? t('formTemplates.authorizationWarning') : t('formTemplates.defaultWarning')} {t('formTemplates.privacy')}</p></>}>
       <ToolPanel title={t('formTemplates.title')}>
+        <div className="cn-document-fields">
         {template.fields.map((field) => field.key === 'amount' ? <NumberField key={field.key} className="mt-3" label={t('formTemplates.fields.amount')} rule={RECEIPT_MONEY} unit="đ" value={values.amount ?? ''} onChange={amount => setValues(current => ({ ...current, amount }))} /> : <label className="erp-flow-field__label mt-3" key={field.key}>{t(`formTemplates.fields.${field.label}`)}{field.multiline
           ? <Form.Control as="textarea" rows={3} maxLength={5000} value={values[field.key] || ''} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />
           : <Form.Control maxLength={200} placeholder={field.key === 'date' || kind === 'leave' && (field.key === 'from' || field.key === 'to') ? t('formTemplates.datePlaceholder') : undefined} isInvalid={(dateProblem === 'from' && field.key === 'from') || ((dateProblem === 'to' || dateProblem === 'order') && field.key === 'to') || receiptError === 'date' && field.key === 'date'} value={values[field.key] || ''} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />}</label>)}
+        </div>
         {dateProblem ? <p className="erp-tool-form__error mt-2" role="alert">{t(`formTemplates.dateErrors.${dateProblem}`)}</p> : null}
         {kind === 'receipt' ? <><p className="mt-2">{t('formTemplates.print.receipt.words', { value: receiptWords(values.amount ?? '') ?? '—' })}</p>{receiptError ? <p role="alert">{t(`formTemplates.receiptErrors.${receiptError}`)}</p> : null}</> : null}
         <div className="mt-3">{print}</div>

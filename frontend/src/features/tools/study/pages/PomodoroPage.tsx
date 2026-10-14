@@ -76,7 +76,7 @@ export default function PomodoroPage() {
   }
   const valid = isValidMinutes('focus', focusMinutes) && isValidMinutes('break', breakMinutes)
 
-  return <ToolBoard side={<div className="erp-tool-result" role="timer" aria-live="off">
+  return <ToolBoard layout="compact" side={<div className="erp-tool-result" role="timer" aria-live="off">
     <p className="erp-tool-result__label">{session === 'focus' ? t('pomodoro.focus') : t('pomodoro.break')}</p>
     <p className="erp-tool-result__value">{formatClock(remaining)}</p>
     {ended ? <p className="erp-tool-result__note" role="status">{t(ended === 'focus' ? 'pomodoro.focusEndedTitle' : 'pomodoro.breakEndedTitle')} · {t('pomodoro.switched')}</p> : null}

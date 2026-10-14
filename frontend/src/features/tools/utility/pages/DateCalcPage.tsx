@@ -55,7 +55,7 @@ export default function DateCalcPage() {
   const landed = startDay === null || signed === null ? null : kind === 'calendar' ? startDay + signed : addWorkdays(startDay, signed)
 
   return (
-    <ToolBoard
+    <ToolBoard layout="compact"
       side={
         mode === 'between' ? (
           <div className="erp-tool-result" role="status">

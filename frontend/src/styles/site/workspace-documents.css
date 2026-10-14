@@ -1,0 +1,10 @@
+.cn-tool-workspace .cn-document-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.cn-tool-workspace .cn-document-fields > .mt-3 { margin-top: 0 !important; }
+.cn-tool-workspace .cn-document-fields > label:has(textarea) { grid-column: 1 / -1; }
+.cn-tool-workspace .cn-cv-draft { padding: 12px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-hero); }
+.cn-tool-workspace .cn-cv-draft .btn { margin-top: 8px; }
+.cn-tool-workspace .cn-document-export .btn { min-height: var(--cn-cta); }
+.cn-tool-workspace .cn-qr-customize { padding-top: 12px; margin-top: 16px; border-top: 1px solid var(--cn-line); }
+@media (max-width: 1199px) {
+  .cn-tool-workspace .cn-document-fields { grid-template-columns: minmax(0, 1fr); }
+}

@@ -51,6 +51,10 @@ const overflow = () => page.evaluate(() => document.documentElement.scrollWidth 
 // Windows trả xuống dòng của clipboard về dạng \r\n.
 const clipboard = async () => (await page.evaluate(() => navigator.clipboard.readText())).replaceAll('\r\n', '\n')
 const field = (label) => page.getByLabel(label, { exact: true })
+const boardPanel = async (value) => {
+  const buttons = page.locator('.cn-tool-board__tabs:visible button');
+  if (mobile && await buttons.count()) await buttons.nth(value === 'input' ? 0 : 1).click();
+}
 const texts = (selector) => page.locator(selector).allInnerTexts()
 const text = async (selector) => ((await page.locator(selector).count()) ? (await page.locator(selector).first().innerText()).replace(/\s+/g, ' ').trim() : null)
 
@@ -70,10 +74,11 @@ async function open(slug, ready) {
   await page.reload()
   await page.locator(ready).first().waitFor({ timeout: 30000 })
   await page.waitForTimeout(400)
-  return { title: await page.title(), heading: await text('.erp-tool-crumb__title'), privacy: await text('.erp-tool-crumb__privacy') }
+  return { title: await page.title(), heading: await text('.erp-tool-crumb__title'), privacy: await text('.cn-tool-privacy') }
 }
 
 async function download(button) {
+  await boardPanel('preview')
   const [dl] = await Promise.all([page.waitForEvent('download', { timeout: 60000 }), button.click()])
   const path = `${OUT}${theme}-${vw}-${dl.suggestedFilename()}`
   await dl.saveAs(path)
@@ -191,15 +196,17 @@ let wifiPng = null
 
 // ---------- 1. Tạo mã QR ----------
 if (want('qr-create') || want('qr-read') || want('camera')) {
-  const o = (out.qrCreate = await open('tao-ma-qr', '.erp-qr-preview'))
-  const png = page.getByRole('button', { name: 'Tải mã QR' })
-  o.empty = { placeholder: await text('.erp-qr-preview__hint'), pngDisabled: await png.isDisabled(), svgDisabled: await page.getByRole('button', { name: 'Tải bản SVG để in' }).isDisabled() }
-  o.tabs = { labels: await texts('.erp-tool-tab'), current: await text('.erp-tool-tab[aria-current=page]') }
+  const o = (out.qrCreate = await open('tao-ma-qr', '.cn-tool-board'))
+  const png = page.getByRole('button', { name: 'Tải mã QR', includeHidden: true })
+  o.empty = { placeholder: await text('.erp-qr-preview__hint'), pngDisabled: await png.isDisabled(), svgDisabled: await page.getByRole('button', { name: 'Tải bản SVG để in', includeHidden: true }).isDisabled() }
+  o.tabs = { labels: await page.locator('.cn-workspace-switcher__links a').allTextContents(), current: (await page.locator('.cn-workspace-switcher__links a[aria-current=page]').textContent())?.trim() }
   o.kinds = await page.locator('select').first().locator('option').allInnerTexts()
   await shot('qr-create-empty')
 
   // Thiếu https:// thì tự thêm; chuỗi trong mã được in ra nguyên văn.
+  await boardPanel('input')
   await field('Nhập nội dung').fill('erpcons.vn')
+  await boardPanel('preview')
   await page.locator('.erp-qr-preview__code').waitFor()
   o.url = { payload: await text('.erp-qr-payload'), modules: await page.locator('.erp-qr-preview__code').getAttribute('viewBox') }
   await page.locator('.erp-qr-payload + .erp-tool-copy').click()
@@ -208,9 +215,11 @@ if (want('qr-create') || want('qr-read') || want('camera')) {
 
   // Mỗi màu: bấm ô màu -> tải PNG -> soi chữ ký, kích thước, màu của ô định vị và nền.
   const swatches = page.locator('.erp-qr-color')
-  await page.locator('.erp-flow__after details').evaluate(element => { element.open = true })
+  await boardPanel('input')
+  await page.locator('.cn-qr-customize').evaluate(element => { element.open = true })
   o.colors = []
   for (let index = 0; index < (await swatches.count()); index++) {
+    await boardPanel('input')
     await swatches.nth(index).click()
     const label = await swatches.nth(index).getAttribute('title')
     const fill = await page.locator('.erp-qr-preview__code path').getAttribute('fill')
@@ -233,41 +242,57 @@ if (want('qr-create') || want('qr-read') || want('camera')) {
   o.nudge = await text('.erp-doc-nudge__text')
 
   // Đường dẫn có khoảng trắng: báo lỗi ngay tại ô, khoá nút tải.
+  await boardPanel('input')
   await field('Nhập nội dung').fill('erpcons vn')
   o.urlError = { message: await text('.erp-tool-form__error'), invalid: await field('Nhập nội dung').evaluate((el) => el.classList.contains('is-invalid')), pngDisabled: await png.isDisabled(), placeholder: await text('.erp-qr-preview__hint') }
 
   // Wi-Fi: mật khẩu ngắn bị chặn, đủ dài thì ra chuỗi WIFI: có thoát ký tự.
+  await boardPanel('input')
   await field('Loại mã').selectOption('wifi')
   o.wifiEmpty = { error: await text('.erp-tool-form__error'), pngDisabled: await png.isDisabled() }
+  await boardPanel('input')
   await field('Tên mạng Wi-Fi').fill('BCH;Tang 2')
+  await boardPanel('input')
   await field('Mật khẩu').fill('1234567')
   o.wifiShort = await text('.erp-tool-form__error')
+  await boardPanel('input')
   await field('Mật khẩu').fill('thep:D16,2026')
   o.wifi = { payload: await text('.erp-qr-payload'), error: await text('.erp-tool-form__error') }
   const wifi = await download(png)
   o.wifi.name = wifi.name
   wifiPng = file('wifi.png', 'image/png', wifi.bytes)
   await shot('qr-create-wifi')
+  await boardPanel('input')
   await field('Bảo mật').selectOption('nopass')
   o.wifiOpen = { payload: await text('.erp-qr-payload'), passwordField: await field('Mật khẩu').count() }
 
   // Đổi loại không xoá thứ đã gõ ở loại khác.
+  await boardPanel('input')
   await field('Loại mã').selectOption('phone')
+  await boardPanel('input')
   await field('Số điện thoại').fill('0912 345 678')
   o.phone = await text('.erp-qr-payload')
+  await boardPanel('input')
   await field('Loại mã').selectOption('email')
+  await boardPanel('input')
   await field('Địa chỉ email').fill('ketoan@lpc')
   o.emailError = await text('.erp-tool-form__error')
+  await boardPanel('input')
   await field('Địa chỉ email').fill('ketoan@lpc.vn')
+  await boardPanel('input')
   await field('Tiêu đề thư (không bắt buộc)').fill('Báo giá')
   o.email = await text('.erp-qr-payload')
+  await boardPanel('input')
   await field('Loại mã').selectOption('wifi')
   o.keptSsid = await field('Tên mạng Wi-Fi').inputValue()
 
   // Dài quá sức chứa của một mã.
+  await boardPanel('input')
   await field('Loại mã').selectOption('text')
+  await boardPanel('input')
   await field('Nhập nội dung').fill('a'.repeat(3000))
   o.tooLong = { message: await text('.erp-tool-form__error'), pngDisabled: await png.isDisabled() }
+  await boardPanel('input')
   await field('Nhập nội dung').fill('Kho B — kệ 12, tầng 3\nThép D16: 240 cây')
   o.text = { payload: await page.locator('.erp-qr-payload').innerText(), modules: await page.locator('.erp-qr-preview__code').getAttribute('viewBox') }
   const multi = await download(png)
@@ -275,8 +300,8 @@ if (want('qr-create') || want('qr-read') || want('camera')) {
   qrFiles.push(file('van-ban.png', 'image/png', multi.bytes))
   o.overflow = await overflow()
 
-  // Thẻ "Quét mã" là link sang công cụ kia.
-  await page.locator('.erp-tool-tab', { hasText: 'Quét mã' }).click()
+  await page.locator('.cn-workspace-switcher > summary').click()
+  await page.locator('.cn-workspace-switcher__links a[href$="/doc-ma-qr"]').click()
   await page.locator('.erp-flow-picker').waitFor()
   o.tabGoes = new URL(page.url()).pathname
 }
@@ -368,48 +393,73 @@ if (want('calc')) {
   o.empty = { value: await value(), notes: await notes(), groups: await texts('.erp-tool-tab'), shapes: await page.locator('select').first().locator('option').allInnerTexts() }
   await shot('calc-empty')
 
+  await boardPanel('input')
+
   await field('Chiều dài').fill('12,5')
+  await boardPanel('input')
   await field('Chiều rộng').fill('4')
   o.rectangle = { value: await value(), notes: await notes() }
+  await boardPanel('input')
   await field('Số lượng').fill('3')
   o.rectangleX3 = { value: await value(), notes: await notes() }
   await page.getByRole('button', { name: 'Chép kết quả' }).click()
   o.copied = await clipboard()
   // "1.500" = một phẩy năm: phép tính in lại con số đã hiểu.
+  await boardPanel('input')
   await field('Chiều dài').fill('1.500')
   o.lonePoint = { value: await value(), notes: await notes() }
+  await boardPanel('input')
   await field('Chiều rộng').fill('bốn')
   o.invalid = { value: await value(), notes: await notes(), marked: await field('Chiều rộng').evaluate((el) => el.classList.contains('is-invalid')) }
+  await boardPanel('input')
   await field('Chiều rộng').fill('4')
+  await boardPanel('input')
   await field('Số lượng').fill('')
 
+  await boardPanel('input')
+
   await field('Hình').selectOption('trapezoid')
+  await boardPanel('input')
   await field('Đáy lớn').fill('8')
+  await boardPanel('input')
   await field('Đáy nhỏ').fill('4')
+  await boardPanel('input')
   await field('Chiều cao').fill('2,5')
   o.trapezoid = { value: await value(), notes: await notes() }
+  await boardPanel('input')
   await field('Hình').selectOption('circle')
+  await boardPanel('input')
   await field('Đường kính').fill('2')
   o.circle = { value: await value(), notes: await notes() }
   // Quay lại hình chữ nhật: số đã gõ còn nguyên.
+  await boardPanel('input')
   await field('Hình').selectOption('rectangle')
   o.kept = { length: await field('Chiều dài').inputValue(), value: await value() }
 
   await page.locator('.erp-tool-tab', { hasText: 'Thể tích' }).click()
+  await boardPanel('input')
   await field('Chiều dài').fill('6')
+  await boardPanel('input')
   await field('Chiều rộng').fill('0,3')
+  await boardPanel('input')
   await field('Chiều cao / dày').fill('0,5')
   o.box = { value: await value(), notes: await notes(), label: await text('.erp-tool-result__label') }
 
   await page.locator('.erp-tool-tab', { hasText: 'Khối lượng' }).click()
   o.massOptions = await page.locator('select').first().locator('option').allInnerTexts()
+  await boardPanel('input')
   await field('Đường kính').fill('16')
+  await boardPanel('input')
   await field('Chiều dài').fill('11,7')
+  await boardPanel('input')
   await field('Số lượng').fill('240')
   o.rebar = { value: await value(), notes: await notes(), units: await texts('.input-group-text') }
   await shot('calc-rebar')
+  await boardPanel('input')
   await field('Số lượng').fill('')
+  await boardPanel('input')
   await field('Vật liệu / cách tính').selectOption('density')
+  await boardPanel('input')
   await field('Thể tích').fill('2')
   await page.getByRole('button', { name: 'Bê tông cốt thép' }).click()
   o.density = { preset: await field('Khối lượng riêng').inputValue(), value: await value(), notes: await notes() }
@@ -422,7 +472,9 @@ if (want('unit')) {
   const main = () => text('.erp-tool-result--inline')
   const rows = () => page.locator('.erp-tool-row').evaluateAll((items) => items.map((item) => item.innerText.replace(/\s*\n\s*/g, ' | ').trim()))
   o.first = { main: await main(), heading: await text('.erp-flow__side .erp-flow-options__title'), rows: await rows() }
+  await boardPanel('input')
   await field('Giá trị').fill('2,5')
+  await boardPanel('input')
   await field('Sang đơn vị').selectOption('ft')
   o.metresToFeet = await main()
   await page.getByRole('button', { name: 'Đảo hai đơn vị' }).click()
@@ -433,15 +485,21 @@ if (want('unit')) {
   o.copiedRow = await clipboard()
   await shot('unit-length')
 
+  await boardPanel('input')
+
   await field('Giá trị').fill('hai mét')
   o.invalid = { main: await main(), side: await text('.erp-flow__side .erp-flow-field__hint'), marked: await field('Giá trị').evaluate((el) => el.classList.contains('is-invalid')), rows: await page.locator('.erp-tool-row').count() }
+  await boardPanel('input')
   await field('Giá trị').fill('')
   o.blank = await main()
+
+  await boardPanel('input')
 
   await field('Giá trị').fill('1')
   await page.locator('.erp-tool-tab', { hasText: 'Diện tích' }).click()
   o.area = { main: await main(), rows: await rows() }
   await page.locator('.erp-tool-tab', { hasText: 'Khối lượng' }).click()
+  await boardPanel('input')
   await field('Giá trị').fill('1.250,5')
   o.mass = { main: await main(), rows: await rows() }
   // Về lại chiều dài: cặp đơn vị đã chọn còn nguyên.
@@ -481,25 +539,35 @@ if (want('color')) {
   o.first = { ...(await codes()), brand: await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--erp-brand').trim()), contrasts: await contrasts(), eyeDropper: await page.getByRole('button', { name: 'Hút màu từ màn hình' }).count() }
   await shot('color-first')
 
+  await boardPanel('input')
+
   await field('HEX').fill('#3678d4')
   o.fromHex = { ...(await codes()), contrasts: await contrasts() }
   // Đang gõ dở: ô giữ chữ đang gõ, mã ba chữ số đã là một màu.
+  await boardPanel('input')
   await field('HEX').fill('#fa0')
   o.shortHex = { typed: await field('HEX').inputValue(), rgb: await field('RGB').inputValue() }
+  await boardPanel('input')
   await field('RGB').focus()
   o.afterBlur = await field('HEX').inputValue()
+  await boardPanel('input')
   await field('HEX').fill('#12')
   o.badHex = { marked: await field('HEX').evaluate((el) => el.classList.contains('is-invalid')), rgb: await field('RGB').inputValue() }
+  await boardPanel('input')
   await field('RGB').fill('16, 24, 32')
   o.fromRgb = { ...(await codes()), contrasts: await contrasts() }
+  await boardPanel('input')
   await field('HSL').fill('120 100% 25%')
+  await boardPanel('input')
   await field('HEX').focus()
   o.fromHsl = await codes()
   await page.locator('.erp-color-pick__input').fill('#ffffff')
   o.fromPicker = { ...(await codes()), contrasts: await contrasts() }
   await page.locator('.erp-color-code .erp-tool-copy').nth(1).click()
   o.copiedRgb = await clipboard()
+  await boardPanel('input')
   await field('HEX').fill('#C98245')
+  await boardPanel('input')
   await field('RGB').focus()
   await shot('color-copper')
   o.overflow = await overflow()
@@ -518,9 +586,13 @@ if (want('random')) {
   await page.locator('.erp-tool-row .erp-tool-copy').first().click()
   o.copied = (await clipboard()) === (await values())[0]
 
+  await boardPanel('input')
+
   await field('Ký hiệu (!@#$…)').check()
   await setRange(32)
+  await boardPanel('input')
   await field('Bỏ ký tự dễ nhìn nhầm (0 O o 1 l I)').check()
+  await boardPanel('input')
   await field('Số lượng mỗi lượt (tối đa 20)').fill('20')
   const many = await values()
   o.many = { count: many.length, unique: new Set(many).size, lengths: [...new Set(many.map((value) => value.length))], lookalike: many.some((value) => /[0Oo1lI]/.test(value)), allClasses: many.every((value) => /[a-z]/.test(value) && /[A-Z]/.test(value) && /[0-9]/.test(value) && /[^a-zA-Z0-9]/.test(value)), strength: await strength(), heading: await text('.erp-tool-side-head .erp-flow-options__title') }
@@ -530,19 +602,24 @@ if (want('random')) {
   await setRange(8)
   for (const label of ['Chữ hoa (A–Z)', 'Chữ thường (a–z)', 'Ký hiệu (!@#$…)']) await field(label).uncheck()
   o.digitsOnly = { sample: (await values())[0], strength: await strength() }
+  await boardPanel('input')
   await field('Chữ số (0–9)').uncheck()
   o.noClass = { rows: await page.locator('.erp-tool-row').count(), hint: await text('.erp-flow__side .erp-flow-field__hint'), runDisabled: await page.getByRole('button', { name: 'Tạo lại' }).isDisabled(), strength: await strength() }
 
   await page.locator('.erp-tool-tab', { hasText: 'Mã đơn, mã phiếu' }).click()
   const codes = await values()
   o.codes = { count: codes.length, unique: new Set(codes).size, pattern: codes.every((value) => /^[A-HJ-NP-Z2-9]{8}$/.test(value)), sample: codes[0] }
+  await boardPanel('input')
   await field('Tiền tố (không bắt buộc)').fill('PX-2026-')
   await setRange(6)
+  await boardPanel('input')
   await field('Phần ngẫu nhiên gồm').selectOption('digits')
+  await boardPanel('input')
   await field('Số lượng mỗi lượt (tối đa 100)').fill('100')
   const batch = await values()
   o.batch = { count: batch.length, unique: new Set(batch).size, pattern: batch.every((value) => /^PX-2026-[0-9]{6}$/.test(value)), sample: batch[0], hint: await page.locator('.erp-tool-form .erp-flow-field__hint').count() }
   await shot('random-codes')
+  await boardPanel('input')
   await field('Số lượng mỗi lượt (tối đa 100)').fill('500')
   o.clamped = { input: await field('Số lượng mỗi lượt (tối đa 100)').inputValue(), count: (await values()).length }
   // Về lại mật khẩu: tuỳ chọn cũ còn nguyên (đang không bật nhóm nào).
@@ -563,15 +640,21 @@ if (want('note')) {
   await shot('note-empty')
 
   await page.locator('.erp-notes__list').getByRole('button', { name: 'Ghi chú mới' }).click()
+  await boardPanel('input')
   await field('Tiêu đề').waitFor()
   o.afterCreate = { ...(await visible()), items: await items(), back: await page.locator('.erp-notes__back').isVisible() }
+  await boardPanel('input')
   await field('Tiêu đề').fill('Việc ở công trường thứ Hai')
+  await boardPanel('input')
   await field('Nội dung').fill('Nghiệm thu cốt thép sàn tầng 3.\nGọi nhà cung cấp bê tông.')
   for (const task of ['Kiểm tra cốp pha', 'Đặt thép D16', 'Ký biên bản']) {
+    await boardPanel('input')
     await field('Việc mới').fill(task)
+    await boardPanel('input')
     await field('Việc mới').press('Enter')
   }
   await page.locator('.erp-note-task').nth(1).locator('input[type=checkbox]').check()
+  await boardPanel('input')
   await field('Việc 3').fill('Ký biên bản nghiệm thu')
   await page.getByRole('button', { name: 'Bỏ việc 1' }).click()
   o.edited = { tasks: await page.locator('.erp-note-task__text').evaluateAll((list) => list.map((input) => input.value)), done: await page.locator('.erp-note-task.is-done').count(), saved: await text('.erp-notes__saved'), addDisabled: await page.getByRole('button', { name: 'Thêm', exact: true }).isDisabled() }
@@ -587,8 +670,10 @@ if (want('note')) {
   await page.waitForFunction(() => document.querySelector('.erp-notes__editor input')?.value === '')
   await back()
   await addNote.click()
+  await boardPanel('input')
   await field('Tiêu đề').waitFor()
   o.afterSecond = { count: (await stored()).notes.length, items: await items() }
+  await boardPanel('input')
   await field('Nội dung').fill('Mua thêm 20 bao xi măng')
   await back()
   o.secondLabel = await items()
@@ -630,6 +715,7 @@ if (!only && APP_HUB) {
   await mockSession(context)
   await page.goto(`${APP_HUB}/tao-ma-qr`)
   await page.locator('.erp-qr-preview').waitFor({ timeout: 30000 })
+  await boardPanel('input')
   await field('Nhập nội dung').fill('erpcons.vn')
   await page.locator('.erp-qr-preview__code').waitFor()
   const [dl] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Tải mã QR' }).click()])

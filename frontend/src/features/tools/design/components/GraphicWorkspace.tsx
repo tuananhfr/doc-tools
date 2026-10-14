@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -48,11 +49,11 @@ export function GraphicWorkspace({ files, onFiles, templates, onBack, design = f
       <p className="erp-flow-field__hint mt-3">{t('shop.dimensions', { width: template.widthMm, height: template.heightMm, count: pages })}</p>
       {template.kind === 'seal' ? <p className="erp-flow-field__hint mt-2" role="note">{t('shop.sealNotice')}</p> : null}
     </>}><ToolPanel title={t(design ? 'shop.designPanel' : 'shop.panel')}>
-      <label className="erp-flow-field__label">{t('shop.files')}<Form.Control type="file" multiple accept="image/jpeg,image/png,image/webp" onChange={e => { onFiles([...(e.target as HTMLInputElement).files ?? []]); setPage(0); }}/></label>
+      <label className="erp-flow-field__label">{t('shop.files')}<FileInput multiple accept="image/jpeg,image/png,image/webp" onChange={e => { onFiles([...(e.target as HTMLInputElement).files ?? []]); setPage(0); }}/></label>
       {files.length ? <details className="mt-2"><summary>{t('shop.fileCount', { count: files.length })}</summary><ol>{files.map((file, index) => <li key={index}>{file.name}<Button size="sm" variant="link" disabled={index === 0} aria-label={t('shop.moveUp', { name: file.name })} onClick={() => { const next = [...files]; [next[index - 1], next[index]] = [next[index], next[index - 1]]; onFiles(next); }}><Icon name="arrow-up"/></Button><Button size="sm" variant="link" aria-label={t('shop.remove', { name: file.name })} onClick={() => { onFiles(files.filter((_, i) => i !== index)); setPage(0); }}><Icon name="x"/></Button></li>)}</ol></details> : null}
       <label className="erp-flow-field__label mt-3">{t('shop.title')}<Form.Control maxLength={80} value={brand.title} onChange={e => update({ title: e.target.value })}/></label>
       <label className="erp-flow-field__label mt-3">{t('shop.subtitle')}<Form.Control maxLength={160} value={brand.subtitle} onChange={e => update({ subtitle: e.target.value })}/></label>
-      <label className="erp-flow-field__label mt-3">{t('shop.logo')}<Form.Control type="file" accept="image/jpeg,image/png,image/webp" onChange={e => setLogo((e.target as HTMLInputElement).files?.[0] ?? null)}/></label>
+      <label className="erp-flow-field__label mt-3">{t('shop.logo')}<FileInput accept="image/jpeg,image/png,image/webp" onChange={e => setLogo((e.target as HTMLInputElement).files?.[0] ?? null)}/></label>
       <div className="erp-flow-pair mt-3"><label>{t('shop.accent')}<Form.Control type="color" value={brand.accent} onChange={e => update({ accent: e.target.value })}/></label><label>{t('shop.background')}<Form.Select aria-label={t('shop.background')} value={brand.background} onChange={e => update({ background: e.target.value })}><option value="#ffffff">{t('portrait.white')}</option><option value="#f0f6ff">{t('portrait.blue')}</option><option value="transparent">{t('shop.transparent')}</option></Form.Select></label></div>
       <label className="erp-flow-field__label mt-3">{t('shop.fit')}<Form.Select aria-label={t('shop.fit')} value={brand.fit} onChange={e => update({ fit: e.target.value as GraphicBrand['fit'] })}><option value="contain">{t('shop.contain')}</option><option value="cover">{t('shop.cover')}</option></Form.Select></label>
       <label className="erp-flow-field__label mt-3">{t('shop.format')}<Form.Select aria-label={t('shop.format')} value={format} onChange={e => setFormat(e.target.value as GraphicOutput)}><option value="zip">ZIP (PNG)</option><option value="png">PNG</option><option value="jpg">JPG 300 DPI</option><option value="pdf">PDF</option></Form.Select></label>

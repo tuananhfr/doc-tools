@@ -25,7 +25,7 @@ export default function CharCountPage() {
   const stats = useMemo(() => textStats(deferred), [deferred])
 
   return (
-    <ToolBoard
+    <ToolBoard layout="balanced"
       sideLabel={t('charCount.counts')}
       side={
         <>

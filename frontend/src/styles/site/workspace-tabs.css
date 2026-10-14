@@ -1,9 +1,12 @@
-/* Thanh tab nhóm việc (WorkspaceTabs). Khác `.erp-tool-tabs` của màn công cụ (chia đều bề ngang ở mobile):
-   bảy tab ảnh ở 360px chia đều thành chữ một từ một dòng, nên ở đây cuộn ngang, tab giữ một dòng. */
-.cn-workspace-tabs-row { max-width: 1200px; margin: 0 auto var(--cn-space-4, 16px); }
-.cn-tool-workspace .cn-workspace-tabs { display: inline-flex; flex-wrap: nowrap; max-width: 100%; gap: var(--cn-space-1, 4px); padding: var(--cn-space-1, 4px); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
-.cn-tool-workspace .cn-workspace-tabs .erp-tool-tab { flex: 0 0 auto; flex-direction: row; gap: var(--cn-space-2, 8px); min-height: var(--cn-tap, 44px); padding: 0 var(--cn-space-3, 12px); font-size: 14px; white-space: nowrap; }
-@media (max-width: 575px) {
-  .cn-workspace-tabs-row { margin-bottom: var(--cn-space-3, 12px); }
-  .cn-tool-workspace .cn-workspace-tabs { display: flex; }
+.cn-workspace-switcher { position: relative; min-width: 0; max-width: 250px; }
+.cn-tool-workspace .cn-workspace-switcher > summary { display: flex; align-items: center; gap: 8px; min-height: var(--cn-tap); padding: 8px 12px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); background: var(--cn-surface); color: var(--cn-muted); font-size: 14px; font-weight: 500; cursor: pointer; list-style: none; }
+.cn-workspace-switcher > summary::-webkit-details-marker { display: none; }
+.cn-workspace-switcher > summary > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cn-workspace-switcher__links { position: absolute; z-index: 4; top: calc(100% + 8px); inset-inline-end: 0; display: grid; width: min(320px, calc(100vw - 32px)); max-height: 60dvh; overflow-y: auto; padding: 8px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); box-shadow: 0 8px 24px rgb(12 37 77 / 12%); }
+.cn-workspace-switcher__links a { display: flex; align-items: center; gap: 12px; min-height: var(--cn-tap); padding: 10px 12px; border-radius: var(--cn-radius-button); color: var(--cn-ink); font-size: 14px; text-decoration: none; }
+.cn-workspace-switcher__links a[aria-current='page'] { background: var(--cn-tint); color: var(--cn-accent); font-weight: 600; }
+.cn-workspace-switcher__links a:hover { background: var(--cn-hero); }
+@media (max-width: 767px) {
+  .cn-tool-workspace .cn-workspace-switcher > summary { justify-content: center; width: var(--cn-tap); padding: 8px; }
+  .cn-workspace-switcher > summary > span, .cn-workspace-switcher > summary > .bi:last-child { display: none; }
 }

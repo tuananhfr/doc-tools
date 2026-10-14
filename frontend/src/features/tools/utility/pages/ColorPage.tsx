@@ -81,7 +81,7 @@ export default function ColorPage() {
   }
 
   return (
-    <ToolBoard
+    <ToolBoard layout="compact"
       sideLabel={t('color.preview')}
       side={
         <>

@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useId, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
@@ -46,7 +47,7 @@ export default function CollagePage() {
   return <>
     <div hidden={shop}><Button variant="outline-secondary" className="mb-3" disabled={busy} onClick={()=>setShop(true)}>{t('shop.open')}</Button></div>
     <div hidden={!shop}><GraphicWorkspace files={files} onFiles={setFiles} templates={SHOP_LAYOUTS} visible={shop} onBack={()=>setShop(false)}/></div>
-    <div hidden={shop}><ToolBoard side={<div className="erp-tool-result" role="status">
+    <div hidden={shop}><ToolBoard layout="compact" side={<div className="erp-tool-result" role="status">
     <p className="erp-tool-result__label">{t('collage.resultLabel')}</p>
     <p className="erp-tool-result__value">{files.length ? t('shared.imageCount', { count: files.length }) : '—'}</p>
     <p className="erp-tool-result__note">{message || t('collage.idle')}</p>
@@ -55,7 +56,7 @@ export default function CollagePage() {
   </div>}>
     <ToolPanel title={t('collage.panel')}>
       <label className="erp-flow-field__label" htmlFor={`${ids}-files`}>{t('collage.choose')}
-        <Form.Control id={`${ids}-files`} type="file" multiple accept="image/jpeg,image/png,image/webp" isInvalid={fileText !== ''} aria-describedby={fileText ? `${ids}-files-error` : undefined} onChange={(event) => { setFiles([...(event.target as HTMLInputElement).files ?? []]); setFileError(''); setMessage('') }} />
+        <FileInput id={`${ids}-files`} multiple accept="image/jpeg,image/png,image/webp" isInvalid={fileText !== ''} aria-describedby={fileText ? `${ids}-files-error` : undefined} onChange={(event) => { setFiles([...(event.target as HTMLInputElement).files ?? []]); setFileError(''); setMessage('') }} />
         {fileText ? <span id={`${ids}-files-error`} className="erp-tool-form__error" role="alert">{fileText}</span> : null}
       </label>
       {files.length ? <ol className="mt-3">{files.map((file, index) => <li key={`${file.name}-${index}`}>{file.name}</li>)}</ol> : null}

@@ -36,6 +36,7 @@ interface ToolFlowProps {
   resultExtra?: ReactNode
   waitingLabel?: string
   mobilePreview?: boolean
+  initialPanel?: 'input' | 'preview'
 }
 
 /**
@@ -65,10 +66,11 @@ export function ToolFlow({
   resultExtra,
   waitingLabel,
   mobilePreview = false,
+  initialPanel = 'input',
 }: ToolFlowProps) {
   const { state } = run
   const { t } = useTranslation('common')
-  const [panel, setPanel] = useState('input')
+  const [panel, setPanel] = useState(initialPanel)
 
   if (state.phase === 'done') {
     return <FlowResult result={state.result} onRestart={run.reset} onEdit={onEdit} onDownloaded={onDownloaded} extra={resultExtra} />

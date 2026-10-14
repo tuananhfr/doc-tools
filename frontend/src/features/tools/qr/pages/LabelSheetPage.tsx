@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -101,7 +102,7 @@ export default function LabelSheetPage() {
     <p>{t('labels.notice')}</p>
     <label className="erp-flow-field__label">{t('labels.kind')}<Form.Select aria-label={t('labels.kind')} value={kind} onChange={event => setKind(event.target.value as LabelCodeKind)}><option value="qr">QR</option>{BARCODE_KINDS.map(item => <option key={item.kind} value={item.kind}>{item.label}</option>)}</Form.Select></label>
     <label className="erp-flow-field__label mt-3">{t('labels.values')}<Form.Control aria-label={t('labels.values')} as="textarea" rows={6} maxLength={1000000} value={text} onChange={event => { setText(event.target.value); setPageIndex(0); }}/></label>
-    <label className="erp-flow-field__label mt-3">{t('labels.fileInput')}<Form.Control type="file" accept="text/csv,text/plain,.csv,.txt" onChange={event => void readFile((event.target as HTMLInputElement).files?.[0])}/></label>
+    <label className="erp-flow-field__label mt-3">{t('labels.fileInput')}<FileInput accept="text/csv,text/plain,.csv,.txt" onChange={event => void readFile((event.target as HTMLInputElement).files?.[0])}/></label>
     <Form.Check id="cn-label-csv" className="mt-2" label={t('labels.csv')} checked={csv} onChange={event => setCsv(event.target.checked)}/>
     <Form.Check id="cn-label-header" label={t('labels.skipHeader')} checked={skipHeader} onChange={event => setSkipHeader(event.target.checked)}/>
     {['ean13','ean8','itf14'].includes(kind)?<Gs1Notice/>:null}

@@ -35,7 +35,7 @@ export default function LoanPage() {
     downloadOutput({ name: `${t('loan.file.name')}.csv`, blob: new Blob(['\uFEFF', rows.map((row) => row.join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' }) })
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{mode === 'loan' ? t('loan.totalPayment') : t('loan.finalBalance')}</p>
     <p className="erp-tool-result__value">{schedule ? t('shared.amount', { amount: formatNumber(Math.round(schedule.totalPayment)) }) : savings ? t('shared.amount', { amount: formatNumber(Math.round(savings.total)) }) : '—'}</p>
     {schedule ? <>

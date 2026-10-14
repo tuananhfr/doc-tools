@@ -148,7 +148,7 @@ export default function HouseOrientationPage() {
 
   if (picking || !source) {
     return (
-      <ToolBoard>
+      <ToolBoard layout="compact">
         {head}
         <SourcePicker
           loading={files.loading}
@@ -177,7 +177,7 @@ export default function HouseOrientationPage() {
     return (
       <>
         <ToolLeaveGuard active={hasResult(state)} />
-        <ToolBoard
+        <ToolBoard layout="compact"
           sideLabel={t('page.sideAge')}
           side={
             <>
@@ -211,7 +211,7 @@ export default function HouseOrientationPage() {
   return (
     <>
       <ToolLeaveGuard active={hasResult(state) || state.trace.shapes.length > 0} />
-      <ToolBoard
+      <ToolBoard layout="compact"
         sideLabel={t('result.title')}
         side={
           <>

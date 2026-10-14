@@ -24,7 +24,7 @@ export default function CropImagePage() {
     <>
       {/* Khung cắt và mức chỉnh chỉ nằm trong RAM: rời màn là phải làm lại từ đầu. */}
       <ToolLeaveGuard active={ready && !isPristine(state, item)} />
-      <ImageToolShell
+      <ImageToolShell mobilePreview initialPanel="preview"
         images={images}
         run={run}
         multiple={false}

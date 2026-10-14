@@ -111,7 +111,7 @@ export default function PayrollPage() {
     },
   }
 
-  return <ToolBoard after={<AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('payroll.resultLabel')}</p>
     <p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : '—'}</p>
     {result ? <div className="table-responsive"><table className="table table-sm"><tbody>

@@ -135,7 +135,7 @@ async function inspect(bytes, points = []) {
 // ---------- Thao tác chung ----------
 
 const files = () => page.locator('.erp-flow-file')
-const runButton = () => page.locator('.erp-flow__run')
+const runButton = () => page.locator('.erp-flow__run:visible, .cn-flow-preview-run__button:visible').first()
 const result = () => page.locator('.erp-flow-result')
 const hint = async () => ((await page.locator('.erp-flow__hint').count()) ? page.locator('.erp-flow__hint').innerText() : null)
 const overflow = () => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
@@ -154,6 +154,10 @@ async function open(slug) {
 }
 
 const add = (list) => page.locator('.erp-flow-picker input[type=file]').setInputFiles(list)
+const panel = async (value) => {
+  const buttons = page.locator('.cn-flow-switch button');
+  if (mobile && await buttons.count()) await buttons.nth(value === 'input' ? 0 : 1).click();
+}
 
 async function run(timeout = 120000) {
   await runButton().click()
@@ -315,8 +319,10 @@ if (want('crop')) {
   await shot('crop-open')
 
   // Xoay phải: 400 × 200 -> 200 × 400; góc trên-trái phải là màu của góc dưới-trái cũ (xanh dương).
+  await panel('input')
   await page.getByRole('button', { name: 'Xoay phải' }).click()
   o.afterTurn = await outputSize()
+  await panel('preview')
   const turned = await run()
   const turnedFile = await download()
   const turnedPixels = await inspect(turnedFile.bytes, [
@@ -331,7 +337,9 @@ if (want('crop')) {
   await restart()
   await box.waitFor()
   o.keptAfterRestart = await outputSize()
+  await panel('input')
   await page.getByLabel('Tỉ lệ khung cắt').selectOption('1:1')
+  await panel('preview')
   o.square = await outputSize()
   // Kéo khung lên sát mép trên bằng chuột: phần giữ lại là nửa trên (xanh dương | đỏ).
   const rect = await box.boundingBox()
@@ -360,6 +368,7 @@ if (want('crop')) {
   await box.waitFor()
   await page.waitForTimeout(300)
   o.resetOnNewImage = { output: await outputSize(), disabled: await runButton().isDisabled() }
+  await panel('input')
   const brightness = page.getByLabel(/^Độ sáng/)
   await brightness.evaluate((element) => {
     Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(element, '149')
@@ -373,6 +382,7 @@ if (want('crop')) {
   const bright = await inspect((await download()).bytes, [[0.5, 0.5]])
   o.brightPixel = bright.pixels[0].slice(0, 3).join(',')
   await restart()
+  await panel('input')
   await page.getByRole('button', { name: 'Đặt lại như ảnh gốc' }).click()
   o.afterReset = { disabled: await runButton().isDisabled(), label: await page.locator('.erp-image-range__value').first().innerText() }
   o.overflow = await overflow()

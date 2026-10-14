@@ -1,3 +1,4 @@
+import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useMemo, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -141,7 +142,7 @@ export default function DynamicQrPage() {
     <ToolPanel title={t('dynamic.manager')}>
       <p>{t('dynamic.keyNotice')}</p>
       <Button variant="outline-secondary" disabled={busy} onClick={loadSaved}>{t('dynamic.loadSaved')}</Button>
-      <label className="erp-flow-field__label mt-3">{t('dynamic.import')}<Form.Control type="file" accept="application/json,.json" disabled={busy} onChange={event => void importReceipt((event.target as HTMLInputElement).files?.[0])}/></label>
+      <label className="erp-flow-field__label mt-3">{t('dynamic.import')}<FileInput accept="application/json,.json" disabled={busy} onChange={event => void importReceipt((event.target as HTMLInputElement).files?.[0])}/></label>
       {items.length ? <label className="erp-flow-field__label mt-3">{t('dynamic.select')}<Form.Select value={activeId ?? ''} disabled={busy} onChange={event => { setActiveId(event.target.value); setShowKey(false); }}>{items.map(item => <option key={item.id} value={item.id}>{item.destination_url}</option>)}</Form.Select></label> : null}
       {active ? <>
         <Form.Check id="cn-dynamic-save" className="mt-3" label={t('dynamic.saveDevice')} checked={saved} onChange={event => save(event.target.checked)}/>

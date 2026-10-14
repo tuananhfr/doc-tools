@@ -18,7 +18,7 @@ interface ToolSegmentsProps<T extends string> {
 /** Dải nút chọn một trong vài chế độ của công cụ; thẻ đang chọn nổi nền, không chỉ đổi màu chữ. */
 export function ToolSegments<T extends string>({ label, value, options, onChange, disabled }: ToolSegmentsProps<T>) {
   return (
-    <div className="erp-tool-tabs" role="group" aria-label={label}>
+    <div className="erp-tool-tabs cn-tool-modes" role="group" aria-label={label}>
       {options.map((option) => (
         <button
           key={option.value}

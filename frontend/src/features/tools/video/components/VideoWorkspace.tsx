@@ -1,8 +1,8 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
-import { downloadOutput, ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { downloadOutput, FilePicker, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { withBase } from '@/utils/url'
 import { useObjectUrl } from '../hooks/useObjectUrl'
 import { useVideoTask } from '../hooks/useVideoTask'
@@ -50,9 +50,9 @@ export function VideoWorkspace({ options, children, actionLabel, note }: { optio
       {task.busy ? <Button variant="outline-secondary" onClick={task.cancel}>{t('workspace.cancel')}</Button> : null}
     </div>
   </div>
-  return <ToolBoard side={<div className="erp-tool-result">
+  return <ToolBoard layout="balanced" className="cn-video-workspace" side={<div className="erp-tool-result">
     <p className="erp-tool-result__label">{t('workspace.result')}</p>
-    <p className={`erp-tool-result__value ${styles.name}`}>{output ? sizeLabel(output.blob.size) : t('workspace.noOutput')}</p>
+    <p className={`erp-tool-result__value${output ? '' : ' erp-tool-result__value--empty'} ${styles.name}`}>{output ? sizeLabel(output.blob.size) : t('workspace.noOutput')}</p>
     {actions(styles.sideActions)}
     {output ? <>
       <p className={`${styles.name} mt-3`}>{output.name}</p>
@@ -61,16 +61,17 @@ export function VideoWorkspace({ options, children, actionLabel, note }: { optio
       <Button className="mt-3" variant="outline-primary" onClick={() => downloadOutput({ name: output.name, blob: output.blob })}>{t('workspace.download')}</Button>
     </> : null}
   </div>}>
-    <ToolPanel title={t('workspace.panelTitle')}>
-      <label className="erp-flow-field__label">{t('workspace.chooseVideo')}<Form.Control disabled={task.busy} type="file" accept={VIDEO_ACCEPT} onChange={(event) => chooseFile((event.target as HTMLInputElement).files?.[0] ?? null)} /></label>
-      <p className={`${styles.note} mt-2`}>{t('workspace.limits')}</p>
+    <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
+    <ToolPanel title={t('workspace.settingsLegend')}>
+
       {supported === false ? <FlowAlert>{t('workspace.unsupported')}</FlowAlert> : null}
       {file ? <p className={`${styles.name} mt-3`}>{file.name} · {sizeLabel(file.size)}{duration !== null ? ` · ${t('workspace.seconds', { seconds: formatSeconds(duration) })}` : ''}</p> : null}
-      <fieldset disabled={task.busy} className={styles.settings}><legend className="visually-hidden">{t('workspace.settingsLegend')}</legend>{children}</fieldset>
-      {actions(styles.mainActions)}
       {file && inputUrl ? <>
         <video key={inputUrl} className={styles.preview} src={inputUrl} controls playsInline preload="metadata" aria-label={t('workspace.sourceVideo')} onLoadedMetadata={(event) => { const value = event.currentTarget.duration; setDuration(Number.isFinite(value) ? value : null) }} />
         <p className={styles.note}>{t('workspace.playbackHint')}</p></> : null}
+      <fieldset disabled={task.busy} className={styles.settings}><legend className="visually-hidden">{t('workspace.settingsLegend')}</legend>{children}</fieldset>
+      {actions(styles.mainActions)}
+
       <p className={`${styles.note} mt-3`}>{note}</p>
       <p className={styles.note}>{t('workspace.engineNote')}</p>
       <a className={styles.note} href={withBase('/vendor/ffmpeg/NOTICE.txt')} target="_blank" rel="noopener noreferrer">{t('workspace.license')}</a>

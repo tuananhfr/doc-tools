@@ -21,7 +21,7 @@ export function ReadPastePanel({ value, onChange, fontScale }: ReadPastePanelPro
   const counterId = useId()
   return <>
     <label className="erp-flow-field__label mt-3" htmlFor={textId}>{t('readAloud.content')}</label>
-    <Form.Control id={textId} as="textarea" rows={12} value={value} className={`erp-read-text--${fontScale}`} aria-describedby={counterId} onChange={(event) => onChange(event.target.value)} />
+    <Form.Control id={textId} as="textarea" rows={7} value={value} className={`erp-read-text--${fontScale}`} aria-describedby={counterId} onChange={(event) => onChange(event.target.value)} />
     <p id={counterId} className="erp-tool-result__note mt-1">{t('readAloud.counter', { used: formatCount(value.length), max: formatCount(READ_TEXT_MAX_CHARS) })}</p>
     {value.length > READ_TEXT_MAX_CHARS ? <ReadErrorNotice code="TOO_LARGE" tone="alert" /> : null}
   </>

@@ -20,7 +20,7 @@ export default function UnitPricePage() {
   const comparison = price1 !== null && quantity1 !== null && price2 !== null && quantity2 !== null ? compareUnitPrices({ price: price1, quantity: quantity1 }, { price: price2, quantity: quantity2 }) : null
   const setValue = (index: number, value: string) => setValues((current) => current.map((item, position) => position === index ? value : item))
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="compact" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('unitPrice.resultLabel')}</p>
     <p className="erp-tool-result__value">{comparison ? comparison.cheaper === null ? t('unitPrice.equal') : t('unitPrice.cheaper', { index: comparison.cheaper + 1 }) : '—'}</p>
     {comparison ? <>

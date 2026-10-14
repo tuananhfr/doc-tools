@@ -7,14 +7,14 @@ import FamilyCalendarPage from '@/features/tools/family/pages/FamilyCalendarPage
 export default function FamilyCalendarProductPage() {
   const { t } = useTranslation('site')
   usePageTitle(t('pages.lich-gia-dinh.title'))
-  return <div className="erp-tool-page cn-tool-workspace cn-family-product">
+  return <div className="erp-tool-page cn-tool-workspace cn-family-product" data-tool-screen="family-calendar" data-tool-slug="lich-gia-dinh">
     <nav className="erp-tool-crumb" aria-label={t('familyProduct.navigation')}>
       <Link className="erp-tool-crumb__back" to="/gia-dinh"><Icon name="arrow-left" />{t('familyProduct.back')}</Link>
     </nav>
-    <header className="cn-tool-intro">
+    <div className="cn-tool-heading"><header className="cn-tool-intro">
       <span className="cn-tool-intro__icon"><Icon name="calendar-heart" /></span>
       <div className="cn-tool-intro__text"><p className="cn-family-product-label">{t('familyProduct.label')}</p><h1 className="erp-tool-crumb__title">{t('familyProduct.title')}</h1><p className="cn-tool-description">{t('familyProduct.description')}</p></div>
-    </header>
+    </header></div>
     <FamilyCalendarPage />
   </div>
 }

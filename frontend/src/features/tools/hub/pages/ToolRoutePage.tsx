@@ -65,7 +65,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   const workspace = workspaceTabsFor(tool.id, catalog, base)
 
   return (
-    <div data-workspace-version={workspaceVersions?.[tool.id]} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
+    <div data-workspace-version={workspaceVersions?.[tool.id]} data-tool-screen={tool.screen} data-tool-slug={tool.slug} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
       <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
         <Link className="erp-tool-crumb__back" to={kind === 'public' ? backTo : base} state={backState}>
           <Icon name="arrow-left" />
@@ -79,25 +79,29 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
         ) : null}
       </nav>
 
-      <header className="cn-tool-intro">
-        <span className="cn-tool-intro__icon"><Icon name={tool.icon} /></span>
-        <div className="cn-tool-intro__text">
-          <h1 className="erp-tool-crumb__title">{tool.name}</h1>
-          <p className="cn-tool-description">{tool.description}</p>
-          <p className="cn-tool-privacy">
-            <Icon name="shield-check" />
-            {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
-          </p>
-          <ToolCapability device={tool.device} />
+      <div className="cn-tool-heading">
+        <header className="cn-tool-intro">
+          <span className="cn-tool-intro__icon"><Icon name={tool.icon} /></span>
+          <div className="cn-tool-intro__text">
+            <h1 className="erp-tool-crumb__title">{tool.name}</h1>
+            <p className="cn-tool-description">{tool.description}</p>
+            <div className="cn-tool-meta">
+              <p className="cn-tool-privacy">
+                <Icon name="shield-check" />
+                {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
+              </p>
+              <ToolCapability device={tool.device} />
+            </div>
+          </div>
+          {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
+        </header>
+        <div className="cn-tool-heading__action">
+          {workspace ? <WorkspaceTabs label={tCatalog(`workspaceTabs.${workspace.groupId}`)} tabs={workspace.tabs} /> : null}
+          {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
         </div>
-        {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
-      </header>
+      </div>
 
-      {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
-
-      {/* Ô này luôn có mặt (kể cả null) để `Screen` đứng cùng vị trí với mọi công cụ: đổi giữa hai slug
-          chung một màn vẫn không dựng lại màn. */}
-      {workspace ? <WorkspaceTabs label={tCatalog(`workspaceTabs.${workspace.groupId}`)} tabs={workspace.tabs} /> : null}
+      {/* A fixed screen slot preserves the session when two routes share a component. */}
 
       {unsupported ? <ToolUnsupported toolName={tool.name} hubPath={base} /> : <Screen />}
     </div>

@@ -1,27 +1,29 @@
 /* Lịch Gia Đình: phần riêng (sao lưu, lịch của gia đình, form). Lưới và ngày lễ ở workspace-calendar.css. */
-.cn-family-storage { margin: 0 0 14px; padding: 10px 14px; font-size: 13px; line-height: 1.6; color: var(--cn-muted); background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); }
+.cn-family-storage { margin: 0 0 14px; padding: 10px 14px; font-size: 14px; line-height: 1.6; color: var(--cn-muted); background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); }
 .cn-family-storage strong { color: var(--cn-ink); }
 .cn-family-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-bottom: 12px; }
-.cn-family-segment { display: flex; flex-wrap: wrap; gap: 6px; }
-.cn-family-viewer { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; color: var(--cn-muted); white-space: nowrap; }
+.cn-family-segment { display: flex; flex-wrap: wrap; gap: 6px; max-width: 100%; }
+.cn-family-segment .btn { flex: 1 1 auto; white-space: normal; }
+.cn-family-viewer { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; color: var(--cn-muted); white-space: nowrap; }
 .cn-family-viewer .form-select { width: auto; min-width: 120px; }
 
-.cn-family-panel__empty { margin: 4px 0 0; font-size: 13px; color: var(--cn-muted); }
+.cn-family-panel__empty { margin: 4px 0 0; font-size: 14px; color: var(--cn-muted); }
 .cn-family-panel__add { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; margin-top: 14px; }
 .cn-family-event { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1px solid var(--cn-line); }
 .cn-family-event__body { min-width: 0; }
 .cn-family-event__body strong { display: block; font-size: 14px; color: var(--cn-ink); overflow-wrap: anywhere; }
 .cn-family-event__time { margin-right: 6px; color: var(--cn-accent); }
-.cn-family-event__body small { display: block; margin-top: 2px; font-size: 12px; color: var(--cn-muted); }
-.cn-family-event__body p { margin: 6px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+.cn-family-event__body small { display: block; margin-top: 2px; font-size: 14px; color: var(--cn-muted); }
+.cn-family-event__body p { margin: 6px 0 0; font-size: 14px; overflow-wrap: anywhere; }
 .cn-family-event.is-done strong { color: var(--cn-muted); text-decoration: line-through; }
 .cn-family-event__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 2px; }
-.cn-family-event__actions .btn-link { padding: 4px 6px; font-size: 13px; }
+.cn-family-event__actions .btn-link { padding: 4px 6px; font-size: 14px; }
 .cn-family-event__delete.btn-link { color: var(--cal-major); }
-.cn-family-form__hint { margin: -4px 0 14px; padding: 8px 12px; font-size: 13px; color: var(--cn-ink); background: color-mix(in srgb, var(--cal-lunar) 10%, var(--cn-surface)); border-radius: var(--cn-radius-button); }
+.cn-family-form__hint { margin: -4px 0 14px; padding: 8px 12px; font-size: 14px; color: var(--cn-ink); background: color-mix(in srgb, var(--cal-lunar) 10%, var(--cn-surface)); border-radius: var(--cn-radius-button); }
 .cn-cal-side .cn-family-form .erp-tool-form__grid { grid-template-columns: minmax(0, 1fr); }
 
 .cn-family-events { margin: 0; padding: 0; list-style: none; }
+.cn-family :is(.cn-cal-side .cn-cal-panel, .cn-family-agenda) { scroll-margin-block-start: 12px; }
 
 .cn-family-agenda .cn-family-segment { margin-bottom: 4px; }
 .cn-family-agenda__day h3 { margin: 18px 0 8px; font-size: 15px; font-weight: 700; color: var(--cn-ink); }

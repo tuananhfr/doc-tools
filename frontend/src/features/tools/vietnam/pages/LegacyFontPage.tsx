@@ -25,7 +25,7 @@ export default function LegacyFontPage() {
     upper: () => input.toUpperCase(),
   })[conversion]()
 
-  return <ToolBoard side={<div className="erp-tool-result">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result">
     <p className="erp-tool-result__label">{t('legacyFont.resultLabel')}</p>
     {alreadyUnicode ? <p className="erp-flow-note erp-flow-note--warning mb-0" role="alert"><Icon name="exclamation-triangle" /><span>{t('legacyFont.alreadyUnicode')}</span></p> : null}
     <p className="erp-qr-payload" aria-live="polite">{output || '—'}</p>

@@ -89,7 +89,7 @@ export default function DictationPage() {
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  return <ToolBoard side={<div className="erp-tool-result" aria-live="polite">
+  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
     <p className="erp-tool-result__label">{t('dictation.status')}</p>
     <p className="erp-tool-result__value">{listening ? t('dictation.listening') : supported ? t('shared.ready') : t('dictation.unsupported')}</p>
     <p className="erp-tool-result__note">{t('dictation.privacy')}</p>
