@@ -19,11 +19,14 @@ export function useEmbedBridge(): void {
     const onMessage = (event: MessageEvent) => {
       const message = acceptHostEvent(event, host, window.parent)
       if (!message) return
-      if (message.type === 'init') {
-        useAppStore.getState().setTheme(message.payload.theme)
-        setEmbedState({ capabilities: message.payload.capabilities })
-      } else {
-        useAppStore.getState().setTheme(message.payload.mode)
+      switch (message.type) {
+        case 'init':
+          useAppStore.getState().setTheme(message.payload.theme)
+          setEmbedState({ capabilities: message.payload.capabilities })
+          break
+        case 'theme':
+          useAppStore.getState().setTheme(message.payload.mode)
+          break
       }
     }
     window.addEventListener('message', onMessage)
