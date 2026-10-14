@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { Skeleton } from '@/components/ui/Skeleton'
+import { useEmbed } from '@/features/embed'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
 import { AI_SETTINGS_PATH } from '../config/ai-routes'
 import { useAiSetup } from '../hooks/useAiSetup'
@@ -12,6 +13,7 @@ import type { RuleSnapshot } from '../types/ai.types'
 import { sourceCheckMessage } from '../utils/source-check'
 import { AgentChat, type ChatStarter } from './AgentChat'
 import { DraftReview } from './DraftReview'
+import { HostSourceCheck } from './HostSourceCheck'
 import { ProInvite } from './ProInvite'
 
 interface AiSourceCheckPanelProps {
@@ -52,7 +54,9 @@ function Notice({ icon, title, text, action }: { icon: string; title: string; te
  */
 export function AiSourceCheckPanel({ member, loginTo, toolId, domain, kinds, snapshot, currentResult }: AiSourceCheckPanelProps) {
   const { t } = useTranslation('ai')
-  const allowed = Boolean(member?.signedIn && member.pro)
+  const viaHost = useEmbed().capabilities.includes('ai')
+  // Embedded in ERPCons: the host's AI checks instead; no Pro gate, no /ai calls of ours.
+  const allowed = !viaHost && Boolean(member?.signedIn && member.pro)
   const setup = useAiSetup(allowed)
   const ready = setup.data?.provider?.status === 'ready' && setup.data.agent?.status === 'active'
   const drafts = useContributionDrafts(toolId, allowed && Boolean(setup.data?.available))
@@ -61,6 +65,8 @@ export function AiSourceCheckPanel({ member, loginTo, toolId, domain, kinds, sna
   const [includeResult, setIncludeResult] = useState(false)
   const [starter, setStarter] = useState<ChatStarter | null>(null)
   const hasResult = currentResult.trim() !== ''
+
+  if (viaHost) return <HostSourceCheck domain={domain} snapshot={snapshot} currentResult={currentResult} />
 
   if (!member) return <div className="cn-ai cn-ai-check"><Skeleton rows={2} title={false} /></div>
   if (!allowed) {
