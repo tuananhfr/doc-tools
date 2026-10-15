@@ -1,7 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { CalendarSources } from '@/features/tools/entertainment/components/CalendarSources'
 import { HolidayLayerToggles } from '../components/HolidayLayerToggles'
 import { LunarDayDetails } from '../components/LunarDayDetails'
@@ -17,6 +18,7 @@ const MAX_DATE = '2199-12-31'
 
 export default function LunarCalendarPage() {
   const { t } = useTranslation('vietnam')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.lunar' })
   const [today] = useState(todayInVietnam)
   const { layers, toggle } = useHolidayLayers()
   const [selected, setSelected] = useState(today)
@@ -46,11 +48,12 @@ export default function LunarCalendarPage() {
   // Lật tháng không đổi ngày đang chọn, nên ngày đó có thể đã nằm ngoài lưới đang vẽ.
   const dayHolidays = (holidaysByDate.get(selected) ?? holidaysInRange(selected, selected).filter((holiday) => layers.includes(holiday.layer))).filter((holiday) => holiday.layer !== 'moon')
 
-  return <ToolBoard>
+  return <ToolBoard className="cn-lunar-workspace">
     <div className="cn-cal cn-lunar">
       <div className="cn-lunar__toolbar" ref={calendarRef}>
-        <HolidayLayerToggles layers={layers} onToggle={toggle} />
+        <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="calendar3" /></span><div><h2>{studio('calendarTitle')}</h2><p>{studio('calendarHint')}</p></div></div>
         <label className="cn-lunar__jump">{t('lunar.jumpTo')}<Form.Control type="date" size="sm" min={MIN_DATE} max={MAX_DATE} value={selected} onChange={(event) => { if (event.target.value) selectDate(event.target.value) }} /></label>
+        <HolidayLayerToggles layers={layers} onToggle={toggle} />
       </div>
       <div className="cn-cal-layout">
         <MonthCalendar year={cursor.year} month={cursor.month} today={today} selected={selected} holidays={holidaysByDate}
@@ -60,7 +63,7 @@ export default function LunarCalendarPage() {
         <div className="cn-cal-side"><LunarDayDetails date={selected} today={today} holidays={dayHolidays} /></div>
       </div>
       <div className="cn-lunar__tools">
-        <ToolPanel title={t('lunar.convertTitle')}>
+        <ToolPanel title={t('lunar.convertTitle')} actions={<span className="cn-studio-small-icon"><Icon name="arrow-left-right" /></span>}>
           <div className="erp-tool-form__grid">{(['day', 'month', 'year'] as const).map((key) => <label className="erp-flow-field__label" key={key}>{t(`lunar.fields.${key}`)}<Form.Control type="number" min={key === 'year' ? 1800 : 1} max={key === 'day' ? 30 : key === 'month' ? 12 : 2199} step="1" value={lunarInput[key]} onChange={(event) => setLunarInput((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
           <Form.Check className="mt-3" id="lunar-leap" label={t('lunar.leapMonth')} checked={lunarInput.leap} onChange={(event) => setLunarInput((current) => ({ ...current, leap: event.target.checked }))} />
           <div className="cn-lunar__result" aria-live="polite">
@@ -68,7 +71,7 @@ export default function LunarCalendarPage() {
               : <span>{t(lunarInput.leap ? 'lunar.noSuchDayLeap' : 'lunar.noSuchDay')}</span>}
           </div>
         </ToolPanel>
-        <ToolPanel title={t('lunar.anniversaryTitle')}>
+        <ToolPanel title={t('lunar.anniversaryTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calendar-heart" /></span>}>
           <div className="erp-tool-form__grid">{(['day', 'month'] as const).map((key) => <label className="erp-flow-field__label" key={key}>{t(`lunar.anniversaryFields.${key}`)}<Form.Control type="number" min="1" max={key === 'day' ? 30 : 12} step="1" value={anniversary[key]} onChange={(event) => setAnniversary((current) => ({ ...current, [key]: event.target.value }))} /></label>)}</div>
           <Form.Check className="mt-3" id="anniversary-leap" label={t('lunar.leapMonth')} checked={anniversary.leap} onChange={(event) => setAnniversary((current) => ({ ...current, leap: event.target.checked }))} />
           <ul className="cn-lunar__years" aria-live="polite">{anniversaries.map(({ year, solar }) => <li key={year}>
@@ -77,6 +80,7 @@ export default function LunarCalendarPage() {
           </li>)}</ul>
         </ToolPanel>
       </div>
+      <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepBrowse'), studio('stepDay'), studio('stepConvert')]} tip={studio('tip')} /></div>
       <CalendarSources date={selected} />
     </div>
   </ToolBoard>

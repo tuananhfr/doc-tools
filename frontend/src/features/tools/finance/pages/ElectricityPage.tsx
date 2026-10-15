@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Form } from 'react-bootstrap'
-import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
+import { Button } from 'react-bootstrap'
+import { NumberField, readNumber, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { formatRuleDate, ruleSnapshot, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
@@ -29,6 +30,7 @@ const WATER_RULES: Record<'cubicMeters' | 'price' | 'fee' | 'vat', NumberRule> =
 
 export default function ElectricityPage() {
   const { t } = useTranslation('finance')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.electricity' })
   const me = useMe()
   const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [mode, setMode] = useState<'electricity' | 'water'>('electricity')
@@ -85,30 +87,31 @@ export default function ElectricityPage() {
       return true
     },
   }
-  return <ToolBoard layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{t('electricity.resultLabel')}</p>
-    <p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p>
+  return <ToolBoard className="cn-electricity-workspace" layout="balanced" after={<><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div><AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} /></>} side={<div className="erp-tool-result cn-electricity-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={mode === 'water' ? 'droplet' : 'lightning-charge'} /></span><div><h2>{t('electricity.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
+    <div className="cn-electricity-total"><p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p></div>
     {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: money(waterResult.subtotal), fee: money(waterResult.fee), vat: money(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{waterHint}</p> : <>
     {result ? <><p className="erp-tool-result__note">{t('electricity.electricityBreakdown', { subtotal: money(result.subtotal), percent: formatNumber(vatValue ?? 0), vat: money(result.vat) })}</p>
       <div className={styles.breakdown}><table className="table table-sm"><thead><tr><th>{t('electricity.table.upTo')}</th><th>{t('electricity.table.units')}</th><th>{t('electricity.table.price')}</th><th>{t('electricity.table.amount')}</th></tr></thead><tbody>{result.rows.map((row, index) => <tr key={index}><td>{row.upTo ?? t('electricity.table.rest')}</td><td>{formatNumber(row.units)}</td><td>{formatNumber(row.price)}</td><td>{money(row.amount)}</td></tr>)}</tbody></table></div></> : <p className="erp-tool-result__note">{electricityHint}</p>}
     <p className="erp-tool-result__note">{usingVerified && verified ? t('electricity.tariffVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('electricity.tariffManual')} {appliedVat ? t('electricity.vatVerified', { percent: formatNumber(appliedVat.percent), date: formatRuleDate(appliedVat.from.effectiveFrom), source: appliedVat.from.source.title }) : t('electricity.vatManual')} {t('electricity.notIncluded')}</p>
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}</>}
   </div>}>
-    <ToolPanel title={t('electricity.panelTitle')}>
-      <label className="erp-flow-field__label">{t('electricity.billType')}<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="electricity">{t('electricity.modes.electricity')}</option><option value="water">{t('electricity.modes.water')}</option></Form.Select></label>
+    <ToolPanel title={t('electricity.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
+      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+      <ToolSegments label={t('electricity.billType')} value={mode} options={[{ value: 'electricity', label: t('electricity.modes.electricity'), icon: 'lightning-charge' }, { value: 'water', label: t('electricity.modes.water'), icon: 'droplet' }]} onChange={setMode} />
       {mode === 'water' ? <div className="erp-tool-form__grid mt-3">{([
         ['cubicMeters', t('electricity.water.cubicMeters')], ['price', t('electricity.water.price')], ['fee', t('electricity.water.fee')], ['vat', t('shared.vatPercent')],
       ] as [keyof typeof water, string][]).map(([key, label]) => <NumberField key={key} label={label} rule={WATER_RULES[key]} value={water[key]} onChange={(value) => setWater((current) => ({ ...current, [key]: value }))} />)}</div> : <>
       <NumberField label={t('electricity.kwh')} rule={KWH} unit="kWh" value={kwh} onChange={setKwh} />
       <NumberField className="mt-3" label={t('electricity.households')} rule={HOUSEHOLDS} value={households} onChange={setHouseholds} />
-      <StructuredTextRows label={t('electricity.tiers')} columns={[t('electricity.table.upTo'), t('electricity.table.price')]} separator=";" decode={editableRuleLines} value={lines} onChange={updateLines} />
+      <fieldset className="cn-electricity-tariff"><legend><Icon name="list-ol" />{studio('tariffTitle')}</legend><StructuredTextRows label={t('electricity.tiers')} columns={[t('electricity.table.upTo'), t('electricity.table.price')]} separator=";" decode={editableRuleLines} value={lines} onChange={updateLines} />
       <NumberField className="mt-3" label={t('shared.vatPercent')} rule={PERCENT} unit="%" value={vat} onChange={(value) => { setVat(value); setAppliedVat(null) }} />
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('electricity.applyTariff')}</Button>
         : signedVat ? <Button className="mt-3" variant="outline-secondary" onClick={applyVat}>{t('electricity.applyVat')}</Button> : null}
       <RuleStatus rules={electricityRules} label={t('electricity.ruleLabel')} noneText={t('electricity.ruleNone')} />
       <SourceFreshness rules={electricityRules} />
       {vatRules.state === 'ready' || vatRules.state === 'none' || vatRules.state === 'invalid' ? <RuleStatus rules={vatRules} label={t('electricity.vatRuleLabel')} /> : null}
-      </>}
+      </fieldset></>}
     </ToolPanel>
     <SaveResultBar member={member} toolId="tien-dien" adapter={saveAdapter} />
   </ToolBoard>

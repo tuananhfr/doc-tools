@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 
 interface Props {
+  showPicker?: boolean
   busy: boolean
   ready: boolean
   background: string
@@ -22,7 +23,7 @@ interface Props {
 export function BackgroundRemovalControls(props: Props) {
   const { t } = useTranslation('image')
   return <>
-    <label className="erp-flow-field__label">{t('removeBg.choose')}<FileInput accept="image/jpeg,image/png,image/webp" onClick={event => { event.currentTarget.value = '' }} onChange={event => { const file = (event.target as HTMLInputElement).files?.[0]; if (file) void props.open(file) }} /></label>
+    {props.showPicker !== false ? <label className="erp-flow-field__label">{t('removeBg.choose')}<FileInput accept="image/jpeg,image/png,image/webp" onClick={event => { event.currentTarget.value = '' }} onChange={event => { const file = (event.target as HTMLInputElement).files?.[0]; if (file) void props.open(file) }} /></label> : null}
     {props.busy ? <Button variant="outline-secondary" className="mt-3" onClick={props.cancel}>{t('removeBg.cancel')}</Button> : null}
     {props.canRetry ? <Button variant="outline-secondary" className="mt-3" onClick={props.retry}>{t('removeBg.retry')}</Button> : null}
     {props.ready ? <>

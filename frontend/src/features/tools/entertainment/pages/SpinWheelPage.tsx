@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { useSpinWheel } from '../hooks/useSpinWheel'
 import { SpinWheel } from '../components/SpinWheel'
 import { WheelOptionsEditor } from '../components/WheelOptionsEditor'
@@ -10,17 +11,21 @@ import { WinConfetti } from '../components/WinConfetti'
 
 export default function SpinWheelPage() {
   const { t } = useTranslation('entertainment')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.wheel' })
   const wheel = useSpinWheel(t('wheel.sample'))
 
-  return <ToolBoard layout="compact" sideLabel={t('wheel.optionsTitle')} side={<div className="cn-wheel-side">
+  return <ToolBoard className="cn-wheel-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>} sideLabel={t('wheel.optionsTitle')} side={<div className="cn-wheel-side">
     <WheelOptionsEditor text={wheel.text} parsed={wheel.parsed} disabled={wheel.spinning} onChange={wheel.setText} />
     <WheelSettings wheel={wheel} />
     <WheelSavedLists options={wheel.parsed.options} disabled={wheel.spinning} onLoad={(list) => wheel.replaceText(list.options.join('\n'))} />
   </div>}>
-    <ToolPanel title={t('wheel.title')} className="cn-wheel-stage">
+    <ToolPanel title={t('wheel.title')} className="cn-wheel-stage" actions={<span className="cn-studio-small-icon"><Icon name="bullseye" /></span>}>
+      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+      <div className="cn-wheel-canvas">
       <SpinWheel options={wheel.wheelOptions} rotation={wheel.rotation} durationMs={wheel.durationMs}
         spinning={wheel.spinning} soundOn={wheel.soundOn} winnerIndex={wheel.winnerIndex} onSpinEnd={wheel.finishSpin} />
       <WinConfetti burst={wheel.history.length} />
+      </div>
       <div className="cn-wheel-result" aria-live="polite">
         {wheel.spinning
           ? <p className="cn-wheel-result__hint">{t('wheel.spinning')}</p>
@@ -29,6 +34,7 @@ export default function SpinWheelPage() {
             : <p className="cn-wheel-result__hint">{t('wheel.resultHint')}</p>}
       </div>
       <Button size="lg" className="cn-wheel-spin" disabled={!wheel.canSpin} onClick={wheel.spin}>
+        <Icon name="arrow-repeat" className="me-2" />
         {t(wheel.winner ? 'wheel.spinAgain' : 'wheel.spin')}
       </Button>
     </ToolPanel>

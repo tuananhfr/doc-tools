@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
-import { parseDecimal, useFlowRun } from '@/features/tools/hub'
+import { parseDecimal, useFlowRun, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { batchImagesTask } from '../services/batch-tasks'
@@ -28,6 +29,7 @@ const FIRST_VALUE: Record<ResizeMode, string> = { keep: '', edge: '1920', width:
 /** ẢNH HÀNG LOẠT — đổi cỡ, đổi định dạng và đổi tên cả lô trong một lượt. */
 export default function BatchImagePage() {
   const { t } = useTranslation('image')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.batchImage' })
   const ids = useId()
   const images = useImageFiles({ multiple: true })
   const run = useFlowRun()
@@ -67,11 +69,12 @@ export default function BatchImagePage() {
       : []
 
   return (
-    <ImageToolShell
+    <div className="cn-imageflow-studio cn-batchimage-workspace"><ImageToolShell
       images={images}
       run={run}
       multiple
       pickerTitle={t('batch.pickerTitle')}
+      sideIntro={<div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="images" /></span><div><h2>{studio('settingsTitle')}</h2><p>{studio('inputHint')}</p></div></div>}
       runLabel={count > 1 ? t('batch.runMany', { count }) : t('batch.runOne')}
       runIcon="collection"
       blocked={blocked}
@@ -175,6 +178,6 @@ export default function BatchImagePage() {
           ) : null}
         </>
       }
-    />
+    /><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div></div>
   )
 }

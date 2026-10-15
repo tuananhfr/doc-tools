@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
-import { downloadOutput, FilePicker, ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { downloadOutput, FilePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
 import { withBase } from '@/utils/url'
 import { useObjectUrl } from '../hooks/useObjectUrl'
 import { useVideoTask } from '../hooks/useVideoTask'
@@ -18,6 +18,8 @@ const FlowAlert = ({ children }: { children: ReactNode }) => <p className="erp-f
 
 export function VideoWorkspace({ options, children, actionLabel, note }: { options: VideoOptions; children: ReactNode; actionLabel: string; note: string }) {
   const { t } = useTranslation('video')
+  const { t: studioCopy } = useTranslation('common', { keyPrefix: options.action === 'audio' ? 'studio.extractAudio' : options.action === 'gif' ? 'studio.gif' : options.action === 'trim' ? 'studio.trimVideo' : 'studio.compressVideo' })
+  const studio = options.action === 'compress' || options.action === 'trim' || options.action === 'gif' || options.action === 'audio'
   const [file, setFile] = useState<File | null>(null)
   const [fileError, setFileError] = useState('')
   const [supported, setSupported] = useState<boolean | null>(null)
@@ -46,29 +48,32 @@ export function VideoWorkspace({ options, children, actionLabel, note }: { optio
     {failure ? <FlowAlert>{failure}</FlowAlert> : null}
     {progress ? <><progress className={styles.progress} aria-label={t('workspace.progressLabel')} max={100} value={progress.percent ?? undefined} /><p className={styles.note}>{progress.percent === null ? t(`workspace.phase.${progress.phase}`) : t('workspace.progressEstimate', { percent: progress.percent })}</p></> : null}
     <div className={styles.actions}>
-      <Button disabled={!file || task.busy || supported === false} onClick={() => { if (file) void task.run(file, options) }}>{task.busy ? t('workspace.processing') : actionLabel}</Button>
+      <Button disabled={!file || task.busy || supported === false} onClick={() => { if (file) void task.run(file, options) }}>{studio ? <Icon name={task.busy ? 'hourglass-split' : options.action === 'gif' ? 'images' : options.action === 'trim' ? 'scissors' : options.action === 'audio' ? 'music-note-beamed' : 'arrows-collapse'} className="me-2" /> : null}{task.busy ? t('workspace.processing') : actionLabel}</Button>
       {task.busy ? <Button variant="outline-secondary" onClick={task.cancel}>{t('workspace.cancel')}</Button> : null}
     </div>
   </div>
-  return <ToolBoard layout="balanced" className="cn-video-workspace" side={<div className="erp-tool-result">
-    <p className="erp-tool-result__label">{t('workspace.result')}</p>
+  const picker = <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
+  return <ToolBoard layout="balanced" className={`cn-video-workspace${studio ? ' cn-video-studio' : ''}`} after={studio ? <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studioCopy('stepChoose'), studioCopy('stepSet'), studioCopy('stepSave')]} tip={studioCopy('tip')} /></div> : undefined} side={<div className="erp-tool-result">
+    {studio ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={options.action === 'audio' ? 'headphones' : options.action === 'gif' ? 'file-earmark-image' : 'file-earmark-play'} /></span><div><h2>{t('workspace.result')}</h2><p>{studioCopy('resultHint')}</p></div></div> : <p className="erp-tool-result__label">{t('workspace.result')}</p>}
+    {studio && !output ? <div className="cn-video-empty" aria-hidden="true"><Icon name={options.action === 'audio' ? 'soundwave' : options.action === 'gif' ? 'images' : 'play-circle'} /><span /><span /></div> : null}
     <p className={`erp-tool-result__value${output ? '' : ' erp-tool-result__value--empty'} ${styles.name}`}>{output ? sizeLabel(output.blob.size) : t('workspace.noOutput')}</p>
     {actions(styles.sideActions)}
     {output ? <>
       <p className={`${styles.name} mt-3`}>{output.name}</p>
       {options.action === 'compress' ? <p className={styles.note}>{saving > 0 ? t('workspace.smaller', { percent: saving }) : t('workspace.notSmaller')}</p> : null}
       {!outputUrl ? null : output.blob.type.startsWith('video/') ? <video className={styles.preview} src={outputUrl} controls playsInline preload="metadata" aria-label={t('workspace.outputVideo')} /> : output.blob.type.startsWith('audio/') ? <audio className={styles.audio} src={outputUrl} controls preload="metadata" aria-label={t('workspace.outputAudio')} /> : <img className={styles.preview} src={outputUrl} alt={t('workspace.outputGif')} />}
-      <Button className="mt-3" variant="outline-primary" onClick={() => downloadOutput({ name: output.name, blob: output.blob })}>{t('workspace.download')}</Button>
+      <Button className={`mt-3${studio ? ' cn-video-download' : ''}`} variant={studio ? 'primary' : 'outline-primary'} onClick={() => downloadOutput({ name: output.name, blob: output.blob })}>{studio ? <Icon name="download" className="me-2" /> : null}{t('workspace.download')}</Button>
     </> : null}
   </div>}>
-    <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
-    <ToolPanel title={t('workspace.settingsLegend')}>
+    {studio ? <ToolPanel title={studioCopy('inputTitle')} actions={<span className="cn-studio-small-icon"><Icon name="film" /></span>}>{picker}</ToolPanel> : picker}
+    <ToolPanel title={t('workspace.settingsLegend')} actions={studio ? <span className="cn-studio-small-icon"><Icon name="sliders2" /></span> : undefined}>
 
       {supported === false ? <FlowAlert>{t('workspace.unsupported')}</FlowAlert> : null}
       {file ? <p className={`${styles.name} mt-3`}>{file.name} · {sizeLabel(file.size)}{duration !== null ? ` · ${t('workspace.seconds', { seconds: formatSeconds(duration) })}` : ''}</p> : null}
       {file && inputUrl ? <>
         <video key={inputUrl} className={styles.preview} src={inputUrl} controls playsInline preload="metadata" aria-label={t('workspace.sourceVideo')} onLoadedMetadata={(event) => { const value = event.currentTarget.duration; setDuration(Number.isFinite(value) ? value : null) }} />
         <p className={styles.note}>{t('workspace.playbackHint')}</p></> : null}
+      {options.action === 'trim' || options.action === 'gif' ? <p className="cn-studio-form-hint cn-video-trim-hint"><Icon name={options.action === 'gif' ? 'images' : 'scissors'} />{studioCopy('rangeHint')}</p> : null}
       <fieldset disabled={task.busy} className={styles.settings}><legend className="visually-hidden">{t('workspace.settingsLegend')}</legend>{children}</fieldset>
       {actions(styles.mainActions)}
 

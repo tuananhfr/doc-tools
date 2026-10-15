@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
+import { FlowChoice, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { splitTask } from '../../services/quick-tasks'
@@ -14,6 +15,7 @@ const MODES: readonly SplitMode[] = ['ranges', 'every']
 /** TÁCH PDF — một tệp PDF, tách theo khoảng trang hoặc mỗi N trang. */
 export default function SplitPdfPage() {
   const { t } = useTranslation('pdf')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.split' })
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: false })
   const modes: FlowChoiceOption<SplitMode>[] = MODES.map((value) => ({ value, label: t(`split.mode.${value}`), hint: t(`split.mode.${value}Hint`) }))
@@ -27,6 +29,7 @@ export default function SplitPdfPage() {
   const parts = plan?.ok ? plan.groups.length : 0
 
   return (
+    <div className="cn-pdf-quick-workspace cn-split-workspace">
     <QuickToolShell
       quick={quick}
       accept={ACCEPT}
@@ -36,6 +39,7 @@ export default function SplitPdfPage() {
       runIcon="scissors"
       blocked={plan && !plan.ok ? plan.message : null}
       task={() => splitTask(item, plan?.ok ? plan.groups : [])}
+      sideIntro={<div className="cn-merge-summary cn-split-summary"><span className="cn-studio-small-icon"><Icon name="scissors" /></span><h2>{studio('summaryTitle')}</h2><p>{studio('summaryHint')}</p><dl><div><dt>{studio('pages')}</dt><dd>{pageCount}</dd></div><div><dt>{studio('parts')}</dt><dd>{parts}</dd></div></dl></div>}
       options={
         <>
           <FlowChoice legend={t('split.modeLegend')} value={mode} options={modes} onChange={setMode} />
@@ -77,5 +81,7 @@ export default function SplitPdfPage() {
         </>
       }
     />
+    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepRange'), studio('stepSave')]} tip={studio('tip')} /></div>
+    </div>
   )
 }

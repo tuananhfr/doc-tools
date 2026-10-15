@@ -1,7 +1,8 @@
 import { useEffect, useId, useState } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, parseDecimal, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
+import { FlowChoice, parseDecimal, useFlowRun, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { CropStage } from '../components/CropStage'
 import { CameraCapture } from '../components/CameraCapture'
 import MixedPhotoPage from './MixedPhotoPage'
@@ -26,6 +27,7 @@ const OUTPUT_IDS: PhotoOutput[] = ['pdf', 'sheet', 'single']
 /** ẢNH THẺ & IN ẢNH — cắt một ảnh về đúng cỡ ảnh thẻ rồi xếp nhiều bản lên một tờ giấy in. */
 export default function IdPhotoPage() {
   const { t } = useTranslation('image')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.idPhoto' })
   const outputs: FlowChoiceOption<PhotoOutput>[] = OUTPUT_IDS.map((value) => ({ value, label: t(`idPhoto.output.${value}.label`), hint: t(`idPhoto.output.${value}.hint`) }))
   const ids = useId()
   const images = useImageFiles({ multiple: false })
@@ -79,22 +81,22 @@ export default function IdPhotoPage() {
 
   return (
     <>
-    <div className="cn-mixed-photo-toolbar"><Button variant="outline-secondary" onClick={() => setMixed(true)}>{t('mixedPhoto.open')}</Button></div>
+    <div className="cn-mixed-photo-toolbar cn-idphoto-toolbar" hidden={mixed}><Button variant="outline-secondary" onClick={() => setMixed(true)}><Icon name="grid-3x3-gap" className="me-2" />{t('mixedPhoto.open')}<Icon name="arrow-right" className="ms-2" /></Button></div>
     <MixedPhotoPage visible={mixed} initialFiles={images.items.map(image => image.file)} onBack={() => setMixed(false)} />
-    <div hidden={mixed}>
+    <div className="cn-idphoto-workspace" hidden={mixed}>
     <ImageToolShell
       mobilePreview
       images={images}
       run={run}
       multiple={false}
-      pickerExtra={<Button variant="outline-secondary" onClick={() => setCamera(true)}>{t('mixedPhoto.camera')}</Button>}
+      pickerExtra={<Button variant="outline-secondary" onClick={() => setCamera(true)}><Icon name="camera" className="me-2" />{t('mixedPhoto.camera')}</Button>}
       pickerTitle={t('idPhoto.pickerTitle')}
       stage={
         ready && crop.rect ? (
           <div><CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={run.state.phase === 'running'} onRectChange={crop.setRect} />{portrait.previews[item.id] ? <figure className="cn-portrait-preview"><img src={portrait.previews[item.id]} alt={t('portrait.preview')} /><figcaption>{t('portrait.preview')}</figcaption></figure> : null}</div>
         ) : undefined
       }
-      runLabel={output === 'single' ? t('idPhoto.runSingle') : t('idPhoto.runSheet', { count: layout.cells.length })}
+      runLabel={!ready ? studio('runEmpty') : output === 'single' ? t('idPhoto.runSingle') : t('idPhoto.runSheet', { count: layout.cells.length })}
       runIcon="person-badge"
       resultActions={(result) => output === 'single' ? <HandoffButton target="cv" label={t('handoff.toCv')} file={() => outputFile(result)} /> : null}
       blocked={portrait.failed ? t('portrait.failed') : blocked}
@@ -180,9 +182,10 @@ export default function IdPhotoPage() {
               </>
             ) : null}
           </>
-        ) : undefined
+        ) : <div className="cn-idphoto-welcome"><div className="cn-idphoto-sample" aria-hidden="true"><Icon name="person-fill" /><span>3 × 4</span></div><h2>{studio('emptyTitle')}</h2><p>{studio('emptyHint')}</p><div className="cn-idphoto-features">{([['crop', 'crop'], ['palette', 'appearance'], ['printer', 'print']] as const).map(([icon, key]) => <div key={key}><Icon name={icon} /><span>{studio(key)}</span></div>)}</div></div>
       }
     />
+    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepAdjust'), studio('stepSave')]} tip={studio('tip')} /></div>
     </div>
     {camera ? <CameraCapture show maxShots={1} onClose={() => setCamera(false)} onDone={files => { setCamera(false); void images.addFiles(files) }} /> : null}
     </>

@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
 import { editableRuleLines } from '../utils/editable-rule-lines'
 import { Button, Form } from 'react-bootstrap'
-import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { formatRuleDate, ruleSnapshot } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
@@ -59,6 +60,7 @@ const PAYROLL_KINDS = ['payroll']
 export default function PayrollPage() {
   const { t } = useTranslation('finance')
   const { t: tc } = useTranslation('common')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.payroll' })
   const me = useMe()
   const member = me.data ? { signedIn: Boolean(me.data.user), pro: me.data.plan.pro } : null
   const [mode, setMode] = useState<'gross' | 'net'>('gross')
@@ -111,9 +113,9 @@ export default function PayrollPage() {
     },
   }
 
-  return <ToolBoard layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} />} side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{t('payroll.resultLabel')}</p>
-    <p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : '—'}</p>
+  return <ToolBoard className="cn-payroll-workspace" layout="balanced" after={<><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepRules'), studio('stepRead')]} tip={studio('tip')} /></div><AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} /></>} side={<div className="erp-tool-result cn-payroll-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="wallet2" /></span><div><h2>{t('payroll.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
+    <div className="cn-payroll-net">{!result ? <Icon name="wallet2" /> : null}<p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : '—'}</p></div>
     {result ? <div className="table-responsive"><table className="table table-sm"><tbody>
       <tr><th>{t('payroll.rows.gross')}</th><td>{t('shared.amount', { amount: formatNumber(result.gross) })}</td></tr><tr><th>{t('payroll.rows.employeeSocial')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.social) })}</td></tr><tr><th>{t('payroll.rows.employeeHealth')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.health) })}</td></tr><tr><th>{t('payroll.rows.employeeUnemployment')}</th><td>{t('shared.amount', { amount: formatNumber(result.employee.unemployment) })}</td></tr>
       <tr><th>{t('payroll.rows.deduction')}</th><td>{t('shared.amount', { amount: formatNumber(result.deduction) })}</td></tr><tr><th>{t('payroll.rows.taxable')}</th><td>{t('shared.amount', { amount: formatNumber(result.taxable) })}</td></tr>
@@ -123,8 +125,9 @@ export default function PayrollPage() {
     <p className="erp-tool-result__note">{usingVerified && verified ? t('payroll.paramsVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('payroll.paramsManual')} {t('payroll.notSettlement')}</p>
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}
   </div>}>
-    <ToolPanel title={t('payroll.panelTitle')}>
-      <label className="erp-flow-field__label">{t('payroll.direction')}<Form.Select value={mode} onChange={(event) => setMode(event.target.value as typeof mode)}><option value="gross">{t('payroll.directions.gross')}</option><option value="net">{t('payroll.directions.net')}</option></Form.Select></label>
+    <ToolPanel title={t('payroll.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
+      <div className="cn-payroll-modes" role="group" aria-label={t('payroll.direction')}>{(['gross', 'net'] as const).map(value => <Button key={value} variant={mode === value ? 'primary' : 'outline-secondary'} aria-pressed={mode === value} onClick={() => setMode(value)}>{t(`payroll.directions.${value}`)}</Button>)}</div>
+      <p className="cn-studio-form-hint mt-3">{studio('inputHint')}</p>
       <NumberField className="mt-3" label={mode === 'gross' ? t('payroll.grossSalary') : t('payroll.netSalary')} rule={SALARY} unit="đ" value={salary} onChange={setSalary} />
       <div className="erp-tool-form__grid mt-3">
         <NumberField label={t('payroll.dependents')} rule={DEPENDENTS} value={dependents} onChange={setDependents} />
@@ -134,6 +137,8 @@ export default function PayrollPage() {
         <NumberField label={t('payroll.insuranceBase')} rule={SALARY} unit="đ" value={insuranceBase} onChange={setInsuranceBase} />
         <NumberField label={t('payroll.exempt')} rule={SALARY} unit="đ" value={exempt} onChange={setExempt} />
       </div></details>
+    </ToolPanel>
+    <ToolPanel className="cn-payroll-rules" title={studio('sourceTitle')} actions={<span className="cn-studio-small-icon"><Icon name="journal-check" /></span>}>
       {verified ? <Button className="mt-3" variant="outline-secondary" onClick={applyVerified}>{t('payroll.applyParams')}</Button> : null}
       <RuleStatus rules={payrollRules} label={t('payroll.ruleLabel')} noneText={t('payroll.ruleNone')} />
       <SourceFreshness rules={payrollRules} />

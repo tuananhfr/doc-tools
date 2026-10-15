@@ -289,5 +289,551 @@
   },
   "embed": {
     "saveToCde": "Save to CDE records"
+  },
+  "studio": {
+    "howTitle": "A simple way to get started",
+    "privacyTitle": "Private and secure",
+    "tipTitle": "A little tip",
+    "pdf": {
+      "inputTitle": "Add your document",
+      "inputHint": "Start with a PDF or an image from your device.",
+      "organize": "Organize pages",
+      "annotate": "Annotate & edit text",
+      "export": "Export your way",
+      "readyTitle": "A space for your documents",
+      "readyHint": "Add a file to view its pages, make changes and download a new copy.",
+      "stepUpload": "Choose or drop PDF and image files from your device.",
+      "stepEdit": "Select pages to organize them, or open a preview to edit text and add annotations.",
+      "stepDownload": "Review the Export options, then download your result.",
+      "tip": "Choose the magnifying-glass icon on a page to preview and edit it. You can undo changes during your working session."
+    },
+    "qr": {
+      "inputTitle": "How would you like to read a code?",
+      "imageTab": "Image from device",
+      "resultHint": "The code content will appear here",
+      "stepUpload": "Choose an image, paste a screenshot or open the camera.",
+      "stepRead": "Keep the code sharp and well lit so its content can be read.",
+      "stepCheck": "Check the result, then copy it or open the link.",
+      "tip": "Is the code small or blurry? Crop around it and keep all four corners visible for a clearer scan."
+    },
+    "tarot": {
+      "stageTitle": "Your card spread",
+      "stageHint": "Take a quiet moment for what is on your mind.",
+      "previewHint": "Choose the number of cards, then shuffle and draw to begin.",
+      "settings": "Set up your spread",
+      "deck": "78-card deck",
+      "stepChoose": "Choose the number of cards and whether to allow reversed cards.",
+      "stepReveal": "Shuffle, draw and tap each card to reveal it.",
+      "stepRead": "Read the interpretations and overview, then download your result if you wish.",
+      "tip": "Start with three cards for the situation, obstacle and advice. You can choose another spread in a new session.",
+      "noteTitle": "A perspective to reflect on"
+    },
+    "collage": {
+      "previewTitle": "Layout preview",
+      "previewHint": "Images are cropped to square cells in selection order.",
+      "empty": "Your layout will appear here",
+      "formats": "JPG, PNG, WebP · Choose 2 to 9 images",
+      "remove": "Remove image {{name}}",
+      "layoutTitle": "Layout settings",
+      "stepChoose": "Choose or drop 2 to 9 images into the upload area.",
+      "stepLayout": "Set the columns and spacing, then check the preview.",
+      "stepSave": "Merge and download the PNG image to your device.",
+      "tip": "Need a logo or more layouts? Open the advanced layouts, logo & ZIP workspace."
+    },
+    "imagesPdf": {
+      "workflow": "Steps to create a PDF from images",
+      "choose": "Choose images",
+      "arrange": "Arrange & set up",
+      "save": "Download PDF",
+      "stepChoose": "Choose images from your device or capture more with your camera.",
+      "stepArrange": "Move images up or down to reorder pages. Choose the page size and margins.",
+      "stepSave": "Create the PDF, check the result, then download it.",
+      "tip": "Each image becomes one page. Use good lighting, hold the camera straight and arrange the images before creating the PDF."
+    },
+    "cv": {
+      "previewTitle": "Your CV",
+      "previewHint": "Choose a template and see your content update as you type.",
+      "inputHint": "Start with your personal details, then add your experience and skills.",
+      "personalTitle": "Personal details",
+      "stepFill": "Enter your details, experience, education and skills.",
+      "stepTemplate": "Choose a template in the preview. On mobile, switch to the Preview tab.",
+      "stepSave": "Check your content, download PDF / DOCX or print your CV.",
+      "tip": "Keep it concise and highlight achievements relevant to the role. Enable saved drafts only on a personal device."
+    },
+    "compass": {
+      "stepMeasure": "Stand at the main entrance and follow the compass instructions. Without a sensor, enter the degrees manually.",
+      "stepLock": "Lock the direction once the reading is stable. You can also place the compass on a house photo or plan.",
+      "stepSave": "Read the facing and sitting directions, then save an image or PDF.",
+      "tip": "Compare several readings away from metal. The age-based interpretation is optional and for reference only."
+    },
+    "playing": {
+      "settings": "Draw settings",
+      "stageTitle": "A quiet moment with the cards",
+      "stageHint": "Choose your spread, shuffle and reveal each message.",
+      "deck": "52-card deck",
+      "previewHint": "Cards stay face down until you choose to reveal them.",
+      "stepChoose": "Choose the number of cards for your spread.",
+      "stepReveal": "Shuffle and draw, then reveal individual cards or the whole spread.",
+      "stepRead": "Read the interpretation, save the result or start a new draw.",
+      "tip": "Start with 3 cards to get familiar with the tool. Each draw is a prompt for personal reflection."
+    },
+    "numerology": {
+      "inputHint": "Enter your Gregorian birth date. Add your name to include name-based metrics.",
+      "introTitle": "Explore your personal numbers",
+      "introHint": "A perspective on yourself through your birth date and name.",
+      "stepFill": "Enter your birth date, optional name and the year to explore.",
+      "stepCalculate": "Read the data notice, give consent and calculate your numbers.",
+      "stepRead": "Review the calculations and interpretations, then save a report if needed.",
+      "tip": "Use your Gregorian birth date. Accents in your name are normalized automatically.",
+      "noteTitle": "A perspective for reflection"
+    },
+    "background": {
+      "settings": "Refine & download",
+      "settingsHint": "Choose a background or use the brush after processing.",
+      "formats": "JPG, PNG, WebP · Up to 20 MB",
+      "demoLabel": "Illustration: keep the subject and remove the background",
+      "stepChoose": "Choose or drop an image. The tool separates the subject on your device.",
+      "stepRefine": "Check the result, choose a background and use the keep / erase brush if needed.",
+      "stepSave": "Download a PNG or continue in the ID photo tool.",
+      "tip": "A clear subject distinct from the background usually works best. Use the brush to refine small areas."
+    },
+    "crop": {
+      "emptyHint": "Choose an image to open the editing settings.",
+      "crop": "Crop with a frame and aspect ratio",
+      "rotate": "Rotate left or right by 90°",
+      "adjust": "Adjust brightness and contrast",
+      "stepChoose": "Choose or drop an image from your device.",
+      "stepEdit": "Drag the crop frame, select an aspect ratio, rotate or adjust the lighting.",
+      "stepSave": "Save the image, check the result and download the edited file.",
+      "tip": "On mobile, switch between Input and Preview to adjust and check the image. Reset to try again from the original."
+    },
+    "read": {
+      "settings": "Voice & settings",
+      "inputHint": "Paste text or open a file, then press Read to listen.",
+      "placeholder": "Type or paste the content you want to hear here…",
+      "stepInput": "Paste text or choose a file to read.",
+      "stepVoice": "Choose a device voice or Vietnamese AI voice, then adjust the speed.",
+      "stepListen": "Press Read; pause, resume or move between sentences as needed.",
+      "tip": "The Vietnamese AI voice supports WAV downloads. Voice data downloads on first use; content is processed on your device."
+    },
+    "office": {
+      "stepOpen": "Open the editor to start with a blank document or a DOCX file.",
+      "stepEdit": "Write and format in the editor. Expand the workspace when needed.",
+      "stepSave": "Save or download the DOCX before closing the editor.",
+      "tip": "The editor has an English interface and works best on desktop. Use Ctrl+O to open a file and Ctrl+S to save.",
+      "note": "Files open and edit on your device. Save a new copy before leaving the page."
+    },
+    "merge": {
+      "summaryTitle": "Ready to combine documents",
+      "summaryHint": "Combine your selected files into one PDF.",
+      "files": "Selected files",
+      "pages": "Total pages",
+      "orderHint": "Files merge in the order shown in the list.",
+      "stepChoose": "Choose or drop at least 2 PDF files.",
+      "stepArrange": "Move files up or down to set the merge order.",
+      "stepSave": "Merge the PDFs, check the result and download it.",
+      "tip": "Add or remove files before merging. Password-protected files prompt for an opening password."
+    },
+    "convert": {
+      "introTitle": "Turn PDF into editable content",
+      "introHint": "Choose PDFs, select an output format and convert on your device.",
+      "stepChoose": "Choose one or more PDF files to convert.",
+      "stepFormat": "Choose Word, Excel or images. Enable text recognition for scanned PDFs.",
+      "stepSave": "Convert, download the result and review the content.",
+      "tip": "Word layouts may differ from the original PDF. Review text and tables after converting scans."
+    },
+    "qrCreate": {
+      "inputHint": "Choose a content type and enter the details. The QR code updates as you type.",
+      "previewTitle": "Your QR code",
+      "previewHint": "Check the content and download a suitable format.",
+      "stepChoose": "Choose a link, text, Wi-Fi or another content type to share.",
+      "stepCustomize": "Enter your content and open Customize to change colors if needed.",
+      "stepSave": "Test the code, then download PNG, SVG or PDF.",
+      "tip": "Keep strong contrast between the code and background. Test on a phone before printing or sharing."
+    },
+    "assistant": {
+      "panelTitle": "Chat with your assistant",
+      "introHint": "Describe your task and ask which tool to use and how to proceed.",
+      "ideasTitle": "A few ways your assistant can help",
+      "write": "Find the right tool",
+      "writeHint": "Describe your task to find a suitable tool.",
+      "summarize": "Follow the steps",
+      "summarizeHint": "Ask how to enter data and understand tool results.",
+      "plan": "Check sources",
+      "planHint": "Get source suggestions to verify information and regulations.",
+      "stepSignIn": "Sign in to an account with Pro assistant access.",
+      "stepSetup": "Complete AI setup in your account if requested.",
+      "stepAsk": "Describe your request, send your question and review the answer.",
+      "tip": "State your goal, context and preferred output. Ask the assistant to revise its answer as needed.",
+      "noteTitle": "Review before using",
+      "note": "AI answers can be wrong. Check important information and review the data you send."
+    },
+    "lunar": {
+      "calendarTitle": "Lunar & solar calendar",
+      "calendarHint": "Select a date for lunar details, cyclical names and holidays.",
+      "stepBrowse": "Change months or jump to a date with the date field.",
+      "stepDay": "Select a day to read the details beside or below the calendar.",
+      "stepConvert": "Use the conversion and anniversary sections to find matching solar dates.",
+      "tip": "Toggle individual holiday groups. Auspicious hours and days are cultural references."
+    },
+    "estimate": {
+      "inputHint": "Enter the house size and your unit prices to estimate costs. Results update as values change.",
+      "areaTitle": "Building size",
+      "priceTitle": "Estimated unit prices",
+      "resultHint": "An estimate based on equivalent area and your inputs.",
+      "breakdownTitle": "Equivalent area breakdown",
+      "breakdownHint": "Review each component and its area factor.",
+      "stepArea": "Enter the floor area and number of upper floors. Open advanced settings for yards, terraces or rooftop rooms.",
+      "stepPrice": "Enter prices from your quotation and choose the correct turnkey-price option.",
+      "stepCheck": "Review total costs, equivalent areas and the factors used for each component.",
+      "tip": "Prices depend on location, materials and scope. Use a quotation suitable for your project."
+    },
+    "idPhoto": {
+      "runEmpty": "Create ID photos",
+      "emptyTitle": "ID photos sized for printing",
+      "emptyHint": "Choose a portrait, adjust the crop, pick a photo size and arrange a print sheet.",
+      "crop": "Correct proportions",
+      "appearance": "Portrait adjustments",
+      "print": "Print sheets",
+      "stepChoose": "Choose a portrait or take a photo with your camera.",
+      "stepAdjust": "Frame the face, choose a photo size and set up the print sheet.",
+      "stepSave": "Export a single photo, image sheet or PDF and download it.",
+      "tip": "Use a clear, front-facing photo. Print at 100% scale to keep the correct dimensions."
+    },
+    "compressVideo": {
+      "inputTitle": "Video to compress",
+      "resultHint": "Check the file size, preview and download the compressed video.",
+      "stepChoose": "Choose a video from your device.",
+      "stepSet": "Choose a compression level and resolution.",
+      "stepSave": "Start compression, wait for processing, then preview and download.",
+      "tip": "Stronger compression reduces quality. Output size also depends on the source; keep the original for comparison."
+    },
+    "design": {
+      "inputHint": "Add a title, images or a logo. The preview updates as you enter content.",
+      "previewTitle": "Your design",
+      "previewHint": "Choose a template, check the layout and export.",
+      "stepContent": "Enter your content and add images or a logo if needed.",
+      "stepTemplate": "Choose a template in the preview, then adjust colors and dimensions.",
+      "stepSave": "Choose an output format, export and download your design.",
+      "tip": "Use clear images and logos. Check the dimensions and make a test print before printing in bulk."
+    },
+    "family": {
+      "workspaceTitle": "Plan your family’s days together",
+      "addEvent": "Add event",
+      "stepMember": "Add family members and choose whose calendar to view.",
+      "stepEvent": "Select a date, add an event and set its visibility and reminder.",
+      "stepBackup": "Use the backup section to keep a copy on your device.",
+      "tip": "The calendar is stored only in this browser on this device. Back up regularly; reminders need the page open and suitable notification permission."
+    },
+    "group": {
+      "peopleHint": "Enter one person per line, then add the group’s expenses.",
+      "resultHint": "Suggested transfers to balance shared expenses.",
+      "expenseTitle": "Expense {{index}}",
+      "stepPeople": "Enter each member’s name on a separate line.",
+      "stepExpense": "Add expenses, their payers and the people sharing each one.",
+      "stepSettle": "Review the suggested transfers and each person’s balance.",
+      "tip": "When adding a new person, select the expenses they shared. Renaming a person keeps their existing shares."
+    },
+    "address": {
+      "inputHint": "Paste old addresses, one per line. Choose a mapping table to see conversion suggestions.",
+      "resultHint": "Track fully converted rows and review details in the results table.",
+      "stepInput": "Enter each old address on a separate line.",
+      "stepSource": "Apply a signed mapping table if available, or enter your own.",
+      "stepSave": "Review every suggestion and download the CSV table.",
+      "tip": "Review addresses with multiple possible matches. Check the data source and confirm with the receiving office before use."
+    },
+    "trimVideo": {
+      "inputTitle": "Video to trim",
+      "resultHint": "Preview the trimmed clip and download the MP4.",
+      "rangeHint": "Set start and end times in seconds within the original video.",
+      "stepChoose": "Choose and preview a video to find the section to keep.",
+      "stepSet": "Enter start and end times within the video duration.",
+      "stepSave": "Trim the video, review the new clip and download it.",
+      "tip": "Clips are re-encoded to MP4 with a maximum long edge of 1080 px. Keep the original to choose another section later."
+    },
+    "measure": {
+      "emptyTitle": "Place points and read measurements",
+      "emptyHint": "Choose an image to measure distances and areas or count objects. Set a reference to use real-world units.",
+      "stepChoose": "Choose a clear image to measure or count.",
+      "stepScale": "Place both ends of a reference and enter its real length and unit if needed.",
+      "stepMeasure": "Choose a measurement mode, place points and download the annotated image.",
+      "tip": "Measurements use pixels until you set a reference. Accuracy depends on the reference, camera angle and point placement; use points on the same plane."
+    },
+    "sheet": {
+      "heading": "Open a spreadsheet and start with your data",
+      "stepOpen": "Open the spreadsheet editor to create a workbook or open an XLSX file.",
+      "stepEdit": "Enter data, use formulas and format cells in your workbook.",
+      "stepSave": "Save or download the XLSX before closing the editor.",
+      "tip": "The spreadsheet editor has an English interface and works best on desktop. Use Ctrl+O to open a file and Ctrl+S to save.",
+      "note": "Spreadsheets open and edit on your device. Save a new copy before leaving the page."
+    },
+    "password": {
+      "inputTitle": "Document to process",
+      "fileHint": "Choose one PDF. Add or remove a password on your device.",
+      "resultHint": "A new file downloads after successful processing.",
+      "resultEmpty": "Choose a PDF and enter a password in the settings to begin.",
+      "passwordHint": "The opening password needs at least 8 characters.",
+      "stepChoose": "Choose a PDF and the add-password or remove-password mode.",
+      "stepPassword": "Enter the password; confirm it and set permissions when protecting a file.",
+      "stepSave": "Process the PDF to download a new copy, then test opening it.",
+      "tip": "If restricting printing, copying or editing, set a separate owner password of at least 8 characters, different from the opening password."
+    },
+    "study": {
+      "gradeHint": "Enter a score out of 10 to see a reference letter grade and score out of 4.",
+      "admissionHint": "Enter three subject scores and priority bonuses to see the total using this tool’s formula.",
+      "resultHint": "Results update as you enter values.",
+      "stepMode": "Choose grade conversion or admission scoring.",
+      "stepInput": "Enter scores and applicable bonuses; enter 0 for no bonus.",
+      "stepRead": "Read the result and check the grading rules where it will be used.",
+      "tip": "Schools and admission years may use different scales or rules. Treat the result as a reference and check the applicable requirements."
+    },
+    "pomodoro": {
+      "inputHint": "Choose suitable focus and break times. The defaults are 25 minutes of work and a 5-minute break.",
+      "ready": "Ready when you are",
+      "running": "Timer is running",
+      "stepSet": "Set your focus and break durations.",
+      "stepFocus": "Choose one task and press Start.",
+      "stepRest": "Rest when time is up; press Start to run the next session.",
+      "tip": "Have one specific task ready before each session. Keep the page open so the timer can work."
+    },
+    "split": {
+      "summaryTitle": "Extract the parts you need",
+      "summaryHint": "Choose page ranges or split the document into regular groups.",
+      "pages": "Source pages",
+      "parts": "Planned parts",
+      "stepChoose": "Choose one PDF to split.",
+      "stepRange": "Enter page ranges or choose the number of pages per part.",
+      "stepSave": "Check the part count, split and download the PDF or ZIP.",
+      "tip": "Commas start a new part; a hyphen selects a range. For example, 1-3, 5 creates one part with pages 1–3 and another with page 5."
+    },
+    "gif": {
+      "inputTitle": "Video for your GIF",
+      "resultHint": "Preview the animation and download the GIF after processing.",
+      "rangeHint": "Choose a clip up to 20 seconds, then set its width and frames per second.",
+      "stepChoose": "Choose a video and find the section to animate.",
+      "stepSet": "Enter the time range, width and frames per second.",
+      "stepSave": "Create the GIF, review it and download the animation.",
+      "tip": "GIFs have no sound. Shorter clips, smaller widths and fewer frames help reduce file size."
+    },
+    "vietqr": {
+      "inputHint": "Enter the bank’s 6-digit BIN and receiving account. Optionally add an amount and transfer note.",
+      "previewTitle": "Your transfer QR code",
+      "previewHint": "Review the details before downloading or sharing.",
+      "stepInput": "Enter the BIN, account number and optional details.",
+      "stepCheck": "Test the code in a banking app and verify the recipient details.",
+      "stepSave": "Download PNG to share or SVG to print.",
+      "tip": "Get the BIN from the bank or a trusted source. This tool generates QR content and does not verify bank accounts."
+    },
+    "ideas": {
+      "formTitle": "Share your idea",
+      "formHint": "Start with something you want to make easier in daily life.",
+      "stepDescribe": "Describe the problem and give a concrete example of the tool you need.",
+      "stepSend": "Review your content, give consent and submit the idea.",
+      "stepTrack": "Keep the receipt code to check its status after submitting.",
+      "tip": "A specific situation makes your needs clearer: what you are doing, where the difficulty is and what result you want."
+    },
+    "payroll": {
+      "inputHint": "Choose a calculation direction and enter salary details. Add parameters in the card below to get a result.",
+      "sourceTitle": "Sources and calculation parameters",
+      "resultHint": "Based on the income details and parameters currently in use.",
+      "stepInput": "Choose Gross → Net or Net → Gross and enter the salary.",
+      "stepRules": "Apply a signed parameter package if available, or enter parameters from a suitable source.",
+      "stepRead": "Review take-home pay, insurance, deductions and tax in the breakdown.",
+      "tip": "Parameters may vary by date and circumstances. Check the source and ask your accounting team to review before using the result."
+    },
+    "unitPrice": {
+      "inputHint": "Choose one common unit and enter each product’s price and quantity.",
+      "product": "Product {{index}}",
+      "resultHint": "Compare the price per unit to help make a choice.",
+      "stepUnit": "Choose a shared unit: kilograms, liters or pieces.",
+      "stepInput": "Enter each product’s price and quantity in the selected unit.",
+      "stepCompare": "Review unit prices and the difference between products.",
+      "tip": "Convert both quantities to the same unit before entering them. The unit selector changes labels; it does not convert entered values."
+    },
+    "numberWords": {
+      "inputHint": "Enter an integer to write it in Vietnamese. Dots can separate groups of thousands.",
+      "resultHint": "The wording updates as you enter numbers or change reading preferences.",
+      "stepInput": "Enter the integer to convert to words.",
+      "stepStyle": "Choose the preferred linh / lẻ and bốn / tư wording.",
+      "stepCopy": "Review the text and press Copy result to use it.",
+      "tip": "The tool reads numbers without adding a currency unit. Check the number and wording conventions before using it in documents."
+    },
+    "organize": {
+      "summaryTitle": "Your page order",
+      "summaryHint": "Move, rotate or remove pages before creating a new PDF.",
+      "files": "Selected files",
+      "pages": "Pages to keep",
+      "controlsHint": "Use the buttons below each page to reorder and rotate it.",
+      "stepChoose": "Choose one or more PDFs to display their pages in the grid.",
+      "stepArrange": "Move pages back or forward, rotate them or remove unneeded pages.",
+      "stepSave": "Check the order and retained page count, then create and download the new PDF.",
+      "tip": "Add files to append pages to the grid. Use {{reset}} to discard grid edits if needed."
+    },
+    "wheel": {
+      "inputHint": "Add your choices, adjust the wheel and let a little surprise help you decide.",
+      "step1": "Enter one choice per line in the list.",
+      "step2": "Adjust sound and what happens to winning choices.",
+      "step3": "Spin the wheel and read the result in the center.",
+      "tip": "Save frequently used lists so you can load them for another spin."
+    },
+    "barcode": {
+      "inputHint": "Enter content and choose the right barcode type. The preview updates when the content is valid.",
+      "resultHint": "Check the barcode and its content before downloading.",
+      "step1": "Choose a single barcode or a batch from a list.",
+      "step2": "Enter data, select the barcode type and adjust dimensions.",
+      "step3": "Preview and download in a suitable format.",
+      "tip": "For product labels, check code allocation requirements and test a printed barcode at its actual size."
+    },
+    "electricity": {
+      "inputHint": "Choose electricity or water, then enter usage and prices to estimate the cost.",
+      "tariffTitle": "Tariffs and reference sources",
+      "resultHint": "Based on your chosen usage, prices and tax.",
+      "step1": "Choose electricity or water and enter usage.",
+      "step2": "Check tiers, households and tax; for water, enter unit price and fees.",
+      "step3": "Read the total and breakdown to compare with your bill.",
+      "tip": "Check prices and tax against sources applicable to your billing period. Only the entered parameters are used."
+    },
+    "imageText": {
+      "settingsTitle": "Recognition settings",
+      "inputHint": "Choose the output format and document profile before recognizing text.",
+      "step1": "Choose clear images containing the text you need.",
+      "step2": "Choose a profile and output format, then start recognition.",
+      "step3": "Review the recognized content and download the result.",
+      "tip": "Good lighting, a straight camera angle and sharp text improve recognition. Check numbers, names and Vietnamese accents."
+    },
+    "messageRisk": {
+      "inputHint": "Paste a message or link to inspect suspicious signs in its content.",
+      "resultHint": "Content signals and explanations for your own review.",
+      "step1": "Choose to inspect a message or a link.",
+      "step2": "Paste the content and press Check to reach the results.",
+      "step3": "Read each signal and verify through an official contact channel.",
+      "tip": "Few signals do not mean safe. This tool analyzes pasted content without opening links or verifying sender identity."
+    },
+    "formTemplates": {
+      "previewTitle": "Document preview",
+      "inputHint": "Choose a template and fill in your details; the preview follows your content.",
+      "resultHint": "Review the document before downloading or printing.",
+      "step1": "Choose the form or template you need.",
+      "step2": "Fill in the details and check dates or amounts where applicable.",
+      "step3": "Review the document, then download or print it.",
+      "tip": "Each template keeps its own draft during the session. Check the recipient’s requirements before using it."
+    },
+    "pageNumbers": {
+      "settingsTitle": "Page numbering",
+      "inputHint": "Choose the position, numbering style and pages to number.",
+      "step1": "Choose a PDF to number.",
+      "step2": "Set the position, format, starting number and page range.",
+      "step3": "Preview, create and download the numbered PDF.",
+      "tip": "Leave enough room in the header or footer so numbers do not overlap content. Check both the first and last pages in the created file."
+    },
+    "color": {
+      "inputHint": "Pick a color or enter a HEX, RGB or HSL code to convert between formats.",
+      "resultHint": "Preview the color and its contrast with white and black text.",
+      "step1": "Use the color picker or enter a valid color code.",
+      "step2": "Read the HEX, RGB and HSL values and copy the code you need.",
+      "step3": "Compare contrast ratios to choose a suitable text color.",
+      "tip": "When using a background color, check contrast with the actual text color and font size in your design."
+    },
+    "extractAudio": {
+      "inputTitle": "Choose your video",
+      "resultHint": "Extracted audio appears here to preview and download.",
+      "stepChoose": "Choose a video containing the audio you want.",
+      "stepSet": "Select MP3, M4A or WAV and start extraction.",
+      "stepSave": "Listen to the result and download the audio file.",
+      "tip": "MP3 is useful for sharing, M4A uses AAC, and WAV files are usually larger. The video needs an audio stream to extract."
+    },
+    "flashcard": {
+      "reviewTitle": "Today’s review",
+      "inputHint": "Write a question on the front and an answer on the back to create your own study cards.",
+      "step1": "Fill in both sides and add the card to your deck.",
+      "step2": "Try to answer before flipping the card.",
+      "step3": "Choose how well you remembered to schedule the next review.",
+      "tip": "Cards are saved in this browser. Clearing browser data may remove them. Keep each card focused on one short idea."
+    },
+    "quickCalc": {
+      "inputHint": "Choose a category, shape or material, then enter dimensions using the units beside each field.",
+      "resultTitle": "Calculation result",
+      "resultHint": "Includes the calculation so you can check the entered values.",
+      "step1": "Choose area, volume or mass and the formula you need.",
+      "step2": "Enter dimensions and quantity, checking each field’s unit.",
+      "step3": "Review the result and calculation, then copy the value.",
+      "tip": "Convert values to the displayed units before entering them. Material mass is an estimate based on the chosen dimensions and parameters."
+    },
+    "moneyCalc": {
+      "inputHint": "Choose a category and operation, then enter values to see the result.",
+      "resultTitle": "Your result",
+      "resultHint": "See the calculation and related amounts for comparison.",
+      "step1": "Choose percentages, tax, profit or splitting costs.",
+      "step2": "Select an operation and enter the labeled values.",
+      "step3": "Review the calculation and breakdown, then copy the result.",
+      "tip": "For tax and discounts, establish whether the amount already includes them. Tax rates are entered by you and should be checked before use."
+    },
+    "charCount": {
+      "inputHint": "Paste or type text here. Character, word, line and paragraph counts update automatically.",
+      "resultHint": "Statistics for the text currently entered.",
+      "step1": "Paste or enter the text to check.",
+      "step2": "Read counts for characters, non-space characters, words, lines and paragraphs.",
+      "step3": "Edit the content or clear the input to count another text.",
+      "tip": "Word-counting methods can differ between platforms. Read each metric’s explanation when comparing content limits."
+    },
+    "legacyFont": {
+      "inputHint": "Choose the conversion, then paste the text whose encoding or letter case you want to change.",
+      "resultHint": "Updates with the source text and selected conversion.",
+      "step1": "Choose the source encoding or an action such as removing accents or changing case.",
+      "step2": "Paste the original text and compare the converted version.",
+      "step3": "Check names and Vietnamese accents before copying.",
+      "tip": "TCVN3 and VNI are character encodings. If your text is already Unicode, choose the appropriate action to avoid an incorrect conversion."
+    },
+    "metadata": {
+      "inputHint": "Decode and re-export an image to create a new copy without the original metadata.",
+      "pickerHint": "JPG, PNG, WebP · processed on your device",
+      "resultHint": "A new image downloads after processing.",
+      "step1": "Choose a JPG, PNG or WebP image.",
+      "step2": "Check the filename and press Remove metadata.",
+      "step3": "Open the downloaded image to check dimensions and quality.",
+      "tip": "Re-exporting can change file size or quality. Text, license plates and information visible in the image must be covered or cropped separately."
+    },
+    "invoiceXml": {
+      "inputHint": "Choose an XML file to read invoice details, item rows and totals.",
+      "pickerHint": "XML · up to 5 MB · read on your device",
+      "resultHint": "Details read from the selected XML file.",
+      "step1": "Choose an invoice XML file from your device.",
+      "step2": "Check the invoice number, seller, buyer and item list.",
+      "step3": "Review amounts and download an Excel or CSV item list.",
+      "tip": "An XML signature element does not establish a valid digital signature. This tool reads data without checking invoice status."
+    },
+    "magnifier": {
+      "inputHint": "Use the camera to read small text, adjust magnification and pause the image when needed.",
+      "emptyTitle": "Bring small details closer",
+      "resultHint": "Monitor camera status and the current view.",
+      "step1": "Press Open camera and allow access when the browser asks.",
+      "step2": "Point at the detail, then adjust zoom and contrast.",
+      "step3": "Pause to read or close the camera when finished.",
+      "tip": "Keep the device steady and use good lighting for a clearer image. Pausing helps you read without holding the camera continuously."
+    },
+    "documentOcr": {
+      "settingsTitle": "Recognition settings",
+      "inputHint": "Choose an output format and document profile to extract text from PDFs or images.",
+      "step1": "Choose PDFs or images containing the text you need.",
+      "step2": "Choose the document profile and output, then start recognition.",
+      "step3": "Review the recognized content before downloading.",
+      "tip": "Clear scans and straight camera angles help recognition. Check numbers, names and words with low confidence carefully."
+    },
+    "convertImage": {
+      "settingsTitle": "Output image format",
+      "inputHint": "Choose JPG, PNG or WebP and a suitable quality level.",
+      "step1": "Choose one or more images to convert.",
+      "step2": "Select the target format and quality where available.",
+      "step3": "Convert and download the images or result package.",
+      "tip": "PNG is useful for keeping transparency. JPG does not preserve transparency; check the converted image."
+    },
+    "batchImage": {
+      "settingsTitle": "Settings for the whole batch",
+      "inputHint": "Adjust dimensions, format and filenames in one processing step.",
+      "step1": "Choose the images you want to process together.",
+      "step2": "Set dimensions, format and filename pattern, then check the sample names.",
+      "step3": "Process and download the batch results.",
+      "tip": "Use {n} in the filename pattern to number images. Check dimensions and sample names before processing many files."
+    }
   }
 }

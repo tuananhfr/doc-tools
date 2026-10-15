@@ -2,7 +2,8 @@ import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useDeferredValue, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { PrintPortal, TemplatePicker, ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { PrintPortal, TemplatePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { takeHandoff } from '@/features/tools/shared'
 import { CvPreview } from '../components/CvPreview'
 import { DocumentExportActions } from '../components/DocumentExportActions'
@@ -18,7 +19,7 @@ const identityFields = ['name', 'role', 'phone', 'email', 'location', 'link'] as
 function EntryEditor({ kind, entries, onChange }: { kind: 'experience' | 'education'; entries: CvEntry[]; onChange: (entries: CvEntry[]) => void }) {
   const { t } = useTranslation('documents')
   const update = (index: number, key: keyof CvEntry, value: string) => onChange(entries.map((entry, position) => position === index ? { ...entry, [key]: value } : entry))
-  return <fieldset className="mt-4"><legend className="h6">{t(`cv.sections.${kind}`)}</legend>{entries.map((entry, index) => <div className="border rounded p-3 mb-3" key={index}>
+  return <fieldset className="cn-cv-edit-section mt-4"><legend className="h6"><Icon name={kind === 'experience' ? 'briefcase' : 'mortarboard'} className="me-2" />{t(`cv.sections.${kind}`)}</legend>{entries.map((entry, index) => <div className="cn-cv-edit-entry border rounded p-3 mb-3" key={index}>
     {([['period', t('cv.entry.period')], ['organization', kind === 'experience' ? t('cv.entry.company') : t('cv.entry.school')], ['title', kind === 'experience' ? t('cv.entry.position') : t('cv.entry.degree')]] as const).map(([key, label]) => <label className="erp-flow-field__label mb-2" key={key}>{label}<Form.Control value={entry[key]} maxLength={200} onChange={(event) => update(index, key, event.target.value)} /></label>)}
     <label className="erp-flow-field__label">{t('cv.entry.description')}<Form.Control as="textarea" rows={3} maxLength={2000} value={entry.description} onChange={(event) => update(index, 'description', event.target.value)} /></label>
     <Button variant="outline-danger" size="sm" className="mt-2" onClick={() => onChange(entries.filter((_, position) => position !== index))}>{t('cv.entry.remove')}</Button>
@@ -27,6 +28,7 @@ function EntryEditor({ kind, entries, onChange }: { kind: 'experience' | 'educat
 
 export default function CvPage() {
   const { t } = useTranslation('documents')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.cv' })
   const { draft, update, changeTemplate, remember, changeRemember, availableDraft, restore, clear: clearDraft, message } = useCvDraft()
   const [photoUrl, setPhotoUrl] = useState<string | null>(null)
   const [photoFromHandoff, setPhotoFromHandoff] = useState(false)
@@ -45,8 +47,10 @@ export default function CvPage() {
   const picker = <TemplatePicker label={t('cv.template')} value={draft.template} onChange={changeTemplate} items={CV_TEMPLATES.map(template => ({ id: template.id, label: t(`cv.templates.${template.id}`), preview: <div className="cn-template-page"><CvPreview draft={withCvTemplate(thumbDraft, template.id)} photoUrl={photoUrl} /></div> }))} />
   return <>
 
-    <div className="cn-cv-workspace"><ToolBoard><ResponsivePreview action={<DocumentExportActions build={buildDocument} />} templates={picker} preview={<><CvPreview draft={draft} photoUrl={photoUrl} /><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={t('cv.title')}>
+    <div className="cn-cv-workspace cn-cv-studio"><ToolBoard><ResponsivePreview action={<><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="file-earmark-person" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('previewHint')}</p></div></div><DocumentExportActions build={buildDocument} /></>} templates={picker} preview={<><div className="cn-cv-preview-paper"><CvPreview draft={draft} photoUrl={photoUrl} /></div><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={t('cv.title')} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
+      <p className="cn-cv-intro">{studio('inputHint')}</p>
       {availableDraft ? <div className="cn-cv-restore"><p>{t('cv.availableDraft')}</p><Button variant="outline-secondary" onClick={restore}>{t('cv.openDraft')}</Button></div> : null}
+      <h3 className="cn-cv-section-title"><Icon name="person" />{studio('personalTitle')}</h3>
       <div className="cn-document-fields">
         {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
       </div>
@@ -60,7 +64,8 @@ export default function CvPage() {
         <p className="erp-flow-field__hint mt-2">{t(remember ? 'cv.autoSave' : 'cv.memoryOnly')}</p>
       </details>
       <div className="mt-3"><DocumentExportActions build={buildDocument} /></div><p role="status" className="mt-2">{message ? t(message) : null}</p>
-    </ToolPanel></ResponsivePreview></ToolBoard></div>
+    </ToolPanel></ResponsivePreview></ToolBoard>
+    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepFill'), studio('stepTemplate'), studio('stepSave')]} tip={studio('tip')} /></div></div>
     <PrintPortal><CvPreview draft={draft} photoUrl={photoUrl} /></PrintPortal>
   </>
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, useFlowRun, type FlowChoiceOption } from '@/features/tools/hub'
+import { FlowChoice, useFlowRun, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { canEncodeWebp } from '../services/image-codec'
@@ -23,6 +24,7 @@ const QUALITY_IDS: Quality[] = ['high', 'medium', 'small']
 /** CHUYỂN ĐỔI ẢNH — đổi cả lô giữa JPG, PNG và WebP. */
 export default function ConvertImagePage() {
   const { t } = useTranslation('image')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.convertImage' })
   const targets: FlowChoiceOption<ImageFormat>[] = TARGETS.map((target) => ({ ...target, hint: t(`convert.target.${target.value}`) }))
   const qualities: FlowChoiceOption<Quality>[] = QUALITY_IDS.map((value) => ({ value, label: t(`convert.quality.${value}.label`), hint: t(`convert.quality.${value}.hint`) }))
   const images = useImageFiles({ multiple: true })
@@ -37,11 +39,12 @@ export default function ConvertImagePage() {
   const allSame = count > 0 && images.items.every((item) => item.format === format)
 
   return (
-    <ImageToolShell
+    <div className="cn-imageflow-studio cn-convertimage-workspace"><ImageToolShell
       images={images}
       run={run}
       multiple
       pickerTitle={t('convert.pickerTitle')}
+      sideIntro={<div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="arrow-left-right" /></span><div><h2>{studio('settingsTitle')}</h2><p>{studio('inputHint')}</p></div></div>}
       runLabel={count > 1 ? t('convert.runMany', { count, format: label }) : t('convert.runOne', { format: label })}
       runIcon="arrow-left-right"
       blocked={allSame ? (count > 1 ? t('convert.blockedMany', { format: label }) : t('convert.blockedOne', { format: label })) : null}
@@ -53,6 +56,6 @@ export default function ConvertImagePage() {
           {webp ? null : <p className="erp-flow-field__hint">{t('convert.noWebp')}</p>}
         </>
       }
-    />
+    /><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div></div>
   )
 }
