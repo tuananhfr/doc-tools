@@ -1,0 +1,82 @@
+.cn-codestudio-workspace { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+.cn-codestudio-workspace > *, .cn-codestudio .cn-idstudio-main { min-width: 0; }
+.cn-codestudio .cn-qr-mode-switch, .cn-codestudio-modes { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.cn-codestudio .cn-qr-mode-switch .btn { display: inline-flex; justify-content: center; align-items: center; min-height: 42px; min-width: 90px; padding: 9px 18px; border-radius: 8px; font-size: 12px; }
+.cn-codestudio :is(.cn-qr-mode-switch, .cn-codestudio-modes) button[aria-pressed='true'] { background: #0067f4; border-color: #0067f4; color: white; }
+.cn-codestudio :is(.cn-qr-mode-switch, .cn-codestudio-modes) button[aria-pressed='false'] { background: var(--cn-surface); color: var(--cn-ink); }
+.cn-codestudio :is(.cn-qr-mode-switch, .cn-codestudio-modes) button[aria-pressed='false']:hover { background: var(--cn-tint); }
+.cn-codestudio-hint { margin: 0 0 16px; font-size: 12px; color: var(--cn-muted); line-height: 1.8; }
+.cn-codestudio-workspace .erp-flow-field { margin-bottom: 16px; }
+.cn-codestudio-workspace :is(.erp-flow-field__label, .form-label) { display: block; font-size: 12px; font-weight: 600; color: var(--cn-ink); }
+.cn-codestudio-workspace :is(.form-control, .form-select) { min-height: 42px; margin-top: 7px; border-color: var(--cn-line); background-color: var(--cn-surface); color: var(--cn-ink); }
+.cn-codestudio-workspace :is(.form-control, .form-select).is-invalid { border-color: var(--cn-red); }
+.cn-codestudio-workspace :is(.erp-flow-field__hint, .erp-tool-result__note, .erp-barcode-muted, .erp-barcode-note) { font-size: 11px; line-height: 1.8; color: var(--cn-muted); overflow-wrap: anywhere; }
+.cn-codestudio-workspace :is(.erp-tool-form__error, .invalid-feedback) { font-size: 12px; color: var(--cn-red); overflow-wrap: anywhere; }
+.cn-codestudio-workspace .erp-tool-form__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.cn-codestudio .cn-qr-kind-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
+.cn-codestudio .cn-qr-kind-tiles button { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px; min-width: 0; min-height: 76px; padding: 10px 5px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); color: var(--cn-ink); font-size: 11px; line-height: 1.5; }
+.cn-codestudio .cn-qr-kind-tiles button > .bi { font-size: 24px; color: var(--cn-accent); }
+.cn-codestudio .cn-qr-kind-tiles button[aria-pressed='true'] { border-color: var(--cn-accent); background: var(--cn-hero); box-shadow: 0 0 0 1px var(--cn-tint); font-weight: 700; }
+.cn-codestudio-options { padding: 14px 0 0; margin-top: 18px; border-top: 1px solid var(--cn-line); }
+.cn-codestudio-options > summary { display: flex; align-items: center; gap: 8px; min-height: 40px; color: var(--cn-accent); font-size: 13px; font-weight: 700; cursor: pointer; list-style: none; }
+.cn-codestudio-options > summary::-webkit-details-marker { display: none; }
+.cn-codestudio-options > summary > .bi:last-child { margin-inline-start: auto; font-size: 12px; }
+.cn-codestudio-options[open] > summary > .bi:last-child { transform: rotate(180deg); }
+.cn-codestudio-options .erp-flow-options { margin: 12px 0 0; padding: 0; border: 0; min-width: 0; }
+.cn-codestudio-options legend { float: none; width: auto; margin-bottom: 12px; font-size: 12px; }
+.cn-codestudio-options .erp-qr-colors { display: flex; flex-wrap: wrap; gap: 10px; }
+.cn-codestudio-options .erp-qr-background__options { display: flex; flex-wrap: wrap; gap: 10px; }
+.cn-codestudio-options .erp-qr-background__option { font-size: 12px; }
+.cn-codestudio-note { display: flex; align-items: flex-start; gap: 8px; margin: 16px 0 0; padding: 12px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); color: var(--cn-muted); font-size: 11px; line-height: 1.8; }
+.cn-codestudio-note > .bi { flex: none; color: var(--cn-accent); font-size: 17px; }
+.cn-codestudio .cn-codestudio-output > .erp-qr-preview { display: grid; place-items: center; width: 100%; max-width: none; min-height: 280px; margin: 0 0 16px; padding: 20px; border: 1px solid var(--cn-line); border-radius: 10px; background-color: var(--cn-hero); }
+.cn-codestudio-output > .erp-qr-preview--empty { align-content: center; gap: 20px; }
+.cn-codestudio-output .erp-qr-preview__icon { color: var(--cn-accent); font-size: 90px; }
+.cn-codestudio-output .erp-qr-preview__hint { max-width: 270px; margin: 0; color: var(--cn-muted); font-size: 12px; line-height: 1.8; text-align: center; }
+.cn-codestudio-output .erp-qr-preview__code { display: block; width: 100%; max-width: 320px; max-height: 350px; height: auto; aspect-ratio: 1; }
+.cn-codestudio .cn-codestudio-output > .erp-qr-preview--transparent { background: repeating-conic-gradient(#fff 0% 25%, #e4eaf0 0% 50%) 0 / 20px 20px; }
+.cn-codestudio-output .erp-qr-payload { max-width: 100%; max-height: 160px; padding: 10px; margin-block: 8px; border: 1px solid var(--cn-line); border-radius: 7px; background: var(--cn-hero); color: var(--cn-ink); font-size: 12px; line-height: 1.8; overflow: auto; overflow-wrap: anywhere; white-space: pre-wrap; }
+.cn-codestudio-payload { margin-bottom: 16px; }
+.cn-codestudio-payload > span { font-size: 12px; color: var(--cn-muted); }
+.cn-codestudio-payload .btn { min-height: 40px; }
+.cn-codestudio-downloads { display: grid; gap: 8px; }
+.cn-codestudio-downloads > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.cn-codestudio-downloads .btn { min-height: 42px; }
+.cn-codestudio-output > .btn { display: flex; width: 100%; min-height: 42px; margin-top: 8px; }
+.cn-codestudio-output > .btn:first-of-type { margin-top: 16px; }
+.cn-codestudio .cn-vietqr-downloads { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 16px; }
+.cn-codestudio .cn-vietqr-downloads .btn { min-height: 42px; }
+.cn-codestudio .cn-vietqr-details { display: grid; gap: 10px; margin: 16px 0; padding: 12px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); }
+.cn-codestudio .cn-vietqr-details > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.cn-codestudio .cn-vietqr-details dt, .cn-codestudio .cn-vietqr-details dd { margin: 0; font-size: 12px; overflow-wrap: anywhere; }
+.cn-codestudio .cn-vietqr-details dt { color: var(--cn-muted); font-weight: 400; }
+.cn-codestudio .cn-vietqr-details dd { text-align: end; font-weight: 600; }
+.cn-codestudio .cn-vietqr-payload { font-size: 12px; }
+.cn-codestudio .cn-vietqr-payload summary { padding-block: 10px; color: var(--cn-accent); cursor: pointer; }
+.cn-codestudio-workspace .erp-barcode-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.cn-codestudio-output .erp-barcode-preview { width: 100%; margin-bottom: 16px; padding: 20px 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: white; color: #536579; }
+.cn-codestudio-output .erp-barcode-preview__code { display: block; width: 100%; max-height: 240px; object-fit: contain; }
+.cn-codestudio-output .erp-barcode-preview > p { font-size: 11px; }
+.cn-codestudio-workspace :is(.erp-barcode-errors, .erp-barcode-batch) { max-width: 100%; overflow-x: auto; font-size: 12px; }
+.cn-codestudio-workspace .erp-barcode-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cn-codestudio-workspace .erp-barcode-actions .btn { min-height: 42px; }
+.cn-codestudio-workspace .erp-tool-panel { padding: 16px 0 0; margin: 20px 0 0; border: 0; border-top: 1px solid var(--cn-line); border-radius: 0; background: transparent; box-shadow: none; }
+.cn-codestudio-workspace .erp-tool-panel__title { font-size: 14px; }
+.cn-codestudio-workspace .erp-tool-panel > p, .cn-codestudio-dynamic-create > p { font-size: 11px; line-height: 1.9; color: var(--cn-muted); }
+.cn-codestudio-workspace .form-check { margin-top: 12px; padding-inline-start: 26px; font-size: 12px; line-height: 1.8; }
+.cn-codestudio-workspace .form-check-input { margin-inline-start: -26px; margin-top: 4px; }
+.cn-codestudio-workspace .btn { white-space: normal; overflow-wrap: anywhere; }
+.cn-codestudio-input .erp-flow-field__label.mt-3 { margin-top: 18px !important; }
+.cn-codestudio-input .cn-codestudio-dynamic-create > .btn { width: 100%; min-height: 44px; }
+.cn-codestudio-input .erp-tool-panel__body > .btn { min-height: 42px; }
+.cn-codestudio-workspace .cn-label-paper { max-width: 100%; margin-inline: auto; }
+.cn-codestudio-workspace .cn-graphic-page-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cn-codestudio :is(button, input, select, textarea, summary):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .cn-codestudio-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-codestudio .cn-qr-mode-switch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cn-codestudio .cn-qr-mode-switch .btn { min-width: 0; padding-inline: 8px; }
+  .cn-codestudio-workspace :is(.btn, .form-control, .form-select), .cn-codestudio .cn-qr-mode-switch .btn { min-height: 44px; }
+  .cn-codestudio .cn-qr-kind-tiles button { min-height: 78px; }
+  .cn-codestudio .cn-codestudio-output > .erp-qr-preview { min-height: 260px; }
+}

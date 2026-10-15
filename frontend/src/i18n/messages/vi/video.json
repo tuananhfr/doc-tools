@@ -97,5 +97,96 @@
     "gif": "anh-dong",
     "trimmed": "da-cat",
     "compressed": "da-nen"
+  },
+  "mediaStudio": {
+    "free": "Miễn phí",
+    "easy": "Dễ sử dụng",
+    "noAccount": "Không cần tài khoản",
+    "local": "Xử lý trên trình duyệt",
+    "voiceChoice": "Giọng máy hoặc giọng Việt",
+    "videoCategory": "Video & Âm thanh",
+    "readCategory": "Đọc & Nghe",
+    "related": "Các công cụ liên quan",
+    "trim": {
+      "title": "Cắt video",
+      "subtitle": "Chọn đoạn bạn cần, xem trước và xuất video MP4",
+      "heroNote": "Giữ khoảnh khắc hay\nChia sẻ thật dễ dàng!",
+      "steps": {
+        "1": "Chọn hoặc kéo thả video từ máy",
+        "2": "Xem video và chọn điểm bắt đầu",
+        "3": "Chọn điểm kết thúc đoạn cần giữ",
+        "4": "Xem thử đoạn rồi bấm Cắt video",
+        "5": "Xem kết quả và tải về máy"
+      },
+      "tips": {
+        "1": "Dùng video ngắn để xử lý nhanh hơn",
+        "2": "Có thể kéo thanh hoặc nhập số giây",
+        "3": "Kết quả là MP4, cạnh dài tối đa 1080 px",
+        "4": "Tệp video không tải lên máy chủ"
+      },
+      "faq": {
+        "1": {
+          "q": "Có giới hạn dung lượng không?",
+          "a": "Có. Tối đa 100 MB, 10 phút và độ phân giải 4K. Trên điện thoại, nên chọn đoạn ngắn dưới 30 MB."
+        },
+        "2": {
+          "q": "Video sau khi cắt có giữ nguyên chất lượng không?",
+          "a": "Đoạn cắt được mã hóa lại theo khung hình và xuất MP4 H.264/AAC, cạnh dài tối đa 1080 px. Chất lượng và metadata có thể khác bản gốc."
+        },
+        "3": {
+          "q": "Vì sao lần đầu xử lý lâu hơn?",
+          "a": "Lần đầu chạy cần tải bộ xử lý khoảng 32 MB. Tốc độ sau đó phụ thuộc độ dài video và cấu hình thiết bị."
+        }
+      },
+      "inputTitle": "1. Tải video lên",
+      "optionsTitle": "2. Chọn đoạn video",
+      "outputTitle": "3. Xuất kết quả",
+      "emptyTitle": "Xem video của bạn tại đây",
+      "emptyHint": "Tải video lên để chọn đoạn cần giữ.",
+      "privacy": "Video được xử lý ngay trên thiết bị của bạn.",
+      "selection": "Đoạn đã chọn: {{seconds}} giây",
+      "preview": "Xem thử đoạn đã chọn",
+      "resultHint": "Sau khi xử lý, video mới sẽ xuất hiện tại đây để xem và tải về."
+    },
+    "read": {
+      "title": "Đọc to văn bản",
+      "subtitle": "Dán chữ hoặc tải tài liệu, chọn giọng và nghe nội dung",
+      "heroNote": "Đọc nhẹ nhàng\nNghe điều bạn cần!",
+      "steps": {
+        "1": "Dán chữ hoặc chọn tệp tài liệu",
+        "2": "Kiểm tra lại nội dung cần đọc",
+        "3": "Chọn giọng và tốc độ phù hợp",
+        "4": "Bấm Đọc văn bản để nghe",
+        "5": "Tạm dừng, đọc tiếp hoặc tải WAV với giọng Việt"
+      },
+      "tips": {
+        "1": "Chọn giọng Việt nếu máy thiếu giọng tiếng Việt",
+        "2": "Chỉnh tốc độ chậm hơn khi cần nghe rõ",
+        "3": "Có thể tăng cỡ chữ trong khung đọc",
+        "4": "Thẻ Tệp giữ nội dung khi bạn chuyển qua lại"
+      },
+      "faq": {
+        "1": {
+          "q": "Có tải được âm thanh không?",
+          "a": "Chế độ Giọng Việt hỗ trợ tải WAV. Chế độ Giọng máy dùng giọng có sẵn trên thiết bị và không xuất tệp âm thanh."
+        },
+        "2": {
+          "q": "Có cần mạng khi đọc không?",
+          "a": "Giọng Việt cần tải dữ liệu lần đầu rồi xử lý trên thiết bị. Giọng máy có thể dùng dịch vụ trực tuyến tùy giọng. Nếu thẻ Link được bật, lấy nội dung từ liên kết cần mạng."
+        },
+        "3": {
+          "q": "Có đọc được tài liệu không?",
+          "a": "Có. Mở thẻ Tệp để xem các định dạng được hỗ trợ và kiểm tra nội dung sau khi trích xuất. Tài liệu dài được chia thành các phần để chọn đọc."
+        }
+      },
+      "inputTitle": "1. Nhập nội dung",
+      "optionsTitle": "2. Tùy chọn giọng đọc",
+      "outputTitle": "3. Nghe & Theo dõi",
+      "previewHint": "Nội dung của phần đang chọn. Nhấn Đọc văn bản để bắt đầu.",
+      "emptyTitle": "Sẵn sàng đọc cho bạn",
+      "emptyHint": "Thêm nội dung ở bước 1, chọn giọng rồi bắt đầu nghe.",
+      "wavHint": "Giọng Việt hỗ trợ xuất WAV từ nội dung của phần đang chọn.",
+      "deviceHint": "Giọng máy phát trực tiếp trên thiết bị. Chọn Giọng Việt nếu muốn tải WAV."
+    }
   }
 }

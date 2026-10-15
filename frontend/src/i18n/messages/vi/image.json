@@ -471,7 +471,7 @@
     "white": "Trắng",
     "blue": "Xanh",
     "gray": "Xám",
-    "backgroundHint": "Đổi nền phù hợp ảnh có nền đơn sắc. Hãy kiểm tra tóc và đường viền trước khi in.",
+    "backgroundHint": "Nền mới được đặt phía sau chủ thể, giữ lại tóc và trang phục. Lần đầu cần tải bộ tách nền.",
     "shirt": "Lớp áo",
     "keepShirt": "Giữ áo gốc",
     "blazer": "Vest xanh và sơ mi trắng",
@@ -482,7 +482,7 @@
     "x": "Dịch ngang",
     "y": "Dịch dọc",
     "preview": "Ảnh sau khi chỉnh nền và áo",
-    "failed": "Chưa tạo được ảnh xem trước. Kiểm tra ảnh áo hoặc trở về nền và áo gốc."
+    "failed": "Chưa tạo được ảnh xem trước. Hãy thử lại hoặc kiểm tra ảnh và lớp áo đã chọn."
   },
   "shop": {
     "open": "Nhiều bố cục, logo & ZIP",
@@ -546,5 +546,328 @@
   "handoff": {
     "toIdPhoto": "Làm ảnh thẻ từ ảnh này",
     "toCv": "Dùng làm ảnh trong CV"
+  },
+  "idPhotoStudio": {
+    "breadcrumb": "Đường dẫn",
+    "tools": "Công cụ",
+    "category": "Ảnh & Video",
+    "back": "Quay lại",
+    "title": "Ảnh thẻ",
+    "subtitle": "Tạo ảnh thẻ nhanh, đẹp, đúng kích thước",
+    "trust": {
+      "free": "Miễn phí",
+      "easy": "Dễ sử dụng",
+      "noAccount": "Không cần tài khoản",
+      "private": "Xử lý trên thiết bị"
+    },
+    "heroNote": "Ảnh đẹp hôm nay\nCơ hội ngày mai!",
+    "sideNote": "Những việc nhỏ\nTạo giá trị lớn hơn!",
+    "cheer": "Cùng bạn làm những điều nhỏ bé, tạo giá trị lớn hơn!",
+    "related": "Các công cụ khác trong Ảnh & Video",
+    "guideTitle": "Hướng dẫn nhanh",
+    "steps": {
+      "1": "Tải ảnh lên hoặc chụp bằng camera",
+      "2": "Chọn kích thước và nền ảnh",
+      "3": "Chỉnh sáng, căn khung nếu cần",
+      "4": "Xem trước và so với ảnh gốc",
+      "5": "Tải ảnh về hoặc in trực tiếp"
+    },
+    "tipsTitle": "Mẹo nhỏ",
+    "tips": {
+      "1": "Chụp ở nơi đủ ánh sáng",
+      "2": "Nhìn thẳng, giữ đầu cân đối",
+      "3": "Tránh kính râm, mũ và bóng đổ",
+      "4": "Dùng nền đơn sắc để đổi nền đẹp hơn",
+      "5": "Chỉnh sáng và tương phản vừa phải"
+    },
+    "faqTitle": "Câu hỏi thường gặp",
+    "faq": {
+      "1": {
+        "q": "Ảnh có dùng để nộp hồ sơ được không?",
+        "a": "Bạn có thể tạo ảnh theo kích thước yêu cầu. Hãy đối chiếu quy định về kích thước, nền và khuôn mặt của nơi nhận trước khi nộp."
+      },
+      "2": {
+        "q": "Có thể đổi nền ảnh khác không?",
+        "a": "Có. Chọn một màu có sẵn hoặc màu tùy chỉnh. Công cụ tách chủ thể trước khi thay nền để giữ lại trang phục. Nếu cần chỉnh đường viền chi tiết, bạn có thể dùng công cụ Xóa phông."
+      },
+      "3": {
+        "q": "Làm sao để ảnh nét hơn?",
+        "a": "Chọn ảnh gốc rõ nét, đủ sáng và tránh cắt quá sát. Bảng xem trước hiển thị độ phân giải thực để bạn kiểm tra trước khi in."
+      },
+      "4": {
+        "q": "Có thể in ảnh tại nhà không?",
+        "a": "Có. Chọn khổ giấy và số bản ở mục Nâng cao, rồi bấm In ảnh. Trong hộp thoại in, chọn kích thước thật / 100%, bỏ tùy chọn vừa trang giấy."
+      }
+    },
+    "upload": "Tải ảnh lên",
+    "customize": "Tùy chỉnh",
+    "previewDownload": "Xem trước & Tải về",
+    "dropTitle": "Kéo thả ảnh vào đây",
+    "dropHint": "hoặc bấm chọn file",
+    "choosePhoto": "Chọn ảnh",
+    "changePhoto": "Đổi ảnh khác",
+    "selectedPhoto": "Ảnh đang chọn",
+    "or": "hoặc",
+    "camera": "Chụp ảnh bằng camera",
+    "trySample": "Thử với ảnh mẫu",
+    "loading": "Đang mở ảnh…",
+    "sampleFailed": "Chưa tải được ảnh mẫu. Bấm thử lại hoặc chọn ảnh từ máy.",
+    "dismiss": "Đóng thông báo",
+    "sampleTitle": "Ảnh mẫu (bấm để dùng thử)",
+    "sampleLabel": "Thử tạo ảnh thẻ 3 × 4",
+    "sampleDisclosure": "Chân dung minh họa được tạo bằng AI",
+    "localHint": "Ảnh của bạn được xử lý trong trình duyệt, không tải lên máy chủ.",
+    "removePhoto": "Xóa ảnh đã chọn",
+    "tabs": {
+      "size": "Kích thước & nền",
+      "beauty": "Làm đẹp",
+      "align": "Căn chỉnh",
+      "advanced": "Nâng cao"
+    },
+    "photoSize": "Chọn kích thước ảnh thẻ",
+    "popular": "Phổ biến",
+    "custom": "Tùy chỉnh",
+    "width": "Chiều rộng",
+    "height": "Chiều cao",
+    "customLabel": "{{width}} × {{height}} cm",
+    "customInvalid": "Nhập chiều rộng từ 1–10 cm và chiều cao từ 1–15 cm.",
+    "backgroundTitle": "Chọn nền ảnh",
+    "backgrounds": {
+      "original": "Ảnh gốc",
+      "white": "Trắng",
+      "blue": "Xanh",
+      "red": "Đỏ",
+      "gray": "Xám",
+      "green": "Xanh lá"
+    },
+    "customBackground": "Chọn màu nền tùy chỉnh",
+    "identity": "Giữ nguyên đường nét khuôn mặt",
+    "quality": "Xuất JPG chất lượng cao, tối đa 300 DPI",
+    "adjustCrop": "Căn chỉnh khung ảnh",
+    "beautyTitle": "Chỉnh ảnh tự nhiên",
+    "beautyHint": "Điều chỉnh ánh sáng và độ tương phản. Các thay đổi áp dụng cho toàn ảnh, không thay đổi hình dáng khuôn mặt.",
+    "brightness": "Độ sáng",
+    "contrast": "Độ tương phản",
+    "resetBeauty": "Đặt lại ánh sáng",
+    "alignTitle": "Căn chỉnh khuôn mặt",
+    "alignHint": "Kéo khung để chọn vùng ảnh, kéo góc để thay đổi kích thước. Tỉ lệ được giữ theo cỡ ảnh thẻ đã chọn.",
+    "alignEmpty": "Chọn ảnh để bắt đầu căn chỉnh.",
+    "resetCrop": "Đặt lại khung cắt",
+    "printSettings": "Thiết lập tờ in",
+    "shirtRequired": "Chọn ảnh áo PNG hoặc WebP để tiếp tục.",
+    "preview": "Xem trước",
+    "original": "Ảnh gốc",
+    "originalPhoto": "Ảnh gốc chưa chỉnh sửa",
+    "previewPhoto": "Ảnh thẻ đã cắt và áp dụng tùy chỉnh",
+    "samplePreview": "Chân dung minh họa; chưa phải ảnh của bạn",
+    "updating": "Đang cập nhật…",
+    "demoNote": "Ảnh minh họa. Chọn ảnh của bạn hoặc bấm Thử với ảnh mẫu để bắt đầu.",
+    "dimensions": "Kích thước",
+    "resolution": "Độ phân giải",
+    "file": "Tệp ảnh",
+    "download": "Tải ảnh về",
+    "downloadSheet": "Tải tờ in ({{count}} ảnh)",
+    "print": "In ảnh",
+    "exporting": "Đang tạo ảnh…",
+    "cancel": "Hủy",
+    "downloadAgain": "Tải lại kết quả"
+  },
+  "cropStudio": {
+    "title": "Cắt & chỉnh ảnh",
+    "subtitle": "Cắt gọn khung hình, chỉnh ảnh đẹp theo ý bạn",
+    "heroNote": "Đúng khung hình\nĐẹp từng khoảnh khắc!",
+    "steps": {
+      "1": "Tải ảnh lên hoặc chụp bằng camera",
+      "2": "Chọn tỉ lệ và vùng ảnh cần giữ",
+      "3": "Xoay, lật hoặc chỉnh ánh sáng",
+      "4": "So sánh kết quả với ảnh gốc",
+      "5": "Lưu ảnh đã chỉnh về thiết bị"
+    },
+    "tips": {
+      "1": "Dùng ảnh gốc để giữ độ nét tốt hơn",
+      "2": "Giữ chủ thể trong vùng khung sáng",
+      "3": "Chọn 1:1 cho ảnh vuông, 3:4 cho chân dung",
+      "4": "Chỉnh độ sáng và tương phản vừa phải",
+      "5": "Bấm Đặt lại để bắt đầu lại từ ảnh gốc"
+    },
+    "faq": {
+      "1": {
+        "q": "Ảnh gốc có bị thay đổi không?",
+        "a": "Không. Công cụ tạo một tệp ảnh mới khi bạn bấm Lưu ảnh đã chỉnh; tệp gốc trên thiết bị vẫn được giữ nguyên."
+      },
+      "2": {
+        "q": "Ảnh tải về có bị thu nhỏ không?",
+        "a": "Ảnh tải về giữ kích thước theo vùng cắt của ảnh gốc. Kích thước chính xác được hiển thị ở phần Vùng sẽ lưu."
+      },
+      "3": {
+        "q": "Có thể cắt theo kích thước cụ thể không?",
+        "a": "Có. Mở mục Nâng cao để nhập tọa độ và kích thước theo pixel. Khi chọn tỉ lệ cố định, chiều còn lại sẽ được điều chỉnh theo tỉ lệ đó."
+      },
+      "4": {
+        "q": "Có thể làm ảnh thẻ sau khi chỉnh không?",
+        "a": "Có. Sau khi lưu ảnh, bấm Làm ảnh thẻ từ ảnh này để chuyển kết quả sang công cụ Ảnh thẻ."
+      }
+    },
+    "sampleLabel": "Thử cắt & chỉnh với ảnh mẫu",
+    "editTitle": "Cắt & chỉnh",
+    "previewTitle": "Xem trước & Lưu ảnh",
+    "tabs": {
+      "crop": "Cắt ảnh",
+      "rotate": "Xoay & lật",
+      "light": "Ánh sáng",
+      "advanced": "Nâng cao"
+    },
+    "flipHorizontal": "Lật ngang",
+    "flipVertical": "Lật dọc",
+    "resetLight": "Đặt lại ánh sáng",
+    "preciseHint": "Nhập số pixel rồi nhấn Enter hoặc bấm ra ngoài để áp dụng.",
+    "coordinates": {
+      "x": "Vị trí X (px)",
+      "y": "Vị trí Y (px)",
+      "width": "Chiều rộng (px)",
+      "height": "Chiều cao (px)"
+    },
+    "keyboardHint": "Bạn có thể dùng phím mũi tên để dời khung hoặc đổi cỡ tại tay nắm. Giữ Shift để di chuyển nhanh hơn.",
+    "emptyStage": "Chọn ảnh của bạn để bắt đầu kéo khung cắt.",
+    "stageHint": "Cắt đúng khung, giữ trọn điều bạn muốn",
+    "reset": "Đặt lại",
+    "cropHint": "Kéo khung để dời, kéo góc hoặc cạnh để chọn vùng cần giữ.",
+    "rotateHint": "Xoay mỗi lần 90°. Các nút lật giúp đổi chiều ảnh theo ý bạn.",
+    "lightHint": "Mức 100% giữ nguyên ánh sáng và tương phản của ảnh gốc.",
+    "previewAlt": "Ảnh xem trước sau khi cắt và chỉnh",
+    "sourceSize": "Ảnh gốc",
+    "outputSize": "Vùng sẽ lưu",
+    "format": "Định dạng",
+    "preserves": "Xuất ảnh theo kích thước vùng cắt đã chọn",
+    "save": "Lưu ảnh đã chỉnh",
+    "saving": "Đang lưu ảnh…"
+  },
+  "convertStudio": {
+    "title": "Chuyển đổi ảnh",
+    "subtitle": "Đổi JPG, PNG, WebP nhanh chóng — một ảnh hoặc cả bộ",
+    "heroNote": "Đúng định dạng\nSẵn sàng chia sẻ!",
+    "uploadTitle": "Tải ảnh lên",
+    "settingsTitle": "Tùy chọn chuyển đổi",
+    "previewTitle": "Xem trước & Tải về",
+    "drop": "Kéo thả ảnh vào đây",
+    "or": "hoặc",
+    "sample": "Thử với ảnh mẫu",
+    "dismiss": "Đóng thông báo",
+    "local": "Ảnh được xử lý ngay trên trình duyệt, không tải lên máy chủ.",
+    "pngHint": "PNG nén không mất dữ liệu, không cần chọn mức chất lượng.",
+    "keepSize": "Giữ nguyên kích thước ảnh",
+    "keepSizeHint": "Không thu nhỏ hay cắt ảnh",
+    "jpegHint": "JPG phù hợp ảnh chụp. Vùng trong suốt sẽ được thay bằng nền trắng.",
+    "pngDetail": "PNG giữ nền trong suốt, phù hợp logo và đồ họa.",
+    "webpHint": "WebP hỗ trợ nền trong suốt, phù hợp chia sẻ trên web.",
+    "converting": "Đang chuyển đổi…",
+    "result": "Kết quả",
+    "resultAlt": "Ảnh sau khi chuyển đổi định dạng",
+    "zipReady": "Đã chuyển đổi {{count}} ảnh",
+    "zipHint": "Tải tệp ZIP để nhận toàn bộ ảnh kết quả.",
+    "emptyPreview": "Ảnh của bạn sẽ hiện ở đây",
+    "emptyHint": "Tải ảnh lên, chọn định dạng rồi bấm chuyển đổi.",
+    "firstPreview": "Đang xem ảnh gốc đầu tiên trong bộ ảnh.",
+    "selected": "Đã chọn",
+    "imageCount": "{{count}} ảnh",
+    "output": "Định dạng xuất",
+    "size": "Dung lượng kết quả",
+    "download": "Tải ảnh về",
+    "downloadZip": "Tải bộ ảnh (ZIP)",
+    "downloadHint": "Sau khi chuyển đổi, bạn có thể xem và tải kết quả tại đây.",
+    "steps": {
+      "1": "Tải lên một hoặc nhiều ảnh",
+      "2": "Chọn định dạng JPG, PNG hoặc WebP",
+      "3": "Chọn chất lượng nếu cần",
+      "4": "Bấm Chuyển sang để tạo kết quả",
+      "5": "Xem trước và tải ảnh hoặc tệp ZIP"
+    },
+    "tips": {
+      "1": "Chọn JPG cho ảnh chụp, PNG cho logo",
+      "2": "Dùng PNG hoặc WebP để giữ nền trong suốt",
+      "3": "Chất lượng cao giúp giữ nhiều chi tiết hơn",
+      "4": "Nhiều ảnh được gói chung trong một tệp ZIP"
+    },
+    "faq": {
+      "1": {
+        "q": "Ảnh có bị thay đổi kích thước không?",
+        "a": "Không. Công cụ giữ nguyên chiều rộng và chiều cao của từng ảnh, chỉ chuyển định dạng."
+      },
+      "2": {
+        "q": "Có thể đổi nhiều ảnh cùng lúc không?",
+        "a": "Có. Chọn nhiều ảnh hoặc thêm ảnh vào danh sách. Kết quả sẽ được đóng gói thành tệp ZIP."
+      },
+      "3": {
+        "q": "Vì sao ảnh trong suốt có nền trắng?",
+        "a": "JPG không hỗ trợ nền trong suốt. Chọn PNG hoặc WebP nếu bạn cần giữ nền trong suốt."
+      },
+      "4": {
+        "q": "Ảnh đã đúng định dạng thì sao?",
+        "a": "Ảnh đã đúng định dạng được giữ nguyên trong bộ ảnh. Nếu tất cả ảnh đều đúng định dạng, bạn cần chọn định dạng khác để chuyển đổi."
+      }
+    }
+  },
+  "collageStudio": {
+    "title": "Ghép ảnh",
+    "subtitle": "Gom những khoảnh khắc yêu thích vào một khung hình",
+    "heroNote": "Gom ảnh đẹp\nGiữ trọn kỷ niệm!",
+    "modeLabel": "Chế độ ghép ảnh",
+    "simple": "Ghép ảnh nhanh",
+    "advanced": "Bố cục nâng cao",
+    "loading": "Đang mở bố cục nâng cao…",
+    "uploadTitle": "Tải & Sắp xếp ảnh",
+    "formats": "JPG, PNG, WebP · chọn từ 2 đến 9 ảnh",
+    "sample": "Thử với ảnh mẫu",
+    "sampleFailed": "Chưa tải được ảnh mẫu. Bạn có thể thử lại hoặc chọn ảnh từ máy.",
+    "orderHint": "Dùng mũi tên để đổi thứ tự ảnh trong khung ghép.",
+    "local": "Ảnh được xử lý ngay trên thiết bị, không tải lên máy chủ.",
+    "settingsTitle": "Chọn bố cục",
+    "columnCount": "{{count}} cột",
+    "gapPresets": "Khoảng cách nhanh",
+    "noGap": "Sát nhau",
+    "squareTiles": "Mỗi ảnh một ô vuông",
+    "cropHint": "Ảnh được cắt từ giữa cho vừa ô. Hãy kiểm tra chủ thể trong phần xem trước.",
+    "pngOutput": "Xuất ảnh PNG rõ nét",
+    "whiteBackground": "Nền và khoảng cách màu trắng. Mỗi ô ảnh có kích thước 900 × 900 px.",
+    "previewTitle": "Xem trước & Tải về",
+    "resultAlt": "Ảnh ghép PNG đã tạo",
+    "empty": "Khung ảnh của bạn sẽ hiện ở đây",
+    "emptyHint": "Chọn từ 2 đến 9 ảnh, sau đó chọn bố cục bạn thích.",
+    "images": "Đã chọn",
+    "outputSize": "Kích thước xuất",
+    "output": "Định dạng",
+    "downloadAgain": "Tải ảnh ghép lần nữa",
+    "exportHint": "Ảnh gốc trên thiết bị được giữ nguyên. Ảnh ghép không giữ metadata của các ảnh gốc.",
+    "steps": {
+      "1": "Tải lên từ 2 đến 9 ảnh",
+      "2": "Sắp xếp thứ tự bằng các nút mũi tên",
+      "3": "Chọn số cột và khoảng cách giữa ảnh",
+      "4": "Kiểm tra bố cục trong phần xem trước",
+      "5": "Bấm Ghép và tải ảnh để lưu PNG"
+    },
+    "tips": {
+      "1": "Chọn ảnh cùng chủ đề để khung ghép hài hòa",
+      "2": "Dùng 1 cột cho ảnh dài, 2–3 cột cho ảnh lưới",
+      "3": "Để khoảng cách nhỏ nếu muốn ảnh nổi bật hơn",
+      "4": "Mở bố cục nâng cao khi cần thêm tiêu đề, logo"
+    },
+    "faq": {
+      "1": {
+        "q": "Ghép được bao nhiêu ảnh?",
+        "a": "Chế độ ghép nhanh hỗ trợ từ 2 đến 9 ảnh JPG, PNG hoặc WebP. Bạn có thể thêm, xóa và đổi thứ tự trước khi xuất."
+      },
+      "2": {
+        "q": "Vì sao ảnh bị cắt ở mép?",
+        "a": "Chế độ ghép nhanh cắt ảnh từ giữa cho vừa ô vuông. Bạn có thể kiểm tra trên bản xem trước hoặc dùng bố cục nâng cao để chọn cách đặt ảnh phù hợp."
+      },
+      "3": {
+        "q": "Ảnh tải về có kích thước bao nhiêu?",
+        "a": "Mỗi ô ảnh có kích thước 900 × 900 px. Kích thước toàn bộ ảnh phụ thuộc số hàng, số cột và khoảng cách; thông số chính xác hiển thị dưới phần xem trước."
+      },
+      "4": {
+        "q": "Có thể thêm chữ hoặc logo không?",
+        "a": "Có. Mở Bố cục nâng cao để chọn mẫu, thêm tiêu đề và logo. Các ảnh đã chọn sẽ được chuyển sang chế độ đó."
+      }
+    }
   }
 }

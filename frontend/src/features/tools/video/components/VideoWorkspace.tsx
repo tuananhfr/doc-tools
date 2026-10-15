@@ -11,12 +11,13 @@ import { formatSeconds } from '../services/video-format'
 import { validateVideoFile, VIDEO_ACCEPT } from '../services/video-validation'
 import type { VideoOptions } from '../types/video.types'
 import styles from './VideoWorkspace.module.css'
+import { TrimVideoStudio, type TrimRangeControls } from './TrimVideoStudio'
 
 const sizeLabel = (bytes: number) => `${(bytes / 1024 / 1024).toFixed(2)} MB`
 
 const FlowAlert = ({ children }: { children: ReactNode }) => <p className="erp-flow-error" role="alert"><Icon name="x-octagon" /><span>{children}</span></p>
 
-export function VideoWorkspace({ options, children, actionLabel, note }: { options: VideoOptions; children: ReactNode; actionLabel: string; note: string }) {
+export function VideoWorkspace({ options, children, actionLabel, note, trimRange }: { options: VideoOptions; children: ReactNode; actionLabel: string; note: string; trimRange?: TrimRangeControls }) {
   const { t } = useTranslation('video')
   const { t: studioCopy } = useTranslation('common', { keyPrefix: options.action === 'audio' ? 'studio.extractAudio' : options.action === 'gif' ? 'studio.gif' : options.action === 'trim' ? 'studio.trimVideo' : 'studio.compressVideo' })
   const studio = options.action === 'compress' || options.action === 'trim' || options.action === 'gif' || options.action === 'audio'
@@ -28,6 +29,9 @@ export function VideoWorkspace({ options, children, actionLabel, note }: { optio
   const inputUrl = useObjectUrl(file)
   const outputUrl = useObjectUrl(task.output?.blob ?? null)
   useEffect(() => setSupported(videoEngineSupported()), [])
+  const trimStart = options.action === 'trim' ? options.start : null
+  const trimEnd = options.action === 'trim' ? options.end : null
+  useEffect(() => { if (trimStart !== null) task.reset() }, [trimStart, trimEnd])
   const chooseFile = (next: File | null) => {
     task.reset()
     setDuration(null)
@@ -53,6 +57,7 @@ export function VideoWorkspace({ options, children, actionLabel, note }: { optio
     </div>
   </div>
   const picker = <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
+  if (options.action === 'trim') return <TrimVideoStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} range={trimRange} picker={picker} failure={failure} note={note}>{children}</TrimVideoStudio>
   return <ToolBoard layout="balanced" className={`cn-video-workspace${studio ? ' cn-video-studio' : ''}`} after={studio ? <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studioCopy('stepChoose'), studioCopy('stepSet'), studioCopy('stepSave')]} tip={studioCopy('tip')} /></div> : undefined} side={<div className="erp-tool-result">
     {studio ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={options.action === 'audio' ? 'headphones' : options.action === 'gif' ? 'file-earmark-image' : 'file-earmark-play'} /></span><div><h2>{t('workspace.result')}</h2><p>{studioCopy('resultHint')}</p></div></div> : <p className="erp-tool-result__label">{t('workspace.result')}</p>}
     {studio && !output ? <div className="cn-video-empty" aria-hidden="true"><Icon name={options.action === 'audio' ? 'soundwave' : options.action === 'gif' ? 'images' : 'play-circle'} /><span /><span /></div> : null}

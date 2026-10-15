@@ -3,15 +3,17 @@ import { useMemo, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Icon } from '@/components/ui';
-import {ResponsivePreview} from '@/features/tools/hub/components/board/ResponsivePreview'
-import { ToolBoard, ToolPanel, downloadOutput } from '@/features/tools/hub';
+import { ToolPanel, downloadOutput } from '@/features/tools/hub';
 import { QrPreview } from '../components/QrPreview';
 import { createDynamicCode, DynamicCodeError, revokeDynamicCode } from '../services/dynamic-codes.api';
 import { qrPdfBlob, qrPngBlob, qrSvgBlob } from '../services/qr-render';
 import { CODE_STORE, parseCodeReceipt, readCodeReceipts, writeCodeReceipts, type DynamicCodeReceipt } from '../utils/dynamic-codes';
 import { createMatrix } from '../utils/qr-matrix';
-export default function DynamicQrPage() {
+import { CodeWorkspace, QrStudio } from '../components/QrStudio'
+
+export default function DynamicQrPage({ embedded = false }: { embedded?: boolean }) {
     const { t } = useTranslation('qr');
+    const { t: s } = useTranslation('qr', { keyPrefix: 'codeStudio' });
     const [destination, setDestination] = useState('');
     const [expiry, setExpiry] = useState('');
     const [consent, setConsent] = useState(false);
@@ -118,19 +120,9 @@ export default function DynamicQrPage() {
             setError(t('qrCreate.renderFailed'));
         }
     };
-    return <ToolBoard><ResponsivePreview preview={<>
-    <QrPreview matrix={matrix} color="#102a4c" background="#ffffff" placeholder={t('dynamic.empty')}/>
-    {active ? <>
-      <p className="erp-qr-payload">{active.destination_url}</p>
-      <p role="status">{active.revoked ? t('dynamic.revoked') : active.expires_at && Date.parse(active.expires_at) <= Date.now() ? t('dynamic.expired') : t('dynamic.active')}</p>
-      <p>{active.expires_at ? t('dynamic.expires', { date: new Date(active.expires_at).toLocaleString() }) : t('dynamic.noExpiry')}</p>
-      <p className="erp-flow-field__hint">{t('dynamic.needsNetwork')}</p>
-      <Button disabled={active.revoked} onClick={() => void download('png')}><Icon name="download" className="me-2"/>{t('qrCreate.downloadPng')}</Button>
-      <Button variant="outline-secondary" disabled={active.revoked} onClick={() => void download('pdf')}>{t('qrCreate.downloadPdf')}</Button>
-      <Button variant="outline-secondary" disabled={active.revoked} onClick={() => void download('svg')}>{t('qrCreate.downloadSvg')}</Button>
-    </> : null}
-  </>}>
-    <ToolPanel title={t('dynamic.title')}>
+    const workspace = <CodeWorkspace inputTitle={s('manager.input')} previewTitle={s('preview')}
+      input={<>
+    <div className="cn-codestudio-dynamic-create">
       <p>{t('dynamic.notice')}</p>
       <label className="erp-flow-field__label">{t('dynamic.destination')}<Form.Control type="url" value={destination} placeholder="https://" maxLength={1800} disabled={busy} onChange={event => setDestination(event.target.value)}/></label>
       <label className="erp-flow-field__label mt-3">{t('dynamic.expiry')}<Form.Control type="datetime-local" value={expiry} disabled={busy} onChange={event => setExpiry(event.target.value)}/></label>
@@ -138,7 +130,7 @@ export default function DynamicQrPage() {
       <Form.Check id="cn-dynamic-consent" label={t('dynamic.consent')} checked={consent} onChange={event => setConsent(event.target.checked)}/>
       <Button className="mt-3" disabled={!consent || !destination || busy || items.length >= 100} onClick={() => void create()}>{busy ? t('dynamic.working') : t('dynamic.create')}</Button>
       {error ? <p role="alert" className="erp-tool-form__error mt-3">{error}</p> : null}
-    </ToolPanel>
+    </div>
     <ToolPanel title={t('dynamic.manager')}>
       <p>{t('dynamic.keyNotice')}</p>
       <Button variant="outline-secondary" disabled={busy} onClick={loadSaved}>{t('dynamic.loadSaved')}</Button>
@@ -156,5 +148,20 @@ export default function DynamicQrPage() {
         <p className="erp-flow-field__hint">{t('dynamic.forgetHint')}</p>
       </> : null}
     </ToolPanel>
-  </ResponsivePreview></ToolBoard>;
+
+      </>}
+      preview={<>
+    <QrPreview matrix={matrix} color="#102a4c" background="#ffffff" placeholder={t('dynamic.empty')}/>
+    {active ? <>
+      <p className="erp-qr-payload">{active.destination_url}</p>
+      <p role="status">{active.revoked ? t('dynamic.revoked') : active.expires_at && Date.parse(active.expires_at) <= Date.now() ? t('dynamic.expired') : t('dynamic.active')}</p>
+      <p>{active.expires_at ? t('dynamic.expires', { date: new Date(active.expires_at).toLocaleString() }) : t('dynamic.noExpiry')}</p>
+      <p className="erp-flow-field__hint">{t('dynamic.needsNetwork')}</p>
+      <Button disabled={active.revoked} onClick={() => void download('png')}><Icon name="download" className="me-2"/>{t('qrCreate.downloadPng')}</Button>
+      <Button variant="outline-secondary" disabled={active.revoked} onClick={() => void download('pdf')}>{t('qrCreate.downloadPdf')}</Button>
+      <Button variant="outline-secondary" disabled={active.revoked} onClick={() => void download('svg')}>{t('qrCreate.downloadSvg')}</Button>
+    </> : null}
+
+      </>} />;
+    return embedded ? workspace : <QrStudio kind="manager">{workspace}</QrStudio>;
 }

@@ -45,6 +45,7 @@ const WITH_WIDTH: ReadonlySet<string> = new Set(['pen', 'line', 'arrow', 'rect',
 const FROM_PAGE: ReadonlySet<string> = new Set(['editText', 'cover', 'textEdit'])
 
 interface MarkupToolbarProps {
+  studio?: boolean
   tool: MarkupTool
   /** Loại dấu đang chỉnh kiểu: công cụ đang cầm, hoặc dấu đang chọn khi cầm công cụ Chọn. */
   target: MarkupKind | MarkupTool | null
@@ -62,7 +63,7 @@ interface MarkupToolbarProps {
   onDone: () => void
 }
 
-export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUndo, canRedo, onTool, onStyle, onDelete, onUndo, onRedo, onDone }: MarkupToolbarProps) {
+export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUndo, canRedo, onTool, onStyle, onDelete, onUndo, onRedo, onDone, studio = false }: MarkupToolbarProps) {
   const { t } = useTranslation('pdf')
   const fromPage = target !== null && FROM_PAGE.has(target)
   // Che chữ và dấu sửa chữ cũ chỉ phủ lên bề mặt — phải nói ra; sửa chữ thì tuỳ trang có viết lại được không.
@@ -77,23 +78,27 @@ export function MarkupToolbar({ tool, target, style, realEdit, canDelete, canUnd
   }
   const colorLabel = (color: MarkupColor) => t(`markup.color.${color}`)
 
+  const toolButton = (id: MarkupTool) => (
+    <button
+      key={id}
+      type="button"
+      className="erp-doc-tool erp-doc-markbar__tool"
+      title={toolHint(id)}
+      aria-label={t(`markup.tool.${id}`)}
+      aria-pressed={tool === id}
+      onClick={() => onTool(id)}
+    >
+      <Icon name={TOOLS[id].icon} />
+      {studio ? <span>{t(`markup.tool.${id}`)}</span> : null}
+    </button>
+  )
+
   return (
-    <div className="erp-doc-markbar" role="toolbar" aria-label={t('markup.toolbar')}>
+    <div className={`erp-doc-markbar${studio ? ' cn-pdfeditor-markbar' : ''}`} role="toolbar" aria-label={t('markup.toolbar')}>
       <div className="erp-doc-markbar__group" role="group" aria-label={t('markup.tools')}>
-        {Object.values(MARKUP_TOOL).map((id) => (
-          <button
-            key={id}
-            type="button"
-            className="erp-doc-tool erp-doc-markbar__tool"
-            title={toolHint(id)}
-            aria-label={t(`markup.tool.${id}`)}
-            aria-pressed={tool === id}
-            onClick={() => onTool(id)}
-          >
-            <Icon name={TOOLS[id].icon} />
-          </button>
-        ))}
+        {(studio ? (['text', 'editText', 'pen', 'highlight', 'note', 'select', 'rect', 'arrow'] as MarkupTool[]) : Object.values(MARKUP_TOOL)).map(toolButton)}
       </div>
+      {studio ? <details className="cn-pdfeditor-more-tools"><summary>{t('editorStudio.moreTools')}</summary><div>{(['line', 'ellipse', 'cloud', 'underline', 'strikeout', 'cover', 'redact', 'stamp'] as MarkupTool[]).map(toolButton)}</div></details> : null}
 
       {showColor ? (
         <div className="erp-doc-markbar__group" role="group" aria-label={t('stamp.color')}>

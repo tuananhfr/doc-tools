@@ -1,8 +1,9 @@
 import { lazy, Suspense, useEffect, useId, useMemo, useState } from 'react'
 import { Button, Form, ProgressBar } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { downloadOutput, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { downloadOutput, ToolSegments } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
+import { MediaStudio } from '@/features/tools/video/components/MediaStudio'
 import { useDebounce } from '@/hooks'
 import { numberFormat, speechLanguage } from '@/i18n/intl'
 import { ReadErrorNotice } from '../components/ReadErrorNotice'
@@ -38,6 +39,7 @@ const TAB_ICON = { text: 'clipboard', file: 'file-earmark-text', link: 'link-45d
 export default function ReadAloudPage() {
   const { t } = useTranslation('accessibility')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.read' })
+  const { t: media } = useTranslation('video', { keyPrefix: 'mediaStudio.read' })
   const hintId = useId()
   const partId = useId()
   const [tab, setTab] = useState<ReadInputTab>('text')
@@ -129,29 +131,14 @@ export default function ReadAloudPage() {
           : piper.phase === 'exporting' && piper.exported ? t('readAloud.exporting', { done: formatCount(piper.exported.done), total: formatCount(piper.exported.total) })
             : t('shared.ready')
 
-  return <ToolBoard className="cn-read-workspace" layout="balanced" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepVoice'), studio('stepListen')]} tip={studio('tip')} /></div>} side={<ToolPanel title={studio('settings')} actions={<span className="cn-studio-small-icon"><Icon name="soundwave" /></span>}>
-    <div className="cn-read-status" role="status" aria-live="polite"><Icon name={active ? 'soundwave' : 'check-circle'} /><span>{status}</span></div>
-    <ToolSegments label={t('readAloud.engine')} value={engine} onChange={changeEngine} options={[
-      { value: 'device', label: t('readAloud.engineDevice'), icon: 'phone' },
-      { value: 'piper', label: t('readAloud.enginePiper'), icon: 'soundwave' },
-    ]} />
-    {percent !== null ? <ProgressBar now={percent} aria-label={t('readAloud.piperLoading', { percent })} className="mt-2" /> : null}
-    <ReadVoicePanel engine={engine} notices={notices} language={languageName(lang, speechLanguage())} vietnamese={lang.toLowerCase().startsWith('vi')}
-      voiceName={voice.state === 'ok' ? voice.name : null} deviceFailed={device.failed} piperError={piper.error} exported={exported}
-      canUsePiper={canUsePiper} onUsePiper={() => changeEngine('piper')} onPasteInstead={tab === 'text' ? undefined : pasteInstead} />
-    <ReadSettings rate={rate} onRate={setRate} fontScale={fontScale} onFontScale={setFontScale} remember={remember} onRemember={setRemember} />
-  </ToolPanel>}>
-    <ToolPanel title={t('readAloud.title')} actions={<span className="cn-studio-small-icon"><Icon name="file-earmark-text" /></span>}>
+  return <MediaStudio kind="read"><div className="cn-media-editor cn-readstudio-editor">
+    <section className="cn-idstudio-panel cn-readstudio-input"><h2>{media('inputTitle')}</h2>
       <p className="cn-studio-form-hint">{studio('inputHint')}</p>
       <div className="erp-read-tabs cn-read-input-tabs">
         <ToolSegments label={t('readAloud.inputMode')} value={tab} onChange={changeTab} disabled={busy}
           options={inputTabs.map((value) => ({ value, label: t(TAB_LABEL[value]), icon: TAB_ICON[value] }))} />
       </div>
-      {active ? <>
-        <p className="erp-flow-field__label mt-3">{t('readAloud.content')}</p>
-        <ReadingView text={reading} highlight={highlight} label={t('readAloud.readingView')} describedBy={hintId} fontScale={fontScale} />
-        <p id={hintId} className="erp-tool-result__note mt-1">{t('readAloud.editHint')}</p>
-      </> : null}
+      {active ? <p className="cn-media-note"><Icon name="soundwave" />{t('readAloud.editHint')}</p> : null}
       {/* Thẻ chỉ bị ẩn, không unmount: giữ chữ, tệp đã nạp và khung kiểm tra OCR đang dở. */}
       <div hidden={active || tab !== 'text'}>
         <ReadPastePanel value={pasted} onChange={setPasted} fontScale={fontScale} />
@@ -172,13 +159,35 @@ export default function ReadAloudPage() {
         </Form.Select>
         <p className="erp-tool-result__note mt-1">{t('readAloud.partsNote', { total: formatCount(parts.length), max: formatCount(READ_PART_CHARS) })}</p>
       </div> : null}
-      <div className="cn-read-player">
+
+    </section>
+    <section className="cn-idstudio-panel cn-readstudio-settings"><h2>{media('optionsTitle')}</h2>
+    <ToolSegments label={t('readAloud.engine')} value={engine} onChange={changeEngine} options={[
+      { value: 'device', label: t('readAloud.engineDevice'), icon: 'phone' },
+      { value: 'piper', label: t('readAloud.enginePiper'), icon: 'soundwave' },
+    ]} />
+    {percent !== null ? <ProgressBar now={percent} aria-label={t('readAloud.piperLoading', { percent })} className="mt-2" /> : null}
+    <ReadVoicePanel engine={engine} notices={notices} language={languageName(lang, speechLanguage())} vietnamese={lang.toLowerCase().startsWith('vi')}
+      voiceName={voice.state === 'ok' ? voice.name : null} deviceFailed={device.failed} piperError={piper.error} exported={exported}
+      canUsePiper={canUsePiper} onUsePiper={() => changeEngine('piper')} onPasteInstead={tab === 'text' ? undefined : pasteInstead} />
+    <ReadSettings rate={rate} onRate={setRate} fontScale={fontScale} onFontScale={setFontScale} remember={remember} onRemember={setRemember} />
+
+    </section>
+    <section className="cn-idstudio-panel cn-readstudio-output"><h2>{media('outputTitle')}</h2>
+      <div className="cn-readstudio-status" role="status" aria-live="polite"><Icon name={active ? 'soundwave' : 'check-circle'} /><span>{status}</span></div>
+      {partText.trim() || active ? <>
+        <ReadingView text={active ? reading : partText} highlight={active ? highlight : null} label={t('readAloud.readingView')} describedBy={hintId} fontScale={fontScale} />
+        <p id={hintId} className="cn-media-hint">{active ? t('readAloud.editHint') : media('previewHint')}</p>
+      </> : <div className="cn-media-placeholder cn-readstudio-empty"><Icon name="headphones" /><strong>{media('emptyTitle')}</strong><p>{media('emptyHint')}</p></div>}
+      <div className="cn-readstudio-player">
         <ReadPlayerControls speaking={speaking} paused={paused} busy={busy} canRead={canRead}
           previous={previous} next={next} resumeOffset={resumeOffset}
           onRead={() => read()} onResumeSaved={() => { if (resumeOffset !== null) read(resumeOffset) }}
           onPause={pause} onResume={resume} onStop={stop} onJump={jump}
           extra={engine === 'piper' ? <Button variant="outline-secondary" disabled={!canRead} onClick={() => void downloadWav()}>{t('readAloud.exportWav')}</Button> : null} />
+
       </div>
-    </ToolPanel>
-  </ToolBoard>
+      <p className="cn-media-note"><Icon name={engine === 'piper' ? 'download' : 'volume-up'} />{media(engine === 'piper' ? 'wavHint' : 'deviceHint')}</p>
+    </section>
+  </div></MediaStudio>
 }

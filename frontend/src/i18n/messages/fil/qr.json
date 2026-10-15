@@ -372,5 +372,214 @@
     "next": "Next page",
     "short": "Labels",
     "changed": "{{total}} values normalized (uppercase / check digit). Review before printing."
+  },
+  "readStudio": {
+    "title": "Read QR codes",
+    "subtitle": "Scan QR codes and barcodes from images or your camera",
+    "heroNote": "One small code\nSo many connections!",
+    "category": "QR & Barcodes",
+    "related": "More QR & Barcode tools",
+    "inputTitle": "1. Upload an image or scan",
+    "method": "Choose an input method",
+    "image": "Upload image",
+    "imageHint": "Choose, drop or paste an image",
+    "camera": "Use camera",
+    "cameraHint": "Place the code in the frame",
+    "dropTitle": "Drop an image with a code here",
+    "pasteTitle": "Paste a screenshot",
+    "pasteHint": "Copy an image with a code and press Ctrl + V on this page.",
+    "sampleHint": "No image yet? Try scanning a sample QR code.",
+    "sample": "Try a sample code",
+    "sampleLoading": "Preparing…",
+    "sampleFailed": "Could not load the sample. Please try again.",
+    "outputTitle": "2. View code content",
+    "results": "Scan results",
+    "original": "Uploaded image",
+    "resultHint": "Decoded content will appear here.",
+    "reading": "Reading image {{current}} / {{total}}…",
+    "emptyTitle": "Ready to read your code",
+    "readSuccess": "Code detected",
+    "sessionHint": "Results are only kept for this page session.",
+    "supportedTitle": "Read different kinds of content",
+    "supported": {
+      "website": "Website links",
+      "wifi": "Wi-Fi networks",
+      "contact": "Contact details",
+      "text": "Text",
+      "product": "Product codes"
+    },
+    "steps": {
+      "1": "Choose an image or open the camera",
+      "2": "Keep the entire code clear and visible",
+      "3": "View the decoded content",
+      "4": "Check links before opening them",
+      "5": "Copy the content or scan another code"
+    },
+    "tips": {
+      "1": "Use a straight, well-lit photo without glare",
+      "2": "Keep the blank border around QR codes",
+      "3": "Select several images at once",
+      "4": "Paste screenshots with Ctrl + V"
+    },
+    "faq": {
+      "1": {
+        "q": "Can it read barcodes?",
+        "a": "Yes. It detects QR codes and common barcodes including EAN, UPC and Code 128. One code is read per image."
+      },
+      "2": {
+        "q": "Are images sent to a server?",
+        "a": "Images are decoded in your browser. Images and code content are not uploaded to a server for decoding."
+      },
+      "3": {
+        "q": "Why is my code not detected?",
+        "a": "The code may be blurry, cropped, too small or affected by glare. Try a clearer photo with the whole border visible."
+      },
+      "4": {
+        "q": "Can I use a phone camera?",
+        "a": "Yes. Allow camera access when prompted. If the camera cannot open, take a photo and upload it instead."
+      }
+    }
+  },
+  "codeStudio": {
+    "free": "Free",
+    "easy": "Easy to use",
+    "noAccount": "No account required",
+    "local": "Processed on your device",
+    "online": "Internet connection required",
+    "preview": "2. Preview & Download",
+    "live": "Your code updates as you type or change options.",
+    "scanBeforeSharing": "Test the code before printing or sharing.",
+    "create": {
+      "title": "Create QR codes",
+      "subtitle": "Create QR codes for links, Wi-Fi, contacts and more",
+      "input": "1. Choose code content",
+      "steps": {
+        "1": "Choose the content type",
+        "2": "Enter the information to share",
+        "3": "Customize code and background colors",
+        "4": "Preview and test the code",
+        "5": "Download PNG, SVG or PDF"
+      },
+      "tips": {
+        "1": "Use dark codes on light backgrounds",
+        "2": "Keep a clear border around the code",
+        "3": "Use SVG or PDF for printing",
+        "4": "Share Wi-Fi without typing passwords"
+      },
+      "faq": {
+        "1": {
+          "q": "Do static QR codes expire?",
+          "a": "Static codes directly contain your content and have no expiry set by this tool. Links or information within them may still become invalid."
+        },
+        "2": {
+          "q": "Can I change colors and backgrounds?",
+          "a": "Yes. Open customization to choose code colors and a white, transparent or custom background. Keep sufficient contrast."
+        },
+        "3": {
+          "q": "How are dynamic codes different?",
+          "a": "Dynamic codes redirect through a server and can expire or be revoked using a management key. Select Dynamic QR to review storage information before creating one."
+        }
+      }
+    },
+    "bank": {
+      "title": "VietQR bank transfer",
+      "subtitle": "Create transfer codes from a bank BIN, account number and amount",
+      "input": "1. Transfer details",
+      "steps": {
+        "1": "Enter the six-digit bank BIN",
+        "2": "Enter the correct account number",
+        "3": "Optionally add an amount and note",
+        "4": "Test with a banking app",
+        "5": "Check the recipient and download"
+      },
+      "tips": {
+        "1": "Match the account to the correct bank",
+        "2": "The amount can be left blank",
+        "3": "Notes are normalized without accents",
+        "4": "Check the recipient name in your banking app"
+      },
+      "faq": {
+        "1": {
+          "q": "Does the tool verify recipients?",
+          "a": "No. It encodes the details you enter. Scan with a banking app and verify the recipient name, account and amount before use."
+        },
+        "2": {
+          "q": "Is the amount required?",
+          "a": "No. Leave it blank to let the sender enter an amount in their banking app."
+        },
+        "3": {
+          "q": "Are account details uploaded?",
+          "a": "The transfer code is generated in your browser. Account details are not sent to a server to generate the code."
+        }
+      }
+    },
+    "barcode": {
+      "title": "Create barcodes",
+      "subtitle": "Create product and internal codes, or export batches from CSV or Excel",
+      "input": "1. Enter content & Customize",
+      "steps": {
+        "1": "Choose single or batch mode",
+        "2": "Select a suitable barcode type",
+        "3": "Enter content or upload CSV / Excel",
+        "4": "Choose print size and bar height",
+        "5": "Preview, download and test print"
+      },
+      "tips": {
+        "1": "Use Code 128 for internal codes",
+        "2": "EAN / ITF-14 numbers must be legitimately assigned",
+        "3": "Keep clear space at both ends",
+        "4": "Print and scan a sample before a full batch"
+      },
+      "faq": {
+        "1": {
+          "q": "Which type should I choose?",
+          "a": "Code 128 suits internal letter and number identifiers. Code 39 suits compatible systems. EAN and ITF-14 require legitimately assigned numbers."
+        },
+        "2": {
+          "q": "Can I create a batch?",
+          "a": "Yes. Choose Batch and upload CSV or Excel. The first column is validated and exported as PDF or PNG / SVG archives."
+        },
+        "3": {
+          "q": "Are print dimensions preserved?",
+          "a": "PDF uses the chosen dimensions. The on-screen preview may be scaled to fit. Print at actual size and test scanning."
+        }
+      },
+      "batchInput": "1. Upload a code list",
+      "batchOptions": "2. Batch options",
+      "printHint": "The preview fits your screen. Print at actual size to check it.",
+      "batchHint": "These options apply to the entire list. Changing the type revalidates each row."
+    },
+    "manager": {
+      "title": "Manage dynamic QR codes",
+      "subtitle": "Create expiring codes, save receipts and revoke with a management key",
+      "input": "1. Create & Manage codes",
+      "steps": {
+        "1": "Enter an HTTPS link and optional expiry",
+        "2": "Read the storage notice and consent",
+        "3": "Create a code or import a receipt",
+        "4": "Download the code and keep its receipt",
+        "5": "Revoke when you stop sharing"
+      },
+      "tips": {
+        "1": "The management key is returned only once",
+        "2": "Download receipts for future management",
+        "3": "Save on a private device when needed",
+        "4": "Revoking stops redirection"
+      },
+      "faq": {
+        "1": {
+          "q": "Why keep a management receipt?",
+          "a": "It contains the code and key required to revoke it. Lost keys cannot be recovered by this tool; keep receipts private."
+        },
+        "2": {
+          "q": "Does forgetting revoke the code?",
+          "a": "No. Forgetting only removes the copy from this device or session. Use Revoke QR to stop redirection on the server."
+        },
+        "3": {
+          "q": "Do dynamic codes need internet?",
+          "a": "Yes. Creation, revocation and opening dynamic codes require the server. Storage details are explained before you consent."
+        }
+      }
+    }
   }
 }

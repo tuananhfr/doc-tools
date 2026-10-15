@@ -8,9 +8,9 @@ import type { MeasureText } from '../utils/markup-geometry'
  * Trạng thái chế độ Đánh dấu trong ô xem to: công cụ, kiểu nét, dấu đang chọn.
  * Tô sáng nhớ màu riêng (mặc định vàng) — dùng chung màu đỏ của bút là tô đỏ cả đoạn văn.
  */
-export function useMarkupSession() {
-  const [active, setActive] = useState(false)
-  const [tool, setTool] = useState<MarkupTool>(MARKUP_TOOL.pen)
+export function useMarkupSession(initialTool?: MarkupTool) {
+  const [active, setActive] = useState(initialTool !== undefined)
+  const [tool, setTool] = useState<MarkupTool>(initialTool ?? MARKUP_TOOL.pen)
   const [ink, setInk] = useState<MarkupColor>('red')
   const [highlight, setHighlight] = useState<MarkupColor>('yellow')
   const [width, setWidth] = useState<MarkupStyle['width']>(2)

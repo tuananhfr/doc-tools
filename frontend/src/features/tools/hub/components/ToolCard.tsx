@@ -7,19 +7,20 @@ import { toolPath } from '../utils/tool-lookup'
 import { ToolTile } from './ToolTile'
 import { useToolOrigin } from '../hooks/useToolOrigin'
 import { useState } from 'react'
+import { ToolArtwork } from './ToolArtwork'
 
 /**
  * Thẻ một công cụ. Công cụ chưa làm KHÔNG phải link: thẻ vẫn có mặt để người
  * dùng biết nó sẽ có, nhưng bấm vào một trang trống thì tệ hơn không bấm được.
  */
-export function ToolCard({ tool }: { tool: ToolDefinition }) {
+export function ToolCard({ tool, illustrated = false }: { tool: ToolDefinition; illustrated?: boolean }) {
   const { base } = useToolsBranch()
   const { t } = useTranslation('common')
   const { capture } = useToolOrigin()
   const [originState, setOriginState] = useState<ReturnType<typeof capture>>()
   const body = (
     <>
-      <ToolTile tool={tool} />
+      {illustrated ? <ToolArtwork tool={tool} /> : <ToolTile tool={tool} />}
       <span className="erp-tool-card__text">
         <span className="erp-tool-card__name">{tool.name}</span>
         <span className="erp-tool-card__desc">{tool.description}</span>

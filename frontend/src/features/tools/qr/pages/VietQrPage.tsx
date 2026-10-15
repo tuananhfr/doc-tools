@@ -1,8 +1,9 @@
 import { useId, useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { CopyButton, downloadOutput, formatQuantity, parseMoney, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { CopyButton, downloadOutput, formatQuantity, parseMoney } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
+import { CodeWorkspace, QrStudio } from '../components/QrStudio'
 import { QrPreview } from '../components/QrPreview'
 import { qrPngBlob, qrSvgBlob } from '../services/qr-render'
 import { createMatrix } from '../utils/qr-matrix'
@@ -14,6 +15,7 @@ const AMOUNT_MAX = 999_999_999_999
 export default function VietQrPage() {
   const { t } = useTranslation('qr')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.vietqr' })
+  const { t: s } = useTranslation('qr', { keyPrefix: 'codeStudio' })
   const ids = [useId(), useId(), useId(), useId()]
   const [bin, setBin] = useState('')
   const [account, setAccount] = useState('')
@@ -50,15 +52,8 @@ export default function VietQrPage() {
     : hint ? <span id={`${id}-note`} className="erp-flow-field__hint">{hint}</span> : null
   const describedBy = (id: string, error: string, hint = '') => error || hint ? `${id}-note` : undefined
 
-  return <ToolBoard className="cn-vietqr-workspace" mobilePreview layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepCheck'), studio('stepSave')]} tip={studio('tip')} /></div>} side={<div className="cn-studio-card cn-vietqr-preview">
-    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="qr-code" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('previewHint')}</p></div></div>
-    <QrPreview matrix={matrix} color="#102e57" placeholder={t('vietqr.placeholder')} />
-    {payload ? <><dl className="cn-vietqr-details"><div><dt>{t('vietqr.bin')}</dt><dd>{bin}</dd></div><div><dt>{t('vietqr.account')}</dt><dd>{account}</dd></div>{amountValue !== null ? <div><dt>{t('vietqr.amount')}</dt><dd>{formatQuantity(amountValue)}</dd></div> : null}</dl><details className="cn-vietqr-payload"><summary>{t('shared.codeContent')}</summary><p className="erp-qr-payload">{payload}</p><CopyButton text={payload} label={t('vietqr.copy')} /></details></> : null}
-    <div className="cn-vietqr-downloads"><Button disabled={!matrix} onClick={() => void download('png')}><Icon name="download" className="me-2" />{t('shared.downloadPng')}</Button><Button variant="outline-secondary" disabled={!matrix} onClick={() => void download('svg')}>{t('vietqr.downloadSvg')}</Button></div>
-    <p className="erp-tool-result__note mt-3">{t('vietqr.checkNote')}</p>
-  </div>} sideLabel={t('vietqr.side')}>
-    <ToolPanel title={t('vietqr.panel')} actions={<span className="cn-studio-small-icon"><Icon name="bank" /></span>}>
-      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+  return <QrStudio kind="bank"><CodeWorkspace inputTitle={s('bank.input')} previewTitle={s('preview')}
+    input={<><p className="cn-codestudio-hint">{studio('inputHint')}</p>
       <div className="erp-tool-form__grid">
         <label className="erp-flow-field__label" htmlFor={ids[0]}>{t('vietqr.bin')}
           <Form.Control id={ids[0]} inputMode="numeric" autoComplete="off" value={bin} isInvalid={Boolean(binError)} aria-describedby={describedBy(ids[0], binError)} onBlur={leave('bin')} onChange={(event) => setBin(event.target.value.trim())} />
@@ -80,6 +75,14 @@ export default function VietQrPage() {
         </label>
       </div>
       <p className="erp-tool-result__note mt-3">{t('vietqr.privacy')}</p>
-    </ToolPanel>
-  </ToolBoard>
+
+    </>}
+    preview={<>
+    <QrPreview matrix={matrix} color="#102e57" placeholder={t('vietqr.placeholder')} />
+    {payload ? <><dl className="cn-vietqr-details"><div><dt>{t('vietqr.bin')}</dt><dd>{bin}</dd></div><div><dt>{t('vietqr.account')}</dt><dd>{account}</dd></div>{amountValue !== null ? <div><dt>{t('vietqr.amount')}</dt><dd>{formatQuantity(amountValue)}</dd></div> : null}</dl><details className="cn-vietqr-payload"><summary>{t('shared.codeContent')}</summary><p className="erp-qr-payload">{payload}</p><CopyButton text={payload} label={t('vietqr.copy')} /></details></> : null}
+    <div className="cn-vietqr-downloads"><Button disabled={!matrix} onClick={() => void download('png')}><Icon name="download" className="me-2" />{t('shared.downloadPng')}</Button><Button variant="outline-secondary" disabled={!matrix} onClick={() => void download('svg')}>{t('vietqr.downloadSvg')}</Button></div>
+    <p className="erp-tool-result__note mt-3">{t('vietqr.checkNote')}</p>
+
+    </>} />
+  </QrStudio>
 }

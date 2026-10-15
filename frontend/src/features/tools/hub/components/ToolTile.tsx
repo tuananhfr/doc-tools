@@ -1,4 +1,4 @@
-import { Icon } from '@/components/ui'
+import { ToolArtwork } from './ToolArtwork'
 import type { ToolDefinition } from '../types/tool.types'
 import { toolTone } from '../utils/tool-lookup'
 
@@ -6,7 +6,7 @@ import { toolTone } from '../utils/tool-lookup'
 export function ToolTile({ tool, small = false }: { tool: ToolDefinition; small?: boolean }) {
   return (
     <span className={`erp-tool-tile erp-tool-tile--${toolTone(tool)}${small ? ' erp-tool-tile--sm' : ''}`}>
-      <Icon name={tool.icon} />
+      <ToolArtwork tool={tool} />
     </span>
   )
 }

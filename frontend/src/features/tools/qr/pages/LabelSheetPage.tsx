@@ -2,10 +2,9 @@ import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { ToolBoard, ToolPanel } from '@/features/tools/hub';
 import { FlowProgress } from '@/features/tools/hub/components/flow/FlowProgress';
 import { FlowResult } from '@/features/tools/hub/components/flow/FlowResult';
-import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview';
+import { CodeWorkspace } from '../components/QrStudio';
 import { useFlowRun } from '@/features/tools/hub/hooks/useFlowRun';
 import {Gs1Notice} from '../components/Gs1Notice'
 import {checkBarcode} from '../utils/barcode-check'
@@ -94,11 +93,11 @@ export default function LabelSheetPage() {
     } };
     if (run.state.phase === 'done')
         return <FlowResult result={run.state.result} onRestart={run.reset}/>;
-    return <ToolBoard><ResponsivePreview action={action} preview={<>
+    return <CodeWorkspace inputTitle={t('labels.title')} previewTitle={t('labels.output')} preview={<>
     <div className="cn-label-paper" style={{ aspectRatio: '210 / 297' }}>{(pages[currentPage] ?? []).map((placement, index) => <div key={index} className="cn-label-cell" style={{ left: `${placement.xMm / 210 * 100}%`, top: `${placement.yMm / 297 * 100}%`, width: `${settings.widthMm / 210 * 100}%`, height: `${settings.heightMm / 297 * 100}%` }}>{preview[index] ? <img src={preview[index].url} style={{ width: `${preview[index].width / settings.widthMm * 100}%`, height: `${preview[index].height / settings.heightMm * 100}%` }} alt={t('labels.codeAlt', { value: preview[index].value })}/> : null}</div>)}</div>
     {pages.length ? <div className="cn-graphic-page-controls"><Button variant="outline-secondary" disabled={!currentPage} onClick={() => setPageIndex(currentPage - 1)}>{t('labels.previous')}</Button><span>{currentPage + 1}/{pages.length}</span><Button variant="outline-secondary" disabled={currentPage >= pages.length - 1} onClick={() => setPageIndex(currentPage + 1)}>{t('labels.next')}</Button></div> : null}
     <p className="erp-flow-field__hint mt-3">{t('labels.printHint')}</p>
-  </>}><ToolPanel title={t('labels.title')}>
+  </>} input={<>
     <p>{t('labels.notice')}</p>
     <label className="erp-flow-field__label">{t('labels.kind')}<Form.Select aria-label={t('labels.kind')} value={kind} onChange={event => setKind(event.target.value as LabelCodeKind)}><option value="qr">QR</option>{BARCODE_KINDS.map(item => <option key={item.kind} value={item.kind}>{item.label}</option>)}</Form.Select></label>
     <label className="erp-flow-field__label mt-3">{t('labels.values')}<Form.Control aria-label={t('labels.values')} as="textarea" rows={6} maxLength={1000000} value={text} onChange={event => { setText(event.target.value); setPageIndex(0); }}/></label>
@@ -111,5 +110,5 @@ export default function LabelSheetPage() {
     {invalid || previewError || fileError ? <p role="alert" className="erp-tool-form__error mt-3">{fileError || previewError || t('labels.invalid')}</p> : null}
     {run.state.phase === 'idle' && run.state.error ? <p role="alert" className="erp-tool-form__error mt-3">{run.state.error.message}</p> : null}
     <div className="mt-3">{action}</div>
-  </ToolPanel></ResponsivePreview></ToolBoard>;
+  </>} />;
 }

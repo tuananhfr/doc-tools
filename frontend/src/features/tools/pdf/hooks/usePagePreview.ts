@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type RefObject } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react'
 import type { PageRef, SourceFile } from '../types/doc-tools.types'
 import { measurePage, PREVIEW_MAX_AREA, renderPreview, type PageSize } from '../services/page-preview'
 import { sheetKey } from '../utils/image-sheet'
@@ -26,6 +26,7 @@ type Rendered = { key: string; ratio: number }
  */
 export function usePagePreview(source: SourceFile, page: PageRef, mode: ZoomMode, frame: Box | null): PagePreview {
   const host = useRef<HTMLDivElement>(null)
+  const lastCanvas = useRef<HTMLCanvasElement | null>(null)
   // pdf.js dùng chung một đối tượng trang cho mọi lần vẽ và `cleanup()` sau mỗi
   // lần — hai lần vẽ chồng nhau thì lần sau có thể ra canvas trắng. Xếp hàng.
   const queue = useRef<Promise<void>>(Promise.resolve())
@@ -55,6 +56,14 @@ export function usePagePreview(source: SourceFile, page: PageRef, mode: ZoomMode
   const renderedRatio = rendered?.key === key ? rendered.ratio : 0
   const needsRender = ratio !== null && ratio > renderedRatio * 1.001
 
+  // Moving the viewer between the embedded panel and a fullscreen portal replaces
+  // the host, but a smaller view can reuse the already rendered sharp canvas.
+  useLayoutEffect(() => {
+    if (host.current && rendered?.key === key && lastCanvas.current && host.current.firstChild !== lastCanvas.current) {
+      host.current.replaceChildren(lastCanvas.current)
+    }
+  })
+
   // Sang trang khác: gỡ canvas trang cũ ngay, đừng để nó hiện dưới khung của trang mới.
   useEffect(() => {
     if (rendered?.key !== key) host.current?.replaceChildren()
@@ -70,6 +79,7 @@ export function usePagePreview(source: SourceFile, page: PageRef, mode: ZoomMode
           try {
             const canvas = await renderPreview(source, page, ratio)
             if (cancelled) return
+            lastCanvas.current = canvas
             host.current?.replaceChildren(canvas)
             setRendered({ key, ratio })
           } catch {

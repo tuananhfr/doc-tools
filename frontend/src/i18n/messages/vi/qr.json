@@ -362,5 +362,214 @@
     "next": "Trang sau",
     "short": "In nhãn",
     "changed": "{{total}} nội dung được chuẩn hóa (chữ hoa / số kiểm tra). Hãy đối chiếu trước khi in."
+  },
+  "readStudio": {
+    "title": "Đọc mã QR",
+    "subtitle": "Quét mã QR và mã vạch từ ảnh hoặc camera, nhanh chóng và dễ dàng",
+    "heroNote": "Một mã nhỏ\nKết nối vạn điều hay!",
+    "category": "QR & Mã vạch",
+    "related": "Các công cụ QR & Mã vạch khác",
+    "inputTitle": "1. Tải ảnh hoặc quét mã",
+    "method": "Chọn cách đọc mã",
+    "image": "Tải ảnh lên",
+    "imageHint": "Chọn, kéo thả hoặc dán ảnh",
+    "camera": "Quét camera",
+    "cameraHint": "Đưa mã vào khung hình",
+    "dropTitle": "Kéo thả ảnh có mã vào đây",
+    "pasteTitle": "Dán ảnh chụp màn hình",
+    "pasteHint": "Sao chép ảnh có mã rồi nhấn Ctrl + V ngay trên trang.",
+    "sampleHint": "Chưa có ảnh? Thử đọc một mã QR mẫu.",
+    "sample": "Thử với mã mẫu",
+    "sampleLoading": "Đang chuẩn bị…",
+    "sampleFailed": "Không mở được mã mẫu. Vui lòng thử lại.",
+    "outputTitle": "2. Xem nội dung mã",
+    "results": "Kết quả đọc mã",
+    "original": "Ảnh vừa tải",
+    "resultHint": "Nội dung sẽ hiện ở đây sau khi đọc được mã.",
+    "reading": "Đang đọc ảnh {{current}} / {{total}}…",
+    "emptyTitle": "Sẵn sàng đọc mã của bạn",
+    "readSuccess": "Đã đọc được mã",
+    "sessionHint": "Các kết quả chỉ được giữ trong lần mở trang này.",
+    "supportedTitle": "Đọc nhiều loại nội dung",
+    "supported": {
+      "website": "Liên kết website",
+      "wifi": "Mạng Wi-Fi",
+      "contact": "Thông tin liên hệ",
+      "text": "Văn bản",
+      "product": "Mã sản phẩm"
+    },
+    "steps": {
+      "1": "Chọn ảnh có mã hoặc mở camera",
+      "2": "Giữ mã rõ nét, nằm trọn trong ảnh",
+      "3": "Xem nội dung mã được nhận dạng",
+      "4": "Kiểm tra đường dẫn trước khi mở",
+      "5": "Sao chép nội dung hoặc đọc mã tiếp"
+    },
+    "tips": {
+      "1": "Chụp thẳng, đủ sáng và tránh lóa",
+      "2": "Giữ khoảng trắng quanh mã QR",
+      "3": "Có thể chọn nhiều ảnh trong một lần",
+      "4": "Dán ảnh chụp màn hình bằng Ctrl + V"
+    },
+    "faq": {
+      "1": {
+        "q": "Có đọc được mã vạch không?",
+        "a": "Có. Công cụ tự nhận dạng mã QR và các mã vạch phổ biến như EAN, UPC và Code 128. Mỗi ảnh được đọc một mã."
+      },
+      "2": {
+        "q": "Ảnh có được gửi lên máy chủ không?",
+        "a": "Ảnh được đọc ngay trong trình duyệt. Ảnh và nội dung mã không được gửi lên máy chủ để giải mã."
+      },
+      "3": {
+        "q": "Vì sao không đọc được mã?",
+        "a": "Mã có thể bị mờ, mất góc, quá nhỏ hoặc phản sáng. Hãy chụp lại rõ nét, giữ đủ viền quanh mã và thử lại."
+      },
+      "4": {
+        "q": "Có dùng camera trên điện thoại được không?",
+        "a": "Có. Hãy cấp quyền camera khi trình duyệt hỏi. Nếu camera không mở được, bạn có thể chụp ảnh rồi tải lên."
+      }
+    }
+  },
+  "codeStudio": {
+    "free": "Miễn phí",
+    "easy": "Dễ sử dụng",
+    "noAccount": "Không cần tài khoản",
+    "local": "Xử lý trên thiết bị",
+    "online": "Cần kết nối mạng",
+    "preview": "2. Xem trước & Tải về",
+    "live": "Mã được cập nhật ngay khi bạn nhập hoặc thay đổi tùy chọn.",
+    "scanBeforeSharing": "Quét thử mã trước khi in hoặc chia sẻ.",
+    "create": {
+      "title": "Tạo mã QR",
+      "subtitle": "Tạo QR cho đường dẫn, Wi-Fi, danh thiếp và nhiều nội dung khác",
+      "input": "1. Chọn nội dung mã",
+      "steps": {
+        "1": "Chọn loại nội dung cần tạo QR",
+        "2": "Nhập thông tin muốn chia sẻ",
+        "3": "Tùy chỉnh màu mã và màu nền",
+        "4": "Xem trước và quét thử mã",
+        "5": "Tải PNG, SVG hoặc PDF"
+      },
+      "tips": {
+        "1": "Dùng màu mã đậm trên nền sáng",
+        "2": "Giữ đủ khoảng trắng quanh mã",
+        "3": "Dùng SVG hoặc PDF khi cần in",
+        "4": "Chia sẻ Wi-Fi mà không cần gõ mật khẩu"
+      },
+      "faq": {
+        "1": {
+          "q": "Mã QR tĩnh có hết hạn không?",
+          "a": "Mã QR tĩnh chứa trực tiếp nội dung và không có thời hạn do công cụ đặt. Đường dẫn hoặc thông tin bên trong vẫn có thể thay đổi hiệu lực."
+        },
+        "2": {
+          "q": "Có đổi màu và nền được không?",
+          "a": "Có. Mở mục tùy chỉnh để chọn màu mã, nền trắng, nền trong suốt hoặc màu nền khác. Hãy giữ đủ tương phản để dễ quét."
+        },
+        "3": {
+          "q": "QR động khác QR tĩnh thế nào?",
+          "a": "QR động dùng máy chủ chuyển hướng và có thể đặt hạn hoặc thu hồi bằng khóa quản lý. Chọn QR động để xem thông tin lưu trữ trước khi tạo."
+        }
+      }
+    },
+    "bank": {
+      "title": "VietQR chuyển khoản",
+      "subtitle": "Tạo mã chuyển khoản từ mã BIN ngân hàng, tài khoản và số tiền",
+      "input": "1. Thông tin chuyển khoản",
+      "steps": {
+        "1": "Nhập mã BIN 6 số của ngân hàng",
+        "2": "Nhập chính xác số tài khoản",
+        "3": "Thêm số tiền và nội dung nếu cần",
+        "4": "Quét thử bằng ứng dụng ngân hàng",
+        "5": "Kiểm tra người nhận rồi tải mã"
+      },
+      "tips": {
+        "1": "Số tài khoản phải đúng ngân hàng đã chọn",
+        "2": "Có thể để trống số tiền",
+        "3": "Nội dung được chuyển thành chữ không dấu",
+        "4": "Kiểm tra tên người nhận trong ứng dụng ngân hàng"
+      },
+      "faq": {
+        "1": {
+          "q": "Công cụ có xác minh người nhận không?",
+          "a": "Không. Công cụ tạo mã từ thông tin bạn nhập. Hãy quét bằng ứng dụng ngân hàng và kiểm tra tên người nhận, tài khoản và số tiền trước khi dùng."
+        },
+        "2": {
+          "q": "Có bắt buộc nhập số tiền không?",
+          "a": "Không. Để trống số tiền nếu muốn người chuyển tự nhập trong ứng dụng ngân hàng."
+        },
+        "3": {
+          "q": "Thông tin tài khoản có được gửi lên máy chủ không?",
+          "a": "Mã chuyển khoản được tạo ngay trong trình duyệt. Công cụ không gửi thông tin tài khoản đến máy chủ để tạo mã."
+        }
+      }
+    },
+    "barcode": {
+      "title": "Tạo mã vạch",
+      "subtitle": "Tạo mã sản phẩm, mã nội bộ và xuất hàng loạt từ CSV hoặc Excel",
+      "input": "1. Nhập nội dung & Tùy chỉnh",
+      "steps": {
+        "1": "Chọn tạo một mã hoặc hàng loạt",
+        "2": "Chọn loại mã phù hợp",
+        "3": "Nhập nội dung hoặc tải CSV / Excel",
+        "4": "Chọn cỡ in và chiều cao vạch",
+        "5": "Xem trước, tải mã và in thử"
+      },
+      "tips": {
+        "1": "Dùng Code 128 cho mã nội bộ",
+        "2": "Số EAN / ITF-14 cần được cấp hợp lệ",
+        "3": "Giữ khoảng trắng hai đầu mã",
+        "4": "In thử và quét kiểm tra trước khi in cả lô"
+      },
+      "faq": {
+        "1": {
+          "q": "Nên chọn loại mã nào?",
+          "a": "Code 128 phù hợp mã nội bộ gồm chữ và số; Code 39 dành cho hệ thống tương thích loại mã này. EAN và ITF-14 dùng với số đã được cấp hợp lệ."
+        },
+        "2": {
+          "q": "Có tạo hàng loạt được không?",
+          "a": "Có. Chọn Hàng loạt và tải CSV hoặc Excel. Công cụ đọc cột đầu, kiểm tra dữ liệu rồi cho tải PDF hoặc gói PNG / SVG."
+        },
+        "3": {
+          "q": "File tải về có giữ cỡ in không?",
+          "a": "PDF dùng kích thước theo tùy chọn đã chọn. Bản xem trước có thể được thu nhỏ để vừa màn hình; hãy in ở kích thước thực và quét thử."
+        }
+      },
+      "batchInput": "1. Tải danh sách mã",
+      "batchOptions": "2. Tùy chỉnh mã hàng loạt",
+      "printHint": "Bản xem trước được thu vừa màn hình. In ở kích thước thực để kiểm tra.",
+      "batchHint": "Các tùy chọn này áp dụng cho toàn bộ danh sách. Đổi loại mã sẽ kiểm tra lại từng dòng."
+    },
+    "manager": {
+      "title": "Quản lý mã QR động",
+      "subtitle": "Tạo mã có thời hạn, lưu biên nhận và thu hồi bằng khóa quản lý",
+      "input": "1. Tạo & Quản lý mã",
+      "steps": {
+        "1": "Nhập đường dẫn HTTPS và hạn dùng",
+        "2": "Đọc thông tin lưu trữ và đồng ý",
+        "3": "Tạo mã hoặc mở biên nhận có sẵn",
+        "4": "Tải mã và giữ biên nhận quản lý",
+        "5": "Thu hồi khi không còn muốn chia sẻ"
+      },
+      "tips": {
+        "1": "Khóa quản lý chỉ được trả về một lần",
+        "2": "Tải biên nhận để có thể quản lý về sau",
+        "3": "Chỉ lưu trên thiết bị riêng khi cần",
+        "4": "Thu hồi mã sẽ dừng chuyển hướng"
+      },
+      "faq": {
+        "1": {
+          "q": "Vì sao cần biên nhận quản lý?",
+          "a": "Biên nhận chứa mã và khóa dùng để thu hồi. Công cụ không khôi phục khóa khi bạn làm mất; hãy giữ biên nhận ở nơi riêng tư."
+        },
+        "2": {
+          "q": "Quên mã có thu hồi mã không?",
+          "a": "Không. Quên chỉ bỏ bản trên thiết bị hoặc trong phiên hiện tại. Dùng Thu hồi QR để dừng chuyển hướng trên máy chủ."
+        },
+        "3": {
+          "q": "QR động có cần mạng không?",
+          "a": "Có. Việc tạo, thu hồi và mở mã động cần máy chủ. Thông tin lưu trữ được giải thích trong phần tạo mã trước khi bạn đồng ý."
+        }
+      }
+    }
   }
 }

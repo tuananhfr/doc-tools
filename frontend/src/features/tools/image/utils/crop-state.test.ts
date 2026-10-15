@@ -1,9 +1,28 @@
 import { describe, expect, it } from 'vitest'
-import { initialCrop, isPristine, turned, withAspect } from './crop-state'
+import { flipped, initialCrop, isPristine, turned, withAspect } from './crop-state'
 
 const size = { width: 1000, height: 800 }
 
 describe('crop-state', () => {
+  it('mirrors the crop with its selected content and returns to the original after two flips', () => {
+    const start = { ...initialCrop(size), rect: { x: 100, y: 70, width: 300, height: 250 } }
+    const horizontal = flipped(start, size, 'x')
+    expect(horizontal.rect).toEqual({ x: 600, y: 70, width: 300, height: 250 })
+    expect(horizontal.flipX).toBe(true)
+    expect(isPristine(flipped(initialCrop(size), size, 'y'), size)).toBe(false)
+    expect(flipped(horizontal, size, 'x')).toEqual(start)
+    expect(flipped(start, size, 'y').rect.y).toBe(480)
+  })
+
+  it('rotating a mirrored image swaps the screen axes and keeps the crop aligned', () => {
+    const start = flipped(withAspect(initialCrop(size), size, '4:3'), size, 'x')
+    const after = turned(start, size, 'cw')
+    expect(after.flipX).toBe(false)
+    expect(after.flipY).toBe(true)
+    let fullTurn = start
+    for (let i = 0; i < 4; i++) fullTurn = turned(fullTurn, size, 'cw')
+    expect(fullTurn).toEqual(start)
+  })
   it('ảnh vừa mở là chưa chỉnh gì', () => {
     expect(isPristine(initialCrop(size), size)).toBe(true)
   })

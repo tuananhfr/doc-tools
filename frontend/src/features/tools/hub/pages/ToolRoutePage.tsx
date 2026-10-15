@@ -20,6 +20,7 @@ import { resolveToolRoute, toolPageTitle, toolPath } from '../utils/tool-lookup'
 import { useToolOrigin } from '../hooks/useToolOrigin'
 import { workspaceTabsFor } from '../utils/workspace-tabs'
 import { ToolCapability } from '../components/ToolCapability'
+import { ToolArtwork } from '../components/ToolArtwork'
 
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
@@ -59,6 +60,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   if (redirect) return <Navigate to={toolPath(base, { slug: redirect })} replace />
 
   const Screen = screens[tool.screen]
+  const imageStudio = ['qr-create', 'qr-read', 'barcode-create', 'vietqr', 'code-manager', 'read-aloud', 'trim-video'].includes(tool.screen) || tool.screen === 'id-photo' || tool.screen === 'crop-image' || tool.screen === 'convert-image' || tool.screen === 'collage' || tool.screen === 'images-to-pdf' || (tool.screen === 'editor' && tool.slug === 'chinh-sua-pdf')
   /* Hỏi TRƯỚC khi vẽ `Screen`: vẽ ra là nạp chunk pdf.js, mà trên trình duyệt
      cũ chunk đó ném lỗi ngay lúc nạp (xem `utils/browser-support.ts`). */
   const unsupported = PDF_ENGINE_SCREENS.has(tool.screen) && !pdfEngineSupported()
@@ -66,7 +68,8 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   const studio = ['tarot', 'chinh-sua-pdf', 'doc-ma-qr', 'ghep-anh', 'anh-sang-pdf', 'tao-cv', 'huong-nha-la-ban', 'bai-tay', 'xoa-phong', 'than-so-hoc', 'doc-to-van-ban', 'cat-chinh-anh', 'soan-van-ban', 'pdf-sang-word', 'tao-ma-qr', 'tro-ly', 'ghep-pdf', 'lich-am', 'khai-toan-nha', 'anh-the', 'nen-video', 'thiet-ke-nhanh', 'lich-gia-dinh', 'chia-tien-nhom', 'doi-dia-chi', 'cat-video', 'do-kich-thuoc-anh', 'bang-tinh', 'mat-khau-pdf', 'diem-hoc-tap', 'pomodoro', 'tach-pdf', 'tao-gif', 'vietqr-chuyen-khoan', 'luong', 'sap-xep-pdf', 'so-sanh-gia-theo-don-vi', 'so-thanh-chu', 'vong-quay', 'tao-ma-vach', 'tien-dien', 'anh-sang-van-ban', 'kiem-tra-tin-nhan-link-la', 'mau-don', 'danh-so-trang', 'mau-sac', 'tach-am-thanh', 'the-ghi-nho', 'tinh-toan-nhanh', 'xoa-metadata-anh', 'ocr-van-ban', 'chuyen-doi-anh', 'dem-ky-tu', 'kinh-lup', 'chuyen-font-tieng-viet', 'tinh-tien', 'anh-hang-loat', 'doc-hoa-don-xml'].includes(tool.slug)
 
   return (
-    <div data-workspace-version={workspaceVersions?.[tool.id]} data-tool-screen={tool.screen} data-tool-slug={tool.slug} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}${studio ? ' cn-tool-workspace--studio' : ''}`}>
+    <div data-workspace-version={workspaceVersions?.[tool.id]} data-tool-screen={tool.screen} data-tool-slug={tool.slug} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}${studio ? ' cn-tool-workspace--studio' : ''}${tool.screen === 'id-photo' ? ' cn-tool-workspace--idphoto' : ''}${imageStudio ? ' cn-tool-workspace--image-studio' : ''}`}>
+      {!imageStudio ? <>
       <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
         <Link className="erp-tool-crumb__back" to={kind === 'public' ? backTo : base} state={backState}>
           <Icon name="arrow-left" />
@@ -82,7 +85,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
 
       <div className="cn-tool-heading">
         <header className="cn-tool-intro">
-          <span className="cn-tool-intro__icon"><Icon name={tool.icon} /></span>
+          <span className="cn-tool-intro__icon"><ToolArtwork tool={tool} /></span>
           <div className="cn-tool-intro__text">
             <h1 className="erp-tool-crumb__title">{tool.name}</h1>
             <p className="cn-tool-description">{tool.description}</p>
@@ -102,6 +105,8 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
           {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
         </div>
       </div>
+
+      </> : null}
 
       {/* A fixed screen slot preserves the session when two routes share a component. */}
 

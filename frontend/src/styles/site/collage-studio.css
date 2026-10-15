@@ -1,0 +1,62 @@
+.cn-collagestudio-modes { display: flex; gap: 8px; margin-bottom: 12px; }
+.cn-collagestudio-modes button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 14px; border: 1px solid var(--cn-line); border-radius: 8px; color: var(--cn-accent); background: var(--cn-surface); font: inherit; font-size: 12px; }
+.cn-collagestudio-modes button[aria-pressed='true'] { background: #0067f4; border-color: #0067f4; color: white; font-weight: 700; }
+.cn-collagestudio-editor { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.05fr); }
+.cn-collagestudio-upload .cn-idstudio-note { margin-top: 16px; }
+.cn-collagestudio-sample { width: 100%; min-height: 44px; margin-top: 14px; }
+.cn-collagestudio-upload .erp-flow-files__head { padding-inline: 10px; }
+.cn-collagestudio-upload .erp-flow-file { flex-wrap: wrap; padding-inline: 8px; }
+.cn-collagestudio-upload .erp-flow-file__text { min-width: 35px; }
+.cn-collagestudio-upload .erp-flow-file__actions { margin-inline-start: auto; }
+.cn-collagestudio-upload .erp-flow-file__button { width: 30px; height: 36px; min-height: 36px; padding: 0; }
+.cn-collagestudio-upload :is(.erp-flow-file__button, .erp-flow-files__clear) { color: var(--cn-accent); }
+.cn-collagestudio-upload .erp-flow-file__button:disabled { color: var(--cn-muted); }
+.cn-collagestudio-settings fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
+.cn-collagestudio-settings legend { float: none; width: auto; margin-bottom: 12px; font-size: 12px; font-weight: 700; }
+.cn-collagestudio-layouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-bottom: 22px; }
+.cn-collagestudio-layouts button { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; padding: 15px 6px 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); color: var(--cn-muted); font: inherit; }
+.cn-collagestudio-layouts button > span { display: grid; gap: 3px; width: 100%; max-width: 50px; height: 43px; padding: 3px; border: 1px solid var(--cn-line); border-radius: 4px; background: var(--cn-hero); }
+.cn-collagestudio-layouts > button > span > i { background: #b5d2fa; border-radius: 2px; }
+.cn-collagestudio-layouts strong { font-size: 12px; }
+.cn-collagestudio-layouts button > .bi { position: absolute; top: 5px; right: 5px; color: var(--cn-accent); font-size: 12px; }
+.cn-collagestudio-layouts button[aria-pressed='true'] { color: var(--cn-accent); background: var(--cn-hero); border-color: var(--cn-accent); box-shadow: 0 0 0 2px var(--cn-tint); }
+.cn-collagestudio-layouts button[aria-pressed='true'] > span > i { background: #1473f4; }
+.cn-collagestudio-settings .erp-flow-field__label { font-size: 12px; }
+.cn-collagestudio-gaps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; margin-top: 10px; }
+.cn-collagestudio-gaps button { min-height: 40px; padding: 7px 2px; border: 1px solid var(--cn-line); border-radius: 6px; color: var(--cn-muted); background: var(--cn-surface); font: inherit; font-size: 10px; }
+.cn-collagestudio-gaps button[aria-pressed='true'] { color: var(--cn-accent); border-color: var(--cn-accent); background: var(--cn-hero); font-weight: 700; }
+.cn-collagestudio-info { display: flex; align-items: flex-start; gap: 9px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--cn-line); }
+.cn-collagestudio-info > .bi { flex: none; font-size: 22px; color: var(--cn-accent); }
+.cn-collagestudio-info strong { display: block; font-size: 12px; line-height: 1.6; }
+.cn-collagestudio-info p { margin: 6px 0 0; color: var(--cn-muted); font-size: 11px; line-height: 1.8; }
+.cn-collagestudio-more { width: 100%; min-height: 44px; margin-top: 24px; padding-inline: 7px; }
+.cn-collagestudio-more > .bi:last-child { margin-inline-start: auto; }
+.cn-collagestudio-stage { display: grid; align-items: center; min-height: 250px; padding: 10px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); }
+.cn-collagestudio-canvas { container-type: inline-size; width: 100%; max-height: 420px; overflow: auto; }
+.cn-collagestudio-grid { display: grid; width: 100%; box-sizing: border-box; background: #fff; }
+.cn-collagestudio-grid img { width: 100%; height: 100%; min-width: 0; min-height: 0; display: block; object-fit: cover; }
+.cn-collagestudio-result-image { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; }
+.cn-collagestudio-empty { display: grid; justify-items: center; gap: 16px; padding: 16px 6px; text-align: center; }
+.cn-collagestudio-empty > div { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; width: 142px; }
+.cn-collagestudio-empty span { display: grid; place-items: center; aspect-ratio: 1; border-radius: 7px; background: #e6d8ff; color: #8743df; font-size: 29px; }
+.cn-collagestudio-empty span:nth-child(2n) { background: #cbeee6; color: #009b83; }
+.cn-collagestudio-empty strong { font-size: 13px; }
+.cn-collagestudio-empty p { margin: 0; font-size: 11px; line-height: 1.8; color: var(--cn-muted); }
+.cn-collagestudio-preview .cn-idstudio-output-meta { margin-block: 16px; }
+.cn-collagestudio-preview .cn-idstudio-downloads .btn { min-height: 46px; }
+.cn-collagestudio-preview > .cn-idstudio-note { margin-top: 12px; }
+.cn-collagestudio-status { margin: 14px 0; color: var(--cn-positive); font-size: 12px; line-height: 1.7; }
+.cn-collagestudio-advanced { min-width: 0; }
+.cn-collagestudio-modes button:focus-visible, .cn-collagestudio-editor :is(button, input):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-collagestudio-editor { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-collagestudio-preview { grid-column: 1 / -1; }
+  .cn-collagestudio-stage { max-width: 400px; margin-inline: auto; }
+}
+@media (max-width: 767px) {
+  .cn-collagestudio-editor { grid-template-columns: minmax(0, 1fr); }
+  .cn-collagestudio-settings legend, .cn-collagestudio-settings .erp-flow-field__label { font-size: 14px; }
+  .cn-collagestudio-gaps button { min-height: 44px; font-size: 12px; }
+  .cn-collagestudio-layouts button { min-height: 112px; }
+  .cn-collagestudio-upload .erp-flow-file__button { width: 40px; height: 44px; min-height: 44px; }
+}

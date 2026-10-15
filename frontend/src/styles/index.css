@@ -151,6 +151,7 @@
 @import './site/shell.css';
 @import './site/home.css';
 @import './site/catalog.css';
+@import './site/directory-studio.css';
 @import './site/hub.css';
 @import './site/pages.css';
 @import './site/account.css';
@@ -188,5 +189,15 @@
 @import './site/workspace-studio.css';
 
 @import './site/workspace-office.css';
+@import './site/id-photo-studio.css';
+@import './site/crop-studio.css';
+@import './site/convert-studio.css';
+@import './site/images-pdf-studio.css';
+@import './site/tool-artwork.css';
+@import './site/pdf-editor-studio.css';
+@import './site/collage-studio.css';
 
+@import './site/qr-read-studio.css';
+@import './site/qr-code-studio.css';
+@import './site/media-studio.css';
 @import './site/embed.css';

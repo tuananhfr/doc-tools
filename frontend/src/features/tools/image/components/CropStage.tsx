@@ -69,9 +69,11 @@ export function CropStage({ item, state, aspect, disabled, onRectChange }: CropS
     target.height = size.height
     const context = target.getContext('2d')
     if (!context) return
+    context.translate(state.flipX ? size.width : 0, state.flipY ? size.height : 0)
+    context.scale(state.flipX ? -1 : 1, state.flipY ? -1 : 1)
     rotateContext(context, source, state.rotation)
     context.drawImage(source, 0, 0)
-  }, [source, state.rotation])
+  }, [source, state.rotation, state.flipX, state.flipY])
 
   return (
     <section className="erp-image-stage" aria-label={t('crop.stageLabel')}>
