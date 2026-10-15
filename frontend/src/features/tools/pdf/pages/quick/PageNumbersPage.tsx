@@ -2,6 +2,8 @@ import { useId, useMemo, useState } from 'react'
 import type { TFunction } from 'i18next'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { NumberField, ScopeField } from '../../components/decoration-fields'
 import { DecorationStage } from '../../components/quick/DecorationStage'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
@@ -28,6 +30,7 @@ const EMPTY_SLOTS: HeaderFooter['slots'] = { topLeft: '', topCenter: '', topRigh
 /** ĐÁNH SỐ TRANG — một tệp PDF; cùng engine đầu / chân trang của trình chỉnh sửa, thu lại còn một ô số. */
 export default function PageNumbersPage() {
   const { t } = useTranslation('pdf')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.pageNumbers' })
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: false })
   const [slot, setSlot] = useState<StampSlot>('bottomCenter')
@@ -50,12 +53,13 @@ export default function PageNumbersPage() {
   const scopeError = resolved && !resolved.ok ? resolved.message : undefined
 
   return (
-    <QuickToolShell
+    <div className="cn-pdf-quick-workspace cn-pagenumbers-workspace"><QuickToolShell
       mobilePreview
       quick={quick}
       accept={ACCEPT}
       multiple={false}
       pickerTitle={t('pageNumbers.pickerTitle')}
+      sideIntro={<div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="hash" /></span><div><h2>{studio('settingsTitle')}</h2><p>{studio('inputHint')}</p></div></div>}
       stage={(running) => (item ? <DecorationStage item={item} decorations={decorations} disabled={running} onClear={quick.clear} /> : null)}
       runLabel={t('pageNumbers.run')}
       runIcon="hash"
@@ -90,6 +94,6 @@ export default function PageNumbersPage() {
           <ScopeField value={scope} error={scopeError} mergeKey="scope" onChange={setScope} />
         </>
       }
-    />
+    /><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div></div>
   )
 }

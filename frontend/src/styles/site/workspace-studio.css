@@ -1,0 +1,998 @@
+/* Workspaces using the spacious blue/navy direction. */
+
+/* Calculations, text and image utilities. */
+.cn-tool-workspace--studio :is(.cn-calculation-workspace, .cn-charcount-workspace, .cn-metadata-workspace, .cn-magnifier-workspace) { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-tool-workspace--studio :is(.cn-legacyfont-workspace, .cn-invoice-workspace) { grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr); align-items: start; }
+:is(.cn-calculation-workspace, .cn-charcount-workspace, .cn-metadata-workspace, .cn-magnifier-workspace, .cn-legacyfont-workspace, .cn-invoice-workspace) > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+.cn-calculation-result > .erp-tool-result__label { margin-bottom: 10px; font-size: 15px; }
+.cn-calculation-result > .erp-tool-result__value { padding: 24px 16px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.5; overflow-wrap: anywhere; }
+.cn-calculation-result > .erp-tool-result__value--empty { color: var(--cn-muted); }
+.cn-calculation-result > .erp-tool-result__note { overflow-wrap: anywhere; }
+.cn-calculation-result .cn-calculation-copy { width: 100%; margin-top: 16px; }
+.cn-moneycalc-workspace .erp-tool-rows { padding-top: 16px; border-top: 1px solid var(--cn-line); }
+.cn-moneycalc-workspace .erp-tool-row { padding-block: 12px; gap: 12px; }
+.cn-moneycalc-workspace .erp-tool-row__value { overflow-wrap: anywhere; }
+
+.cn-charcount-workspace .erp-tool-textarea--count { min-height: 330px; line-height: 1.9; }
+.cn-charcount-workspace .erp-tool-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; border: 0; }
+.cn-charcount-workspace .erp-tool-stat { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-charcount-workspace .erp-tool-stat:first-child { grid-column: 1 / -1; }
+.cn-charcount-workspace .erp-tool-stat__label { color: var(--cn-muted); line-height: 1.6; }
+.cn-charcount-workspace .erp-tool-stat__hint { font-size: 13px; }
+.cn-charcount-workspace .erp-tool-stat__value { color: var(--cn-ink); font-size: 28px; overflow-wrap: anywhere; max-width: 100%; }
+.cn-charcount-workspace .erp-tool-stat:first-child .erp-tool-stat__value { color: var(--cn-accent); font-size: 40px; }
+
+.cn-tool-workspace--studio .cn-imageflow-studio .erp-flow { grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr); align-items: start; }
+.cn-imageflow-studio .erp-flow__main { min-width: 0; padding: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio :is(.cn-imageflow-studio, .cn-metadata-workspace, .cn-invoice-workspace) .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 300px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+:is(.cn-imageflow-studio, .cn-metadata-workspace, .cn-invoice-workspace) .erp-flow-picker__icon { width: 64px; height: 64px; font-size: 32px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); }
+.cn-imageflow-studio .erp-flow__side > .cn-studio-card-head { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--cn-line); }
+.cn-imageflow-studio .erp-flow-options__title { font-size: 18px; }
+.cn-batchimage-workspace .erp-image-output { padding: 12px; border-radius: 10px; background: var(--cn-hero); overflow-wrap: anywhere; }
+
+.cn-metadata-file, .cn-invoice-number, .cn-magnifier-status { padding: 24px 16px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+:is(.cn-metadata-file, .cn-invoice-number, .cn-magnifier-status) > .bi { display: inline-block; margin-bottom: 16px; font-size: 36px; color: var(--cn-accent); }
+:is(.cn-metadata-file, .cn-invoice-number, .cn-magnifier-status) .erp-tool-result__value { margin: 0; font-size: 24px; line-height: 1.65; overflow-wrap: anywhere; }
+.cn-metadata-run { width: 100%; }
+.cn-invoice-total { padding: 16px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); font-size: 20px; font-weight: 700; line-height: 1.7; overflow-wrap: anywhere; }
+.cn-invoice-downloads { display: grid; gap: 10px; margin-top: 20px; }
+.cn-invoice-result .erp-tool-result__note { overflow-wrap: anywhere; }
+.cn-invoice-result > .erp-tool-result__note:last-child { padding-top: 20px; border-top: 1px solid var(--cn-line); }
+.cn-invoice-workspace .table-responsive { border: 1px solid var(--cn-line); border-radius: 10px; }
+.cn-invoice-workspace table { margin: 0; font-size: 14px; }
+.cn-invoice-workspace :is(th, td) { padding: 12px; }
+.cn-invoice-workspace th { color: var(--cn-muted); background: var(--cn-hero); }
+
+.cn-legacyfont-output { padding: 24px 20px; margin-block: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-legacyfont-output > .bi { display: inline-block; color: var(--cn-accent); font-size: 36px; margin-bottom: 16px; }
+.cn-legacyfont-output .erp-qr-payload { margin: 0; padding: 0; min-height: 160px; background: transparent; border: 0; border-radius: 0; font-family: inherit; font-size: 18px; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cn-legacyfont-copy { width: 100%; }
+.cn-legacyfont-workspace textarea { margin-top: 10px; line-height: 1.85; }
+
+.cn-magnifier-empty { display: grid; justify-items: center; align-content: center; gap: 16px; padding: 32px 24px; min-height: 300px; border: 1px dashed var(--cn-line); border-radius: 16px; background: var(--cn-hero); text-align: center; }
+.cn-magnifier-empty > span { display: grid; place-items: center; width: 84px; height: 84px; border: 1px solid var(--cn-line); border-radius: 24px; background: var(--cn-surface); color: var(--cn-accent); font-size: 42px; }
+.cn-magnifier-empty h2 { margin: 0; font-size: 20px; line-height: 1.6; }
+.cn-magnifier-empty p { max-width: 38ch; margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-tool-workspace--studio .cn-magnifier-workspace .cn-magnifier-stage { width: 100%; border: 1px solid var(--cn-line); border-radius: 16px; margin-top: 0; }
+.cn-magnifier-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cn-magnifier-actions > .btn { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.cn-magnifier-actions > .btn:first-child { grid-column: 1 / -1; }
+.cn-magnifier-actions > .btn:last-child { grid-column: 1 / -1; }
+
+@media (max-width: 1024px) {
+  .cn-tool-workspace--studio :is(.cn-calculation-workspace, .cn-charcount-workspace, .cn-metadata-workspace, .cn-magnifier-workspace, .cn-legacyfont-workspace, .cn-invoice-workspace), .cn-tool-workspace--studio .cn-imageflow-studio .erp-flow { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-imageflow-studio .erp-flow__main { padding: 16px; }
+  .cn-tool-workspace--studio :is(.cn-imageflow-studio, .cn-metadata-workspace, .cn-invoice-workspace) .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 250px; padding-inline: 12px; }
+  .cn-moneycalc-workspace .cn-tool-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-charcount-workspace .erp-tool-stat { padding: 14px; }
+  .cn-charcount-workspace .erp-tool-stat__value { font-size: 24px; }
+  .cn-magnifier-empty { min-height: 250px; padding: 24px 16px; }
+  .cn-magnifier-actions { grid-template-columns: minmax(0, 1fr); }
+  .cn-magnifier-actions > .btn { grid-column: auto; }
+}
+
+/* Everyday tools: a focused activity, readable results and short guidance. */
+.cn-tool-workspace--studio :is(.cn-wheel-workspace, .cn-barcode-workspace, .cn-electricity-workspace, .cn-color-workspace, .cn-flashcard-workspace) { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-tool-workspace--studio .cn-risk-workspace { grid-template-columns: minmax(0, 1.15fr) minmax(320px, 1fr); align-items: start; }
+:is(.cn-wheel-workspace, .cn-barcode-workspace, .cn-electricity-workspace, .cn-color-workspace, .cn-flashcard-workspace, .cn-risk-workspace) > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+.cn-wheel-workspace .cn-wheel-stage { gap: 20px; }
+.cn-wheel-stage > .cn-studio-form-hint { text-align: start; align-self: stretch; margin: 0; }
+.cn-wheel-canvas { position: relative; width: 100%; padding: 24px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-wheel-workspace .cn-wheel { width: min(100%, 380px); }
+.cn-wheel-workspace .cn-wheel-result { width: 100%; padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-wheel-workspace .cn-wheel-spin { width: 100%; }
+.cn-wheel-workspace .cn-wheel-options { background: var(--cn-hero); }
+.cn-wheel-workspace .cn-wheel-help { padding: 12px; border-radius: 10px; background: var(--cn-hero); }
+.cn-wheel-workspace .cn-wheel-save__row { gap: 10px; }
+
+.cn-barcode-workspace .erp-barcode-preview, .cn-barcode-workspace .erp-barcode-preview--empty { min-height: 220px; margin: 0 0 20px; padding: 24px; border: 1px dashed var(--cn-line); border-radius: 12px; }
+.cn-barcode-workspace .erp-barcode-preview--empty { width: 100%; max-width: none; background: var(--cn-hero); }
+.cn-barcode-workspace .erp-barcode-preview__code { max-width: 100%; }
+.cn-barcode-workspace .erp-qr-payload { overflow-wrap: anywhere; }
+.cn-barcode-workspace > .erp-flow__side > .btn { width: 100%; margin-top: 10px; }
+
+.cn-electricity-tariff { min-width: 0; padding: 20px; margin-top: 24px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-electricity-tariff legend { float: none; width: auto; padding: 0; margin-bottom: 16px; font-size: 16px; font-weight: 700; }
+.cn-electricity-tariff legend .bi { margin-inline-end: 8px; color: var(--cn-accent); }
+.cn-electricity-tariff .btn-outline-danger { --bs-btn-color: #b51d32; --bs-btn-border-color: #b51d32; --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #b51d32; }
+.cn-electricity-total { padding: 24px 16px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-electricity-total .erp-tool-result__value { margin: 0; font-size: clamp(26px, 3vw, 36px); overflow-wrap: anywhere; }
+.cn-electricity-result table { margin-block: 16px; font-size: 14px; }
+.cn-electricity-result th { color: var(--cn-muted); font-weight: 600; }
+
+.cn-ocr-studio .cn-ocr-steps { padding: 20px; margin-bottom: 24px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-ocr-studio .cn-ocr-steps li > span { background: var(--cn-icon); }
+.cn-ocr-studio .erp-flow__side > .cn-studio-card-head, .cn-pagenumbers-workspace .erp-flow__side > .cn-studio-card-head { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--cn-line); }
+.cn-pagenumbers-workspace .erp-page-stage { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-pagenumbers-workspace .erp-page-stage__head { flex-wrap: wrap; gap: 12px; }
+
+.cn-risk-workspace textarea { margin-top: 10px; min-height: 220px; }
+.cn-risk-check { width: 100%; }
+.cn-risk-verdict { padding: 24px 20px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-risk-verdict > .bi { display: inline-block; font-size: 34px; color: var(--cn-accent); margin-bottom: 12px; }
+.cn-risk-verdict .erp-tool-result__value { margin: 0; font-size: 24px; line-height: 1.5; overflow-wrap: anywhere; }
+.cn-risk-verdict[data-level='high'] { border-color: color-mix(in srgb, var(--cn-red) 35%, var(--cn-line)); background: color-mix(in srgb, var(--cn-red) 5%, var(--cn-surface)); }
+.cn-risk-verdict[data-level='high'] > .bi { color: var(--cn-red); }
+.cn-risk-result .erp-tool-rows { display: grid; gap: 12px; margin-bottom: 20px; padding-inline-start: 22px; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+.cn-risk-result > .erp-tool-result__note { padding-top: 20px; border-top: 1px solid var(--cn-line); }
+
+.cn-form-studio .cn-preview-action { display: block; margin-bottom: 24px; }
+.cn-form-studio .cn-preview-action .cn-studio-card-head { margin-bottom: 16px; }
+.cn-form-studio .cn-responsive-preview__output { padding: 24px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-form-studio .cn-form-preview { overflow-wrap: anywhere; background: #fff; border: 1px solid var(--cn-line); border-radius: 4px; }
+.cn-form-studio .cn-responsive-preview__input .cn-document-export { padding-top: 20px; border-top: 1px solid var(--cn-line); }
+.cn-form-studio .cn-template-picker__item { border-radius: 10px; }
+.cn-form-studio .cn-responsive-preview__input .erp-flow-field__label { margin-top: 20px !important; }
+
+.cn-color-workspace .erp-color-pick { padding: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-color-workspace .erp-color-pick__input { width: 80px; height: 80px; border-radius: 12px; }
+.cn-color-workspace .erp-color-pick__text { min-width: 0; }
+.cn-color-workspace .erp-color-pick__hex { overflow-wrap: anywhere; }
+.cn-color-workspace .erp-color-swatch { min-height: 190px; border-radius: 12px; margin-bottom: 24px; }
+.cn-color-workspace .erp-color-contrast { padding: 16px 0; border-bottom: 1px solid var(--cn-line); }
+.cn-color-workspace .erp-color-contrast__sample { border: 1px solid var(--cn-line); border-radius: 8px; }
+
+.cn-flashcard-paper { padding: 28px 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-hero); text-align: center; overflow-wrap: anywhere; }
+.cn-flashcard-paper > .bi { display: inline-block; font-size: 36px; color: var(--cn-accent); margin-bottom: 16px; }
+.cn-flashcard-paper > .erp-tool-result__value { font-size: 24px; line-height: 1.65; margin-bottom: 20px; white-space: pre-wrap; }
+.cn-flashcard-paper[data-revealed='true'] > .erp-tool-result__note { padding-top: 20px; border-top: 1px dashed var(--cn-line); color: var(--cn-ink); font-size: 18px; white-space: pre-wrap; }
+.cn-flashcard-paper > .btn { width: 100%; }
+.cn-flashcard-grades > .btn { flex: 1 1 100px; }
+.cn-flashcard-stored { display: flex; align-items: center; gap: 8px; margin: 20px 0 0; color: var(--cn-muted); font-size: 14px; line-height: 1.7; }
+.cn-flashcard-stored > .bi { color: var(--cn-accent); }
+.cn-flashcard-add { width: 100%; }
+.cn-flashcard-workspace .erp-tool-row--item { gap: 12px; padding-block: 12px; }
+.cn-flashcard-workspace .erp-tool-row__value { overflow-wrap: anywhere; white-space: pre-wrap; }
+
+@media (max-width: 1024px) {
+  .cn-tool-workspace--studio :is(.cn-wheel-workspace, .cn-barcode-workspace, .cn-electricity-workspace, .cn-color-workspace, .cn-flashcard-workspace, .cn-risk-workspace) { grid-template-columns: minmax(0, 1fr); }
+  .cn-form-studio .cn-responsive-preview { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-wheel-canvas { padding: 20px 12px; }
+  .cn-wheel-workspace .cn-wheel { max-width: 300px; }
+  .cn-electricity-tariff { padding: 16px 12px; }
+  .cn-ocr-studio .cn-ocr-steps { padding: 16px; }
+  .cn-form-studio .cn-responsive-preview__output { padding: 16px; }
+  .cn-form-studio .cn-preview-action > .cn-studio-card-head { flex-wrap: nowrap; }
+  .cn-color-workspace .erp-color-pick { flex-wrap: wrap; padding: 16px; }
+  .cn-color-workspace .erp-color-contrast { grid-template-columns: auto minmax(0, 1fr); }
+  .cn-color-workspace .erp-color-contrast__level { grid-column: 2; justify-self: start; }
+  .cn-flashcard-paper { padding: 24px 16px; }
+  .cn-flashcard-paper > .erp-tool-result__value { font-size: 22px; }
+}
+.cn-tool-workspace--studio { max-width: 1280px; margin-inline: auto; --cn-radius-card: 16px; }
+.cn-tool-workspace--studio > .erp-tool-crumb,
+.cn-tool-workspace--studio > .cn-tool-heading { max-width: none; }
+.cn-tool-workspace--studio > .cn-tool-heading { margin-block: 8px 28px; align-items: center; }
+.cn-tool-workspace--studio .cn-tool-intro { align-items: center; gap: 18px; }
+.cn-tool-workspace--studio .cn-tool-intro__text { flex: 1; }
+.cn-tool-workspace--studio .cn-tool-intro__icon { width: 64px; height: 64px; border: 0; border-radius: 18px; background: var(--erp-brand); color: #fff; font-size: 30px; box-shadow: 0 6px 16px rgb(0 91 232 / 12%); }
+.cn-tool-workspace--studio .erp-tool-crumb__title { font-size: clamp(26px, 2.7vw, 38px); letter-spacing: -.9px; }
+.cn-tool-workspace--studio .cn-tool-description { margin-block: 6px 10px; }
+.cn-tool-workspace--studio .cn-tool-heading__action { max-width: 250px; }
+.cn-studio-hero-art { position: relative; display: block; flex: 0 0 112px; height: 92px; margin-inline: 12px; color: var(--cn-accent); }
+.cn-studio-hero-art > span { position: absolute; top: 15px; inset-inline-start: 26px; width: 54px; height: 66px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); transform: rotate(-19deg); }
+.cn-studio-hero-art > span:nth-child(2) { transform: rotate(15deg); inset-inline-start: 42px; background: var(--cn-tint); }
+.cn-studio-hero-art > span:nth-child(3) { display: grid; place-items: center; transform: rotate(-3deg); inset-inline-start: 34px; font-size: 29px; box-shadow: 0 5px 12px rgb(12 37 77 / 6%); }
+.cn-studio-hero-art > .bi { position: absolute; top: 0; inset-inline-end: 0; font-size: 22px; }
+.cn-studio-card, .cn-studio-guide { min-width: 0; padding: 24px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-studio-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.cn-studio-card-head > div { min-width: 0; }
+.cn-studio-card-head h2, .cn-studio-guide h2, .cn-pdf-welcome__preview h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
+.cn-studio-card-head p { margin: 4px 0 0; color: var(--cn-muted); font-size: 14px; line-height: 1.65; }
+.cn-studio-small-icon { display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; background: var(--cn-icon); border-radius: 12px; font-size: 21px; color: var(--cn-accent); }
+.cn-studio-badge { flex: none; margin-inline-start: auto; padding: 6px 10px; border: 1px solid var(--cn-line); border-radius: 24px; font-size: 14px; color: var(--cn-muted); white-space: nowrap; }
+.cn-studio-guidance { display: grid; gap: 16px; min-width: 0; }
+.cn-studio-guide h2 { display: flex; align-items: center; gap: 10px; font-size: 16px; }
+.cn-studio-guide .cn-studio-small-icon { width: 36px; height: 36px; font-size: 18px; border-radius: 10px; }
+.cn-studio-guide ol { display: grid; gap: 16px; list-style: none; margin: 20px 0 0; padding: 0; }
+.cn-studio-guide li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.7; }
+.cn-studio-step { display: inline-grid; place-items: center; flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%; color: var(--cn-accent); background: var(--cn-tint); font-size: 13px; font-weight: 700; }
+.cn-studio-note, .cn-studio-tip { display: flex; align-items: flex-start; gap: 12px; padding: 20px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: color-mix(in srgb, var(--cn-positive) 6%, var(--cn-surface)); }
+.cn-studio-note > .bi, .cn-studio-tip > .bi { flex: none; font-size: 23px; color: var(--cn-positive); }
+.cn-studio-tip { background: color-mix(in srgb, #e7b23b 9%, var(--cn-surface)); }
+.cn-studio-tip > .bi { color: #845b00; }
+[data-theme='dark'] .cn-studio-tip > .bi { color: #ebc55d; }
+.cn-studio-note h3, .cn-studio-tip h3 { margin: 0 0 6px; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.cn-studio-note p, .cn-studio-tip p { margin: 0; font-size: 14px; line-height: 1.7; color: var(--cn-muted); }
+.cn-studio-local-note { display: flex; align-items: center; justify-content: center; gap: 8px; padding-block: 16px 0; color: var(--cn-muted); font-size: 14px; }
+.cn-studio-local-note > .bi { color: var(--cn-positive); }
+
+/* PDF: welcoming input, a quiet preview and the same editor session after upload. */
+.cn-pdf-welcome { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); gap: 24px; align-items: start; }
+.cn-pdf-welcome__side { display: grid; gap: 20px; }
+.cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop { width: 100%; max-width: none; min-height: 340px; padding: 32px 24px; margin: 0; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop__icon { width: 72px; height: 72px; font-size: 38px; background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop__title { font-size: 22px; line-height: 1.5; }
+.cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop__pick { min-width: 180px; }
+.cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop__caps { padding-top: 20px; border-top: 1px solid var(--cn-line); justify-content: center; }
+.cn-pdf-welcome__features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+.cn-pdf-welcome__features > div { display: grid; align-content: center; justify-items: center; gap: 10px; min-height: 104px; padding: 16px 8px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; text-align: center; }
+.cn-pdf-welcome__features .bi { font-size: 24px; color: var(--cn-accent); }
+.cn-pdf-welcome__features strong { font-size: 14px; font-weight: 400; }
+.cn-pdf-welcome__preview { text-align: center; padding: 24px; background: var(--cn-surface); }
+.cn-pdf-welcome__preview h2 { font-size: 16px; }
+.cn-pdf-welcome__preview p { margin: 6px auto 0; max-width: 34ch; font-size: 14px; color: var(--cn-muted); line-height: 1.7; }
+.cn-pdf-paper { position: relative; display: grid; align-content: start; gap: 7px; width: 90px; height: 108px; margin: 0 auto 20px; padding: 12px; border: 1px solid var(--cn-line); border-radius: 6px; background: var(--cn-hero); box-shadow: 8px 5px 0 var(--cn-tint); transform: rotate(-5deg); }
+.cn-pdf-paper__badge { display: block; font-size: 25px; color: var(--cn-accent); }
+.cn-pdf-paper > span:not(:first-child) { height: 3px; background: var(--cn-line); border-radius: 3px; }
+.cn-pdf-paper > span:nth-child(3) { width: 75%; }
+.cn-pdf-paper > span:nth-child(5) { width: 50%; }
+.cn-pdf-paper > i { position: absolute; inset-inline-end: -12px; bottom: -5px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--cn-positive); background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-tool-workspace--studio .cn-pdf-has-pages .erp-doc-toolbar { padding: 16px; background: var(--cn-surface); box-shadow: 0 3px 12px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio .cn-pdf-has-pages .erp-doc-tools__body { gap: 24px; margin-top: 16px; }
+.cn-tool-workspace--studio .cn-pdf-has-pages .erp-doc-grid { min-height: 360px; padding: 20px; background: var(--cn-tint); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-tool-workspace--studio .cn-pdf-has-pages .erp-doc-page { box-shadow: 0 4px 14px rgb(12 37 77 / 6%); }
+
+/* QR: clear source choices and a separate, persistent result area. */
+.cn-tool-workspace--studio .cn-qr-workspace { max-width: none; margin: 0; grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); align-items: start; }
+.cn-tool-workspace--studio .cn-qr-workspace > .erp-flow__side { display: grid; gap: 20px; padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-qr-methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 6px; margin-bottom: 24px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-qr-methods button { display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 50px; padding: 10px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--cn-muted); font-size: 14px; font-weight: 700; line-height: 1.5; }
+.cn-qr-methods button[aria-pressed='true'] { color: var(--cn-accent); background: var(--cn-surface); border-color: var(--cn-line); box-shadow: 0 2px 5px rgb(12 37 77 / 4%); }
+.cn-qr-methods .bi { font-size: 19px; }
+.cn-tool-workspace--studio .cn-qr-input .erp-flow-picker { min-height: 300px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-tool-workspace--studio .cn-qr-input .erp-flow-picker--compact { min-height: 130px; }
+.cn-tool-workspace--studio .cn-qr-input .erp-flow-picker__icon { width: 72px; height: 72px; font-size: 38px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 18px; }
+.cn-tool-workspace--studio .cn-qr-input .erp-flow-picker__pick { min-width: 160px; }
+.cn-qr-result-card { min-width: 0; padding: 24px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-qr-result-card .erp-tool-side-head { align-items: center; gap: 12px; margin-bottom: 0; }
+.cn-qr-result-card .erp-flow-options__title { margin: 0; font-size: 18px; }
+.cn-qr-result-card .erp-flow-options__title > .bi { color: var(--cn-accent); margin-inline-end: 5px; }
+.cn-qr-result-status { margin: 8px 0 0; color: var(--cn-muted); font-size: 14px; }
+.cn-qr-empty { display: grid; place-items: center; gap: 20px; padding: 32px 0 24px; text-align: center; }
+.cn-qr-empty p { max-width: 33ch; margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.75; }
+.cn-qr-empty__code { position: relative; display: grid; place-items: center; width: 104px; height: 104px; background: var(--cn-hero); border-radius: 16px; color: var(--cn-accent); font-size: 58px; }
+.cn-qr-empty__code::before, .cn-qr-empty__code::after { content: ''; position: absolute; width: 26px; height: 26px; border-color: var(--cn-accent); border-style: solid; }
+.cn-qr-empty__code::before { top: -4px; inset-inline-start: -4px; border-width: 3px 0 0 3px; border-radius: 8px 0 0 0; }
+.cn-qr-empty__code::after { bottom: -4px; inset-inline-end: -4px; border-width: 0 3px 3px 0; border-radius: 0 0 8px 0; }
+.cn-qr-safety { display: flex; align-items: flex-start; gap: 10px; padding-top: 16px; margin: 0; border-top: 1px solid var(--cn-line); color: var(--cn-muted); font-size: 14px; line-height: 1.7; }
+.cn-qr-safety .bi { flex: none; color: var(--cn-positive); font-size: 18px; }
+.cn-qr-result-card .erp-scan-hits { margin-block: 20px; }
+
+/* Tarot: the deck is the visual focus; settings remain close to the draw action. */
+.cn-tool-workspace--studio[data-tool-slug='tarot'] > .cn-ent { max-width: none; }
+.cn-tarot-workspace { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(320px, 1fr); align-items: start; gap: 24px; }
+.cn-tarot-sidebar { display: grid; gap: 20px; min-width: 0; }
+.cn-tool-workspace--studio .cn-tarot-sidebar .cn-ent-form { padding: 24px; border-radius: 16px; margin: 0; }
+.cn-tarot-sidebar .cn-ent-form fieldset { gap: 20px; }
+.cn-tarot-sidebar .cn-ent-form legend { font-size: 18px; font-weight: 700; line-height: 1.5; }
+.cn-tarot-sidebar .cn-ent-form legend .bi { color: var(--cn-accent); margin-inline-end: 6px; }
+.cn-tarot-sidebar .cn-ent-form label { font-size: 14px; }
+.cn-tarot-sidebar .cn-ent-form .cn-ent-check { font-size: 14px; line-height: 1.7; }
+.cn-tarot-presets { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.cn-tarot-presets button { min-width: 0; min-height: var(--cn-tap); padding: 6px 2px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); color: var(--cn-muted); font-size: 14px; line-height: 1.5; }
+.cn-tarot-presets button[aria-pressed='true'] { border-color: var(--cn-accent); color: var(--cn-accent); background: var(--cn-tint); font-weight: 700; }
+.cn-tarot-sidebar .cn-ent-actions { display: grid; margin: 0; gap: 10px; }
+.cn-tarot-sidebar .cn-ent-actions .cn-button { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--erp-brand); color: #fff; }
+.cn-tarot-sidebar .cn-ent-actions .cn-button--ghost { background: var(--cn-surface); color: var(--cn-accent); }
+.cn-tarot-preview { display: grid; grid-template-columns: repeat(3, minmax(0, 140px)); justify-content: center; align-items: center; gap: 28px; min-height: 300px; padding: 32px 24px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-tarot-preview[data-count='1'] { grid-template-columns: minmax(0, 140px); }
+.cn-tarot-preview--many { grid-template-columns: repeat(5, minmax(0, 100px)); gap: 20px; }
+.cn-tarot-preview__card { min-width: 0; text-align: center; }
+.cn-tarot-preview__card img { display: block; width: 100%; height: auto; border: 5px solid var(--cn-surface); border-radius: 10px; box-shadow: 0 8px 18px rgb(12 37 77 / 12%); }
+.cn-tarot-preview[data-count='3'] .cn-tarot-preview__card:first-child { transform: rotate(-6deg) translateY(6px); }
+.cn-tarot-preview[data-count='3'] .cn-tarot-preview__card:last-child { transform: rotate(6deg) translateY(6px); }
+.cn-tarot-preview__card > span { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-top: 14px; border-radius: 50%; background: var(--cn-surface); color: var(--cn-muted); font-size: 13px; }
+.cn-tarot-preview-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 20px 0; font-size: 14px; color: var(--cn-muted); text-align: center; }
+.cn-tarot-table .cn-ent-spread-guide { padding: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); font-size: 14px; }
+.cn-tarot-table .cn-ent-spread-guide ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cn-tarot-table .cn-ent-reading { padding: 0; border: 0; background: transparent; }
+.cn-tarot-table .cn-ent-deck { gap: 16px; padding: 24px 16px; border-radius: 16px; background: var(--cn-hero); }
+.cn-tarot-table .cn-ent-reading > h2 { font-size: 20px; }
+.cn-tarot-table .cn-ent-reading > p { font-size: 14px; color: var(--cn-muted); }
+.cn-tool-workspace--studio .cn-ent-reference { padding: 16px 20px; margin: 24px 0 0; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); line-height: 1.7; }
+
+/* Image collage: input and settings beside a faithful, square-crop preview. */
+.cn-tool-workspace--studio .cn-collage-workspace { grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr); align-items: start; }
+.cn-tool-workspace--studio .cn-collage-workspace > .erp-flow__side,
+.cn-tool-workspace--studio .cn-orientation-workspace > .erp-flow__side { display: grid; gap: 20px; padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-tool-workspace--studio .cn-collage-workspace .erp-tool-panel__head { margin-bottom: 20px; align-items: center; }
+.cn-tool-workspace--studio .cn-collage-workspace .erp-flow-picker,
+.cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow-picker,
+.cn-tool-workspace--studio .cn-orientation-workspace .erp-flow-picker { background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-tool-workspace--studio .cn-collage-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; }
+.cn-tool-workspace--studio .cn-collage-workspace .erp-flow-picker__title { font-size: 18px; }
+.cn-collage-run { width: 100%; min-height: var(--cn-cta); }
+.cn-collage-status { margin: 12px 0 0; color: var(--cn-positive); font-size: 14px; line-height: 1.6; }
+.cn-collage-status:empty { display: none; }
+.cn-collage-shop { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 16px 20px; text-align: start; border-color: var(--cn-line); background: var(--cn-surface); color: var(--cn-accent); border-radius: 12px; }
+.cn-collage-files ol { list-style: none; display: grid; padding: 0; margin: 16px 0 0; }
+.cn-collage-files li { display: flex; gap: 8px; align-items: center; border-bottom: 1px solid var(--cn-line); font-size: 14px; }
+.cn-collage-files li > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.cn-collage-files button { display: grid; place-items: center; flex: none; width: var(--cn-tap); height: var(--cn-tap); border: 0; border-radius: 8px; background: transparent; color: var(--cn-muted); }
+.cn-collage-files button:hover { color: var(--cn-accent); background: var(--cn-tint); }
+.cn-collage-preview { text-align: start; }
+.cn-collage-placeholder { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 24px; max-width: 370px; margin: 0 auto; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-collage-placeholder span { display: grid; place-items: center; aspect-ratio: 1.25; border-radius: 8px; font-size: 44px; color: var(--cn-accent); background: var(--cn-tint); }
+.cn-collage-placeholder span:nth-child(2n) { color: var(--cn-positive); background: color-mix(in srgb, var(--cn-positive) 9%, var(--cn-surface)); }
+.cn-collage-canvas { container-type: inline-size; max-height: 520px; overflow: auto; border: 1px solid var(--cn-line); background: var(--cn-hero); }
+.cn-collage-grid { display: grid; width: 100%; background: #fff; }
+.cn-collage-grid img { width: 100%; height: 100%; min-height: 0; min-width: 0; object-fit: cover; }
+.cn-collage-caption { text-align: center; margin: 16px 0 12px; color: var(--cn-muted); font-size: 14px; }
+.cn-collage-preview .erp-tool-result__note { margin: 0; padding-top: 16px; border-top: 1px solid var(--cn-line); text-align: start; line-height: 1.7; }
+
+/* Image to PDF: distinct file and page-settings cards, with a compact process strip. */
+.cn-studio-workflow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 18px 24px; gap: 24px; margin-bottom: 24px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-studio-workflow > div { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.cn-studio-workflow small { display: block; color: var(--cn-muted); font-size: 12px; margin-bottom: 2px; }
+.cn-studio-workflow strong { display: block; font-size: 14px; font-weight: 600; }
+.cn-studio-workflow > div > .bi { margin-inline-start: auto; color: var(--cn-muted); }
+.cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow { grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); align-items: start; }
+.cn-images-pdf-workspace .erp-flow__main { padding: 24px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 340px; }
+.cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow-picker__icon { width: 64px; height: 64px; font-size: 34px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-images-pdf-workspace .erp-flow-options__title { padding-bottom: 16px; border-bottom: 1px solid var(--cn-line); font-size: 18px; }
+.cn-images-pdf-workspace .erp-flow__run { margin-top: 12px; }
+.cn-studio-footer-guide { margin-top: 24px; }
+.cn-studio-footer-guide > .cn-studio-guidance { grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); align-items: start; }
+.cn-studio-footer-guide .cn-studio-guide ol { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.cn-studio-footer-guide .cn-studio-guide li { flex-direction: column; gap: 8px; }
+
+/* CV: clear form sections and a sheet on a quiet blue preview surface. */
+.cn-cv-studio .cn-cv-intro { margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.7; }
+.cn-cv-section-title { display: flex; gap: 10px; align-items: center; font-size: 15px; font-weight: 700; margin: 12px 0 0; }
+.cn-cv-section-title .bi, .cn-cv-edit-section legend .bi { color: var(--cn-accent); }
+.cn-cv-edit-section { padding-top: 20px; border-top: 1px solid var(--cn-line); }
+.cn-cv-edit-section legend { float: none; width: auto; font-size: 15px; font-weight: 700; }
+.cn-cv-edit-entry { background: var(--cn-hero); border-color: var(--cn-line) !important; border-radius: 12px !important; }
+.cn-cv-edit-entry .btn-outline-danger { --bs-btn-bg: var(--cn-surface); }
+.cn-cv-studio .cn-preview-action { display: block; margin-bottom: 20px; }
+.cn-cv-studio .cn-responsive-preview__output { padding: 24px; background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-cv-studio .cn-responsive-preview__output > .cn-template-picker { margin-bottom: 24px; padding-bottom: 24px; }
+.cn-cv-preview-paper { padding: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-tint); }
+.cn-cv-preview-paper > .cn-cv-print { min-height: 700px; padding: 32px; box-shadow: 0 4px 16px rgb(12 37 77 / 8%); }
+.cn-cv-studio .cn-document-export { margin-top: 16px; }
+.cn-cv-studio .cn-responsive-preview__input .cn-document-export { padding-top: 20px; border-top: 1px solid var(--cn-line); }
+
+/* Compass: the real dial remains central; interpretation and saving have their own cards. */
+.cn-tool-workspace--studio .cn-orientation-workspace .erp-orient-head { padding: 12px; border: 1px solid var(--cn-line); border-radius: 14px; background: var(--cn-surface); gap: 12px; }
+.cn-orientation-workspace .erp-orient-head > .btn { font-size: 14px; text-decoration: none; }
+.cn-tool-workspace--studio .cn-orientation-workspace .erp-tool-panel { margin: 0; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-orientation-workspace .erp-tool-panel__title { font-size: 18px; }
+.cn-orientation-workspace .erp-tool-panel__head { padding-bottom: 16px; border-bottom: 1px solid var(--cn-line); }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel { text-align: center; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > .erp-tool-panel__head { order: -3; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > .erp-orient-muted:first-of-type { order: -2; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > :is(.erp-orient-actions, .erp-flow-field, .form-check) { order: -1; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel .erp-tool-panel__head { text-align: start; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > .erp-orient-muted:first-of-type { max-width: 60ch; margin-inline: auto; line-height: 1.8; }
+.cn-orientation-live .erp-orient-dial { max-width: 360px; padding: 16px; border-radius: 50%; background: var(--cn-hero); margin: 24px auto 20px; }
+.cn-orientation-live .erp-orient-actions { justify-content: center; margin-block: 16px; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > .form-check { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.cn-orientation-live .erp-flow__main > .erp-tool-panel > .form-check .form-check-input { float: none; margin: 0; }
+.cn-orientation-live .erp-orient-note { text-align: start; line-height: 1.7; }
+.cn-orientation-workspace .erp-orient-nofile { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--cn-line); }
+
+/* Playing cards and numerology share the same calm entertainment workspace. */
+.cn-tool-workspace--studio:is([data-tool-slug='bai-tay'], [data-tool-slug='than-so-hoc']) > .cn-ent { max-width: none; }
+.cn-playing-profile { margin: 20px 0 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-playing-workspace .cn-tarot-preview__card img { aspect-ratio: 5 / 7; }
+.cn-numerology-workspace { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(320px, 1fr); gap: 24px; align-items: start; }
+.cn-numerology-main, .cn-numerology-sidebar { min-width: 0; }
+.cn-numerology-sidebar { display: grid; gap: 20px; }
+.cn-tool-workspace--studio .cn-numerology-form { margin: 0; padding: 28px; max-width: none; border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-numerology-form fieldset { gap: 22px; }
+.cn-numerology-form legend { font-size: 20px; line-height: 1.6; font-weight: 700; }
+.cn-numerology-form legend .bi { color: var(--cn-accent); margin-inline-end: 6px; }
+.cn-numerology-form label, .cn-numerology-form fieldset > p { font-size: 14px; line-height: 1.8; }
+.cn-numerology-form fieldset > p { margin: 0; color: var(--cn-muted); }
+.cn-numerology-form input { min-height: var(--cn-tap); }
+.cn-numerology-form input[type='checkbox'] { min-height: 20px; }
+.cn-numerology-form .cn-ent-check { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-numerology-form .cn-button { display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; min-height: var(--cn-cta); background: var(--erp-brand); color: #fff; }
+.cn-numerology-intro { text-align: center; }
+.cn-numerology-intro h2 { font-size: 18px; font-weight: 700; line-height: 1.6; margin: 20px 0 8px; }
+.cn-numerology-intro > p { margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-number-orbit { position: relative; width: 180px; height: 126px; margin: 0 auto; }
+.cn-number-orbit > span { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); color: var(--cn-accent); font-size: 22px; font-weight: 700; transform: rotate(-10deg); }
+.cn-number-orbit > span:nth-child(1) { top: 20px; inset-inline-start: 6px; }
+.cn-number-orbit > span:nth-child(2) { top: 0; inset-inline-end: 10px; transform: rotate(12deg); }
+.cn-number-orbit > span:nth-child(3) { bottom: 0; inset-inline-end: 0; transform: rotate(8deg); }
+.cn-number-orbit > span:last-child { width: 78px; height: 78px; top: 30px; inset-inline-start: 48px; background: var(--cn-tint); font-size: 34px; transform: rotate(-5deg); }
+.cn-number-features { display: grid; gap: 12px; margin-top: 24px; text-align: start; }
+.cn-number-features > div { display: flex; align-items: center; gap: 12px; padding: 10px; border: 1px solid var(--cn-line); border-radius: 12px; font-size: 14px; }
+.cn-number-features .cn-studio-small-icon { width: 36px; height: 36px; border-radius: 10px; font-size: 18px; }
+.cn-numerology-main .cn-ent-result { margin: 0; padding: 28px; border-radius: 16px; background: var(--cn-surface); }
+
+/* Background removal: a large image stage and a separate refinement card. */
+.cn-tool-workspace--studio .cn-background-workspace { grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr); }
+.cn-tool-workspace--studio :is(.cn-background-workspace, .cn-read-workspace) > .erp-flow__side { display: grid; gap: 20px; padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-tool-workspace--studio :is(.cn-background-workspace, .cn-crop-workspace) .erp-flow-picker { background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-tool-workspace--studio :is(.cn-background-workspace, .cn-crop-workspace) .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 310px; }
+.cn-tool-workspace--studio :is(.cn-background-workspace, .cn-crop-workspace) .erp-flow-picker__icon { width: 64px; height: 64px; font-size: 34px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-background-workspace .erp-tool-panel__head { align-items: center; margin-bottom: 4px; }
+.cn-background-settings .cn-studio-card-head { margin-bottom: 20px; }
+.cn-background-status { padding: 16px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-background-status strong { display: block; overflow-wrap: anywhere; font-size: 14px; }
+.cn-background-status p { margin: 8px 0 0; font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-background-download { display: grid; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--cn-line); }
+.cn-background-download .btn { width: 100%; min-height: var(--cn-cta); white-space: normal; }
+.cn-background-demo { margin: 8px 0 0; padding: 24px; border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-background-demo > div { display: flex; justify-content: center; align-items: center; gap: 20px; }
+.cn-background-demo > div > span { display: grid; place-items: end center; width: 120px; height: 126px; overflow: hidden; border: 1px solid var(--cn-line); border-radius: 12px; color: var(--cn-accent); background: var(--cn-tint); font-size: 106px; line-height: 1; }
+.cn-background-demo > div > span:last-child, .cn-tool-workspace--studio .cn-background-stage { background: repeating-conic-gradient(var(--cn-line) 0 25%, var(--cn-surface) 0 50%) 0 0 / 16px 16px; }
+.cn-background-demo > div > .bi { color: var(--cn-muted); }
+.cn-background-demo figcaption { margin-top: 16px; text-align: center; color: var(--cn-muted); font-size: 14px; line-height: 1.7; }
+.cn-background-note { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0 0; font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-background-note > .bi { color: var(--cn-positive); flex: none; }
+.cn-tool-workspace--studio .cn-background-stage { min-height: 240px; padding: 20px; border-radius: 12px; }
+.cn-background-stage canvas { border-radius: 4px; }
+
+/* Crop: upload first, a quiet image stage, and settings beside the image. */
+.cn-tool-workspace--studio .cn-crop-workspace .erp-flow { grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr); align-items: start; }
+.cn-crop-workspace .erp-flow__main { padding: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-crop-welcome-options > p { font-size: 14px; line-height: 1.8; color: var(--cn-muted); margin: 0 0 20px; }
+.cn-crop-welcome-options > div { display: flex; align-items: center; gap: 12px; padding-block: 12px; border-top: 1px solid var(--cn-line); font-size: 14px; }
+.cn-crop-workspace .erp-flow__side > .erp-flow-options { padding-bottom: 12px; }
+.cn-crop-workspace .erp-image-turn .btn { flex: 1; font-size: 14px; }
+.cn-crop-workspace .erp-flow-options__title { font-size: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--cn-line); }
+
+/* Read aloud: content and player together, voice and comfort settings alongside. */
+.cn-tool-workspace--studio .cn-read-workspace { grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr); align-items: start; }
+.cn-read-workspace .erp-tool-panel__head { align-items: center; }
+.cn-studio-form-hint { color: var(--cn-muted); font-size: 14px; line-height: 1.8; margin: 0; }
+.cn-read-workspace .erp-flow__main > .erp-tool-panel { gap: 20px; }
+.cn-read-workspace .erp-flow__main textarea { min-height: 300px; padding: 18px; line-height: 1.9; resize: vertical; background: var(--cn-hero); }
+.cn-read-input-tabs { padding: 6px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-read-input-tabs .cn-tool-modes { border: 0; background: transparent; padding: 0; }
+.cn-read-status { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--cn-line); border-radius: 12px; color: var(--cn-positive); background: color-mix(in srgb, var(--cn-positive) 6%, var(--cn-surface)); font-size: 14px; font-weight: 700; }
+.cn-read-workspace .cn-read-player { margin-top: 0; padding-top: 8px; }
+.cn-read-workspace .erp-read-player { margin-top: 0 !important; gap: 12px; }
+.cn-read-workspace .erp-read-player__row { display: flex; gap: 10px; }
+.cn-read-workspace .erp-read-player__row .btn { flex: 1; min-height: var(--cn-cta); font-size: 14px; }
+.cn-read-workspace > .erp-flow__after > .cn-studio-footer-guide { margin-top: 0; }
+
+/* Quick PDFs: a large input card beside conversion settings or a merge summary. */
+.cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow { grid-template-columns: minmax(0, 1.65fr) minmax(320px, 1fr); align-items: start; }
+.cn-pdf-quick-workspace .erp-flow__main { padding: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow-picker { background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 340px; }
+.cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow-picker__icon { width: 64px; height: 64px; font-size: 34px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-studio-convert-banner { display: flex; align-items: center; gap: 16px; padding: 20px 24px; margin-bottom: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); }
+.cn-studio-convert-banner > div { margin-inline-start: 8px; min-width: 0; }
+.cn-studio-convert-banner h2, .cn-merge-summary h2 { font-size: 18px; font-weight: 700; margin: 0 0 6px; line-height: 1.6; }
+.cn-studio-convert-banner p, .cn-merge-summary > p { margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-studio-convert-banner > .bi { color: var(--cn-muted); }
+.cn-pdf-quick-workspace .erp-flow-options__title { font-size: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--cn-line); }
+.cn-merge-summary > .cn-studio-small-icon { margin-bottom: 16px; }
+.cn-merge-summary dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+.cn-merge-summary dl > div { padding: 16px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-merge-summary dt { font-size: 14px; font-weight: 400; color: var(--cn-muted); }
+.cn-merge-summary dd { font-size: 28px; font-weight: 700; margin: 6px 0 0; color: var(--cn-accent); }
+.cn-merge-order { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px !important; }
+.cn-merge-order .bi { color: var(--cn-accent); flex: none; }
+
+/* Word: welcoming document art; the actual editor keeps its original viewport lifecycle. */
+.cn-office--studio:not(.cn-office--expanded) { border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-office--studio:not(.cn-office--open) > .cn-office-toolbar { padding: 18px 28px; }
+.cn-office-welcome-layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); align-items: start; }
+.cn-office--studio .cn-office-start { padding: 32px; gap: 18px; }
+.cn-office--studio .cn-office-start h2 { font-size: 26px; }
+.cn-office--studio .cn-office-start p { font-size: 14px; line-height: 1.8; }
+.cn-office--studio .cn-office-start .btn { min-width: 220px; }
+.cn-office-document { position: relative; display: grid; align-content: start; gap: 9px; width: 112px; height: 142px; margin: 4px 0 16px 8px; padding: 18px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); box-shadow: 10px 8px 0 var(--cn-tint); transform: rotate(-5deg); }
+.cn-office-document > span { font-size: 30px; color: var(--cn-accent); }
+.cn-office-document > i { display: block; height: 3px; border-radius: 3px; background: var(--cn-line); }
+.cn-office-document > i:nth-child(3n) { width: 70%; }
+.cn-office-document > b { position: absolute; inset-inline-end: -16px; bottom: -8px; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--cn-line); border-radius: 12px; color: var(--cn-accent); background: var(--cn-surface); font-size: 22px; }
+.cn-office-guide { padding: 32px 24px 32px 0; }
+
+/* QR creation: visual content choices, a separate preview and real export actions. */
+.cn-tool-workspace--studio .cn-qr-create-board { grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); }
+.cn-tool-workspace--studio .cn-qr-create-board > .erp-flow__side { display: grid; gap: 20px; padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-qr-create-workspace > .cn-qr-mode-switch { display: flex; width: fit-content; max-width: 100%; padding: 6px; gap: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); margin-bottom: 24px !important; }
+.cn-qr-mode-switch .btn { min-height: 46px; border: 0; padding-inline: 24px; border-radius: 8px; font-size: 14px; }
+.cn-qr-mode-switch .btn-outline-secondary { color: var(--cn-muted); }
+.cn-qr-kind-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 24px; }
+.cn-qr-kind-tiles button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 84px; padding: 12px 8px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); color: var(--cn-muted); font-size: 14px; line-height: 1.5; }
+.cn-qr-kind-tiles .bi { font-size: 23px; }
+.cn-qr-kind-tiles button[aria-pressed='true'] { color: var(--cn-accent); border-color: var(--cn-accent); background: var(--cn-tint); font-weight: 700; }
+.cn-qr-export-card { display: flex; flex-direction: column; gap: 12px; }
+.cn-qr-export-card .cn-studio-card-head { margin-bottom: 8px; }
+.cn-qr-export-card .erp-qr-preview { width: 100%; max-width: 300px; margin: 0 auto 12px; }
+.cn-qr-export-card .erp-qr-preview--empty { min-height: 240px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-qr-export-card .erp-qr-preview__icon { color: var(--cn-accent); }
+.cn-qr-export-card .btn { min-height: var(--cn-cta); }
+.cn-qr-create-board .erp-tool-panel__head { align-items: center; }
+
+/* Assistant: retain login/setup gates and show concrete ways to use the assistant. */
+.cn-tool-workspace--studio .cn-assistant-workspace { grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr); align-items: start; }
+.cn-tool-workspace--studio .cn-assistant-workspace > .erp-flow__side { padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-assistant-workspace .erp-tool-panel__head { align-items: center; }
+.cn-assistant-workspace .cn-ai-invite { grid-template-columns: 56px minmax(0, 1fr); padding: 24px; gap: 18px; border-radius: 16px; }
+.cn-assistant-workspace .cn-ai-invite__icon { width: 56px; height: 56px; border-radius: 16px; font-size: 27px; background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-assistant-workspace .cn-ai-invite p { font-size: 14px; line-height: 1.8; }
+.cn-assistant-workspace .cn-ai-invite > .cn-button { grid-column: 1 / -1; justify-self: start; min-height: var(--cn-cta); }
+.cn-assistant-capabilities > h2 { margin: 0 0 24px; font-size: 18px; font-weight: 700; line-height: 1.6; }
+.cn-assistant-capabilities > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cn-assistant-capabilities > div > div { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-assistant-capabilities h3 { margin: 16px 0 8px; font-size: 15px; font-weight: 700; line-height: 1.7; }
+.cn-assistant-capabilities p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-assistant-workspace .cn-ai-chat__thread { min-height: 380px; border-radius: 12px; background: var(--cn-hero); }
+
+/* Lunar calendar: a dedicated month surface and a generous selected-day card. */
+.cn-tool-workspace--studio .cn-lunar-workspace.erp-flow--single { max-width: none; }
+.cn-lunar-workspace .cn-lunar__toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 20px; padding: 24px; margin-bottom: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); }
+.cn-lunar-workspace .cn-lunar__toolbar .cn-studio-card-head { margin: 0; }
+.cn-lunar-workspace .cn-lunar__jump { margin: 0; flex-direction: column; align-items: flex-start; }
+.cn-lunar-workspace .cn-cal-layers { grid-column: 1 / -1; margin: 0; padding-top: 20px; border-top: 1px solid var(--cn-line); }
+.cn-lunar-workspace .cn-cal-layout { gap: 24px; grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr); }
+.cn-lunar-workspace .cn-cal-month, .cn-lunar-workspace .cn-cal-panel { border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-lunar-workspace .cn-cal-month__bar { padding: 20px; }
+.cn-lunar-workspace .cn-cal-month__bar h2 { font-size: 22px; }
+.cn-lunar-workspace .cn-cal-day { min-height: 110px; padding: 10px 8px; }
+.cn-lunar-workspace .cn-cal-day__solar { font-size: 18px; width: 32px; height: 32px; border-radius: 50%; }
+.cn-lunar-workspace .cn-cal-panel { padding: 24px; }
+.cn-lunar-workspace .cn-cal-panel__head { padding-bottom: 8px; border-bottom: 1px solid var(--cn-line); margin-bottom: 20px; }
+.cn-lunar-workspace .cn-lunar-day__lunar { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-lunar-workspace .cn-lunar__tools { gap: 24px; margin-top: 24px; }
+.cn-lunar-workspace .cn-lunar__tools .erp-tool-panel__head { align-items: center; }
+
+/* House estimate: keep prices and factors editable, with the total above its breakdown. */
+.cn-tool-workspace--studio .cn-estimate-workspace { grid-template-columns: minmax(320px, .95fr) minmax(0, 1.05fr); align-items: start; }
+.cn-tool-workspace--studio .cn-estimate-workspace > .erp-flow__side { display: grid; gap: 20px; padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-estimate-workspace .erp-tool-panel__head { align-items: center; }
+.cn-estimate-workspace .erp-tool-form__grid { align-items: end; }
+.cn-estimate-section-title { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; font-size: 15px; font-weight: 700; }
+.cn-estimate-section-title .bi { color: var(--cn-accent); }
+.cn-estimate-total { padding: 20px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-estimate-total .erp-tool-result__value { margin-bottom: 12px; font-size: clamp(24px, 2.7vw, 34px); line-height: 1.5; color: var(--cn-accent); overflow-wrap: anywhere; }
+.cn-estimate-total .erp-tool-result__note { margin: 8px 0 0; }
+.cn-estimate-summary > .erp-tool-result__note { margin: 0 0 16px; }
+.cn-estimate-breakdown table { margin-bottom: 0; }
+.cn-estimate-breakdown .table { font-size: 14px; }
+.cn-estimate-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* ID photos: a portrait drop zone beside size and print controls. */
+.cn-tool-workspace--studio .cn-idphoto-toolbar { justify-content: flex-end; margin-bottom: 20px; }
+.cn-idphoto-toolbar[hidden], .cn-idphoto-workspace[hidden] { display: none; }
+.cn-tool-workspace--studio .cn-idphoto-workspace .erp-flow { grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr); align-items: start; }
+.cn-idphoto-workspace .erp-flow__main { padding: 24px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio .cn-idphoto-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 380px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-idphoto-workspace .erp-flow-picker__icon { width: 76px; height: 76px; font-size: 36px; border-radius: 20px; background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-idphoto-welcome { text-align: center; padding-block: 8px 16px; }
+.cn-idphoto-welcome h2 { margin: 24px 0 8px; font-size: 18px; font-weight: 700; line-height: 1.6; }
+.cn-idphoto-welcome p { margin: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-idphoto-sample { display: grid; justify-items: center; align-content: end; width: 104px; height: 138px; margin: 8px auto 0; border: 6px solid var(--cn-surface); outline: 1px solid var(--cn-line); border-radius: 6px; background: var(--cn-tint); color: var(--cn-accent); box-shadow: 10px 7px 0 var(--cn-hero); }
+.cn-idphoto-sample > .bi { font-size: 66px; line-height: 1; }
+.cn-idphoto-sample > span { width: 100%; padding-block: 4px; background: var(--cn-surface); color: var(--cn-muted); font-size: 12px; }
+.cn-idphoto-features { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 16px; padding-top: 24px; font-size: 13px; color: var(--cn-muted); }
+.cn-idphoto-features > div { display: inline-flex; gap: 6px; align-items: center; }
+.cn-idphoto-features .bi { color: var(--cn-accent); }
+.cn-idphoto-workspace .cn-portrait-preview { text-align: center; }
+.cn-idphoto-workspace .cn-portrait-preview img { border: 6px solid var(--cn-surface); box-shadow: 0 0 0 1px var(--cn-line); }
+
+/* Compression: keep the native progress/cancel flow and separate the output. */
+.cn-tool-workspace--studio .cn-video-studio { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-video-studio .erp-tool-panel__head { align-items: center; }
+.cn-tool-workspace--studio .cn-video-studio .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-video-studio .erp-flow-picker__icon { width: 72px; height: 72px; font-size: 34px; border-radius: 18px; background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-video-empty { display: grid; place-content: center; justify-items: center; gap: 12px; min-height: 186px; margin-bottom: 20px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); color: var(--cn-accent); }
+.cn-video-empty > .bi { font-size: 50px; }
+.cn-video-empty > span { width: 120px; height: 5px; border-radius: 5px; background: var(--cn-line); }
+.cn-video-empty > span:last-child { width: 80px; }
+.cn-tool-workspace--studio .cn-video-studio .erp-tool-result__value--empty { font-size: 16px; font-weight: 400; color: var(--cn-muted); }
+.cn-video-studio .erp-tool-result .btn-primary { width: 100%; min-height: var(--cn-cta); }
+.cn-video-studio > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Quick design: input alongside the template strip and live canvas. */
+.cn-tool-workspace--studio .cn-design-board.erp-flow--single { max-width: none; }
+.cn-design-board .erp-tool-panel__head { align-items: center; }
+.cn-design-board .cn-responsive-preview { grid-template-columns: minmax(300px, .85fr) minmax(0, 1.15fr); }
+.cn-design-board .cn-responsive-preview__output { padding: 24px; border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-design-board .cn-preview-action { align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--cn-line); }
+.cn-design-board .cn-preview-action > .cn-studio-card-head { flex: 1; margin: 0; }
+.cn-design-board .cn-graphic-preview { min-height: 300px; padding: 24px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-design-board .cn-graphic-preview img { box-shadow: 0 4px 14px rgb(12 37 77 / 10%); }
+.cn-design-board .cn-template-picker__item { flex-basis: 110px; border-radius: 10px; }
+
+/* Family calendar: persistent local-storage note and prominent event entry. */
+.cn-tool-workspace--studio .cn-family-workspace.erp-flow--single { max-width: none; }
+.cn-family-topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px; margin-bottom: 24px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-family-topline > div { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.cn-family-topline h2 { margin: 0 0 6px; font-size: 20px; font-weight: 700; line-height: 1.6; }
+.cn-family-topline .cn-family-storage { display: flex; align-items: flex-start; gap: 6px; padding: 0; margin: 0; border: 0; background: transparent; }
+.cn-family-topline .cn-family-storage > .bi { color: var(--cn-positive); }
+.cn-family-add-top { flex: none; min-height: var(--cn-cta); }
+.cn-family-workspace .cn-family-toolbar { gap: 20px; padding: 16px; margin-bottom: 20px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; }
+.cn-family-workspace .cn-family-segment { gap: 6px; }
+.cn-family-workspace .cn-family-segment .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding-inline: 14px; }
+.cn-family-workspace .cn-cal-layers { margin-bottom: 20px; }
+.cn-family-workspace .cn-cal-layout { gap: 24px; grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr); }
+.cn-family-workspace :is(.cn-cal-month, .cn-cal-panel) { border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-family-workspace .cn-cal-month__bar { padding: 20px; }
+.cn-family-workspace .cn-cal-day { min-height: 108px; padding: 8px; }
+.cn-family-workspace .cn-cal-panel { padding: 24px; }
+.cn-family-workspace .cn-family-panel__add { min-height: var(--cn-cta); }
+.cn-family-workspace .cn-family-event { padding-block: 16px; }
+.cn-family-workspace .family-senior :is(.cn-family-topline h2, .cn-cal-month__bar h2) { font-size: 24px; }
+.cn-family-workspace .family-senior .cn-cal-day__solar { font-size: 18px; }
+
+/* Group expenses: individual expense cards and a readable settlement column. */
+.cn-tool-workspace--studio .cn-group-workspace { grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr); align-items: start; }
+.cn-group-workspace .erp-tool-panel__head { align-items: center; }
+.cn-group-workspace textarea { min-height: 132px; line-height: 1.9; background: var(--cn-hero); }
+.cn-group-expense { min-width: 0; padding: 20px; margin-bottom: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-group-expense:last-child { margin-bottom: 0; }
+.cn-group-expense h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 20px; font-size: 15px; font-weight: 700; line-height: 1.6; }
+.cn-group-expense h3 .bi { color: var(--cn-accent); }
+.cn-group-expense fieldset { padding-top: 12px; }
+.cn-group-expense .form-check { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 0; }
+.cn-group-expense .form-check-input { flex: none; margin-top: 0; }
+.cn-group-result .erp-tool-row { grid-template-areas: 'label value'; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 16px; align-items: start; gap: 16px; }
+.cn-group-result .erp-tool-row__label { color: var(--cn-ink); font-weight: 600; overflow-wrap: anywhere; }
+.cn-group-result .erp-tool-row__value { color: var(--cn-accent); white-space: normal; text-align: end; }
+.cn-group-empty { display: grid; place-items: center; min-height: 160px; margin-bottom: 16px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); color: var(--cn-accent); font-size: 60px; }
+.cn-group-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Address conversion: distinguish input, source selection and row-level results. */
+.cn-tool-workspace--studio .cn-address-workspace { grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); align-items: start; }
+.cn-address-workspace .erp-tool-panel__head { align-items: center; }
+.cn-address-workspace textarea { min-height: 220px; padding: 16px; line-height: 1.9; background: var(--cn-hero); }
+.cn-address-workspace details { padding-top: 12px; border-top: 1px solid var(--cn-line); }
+.cn-address-workspace details > summary { color: var(--cn-accent); }
+.cn-address-empty { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 150px; padding: 24px; margin-bottom: 20px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); color: var(--cn-accent); font-size: 42px; }
+.cn-address-empty .bi-arrow-right { font-size: 24px; }
+.cn-address-result .erp-tool-result__value { margin-bottom: 16px; font-size: clamp(22px, 2.3vw, 30px); line-height: 1.6; }
+.cn-address-download { width: 100%; min-height: var(--cn-cta); margin-top: 12px; }
+.cn-address-table :is(th, td) { padding: 14px 10px; vertical-align: top; }
+.cn-address-table th { background: var(--cn-hero); }
+.cn-address-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; margin-bottom: 24px; }
+.cn-video-trim-hint { display: flex; gap: 10px; align-items: flex-start; padding: 16px; margin-top: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-video-trim-hint .bi { color: var(--cn-accent); }
+
+/* Measurement: keep reference settings available beside the drawing surface. */
+.cn-tool-workspace--studio .cn-measure-workspace .erp-flow { grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); align-items: start; }
+.cn-measure-workspace .erp-flow__main { padding: 24px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-tool-workspace--studio .cn-measure-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 360px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-measure-workspace .erp-flow-picker__icon { width: 72px; height: 72px; font-size: 34px; border-radius: 18px; background: var(--cn-surface); border: 1px solid var(--cn-line); }
+.cn-measure-welcome { padding-block: 12px 16px; text-align: center; }
+.cn-measure-welcome h2 { margin: 24px 0 8px; font-size: 18px; font-weight: 700; line-height: 1.6; }
+.cn-measure-welcome p { margin: 0; font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-measure-art { position: relative; display: grid; place-items: center; width: 140px; height: 112px; margin: 0 auto; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); color: var(--cn-accent); }
+.cn-measure-art > .bi-image { font-size: 56px; }
+.cn-measure-art > span { position: absolute; inset: 16px 20px; border: 1px dashed var(--cn-accent); }
+.cn-measure-art > .bi-rulers { position: absolute; inset-inline-end: -10px; bottom: -8px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); font-size: 24px; }
+.cn-measure-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 16px; margin-top: 24px; font-size: 14px; color: var(--cn-muted); }
+.cn-measure-features > span { display: inline-flex; align-items: center; gap: 6px; }
+.cn-measure-features .bi { color: var(--cn-accent); }
+.cn-measure-workspace .erp-measure-bar { padding-bottom: 16px; border-bottom: 1px solid var(--cn-line); }
+.cn-measure-workspace .erp-measure-tabs { padding: 4px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-measure-workspace .erp-measure-tab { border-radius: 8px; }
+.cn-measure-workspace .erp-measure-result { padding: 14px 8px; }
+
+/* Spreadsheet: a small grid illustration alongside the same editor lifecycle. */
+.cn-office-sheet-art { position: relative; width: 142px; padding: 14px; margin: 4px 0 16px 6px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); box-shadow: 10px 8px 0 var(--cn-tint); transform: rotate(-4deg); }
+.cn-office-sheet-art > span { display: block; margin-bottom: 12px; font-size: 28px; color: var(--cn-accent); }
+.cn-office-sheet-art > div { display: grid; grid-template-columns: 20px repeat(3, 1fr); border-top: 1px solid var(--cn-line); border-inline-start: 1px solid var(--cn-line); }
+.cn-office-sheet-art > div > i { display: grid; place-items: center; height: 19px; border-bottom: 1px solid var(--cn-line); border-inline-end: 1px solid var(--cn-line); background: var(--cn-surface); color: var(--cn-muted); font-size: 10px; font-style: normal; }
+.cn-office-sheet-art > div > i:nth-child(-n+4), .cn-office-sheet-art > div > i:nth-child(4n+1) { background: var(--cn-tint); }
+.cn-office-sheet-art > b { position: absolute; inset-inline-end: -16px; bottom: -8px; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--cn-line); border-radius: 12px; color: var(--cn-accent); background: var(--cn-surface); font-size: 22px; }
+
+/* PDF passwords: visible mode choices, local file selection and one action card. */
+.cn-tool-workspace--studio .cn-password-workspace { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-password-workspace .erp-tool-panel__head { align-items: center; }
+.cn-tool-workspace--studio .cn-password-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 260px; background: var(--cn-hero); border-color: color-mix(in srgb, var(--cn-accent) 35%, var(--cn-line)); }
+.cn-password-fields { min-width: 0; padding: 0; margin: 0; border: 0; }
+.cn-password-fields > label { width: 100%; }
+.cn-password-fields > p:last-child { margin-bottom: 0; color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-password-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 6px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 12px; }
+.cn-password-modes button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--cn-muted); font: inherit; font-size: 14px; line-height: 1.6; }
+.cn-password-modes button[aria-pressed='true'] { background: var(--cn-surface); border-color: var(--cn-line); color: var(--cn-accent); font-weight: 700; box-shadow: 0 2px 5px rgb(12 37 77 / 3%); }
+.cn-password-modes button:focus-visible { outline: 2px solid var(--cn-focus); outline-offset: 2px; }
+.cn-password-permissions { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-password-permissions legend { float: none; width: auto; padding-inline: 6px; margin-bottom: 0; }
+.cn-password-permissions .form-check { display: flex; align-items: center; gap: 10px; min-height: 44px; margin-bottom: 0; }
+.cn-password-permissions .form-check-input { flex: none; margin-top: 0; }
+.cn-password-file { display: grid; justify-items: center; gap: 16px; min-height: 160px; padding: 24px 16px; margin-bottom: 20px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); text-align: center; }
+.cn-password-file > .bi { font-size: 52px; color: var(--cn-accent); }
+.cn-password-file p { margin: 0; max-width: 100%; overflow-wrap: anywhere; font-size: 14px; color: var(--cn-muted); line-height: 1.8; }
+.cn-password-file--ready { border-style: solid; }
+.cn-password-file--ready p { font-weight: 700; color: var(--cn-ink); }
+.cn-password-message { padding: 14px 16px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+.cn-password-run { width: 100%; min-height: var(--cn-cta); white-space: normal; }
+.cn-password-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Grades: keep the two calculations distinct and their inputs intact. */
+.cn-tool-workspace--studio .cn-study-workspace { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-study-workspace .erp-tool-panel__head { align-items: center; }
+.cn-study-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-study-modes .btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 12px; border-radius: 8px; white-space: normal; line-height: 1.7; }
+.cn-study-modes .btn-outline-secondary { border-color: transparent; color: var(--cn-muted); }
+.cn-study-score { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-height: 200px; padding: 24px 16px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-study-score > .bi { font-size: 48px; color: var(--cn-accent); }
+.cn-study-score .erp-tool-result__value { margin: 0; font-size: clamp(30px, 3.8vw, 46px); line-height: 1.6; color: var(--cn-accent); overflow-wrap: anywhere; text-align: center; }
+.cn-study-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Pomodoro: a large clock with controls, beside its duration settings. */
+.cn-tool-workspace--studio .cn-pomodoro-workspace { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-pomodoro-workspace > .erp-flow__main { grid-column: 2; grid-row: 1; }
+.cn-pomodoro-workspace > .erp-flow__side { grid-column: 1; grid-row: 1; }
+.cn-pomodoro-workspace .erp-tool-panel__head { align-items: center; }
+.cn-pomodoro-timer { text-align: center; }
+.cn-pomodoro-dial { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: min(280px, 100%); min-height: 280px; aspect-ratio: 1; padding: 16px; margin: 12px auto 24px; border: 7px solid var(--cn-accent); border-radius: 50%; background: var(--cn-hero); box-shadow: 0 0 0 12px var(--cn-tint); }
+.cn-pomodoro-dial > .bi { font-size: 27px; color: var(--cn-accent); }
+.cn-pomodoro-dial .erp-tool-result__label { margin: 0; color: var(--cn-muted); }
+.cn-pomodoro-dial .erp-tool-result__value { margin: 0; font-size: 60px; line-height: 1.2; font-weight: 700; color: var(--cn-ink); font-variant-numeric: tabular-nums; letter-spacing: -2px; }
+.cn-pomodoro-timer[data-session='break'] .cn-pomodoro-dial { border-color: var(--cn-positive); background: color-mix(in srgb, var(--cn-positive) 5%, var(--cn-surface)); }
+.cn-pomodoro-timer[data-session='break'] .cn-pomodoro-dial > .bi { color: var(--cn-positive); }
+.cn-pomodoro-status { margin: 0 0 20px; font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-pomodoro-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.cn-pomodoro-actions .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--cn-cta); white-space: normal; }
+.cn-pomodoro-actions .btn-primary { grid-column: 1 / -1; }
+.cn-pomodoro-timer > .erp-tool-result__note { margin-bottom: 0; margin-top: 20px; font-size: 14px; line-height: 1.8; }
+.cn-pomodoro-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+.cn-split-summary dl { margin-bottom: 8px; }
+
+/* VietQR: review account details next to the live code, then export. */
+.cn-tool-workspace--studio .cn-vietqr-workspace { grid-template-columns: minmax(0, 1.35fr) minmax(320px, 1fr); align-items: start; }
+.cn-tool-workspace--studio .cn-vietqr-workspace > .erp-flow__side { padding: 0; border: 0; background: transparent; box-shadow: none; position: static; }
+.cn-vietqr-workspace .erp-tool-panel__head { align-items: center; }
+.cn-vietqr-preview .erp-qr-preview { width: 100%; max-width: 300px; margin: 0 auto 24px; }
+.cn-vietqr-preview .erp-qr-preview--empty { min-height: 240px; border: 1px dashed var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-vietqr-preview .erp-qr-preview__icon { color: var(--cn-accent); }
+.cn-vietqr-details { display: grid; gap: 12px; padding: 16px; margin: 0 0 12px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-vietqr-details > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.cn-vietqr-details dt { font-size: 14px; line-height: 1.7; font-weight: 400; color: var(--cn-muted); }
+.cn-vietqr-details dd { margin: 0; font-size: 14px; line-height: 1.7; font-weight: 700; color: var(--cn-ink); text-align: end; overflow-wrap: anywhere; }
+.cn-vietqr-payload { padding-top: 4px; border-bottom: 1px solid var(--cn-line); margin-bottom: 16px; }
+.cn-vietqr-payload > summary { color: var(--cn-accent); font-size: 14px; }
+.cn-vietqr-downloads { display: grid; gap: 10px; }
+.cn-vietqr-downloads .btn { width: 100%; min-height: var(--cn-cta); }
+.cn-vietqr-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Ideas: the public form keeps consent, receipt tracking and publication states. */
+.cn-community-page--studio { --cn-radius-card: 16px; --erp-brand: #005be8; background: var(--cn-hero); }
+.cn-community-page--studio > .cn-container { max-width: 1280px; }
+.cn-community-page--studio .cn-community-hero { max-width: none; padding: 28px 0; }
+.cn-idea-heading { display: flex; align-items: center; gap: 18px; margin-top: 24px; }
+.cn-idea-heading > div { min-width: 0; flex: 1; }
+.cn-idea-heading-icon { display: grid; place-items: center; width: 64px; height: 64px; flex: none; border-radius: 18px; background: var(--erp-brand); color: #fff; font-size: 30px; box-shadow: 0 6px 16px rgb(0 91 232 / 12%); }
+.cn-community-page--studio .cn-idea-heading h1 { margin: 0 0 8px; font-size: clamp(26px, 2.7vw, 38px); font-weight: 700; letter-spacing: -.8px; line-height: 1.5; }
+.cn-community-page--studio .cn-community-layout { grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr); gap: 24px; }
+.cn-community-page--studio .cn-community-main { padding: 28px; border-radius: 16px; box-shadow: 0 3px 16px rgb(12 37 77 / 3%); }
+.cn-community-page--studio .cn-community-aside { gap: 20px; }
+.cn-community-page--studio .cn-community-form textarea { min-height: 220px; background: var(--cn-hero); }
+.cn-community-page--studio .cn-community-field > label { font-size: 14px; }
+.cn-community-page--studio .cn-community-form-fields > button { width: 100%; min-height: var(--cn-cta); }
+.cn-idea-tracker > .cn-studio-small-icon, .cn-idea-published > .cn-studio-small-icon { margin-bottom: 16px; }
+.cn-community-page--studio :is(.cn-community-tracker, .cn-community-published, .cn-community-success) h2 { font-size: 18px; line-height: 1.6; font-weight: 700; }
+.cn-community-page--studio .cn-community-lookup { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.cn-community-page--studio .cn-community-lookup label { font-size: 14px; }
+.cn-community-page--studio .cn-community-lookup button { width: 100%; }
+.cn-community-page--studio .cn-community-published p { font-size: 14px; line-height: 1.8; color: var(--cn-muted); }
+.cn-community-page--studio .cn-community-published li:first-child { padding-top: 0; }
+.cn-community-page--studio .cn-community-published li:last-child { border: 0; padding-bottom: 0; }
+.cn-idea-existing { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); color: var(--cn-accent); font-size: 14px; font-weight: 600; line-height: 1.7; text-decoration: none; }
+.cn-idea-existing .bi { flex: none; }
+
+/* Salary: income inputs and rule sources remain separate from the breakdown. */
+.cn-tool-workspace--studio .cn-payroll-workspace { grid-template-columns: minmax(0, 1.2fr) minmax(340px, 1fr); align-items: start; }
+.cn-payroll-workspace .erp-tool-panel__head { align-items: center; }
+.cn-payroll-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-payroll-modes .btn { min-height: 48px; padding: 10px; border-radius: 8px; white-space: normal; }
+.cn-payroll-modes .btn-outline-secondary { border-color: transparent; color: var(--cn-muted); }
+.cn-payroll-workspace details { padding-top: 8px; border-top: 1px solid var(--cn-line); }
+.cn-payroll-workspace details > summary { color: var(--cn-accent); }
+.cn-payroll-net { display: grid; place-items: center; gap: 12px; min-height: 150px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-payroll-net > .bi { color: var(--cn-accent); font-size: 44px; }
+.cn-payroll-net .erp-tool-result__value { margin: 0; color: var(--cn-accent); font-size: clamp(22px, 2.6vw, 32px); line-height: 1.65; text-align: center; overflow-wrap: anywhere; }
+.cn-payroll-result table { font-size: 14px; margin-bottom: 20px; }
+.cn-payroll-result :is(th, td) { padding: 12px 8px; vertical-align: top; }
+.cn-payroll-result th { font-weight: 500; }
+.cn-payroll-result td { text-align: end; font-variant-numeric: tabular-nums; }
+.cn-payroll-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; margin-bottom: 24px; }
+
+/* Unit prices: paired product cards share the same unit selector. */
+.cn-tool-workspace--studio .cn-unitprice-workspace { grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); align-items: start; }
+.cn-unitprice-workspace .erp-tool-panel__head { align-items: center; }
+.cn-unitprice-products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.cn-unitprice-product { min-width: 0; padding: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-unitprice-product > legend { display: flex; align-items: center; gap: 8px; float: none; width: auto; padding-inline: 6px; font-size: 15px; line-height: 1.6; font-weight: 700; }
+.cn-unitprice-product > legend .bi { color: var(--cn-accent); }
+.cn-unitprice-winner { display: grid; place-items: center; gap: 14px; min-height: 170px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-unitprice-winner > .bi { color: var(--cn-accent); font-size: 42px; }
+.cn-unitprice-winner .erp-tool-result__value { margin: 0; color: var(--cn-accent); font-size: 24px; line-height: 1.6; text-align: center; overflow-wrap: anywhere; }
+.cn-unitprice-per-unit { margin-bottom: 12px; padding: 14px 16px; border: 1px solid var(--cn-line); border-radius: 10px; color: var(--cn-ink); font-size: 14px; line-height: 1.8; font-variant-numeric: tabular-nums; }
+.cn-unitprice-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Numbers in words: readable text and one clear copy action. */
+.cn-tool-workspace--studio .cn-numberwords-workspace { grid-template-columns: minmax(0, 1fr) minmax(340px, 1.2fr); align-items: start; }
+.cn-numberwords-workspace .erp-tool-panel__head { align-items: center; }
+.cn-numberwords-workspace .erp-flow__main > .erp-tool-panel > input { min-height: 54px; font-size: 20px; font-variant-numeric: tabular-nums; }
+.cn-numberwords-text { min-height: 190px; padding: 24px; margin-bottom: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-numberwords-text .erp-tool-result__value { margin: 0; color: var(--cn-ink); font-size: 22px; font-weight: 600; line-height: 1.9; overflow-wrap: anywhere; }
+.cn-numberwords-text--empty { display: grid; align-content: center; justify-items: center; gap: 12px; }
+.cn-numberwords-text--empty > .bi { font-size: 42px; color: var(--cn-accent); }
+.cn-numberwords-copy { width: 100%; min-height: var(--cn-cta); }
+.cn-numberwords-workspace > .erp-flow__after .cn-studio-footer-guide { margin-top: 0; }
+
+/* Organize PDF: large thumbnails and four controls for every retained page. */
+.cn-organize-summary-hint { display: flex; align-items: flex-start; gap: 10px; margin: 0; padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-organize-summary-hint .bi { flex: none; color: var(--cn-accent); }
+.cn-organize-workspace .erp-page-stage { padding: 16px; border-radius: 12px; background: var(--cn-hero); }
+.cn-organize-workspace .erp-organize { grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 16px; }
+.cn-organize-workspace .erp-organize__tile { padding: 12px; gap: 12px; border-color: var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-organize-workspace .erp-organize__actions { gap: 4px; }
+.cn-organize-workspace .erp-organize__button { min-height: 44px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); color: var(--cn-ink); }
+.cn-organize-workspace .erp-organize__origin { font-size: 14px; }
+.cn-organize-workspace .erp-organize__button--remove { color: var(--cn-red); }
+
+@media (max-width: 1100px) {
+  .cn-studio-hero-art { display: none; }
+  .cn-tool-workspace--studio .cn-tool-intro__icon { width: 56px; height: 56px; border-radius: 14px; font-size: 26px; }
+  .cn-tarot-preview { gap: 16px; padding: 24px 16px; }
+  .cn-tarot-preview--many { gap: 12px; }
+  .cn-studio-badge { display: none; }
+}
+@media (max-width: 900px) {
+  .cn-community-page--studio .cn-community-layout { grid-template-columns: minmax(0, 1fr); }
+  .cn-community-page--studio .cn-community-aside { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .cn-community-page--studio .cn-idea-existing { grid-column: 1 / -1; }
+  .cn-family-workspace .cn-cal-layout { grid-template-columns: minmax(0, 1fr); }
+  .cn-family-workspace .cn-cal-side { position: static; }
+  .cn-office-welcome-layout, .cn-lunar-workspace .cn-cal-layout { grid-template-columns: minmax(0, 1fr); }
+  .cn-office-guide { padding: 0 24px 24px; }
+  .cn-lunar-workspace .cn-cal-side { position: static; }
+  .cn-numerology-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-numerology-sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow { grid-template-columns: minmax(0, 1fr); }
+  .cn-studio-footer-guide > .cn-studio-guidance { grid-template-columns: minmax(0, 1fr); }
+  .cn-pdf-welcome, .cn-tarot-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-tool-workspace--studio .cn-qr-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-tarot-sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-tarot-preview { min-height: 260px; }
+  .cn-pdf-welcome__side { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; }
+}
+@media (max-width: 767px) {
+  .cn-tool-workspace--studio :is(.cn-payroll-workspace, .cn-unitprice-workspace, .cn-numberwords-workspace) { grid-template-columns: minmax(0, 1fr); }
+  .cn-community-page--studio .cn-community-hero { padding: 20px 0; }
+  .cn-idea-heading { align-items: flex-start; gap: 12px; margin-top: 20px; }
+  .cn-idea-heading-icon { width: 48px; height: 48px; border-radius: 12px; font-size: 24px; }
+  .cn-community-page--studio .cn-idea-heading h1 { font-size: 26px; letter-spacing: -.6px; }
+  .cn-community-page--studio .cn-community-main { padding: 20px; }
+  .cn-community-page--studio .cn-community-aside { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .cn-community-page--studio .cn-community-actions { margin-bottom: 20px; }
+  .cn-unitprice-products { grid-template-columns: minmax(0, 1fr); }
+  .cn-unitprice-product { padding: 16px; }
+  .cn-numberwords-text { padding: 20px; }
+  .cn-numberwords-text .erp-tool-result__value { font-size: 20px; }
+  .cn-organize-workspace .erp-organize { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .cn-organize-workspace .erp-organize__tile { padding: 8px; }
+  .cn-organize-workspace .erp-organize__actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-tool-workspace--studio :is(.cn-study-workspace, .cn-pomodoro-workspace, .cn-vietqr-workspace) { grid-template-columns: minmax(0, 1fr); }
+  .cn-study-modes .btn { flex-direction: column; gap: 6px; padding: 10px 8px; font-size: 14px; }
+  .cn-study-score { min-height: 170px; }
+  .cn-pomodoro-workspace > .erp-flow__main { grid-column: 1; grid-row: 2; }
+  .cn-pomodoro-dial { margin-block: 12px 24px; }
+  .cn-pomodoro-dial .erp-tool-result__value { font-size: 40px; letter-spacing: -1px; }
+  .cn-tool-workspace--studio :is(.cn-address-workspace, .cn-password-workspace), .cn-tool-workspace--studio .cn-measure-workspace .erp-flow { grid-template-columns: minmax(0, 1fr); }
+  .cn-measure-workspace .erp-flow__main { padding: 16px; }
+  .cn-tool-workspace--studio .cn-measure-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; padding-inline: 16px; }
+  .cn-tool-workspace--studio .cn-password-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 240px; padding-inline: 12px; }
+  .cn-password-modes button { flex-direction: column; gap: 4px; padding: 8px 4px; }
+  .cn-password-modes .bi { font-size: 20px; }
+  .cn-address-table :is(th, td) { min-width: 130px; }
+  .cn-office-sheet-art { display: none; }
+  .cn-tool-workspace--studio .cn-idphoto-workspace .erp-flow { grid-template-columns: minmax(0, 1fr); }
+  .cn-tool-workspace--studio :is(.cn-video-studio, .cn-group-workspace), .cn-design-board .cn-responsive-preview { grid-template-columns: minmax(0, 1fr); }
+  .cn-tool-workspace--studio .cn-idphoto-workspace .erp-flow__main { display: contents; }
+  .cn-tool-workspace--studio .cn-idphoto-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; padding-inline: 16px; }
+  .cn-tool-workspace--studio .cn-video-studio .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 240px; padding-inline: 12px; }
+  .cn-idphoto-toolbar > .btn { width: 100%; }
+  .cn-idphoto-workspace .cn-flow-preview-run { align-self: stretch; }
+  .cn-design-board .cn-responsive-preview__output { padding: 16px; }
+  .cn-design-board .cn-preview-action > .cn-studio-card-head { flex-wrap: nowrap; }
+  .cn-design-board .cn-preview-action > .btn { width: 100%; }
+  .cn-design-board .cn-graphic-preview { min-height: 240px; padding: 16px; }
+  .cn-family-topline { flex-wrap: wrap; padding: 20px; margin-bottom: 16px; }
+  .cn-family-topline > div { align-items: flex-start; gap: 12px; }
+  .cn-family-topline h2 { font-size: 18px; }
+  .cn-family-add-top { width: 100%; }
+  .cn-family-workspace .cn-family-toolbar { padding: 12px; gap: 16px; }
+  .cn-family-workspace .cn-family-segment { width: 100%; }
+  .cn-family-workspace .cn-family-viewer { width: 100%; justify-content: space-between; white-space: normal; }
+  .cn-family-workspace .cn-family-viewer .form-select { max-width: 65%; }
+  .cn-family-workspace .cn-cal-month__bar { padding: 12px; }
+  .cn-family-workspace .cn-cal-day { min-height: 66px; padding: 6px 2px; }
+  .cn-family-workspace .cn-cal-panel { padding: 20px; }
+  .cn-group-expense { padding: 16px; }
+  .cn-group-workspace .erp-tool-panel__head { flex-wrap: wrap; }
+  .cn-tool-workspace--studio :is(.cn-assistant-workspace, .cn-estimate-workspace, .cn-qr-create-board), .cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow { grid-template-columns: minmax(0, 1fr); }
+  .cn-pdf-quick-workspace .erp-flow__main { padding: 16px; }
+  .cn-tool-workspace--studio .cn-pdf-quick-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; padding-inline: 16px; }
+  .cn-studio-convert-banner { flex-wrap: wrap; padding: 20px; gap: 12px; margin-bottom: 16px; }
+  .cn-studio-convert-banner > div { width: 100%; margin: 0; }
+  .cn-studio-convert-banner h2 { font-size: 16px; }
+  .cn-office--studio .cn-office-start { padding: 24px; gap: 14px; }
+  .cn-office--studio .cn-office-document { display: none; }
+  .cn-office--studio .cn-office-start h2 { font-size: 22px; }
+  .cn-office--studio:not(.cn-office--open) > .cn-office-toolbar { padding: 16px 24px; }
+  .cn-office-guide { padding: 0 16px 16px; }
+  .cn-qr-create-workspace > .cn-qr-mode-switch { width: 100%; margin-bottom: 16px !important; }
+  .cn-qr-mode-switch .btn { flex: 1; min-width: 0; padding-inline: 10px; }
+  .cn-qr-kind-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .cn-qr-export-card { padding: 20px; }
+  .cn-qr-export-card .erp-flow__run { position: sticky; bottom: 12px; z-index: 2; box-shadow: 0 4px 16px rgb(12 37 77 / 16%); }
+  .cn-assistant-capabilities > div { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .cn-assistant-workspace .cn-ai-invite { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .cn-assistant-workspace .cn-ai-invite > .cn-button { width: 100%; }
+  .cn-lunar-workspace .cn-lunar__toolbar { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px; margin-bottom: 16px; }
+  .cn-lunar-workspace .cn-lunar__jump { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .cn-lunar-workspace .cn-cal-month__bar { padding: 12px; }
+  .cn-lunar-workspace .cn-cal-month__bar h2 { font-size: 18px; }
+  .cn-lunar-workspace .cn-cal-day { min-height: 66px; padding: 6px 2px; }
+  .cn-lunar-workspace .cn-cal-day__solar { width: 28px; height: 28px; font-size: 15px; }
+  .cn-lunar-workspace .cn-cal-panel { padding: 20px; }
+  .cn-lunar-workspace .cn-lunar__tools { grid-template-columns: minmax(0, 1fr); gap: 16px; margin-top: 16px; }
+  .cn-tool-workspace--studio :is(.cn-read-workspace, .cn-background-workspace), .cn-tool-workspace--studio .cn-crop-workspace .erp-flow { grid-template-columns: minmax(0, 1fr); }
+  .cn-numerology-workspace { gap: 16px; }
+  .cn-numerology-sidebar { grid-template-columns: minmax(0, 1fr); }
+  .cn-tool-workspace--studio .cn-numerology-form, .cn-numerology-main .cn-ent-result { padding: 20px; }
+  .cn-numerology-form legend { font-size: 18px; }
+  .cn-crop-workspace .erp-flow__main { padding: 16px; }
+  .cn-crop-workspace .cn-flow-preview-run { width: 100%; align-self: stretch; }
+  .cn-tool-workspace--studio :is(.cn-background-workspace, .cn-crop-workspace) .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 260px; padding-inline: 16px; }
+  .cn-background-demo { padding: 16px; }
+  .cn-background-demo > div { gap: 12px; }
+  .cn-background-demo > div > span { width: 90px; height: 100px; font-size: 86px; }
+  .cn-read-workspace .erp-flow__main textarea { min-height: 220px; }
+  .cn-read-workspace .erp-read-player__row .btn { padding-inline: 10px; }
+  .cn-tool-workspace--studio .cn-collage-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-collage-placeholder { padding: 16px; }
+  .cn-collage-canvas { max-height: 420px; }
+  .cn-studio-workflow { gap: 8px; padding: 16px 12px; margin-bottom: 16px; }
+  .cn-studio-workflow > div { flex-direction: column; gap: 8px; text-align: center; }
+  .cn-studio-workflow > div > .bi, .cn-studio-workflow small { display: none; }
+  .cn-studio-workflow strong { font-size: 12px; }
+  .cn-studio-workflow .cn-studio-small-icon { width: 36px; height: 36px; font-size: 18px; border-radius: 10px; }
+  .cn-images-pdf-workspace .erp-flow__main, .cn-cv-studio .cn-responsive-preview__output { padding: 16px; }
+  .cn-tool-workspace--studio .cn-images-pdf-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 280px; padding-inline: 16px; }
+  .cn-studio-footer-guide { margin-top: 16px; }
+  .cn-studio-footer-guide .cn-studio-guide ol { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .cn-studio-footer-guide .cn-studio-guide li { flex-direction: row; gap: 12px; }
+  .cn-cv-preview-paper { padding: 10px; }
+  .cn-cv-preview-paper > .cn-cv-print { min-height: 500px; padding: 20px; }
+  .cn-cv-studio .cn-preview-action > .cn-studio-card-head { flex-wrap: nowrap; }
+  .cn-tool-workspace--studio .cn-orientation-workspace .erp-orient-head { padding: 8px; }
+  .cn-orientation-workspace .erp-orient-head > .btn { width: 100%; }
+  .cn-orientation-live .erp-orient-dial { max-width: 100%; padding: 8px; }
+  .cn-tool-workspace--studio > .cn-tool-heading { margin-block: 8px 20px; gap: 12px; }
+  .cn-tool-workspace--studio .cn-tool-intro { align-items: flex-start; gap: 12px; }
+  .cn-tool-workspace--studio .cn-tool-intro__icon { width: 48px; height: 48px; border-radius: 12px; font-size: 24px; }
+  .cn-tool-workspace--studio .erp-tool-crumb__title { font-size: 26px; letter-spacing: -.6px; }
+  .cn-studio-card, .cn-studio-guide, .cn-qr-result-card, .cn-tool-workspace--studio .cn-tarot-sidebar .cn-ent-form { padding: 20px; }
+  .cn-studio-card-head { gap: 10px; margin-bottom: 20px; }
+  .cn-studio-card-head h2 { font-size: 16px; }
+  .cn-studio-card-head .cn-studio-small-icon { width: 38px; height: 38px; font-size: 18px; }
+  .cn-tarot-sidebar, .cn-pdf-welcome__side { grid-template-columns: minmax(0, 1fr); }
+  /* Put setup before the decorative preview so the primary action is reachable on a phone. */
+  .cn-tarot-sidebar { display: contents; }
+  .cn-tarot-table { order: 1; }
+  .cn-tarot-sidebar > .cn-studio-guidance { order: 2; }
+  .cn-pdf-welcome, .cn-tarot-workspace, .cn-tool-workspace--studio .cn-qr-workspace { gap: 16px; }
+  .cn-tarot-preview { grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: 230px; padding: 24px 18px; gap: 12px; }
+  .cn-tarot-preview--many { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; min-height: 200px; padding-inline: 12px; }
+  .cn-tarot-preview__card img { border-width: 3px; border-radius: 6px; }
+  .cn-tarot-preview-hint { align-items: flex-start; }
+  .cn-tarot-table .cn-ent-spread-guide { padding: 16px; }
+  .cn-tarot-table .cn-ent-spread-guide ol { grid-template-columns: minmax(0, 1fr); }
+  .cn-tarot-table .cn-ent-deck { padding: 16px 8px; gap: 8px; }
+  .cn-tarot-table .cn-ent-card-slot { font-size: 13px; }
+  .cn-pdf-welcome__features { gap: 8px; }
+  .cn-pdf-welcome__features > div { padding: 12px 6px; min-height: 100px; }
+  .cn-pdf-welcome__features strong { font-size: 13px; }
+  .cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop { min-height: 300px; padding: 24px 16px; }
+  .cn-tool-workspace--studio .cn-pdf-welcome .erp-doc-drop__title { font-size: 20px; }
+  .cn-tool-workspace--studio .cn-pdf-has-pages .erp-doc-grid { padding: 12px; gap: 12px; }
+  .cn-qr-methods { margin-bottom: 20px; gap: 4px; padding: 4px; }
+  .cn-qr-methods button { flex-direction: column; gap: 4px; min-height: 66px; padding: 8px 4px; }
+  .cn-qr-empty { padding-block: 28px 24px; }
+  .cn-tool-workspace--studio .cn-qr-input .erp-flow-picker { min-height: 280px; padding: 24px 16px; }
+  .cn-tool-workspace--studio .cn-qr-input .erp-flow-picker--compact { min-height: 160px; }
+}

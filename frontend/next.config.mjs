@@ -9,6 +9,7 @@ const embedHosts = (process.env.NEXT_PUBLIC_EMBED_HOSTS ?? '').split(',').map(it
 })
 const config = {
   basePath,
+  allowedDevOrigins: ['127.0.0.1'],
   // scripts/deploy.sh builds into .next-new and renames it only after a green build; `next start` keeps reading .next.
   distDir: process.env.NEXT_DIST_DIR || '.next',
   skipTrailingSlashRedirect: Boolean(basePath),

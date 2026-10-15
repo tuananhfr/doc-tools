@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { textStats, type TextStats } from '../utils/text-stats'
 
@@ -18,6 +18,7 @@ const ROWS: { key: keyof TextStats; label: ParseKeys<'utility'>; hint?: ParseKey
 /** ĐẾM KÝ TỰ — chữ, từ, dòng, đoạn của đoạn văn dán vào; đếm ngay trên máy, không gửi chữ đi đâu. */
 export default function CharCountPage() {
   const { t } = useTranslation('utility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.charCount' })
   const id = useId()
   const [text, setText] = useState('')
   // Văn bản vài trăm nghìn chữ: đếm trễ một nhịp để ô gõ không khựng.
@@ -25,11 +26,12 @@ export default function CharCountPage() {
   const stats = useMemo(() => textStats(deferred), [deferred])
 
   return (
-    <ToolBoard layout="balanced"
+    <ToolBoard className="cn-charcount-workspace" layout="balanced"
+      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
       sideLabel={t('charCount.counts')}
       side={
         <>
-          <h2 className="erp-flow-options__title">{t('charCount.counts')}</h2>
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="123" /></span><div><h2>{t('charCount.counts')}</h2><p>{studio('resultHint')}</p></div></div>
           <dl className="erp-tool-stats" aria-live="polite">
             {ROWS.map((row) => (
               <div key={row.key} className="erp-tool-stat">
@@ -53,6 +55,7 @@ export default function CharCountPage() {
           </Button>
         }
       >
+        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <label className="visually-hidden" htmlFor={id}>
           {t('charCount.textLabel')}
         </label>

@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { Icon } from '@/components/ui'
 import type { QrForm, QrKind, WifiSecurity } from '../types/qr.types'
 
 interface QrContentFormProps {
@@ -8,6 +9,7 @@ interface QrContentFormProps {
   /** Lỗi của nội dung đang nhập; null = không có gì để báo. */
   error: string | null
   onChange: (patch: Partial<QrForm>) => void
+  kindPicker?: 'select' | 'tiles'
 }
 
 const KINDS: QrKind[] = ['url', 'text', 'wifi', 'phone', 'email', 'vcard']
@@ -15,7 +17,7 @@ const KINDS: QrKind[] = ['url', 'text', 'wifi', 'phone', 'email', 'vcard']
 const SECURITIES: WifiSecurity[] = ['WPA', 'WEP', 'nopass']
 
 /** Ô nhập của màn tạo mã: loại mã quyết định các ô phía dưới. */
-export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
+export function QrContentForm({ form, error, onChange, kindPicker = 'select' }: QrContentFormProps) {
   const { t } = useTranslation('qr')
   const ids = useId()
   const errorId = `${ids}-error`
@@ -23,7 +25,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
 
   return (
     <div className="erp-tool-form">
-      <div className="erp-flow-field">
+      {kindPicker === 'tiles' ? <div className="cn-qr-kind-tiles" role="group" aria-label={t('shared.kind')}>{KINDS.map((kind, index) => <button key={kind} type="button" aria-pressed={form.kind === kind} onClick={() => onChange({ kind })}><Icon name={['link-45deg', 'text-paragraph', 'wifi', 'telephone', 'envelope', 'person-vcard'][index]} />{t(`content.kinds.${kind}`)}</button>)}</div> : <div className="erp-flow-field">
         <label className="erp-flow-field__label" htmlFor={`${ids}-kind`}>
           {t('shared.kind')}
         </label>
@@ -34,7 +36,7 @@ export function QrContentForm({ form, error, onChange }: QrContentFormProps) {
             </option>
           ))}
         </Form.Select>
-      </div>
+      </div>}
 
       {form.kind === 'url' ? (
         <div className="erp-flow-field">

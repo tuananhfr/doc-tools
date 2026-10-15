@@ -2,7 +2,8 @@ import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
-import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
+import { CopyButton, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { NumberField } from '../components/NumberField'
 import { MONEY_GROUPS, MONEY_PRESETS, type MoneyGroup, type MoneyUnit } from '../config/money-presets'
 import { evaluatePreset, formatMoneyValue, presetCode } from '../utils/money'
@@ -21,6 +22,7 @@ const UNIT_SUFFIX = { money: 'money.suffix.money', percent: 'money.suffix.percen
  */
 export default function MoneyCalcPage() {
   const { t } = useTranslation('utility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.moneyCalc' })
   const presetSelect = useId()
   /* Nhóm phép tính nằm trên URL (`?nhom=vat`) để tìm kiếm / chia sẻ mở thẳng đúng tab; không có thì
      Phần trăm như cũ. URL là nguồn duy nhất: bấm lại link `?nhom=` khi đang ở trang không remount màn. */
@@ -44,9 +46,11 @@ export default function MoneyCalcPage() {
   const setValue = (key: string, value: string) => setTexts((current) => ({ ...current, [preset.id]: { ...current[preset.id], [key]: value } }))
 
   return (
-    <ToolBoard layout="compact"
+    <ToolBoard className="cn-moneycalc-workspace cn-calculation-workspace" layout="compact"
+      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
       side={
-        <div className="erp-tool-result" role="status">
+        <div className="erp-tool-result cn-calculation-result" role="status">
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="cash-stack" /></span><div><h2>{studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
           {outcome.ok ? (
             <>
               <p className="erp-tool-result__label">{outcome.rows[0].label}</p>
@@ -55,7 +59,7 @@ export default function MoneyCalcPage() {
                 {outcome.rows[0].unit === 'money' ? <span className="erp-tool-result__unit"> {t('money.suffix.money')}</span> : null}
               </p>
               <p className="erp-tool-result__note">= {outcome.expression}</p>
-              <CopyButton text={formatMoneyValue(outcome.rows[0].value, outcome.rows[0].unit)} label={t('shared.copyResult')} className="align-self-start" />
+              <CopyButton text={formatMoneyValue(outcome.rows[0].value, outcome.rows[0].unit)} label={t('shared.copyResult')} variant="primary" className="cn-calculation-copy" />
               {outcome.rows.length > 1 ? (
                 <ul className="erp-tool-rows mt-3">
                   {outcome.rows.slice(1).map((row) => (
@@ -84,7 +88,8 @@ export default function MoneyCalcPage() {
     >
       <ToolSegments label={t('money.groupLabel')} value={group} options={MONEY_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title={t('money.panelTitle')}>
+      <ToolPanel title={t('money.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="sliders2" /></span>}>
+        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={presetSelect}>

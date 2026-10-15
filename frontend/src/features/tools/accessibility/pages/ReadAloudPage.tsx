@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect, useId, useMemo, useState } from 'react'
 import { Button, Form, ProgressBar } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { downloadOutput, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
+import { downloadOutput, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { useDebounce } from '@/hooks'
 import { numberFormat, speechLanguage } from '@/i18n/intl'
 import { ReadErrorNotice } from '../components/ReadErrorNotice'
@@ -36,6 +37,7 @@ const TAB_ICON = { text: 'clipboard', file: 'file-earmark-text', link: 'link-45d
 
 export default function ReadAloudPage() {
   const { t } = useTranslation('accessibility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.read' })
   const hintId = useId()
   const partId = useId()
   const [tab, setTab] = useState<ReadInputTab>('text')
@@ -127,21 +129,21 @@ export default function ReadAloudPage() {
           : piper.phase === 'exporting' && piper.exported ? t('readAloud.exporting', { done: formatCount(piper.exported.done), total: formatCount(piper.exported.total) })
             : t('shared.ready')
 
-  return <ToolBoard layout="balanced" side={<div className="erp-tool-result">
-    <p className="erp-tool-result__label">{t('readAloud.device')}</p>
-    <p className="erp-tool-result__value" role="status" aria-live="polite">{status}</p>
+  return <ToolBoard className="cn-read-workspace" layout="balanced" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepVoice'), studio('stepListen')]} tip={studio('tip')} /></div>} side={<ToolPanel title={studio('settings')} actions={<span className="cn-studio-small-icon"><Icon name="soundwave" /></span>}>
+    <div className="cn-read-status" role="status" aria-live="polite"><Icon name={active ? 'soundwave' : 'check-circle'} /><span>{status}</span></div>
+    <ToolSegments label={t('readAloud.engine')} value={engine} onChange={changeEngine} options={[
+      { value: 'device', label: t('readAloud.engineDevice'), icon: 'phone' },
+      { value: 'piper', label: t('readAloud.enginePiper'), icon: 'soundwave' },
+    ]} />
     {percent !== null ? <ProgressBar now={percent} aria-label={t('readAloud.piperLoading', { percent })} className="mt-2" /> : null}
     <ReadVoicePanel engine={engine} notices={notices} language={languageName(lang, speechLanguage())} vietnamese={lang.toLowerCase().startsWith('vi')}
       voiceName={voice.state === 'ok' ? voice.name : null} deviceFailed={device.failed} piperError={piper.error} exported={exported}
       canUsePiper={canUsePiper} onUsePiper={() => changeEngine('piper')} onPasteInstead={tab === 'text' ? undefined : pasteInstead} />
     <ReadSettings rate={rate} onRate={setRate} fontScale={fontScale} onFontScale={setFontScale} remember={remember} onRemember={setRemember} />
-  </div>}>
-    <ToolPanel title={t('readAloud.title')}>
-      <ToolSegments label={t('readAloud.engine')} value={engine} onChange={changeEngine} options={[
-        { value: 'device', label: t('readAloud.engineDevice'), icon: 'phone' },
-        { value: 'piper', label: t('readAloud.enginePiper'), icon: 'soundwave' },
-      ]} />
-      <div className="erp-read-tabs mt-3">
+  </ToolPanel>}>
+    <ToolPanel title={t('readAloud.title')} actions={<span className="cn-studio-small-icon"><Icon name="file-earmark-text" /></span>}>
+      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+      <div className="erp-read-tabs cn-read-input-tabs">
         <ToolSegments label={t('readAloud.inputMode')} value={tab} onChange={changeTab} disabled={busy}
           options={inputTabs.map((value) => ({ value, label: t(TAB_LABEL[value]), icon: TAB_ICON[value] }))} />
       </div>

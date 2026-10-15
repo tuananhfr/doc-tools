@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
-import { describeError, downloadOutput, ToolBoard, ToolPanel, ToolSegments, useDownloadNudge } from '@/features/tools/hub'
+import { describeError, downloadOutput, ToolBoard, ToolPanel, ToolSegments, useDownloadNudge, WorkspaceGuide } from '@/features/tools/hub'
 import { BarcodeBatch } from '../components/BarcodeBatch'
 import { BarcodeOptions } from '../components/BarcodeOptions'
 import { BarcodePreview } from '../components/BarcodePreview'
@@ -33,6 +33,7 @@ const FILE_TYPES: { type: BarcodeFileType; icon: string }[] = [
  */
 export default function BarcodeCreatePage() {
   const { t } = useTranslation('qr')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.barcode' })
   const toast = useToast()
   const nudge = useDownloadNudge()
   const engine = useBarcodeEngine()
@@ -73,11 +74,13 @@ export default function BarcodeCreatePage() {
     engine.status === 'failed' ? t('barcode.engineFailed') : engine.status === 'loading' ? t('barcode.engineLoading') : t('shared.enterToCreate')
 
   return (
-    <ToolBoard mobilePreview={mode === 'single'} layout={mode === 'single' ? 'compact' : 'balanced'}
+    <ToolBoard className="cn-barcode-workspace" mobilePreview={mode === 'single'} layout={mode === 'single' ? 'compact' : 'balanced'}
+      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
       sideLabel={t('barcode.side')}
       side={
         mode === 'single' ? (
           <>
+            <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="upc-scan" /></span><div><h2>{t('barcode.side')}</h2><p>{studio('resultHint')}</p></div></div>
             <BarcodePreview svg={drawn.svg} label={t('barcode.previewLabel', { kind: spec.label, value: check?.ok ? check.value : '' })} placeholder={drawn.error ?? placeholder} />
             {check?.ok ? (
               <div className="erp-flow-field">
@@ -111,7 +114,8 @@ export default function BarcodeCreatePage() {
       <ToolSegments label={t('barcode.modeLabel')} value={mode} options={MODES.map((item) => ({ ...item, label: t(`barcode.modes.${item.value}`) }))} onChange={setMode} />
 
       {mode === 'single' ? (
-        <ToolPanel title={t('shared.contentPanel')}>
+        <ToolPanel title={t('shared.contentPanel')} actions={<span className="cn-studio-small-icon"><Icon name="input-cursor-text" /></span>}>
+          <p className="cn-studio-form-hint">{studio('inputHint')}</p>
           <Form.Group controlId="barcode-value" className="erp-flow-field">
             <Form.Label className="erp-flow-field__label">{t('shared.value')}</Form.Label>
             <Form.Control
@@ -136,7 +140,7 @@ export default function BarcodeCreatePage() {
           {spec.gs1 ? <Gs1Notice /> : null}
         </ToolPanel>
       ) : (
-        <ToolPanel title={t('barcode.listTitle')}>
+        <ToolPanel title={t('barcode.listTitle')} actions={<span className="cn-studio-small-icon"><Icon name="list-ol" /></span>}>
           {spec.gs1 ? <Gs1Notice /> : null}
           <BarcodeBatch kind={kind} look={look} engine={ready} />
         </ToolPanel>

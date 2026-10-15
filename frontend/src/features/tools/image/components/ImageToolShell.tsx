@@ -14,6 +14,7 @@ interface ImageToolShellProps {
   /** Vùng làm việc riêng (cắt, đo) — có thì thay cho danh sách ảnh. */
   stage?: ReactNode
   options?: ReactNode
+  sideIntro?: ReactNode
   runLabel: string
   runIcon: string
   /** Vì sao chưa chạy được với ảnh / tuỳ chọn hiện tại; null = chạy được. */
@@ -34,7 +35,7 @@ const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
  * luồng của "Chuyện Nhỏ" và mời khách đăng nhập sau khi tải. Trang công cụ chỉ
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
-export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, runLabel, runIcon, blocked, task, mobilePreview, initialPanel, pickerExtra, resultActions }: ImageToolShellProps) {
+export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, sideIntro, runLabel, runIcon, blocked, task, mobilePreview, initialPanel, pickerExtra, resultActions }: ImageToolShellProps) {
   const { t } = useTranslation('image')
   const nudge = useDownloadNudge()
   const done = run.state.phase === 'done' ? run.state.result.output : null
@@ -78,6 +79,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
       }}
       stage={stage}
       options={options}
+      sideIntro={sideIntro}
       runLabel={runLabel}
       runIcon={runIcon}
       blocked={images.items.length === 0 ? t('shell.noImages') : blocked}

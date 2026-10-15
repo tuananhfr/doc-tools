@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
-import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
+import { CopyButton, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { NumberField } from '../components/NumberField'
 import { CALC_FORMULAS, CALC_GROUPS, type CalcGroup } from '../config/calc-formulas'
 import { evaluateFormula, formatResult, QUANTITY_KEY } from '../utils/calc'
@@ -17,6 +18,7 @@ const NO_VALUES: Record<string, string> = {}
  */
 export default function QuickCalcPage() {
   const { t } = useTranslation('utility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.quickCalc' })
   const formulaSelect = useId()
   const [group, setGroup] = useState<CalcGroup>('area')
   const [chosen, setChosen] = useState(FIRST_FORMULA)
@@ -34,9 +36,11 @@ export default function QuickCalcPage() {
   const setValues = (patch: Record<string, string>) => setTexts((current) => ({ ...current, [formula.id]: { ...current[formula.id], ...patch } }))
 
   return (
-    <ToolBoard layout="compact"
+    <ToolBoard className="cn-quickcalc-workspace cn-calculation-workspace" layout="compact"
+      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
       side={
-        <div className="erp-tool-result" role="status">
+        <div className="erp-tool-result cn-calculation-result" role="status">
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={group === 'area' ? 'bounding-box' : group === 'volume' ? 'box' : 'bricks'} /></span><div><h2>{studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
           <p className="erp-tool-result__label">{t(groupInfo.label)}</p>
           {outcome.ok ? (
             <>
@@ -50,7 +54,7 @@ export default function QuickCalcPage() {
                   {t('quickCalc.perPiece', { value: formatResult(outcome.single), unit: groupInfo.unit })}
                 </p>
               ) : null}
-              <CopyButton text={formatResult(outcome.value)} label={t('shared.copyResult')} className="align-self-start" />
+              <CopyButton text={formatResult(outcome.value)} label={t('shared.copyResult')} variant="primary" className="cn-calculation-copy" />
             </>
           ) : (
             <>
@@ -63,7 +67,8 @@ export default function QuickCalcPage() {
     >
       <ToolSegments label={t('quickCalc.groupLabel')} value={group} options={CALC_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title={t('quickCalc.panelTitle')}>
+      <ToolPanel title={t('quickCalc.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
+        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
             <label className="erp-flow-field__label" htmlFor={formulaSelect}>

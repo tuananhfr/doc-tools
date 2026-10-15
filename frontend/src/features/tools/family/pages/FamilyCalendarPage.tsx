@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
-import { PrintPortal, ToolBoard } from '@/features/tools/hub'
+import { PrintPortal, ToolBoard, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { buildMonthGrid, HolidayLayerToggles, holidaysInRange, MonthCalendar, shiftMonth, useHolidayLayers, type Holiday } from '@/features/tools/vietnam'
 import { FamilyAgenda } from '../components/FamilyAgenda'
 import { FamilyDayPanel } from '../components/FamilyDayPanel'
@@ -24,6 +25,7 @@ const VIEWS: View[] = ['calendar', 'list', 'members', 'backup', 'safety']
 export default function FamilyCalendarPage() {
   // `vietnam` chứa tên ngày lễ mà holidaysInRange đọc qua translateKey.
   const { t } = useTranslation(['family', 'vietnam'])
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.family' })
   const { space, error, saving, dropped, update, restore: restoreSpace } = useFamilySpace()
   const { layers, toggle } = useHolidayLayers()
   const [today] = useState(todayInVietnam)
@@ -86,16 +88,16 @@ export default function FamilyCalendarPage() {
 
   return <>
     <style>{`@media print { @page { size: A4; margin: 14mm; } } .family-senior { font-size: 1.15rem; } .family-senior button { min-height: 44px; }`}</style>
-    <ToolBoard>
+    <ToolBoard className="cn-family-workspace">
       <div ref={workspace} className={`cn-family cn-cal${senior ? ' family-senior' : ''}`}>
-        <p className="cn-family-storage"><Trans ns="family" i18nKey="page.storage" values={{ events: space.events.length, members: space.members.length }} components={{ strong: <strong /> }} /></p>
+        <div className="cn-family-topline"><div><span className="cn-studio-small-icon"><Icon name="calendar-heart" /></span><div><h2>{studio('workspaceTitle')}</h2><p className="cn-family-storage"><Icon name="shield-check" /><span><Trans ns="family" i18nKey="page.storage" values={{ events: space.events.length, members: space.members.length }} components={{ strong: <strong /> }} /></span></p></div></div>{!senior ? <Button className="cn-family-add-top" disabled={saving} onClick={() => { setView('calendar'); addOn(selected) }}><Icon name="plus-lg" className="me-2" />{studio('addEvent')}</Button> : null}</div>
         {error ? <p role="alert">{error}</p> : null}
         {dropped ? <p role="alert">{t('space.droppedItems', { total: dropped })}</p> : null}
         {notificationPermission === 'default' ? <div className="mb-3"><Button variant="outline-secondary" size="sm" onClick={() => void Notification.requestPermission().then(setNotificationPermission)}>{t('page.enableNotifications')}</Button></div> : null}
         {reminders.alerts.length ? <div className="erp-tool-panel mb-3" role="status"><strong>{t('page.remindersTitle')}</strong>{reminders.alerts.map((alert) => <div key={alert.key} className="d-flex justify-content-between gap-2 mt-2"><span>{alert.title} · {alert.date} {alert.time}</span><Button size="sm" variant="outline-secondary" onClick={() => reminders.dismiss(alert.key)}>{t('page.seen')}</Button></div>)}</div> : null}
         <div className="cn-family-toolbar family-no-print">
           <div className="cn-family-segment" role="tablist" aria-label={t('page.viewModes')}>
-            {VIEWS.filter((key) => !senior || ['calendar', 'safety'].includes(key)).map((key) => <Button key={key} role="tab" aria-selected={view === key} variant={view === key ? 'primary' : 'outline-secondary'} onClick={() => changeView(key)}>{t(`page.views.${key}`)}</Button>)}
+            {VIEWS.filter((key) => !senior || ['calendar', 'safety'].includes(key)).map((key) => <Button key={key} role="tab" aria-selected={view === key} variant={view === key ? 'primary' : 'outline-secondary'} onClick={() => changeView(key)}><Icon name={{calendar:'calendar3',list:'list-ul',members:'people',backup:'archive',safety:'shield-check'}[key]} />{t(`page.views.${key}`)}</Button>)}
           </div>
           <label className="cn-family-viewer">{t('page.viewingFor')}<Form.Select size="sm" value={viewer.id} onChange={(event) => setViewerId(event.target.value)}>{space.members.map((member) => <option value={member.id} key={member.id}>{member.name}</option>)}</Form.Select></label>
         </div>
@@ -113,6 +115,7 @@ export default function FamilyCalendarPage() {
         {view === 'members' ? <FamilyMembers members={space.members} onAdd={addMember} disabled={saving} /> : null}
         {view === 'backup' ? <FamilyPortability space={space} onRestore={restore} onPrint={print} disabled={saving} /> : null}
         {view === 'safety' ? <FamilySafety space={space} onAddContact={addContact} onSos={addSos} onSafe={markSafe} onLocation={updateLocation} disabled={saving} /> : null}
+        <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepMember'), studio('stepEvent'), studio('stepBackup')]} tip={studio('tip')} /></div>
       </div>
     </ToolBoard>
     <PrintPortal><FamilyPrint space={space} today={today} viewerId={viewer.id} includeSensitive={printSensitive} /></PrintPortal>

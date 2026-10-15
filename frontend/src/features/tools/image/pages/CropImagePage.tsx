@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
+import { ToolLeaveGuard, useFlowRun, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { CropOptions } from '../components/CropOptions'
 import { CropStage } from '../components/CropStage'
 import { ImageToolShell } from '../components/ImageToolShell'
@@ -13,6 +14,7 @@ import { isPristine } from '../utils/crop-state'
 /** CẮT & CHỈNH ẢNH — một ảnh mỗi lượt: cắt theo khung, xoay 90°, chỉnh sáng và tương phản. */
 export default function CropImagePage() {
   const { t } = useTranslation('image')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.crop' })
   const images = useImageFiles({ multiple: false })
   const run = useFlowRun()
   const item = images.items[0] ?? null
@@ -24,6 +26,7 @@ export default function CropImagePage() {
     <>
       {/* Khung cắt và mức chỉnh chỉ nằm trong RAM: rời màn là phải làm lại từ đầu. */}
       <ToolLeaveGuard active={ready && !isPristine(state, item)} />
+      <div className={`cn-crop-workspace${ready ? ' cn-crop-workspace--loaded' : ''}`}>
       <ImageToolShell mobilePreview initialPanel="preview"
         images={images}
         run={run}
@@ -34,7 +37,7 @@ export default function CropImagePage() {
             <CropStage item={item} state={state} disabled={run.state.phase === 'running'} onRectChange={(rect) => crop.update((current) => ({ ...current, rect }))} />
           ) : undefined
         }
-        options={ready ? <CropOptions item={item} state={state} onChange={crop.update} onReset={crop.reset} /> : undefined}
+        options={ready ? <CropOptions item={item} state={state} onChange={crop.update} onReset={crop.reset} /> : <div className="cn-crop-welcome-options"><p>{studio('emptyHint')}</p>{([['crop', 'crop'], ['arrow-clockwise', 'rotate'], ['brightness-high', 'adjust']] as const).map(([icon, key]) => <div key={key}><span className="cn-studio-small-icon"><Icon name={icon} /></span><span>{studio(key)}</span></div>)}</div>}
         runLabel={t('shared.saveImage')}
         runIcon="check2-circle"
         resultActions={(result) => <HandoffButton target="id-photo" label={t('handoff.toIdPhoto')} file={() => outputFile(result)} />}
@@ -44,6 +47,8 @@ export default function CropImagePage() {
           return cropTask(item, state)
         }}
       />
+      <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepEdit'), studio('stepSave')]} tip={studio('tip')} /></div>
+      </div>
     </>
   )
 }

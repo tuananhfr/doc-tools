@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { postToHost, useEmbed } from '@/features/embed'
-import { FilePicker, ToolBoard } from '@/features/tools/hub'
+import { FilePicker, ToolBoard, WorkspaceGuide } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
 import { QrCamera } from '../components/QrCamera'
 import { ScanResultList } from '../components/ScanResultList'
@@ -25,6 +25,7 @@ const ACCEPT = 'image/*'
  */
 export default function QrReadPage() {
   const { t } = useTranslation('qr')
+  const { t: common } = useTranslation('common')
   const [hits, setHits] = useState<ScanHit[]>([])
   const [misses, setMisses] = useState<ScanMiss[]>([])
   const [loading, setLoading] = useState<{ done: number; total: number } | null>(null)
@@ -89,27 +90,37 @@ export default function QrReadPage() {
   }, [scanFiles])
 
   return (
-    <ToolBoard layout="balanced"
+    <ToolBoard layout="balanced" className="cn-qr-workspace"
       sideLabel={t('read.results')}
       side={
         <>
+          <div className="cn-qr-result-card">
           <div className="erp-tool-side-head">
-            <h2 className="erp-flow-options__title">{hits.length > 0 ? t('read.resultsCount', { count: hits.length }) : t('read.results')}</h2>
+            <h2 className="erp-flow-options__title"><Icon name="qr-code-scan" /> {t('read.results')}</h2>
             {hits.length > 0 ? (
               <Button variant="link" size="sm" className="erp-flow-files__clear" onClick={() => setHits([])}>
                 {t('read.clearAll')}
               </Button>
             ) : null}
           </div>
+          <p className="cn-qr-result-status" role="status" aria-live="polite">{hits.length > 0 ? t('read.resultsCount', { count: hits.length }) : common('studio.qr.resultHint')}</p>
           {hits.length === 0 ? (
-            <p className="erp-flow-field__hint">{t('read.empty')}</p>
+            <div className="cn-qr-empty"><span className="cn-qr-empty__code" aria-hidden="true"><Icon name="qr-code" /></span><p>{t('read.empty')}</p></div>
           ) : (
             <ScanResultList hits={hits} onRemove={(id) => setHits((current) => current.filter((hit) => hit.id !== id))} />
           )}
-          <p className="erp-flow-field__hint">{t('read.safety')}</p>
+          <p className="cn-qr-safety"><Icon name="shield-check" />{t('read.safety')}</p>
+          </div>
+          <WorkspaceGuide steps={[common('studio.qr.stepUpload'), common('studio.qr.stepRead'), common('studio.qr.stepCheck')]} tip={common('studio.qr.tip')} />
         </>
       }
     >
+      <section className="cn-studio-card cn-qr-input">
+      <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="qr-code-scan" /></span><div><h2>{common('studio.qr.inputTitle')}</h2><p>{t('read.pickHint')}</p></div></div>
+      <div className="cn-qr-methods" role="group" aria-label={common('studio.qr.inputTitle')}>
+        <button type="button" aria-pressed={!camera} onClick={() => setCamera(false)}><Icon name="image" />{common('studio.qr.imageTab')}</button>
+        <button type="button" aria-pressed={camera} onClick={() => setCamera(true)}><Icon name="camera" />{t('read.camera')}</button>
+      </div>
       <FilePicker
         accept={ACCEPT}
         multiple
@@ -119,14 +130,6 @@ export default function QrReadPage() {
         loading={loading}
         disabled={false}
         onFiles={(files) => void scanFiles(files)}
-        extra={
-          camera ? null : (
-            <Button variant="outline-secondary" className="erp-flow-picker__pick" onClick={() => setCamera(true)}>
-              <Icon name="camera" className="me-2" />
-              {t('read.camera')}
-            </Button>
-          )
-        }
       />
 
       {misses.length > 0 ? (
@@ -150,6 +153,8 @@ export default function QrReadPage() {
       ) : null}
 
       {camera ? <QrCamera onRead={addRead} onClose={() => setCamera(false)} /> : null}
+      <div className="cn-studio-local-note"><Icon name="shield-check" />{common('tool.privacyFile')}</div>
+      </section>
     </ToolBoard>
   )
 }

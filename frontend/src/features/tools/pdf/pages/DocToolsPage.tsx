@@ -15,6 +15,7 @@ import { DecorationPanel } from '../components/DecorationPanel'
 import { DocSidePanel, type SideTab } from '../components/DocSidePanel'
 import { DocToolbar } from '../components/DocToolbar'
 import { DropZone } from '../components/DropZone'
+import { PdfEditorWelcome } from '../components/PdfEditorWelcome'
 import { ExportJump } from '../components/ExportJump'
 import { ExportPanel } from '../components/ExportPanel'
 import { FormFillPanel } from '../components/FormFillPanel'
@@ -371,11 +372,13 @@ export default function DocToolsPage() {
   }, [reading, pages.length, selected.length, dialogOpen, undo, redo, remove, selectAll, clearSelection])
 
   return (
-    <div className={`erp-doc-tools${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}`}>
+    <div className={`erp-doc-tools${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}${pages.length > 0 ? ' cn-pdf-has-pages' : ''}`}>
       <ToolLeaveGuard active={pages.length > 0} />
       <div className="erp-doc-tools__main">
         {pages.length === 0 ? (
-          <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
+          slug === 'chinh-sua-pdf'
+            ? <PdfEditorWelcome loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
+            : <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
         ) : (
           <>
             {reading ? <div className="cn-pdf-reader__actions">

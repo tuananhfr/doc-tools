@@ -63,9 +63,10 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
      cũ chunk đó ném lỗi ngay lúc nạp (xem `utils/browser-support.ts`). */
   const unsupported = PDF_ENGINE_SCREENS.has(tool.screen) && !pdfEngineSupported()
   const workspace = workspaceTabsFor(tool.id, catalog, base)
+  const studio = ['tarot', 'chinh-sua-pdf', 'doc-ma-qr', 'ghep-anh', 'anh-sang-pdf', 'tao-cv', 'huong-nha-la-ban', 'bai-tay', 'xoa-phong', 'than-so-hoc', 'doc-to-van-ban', 'cat-chinh-anh', 'soan-van-ban', 'pdf-sang-word', 'tao-ma-qr', 'tro-ly', 'ghep-pdf', 'lich-am', 'khai-toan-nha', 'anh-the', 'nen-video', 'thiet-ke-nhanh', 'lich-gia-dinh', 'chia-tien-nhom', 'doi-dia-chi', 'cat-video', 'do-kich-thuoc-anh', 'bang-tinh', 'mat-khau-pdf', 'diem-hoc-tap', 'pomodoro', 'tach-pdf', 'tao-gif', 'vietqr-chuyen-khoan', 'luong', 'sap-xep-pdf', 'so-sanh-gia-theo-don-vi', 'so-thanh-chu', 'vong-quay', 'tao-ma-vach', 'tien-dien', 'anh-sang-van-ban', 'kiem-tra-tin-nhan-link-la', 'mau-don', 'danh-so-trang', 'mau-sac', 'tach-am-thanh', 'the-ghi-nho', 'tinh-toan-nhanh', 'xoa-metadata-anh', 'ocr-van-ban', 'chuyen-doi-anh', 'dem-ky-tu', 'kinh-lup', 'chuyen-font-tieng-viet', 'tinh-tien', 'anh-hang-loat', 'doc-hoa-don-xml'].includes(tool.slug)
 
   return (
-    <div data-workspace-version={workspaceVersions?.[tool.id]} data-tool-screen={tool.screen} data-tool-slug={tool.slug} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}`}>
+    <div data-workspace-version={workspaceVersions?.[tool.id]} data-tool-screen={tool.screen} data-tool-slug={tool.slug} className={`erp-tool-page cn-tool-workspace${tool.screen === 'editor' ? ' cn-tool-workspace--editor' : ''}${studio ? ' cn-tool-workspace--studio' : ''}`}>
       <nav className="erp-tool-crumb" aria-label={t('crumb.label')}>
         <Link className="erp-tool-crumb__back" to={kind === 'public' ? backTo : base} state={backState}>
           <Icon name="arrow-left" />
@@ -94,6 +95,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
             </div>
           </div>
           {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
+          {studio ? <span className="cn-studio-hero-art" aria-hidden="true"><span /><span /><span><Icon name={tool.icon} /></span><Icon name="stars" /></span> : null}
         </header>
         <div className="cn-tool-heading__action">
           {workspace ? <WorkspaceTabs label={tCatalog(`workspaceTabs.${workspace.groupId}`)} tabs={workspace.tabs} /> : null}

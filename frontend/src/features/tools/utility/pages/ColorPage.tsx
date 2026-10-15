@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
 import { Button } from 'react-bootstrap'
 import { Icon, useToast } from '@/components/ui'
-import { formatQuantity, ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { formatQuantity, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
 import { useThemeTokens } from '@/hooks'
 import { ColorCodeField } from '../components/ColorCodeField'
 import {
@@ -60,6 +60,7 @@ function ContrastRow({ label, ratio, sample }: { label: string; ratio: number; s
 /** MÀU SẮC — chọn một màu, đọc mã của nó ở ba dạng HEX / RGB / HSL, sửa dạng nào hai dạng kia đổi theo. */
 export default function ColorPage() {
   const { t } = useTranslation('utility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.color' })
   const pickerId = useId()
   const toast = useToast()
   const tokens = useThemeTokens()
@@ -81,11 +82,12 @@ export default function ColorPage() {
   }
 
   return (
-    <ToolBoard layout="compact"
+    <ToolBoard className="cn-color-workspace" layout="compact"
+      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
       sideLabel={t('color.preview')}
       side={
         <>
-          <h2 className="erp-flow-options__title">{t('color.preview')}</h2>
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="palette" /></span><div><h2>{t('color.preview')}</h2><p>{studio('resultHint')}</p></div></div>
           {/* Giá trị động: màu do người dùng chọn, không phải màu của giao diện. */}
           <div className="erp-color-swatch" style={{ backgroundColor: hex }} role="img" aria-label={t('color.swatch', { hex })} />
           <div className="erp-flow-field">
@@ -99,7 +101,8 @@ export default function ColorPage() {
         </>
       }
     >
-      <ToolPanel title={t('color.panelTitle')}>
+      <ToolPanel title={t('color.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="sliders2" /></span>}>
+        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-color-pick">
             <label className="visually-hidden" htmlFor={pickerId}>

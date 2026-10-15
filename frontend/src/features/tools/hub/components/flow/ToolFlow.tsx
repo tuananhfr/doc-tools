@@ -25,6 +25,7 @@ interface ToolFlowProps {
   stage?: ReactNode
   /** Tuỳ chọn riêng của công cụ; bỏ trống = công cụ không có gì để chọn. */
   options?: ReactNode
+  sideIntro?: ReactNode
   runLabel: string
   runIcon: string
   /** Vì sao chưa chạy được ("Cần ít nhất 2 tệp"); null = chạy được. */
@@ -56,6 +57,7 @@ export function ToolFlow({
   pickerExtra,
   stage,
   options,
+  sideIntro,
   runLabel,
   runIcon,
   blocked,
@@ -108,6 +110,7 @@ export function ToolFlow({
       </div>
 
       <aside className="erp-flow__side" aria-label={t('flow.side')}>
+        {sideIntro}
         {options ? (
           <fieldset className="erp-flow-options" disabled={running}>
             <legend className="erp-flow-options__title">{t('flow.options')}</legend>

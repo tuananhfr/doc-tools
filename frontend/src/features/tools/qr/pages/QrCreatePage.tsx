@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
-import { CopyButton, downloadOutput, ToolBoard, ToolPanel, useDownloadNudge } from '@/features/tools/hub'
+import { CopyButton, downloadOutput, ToolBoard, ToolPanel, useDownloadNudge, WorkspaceGuide } from '@/features/tools/hub'
 import { QrColorPicker } from '../components/QrColorPicker'
 import { QrContentForm } from '../components/QrContentForm'
 import { QrPreview } from '../components/QrPreview'
@@ -25,7 +25,7 @@ export default function QrCreatePage() {
   const [dynamic, setDynamic] = useState(false)
   const [labels, setLabels] = useState(false)
   const [openedLabels, setOpenedLabels] = useState(false)
-  return <>
+  return <div className="cn-qr-create-workspace">
     <div className="cn-qr-mode-switch mb-3" role="group" aria-label={t('dynamic.mode')}>
       <Button variant={dynamic || labels ? 'outline-secondary' : 'primary'} aria-label={t('dynamic.static')} aria-pressed={!dynamic && !labels} onClick={() => { setDynamic(false); setLabels(false) }}>{t('dynamic.staticShort')}</Button>
       <Button variant={dynamic && !labels ? 'primary' : 'outline-secondary'} aria-label={t('dynamic.dynamic')} aria-pressed={dynamic && !labels} onClick={() => { setDynamic(true); setLabels(false) }}>{t('dynamic.dynamicShort')}</Button>
@@ -34,12 +34,13 @@ export default function QrCreatePage() {
     <div hidden={dynamic || labels}><StaticQrCreatePage /></div>
     <div hidden={!dynamic || labels}><DynamicQrPage /></div>
     {openedLabels ? <div hidden={!labels}><LabelSheetPage /></div> : null}
-  </>
+  </div>
 }
 
 function StaticQrCreatePage() {
   const { t } = useTranslation('qr')
   const { t: tc } = useTranslation('common')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.qrCreate' })
   const toast = useToast()
   const nudge = useDownloadNudge()
   const [form, setForm] = useState<QrForm>(INITIAL_QR_FORM)
@@ -69,10 +70,12 @@ function StaticQrCreatePage() {
   }
 
   return (
-    <ToolBoard mobilePreview layout="compact"
+    <ToolBoard className="cn-qr-create-board" mobilePreview layout="compact"
       sideLabel={t('qrCreate.side')}
       side={
         <>
+          <section className="cn-studio-card cn-qr-export-card">
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="qr-code" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('previewHint')}</p></div></div>
           <QrPreview matrix={matrix} color={color} background={backgroundColor} placeholder={error ? t('qrCreate.notCreated') : t('shared.enterToCreate')} />
 
           {text !== null && matrix ? (
@@ -96,11 +99,14 @@ function StaticQrCreatePage() {
             {t('qrCreate.downloadPdf')}
           </Button>
           {nudge.extra}
+          </section>
+          <WorkspaceGuide steps={[studio('stepChoose'), studio('stepCustomize'), studio('stepSave')]} tip={studio('tip')} />
         </>
       }
     >
-      <ToolPanel title={t('shared.contentPanel')}>
-        <QrContentForm form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
+      <ToolPanel title={t('shared.contentPanel')} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
+        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+        <QrContentForm kindPicker="tiles" form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
         <details className="cn-qr-customize"><summary>{tc('workspace.customize')}</summary>
           <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
           {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}

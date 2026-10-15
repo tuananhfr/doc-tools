@@ -287,5 +287,551 @@
   },
   "embed": {
     "saveToCde": "Lưu vào Hồ sơ CDE"
+  },
+  "studio": {
+    "howTitle": "Bắt đầu thật đơn giản",
+    "privacyTitle": "Riêng tư và an toàn",
+    "tipTitle": "Mẹo nhỏ",
+    "pdf": {
+      "inputTitle": "Thêm tài liệu của bạn",
+      "inputHint": "Mọi thao tác bắt đầu từ một tệp PDF hoặc ảnh.",
+      "organize": "Sắp xếp trang",
+      "annotate": "Chú thích & sửa chữ",
+      "export": "Xuất theo nhu cầu",
+      "readyTitle": "Không gian cho tài liệu của bạn",
+      "readyHint": "Thêm tệp để xem các trang, chỉnh sửa và tải bản mới về.",
+      "stepUpload": "Chọn hoặc kéo thả tệp PDF, ảnh từ thiết bị.",
+      "stepEdit": "Chọn trang để sắp xếp, hoặc mở xem trước để sửa chữ và đánh dấu.",
+      "stepDownload": "Kiểm tra tùy chọn ở bảng Xuất tệp, rồi tải kết quả về.",
+      "tip": "Chọn biểu tượng kính lúp trên trang để xem trước và chỉnh sửa. Bạn có thể hoàn tác các thay đổi trong phiên làm việc."
+    },
+    "qr": {
+      "inputTitle": "Bạn muốn đọc mã bằng cách nào?",
+      "imageTab": "Ảnh có sẵn",
+      "resultHint": "Nội dung mã sẽ xuất hiện ở đây",
+      "stepUpload": "Chọn ảnh có mã, dán ảnh hoặc mở camera.",
+      "stepRead": "Giữ mã rõ nét, đủ sáng để công cụ đọc nội dung.",
+      "stepCheck": "Kiểm tra kết quả rồi sao chép hoặc mở liên kết.",
+      "tip": "Mã nhỏ hoặc mờ? Cắt ảnh sát vùng mã và giữ nguyên đủ bốn góc để dễ đọc hơn."
+    },
+    "tarot": {
+      "stageTitle": "Trải bài của bạn",
+      "stageHint": "Dành một chút thời gian cho điều bạn đang nghĩ đến.",
+      "previewHint": "Chọn số lá, rồi xào và rút để bắt đầu.",
+      "settings": "Thiết lập trải bài",
+      "deck": "Bộ bài 78 lá",
+      "stepChoose": "Chọn số lá và tùy chọn lá xuôi, ngược.",
+      "stepReveal": "Xào, rút bài rồi chạm từng lá để lật.",
+      "stepRead": "Đọc diễn giải, xem kết luận và tải kết quả nếu muốn.",
+      "tip": "Bắt đầu với 3 lá để nhìn tình huống, trở ngại và một lời khuyên. Bạn có thể chọn trải bài khác ở phiên mới.",
+      "noteTitle": "Một góc nhìn để suy ngẫm"
+    },
+    "collage": {
+      "previewTitle": "Xem trước bố cục",
+      "previewHint": "Ảnh được cắt vừa ô vuông theo thứ tự bạn chọn.",
+      "empty": "Bố cục của bạn sẽ xuất hiện tại đây",
+      "formats": "JPG, PNG, WebP · Chọn từ 2 đến 9 ảnh",
+      "remove": "Bỏ ảnh {{name}}",
+      "layoutTitle": "Thiết lập bố cục",
+      "stepChoose": "Chọn hoặc kéo thả từ 2 đến 9 ảnh vào vùng chọn.",
+      "stepLayout": "Chọn số cột, chỉnh khoảng cách và xem thử bố cục.",
+      "stepSave": "Bấm “Ghép và tải ảnh” để lưu ảnh PNG về máy.",
+      "tip": "Muốn thêm logo hoặc thử nhiều bố cục hơn? Mở mục “Nhiều bố cục, logo & ZIP”."
+    },
+    "imagesPdf": {
+      "workflow": "Các bước tạo PDF từ ảnh",
+      "choose": "Chọn ảnh",
+      "arrange": "Sắp xếp & thiết lập",
+      "save": "Tải PDF",
+      "stepChoose": "Chọn ảnh từ máy hoặc chụp thêm bằng camera.",
+      "stepArrange": "Dời ảnh lên / xuống để đổi thứ tự trang. Chọn khổ giấy và lề phù hợp.",
+      "stepSave": "Bấm tạo PDF, kiểm tra kết quả rồi tải tệp về máy.",
+      "tip": "Mỗi ảnh thành một trang. Chụp đủ sáng, giữ máy thẳng và sắp đúng thứ tự trước khi tạo PDF."
+    },
+    "cv": {
+      "previewTitle": "CV của bạn",
+      "previewHint": "Chọn mẫu và xem nội dung cập nhật khi bạn nhập.",
+      "inputHint": "Bắt đầu từ thông tin cá nhân, sau đó thêm kinh nghiệm và kỹ năng của bạn.",
+      "personalTitle": "Thông tin cá nhân",
+      "stepFill": "Điền thông tin, kinh nghiệm, học vấn và kỹ năng của bạn.",
+      "stepTemplate": "Chọn mẫu trong phần xem trước. Trên điện thoại, chuyển sang tab Xem trước.",
+      "stepSave": "Kiểm tra nội dung, tải PDF / DOCX hoặc in CV.",
+      "tip": "Viết ngắn gọn, ưu tiên thành tích phù hợp vị trí ứng tuyển. Chỉ bật nhớ bản nháp khi dùng thiết bị cá nhân."
+    },
+    "compass": {
+      "stepMeasure": "Đứng ở cửa chính và làm theo hướng dẫn trên la bàn. Nếu không có cảm biến, chọn “Nhập số độ”.",
+      "stepLock": "Khi số đo ổn định, khóa hướng. Có thể đặt la bàn lên ảnh nhà hoặc bản vẽ.",
+      "stepSave": "Đọc hướng / tọa và lưu kết quả thành ảnh hoặc PDF.",
+      "tip": "Đo lại vài lần ở vị trí ít kim loại để đối chiếu. Phần xem theo tuổi là tùy chọn và chỉ mang tính tham khảo."
+    },
+    "playing": {
+      "settings": "Thiết lập lượt rút",
+      "stageTitle": "Một khoảng lặng cùng bộ bài",
+      "stageHint": "Chọn số lá, xào bài và khám phá từng thông điệp.",
+      "deck": "Bộ 52 lá",
+      "previewHint": "Bài được úp kín cho đến khi bạn chọn lật.",
+      "stepChoose": "Chọn số lá phù hợp với lượt rút của bạn.",
+      "stepReveal": "Bấm xào và rút bài, sau đó chạm vào từng lá hoặc lật tất cả.",
+      "stepRead": "Xem diễn giải, lưu kết quả hoặc bắt đầu một lượt mới.",
+      "tip": "Bạn có thể bắt đầu với 3 lá để làm quen. Mỗi lượt rút là một gợi ý để tự suy ngẫm."
+    },
+    "numerology": {
+      "inputHint": "Nhập ngày sinh dương lịch. Thêm họ tên nếu bạn muốn xem các chỉ số theo tên.",
+      "introTitle": "Khám phá các chỉ số của bạn",
+      "introHint": "Một góc nhìn để tìm hiểu bản thân qua ngày sinh và họ tên.",
+      "stepFill": "Điền ngày sinh, họ tên tùy chọn và năm muốn xem.",
+      "stepCalculate": "Đọc thông tin về dữ liệu, đánh dấu đồng ý rồi bấm tính chỉ số.",
+      "stepRead": "Xem cách rút gọn, đọc diễn giải và lưu báo cáo nếu cần.",
+      "tip": "Dùng đúng ngày sinh dương lịch. Tên có dấu được chuẩn hóa tự động khi tính.",
+      "noteTitle": "Một góc nhìn tham khảo"
+    },
+    "background": {
+      "settings": "Tinh chỉnh & tải ảnh",
+      "settingsHint": "Chọn nền hoặc dùng cọ sau khi xử lý xong.",
+      "formats": "JPG, PNG, WebP · Tối đa 20 MB",
+      "demoLabel": "Minh họa: giữ chủ thể, bỏ nền phía sau",
+      "stepChoose": "Chọn hoặc thả một ảnh. Công cụ sẽ tự động tách chủ thể trên thiết bị.",
+      "stepRefine": "Kiểm tra kết quả, chọn nền và dùng cọ giữ / xóa nếu cần.",
+      "stepSave": "Tải ảnh PNG hoặc chuyển sang công cụ tạo ảnh thẻ.",
+      "tip": "Ảnh có chủ thể rõ và tách biệt với nền thường cho kết quả tốt hơn. Dùng cọ để sửa những vùng nhỏ."
+    },
+    "crop": {
+      "emptyHint": "Chọn một ảnh để mở các thiết lập chỉnh sửa.",
+      "crop": "Cắt theo khung và tỉ lệ",
+      "rotate": "Xoay trái hoặc phải 90°",
+      "adjust": "Chỉnh sáng và tương phản",
+      "stepChoose": "Chọn hoặc kéo thả một ảnh từ thiết bị.",
+      "stepEdit": "Kéo khung cắt, chọn tỉ lệ, xoay hoặc điều chỉnh ánh sáng.",
+      "stepSave": "Bấm lưu ảnh, xem kết quả và tải tệp đã chỉnh về máy.",
+      "tip": "Trên điện thoại, chuyển giữa Nhập thông tin và Xem trước để chỉnh và kiểm tra ảnh. Có thể đặt lại để thử từ đầu."
+    },
+    "read": {
+      "settings": "Giọng đọc & thiết lập",
+      "inputHint": "Dán văn bản hoặc mở tệp, rồi bấm đọc để nghe nội dung.",
+      "placeholder": "Nhập hoặc dán nội dung bạn muốn nghe vào đây…",
+      "stepInput": "Dán văn bản hoặc chọn tệp cần đọc.",
+      "stepVoice": "Chọn Giọng của máy hoặc Giọng Chuyện Nhỏ, rồi chỉnh tốc độ phù hợp.",
+      "stepListen": "Bấm đọc; có thể tạm dừng, nghe tiếp hoặc chuyển câu.",
+      "tip": "Giọng Chuyện Nhỏ cho phép tải WAV. Lần dùng đầu cần tải dữ liệu giọng; sau đó nội dung được xử lý trên thiết bị."
+    },
+    "office": {
+      "stepOpen": "Mở trình soạn thảo để bắt đầu với trang trắng hoặc tệp DOCX.",
+      "stepEdit": "Soạn nội dung và định dạng trong trình soạn thảo. Có thể mở rộng vùng làm việc.",
+      "stepSave": "Lưu hoặc tải tệp DOCX trước khi đóng trình soạn thảo.",
+      "tip": "Trình soạn thảo có giao diện tiếng Anh và phù hợp nhất trên máy tính. Dùng Ctrl+O để mở tệp, Ctrl+S để lưu.",
+      "note": "Tệp được mở và chỉnh trên thiết bị. Hãy lưu bản mới về máy trước khi rời trang."
+    },
+    "merge": {
+      "summaryTitle": "Sẵn sàng ghép tài liệu",
+      "summaryHint": "Gộp các tệp đã chọn thành một PDF duy nhất.",
+      "files": "Tệp đã chọn",
+      "pages": "Tổng số trang",
+      "orderHint": "Thứ tự tệp trong danh sách là thứ tự ghép.",
+      "stepChoose": "Chọn hoặc kéo thả ít nhất 2 tệp PDF.",
+      "stepArrange": "Dời tệp lên / xuống để đặt đúng thứ tự ghép.",
+      "stepSave": "Bấm ghép PDF, kiểm tra kết quả rồi tải tệp về máy.",
+      "tip": "Có thể thêm hoặc bỏ tệp trước khi ghép. Tệp có mật khẩu sẽ được hỏi mật khẩu để mở."
+    },
+    "convert": {
+      "introTitle": "Từ PDF sang nội dung có thể chỉnh sửa",
+      "introHint": "Chọn PDF, định dạng đầu ra và chuyển đổi trên thiết bị.",
+      "stepChoose": "Chọn một hoặc nhiều tệp PDF cần chuyển.",
+      "stepFormat": "Chọn Word, Excel hoặc ảnh. Bật nhận dạng chữ nếu PDF là bản scan.",
+      "stepSave": "Chuyển đổi, tải kết quả và kiểm tra lại nội dung.",
+      "tip": "Bố cục Word có thể khác bản PDF gốc. Với bản scan, hãy rà lại chữ và bảng sau khi chuyển."
+    },
+    "qrCreate": {
+      "inputHint": "Chọn loại nội dung và điền thông tin. Mã QR sẽ tự cập nhật khi bạn nhập.",
+      "previewTitle": "Mã QR của bạn",
+      "previewHint": "Kiểm tra nội dung và tải định dạng phù hợp.",
+      "stepChoose": "Chọn đường dẫn, văn bản, Wi-Fi hoặc loại nội dung cần chia sẻ.",
+      "stepCustomize": "Điền nội dung và mở Màu sắc và nền để chọn màu nếu cần.",
+      "stepSave": "Quét thử mã rồi tải PNG, SVG hoặc PDF.",
+      "tip": "Giữ màu mã tương phản rõ với nền. Thử quét trên điện thoại trước khi in hoặc chia sẻ."
+    },
+    "assistant": {
+      "panelTitle": "Trò chuyện với trợ lý",
+      "introHint": "Mô tả việc cần làm, hỏi nên dùng công cụ nào và cách thực hiện.",
+      "ideasTitle": "Một vài việc bạn có thể nhờ trợ lý",
+      "write": "Chọn đúng công cụ",
+      "writeHint": "Mô tả công việc để tìm công cụ phù hợp.",
+      "summarize": "Hướng dẫn thao tác",
+      "summarizeHint": "Hỏi cách nhập dữ liệu và đọc kết quả của công cụ.",
+      "plan": "Tra cứu nguồn",
+      "planHint": "Nhờ gợi ý nguồn để đối chiếu thông tin và quy định.",
+      "stepSignIn": "Đăng nhập tài khoản có quyền dùng trợ lý Pro.",
+      "stepSetup": "Hoàn tất cấu hình AI trong tài khoản nếu được yêu cầu.",
+      "stepAsk": "Nhập yêu cầu rõ ràng, gửi câu hỏi và kiểm tra câu trả lời.",
+      "tip": "Nêu mục tiêu, bối cảnh và dạng kết quả bạn muốn nhận. Có thể yêu cầu trợ lý sửa lại câu trả lời.",
+      "noteTitle": "Kiểm tra trước khi sử dụng",
+      "note": "Câu trả lời AI có thể sai. Đối chiếu thông tin quan trọng và kiểm tra dữ liệu trước khi gửi."
+    },
+    "lunar": {
+      "calendarTitle": "Lịch âm – dương",
+      "calendarHint": "Chọn một ngày để xem âm lịch, can chi và các ngày lễ.",
+      "stepBrowse": "Chuyển tháng hoặc chọn ngày trong ô Đi tới ngày.",
+      "stepDay": "Chạm vào ngày để đọc chi tiết ở bảng bên cạnh hoặc phía dưới.",
+      "stepConvert": "Dùng phần đổi ngày và ngày giỗ để tra ngày dương tương ứng.",
+      "tip": "Có thể bật / tắt từng nhóm ngày lễ. Thông tin giờ tốt và ngày tốt mang tính tham khảo văn hóa."
+    },
+    "estimate": {
+      "inputHint": "Nhập quy mô nhà và đơn giá bạn có để ước tính chi phí. Kết quả cập nhật khi bạn thay đổi số liệu.",
+      "areaTitle": "Quy mô xây dựng",
+      "priceTitle": "Đơn giá dự kiến",
+      "resultHint": "Ước tính theo diện tích quy đổi và số liệu bạn nhập.",
+      "breakdownTitle": "Chi tiết diện tích quy đổi",
+      "breakdownHint": "Đối chiếu từng hạng mục và hệ số sử dụng.",
+      "stepArea": "Nhập diện tích một tầng và số lầu. Mở Tùy chọn thêm nếu có sân, sân thượng hoặc tum.",
+      "stepPrice": "Điền đơn giá theo báo giá của bạn; chọn đúng loại giá trọn gói nếu có.",
+      "stepCheck": "Đối chiếu tổng chi phí, diện tích quy đổi và các hệ số từng hạng mục.",
+      "tip": "Đơn giá phụ thuộc địa điểm, vật liệu và phạm vi công việc. Dùng báo giá phù hợp công trình để thay số tham khảo."
+    },
+    "idPhoto": {
+      "runEmpty": "Tạo ảnh thẻ",
+      "emptyTitle": "Ảnh thẻ đúng cỡ, sẵn sàng để in",
+      "emptyHint": "Chọn ảnh chân dung để cắt khung, chọn cỡ ảnh và xếp lên giấy in.",
+      "crop": "Cắt đúng tỷ lệ",
+      "appearance": "Chỉnh diện mạo",
+      "print": "Xếp tờ in",
+      "stepChoose": "Chọn ảnh chân dung hoặc chụp ảnh bằng camera.",
+      "stepAdjust": "Căn khung mặt, chọn cỡ ảnh và thiết lập tờ in.",
+      "stepSave": "Xuất ảnh riêng, tờ ảnh hoặc PDF rồi tải về máy.",
+      "tip": "Dùng ảnh rõ nét, chụp thẳng mặt. Khi in, chọn tỷ lệ 100% để giữ đúng kích thước ảnh."
+    },
+    "compressVideo": {
+      "inputTitle": "Video cần nén",
+      "resultHint": "Xem dung lượng, phát thử và tải video sau khi nén.",
+      "stepChoose": "Chọn một video từ thiết bị.",
+      "stepSet": "Chọn mức nén và độ phân giải phù hợp.",
+      "stepSave": "Bấm nén, chờ xử lý rồi phát thử và tải kết quả.",
+      "tip": "Nén mạnh hơn sẽ giảm chất lượng. Dung lượng đầu ra còn tùy video gốc; hãy giữ lại bản gốc để đối chiếu."
+    },
+    "design": {
+      "inputHint": "Thêm tiêu đề, ảnh hoặc logo. Bản xem trước cập nhật theo nội dung bạn nhập.",
+      "previewTitle": "Thiết kế của bạn",
+      "previewHint": "Chọn mẫu, kiểm tra bố cục và xuất tệp.",
+      "stepContent": "Nhập nội dung, thêm ảnh hoặc logo nếu cần.",
+      "stepTemplate": "Chọn mẫu ở phần xem trước, chỉnh màu và kích thước.",
+      "stepSave": "Chọn định dạng đầu ra rồi xuất và tải thiết kế.",
+      "tip": "Dùng ảnh và logo rõ nét. Kiểm tra kích thước và in thử trước khi in số lượng lớn."
+    },
+    "family": {
+      "workspaceTitle": "Cùng sắp xếp lịch nhà mình",
+      "addEvent": "Thêm lịch",
+      "stepMember": "Thêm thành viên và chọn người đang xem lịch.",
+      "stepEvent": "Chọn ngày, thêm việc và đặt người được xem cùng lời nhắc.",
+      "stepBackup": "Dùng mục sao lưu để giữ một bản dữ liệu trên máy.",
+      "tip": "Lịch chỉ lưu trong trình duyệt trên thiết bị này. Sao lưu định kỳ; lời nhắc cần mở trang và quyền thông báo phù hợp."
+    },
+    "group": {
+      "peopleHint": "Ghi tên mỗi người trên một dòng, rồi thêm những khoản nhóm đã chi.",
+      "resultHint": "Gợi ý ai chuyển cho ai để cân bằng các khoản chi.",
+      "expenseTitle": "Khoản chi {{index}}",
+      "stepPeople": "Nhập tên các thành viên, mỗi người một dòng.",
+      "stepExpense": "Thêm khoản chi, người trả tiền và những người cùng chia.",
+      "stepSettle": "Đọc các khoản cần chuyển và kiểm tra số dư từng người.",
+      "tip": "Khi thêm người mới, chọn lại các khoản họ có tham gia. Đổi tên vẫn giữ phần chia của người đó."
+    },
+    "address": {
+      "inputHint": "Dán các địa chỉ cũ, mỗi dòng một địa chỉ. Chọn bảng đối chiếu để xem đề xuất chuyển đổi.",
+      "resultHint": "Theo dõi số dòng đổi đủ và kiểm tra chi tiết ở bảng kết quả.",
+      "stepInput": "Nhập các địa chỉ cũ, mỗi địa chỉ trên một dòng.",
+      "stepSource": "Áp dụng bảng đã ký nếu có, hoặc tự nhập bảng đối chiếu.",
+      "stepSave": "Kiểm tra đề xuất từng dòng rồi tải bảng CSV.",
+      "tip": "Địa chỉ có nhiều phương án cần được chọn và kiểm tra lại. Đối chiếu nguồn dữ liệu và xác nhận với nơi nhận hồ sơ trước khi dùng."
+    },
+    "trimVideo": {
+      "inputTitle": "Video cần cắt",
+      "resultHint": "Phát thử đoạn đã cắt và tải video MP4 về máy.",
+      "rangeHint": "Đặt thời điểm bắt đầu và kết thúc theo giây trong video gốc.",
+      "stepChoose": "Chọn video và phát thử để xác định đoạn cần giữ.",
+      "stepSet": "Nhập giây bắt đầu và kết thúc, nằm trong thời lượng video.",
+      "stepSave": "Bấm cắt, kiểm tra đoạn mới rồi tải về máy.",
+      "tip": "Đoạn cắt được mã hóa lại thành MP4, cạnh dài tối đa 1080 px. Giữ bản gốc để có thể chọn lại đoạn khác."
+    },
+    "measure": {
+      "emptyTitle": "Đặt điểm, đọc số đo trên ảnh",
+      "emptyHint": "Chọn ảnh để đo khoảng cách, diện tích hoặc đếm đối tượng. Đặt đoạn chuẩn khi cần quy ra đơn vị thật.",
+      "stepChoose": "Chọn ảnh rõ nét cần đo hoặc đếm.",
+      "stepScale": "Đặt hai đầu đoạn chuẩn, nhập chiều dài thật và đơn vị nếu cần.",
+      "stepMeasure": "Chọn kiểu đo, đặt các điểm rồi tải ảnh có ghi số đo.",
+      "tip": "Chưa đặt chuẩn thì số đo dùng pixel. Độ chính xác phụ thuộc đoạn chuẩn, góc chụp và vị trí bạn đặt điểm; dùng các điểm trên cùng mặt phẳng."
+    },
+    "sheet": {
+      "heading": "Mở bảng tính để bắt đầu với dữ liệu của bạn",
+      "stepOpen": "Mở trình bảng tính để tạo bảng mới hoặc mở tệp XLSX.",
+      "stepEdit": "Nhập dữ liệu, dùng công thức và định dạng các ô trong bảng.",
+      "stepSave": "Lưu hoặc tải tệp XLSX trước khi đóng trình bảng tính.",
+      "tip": "Giao diện trình bảng tính bằng tiếng Anh, phù hợp nhất trên máy tính. Dùng Ctrl+O để mở tệp và Ctrl+S để lưu.",
+      "note": "Bảng tính được mở và chỉnh trên thiết bị. Hãy lưu tệp mới về máy trước khi rời trang."
+    },
+    "password": {
+      "inputTitle": "Tài liệu cần xử lý",
+      "fileHint": "Chọn một tệp PDF. Đặt hoặc gỡ mật khẩu ngay trên thiết bị.",
+      "resultHint": "Tệp mới sẽ được tải về sau khi xử lý thành công.",
+      "resultEmpty": "Chọn PDF và điền mật khẩu ở phần thiết lập để bắt đầu.",
+      "passwordHint": "Mật khẩu mở tệp cần ít nhất 8 ký tự.",
+      "stepChoose": "Chọn PDF và chế độ đặt hoặc gỡ mật khẩu.",
+      "stepPassword": "Nhập mật khẩu; kiểm tra lại và đặt quyền nếu đang bảo vệ tệp.",
+      "stepSave": "Bấm xử lý để tải PDF mới, rồi mở thử tệp đã tải.",
+      "tip": "Nếu giới hạn in, sao chép hoặc chỉnh sửa, hãy đặt mật khẩu quản lý riêng ít nhất 8 ký tự và khác mật khẩu mở tệp."
+    },
+    "study": {
+      "gradeHint": "Nhập điểm hệ 10 để xem mức quy đổi tham khảo sang điểm chữ và hệ 4.",
+      "admissionHint": "Nhập điểm ba môn và các mức ưu tiên để xem tổng theo công thức của công cụ.",
+      "resultHint": "Kết quả cập nhật theo số liệu bạn nhập.",
+      "stepMode": "Chọn quy đổi điểm hoặc tính điểm xét tuyển.",
+      "stepInput": "Điền điểm và các mức ưu tiên nếu có; nhập 0 khi không có ưu tiên.",
+      "stepRead": "Đọc kết quả và đối chiếu thang điểm của nơi áp dụng.",
+      "tip": "Mỗi trường và năm tuyển sinh có thể dùng thang điểm hoặc quy chế khác. Dùng kết quả để tham khảo và kiểm tra lại quy định phù hợp."
+    },
+    "pomodoro": {
+      "inputHint": "Chọn thời gian tập trung và nghỉ phù hợp. Mặc định là 25 phút làm việc, 5 phút nghỉ.",
+      "ready": "Sẵn sàng khi bạn muốn bắt đầu",
+      "running": "Đang đếm giờ",
+      "stepSet": "Đặt số phút tập trung và số phút nghỉ.",
+      "stepFocus": "Chọn một việc cần làm và bấm Bắt đầu.",
+      "stepRest": "Nghỉ khi hết giờ; bấm Bắt đầu để chạy phiên tiếp theo.",
+      "tip": "Chuẩn bị sẵn một việc cụ thể trước mỗi phiên. Để trang mở để bộ hẹn giờ có thể hoạt động."
+    },
+    "split": {
+      "summaryTitle": "Tách đúng phần bạn cần",
+      "summaryHint": "Chọn khoảng trang hoặc chia tài liệu thành các phần đều nhau.",
+      "pages": "Số trang gốc",
+      "parts": "Phần dự kiến",
+      "stepChoose": "Chọn một tệp PDF cần tách.",
+      "stepRange": "Nhập khoảng trang hoặc chọn số trang cho mỗi phần.",
+      "stepSave": "Kiểm tra số phần rồi tách và tải PDF hoặc ZIP kết quả.",
+      "tip": "Dấu phẩy tạo phần mới; dấu gạch nối chọn một khoảng. Ví dụ 1-3, 5 tạo một phần gồm trang 1–3 và một phần gồm trang 5."
+    },
+    "gif": {
+      "inputTitle": "Video để tạo GIF",
+      "resultHint": "Xem ảnh động và tải GIF về máy sau khi xử lý.",
+      "rangeHint": "Chọn đoạn video tối đa 20 giây, rồi đặt chiều rộng và số khung hình mỗi giây.",
+      "stepChoose": "Chọn video và xác định đoạn cần làm ảnh động.",
+      "stepSet": "Nhập mốc thời gian, chiều rộng và số khung hình mỗi giây.",
+      "stepSave": "Bấm tạo GIF, xem kết quả rồi tải ảnh động.",
+      "tip": "GIF không có âm thanh. Đoạn ngắn, chiều rộng nhỏ và ít khung hình hơn sẽ giúp giảm dung lượng."
+    },
+    "vietqr": {
+      "inputHint": "Nhập mã BIN ngân hàng gồm 6 số và tài khoản nhận. Có thể thêm số tiền và nội dung chuyển khoản.",
+      "previewTitle": "Mã nhận chuyển khoản",
+      "previewHint": "Kiểm tra thông tin trước khi tải hoặc chia sẻ mã.",
+      "stepInput": "Điền mã BIN, số tài khoản và thông tin tùy chọn.",
+      "stepCheck": "Quét thử bằng ứng dụng ngân hàng và kiểm tra thông tin người nhận.",
+      "stepSave": "Tải PNG để chia sẻ hoặc SVG để in.",
+      "tip": "Mã BIN cần lấy từ ngân hàng hoặc nguồn đáng tin cậy. Công cụ tạo nội dung QR và không xác minh tài khoản ngân hàng."
+    },
+    "ideas": {
+      "formTitle": "Chia sẻ ý tưởng của bạn",
+      "formHint": "Bắt đầu từ một việc bạn muốn làm dễ hơn mỗi ngày.",
+      "stepDescribe": "Nêu vấn đề và một ví dụ cụ thể về công cụ bạn muốn có.",
+      "stepSend": "Kiểm tra nội dung, xác nhận đồng ý rồi gửi đề xuất.",
+      "stepTrack": "Giữ mã biên nhận để tra trạng thái sau khi gửi.",
+      "tip": "Một tình huống cụ thể sẽ giúp làm rõ nhu cầu: bạn đang làm việc gì, khó ở đâu và muốn nhận kết quả như thế nào."
+    },
+    "payroll": {
+      "inputHint": "Chọn chiều tính, nhập lương và thông tin đi kèm. Bổ sung tham số ở thẻ bên dưới để có kết quả.",
+      "sourceTitle": "Nguồn và tham số tính",
+      "resultHint": "Theo thông tin thu nhập và bộ tham số đang sử dụng.",
+      "stepInput": "Chọn Gross → Net hoặc Net → Gross, rồi điền mức lương.",
+      "stepRules": "Áp dụng bộ tham số đã ký nếu có, hoặc nhập tham số từ nguồn phù hợp.",
+      "stepRead": "Kiểm tra thực nhận, các khoản bảo hiểm, giảm trừ và thuế trong bảng.",
+      "tip": "Tham số có thể khác theo thời điểm và trường hợp áp dụng. Kiểm tra nguồn và nhờ bộ phận kế toán đối chiếu trước khi dùng kết quả."
+    },
+    "unitPrice": {
+      "inputHint": "Chọn cùng một đơn vị và nhập giá cùng lượng của từng sản phẩm.",
+      "product": "Sản phẩm {{index}}",
+      "resultHint": "Đối chiếu giá trên một đơn vị lượng để dễ lựa chọn.",
+      "stepUnit": "Chọn đơn vị chung: kg, lít hoặc cái.",
+      "stepInput": "Nhập giá và lượng của cả hai sản phẩm theo đơn vị đã chọn.",
+      "stepCompare": "Đọc giá trên đơn vị và phần chênh lệch giữa hai sản phẩm.",
+      "tip": "Quy đổi lượng của hai sản phẩm về cùng đơn vị trước khi nhập. Ô chọn đơn vị chỉ đổi nhãn, không tự quy đổi các số đã nhập."
+    },
+    "numberWords": {
+      "inputHint": "Nhập số nguyên để chuyển sang cách đọc tiếng Việt. Có thể dùng dấu chấm ngăn nhóm nghìn.",
+      "resultHint": "Nội dung cập nhật khi bạn nhập số hoặc đổi cách đọc.",
+      "stepInput": "Nhập số nguyên cần chuyển sang chữ.",
+      "stepStyle": "Chọn cách đọc linh / lẻ và bốn / tư theo nhu cầu.",
+      "stepCopy": "Kiểm tra kết quả rồi bấm Chép kết quả để sử dụng.",
+      "tip": "Công cụ đọc số, không tự thêm đơn vị tiền tệ. Kiểm tra lại số và quy ước cách đọc trước khi đưa vào chứng từ."
+    },
+    "organize": {
+      "summaryTitle": "Thứ tự trang của bạn",
+      "summaryHint": "Dời, xoay hoặc bỏ từng trang trước khi tạo PDF mới.",
+      "files": "Tệp đã chọn",
+      "pages": "Trang giữ lại",
+      "controlsHint": "Dùng các nút ngay dưới mỗi trang để sắp xếp và xoay trang.",
+      "stepChoose": "Chọn một hoặc nhiều tệp PDF; các trang sẽ hiện trong lưới.",
+      "stepArrange": "Dời trang sang trước / sau, xoay hoặc bỏ các trang không cần.",
+      "stepSave": "Kiểm tra thứ tự và số trang giữ lại rồi tạo, tải PDF mới.",
+      "tip": "Có thể thêm tệp để nối trang vào cuối lưới. Dùng {{reset}} để bỏ các chỉnh sửa trong lưới nếu cần."
+    },
+    "wheel": {
+      "inputHint": "Thêm các lựa chọn vào danh sách, chỉnh vòng quay rồi để một chút bất ngờ quyết định giúp bạn.",
+      "step1": "Nhập mỗi lựa chọn trên một dòng trong danh sách.",
+      "step2": "Chỉnh âm thanh và cách xử lý lựa chọn đã trúng.",
+      "step3": "Bấm quay và xem kết quả ở giữa vòng quay.",
+      "tip": "Bạn có thể lưu danh sách thường dùng để mở lại cho lần quay sau."
+    },
+    "barcode": {
+      "inputHint": "Nhập nội dung và chọn loại mã phù hợp. Bản xem trước sẽ cập nhật khi nội dung hợp lệ.",
+      "resultHint": "Kiểm tra mã và nội dung trước khi tải về.",
+      "step1": "Chọn tạo một mã hoặc tạo hàng loạt từ danh sách.",
+      "step2": "Nhập dữ liệu, chọn loại mã và điều chỉnh kích thước.",
+      "step3": "Xem trước rồi tải mã theo định dạng phù hợp.",
+      "tip": "Nếu dùng mã cho sản phẩm hoặc in nhãn, hãy kiểm tra quy định cấp mã và thử quét bản in ở kích thước thực tế."
+    },
+    "electricity": {
+      "inputHint": "Chọn tiền điện hoặc nước, nhập lượng sử dụng và đơn giá để xem chi phí dự tính.",
+      "tariffTitle": "Biểu giá và nguồn tham khảo",
+      "resultHint": "Tính theo lượng dùng, đơn giá và thuế bạn đã chọn.",
+      "step1": "Chọn tiền điện hoặc nước và nhập lượng sử dụng.",
+      "step2": "Kiểm tra biểu giá, số hộ và thuế; với nước, nhập đơn giá và phí.",
+      "step3": "Đọc tổng tiền và phần chi tiết để đối chiếu với hóa đơn.",
+      "tip": "Đối chiếu biểu giá và thuế với nguồn áp dụng cho kỳ hóa đơn của bạn. Kết quả chỉ sử dụng các tham số đang nhập."
+    },
+    "imageText": {
+      "settingsTitle": "Thiết lập nhận dạng",
+      "inputHint": "Chọn định dạng kết quả và kiểu tài liệu trước khi nhận dạng chữ.",
+      "step1": "Chọn ảnh rõ nét có phần chữ cần lấy.",
+      "step2": "Chọn kiểu tài liệu, định dạng đầu ra rồi chạy nhận dạng.",
+      "step3": "Rà soát nội dung nhận dạng và tải kết quả.",
+      "tip": "Ảnh đủ sáng, chụp thẳng và chữ rõ giúp nhận dạng tốt hơn. Luôn kiểm tra lại số liệu, tên riêng và dấu tiếng Việt."
+    },
+    "messageRisk": {
+      "inputHint": "Dán tin nhắn hoặc đường dẫn để xem các dấu hiệu đáng ngờ trong nội dung.",
+      "resultHint": "Các dấu hiệu trong nội dung, kèm giải thích để bạn tự đối chiếu.",
+      "step1": "Chọn kiểm tra tin nhắn hoặc đường dẫn.",
+      "step2": "Dán nội dung rồi bấm kiểm tra để tới phần kết quả.",
+      "step3": "Đọc từng dấu hiệu và đối chiếu qua kênh liên hệ chính thức.",
+      "tip": "Ít dấu hiệu không có nghĩa là an toàn. Công cụ phân tích nội dung bạn dán, không mở đường dẫn hay xác minh danh tính người gửi."
+    },
+    "formTemplates": {
+      "previewTitle": "Bản xem trước",
+      "inputHint": "Chọn mẫu phù hợp rồi điền thông tin; bản xem trước cập nhật theo nội dung của bạn.",
+      "resultHint": "Rà soát nội dung trước khi tải hoặc in.",
+      "step1": "Chọn loại đơn hoặc biểu mẫu cần soạn.",
+      "step2": "Điền thông tin và kiểm tra ngày, số tiền nếu có.",
+      "step3": "Xem lại văn bản rồi tải hoặc in để sử dụng.",
+      "tip": "Mỗi loại mẫu giữ bản nháp riêng trong phiên làm việc. Kiểm tra yêu cầu của nơi nhận trước khi sử dụng mẫu."
+    },
+    "pageNumbers": {
+      "settingsTitle": "Cách đánh số trang",
+      "inputHint": "Chọn vị trí, kiểu hiển thị và phạm vi trang cần đánh số.",
+      "step1": "Chọn một tệp PDF cần đánh số trang.",
+      "step2": "Chỉnh vị trí, mẫu số, số bắt đầu và phạm vi áp dụng.",
+      "step3": "Xem trước rồi tạo và tải PDF đã đánh số.",
+      "tip": "Chừa khoảng trống ở đầu hoặc chân trang để số trang không đè lên nội dung. Kiểm tra cả trang đầu và trang cuối trong tệp đã tạo."
+    },
+    "color": {
+      "inputHint": "Chọn màu trực tiếp hoặc nhập mã HEX, RGB hay HSL để chuyển đổi giữa các định dạng.",
+      "resultHint": "Xem màu thực tế và độ tương phản của chữ trắng, chữ đen.",
+      "step1": "Chọn màu bằng bảng màu hoặc nhập một mã màu hợp lệ.",
+      "step2": "Đọc các mã HEX, RGB, HSL và chép mã cần dùng.",
+      "step3": "Đối chiếu tỷ lệ tương phản để chọn màu chữ phù hợp.",
+      "tip": "Khi dùng màu làm nền, kiểm tra độ tương phản với màu chữ và cỡ chữ thực tế của thiết kế."
+    },
+    "extractAudio": {
+      "inputTitle": "Chọn video của bạn",
+      "resultHint": "Âm thanh sau khi tách sẽ xuất hiện ở đây để nghe và tải về.",
+      "stepChoose": "Chọn video có phần âm thanh cần lấy.",
+      "stepSet": "Chọn MP3, M4A hoặc WAV rồi bắt đầu tách âm thanh.",
+      "stepSave": "Nghe thử và tải tệp âm thanh sau khi xử lý xong.",
+      "tip": "MP3 phù hợp để chia sẻ, M4A dùng AAC, còn WAV thường có dung lượng lớn hơn. Video cần có luồng âm thanh để tách."
+    },
+    "flashcard": {
+      "reviewTitle": "Ôn tập hôm nay",
+      "inputHint": "Viết câu hỏi ở mặt trước, câu trả lời ở mặt sau để tạo bộ thẻ của riêng bạn.",
+      "step1": "Điền hai mặt rồi thêm thẻ vào bộ học.",
+      "step2": "Tự trả lời câu hỏi trước khi lật thẻ xem đáp án.",
+      "step3": "Chọn mức ghi nhớ để lên lịch ôn lại.",
+      "tip": "Thẻ được lưu trên trình duyệt này. Xóa dữ liệu trình duyệt có thể làm mất bộ thẻ; mỗi thẻ nên tập trung vào một ý ngắn."
+    },
+    "quickCalc": {
+      "inputHint": "Chọn nhóm tính, hình hoặc vật liệu rồi nhập kích thước theo đơn vị bên cạnh mỗi ô.",
+      "resultTitle": "Kết quả tính toán",
+      "resultHint": "Kèm phép tính để bạn kiểm tra các số đã nhập.",
+      "step1": "Chọn diện tích, thể tích hoặc khối lượng và công thức cần dùng.",
+      "step2": "Nhập các kích thước và số lượng; kiểm tra đơn vị của từng ô.",
+      "step3": "Đọc kết quả, đối chiếu phép tính rồi chép số cần dùng.",
+      "tip": "Quy đổi về đúng đơn vị trước khi nhập. Khối lượng vật liệu là giá trị ước tính theo kích thước và thông số đã chọn."
+    },
+    "moneyCalc": {
+      "inputHint": "Chọn nhóm và phép tính phù hợp, sau đó nhập các số để xem kết quả ngay.",
+      "resultTitle": "Kết quả của bạn",
+      "resultHint": "Hiển thị phép tính và các khoản liên quan để dễ đối chiếu.",
+      "step1": "Chọn nhóm phần trăm, thuế, lợi nhuận hoặc chia tiền.",
+      "step2": "Chọn phép tính và nhập các giá trị theo nhãn hướng dẫn.",
+      "step3": "Kiểm tra cách tính, các khoản chi tiết và chép kết quả.",
+      "tip": "Với thuế và chiết khấu, hãy xác định rõ số tiền đã bao gồm hay chưa bao gồm khoản đó. Thuế suất là giá trị bạn nhập, cần đối chiếu trước khi áp dụng."
+    },
+    "charCount": {
+      "inputHint": "Dán hoặc gõ nội dung vào đây. Số ký tự, từ, dòng và đoạn sẽ tự cập nhật.",
+      "resultHint": "Thống kê theo nội dung đang nhập.",
+      "step1": "Dán hoặc nhập đoạn văn bản cần kiểm tra.",
+      "step2": "Đọc số ký tự, ký tự không có khoảng trắng, từ, dòng và đoạn.",
+      "step3": "Chỉnh nội dung hoặc xóa ô nhập để đếm một văn bản khác.",
+      "tip": "Cách tính từ có thể khác giữa các nền tảng. Đọc chú thích của từng chỉ số khi dùng để đối chiếu giới hạn nội dung."
+    },
+    "legacyFont": {
+      "inputHint": "Chọn đúng kiểu chuyển đổi rồi dán văn bản cần sửa bảng mã hoặc đổi cách viết.",
+      "resultHint": "Nội dung cập nhật theo văn bản gốc và kiểu chuyển đổi.",
+      "step1": "Chọn bảng mã nguồn hoặc thao tác như bỏ dấu, đổi chữ hoa.",
+      "step2": "Dán văn bản gốc và đối chiếu bản chuyển đổi.",
+      "step3": "Chép văn bản sau khi kiểm tra tên riêng và dấu tiếng Việt.",
+      "tip": "TCVN3 và VNI là bảng mã ký tự. Nếu nội dung đã là Unicode, hãy chọn đúng thao tác để tránh chuyển mã nhầm."
+    },
+    "metadata": {
+      "inputHint": "Tạo một bản ảnh mới bằng cách giải mã và xuất lại để loại bỏ metadata gốc.",
+      "pickerHint": "JPG, PNG, WebP · xử lý trên thiết bị",
+      "resultHint": "Ảnh mới được tải xuống sau khi xử lý.",
+      "step1": "Chọn ảnh JPG, PNG hoặc WebP cần xử lý.",
+      "step2": "Kiểm tra tên tệp rồi bấm xóa metadata.",
+      "step3": "Mở ảnh vừa tải về để kiểm tra kích thước và chất lượng.",
+      "tip": "Xuất lại ảnh có thể thay đổi dung lượng hoặc chất lượng. Chữ, biển số hay thông tin xuất hiện ngay trên hình vẫn cần được che hoặc cắt riêng."
+    },
+    "invoiceXml": {
+      "inputHint": "Chọn tệp XML để đọc thông tin chung, các dòng hàng và tổng tiền trên hóa đơn.",
+      "pickerHint": "XML · tối đa 5 MB · đọc trên thiết bị",
+      "resultHint": "Thông tin đọc từ tệp XML bạn đã chọn.",
+      "step1": "Chọn tệp hóa đơn XML trên thiết bị.",
+      "step2": "Kiểm tra số hóa đơn, bên bán, bên mua và bảng kê hàng hóa.",
+      "step3": "Đối chiếu các khoản tiền rồi tải bảng kê Excel hoặc CSV.",
+      "tip": "Sự xuất hiện của thẻ chữ ký trong XML không xác nhận chữ ký số hợp lệ. Công cụ chỉ đọc dữ liệu, không tra cứu tình trạng hóa đơn."
+    },
+    "magnifier": {
+      "inputHint": "Dùng camera để nhìn rõ chữ nhỏ, chỉnh độ phóng đại và tạm dừng hình khi cần.",
+      "emptyTitle": "Đưa chi tiết nhỏ lại gần hơn",
+      "resultHint": "Theo dõi trạng thái camera và hình đang xem.",
+      "step1": "Bấm mở camera và cho phép truy cập khi trình duyệt hỏi.",
+      "step2": "Hướng camera vào vật cần nhìn, chỉnh độ phóng và tương phản.",
+      "step3": "Tạm dừng để đọc hoặc đóng camera khi sử dụng xong.",
+      "tip": "Giữ máy ổn định và đủ ánh sáng để hình rõ hơn. Tạm dừng hình giúp đọc chi tiết mà không phải giữ camera liên tục."
+    },
+    "documentOcr": {
+      "settingsTitle": "Thiết lập nhận dạng",
+      "inputHint": "Chọn đầu ra và kiểu tài liệu để lấy chữ từ PDF hoặc ảnh.",
+      "step1": "Chọn PDF hoặc ảnh có phần chữ cần nhận dạng.",
+      "step2": "Chọn kiểu tài liệu, định dạng đầu ra rồi chạy nhận dạng.",
+      "step3": "Rà soát nội dung nhận dạng trước khi tải kết quả.",
+      "tip": "PDF quét rõ và ảnh chụp thẳng giúp nhận dạng tốt hơn. Kiểm tra kỹ số liệu, tên riêng và các từ có độ tin cậy thấp."
+    },
+    "convertImage": {
+      "settingsTitle": "Định dạng ảnh đầu ra",
+      "inputHint": "Chọn JPG, PNG hoặc WebP và mức chất lượng phù hợp.",
+      "step1": "Chọn một hoặc nhiều ảnh cần chuyển đổi.",
+      "step2": "Chọn định dạng đích và chất lượng nếu có.",
+      "step3": "Chuyển đổi rồi tải ảnh hoặc gói kết quả.",
+      "tip": "PNG phù hợp khi cần giữ nền trong suốt. JPG không giữ độ trong suốt; hãy kiểm tra ảnh sau khi chuyển đổi."
+    },
+    "batchImage": {
+      "settingsTitle": "Thiết lập cho cả lô ảnh",
+      "inputHint": "Chỉnh kích thước, định dạng và cách đặt tên trong một lượt xử lý.",
+      "step1": "Chọn các ảnh muốn xử lý cùng nhau.",
+      "step2": "Chỉnh kích thước, định dạng và mẫu tên; kiểm tra tên mẫu bên dưới.",
+      "step3": "Chạy xử lý rồi tải kết quả của cả lô.",
+      "tip": "Dùng {n} trong mẫu tên để đánh số ảnh. Kiểm tra kích thước và tên mẫu trước khi xử lý nhiều tệp."
+    }
   }
 }

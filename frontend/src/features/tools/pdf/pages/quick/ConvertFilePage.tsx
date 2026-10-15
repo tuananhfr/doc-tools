@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
+import { FlowChoice, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { convertTask, type ConvertTarget } from '../../services/quick-tasks'
@@ -13,6 +14,7 @@ const DPI_OPTIONS = [96, 150, 300] as const
 /** CHUYỂN ĐỔI FILE — PDF sang Word, Excel hoặc ảnh từng trang. */
 export default function ConvertFilePage() {
   const { t } = useTranslation('pdf')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.convert' })
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: true })
   const targets: FlowChoiceOption<ConvertTarget>[] = [
@@ -27,6 +29,8 @@ export default function ConvertFilePage() {
   const image = target === 'jpeg' || target === 'png'
 
   return (
+    <div className="cn-pdf-quick-workspace cn-convert-workspace">
+    <div className="cn-studio-convert-banner"><span className="cn-studio-small-icon"><Icon name="file-earmark-pdf" /></span><Icon name="arrow-right" /><span className="cn-studio-small-icon"><Icon name={target === 'word' ? 'file-earmark-word' : target === 'excel' ? 'file-earmark-excel' : 'file-earmark-image'} /></span><div><h2>{studio('introTitle')}</h2><p>{studio('introHint')}</p></div></div>
     <QuickToolShell
       quick={quick}
       accept={ACCEPT}
@@ -67,5 +71,7 @@ export default function ConvertFilePage() {
         </>
       }
     />
+    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepFormat'), studio('stepSave')]} tip={studio('tip')} /></div>
+    </div>
   )
 }

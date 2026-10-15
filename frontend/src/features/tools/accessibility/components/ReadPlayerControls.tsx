@@ -28,10 +28,10 @@ export function ReadPlayerControls({ speaking, paused, busy, canRead, previous, 
   return (
     <div className="erp-read-player mt-3">
       <div className="erp-read-player__row">
-        {speaking ? <Button onClick={onPause}>{t('readAloud.pause')}</Button>
-          : paused ? <Button onClick={onResume}>{t('readAloud.resume')}</Button>
-            : <Button disabled={!canRead} onClick={onRead}>{t('readAloud.read')}</Button>}
-        <Button variant="outline-secondary" disabled={!busy} onClick={onStop}>{t('shared.stop')}</Button>
+        {speaking ? <Button onClick={onPause}><Icon name="pause-fill" className="me-2" />{t('readAloud.pause')}</Button>
+          : paused ? <Button onClick={onResume}><Icon name="play-fill" className="me-2" />{t('readAloud.resume')}</Button>
+            : <Button disabled={!canRead} onClick={onRead}><Icon name="play-fill" className="me-2" />{t('readAloud.read')}</Button>}
+        <Button variant="outline-secondary" disabled={!busy} onClick={onStop}><Icon name="stop-fill" className="me-2" />{t('shared.stop')}</Button>
       </div>
       <div className="erp-read-player__row">
         <Button variant="outline-secondary" disabled={previous === null} onClick={() => { if (previous !== null) onJump(previous) }}>

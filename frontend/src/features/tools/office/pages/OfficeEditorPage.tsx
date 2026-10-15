@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
 import { ToolLeaveGuard } from '@/features/tools/hub/components/ToolLeaveGuard'
+import { WorkspaceGuide } from '@/features/tools/hub'
 import { OFFICE_APPS, type OfficeAppId } from '../config/office-apps'
 import { OfficeCloseDialog } from '../components/OfficeCloseDialog'
 import { useOfficeEditor } from '../hooks/useOfficeEditor'
@@ -12,6 +13,8 @@ export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
   const { t } = useTranslation('common')
   const { t: tc } = useTranslation('catalog')
   const engine = OFFICE_APPS[app]
+  const studio = app === 'office-word' || app === 'office-sheet'
+  const guideKey = app === 'office-sheet' ? 'studio.sheet' : 'studio.office'
   const editor = useOfficeEditor(app)
   const [confirmClose, setConfirmClose] = useState(false)
   const active = editor.state === 'open'
@@ -22,7 +25,7 @@ export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
   const fullscreenLabel = t(viewport.nativeFullscreen ? 'office.exitFullscreen' : 'office.fullscreen')
 
   return (
-    <section ref={viewport.workspaceRef} className={'cn-office' + (active ? ' cn-office--open' : '') + (viewport.expanded ? ' cn-office--expanded' : '')} data-office-state={editor.state} aria-label={toolName}>
+    <section ref={viewport.workspaceRef} className={'cn-office' + (studio ? ' cn-office--studio' : '') + (active ? ' cn-office--open' : '') + (viewport.expanded ? ' cn-office--expanded' : '')} data-office-state={editor.state} aria-label={toolName}>
       <ToolLeaveGuard active={active} message={t('office.leave')} />
       <div className="cn-office-toolbar">
         <div className="cn-office-identity">
@@ -49,9 +52,10 @@ export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
         <iframe id={frameId} className="cn-office-frame" src={editor.src} title={toolName}
           allow="fullscreen; clipboard-read; clipboard-write" referrerPolicy="no-referrer" />
       ) : (
+        <div className={studio ? 'cn-office-welcome-layout' : undefined}>
         <div className="cn-office-start">
-          <Icon name="file-earmark-richtext" className="cn-office-start-icon" />
-          <h2>{t('office.heading')}</h2>
+          {app === 'office-word' ? <div className="cn-office-document" aria-hidden="true"><span><Icon name="file-earmark-word" /></span><i /><i /><i /><i /><i /><b><Icon name="pencil" /></b></div> : app === 'office-sheet' ? <div className="cn-office-sheet-art" aria-hidden="true"><span><Icon name="file-earmark-spreadsheet" /></span><div>{['', 'A', 'B', 'C', '1', '', '', '', '2', '', '', '', '3', '', '', ''].map((text, index) => <i key={index}>{text}</i>)}</div><b><Icon name="table" /></b></div> : <Icon name="file-earmark-richtext" className="cn-office-start-icon" />}
+          <h2>{t(app === 'office-sheet' ? 'studio.sheet.heading' : 'office.heading')}</h2>
           <p>{t('office.languageNote')}</p>
           <p>{t('office.fileNote', { extension: engine.extension })}</p>
           <p className="cn-office-download">{t('office.download', { size: engine.downloadMegabytes })}</p>
@@ -61,6 +65,8 @@ export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
             <Icon name={busy ? 'hourglass-split' : 'box-arrow-up-right'} /> {busy ? t('office.opening') : t('office.open')}
           </Button>
           <p className="cn-office-limit">{t('office.limit')}</p>
+        </div>
+        {studio ? <aside className="cn-office-guide"><WorkspaceGuide steps={[t(`${guideKey}.stepOpen`), t(`${guideKey}.stepEdit`), t(`${guideKey}.stepSave`)]} tip={t(`${guideKey}.tip`)} note={t(`${guideKey}.note`)} /></aside> : null}
         </div>
       )}
       <OfficeCloseDialog show={confirmClose} onCancel={() => setConfirmClose(false)} onConfirm={() => { setConfirmClose(false); viewport.reset(); editor.close() }} />

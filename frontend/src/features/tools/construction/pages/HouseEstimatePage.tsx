@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { DEFAULT_FACTORS, estimateHouse, type FactorKey, type Factors } from '../utils/house-estimate'
 import styles from './HouseEstimatePage.module.css'
@@ -22,6 +23,7 @@ const DEFAULT_FACTOR_TEXT = Object.fromEntries(FIELDS.map((key) => [key, String(
 export default function HouseEstimatePage() {
   const { t } = useTranslation('construction')
   const { t: tc } = useTranslation('common')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.estimate' })
   const id = useId()
   const [values, setValues] = useState({ floorArea: '80', upperFloors: '2', rooftopRoomArea: '20', terraceArea: '40', yardArea: '0', basePrice: '', finishingPrice: '', pileCost: '' })
   const [factorText, setFactorText] = useState(DEFAULT_FACTOR_TEXT)
@@ -42,19 +44,29 @@ export default function HouseEstimatePage() {
     : badFactor ? t('houseEstimate.fixField', { field: t('houseEstimate.factorLabel', { label: t(`houseEstimate.parts.${badFactor}`) }) }) : t('houseEstimate.checkInput')
   const setValue = (key: keyof typeof values, value: string) => setValues((current) => ({ ...current, [key]: value }))
 
-  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{t('houseEstimate.result')}</p>
+  return <ToolBoard className="cn-estimate-workspace" layout="wide-result" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepArea'), studio('stepPrice'), studio('stepCheck')]} tip={studio('tip')} /></div>} side={<>
+    <section className="cn-studio-card cn-estimate-summary" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="house" /></span><div><h2>{t('houseEstimate.result')}</h2><p>{studio('resultHint')}</p></div></div>
+    <div className="cn-estimate-total">
     <p className="erp-tool-result__value">{result && (n('basePrice') > 0 || n('finishingPrice') > 0) ? t('houseEstimate.money', { amount: formatNumber(Math.round(result.total)) }) : t('houseEstimate.enterPrice')}</p>
     {result ? <>
       <p className="erp-tool-result__note">{t('houseEstimate.convertedArea', { area: formatNumber(result.convertedArea) })}</p>
       <p className="erp-tool-result__note">{t('houseEstimate.costs', { base: formatNumber(result.baseCost), finishing: formatNumber(result.finishingCost), pile: formatNumber(result.pileCost) })}</p>
-      <div className={styles.breakdown}><table className="table table-sm"><thead><tr><th>{t('houseEstimate.columns.item')}</th><th>{t('houseEstimate.columns.area')}</th><th>{t('houseEstimate.columns.factor')}</th><th>{t('houseEstimate.columns.converted')}</th></tr></thead><tbody>{result.rows.map((row) => <tr key={row.name}><td>{row.name}</td><td>{formatNumber(row.area)} m²</td><td>{row.factor}%</td><td>{formatNumber(row.convertedArea)} m²</td></tr>)}</tbody></table></div>
     </> : <p className="erp-tool-result__note" role="status">{problem}</p>}
+    </div>
     <p className="erp-tool-result__note">{t('houseEstimate.disclaimer')}</p>
     <SourceFreshness reference />
-  </div>}>
-    <ToolPanel title={t('houseEstimate.title')}>
-      <div className="erp-tool-form__grid">{INPUTS.filter(key => ['floorArea', 'upperFloors', 'basePrice', 'finishingPrice'].includes(key)).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>
+    </section>
+    {result ? <section className="cn-studio-card cn-estimate-breakdown"><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="table" /></span><div><h2>{studio('breakdownTitle')}</h2><p>{studio('breakdownHint')}</p></div></div>
+      <div className={styles.breakdown}><table className="table table-sm"><thead><tr><th>{t('houseEstimate.columns.item')}</th><th>{t('houseEstimate.columns.area')}</th><th>{t('houseEstimate.columns.factor')}</th><th>{t('houseEstimate.columns.converted')}</th></tr></thead><tbody>{result.rows.map((row) => <tr key={row.name}><td>{row.name}</td><td>{formatNumber(row.area)} m²</td><td>{row.factor}%</td><td>{formatNumber(row.convertedArea)} m²</td></tr>)}</tbody></table></div>
+    </section> : null}
+    </>}>
+    <ToolPanel title={t('houseEstimate.title')} actions={<span className="cn-studio-small-icon"><Icon name="rulers" /></span>}>
+      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+      <h3 className="cn-estimate-section-title"><Icon name="bounding-box" />{studio('areaTitle')}</h3>
+      <div className="erp-tool-form__grid">{(['floorArea', 'upperFloors'] as const).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>
+      <h3 className="cn-estimate-section-title"><Icon name="cash-stack" />{studio('priceTitle')}</h3>
+      <div className="erp-tool-form__grid">{(['basePrice', 'finishingPrice'] as const).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div>
       <details className="mt-3"><summary>{tc('workspace.advanced')}</summary><div className="erp-tool-form__grid">{INPUTS.filter(key => !['floorArea', 'upperFloors', 'basePrice', 'finishingPrice'].includes(key)).map((key) => <NumberField key={key} label={t(`houseEstimate.fields.${key}`)} rule={INPUT_RULES[key]} value={values[key]} onChange={(value) => setValue(key, value)} />)}</div></details>
       <Form.Check className="mt-3" id={`${id}-turnkey`} label={t('houseEstimate.turnkey')} checked={turnkey} onChange={(event) => setTurnkey(event.target.checked)} />
       <details className="mt-3"><summary>{t('houseEstimate.editFactors')}</summary><div className="erp-tool-form__grid mt-3">{FIELDS.map((key) => <NumberField key={key} label={t('houseEstimate.factorLabel', { label: t(`houseEstimate.parts.${key}`) })} rule={FACTOR} unit="%" value={factorText[key]} onChange={(value) => setFactorText((current) => ({ ...current, [key]: value }))} />)}</div></details>

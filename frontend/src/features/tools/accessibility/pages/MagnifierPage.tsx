@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 
 type Facing = 'environment' | 'user'
 
 export default function MagnifierPage() {
   const { t } = useTranslation('accessibility')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.magnifier' })
   const video = useRef<HTMLVideoElement>(null)
   const stream = useRef<MediaStream | null>(null)
   const [open, setOpen] = useState(false)
@@ -39,20 +41,22 @@ export default function MagnifierPage() {
     if (!video.current) return
     if (video.current.paused) { void video.current.play(); setFrozen(false) } else { video.current.pause(); setFrozen(true) }
   }
-  return <ToolBoard layout="compact" side={<div className="erp-tool-result">
-    <p className="erp-tool-result__label">{t('magnifier.preview')}</p>
-    <p className="erp-tool-result__value">{open ? frozen ? t('magnifier.frozen') : t('magnifier.live') : t('shared.ready')}</p>
+  return <ToolBoard className="cn-magnifier-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="camera" /></span><div><h2>{t('magnifier.preview')}</h2><p>{studio('resultHint')}</p></div></div>
+    <div className="cn-magnifier-status"><Icon name={open ? frozen ? 'pause-circle' : 'camera-video' : 'camera'} /><p className="erp-tool-result__value">{open ? frozen ? t('magnifier.frozen') : t('magnifier.live') : t('shared.ready')}</p></div>
     {open ? <p className="erp-tool-result__note">{facing === 'user' ? t('magnifier.frontCamera') : t('magnifier.backCamera')}</p> : null}
     <p className="erp-tool-result__note">{open ? '' : `${t('magnifier.hint')} `}{t('magnifier.privacy')}</p>
     {error ? <p role="alert" className="erp-tool-result__note">{error}</p> : null}
   </div>}>
-    <ToolPanel title={t('magnifier.title')}>
-      <label className="erp-flow-field__label mt-3">{t('magnifier.zoom', { zoom })}<Form.Range min={1} max={6} step={0.5} value={zoom} onChange={(event) => setZoom(Number(event.target.value))} /></label>
-      <div className="d-flex flex-wrap gap-2"><Button onClick={switchOrOpen}>{open ? t('magnifier.switchCamera') : t('magnifier.openCamera')}</Button><Button variant="outline-secondary" disabled={!open} onClick={freeze}>{frozen ? t('magnifier.resume') : t('magnifier.freeze')}</Button><Button variant="outline-secondary" disabled={!open} onClick={() => setContrast((current) => !current)}>{contrast ? t('magnifier.contrastOff') : t('magnifier.contrastOn')}</Button><Button variant="outline-secondary" disabled={!open} onClick={stop}>{t('magnifier.closeCamera')}</Button></div>
+    <ToolPanel title={t('magnifier.title')} actions={<span className="cn-studio-small-icon"><Icon name="zoom-in" /></span>}>
+      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+      {!open ? <div className="cn-magnifier-empty"><span aria-hidden="true"><Icon name="zoom-in" /></span><h2>{studio('emptyTitle')}</h2><p>{t('magnifier.hint')}</p></div> : null}
       {/* The camera startup uses this ref before the preview becomes visible. */}
       <div className="cn-magnifier-stage" hidden={!open}>
-        <video ref={video} playsInline muted style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${zoom})`, filter: contrast ? 'grayscale(1) contrast(2.2)' : undefined }} />
+        <video ref={video} playsInline muted aria-label={t('magnifier.preview')} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${zoom})`, filter: contrast ? 'grayscale(1) contrast(2.2)' : undefined }} />
       </div>
+      <label className="erp-flow-field__label mt-3">{t('magnifier.zoom', { zoom })}<Form.Range min={1} max={6} step={0.5} value={zoom} onChange={(event) => setZoom(Number(event.target.value))} /></label>
+      <div className="cn-magnifier-actions"><Button onClick={switchOrOpen}><Icon name={open ? 'arrow-repeat' : 'camera-video'} />{open ? t('magnifier.switchCamera') : t('magnifier.openCamera')}</Button><Button variant="outline-secondary" disabled={!open} onClick={freeze}><Icon name={frozen ? 'play' : 'pause'} />{frozen ? t('magnifier.resume') : t('magnifier.freeze')}</Button><Button variant="outline-secondary" disabled={!open} onClick={() => setContrast((current) => !current)} aria-pressed={contrast}><Icon name="circle-half" />{contrast ? t('magnifier.contrastOff') : t('magnifier.contrastOn')}</Button><Button variant="outline-secondary" disabled={!open} onClick={stop}><Icon name="stop-circle" />{t('magnifier.closeCamera')}</Button></div>
     </ToolPanel>
   </ToolBoard>
 }

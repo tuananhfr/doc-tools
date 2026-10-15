@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { formatQuantity, NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
+import { formatQuantity, NumberField, readNumber, ToolBoard, ToolPanel, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
 import { admissionScore, convertGrade } from '../utils/grades'
 
 const GRADE_FIELDS = ['score10'] as const
@@ -12,6 +13,7 @@ const RULES: NumberRule[] = [SCORE, SCORE, SCORE, SCORE, { kind: 'decimal', min:
 
 export default function StudyPage() {
   const { t } = useTranslation('study')
+  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.study' })
   const [values, setValues] = useState(['', '', '', '', '', ''])
   const [mode, setMode] = useState<'grade' | 'admission'>('grade')
   const numbers = values.map((value, index) => readNumber(value, RULES[index]))
@@ -21,18 +23,15 @@ export default function StudyPage() {
     ? admissionScore([subject1, subject2, subject3], regionBonus, categoryBonus) : null
   const update = (index: number, value: string) => setValues((current) => current.map((item, position) => position === index ? value : item))
 
-  return <ToolBoard layout="compact" side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{mode === 'grade' ? t('grades.gradeResult') : t('grades.admissionResult')}</p>
-    <p className="erp-tool-result__value">{mode === 'grade' ? grade ? `${grade.letter} · ${formatQuantity(grade.gradePoint)}/4` : '—' : admission ? formatQuantity(admission.total) : '—'}</p>
+  return <ToolBoard className="cn-study-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepMode'), studio('stepInput'), studio('stepRead')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result cn-study-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="award" /></span><div><h2>{mode === 'grade' ? t('grades.gradeResult') : t('grades.admissionResult')}</h2><p>{studio('resultHint')}</p></div></div>
+    <div className="cn-study-score">{(mode === 'grade' ? grade : admission) ? null : <Icon name="journal-text" />}<p className="erp-tool-result__value">{mode === 'grade' ? grade ? `${grade.letter} · ${formatQuantity(grade.gradePoint)}/4` : '—' : admission ? formatQuantity(admission.total) : '—'}</p></div>
     {admission && mode === 'admission' ? <p className="erp-tool-result__note">{t('grades.breakdown', { raw: formatQuantity(admission.raw), bonus: formatQuantity(admission.adjustedBonus) })}</p> : null}
     <p className="erp-tool-result__note">{t('grades.note')}</p>
   </div>}>
-    <ToolPanel title={t('grades.title')}>
-      <label className="erp-flow-field__label">{t('grades.mode')}
-        <Form.Select value={mode} onChange={(event) => setMode(event.target.value as 'grade' | 'admission')}>
-          <option value="grade">{t('grades.modeGrade')}</option><option value="admission">{t('grades.modeAdmission')}</option>
-        </Form.Select>
-      </label>
+    <ToolPanel title={t('grades.title')} actions={<span className="cn-studio-small-icon"><Icon name="mortarboard" /></span>}>
+      <div className="cn-study-modes" role="group" aria-label={t('grades.mode')}>{(['grade', 'admission'] as const).map(value => <Button key={value} variant={mode === value ? 'primary' : 'outline-secondary'} aria-pressed={mode === value} onClick={() => setMode(value)}><Icon name={value === 'grade' ? 'journal-check' : 'calculator'} />{t(value === 'grade' ? 'grades.modeGrade' : 'grades.modeAdmission')}</Button>)}</div>
+      <p className="cn-studio-form-hint mt-3">{studio(mode === 'grade' ? 'gradeHint' : 'admissionHint')}</p>
       <div className="erp-tool-form__grid mt-3">
         {(mode === 'grade' ? GRADE_FIELDS : ADMISSION_FIELDS).map((field, position) => {
           const index = mode === 'grade' ? 0 : position + 1
