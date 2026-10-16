@@ -13,3 +13,12 @@ describe.each(LOCALE_CODES)('createI18n(%s)', locale => {
     expect(i18n.hasLoadedNamespace('rules')).toBe(true)
   })
 })
+
+it('resolves the media and shared studio copy from lazy namespaces with key prefixes', async () => {
+  const i18n = createI18n('vi', await loadResources('vi', BOOT_NAMESPACES))
+  await i18n.loadNamespaces(['video', 'image'])
+
+  expect(i18n.getFixedT('vi', 'video', 'mediaStudio')('trim.title')).toBe('Cắt video')
+  expect(i18n.getFixedT('vi', 'video', 'mediaStudio.trim')('inputTitle')).toBe('1. Tải video lên')
+  expect(i18n.getFixedT('vi', 'image', 'idPhotoStudio')('tools')).toBe('Công cụ')
+})

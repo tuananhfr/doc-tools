@@ -78,7 +78,7 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
       {file && inputUrl ? <>
         <video key={inputUrl} className={styles.preview} src={inputUrl} controls playsInline preload="metadata" aria-label={t('workspace.sourceVideo')} onLoadedMetadata={(event) => { const value = event.currentTarget.duration; setDuration(Number.isFinite(value) ? value : null) }} />
         <p className={styles.note}>{t('workspace.playbackHint')}</p></> : null}
-      {options.action === 'trim' || options.action === 'gif' ? <p className="cn-studio-form-hint cn-video-trim-hint"><Icon name={options.action === 'gif' ? 'images' : 'scissors'} />{studioCopy('rangeHint')}</p> : null}
+      {options.action === 'gif' ? <p className="cn-studio-form-hint cn-video-trim-hint"><Icon name="images" />{studioCopy('rangeHint')}</p> : null}
       <fieldset disabled={task.busy} className={styles.settings}><legend className="visually-hidden">{t('workspace.settingsLegend')}</legend>{children}</fieldset>
       {actions(styles.mainActions)}
 
