@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
-import { describeError, downloadOutput, ToolBoard, ToolPanel, ToolSegments, useDownloadNudge, WorkspaceGuide } from '@/features/tools/hub'
+import { describeError, downloadOutput, ToolSegments, useDownloadNudge } from '@/features/tools/hub'
+import { CodeWorkspace, QrStudio } from '../components/QrStudio'
 import { BarcodeBatch } from '../components/BarcodeBatch'
 import { BarcodeOptions } from '../components/BarcodeOptions'
 import { BarcodePreview } from '../components/BarcodePreview'
@@ -34,6 +35,7 @@ const FILE_TYPES: { type: BarcodeFileType; icon: string }[] = [
 export default function BarcodeCreatePage() {
   const { t } = useTranslation('qr')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.barcode' })
+  const { t: s } = useTranslation('qr', { keyPrefix: 'codeStudio' })
   const toast = useToast()
   const nudge = useDownloadNudge()
   const engine = useBarcodeEngine()
@@ -73,49 +75,10 @@ export default function BarcodeCreatePage() {
   const placeholder =
     engine.status === 'failed' ? t('barcode.engineFailed') : engine.status === 'loading' ? t('barcode.engineLoading') : t('shared.enterToCreate')
 
-  return (
-    <ToolBoard className="cn-barcode-workspace" mobilePreview={mode === 'single'} layout={mode === 'single' ? 'compact' : 'balanced'}
-      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
-      sideLabel={t('barcode.side')}
-      side={
-        mode === 'single' ? (
-          <>
-            <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="upc-scan" /></span><div><h2>{t('barcode.side')}</h2><p>{studio('resultHint')}</p></div></div>
-            <BarcodePreview svg={drawn.svg} label={t('barcode.previewLabel', { kind: spec.label, value: check?.ok ? check.value : '' })} placeholder={drawn.error ?? placeholder} />
-            {check?.ok ? (
-              <div className="erp-flow-field">
-                <span className="erp-flow-field__label">{t('shared.codeContent')}</span>
-                <p className="erp-qr-payload">{check.value}</p>
-              </div>
-            ) : null}
-            {FILE_TYPES.map((item, index) => (
-              <Button
-                key={item.type}
-                variant={index === 0 ? 'primary' : 'outline-secondary'}
-                className={index === 0 ? 'erp-flow__run' : undefined}
-                disabled={!drawn.svg}
-                onClick={() => void download(item.type)}
-              >
-                <Icon name={item.icon} className="me-2" />
-                {t(`barcode.files.${item.type}`)}
-              </Button>
-            ))}
-            {nudge.extra}
-          </>
-        ) : (
-          // Cột phụ đã là một thẻ — bọc thêm ToolPanel là hai lớp viền lồng nhau.
-          <>
-            <h2 className="erp-tool-panel__title">{t('barcode.styleTitle')}</h2>
-            <BarcodeOptions kind={kind} look={look} onKind={setKind} onLook={(patch) => setLook((current) => ({ ...current, ...patch }))} />
-          </>
-        )
-      }
-    >
-      <ToolSegments label={t('barcode.modeLabel')} value={mode} options={MODES.map((item) => ({ ...item, label: t(`barcode.modes.${item.value}`) }))} onChange={setMode} />
-
-      {mode === 'single' ? (
-        <ToolPanel title={t('shared.contentPanel')} actions={<span className="cn-studio-small-icon"><Icon name="input-cursor-text" /></span>}>
-          <p className="cn-studio-form-hint">{studio('inputHint')}</p>
+  return <QrStudio kind="barcode">
+    <div className="cn-codestudio-modes"><ToolSegments label={t('barcode.modeLabel')} value={mode} options={MODES.map(item => ({ ...item, label: t(`barcode.modes.${item.value}`) }))} onChange={setMode} /></div>
+    <CodeWorkspace inputTitle={mode === 'single' ? s('barcode.input') : s('barcode.batchInput')} previewTitle={mode === 'single' ? s('preview') : s('barcode.batchOptions')}
+      input={mode === 'single' ? <><p className="cn-codestudio-hint">{studio('inputHint')}</p>
           <Form.Group controlId="barcode-value" className="erp-flow-field">
             <Form.Label className="erp-flow-field__label">{t('shared.value')}</Form.Label>
             <Form.Control
@@ -138,13 +101,31 @@ export default function BarcodeCreatePage() {
             : null}
           <BarcodeOptions kind={kind} look={look} onKind={setKind} onLook={(patch) => setLook((current) => ({ ...current, ...patch }))} />
           {spec.gs1 ? <Gs1Notice /> : null}
-        </ToolPanel>
-      ) : (
-        <ToolPanel title={t('barcode.listTitle')} actions={<span className="cn-studio-small-icon"><Icon name="list-ol" /></span>}>
-          {spec.gs1 ? <Gs1Notice /> : null}
-          <BarcodeBatch kind={kind} look={look} engine={ready} />
-        </ToolPanel>
-      )}
-    </ToolBoard>
-  )
+
+      </> : <>{spec.gs1 ? <Gs1Notice /> : null}<div className="cn-convertstudio-upload"><BarcodeBatch kind={kind} look={look} engine={ready} /></div></>}
+      preview={mode === 'single' ? <>
+            <BarcodePreview svg={drawn.svg} label={t('barcode.previewLabel', { kind: spec.label, value: check?.ok ? check.value : '' })} placeholder={drawn.error ?? placeholder} />
+            {check?.ok ? (
+              <div className="erp-flow-field">
+                <span className="erp-flow-field__label">{t('shared.codeContent')}</span>
+                <p className="erp-qr-payload">{check.value}</p>
+              </div>
+            ) : null}
+            {FILE_TYPES.map((item, index) => (
+              <Button
+                key={item.type}
+                variant={index === 0 ? 'primary' : 'outline-secondary'}
+                className={index === 0 ? 'erp-flow__run' : undefined}
+                disabled={!drawn.svg}
+                onClick={() => void download(item.type)}
+              >
+                <Icon name={item.icon} className="me-2" />
+                {t(`barcode.files.${item.type}`)}
+              </Button>
+            ))}
+            {nudge.extra}
+
+        <p className="cn-codestudio-note"><Icon name="printer" />{s('barcode.printHint')}</p>
+      </> : <><BarcodeOptions kind={kind} look={look} onKind={setKind} onLook={patch => setLook(current => ({ ...current, ...patch }))} /><p className="cn-codestudio-note"><Icon name="info-circle" />{s('barcode.batchHint')}</p></>} />
+  </QrStudio>
 }

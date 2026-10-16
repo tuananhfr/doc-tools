@@ -972,5 +972,139 @@
     "page": "Page",
     "searchExport": "Search and download",
     "edit": "Edit PDF"
+  },
+  "imagesPdfStudio": {
+    "title": "Images to PDF",
+    "subtitle": "Combine photos into an ordered PDF, ready to share",
+    "heroNote": "Photos together\nReady to share!",
+    "category": "Documents & PDF",
+    "related": "Related PDF tools",
+    "uploadTitle": "Upload or capture images",
+    "drop": "Drop images here",
+    "sample": "Try a sample",
+    "dismiss": "Dismiss",
+    "orderHint": "Use the arrows to arrange images. Each image becomes one PDF page.",
+    "local": "Images are processed in your browser and are not uploaded to a server.",
+    "settingsTitle": "PDF options",
+    "orientation": "Automatic page orientation",
+    "orientationHint": "Each page follows its image in landscape or portrait.",
+    "onePerPage": "One image per page",
+    "keepRatio": "Keeps image proportions without stretching or cropping.",
+    "summary": "{{count}} images → 1 PDF file",
+    "previewTitle": "Preview & Download",
+    "layout": "PDF layout",
+    "empty": "Your document will appear here",
+    "emptyHint": "Select images to preview the page layout before creating your PDF.",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page {{page}} / {{count}}",
+    "pages": "Pages",
+    "size": "PDF size",
+    "download": "Download PDF",
+    "openPdf": "Open PDF preview",
+    "editPdf": "Edit PDF",
+    "downloadHint": "Select Create PDF in step 2 to generate your download.",
+    "steps": {
+      "1": "Select images or use your camera",
+      "2": "Arrange images in the desired order",
+      "3": "Choose paper size and page margins",
+      "4": "Preview pages and select Create PDF",
+      "5": "Download the PDF or continue editing"
+    },
+    "tips": {
+      "1": "Use clear, well-lit photos for readability",
+      "2": "Choose A4 for printed documents",
+      "3": "Choose Fit image to follow image proportions",
+      "4": "Check page order before creating your PDF"
+    },
+    "faq": {
+      "1": {
+        "q": "Can I add multiple images at once?",
+        "a": "Yes. Select multiple JPG or PNG images or take several camera photos. Each image is placed on one PDF page."
+      },
+      "2": {
+        "q": "Will images be cropped or stretched?",
+        "a": "No. Each image fits inside the chosen paper size and margins while keeping its original proportions."
+      },
+      "3": {
+        "q": "Can I change the image order?",
+        "a": "Yes. Use the up and down arrows next to each file. This order is used when exporting PDF pages."
+      },
+      "4": {
+        "q": "Can I edit the PDF afterwards?",
+        "a": "Yes. Select Edit PDF in the results panel to open your new document in the PDF editor."
+      }
+    }
+  },
+  "editorStudio": {
+    "title": "PDF editor",
+    "subtitle": "Edit text, annotate, organize and export PDFs in your browser",
+    "heroNote": "Simple PDF editing\nOrganized documents!",
+    "category": "Documents & PDF",
+    "related": "Related PDF tools",
+    "functions": "PDF functions",
+    "edit": "Edit",
+    "uploadTitle": "Upload a PDF",
+    "drop": "Drop PDF files here",
+    "local": "Files are processed on your device, without uploading to a server.",
+    "pagesTitle": "Document pages",
+    "pagesHint": "Select a page to preview it. Drag or use the arrows to reorder.",
+    "samplesTitle": "Try a sample document",
+    "samples": {
+      "invoice": "Sample invoice",
+      "contract": "Sample agreement",
+      "notes": "Sample minutes"
+    },
+    "sampleBusy": "Creating sample…",
+    "sampleFailed": "Could not create the sample. Try again or select a local file.",
+    "toolsTitle": "Editing tools",
+    "optionsTitle": "Options & Export",
+    "previewTitle": "Preview & Edit",
+    "needFile": "Upload a PDF or choose a sample to start.",
+    "emptyPreview": "Your document will appear here",
+    "emptyHint": "Select a file to preview and edit its pages.",
+    "previewHint": "The preview uses the actual content of your selected file.",
+    "editHint": "Choose a tool in the middle column and edit the page directly. Use fullscreen for more space.",
+    "fullscreen": "Fullscreen",
+    "moreExports": "Split PDF, export images, Word & Excel",
+    "nav": {
+      "sign": "Sign PDF",
+      "split-pdf": "Split / Merge",
+      "convert-file": "Convert",
+      "compress-pdf": "Compress PDF",
+      "pdf-password": "Protect"
+    },
+    "steps": {
+      "1": "Upload a PDF or try a sample",
+      "2": "Select a page and editing tool",
+      "3": "Edit text, add notes or annotations",
+      "4": "Check your changes in the preview",
+      "5": "Choose options and export the PDF"
+    },
+    "tips": {
+      "1": "Use the original PDF for better quality",
+      "2": "Open fullscreen for detailed edits",
+      "3": "Use Undo to go back to a previous step",
+      "4": "Check the page scope before exporting"
+    },
+    "faq": {
+      "1": {
+        "q": "Can I edit existing PDF text?",
+        "a": "Edit text can rewrite content on supported pages. For scans or complex layouts, the editor shows available capabilities and alternatives."
+      },
+      "2": {
+        "q": "Will my annotations be downloaded?",
+        "a": "Yes. Applied text, drawings, notes and stamps are exported according to the annotation output option you select."
+      },
+      "3": {
+        "q": "Can I edit multiple pages?",
+        "a": "Yes. Select a page on the left or use the preview navigation. Page ordering, rotation and edits are kept during the session."
+      },
+      "4": {
+        "q": "Are my files uploaded to a server?",
+        "a": "Document content is processed in your browser. Export your file to keep your changes before leaving or closing the browser."
+      }
+    },
+    "moreTools": "More annotation tools"
   }
 }

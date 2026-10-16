@@ -15,7 +15,7 @@ import { DecorationPanel } from '../components/DecorationPanel'
 import { DocSidePanel, type SideTab } from '../components/DocSidePanel'
 import { DocToolbar } from '../components/DocToolbar'
 import { DropZone } from '../components/DropZone'
-import { PdfEditorWelcome } from '../components/PdfEditorWelcome'
+import { PdfEditorStudio } from '../components/PdfEditorStudio'
 import { ExportJump } from '../components/ExportJump'
 import { ExportPanel } from '../components/ExportPanel'
 import { FormFillPanel } from '../components/FormFillPanel'
@@ -86,6 +86,8 @@ export default function DocToolsPage() {
   const { base } = useToolsBranch()
   const location = useLocation()
   const reading = slug === 'xem-pdf'
+  const editorStudio = slug === 'chinh-sua-pdf'
+  const [markupHost, setMarkupHost] = useState<HTMLDivElement | null>(null)
   const [readerId, setReaderId] = useState<string | null>(null)
   const [readerPanel, setReaderPanel] = useState(false)
   const toast = useToast()
@@ -179,6 +181,7 @@ export default function DocToolsPage() {
     setSideTab('export')
     requestAnimationFrame(() => {
       const element = document.getElementById(EXPORT_SECTION[section])
+      const details = element?.closest('details'); if (details) details.open = true
       element?.scrollIntoView({ block: 'center' })
       element?.querySelector<HTMLElement>('input.form-control, select')?.focus({ preventScroll: true })
     })
@@ -333,18 +336,18 @@ export default function DocToolsPage() {
     }
   }
 
-  const previewIndex = previewId ? pages.findIndex((page) => page.id === previewId) : -1
+  const previewIndex = editorStudio && pages.length > 0 ? Math.max(0, pages.findIndex(page => page.id === previewId)) : previewId ? pages.findIndex(page => page.id === previewId) : -1
   const readerIndex = Math.max(0, pages.findIndex(page => page.id === (search.activeHit?.pageId ?? readerId)))
   const readerPage = pages[readerIndex]
   const previewPage = previewIndex >= 0 ? pages[previewIndex] : undefined
   const previewSource = previewPage ? workspace.sources[previewPage.sourceId] : undefined
-  const previewHits = useMemo(() => search.hits.filter((hit) => hit.pageId === previewId), [search.hits, previewId])
-  const dialogOpen = !!previewPage || !!pendingReplace || !!unlock.current || scan.phase !== null
+  const previewHits = useMemo(() => search.hits.filter((hit) => hit.pageId === previewPage?.id), [search.hits, previewPage?.id])
+  const dialogOpen = (!editorStudio && !!previewPage) || !!pendingReplace || !!unlock.current || scan.phase !== null
 
   const { undo, redo, remove, selectAll, clearSelection } = workspace
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      if (pages.length === 0 || dialogOpen) return
+      if (pages.length === 0 || dialogOpen || event.defaultPrevented || (editorStudio && document.querySelector('.modal.show .erp-doc-preview'))) return
       const mod = event.ctrlKey || event.metaKey
       const key = event.key.toLowerCase()
 
@@ -358,6 +361,7 @@ export default function DocToolsPage() {
       }
       // Hộp thoại đang mở: Delete / Ctrl+Z ở đây sẽ xoá, hoàn tác trang nằm KHUẤT sau nó.
       if (reading || isTyping(event.target)) return
+      if (editorStudio && !(event.target instanceof Element && event.target.closest('.cn-pdfeditor-input'))) return
 
       if (mod && key === 'z' && !event.shiftKey) undo()
       else if (mod && (key === 'y' || (key === 'z' && event.shiftKey))) redo()
@@ -369,23 +373,9 @@ export default function DocToolsPage() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [reading, pages.length, selected.length, dialogOpen, undo, redo, remove, selectAll, clearSelection])
+  }, [reading, editorStudio, pages.length, selected.length, dialogOpen, undo, redo, remove, selectAll, clearSelection])
 
-  return (
-    <div className={`erp-doc-tools${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}${pages.length > 0 ? ' cn-pdf-has-pages' : ''}`}>
-      <ToolLeaveGuard active={pages.length > 0} />
-      <div className="erp-doc-tools__main">
-        {pages.length === 0 ? (
-          slug === 'chinh-sua-pdf'
-            ? <PdfEditorWelcome loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
-            : <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
-        ) : (
-          <>
-            {reading ? <div className="cn-pdf-reader__actions">
-              <button type="button" className="btn btn-outline-secondary" onClick={() => void pickAndAdd()}>{t('toolbar.addFiles')}</button>
-              <button type="button" className="btn btn-outline-secondary" aria-expanded={readerPanel} onClick={() => { setReaderPanel(value => !value); setSideTab('search'); if (!readerPanel) requestAnimationFrame(() => document.querySelector('.erp-doc-export')?.scrollIntoView({ block: 'start' })) }}>{t('reader.searchExport')}</button>
-              <Link className="btn btn-primary" to={toolPath(base, { slug: 'chinh-sua-pdf' })} state={location.state}>{t('reader.edit')}</Link>
-            </div> : <DocToolbar
+  const toolbar = (<DocToolbar
               pageCount={pages.length}
               selectedCount={selected.length}
               canUndo={workspace.canUndo}
@@ -405,29 +395,20 @@ export default function DocToolsPage() {
               onUndo={undo}
               onRedo={redo}
               onReset={workspace.reset}
-            />}
-            {!reading && suggestHiddenFor !== sessionKey ? (
-              <SuggestionBar
-                suggestions={suggestions}
-                disabled={exporter.busy !== null}
-                onRun={runSuggestion}
-                onDismiss={() => setSuggestHiddenFor(sessionKey)}
-              />
-            ) : null}
-            <div className="erp-doc-tools__body">
-              {reading && readerPage && workspace.sources[readerPage.sourceId] ? <DocReader page={readerPage} source={workspace.sources[readerPage.sourceId]} position={readerIndex + 1} total={pages.length} stamp={stamp} hits={search.hits} activeHitId={search.activeHit?.id ?? null} onPage={index => { search.setActiveId(null); setReaderId(pages[index].id) }} /> : <PageGrid
+            />)
+  const grid = (<PageGrid
                 pages={pages}
                 sources={workspace.sources}
                 stamp={stamp}
                 hitCounts={hitCounts}
                 selected={selected}
-                onSelect={workspace.select}
+                onSelect={(id, mode) => { workspace.select(id, mode); if (editorStudio) setPreviewId(id) }}
                 onPreview={setPreviewId}
                 onShift={workspace.shift}
                 onMove={workspace.move}
                 onDropFiles={(files, placement) => void handleFiles(files, placement)}
-              />}
-              <DocSidePanel
+              />)
+  const panel = (<DocSidePanel
                 activeTab={activeTab}
                 onTabChange={setSideTab}
                 formPending={form.pending}
@@ -454,7 +435,7 @@ export default function DocToolsPage() {
                   />
                 }
                 exportPanel={
-                  <ExportPanel
+                  <ExportPanel compact={editorStudio}
                     pages={pages}
                     selected={selected}
                     name={exportName}
@@ -484,15 +465,8 @@ export default function DocToolsPage() {
                 decorationPanel={
                   <DecorationPanel decorations={decorations} errors={resolved.errors} onChange={workspace.setDecorations} />
                 }
-              />
-            </div>
-            <ExportJump pageCount={pages.length} onJump={jumpToPanel} />
-          </>
-        )}
-      </div>
-
-      {previewPage && previewSource ? (
-        <PagePreviewModal
+              />)
+  const preview = previewPage && previewSource ? (<PagePreviewModal embedded={editorStudio} toolbarHost={markupHost}
           page={previewPage}
           source={previewSource}
           position={previewIndex + 1}
@@ -512,8 +486,39 @@ export default function DocToolsPage() {
           onPrev={previewIndex > 0 ? () => setPreviewId(pages[previewIndex - 1].id) : null}
           onNext={previewIndex < pages.length - 1 ? () => setPreviewId(pages[previewIndex + 1].id) : null}
           onClose={() => setPreviewId(null)}
-        />
-      ) : null}
+        />) : null
+
+  return (
+    <div className={`erp-doc-tools${editorStudio ? ' cn-pdfeditor-root' : ''}${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}${pages.length > 0 ? ' cn-pdf-has-pages' : ''}`}>
+      <ToolLeaveGuard active={pages.length > 0} />
+      {editorStudio ? <PdfEditorStudio hasPages={pages.length > 0} loading={workspace.loading} onFiles={files => void handleFiles(files)} grid={grid} toolbar={toolbar} panel={panel} preview={preview} toolHost={setMarkupHost} activeTab={activeTab} onTab={setSideTab} hasForms={hasForms} busy={exporter.busy !== null} /> : <div className="erp-doc-tools__main">
+        {pages.length === 0 ? (
+          <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
+        ) : (
+          <>
+            {reading ? <div className="cn-pdf-reader__actions">
+              <button type="button" className="btn btn-outline-secondary" onClick={() => void pickAndAdd()}>{t('toolbar.addFiles')}</button>
+              <button type="button" className="btn btn-outline-secondary" aria-expanded={readerPanel} onClick={() => { setReaderPanel(value => !value); setSideTab('search'); if (!readerPanel) requestAnimationFrame(() => document.querySelector('.erp-doc-export')?.scrollIntoView({ block: 'start' })) }}>{t('reader.searchExport')}</button>
+              <Link className="btn btn-primary" to={toolPath(base, { slug: 'chinh-sua-pdf' })} state={location.state}>{t('reader.edit')}</Link>
+            </div> : toolbar}
+            {!reading && suggestHiddenFor !== sessionKey ? (
+              <SuggestionBar
+                suggestions={suggestions}
+                disabled={exporter.busy !== null}
+                onRun={runSuggestion}
+                onDismiss={() => setSuggestHiddenFor(sessionKey)}
+              />
+            ) : null}
+            <div className="erp-doc-tools__body">
+              {reading && readerPage && workspace.sources[readerPage.sourceId] ? <DocReader page={readerPage} source={workspace.sources[readerPage.sourceId]} position={readerIndex + 1} total={pages.length} stamp={stamp} hits={search.hits} activeHitId={search.activeHit?.id ?? null} onPage={index => { search.setActiveId(null); setReaderId(pages[index].id) }} /> : grid}
+              {panel}
+            </div>
+            <ExportJump pageCount={pages.length} onJump={jumpToPanel} />
+          </>
+        )}
+      </div>}
+
+      {!editorStudio ? preview : null}
 
       {unlock.current ? (
         <UnlockPdfModal

@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { TOOL_FILTERS } from '@/features/tools/hub/config/tool-catalog'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
-import type { ToolFilter } from '@/features/tools/hub/types/tool.types'
 import { filterTools } from '@/features/tools/hub/utils/tool-lookup'
+import { directoryGroup, directoryGroupTools, type DirectoryGroup } from '../utils/directory-groups'
 
 export function useCatalogSearch() {
   const [params, setParams] = useSearchParams()
@@ -11,11 +10,11 @@ export function useCatalogSearch() {
   // The server router only knows the pathname; restore query filters after hydration.
   useEffect(() => { setHydrated(true) }, [])
   const requestedFilter = hydrated ? params.get('nhom') : null
-  const filter = TOOL_FILTERS.find((item) => item === requestedFilter) ?? 'all'
+  const filter = directoryGroup(requestedFilter)
   const keyword = hydrated ? params.get('q') ?? '' : ''
   const catalog = useToolCatalog()
   const showSoon = hydrated && params.get('sap-co') === '1'
-  const matched = useMemo(() => filterTools(catalog, filter, keyword), [catalog, filter, keyword])
+  const matched = useMemo(() => filterTools(directoryGroupTools(catalog, filter), 'all', keyword), [catalog, filter, keyword])
   const tools = useMemo(() => matched.filter(tool => showSoon || tool.status === 'ready'), [matched, showSoon])
   const readyCount = matched.filter(tool => tool.status === 'ready').length
   const soonCount = matched.filter(tool => tool.status === 'soon').length
@@ -27,9 +26,9 @@ export function useCatalogSearch() {
   }, { replace: true, preventScrollReset: true })
 
   return {
-    filter, keyword, tools, readyCount, soonCount, showSoon,
+    filter, keyword, tools, readyCount, soonCount, showSoon, catalog,
     onShowSoon: (value: boolean) => update('sap-co', value ? '1' : ''),
-    onFilter: (value: ToolFilter) => update('nhom', value === 'all' ? '' : value),
+    onFilter: (value: DirectoryGroup) => update('nhom', value === 'all' ? '' : value),
     onKeyword: (value: string) => update('q', value),
     reset: () => setParams((current) => { const next = new URLSearchParams(current); next.delete('q'); next.delete('nhom'); return next }, { replace: true }),
   }

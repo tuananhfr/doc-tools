@@ -1,0 +1,42 @@
+/* Shared tool identities, based on the user's image, file, form, calculator and entertainment references. */
+.cn-tool-artwork { --art-light: #57a8ff; --art-main: #0871f4; --art-dark: #0750ce; position: relative; display: inline-grid; place-items: center; flex: none; width: 60px; height: 60px; border-radius: 13px; background: linear-gradient(145deg, var(--art-light), var(--art-main) 62%, var(--art-dark)); color: white; box-shadow: inset 0 1px 0 rgb(255 255 255 / 30%); isolation: isolate; vertical-align: middle; }
+.cn-tool-artwork::before { content: ''; position: absolute; inset: 0; border: 1px solid rgb(255 255 255 / 18%); border-radius: inherit; pointer-events: none; }
+.cn-tool-artwork--red { --art-light: #ff6d7b; --art-main: #f72e4f; --art-dark: #df153b; }
+.cn-tool-artwork--teal { --art-light: #4cce9c; --art-main: #06a375; --art-dark: #078762; }
+.cn-tool-artwork--purple { --art-light: #ae78ff; --art-main: #8835ed; --art-dark: #6a26d6; }
+.cn-tool-artwork--pink { --art-light: #ff79c4; --art-main: #f52a97; --art-dark: #dc1580; }
+.cn-tool-artwork--orange { --art-light: #ffc052; --art-main: #ff9414; --art-dark: #ec7400; }
+.cn-tool-artwork--yellow { --art-light: #ffe477; --art-main: #ffce25; --art-dark: #efb615; }
+.cn-tool-artwork > .cn-tool-symbol { width: 66%; height: 66%; fill: currentColor; }
+.cn-tool-artwork > .bi { display: block; color: inherit; font-size: 38px; line-height: 1; }
+.cn-tool-illustration { display: block; width: 100%; height: 100%; overflow: visible; }
+.cn-tool-artwork--illustrated { background: transparent; box-shadow: none; }
+.cn-tool-artwork--illustrated::before { display: none; }
+.cn-tool-artwork-badge { position: absolute; inset-inline-end: -3px; bottom: -2px; display: grid; place-items: center; width: 22px; height: 22px; border: 2px solid var(--cn-surface, var(--erp-surface)); border-radius: 7px; background: var(--art-dark); color: white; }
+.cn-tool-artwork-badge .cn-tool-symbol { display: block; width: 12px; height: 12px; fill: currentColor; }
+.cn-tool-artwork-badge > .bi { font-size: 12px; }
+.cn-tool-artwork--sm { width: 32px; height: 32px; border-radius: 8px; }
+.cn-tool-artwork--sm > .bi { font-size: 21px; }
+.cn-tool-artwork--sm .cn-tool-artwork-badge { width: 15px; height: 15px; border-width: 1px; border-radius: 4px; }
+.cn-tool-artwork--sm .cn-tool-artwork-badge .cn-tool-symbol { width: 9px; height: 9px; }
+.cn-tool-artwork--sm .cn-tool-artwork-badge > .bi { font-size: 9px; }
+.erp-tool-tile:has(.cn-tool-artwork), .cn-hub-card-icon:has(.cn-tool-artwork), .cn-hub-spotlight-icon:has(.cn-tool-artwork), .cn-tool-intro__icon:has(.cn-tool-artwork), .cn-idstudio-hero-icon:has(.cn-tool-artwork) { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+:is(.erp-tool-tile, .cn-hub-card-icon, .cn-hub-spotlight-icon, .cn-tool-intro__icon, .cn-idstudio-hero-icon) > .cn-tool-artwork { width: 100%; height: 100%; }
+.erp-tool-tile .cn-tool-artwork, .cn-hub-card-icon .cn-tool-artwork { border-radius: 10px; }
+.erp-tool-tile .cn-tool-artwork > .bi { font-size: 26px; }
+.erp-tool-tile--sm .cn-tool-artwork { border-radius: 8px; }
+.erp-tool-tile--sm .cn-tool-artwork > .bi { font-size: 21px; }
+.erp-tool-tile .cn-tool-artwork-badge, .cn-hub-card-icon .cn-tool-artwork-badge { width: 17px; height: 17px; border-radius: 5px; }
+.erp-tool-tile .cn-tool-artwork-badge .cn-tool-symbol, .cn-hub-card-icon .cn-tool-artwork-badge .cn-tool-symbol { width: 9px; height: 9px; }
+.cn-tool-intro__icon .cn-tool-artwork > .bi { font-size: 28px; }
+.cn-tool-workspace--studio .cn-tool-intro__icon .cn-tool-artwork > .bi { font-size: 38px; }
+.cn-idstudio-hero-icon:has(.cn-tool-artwork) { width: 64px; height: 64px; }
+.cn-directory-catalog[data-view='list'] .cn-tool-artwork > .cn-tool-symbol { width: 66%; height: 66%; }
+.cn-directory-catalog[data-view='list'] .cn-tool-artwork > .bi { font-size: 34px; }
+@media (max-width: 767px) {
+  .cn-directory-catalog[data-view='list'] .cn-tool-artwork > .bi { font-size: 29px; }
+  .cn-tool-workspace--studio .cn-tool-intro__icon .cn-tool-artwork > .bi { font-size: 30px; }
+}
+@media (forced-colors: active) {
+  .cn-tool-artwork { forced-color-adjust: none; }
+}

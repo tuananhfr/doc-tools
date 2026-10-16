@@ -1,0 +1,83 @@
+.cn-processing-nav { display: flex; gap: 6px; overflow-x: auto; margin: 0 0 12px; padding-bottom: 3px; }
+.cn-processing-nav a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 9px 12px; flex: 1 0 auto; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); color: var(--cn-accent); text-decoration: none; font-size: 12px; }
+.cn-processing-nav a:hover { background: var(--cn-tint); }
+.cn-processing-nav a[aria-current='page'] { color: white; background: #0067f4; border-color: #0067f4; font-weight: 700; }
+.cn-processing-nav .bi { font-size: 19px; }
+.cn-image-studio--convert-image .cn-idstudio-hero-icon { background: linear-gradient(145deg, #52afff, #005bea); box-shadow: 0 -7px 0 -2px #c5e3ff; }
+.cn-convertstudio-editor { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, .95fr); }
+.cn-convertstudio-upload .erp-flow-picker { min-height: 260px; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 24px 10px; border: 1.5px dashed #83b8ff; box-shadow: none; border-radius: 10px; text-align: center; background: linear-gradient(135deg, var(--cn-hero), var(--cn-surface)); }
+.cn-convertstudio-upload .erp-flow-picker__icon { width: auto; height: auto; margin: 0; background: transparent; color: var(--cn-accent); font-size: 50px; }
+.cn-convertstudio-upload .erp-flow-picker__title { margin: 0 0 8px; font-size: 15px; }
+.cn-convertstudio-upload .erp-flow-picker__hint { font-size: 11px; line-height: 1.8; }
+.cn-convertstudio-upload .erp-flow-picker__actions { justify-content: center; }
+.cn-convertstudio-upload .erp-flow-picker--compact { min-height: 110px; padding: 12px 8px; gap: 4px; }
+.cn-convertstudio-upload .erp-flow-picker--compact .erp-flow-picker__icon { display: none; }
+.cn-convertstudio-upload .erp-flow-files { margin-top: 18px; }
+.cn-convertstudio-upload .erp-flow-files__title { font-size: 12px; }
+.cn-convertstudio-upload .erp-flow-files__list { max-height: 330px; overflow-y: auto; }
+.cn-convertstudio-upload .erp-flow-file { padding: 9px 0; gap: 6px; }
+.cn-convertstudio-upload .erp-flow-file__thumb { width: 38px; height: 42px; }
+.cn-convertstudio-upload .erp-flow-file__name { font-size: 12px; }
+.cn-convertstudio-upload .erp-flow-file__meta { font-size: 10px; }
+.cn-convertstudio-sample { display: grid; gap: 12px; margin-top: 14px; text-align: center; }
+.cn-convertstudio-sample > span { font-size: 12px; color: var(--cn-muted); }
+.cn-convertstudio-sample .btn { min-height: 44px; }
+.cn-convertstudio-rejected { margin-top: 12px; overflow-wrap: anywhere; font-size: 12px; color: var(--cn-red); }
+.cn-convertstudio-settings fieldset { min-width: 0; padding: 0; border: 0; }
+.cn-convertstudio-settings legend, .cn-convertstudio-settings label { float: none; width: auto; margin: 0 0 10px; font-weight: 700; font-size: 12px; }
+.cn-convertstudio-formats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin: 0 0 22px; }
+.cn-convertstudio-format { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; padding: 12px 4px; border: 1px solid var(--cn-line); border-radius: 9px; color: var(--cn-ink); background: var(--cn-surface); font: inherit; }
+.cn-convertstudio-format[aria-pressed='true'] { border-color: var(--cn-accent); background: var(--cn-hero); box-shadow: 0 0 0 2px var(--cn-tint); }
+.cn-convertstudio-format > span { position: relative; display: grid; place-items: center; height: 54px; color: #f04e5e; }
+.cn-convertstudio-format--png > span { color: #0b9c88; }
+.cn-convertstudio-format--webp > span { color: #8a50e2; }
+.cn-convertstudio-format > span .bi { font-size: 46px; line-height: 1; }
+.cn-convertstudio-format b { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); color: white; background: #d92c40; border-radius: 2px; padding: 2px; font-size: 9px; line-height: 1.2; }
+.cn-convertstudio-format--png b { background: #07806f; }
+.cn-convertstudio-format--webp b { background: #7040bf; }
+.cn-convertstudio-format strong { font-size: 12px; }
+.cn-convertstudio-format small { color: var(--cn-muted); font-size: 10px; line-height: 1.6; text-align: center; }
+.cn-convertstudio-format > .bi { position: absolute; top: 5px; right: 5px; color: var(--cn-accent); font-size: 12px; }
+.cn-convertstudio-settings .form-select { min-height: 44px; }
+.cn-convertstudio-settings .cn-idstudio-note { margin-top: 10px; }
+.cn-convertstudio-preserves { display: flex; align-items: center; gap: 10px; margin: 20px 0 14px; padding: 12px 9px; border-block: 1px solid var(--cn-line); }
+.cn-convertstudio-preserves > .bi:first-child { color: var(--cn-accent); font-size: 23px; }
+.cn-convertstudio-preserves > .bi:last-child { color: var(--cn-positive); margin-inline-start: auto; }
+.cn-convertstudio-preserves strong, .cn-convertstudio-preserves span { display: block; font-size: 11px; }
+.cn-convertstudio-preserves span { margin-top: 5px; color: var(--cn-muted); }
+.cn-convertstudio-format-note { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 20px; color: var(--cn-muted); font-size: 11px; line-height: 1.8; }
+.cn-convertstudio-format-note .bi { color: var(--cn-accent); }
+.cn-convertstudio-run { width: 100%; min-height: 46px; }
+.cn-convertstudio-preview-image { display: grid; place-items: center; min-height: 230px; aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--cn-line); border-radius: 8px; background: repeating-conic-gradient(var(--cn-surface) 0% 25%, var(--cn-hero) 0% 50%) 0 / 20px 20px; }
+.cn-convertstudio-preview-image > img { width: 100%; height: 100%; min-height: 0; max-height: 330px; object-fit: contain; }
+.cn-convertstudio-placeholder { padding: 20px 14px; text-align: center; }
+.cn-convertstudio-placeholder > .bi { display: block; margin-bottom: 16px; font-size: 54px; color: #94bdec; }
+.cn-convertstudio-placeholder strong { font-size: 13px; }
+.cn-convertstudio-placeholder p { margin: 10px 0 0; color: var(--cn-muted); font-size: 11px; line-height: 1.8; }
+.cn-convertstudio-placeholder.is-done > .bi { color: var(--cn-positive); }
+.cn-convertstudio-preview .cn-idstudio-output-meta { margin-block: 16px; }
+.cn-convertstudio-preview .cn-idstudio-tabs button:disabled { opacity: .65; }
+.cn-convertstudio-preview .cn-idstudio-downloads .btn { min-height: 44px; }
+.cn-convertstudio-preview .cn-idstudio-note { margin-top: 10px; }
+.cn-convertstudio-success { display: grid; grid-template-columns: auto 1fr; gap: 6px; margin-block: 12px; font-size: 12px; overflow-wrap: anywhere; }
+.cn-convertstudio-success > .bi { color: var(--cn-positive); }
+.cn-convertstudio-success small { grid-column: 2; color: var(--cn-muted); }
+.cn-convertstudio-notes { margin: 14px 0 0; padding-inline-start: 16px; font-size: 11px; color: var(--cn-muted); line-height: 1.8; }
+.cn-convertstudio-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; }
+.cn-convertstudio-editor :is(button, a, input, select):focus-visible, .cn-processing-nav a:focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-convertstudio-editor { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-convertstudio-preview { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 20px; align-content: start; }
+  .cn-convertstudio-preview > h2, .cn-convertstudio-preview > .cn-idstudio-tabs { grid-column: 1 / -1; }
+  .cn-convertstudio-preview-image { grid-column: 1; grid-row: 3 / 9; aspect-ratio: auto; }
+}
+@media (max-width: 767px) {
+  .cn-convertstudio-editor { grid-template-columns: minmax(0, 1fr); }
+  .cn-processing-nav { margin-top: -2px; }
+  .cn-processing-nav a { padding-inline: 10px; font-size: 12px; }
+  .cn-convertstudio-format { padding-block: 14px; }
+  .cn-convertstudio-format strong, .cn-convertstudio-settings label, .cn-convertstudio-settings legend { font-size: 14px; }
+  .cn-convertstudio-preview-image { aspect-ratio: 1; min-height: 240px; }
+  .cn-convertstudio-upload .erp-flow-picker { min-height: 220px; }
+  .cn-convertstudio-upload .erp-flow-picker--compact { min-height: 110px; }
+}

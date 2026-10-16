@@ -5,6 +5,7 @@ import { useToolsBranch } from '@/features/tools/hub/hooks/tools-branch'
 import type { ToolDefinition } from '@/features/tools/hub/types/tool.types'
 import { toolPath } from '@/features/tools/hub/utils/tool-lookup'
 import { ProcessingBadge } from './ProcessingBadge'
+import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
 
 /** Thẻ "Sắp có" không phải link: slug của nó chỉ đưa về trang chủ. */
 export function HubToolCard({ tool }: { tool: ToolDefinition }) {
@@ -15,7 +16,7 @@ export function HubToolCard({ tool }: { tool: ToolDefinition }) {
   return (
     <article className={`cn-hub-card${ready ? '' : ' is-soon'}`}>
       <div className="cn-hub-card-head">
-        <span className="cn-hub-card-icon"><Icon name={tool.icon} /></span>
+        <span className="cn-hub-card-icon"><ToolArtwork tool={tool} /></span>
         <div>
           <h3>{tool.name}</h3>
           <p>{tool.description}</p>

@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
-import { CopyButton, downloadOutput, ToolBoard, ToolPanel, useDownloadNudge, WorkspaceGuide } from '@/features/tools/hub'
+import { CopyButton, downloadOutput, useDownloadNudge } from '@/features/tools/hub'
+import { CodeWorkspace, QrStudio } from '../components/QrStudio'
 import { QrColorPicker } from '../components/QrColorPicker'
 import { QrContentForm } from '../components/QrContentForm'
 import { QrPreview } from '../components/QrPreview'
@@ -25,22 +26,23 @@ export default function QrCreatePage() {
   const [dynamic, setDynamic] = useState(false)
   const [labels, setLabels] = useState(false)
   const [openedLabels, setOpenedLabels] = useState(false)
-  return <div className="cn-qr-create-workspace">
+  return <QrStudio kind="create" online={dynamic && !labels}><div className="cn-qr-create-workspace">
     <div className="cn-qr-mode-switch mb-3" role="group" aria-label={t('dynamic.mode')}>
       <Button variant={dynamic || labels ? 'outline-secondary' : 'primary'} aria-label={t('dynamic.static')} aria-pressed={!dynamic && !labels} onClick={() => { setDynamic(false); setLabels(false) }}>{t('dynamic.staticShort')}</Button>
       <Button variant={dynamic && !labels ? 'primary' : 'outline-secondary'} aria-label={t('dynamic.dynamic')} aria-pressed={dynamic && !labels} onClick={() => { setDynamic(true); setLabels(false) }}>{t('dynamic.dynamicShort')}</Button>
       <Button variant={labels ? 'primary' : 'outline-secondary'} aria-label={t('labels.tab')} aria-pressed={labels} onClick={() => { setLabels(true); setOpenedLabels(true) }}>{t('labels.short')}</Button>
     </div>
     <div hidden={dynamic || labels}><StaticQrCreatePage /></div>
-    <div hidden={!dynamic || labels}><DynamicQrPage /></div>
+    <div hidden={!dynamic || labels}><DynamicQrPage embedded /></div>
     {openedLabels ? <div hidden={!labels}><LabelSheetPage /></div> : null}
-  </div>
+  </div></QrStudio>
 }
 
 function StaticQrCreatePage() {
   const { t } = useTranslation('qr')
   const { t: tc } = useTranslation('common')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.qrCreate' })
+  const { t: s } = useTranslation('qr', { keyPrefix: 'codeStudio' })
   const toast = useToast()
   const nudge = useDownloadNudge()
   const [form, setForm] = useState<QrForm>(INITIAL_QR_FORM)
@@ -69,49 +71,24 @@ function StaticQrCreatePage() {
     }
   }
 
-  return (
-    <ToolBoard className="cn-qr-create-board" mobilePreview layout="compact"
-      sideLabel={t('qrCreate.side')}
-      side={
-        <>
-          <section className="cn-studio-card cn-qr-export-card">
-          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="qr-code" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('previewHint')}</p></div></div>
-          <QrPreview matrix={matrix} color={color} background={backgroundColor} placeholder={error ? t('qrCreate.notCreated') : t('shared.enterToCreate')} />
-
-          {text !== null && matrix ? (
-            <div className="erp-flow-field">
-              <span className="erp-flow-field__label">{t('shared.codeContent')}</span>
-              <p className="erp-qr-payload">{text}</p>
-              <CopyButton text={text} size="sm" className="align-self-start" />
-            </div>
-          ) : null}
-
-          <Button variant="primary" className="erp-flow__run" disabled={!matrix} onClick={() => void download('png')}>
-            <Icon name="download" className="me-2" />
-            {t('qrCreate.downloadPng')}
-          </Button>
-          <Button variant="outline-secondary" disabled={!matrix} onClick={() => void download('svg')}>
-            <Icon name="vector-pen" className="me-2" />
-            {t('qrCreate.downloadSvg')}
-          </Button>
-          <Button variant="outline-secondary" disabled={!matrix} onClick={() => void download('pdf')}>
-            <Icon name="file-earmark-pdf" className="me-2" />
-            {t('qrCreate.downloadPdf')}
-          </Button>
-          {nudge.extra}
-          </section>
-          <WorkspaceGuide steps={[studio('stepChoose'), studio('stepCustomize'), studio('stepSave')]} tip={studio('tip')} />
-        </>
-      }
-    >
-      <ToolPanel title={t('shared.contentPanel')} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
-        <p className="cn-studio-form-hint">{studio('inputHint')}</p>
-        <QrContentForm kindPicker="tiles" form={form} error={error} onChange={(patch) => setForm((current) => ({ ...current, ...patch }))} />
-        <details className="cn-qr-customize"><summary>{tc('workspace.customize')}</summary>
-          <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
-          {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
-        </details>
-      </ToolPanel>
-    </ToolBoard>
-  )
+  return <CodeWorkspace inputTitle={s('create.input')} previewTitle={s('preview')}
+    input={<>
+      <p className="cn-codestudio-hint">{studio('inputHint')}</p>
+      <QrContentForm kindPicker="tiles" form={form} error={error} onChange={patch => setForm(current => ({ ...current, ...patch }))} />
+      <details className="cn-codestudio-options"><summary><Icon name="sliders" />{tc('workspace.customize')}<Icon name="chevron-down" /></summary>
+        <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />
+        {backgroundColor === null ? <p className="erp-flow-field__hint">{t('qrCreate.transparentHint')}</p> : qrContrast(color, backgroundColor) < 4.5 ? <p className="erp-flow-field__hint">{t('qrCreate.lowContrast')}</p> : null}
+      </details>
+      <p className="cn-codestudio-note"><Icon name="lightning-charge" />{s('live')}</p>
+    </>}
+    preview={<>
+      <QrPreview matrix={matrix} color={color} background={backgroundColor} placeholder={error ? t('qrCreate.notCreated') : t('shared.enterToCreate')} />
+      {text !== null && matrix ? <div className="cn-codestudio-payload"><span>{t('shared.codeContent')}</span><p className="erp-qr-payload">{text}</p><CopyButton text={text} size="sm" /></div> : null}
+      <div className="cn-codestudio-downloads"><Button disabled={!matrix} onClick={() => void download('png')}><Icon name="download" />{t('qrCreate.downloadPng')}</Button><div>
+        <Button variant="outline-primary" disabled={!matrix} onClick={() => void download('svg')}>SVG</Button>
+        <Button variant="outline-primary" disabled={!matrix} onClick={() => void download('pdf')}>PDF</Button>
+      </div></div>
+      <p className="cn-codestudio-note"><Icon name="qr-code-scan" />{s('scanBeforeSharing')}</p>
+      {nudge.extra}
+    </>} />
 }

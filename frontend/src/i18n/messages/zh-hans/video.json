@@ -97,5 +97,96 @@
     "gif": "动图",
     "trimmed": "已剪辑",
     "compressed": "已压缩"
+  },
+  "mediaStudio": {
+    "free": "Free",
+    "easy": "Easy to use",
+    "noAccount": "No account required",
+    "local": "Processed in your browser",
+    "voiceChoice": "Device or Vietnamese voice",
+    "videoCategory": "Video & Audio",
+    "readCategory": "Read & Listen",
+    "related": "Related tools",
+    "trim": {
+      "title": "Trim video",
+      "subtitle": "Choose a segment, preview it and export an MP4 video",
+      "heroNote": "Keep the best moments\nShare them easily!",
+      "steps": {
+        "1": "Choose or drop a local video",
+        "2": "Preview and choose the start",
+        "3": "Choose the end of your segment",
+        "4": "Preview the segment and trim",
+        "5": "Preview and download the result"
+      },
+      "tips": {
+        "1": "Short videos are faster to process",
+        "2": "Drag the sliders or enter seconds",
+        "3": "MP4 output, up to 1080 px on the long edge",
+        "4": "Videos are not uploaded to a server"
+      },
+      "faq": {
+        "1": {
+          "q": "Is there a file size limit?",
+          "a": "Yes. Up to 100 MB, ten minutes and 4K resolution. Short clips under 30 MB work best on phones."
+        },
+        "2": {
+          "q": "Is the original quality preserved?",
+          "a": "The segment is re-encoded at frame level as MP4 H.264/AAC, up to 1080 px on the long edge. Quality and metadata may differ from the original."
+        },
+        "3": {
+          "q": "Why is the first run slower?",
+          "a": "The first run downloads a processing engine of about 32 MB. Processing speed depends on the video and your device."
+        }
+      },
+      "inputTitle": "1. Upload video",
+      "optionsTitle": "2. Select a segment",
+      "outputTitle": "3. Export result",
+      "emptyTitle": "Preview your video here",
+      "emptyHint": "Upload a video to choose the segment to keep.",
+      "privacy": "Your video is processed on your device.",
+      "selection": "Selected segment: {{seconds}} seconds",
+      "preview": "Preview selected segment",
+      "resultHint": "The processed video will appear here for preview and download."
+    },
+    "read": {
+      "title": "Read text aloud",
+      "subtitle": "Paste text or upload a document, choose a voice and listen",
+      "heroNote": "Less reading effort\nListen to what matters!",
+      "steps": {
+        "1": "Paste text or choose a document",
+        "2": "Review the text to be read",
+        "3": "Choose a voice and reading speed",
+        "4": "Press Read text to listen",
+        "5": "Pause, resume or export WAV with Vietnamese voice"
+      },
+      "tips": {
+        "1": "Use Vietnamese voice if your device lacks one",
+        "2": "Slow down the voice when needed",
+        "3": "Increase the reading view font size",
+        "4": "File content is retained when switching input modes"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I download the audio?",
+          "a": "Vietnamese voice supports WAV export. Device voice uses the voices available on your device and does not export audio files."
+        },
+        "2": {
+          "q": "Do I need internet?",
+          "a": "Vietnamese voice downloads data on first use, then processes on your device. Device voices may use online services. When enabled, extracting content from a link requires internet."
+        },
+        "3": {
+          "q": "Can I listen to documents?",
+          "a": "Yes. Open File to see supported formats and review the extracted text. Long documents are divided into selectable parts."
+        }
+      },
+      "inputTitle": "1. Enter content",
+      "optionsTitle": "2. Voice options",
+      "outputTitle": "3. Listen & Follow",
+      "previewHint": "Text in the selected part. Press Read text to begin.",
+      "emptyTitle": "Ready to read for you",
+      "emptyHint": "Add content in step 1, choose a voice and start listening.",
+      "wavHint": "Vietnamese voice can export WAV for the selected part.",
+      "deviceHint": "Device voice plays directly on your device. Choose Vietnamese voice for WAV export."
+    }
   }
 }

@@ -30,17 +30,19 @@ const TURNED: Record<AspectKey, AspectKey> = { free: 'free', '1:1': '1:1', '4:3'
 /** Mọi thứ người dùng đã chỉnh trên một ảnh. `rect` theo điểm ảnh của ảnh ĐÃ xoay. */
 export interface CropState extends Adjust {
   rotation: Rotation
+  flipX?: boolean
+  flipY?: boolean
   rect: Rect
   aspect: AspectKey
 }
 
 export function initialCrop(size: Size): CropState {
-  return { ...NEUTRAL_ADJUST, rotation: 0, rect: fullRect(size), aspect: 'free' }
+  return { ...NEUTRAL_ADJUST, rotation: 0, flipX: false, flipY: false, rect: fullRect(size), aspect: 'free' }
 }
 
 /** Chưa cắt, chưa xoay, chưa chỉnh — lưu ra chỉ được đúng ảnh gốc. */
 export function isPristine(state: CropState, size: Size): boolean {
-  return state.rotation === 0 && isNeutral(state) && isFullRect(state.rect, size)
+  return state.rotation === 0 && !state.flipX && !state.flipY && isNeutral(state) && isFullRect(state.rect, size)
 }
 
 /** Chọn tỉ lệ: khung nhảy về khung lớn nhất đúng tỉ lệ; `free` thì giữ khung đang có. */
@@ -54,7 +56,17 @@ export function turned(state: CropState, size: Size, direction: 'cw' | 'ccw'): C
   return {
     ...state,
     rotation: ((state.rotation + (direction === 'cw' ? 90 : 270)) % 360) as Rotation,
+    flipX: state.flipY ?? false,
+    flipY: state.flipX ?? false,
     rect: rotateRect(state.rect, rotatedSize(size, state.rotation), direction),
     aspect: TURNED[state.aspect],
   }
+}
+
+/** Mirror the visible image and move the crop with the same selected content. */
+export function flipped(state: CropState, size: Size, axis: 'x' | 'y'): CropState {
+  const bounds = rotatedSize(size, state.rotation)
+  return axis === 'x'
+    ? { ...state, flipX: !state.flipX, rect: { ...state.rect, x: bounds.width - state.rect.x - state.rect.width } }
+    : { ...state, flipY: !state.flipY, rect: { ...state.rect, y: bounds.height - state.rect.y - state.rect.height } }
 }

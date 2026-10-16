@@ -18,6 +18,7 @@ type Scope = 'all' | 'selected'
 type SplitMode = 'ranges' | 'each'
 
 interface ExportPanelProps {
+  compact?: boolean
   pages: PageRef[]
   selected: string[]
   name: string
@@ -74,6 +75,7 @@ export function ExportPanel({
   sheetFields,
   nudge,
   onDismissNudge,
+  compact = false,
 }: ExportPanelProps) {
   const { t } = useTranslation('pdf')
   const ids = useId()
@@ -114,6 +116,7 @@ export function ExportPanel({
     onSplit(parsed.groups.map((group) => ({ label: rangeLabel(group), pages: group.map((index) => pages[index]) })), fileName, pdfOutput)
   }
 
+  const More = compact ? 'details' : 'div'
   return (
     <div>
       <section className="erp-doc-export__section">
@@ -161,6 +164,8 @@ export function ExportPanel({
         {statusFor('pdf')}
       </section>
 
+      <More className={compact ? 'cn-pdfeditor-more-exports' : undefined}>
+      {compact ? <summary>{t('editorStudio.moreExports')}</summary> : null}
       <section className="erp-doc-export__section" id={EXPORT_SECTION.split}>
         <h2 className="erp-doc-export__title">
           <Icon name="scissors" className="me-2" />
@@ -294,6 +299,7 @@ export function ExportPanel({
           {statusFor('batch')}
         </section>
       ) : null}
+      </More>
     </div>
   )
 }

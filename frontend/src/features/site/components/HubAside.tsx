@@ -9,6 +9,7 @@ import { toolPath } from '@/features/tools/hub/utils/tool-lookup'
 import { withBase } from '@/utils/url'
 import type { HubAside as HubAsideItem, HubPageText } from '../types/hub-page.types'
 import { PRODUCT_LINKS, SUPPORT_EMAIL } from '../config/site-navigation'
+import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
 
 type Of<K extends HubAsideItem['kind']> = Extract<HubAsideItem, { kind: K }>
 type AsideText = HubPageText['aside'][string]
@@ -42,7 +43,7 @@ function SpotlightCard({ item, text }: { item: Of<'spotlight'>; text: AsideText 
   if (!tool || tool.status !== 'ready') return null
   return (
     <section className="cn-hub-aside-card cn-hub-spotlight">
-      <span className="cn-hub-spotlight-icon" aria-hidden="true"><Icon name={tool.icon} /></span>
+      <span className="cn-hub-spotlight-icon" aria-hidden="true"><ToolArtwork tool={tool} /></span>
       <h2>{text.title}</h2>
       <p className="cn-hub-spotlight-subtitle">{text.subtitle}</p>
       <ul className="cn-hub-checks">{item.points.map((point) => <li key={point}><Icon name="check-circle-fill" />{text.points?.[point]}</li>)}</ul>

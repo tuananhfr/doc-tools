@@ -539,7 +539,7 @@
     "white": "White",
     "blue": "Blue",
     "gray": "Gray",
-    "backgroundHint": "Background changes suit solid-background photos. Review hair and edges before printing.",
+    "backgroundHint": "The background is replaced behind the subject, keeping hair and clothing. The first use downloads the background-removal model.",
     "shirt": "Clothing overlay",
     "keepShirt": "Keep original clothing",
     "blazer": "Navy blazer and white shirt",
@@ -550,7 +550,7 @@
     "x": "Horizontal offset",
     "y": "Vertical offset",
     "preview": "Background and clothing preview",
-    "failed": "Preview failed. Check the clothing image or use the original background and clothing."
+    "failed": "Could not create the preview. Try again or check the selected photo and shirt overlay."
   },
   "shop": {
     "open": "Layouts, logo & ZIP",
@@ -622,5 +622,328 @@
   "handoff": {
     "toIdPhoto": "Make an ID photo from this",
     "toCv": "Use as CV photo"
+  },
+  "idPhotoStudio": {
+    "breadcrumb": "Breadcrumb",
+    "tools": "Tools",
+    "category": "Photo & Video",
+    "back": "Go back",
+    "title": "ID photo",
+    "subtitle": "Create a clear portrait in the size you need",
+    "trust": {
+      "free": "Free",
+      "easy": "Easy to use",
+      "noAccount": "No account needed",
+      "private": "Processed on your device"
+    },
+    "heroNote": "A great photo today\nNew opportunities tomorrow!",
+    "sideNote": "Small tasks\nBigger possibilities!",
+    "cheer": "Helping you turn small tasks into bigger possibilities!",
+    "related": "More photo & video tools",
+    "guideTitle": "Quick guide",
+    "steps": {
+      "1": "Upload a photo or use your camera",
+      "2": "Choose the size and background",
+      "3": "Adjust lighting and crop if needed",
+      "4": "Preview and compare with the original",
+      "5": "Download your photo or print a sheet"
+    },
+    "tipsTitle": "Helpful tips",
+    "tips": {
+      "1": "Take your photo in good light",
+      "2": "Look straight ahead and keep your head level",
+      "3": "Avoid sunglasses, hats and heavy shadows",
+      "4": "Use a plain background for cleaner replacement",
+      "5": "Keep lighting adjustments subtle"
+    },
+    "faqTitle": "Frequently asked questions",
+    "faq": {
+      "1": {
+        "q": "Can I submit this photo with an application?",
+        "a": "You can create a photo in the requested size. Check the recipient’s size, background and face requirements before submitting it."
+      },
+      "2": {
+        "q": "Can I change the background?",
+        "a": "Yes. Choose a preset or custom color. The tool separates the subject before replacing the background to preserve clothing. Use Remove background if you need to refine individual edges."
+      },
+      "3": {
+        "q": "How can I get a sharper photo?",
+        "a": "Use a clear, well-lit original and avoid cropping too tightly. Check the actual resolution shown beside the preview before printing."
+      },
+      "4": {
+        "q": "Can I print the photos at home?",
+        "a": "Yes. Choose paper size and copies under Advanced, then select Print photos. Print at actual size / 100%, with fit-to-page disabled."
+      }
+    },
+    "upload": "Upload photo",
+    "customize": "Customize",
+    "previewDownload": "Preview & Download",
+    "dropTitle": "Drag your photo here",
+    "dropHint": "or choose a file",
+    "choosePhoto": "Choose photo",
+    "changePhoto": "Choose another",
+    "selectedPhoto": "Selected photo",
+    "or": "or",
+    "camera": "Take a photo",
+    "trySample": "Try a sample",
+    "loading": "Opening photo…",
+    "sampleFailed": "Could not load the sample. Try again or choose your own photo.",
+    "dismiss": "Dismiss",
+    "sampleTitle": "Sample photo (click to try)",
+    "sampleLabel": "Try a 3 × 4 portrait",
+    "sampleDisclosure": "AI-generated demo portrait",
+    "localHint": "Your photo is processed in your browser and is not uploaded.",
+    "removePhoto": "Remove selected photo",
+    "tabs": {
+      "size": "Size & background",
+      "beauty": "Enhance",
+      "align": "Crop",
+      "advanced": "Advanced"
+    },
+    "photoSize": "Choose a photo size",
+    "popular": "Popular",
+    "custom": "Custom",
+    "width": "Width",
+    "height": "Height",
+    "customLabel": "{{width}} × {{height}} cm",
+    "customInvalid": "Enter a width of 1–10 cm and a height of 1–15 cm.",
+    "backgroundTitle": "Choose a background",
+    "backgrounds": {
+      "original": "Original",
+      "white": "White",
+      "blue": "Blue",
+      "red": "Red",
+      "gray": "Gray",
+      "green": "Green"
+    },
+    "customBackground": "Choose a custom background color",
+    "identity": "Preserves your facial features",
+    "quality": "High-quality JPG output, up to 300 DPI",
+    "adjustCrop": "Adjust photo crop",
+    "beautyTitle": "Natural lighting adjustments",
+    "beautyHint": "Adjust brightness and contrast across the whole photo without changing facial features.",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "resetBeauty": "Reset lighting",
+    "alignTitle": "Align your portrait",
+    "alignHint": "Drag the crop frame to move it or drag a corner to resize. The selected photo ratio stays fixed.",
+    "alignEmpty": "Choose a photo to start cropping.",
+    "resetCrop": "Reset crop",
+    "printSettings": "Print sheet settings",
+    "shirtRequired": "Choose a PNG or WebP shirt image to continue.",
+    "preview": "Preview",
+    "original": "Original",
+    "originalPhoto": "Unedited original photo",
+    "previewPhoto": "Cropped photo with your adjustments",
+    "samplePreview": "Demo portrait, not your uploaded photo",
+    "updating": "Updating…",
+    "demoNote": "Demo portrait. Upload your photo or choose Try a sample to get started.",
+    "dimensions": "Size",
+    "resolution": "Resolution",
+    "file": "Image file",
+    "download": "Download photo",
+    "downloadSheet": "Download sheet ({{count}} photos)",
+    "print": "Print photos",
+    "exporting": "Creating your photo…",
+    "cancel": "Cancel",
+    "downloadAgain": "Download result again"
+  },
+  "cropStudio": {
+    "title": "Crop & edit photos",
+    "subtitle": "Frame your photo and make natural adjustments",
+    "heroNote": "Find the right frame\nKeep every moment!",
+    "steps": {
+      "1": "Upload a photo or use your camera",
+      "2": "Choose a ratio and the area to keep",
+      "3": "Rotate, flip or adjust lighting",
+      "4": "Compare the result with the original",
+      "5": "Save the edited photo to your device"
+    },
+    "tips": {
+      "1": "Use the original photo for sharper results",
+      "2": "Keep your subject inside the highlighted crop",
+      "3": "Choose 1:1 for a square or 3:4 for a portrait",
+      "4": "Keep brightness and contrast adjustments subtle",
+      "5": "Select Reset to start again from the original"
+    },
+    "faq": {
+      "1": {
+        "q": "Does this change my original file?",
+        "a": "No. Save edited photo creates a new image file. The original file on your device stays unchanged."
+      },
+      "2": {
+        "q": "Will the download be resized?",
+        "a": "The download uses the selected area at the original image resolution. Its exact dimensions appear under Output area."
+      },
+      "3": {
+        "q": "Can I enter exact crop dimensions?",
+        "a": "Yes. Open Advanced and enter coordinates and dimensions in pixels. With a fixed aspect ratio, the other dimension adjusts to keep that ratio."
+      },
+      "4": {
+        "q": "Can I make an ID photo afterwards?",
+        "a": "Yes. After saving, select Make an ID photo from this image to open the result in the ID photo tool."
+      }
+    },
+    "sampleLabel": "Try cropping a sample photo",
+    "editTitle": "Crop & adjust",
+    "previewTitle": "Preview & Save",
+    "tabs": {
+      "crop": "Crop",
+      "rotate": "Rotate & flip",
+      "light": "Lighting",
+      "advanced": "Advanced"
+    },
+    "flipHorizontal": "Flip horizontal",
+    "flipVertical": "Flip vertical",
+    "resetLight": "Reset lighting",
+    "preciseHint": "Enter pixels, then press Enter or leave the field to apply.",
+    "coordinates": {
+      "x": "X position (px)",
+      "y": "Y position (px)",
+      "width": "Width (px)",
+      "height": "Height (px)"
+    },
+    "keyboardHint": "Use arrow keys to move the crop or resize it from a handle. Hold Shift to move faster.",
+    "emptyStage": "Choose your photo to start adjusting the crop.",
+    "stageHint": "Frame the moments you want to keep",
+    "reset": "Reset",
+    "cropHint": "Drag the frame to move it, or drag a corner or edge to resize.",
+    "rotateHint": "Each turn rotates 90°. Flip buttons mirror the photo horizontally or vertically.",
+    "lightHint": "100% keeps the original brightness and contrast.",
+    "previewAlt": "Photo preview after cropping and adjustments",
+    "sourceSize": "Original",
+    "outputSize": "Output area",
+    "format": "Format",
+    "preserves": "Exports the selected crop at its original resolution",
+    "save": "Save edited photo",
+    "saving": "Saving photo…"
+  },
+  "convertStudio": {
+    "title": "Convert images",
+    "subtitle": "Convert JPG, PNG and WebP — one image or a whole batch",
+    "heroNote": "The right format\nReady to share!",
+    "uploadTitle": "Upload images",
+    "settingsTitle": "Conversion options",
+    "previewTitle": "Preview & Download",
+    "drop": "Drop images here",
+    "or": "or",
+    "sample": "Try a sample image",
+    "dismiss": "Dismiss",
+    "local": "Images are processed in your browser and are not uploaded to a server.",
+    "pngHint": "PNG uses lossless compression and does not need a quality setting.",
+    "keepSize": "Keep original dimensions",
+    "keepSizeHint": "No resizing or cropping",
+    "jpegHint": "JPG is ideal for photos. Transparent areas will become white.",
+    "pngDetail": "PNG preserves transparency and is suitable for logos and graphics.",
+    "webpHint": "WebP supports transparency and is suitable for the web.",
+    "converting": "Converting…",
+    "result": "Result",
+    "resultAlt": "Image after format conversion",
+    "zipReady": "{{count}} images converted",
+    "zipHint": "Download the ZIP file to get all converted images.",
+    "emptyPreview": "Your image will appear here",
+    "emptyHint": "Upload images, choose a format and start conversion.",
+    "firstPreview": "Showing the first original image in your batch.",
+    "selected": "Selected",
+    "imageCount": "{{count}} images",
+    "output": "Output format",
+    "size": "Result size",
+    "download": "Download image",
+    "downloadZip": "Download images (ZIP)",
+    "downloadHint": "Convert your images to preview and download the result here.",
+    "steps": {
+      "1": "Upload one or more images",
+      "2": "Choose JPG, PNG or WebP",
+      "3": "Select quality if needed",
+      "4": "Start the conversion",
+      "5": "Preview and download images or ZIP"
+    },
+    "tips": {
+      "1": "Choose JPG for photos and PNG for logos",
+      "2": "Use PNG or WebP to preserve transparency",
+      "3": "High quality keeps more image detail",
+      "4": "Multiple images download as one ZIP file"
+    },
+    "faq": {
+      "1": {
+        "q": "Will image dimensions change?",
+        "a": "No. Each image keeps its original width and height. Only the file format changes."
+      },
+      "2": {
+        "q": "Can I convert multiple images?",
+        "a": "Yes. Select multiple images or add more to the list. The results download as a ZIP file."
+      },
+      "3": {
+        "q": "Why did transparency become white?",
+        "a": "JPG does not support transparency. Choose PNG or WebP to preserve transparent areas."
+      },
+      "4": {
+        "q": "What if an image is already in the target format?",
+        "a": "Images already in the target format are kept unchanged in a batch. If all images match, select a different format to convert."
+      }
+    }
+  },
+  "collageStudio": {
+    "title": "Photo collage",
+    "subtitle": "Bring your favorite moments together in one frame",
+    "heroNote": "Photos together\nMemories to keep!",
+    "modeLabel": "Collage mode",
+    "simple": "Quick collage",
+    "advanced": "Advanced layouts",
+    "loading": "Opening advanced layouts…",
+    "uploadTitle": "Upload & Arrange photos",
+    "formats": "JPG, PNG, WebP · choose 2 to 9 photos",
+    "sample": "Try sample photos",
+    "sampleFailed": "Could not load the samples. Try again or choose local photos.",
+    "orderHint": "Use the arrows to change the order in your collage.",
+    "local": "Photos are processed on your device and are not uploaded to a server.",
+    "settingsTitle": "Choose a layout",
+    "columnCount": "{{count}} columns",
+    "gapPresets": "Quick spacing",
+    "noGap": "No gap",
+    "squareTiles": "One square tile per photo",
+    "cropHint": "Photos are center-cropped to fit each square. Check your subjects in the preview.",
+    "pngOutput": "Sharp PNG output",
+    "whiteBackground": "White background and spacing. Each photo tile is 900 × 900 px.",
+    "previewTitle": "Preview & Download",
+    "resultAlt": "Generated PNG collage",
+    "empty": "Your photo collage will appear here",
+    "emptyHint": "Choose 2 to 9 photos, then pick your preferred layout.",
+    "images": "Selected",
+    "outputSize": "Output dimensions",
+    "output": "Format",
+    "downloadAgain": "Download collage again",
+    "exportHint": "Original files stay unchanged on your device. Original photo metadata is not retained in the collage.",
+    "steps": {
+      "1": "Upload 2 to 9 photos",
+      "2": "Use the arrows to arrange photos",
+      "3": "Choose columns and spacing",
+      "4": "Check the layout in the preview",
+      "5": "Create and download your PNG collage"
+    },
+    "tips": {
+      "1": "Use photos with a shared theme",
+      "2": "Choose 1 column for a strip or 2–3 for a grid",
+      "3": "Use small gaps to emphasize your photos",
+      "4": "Open advanced layouts to add a title or logo"
+    },
+    "faq": {
+      "1": {
+        "q": "How many photos can I combine?",
+        "a": "Quick collage supports 2 to 9 JPG, PNG or WebP photos. Add, remove and reorder them before exporting."
+      },
+      "2": {
+        "q": "Why are the edges of my photos cropped?",
+        "a": "Quick collage center-crops photos into square tiles. Check the preview or use advanced layouts to choose how photos fit."
+      },
+      "3": {
+        "q": "What dimensions will my download have?",
+        "a": "Each tile is 900 × 900 px. Total dimensions depend on rows, columns and spacing. Exact dimensions appear below the preview."
+      },
+      "4": {
+        "q": "Can I add text or a logo?",
+        "a": "Yes. Open Advanced layouts to choose a template and add a title or logo. Your selected photos carry over to that mode."
+      }
+    }
   }
 }

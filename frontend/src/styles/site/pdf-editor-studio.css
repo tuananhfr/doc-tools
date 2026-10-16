@@ -1,0 +1,105 @@
+.erp-doc-tools.cn-pdfeditor-root { max-width: none; padding: 0; margin: 0; }
+.cn-pdfeditor-root .cn-idstudio-layout { grid-template-columns: 168px minmax(0, 1fr) 238px; gap: 12px; }
+.cn-pdfeditor-root .cn-idstudio-hero-note { font-size: 15px; }
+.cn-pdfeditor-root .cn-idstudio-hero h1 { font-size: 30px; }
+.cn-pdfeditor-nav { gap: 5px; }
+.cn-pdfeditor-nav > :is(button, a) { display: inline-flex; align-items: center; justify-content: center; flex: 1 0 auto; gap: 6px; min-height: 44px; padding: 8px 10px; border: 1px solid var(--cn-line); border-radius: 7px; background: var(--cn-surface); color: var(--cn-accent); font: inherit; font-size: 11px; text-decoration: none; }
+.cn-pdfeditor-nav > button[aria-pressed='true'] { border-color: #0067f4; background: #0067f4; color: white; font-weight: 700; }
+.cn-pdfeditor-columns { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.08fr) minmax(0, 1.12fr); align-items: start; gap: 8px; }
+.cn-pdfeditor-columns > *, .cn-pdfeditor-center { min-width: 0; }
+.cn-pdfeditor-center { display: grid; gap: 8px; }
+.cn-pdfeditor-input .erp-flow-picker { min-height: 240px; }
+.cn-pdfeditor-input .erp-flow-picker--compact { min-height: 105px; }
+.cn-pdfeditor-pages { padding-top: 6px; }
+.cn-pdfeditor-root .cn-pdfeditor-pages .erp-doc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-height: 0; max-height: 520px; margin: 10px 0 0; padding: 6px; border: 0; border-radius: 8px; overflow: auto; background: var(--cn-hero); }
+.cn-pdfeditor-pages .erp-doc-page { min-width: 0; border-radius: 6px; background: var(--cn-surface); border-color: var(--cn-line); box-shadow: none; }
+.cn-pdfeditor-pages .erp-doc-page__select { padding: 6px; }
+.cn-pdfeditor-pages .erp-doc-page__frame { max-height: 130px; }
+.cn-pdfeditor-pages .erp-doc-page__check { top: 4px; right: 4px; font-size: 12px; }
+.cn-pdfeditor-pages .erp-doc-page__zoom { width: 30px; height: 30px; min-height: 30px; right: 6px; bottom: 6px; opacity: 1; }
+.cn-pdfeditor-pages .erp-doc-page__caption { padding: 5px; font-size: 10px; }
+.cn-pdfeditor-pages .erp-doc-page__origin { display: none; }
+.cn-pdfeditor-pages .erp-doc-page__move { width: 30px; min-height: 32px; height: 32px; }
+.cn-pdfeditor-samples { margin-top: 24px; }
+.cn-pdfeditor-samples > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.cn-pdfeditor-samples button { display: grid; justify-items: center; align-content: start; gap: 10px; padding: 4px; min-width: 0; border: 0; background: transparent; color: var(--cn-ink); font: inherit; font-size: 10px; line-height: 1.6; }
+.cn-pdfeditor-samples button > span { display: grid; gap: 5px; width: 44px; height: 62px; padding: 7px; border: 1px solid var(--cn-line); border-radius: 4px; background: white; color: #0871f4; box-shadow: 2px 2px 0 var(--cn-tint); }
+.cn-pdfeditor-samples i:not(.bi) { height: 2px; background: #d7e3f4; }
+.cn-pdfeditor-samples i:last-child { width: 70%; }
+.cn-pdfeditor-empty-tools, .cn-pdfeditor-markbar > .erp-doc-markbar__group:first-child { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; width: 100%; }
+.cn-pdfeditor-empty-tools button, .cn-pdfeditor-markbar .erp-doc-markbar__tool { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; width: 100%; min-width: 0; height: auto; min-height: 65px; padding: 7px 2px; border: 1px solid var(--cn-line); border-radius: 7px; color: var(--cn-accent); background: var(--cn-surface); font: inherit; font-size: 10px; line-height: 1.5; text-align: center; }
+.cn-pdfeditor-empty-tools button:disabled { opacity: .65; }
+.cn-pdfeditor-empty-tools .bi, .cn-pdfeditor-markbar .erp-doc-markbar__tool > .bi { font-size: 22px; }
+.cn-pdfeditor-markbar .erp-doc-markbar__tool:nth-child(3n) > .bi { color: #079c7e; }
+.cn-pdfeditor-markbar .erp-doc-markbar__tool:nth-child(4n) > .bi { color: #e58b00; }
+.cn-pdfeditor-markbar .erp-doc-markbar__tool[aria-pressed='true'] { background: var(--cn-hero); border-color: var(--cn-accent); box-shadow: 0 0 0 1px var(--cn-tint); }
+.cn-pdfeditor-toolhost:empty { display: none; }
+.cn-pdfeditor-markbar.erp-doc-markbar { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; border: 0; background: transparent; }
+.cn-pdfeditor-markbar .erp-doc-markbar__group { flex-wrap: wrap; gap: 4px; }
+.cn-pdfeditor-markbar .erp-doc-markbar__actions { width: 100%; justify-content: space-between; }
+.cn-pdfeditor-markbar .erp-doc-markbar__notice { font-size: 11px; line-height: 1.7; }
+.cn-pdfeditor-more-tools { width: 100%; font-size: 11px; color: var(--cn-accent); }
+.cn-pdfeditor-more-tools > summary { padding-block: 4px; cursor: pointer; }
+.cn-pdfeditor-more-tools > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+.cn-pdfeditor-root .cn-pdfeditor-tools .erp-doc-toolbar { position: static; display: block; margin: 10px 0 0; padding: 8px 0 0; border: 0; border-top: 1px solid var(--cn-line); border-radius: 0; background: transparent; box-shadow: none; }
+.cn-pdfeditor-tools:has(.cn-pdfeditor-markbar) .erp-doc-toolbar__primary > .erp-doc-tool:nth-child(-n+3) { display: none; }
+.cn-pdfeditor-tools .erp-doc-toolbar__primary, .cn-pdfeditor-tools .erp-doc-toolbar__group { display: flex; flex-wrap: wrap; gap: 4px; }
+.cn-pdfeditor-tools .erp-doc-toolbar .erp-doc-tool { flex: 1 0 auto; padding-inline: 5px; font-size: 10px; }
+.cn-pdfeditor-tools .erp-doc-toolbar__status { margin-top: 6px; font-size: 10px; }
+.cn-pdfeditor-tools .erp-doc-toolbar__status .btn { padding: 4px; font-size: 10px; }
+.cn-pdfeditor-options .erp-doc-export { position: static; width: auto; min-width: 0; max-height: none; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.cn-pdfeditor-options .erp-doc-export__tabs { gap: 0; margin-bottom: 10px; }
+.cn-pdfeditor-options .erp-doc-export__tabs .nav-link { min-height: 44px; padding: 5px 4px; font-size: 10px; }
+.cn-pdfeditor-options .erp-doc-export__section { padding: 12px 0; }
+.cn-pdfeditor-options .erp-doc-export__section:first-child { padding-top: 0; }
+.cn-pdfeditor-options .erp-doc-export__options { padding: 10px; gap: 8px; margin-block: 12px; }
+.cn-pdfeditor-options .erp-doc-export__label { margin-bottom: 6px; }
+.cn-pdfeditor-options :is(.erp-doc-export__label, .erp-doc-export__sublabel, .form-label) { font-size: 11px; }
+.cn-pdfeditor-options :is(.form-check-label, .erp-doc-export__note, .form-text) { font-size: 11px; line-height: 1.7; }
+.cn-pdfeditor-options .erp-doc-export__scope { margin-block: 14px; }
+.cn-pdfeditor-options .form-check { min-height: 32px; }
+.cn-pdfeditor-options .form-select, .cn-pdfeditor-options .form-control { min-height: 40px; font-size: 12px; }
+.cn-pdfeditor-more-exports { margin-top: 14px; border-top: 1px solid var(--cn-line); }
+.cn-pdfeditor-more-exports > summary { padding-block: 12px; cursor: pointer; color: var(--cn-accent); font-size: 12px; font-weight: 600; }
+.cn-pdfeditor-inline { display: flex; flex-direction: column; height: 610px; min-height: 0; overflow: hidden; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); }
+.cn-pdfeditor-inline .erp-doc-preview__bar { flex: none; gap: 3px 6px; padding: 5px; background: var(--cn-surface); border-color: var(--cn-line); }
+.cn-pdfeditor-inline .erp-doc-preview__title { flex: 1 0 100%; font-size: 11px; line-height: 1.6; }
+.cn-pdfeditor-inline .erp-doc-preview__origin { font-size: 10px; }
+.cn-pdfeditor-inline .erp-doc-preview__group { gap: 2px; flex-wrap: wrap; }
+.cn-pdfeditor-inline .erp-doc-preview__group > .erp-doc-tool { width: 32px; min-height: 36px; padding: 5px; }
+.cn-pdfeditor-inline .erp-doc-tool__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cn-pdfeditor-inline .erp-doc-tool { background: transparent; border-color: var(--cn-line); color: var(--cn-accent); }
+.cn-pdfeditor-inline .erp-doc-preview__percent { min-width: 40px; font-size: 10px; }
+.cn-pdfeditor-inline .erp-doc-preview__close { margin-inline-start: auto; width: 36px; min-height: 36px; }
+.cn-pdfeditor-inline .erp-doc-preview__stage { flex: 1 1 0; min-height: 0; min-width: 0; padding: 10px; background: #dce4ed; overscroll-behavior: contain; }
+.cn-pdfeditor-inline .erp-doc-preview__sheet { flex: none; }
+.cn-pdfeditor-inline .erp-doc-preview__state { font-size: 12px; }
+.cn-pdfeditor-empty-preview { display: grid; justify-items: center; align-content: center; gap: 16px; min-height: 440px; padding: 24px 10px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); text-align: center; }
+.cn-pdfeditor-empty-preview strong { font-size: 13px; }
+.cn-pdfeditor-empty-preview p { margin: 0; font-size: 11px; color: var(--cn-muted); line-height: 1.8; }
+.cn-pdfeditor-paper { display: grid; align-content: start; gap: 9px; width: 135px; height: 180px; padding: 18px; background: white; border: 1px solid #d6e2f1; border-radius: 4px; box-shadow: 5px 5px 0 var(--cn-tint); text-align: start; }
+.cn-pdfeditor-paper > .bi { color: #f43756; font-size: 32px; margin-bottom: 6px; }
+.cn-pdfeditor-paper > span { height: 3px; background: #dce6f3; }
+.cn-pdfeditor-paper > span:nth-child(3n) { width: 70%; }
+.cn-pdfeditor-view > .cn-idstudio-note { margin: 12px 0 0; }
+.cn-pdfeditor-studio :is(button, a, input, select, summary):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 2px; }
+[data-theme='dark'] .cn-pdfeditor-inline .erp-doc-preview__stage { background: #263747; }
+@media (max-width: 1199px) {
+  .cn-pdfeditor-root .cn-idstudio-layout { grid-template-columns: 155px minmax(0, 1fr); }
+  .cn-pdfeditor-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  .cn-pdfeditor-view { grid-column: 1 / -1; }
+  .cn-pdfeditor-inline { height: 700px; }
+  .cn-pdfeditor-root .cn-idstudio-help { grid-column: 2; }
+}
+@media (max-width: 767px) {
+  .cn-pdfeditor-root .cn-idstudio-layout { display: block; }
+  .cn-pdfeditor-root .cn-idstudio-hero h1 { font-size: 26px; }
+  .cn-pdfeditor-columns { grid-template-columns: minmax(0, 1fr); }
+  .cn-pdfeditor-view { grid-column: auto; }
+  .cn-pdfeditor-root .cn-pdfeditor-pages .erp-doc-grid { max-height: 285px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cn-pdfeditor-markbar .erp-doc-markbar__tool { min-height: 70px; font-size: 11px; }
+  .cn-pdfeditor-nav > :is(button, a) { font-size: 12px; }
+  .cn-pdfeditor-options :is(.form-check-label, .erp-doc-export__note, .form-text, .form-label, .erp-doc-export__label) { font-size: 12px; }
+  .cn-pdfeditor-inline { height: 590px; }
+  .cn-pdfeditor-inline .erp-doc-preview__group > .erp-doc-tool { min-height: 44px; width: 38px; }
+}

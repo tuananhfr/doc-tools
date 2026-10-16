@@ -972,5 +972,139 @@
     "page": "Trang",
     "searchExport": "Tìm và tải xuống",
     "edit": "Chỉnh sửa PDF"
+  },
+  "imagesPdfStudio": {
+    "title": "Ảnh sang PDF",
+    "subtitle": "Gộp ảnh thành PDF gọn gàng, đúng thứ tự, dễ chia sẻ",
+    "heroNote": "Gom ?nh g?n\nChia s? d? d?ng!",
+    "category": "Tài liệu & PDF",
+    "related": "Các công cụ PDF liên quan",
+    "uploadTitle": "Tải ảnh hoặc chụp ảnh",
+    "drop": "Kéo thả ảnh vào đây",
+    "sample": "Thử ảnh mẫu",
+    "dismiss": "Đóng thông báo",
+    "orderHint": "Dùng mũi tên để xếp thứ tự ảnh. Mỗi ảnh sẽ thành một trang PDF.",
+    "local": "Ảnh được xử lý trên trình duyệt, không tải lên máy chủ.",
+    "settingsTitle": "Tùy chọn PDF",
+    "orientation": "Tự chọn chiều trang",
+    "orientationHint": "Trang ngang hoặc dọc theo từng ảnh, không cần xoay thủ công.",
+    "onePerPage": "Mỗi ảnh một trang",
+    "keepRatio": "Giữ đúng tỉ lệ ảnh, không kéo giãn hay cắt mất nội dung.",
+    "summary": "{{count}} ảnh → 1 tệp PDF",
+    "previewTitle": "Xem trước & Tải về",
+    "layout": "Bố cục PDF",
+    "empty": "Tài liệu của bạn sẽ hiện ở đây",
+    "emptyHint": "Chọn ảnh để xem cách sắp đặt trên trang trước khi tạo PDF.",
+    "previous": "Trang trước",
+    "next": "Trang sau",
+    "page": "Trang {{page}} / {{count}}",
+    "pages": "Số trang",
+    "size": "Dung lượng PDF",
+    "download": "Tải PDF về",
+    "openPdf": "Mở xem PDF",
+    "editPdf": "Chỉnh sửa PDF",
+    "downloadHint": "Bấm Tạo PDF ở bước 2 để nhận tệp tải về.",
+    "steps": {
+      "1": "Chọn ảnh hoặc chụp bằng camera",
+      "2": "Sắp xếp ảnh theo thứ tự mong muốn",
+      "3": "Chọn khổ giấy và lề trang",
+      "4": "Xem trước từng trang rồi bấm Tạo PDF",
+      "5": "Tải PDF về hoặc chỉnh sửa tiếp"
+    },
+    "tips": {
+      "1": "Dùng ảnh rõ nét, đủ sáng để dễ đọc",
+      "2": "Chọn A4 để in hồ sơ, tài liệu",
+      "3": "Chọn Vừa ảnh để trang ôm theo tỉ lệ ảnh",
+      "4": "Kiểm tra thứ tự trước khi tạo PDF"
+    },
+    "faq": {
+      "1": {
+        "q": "Có thể thêm nhiều ảnh cùng lúc không?",
+        "a": "Có. Bạn có thể chọn nhiều ảnh JPG, PNG hoặc chụp liên tiếp bằng camera. Mỗi ảnh được đặt trên một trang PDF."
+      },
+      "2": {
+        "q": "Ảnh có bị cắt hoặc kéo giãn không?",
+        "a": "Không. Ảnh được đặt vừa trong khổ giấy và lề đã chọn, giữ đúng tỉ lệ gốc."
+      },
+      "3": {
+        "q": "Có thể đổi thứ tự ảnh không?",
+        "a": "Có. Dùng mũi tên lên/xuống cạnh từng tệp trong danh sách. Thứ tự này chính là thứ tự trang khi xuất PDF."
+      },
+      "4": {
+        "q": "Có thể sửa PDF sau khi tạo không?",
+        "a": "Có. Bấm Chỉnh sửa PDF ở phần kết quả để mở tài liệu vừa tạo trong công cụ chỉnh sửa PDF."
+      }
+    }
+  },
+  "editorStudio": {
+    "title": "Chỉnh sửa PDF",
+    "subtitle": "Chỉnh chữ, ghi chú, sắp xếp và xuất PDF ngay trên trình duyệt",
+    "heroNote": "Chỉnh PDF dễ dàng\nGọn từng tài liệu!",
+    "category": "Tài liệu & PDF",
+    "related": "Các công cụ PDF liên quan",
+    "functions": "Chức năng PDF",
+    "edit": "Chỉnh sửa",
+    "uploadTitle": "Tải tệp PDF lên",
+    "drop": "Kéo thả tệp PDF vào đây",
+    "local": "Tệp được xử lý trên thiết bị, không tải lên máy chủ.",
+    "pagesTitle": "Các trang tài liệu",
+    "pagesHint": "Bấm để chọn và xem trang. Kéo hoặc dùng mũi tên để đổi thứ tự.",
+    "samplesTitle": "Dùng thử với tệp mẫu",
+    "samples": {
+      "invoice": "Hóa đơn mẫu",
+      "contract": "Hợp đồng mẫu",
+      "notes": "Biên bản mẫu"
+    },
+    "sampleBusy": "Đang tạo tệp mẫu…",
+    "sampleFailed": "Chưa tạo được tệp mẫu. Bạn có thể thử lại hoặc chọn tệp từ máy.",
+    "toolsTitle": "Công cụ chỉnh sửa",
+    "optionsTitle": "Tùy chọn & Xuất tệp",
+    "previewTitle": "Xem trước & Chỉnh sửa",
+    "needFile": "Tải PDF lên hoặc chọn tệp mẫu để bắt đầu.",
+    "emptyPreview": "Tài liệu của bạn sẽ hiện ở đây",
+    "emptyHint": "Chọn tệp để xem và chỉnh sửa từng trang.",
+    "previewHint": "Phần xem trước sử dụng chính nội dung của tệp bạn chọn.",
+    "editHint": "Chọn công cụ ở cột giữa, thao tác trực tiếp trên trang. Mở toàn màn hình khi cần xem rõ hơn.",
+    "fullscreen": "Toàn màn hình",
+    "moreExports": "Tách PDF, xuất ảnh, Word & Excel",
+    "nav": {
+      "sign": "Ký PDF",
+      "split-pdf": "Tách / Ghép",
+      "convert-file": "Chuyển đổi",
+      "compress-pdf": "Nén PDF",
+      "pdf-password": "Bảo vệ"
+    },
+    "steps": {
+      "1": "Tải tệp PDF hoặc dùng thử tệp mẫu",
+      "2": "Chọn trang và công cụ cần sử dụng",
+      "3": "Chỉnh chữ, thêm ghi chú hoặc đánh dấu",
+      "4": "Kiểm tra nội dung trên bản xem trước",
+      "5": "Chọn tùy chọn và xuất PDF về máy"
+    },
+    "tips": {
+      "1": "Dùng tệp PDF gốc để giữ chất lượng tốt",
+      "2": "Mở toàn màn hình để chỉnh chi tiết nhỏ",
+      "3": "Dùng Hoàn tác nếu muốn quay lại bước trước",
+      "4": "Kiểm tra phạm vi trang trước khi xuất"
+    },
+    "faq": {
+      "1": {
+        "q": "Có sửa được chữ trong PDF không?",
+        "a": "Công cụ Sửa chữ hỗ trợ viết lại nội dung trên các trang phù hợp. Với trang scan hoặc cấu trúc phức tạp, công cụ sẽ hiển thị khả năng xử lý và phương án thay thế."
+      },
+      "2": {
+        "q": "Các dấu vẽ có đi theo tệp tải về không?",
+        "a": "Có. Chữ, nét vẽ, ghi chú và dấu đã áp dụng sẽ được xuất theo cách ghi dấu bạn chọn trong tùy chọn PDF."
+      },
+      "3": {
+        "q": "Có thể chỉnh nhiều trang không?",
+        "a": "Có. Chọn trang ở danh sách bên trái hoặc dùng nút chuyển trang trong phần xem trước. Thứ tự, thao tác xoay và nội dung chỉnh sửa đều được giữ trong phiên."
+      },
+      "4": {
+        "q": "Tệp có được tải lên máy chủ không?",
+        "a": "Nội dung tài liệu được xử lý trên trình duyệt. Hãy xuất tệp về máy để giữ các thay đổi trước khi rời trang hoặc đóng trình duyệt."
+      }
+    },
+    "moreTools": "Thêm công cụ đánh dấu"
   }
 }

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { Modal, Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
@@ -50,6 +51,12 @@ interface PagePreviewModalProps {
   onPrev: (() => void) | null
   onNext: (() => void) | null
   onClose: () => void
+  embedded?: boolean
+  toolbarHost?: HTMLElement | null
+}
+
+function PreviewShell({ inline, marking, cropping, onClose, children }: { inline: boolean; marking: boolean; cropping: boolean; onClose: () => void; children: ReactNode }) {
+  return inline ? <div className="erp-doc-preview cn-pdfeditor-inline">{children}</div> : <Modal show fullscreen keyboard={!marking && !cropping} onHide={onClose} contentClassName="erp-doc-preview" aria-labelledby="doc-preview-title">{children}</Modal>
 }
 
 const NO_MARKUPS: Markup[] = []
@@ -114,6 +121,8 @@ export function PagePreviewModal({
   onPrev,
   onNext,
   onClose,
+  embedded = false,
+  toolbarHost,
 }: PagePreviewModalProps) {
   const { t } = useTranslation('pdf')
   const stage = useRef<HTMLDivElement | null>(null)
@@ -122,7 +131,9 @@ export function PagePreviewModal({
   const [frame, setFrame] = useState<Box | null>(null)
   const [mode, setMode] = useState<ZoomMode>('page')
   const { host, size, zoom, status } = usePagePreview(source, page, mode, frame)
-  const markup = useMarkupSession()
+  const markup = useMarkupSession(embedded ? 'select' : undefined)
+  const [expanded, setExpanded] = useState(false)
+  const inline = embedded && !expanded
   const markups = page.markups ?? NO_MARKUPS
   const selectedMarkup = markup.selectedId ? markups.find((item) => item.id === markup.selectedId) : undefined
   const selectTool = markup.tool === 'select'
@@ -326,15 +337,19 @@ export function PagePreviewModal({
   const percent = zoom === null ? '—' : `${Math.round(zoom * 100)}%`
   const origin = describeOrigin(source, page.pageIndex)
 
+  const markbar = marking ? <MarkupToolbar
+    studio={inline}
+    tool={markup.tool}
+    target={markup.tool === 'select' ? (selectedMarkup?.kind ?? null) : markup.tool}
+    style={selectTool && selectedMarkup ? { ...markup.style, ...styleOfMarkup(selectedMarkup) } : markup.style}
+    realEdit={reflow.status !== 'unavailable' && !surfaceEdit}
+    canDelete={hasSelection} canUndo={canUndo} canRedo={canRedo}
+    onTool={markup.chooseTool} onStyle={restyle} onDelete={deleteSelected}
+    onUndo={onUndo} onRedo={onRedo} onDone={inline ? () => markup.chooseTool('select') : toggle}
+  /> : null
+
   return (
-    <Modal
-      show
-      fullscreen
-      keyboard={!marking && !cropping}
-      onHide={onClose}
-      contentClassName="erp-doc-preview"
-      aria-labelledby="doc-preview-title"
-    >
+    <PreviewShell inline={inline} marking={marking} cropping={cropping} onClose={embedded ? () => setExpanded(false) : onClose}>
       <div className="erp-doc-preview__bar">
         <h2 id="doc-preview-title" className="erp-doc-preview__title">
           <span className="erp-doc-preview__no">
@@ -396,29 +411,13 @@ export function PagePreviewModal({
           ) : null}
         </div>
 
-        <button type="button" className="erp-doc-tool erp-doc-preview__close" title={t('preview.closeHint')} onClick={onClose}>
-          <Icon name="x-lg" />
-          <span className="erp-doc-tool__label">{t('preview.close')}</span>
+        <button type="button" className="erp-doc-tool erp-doc-preview__close" title={inline ? t('editorStudio.fullscreen') : t('preview.closeHint')} onClick={embedded ? () => setExpanded(value => !value) : onClose}>
+          <Icon name={inline ? 'arrows-fullscreen' : 'x-lg'} />
+          <span className="erp-doc-tool__label">{inline ? t('editorStudio.fullscreen') : t('preview.close')}</span>
         </button>
       </div>
 
-      {marking ? (
-        <MarkupToolbar
-          tool={markup.tool}
-          target={markup.tool === 'select' ? (selectedMarkup?.kind ?? null) : markup.tool}
-          style={selectTool && selectedMarkup ? { ...markup.style, ...styleOfMarkup(selectedMarkup) } : markup.style}
-          realEdit={reflow.status !== 'unavailable' && !surfaceEdit}
-          canDelete={hasSelection}
-          canUndo={canUndo}
-          canRedo={canRedo}
-          onTool={markup.chooseTool}
-          onStyle={restyle}
-          onDelete={deleteSelected}
-          onUndo={onUndo}
-          onRedo={onRedo}
-          onDone={toggle}
-        />
-      ) : null}
+      {inline && toolbarHost ? createPortal(markbar, toolbarHost) : markbar}
 
       {crop ? <CropBar rect={crop.rect} busy={crop.busy} onApply={() => void applyCrop()} onCancel={cancelCrop} /> : null}
 
@@ -480,6 +479,6 @@ export function PagePreviewModal({
           </span>
         )}
       </div>
-    </Modal>
+    </PreviewShell>
   )
 }
