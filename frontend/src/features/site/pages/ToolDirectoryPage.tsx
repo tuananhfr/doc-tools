@@ -62,7 +62,7 @@ export default function ToolDirectoryPage() {
             <div className="cn-directory-title-row"><div><h1 id="cn-directory-title">{studio('title')}</h1><p>{studio('lead')}</p></div>
               <div className="cn-directory-summary"><Icon name="bar-chart-line" /><div><strong>{studio('ready', { count: allReady })}</strong>{allSoon ? <span>{studio('soon', { count: allSoon })}</span> : null}</div></div>
             </div>
-            <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} />
+            <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} suggestions={catalog} />
             <p className="cn-directory-search-hint"><Icon name="lightbulb" />{studio('searchHint')}</p>
           </div>
         </section>

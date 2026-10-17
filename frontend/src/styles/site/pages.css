@@ -19,6 +19,43 @@
 .cn-page-section { padding-block: 28px 4px; }
 .cn-page-section:last-child { padding-bottom: 36px; }
 .cn-page-section > h2 { font-size: 22px; font-weight: 700; letter-spacing: -.8px; margin: 0 0 6px; }
+.cn-ecosystem-page .cn-page-hero { position: relative; overflow: hidden; background: #f4f9fc; padding-block: 10px 16px; }
+.cn-ecosystem-page .cn-page-hero::after { content: ''; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(180deg, rgb(244 249 252 / 0%), rgb(226 240 246 / 72%)); pointer-events: none; }
+.cn-ecosystem-page .cn-page-hero > .cn-container { position: relative; z-index: 1; }
+.cn-ecosystem-page .cn-page-hero-layout { min-height: 280px; padding-top: 8px; }
+.cn-ecosystem-page .cn-page-hero-text h1 { max-width: 600px; font-size: clamp(36px, 4.2vw, 60px); letter-spacing: -2.5px; }
+.cn-ecosystem-page-kicker { display: block; margin-bottom: 8px; color: var(--cn-accent); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.cn-ecosystem-page .cn-page-hero-art { align-self: stretch; display: grid; place-items: center; overflow: hidden; }
+.cn-ecosystem-page .cn-page-hero-art img { width: min(100%, 620px); height: auto; max-width: none; object-fit: contain; object-position: center bottom; border-radius: 0; opacity: .92; filter: drop-shadow(0 10px 15px rgb(36 93 153 / 8%)); }
+.cn-ecosystem-category-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.cn-ecosystem-category-tabs button { min-height: 36px; padding: 7px 20px; border: 1px solid #d7e0ea; border-radius: 999px; color: #18304f; background: rgb(255 255 255 / 78%); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.cn-ecosystem-category-tabs button:hover { border-color: var(--cn-accent); color: var(--cn-accent); }
+.cn-ecosystem-category-tabs button.is-active { border-color: #1265ba; color: #fff; background: #1265ba; }
+.cn-ecosystem-page-intro { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-block: 44px 20px; }
+.cn-ecosystem-page-intro h2 { margin: 0; font-size: 28px; letter-spacing: -1px; }
+.cn-ecosystem-page-mark { display: grid; place-items: center; width: 58px; height: 58px; flex: none; border-radius: 50%; color: var(--cn-accent); background: var(--cn-tint); font-size: 28px; }
+.cn-ecosystem-service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding-bottom: 28px; }
+.cn-ecosystem-service-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 11px; min-height: 106px; padding: 15px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); color: var(--cn-ink); background: var(--cn-surface); text-decoration: none; transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.cn-ecosystem-service-card:hover { border-color: var(--cn-accent); box-shadow: 0 10px 26px rgb(12 37 77 / 12%); transform: translateY(-2px); }
+.cn-ecosystem-service-card--0 { background: #eff7ff; }
+.cn-ecosystem-service-card--1 { background: #f4f1ff; }
+.cn-ecosystem-service-card--2 { background: #fff4ed; }
+.cn-ecosystem-service-card--3 { background: #effaf3; }
+.cn-ecosystem-service-card--4 { background: #edfafd; }
+.cn-ecosystem-service-card--more { grid-column: span 2; background: #f4f8fb; }
+[data-theme='dark'] .cn-ecosystem-service-card { background: var(--cn-surface); }
+.cn-ecosystem-service-icon { display: grid; place-items: center; width: 43px; height: 43px; flex: none; border-radius: 12px; color: var(--cn-accent); background: rgb(255 255 255 / 72%); font-size: 22px; }
+.cn-ecosystem-service-card:nth-child(4n + 2) .cn-ecosystem-service-icon { color: #1778b9; }
+.cn-ecosystem-service-card:nth-child(4n + 3) .cn-ecosystem-service-icon { color: #e45677; }
+.cn-ecosystem-service-card:nth-child(4n + 4) .cn-ecosystem-service-icon { color: #e56b23; }
+.cn-ecosystem-service-card:nth-child(4n + 5) .cn-ecosystem-service-icon { color: #6540b6; }
+.cn-ecosystem-service-copy { min-width: 0; }
+.cn-ecosystem-service-copy strong, .cn-ecosystem-service-copy small { display: block; }
+.cn-ecosystem-service-copy strong { font-size: 14px; }
+.cn-ecosystem-service-copy small { margin-top: 3px; color: var(--cn-muted); font-size: 11px; line-height: 1.45; }
+.cn-ecosystem-service-arrow { color: var(--cn-accent); font-size: 15px; }
+.cn-ecosystem-page-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 28px 48px; border-top: 1px solid var(--cn-line); }
+.cn-ecosystem-page-footer p { margin: 0; color: var(--cn-muted); font-size: 14px; }
 .cn-page-search { max-width: 640px; margin-top: 18px; }
 
 .cn-page-callout { display: flex; gap: 14px; padding: 20px 22px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); }
@@ -191,6 +228,8 @@
 
 @media (max-width: 1023px) {
   .cn-page-hero-layout { grid-template-columns: minmax(0, 1fr) 200px; gap: 20px; }
+  .cn-ecosystem-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-ecosystem-service-card--more { grid-column: span 2; }
   .cn-about-products { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .cn-about-product:not(:last-child)::after { right: 50%; top: auto; bottom: -19px; transform: translateX(50%) rotate(135deg); }
   .cn-about-story { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -211,6 +250,17 @@
   .cn-install-tab { flex-basis: 140px; }
   .cn-install-panel { padding: 18px 16px; }
   .cn-page-callout { padding: 18px 16px; }
+  .cn-ecosystem-page-intro { align-items: flex-start; padding-block: 30px 16px; }
+  .cn-ecosystem-page .cn-page-hero { padding-block: 8px 12px; }
+  .cn-ecosystem-page .cn-page-hero-layout { min-height: 0; padding-top: 6px; }
+  .cn-ecosystem-page .cn-page-hero-art { display: grid; min-height: 150px; margin-top: 12px; }
+  .cn-ecosystem-page .cn-page-hero-art img { width: 100%; max-height: 160px; }
+  .cn-ecosystem-page-intro h2 { font-size: 23px; }
+  .cn-ecosystem-page-mark { display: none; }
+  .cn-ecosystem-service-grid { grid-template-columns: minmax(0, 1fr); gap: 9px; }
+  .cn-ecosystem-service-card--more { grid-column: auto; }
+  .cn-ecosystem-service-card { min-height: 82px; }
+  .cn-ecosystem-page-footer { align-items: flex-start; flex-direction: column; padding-bottom: 32px; }
   .cn-about-stats { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .cn-about-stats > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--cn-line); padding-top: 12px; }
   .cn-topic-grid { gap: 8px; }

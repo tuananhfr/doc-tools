@@ -1,4 +1,8 @@
 .cn-tool-search { position: relative; display: flex; align-items: center; gap: 8px; padding: 5px 5px 5px 16px; background: var(--cn-surface); border: 1px solid #a3c3e7; border-radius: 32px; text-align: left; }
+.cn-tool-search__suggestions { position: absolute; z-index: 3; top: calc(100% + 8px); left: 0; right: 0; list-style: none; padding: 6px; margin: 0; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); box-shadow: var(--cn-landing-shadow); }
+.cn-tool-search__suggestions a { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 12px; border-radius: 8px; color: var(--cn-ink); text-decoration: none; font-size: 13px; }
+.cn-tool-search__suggestions a:hover, .cn-tool-search__suggestions a:focus-visible { background: var(--cn-tint); color: var(--cn-accent); outline: none; }
+.cn-tool-search__suggestions .bi { flex: none; color: var(--cn-accent); }
 .cn-tool-search > .bi { font-size: 17px; color: var(--cn-muted); }
 .cn-tool-search input { border: 0; background: transparent; min-width: 0; width: 100%; flex: 1; height: var(--cn-tap); color: var(--cn-ink); font: 400 12px/1.5 var(--cn-font-family); }
 .cn-tool-search input::placeholder { color: var(--cn-muted); opacity: 1; }

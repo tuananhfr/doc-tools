@@ -2,6 +2,7 @@ export const LANDING_NAVIGATION = [
   { key: 'features', hash: '#tien-ich' },
   { key: 'how', hash: '#cach-dung' },
   { key: 'privacy', hash: '#du-lieu' },
+  { key: 'ecosystem', hash: '/he-sinh-thai' },
 ] as const
 
 export const USE_CASES = [

@@ -69,6 +69,10 @@
     "lich-gia-dinh": {
       "title": "Lịch Gia Đình · Chuyện Nhỏ",
       "description": "Quản lý lịch, việc cần làm và liên hệ của gia đình trên thiết bị của bạn."
+    },
+    "he-sinh-thai": {
+      "title": "Hệ sinh thái dịch vụ | Chuyện Nhỏ",
+      "description": "Khám phá các dịch vụ và công cụ trong hệ sinh thái Chuyện Nhỏ, ERPCons và TekShot."
     }
   },
   "nav": {
@@ -184,6 +188,93 @@
   "partners": {
     "title": "Đối tác đồng hành",
     "disclosure": "Giới thiệu đối tác"
+  },
+  "ecosystemPage": {
+    "kicker": "HỆ SINH THÁI CHUYỆN NHỎ",
+    "title": "Khám phá hệ sinh thái",
+    "tagline": "Nhiều công cụ. Chung một điều tốt đẹp.",
+    "description": "Để công việc nhẹ hơn, cuộc sống vui hơn.",
+    "categoriesLabel": "Lọc dịch vụ",
+    "categories": {
+      "all": "Tất cả",
+      "free": "Miễn phí",
+      "work": "Công việc",
+      "life": "Cuộc sống",
+      "business": "Doanh nghiệp"
+    },
+    "trail": "Hệ sinh thái",
+    "servicesTitle": "Các dịch vụ trong hệ sinh thái",
+    "servicesDescription": "Chọn một dịch vụ để bắt đầu ngay, hoặc khám phá thêm những công cụ phù hợp với bạn.",
+    "servicesLabel": "Danh sách dịch vụ",
+    "footerLabel": "Liên kết hệ sinh thái",
+    "footer": "Một hệ sinh thái nhỏ, nhiều cách để giúp bạn mỗi ngày.",
+    "openTools": "Mở toàn bộ công cụ",
+    "more": {
+      "title": "Còn nhiều hơn thế…",
+      "description": "Khám phá thêm các dịch vụ trong hệ sinh thái."
+    },
+    "services": {
+      "healthDigital": {
+        "title": "Sức Khỏe Số",
+        "description": "Kiểm tra website, UI/UX"
+      },
+      "healthBusiness": {
+        "title": "Sức Khỏe DN",
+        "description": "Đánh giá hoạt động doanh nghiệp"
+      },
+      "houseBook": {
+        "title": "Sổ Nhà",
+        "description": "Hồ sơ ngôi nhà của bạn"
+      },
+      "ubotBuild": {
+        "title": "UbotBuild",
+        "description": "Công cụ thiết kế và xây dựng"
+      },
+      "ubotView": {
+        "title": "UbotView",
+        "description": "Chụp ảnh và ghi nhận thực tế"
+      },
+      "ubotConnect": {
+        "title": "UbotConnect",
+        "description": "Kết nối để cùng phát triển"
+      },
+      "tekshotOs": {
+        "title": "Tekshot OS",
+        "description": "Truyền thông và vận hành AI"
+      },
+      "chuyenNho": {
+        "title": "Chuyện Nhỏ",
+        "description": "Công cụ tiện ích hằng ngày"
+      },
+      "documents": {
+        "title": "Tài liệu & PDF",
+        "description": "Ghép, nén và chuyển đổi tài liệu"
+      },
+      "media": {
+        "title": "Hình ảnh & QR",
+        "description": "Xử lý ảnh, video và mã QR"
+      },
+      "family": {
+        "title": "Gia đình",
+        "description": "Lịch và tiện ích cho gia đình"
+      },
+      "work": {
+        "title": "Tính toán & công việc",
+        "description": "Quy đổi và giải quyết việc cần tính"
+      },
+      "smart": {
+        "title": "Đọc & nghe",
+        "description": "Đọc văn bản và hỗ trợ giọng nói"
+      },
+      "erpcons": {
+        "title": "ERPCons",
+        "description": "Quản trị doanh nghiệp và công việc"
+      },
+      "tekshot": {
+        "title": "TekShot AI",
+        "description": "Công nghệ AI cho công việc"
+      }
+    }
   },
   "ecosystem": {
     "title": "Khi một công cụ là chưa đủ…",
@@ -1358,8 +1449,10 @@
     "nav": {
       "features": "Tiện ích",
       "how": "Cách dùng",
-      "privacy": "Quyền riêng tư"
+      "privacy": "Quyền riêng tư",
+      "ecosystem": "Hệ sinh thái"
     },
+
     "hero": {
       "title": "Việc nhỏ mỗi ngày,",
       "highlight": "giải quyết nhẹ nhàng.",
