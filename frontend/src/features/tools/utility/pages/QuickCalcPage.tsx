@@ -1,13 +1,15 @@
+import { CalculationStudio } from '@/features/tools/utility/components/CalculationStudio'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button, Form } from 'react-bootstrap'
-import { CopyButton, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { Button } from 'react-bootstrap'
+import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { NumberField } from '../components/NumberField'
 import { CALC_FORMULAS, CALC_GROUPS, type CalcGroup } from '../config/calc-formulas'
 import { evaluateFormula, formatResult, QUANTITY_KEY } from '../utils/calc'
 
 const FIRST_FORMULA: Record<CalcGroup, string> = { area: 'rectangle', volume: 'box', mass: 'rebar' }
+const FORMULA_ICONS: Record<string, string> = { rectangle: 'aspect-ratio', triangle: 'triangle', circle: 'circle', box: 'box', cylinder: 'database', rebar: 'grip-vertical', plate: 'layers', density: 'boxes' }
 
 const NO_VALUES: Record<string, string> = {}
 
@@ -36,11 +38,10 @@ export default function QuickCalcPage() {
   const setValues = (patch: Record<string, string>) => setTexts((current) => ({ ...current, [formula.id]: { ...current[formula.id], ...patch } }))
 
   return (
-    <ToolBoard className="cn-quickcalc-workspace cn-calculation-workspace" layout="compact"
-      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
+    <CalculationStudio kind="quick"><ToolBoard className="cn-quickcalc-workspace cn-calculation-workspace" layout="compact"
       side={
         <div className="erp-tool-result cn-calculation-result" role="status">
-          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={group === 'area' ? 'bounding-box' : group === 'volume' ? 'box' : 'bricks'} /></span><div><h2>{studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={group === 'area' ? 'bounding-box' : group === 'volume' ? 'box' : 'bricks'} /></span><div><h2>2. {studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
           <p className="erp-tool-result__label">{t(groupInfo.label)}</p>
           {outcome.ok ? (
             <>
@@ -67,20 +68,20 @@ export default function QuickCalcPage() {
     >
       <ToolSegments label={t('quickCalc.groupLabel')} value={group} options={CALC_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title={t('quickCalc.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
+      <ToolPanel title={`1. ${t('quickCalc.panelTitle')}`} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
         <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
-            <label className="erp-flow-field__label" htmlFor={formulaSelect}>
+            <span className="erp-flow-field__label" id={formulaSelect}>
               {group === 'mass' ? t('quickCalc.material') : t('quickCalc.shape')}
-            </label>
-            <Form.Select id={formulaSelect} value={formula.id} onChange={(event) => setChosen((current) => ({ ...current, [group]: event.target.value }))}>
+            </span>
+            <div className="cn-calc-formulas" role="group" aria-labelledby={formulaSelect}>
               {formulas.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {t(item.label)}
-                </option>
+                <button type="button" key={item.id} aria-pressed={item.id === formula.id} onClick={() => setChosen(current => ({ ...current, [group]: item.id }))}>
+                  {item.id === 'trapezoid' ? <svg className="cn-calc-shape-art" width="24" height="24" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" aria-hidden="true"><path d="M9 7h14l7 19H2Z" /></svg> : <Icon name={FORMULA_ICONS[item.id]} />}<span>{t(item.label)}</span>
+                </button>
               ))}
-            </Form.Select>
+            </div>
           </div>
 
           <div className="erp-tool-form__grid">
@@ -110,6 +111,6 @@ export default function QuickCalcPage() {
           <p className="erp-flow-field__hint">{t('quickCalc.decimalHint')}</p>
         </div>
       </ToolPanel>
-    </ToolBoard>
+    </ToolBoard></CalculationStudio>
   )
 }

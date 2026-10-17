@@ -16,6 +16,7 @@ import { DocSidePanel, type SideTab } from '../components/DocSidePanel'
 import { DocToolbar } from '../components/DocToolbar'
 import { DropZone } from '../components/DropZone'
 import { PdfEditorStudio } from '../components/PdfEditorStudio'
+import { PdfReaderStudio } from '../components/PdfReaderStudio'
 import { ExportJump } from '../components/ExportJump'
 import { ExportPanel } from '../components/ExportPanel'
 import { FormFillPanel } from '../components/FormFillPanel'
@@ -342,7 +343,7 @@ export default function DocToolsPage() {
   const previewPage = previewIndex >= 0 ? pages[previewIndex] : undefined
   const previewSource = previewPage ? workspace.sources[previewPage.sourceId] : undefined
   const previewHits = useMemo(() => search.hits.filter((hit) => hit.pageId === previewPage?.id), [search.hits, previewPage?.id])
-  const dialogOpen = (!editorStudio && !!previewPage) || !!pendingReplace || !!unlock.current || scan.phase !== null
+  const dialogOpen = (!editorStudio && !reading && !!previewPage) || !!pendingReplace || !!unlock.current || scan.phase !== null
 
   const { undo, redo, remove, selectAll, clearSelection } = workspace
   useEffect(() => {
@@ -491,7 +492,7 @@ export default function DocToolsPage() {
   return (
     <div className={`erp-doc-tools${editorStudio ? ' cn-pdfeditor-root' : ''}${reading ? ' cn-pdf-reading' : ''}${readerPanel ? ' cn-pdf-reading--panel' : ''}${pages.length > 0 ? ' cn-pdf-has-pages' : ''}`}>
       <ToolLeaveGuard active={pages.length > 0} />
-      {editorStudio ? <PdfEditorStudio hasPages={pages.length > 0} loading={workspace.loading} onFiles={files => void handleFiles(files)} grid={grid} toolbar={toolbar} panel={panel} preview={preview} toolHost={setMarkupHost} activeTab={activeTab} onTab={setSideTab} hasForms={hasForms} busy={exporter.busy !== null} /> : <div className="erp-doc-tools__main">
+      {editorStudio ? <PdfEditorStudio hasPages={pages.length > 0} loading={workspace.loading} onFiles={files => void handleFiles(files)} grid={grid} toolbar={toolbar} panel={panel} preview={preview} toolHost={setMarkupHost} activeTab={activeTab} onTab={setSideTab} hasForms={hasForms} busy={exporter.busy !== null} /> : reading ? <PdfReaderStudio loading={workspace.loading} count={pages.length} files={Array.from(new Set(pages.map(page => workspace.sources[page.sourceId]?.name).filter((name): name is string => Boolean(name))))} onFiles={files => void handleFiles(files)} onReset={workspace.reset} busy={exporter.busy !== null} reader={readerPage && workspace.sources[readerPage.sourceId] ? <DocReader page={readerPage} source={workspace.sources[readerPage.sourceId]} position={readerIndex + 1} total={pages.length} stamp={stamp} hits={search.hits} activeHitId={search.activeHit?.id ?? null} onPage={index => { search.setActiveId(null); setReaderId(pages[index].id) }} /> : null} panel={panel} panelOpen={readerPanel} onPanelToggle={() => { setReaderPanel(value => !value); setSideTab('search') }} editorPath={toolPath(base, { slug: 'chinh-sua-pdf' })} editorState={location.state} /> : <div className="erp-doc-tools__main">
         {pages.length === 0 ? (
           <DropZone loading={workspace.loading} onFiles={(files) => void handleFiles(files)} />
         ) : (
@@ -518,7 +519,7 @@ export default function DocToolsPage() {
         )}
       </div>}
 
-      {!editorStudio ? preview : null}
+      {!editorStudio && !reading ? preview : null}
 
       {unlock.current ? (
         <UnlockPdfModal

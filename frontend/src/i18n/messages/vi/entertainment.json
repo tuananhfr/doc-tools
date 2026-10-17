@@ -81,12 +81,14 @@
     "source": "Nguồn thuật toán hiện có: Hồ Ngọc Đức; quyền sử dụng và dữ liệu chuẩn cần được đối chiếu trước khi phát hành bản mở rộng."
   },
   "errors": {
-    "NETWORK_ERROR": "Chưa hoàn tất yêu cầu. Dữ liệu nhập được giữ lại; hãy thử lại.",
+    "NETWORK_ERROR": "Không kết nối được máy chủ. Kiểm tra kết nối mạng rồi thử lại; lựa chọn của bạn vẫn được giữ.",
     "UNSUPPORTED_NAME": "Tên chỉ được gồm chữ cái tiếng Việt hoặc Latin, dấu cách, dấu nháy (') và gạch nối (-). Hãy bỏ số, ký hiệu, emoji hoặc chữ viết khác, hoặc để trống tên.",
     "INVALID_BIRTH_DATE": "Ngày sinh không tồn tại, trước năm 1800 hoặc ở tương lai.",
     "SESSION_EXPIRED": "Mã phiên đã hết hạn. Hãy bắt đầu phiên mới.",
     "IDEMPOTENCY_CONFLICT": "Mã phiên đã được dùng cho cấu hình khác. Hãy bắt đầu phiên mới.",
-    "RATE_LIMITED": "Bạn đã gửi nhiều yêu cầu. Đợi một phút rồi thử lại."
+    "RATE_LIMITED": "Bạn đã gửi nhiều yêu cầu. Đợi một phút rồi thử lại.",
+    "SERVICE_UNAVAILABLE": "Máy chủ tạm thời chưa sẵn sàng. Vui lòng thử lại sau; lựa chọn của bạn vẫn được giữ.",
+    "INVALID_RESPONSE": "Máy chủ trả về dữ liệu không hợp lệ. Lựa chọn của bạn vẫn được giữ; hãy thử lại."
   },
   "artwork": {
     "zoom": "Xem lớn: {{name}}",

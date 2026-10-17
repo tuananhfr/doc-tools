@@ -40,7 +40,7 @@ export function DocReader({ page, source, position, total, stamp, hits, activeHi
   return <div className="cn-pdf-reader">
     <div className="cn-pdf-reader__controls">
       <button type="button" className="btn btn-outline-secondary" disabled={position === 1} aria-label={t('stage.prevPage')} onClick={() => onPage(position - 2)}><Icon name="chevron-left" /></button>
-      <label className="cn-pdf-reader__page">{t('reader.page')}<select className="form-select" value={position - 1} onChange={event => onPage(Number(event.target.value))}>{Array.from({ length: total }, (_, index) => <option key={index} value={index}>{index + 1} / {total}</option>)}</select></label>
+      <label className="cn-pdf-reader__page">{t('reader.page')}<select className="form-select" aria-label={t('reader.page')} value={position - 1} onChange={event => onPage(Number(event.target.value))}>{Array.from({ length: total }, (_, index) => <option key={index} value={index}>{index + 1} / {total}</option>)}</select></label>
       <button type="button" className="btn btn-outline-secondary" disabled={position === total} aria-label={t('stage.nextPage')} onClick={() => onPage(position)}><Icon name="chevron-right" /></button>
       <button type="button" className="btn btn-outline-secondary" disabled={zoom === null} aria-label={t('preview.zoomOut')} onClick={() => setMode(stepZoom(zoom ?? 1, -1))}><Icon name="zoom-out" /></button>
       <output aria-live="polite">{Math.round((zoom ?? 1) * 100)}%</output>

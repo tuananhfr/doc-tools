@@ -17,7 +17,7 @@ export function WheelOptionsEditor({ text, parsed, disabled, onChange }: WheelOp
   const helpId = useId()
   const tooFew = parsed.options.length < WHEEL_LIMITS.minOptions
 
-  return <ToolPanel title={t('wheel.optionsTitle')}>
+  return <ToolPanel title={`1. ${t('wheel.optionsTitle')}`}>
     <label className="erp-flow-field__label" htmlFor={inputId}>{t('wheel.optionsLabel')}</label>
     <Form.Control id={inputId} as="textarea" rows={7} className="cn-wheel-options" value={text} disabled={disabled}
       aria-describedby={helpId} onChange={(event) => onChange(event.target.value)} />

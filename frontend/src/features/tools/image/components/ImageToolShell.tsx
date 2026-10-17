@@ -5,6 +5,7 @@ import type { ImageFiles } from '../hooks/useImageFiles'
 import { sizeLabel } from '../utils/image-format'
 
 interface ImageToolShellProps {
+  studioKind?: 'batch' | 'measure' | 'mark'
   images: ImageFiles
   /** Lượt chạy do trang giữ: trang cắt / đo cần biết đang ở bước nào để khoá vùng làm việc. */
   run: FlowRun
@@ -35,8 +36,9 @@ const ACCEPT = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
  * luồng của "Chuyện Nhỏ" và mời khách đăng nhập sau khi tải. Trang công cụ chỉ
  * còn khai tuỳ chọn, vùng làm việc và việc cần chạy.
  */
-export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, sideIntro, runLabel, runIcon, blocked, task, mobilePreview, initialPanel, pickerExtra, resultActions }: ImageToolShellProps) {
+export function ImageToolShell({ images, run, multiple, pickerTitle, stage, options, sideIntro, runLabel, runIcon, blocked, task, mobilePreview, initialPanel, pickerExtra, resultActions, studioKind }: ImageToolShellProps) {
   const { t } = useTranslation('image')
+  const { t: layout } = useTranslation('image', { keyPrefix: 'extendedStudio.layout' })
   const nudge = useDownloadNudge()
   const done = run.state.phase === 'done' ? run.state.result.output : null
   const actions = done && resultActions ? resultActions(done) : null
@@ -57,6 +59,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
 
   return (
     <ToolFlow
+      studio={studioKind ? { mode: studioKind === 'batch' ? 'process' : 'canvas', inputTitle: layout(studioKind === 'batch' ? 'input' : 'canvasInput'), optionsTitle: layout(studioKind === 'batch' ? 'options' : 'canvasOptions'), previewTitle: layout('preview'), emptyTitle: layout('empty'), emptyHint: layout(studioKind === 'batch' ? 'batchHint' : 'canvasHint'), previewUrl: images.items[0]?.url } : undefined}
       mobilePreview={mobilePreview}
       initialPanel={initialPanel}
       pickerExtra={pickerExtra}

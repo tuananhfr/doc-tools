@@ -1,3 +1,4 @@
+import { CalculationStudio, CalculationResultHeading } from '@/features/tools/utility/components/CalculationStudio'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
@@ -29,13 +30,13 @@ export default function UnitConvertPage() {
   const setPair = (patch: Partial<Pair>) => setPairs((current) => ({ ...current, [group.id]: { ...current[group.id], ...patch } }))
 
   return (
-    <ToolBoard layout="compact"
+    <CalculationStudio kind="units"><ToolBoard className="cn-units-workspace" layout="compact"
       sideLabel={t('unitConvert.allUnits')}
       side={
         <>
-          <h2 className="erp-flow-options__title">
+          <CalculationResultHeading icon="arrow-left-right" title={t('unitConvert.allUnits')} /><p className="cn-calc-unit-context">
             {value === null ? t('unitConvert.allUnits') : t('unitConvert.equalsHeading', { value: formatQuantity(value), unit: t(from.symbol) })}
-          </h2>
+          </p>
           {value === null ? (
             <p className="erp-flow-field__hint">{wrong ? t('unitConvert.notNumber') : t('unitConvert.enterValue')}</p>
           ) : (
@@ -58,7 +59,7 @@ export default function UnitConvertPage() {
     >
       <ToolSegments label={t('unitConvert.groupLabel')} value={groupId} options={UNIT_GROUPS.map((item) => ({ value: item.id, label: t(item.label), icon: item.icon }))} onChange={setGroupId} />
 
-      <ToolPanel title={t('unitConvert.panelTitle')}>
+      <ToolPanel title={`1. ${t('unitConvert.panelTitle')}`}>
         <div className="erp-tool-form">
           <div className="erp-unit-pair">
             <NumberField label={t('unitConvert.value')} value={text} invalid={wrong} onChange={setText} />
@@ -108,6 +109,6 @@ export default function UnitConvertPage() {
           </div>
         </div>
       </ToolPanel>
-    </ToolBoard>
+    </ToolBoard></CalculationStudio>
   )
 }

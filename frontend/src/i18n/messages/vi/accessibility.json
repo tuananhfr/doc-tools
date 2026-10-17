@@ -126,5 +126,88 @@
         "RATE_LIMITED": "Bạn đã đọc nhiều link trong giờ này hoặc máy chủ đang bận. Hãy thử lại sau."
       }
     }
+  },
+  "studio": {
+    "category": "Đọc, nghe & Hỗ trợ",
+    "related": "Các công cụ hỗ trợ khác",
+    "free": "Miễn phí",
+    "easy": "Dễ sử dụng",
+    "noAccount": "Không cần tài khoản",
+    "browserVoice": "Giọng nói qua trình duyệt",
+    "localCamera": "Camera trên thiết bị",
+    "dictation": {
+      "title": "Ghi âm thành văn bản",
+      "subtitle": "Nói vào micro, xem chữ được nhận dạng rồi chỉnh sửa và tải về",
+      "heroNote": "Bạn nói tự nhiên\nChữ hiện ngay bên cạnh!",
+      "steps": {
+        "1": "Cho phép trình duyệt dùng micro",
+        "2": "Bấm bắt đầu và nói rõ ràng",
+        "3": "Xem văn bản được nhận dạng",
+        "4": "Dừng rồi sửa lại nội dung nếu cần",
+        "5": "Sao chép hoặc tải văn bản TXT"
+      },
+      "tips": {
+        "1": "Nói rõ từng câu trong nơi yên tĩnh",
+        "2": "Chữ đang nhận có thể đổi trước khi chốt",
+        "3": "Kiểm tra tên riêng và dấu câu"
+      },
+      "faq": {
+        "1": {
+          "q": "Có lưu tệp âm thanh không?",
+          "a": "Trang này dùng micro để nhận dạng lời nói thành chữ. Kết quả tải về là TXT, không phải tệp ghi âm."
+        },
+        "2": {
+          "q": "Vì sao không bắt đầu được?",
+          "a": "Tính năng phụ thuộc hỗ trợ nhận dạng giọng nói của trình duyệt và quyền micro. Hãy kiểm tra quyền truy cập rồi thử lại."
+        },
+        "3": {
+          "q": "Âm thanh có được gửi đi không?",
+          "a": "Nhận dạng sử dụng dịch vụ trình duyệt và có thể gửi âm thanh tới nhà cung cấp trình duyệt. Văn bản bạn chỉnh không được gửi tới máy chủ Chuyện Nhỏ."
+        }
+      },
+      "inputTitle": "1. Micro & Nhận dạng",
+      "outputTitle": "2. Văn bản & Tải về",
+      "startHint": "Nhấn micro hoặc nút bên dưới để bắt đầu.",
+      "listeningHint": "Nói tự nhiên. Nhấn Dừng khi bạn đọc xong.",
+      "textOnly": "Công cụ chuyển lời nói thành chữ; không lưu tệp âm thanh.",
+      "placeholder": "Văn bản nhận dạng hiện tại đây. Bạn cũng có thể gõ hoặc dán nội dung…",
+      "editHint": "Bạn có thể chỉnh sửa văn bản trước khi sao chép hoặc tải TXT."
+    },
+    "magnifier": {
+      "title": "Kính lúp",
+      "subtitle": "Dùng camera để phóng to chữ nhỏ và nhìn rõ chi tiết",
+      "heroNote": "Chữ nhỏ, vật nhỏ\nNhìn rõ hơn mỗi ngày!",
+      "steps": {
+        "1": "Cho phép truy cập camera",
+        "2": "Mở camera và hướng vào nội dung",
+        "3": "Kéo thanh để phóng to từ 1× đến 6×",
+        "4": "Dừng hình hoặc tăng tương phản khi cần",
+        "5": "Tắt camera khi xem xong"
+      },
+      "tips": {
+        "1": "Giữ camera ổn định và đủ ánh sáng",
+        "2": "Đổi camera để chọn góc nhìn phù hợp",
+        "3": "Dừng hình giúp đọc lâu hơn"
+      },
+      "faq": {
+        "1": {
+          "q": "Có chụp hay lưu hình ảnh không?",
+          "a": "Không. Camera chỉ dùng để xem trực tiếp hoặc tạm dừng hình. Công cụ không ghi lại hoặc gửi hình đi."
+        },
+        "2": {
+          "q": "Phóng to có làm chữ rõ hơn không?",
+          "a": "Phóng to giúp nhìn chi tiết lớn hơn nhưng phụ thuộc độ nét và khả năng lấy nét của camera. Hãy giữ camera ổn định."
+        },
+        "3": {
+          "q": "Tại sao đổi camera vẫn cùng một hình?",
+          "a": "Máy có thể chỉ có một camera. Công cụ ưu tiên camera trước hoặc sau khi thiết bị có hỗ trợ."
+        }
+      },
+      "previewTitle": "1. Camera & Hình ảnh",
+      "optionsTitle": "2. Phóng to & Điều khiển",
+      "emptyTitle": "Đưa chi tiết nhỏ vào tầm mắt",
+      "opening": "Đang mở camera…",
+      "zoomHint": "Phóng to kỹ thuật số từ 1× đến 6×. Dùng dừng hình để xem kỹ chi tiết."
+    }
   }
 }

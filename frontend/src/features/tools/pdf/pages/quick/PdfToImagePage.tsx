@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
+import { FileConversionStudio } from '../../components/quick/FileConversionStudio'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { convertTask } from '../../services/quick-tasks'
@@ -24,10 +25,11 @@ export default function PdfToImagePage() {
   const [format, setFormat] = useState<ImageFormat>('jpeg')
   const [dpi, setDpi] = useState(150)
   const pages = quick.items.reduce((sum, item) => sum + item.pages.length, 0)
-  const formats: FlowChoiceOption<ImageFormat>[] = FORMATS.map((option) => ({ ...option, hint: t(`pdfToImage.format.${option.value}Hint`) }))
 
   return (
-    <QuickToolShell
+    <FileConversionStudio kind="images"><QuickToolShell
+      conversionStudio="images"
+      resultKey={JSON.stringify([quick.items.map(item => item.source.id), format, dpi])}
       quick={quick}
       accept={ACCEPT}
       multiple
@@ -38,7 +40,8 @@ export default function PdfToImagePage() {
       task={() => convertTask(quick.items, format, dpi)}
       options={
         <>
-          <FlowChoice legend={t('pdfToImage.formatLegend')} value={format} options={formats} onChange={setFormat} />
+          <fieldset className="cn-fileconversion-formats cn-pdfimage-formats"><legend>{t('pdfToImage.formatLegend')}</legend><div>{FORMATS.map(option => <label key={option.value} className={`cn-fileconversion-format cn-fileconversion-format--${option.value}`}><input className="visually-hidden" type="radio" name={`${ids}-format`} checked={format === option.value} aria-label={option.label} onChange={() => setFormat(option.value)} /><span aria-hidden="true"><Icon name="file-earmark-image-fill" /><b>{option.label}</b></span><strong>{option.label}</strong></label>)}</div></fieldset>
+          <p className="erp-flow-field__hint">{t(`pdfToImage.format.${format}Hint`)}</p>
           <Form.Group controlId={`${ids}-dpi`} className="erp-flow-field">
             <Form.Label className="erp-flow-field__label">{t('dpi.label')}</Form.Label>
             <Form.Select value={dpi} aria-describedby={`${ids}-dpi-help`} onChange={(event) => setDpi(Number(event.target.value))}>
@@ -54,6 +57,6 @@ export default function PdfToImagePage() {
           </Form.Group>
         </>
       }
-    />
+    /></FileConversionStudio>
   )
 }

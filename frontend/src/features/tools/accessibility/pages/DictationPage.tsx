@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { Icon } from '@/components/ui'
+import { AccessibilityStudio } from '../components/AccessibilityStudio'
 import { speechLanguage } from '@/i18n/intl'
 
 interface SpeechResultEvent {
@@ -26,6 +27,7 @@ const DENIED_ERRORS = new Set(['not-allowed', 'service-not-allowed'])
 
 export default function DictationPage() {
   const { t } = useTranslation('accessibility')
+  const { t: s } = useTranslation('accessibility', { keyPrefix: 'studio.dictation' })
   const [text, setText] = useState('')
   const [interim, setInterim] = useState('')
   const [listening, setListening] = useState(false)
@@ -89,18 +91,24 @@ export default function DictationPage() {
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  return <ToolBoard layout="wide-result" side={<div className="erp-tool-result" aria-live="polite">
-    <p className="erp-tool-result__label">{t('dictation.status')}</p>
-    <p className="erp-tool-result__value">{listening ? t('dictation.listening') : supported ? t('shared.ready') : t('dictation.unsupported')}</p>
-    <p className="erp-tool-result__note">{t('dictation.privacy')}</p>
-    {error ? <p role="alert" className="erp-tool-result__note">{error}</p> : null}
-  </div>}>
-    <ToolPanel title={t('dictation.title')}>
-      <Button disabled={!supported} variant={listening ? 'outline-danger' : 'primary'} onClick={toggle}>{listening ? t('shared.stop') : t('dictation.start')}</Button>
-      <label className="erp-flow-field__label mt-3">{t('dictation.text')}<Form.Control as="textarea" rows={10} maxLength={100_000} value={text} onChange={(event) => setText(event.target.value)} /></label>
+  return <AccessibilityStudio kind="dictation"><div className="cn-accessstudio-columns cn-dictationstudio">
+    <section className="cn-idstudio-panel cn-dictationstudio-input"><h2>{s('inputTitle')}</h2>
+      <div className={`cn-dictationstudio-microphone${listening ? ' is-listening' : ''}`}>
+        <Button className="cn-dictationstudio-mic" disabled={!supported} variant={listening ? 'danger' : 'primary'} onClick={toggle} aria-label={listening ? t('shared.stop') : t('dictation.start')} aria-pressed={listening}><Icon name={listening ? 'stop-fill' : 'mic-fill'} /></Button>
+        <strong role="status">{listening ? t('dictation.listening') : supported ? t('shared.ready') : t('dictation.unsupported')}</strong>
+        <p>{s(listening ? 'listeningHint' : 'startHint')}</p>
+        <Button className="cn-accessstudio-primary" disabled={!supported} variant={listening ? 'outline-danger' : 'primary'} onClick={toggle}><Icon name={listening ? 'stop-circle' : 'mic'} />{listening ? t('shared.stop') : t('dictation.start')}</Button>
+      </div>
+      {error ? <p role="alert" className="cn-accessstudio-error">{error}</p> : null}
+      <p className="cn-accessstudio-note"><Icon name="info-circle" />{s('textOnly')}</p>
+      <p className="cn-accessstudio-note"><Icon name="shield-check" />{t('dictation.privacy')}</p>
+    </section>
+    <section className="cn-idstudio-panel cn-dictationstudio-output"><h2>{s('outputTitle')}</h2>
+      <label className="cn-accessstudio-label">{t('dictation.text')}<Form.Control as="textarea" rows={12} maxLength={100_000} placeholder={s('placeholder')} value={text} onChange={(event) => setText(event.target.value)} /></label>
       {/* Chữ tạm KHÔNG ghi vào ô văn bản: trình duyệt còn sửa nó tới khi chốt, ghi vào là người dùng sửa dở bị đè. */}
-      {listening && interim ? <p className="erp-tool-result__note mt-2" data-testid="dictation-interim"><em>{t('dictation.interim')}: {interim}</em></p> : null}
-      <div className="d-flex flex-wrap gap-2 mt-3"><Button variant="outline-secondary" disabled={!text} onClick={() => navigator.clipboard.writeText(text)}>{t('dictation.copy')}</Button><Button variant="outline-secondary" disabled={!text} onClick={download}>{t('dictation.download')}</Button></div>
-    </ToolPanel>
-  </ToolBoard>
+      {listening && interim ? <p className="cn-dictationstudio-interim" role="status" data-testid="dictation-interim"><em>{t('dictation.interim')}: {interim}</em></p> : null}
+      <p className="cn-accessstudio-note">{s('editHint')}</p>
+      <div className="cn-accessstudio-actions"><Button variant="outline-primary" disabled={!text} onClick={() => navigator.clipboard.writeText(text)}><Icon name="copy" />{t('dictation.copy')}</Button><Button disabled={!text} onClick={download}><Icon name="download" />{t('dictation.download')}</Button></div>
+    </section>
+  </div></AccessibilityStudio>
 }

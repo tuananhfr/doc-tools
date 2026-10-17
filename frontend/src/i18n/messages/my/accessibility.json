@@ -126,5 +126,88 @@
         "RATE_LIMITED": "You have read many links this hour or the server is busy. Try again later."
       }
     }
+  },
+  "studio": {
+    "category": "Reading, voice & Assistance",
+    "related": "More assistance tools",
+    "free": "Free",
+    "easy": "Easy to use",
+    "noAccount": "No account needed",
+    "browserVoice": "Browser speech service",
+    "localCamera": "Camera on your device",
+    "dictation": {
+      "title": "Speech to text",
+      "subtitle": "Speak into your microphone, edit recognized text and download it",
+      "heroNote": "Speak naturally\nSee your words!",
+      "steps": {
+        "1": "Allow microphone access",
+        "2": "Start and speak clearly",
+        "3": "Watch recognized text appear",
+        "4": "Stop and edit the text",
+        "5": "Copy or download a TXT file"
+      },
+      "tips": {
+        "1": "Speak clearly in a quiet place",
+        "2": "Interim words may change before finalization",
+        "3": "Check names and punctuation"
+      },
+      "faq": {
+        "1": {
+          "q": "Does this save an audio recording?",
+          "a": "This page recognizes speech from your microphone. Downloads are TXT documents, not audio files."
+        },
+        "2": {
+          "q": "Why can I not start?",
+          "a": "Recognition depends on browser support and microphone permission. Check access and try again."
+        },
+        "3": {
+          "q": "Can audio be sent to a service?",
+          "a": "Browser recognition may send audio to the browser provider. Edited text is not sent to the Chuyen Nho server."
+        }
+      },
+      "inputTitle": "1. Microphone & Recognition",
+      "outputTitle": "2. Text & Download",
+      "startHint": "Press the microphone or button below to start.",
+      "listeningHint": "Speak naturally. Press Stop when finished.",
+      "textOnly": "This tool turns speech into text; it does not save audio.",
+      "placeholder": "Recognized text appears here. You can also type or paste content…",
+      "editHint": "Edit the text before copying it or downloading TXT."
+    },
+    "magnifier": {
+      "title": "Magnifier",
+      "subtitle": "Use your camera to enlarge small text and details",
+      "heroNote": "Small text and details\nEasier to see!",
+      "steps": {
+        "1": "Allow camera access",
+        "2": "Open the camera and point at the content",
+        "3": "Adjust zoom from 1× to 6×",
+        "4": "Freeze or increase contrast if needed",
+        "5": "Turn the camera off when finished"
+      },
+      "tips": {
+        "1": "Keep the camera steady and well lit",
+        "2": "Switch cameras for a better view",
+        "3": "Freeze the frame to read at your own pace"
+      },
+      "faq": {
+        "1": {
+          "q": "Does this capture or save images?",
+          "a": "No. The camera is only used for live viewing or a paused frame. Images are not recorded or sent."
+        },
+        "2": {
+          "q": "Will zoom make text sharper?",
+          "a": "Zoom makes details larger, but clarity depends on camera focus and quality. Hold the camera steady."
+        },
+        "3": {
+          "q": "Why does switching show the same camera?",
+          "a": "Your device may have only one camera. Front or back camera is preferred when supported."
+        }
+      },
+      "previewTitle": "1. Camera & View",
+      "optionsTitle": "2. Zoom & Controls",
+      "emptyTitle": "Bring small details into view",
+      "opening": "Opening camera…",
+      "zoomHint": "Digital zoom from 1× to 6×. Freeze the frame to inspect details."
+    }
   }
 }

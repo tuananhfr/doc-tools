@@ -81,12 +81,14 @@
     "source": "Existing algorithm reference: Hồ Ngọc Đức; usage rights and golden reference data require validation before releasing extensions."
   },
   "errors": {
-    "NETWORK_ERROR": "The request did not complete. Your input is retained; retry.",
+    "NETWORK_ERROR": "Could not connect to the server. Check your connection and retry; your selections are preserved.",
     "UNSUPPORTED_NAME": "Names may only contain Vietnamese or Latin letters, spaces, apostrophes (') and hyphens (-). Remove digits, symbols, emoji or other scripts, or leave the name empty.",
     "INVALID_BIRTH_DATE": "The birth date is invalid, before 1800 or in the future.",
     "SESSION_EXPIRED": "This session key expired. Start a new session.",
     "IDEMPOTENCY_CONFLICT": "This key belongs to another configuration. Start a new session.",
-    "RATE_LIMITED": "Too many requests. Wait one minute and retry."
+    "RATE_LIMITED": "Too many requests. Wait one minute and retry.",
+    "SERVICE_UNAVAILABLE": "The server is temporarily unavailable. Please retry later; your selections are preserved.",
+    "INVALID_RESPONSE": "The server returned an invalid response. Your selections are preserved; please retry."
   },
   "artwork": {
     "zoom": "Enlarge: {{name}}",

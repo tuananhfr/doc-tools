@@ -1,7 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
+import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { Icon } from '@/components/ui'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
@@ -29,8 +30,9 @@ export default function SplitPdfPage() {
   const parts = plan?.ok ? plan.groups.length : 0
 
   return (
-    <div className="cn-pdf-quick-workspace cn-split-workspace">
+    <PdfQuickStudio kind="split"><div className="cn-pdf-quick-workspace cn-split-workspace">
     <QuickToolShell
+      pdfStudio="split"
       quick={quick}
       accept={ACCEPT}
       multiple={false}
@@ -81,7 +83,6 @@ export default function SplitPdfPage() {
         </>
       }
     />
-    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepRange'), studio('stepSave')]} tip={studio('tip')} /></div>
-    </div>
+    </div></PdfQuickStudio>
   )
 }

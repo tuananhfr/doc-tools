@@ -1,0 +1,46 @@
+.cn-officestudio .cn-idstudio-layout { grid-template-columns: 174px minmax(0, 1fr) 236px; gap: 14px; }
+.cn-officestudio .cn-idstudio-toolnav > a { min-height: 44px; padding: 9px; font-size: 12px; gap: 8px; }
+.cn-officestudio .cn-idstudio-toolnav > h2 { font-size: 14px; padding: 12px 10px; }
+.cn-officestudio .cn-idstudio-hero { margin-bottom: 14px; }
+.cn-officestudio .cn-idstudio-hero h1 { font-size: clamp(25px, 2.3vw, 34px); }
+.cn-officestudio .cn-idstudio-hero-note { white-space: pre-line; }
+.cn-officestudio .cn-idstudio-help-card { padding: 14px; }
+.cn-officestudio .cn-idstudio-help-card h2 { font-size: 15px; }
+.cn-officestudio .cn-idstudio-help-card :is(ol, ul) { font-size: 12px; line-height: 1.75; }
+.cn-officestudio .cn-office:not(.cn-office--expanded) { margin: 0; min-width: 0; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); box-shadow: none; overflow: hidden; }
+.cn-officestudio .cn-office-welcome-layout { display: block; }
+.cn-officestudio .cn-office:not(.cn-office--open) > .cn-office-toolbar { flex-wrap: wrap; padding: 14px 18px; background: var(--cn-hero); border-color: var(--cn-line); }
+.cn-officestudio .cn-office-identity { flex-wrap: wrap; min-width: 0; font-size: 12px; }
+.cn-officestudio .cn-office-start { display: grid; grid-template-columns: 155px minmax(0, 1fr); gap: 14px 26px; padding: 32px 26px; text-align: start; align-items: start; }
+.cn-officestudio .cn-office-start > * { min-width: 0; margin: 0; grid-column: 2; }
+.cn-officestudio .cn-office-start > :is(.cn-office-document, .cn-office-sheet-art, .cn-office-slide-art) { grid-column: 1; grid-row: 1 / span 7; justify-self: center; margin-top: 16px; }
+.cn-officestudio .cn-office-start h2 { font-size: 22px; line-height: 1.6; }
+.cn-officestudio .cn-office-start p { font-size: 13px; line-height: 1.85; max-width: 65ch; }
+.cn-officestudio .cn-office-start > .btn { width: 100%; min-width: 0; min-height: 46px; margin-block: 6px; }
+.cn-officestudio .cn-office-download { padding: 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); color: var(--cn-muted); }
+.cn-office-slide-art { display: grid; gap: 12px; width: 142px; padding: 16px; border: 1px solid var(--cn-line); border-radius: 10px; color: #ee8a12; background: var(--cn-hero); box-shadow: 9px 8px 0 var(--cn-tint); transform: rotate(-4deg); }
+.cn-office-slide-art > .bi { font-size: 30px; }
+.cn-office-slide-art > span { width: 78%; height: 5px; border-radius: 3px; background: currentColor; }
+.cn-office-slide-art > div { display: flex; align-items: end; gap: 9px; height: 54px; }
+.cn-office-slide-art i { flex: 1; height: 45%; border-radius: 4px 4px 0 0; background: #ffc26f; }
+.cn-office-slide-art i:nth-child(2) { height: 100%; background: #f49a20; }
+.cn-office-slide-art i:nth-child(3) { height: 72%; background: #ffb447; }
+.cn-officestudio .cn-office--open:not(.cn-office--expanded) .cn-office-frame { min-height: 70vh; width: 100%; }
+.cn-officestudio .cn-office-actions { flex-wrap: wrap; gap: 8px; }
+.cn-officestudio .cn-office:not(.cn-office--expanded) .cn-office-toolbar { flex-wrap: wrap; }
+.cn-processstudio-gif { display: block; width: 100%; height: auto; max-height: 360px; object-fit: contain; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); }
+@media (max-width: 1199px) {
+  .cn-officestudio .cn-idstudio-layout { grid-template-columns: 166px minmax(0, 1fr); }
+  .cn-officestudio .cn-idstudio-help { grid-column: 2; }
+  .cn-officestudio .cn-office-start { grid-template-columns: 115px minmax(0, 1fr); padding: 24px 18px; gap: 12px 20px; }
+  .cn-officestudio .cn-office-start > :is(.cn-office-document, .cn-office-sheet-art, .cn-office-slide-art) { max-width: 105px; }
+}
+@media (max-width: 767px) {
+  .cn-officestudio .cn-idstudio-layout { display: block; }
+  .cn-officestudio .cn-idstudio-hero h1 { font-size: 24px; }
+  .cn-officestudio .cn-idstudio-hero-note { display: none; }
+  .cn-officestudio .cn-office-start { display: flex; flex-direction: column; align-items: stretch; padding: 20px 16px; gap: 12px; }
+  .cn-officestudio .cn-office-start > :is(.cn-office-document, .cn-office-sheet-art, .cn-office-slide-art) { display: none; }
+  .cn-officestudio .cn-office-start h2 { font-size: 20px; }
+  .cn-officestudio .cn-idstudio-help { margin-top: 14px; }
+}

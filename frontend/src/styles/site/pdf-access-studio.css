@@ -1,0 +1,74 @@
+.cn-pdfquickstudio .cn-idstudio-toolnav a, .cn-accessstudio .cn-idstudio-toolnav a { min-height: 38px; padding-block: 6px; gap: 9px; font-size: 11px; }
+.cn-pdfquickstudio .cn-idstudio-toolnav a > .bi, .cn-accessstudio .cn-idstudio-toolnav a > .bi { font-size: 19px; }
+.cn-pdfquickstudio .cn-flowstudio { grid-template-columns: minmax(0, .95fr) minmax(0, 1fr) minmax(0, 1.1fr); }
+.cn-pdfquickstudio .cn-flowstudio-options .cn-merge-summary { margin: 0 0 18px; padding: 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); }
+.cn-pdfquickstudio .cn-merge-summary > .cn-studio-small-icon { display: none; }
+.cn-pdfquickstudio .cn-merge-summary h2 { margin: 0 0 8px; font-size: 13px; }
+.cn-pdfquickstudio .cn-merge-summary p { font-size: 11px; line-height: 1.8; }
+.cn-pdfquickstudio .cn-merge-summary dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 14px 0; }
+.cn-pdfquickstudio .cn-merge-summary dl > div { min-width: 0; padding: 8px; border: 1px solid var(--cn-line); border-radius: 7px; background: var(--cn-surface); }
+.cn-pdfquickstudio .cn-merge-summary dt { font-size: 11px; font-weight: 400; }
+.cn-pdfquickstudio .cn-merge-summary dd { margin: 4px 0 0; color: var(--cn-accent); font-size: 24px; font-weight: 700; }
+.cn-pdfquickstudio .erp-flow-choice { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.cn-pdfquickstudio .erp-flow-choice__item { align-items: start; margin: 0; padding: 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); }
+.cn-pdfquickstudio .erp-flow-choice__item:has(input:checked) { border-color: var(--cn-accent); background: var(--cn-hero); }
+.cn-pdfquickstudio .erp-flow-choice__item .form-check-input { margin-top: 4px; }
+.cn-pdfquickstudio .erp-flow-choice__name { display: block; color: var(--cn-ink); font-size: 12px; font-weight: 600; }
+.cn-pdfquickstudio .erp-flow-choice__hint { display: block; margin-top: 3px; font-size: 11px; line-height: 1.8; color: var(--cn-muted); }
+.cn-pdfquickstudio .erp-flow-result { padding: 22px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-pdfquickstudio .erp-flow-result__file-name { overflow-wrap: anywhere; }
+.cn-pdfquickstudio .erp-flow-file { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 8px; padding: 12px; }
+.cn-pdfquickstudio .erp-flow-file:has(.erp-flow-file__order) { grid-template-columns: 20px 40px minmax(0, 1fr); }
+.cn-pdfquickstudio .erp-flow-file__actions { grid-column: 1 / -1; justify-self: end; }
+.cn-pdfquickstudio .erp-flow-file__name { white-space: normal; overflow-wrap: anywhere; }
+.cn-pdfquickstudio .erp-flow-file__button { min-width: 40px; }
+.cn-pdfsource { min-width: 0; margin-top: 12px; }
+.cn-pdfsource-label { display: block; font-size: 11px; color: var(--cn-muted); }
+.cn-pdfsource .form-select { width: 100%; text-overflow: ellipsis; }
+.cn-pdfsource-toolbar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px; margin-block: 12px 0; padding: 4px; border: 1px solid var(--cn-line); border-bottom: 0; border-radius: 7px 7px 0 0; background: var(--cn-hero); }
+.cn-pdfsource-toolbar .btn { display: grid; place-items: center; min-width: 32px; min-height: 40px; padding: 6px; }
+.cn-pdfsource-toolbar span { font-size: 11px; white-space: nowrap; }
+.cn-pdfsource-toolbar span:first-of-type { margin-inline-end: auto; }
+.cn-pdfsource-viewport { min-height: 290px; max-height: 570px; padding: 12px; overflow: auto; border: 1px solid var(--cn-line); border-radius: 0 0 7px 7px; background: var(--cn-hero); }
+.cn-pdfsource-viewport img { display: block; max-width: none; height: auto; margin: 0 auto; box-shadow: 0 3px 12px rgb(0 0 0 / .12); }
+.cn-pdfsource-viewport > p { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 30px 0; font-size: 12px; line-height: 1.8; }
+.cn-pdfsource .cn-flowstudio-empty { min-height: 280px; }
+.cn-accessstudio-columns { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.2fr); gap: 12px; align-items: start; }
+.cn-accessstudio-columns > * { min-width: 0; }
+.cn-accessstudio-columns .btn { min-height: 44px; white-space: normal; overflow-wrap: anywhere; }
+.cn-accessstudio-columns .btn > .bi { margin-inline-end: 7px; }
+.cn-accessstudio-primary { width: 100%; }
+.cn-accessstudio-label { display: block; width: 100%; font-size: 12px; line-height: 1.8; }
+.cn-accessstudio-label .form-control { width: 100%; min-height: 44px; margin-top: 8px; border-color: var(--cn-line); background: var(--cn-surface); color: var(--cn-ink); font-size: 15px; line-height: 1.9; }
+.cn-accessstudio-label .form-range { display: block; margin-block: 18px 24px; }
+.cn-accessstudio-note { display: flex; align-items: start; gap: 8px; margin: 16px 0 0; color: var(--cn-muted); font-size: 12px; line-height: 1.85; }
+.cn-accessstudio-note > .bi { flex: none; color: var(--cn-accent); }
+.cn-accessstudio-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+.cn-accessstudio-error { padding: 12px; margin: 16px 0 0; border: 1px solid var(--cn-line); border-radius: 8px; color: var(--cn-red); background: var(--cn-surface); font-size: 12px; line-height: 1.8; }
+.cn-dictationstudio-microphone { display: flex; flex-direction: column; align-items: center; gap: 20px; margin-top: 16px; padding: 40px 20px 20px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); text-align: center; }
+.cn-dictationstudio-microphone p { margin: 0; font-size: 12px; line-height: 1.8; color: var(--cn-muted); }
+.cn-dictationstudio-microphone .cn-dictationstudio-mic { display: grid; place-items: center; width: 100px; height: 100px; margin-block: 10px 14px; border-radius: 50%; box-shadow: 0 0 0 12px color-mix(in srgb, var(--cn-accent) 10%, transparent), 0 0 0 24px color-mix(in srgb, var(--cn-accent) 5%, transparent); }
+.cn-dictationstudio-mic > .bi { margin: 0 !important; font-size: 40px; }
+.cn-dictationstudio-microphone.is-listening .cn-dictationstudio-mic { box-shadow: 0 0 0 12px color-mix(in srgb, var(--cn-red) 10%, transparent), 0 0 0 24px color-mix(in srgb, var(--cn-red) 5%, transparent); }
+.cn-dictationstudio-interim { padding: 12px; border-inline-start: 3px solid var(--cn-accent); background: var(--cn-hero); color: var(--cn-muted); font-size: 14px; line-height: 1.8; }
+.cn-magnifierstudio { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+.cn-accessstudio .cn-magnifier-stage { width: 100%; max-height: 560px; margin: 0; border: 1px solid var(--cn-line); border-radius: 10px; }
+.cn-accessstudio .cn-magnifier-empty { min-height: 320px; border-radius: 10px; }
+.cn-accessstudio .cn-magnifier-empty strong { font-size: 17px; }
+:is(.cn-pdfquickstudio, .cn-accessstudio) :is(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-pdfquickstudio .cn-flowstudio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-pdfquickstudio .cn-flowstudio-preview { grid-column: 1 / -1; }
+  .cn-pdfsource { max-width: 500px; margin-inline: auto; }
+  .cn-accessstudio-columns { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-pdfquickstudio .cn-flowstudio, .cn-accessstudio-columns { grid-template-columns: minmax(0, 1fr); }
+  :is(.cn-pdfquickstudio, .cn-accessstudio) .cn-idstudio-toolnav a { min-height: 44px; font-size: 12px; }
+  :is(.cn-pdfquickstudio, .cn-accessstudio) .cn-idstudio-panel :is(.btn, .form-control, .form-select) { min-height: 44px; font-size: 14px; }
+  .cn-pdfsource-toolbar .btn { min-width: 30px; padding: 4px; }
+  .cn-pdfsource-viewport { max-height: 440px; }
+  .cn-accessstudio-label { font-size: 14px; }
+  .cn-dictationstudio-microphone { padding: 26px 16px 16px; }
+  .cn-accessstudio .cn-magnifier-empty { min-height: 240px; padding: 24px 12px; }
+}

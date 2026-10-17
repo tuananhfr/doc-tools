@@ -1,7 +1,8 @@
+import { DailyStudio } from '@/features/tools/utility/components/DailyStudio'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, Form } from 'react-bootstrap'
-import { NumberField, readNumber, ToolBoard, ToolPanel, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { newId } from '@/utils/id'
@@ -46,8 +47,8 @@ export default function GroupSplitPage() {
   const money = (value: number) => t('shared.amount', { amount: formatNumber(Math.round(Math.abs(value))) })
   const duplicateText = duplicates.length ? t('groupSplit.duplicateNames', { names: duplicates.join(', ') }) : ''
 
-  return <ToolBoard className="cn-group-workspace" layout="wide-result" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepPeople'), studio('stepExpense'), studio('stepSettle')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result cn-group-result" aria-live="polite">
-    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="arrow-left-right" /></span><div><h2>{t('groupSplit.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
+  return <DailyStudio kind="group"><ToolBoard className="cn-group-workspace" layout="wide-result" side={<div className="erp-tool-result cn-group-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="arrow-left-right" /></span><div><h2>3. {t('groupSplit.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
     {result ? <>
       {result.transfers.length ? <ul className="erp-tool-rows">
         {result.transfers.map((transfer) => <li className="erp-tool-row" key={`${transfer.from}-${transfer.to}`}>
@@ -71,13 +72,13 @@ export default function GroupSplitPage() {
     </>}
     <p className="erp-tool-result__note">{t('groupSplit.note')}</p>
   </div>}>
-    <ToolPanel title={t('groupSplit.membersTitle')} actions={<span className="cn-studio-small-icon"><Icon name="people" /></span>}>
+    <ToolPanel title={`1. ${t('groupSplit.membersTitle')}`} actions={<span className="cn-studio-small-icon"><Icon name="people" /></span>}>
       <p className="cn-studio-form-hint">{studio('peopleHint')}</p>
       <label className="erp-flow-field__label" htmlFor={peopleId}>{t('groupSplit.onePerLine')}</label>
       <Form.Control id={peopleId} as="textarea" rows={3} value={peopleText} isInvalid={duplicates.length > 0} aria-describedby={duplicates.length ? `${peopleId}-dup` : undefined} onChange={(event) => changePeople(event.target.value)} />
       {duplicates.length ? <p id={`${peopleId}-dup`} className="erp-tool-form__error mb-0">{duplicateText}</p> : null}
     </ToolPanel>
-    <ToolPanel title={t('groupSplit.expensesTitle')} actions={<Button variant="outline-primary" size="sm" onClick={addExpense}><Icon name="plus-lg" className="me-2" />{t('groupSplit.addExpense')}</Button>}>
+    <ToolPanel title={`2. ${t('groupSplit.expensesTitle')}`} actions={<Button variant="outline-primary" size="sm" onClick={addExpense}><Icon name="plus-lg" className="me-2" />{t('groupSplit.addExpense')}</Button>}>
       {expenses.map((expense, index) => {
         const later = addedLater(roster, expense.knownIds, expense.participants)
         return <div className="cn-group-expense" key={expense.id}>
@@ -98,5 +99,5 @@ export default function GroupSplitPage() {
         </div>
       })}
     </ToolPanel>
-  </ToolBoard>
+  </ToolBoard></DailyStudio>
 }

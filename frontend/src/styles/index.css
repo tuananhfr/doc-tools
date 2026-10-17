@@ -200,4 +200,15 @@
 @import './site/qr-read-studio.css';
 @import './site/qr-code-studio.css';
 @import './site/media-studio.css';
+@import './site/image-utility-studio.css';
+@import './site/extended-image-studio.css';
+@import './site/pdf-access-studio.css';
+@import './site/file-conversion-studio.css';
+@import './site/pdf-workflow-studio.css';
+@import './site/pdf-review-studio.css';
+@import './site/text-document-studio.css';
+@import './site/calculation-studio.css';
+@import './site/entertainment-studio.css';
+@import './site/daily-studio.css';
+@import './site/office-studio.css';
 @import './site/embed.css';

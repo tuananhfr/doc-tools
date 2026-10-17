@@ -12,6 +12,7 @@ import { validateVideoFile, VIDEO_ACCEPT } from '../services/video-validation'
 import type { VideoOptions } from '../types/video.types'
 import styles from './VideoWorkspace.module.css'
 import { TrimVideoStudio, type TrimRangeControls } from './TrimVideoStudio'
+import { VideoProcessStudio } from './VideoProcessStudio'
 
 const sizeLabel = (bytes: number) => `${(bytes / 1024 / 1024).toFixed(2)} MB`
 
@@ -29,9 +30,8 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
   const inputUrl = useObjectUrl(file)
   const outputUrl = useObjectUrl(task.output?.blob ?? null)
   useEffect(() => setSupported(videoEngineSupported()), [])
-  const trimStart = options.action === 'trim' ? options.start : null
-  const trimEnd = options.action === 'trim' ? options.end : null
-  useEffect(() => { if (trimStart !== null) task.reset() }, [trimStart, trimEnd])
+  const settingsKey = JSON.stringify(options)
+  useEffect(() => { task.reset() }, [settingsKey])
   const chooseFile = (next: File | null) => {
     task.reset()
     setDuration(null)
@@ -44,7 +44,6 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
   const output = task.output
   const progress = task.progress
   const failure = fileError || task.error
-  const saving = output && file ? Math.round((1 - output.blob.size / file.size) * 100) : 0
   // Hai bản: cột phải trên màn rộng, ngay dưới thiết lập khi cột phải bị đẩy xuống cuối trang (<=1024px).
   // Bản kia `display: none` nên trình đọc màn hình không đọc hai lần.
   const actions = (placement: string) => <div className={placement}>
@@ -58,14 +57,14 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
   </div>
   const picker = <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
   if (options.action === 'trim') return <TrimVideoStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} range={trimRange} picker={picker} failure={failure} note={note}>{children}</TrimVideoStudio>
+  if (options.action === 'compress' || options.action === 'gif') return <VideoProcessStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} range={trimRange} picker={picker} failure={failure} note={note}>{children}</VideoProcessStudio>
   return <ToolBoard layout="balanced" className={`cn-video-workspace${studio ? ' cn-video-studio' : ''}`} after={studio ? <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studioCopy('stepChoose'), studioCopy('stepSet'), studioCopy('stepSave')]} tip={studioCopy('tip')} /></div> : undefined} side={<div className="erp-tool-result">
-    {studio ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={options.action === 'audio' ? 'headphones' : options.action === 'gif' ? 'file-earmark-image' : 'file-earmark-play'} /></span><div><h2>{t('workspace.result')}</h2><p>{studioCopy('resultHint')}</p></div></div> : <p className="erp-tool-result__label">{t('workspace.result')}</p>}
-    {studio && !output ? <div className="cn-video-empty" aria-hidden="true"><Icon name={options.action === 'audio' ? 'soundwave' : options.action === 'gif' ? 'images' : 'play-circle'} /><span /><span /></div> : null}
+    {studio ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="headphones" /></span><div><h2>{t('workspace.result')}</h2><p>{studioCopy('resultHint')}</p></div></div> : <p className="erp-tool-result__label">{t('workspace.result')}</p>}
+    {studio && !output ? <div className="cn-video-empty" aria-hidden="true"><Icon name="soundwave" /><span /><span /></div> : null}
     <p className={`erp-tool-result__value${output ? '' : ' erp-tool-result__value--empty'} ${styles.name}`}>{output ? sizeLabel(output.blob.size) : t('workspace.noOutput')}</p>
     {actions(styles.sideActions)}
     {output ? <>
       <p className={`${styles.name} mt-3`}>{output.name}</p>
-      {options.action === 'compress' ? <p className={styles.note}>{saving > 0 ? t('workspace.smaller', { percent: saving }) : t('workspace.notSmaller')}</p> : null}
       {!outputUrl ? null : output.blob.type.startsWith('video/') ? <video className={styles.preview} src={outputUrl} controls playsInline preload="metadata" aria-label={t('workspace.outputVideo')} /> : output.blob.type.startsWith('audio/') ? <audio className={styles.audio} src={outputUrl} controls preload="metadata" aria-label={t('workspace.outputAudio')} /> : <img className={styles.preview} src={outputUrl} alt={t('workspace.outputGif')} />}
       <Button className={`mt-3${studio ? ' cn-video-download' : ''}`} variant={studio ? 'primary' : 'outline-primary'} onClick={() => downloadOutput({ name: output.name, blob: output.blob })}>{studio ? <Icon name="download" className="me-2" /> : null}{t('workspace.download')}</Button>
     </> : null}
@@ -78,7 +77,6 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
       {file && inputUrl ? <>
         <video key={inputUrl} className={styles.preview} src={inputUrl} controls playsInline preload="metadata" aria-label={t('workspace.sourceVideo')} onLoadedMetadata={(event) => { const value = event.currentTarget.duration; setDuration(Number.isFinite(value) ? value : null) }} />
         <p className={styles.note}>{t('workspace.playbackHint')}</p></> : null}
-      {options.action === 'gif' ? <p className="cn-studio-form-hint cn-video-trim-hint"><Icon name="images" />{studioCopy('rangeHint')}</p> : null}
       <fieldset disabled={task.busy} className={styles.settings}><legend className="visually-hidden">{t('workspace.settingsLegend')}</legend>{children}</fieldset>
       {actions(styles.mainActions)}
 

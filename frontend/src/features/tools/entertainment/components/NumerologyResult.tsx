@@ -18,7 +18,7 @@ export function NumerologyResult({ result, onReset }: { result: EntertainmentEnv
   const rows = [reportTimeLine(t('report.calculatedAt'), calculatedAt), t('numerology.method'), ...(result.result.normalized_name ? [`${t('numerology.normalized')}: ${result.result.normalized_name}`] : []), `${t('numerology.year')}: ${result.result.personal_year}`,
     ...numerologyReadingLines(reading, nameOf)]
   return <section className="cn-ent-result">
-    <h2>{t('numerology.result')}</h2><p>{t('numerology.method')}</p>
+    <h2>2. {t('numerology.result')}</h2><p>{t('numerology.method')}</p>
     {result.result.normalized_name ? <p>{t('numerology.normalized')}: <strong>{result.result.normalized_name}</strong></p> : null}
     <p>{t('numerology.year')}: {result.result.personal_year}</p>
     <dl className="cn-ent-metrics">{result.result.metrics.map(metric => <div key={metric.id}>

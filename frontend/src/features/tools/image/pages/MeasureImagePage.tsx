@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
-import { ToolLeaveGuard, useFlowRun, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { useThemeTokens } from '@/hooks'
+import { ExtendedImageStudio } from '../components/ExtendedImageStudio'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { MeasureOptions } from '../components/MeasureOptions'
 import { MeasureStage } from '../components/MeasureStage'
@@ -29,9 +30,9 @@ export default function MeasureImagePage() {
   const marked = state.shapes.length > 0 || state.draft.length > 0 || state.reference !== null
 
   return (
-    <div className="cn-measure-workspace">
+    <ExtendedImageStudio kind="measure">
       <ToolLeaveGuard active={item !== null && marked} />
-      <ImageToolShell
+      <ImageToolShell studioKind="measure"
         images={images}
         run={run}
         multiple={false}
@@ -46,7 +47,6 @@ export default function MeasureImagePage() {
           return measureTask(item, state, { line: tokens.brand, reference: tokens.actionSecondary, halo: tokens.textOnAccent })
         }}
       />
-      <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepScale'), studio('stepMeasure')]} tip={studio('tip')} /></div>
-    </div>
+    </ExtendedImageStudio>
   )
 }

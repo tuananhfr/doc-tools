@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { compressTask } from '../../services/quick-tasks'
 import type { Compression } from '../../utils/compression'
@@ -21,7 +22,8 @@ export default function CompressPdfPage() {
   const levels: FlowChoiceOption<Level>[] = LEVELS.map((value) => ({ value, label: t(`compress.level.${value}`), hint: t(`compress.level.${value}Hint`) }))
 
   return (
-    <QuickToolShell
+    <PdfQuickStudio kind="compress"><QuickToolShell
+      pdfStudio="compress"
       quick={quick}
       accept={ACCEPT}
       multiple
@@ -36,6 +38,6 @@ export default function CompressPdfPage() {
           <p className="erp-flow-field__hint">{t('compress.note')}</p>
         </>
       }
-    />
+    /></PdfQuickStudio>
   )
 }

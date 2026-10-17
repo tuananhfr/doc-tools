@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { compareTask } from '../../services/compare-task'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
@@ -20,7 +21,9 @@ export default function ComparePdfPage() {
   const blocked = count < 2 ? t('compare.blockedTooFew') : count > 2 ? t('compare.blockedTooMany') : null
 
   return (
-    <QuickToolShell
+    <PdfQuickStudio kind="compare"><QuickToolShell
+      pdfStudio="compare"
+      resultKey={JSON.stringify([quick.items.map(item => item.source.id), ignoreSpace, ignoreCase])}
       quick={quick}
       accept={ACCEPT}
       multiple
@@ -53,6 +56,6 @@ export default function ComparePdfPage() {
           <p className="erp-flow-field__hint">{t('compare.note')}</p>
         </>
       }
-    />
+    /></PdfQuickStudio>
   )
 }

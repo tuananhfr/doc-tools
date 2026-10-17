@@ -8,8 +8,10 @@ import { FileList } from './FileList'
 import { FilePicker, type PickerCopy } from './FilePicker'
 import { FlowProgress } from './FlowProgress'
 import { FlowResult } from './FlowResult'
+import { StudioFlow, type StudioFlowConfig } from './StudioFlow'
 
-interface ToolFlowProps {
+export interface ToolFlowProps {
+  studio?: StudioFlowConfig
   picker: PickerCopy
   files: FlowFile[]
   loading: { done: number; total: number } | null
@@ -44,39 +46,42 @@ interface ToolFlowProps {
  * Khung luồng ba bước dùng chung cho các công cụ nhanh: chọn tệp → chạy → kết quả.
  * Chỉ vẽ; tệp do công cụ giữ, lượt chạy do `useFlowRun` giữ.
  */
-export function ToolFlow({
-  picker,
-  files,
-  loading,
-  rejected,
-  onDismissRejected,
-  onAddFiles,
-  onRemove,
-  onMove,
-  onClear,
-  pickerExtra,
-  stage,
-  options,
-  sideIntro,
-  runLabel,
-  runIcon,
-  blocked,
-  run,
-  onRun,
-  onEdit,
-  onDownloaded,
-  resultExtra,
-  waitingLabel,
-  mobilePreview = false,
-  initialPanel = 'input',
-}: ToolFlowProps) {
+export function ToolFlow(props: ToolFlowProps) {
+  const {
+    picker,
+    files,
+    loading,
+    rejected,
+    onDismissRejected,
+    onAddFiles,
+    onRemove,
+    onMove,
+    onClear,
+    pickerExtra,
+    stage,
+    options,
+    sideIntro,
+    runLabel,
+    runIcon,
+    blocked,
+    run,
+    onRun,
+    onEdit,
+    onDownloaded,
+    resultExtra,
+    waitingLabel,
+    mobilePreview = false,
+    initialPanel = 'input',
+  } = props
   const { state } = run
   const { t } = useTranslation('common')
   const [panel, setPanel] = useState(initialPanel)
 
-  if (state.phase === 'done') {
+  if (state.phase === 'done' && !props.studio?.inlineResult) {
     return <FlowResult result={state.result} onRestart={run.reset} onEdit={onEdit} onDownloaded={onDownloaded} extra={resultExtra} />
   }
+
+  if (props.studio) return <StudioFlow {...props} config={props.studio} />
 
   const running = state.phase === 'running'
 

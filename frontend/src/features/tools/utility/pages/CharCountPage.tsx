@@ -1,9 +1,10 @@
+import { TextDocumentStudio } from '@/features/tools/documents/components/TextDocumentStudio'
 import { useDeferredValue, useId, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
-import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { textStats, type TextStats } from '../utils/text-stats'
 
@@ -26,12 +27,11 @@ export default function CharCountPage() {
   const stats = useMemo(() => textStats(deferred), [deferred])
 
   return (
-    <ToolBoard className="cn-charcount-workspace" layout="balanced"
-      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
+    <TextDocumentStudio kind="count"><ToolBoard className="cn-charcount-workspace" layout="balanced"
       sideLabel={t('charCount.counts')}
       side={
         <>
-          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="123" /></span><div><h2>{t('charCount.counts')}</h2><p>{studio('resultHint')}</p></div></div>
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="123" /></span><div><h2>2. {t('charCount.counts')}</h2><p>{studio('resultHint')}</p></div></div>
           <dl className="erp-tool-stats" aria-live="polite">
             {ROWS.map((row) => (
               <div key={row.key} className="erp-tool-stat">
@@ -47,7 +47,7 @@ export default function CharCountPage() {
       }
     >
       <ToolPanel
-        title={t('charCount.panelTitle')}
+        title={`1. ${t('charCount.panelTitle')}`}
         actions={
           <Button variant="link" size="sm" className="erp-flow-files__clear" disabled={text === ''} onClick={() => setText('')}>
             <Icon name="x-lg" className="me-2" />
@@ -61,6 +61,6 @@ export default function CharCountPage() {
         </label>
         <Form.Control id={id} as="textarea" rows={14} className="erp-tool-textarea erp-tool-textarea--count" placeholder={t('charCount.placeholder')} value={text} onChange={(event) => setText(event.target.value)} />
       </ToolPanel>
-    </ToolBoard>
+    </ToolBoard></TextDocumentStudio>
   )
 }

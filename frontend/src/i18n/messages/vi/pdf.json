@@ -1106,5 +1106,546 @@
       }
     },
     "moreTools": "Thêm công cụ đánh dấu"
+  },
+  "quickStudio": {
+    "category": "Tài liệu & PDF",
+    "related": "Các công cụ PDF khác",
+    "layout": {
+      "input": "1. Tải tệp PDF lên",
+      "options": "2. Tùy chọn & Xử lý",
+      "preview": "3. Xem tài liệu nguồn",
+      "empty": "Tài liệu hiện tại đây",
+      "hint": "Đây là tài liệu nguồn. Sau khi xử lý, hãy xem và tải tệp ở màn hình kết quả."
+    },
+    "preview": {
+      "file": "Tài liệu đang xem",
+      "previous": "Trang trước",
+      "next": "Trang sau",
+      "zoomOut": "Thu nhỏ",
+      "zoomIn": "Phóng to",
+      "empty": "Xem trước tài liệu PDF",
+      "emptyHint": "Chọn tệp để xem nội dung và chuyển trang.",
+      "failed": "Không tải được bản xem trước. Bạn vẫn có thể thử xử lý tệp.",
+      "loading": "Đang dựng trang…",
+      "page": "Trang {{page}} của tài liệu nguồn"
+    },
+    "merge": {
+      "title": "Ghép PDF",
+      "subtitle": "Gộp nhiều tệp PDF thành một tài liệu theo thứ tự bạn chọn",
+      "heroNote": "Xếp đúng thứ tự\nGộp gọn một tệp!",
+      "steps": {
+        "1": "Chọn ít nhất hai tệp PDF",
+        "2": "Đổi thứ tự các tệp trong danh sách",
+        "3": "Kiểm tra số tệp và tổng số trang",
+        "4": "Bấm ghép để tạo tài liệu mới",
+        "5": "Xem kết quả và tải PDF về máy"
+      },
+      "tips": {
+        "1": "Dùng mũi tên để đổi thứ tự tệp",
+        "2": "Mọi trang trong mỗi tệp được giữ theo thứ tự",
+        "3": "Tệp có mật khẩu cần được mở khóa trước"
+      },
+      "faq": {
+        "1": {
+          "q": "Có chọn thứ tự ghép được không?",
+          "a": "Có. Dùng các nút lên, xuống cạnh từng tệp. Toàn bộ trang của tệp đứng trước sẽ được ghép trước."
+        },
+        "2": {
+          "q": "Có ghép các trang riêng lẻ được không?",
+          "a": "Công cụ này ghép toàn bộ các tệp. Nếu cần chọn từng trang, hãy tách hoặc sắp xếp PDF trước."
+        },
+        "3": {
+          "q": "Có gửi PDF lên máy chủ không?",
+          "a": "Tệp được xử lý trong trình duyệt trên thiết bị. Bạn tải kết quả khi ghép xong."
+        }
+      }
+    },
+    "split": {
+      "title": "Tách PDF",
+      "subtitle": "Chọn khoảng trang hoặc chia đều tài liệu thành các tệp nhỏ",
+      "heroNote": "Chọn đúng trang\nTách gọn tài liệu!",
+      "steps": {
+        "1": "Chọn một tệp PDF",
+        "2": "Chọn tách theo khoảng hoặc mỗi N trang",
+        "3": "Nhập khoảng trang hay số trang mỗi phần",
+        "4": "Kiểm tra số phần rồi bấm tách",
+        "5": "Tải PDF hoặc ZIP các phần"
+      },
+      "tips": {
+        "1": "Xem tổng số trang trước khi đặt khoảng",
+        "2": "Có thể chia đều theo số trang mỗi phần",
+        "3": "Nhiều phần được đóng gói chung trong ZIP"
+      },
+      "faq": {
+        "1": {
+          "q": "Có tách theo nhiều khoảng trang được không?",
+          "a": "Có. Chọn chế độ khoảng trang và nhập theo ví dụ ngay dưới ô nhập. Công cụ kiểm tra khoảng trước khi chạy."
+        },
+        "2": {
+          "q": "Phần cuối ít trang hơn có được giữ không?",
+          "a": "Có. Khi tách mỗi N trang, phần cuối vẫn được xuất dù chưa đủ N trang."
+        },
+        "3": {
+          "q": "Tại sao kết quả là ZIP?",
+          "a": "Khi tạo nhiều phần, công cụ gói các PDF trong một tệp ZIP để tải cùng lúc."
+        }
+      }
+    },
+    "compress": {
+      "title": "Nén PDF",
+      "subtitle": "Giảm dung lượng ảnh JPEG trong PDF, giữ chữ và các trang",
+      "heroNote": "Tệp gọn hơn\nChia sẻ dễ hơn!",
+      "steps": {
+        "1": "Chọn một hoặc nhiều PDF",
+        "2": "Chọn mức nén phù hợp",
+        "3": "Kiểm tra nội dung tài liệu nguồn",
+        "4": "Bấm nén và chờ xử lý",
+        "5": "Xem mức giảm rồi tải kết quả"
+      },
+      "tips": {
+        "1": "PDF nhiều ảnh JPEG thường giảm rõ hơn",
+        "2": "Chữ và ảnh PNG không bị nén lại",
+        "3": "Chọn mức vừa để ưu tiên chất lượng ảnh"
+      },
+      "faq": {
+        "1": {
+          "q": "Tại sao có PDF giảm rất ít?",
+          "a": "Công cụ nén lại ảnh JPEG đủ điều kiện. PDF chủ yếu chứa chữ, PNG hoặc ảnh đã nén tốt có thể giảm rất ít."
+        },
+        "2": {
+          "q": "Có xóa trang hay biến chữ thành ảnh không?",
+          "a": "Không. Luồng này giữ các trang và chữ, tập trung giảm dung lượng ảnh JPEG trong tài liệu."
+        },
+        "3": {
+          "q": "Có nén nhiều PDF một lúc không?",
+          "a": "Có. Chọn nhiều tệp để xử lý trong một lượt; các kết quả được đóng gói để tải chung."
+        }
+      }
+    },
+    "convert": {
+      "title": "PDF sang Word",
+      "subtitle": "Chuyển PDF sang Word, Excel hoặc ảnh từng trang",
+      "heroNote": "Từ PDF có sẵn\nĐỡ làm lại từ đầu!",
+      "steps": {
+        "1": "Chọn một hoặc nhiều tệp PDF",
+        "2": "Chọn Word, Excel, JPG hoặc PNG",
+        "3": "Tùy chọn OCR hoặc độ phân giải ảnh",
+        "4": "Bấm chuyển đổi và chờ xử lý",
+        "5": "Tải tệp rồi kiểm tra nội dung"
+      },
+      "tips": {
+        "1": "Luôn kiểm tra nội dung sau chuyển đổi",
+        "2": "Bật OCR nếu tài liệu có trang scan",
+        "3": "Chọn DPI khi xuất ảnh từng trang"
+      },
+      "faq": {
+        "1": {
+          "q": "Có giữ giống hệt bố cục PDF không?",
+          "a": "Word và Excel được dựng lại từ nội dung đọc được nên bố cục có thể thay đổi. Hãy kiểm tra trước khi sử dụng."
+        },
+        "2": {
+          "q": "PDF scan có chuyển được không?",
+          "a": "Có thể bật OCR để nhận dạng chữ trong trang scan. Kết quả phụ thuộc chất lượng ảnh và cần được kiểm tra lại."
+        },
+        "3": {
+          "q": "Có xuất ảnh thay vì Word không?",
+          "a": "Có. Chọn JPG hoặc PNG và độ phân giải. Mỗi trang được xuất thành ảnh; nhiều kết quả được gói trong ZIP."
+        }
+      }
+    },
+    "ocr": {
+      "title": "OCR văn bản",
+      "subtitle": "Nhận dạng chữ trong ảnh và PDF, kiểm tra rồi xuất định dạng cần dùng",
+      "heroNote": "Quét nhanh thành chữ\nĐỡ gõ lại từng dòng!",
+      "steps": {
+        "1": "Chọn PDF hoặc ảnh JPG, PNG",
+        "2": "Chọn định dạng xuất và loại nội dung",
+        "3": "Điều chỉnh các tùy chọn nhận dạng nếu cần",
+        "4": "Nhận dạng rồi kiểm tra từng phần được yêu cầu",
+        "5": "Xác nhận và tải kết quả"
+      },
+      "tips": {
+        "1": "Ảnh thẳng, đủ sáng giúp nhận dạng tốt hơn",
+        "2": "Chọn hồ sơ Bảng cho Excel hoặc CSV",
+        "3": "Kiểm tra chữ, số và bố cục trước khi xác nhận"
+      },
+      "faq": {
+        "1": {
+          "q": "Có cần kiểm tra lại kết quả không?",
+          "a": "Có. Chữ và số nhận dạng có thể sai. Hoàn tất bước kiểm tra và xác nhận trước khi xuất."
+        },
+        "2": {
+          "q": "Có xuất Word, Excel hoặc PDF được không?",
+          "a": "Có PDF, TXT, Word, Excel, CSV và JSON. Với Excel hoặc CSV, chọn hồ sơ Bảng và kiểm tra dữ liệu từng ô."
+        },
+        "3": {
+          "q": "Tài liệu được xử lý ở đâu?",
+          "a": "Trong trình duyệt trên thiết bị. Lần đầu sử dụng cần tải dữ liệu nhận dạng; tài liệu không phải gửi lên máy chủ để OCR."
+        }
+      },
+      "previewEmpty": "Xem trước ảnh hoặc tài liệu"
+    },
+    "images": {
+      "title": "PDF sang ảnh",
+      "subtitle": "Xuất từng trang PDF thành JPG hoặc PNG, tải ảnh hoặc gói ZIP",
+      "heroNote": "Mỗi trang một ảnh\nDễ lưu, dễ chia sẻ!",
+      "steps": {
+        "1": "Chọn một hoặc nhiều PDF",
+        "2": "Chọn định dạng JPG hoặc PNG",
+        "3": "Chọn độ phân giải 96, 150 hoặc 300 DPI",
+        "4": "Xem tài liệu nguồn rồi chuyển đổi",
+        "5": "Tải ảnh hoặc ZIP chứa các trang"
+      },
+      "tips": {
+        "1": "JPG thường phù hợp khi cần tệp nhẹ",
+        "2": "PNG giúp giữ rõ chữ và hình nét",
+        "3": "Nhiều trang được gói chung trong ZIP"
+      },
+      "faq": {
+        "1": {
+          "q": "Một trang hay nhiều trang được xuất?",
+          "a": "Toàn bộ trang trong các PDF đã chọn được xuất. Muốn lấy vài trang, hãy tách PDF trước."
+        },
+        "2": {
+          "q": "Tăng DPI có làm ảnh nét hơn không?",
+          "a": "DPI cao tạo ảnh lớn hơn và tốn bộ nhớ hơn. Độ nét còn phụ thuộc tài liệu nguồn; công cụ có thể hạ kích thước khi chạm giới hạn thiết bị."
+        },
+        "3": {
+          "q": "Vì sao kết quả là ZIP?",
+          "a": "Một trang được tải thành ảnh. Nhiều trang hoặc nhiều tệp được đóng gói trong ZIP để tải cùng lúc."
+        }
+      }
+    },
+    "password": {
+      "title": "Mật khẩu PDF",
+      "subtitle": "Đặt mật khẩu mở tệp, chọn quyền hoặc gỡ khóa bằng mật khẩu đã biết",
+      "heroNote": "Giữ tệp cẩn thận\nChia sẻ đúng người!",
+      "steps": {
+        "1": "Chọn tệp PDF",
+        "2": "Chọn Đặt mật khẩu hoặc Gỡ mật khẩu",
+        "3": "Nhập mật khẩu và các quyền cần dùng",
+        "4": "Bấm xử lý và chờ tạo tệp mới",
+        "5": "Tệp tự tải về; có thể tải lại ở bên phải"
+      },
+      "tips": {
+        "1": "Mật khẩu mở tệp cần ít nhất 8 ký tự",
+        "2": "Hạn chế quyền cần mật khẩu quản trị riêng",
+        "3": "Kiểm tra tệp mới trước khi chia sẻ"
+      },
+      "faq": {
+        "1": {
+          "q": "Có gỡ khóa khi không biết mật khẩu không?",
+          "a": "Không. Cần nhập mật khẩu hợp lệ để gỡ khóa tệp."
+        },
+        "2": {
+          "q": "Mật khẩu mở và quản trị khác nhau thế nào?",
+          "a": "Mật khẩu mở dùng để đọc tệp. Mật khẩu quản trị riêng dùng khi bạn hạn chế quyền in, sao chép hoặc sửa."
+        },
+        "3": {
+          "q": "Giới hạn quyền có được mọi ứng dụng tuân theo không?",
+          "a": "Mức tuân thủ tùy trình đọc PDF. Hãy kiểm tra kết quả với ứng dụng người nhận sẽ dùng."
+        }
+      }
+    },
+    "organize": {
+      "title": "Sắp xếp PDF",
+      "subtitle": "Đổi thứ tự, xoay và bỏ trang trước khi tạo tài liệu mới",
+      "heroNote": "Xếp trang gọn gàng\nTài liệu đúng ý!",
+      "steps": {
+        "1": "Chọn một hoặc nhiều PDF",
+        "2": "Dùng mũi tên để đổi vị trí trang",
+        "3": "Xoay hoặc bỏ những trang cần chỉnh",
+        "4": "Kiểm tra số trang và thứ tự trong lưới",
+        "5": "Xuất và tải PDF đã sắp xếp"
+      },
+      "tips": {
+        "1": "Số trang gốc giúp nhận ra trang đã dời",
+        "2": "Có thể đặt lại để khôi phục bố cục ban đầu",
+        "3": "Trang từ tệp thêm vào được nối cuối danh sách"
+      },
+      "faq": {
+        "1": {
+          "q": "Có xoay và bỏ từng trang được không?",
+          "a": "Có. Mỗi thẻ trang có nút dời, xoay và bỏ. Các thay đổi được áp dụng vào tệp xuất."
+        },
+        "2": {
+          "q": "Có ghép trang từ nhiều PDF không?",
+          "a": "Có. Thêm nhiều tệp; các trang xuất hiện trong cùng lưới để sắp xếp chung."
+        },
+        "3": {
+          "q": "Làm sao khôi phục trang đã bỏ?",
+          "a": "Dùng Đặt lại thứ tự để trở về bố cục ban đầu của các tệp đang chọn. Thao tác sắp xếp chỉ được giữ trong phiên này."
+        }
+      }
+    },
+    "numbers": {
+      "title": "Đánh số trang PDF",
+      "subtitle": "Chọn mẫu số, vị trí và phạm vi áp dụng trên tài liệu",
+      "heroNote": "Đánh số rõ ràng\nTra cứu dễ dàng!",
+      "steps": {
+        "1": "Chọn một tệp PDF",
+        "2": "Chọn vị trí và mẫu số trang",
+        "3": "Đặt số bắt đầu, cỡ chữ và phạm vi",
+        "4": "Kiểm tra số trên trang xem trước",
+        "5": "Tạo PDF rồi tải kết quả"
+      },
+      "tips": {
+        "1": "Có thể bỏ trang bìa hoặc chọn khoảng trang",
+        "2": "Xem trước một trang nằm trong phạm vi áp dụng",
+        "3": "Đổi tùy chọn sẽ xóa kết quả cũ"
+      },
+      "faq": {
+        "1": {
+          "q": "Có đổi vị trí số trang không?",
+          "a": "Có các vị trí đầu và chân trang, căn trái, giữa hoặc phải."
+        },
+        "2": {
+          "q": "Có bắt đầu từ số khác 1 không?",
+          "a": "Có. Nhập số bắt đầu và chọn mẫu hiển thị phù hợp."
+        },
+        "3": {
+          "q": "Có chỉ đánh số một số trang không?",
+          "a": "Có. Chọn phạm vi trang rồi xem trước để kiểm tra trước khi xuất."
+        }
+      }
+    },
+    "stamp": {
+      "title": "Đóng dấu PDF",
+      "subtitle": "Thêm dấu chữ, watermark hoặc logo ảnh lên các trang đã chọn",
+      "heroNote": "Gắn dấu rõ ràng\nTài liệu dễ nhận biết!",
+      "steps": {
+        "1": "Chọn một tệp PDF",
+        "2": "Chọn dấu chữ hoặc dấu ảnh",
+        "3": "Nhập chữ hoặc tải logo, chỉnh các tùy chọn",
+        "4": "Chọn phạm vi và kiểm tra bản xem trước",
+        "5": "Xuất PDF rồi tải tệp mới"
+      },
+      "tips": {
+        "1": "PNG trong suốt phù hợp làm logo",
+        "2": "Chỉnh độ mờ để nội dung vẫn dễ đọc",
+        "3": "Dấu ảnh có thể đặt ở nhiều vị trí trên trang"
+      },
+      "faq": {
+        "1": {
+          "q": "Có đóng dấu bằng ảnh được không?",
+          "a": "Có. Chọn dấu ảnh và tải PNG hoặc JPG, rồi chỉnh vị trí, chiều rộng và độ mờ."
+        },
+        "2": {
+          "q": "Có chỉnh góc và cỡ dấu chữ không?",
+          "a": "Có. Dấu chữ hỗ trợ nội dung, màu, cỡ chữ, độ mờ và góc xoay."
+        },
+        "3": {
+          "q": "Đây có phải chữ ký số không?",
+          "a": "Không. Công cụ thêm chữ hoặc ảnh vào nội dung PDF, không tạo chữ ký số hay chứng thư điện tử."
+        }
+      }
+    },
+    "redact": {
+      "title": "Che thông tin PDF",
+      "subtitle": "Khoanh vùng cần ẩn và xóa nội dung bên dưới khỏi PDF xuất",
+      "heroNote": "Che đúng thông tin\nKiểm tra rồi chia sẻ!",
+      "steps": {
+        "1": "Chọn một tệp PDF",
+        "2": "Chuyển tới trang cần che",
+        "3": "Kéo khung quanh thông tin cần xóa",
+        "4": "Kiểm tra các vùng trên từng trang",
+        "5": "Xuất và kiểm tra PDF đã che"
+      },
+      "tips": {
+        "1": "Có thể hoàn tác vùng vừa khoanh",
+        "2": "Trang có vùng che được dựng lại thành ảnh",
+        "3": "Kiểm tra đủ các trang trước khi chia sẻ"
+      },
+      "faq": {
+        "1": {
+          "q": "Thông tin dưới khung có bị xóa thật không?",
+          "a": "Có trong tệp xuất. Trang có vùng che được dựng lại thành ảnh với vùng đen, loại nội dung gốc dưới khung. Bản xem trước chưa thay đổi tệp gốc."
+        },
+        "2": {
+          "q": "Có che nhiều vùng trên nhiều trang không?",
+          "a": "Có. Chuyển trang để khoanh thêm vùng; số trang và số vùng được cập nhật bên cạnh."
+        },
+        "3": {
+          "q": "Có giữ nguyên lớp chữ của trang đã che không?",
+          "a": "Trang có vùng che được dựng lại thành ảnh nên lớp chữ, liên kết và ô form trên trang đó không còn. Trang không che được giữ theo luồng xuất PDF."
+        }
+      }
+    },
+    "sign": {
+      "title": "Ký tài liệu",
+      "subtitle": "Vẽ hoặc tải ảnh chữ ký, đặt lên từng trang rồi xuất PDF",
+      "heroNote": "Ký đúng vị trí\nTài liệu gọn gàng!",
+      "steps": {
+        "1": "Chọn một tệp PDF",
+        "2": "Vẽ chữ ký hoặc tải ảnh PNG, JPG",
+        "3": "Chọn màu mực và kích thước phù hợp",
+        "4": "Bấm lên trang để đặt chữ ký",
+        "5": "Kiểm tra vị trí rồi xuất PDF"
+      },
+      "tips": {
+        "1": "Có thể đặt nhiều chữ ký trên nhiều trang",
+        "2": "Dùng hoàn tác hoặc xóa chữ ký trên trang",
+        "3": "Đây là hình chữ ký, không phải chữ ký số"
+      },
+      "faq": {
+        "1": {
+          "q": "Có thể dùng ảnh chữ ký sẵn không?",
+          "a": "Có. Chọn nguồn ảnh và tải PNG hoặc JPG. PNG nền trong suốt thường phù hợp để chèn lên tài liệu."
+        },
+        "2": {
+          "q": "Có thể đổi cỡ chữ ký không?",
+          "a": "Có. Điều chỉnh chiều rộng theo phần trăm trang, rồi kiểm tra vị trí trên bản xem trước."
+        },
+        "3": {
+          "q": "Công cụ có tạo chữ ký số không?",
+          "a": "Không. Công cụ chèn hình chữ ký vào PDF, không cấp chứng thư hoặc tạo chữ ký số."
+        }
+      }
+    },
+    "compare": {
+      "title": "So sánh tài liệu",
+      "subtitle": "Đối chiếu chữ trong hai bản PDF và tải báo cáo khác biệt",
+      "heroNote": "Hai bản cạnh nhau\nDễ thấy phần thay đổi!",
+      "steps": {
+        "1": "Chọn đúng hai tệp PDF",
+        "2": "Xếp bản cũ trước, bản mới sau",
+        "3": "Chọn cách xử lý khoảng trắng và chữ hoa",
+        "4": "Xem hai bản rồi bấm so sánh",
+        "5": "Đọc, sao chép hoặc tải báo cáo TXT"
+      },
+      "tips": {
+        "1": "Dùng nút dời tệp để đổi bản cũ và bản mới",
+        "2": "Công cụ so chữ theo từng dòng",
+        "3": "Tệp scan cần có lớp chữ trước khi so"
+      },
+      "faq": {
+        "1": {
+          "q": "Có so hình ảnh hoặc bố cục không?",
+          "a": "Không. Công cụ so nội dung chữ theo từng dòng. Hình ảnh, màu và bố cục không thuộc báo cáo khác biệt này."
+        },
+        "2": {
+          "q": "Có so tệp scan được không?",
+          "a": "Bản scan cần nhận dạng OCR để có lớp chữ. Nếu tài liệu không có chữ để so, công cụ sẽ báo lỗi thay vì kết luận hai bản giống nhau."
+        },
+        "3": {
+          "q": "Kết quả tải về là định dạng gì?",
+          "a": "Báo cáo TXT có các phần thay đổi và thông tin bản cũ, bản mới; bạn cũng xem và sao chép báo cáo ngay trên trang."
+        }
+      }
+    },
+    "reader": {
+      "title": "Xem PDF",
+      "subtitle": "Đọc tài liệu, chuyển trang, phóng to và tìm nội dung trong PDF",
+      "heroNote": "Mở tài liệu lên\nĐọc rõ từng trang!",
+      "steps": {
+        "1": "Chọn PDF hoặc ảnh cần xem",
+        "2": "Dùng nút hoặc danh sách để chuyển trang",
+        "3": "Phóng to hoặc chọn vừa chiều rộng",
+        "4": "Mở Tìm kiếm & Xuất tệp khi cần",
+        "5": "Chuyển sang chỉnh sửa với tài liệu đang mở"
+      },
+      "tips": {
+        "1": "Ctrl + F mở phần tìm kiếm nội dung",
+        "2": "Có thể thêm nhiều tệp vào cùng phiên",
+        "3": "Tài liệu giữ lại khi chuyển giữa xem và sửa"
+      },
+      "faq": {
+        "1": {
+          "q": "Có tìm chữ trong PDF scan được không?",
+          "a": "PDF scan cần có lớp chữ. Phần tìm kiếm có tùy chọn nhận dạng OCR cho các trang chưa có chữ."
+        },
+        "2": {
+          "q": "Có phóng to và chọn trang không?",
+          "a": "Có. Dùng các nút zoom, vừa chiều rộng và danh sách số trang trên khung đọc."
+        },
+        "3": {
+          "q": "Chuyển sang chỉnh sửa có mất tệp không?",
+          "a": "Không khi dùng nút Chỉnh sửa trong cùng phiên. Tài liệu và các thay đổi đang có được giữ giữa hai giao diện."
+        }
+      }
+    },
+    "imageText": {
+      "title": "Ảnh sang văn bản",
+      "subtitle": "Nhận dạng chữ trong ảnh, kiểm tra và xuất định dạng cần dùng",
+      "heroNote": "Quét nhanh thành chữ\nĐỡ gõ lại từng dòng!",
+      "steps": {
+        "1": "Chọn một hoặc nhiều ảnh JPG, PNG",
+        "2": "Chọn định dạng xuất và loại nội dung",
+        "3": "Điều chỉnh các tùy chọn nhận dạng nếu cần",
+        "4": "Nhận dạng rồi kiểm tra từng phần được yêu cầu",
+        "5": "Xác nhận và tải kết quả"
+      },
+      "tips": {
+        "1": "Ảnh thẳng, đủ sáng giúp nhận dạng tốt hơn",
+        "2": "Chọn hồ sơ Bảng cho Excel hoặc CSV",
+        "3": "Kiểm tra chữ, số và bố cục trước khi xác nhận"
+      },
+      "faq": {
+        "1": {
+          "q": "Có cần kiểm tra lại kết quả không?",
+          "a": "Có. Chữ và số nhận dạng có thể sai. Hoàn tất bước kiểm tra và xác nhận trước khi xuất."
+        },
+        "2": {
+          "q": "Có xuất Word, Excel hoặc PDF được không?",
+          "a": "Có PDF, TXT, Word, Excel, CSV và JSON. Với Excel hoặc CSV, chọn hồ sơ Bảng và kiểm tra dữ liệu từng ô."
+        },
+        "3": {
+          "q": "Tài liệu được xử lý ở đâu?",
+          "a": "Trong trình duyệt trên thiết bị. Lần đầu sử dụng cần tải dữ liệu nhận dạng; tài liệu không phải gửi lên máy chủ để OCR."
+        }
+      },
+      "previewEmpty": "Xem trước ảnh hoặc tài liệu"
+    }
+  },
+  "conversionStudio": {
+    "category": "Quét & Chuyển đổi",
+    "related": "Các công cụ quét và chuyển đổi",
+    "outputFormat": "Định dạng xuất",
+    "optionsTitle": "2. Chọn định dạng & OCR",
+    "previewTitle": "3. Xem trước & Tải về",
+    "source": "Tài liệu gốc",
+    "result": "Kết quả chuyển đổi",
+    "loadingResult": "Đang mở bản xem trước…",
+    "previewFailed": "Không dựng được bản xem trước. Bạn vẫn có thể tải tệp kết quả.",
+    "wordExcerpt": "Trích nội dung từ tệp Word đã tạo. Bố cục khi mở trong Word có thể khác.",
+    "sourceHint": "Dùng tài liệu gốc để đối chiếu. Tệp mới và nút tải sẽ hiện ở tab Kết quả chuyển đổi."
+  },
+  "workflowStudio": {
+    "organizeInput": "1. Tải tệp & Sắp xếp trang",
+    "organizeOptions": "2. Kiểm tra & Xuất PDF",
+    "organizeHint": "Dời, xoay hoặc bỏ trang trong lưới rồi xuất tài liệu.",
+    "ocrInput": "1. Tải ảnh hoặc PDF",
+    "ocrOptions": "2. Tùy chọn OCR & Xuất tệp",
+    "imageOptions": "2. Định dạng & Độ phân giải",
+    "passwordInput": "1. Chọn tệp PDF",
+    "passwordOptions": "2. Mật khẩu & Quyền",
+    "passwordOutput": "3. Kết quả & Tải về",
+    "downloadAgain": "Tải lại tệp kết quả",
+    "passwordResultHint": "Tệp mới tự tải sau khi xử lý thành công. Bạn có thể tải lại tại đây.",
+    "editedPreview": "Bản xem trước",
+    "pdfResult": "PDF kết quả",
+    "decorationHint": "Bản xem trước đã áp tùy chọn hiện tại. Xuất PDF để tải tệp mới ở tab PDF kết quả.",
+    "redactInput": "1. Tải PDF & Khoanh vùng che",
+    "redactOptions": "2. Kiểm tra & Xuất PDF",
+    "redactHint": "Chọn PDF rồi kéo khung lên vùng cần che trên từng trang.",
+    "redactExportHint": "Bản xem trước chưa xóa nội dung gốc. Tệp xuất mới xóa thật các vùng đã che.",
+    "markedPages": "Trang đã đánh dấu",
+    "markedAreas": "Vùng đã khoanh",
+    "signInput": "1. Tải PDF & Đặt chữ ký",
+    "signOptions": "2. Tạo chữ ký & Xuất PDF",
+    "signHint": "Tạo hoặc chọn ảnh chữ ký, rồi bấm lên trang để đặt.",
+    "comparePreview": "3. Đối chiếu & Báo cáo",
+    "compareHint": "Hai khung là tài liệu nguồn. Báo cáo chỉ so nội dung chữ, không so bố cục hay hình ảnh.",
+    "oldDocument": "Bản cũ",
+    "newDocument": "Bản mới",
+    "sourcePair": "Hai bản PDF",
+    "compareReport": "Báo cáo so sánh",
+    "imageTextInput": "1. Tải ảnh cần lấy chữ",
+    "readerInput": "1. Mở tài liệu",
+    "readerView": "2. Đọc & Tìm nội dung",
+    "readerDrop": "Chọn PDF hoặc ảnh để xem",
+    "readerShortcut": "Ctrl + F để tìm chữ. Bản scan cần nhận dạng OCR trước khi tìm.",
+    "readerEmpty": "Tài liệu hiện tại đây",
+    "readerEmptyHint": "Chọn tệp để chuyển trang, phóng to và đọc nội dung."
   }
 }

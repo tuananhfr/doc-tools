@@ -1,0 +1,134 @@
+/* Entertainment reference: one category menu, distinct game and reading layouts. */
+.cn-funstudio .cn-idstudio-layout { grid-template-columns: 174px minmax(0, 1fr) 236px; gap: 14px; }
+.cn-funstudio .cn-idstudio-toolnav > a { min-height: 42px; padding: 9px 10px; gap: 9px; font-size: 13px; }
+.cn-funstudio .cn-idstudio-toolnav > h2 { font-size: 14px; padding: 12px 10px; }
+.cn-funstudio .cn-idstudio-hero { margin-bottom: 14px; }
+.cn-funstudio .cn-idstudio-hero h1 { font-size: clamp(25px, 2.3vw, 34px); }
+.cn-funstudio .cn-idstudio-hero-note { white-space: pre-line; }
+.cn-funstudio .cn-idstudio-help-card { padding: 14px; }
+.cn-funstudio .cn-idstudio-help-card h2 { font-size: 15px; }
+.cn-funstudio .cn-idstudio-help-card :is(ul, ol) { font-size: 12px; line-height: 1.75; }
+.cn-funstudio .cn-ent { max-width: none; }
+.cn-funstudio .cn-studio-small-icon { flex: none; width: 34px; height: 34px; border-radius: 9px; font-size: 18px; }
+.cn-funstudio .cn-studio-card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.cn-funstudio .cn-studio-card-head > div { min-width: 0; flex: 1; }
+.cn-funstudio .cn-studio-card-head h2 { font-size: 15px; line-height: 1.6; }
+.cn-funstudio .cn-studio-card-head p, .cn-funstudio .cn-studio-form-hint { font-size: 12px; line-height: 1.75; }
+.cn-funstudio .cn-studio-badge { flex: none; padding: 5px 9px; border: 1px solid var(--cn-line); border-radius: 20px; font-size: 11px; background: var(--cn-hero); color: var(--cn-muted); }
+.cn-funstudio :is(.cn-ent-form, .cn-ent-result, .cn-studio-card, .erp-tool-panel) { min-width: 0; padding: 16px; margin: 0; border: 1px solid var(--cn-line); border-radius: 12px; box-shadow: none; background: var(--cn-surface); }
+.cn-funstudio .cn-ent-form fieldset { gap: 15px; }
+.cn-funstudio .cn-ent-form legend { display: flex; align-items: center; gap: 7px; margin-bottom: 0; padding-bottom: 12px; border-bottom: 1px solid var(--cn-line); font-size: 15px; line-height: 1.6; }
+.cn-funstudio .cn-ent-form legend .bi { flex: none; color: var(--cn-accent); }
+.cn-funstudio .cn-ent-form label, .cn-fun-field-label { font-size: 13px; line-height: 1.7; }
+.cn-funstudio .cn-ent-form label { gap: 6px; }
+.cn-funstudio .cn-ent-form input:not([type=checkbox]), .cn-funstudio .cn-ent-form select { min-width: 0; max-width: 100%; min-height: 44px; padding: 9px 10px; border-radius: 8px; font-size: 14px; }
+.cn-funstudio .cn-ent-form .cn-ent-check { align-items: flex-start; gap: 9px; font-size: 12px; line-height: 1.75; padding: 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); }
+.cn-funstudio .cn-ent-form .cn-ent-check input { width: 18px; height: 18px; min-height: 18px; margin-top: 2px; }
+.cn-funstudio .cn-ent-form fieldset > p { margin: 0; font-size: 12px; line-height: 1.75; color: var(--cn-muted); }
+.cn-funstudio .cn-ent button.cn-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 16px; border-radius: 8px; font-size: 13px; }
+.cn-funstudio .cn-ent-actions { gap: 8px; margin: 14px 0; }
+.cn-funstudio .cn-ent-form .cn-ent-actions { margin: 0; }
+.cn-funstudio .cn-ent-reference { padding: 12px 14px; margin-top: 14px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); font-size: 12px; line-height: 1.8; }
+.cn-funstudio .cn-tarot-workspace { display: grid; grid-template-columns: minmax(230px, .62fr) minmax(0, 1.38fr); gap: 14px; align-items: start; }
+.cn-funstudio .cn-tarot-workspace[data-state='result'] { grid-template-columns: minmax(0, 1fr); }
+.cn-funstudio .cn-tarot-sidebar { display: grid; grid-template-columns: minmax(0, 1fr); order: 0; min-width: 0; gap: 12px; }
+.cn-funstudio .cn-tarot-table { order: 1; }
+.cn-funstudio .cn-tarot-sidebar .cn-ent-form { padding: 14px; border-radius: 12px; }
+.cn-funstudio .cn-tarot-sidebar .cn-ent-form fieldset { gap: 14px; }
+.cn-funstudio .cn-tarot-sidebar .cn-ent-form legend { font-size: 15px; }
+.cn-funstudio .cn-tarot-sidebar .cn-ent-form label { font-size: 12px; }
+.cn-funstudio .cn-tarot-sidebar .cn-ent-actions { display: grid; gap: 8px; }
+.cn-funstudio .cn-tarot-presets { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; }
+.cn-funstudio .cn-tarot-presets button { min-height: 46px; padding: 6px 2px; border-radius: 8px; font-size: 12px; background: var(--cn-hero); }
+.cn-funstudio .cn-tarot-presets button[aria-pressed='true'] { color: var(--cn-on-accent, white); background: var(--cn-accent); border-color: var(--cn-accent); }
+.cn-fun-session-note { display: flex; gap: 8px; margin: 0; padding: 12px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); color: var(--cn-muted); font-size: 12px; line-height: 1.8; }
+.cn-fun-session-note .bi { flex: none; color: var(--cn-accent); }
+.cn-funstudio .cn-tarot-preview { min-height: 285px; padding: 24px 18px; gap: 16px; border-radius: 10px; background: linear-gradient(145deg, var(--cn-hero), var(--cn-tint)); }
+.cn-funstudio .cn-tarot-preview--many { min-height: 235px; gap: 10px; padding-inline: 12px; }
+.cn-funstudio .cn-tarot-preview__card img { border-width: 3px; border-radius: 8px; }
+.cn-funstudio .cn-tarot-preview__card > span { width: 22px; height: 22px; margin-top: 10px; font-size: 11px; }
+.cn-funstudio .cn-tarot-preview-hint { margin: 14px 0; font-size: 12px; }
+.cn-funstudio .cn-tarot-table .cn-ent-spread-guide { padding: 12px; font-size: 12px; border-radius: 9px; background: var(--cn-hero); }
+.cn-funstudio .cn-tarot-table .cn-ent-spread-guide ol { gap: 6px 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cn-funstudio .cn-playing-profile { margin-top: 14px; font-size: 12px; }
+.cn-funstudio .cn-tarot-table .cn-ent-reading > h2 { font-size: 17px; }
+.cn-funstudio .cn-tarot-table .cn-ent-reading > p { font-size: 12px; line-height: 1.8; }
+.cn-funstudio .cn-tarot-table .cn-ent-deck { gap: 16px; padding: 20px 14px; border: 1px solid var(--cn-line); border-radius: 10px; }
+.cn-funstudio .cn-ent-card-slot { font-size: 12px; line-height: 1.65; }
+.cn-funstudio .cn-ent-overview { margin-block: 18px; padding: 16px; border: 1px solid var(--cn-line); border-radius: 10px; }
+.cn-funstudio .cn-ent h3 { font-size: 15px; }
+.cn-funstudio .cn-ent-overview p, .cn-funstudio .cn-ent-meaning-body, .cn-funstudio .cn-ent-meaning-role, .cn-funstudio .cn-ent-source, .cn-funstudio .cn-ent-reading-source { font-size: 13px; line-height: 1.85; }
+.cn-funstudio .cn-ent-meaning summary { padding: 14px 8px; border-radius: 7px; font-size: 14px; }
+.cn-funstudio .cn-ent-meaning summary:hover { background: var(--cn-hero); }
+.cn-funstudio .cn-ent-export { margin-top: 18px; padding: 14px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); }
+.cn-funstudio .cn-ent-export > p { font-size: 12px; }
+.cn-funstudio .cn-ent-export .cn-ent-actions { margin-bottom: 0; }
+.cn-funstudio .cn-numerology-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.cn-funstudio .cn-numerology-workspace[data-state='result'] { grid-template-columns: minmax(0, 1fr); }
+.cn-funstudio .cn-numerology-sidebar { display: block; }
+.cn-funstudio .cn-numerology-intro { padding: 24px 16px; background: linear-gradient(150deg, var(--cn-surface), var(--cn-tint)); }
+.cn-funstudio .cn-numerology-intro h2 { font-size: 17px; }
+.cn-funstudio .cn-numerology-intro > p { font-size: 13px; line-height: 1.8; }
+.cn-funstudio .cn-number-features { gap: 10px; margin-top: 20px; }
+.cn-funstudio .cn-number-features > div { padding: 12px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 9px; text-align: start; font-size: 13px; }
+.cn-funstudio .cn-numerology-main .cn-ent-result { padding: 16px; border-radius: 12px; }
+.cn-funstudio .cn-ent-result > h2 { font-size: 17px; }
+.cn-funstudio .cn-ent-result > p { font-size: 13px; color: var(--cn-muted); }
+.cn-funstudio .cn-ent-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.cn-funstudio .cn-ent-metrics > div { padding: 14px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); }
+.cn-funstudio .cn-ent-metrics dt { font-size: 13px; color: var(--cn-muted); }
+.cn-funstudio .cn-ent-metrics strong { color: var(--cn-accent); font-size: 34px; }
+.cn-funstudio .cn-ent-metrics small { font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.cn-tool-workspace .cn-funstudio .cn-wheel-workspace { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); align-items: start; gap: 14px; }
+.cn-funstudio .cn-wheel-workspace > .erp-flow__main { min-width: 0; padding: 0; border: 0; background: transparent; }
+.cn-funstudio .cn-wheel-workspace > .erp-flow__side { min-width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.cn-fun-wheel-controls { display: grid; gap: 12px; }
+.cn-funstudio .erp-tool-panel__head { padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--cn-line); }
+.cn-funstudio .erp-tool-panel__title { font-size: 15px; line-height: 1.6; }
+.cn-funstudio .cn-wheel-workspace .cn-wheel-stage { padding: 16px; gap: 14px; }
+.cn-funstudio .cn-wheel-canvas { padding: 20px; border-radius: 10px; }
+.cn-funstudio .cn-wheel-workspace .cn-wheel { width: min(100%, 390px); max-width: 390px; }
+.cn-funstudio .cn-wheel-workspace .cn-wheel-result { padding: 12px; border-radius: 10px; }
+.cn-funstudio .cn-wheel-options { min-height: 190px; font-size: 14px; line-height: 1.8; }
+.cn-funstudio .cn-wheel-help { padding: 10px; font-size: 12px; line-height: 1.75; }
+.cn-funstudio .cn-wheel-workspace :is(.form-control, .form-select) { min-width: 0; min-height: 44px; font-size: 14px; padding: 9px 10px; }
+.cn-funstudio .cn-wheel-workspace .erp-flow-field__label, .cn-funstudio .cn-wheel-workspace .form-check-label { font-size: 13px; line-height: 1.75; }
+.cn-funstudio .cn-wheel-stage .cn-wheel-spin { min-height: 48px; font-size: 15px; }
+.cn-funstudio .cn-wheel-workspace .cn-wheel-save__row { gap: 8px; }
+.cn-funstudio .cn-wheel-subtitle { font-size: 14px; }
+.cn-funstudio .cn-wheel-order, .cn-funstudio .cn-wheel-status, .cn-funstudio .cn-wheel-warning { font-size: 12px; line-height: 1.75; }
+@media (max-width: 1199px) {
+  .cn-funstudio .cn-idstudio-layout { grid-template-columns: 166px minmax(0, 1fr); }
+  .cn-funstudio .cn-idstudio-help { grid-column: 2; }
+}
+@media (max-width: 1000px) {
+  .cn-funstudio .cn-tarot-workspace, .cn-funstudio .cn-numerology-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-tool-workspace .cn-funstudio .cn-wheel-workspace { grid-template-columns: minmax(0, 1fr); }
+  .cn-funstudio .cn-wheel-workspace > .erp-flow__main, .cn-fun-wheel-controls { display: contents; }
+  .cn-funstudio .cn-wheel-workspace > .erp-flow__side { position: static; order: 1; }
+  .cn-fun-wheel-settings { order: 2; }
+  .cn-fun-wheel-saved { order: 3; }
+}
+@media (max-width: 767px) {
+  .cn-funstudio .cn-idstudio-layout { display: block; }
+  .cn-funstudio .cn-idstudio-toolnav > a { min-height: 44px; padding: 8px 12px; }
+  .cn-funstudio .cn-idstudio-hero h1 { font-size: 24px; }
+  .cn-funstudio .cn-idstudio-hero-note { display: none; }
+  .cn-funstudio .cn-idstudio-help { margin-top: 14px; }
+  .cn-funstudio .cn-tarot-workspace { gap: 12px; }
+  .cn-funstudio .cn-studio-card-head { flex-wrap: wrap; }
+  .cn-funstudio .cn-studio-badge { margin-inline-start: auto; }
+  .cn-funstudio .cn-tarot-preview { min-height: 230px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 20px 14px; }
+  .cn-funstudio .cn-tarot-preview[data-count='1'] { grid-template-columns: minmax(0, 130px); }
+  .cn-funstudio .cn-tarot-preview--many { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; padding-inline: 10px; min-height: 180px; }
+  .cn-funstudio .cn-tarot-table .cn-ent-deck { padding: 16px 8px; gap: 8px; }
+  .cn-funstudio .cn-tarot-table .cn-ent-spread-guide ol { grid-template-columns: minmax(0, 1fr); }
+  .cn-funstudio .cn-ent-card-slot { font-size: 11px; }
+  .cn-funstudio .cn-ent-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-funstudio .cn-ent-form .cn-ent-actions .cn-button { width: 100%; }
+  .cn-funstudio .cn-wheel-canvas { padding: 18px 12px; }
+}
+@media (max-width: 420px) {
+  .cn-funstudio .cn-ent-metrics { grid-template-columns: minmax(0, 1fr); }
+  .cn-funstudio .cn-ent-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+}

@@ -106,7 +106,7 @@ async function download(page, label, name) {
 
 async function draw(page, slug, amount = 3) {
   await page.goto(`${base}/${slug}`)
-  await page.locator('.cn-ent-form').getByRole('combobox').selectOption(String(amount))
+  await page.locator('.cn-ent-form').getByRole('button', { name: `${amount} lá`, exact: true }).click()
   if (slug === 'tarot') await page.getByLabel('Cho phép lá Tarot ngược').check()
   await page.getByRole('button', { name: 'Xào và rút bài', exact: true }).click()
   await page.locator('.cn-ent-deck').waitFor()
@@ -137,6 +137,7 @@ async function draw(page, slug, amount = 3) {
   await page.locator('.cn-ent-meaning').first().locator('summary').click()
   assert.equal(await page.locator('.cn-ent-meaning').first().getAttribute('open'), '')
   if (slug === 'tarot') assert.ok((await page.locator('.cn-ent-meaning').first().innerText()).includes('Vội vàng'))
+  await page.locator('.cn-ent-card-caption strong').first().waitFor()
   await page.locator('.cn-ent-card').first().click()
   await page.getByRole('dialog').waitFor()
   await page.getByRole('button', { name: 'Đóng ảnh', exact: true }).click()

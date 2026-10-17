@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { ToolLeaveGuard, useFlowRun } from '@/features/tools/hub'
+import { ExtendedImageStudio } from '../components/ExtendedImageStudio'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { MarkOptions } from '../components/MarkOptions'
 import { MarkStage } from '../components/MarkStage'
@@ -19,10 +20,10 @@ export default function MarkImagePage() {
   const ready = item !== null && state !== null
 
   return (
-    <>
+    <ExtendedImageStudio kind="mark">
       {/* Khung che và dấu chỉ nằm trong RAM: rời màn là phải vẽ lại từ đầu. */}
       <ToolLeaveGuard active={ready && hasMarks(state)} />
-      <ImageToolShell mobilePreview initialPanel="preview"
+      <ImageToolShell studioKind="mark" mobilePreview initialPanel="preview"
         images={images}
         run={run}
         multiple={false}
@@ -37,6 +38,6 @@ export default function MarkImagePage() {
           return markTask(item, state)
         }}
       />
-    </>
+    </ExtendedImageStudio>
   )
 }

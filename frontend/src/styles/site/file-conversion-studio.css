@@ -1,0 +1,43 @@
+/* Scan.png: upload, compact output-format tiles/OCR, persistent preview and result. */
+.cn-fileconversionstudio .cn-flowstudio { grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr) minmax(0, 1.08fr); }
+.cn-fileconversion-formats { min-width: 0; padding: 0; margin: 0 0 20px; border: 0; }
+.cn-fileconversion-formats legend { float: none; margin: 0 0 12px; font-size: 12px; font-weight: 600; }
+.cn-fileconversion-formats > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.cn-fileconversion-format { position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 0; min-height: 90px; padding: 10px 3px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); cursor: pointer; }
+.cn-fileconversion-format:has(input:checked) { border-color: var(--cn-accent); background: var(--cn-hero); box-shadow: 0 0 0 1px var(--cn-accent); }
+.cn-fileconversion-format:has(input:focus-visible) { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+.cn-fileconversion-format:has(input:disabled) { opacity: .65; cursor: default; }
+.cn-fileconversion-format > span { position: relative; display: grid; place-items: center; height: 40px; color: #0874f5; }
+.cn-fileconversion-format > span > .bi { font-size: 36px; line-height: 1; }
+.cn-fileconversion-format b { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); padding: 0 2px; background: #0759c9; color: white; font-size: 11px; line-height: 1.5; }
+.cn-fileconversion-format strong { font-size: 11px; font-weight: 500; }
+.cn-fileconversion-format--excel > span { color: #00a574; }
+.cn-fileconversion-format--excel b { background: #008257; }
+.cn-fileconversion-format--jpeg > span { color: #ff9414; }
+.cn-fileconversion-format--jpeg b { background: #d56d00; font-size: 8px; }
+.cn-fileconversion-format--png > span { color: #8a45e8; }
+.cn-fileconversion-format--png b { background: #6e2fc4; font-size: 8px; }
+.cn-fileconversionstudio .cn-fileconversion-ocr { flex-direction: row-reverse; justify-content: space-between; gap: 12px; padding: 14px 0; border-block: 1px solid var(--cn-line); }
+.cn-fileconversion-ocr .form-check-label { flex: 1; }
+.cn-fileconversionstudio .cn-fileconversion-ocr .form-check-input { width: 36px; height: 20px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result { padding: 14px 0 0; border: 0; border-radius: 0; background: transparent; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .cn-result-heading { display: flex; gap: 8px; align-items: center; margin-bottom: 14px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__badge { width: 32px; height: 32px; font-size: 16px; flex: none; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__title { font-size: 14px; line-height: 1.6; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__file { padding: 12px; gap: 10px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__file-icon { font-size: 26px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__file-name { font-size: 12px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__actions { display: flex; flex-direction: column; gap: 8px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__actions .btn { width: 100%; min-height: 44px; }
+.cn-fileconversionstudio .cn-flowstudio-inline-result .erp-flow-result__notes { padding: 12px; font-size: 11px; line-height: 1.8; }
+.cn-fileconversion-result-preview { margin-top: 14px; }
+.cn-fileconversion-result-preview pre { max-height: 340px; overflow: auto; margin: 0; padding: 20px 16px; border: 1px solid var(--cn-line); border-radius: 7px; background: white; color: #17253b; font-family: Georgia, serif; font-size: 14px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cn-fileconversion-result-preview img { display: block; max-width: 100%; max-height: 360px; object-fit: contain; margin-inline: auto; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-fileconversionstudio .cn-flowstudio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .cn-fileconversionstudio .cn-flowstudio { grid-template-columns: minmax(0, 1fr); }
+  .cn-fileconversion-formats legend { font-size: 14px; }
+  .cn-fileconversion-format strong { font-size: 13px; }
+}

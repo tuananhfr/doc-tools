@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
 import { Button } from 'react-bootstrap'
 import { Icon, useToast } from '@/components/ui'
-import { formatQuantity, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { formatQuantity } from '@/features/tools/hub'
 import { useThemeTokens } from '@/hooks'
+import { ExtendedImageStudio } from '@/features/tools/image/components/ExtendedImageStudio'
 import { ColorCodeField } from '../components/ColorCodeField'
 import {
   BLACK,
@@ -61,6 +62,7 @@ function ContrastRow({ label, ratio, sample }: { label: string; ratio: number; s
 export default function ColorPage() {
   const { t } = useTranslation('utility')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.color' })
+  const { t: s } = useTranslation('image', { keyPrefix: 'extendedStudio.color' })
   const pickerId = useId()
   const toast = useToast()
   const tokens = useThemeTokens()
@@ -81,27 +83,8 @@ export default function ColorPage() {
     }
   }
 
-  return (
-    <ToolBoard className="cn-color-workspace" layout="compact"
-      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
-      sideLabel={t('color.preview')}
-      side={
-        <>
-          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="palette" /></span><div><h2>{t('color.preview')}</h2><p>{studio('resultHint')}</p></div></div>
-          {/* Giá trị động: màu do người dùng chọn, không phải màu của giao diện. */}
-          <div className="erp-color-swatch" style={{ backgroundColor: hex }} role="img" aria-label={t('color.swatch', { hex })} />
-          <div className="erp-flow-field">
-            <span className="erp-flow-field__label">{t('color.textOnColor')}</span>
-            <ul className="erp-color-contrasts">
-              <ContrastRow label={t('color.whiteText')} ratio={contrastRatio(color, WHITE)} sample={{ backgroundColor: hex, color: formatHex(WHITE) }} />
-              <ContrastRow label={t('color.blackText')} ratio={contrastRatio(color, BLACK)} sample={{ backgroundColor: hex, color: formatHex(BLACK) }} />
-            </ul>
-            <p className="erp-flow-field__hint">{t('color.contrastHint')}</p>
-          </div>
-        </>
-      }
-    >
-      <ToolPanel title={t('color.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="sliders2" /></span>}>
+  return <ExtendedImageStudio kind="color"><div className="cn-extendedimage-two cn-colorstudio">
+    <section className="cn-idstudio-panel cn-colorstudio-input"><h2>{s('inputTitle')}</h2>
         <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-color-pick">
@@ -133,7 +116,20 @@ export default function ColorPage() {
             onColor={setColor}
           />
         </div>
-      </ToolPanel>
-    </ToolBoard>
-  )
+
+    </section>
+    <section className="cn-idstudio-panel cn-colorstudio-output"><h2>{s('outputTitle')}</h2>
+          {/* Giá trị động: màu do người dùng chọn, không phải màu của giao diện. */}
+          <div className="erp-color-swatch" style={{ backgroundColor: hex }} role="img" aria-label={t('color.swatch', { hex })} />
+          <div className="erp-flow-field">
+            <span className="erp-flow-field__label">{t('color.textOnColor')}</span>
+            <ul className="erp-color-contrasts">
+              <ContrastRow label={t('color.whiteText')} ratio={contrastRatio(color, WHITE)} sample={{ backgroundColor: hex, color: formatHex(WHITE) }} />
+              <ContrastRow label={t('color.blackText')} ratio={contrastRatio(color, BLACK)} sample={{ backgroundColor: hex, color: formatHex(BLACK) }} />
+            </ul>
+            <p className="erp-flow-field__hint">{t('color.contrastHint')}</p>
+          </div>
+
+    </section>
+  </div></ExtendedImageStudio>
 }

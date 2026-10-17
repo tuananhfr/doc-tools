@@ -1,3 +1,4 @@
+import { CalculationStudio, CalculationResultHeading } from '@/features/tools/utility/components/CalculationStudio'
 import { useId, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
@@ -55,9 +56,9 @@ export default function DateCalcPage() {
   const landed = startDay === null || signed === null ? null : kind === 'calendar' ? startDay + signed : addWorkdays(startDay, signed)
 
   return (
-    <ToolBoard layout="compact"
+    <CalculationStudio kind="dates"><ToolBoard className="cn-dates-workspace" layout="compact"
       side={
-        mode === 'between' ? (
+        <><CalculationResultHeading icon="calendar-range" title={t(mode === 'between' ? 'dateCalc.distance' : 'dateCalc.landsOn')} />{mode === 'between' ? (
           <div className="erp-tool-result" role="status">
             <p className="erp-tool-result__label">{t('dateCalc.distance')}</p>
             {span && fromDayNumber !== null && toDayNumber !== null ? (
@@ -119,13 +120,13 @@ export default function DateCalcPage() {
               </>
             )}
           </div>
-        )
+        )}</>
       }
     >
       <ToolSegments label={t('dateCalc.modeLabel')} value={mode} options={MODES.map((item) => ({ ...item, label: t(item.label) }))} onChange={setMode} />
 
       {mode === 'between' ? (
-        <ToolPanel title={t('dateCalc.betweenTitle')}>
+        <ToolPanel title={`1. ${t('dateCalc.betweenTitle')}`}>
           <div className="erp-tool-form">
             <div className="erp-tool-form__grid">
               <div className="erp-flow-field">
@@ -153,7 +154,7 @@ export default function DateCalcPage() {
           </div>
         </ToolPanel>
       ) : (
-        <ToolPanel title={t('dateCalc.addTitle')}>
+        <ToolPanel title={`1. ${t('dateCalc.addTitle')}`}>
           <div className="erp-tool-form">
             <div className="erp-tool-form__grid">
               <div className="erp-flow-field">
@@ -187,6 +188,6 @@ export default function DateCalcPage() {
           </div>
         </ToolPanel>
       )}
-    </ToolBoard>
+    </ToolBoard></CalculationStudio>
   )
 }

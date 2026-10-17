@@ -1314,5 +1314,546 @@
       }
     },
     "moreTools": "More annotation tools"
+  },
+  "quickStudio": {
+    "category": "Documents & PDF",
+    "related": "More PDF tools",
+    "layout": {
+      "input": "1. Upload PDF files",
+      "options": "2. Options & Process",
+      "preview": "3. Source document",
+      "empty": "Your document appears here",
+      "hint": "This is the source document. View and download the processed file on the result screen."
+    },
+    "preview": {
+      "file": "Document to preview",
+      "previous": "Previous page",
+      "next": "Next page",
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in",
+      "empty": "Preview your PDF",
+      "emptyHint": "Choose a file to view its pages.",
+      "failed": "Preview could not load. You can still try processing the file.",
+      "loading": "Rendering page…",
+      "page": "Source document page {{page}}"
+    },
+    "merge": {
+      "title": "Merge PDF",
+      "subtitle": "Combine PDF files into one document in your chosen order",
+      "heroNote": "Put pages in order\nShare one file!",
+      "steps": {
+        "1": "Choose at least two PDFs",
+        "2": "Reorder files in the list",
+        "3": "Check file and page totals",
+        "4": "Merge into a new document",
+        "5": "Preview and download the PDF"
+      },
+      "tips": {
+        "1": "Use the arrows to reorder files",
+        "2": "Pages within each file keep their order",
+        "3": "Unlock password-protected files first"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I choose the merge order?",
+          "a": "Yes. Use the up and down buttons beside each file. All pages from an earlier file come first."
+        },
+        "2": {
+          "q": "Can I select individual pages?",
+          "a": "This tool merges complete files. Use split or organize PDF to select individual pages first."
+        },
+        "3": {
+          "q": "Are PDFs uploaded to a server?",
+          "a": "Files are processed in your browser on your device. Download the result when ready."
+        }
+      }
+    },
+    "split": {
+      "title": "Split PDF",
+      "subtitle": "Extract page ranges or divide a document into smaller files",
+      "heroNote": "Choose your pages\nSplit with ease!",
+      "steps": {
+        "1": "Choose one PDF",
+        "2": "Choose ranges or every N pages",
+        "3": "Enter ranges or the pages per part",
+        "4": "Check the part count and split",
+        "5": "Download the PDF or ZIP"
+      },
+      "tips": {
+        "1": "Check the document page count first",
+        "2": "Divide into equal page groups if needed",
+        "3": "Multiple parts are packaged as ZIP"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I use several page ranges?",
+          "a": "Yes. Select page ranges and follow the example beside the input. Ranges are validated before processing."
+        },
+        "2": {
+          "q": "Is a shorter final part kept?",
+          "a": "Yes. When splitting every N pages, the last part is exported even if it has fewer pages."
+        },
+        "3": {
+          "q": "Why is the result a ZIP?",
+          "a": "Multiple PDF parts are packaged in a ZIP for a single download."
+        }
+      }
+    },
+    "compress": {
+      "title": "Compress PDF",
+      "subtitle": "Reduce JPEG image size in PDFs while retaining text and pages",
+      "heroNote": "Smaller files\nEasier sharing!",
+      "steps": {
+        "1": "Choose one or more PDFs",
+        "2": "Choose a compression level",
+        "3": "Check the source document",
+        "4": "Start compression and wait",
+        "5": "Review savings and download"
+      },
+      "tips": {
+        "1": "PDFs with JPEG images often shrink more",
+        "2": "Text and PNG images are not recompressed",
+        "3": "Choose medium to prioritize image quality"
+      },
+      "faq": {
+        "1": {
+          "q": "Why does my PDF barely shrink?",
+          "a": "This tool recompresses eligible JPEG images. Text-heavy PDFs, PNGs or already compressed images may offer little reduction."
+        },
+        "2": {
+          "q": "Are pages removed or text rasterized?",
+          "a": "No. This operation keeps pages and text and focuses on JPEG image compression."
+        },
+        "3": {
+          "q": "Can I compress several PDFs?",
+          "a": "Yes. Select multiple files to process them together and download the packaged results."
+        }
+      }
+    },
+    "convert": {
+      "title": "PDF to Word",
+      "subtitle": "Convert PDFs to Word, Excel or individual page images",
+      "heroNote": "Start from your PDF\nSave retyping!",
+      "steps": {
+        "1": "Choose one or more PDFs",
+        "2": "Choose Word, Excel, JPG or PNG",
+        "3": "Set OCR or image resolution",
+        "4": "Convert and wait for processing",
+        "5": "Download and check the content"
+      },
+      "tips": {
+        "1": "Always check converted content",
+        "2": "Enable OCR for scanned pages",
+        "3": "Choose DPI for page images"
+      },
+      "faq": {
+        "1": {
+          "q": "Will Word look exactly like the PDF?",
+          "a": "Word and Excel are reconstructed from extracted content, so layout can change. Check the result before using it."
+        },
+        "2": {
+          "q": "Can I convert scanned PDFs?",
+          "a": "Enable OCR to recognize scanned text. Results depend on image quality and need checking."
+        },
+        "3": {
+          "q": "Can I export images instead?",
+          "a": "Yes. Choose JPG or PNG and a resolution. Pages become images; multiple results are packaged as ZIP."
+        }
+      }
+    },
+    "ocr": {
+      "title": "Document OCR",
+      "subtitle": "Recognize text in images and PDFs, review it and export your preferred format",
+      "heroNote": "Scan into text\nSave retyping!",
+      "steps": {
+        "1": "Choose PDFs or JPG/PNG images",
+        "2": "Choose the output and content profile",
+        "3": "Adjust recognition options if needed",
+        "4": "Recognize and review the requested sections",
+        "5": "Confirm and download the result"
+      },
+      "tips": {
+        "1": "Straight, well-lit images improve recognition",
+        "2": "Use the Table profile for Excel or CSV",
+        "3": "Check text, numbers and layout before confirming"
+      },
+      "faq": {
+        "1": {
+          "q": "Do I need to review the result?",
+          "a": "Yes. Recognized text and numbers can be wrong. Complete the review and confirmation before exporting."
+        },
+        "2": {
+          "q": "Can I export Word, Excel or PDF?",
+          "a": "PDF, TXT, Word, Excel, CSV and JSON are available. For Excel or CSV, select the Table profile and check cell data."
+        },
+        "3": {
+          "q": "Where is processing performed?",
+          "a": "In your browser on your device. Recognition data needs downloading the first time; documents do not need to be uploaded for OCR."
+        }
+      },
+      "previewEmpty": "Preview an image or document"
+    },
+    "images": {
+      "title": "PDF to images",
+      "subtitle": "Export PDF pages as JPG or PNG and download images or a ZIP",
+      "heroNote": "One image per page\nEasy to share!",
+      "steps": {
+        "1": "Choose one or more PDFs",
+        "2": "Choose JPG or PNG",
+        "3": "Choose 96, 150 or 300 DPI",
+        "4": "Check the source and convert",
+        "5": "Download the image or page ZIP"
+      },
+      "tips": {
+        "1": "JPG often produces smaller files",
+        "2": "PNG suits text and sharp graphics",
+        "3": "Multiple pages are packaged as ZIP"
+      },
+      "faq": {
+        "1": {
+          "q": "Which pages are exported?",
+          "a": "All pages in the selected PDFs are exported. Split the PDF first if you need only a few pages."
+        },
+        "2": {
+          "q": "Does higher DPI improve sharpness?",
+          "a": "Higher DPI produces larger images and uses more memory. Clarity also depends on the source; output dimensions may be reduced at device limits."
+        },
+        "3": {
+          "q": "Why is the result a ZIP?",
+          "a": "One page downloads as an image. Multiple pages or files are packaged as ZIP for a single download."
+        }
+      }
+    },
+    "password": {
+      "title": "PDF password",
+      "subtitle": "Set an opening password and permissions, or unlock using a known password",
+      "heroNote": "Keep files protected\nShare with care!",
+      "steps": {
+        "1": "Choose a PDF",
+        "2": "Choose Protect or Remove password",
+        "3": "Enter passwords and required permissions",
+        "4": "Process and wait for the new file",
+        "5": "The file downloads; download it again on the right"
+      },
+      "tips": {
+        "1": "Opening passwords need at least 8 characters",
+        "2": "Restricted permissions need a separate owner password",
+        "3": "Check the new file before sharing"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I unlock without the password?",
+          "a": "No. A valid password is required to unlock the file."
+        },
+        "2": {
+          "q": "How do opening and owner passwords differ?",
+          "a": "The opening password allows reading. A separate owner password is used when restricting printing, copying or editing."
+        },
+        "3": {
+          "q": "Do all readers enforce restrictions?",
+          "a": "Compliance depends on the PDF reader. Check the result in the application your recipient will use."
+        }
+      }
+    },
+    "organize": {
+      "title": "Organize PDF",
+      "subtitle": "Reorder, rotate and remove pages before creating a new document",
+      "heroNote": "Pages in order\nDocuments made clear!",
+      "steps": {
+        "1": "Choose one or more PDFs",
+        "2": "Use arrows to move pages",
+        "3": "Rotate or remove pages as needed",
+        "4": "Check the page count and grid order",
+        "5": "Export and download the organized PDF"
+      },
+      "tips": {
+        "1": "Original page numbers identify moved pages",
+        "2": "Reset restores the initial arrangement",
+        "3": "Pages from added files are appended"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I rotate or remove individual pages?",
+          "a": "Yes. Each page card has move, rotate and remove buttons. Changes are applied to the exported PDF."
+        },
+        "2": {
+          "q": "Can I combine pages from several PDFs?",
+          "a": "Yes. Add multiple files and arrange their pages together in one grid."
+        },
+        "3": {
+          "q": "How can I restore removed pages?",
+          "a": "Use Reset to restore the original arrangement for the selected files. Edits are kept only in this session."
+        }
+      }
+    },
+    "numbers": {
+      "title": "PDF page numbers",
+      "subtitle": "Choose a number format, position and page scope",
+      "heroNote": "Clear numbering\nEasy reference!",
+      "steps": {
+        "1": "Choose one PDF",
+        "2": "Choose a position and number template",
+        "3": "Set the starting number, font size and scope",
+        "4": "Check numbering on the preview page",
+        "5": "Create and download the PDF"
+      },
+      "tips": {
+        "1": "Skip the cover or select page ranges",
+        "2": "The preview shows a page within the chosen scope",
+        "3": "Changing options clears the previous result"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I change the number position?",
+          "a": "Yes. Header and footer positions are available with left, center or right alignment."
+        },
+        "2": {
+          "q": "Can numbering start from another value?",
+          "a": "Yes. Enter a starting number and choose a display template."
+        },
+        "3": {
+          "q": "Can I number only selected pages?",
+          "a": "Yes. Select a page scope and check the preview before export."
+        }
+      }
+    },
+    "stamp": {
+      "title": "Stamp PDF",
+      "subtitle": "Add text watermarks or an image logo to selected pages",
+      "heroNote": "A clear mark\nA recognizable document!",
+      "steps": {
+        "1": "Choose one PDF",
+        "2": "Choose a text or image stamp",
+        "3": "Enter text or upload a logo and adjust options",
+        "4": "Select the page scope and check the preview",
+        "5": "Export and download the new PDF"
+      },
+      "tips": {
+        "1": "Transparent PNG suits logos",
+        "2": "Adjust opacity to keep content readable",
+        "3": "Image stamps support several page positions"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I use an image stamp?",
+          "a": "Yes. Choose Image, upload PNG or JPG, then adjust position, width and opacity."
+        },
+        "2": {
+          "q": "Can I adjust text angle and size?",
+          "a": "Yes. Text stamps support content, color, font size, opacity and rotation angle."
+        },
+        "3": {
+          "q": "Is this a digital signature?",
+          "a": "No. This tool adds text or an image to PDF content. It does not create a digital signature or certificate."
+        }
+      }
+    },
+    "redact": {
+      "title": "Redact PDF",
+      "subtitle": "Mark areas to hide and remove underlying content from the exported PDF",
+      "heroNote": "Mark what to hide\nCheck before sharing!",
+      "steps": {
+        "1": "Choose one PDF",
+        "2": "Go to a page to redact",
+        "3": "Drag boxes around information to remove",
+        "4": "Review marked areas on each page",
+        "5": "Export and check the redacted PDF"
+      },
+      "tips": {
+        "1": "Undo the most recent box if needed",
+        "2": "Marked pages are rebuilt as images",
+        "3": "Check all pages before sharing"
+      },
+      "faq": {
+        "1": {
+          "q": "Is hidden content actually removed?",
+          "a": "Yes, in the exported file. Marked pages are rebuilt as images with black areas, removing original content under the boxes. The source is unchanged by the preview."
+        },
+        "2": {
+          "q": "Can I mark several areas on several pages?",
+          "a": "Yes. Switch pages to add areas; the page and area counts update beside the workspace."
+        },
+        "3": {
+          "q": "Is the text layer of marked pages preserved?",
+          "a": "Marked pages are rebuilt as images, so text layers, links and form fields on those pages are removed. Unmarked pages use the regular PDF export path."
+        }
+      }
+    },
+    "sign": {
+      "title": "Sign a document",
+      "subtitle": "Draw or upload a signature image, place it on pages and export PDF",
+      "heroNote": "A signature in place\nA clear document!",
+      "steps": {
+        "1": "Choose one PDF",
+        "2": "Draw a signature or upload PNG/JPG",
+        "3": "Choose ink and a suitable width",
+        "4": "Click a page to place the signature",
+        "5": "Check placements and export PDF"
+      },
+      "tips": {
+        "1": "Place multiple signatures on several pages",
+        "2": "Undo or clear signatures on a page",
+        "3": "This inserts an image, not a digital signature"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I use an existing signature image?",
+          "a": "Yes. Choose the image source and upload PNG or JPG. A transparent PNG usually works well on documents."
+        },
+        "2": {
+          "q": "Can I change the signature size?",
+          "a": "Yes. Adjust the width as a percentage of the page and check its placement in the preview."
+        },
+        "3": {
+          "q": "Does this create a digital signature?",
+          "a": "No. This tool inserts a signature image into PDF content; it does not issue certificates or create digital signatures."
+        }
+      }
+    },
+    "compare": {
+      "title": "Compare documents",
+      "subtitle": "Compare text in two PDFs and download a difference report",
+      "heroNote": "Two versions side by side\nChanges made clearer!",
+      "steps": {
+        "1": "Choose exactly two PDFs",
+        "2": "Put the old version before the new version",
+        "3": "Set whitespace and case handling",
+        "4": "View both versions and compare",
+        "5": "Read, copy or download the TXT report"
+      },
+      "tips": {
+        "1": "Reorder files to swap old and new versions",
+        "2": "Text is compared line by line",
+        "3": "Scans need a text layer before comparison"
+      },
+      "faq": {
+        "1": {
+          "q": "Are images or layout compared?",
+          "a": "No. This compares text line by line. Images, colors and layout are outside the difference report."
+        },
+        "2": {
+          "q": "Can I compare scans?",
+          "a": "Scans need OCR to provide text. A document without usable text produces an error rather than a false identical result."
+        },
+        "3": {
+          "q": "What is the downloaded format?",
+          "a": "A TXT report with changes and old/new document information. View and copy the report directly on the page as well."
+        }
+      }
+    },
+    "reader": {
+      "title": "View PDF",
+      "subtitle": "Read, navigate, zoom and search within PDF documents",
+      "heroNote": "Open your document\nRead every page!",
+      "steps": {
+        "1": "Choose PDFs or images",
+        "2": "Use buttons or the list to change pages",
+        "3": "Zoom or fit the page width",
+        "4": "Open Search & Export when needed",
+        "5": "Switch to editing with the document still open"
+      },
+      "tips": {
+        "1": "Ctrl+F opens document search",
+        "2": "Add several files to the same session",
+        "3": "The session stays when switching between view and edit"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I search scanned PDFs?",
+          "a": "Scans need a text layer. The search panel provides OCR for pages without text."
+        },
+        "2": {
+          "q": "Can I zoom and choose pages?",
+          "a": "Yes. Use zoom, fit-width controls and the page list above the viewer."
+        },
+        "3": {
+          "q": "Does switching to editing lose my file?",
+          "a": "No when using the Edit action in the same session. The document and existing edits are retained between these presentations."
+        }
+      }
+    },
+    "imageText": {
+      "title": "Image to text",
+      "subtitle": "Recognize text in images, review it and export your preferred format",
+      "heroNote": "Scan into text\nSave retyping!",
+      "steps": {
+        "1": "Choose one or more JPG or PNG images",
+        "2": "Choose the output and content profile",
+        "3": "Adjust recognition options if needed",
+        "4": "Recognize and review the requested sections",
+        "5": "Confirm and download the result"
+      },
+      "tips": {
+        "1": "Straight, well-lit images improve recognition",
+        "2": "Use the Table profile for Excel or CSV",
+        "3": "Check text, numbers and layout before confirming"
+      },
+      "faq": {
+        "1": {
+          "q": "Do I need to review the result?",
+          "a": "Yes. Recognized text and numbers can be wrong. Complete the review and confirmation before exporting."
+        },
+        "2": {
+          "q": "Can I export Word, Excel or PDF?",
+          "a": "PDF, TXT, Word, Excel, CSV and JSON are available. For Excel or CSV, select the Table profile and check cell data."
+        },
+        "3": {
+          "q": "Where is processing performed?",
+          "a": "In your browser on your device. Recognition data needs downloading the first time; documents do not need to be uploaded for OCR."
+        }
+      },
+      "previewEmpty": "Preview an image or document"
+    }
+  },
+  "conversionStudio": {
+    "category": "Scan & Convert",
+    "related": "More scanning and conversion tools",
+    "outputFormat": "Output format",
+    "optionsTitle": "2. Output format & OCR",
+    "previewTitle": "3. Preview & Download",
+    "source": "Source document",
+    "result": "Converted result",
+    "loadingResult": "Opening preview…",
+    "previewFailed": "Preview could not be rendered. You can still download the result.",
+    "wordExcerpt": "Text excerpt from the generated Word file. Layout in Word may differ.",
+    "sourceHint": "Use the source for comparison. The new file and download button appear in the Converted result tab."
+  },
+  "workflowStudio": {
+    "organizeInput": "1. Upload & Arrange pages",
+    "organizeOptions": "2. Review & Export PDF",
+    "organizeHint": "Move, rotate or remove pages in the grid, then export.",
+    "ocrInput": "1. Upload images or PDF",
+    "ocrOptions": "2. OCR & Export options",
+    "imageOptions": "2. Format & Resolution",
+    "passwordInput": "1. Choose a PDF",
+    "passwordOptions": "2. Passwords & Permissions",
+    "passwordOutput": "3. Result & Download",
+    "downloadAgain": "Download the result again",
+    "passwordResultHint": "The new file downloads automatically after successful processing. Download it again here.",
+    "editedPreview": "Live preview",
+    "pdfResult": "Result PDF",
+    "decorationHint": "This preview includes the current settings. Export to download the new file in the Result PDF tab.",
+    "redactInput": "1. Upload PDF & Mark areas",
+    "redactOptions": "2. Review & Export PDF",
+    "redactHint": "Choose a PDF and drag boxes over areas to redact on each page.",
+    "redactExportHint": "The preview does not remove original content. Export removes the marked areas.",
+    "markedPages": "Marked pages",
+    "markedAreas": "Marked areas",
+    "signInput": "1. Upload PDF & Place signatures",
+    "signOptions": "2. Create signature & Export",
+    "signHint": "Draw or choose a signature image, then click on a page to place it.",
+    "comparePreview": "3. Compare & Report",
+    "compareHint": "Both viewers show source documents. The report compares text, not layout or images.",
+    "oldDocument": "Old version",
+    "newDocument": "New version",
+    "sourcePair": "Both PDFs",
+    "compareReport": "Comparison report",
+    "imageTextInput": "1. Upload images for recognition",
+    "readerInput": "1. Open documents",
+    "readerView": "2. Read & Search",
+    "readerDrop": "Choose PDFs or images to view",
+    "readerShortcut": "Ctrl+F finds text. Scans need OCR before searching.",
+    "readerEmpty": "Your document appears here",
+    "readerEmptyHint": "Choose a file to navigate, zoom and read."
   }
 }

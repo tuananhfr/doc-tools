@@ -14,7 +14,7 @@ export interface TrimRangeControls {
   onEnd: (value: string) => void
 }
 
-function useFilmstrip(url: string | null, duration: number | null) {
+export function useFilmstrip(url: string | null, duration: number | null) {
   const [frames, setFrames] = useState<{ url: string; images: string[] } | null>(null)
   useEffect(() => {
     if (!url || !duration) return

@@ -187,6 +187,82 @@
       "emptyHint": "Add content in step 1, choose a voice and start listening.",
       "wavHint": "Vietnamese voice can export WAV for the selected part.",
       "deviceHint": "Device voice plays directly on your device. Choose Vietnamese voice for WAV export."
+    },
+    "compress": {
+      "title": "Compress video",
+      "subtitle": "Reduce video size and export MP4 in your browser",
+      "heroNote": "Smaller video\nEasier sharing!",
+      "inputTitle": "1. Upload video",
+      "optionsTitle": "2. Compression settings",
+      "outputTitle": "3. Result & Download",
+      "emptyTitle": "Your video will appear here",
+      "emptyHint": "Choose a video from your device to preview and adjust the output.",
+      "resultHint": "Check the file size, preview and download the compressed video.",
+      "steps": {
+        "1": "Upload a video from your device.",
+        "2": "Choose light, balanced or strong compression.",
+        "3": "Choose a maximum edge of 720 or 1080 px.",
+        "4": "Start compression and wait for it to finish.",
+        "5": "Preview and download the result."
+      },
+      "tips": {
+        "1": "Keep the original video to compare quality.",
+        "2": "Stronger compression can reduce detail.",
+        "3": "An already optimized video may not get smaller.",
+        "4": "Video processing runs on your device without uploading the file."
+      },
+      "faq": {
+        "1": {
+          "q": "What are the video limits?",
+          "a": "Up to 100 MB, 10 minutes and 3840 × 2160 pixels. Processing also depends on device memory."
+        },
+        "2": {
+          "q": "Is the original format preserved?",
+          "a": "Output is MP4 with H.264 video and AAC audio when the source contains audio."
+        },
+        "3": {
+          "q": "Is the video uploaded to a server?",
+          "a": "No. The processing engine loads when needed and runs in your browser. Keep the page open during processing."
+        }
+      }
+    },
+    "gif": {
+      "title": "Video to GIF",
+      "subtitle": "Turn a short clip into a looping animation on your device",
+      "heroNote": "Short moments\nMade to share!",
+      "inputTitle": "1. Upload video",
+      "optionsTitle": "2. Animation settings",
+      "outputTitle": "3. Result & Download",
+      "emptyTitle": "Your video will appear here",
+      "emptyHint": "Choose a video from your device to preview and adjust the output.",
+      "resultHint": "Preview the animation and download the GIF after processing.",
+      "steps": {
+        "1": "Upload a video from your device.",
+        "2": "Choose a clip up to 20 seconds long.",
+        "3": "Choose width and frame rate.",
+        "4": "Preview your clip, then create the GIF.",
+        "5": "Preview and download the result."
+      },
+      "tips": {
+        "1": "GIF has no audio.",
+        "2": "Shorter clips produce smaller files.",
+        "3": "Lower width and frame rate help reduce size.",
+        "4": "Video processing runs on your device without uploading the file."
+      },
+      "faq": {
+        "1": {
+          "q": "What are the video limits?",
+          "a": "Up to 100 MB, 10 minutes and 3840 × 2160 pixels. Processing also depends on device memory."
+        },
+        "2": {
+          "q": "Why is the GIF file large?",
+          "a": "GIF works best for short clips. Reduce duration, width or frame rate to reduce size."
+        },
+        "3": {
+          "q": "Is the video uploaded to a server?",
+          "a": "No. The processing engine loads when needed and runs in your browser. Keep the page open during processing."
+        }
+      }
     }
   }
 }

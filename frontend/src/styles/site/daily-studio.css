@@ -1,0 +1,36 @@
+/* Everyday reference: input/result cards, a study surface and room for the compass. */
+.cn-dailystudio .cn-idstudio-toolnav > a { min-height: 42px; }
+.cn-dailystudio .erp-tool-panel { gap: 12px; }
+.cn-dailystudio .erp-tool-panel__head { margin-bottom: 0; }
+.cn-dailystudio .cn-studio-form-hint { margin-bottom: 0; }
+.cn-dailystudio--flashcards .erp-tool-panel > .mt-3 { margin-top: 0 !important; }
+.cn-dailystudio .cn-electricity-tariff { padding: 12px; margin-top: 18px; }
+.cn-dailystudio .cn-electricity-tariff legend { font-size: 14px; line-height: 1.6; }
+.cn-dailystudio .cn-electricity-total { padding: 20px 12px; margin: 12px 0 16px; }
+.cn-dailystudio .cn-electricity-total .erp-tool-result__value { padding: 0; border: 0; background: transparent; font-size: 30px; }
+.cn-dailystudio .cn-flashcard-paper { display: flex; flex-direction: column; justify-content: center; min-height: 280px; padding: 24px 18px; }
+.cn-dailystudio .cn-flashcard-paper > .erp-tool-result__value { padding: 0; border: 0; background: transparent; font-size: 22px; }
+.cn-dailystudio .cn-flashcard-paper[data-revealed='true'] { border-color: var(--cn-accent); }
+.cn-dailystudio .cn-flashcard-workspace .erp-tool-rows { max-height: 340px; overflow-y: auto; scrollbar-width: thin; }
+.cn-dailystudio .cn-flashcard-stored { font-size: 12px; }
+.cn-tool-workspace .cn-dailystudio--compass .cn-tool-board:not(.erp-flow--single) { grid-template-columns: minmax(0, 1.25fr) minmax(235px, .85fr); }
+.cn-dailystudio--compass .cn-orientation-workspace > .erp-flow__side { display: grid; gap: 12px; padding: 0; border: 0; background: transparent; }
+.cn-dailystudio--compass .erp-orient-head { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-dailystudio--compass .erp-orient-head .btn { font-size: 12px; text-decoration: none; }
+.cn-dailystudio--compass .erp-orient-dial { display: block; width: 100%; max-width: 330px; height: auto; margin: 18px auto; }
+.cn-dailystudio--compass .erp-orient-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cn-dailystudio--compass .cn-orientation-live .erp-orient-actions { margin-block: 8px; }
+.cn-dailystudio--compass .cn-orientation-live .erp-orient-dial { margin-block: 12px; }
+.cn-dailystudio--compass .erp-orient-muted { font-size: 12px; line-height: 1.8; }
+.cn-dailystudio--compass .erp-orient-note { padding: 12px; font-size: 12px; line-height: 1.8; border-radius: 10px; }
+.cn-dailystudio--compass .erp-orient-nofile { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--cn-line); }
+.cn-dailystudio--compass .erp-flow-picker { background: var(--cn-hero); }
+.cn-dailystudio--compass :is(svg, canvas, img) { max-width: 100%; }
+@media (max-width: 1100px) {
+  .cn-tool-workspace .cn-dailystudio--compass .cn-tool-board:not(.erp-flow--single) { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-dailystudio .cn-flashcard-paper { min-height: 230px; padding: 20px 14px; }
+  .cn-dailystudio--compass .erp-orient-head > .btn { width: 100%; }
+  .cn-dailystudio .cn-idstudio-toolnav > a { min-height: 44px; }
+}

@@ -869,5 +869,336 @@
         "a": "Có. Mở Bố cục nâng cao để chọn mẫu, thêm tiêu đề và logo. Các ảnh đã chọn sẽ được chuyển sang chế độ đó."
       }
     }
+  },
+  "utilityStudio": {
+    "category": "Hình ảnh",
+    "related": "Các công cụ hình ảnh khác",
+    "compress": {
+      "title": "Nén ảnh",
+      "subtitle": "Giảm dung lượng JPG, PNG, WebP và xử lý nhiều ảnh cùng lúc",
+      "heroNote": "Ảnh nhẹ hơn\nChia sẻ nhanh hơn!",
+      "steps": {
+        "1": "Chọn hoặc kéo thả ảnh vào",
+        "2": "Chọn mức nén phù hợp",
+        "3": "Giữ kích thước hoặc thu nhỏ cạnh dài",
+        "4": "Bấm nén và xem kết quả",
+        "5": "Tải ảnh hoặc gói ZIP nếu có nhiều ảnh"
+      },
+      "tips": {
+        "1": "Nén vừa thường phù hợp để chia sẻ",
+        "2": "PNG có thể giảm ít hơn JPG hoặc WebP",
+        "3": "Ảnh không nhẹ hơn sẽ được giữ bản gốc",
+        "4": "Có thể nén nhiều ảnh cùng một lần"
+      },
+      "faq": {
+        "1": {
+          "q": "Ảnh có bị giảm chất lượng không?",
+          "a": "JPG và WebP được mã hóa lại theo mức nén đã chọn nên có thể giảm chất lượng. PNG dùng cơ chế nén riêng và không áp chất lượng JPG."
+        },
+        "2": {
+          "q": "Vì sao có ảnh không nhỏ đi?",
+          "a": "Ảnh đã tối ưu có thể không nhẹ hơn khi nén lại. Công cụ giữ bản gốc nếu kết quả không nhỏ hơn."
+        },
+        "3": {
+          "q": "Có giữ kích thước ảnh không?",
+          "a": "Mặc định giữ kích thước. Bạn có thể chọn giới hạn cạnh dài; ảnh chỉ được thay bằng kết quả nếu tệp mới nhẹ hơn."
+        }
+      },
+      "inputTitle": "1. Tải ảnh lên",
+      "optionsTitle": "2. Tùy chọn nén",
+      "outputTitle": "3. Xem trước & Tải về",
+      "privacy": "Ảnh được xử lý trong trình duyệt, không tải lên máy chủ.",
+      "dismiss": "Ẩn thông báo",
+      "processing": "Đang nén ảnh…",
+      "cancel": "Hủy",
+      "original": "Ảnh gốc",
+      "before": "Dung lượng ban đầu",
+      "output": "Tệp tải về"
+    },
+    "background": {
+      "title": "Xóa phông",
+      "subtitle": "Tách chủ thể khỏi nền, chỉnh vùng giữ lại và xuất ảnh PNG",
+      "heroNote": "Tách nền gọn gàng\nGiữ điều bạn muốn!",
+      "steps": {
+        "1": "Tải ảnh lên hoặc thử ảnh mẫu",
+        "2": "Chờ bộ xử lý tách chủ thể",
+        "3": "Chọn nền trong suốt, trắng hoặc xanh",
+        "4": "Dùng cọ sửa vùng cần giữ hoặc xóa",
+        "5": "Xem ảnh gốc, tải PNG hoặc làm ảnh thẻ"
+      },
+      "tips": {
+        "1": "Ảnh rõ nét giúp tách nền tốt hơn",
+        "2": "Dùng cọ giữ lại cho vùng bị xóa nhầm",
+        "3": "Có thể hoàn tác từng nét cọ",
+        "4": "Lần đầu cần tải dữ liệu xử lý"
+      },
+      "faq": {
+        "1": {
+          "q": "Áo trắng có bị đổi thành nền không?",
+          "a": "Bộ xử lý nhận dạng chủ thể thay vì thay toàn bộ màu trắng. Nếu còn vùng bị xóa nhầm, dùng cọ giữ lại để khôi phục."
+        },
+        "2": {
+          "q": "Ảnh tải về có nền trong suốt không?",
+          "a": "Có khi bạn chọn nền trong suốt. Chọn nền trắng hoặc xanh nếu muốn xuất PNG có màu nền đó."
+        },
+        "3": {
+          "q": "Có giới hạn ảnh không?",
+          "a": "Hỗ trợ JPG, PNG, WebP tối đa 20 MB. Ảnh lớn được thu nhỏ với cạnh dài tối đa 2200 px để xử lý."
+        }
+      },
+      "inputTitle": "1. Chọn ảnh",
+      "optionsTitle": "2. Tách nền & Tùy chỉnh",
+      "outputTitle": "3. Xem trước & Tải về",
+      "sampleHint": "Chưa có ảnh? Thử với ảnh chân dung mẫu.",
+      "sample": "Thử với ảnh mẫu",
+      "sampleFailed": "Không mở được ảnh mẫu. Hãy thử lại.",
+      "settingsHint": "Các tùy chọn nền và cọ sẽ xuất hiện khi xử lý xong.",
+      "brushHint": "Chọn cọ Xóa hoặc Giữ rồi tô trực tiếp lên ảnh kết quả. Dùng hoàn tác để sửa nét vừa vẽ.",
+      "result": "Kết quả",
+      "original": "Ảnh gốc",
+      "emptyTitle": "Ảnh tách nền hiện tại đây",
+      "emptyHint": "Chọn ảnh để bắt đầu tách chủ thể.",
+      "pngHint": "Xuất PNG. Các ô caro chỉ giúp nhận biết vùng trong suốt."
+    },
+    "design": {
+      "title": "Thiết kế nhanh",
+      "subtitle": "Chọn mẫu, thêm ảnh, nội dung và xuất thiết kế để chia sẻ hoặc in",
+      "heroNote": "Ý tưởng nhỏ\nThành thiết kế đẹp!",
+      "steps": {
+        "1": "Chọn ảnh hoặc nhập nội dung",
+        "2": "Chọn mẫu phù hợp trong khung xem trước",
+        "3": "Thêm logo, màu sắc và kích thước",
+        "4": "Kiểm tra bố cục và các trang",
+        "5": "Chọn định dạng, xuất và tải thiết kế"
+      },
+      "tips": {
+        "1": "Có thể tạo mẫu chỉ với chữ hoặc logo",
+        "2": "Chọn vừa khung để giữ trọn ảnh",
+        "3": "PDF phù hợp khi cần in",
+        "4": "Có thể lưu tùy chọn thương hiệu trên thiết bị"
+      },
+      "faq": {
+        "1": {
+          "q": "Có những loại mẫu nào?",
+          "a": "Có mẫu logo, watermark, voucher, nhãn, poster, cốc, hộp, túi, dấu trang trí và thiệp quà. Mỗi mẫu có kích thước và bố cục riêng."
+        },
+        "2": {
+          "q": "Có xuất file để in được không?",
+          "a": "Có. Chọn PDF hoặc JPG 300 DPI và kiểm tra kích thước trước khi in. Các định dạng PNG và ZIP cũng được hỗ trợ."
+        },
+        "3": {
+          "q": "Tùy chọn thương hiệu được lưu ở đâu?",
+          "a": "Chỉ được lưu trong trình duyệt trên thiết bị khi bạn bấm lưu. Bạn có thể nạp lại hoặc xóa trong mục tùy chọn thương hiệu."
+        }
+      }
+    }
+  },
+  "extendedStudio": {
+    "layout": {
+      "input": "1. Tải ảnh lên",
+      "options": "2. Tùy chọn xử lý",
+      "preview": "3. Xem ảnh nguồn",
+      "canvasInput": "1. Tải ảnh & Thao tác",
+      "canvasOptions": "2. Tùy chọn & Xuất ảnh",
+      "empty": "Ảnh của bạn hiện tại đây",
+      "batchHint": "Xem ảnh đầu tiên trong danh sách. Sau khi xử lý, bạn có thể tải ảnh hoặc ZIP kết quả.",
+      "canvasHint": "Chọn ảnh để bắt đầu. Các thao tác được áp dụng trên ảnh xem trước.",
+      "ocrHint": "Xem ảnh nguồn, nhận dạng rồi kiểm tra nội dung trước khi xuất tệp."
+    },
+    "metadata": {
+      "title": "Xóa metadata ảnh",
+      "subtitle": "Tạo bản ảnh mới không chứa EXIF và thông tin metadata gốc",
+      "heroNote": "Chia sẻ ảnh\nGọn thông tin hơn!",
+      "steps": {
+        "1": "Chọn ảnh JPG, PNG hoặc WebP",
+        "2": "Kiểm tra ảnh và kích thước nguồn",
+        "3": "Bấm xóa metadata để tạo bản mới",
+        "4": "So sánh bản gốc và kết quả",
+        "5": "Tải lại ảnh đã xử lý nếu cần"
+      },
+      "tips": {
+        "1": "Thông tin nằm trong ảnh vẫn còn nhìn thấy",
+        "2": "WebP được xuất thành PNG",
+        "3": "Ảnh được mã hóa lại nên dung lượng có thể đổi"
+      },
+      "faq": {
+        "1": {
+          "q": "Công cụ xóa những gì?",
+          "a": "Công cụ dựng lại ảnh từ điểm ảnh, loại bỏ EXIF và metadata gốc. Nội dung hiển thị trong ảnh và thông tin trong tên tệp không bị che đi."
+        },
+        "2": {
+          "q": "Chất lượng có thay đổi không?",
+          "a": "Ảnh được mã hóa lại. JPG có thể thay đổi chất lượng và dung lượng; kích thước hiển thị của ảnh được giữ theo kết quả xử lý."
+        },
+        "3": {
+          "q": "Vì sao WebP xuất thành PNG?",
+          "a": "Công cụ dùng PNG làm đầu ra cho WebP trong luồng xóa metadata. JPG và PNG được giữ loại định dạng tương ứng."
+        }
+      },
+      "inputTitle": "1. Chọn ảnh & Xóa metadata",
+      "outputTitle": "2. Xem trước & Tải về",
+      "result": "Kết quả",
+      "original": "Ảnh gốc",
+      "emptyTitle": "Bản ảnh mới hiện tại đây",
+      "emptyHint": "Chọn ảnh và xóa metadata để xem kết quả.",
+      "downloadAgain": "Tải lại ảnh đã xử lý"
+    },
+    "ocr": {
+      "title": "Ảnh sang văn bản",
+      "subtitle": "Nhận dạng chữ trong ảnh, kiểm tra nội dung và xuất tệp",
+      "heroNote": "Từ ảnh thành chữ\nĐỡ gõ lại từng dòng!",
+      "steps": {
+        "1": "Tải một hoặc nhiều ảnh lên",
+        "2": "Chọn định dạng và hồ sơ nhận dạng",
+        "3": "Chạy nhận dạng chữ trong ảnh",
+        "4": "Kiểm tra và sửa nội dung cần xác nhận",
+        "5": "Xác nhận rồi tải kết quả"
+      },
+      "tips": {
+        "1": "Ảnh thẳng, rõ nét cho kết quả tốt hơn",
+        "2": "Chọn hồ sơ bảng khi xuất CSV hoặc Excel",
+        "3": "Luôn kiểm tra chữ và số nhận dạng được"
+      },
+      "faq": {
+        "1": {
+          "q": "Có cần gõ lại toàn bộ nội dung không?",
+          "a": "Không. Công cụ nhận dạng chữ rồi cho bạn kiểm tra các phần cần xác nhận. Chất lượng ảnh ảnh hưởng trực tiếp đến kết quả."
+        },
+        "2": {
+          "q": "Có xuất Word hoặc Excel được không?",
+          "a": "Có các lựa chọn đầu ra tương ứng. Với CSV hoặc Excel, chọn hồ sơ bảng và kiểm tra bố cục, ô và số liệu trước khi xuất."
+        },
+        "3": {
+          "q": "Ảnh có được gửi để nhận dạng trên máy chủ không?",
+          "a": "Nhận dạng diễn ra trong trình duyệt. Lần đầu dùng cần tải dữ liệu nhận dạng; ảnh không cần gửi lên máy chủ để OCR."
+        }
+      }
+    },
+    "measure": {
+      "title": "Đo kích thước ảnh",
+      "subtitle": "Đặt đoạn chuẩn, đo chiều dài, diện tích và đếm trên ảnh",
+      "heroNote": "Đặt chuẩn một lần\nĐo rõ từng khoảng!",
+      "steps": {
+        "1": "Tải ảnh cần đo lên",
+        "2": "Đặt hai điểm cho đoạn chuẩn",
+        "3": "Nhập chiều dài thật và đơn vị",
+        "4": "Chọn đo khoảng cách, diện tích hoặc đếm",
+        "5": "Lưu ảnh kèm các số đo"
+      },
+      "tips": {
+        "1": "Đoạn chuẩn cần biết chính xác chiều dài",
+        "2": "Giữ đối tượng đo trên cùng mặt phẳng",
+        "3": "Không có chuẩn, số đo được biểu diễn theo điểm ảnh"
+      },
+      "faq": {
+        "1": {
+          "q": "Có đo kích thước thật từ mọi ảnh được không?",
+          "a": "Cần một đoạn chuẩn đã biết chiều dài. Góc chụp và phối cảnh có thể làm sai lệch kết quả; công cụ đo dựa trên tỉ lệ bạn đặt."
+        },
+        "2": {
+          "q": "Có đo diện tích và đếm được không?",
+          "a": "Có. Chọn chế độ Diện tích để đặt các đỉnh vùng cần đo, hoặc Đếm để đánh dấu và đếm các điểm."
+        },
+        "3": {
+          "q": "Ảnh tải về chứa gì?",
+          "a": "Ảnh gốc được vẽ thêm các số đo và điểm đánh dấu theo thao tác bạn đã đặt."
+        }
+      }
+    },
+    "batch": {
+      "title": "Ảnh hàng loạt",
+      "subtitle": "Đổi kích thước, định dạng và tên nhiều ảnh trong một lượt",
+      "heroNote": "Chọn một lần\nXử lý cả danh sách!",
+      "steps": {
+        "1": "Tải các ảnh cần xử lý",
+        "2": "Chọn cách đổi kích thước",
+        "3": "Chọn định dạng và chất lượng",
+        "4": "Đặt mẫu tên và số thứ tự nếu cần",
+        "5": "Xử lý rồi tải ảnh hoặc gói ZIP"
+      },
+      "tips": {
+        "1": "Dùng {name} để giữ phần tên gốc",
+        "2": "Dùng {n} để thêm số thứ tự",
+        "3": "Xem mẫu tên đầu ra trước khi chạy"
+      },
+      "faq": {
+        "1": {
+          "q": "Có đổi kích thước theo phần trăm không?",
+          "a": "Có. Chọn cách đổi kích thước theo phần trăm và nhập giá trị hợp lệ. Các ảnh vẫn giữ tỉ lệ khung hình."
+        },
+        "2": {
+          "q": "Có giữ định dạng của từng ảnh không?",
+          "a": "Có lựa chọn giữ định dạng. Bạn cũng có thể đưa cả lô về JPG, PNG hoặc WebP nếu trình duyệt hỗ trợ."
+        },
+        "3": {
+          "q": "Tại sao nhiều ảnh tải về là ZIP?",
+          "a": "Một ảnh được tải trực tiếp. Nhiều ảnh được gói thành ZIP để giữ đủ tệp và tên đã đặt."
+        }
+      }
+    },
+    "mark": {
+      "title": "Che & Đóng dấu ảnh",
+      "subtitle": "Che vùng thông tin bằng khối đen và thêm chữ đóng dấu lên ảnh",
+      "heroNote": "Che đúng chỗ\nGắn dấu rõ ràng!",
+      "steps": {
+        "1": "Chọn ảnh cần chỉnh",
+        "2": "Kéo khung che lên vùng cần ẩn",
+        "3": "Nhập chữ đóng dấu nếu cần",
+        "4": "Chọn vị trí, màu, cỡ chữ và độ mờ",
+        "5": "Lưu ảnh đã che và đóng dấu"
+      },
+      "tips": {
+        "1": "Kiểm tra đủ mọi vùng thông tin cần che",
+        "2": "Khung che được ghi thành điểm ảnh đen",
+        "3": "Có thể lặp chữ đóng dấu trên toàn ảnh"
+      },
+      "faq": {
+        "1": {
+          "q": "Vùng che có được ghi vào ảnh không?",
+          "a": "Có. Khối đen được vẽ trực tiếp vào điểm ảnh của tệp xuất, cùng với chữ đóng dấu đã chọn."
+        },
+        "2": {
+          "q": "Có thêm logo ảnh được không?",
+          "a": "Công cụ này đóng dấu bằng chữ. Nếu cần logo hoặc thiết kế bố cục, hãy dùng Thiết kế nhanh."
+        },
+        "3": {
+          "q": "Có chỉnh được dấu sau khi tải không?",
+          "a": "Bạn có thể tiếp tục chỉnh trong phiên công cụ bằng các tùy chọn hiện có. Tệp xuất đã gộp khung che và chữ vào ảnh."
+        }
+      }
+    },
+    "color": {
+      "title": "Màu sắc",
+      "subtitle": "Chọn màu, đổi mã HEX / RGB / HSL và xem độ tương phản",
+      "heroNote": "Chọn màu dễ nhìn\nPhối màu rõ ràng!",
+      "steps": {
+        "1": "Chọn màu bằng ô màu hoặc nhập mã",
+        "2": "Sửa HEX, RGB hoặc HSL theo nhu cầu",
+        "3": "Xem màu cập nhật ngay bên cạnh",
+        "4": "So sánh tương phản với chữ trắng và đen",
+        "5": "Sao chép mã màu để sử dụng"
+      },
+      "tips": {
+        "1": "Sửa một dạng mã, các dạng khác đổi theo",
+        "2": "Kiểm tra tương phản trước khi dùng làm nền chữ",
+        "3": "Hút màu màn hình chỉ hiện trên trình duyệt hỗ trợ"
+      },
+      "faq": {
+        "1": {
+          "q": "Có đổi qua lại HEX, RGB và HSL không?",
+          "a": "Có. Nhập giá trị hợp lệ vào một ô, các mã còn lại và ô xem trước sẽ cập nhật theo cùng màu."
+        },
+        "2": {
+          "q": "Vì sao không thấy nút hút màu?",
+          "a": "Tính năng EyeDropper phụ thuộc trình duyệt. Công cụ chỉ hiện nút khi thiết bị hỗ trợ. Bạn vẫn có thể dùng ô chọn màu và nhập mã."
+        },
+        "3": {
+          "q": "Có sao chép từng loại mã được không?",
+          "a": "Có nút sao chép bên cạnh các ô HEX, RGB và HSL. Chọn loại mã phù hợp cho nơi bạn định sử dụng."
+        }
+      },
+      "inputTitle": "1. Chọn màu & Mã màu",
+      "outputTitle": "2. Xem màu & Tương phản"
+    }
   }
 }

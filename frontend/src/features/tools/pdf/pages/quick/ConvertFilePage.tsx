@@ -1,8 +1,8 @@
 import { useId, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { FlowChoice, WorkspaceGuide, type FlowChoiceOption } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
+import { FileConversionStudio } from '../../components/quick/FileConversionStudio'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { convertTask, type ConvertTarget } from '../../services/quick-tasks'
@@ -10,28 +10,29 @@ import { convertTask, type ConvertTarget } from '../../services/quick-tasks'
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
 const DPI_OPTIONS = [96, 150, 300] as const
+const TARGETS = [
+  { value: 'word', label: 'Word', icon: 'file-earmark-word-fill' },
+  { value: 'excel', label: 'Excel', icon: 'file-earmark-excel-fill' },
+  { value: 'jpeg', label: 'JPG', icon: 'file-earmark-image-fill' },
+  { value: 'png', label: 'PNG', icon: 'file-earmark-image-fill' },
+] as const
 
 /** CHUYỂN ĐỔI FILE — PDF sang Word, Excel hoặc ảnh từng trang. */
 export default function ConvertFilePage() {
   const { t } = useTranslation('pdf')
-  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.convert' })
+  const { t: c } = useTranslation('pdf', { keyPrefix: 'conversionStudio' })
   const ids = useId()
   const quick = useQuickSources({ accept: ACCEPT, multiple: true })
-  const targets: FlowChoiceOption<ConvertTarget>[] = [
-    { value: 'word', label: t('convert.target.word') },
-    { value: 'excel', label: t('convert.target.excel'), hint: t('convert.target.excelHint') },
-    { value: 'jpeg', label: t('convert.target.jpeg'), hint: t('convert.target.jpegHint') },
-    { value: 'png', label: t('convert.target.png'), hint: t('convert.target.pngHint') },
-  ]
   const [target, setTarget] = useState<ConvertTarget>('word')
   const [dpi, setDpi] = useState(150)
   const [ocr, setOcr] = useState(true)
   const image = target === 'jpeg' || target === 'png'
 
   return (
-    <div className="cn-pdf-quick-workspace cn-convert-workspace">
-    <div className="cn-studio-convert-banner"><span className="cn-studio-small-icon"><Icon name="file-earmark-pdf" /></span><Icon name="arrow-right" /><span className="cn-studio-small-icon"><Icon name={target === 'word' ? 'file-earmark-word' : target === 'excel' ? 'file-earmark-excel' : 'file-earmark-image'} /></span><div><h2>{studio('introTitle')}</h2><p>{studio('introHint')}</p></div></div>
+    <FileConversionStudio>
     <QuickToolShell
+      pdfStudio="convert"
+      resultKey={JSON.stringify([quick.items.map(item => item.source.id), target, dpi, ocr])}
       quick={quick}
       accept={ACCEPT}
       multiple
@@ -42,7 +43,11 @@ export default function ConvertFilePage() {
       task={() => convertTask(quick.items, target, dpi, ocr)}
       options={
         <>
-          <FlowChoice legend={t('convert.targetLegend')} value={target} options={targets} onChange={setTarget} />
+          <fieldset className="cn-fileconversion-formats"><legend>{c('outputFormat')}</legend><div>{TARGETS.map(option => <label key={option.value} className={`cn-fileconversion-format cn-fileconversion-format--${option.value}`}>
+            <input className="visually-hidden" type="radio" name={`${ids}-target`} value={option.value} checked={target === option.value} aria-label={t(`convert.target.${option.value}`)} onChange={() => setTarget(option.value)} />
+            <span aria-hidden="true"><Icon name={option.icon} />{option.value === 'jpeg' || option.value === 'png' ? <b>{option.label}</b> : null}</span><strong>{option.label}</strong>
+          </label>)}</div></fieldset>
+          {target === 'excel' ? <p className="cn-flowstudio-hint">{t('convert.target.excelHint')}</p> : null}
           {image ? (
             <Form.Group controlId={`${ids}-dpi`} className="erp-flow-field">
               <Form.Label className="erp-flow-field__label">{t('dpi.label')}</Form.Label>
@@ -59,7 +64,7 @@ export default function ConvertFilePage() {
             </Form.Group>
           ) : (
             <>
-              <Form.Check id={`${ids}-ocr`} type="checkbox" label={t('convert.ocr')} checked={ocr} aria-describedby={`${ids}-ocr-help`} onChange={(event) => setOcr(event.target.checked)} />
+              <Form.Check className="cn-fileconversion-ocr" id={`${ids}-ocr`} type="switch" label={t('convert.ocr')} checked={ocr} aria-describedby={`${ids}-ocr-help`} onChange={(event) => setOcr(event.target.checked)} />
               <p id={`${ids}-ocr-help`} className="erp-flow-field__hint">
                 {ocr
                   ? t('convert.ocrOnHint')
@@ -71,7 +76,6 @@ export default function ConvertFilePage() {
         </>
       }
     />
-    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepFormat'), studio('stepSave')]} tip={studio('tip')} /></div>
-    </div>
+    </FileConversionStudio>
   )
 }

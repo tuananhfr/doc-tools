@@ -6,6 +6,7 @@ import { FlowChoice, type FlowChoiceOption } from '@/features/tools/hub'
 import { RangeField, ScopeField } from '../../components/decoration-fields'
 import { DecorationStage } from '../../components/quick/DecorationStage'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { useStampImage } from '../../hooks/useStampImage'
 import { decorateTask } from '../../services/page-tasks'
@@ -69,7 +70,9 @@ export default function StampPdfPage() {
         : (scopeError ?? (resolved?.ok && resolved.ids.size === 0 ? t('shared.scopeEmpty') : null))
 
   return (
-    <QuickToolShell
+    <PdfQuickStudio kind="stamp"><QuickToolShell
+      pdfStudio="stamp"
+      resultKey={JSON.stringify([quick.items.map(item => item.source.id), kind, text, color, fontSize, angle, textOpacity, anchor, widthRatio, imageOpacity, scope, image?.url])}
       mobilePreview
       quick={quick}
       accept={ACCEPT}
@@ -147,6 +150,6 @@ export default function StampPdfPage() {
           <p className="erp-flow-field__hint">{t('stamp.disclaimer')}</p>
         </>
       }
-    />
+    /></PdfQuickStudio>
   )
 }

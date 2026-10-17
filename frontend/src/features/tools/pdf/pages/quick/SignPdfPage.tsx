@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FlowChoice, ToolLeaveGuard, type FlowChoiceOption } from '@/features/tools/hub'
 import { RangeField } from '../../components/decoration-fields'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { SignaturePad } from '../../components/quick/SignaturePad'
 import { SignStage } from '../../components/quick/SignStage'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
@@ -59,7 +60,7 @@ export default function SignPdfPage() {
     else stamp.clear()
   }
 
-  const blocked = !image
+  const blocked = stamp.loading ? t('shared.openingImage') : !image
     ? source === 'draw'
       ? t('sign.blockedNoDrawing')
       : t('sign.blockedNoImage')
@@ -68,10 +69,11 @@ export default function SignPdfPage() {
       : null
 
   return (
-    <>
+    <PdfQuickStudio kind="sign">
       {/* Nét ký và chỗ đặt chỉ nằm trong RAM: rời màn là phải ký lại từ đầu. */}
       <ToolLeaveGuard active={strokes.length > 0 || pages > 0} />
       <QuickToolShell
+        pdfStudio="sign"
       mobilePreview
         quick={quick}
         accept={ACCEPT}
@@ -98,8 +100,7 @@ export default function SignPdfPage() {
           if (!image) throw new Error(t('sign.missing'))
           return signTask(item, { bytes: image.bytes, mime: image.mime, aspect: image.aspect, widthRatio }, spots)
         }}
-        options={
-          <>
+        options={running => <>
             <FlowChoice legend={t('sign.legend')} value={source} options={sources} onChange={pickSource} />
 
             {/* Khoá riêng cho từng nhánh: không có thì React tái dùng ô chọn màu làm ô chọn tệp. */}
@@ -107,7 +108,7 @@ export default function SignPdfPage() {
               <Fragment key="draw">
                 <div className="erp-flow-field">
                   <span className="erp-flow-field__label">{t('sign.pad')}</span>
-                  <SignaturePad strokes={strokes} ink={ink} disabled={false} onChange={(next) => draw(next, ink)} />
+                  <SignaturePad strokes={strokes} ink={ink} disabled={running} onChange={(next) => draw(next, ink)} />
                   <div className="erp-sign-pad__actions">
                     <button type="button" className="btn btn-link btn-sm erp-flow-files__clear" disabled={strokes.length === 0} onClick={() => draw(strokes.slice(0, -1), ink)}>
                       {t('sign.undo')}
@@ -162,6 +163,6 @@ export default function SignPdfPage() {
           </>
         }
       />
-    </>
+    </PdfQuickStudio>
   )
 }

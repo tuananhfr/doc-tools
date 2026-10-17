@@ -1,0 +1,79 @@
+.cn-pdfquickstudio .cn-flowstudio--canvas { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+.cn-pdfquickstudio .erp-page-stage { padding: 10px; border-color: var(--cn-line); border-radius: 9px; background: var(--cn-hero); }
+.cn-pdfquickstudio .erp-page-stage__caption { flex-wrap: wrap; gap: 4px 10px; font-size: 11px; }
+.cn-pdfquickstudio .erp-page-stage__name { white-space: normal; overflow-wrap: anywhere; }
+.cn-pdfquickstudio .erp-page-stage__meta { font-size: 10px; }
+.cn-pdfquickstudio .erp-page-stage__actions { flex-wrap: wrap; }
+.cn-pdfquickstudio .erp-page-stage__actions .btn { padding-inline: 8px; font-size: 11px; }
+.cn-pdfquickstudio .erp-flow-file:has(.erp-flow-file__order) .erp-flow-file__order { display: grid; grid-column: 1; grid-row: 1; }
+.cn-pdfquickstudio .erp-flow-file:has(.erp-flow-file__order) .erp-flow-file__thumb { grid-column: 2; grid-row: 1; }
+.cn-pdfquickstudio .erp-flow-file:has(.erp-flow-file__order) .erp-flow-file__text { grid-column: 3; grid-row: 1; }
+.cn-pdfquickstudio .erp-flow-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.cn-pdfquickstudio .erp-flow-field { min-width: 0; }
+.cn-pdfquickstudio .erp-doc-scope { margin-top: 18px; }
+.cn-pdfquickstudio .erp-flow-field__hint { display: block; font-size: 11px; line-height: 1.8; overflow-wrap: anywhere; }
+.cn-pdfquickstudio .erp-flow-choice__item .form-check-label { min-width: 0; }
+.cn-pdfquickstudio--organize .erp-organize { grid-template-columns: repeat(auto-fill, minmax(min(100%, 145px), 1fr)); gap: 10px; }
+.cn-pdfquickstudio--organize .erp-organize__tile { border-color: var(--cn-line); background: var(--cn-surface); }
+.cn-pdfquickstudio--organize .erp-organize__actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+.cn-pdfquickstudio--organize .erp-organize__button { min-height: 40px; color: var(--cn-accent); border: 1px solid var(--cn-line); background: var(--cn-hero); }
+.cn-pdfquickstudio--organize .erp-organize__button:disabled { color: var(--cn-muted); }
+.cn-pdfquickstudio--organize .erp-organize__button--remove { color: var(--cn-red); }
+.cn-pdfquickstudio--organize .erp-organize__label { font-size: 10px; flex-wrap: wrap; }
+.cn-pdfquickstudio :is(.erp-flow-note, .erp-flow-result__keeps) { font-size: 11px; line-height: 1.8; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result { padding: 14px 0; border: 0; background: transparent; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__actions { display: flex; flex-direction: column; gap: 8px; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__more { display: flex; flex-direction: column; gap: 8px; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__actions .btn { width: 100%; min-height: 44px; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__title { font-size: 14px; line-height: 1.6; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__file { padding: 12px; gap: 10px; }
+.cn-pdfquickstudio .cn-flowstudio-inline-result .erp-flow-result__file-name { font-size: 12px; }
+.cn-fileconversionstudio--ocr .cn-ocr-steps { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px; margin-bottom: 14px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); }
+.cn-fileconversionstudio--ocr .cn-ocr-steps li { min-width: 0; font-size: 11px; }
+.cn-fileconversionstudio--ocr .cn-ocr-options { min-width: 0; margin-bottom: 16px; }
+.cn-fileconversionstudio--ocr .cn-ocr-options > label { display: block; }
+.cn-fileconversionstudio--ocr .cn-ocr-advanced { padding-top: 12px; margin-top: 18px; border-top: 1px solid var(--cn-line); }
+.cn-fileconversionstudio--ocr .cn-ocr-advanced > summary { min-height: 42px; font-size: 12px; color: var(--cn-accent); cursor: pointer; }
+.cn-fileconversionstudio--ocr .cn-ocr-advanced p, .cn-fileconversionstudio--ocr .cn-ocr-review__warnings { font-size: 11px; line-height: 1.8; }
+.cn-fileconversionstudio--ocr .cn-flowstudio-review .cn-ocr-review { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-ocr-format-tiles > div { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cn-fileconversion-format--pdf > span { color: #f03d53; }
+.cn-fileconversion-format--text > span, .cn-fileconversion-format--json > span { color: #66768d; }
+.cn-fileconversion-format--xlsx > span, .cn-fileconversion-format--csv > span { color: #00a574; }
+.cn-pdfimage-formats > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cn-passwordstudio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, .9fr); gap: 12px; align-items: start; }
+.cn-passwordstudio > * { min-width: 0; }
+.cn-passwordstudio .cn-password-fields { min-width: 0; border: 0; margin: 0; padding: 0; }
+.cn-passwordstudio .erp-flow-field__label { display: block; width: 100%; font-size: 12px; line-height: 1.8; }
+.cn-passwordstudio .form-control { min-height: 42px; margin-top: 7px; background: var(--cn-surface); border-color: var(--cn-line); color: var(--cn-ink); }
+.cn-passwordstudio .form-check { font-size: 12px; line-height: 1.8; margin-block: 10px; }
+.cn-passwordstudio .cn-password-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 3px; margin: 0; gap: 3px; }
+.cn-passwordstudio .cn-password-modes button { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 44px; gap: 6px; padding: 7px; font-size: 11px; }
+.cn-passwordstudio .cn-password-permissions { padding: 12px; border-color: var(--cn-line); background: var(--cn-hero); }
+.cn-passwordstudio .cn-password-permissions .form-check { min-height: 36px; padding-block: 6px; margin-block: 4px; }
+.cn-passwordstudio .btn { white-space: normal; overflow-wrap: anywhere; }
+.cn-passwordstudio-file { display: flex; flex-direction: column; gap: 9px; align-items: center; padding: 16px 10px; margin-top: 16px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); text-align: center; }
+.cn-passwordstudio-file > .bi { color: var(--cn-accent); font-size: 36px; }
+.cn-passwordstudio-file strong { font-size: 12px; overflow-wrap: anywhere; }
+.cn-passwordstudio-file span { font-size: 11px; color: var(--cn-muted); }
+.cn-passwordstudio-result { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-height: 270px; padding: 24px 12px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); text-align: center; }
+.cn-passwordstudio-result > .bi { color: var(--cn-accent); font-size: 66px; }
+.cn-passwordstudio-result.is-done > .bi { color: var(--cn-positive); }
+.cn-passwordstudio-result strong { font-size: 14px; line-height: 1.8; }
+.cn-passwordstudio-result p { margin: 0; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.cn-passwordstudio-result span { font-size: 11px; color: var(--cn-muted); }
+.cn-passwordstudio-error { padding: 12px; margin: 16px 0 0; border: 1px solid var(--cn-line); border-radius: 8px; color: var(--cn-red); font-size: 12px; line-height: 1.8; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-pdfquickstudio .cn-flowstudio--canvas { grid-template-columns: minmax(0, 1fr); }
+  .cn-passwordstudio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-passwordstudio-output { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  .cn-pdfquickstudio .cn-flowstudio--canvas, .cn-passwordstudio { grid-template-columns: minmax(0, 1fr); }
+  .cn-fileconversionstudio--ocr .cn-ocr-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-pdfquickstudio .erp-page-stage { padding: 8px; }
+  .cn-pdfquickstudio .erp-page-stage__actions { gap: 8px; }
+  .cn-pdfquickstudio--organize .erp-organize { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-pdfquickstudio--organize .erp-organize__button { min-height: 44px; }
+  .cn-passwordstudio .erp-flow-field__label { font-size: 14px; }
+}

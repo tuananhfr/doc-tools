@@ -1,7 +1,8 @@
+import { DailyStudio } from '@/features/tools/utility/components/DailyStudio'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from 'react-bootstrap'
-import { NumberField, readNumber, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, ToolSegments, type NumberRule } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { formatRuleDate, ruleSnapshot, type VerifiedRulePackage } from '@/features/tools/rules/services/signed-rules'
@@ -87,8 +88,8 @@ export default function ElectricityPage() {
       return true
     },
   }
-  return <ToolBoard className="cn-electricity-workspace" layout="balanced" after={<><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div><AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} /></>} side={<div className="erp-tool-result cn-electricity-result" aria-live="polite">
-    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={mode === 'water' ? 'droplet' : 'lightning-charge'} /></span><div><h2>{t('electricity.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
+  return <DailyStudio kind="electricity"><ToolBoard className="cn-electricity-workspace" layout="balanced" after={<AiSourceCheckPanel member={member} loginTo={loginPath('/tien-dien')} toolId="tien-dien" domain="electricity" kinds={ELECTRICITY_KINDS} snapshot={ruleSnapshot(verified)} currentResult={mode === 'water' ? waterResult ? t('electricity.aiResult.water', { volume: water.cubicMeters, total: waterResult.total }) : '' : result ? t('electricity.aiResult.electricity', { kwh, total: result.total }) : ''} />} side={<div className="erp-tool-result cn-electricity-result" aria-live="polite">
+    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name={mode === 'water' ? 'droplet' : 'lightning-charge'} /></span><div><h2>2. {t('electricity.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
     <div className="cn-electricity-total"><p className="erp-tool-result__value">{mode === 'water' ? waterResult ? t('shared.amount', { amount: formatNumber(Math.round(waterResult.total)) }) : '—' : result ? t('shared.amount', { amount: formatNumber(Math.round(result.total)) }) : '—'}</p></div>
     {mode === 'water' ? waterResult ? <p className="erp-tool-result__note">{t('electricity.waterBreakdown', { subtotal: money(waterResult.subtotal), fee: money(waterResult.fee), vat: money(waterResult.vat) })}</p> : <p className="erp-tool-result__note">{waterHint}</p> : <>
     {result ? <><p className="erp-tool-result__note">{t('electricity.electricityBreakdown', { subtotal: money(result.subtotal), percent: formatNumber(vatValue ?? 0), vat: money(result.vat) })}</p>
@@ -96,7 +97,7 @@ export default function ElectricityPage() {
     <p className="erp-tool-result__note">{usingVerified && verified ? t('electricity.tariffVerified', { date: formatRuleDate(verified.effectiveFrom), source: verified.source.title }) : t('electricity.tariffManual')} {appliedVat ? t('electricity.vatVerified', { percent: formatNumber(appliedVat.percent), date: formatRuleDate(appliedVat.from.effectiveFrom), source: appliedVat.from.source.title }) : t('electricity.vatManual')} {t('electricity.notIncluded')}</p>
     {usingVerified && verified ? <a href={verified.source.url} target="_blank" rel="noopener noreferrer">{t('shared.viewSource')}</a> : null}</>}
   </div>}>
-    <ToolPanel title={t('electricity.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
+    <ToolPanel title={`1. ${t('electricity.panelTitle')}`} actions={<span className="cn-studio-small-icon"><Icon name="calculator" /></span>}>
       <p className="cn-studio-form-hint">{studio('inputHint')}</p>
       <ToolSegments label={t('electricity.billType')} value={mode} options={[{ value: 'electricity', label: t('electricity.modes.electricity'), icon: 'lightning-charge' }, { value: 'water', label: t('electricity.modes.water'), icon: 'droplet' }]} onChange={setMode} />
       {mode === 'water' ? <div className="erp-tool-form__grid mt-3">{([
@@ -114,5 +115,5 @@ export default function ElectricityPage() {
       </fieldset></>}
     </ToolPanel>
     <SaveResultBar member={member} toolId="tien-dien" adapter={saveAdapter} />
-  </ToolBoard>
+  </ToolBoard></DailyStudio>
 }

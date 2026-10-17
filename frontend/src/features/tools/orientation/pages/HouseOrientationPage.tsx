@@ -1,9 +1,10 @@
+import { DailyStudio } from '@/features/tools/utility/components/DailyStudio'
 import { useMemo, useState } from 'react'
 import type { TFunction } from 'i18next'
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
-import { ToolBoard, ToolLeaveGuard, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolBoard, ToolLeaveGuard, ToolSegments } from '@/features/tools/hub'
 import { useThemeTokens } from '@/hooks'
 import { themeTokens } from '@/styles/tokens'
 import { AgePanel } from '../components/AgePanel'
@@ -54,12 +55,10 @@ function missingStep(state: OrientationState, hasImage: boolean, t: TFunction<'o
  * vòng sao theo tuổi); ảnh / bản vẽ là bước phụ. Chuyên môn giữ đủ nhiều đối tượng,
  * mặt trời, số liệu kỹ thuật (spec §2). Mọi thứ chỉ nằm trong RAM của tab.
  */
-export default function HouseOrientationPage() {
+function HouseOrientationWorkspace() {
   // Nạp cả `image` (service ảnh báo lỗi bằng translate('image:…')) và `vietnam` (tên can chi):
   // namespace chưa nạp là hiện khoá thô.
   const { t } = useTranslation(['orientation', 'image', 'vietnam'])
-  const { t: studio } = useTranslation('common', { keyPrefix: 'studio.compass' })
-  const guide = <WorkspaceGuide steps={[studio('stepMeasure'), studio('stepLock'), studio('stepSave')]} tip={studio('tip')} />
   const files = useOrientationSource()
   const orientation = useOrientation()
   const owners = useOwners()
@@ -150,7 +149,7 @@ export default function HouseOrientationPage() {
 
   if (picking || !source) {
     return (
-      <ToolBoard className="cn-orientation-workspace" layout="compact" side={guide}>
+      <ToolBoard className="cn-orientation-workspace" layout="compact">
         {head}
         <SourcePicker
           loading={files.loading}
@@ -185,7 +184,6 @@ export default function HouseOrientationPage() {
             <>
               {agePanel}
               {exportPanel}
-              {guide}
             </>
           }
         >
@@ -230,7 +228,6 @@ export default function HouseOrientationPage() {
                 onChange={setSolar}
               />
             ) : null}
-            {guide}
           </>
         }
       >
@@ -260,3 +257,5 @@ export default function HouseOrientationPage() {
     </>
   )
 }
+
+export default function HouseOrientationPage() { return <DailyStudio kind="compass"><HouseOrientationWorkspace /></DailyStudio> }

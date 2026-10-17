@@ -1059,5 +1059,336 @@
         "a": "Yes. Open Advanced layouts to choose a template and add a title or logo. Your selected photos carry over to that mode."
       }
     }
+  },
+  "utilityStudio": {
+    "category": "Images",
+    "related": "More image tools",
+    "compress": {
+      "title": "Compress images",
+      "subtitle": "Reduce JPG, PNG and WebP sizes, including image batches",
+      "heroNote": "Lighter images\nFaster sharing!",
+      "steps": {
+        "1": "Choose or drop images",
+        "2": "Select a compression level",
+        "3": "Keep dimensions or limit the long edge",
+        "4": "Compress and review the result",
+        "5": "Download an image or a batch ZIP"
+      },
+      "tips": {
+        "1": "Medium compression suits everyday sharing",
+        "2": "PNG may shrink less than JPG or WebP",
+        "3": "Originals are retained if outputs are not smaller",
+        "4": "You can compress several images at once"
+      },
+      "faq": {
+        "1": {
+          "q": "Will image quality change?",
+          "a": "JPG and WebP are re-encoded at the selected quality level. PNG uses its own compression and does not apply JPG quality settings."
+        },
+        "2": {
+          "q": "Why are some images unchanged?",
+          "a": "Already optimized images may not shrink. The tool keeps originals when re-encoded files are not smaller."
+        },
+        "3": {
+          "q": "Are image dimensions preserved?",
+          "a": "Dimensions are preserved by default. You can limit the long edge; a result replaces the original only if its file is smaller."
+        }
+      },
+      "inputTitle": "1. Upload images",
+      "optionsTitle": "2. Compression options",
+      "outputTitle": "3. Preview & Download",
+      "privacy": "Images are processed in your browser without uploading them.",
+      "dismiss": "Dismiss",
+      "processing": "Compressing images…",
+      "cancel": "Cancel",
+      "original": "Original",
+      "before": "Original size",
+      "output": "Download size"
+    },
+    "background": {
+      "title": "Remove background",
+      "subtitle": "Separate your subject, refine the mask and export PNG",
+      "heroNote": "Remove the background\nKeep what matters!",
+      "steps": {
+        "1": "Upload an image or try the sample",
+        "2": "Wait for subject segmentation",
+        "3": "Choose transparent, white or blue background",
+        "4": "Refine with keep and erase brushes",
+        "5": "Compare, download PNG or make an ID photo"
+      },
+      "tips": {
+        "1": "Clear photos work best",
+        "2": "Keep brush restores mistakenly removed regions",
+        "3": "Each brush stroke can be undone",
+        "4": "Processing data downloads on first use"
+      },
+      "faq": {
+        "1": {
+          "q": "Will a white shirt be recolored?",
+          "a": "The processor identifies the subject rather than replacing every white pixel. Restore any missed regions using the Keep brush."
+        },
+        "2": {
+          "q": "Will my PNG be transparent?",
+          "a": "Yes when transparent background is selected. White and blue options export PNG files with those background colors."
+        },
+        "3": {
+          "q": "What image limits apply?",
+          "a": "JPG, PNG and WebP up to 20 MB are supported. Large images are resized to a maximum 2200 px long edge."
+        }
+      },
+      "inputTitle": "1. Choose an image",
+      "optionsTitle": "2. Remove & Refine",
+      "outputTitle": "3. Preview & Download",
+      "sampleHint": "No image yet? Try a sample portrait.",
+      "sample": "Try a sample image",
+      "sampleFailed": "Could not load the sample. Please try again.",
+      "settingsHint": "Background and brush controls appear after processing.",
+      "brushHint": "Select Erase or Keep and paint directly on the result. Undo reverses the last stroke.",
+      "result": "Result",
+      "original": "Original",
+      "emptyTitle": "Your cutout will appear here",
+      "emptyHint": "Choose an image to begin.",
+      "pngHint": "PNG output. The checkerboard only indicates transparent areas."
+    },
+    "design": {
+      "title": "Quick design",
+      "subtitle": "Choose a template, add images and text, then export for sharing or printing",
+      "heroNote": "Small ideas\nBeautiful designs!",
+      "steps": {
+        "1": "Add images or enter content",
+        "2": "Choose a template in the preview area",
+        "3": "Add a logo, colors and dimensions",
+        "4": "Review the layout and pages",
+        "5": "Choose an output type, export and download"
+      },
+      "tips": {
+        "1": "Designs can use only text or a logo",
+        "2": "Contain keeps the full image visible",
+        "3": "Use PDF for printing",
+        "4": "Brand options can be saved on this device"
+      },
+      "faq": {
+        "1": {
+          "q": "Which templates are available?",
+          "a": "Logo, watermark, voucher, label, poster, cup, box, bag, decorative seal and gift card templates have their own dimensions and layouts."
+        },
+        "2": {
+          "q": "Can I export for printing?",
+          "a": "Yes. Choose PDF or 300 DPI JPG and check dimensions before printing. PNG and ZIP are also supported."
+        },
+        "3": {
+          "q": "Where are brand options saved?",
+          "a": "Only in this browser when you choose Save. You can load or remove them in the brand options section."
+        }
+      }
+    }
+  },
+  "extendedStudio": {
+    "layout": {
+      "input": "1. Upload images",
+      "options": "2. Processing options",
+      "preview": "3. Source preview",
+      "canvasInput": "1. Upload & Edit",
+      "canvasOptions": "2. Options & Export",
+      "empty": "Your image will appear here",
+      "batchHint": "Preview the first image. After processing, download the image or result ZIP.",
+      "canvasHint": "Choose an image to begin editing in the preview.",
+      "ocrHint": "Review the source, recognize text and verify content before export."
+    },
+    "metadata": {
+      "title": "Remove image metadata",
+      "subtitle": "Create a new image without original EXIF and metadata",
+      "heroNote": "Share your images\nWith fewer hidden details!",
+      "steps": {
+        "1": "Choose a JPG, PNG or WebP image",
+        "2": "Review the source and its dimensions",
+        "3": "Remove metadata to create a new copy",
+        "4": "Compare the original and result",
+        "5": "Download the processed image again if needed"
+      },
+      "tips": {
+        "1": "Visible information in the image remains",
+        "2": "WebP is exported as PNG",
+        "3": "Re-encoding can change file size"
+      },
+      "faq": {
+        "1": {
+          "q": "What is removed?",
+          "a": "The image is rebuilt from its pixels, removing original EXIF and metadata. Visible image content and information in the filename are not concealed."
+        },
+        "2": {
+          "q": "Will quality change?",
+          "a": "Images are re-encoded. JPG quality and file size may change. The processed result preserves the displayed image dimensions."
+        },
+        "3": {
+          "q": "Why does WebP become PNG?",
+          "a": "This metadata-removal workflow exports WebP as PNG. JPG and PNG keep their corresponding file types."
+        }
+      },
+      "inputTitle": "1. Choose image & Remove metadata",
+      "outputTitle": "2. Preview & Download",
+      "result": "Result",
+      "original": "Original",
+      "emptyTitle": "Your new image appears here",
+      "emptyHint": "Choose an image and remove metadata to see the result.",
+      "downloadAgain": "Download processed image again"
+    },
+    "ocr": {
+      "title": "Image to text",
+      "subtitle": "Recognize text in images, review content and export a file",
+      "heroNote": "From image to text\nLess retyping!",
+      "steps": {
+        "1": "Upload one or more images",
+        "2": "Choose output and recognition profile",
+        "3": "Run text recognition",
+        "4": "Review and correct required items",
+        "5": "Confirm and download"
+      },
+      "tips": {
+        "1": "Straight, sharp images work best",
+        "2": "Use the table profile for CSV or Excel",
+        "3": "Always review recognized letters and numbers"
+      },
+      "faq": {
+        "1": {
+          "q": "Do I have to retype everything?",
+          "a": "No. Recognition extracts text for you to review. Image quality directly affects the result."
+        },
+        "2": {
+          "q": "Can I export Word or Excel?",
+          "a": "Corresponding output options are available. CSV and Excel require the table profile and review of layout, cells and values."
+        },
+        "3": {
+          "q": "Are images uploaded for OCR?",
+          "a": "Recognition runs in your browser. Recognition assets download on first use; images do not need to be uploaded for OCR."
+        }
+      }
+    },
+    "measure": {
+      "title": "Measure an image",
+      "subtitle": "Set a reference, measure lengths and areas, and count on an image",
+      "heroNote": "Set a reference\nMeasure each detail!",
+      "steps": {
+        "1": "Upload the image",
+        "2": "Place two reference points",
+        "3": "Enter the real reference length and unit",
+        "4": "Measure distances, areas or counts",
+        "5": "Save the annotated image"
+      },
+      "tips": {
+        "1": "Use a reference with a known length",
+        "2": "Keep measurements on the same plane",
+        "3": "Without a reference, distances use pixels"
+      },
+      "faq": {
+        "1": {
+          "q": "Can every image give real measurements?",
+          "a": "A known reference length is needed. Camera angle and perspective can affect results; measurements use the scale you set."
+        },
+        "2": {
+          "q": "Can I measure areas and count?",
+          "a": "Yes. Area mode lets you place polygon vertices. Count mode marks and counts points."
+        },
+        "3": {
+          "q": "What does the download contain?",
+          "a": "The original image with the measurements and marks you placed drawn over it."
+        }
+      }
+    },
+    "batch": {
+      "title": "Batch image processing",
+      "subtitle": "Resize, convert and rename multiple images in one run",
+      "heroNote": "Choose once\nProcess your whole list!",
+      "steps": {
+        "1": "Upload your images",
+        "2": "Choose the resize mode",
+        "3": "Choose output type and quality",
+        "4": "Set a naming pattern and optional numbering",
+        "5": "Process and download an image or ZIP"
+      },
+      "tips": {
+        "1": "Use {name} to keep the original stem",
+        "2": "Use {n} for numbering",
+        "3": "Review sample output names before processing"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I resize by percentage?",
+          "a": "Yes. Select percentage mode and enter a valid value. Image aspect ratios are retained."
+        },
+        "2": {
+          "q": "Can each image keep its format?",
+          "a": "Yes. You can keep formats or convert the batch to JPG, PNG or WebP where the browser supports it."
+        },
+        "3": {
+          "q": "Why is a batch downloaded as ZIP?",
+          "a": "One image downloads directly; multiple images are bundled into ZIP with their output names."
+        }
+      }
+    },
+    "mark": {
+      "title": "Redact & Watermark images",
+      "subtitle": "Cover information with black boxes and add a text watermark",
+      "heroNote": "Cover the right areas\nAdd your own mark!",
+      "steps": {
+        "1": "Choose an image",
+        "2": "Drag redaction boxes over sensitive areas",
+        "3": "Optionally enter watermark text",
+        "4": "Choose position, color, size and opacity",
+        "5": "Save the redacted and watermarked image"
+      },
+      "tips": {
+        "1": "Check every area that needs redaction",
+        "2": "Black boxes are written into output pixels",
+        "3": "Text watermarks can tile across the image"
+      },
+      "faq": {
+        "1": {
+          "q": "Are redactions embedded in the output?",
+          "a": "Yes. Black rectangles and the chosen watermark text are painted directly into the exported image pixels."
+        },
+        "2": {
+          "q": "Can I add a logo image?",
+          "a": "This tool uses text watermarks. Use Quick design for logo images and layouts."
+        },
+        "3": {
+          "q": "Can I edit the mark after downloading?",
+          "a": "Continue editing in the current tool session using the available options. Exported files have boxes and text merged into the image."
+        }
+      }
+    },
+    "color": {
+      "title": "Colors",
+      "subtitle": "Choose colors, convert HEX / RGB / HSL and preview contrast",
+      "heroNote": "Choose clear colors\nMake content readable!",
+      "steps": {
+        "1": "Use the color picker or enter a code",
+        "2": "Edit HEX, RGB or HSL",
+        "3": "See the preview update",
+        "4": "Compare contrast with white and black text",
+        "5": "Copy the code you need"
+      },
+      "tips": {
+        "1": "Editing one valid code updates the others",
+        "2": "Check contrast before using a text background",
+        "3": "Screen picking appears only on supported browsers"
+      },
+      "faq": {
+        "1": {
+          "q": "Can I convert HEX, RGB and HSL?",
+          "a": "Yes. Enter a valid value in one field to update the other fields and preview."
+        },
+        "2": {
+          "q": "Why is screen picking unavailable?",
+          "a": "EyeDropper support depends on the browser. The button appears only when supported. The standard picker and code fields remain available."
+        },
+        "3": {
+          "q": "Can I copy each code type?",
+          "a": "Each HEX, RGB and HSL field has its own copy button. Choose the code type suitable for your destination."
+        }
+      },
+      "inputTitle": "1. Color picker & Codes",
+      "outputTitle": "2. Preview & Contrast"
+    }
   }
 }

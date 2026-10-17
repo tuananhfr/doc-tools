@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { WorkspaceGuide } from '@/features/tools/hub'
-import { Icon } from '@/components/ui'
+import { FileConversionStudio } from './FileConversionStudio'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { useOcrReview } from '../../hooks/useOcrReview'
 import { ocrTask, type OcrOutput } from '../../services/quick-tasks'
@@ -22,7 +21,6 @@ const STEPS = ['choose', 'recognize', 'review', 'download'] as const
 export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
   const { t } = useTranslation('pdf')
   const { t: o } = useTranslation('ocr')
-  const { t: studio } = useTranslation('common', { keyPrefix: imagesOnly ? 'studio.imageText' : 'studio.documentOcr' })
   const accept = imagesOnly ? IMAGES : DOCUMENTS
   const quick = useQuickSources({ accept, multiple: true })
   const review = useOcrReview()
@@ -31,22 +29,23 @@ export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
   const [output, setOutput] = useState<OcrOutput>(tableIntent ? 'xlsx' : imagesOnly ? 'text' : 'pdf')
   const [options, setOptions] = useState<OcrPipelineOptions>({ ...DEFAULT_OCR_OPTIONS, profile: tableIntent ? 'table' : DEFAULT_OCR_OPTIONS.profile })
   const [invalidCorners, setInvalidCorners] = useState(false)
-  return <div className="cn-pdf-quick-workspace cn-ocr-studio"><ol className="cn-ocr-steps" aria-label={o('workflow')}>
+  const content = <div className="cn-pdf-quick-workspace cn-ocr-studio"><ol className="cn-ocr-steps" aria-label={o('workflow')}>
     {STEPS.map((step, index) => <li key={step}><span aria-hidden="true">{index + 1}</span>{o(`steps.${step}`)}</li>)}
-  </ol><QuickToolShell quick={quick} accept={accept} multiple reorder
-    sideIntro={<div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="card-text" /></span><div><h2>{studio('settingsTitle')}</h2><p>{studio('inputHint')}</p></div></div>}
+  </ol><QuickToolShell conversionStudio={imagesOnly ? 'imageText' : 'ocr'} quick={quick} accept={accept} multiple reorder
+    resultKey={JSON.stringify([quick.items.map(item => item.source.id), output, options])}
     waitingLabel={review.pages ? o('waitingReview') : undefined}
     pickerTitle={t(imagesOnly ? 'imageToText.pickerTitle' : 'ocrPage.pickerTitle')}
     runLabel={t(imagesOnly ? 'imageToText.run' : 'ocrPage.run')} runIcon="card-text" blocked={invalidCorners ? o('invalidCorners') : (output === 'csv' || output === 'xlsx') && options.profile !== 'table' ? o('tableRequired') : null}
     task={() => ocrTask(quick.items, output, review.request, options)}
     stage={() => review.pages ? <OcrReview pages={review.pages} onComplete={review.complete} /> : undefined}
     options={<>
-      <OcrOutputOptions value={output} onChange={setOutput} />
+      <OcrOutputOptions tiles value={output} onChange={setOutput} />
       <OcrProfileOptions value={options} onChange={setOptions}>
       <OcrCornerPicker item={quick.items[0]} onChange={perspective => setOptions(current => ({ ...current, perspective, maxPasses: perspective && current.maxPasses === 1 ? 2 : current.maxPasses }))} onInvalid={setInvalidCorners} />
       <p className="erp-flow-field__hint">{t('ocrReview.handwriting')}</p>
       <OcrReadiness />
       </OcrProfileOptions>
       <OcrQualityPreview items={quick.items} />
-    </>} /><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div></div>
+    </>} /></div>
+  return <FileConversionStudio kind={imagesOnly ? 'imageText' : 'ocr'}>{content}</FileConversionStudio>
 }

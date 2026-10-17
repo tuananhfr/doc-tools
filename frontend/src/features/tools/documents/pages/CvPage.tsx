@@ -2,7 +2,7 @@ import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useDeferredValue, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { PrintPortal, TemplatePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { PrintPortal, TemplatePicker, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { takeHandoff } from '@/features/tools/shared'
 import { CvPreview } from '../components/CvPreview'
@@ -11,7 +11,7 @@ import { CV_TEMPLATES } from '../config/cv-templates'
 import { cvDocument } from '../services/cv-document'
 import { emptyEntry, type CvEntry } from '../models/cv'
 import { withCvTemplate } from '../utils/template-switch'
-import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview'
+import { DocumentTemplateLayout, TextDocumentStudio } from '../components/TextDocumentStudio'
 
 import { useCvDraft } from '../hooks/useCvDraft'
 const identityFields = ['name', 'role', 'phone', 'email', 'location', 'link'] as const
@@ -47,10 +47,9 @@ export default function CvPage() {
   const picker = <TemplatePicker label={t('cv.template')} value={draft.template} onChange={changeTemplate} items={CV_TEMPLATES.map(template => ({ id: template.id, label: t(`cv.templates.${template.id}`), preview: <div className="cn-template-page"><CvPreview draft={withCvTemplate(thumbDraft, template.id)} photoUrl={photoUrl} /></div> }))} />
   return <>
 
-    <div className="cn-cv-workspace cn-cv-studio"><ToolBoard><ResponsivePreview action={<><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="file-earmark-person" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('previewHint')}</p></div></div><DocumentExportActions build={buildDocument} /></>} templates={picker} preview={<><div className="cn-cv-preview-paper"><CvPreview draft={draft} photoUrl={photoUrl} /></div><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={t('cv.title')} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
+    <TextDocumentStudio kind="cv"><div className="cn-cv-workspace cn-cv-studio"><DocumentTemplateLayout templates={picker} actions={<DocumentExportActions build={buildDocument} />} preview={<><div className="cn-cv-preview-paper"><CvPreview draft={draft} photoUrl={photoUrl} /></div><p className="mt-3">{t('cv.note')}</p></>}><ToolPanel title={`2. ${studio('personalTitle')}`} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
       <p className="cn-cv-intro">{studio('inputHint')}</p>
       {availableDraft ? <div className="cn-cv-restore"><p>{t('cv.availableDraft')}</p><Button variant="outline-secondary" onClick={restore}>{t('cv.openDraft')}</Button></div> : null}
-      <h3 className="cn-cv-section-title"><Icon name="person" />{studio('personalTitle')}</h3>
       <div className="cn-document-fields">
         {identityFields.map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.fields.${key}`)}<Form.Control type={key === 'email' ? 'email' : 'text'} maxLength={200} value={draft[key]} onChange={(event) => update(key, event.target.value)} /></label>)}
       </div>
@@ -64,8 +63,7 @@ export default function CvPage() {
         <p className="erp-flow-field__hint mt-2">{t(remember ? 'cv.autoSave' : 'cv.memoryOnly')}</p>
       </details>
       <div className="mt-3"><DocumentExportActions build={buildDocument} /></div><p role="status" className="mt-2">{message ? t(message) : null}</p>
-    </ToolPanel></ResponsivePreview></ToolBoard>
-    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepFill'), studio('stepTemplate'), studio('stepSave')]} tip={studio('tip')} /></div></div>
+    </ToolPanel></DocumentTemplateLayout></div></TextDocumentStudio>
     <PrintPortal><CvPreview draft={draft} photoUrl={photoUrl} /></PrintPortal>
   </>
 }

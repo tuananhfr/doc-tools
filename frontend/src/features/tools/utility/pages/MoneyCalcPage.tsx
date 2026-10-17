@@ -1,8 +1,9 @@
+import { CalculationStudio } from '@/features/tools/utility/components/CalculationStudio'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Form } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
-import { CopyButton, ToolBoard, ToolPanel, ToolSegments, WorkspaceGuide } from '@/features/tools/hub'
+import { CopyButton, ToolBoard, ToolPanel, ToolSegments } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { NumberField } from '../components/NumberField'
 import { MONEY_GROUPS, MONEY_PRESETS, type MoneyGroup, type MoneyUnit } from '../config/money-presets'
@@ -46,11 +47,10 @@ export default function MoneyCalcPage() {
   const setValue = (key: string, value: string) => setTexts((current) => ({ ...current, [preset.id]: { ...current[preset.id], [key]: value } }))
 
   return (
-    <ToolBoard className="cn-moneycalc-workspace cn-calculation-workspace" layout="compact"
-      after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}
+    <CalculationStudio kind="money"><ToolBoard className="cn-moneycalc-workspace cn-calculation-workspace" layout="compact"
       side={
         <div className="erp-tool-result cn-calculation-result" role="status">
-          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="cash-stack" /></span><div><h2>{studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
+          <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="cash-stack" /></span><div><h2>2. {studio('resultTitle')}</h2><p>{studio('resultHint')}</p></div></div>
           {outcome.ok ? (
             <>
               <p className="erp-tool-result__label">{outcome.rows[0].label}</p>
@@ -88,7 +88,7 @@ export default function MoneyCalcPage() {
     >
       <ToolSegments label={t('money.groupLabel')} value={group} options={MONEY_GROUPS.map((item) => ({ ...item, label: t(item.label) }))} onChange={setGroup} />
 
-      <ToolPanel title={t('money.panelTitle')} actions={<span className="cn-studio-small-icon"><Icon name="sliders2" /></span>}>
+      <ToolPanel title={`1. ${t('money.panelTitle')}`} actions={<span className="cn-studio-small-icon"><Icon name="sliders2" /></span>}>
         <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="erp-tool-form">
           <div className="erp-flow-field">
@@ -125,6 +125,6 @@ export default function MoneyCalcPage() {
           </p>
         </div>
       </ToolPanel>
-    </ToolBoard>
+    </ToolBoard></CalculationStudio>
   )
 }

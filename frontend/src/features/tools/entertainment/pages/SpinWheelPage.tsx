@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { useSpinWheel } from '../hooks/useSpinWheel'
 import { SpinWheel } from '../components/SpinWheel'
@@ -8,18 +8,15 @@ import { WheelOptionsEditor } from '../components/WheelOptionsEditor'
 import { WheelSettings } from '../components/WheelSettings'
 import { WheelSavedLists } from '../components/WheelSavedLists'
 import { WinConfetti } from '../components/WinConfetti'
+import { EntertainmentStudio } from '../components/EntertainmentStudio'
 
 export default function SpinWheelPage() {
   const { t } = useTranslation('entertainment')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.wheel' })
   const wheel = useSpinWheel(t('wheel.sample'))
 
-  return <ToolBoard className="cn-wheel-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>} sideLabel={t('wheel.optionsTitle')} side={<div className="cn-wheel-side">
-    <WheelOptionsEditor text={wheel.text} parsed={wheel.parsed} disabled={wheel.spinning} onChange={wheel.setText} />
-    <WheelSettings wheel={wheel} />
-    <WheelSavedLists options={wheel.parsed.options} disabled={wheel.spinning} onLoad={(list) => wheel.replaceText(list.options.join('\n'))} />
-  </div>}>
-    <ToolPanel title={t('wheel.title')} className="cn-wheel-stage" actions={<span className="cn-studio-small-icon"><Icon name="bullseye" /></span>}>
+  return <EntertainmentStudio kind="wheel"><ToolBoard className="cn-wheel-workspace" layout="wide-result" sideLabel={t('wheel.title')} side={
+    <ToolPanel title={`2. ${t('wheel.title')}`} className="cn-wheel-stage" actions={<span className="cn-studio-small-icon"><Icon name="bullseye" /></span>}>
       <p className="cn-studio-form-hint">{studio('inputHint')}</p>
       <div className="cn-wheel-canvas">
       <SpinWheel options={wheel.wheelOptions} rotation={wheel.rotation} durationMs={wheel.durationMs}
@@ -38,5 +35,11 @@ export default function SpinWheelPage() {
         {t(wheel.winner ? 'wheel.spinAgain' : 'wheel.spin')}
       </Button>
     </ToolPanel>
-  </ToolBoard>
+  }>
+    <div className="cn-fun-wheel-controls">
+      <WheelOptionsEditor text={wheel.text} parsed={wheel.parsed} disabled={wheel.spinning} onChange={wheel.setText} />
+      <div className="cn-fun-wheel-settings"><WheelSettings wheel={wheel} /></div>
+      <div className="cn-fun-wheel-saved"><WheelSavedLists options={wheel.parsed.options} disabled={wheel.spinning} onLoad={(list) => wheel.replaceText(list.options.join('\n'))} /></div>
+    </div>
+  </ToolBoard></EntertainmentStudio>
 }

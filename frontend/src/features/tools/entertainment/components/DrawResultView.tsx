@@ -48,7 +48,7 @@ export function DrawResultView({ draw }: { draw: ReturnType<typeof useDraw> }) {
   }
   const reset = () => { setFlipDelays({}); draw.reset() }
   return <section className="cn-ent-reading" aria-labelledby={`${kind}-result`}>
-    <h2 id={`${kind}-result`}>{t('cards.result')}</h2>
+    <h2 id={`${kind}-result`}>2. {t('cards.result')}</h2>
     <p role="status">{t(complete ? 'cards.complete' : 'cards.revealHint')}</p>
     {draw.expired ? <p className="cn-ent-reading-note">{t('cards.expired')}</p> : null}
     <SpreadGuide amount={result.cards.length} />

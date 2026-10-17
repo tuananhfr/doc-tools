@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
-import { WorkspaceGuide } from '@/features/tools/hub'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { mergeTask } from '../../services/quick-tasks'
@@ -15,8 +15,9 @@ export default function MergePdfPage() {
   const count = quick.items.length
 
   return (
-    <div className="cn-pdf-quick-workspace cn-merge-workspace">
+    <PdfQuickStudio kind="merge"><div className="cn-pdf-quick-workspace cn-merge-workspace">
     <QuickToolShell
+      pdfStudio="merge"
       quick={quick}
       accept={ACCEPT}
       multiple
@@ -28,7 +29,6 @@ export default function MergePdfPage() {
       task={() => mergeTask(quick.items)}
       sideIntro={<div className="cn-merge-summary"><span className="cn-studio-small-icon"><Icon name="files" /></span><h2>{studio('summaryTitle')}</h2><p>{studio('summaryHint')}</p><dl><div><dt>{studio('files')}</dt><dd>{count}</dd></div><div><dt>{studio('pages')}</dt><dd>{quick.items.reduce((total, item) => total + item.pages.length, 0)}</dd></div></dl><p className="cn-merge-order"><Icon name="arrow-down-up" />{studio('orderHint')}</p></div>}
     />
-    <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepArrange'), studio('stepSave')]} tip={studio('tip')} /></div>
-    </div>
+    </div></PdfQuickStudio>
   )
 }

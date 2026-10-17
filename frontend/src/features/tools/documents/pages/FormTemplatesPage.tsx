@@ -2,7 +2,7 @@ import { useDeferredValue, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import { PrintPortal, TemplatePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { PrintPortal, TemplatePicker, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { FormPreview } from '../components/FormPreview'
 import { DocumentExportActions } from '../components/DocumentExportActions'
@@ -11,7 +11,7 @@ import { FORM_TEMPLATES, type FormKind } from '../config/form-templates'
 import { leaveDateProblem } from '../utils/form-dates'
 import { receiptProblem, receiptWords } from '../utils/receipt'
 import { anyFormEdited, switchFormKind, type FormSwitchState } from '../utils/template-switch'
-import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview'
+import { DocumentTemplateLayout, TextDocumentStudio } from '../components/TextDocumentStudio'
 import { NumberField, ToolLeaveGuard, type NumberRule } from '@/features/tools/hub'
 
 const RECEIPT_MONEY: NumberRule = { kind: 'money', min: 1, max: 999_999_999_999_999 }
@@ -40,9 +40,8 @@ export default function FormTemplatesPage() {
   const picker = <TemplatePicker label={t('formTemplates.kind')} value={kind} onChange={changeKind} items={FORM_KINDS.map(key => ({ id: key, label: t(`formTemplates.names.${key}`), preview: <div className="cn-template-page"><FormPreview kind={key} values={key === thumbs.kind ? thumbs.values : thumbs.drafts[key] ?? defaultsOf(key)} /></div> }))} />
   return <>
     <style>{`.cn-form-layout { display: grid; grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr); gap: 24px; align-items: start; } .cn-form-preview { min-width: 0; box-shadow: 0 2px 20px rgba(0,0,0,.06); } @media (max-width: 900px) { .cn-form-layout { grid-template-columns: 1fr; } } @media print { @page { size: A4; margin: 20mm; } .erp-print-portal .cn-form-print { padding: 0 !important; } }`}</style>
-    <ToolBoard className="cn-form-studio" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>}>
-      <ResponsivePreview action={<><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="file-earmark-text" /></span><div><h2>{studio('previewTitle')}</h2><p>{studio('resultHint')}</p></div></div>{print}</>} templates={picker} preview={<><div className="cn-form-preview"><FormPreview kind={kind} values={values} /></div><p className="mt-3">{kind === 'authorization' ? t('formTemplates.authorizationWarning') : t('formTemplates.defaultWarning')} {t('formTemplates.privacy')}</p></>}>
-      <ToolPanel title={t('formTemplates.title')} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
+    <TextDocumentStudio kind="forms"><div className="cn-form-studio"><DocumentTemplateLayout templates={picker} actions={print} preview={<><div className="cn-form-preview"><FormPreview kind={kind} values={values} /></div><p className="mt-3">{kind === 'authorization' ? t('formTemplates.authorizationWarning') : t('formTemplates.defaultWarning')} {t('formTemplates.privacy')}</p></>}>
+      <ToolPanel title={`2. ${t(`formTemplates.names.${kind}`)}`} actions={<span className="cn-studio-small-icon"><Icon name="pencil-square" /></span>}>
         <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="cn-document-fields">
         {template.fields.map((field) => field.key === 'amount' ? <NumberField key={field.key} className="mt-3" label={t('formTemplates.fields.amount')} rule={RECEIPT_MONEY} unit="đ" value={values.amount ?? ''} onChange={amount => setValues(current => ({ ...current, amount }))} /> : <label className="erp-flow-field__label mt-3" key={field.key}>{t(`formTemplates.fields.${field.label}`)}{field.multiline
@@ -53,8 +52,7 @@ export default function FormTemplatesPage() {
         {kind === 'receipt' ? <><p className="mt-2">{t('formTemplates.print.receipt.words', { value: receiptWords(values.amount ?? '') ?? '—' })}</p>{receiptError ? <p role="alert">{t(`formTemplates.receiptErrors.${receiptError}`)}</p> : null}</> : null}
         <div className="mt-3">{print}</div>
       </ToolPanel>
-      </ResponsivePreview>
-    </ToolBoard>
+      </DocumentTemplateLayout></div></TextDocumentStudio>
     <PrintPortal><FormPreview kind={kind} values={values} /></PrintPortal>
     <ToolLeaveGuard active={edited} message={tc('workspace.unsaved')} />
   </>

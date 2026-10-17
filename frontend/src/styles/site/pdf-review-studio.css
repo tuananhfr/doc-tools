@@ -1,0 +1,60 @@
+.cn-pdfquickstudio .cn-idstudio-toolnav a { min-height: 34px; padding-block: 5px; }
+.cn-pdfquickstudio--compare .cn-flowstudio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cn-pdfquickstudio--compare .cn-flowstudio-preview { grid-column: 1 / -1; }
+.cn-compare-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.cn-compare-pair > section { min-width: 0; }
+.cn-compare-pair h3 { font-size: 13px; }
+.cn-compare-pair .cn-pdfsource-viewport { max-height: 500px; }
+.cn-pdfquickstudio--compare .erp-flow-result__text-body { min-height: 240px; font-size: 13px; line-height: 1.8; }
+.cn-pdf-action-summary { padding: 16px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); }
+.cn-pdf-action-summary > .bi { display: inline-block; font-size: 36px; margin-bottom: 12px; color: var(--cn-accent); }
+.cn-pdf-action-summary p { font-size: 12px; line-height: 1.8; }
+.cn-pdf-action-summary dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.cn-pdf-action-summary dl > div { padding: 10px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); }
+.cn-pdf-action-summary dt { font-size: 11px; font-weight: 400; }
+.cn-pdf-action-summary dd { color: var(--cn-accent); font-size: 25px; font-weight: 700; margin: 6px 0 0; }
+.cn-pdfquickstudio--sign .erp-sign-pad { width: 100%; min-width: 0; border-color: var(--cn-line); border-radius: 8px; }
+.cn-pdfquickstudio--sign .erp-sign-pad__actions { flex-wrap: wrap; }
+.cn-pdfquickstudio--sign .erp-sign-pad__actions .btn { min-height: 40px; padding: 6px; }
+.cn-fileconversionstudio--imageText .cn-ocr-steps { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px; margin-bottom: 14px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); }
+.cn-fileconversionstudio--imageText .cn-ocr-steps li { min-width: 0; font-size: 11px; }
+.cn-fileconversionstudio--imageText .cn-ocr-options { min-width: 0; margin-bottom: 16px; }
+.cn-fileconversionstudio--imageText .cn-ocr-options > label { display: block; }
+.cn-fileconversionstudio--imageText .cn-ocr-advanced { padding-top: 12px; margin-top: 18px; border-top: 1px solid var(--cn-line); }
+.cn-fileconversionstudio--imageText .cn-ocr-advanced > summary { min-height: 42px; font-size: 12px; color: var(--cn-accent); cursor: pointer; }
+.cn-fileconversionstudio--imageText .cn-ocr-advanced p, .cn-fileconversionstudio--imageText .cn-ocr-review__warnings { font-size: 11px; line-height: 1.8; }
+.cn-fileconversionstudio--imageText .cn-flowstudio-review .cn-ocr-review { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-pdfreader-studio { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.7fr); gap: 12px; align-items: start; }
+.cn-pdfreader-studio > * { min-width: 0; }
+.cn-pdfreader-summary { display: grid; justify-items: center; gap: 12px; padding: 20px 12px; margin-top: 16px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); }
+.cn-pdfreader-summary > .bi { font-size: 38px; color: var(--cn-accent); }
+.cn-pdfreader-summary strong { font-size: 15px; }
+.cn-pdfreader-summary ul { width: 100%; margin: 0; padding-inline-start: 16px; color: var(--cn-muted); font-size: 11px; line-height: 1.8; overflow-wrap: anywhere; }
+.cn-pdfreader-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.cn-pdfreader-actions .btn { min-height: 44px; white-space: normal; gap: 8px; }
+.cn-pdfreader-studio .cn-pdf-reader__controls { gap: 6px; }
+.cn-pdfreader-studio .cn-pdf-reader__controls .btn { min-height: 40px; padding: 7px; }
+.cn-pdfreader-studio .cn-pdf-reader__page { min-width: 0; font-size: 12px; }
+.cn-pdfreader-studio .cn-pdf-reader__page select { min-height: 40px; padding-block: 7px; font-size: 12px; border-color: var(--cn-line); background-color: var(--cn-surface); color: var(--cn-ink); }
+.cn-pdfreader-studio .cn-pdf-reader__controls output { min-width: 40px; font-size: 12px; text-align: center; }
+.cn-pdfreader-studio .cn-pdf-reader__stage { height: clamp(320px, 65dvh, 760px); background: var(--cn-hero); }
+.cn-pdfreader-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-height: 380px; padding: 24px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-hero); text-align: center; }
+.cn-pdfreader-empty > .bi { font-size: 80px; color: var(--cn-accent); }
+.cn-pdfreader-empty strong { font-size: 16px; }
+.cn-pdfreader-empty p { margin: 0; color: var(--cn-muted); font-size: 12px; line-height: 1.8; }
+.cn-pdfreader-panel { margin-top: 18px; }
+.cn-pdfreader-panel .erp-doc-export { position: static; max-height: none; width: 100%; padding: 14px; border: 1px solid var(--cn-line); border-radius: 9px; background: var(--cn-surface); }
+.cn-pdfreader-panel .erp-doc-export__tabs { flex-wrap: wrap; }
+.cn-pdfreader-panel :is(.form-control, .form-select) { min-height: 42px; background-color: var(--cn-surface); border-color: var(--cn-line); color: var(--cn-ink); }
+.cn-pdfreader-panel .erp-doc-export__section { padding-inline: 0; }
+@media (max-width: 1199px) and (min-width: 768px) {
+  .cn-pdfreader-studio { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 767px) {
+  .cn-pdfquickstudio .cn-idstudio-toolnav a { min-height: 44px; }
+  .cn-pdfquickstudio--compare .cn-flowstudio, .cn-compare-pair, .cn-pdfreader-studio { grid-template-columns: minmax(0, 1fr); }
+  .cn-fileconversionstudio--imageText .cn-ocr-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-pdfreader-studio .cn-pdf-reader__controls .btn { min-height: 44px; }
+  .cn-pdfreader-studio .cn-pdf-reader__stage { height: 55dvh; min-height: 280px; }
+  .cn-pdfreader-panel .erp-doc-export { padding: 10px; }
+}

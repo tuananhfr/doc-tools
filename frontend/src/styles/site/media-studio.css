@@ -50,7 +50,8 @@
 .cn-readstudio-input textarea { min-height: 300px; padding: 12px; line-height: 1.9; resize: vertical; }
 .cn-readstudio-editor .erp-tool-tabs { display: flex; flex-wrap: wrap; gap: 5px; padding: 4px; margin-bottom: 12px; background: var(--cn-hero); border: 1px solid var(--cn-line); border-radius: 8px; }
 .cn-readstudio-editor .erp-tool-tab { flex: 1 1 60px; min-width: 0; min-height: 40px; padding: 7px; gap: 5px; font-size: 11px; }
-.cn-readstudio-editor .erp-tool-tab[aria-pressed='true'] { background: #0067f4; border-color: #0067f4; color: white; }
+.cn-mediastudio .cn-readstudio-editor .erp-tool-tabs .erp-tool-tab[aria-pressed='true'] { background: #0067f4; border-color: #0067f4; color: white; }
+.cn-mediastudio .cn-readstudio-editor .erp-tool-tabs .erp-tool-tab[aria-pressed='true'] .bi { color: white; }
 .cn-readstudio-editor .erp-tool-result__note { margin-bottom: 8px; color: var(--cn-muted); font-size: 11px; line-height: 1.8; overflow-wrap: anywhere; }
 .cn-readstudio-settings .erp-read-notice { margin-block: 10px; padding: 10px; font-size: 11px; line-height: 1.8; overflow-wrap: anywhere; }
 .cn-readstudio-settings .form-check { padding-inline-start: 30px; font-size: 12px; line-height: 1.7; }

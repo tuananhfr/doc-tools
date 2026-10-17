@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { ToolLeaveGuard, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolLeaveGuard } from '@/features/tools/hub'
+import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { Icon } from '@/components/ui'
 import { OrganizeStage } from '../../components/quick/OrganizeStage'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
@@ -25,10 +26,11 @@ export default function OrganizePdfPage() {
         : null
 
   return (
-    <div className="cn-pdf-quick-workspace cn-organize-workspace">
+    <PdfQuickStudio kind="organize"><div className="cn-pdf-quick-workspace cn-organize-workspace">
       {/* Thứ tự đã sắp chỉ nằm trong RAM: rời màn là phải sắp lại từ đầu. */}
       <ToolLeaveGuard active={quick.items.length > 0 && !organize.untouched} />
       <QuickToolShell
+        pdfStudio="organize"
         quick={quick}
         accept={ACCEPT}
         multiple
@@ -40,7 +42,6 @@ export default function OrganizePdfPage() {
         blocked={blocked}
         task={() => organizeTask(quick.items, organize.pages)}
       />
-      <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepChoose'), studio('stepArrange'), studio('stepSave')]} tip={studio('tip', { reset: t('organizeStage.reset') })} /></div>
-    </div>
+    </div></PdfQuickStudio>
   )
 }

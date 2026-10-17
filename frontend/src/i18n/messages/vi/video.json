@@ -187,6 +187,82 @@
       "emptyHint": "Thêm nội dung ở bước 1, chọn giọng rồi bắt đầu nghe.",
       "wavHint": "Giọng Việt hỗ trợ xuất WAV từ nội dung của phần đang chọn.",
       "deviceHint": "Giọng máy phát trực tiếp trên thiết bị. Chọn Giọng Việt nếu muốn tải WAV."
+    },
+    "compress": {
+      "title": "Nén video",
+      "subtitle": "Giảm dung lượng video và xuất MP4 ngay trên trình duyệt",
+      "heroNote": "Video gọn hơn\nChia sẻ dễ dàng!",
+      "inputTitle": "1. Tải video lên",
+      "optionsTitle": "2. Tùy chỉnh mức nén",
+      "outputTitle": "3. Kết quả & Tải về",
+      "emptyTitle": "Video của bạn sẽ hiện ở đây",
+      "emptyHint": "Chọn video từ thiết bị để xem trước và thiết lập kết quả.",
+      "resultHint": "Xem dung lượng, phát thử và tải video sau khi nén.",
+      "steps": {
+        "1": "Tải một video từ thiết bị.",
+        "2": "Chọn mức nén nhẹ, cân bằng hoặc mạnh.",
+        "3": "Chọn cạnh tối đa 720 hoặc 1080 px.",
+        "4": "Bấm nén và chờ quá trình xử lý hoàn tất.",
+        "5": "Xem kết quả và tải tệp về máy."
+      },
+      "tips": {
+        "1": "Luôn giữ lại video gốc để đối chiếu chất lượng.",
+        "2": "Nén mạnh có thể làm giảm độ nét.",
+        "3": "Nếu video đã nén tốt, kết quả có thể không nhỏ hơn.",
+        "4": "Video được xử lý trên thiết bị, không tải lên máy chủ."
+      },
+      "faq": {
+        "1": {
+          "q": "Hỗ trợ video dung lượng bao nhiêu?",
+          "a": "Tối đa 100 MB, 10 phút và độ phân giải 3840 × 2160. Khả năng xử lý còn phụ thuộc bộ nhớ thiết bị."
+        },
+        "2": {
+          "q": "Có giữ nguyên định dạng video không?",
+          "a": "Kết quả được xuất thành MP4 với hình H.264 và âm thanh AAC nếu video gốc có âm thanh."
+        },
+        "3": {
+          "q": "Có cần tải video lên máy chủ không?",
+          "a": "Không. Công cụ tải bộ xử lý khi cần và chạy trong trình duyệt. Để trang mở trong lúc xử lý."
+        }
+      }
+    },
+    "gif": {
+      "title": "Tạo GIF từ video",
+      "subtitle": "Biến một đoạn video thành ảnh động lặp lại, ngay trên thiết bị",
+      "heroNote": "Khoảnh khắc ngắn\nChia sẻ thật vui!",
+      "inputTitle": "1. Tải video lên",
+      "optionsTitle": "2. Tùy chỉnh ảnh động",
+      "outputTitle": "3. Kết quả & Tải về",
+      "emptyTitle": "Video của bạn sẽ hiện ở đây",
+      "emptyHint": "Chọn video từ thiết bị để xem trước và thiết lập kết quả.",
+      "resultHint": "Xem ảnh động và tải GIF về máy sau khi xử lý.",
+      "steps": {
+        "1": "Tải một video từ thiết bị.",
+        "2": "Chọn điểm bắt đầu và kết thúc, tối đa 20 giây.",
+        "3": "Chọn chiều rộng và tốc độ khung hình.",
+        "4": "Xem thử đoạn chọn rồi bấm tạo GIF.",
+        "5": "Xem kết quả và tải tệp về máy."
+      },
+      "tips": {
+        "1": "GIF không có âm thanh.",
+        "2": "Đoạn càng ngắn, tệp càng nhẹ.",
+        "3": "Chiều rộng và số khung hình thấp giúp giảm dung lượng.",
+        "4": "Video được xử lý trên thiết bị, không tải lên máy chủ."
+      },
+      "faq": {
+        "1": {
+          "q": "Hỗ trợ video dung lượng bao nhiêu?",
+          "a": "Tối đa 100 MB, 10 phút và độ phân giải 3840 × 2160. Khả năng xử lý còn phụ thuộc bộ nhớ thiết bị."
+        },
+        "2": {
+          "q": "Vì sao ảnh GIF có dung lượng lớn?",
+          "a": "GIF phù hợp đoạn ngắn. Giảm thời lượng, chiều rộng hoặc số khung hình để tạo tệp nhẹ hơn."
+        },
+        "3": {
+          "q": "Có cần tải video lên máy chủ không?",
+          "a": "Không. Công cụ tải bộ xử lý khi cần và chạy trong trình duyệt. Để trang mở trong lúc xử lý."
+        }
+      }
     }
   }
 }

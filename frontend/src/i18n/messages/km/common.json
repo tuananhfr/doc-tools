@@ -833,5 +833,96 @@
       "step3": "Process and download the batch results.",
       "tip": "Use {n} in the filename pattern to number images. Check dimensions and sample names before processing many files."
     }
+  },
+  "textStudio": {
+    "category": "Text & Forms",
+    "related": "Related text tools",
+    "documentNote": "Write with ease\nReady for every day!",
+    "textNote": "Enter your content\nSee the result!",
+    "templates": "Choose a template",
+    "input": "Enter your information",
+    "preview": "Preview & download",
+    "check": "Check names, content and figures before copying, downloading or printing.",
+    "privacy": "Your content is processed in your browser.",
+    "accountQ": "Do I need an account?",
+    "accountA": "No. Enter your content and start using the tool straight away.",
+    "privacyQ": "Is my content saved?",
+    "privacyA": "Content stays in the current session. Copy or download the result before leaving.",
+    "cvPrivacyA": "Your CV is remembered on this device only if you enable draft storage. Select your photo again in a new session.",
+    "cvTemplateStep": "Choose a CV template at the top of the workspace."
+  },
+  "calculationStudio": {
+    "category": "Calculators & Calendar",
+    "related": "Related calculation tools",
+    "heroNote": "Calculate faster\nMake every number clear!",
+    "calendarNote": "Find your dates\nPlan every day!",
+    "calendarTrust": "Reference sources",
+    "check": "Check units, decimal separators and input values before using the result.",
+    "privacy": "Calculations run in your browser.",
+    "networkQ": "Do I need an internet connection?",
+    "networkA": "Calculations run on your device after the page loads. Copy or download your result before leaving.",
+    "calendarPrivacy": "Lunar/solar conversion runs on your device. Cross-checking sends the selected date to the server and needs a connection.",
+    "calendarRange": "Supports dates from 1800 to 2199. Holidays and cultural information are labeled separately for comparison.",
+    "live": "Results update as you change your inputs.",
+    "scheduleTitle": "Repayment schedule",
+    "loanBreakdown": "Principal and interest in total repayment",
+    "units": {
+      "step1": "Choose length, area or mass.",
+      "step2": "Enter a value and select the source and destination units.",
+      "step3": "Read the result, swap units or copy a converted value.",
+      "tip": "The entered value is converted into units in the selected group. Check the source and destination units after swapping."
+    },
+    "loan": {
+      "step1": "Choose installment loan or renewing savings.",
+      "step2": "Enter the principal, annual interest rate and term, then select the calculation method.",
+      "step3": "Review the total and interest; download the loan schedule as CSV if needed.",
+      "tip": "The interest rate is a percentage per year. Check the term and repayment method against your actual contract."
+    },
+    "dates": {
+      "step1": "Choose a date interval or add/subtract days.",
+      "step2": "Enter dates and day counts, checking whether to include the start date.",
+      "step3": "Read the result, review working days and copy the value you need.",
+      "tip": "Working days exclude Saturdays and Sundays, but do not subtract public holidays. Holidays are listed separately."
+    }
+  },
+  "funStudio": {
+    "category": "Explore & Entertainment",
+    "related": "More tools to explore",
+    "heroNote": "Take a little break\nDiscover something new!",
+    "local": "Processed on your device",
+    "network": "Connection required",
+    "reference": "Interpretations are for entertainment and reflection. Read them alongside the calculation steps or card positions.",
+    "processingQ": "Where is my data processed?",
+    "numberPrivacy": "Your birth date, optional name and selected year are sent for calculation after your consent. Results and interpretations are shown in the current session.",
+    "cardPrivacy": "Shuffling and drawing requires the server. Once you receive the cards, revealing them and reading interpretations happens on your device.",
+    "wheelPrivacy": "The wheel runs on your device. Saved lists stay in this browser and are not sent to the server.",
+    "wheelTip": "Enter at least two different options. Enable elimination to pick an order without repeating a winner.",
+    "drawNote": "Each draw keeps the same selected cards. Start a new session to change the card count or draw settings."
+  },
+  "dailyStudio": {
+    "category": "Everyday tools",
+    "related": "Related everyday tools",
+    "flashcardNote": "Learn a little each day\nRemember for longer!",
+    "compassNote": "Find your direction\nPlan your space!",
+    "electricityPrivacy": "Calculations run on your device. A connection is needed to load verified tariffs; you can also enter your own rates and tax.",
+    "compassPrivacy": "Images, drawings and measurements stay in this tab. Sensors require a supported device and permission; manual degree entry is always available.",
+    "flashcardPrivacy": "Cards are stored in this browser and can be reviewed offline after the page loads. Clearing browser data deletes saved cards.",
+    "sourceTrust": "Check tariff sources",
+    "compassTrust": "Manual entry available"
+  },
+  "officeStudio": {
+    "category": "Office",
+    "related": "Related office tools",
+    "heroNote": "Create with ease\nSave on your device!",
+    "formats": "DOCX · XLSX · PPTX",
+    "saveQ": "Are documents automatically saved on the server?",
+    "slides": {
+      "heading": "Create a presentation or open a PowerPoint file",
+      "stepOpen": "Open the editor to create a presentation or open a PPTX file.",
+      "stepEdit": "Edit content, layout and formatting on your slides.",
+      "stepSave": "Save the PPTX file to your device before closing the editor.",
+      "tip": "Expand the workspace for more room to arrange slides. The editor interface is in English.",
+      "note": "Slides are edited on your device. Save the updated file before leaving this page."
+    }
   }
 }

@@ -1,41 +1,49 @@
-import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { useEffect, useState } from 'react'
+import { Button, Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { downloadOutput, FilePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { downloadOutput, FilePicker } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
+import { formatFileSize } from '@/utils/format'
+import { ExtendedImageStudio } from '../components/ExtendedImageStudio'
+import { useImageFiles } from '../hooks/useImageFiles'
 import { removeImageMetadata } from '../services/remove-metadata'
+
+type MetadataResult = Awaited<ReturnType<typeof removeImageMetadata>> & { name: string }
 
 export default function RemoveMetadataPage() {
   const { t } = useTranslation('image')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.metadata' })
-  const [file, setFile] = useState<File | null>(null)
-  const [busy, setBusy] = useState(false)
-  const [message, setMessage] = useState('')
+  const { t: s } = useTranslation('image', { keyPrefix: 'extendedStudio.metadata' })
+  const images = useImageFiles({ multiple: false }), item = images.items[0]
+  const [busy, setBusy] = useState(false), [error, setError] = useState('')
+  const [result, setResult] = useState<MetadataResult | null>(null), [resultUrl, setResultUrl] = useState<string | null>(null), [original, setOriginal] = useState(false)
+  useEffect(() => { setError(''); setResult(null); setOriginal(false) }, [item?.id])
+  useEffect(() => { if (!result) { setResultUrl(null); return }; const url = URL.createObjectURL(result.blob); setResultUrl(url); return () => URL.revokeObjectURL(url) }, [result])
   const process = async () => {
-    if (!file || busy) return
-    setBusy(true)
-    setMessage('')
+    if (!item || busy) return
+    setBusy(true); setError('')
     try {
-      const output = await removeImageMetadata(file)
-      downloadOutput({ name: `${file.name.replace(/\.[^.]+$/, '')}-khong-exif.${output.extension}`, blob: output.blob })
-      setMessage(t('removeMeta.done', { width: output.width, height: output.height }))
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : t('shared.processFailed'))
-    } finally {
-      setBusy(false)
-    }
+      const output = await removeImageMetadata(item.file)
+      const name = `${item.name.replace(/\.[^.]+$/, '')}-khong-exif.${output.extension}`
+      setResult({ ...output, name }); setOriginal(false)
+      downloadOutput({ name, blob: output.blob })
+    } catch (cause) { setError(cause instanceof Error ? cause.message : t('shared.processFailed')) }
+    finally { setBusy(false) }
   }
-
-  return <ToolBoard className="cn-metadata-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result" role="status">
-    <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="shield-check" /></span><div><h2>{t('removeMeta.outputLabel')}</h2><p>{studio('resultHint')}</p></div></div>
-    <div className="cn-metadata-file"><Icon name={file ? 'file-earmark-image' : 'image'} /><p className="erp-tool-result__value">{file ? file.name : '—'}</p></div>
-    <p className="erp-tool-result__note">{message || t('removeMeta.idle')}</p>
-    <Button disabled={!file || busy} onClick={() => void process()} className="mt-3 cn-metadata-run"><Icon name={busy ? 'hourglass-split' : 'shield-check'} className="me-2" />{busy ? t('shared.processing') : t('removeMeta.run')}</Button>
-  </div>}>
-    <ToolPanel title={t('removeMeta.panel')} actions={<span className="cn-studio-small-icon"><Icon name="image" /></span>}>
-      <p className="cn-studio-form-hint">{studio('inputHint')}</p>
-      <FilePicker title={t('removeMeta.choose')} hint={studio('pickerHint')} accept="image/jpeg,image/png,image/webp" multiple={false} compact={Boolean(file)} loading={null} disabled={busy} onFiles={files => { setFile(files[0] ?? null); setMessage('') }} />
-      <p className="erp-tool-result__note mt-3">{t('removeMeta.note')}</p>
-    </ToolPanel>
-  </ToolBoard>
+  return <ExtendedImageStudio kind="metadata"><div className="cn-extendedimage-two cn-metadatastudio">
+    <section className="cn-idstudio-panel cn-metadatastudio-input"><h2>{s('inputTitle')}</h2><p className="cn-flowstudio-hint">{studio('inputHint')}</p>
+      <div className="cn-convertstudio-upload"><FilePicker title={t('removeMeta.choose')} hint={studio('pickerHint')} accept="image/jpeg,image/png,image/webp" multiple={false} compact={Boolean(item)} loading={images.loading} disabled={busy || images.loading !== null} onFiles={files => void images.addFiles(files)} /></div>
+      {images.rejected.length ? <div className="cn-flowstudio-rejected" role="alert">{images.rejected.map((entry, index) => <p key={index}><strong>{entry.name}</strong> — {entry.reason}</p>)}</div> : null}
+      {item ? <div className="cn-metadatastudio-file"><Icon name="file-earmark-image" /><div><strong>{item.name}</strong><span>{item.width} × {item.height} px · {formatFileSize(item.size)}</span></div></div> : null}
+      <p className="cn-idstudio-note"><Icon name="shield-check" />{t('removeMeta.note')}</p>
+      <Button className="cn-flowstudio-run" disabled={!item || busy || images.loading !== null} onClick={() => void process()}>{busy ? <Spinner size="sm" /> : <Icon name="shield-check" />}{busy ? t('shared.processing') : t('removeMeta.run')}</Button>
+      {error ? <p className="erp-flow-error" role="alert">{error}</p> : null}
+    </section>
+    <section className="cn-idstudio-panel cn-metadatastudio-output"><h2>{s('outputTitle')}</h2>
+      <div className="cn-idstudio-tabs"><button type="button" disabled={!result} aria-pressed={Boolean(result) && !original} onClick={() => setOriginal(false)}>{s('result')}</button><button type="button" disabled={!item} aria-pressed={Boolean(item) && (!result || original)} onClick={() => setOriginal(true)}>{s('original')}</button></div>
+      <div className="cn-flowstudio-source">{item ? <img src={resultUrl && !original ? resultUrl : item.url} alt={original || !result ? s('original') : s('result')} /> : <div className="cn-flowstudio-empty"><Icon name="shield-check" /><strong>{s('emptyTitle')}</strong><p>{s('emptyHint')}</p></div>}</div>
+      <p className="cn-flowstudio-hint" role="status">{result ? t('removeMeta.done', { width: result.width, height: result.height }) : t('removeMeta.idle')}</p>
+      {result ? <><p className="cn-metadatastudio-filename">{result.name} · {formatFileSize(result.blob.size)}</p><Button className="cn-flowstudio-run" onClick={() => downloadOutput({ name: result.name, blob: result.blob })}><Icon name="download" />{s('downloadAgain')}</Button></> : null}
+    </section>
+  </div></ExtendedImageStudio>
 }
