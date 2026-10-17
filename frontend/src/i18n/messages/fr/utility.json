@@ -291,7 +291,8 @@
     "panelTitle": "Texte",
     "clear": "Tout effacer",
     "textLabel": "Texte à compter",
-    "placeholder": "Tapez ou collez du texte ici…"
+    "placeholder": "Tapez ou collez du texte ici…",
+    "confirmClear": "Effacer tout le texte saisi ? Cette action est irréversible."
   },
   "color": {
     "levels": {

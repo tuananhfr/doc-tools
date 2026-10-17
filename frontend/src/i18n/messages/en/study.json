@@ -15,7 +15,10 @@
     "add": "Add card",
     "remove": "Delete",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "Could not save changes on this device. Your input is kept; copy it elsewhere or retry before leaving.",
+    "loadFailed": "Could not read saved cards. Retry; existing data will not be overwritten.",
+    "retryStorage": "Retry"
   },
   "pomodoro": {
     "focus": "Focus",

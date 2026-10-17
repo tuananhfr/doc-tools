@@ -285,7 +285,8 @@
     "panelTitle": "Văn bản",
     "clear": "Xoá hết",
     "textLabel": "Văn bản cần đếm",
-    "placeholder": "Gõ hoặc dán văn bản vào đây…"
+    "placeholder": "Gõ hoặc dán văn bản vào đây…",
+    "confirmClear": "Xoá hết văn bản đã nhập? Nội dung đã xoá không khôi phục được."
   },
   "color": {
     "levels": {

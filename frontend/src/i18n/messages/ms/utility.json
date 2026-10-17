@@ -285,7 +285,8 @@
     "panelTitle": "Teks",
     "clear": "Kosongkan semua",
     "textLabel": "Teks untuk dikira",
-    "placeholder": "Taip atau tampal teks di sini…"
+    "placeholder": "Taip atau tampal teks di sini…",
+    "confirmClear": "Padam semua teks yang dimasukkan? Tindakan ini tidak boleh dibatalkan."
   },
   "color": {
     "levels": {

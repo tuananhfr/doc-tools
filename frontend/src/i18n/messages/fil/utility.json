@@ -288,7 +288,8 @@
     "panelTitle": "Text",
     "clear": "Burahin lahat",
     "textLabel": "Text na bibilangin",
-    "placeholder": "Mag-type o mag-paste ng text dito…"
+    "placeholder": "Mag-type o mag-paste ng text dito…",
+    "confirmClear": "Burahin ang lahat ng inilagay na teksto? Hindi ito maibabalik."
   },
   "color": {
     "levels": {

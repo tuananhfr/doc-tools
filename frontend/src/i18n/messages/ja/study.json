@@ -13,7 +13,10 @@
     "add": "カードを追加",
     "remove": "削除",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "変更を端末に保存できませんでした。入力は保持されています。別の場所にコピーするか、ページを離れる前に再試行してください。",
+    "loadFailed": "保存済みカードを読み込めませんでした。再試行してください。既存データは上書きされません。",
+    "retryStorage": "再試行"
   },
   "pomodoro": {
     "focus": "集中",

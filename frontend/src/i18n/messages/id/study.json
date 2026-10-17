@@ -13,7 +13,10 @@
     "add": "Tambah kartu",
     "remove": "Hapus",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "Perubahan tidak dapat disimpan di perangkat. Input tetap ada; salin ke tempat lain atau coba lagi sebelum keluar.",
+    "loadFailed": "Kartu tersimpan tidak dapat dibaca. Coba lagi; data lama tidak akan ditimpa.",
+    "retryStorage": "Coba lagi"
   },
   "pomodoro": {
     "focus": "Fokus",

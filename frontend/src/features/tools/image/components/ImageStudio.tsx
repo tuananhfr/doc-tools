@@ -5,6 +5,7 @@ import { Icon } from '@/components/ui'
 import { toolPath, useToolsBranch, type ToolDefinition } from '@/features/tools/hub'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
 import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
+import { ExperienceControlsSlot } from '@/features/tools/hub/components/ExperienceControls'
 
 const RELATED = ['id-photo', 'crop-image', 'remove-background', 'compress-image', 'convert-image', 'collage', 'trim-video', 'compress-video', 'extract-audio', 'remove-metadata']
 
@@ -58,7 +59,10 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
   const imageHub = kind === 'public' ? category?.path ?? '/hinh-anh' : base
   const categoryTitle = category?.title ?? t('category')
   return <div className={`cn-idstudio cn-image-studio cn-image-studio--${toolId}`}>
-    <nav className="cn-idstudio-breadcrumb" aria-label={t('breadcrumb')}><Link to={base}>{t('tools')}</Link><Icon name="chevron-right" /><Link to={imageHub}>{categoryTitle}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
+    <div className="cn-idstudio-topline">
+      <nav className="cn-idstudio-breadcrumb" aria-label={t('breadcrumb')}><Link to={base}>{t('tools')}</Link><Icon name="chevron-right" /><Link to={imageHub}>{categoryTitle}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
+      <ExperienceControlsSlot />
+    </div>
     <div className="cn-idstudio-layout">
       <aside className="cn-idstudio-sidebar">
         <Link to={imageHub} className="cn-idstudio-back"><Icon name="arrow-left" />{t('back')}</Link>

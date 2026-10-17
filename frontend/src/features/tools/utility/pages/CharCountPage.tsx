@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import type { ParseKeys } from 'i18next'
 import { Button, Form } from 'react-bootstrap'
 import { Icon } from '@/components/ui'
-import { ToolBoard, ToolPanel } from '@/features/tools/hub'
+import { ToolBoard, ToolLeaveGuard, ToolPanel } from '@/features/tools/hub'
 import { formatNumber } from '@/utils/format'
 import { textStats, type TextStats } from '../utils/text-stats'
 
@@ -19,6 +19,7 @@ const ROWS: { key: keyof TextStats; label: ParseKeys<'utility'>; hint?: ParseKey
 /** ĐẾM KÝ TỰ — chữ, từ, dòng, đoạn của đoạn văn dán vào; đếm ngay trên máy, không gửi chữ đi đâu. */
 export default function CharCountPage() {
   const { t } = useTranslation('utility')
+  const { t: common } = useTranslation('common')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.charCount' })
   const id = useId()
   const [text, setText] = useState('')
@@ -27,7 +28,7 @@ export default function CharCountPage() {
   const stats = useMemo(() => textStats(deferred), [deferred])
 
   return (
-    <TextDocumentStudio kind="count"><ToolBoard className="cn-charcount-workspace" layout="balanced"
+    <TextDocumentStudio kind="count"><ToolLeaveGuard active={text !== ''} message={common('workspace.unsaved')} /><ToolBoard className="cn-charcount-workspace" layout="balanced"
       sideLabel={t('charCount.counts')}
       side={
         <>
@@ -49,7 +50,7 @@ export default function CharCountPage() {
       <ToolPanel
         title={`1. ${t('charCount.panelTitle')}`}
         actions={
-          <Button variant="link" size="sm" className="erp-flow-files__clear" disabled={text === ''} onClick={() => setText('')}>
+          <Button variant="link" size="sm" className="erp-flow-files__clear" disabled={text === ''} onClick={() => { if (window.confirm(t('charCount.confirmClear'))) setText('') }}>
             <Icon name="x-lg" className="me-2" />
             {t('charCount.clear')}
           </Button>

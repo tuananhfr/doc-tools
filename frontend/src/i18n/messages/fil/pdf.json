@@ -1094,14 +1094,12 @@
     "orientationHint": "Each page follows its image in landscape or portrait.",
     "onePerPage": "One image per page",
     "keepRatio": "Keeps image proportions without stretching or cropping.",
-    "summary": "{{count}} images → 1 PDF file",
     "previewTitle": "Preview & Download",
     "layout": "PDF layout",
     "empty": "Your document will appear here",
     "emptyHint": "Select images to preview the page layout before creating your PDF.",
     "previous": "Previous page",
     "next": "Next page",
-    "page": "Page {{page}} / {{count}}",
     "pages": "Pages",
     "size": "PDF size",
     "download": "Download PDF",
@@ -1138,7 +1136,11 @@
         "q": "Can I edit the PDF afterwards?",
         "a": "Yes. Select Edit PDF in the results panel to open your new document in the PDF editor."
       }
-    }
+    },
+    "summary_one": "Mga larawan: {{count}} → 1 PDF file",
+    "summary_other": "Mga larawan: {{count}} → 1 PDF file",
+    "page_one": "Pahina {{page}} / {{count}}",
+    "page_other": "Pahina {{page}} / {{count}}"
   },
   "editorStudio": {
     "title": "PDF editor",

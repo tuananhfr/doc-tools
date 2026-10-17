@@ -924,5 +924,16 @@
       "tip": "Để xuất PPTX: nhấn Ctrl+Shift+P, gõ “Export”, chọn dòng “Export…” thứ hai để mở hộp thoại, rồi chọn “PowerPoint Presentation (.pptx)”. Ctrl+S lưu định dạng riêng của trình soạn thảo.",
       "note": "Slide được mở và chỉnh trên thiết bị. Hãy lưu tệp mới về máy trước khi rời trang."
     }
+  },
+  "experience": {
+    "label": "Chế độ hiển thị",
+    "simple": "Đơn giản",
+    "guided": "Có hướng dẫn",
+    "full": "Đầy đủ",
+    "hints": {
+      "simple": "Tập trung vào nhập liệu và kết quả.",
+      "guided": "Thêm hướng dẫn từng bước và mẹo sử dụng.",
+      "full": "Hiện cả câu hỏi thường gặp và công cụ liên quan."
+    }
   }
 }

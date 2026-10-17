@@ -13,7 +13,10 @@
     "add": "បន្ថែមកាត",
     "remove": "លុប",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "មិនអាចរក្សាទុកការផ្លាស់ប្តូរលើឧបករណ៍បានទេ។ ទិន្នន័យបញ្ចូលនៅតែមាន សូមចម្លងទៅកន្លែងផ្សេង ឬសាកល្បងម្តងទៀតមុនចាកចេញ។",
+    "loadFailed": "មិនអាចអានកាតដែលបានរក្សាទុកបានទេ។ សូមសាកល្បងម្តងទៀត ទិន្នន័យចាស់នឹងមិនត្រូវបានសរសេរជាន់ទេ។",
+    "retryStorage": "សាកល្បងម្តងទៀត"
   },
   "pomodoro": {
     "focus": "ផ្តោតអារម្មណ៍",

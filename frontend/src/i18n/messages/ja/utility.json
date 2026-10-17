@@ -285,7 +285,8 @@
     "panelTitle": "テキスト",
     "clear": "すべて消去",
     "textLabel": "数えるテキスト",
-    "placeholder": "ここにテキストを入力または貼り付け…"
+    "placeholder": "ここにテキストを入力または貼り付け…",
+    "confirmClear": "入力したテキストをすべて消去しますか？元に戻せません。"
   },
   "color": {
     "levels": {

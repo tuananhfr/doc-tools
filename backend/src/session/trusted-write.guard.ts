@@ -9,7 +9,7 @@ import { configuration } from '../config/configuration'
 export function isTrustedWrite(request: FastifyRequest) {
   const allowed = configuration().auth.allowedOrigins
   const origin = request.headers.origin
-  const originOk = !origin || !allowed.length || allowed.includes(origin)
+  const originOk = !origin || allowed.includes(origin)
   return request.headers['x-cn-request'] === '1' && originOk
 }
 

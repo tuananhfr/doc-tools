@@ -13,7 +13,10 @@
     "add": "Thêm thẻ",
     "remove": "Xóa",
     "confirmRemove": "Xóa thẻ “{{front}}”? Thẻ đã xóa không khôi phục được.",
-    "removeAria": "Xóa thẻ {{front}}"
+    "removeAria": "Xóa thẻ {{front}}",
+    "saveFailed": "Không lưu được thay đổi vào thiết bị. Nội dung đang nhập vẫn được giữ; hãy chép ra nơi khác hoặc thử lưu lại trước khi rời trang.",
+    "loadFailed": "Không đọc được các thẻ đã lưu. Hãy thử lại; ứng dụng sẽ không ghi đè dữ liệu cũ.",
+    "retryStorage": "Thử lại"
   },
   "pomodoro": {
     "focus": "Tập trung",

@@ -13,7 +13,10 @@
     "add": "新增卡片",
     "remove": "刪除",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "無法將變更儲存至裝置。輸入內容仍然保留；請複製到其他地方或在離開前重試。",
+    "loadFailed": "無法讀取已儲存的卡片。請重試，現有資料不會被覆寫。",
+    "retryStorage": "重試"
   },
   "pomodoro": {
     "focus": "專注",

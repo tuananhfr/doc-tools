@@ -934,5 +934,16 @@
       "tip": "To export PPTX, press Ctrl+Shift+P, type “Export”, select the second “Export…” entry to open the dialog, then choose “PowerPoint Presentation (.pptx)”. Ctrl+S saves the editor’s native format.",
       "note": "Slides are edited on your device. Save the updated file before leaving this page."
     }
+  },
+  "experience": {
+    "label": "العرض",
+    "simple": "بسيط",
+    "guided": "مع إرشادات",
+    "full": "كامل",
+    "hints": {
+      "simple": "التركيز على الإدخال والنتائج.",
+      "guided": "إضافة الخطوات والنصائح.",
+      "full": "إظهار الأسئلة الشائعة والأدوات ذات الصلة أيضاً."
+    }
   }
 }

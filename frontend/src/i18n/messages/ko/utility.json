@@ -285,7 +285,8 @@
     "panelTitle": "텍스트",
     "clear": "모두 지우기",
     "textLabel": "셀 텍스트",
-    "placeholder": "여기에 텍스트를 입력하거나 붙여 넣으세요…"
+    "placeholder": "여기에 텍스트를 입력하거나 붙여 넣으세요…",
+    "confirmClear": "입력한 텍스트를 모두 지울까요? 되돌릴 수 없습니다."
   },
   "color": {
     "levels": {

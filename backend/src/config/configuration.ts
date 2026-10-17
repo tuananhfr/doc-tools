@@ -1,5 +1,6 @@
 import { join } from 'node:path'
 import { runtimeOverrides } from './runtime-config'
+import { trustedOrigins } from '../session/trusted-origins'
 
 export type MailTransportMode = 'direct' | 'smtp' | 'log'
 
@@ -26,8 +27,10 @@ export function configuration() {
   const envGoclawUrl = process.env.GOCLAW_URL ?? 'http://localhost:18790'
   const goclawUrl = ui.goclaw?.url ?? envGoclawUrl
   const mcpPublicUrl = ui.goclaw ? ui.goclaw.mcpPublicUrl : process.env.MCP_PUBLIC_URL ?? ''
+  const siteUrl = (process.env.SITE_PUBLIC_URL || 'https://lpc.vn/doc-tools').replace(/\/+$/, '')
+  const host = process.env.HOST ?? '127.0.0.1'
   return {
-    port: Number(process.env.PORT ?? 3003), host: process.env.HOST ?? '127.0.0.1',
+    port: Number(process.env.PORT ?? 3003), host,
     visitHashSecret: salt,
     database: { host: process.env.DB_HOST ?? '127.0.0.1', port: Number(process.env.DB_PORT ?? 3306),
       user: process.env.DB_USER ?? 'doc_tools', password, database: process.env.DB_NAME ?? 'doc_tools',
@@ -54,11 +57,10 @@ export function configuration() {
       otpMaxAttempts: Number(process.env.OTP_MAX_ATTEMPTS ?? 5),
       sessionDays: Number(process.env.SESSION_DAYS ?? 30),
       cookieSecure: process.env.COOKIE_SECURE !== '0',
-      // Browsers send Origin on every write; an empty list accepts any origin (local dev only).
-      allowedOrigins: list(process.env.SITE_ORIGINS),
+      allowedOrigins: trustedOrigins(list(process.env.SITE_ORIGINS), siteUrl, host, process.env.NODE_ENV === 'production'),
     },
     // Links in account mail; the base path is part of it (the site lives under /doc-tools on lpc.vn).
-    siteUrl: (process.env.SITE_PUBLIC_URL || 'https://lpc.vn/doc-tools').replace(/\/+$/, ''),
+    siteUrl,
     goclaw: {
       url: goclawUrl,
       // Same rule as the SMTP password: the .env token only ever goes to the .env address.

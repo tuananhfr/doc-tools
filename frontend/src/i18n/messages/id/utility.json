@@ -285,7 +285,8 @@
     "panelTitle": "Teks",
     "clear": "Hapus semua",
     "textLabel": "Teks yang akan dihitung",
-    "placeholder": "Ketik atau tempel teks di sini…"
+    "placeholder": "Ketik atau tempel teks di sini…",
+    "confirmClear": "Hapus semua teks yang dimasukkan? Tindakan ini tidak dapat dibatalkan."
   },
   "color": {
     "levels": {

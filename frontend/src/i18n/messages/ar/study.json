@@ -23,7 +23,10 @@
     "add": "إضافة بطاقة",
     "remove": "حذف",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "تعذر حفظ التغييرات على الجهاز. تم الاحتفاظ بإدخالك؛ انسخه إلى مكان آخر أو أعد المحاولة قبل المغادرة.",
+    "loadFailed": "تعذرت قراءة البطاقات المحفوظة. أعد المحاولة؛ لن تتم الكتابة فوق البيانات الحالية.",
+    "retryStorage": "إعادة المحاولة"
   },
   "pomodoro": {
     "focus": "تركيز",

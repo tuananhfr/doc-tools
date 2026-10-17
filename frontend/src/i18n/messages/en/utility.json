@@ -288,7 +288,8 @@
     "panelTitle": "Text",
     "clear": "Clear all",
     "textLabel": "Text to count",
-    "placeholder": "Type or paste text here…"
+    "placeholder": "Type or paste text here…",
+    "confirmClear": "Clear all entered text? This cannot be undone."
   },
   "color": {
     "levels": {

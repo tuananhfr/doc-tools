@@ -13,7 +13,10 @@
     "add": "ເພີ່ມບັດ",
     "remove": "ລຶບ",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "ບັນທຶກການປ່ຽນແປງບໍ່ໄດ້. ຂໍ້ມູນປ້ອນຍັງຢູ່ ກະລຸນາສຳເນົາໄວ້ບ່ອນອື່ນ ຫຼືລອງໃໝ່ກ່ອນອອກ.",
+    "loadFailed": "ອ່ານບັດທີ່ບັນທຶກໄວ້ບໍ່ໄດ້. ລອງໃໝ່ ຂໍ້ມູນເກົ່າຈະບໍ່ຖືກຂຽນທັບ.",
+    "retryStorage": "ລອງໃໝ່"
   },
   "pomodoro": {
     "focus": "ສຸມໃສ່",

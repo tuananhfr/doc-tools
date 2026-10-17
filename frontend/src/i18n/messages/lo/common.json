@@ -924,5 +924,16 @@
       "tip": "To export PPTX, press Ctrl+Shift+P, type “Export”, select the second “Export…” entry to open the dialog, then choose “PowerPoint Presentation (.pptx)”. Ctrl+S saves the editor’s native format.",
       "note": "Slides are edited on your device. Save the updated file before leaving this page."
     }
+  },
+  "experience": {
+    "label": "ການສະແດງ",
+    "simple": "ແບບງ່າຍ",
+    "guided": "ມີຄຳແນະນຳ",
+    "full": "ເຕັມຮູບແບບ",
+    "hints": {
+      "simple": "ເນັ້ນຂໍ້ມູນປ້ອນ ແລະຜົນລັບ.",
+      "guided": "ເພີ່ມຂັ້ນຕອນ ແລະຄຳແນະນຳ.",
+      "full": "ສະແດງຄຳຖາມທີ່ພົບເລື້ອຍ ແລະເຄື່ອງມືທີ່ກ່ຽວຂ້ອງນຳ."
+    }
   }
 }

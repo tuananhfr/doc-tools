@@ -13,7 +13,10 @@
     "add": "ကတ် ထည့်ရန်",
     "remove": "ဖျက်ရန်",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "ပြောင်းလဲမှုများကို စက်တွင် မသိမ်းနိုင်ပါ။ ထည့်ထားသောအကြောင်းအရာကို ထိန်းထားပါသည်။ အခြားနေရာသို့ ကူးယူပါ သို့မဟုတ် မထွက်မီ ထပ်ကြိုးစားပါ။",
+    "loadFailed": "သိမ်းထားသောကတ်များကို မဖတ်နိုင်ပါ။ ထပ်ကြိုးစားပါ။ မူလဒေတာကို ထပ်ရေးမည်မဟုတ်ပါ။",
+    "retryStorage": "ထပ်ကြိုးစားပါ"
   },
   "pomodoro": {
     "focus": "အာရုံစိုက်ချိန်",

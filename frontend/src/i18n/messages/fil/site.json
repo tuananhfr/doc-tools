@@ -1493,8 +1493,6 @@
     "filterLabel": "Filter by tool group",
     "motto": "Find it. Use it. Done!",
     "smallThings": "Small tasks. Greater value!",
-    "ready": "{{count}} tools available",
-    "soon": "{{count}} tools coming soon",
     "searchHint": "Search by a tool name or what you want to do.",
     "sort": "Sort:",
     "recommended": "Recommended",
@@ -1512,7 +1510,11 @@
     "devicesHint": "Convenient on computers and phones.",
     "suggestTitle": "Suggest a new tool",
     "suggestHint": "Need another useful tool? Share your idea with Chuyện Nhỏ.",
-    "suggestAction": "Send an idea"
+    "suggestAction": "Send an idea",
+    "ready_one": "Mga available na tool: {{count}}",
+    "ready_other": "Mga available na tool: {{count}}",
+    "soon_one": "Mga paparating na tool: {{count}}",
+    "soon_other": "Mga paparating na tool: {{count}}"
   },
   "pageStudio": {
     "back": "Back to tools",

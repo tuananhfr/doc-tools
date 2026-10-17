@@ -1,0 +1,45 @@
+.cn-experience-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  color: var(--cn-ink);
+  font-size: 12px;
+}
+.cn-experience-controls label { font-weight: 600; white-space: nowrap; }
+.cn-experience-controls select {
+  min-height: 34px;
+  min-width: 0;
+  width: 130px;
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--cn-line);
+  border-radius: 8px;
+  color: var(--cn-ink);
+  background: var(--cn-surface);
+  font: inherit;
+}
+.cn-experience-controls select:focus-visible { outline: 2px solid var(--cn-accent); outline-offset: 2px; }
+.cn-idstudio-topline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; margin-bottom: 10px; }
+.cn-idstudio-topline .cn-idstudio-breadcrumb { flex-wrap: wrap; min-width: 0; margin-bottom: 0; }
+.cn-idstudio-topline .cn-idstudio-breadcrumb > span { overflow-wrap: anywhere; }
+.cn-experience-slot { display: flex; justify-content: flex-end; min-width: 0; margin-inline-start: auto; }
+.cn-experience-fallback { display: flex; justify-content: flex-end; max-width: 1600px; margin: 0 auto 12px; }
+
+/* Only supporting content changes. Forms, alerts, privacy notes, previews and
+   action buttons are never removed or disabled by the display preference. */
+:root[data-experience='simple'] :is(.cn-idstudio-help, .cn-studio-guide, .cn-studio-tip) { display: none; }
+:root[data-experience='simple'] .cn-idstudio-hero { min-height: 0; padding-block: 18px; }
+:root[data-experience='simple'] .cn-idstudio-hero > :is(.cn-idstudio-mascot, .cn-idstudio-hero-note) { display: none; }
+:root[data-experience='simple'] :is(.cn-directory-tip, .cn-directory-cheer, .cn-directory-devices) { display: none; }
+:root:not([data-experience='full']) :is(.cn-idstudio-related, .cn-idstudio-side-note, .cn-idstudio-cheer, .cn-idstudio-faq) { display: none; }
+@media (min-width: 768px) {
+  :root[data-experience='simple'] .cn-idstudio-layout { grid-template-columns: 184px minmax(0, 1fr); }
+}
+@media (max-width: 430px) {
+  .cn-experience-controls select { min-height: 40px; }
+}
+@media print { .cn-experience-controls { display: none !important; } }

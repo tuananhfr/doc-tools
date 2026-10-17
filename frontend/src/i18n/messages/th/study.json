@@ -13,7 +13,10 @@
     "add": "เพิ่มบัตร",
     "remove": "ลบ",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "บันทึกการเปลี่ยนแปลงในอุปกรณ์ไม่ได้ ข้อมูลที่ป้อนยังอยู่ โปรดคัดลอกไปที่อื่นหรือลองบันทึกอีกครั้งก่อนออกจากหน้า",
+    "loadFailed": "อ่านบัตรที่บันทึกไว้ไม่ได้ โปรดลองอีกครั้ง ข้อมูลเดิมจะไม่ถูกเขียนทับ",
+    "retryStorage": "ลองอีกครั้ง"
   },
   "pomodoro": {
     "focus": "โฟกัส",

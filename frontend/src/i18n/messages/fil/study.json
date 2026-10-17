@@ -15,7 +15,10 @@
     "add": "Magdagdag ng card",
     "remove": "Burahin",
     "confirmRemove": "Delete the card “{{front}}”? Deleted cards cannot be restored.",
-    "removeAria": "Delete card {{front}}"
+    "removeAria": "Delete card {{front}}",
+    "saveFailed": "Hindi na-save ang mga pagbabago sa device. Nananatili ang input; kopyahin ito sa ibang lugar o subukang muli bago umalis.",
+    "loadFailed": "Hindi mabasa ang mga naka-save na card. Subukang muli; hindi papalitan ang dating data.",
+    "retryStorage": "Subukang muli"
   },
   "pomodoro": {
     "focus": "Focus",

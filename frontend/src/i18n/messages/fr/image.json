@@ -742,11 +742,13 @@
     "resolution": "Resolution",
     "file": "Image file",
     "download": "Download photo",
-    "downloadSheet": "Download sheet ({{count}} photos)",
     "print": "Print photos",
     "exporting": "Creating your photo…",
     "cancel": "Cancel",
-    "downloadAgain": "Download result again"
+    "downloadAgain": "Download result again",
+    "downloadSheet_one": "Télécharger la planche (photos : {{count}})",
+    "downloadSheet_many": "Télécharger la planche (photos : {{count}})",
+    "downloadSheet_other": "Télécharger la planche (photos : {{count}})"
   },
   "cropStudio": {
     "title": "Crop & edit photos",
@@ -839,13 +841,11 @@
     "converting": "Converting…",
     "result": "Result",
     "resultAlt": "Image after format conversion",
-    "zipReady": "{{count}} images converted",
     "zipHint": "Download the ZIP file to get all converted images.",
     "emptyPreview": "Your image will appear here",
     "emptyHint": "Upload images, choose a format and start conversion.",
     "firstPreview": "Showing the first original image in your batch.",
     "selected": "Selected",
-    "imageCount": "{{count}} images",
     "output": "Output format",
     "size": "Result size",
     "download": "Download image",
@@ -881,7 +881,13 @@
         "q": "What if an image is already in the target format?",
         "a": "Images already in the target format are kept unchanged in a batch. If all images match, select a different format to convert."
       }
-    }
+    },
+    "zipReady_one": "Images converties : {{count}}",
+    "zipReady_many": "Images converties : {{count}}",
+    "zipReady_other": "Images converties : {{count}}",
+    "imageCount_one": "Images : {{count}}",
+    "imageCount_many": "Images : {{count}}",
+    "imageCount_other": "Images : {{count}}"
   },
   "collageStudio": {
     "title": "Photo collage",
@@ -898,7 +904,6 @@
     "orderHint": "Use the arrows to change the order in your collage.",
     "local": "Photos are processed on your device and are not uploaded to a server.",
     "settingsTitle": "Choose a layout",
-    "columnCount": "{{count}} columns",
     "gapPresets": "Quick spacing",
     "noGap": "No gap",
     "squareTiles": "One square tile per photo",
@@ -944,7 +949,10 @@
         "q": "Can I add text or a logo?",
         "a": "Yes. Open Advanced layouts to choose a template and add a title or logo. Your selected photos carry over to that mode."
       }
-    }
+    },
+    "columnCount_one": "Colonnes : {{count}}",
+    "columnCount_many": "Colonnes : {{count}}",
+    "columnCount_other": "Colonnes : {{count}}"
   },
   "utilityStudio": {
     "category": "Images",
