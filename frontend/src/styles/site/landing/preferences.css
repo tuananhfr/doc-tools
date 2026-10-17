@@ -11,7 +11,7 @@
 .cn-landing-theme .cn-landing-theme-more::after { display: none; }
 .cn-landing-theme .dropdown-menu { background: var(--cn-surface); border-color: var(--cn-line); }
 .cn-landing-personal-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.35fr); align-items: start; gap: 48px; }
-.cn-landing-languages { background: var(--cn-landing-card); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); padding: 26px; }
+.cn-landing-languages { background: var(--cn-landing-card); border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); padding: 26px; margin-top: 44px; }
 .cn-landing-languages ul { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 22px 0; }
 .cn-landing-languages li { min-width: 0; }
 .cn-landing-languages a { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 50px; height: 100%; padding: 8px 5px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); font-size: 13px; color: var(--cn-ink); text-decoration: none; overflow-wrap: anywhere; text-align: center; }

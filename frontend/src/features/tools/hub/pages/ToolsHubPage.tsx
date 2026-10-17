@@ -34,7 +34,7 @@ export default function ToolsHubPage() {
 
   return (
     <div className="cn-site-page cn-home">
-      <ToolsHero keyword={keyword} onKeyword={setKeyword} onSearch={() => document.getElementById('cn-home-tools-title')?.focus()} />
+      <ToolsHero keyword={keyword} onKeyword={setKeyword} onSearch={() => document.getElementById('cn-home-tools-title')?.focus()} suggestions={catalog} />
       <section className="cn-container cn-catalog cn-home-catalog" aria-labelledby="cn-home-tools-title">
         <div className="cn-catalog-heading">
           <h2 id="cn-home-tools-title" tabIndex={-1}>{t('home.catalogTitle')}</h2>

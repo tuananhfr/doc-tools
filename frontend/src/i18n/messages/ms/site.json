@@ -69,6 +69,10 @@
     "lich-gia-dinh": {
       "title": "Family Calendar · Chuyện Nhỏ",
       "description": "Manage family schedules, tasks and contacts on your device."
+    },
+    "he-sinh-thai": {
+      "title": "Ecosystem services | Chuyen Nho",
+      "description": "Explore services and tools from the Chuyen Nho, ERPCons and TekShot ecosystem."
     }
   },
   "nav": {
@@ -184,6 +188,93 @@
   "partners": {
     "title": "Our partners",
     "disclosure": "Partner spotlight"
+  },
+  "ecosystemPage":   {
+    "kicker": "CHUYEN NHO ECOSYSTEM",
+    "title": "Explore the ecosystem",
+    "tagline": "Many tools. One good thing in common.",
+    "description": "Make work lighter and everyday life better.",
+
+    "categoriesLabel": "Service filters",
+    "categories": {
+      "all": "All",
+      "free": "Free",
+      "work": "Work",
+      "life": "Life",
+      "business": "Business"
+    },    "trail": "Ekosistem",
+    "servicesTitle": "Services in the ecosystem",
+    "servicesDescription": "Choose a service to get started, or discover tools that fit your needs.",
+    "servicesLabel": "Service directory",
+    "footerLabel": "Ecosystem links",
+    "footer": "One small ecosystem, many ways to help you every day.",
+    "openTools": "Open all tools",
+    "more": {
+      "title": "There is more?",
+      "description": "Discover more services in the ecosystem."
+    },
+    "services": {
+      "healthDigital": {
+        "title": "Digital Health",
+        "description": "Website and UI/UX review"
+      },
+      "healthBusiness": {
+        "title": "Business Health",
+        "description": "Business performance assessment"
+      },
+      "houseBook": {
+        "title": "House Book",
+        "description": "Your home records"
+      },
+      "ubotBuild": {
+        "title": "UbotBuild",
+        "description": "Design and construction tools"
+      },
+      "ubotView": {
+        "title": "UbotView",
+        "description": "Capture and record reality"
+      },
+      "ubotConnect": {
+        "title": "UbotConnect",
+        "description": "Connect and grow together"
+      },
+      "tekshotOs": {
+        "title": "Tekshot OS",
+        "description": "AI media and operations"
+      },
+      "chuyenNho": {
+        "title": "Chuyen Nho",
+        "description": "Useful tools for everyday tasks"
+      },
+      "documents": {
+        "title": "Documents & PDF",
+        "description": "Merge, compress and convert documents"
+      },
+      "media": {
+        "title": "Images & QR",
+        "description": "Work with images, video and QR codes"
+      },
+      "family": {
+        "title": "Family",
+        "description": "Calendars and tools for family life"
+      },
+      "work": {
+        "title": "Calculations & work",
+        "description": "Convert units and solve practical tasks"
+      },
+      "smart": {
+        "title": "Read & listen",
+        "description": "Text reading and voice utilities"
+      },
+      "erpcons": {
+        "title": "ERPCons",
+        "description": "Business and construction management"
+      },
+      "tekshot": {
+        "title": "TekShot AI",
+        "description": "AI technology for better work"
+      }
+    }
   },
   "ecosystem": {
     "title": "Apabila satu alat tidak mencukupi…",
@@ -1358,7 +1449,8 @@
     "nav": {
       "features": "Alat",
       "how": "Cara guna",
-      "privacy": "Privasi"
+      "privacy": "Privasi",
+      "ecosystem": "Ekosistem"
     },
     "hero": {
       "title": "Urusan kecil setiap hari,",

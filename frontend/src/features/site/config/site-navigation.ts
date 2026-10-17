@@ -1,4 +1,3 @@
-import { appConfig } from '@/config/app.config'
 import type { HubPageSlug } from '../types/hub-page.types'
 
 export const SITE_NAVIGATION = [
@@ -27,7 +26,7 @@ export const FOOTER_LINKS = [
 ] as const
 
 export const PRODUCT_LINKS = {
-  erpcons: appConfig.erpconsUrl,
+  erpcons: 'https://erpcons.vn',
   tekshot: 'https://tekshot.vn',
 } as const
 

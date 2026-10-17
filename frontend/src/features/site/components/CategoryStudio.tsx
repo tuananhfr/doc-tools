@@ -26,7 +26,7 @@ export function CategoryStudio({ page, text, hub, search }: { page: HubPage; tex
   }
   return <ReferencePage title={text.label} subtitle={text.tagline} lead={text.description} icon={family ? 'house-heart' : 'controller'} note={t(family ? 'pageStudio.familyNote' : 'pageStudio.exploreNote')}
     reference={!family} sidebar={<CategoryNavigation current={page.slug} />}
-    search={<ToolSearch qualityTracking id={`tim-${page.slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultId)?.focus()} />}>
+    search={<ToolSearch qualityTracking id={`tim-${page.slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultId)?.focus()} suggestions={hub.all} />}>
     {family ? <FamilyProductLink /> : null}
     <section className="cn-reference-catalog" aria-labelledby={resultId}>
       <div className="cn-reference-filters" role="group" aria-label={t('hub.subgroupFilter')}>{chips.map(chip => <button key={chip.id} type="button" aria-pressed={groupId === chip.id} onClick={() => onGroup(chip.id)}>{chip.label}<span>{chip.count}</span></button>)}</div>

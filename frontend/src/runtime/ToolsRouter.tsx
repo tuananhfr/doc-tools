@@ -21,6 +21,7 @@ import LegalPage from '@/features/site/pages/LegalPage'
 import { AccountPage, LoginPage, MyContributionsPage } from '@/features/account'
 import CommunityPage from '@/features/community/pages/CommunityPage'
 import { ToolFeedback } from '@/features/community/components/ToolFeedback'
+import EcosystemPage from '@/features/site/pages/EcosystemPage'
 import {WORKSPACE_REGISTRY} from './workspace-registry'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
@@ -39,6 +40,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   { path: 'gop-y-quy-dinh', element: <CommunityPage key="feedback" mode="feedback" /> },
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
   { path: 'lich-gia-dinh', element: <FamilyCalendarProductPage /> },
+  { path: 'he-sinh-thai', element: <EcosystemPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <Navigate to="/cong-cu" replace /> },
   { path: 'gia-dinh', element: <CategoryHubPage key="gia-dinh" slug="gia-dinh" /> },

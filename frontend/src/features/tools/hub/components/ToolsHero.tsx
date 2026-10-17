@@ -5,15 +5,17 @@ import { Icon } from '@/components/ui/Icon'
 import { HERO_PROMISES } from '@/features/site/config/home-content'
 import { MultilineText } from '@/features/site/components/MultilineText'
 import { ToolSearch } from '@/features/site/components/ToolSearch'
+import type { ToolDefinition } from '../types/tool.types'
 import { HeroStats } from './HeroStats'
 
 interface ToolsHeroProps {
   keyword: string
   onKeyword: (keyword: string) => void
   onSearch: () => void
+  suggestions: readonly ToolDefinition[]
 }
 
-export function ToolsHero({ keyword, onKeyword, onSearch }: ToolsHeroProps) {
+export function ToolsHero({ keyword, onKeyword, onSearch, suggestions }: ToolsHeroProps) {
   const { t } = useTranslation('site')
   return (
     <section className="cn-hero" aria-labelledby="erp-tools-hero-title">
@@ -26,7 +28,7 @@ export function ToolsHero({ keyword, onKeyword, onSearch }: ToolsHeroProps) {
           <h1 id="erp-tools-hero-title" className="cn-hero-wordmark">Chuyện <span>Nhỏ</span><span className="cn-wordmark-strokes" aria-hidden="true"><b /><b /><b /></span></h1>
           <p className="cn-hero-tagline">{t('home.tagline')}</p>
           <p className="cn-hero-description">{t('home.description')}</p>
-          <ToolSearch qualityTracking id="cn-home-search" keyword={keyword} onKeyword={onKeyword} onSubmit={onSearch} />
+          <ToolSearch qualityTracking id="cn-home-search" keyword={keyword} onKeyword={onKeyword} onSubmit={onSearch} suggestions={suggestions} />
           <ul className="cn-hero-promises" aria-label={t('home.promisesLabel')}>{HERO_PROMISES.map((promise) => <li key={promise}><Icon name="check-circle-fill" />{t(`home.promises.${promise}`)}</li>)}</ul>
         </div>
         <div className="cn-hero-art cn-hero-art--skyline">

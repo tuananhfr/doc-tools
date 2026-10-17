@@ -18,14 +18,15 @@ export function QuickStart() {
   const navigate = useNavigate()
   const { base } = useToolsBranch()
   const [keyword, setKeyword] = useState('')
-  const tasks = pickCommonTasks(COMMON_TASK_IDS, useToolCatalog())
+  const catalog = useToolCatalog()
+  const tasks = pickCommonTasks(COMMON_TASK_IDS, catalog)
   const search = () => {
     const query = keyword.trim()
     navigate(query ? `/cong-cu?q=${encodeURIComponent(query)}` : '/cong-cu')
   }
   return (
     <div className="cn-landing-quick">
-      <ToolSearch qualityTracking id="tim-trang-chu" keyword={keyword} onKeyword={setKeyword} onSubmit={search} label={t('landing.quick.title')} placeholder={t('landing.quick.placeholder')} />
+      <ToolSearch qualityTracking id="tim-trang-chu" keyword={keyword} onKeyword={setKeyword} onSubmit={search} label={t('landing.quick.title')} placeholder={t('landing.quick.placeholder')} suggestions={catalog} />
       <nav className="cn-landing-quick__tasks" aria-label={t('landing.quick.common')}>
         {tasks.map((tool) => <Link key={tool.id} to={toolPath(base, tool)}><Icon name={tool.icon} />{tool.name}</Link>)}
       </nav>
