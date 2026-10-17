@@ -1,4 +1,4 @@
-export type GuideGroupId = 'tai-lieu' | 'hinh-anh-qr' | 'xay-dung' | 'gia-dinh'
+export type GuideGroupId = 'tai-lieu' | 'hinh-anh-qr' | 'gia-dinh'
 export type GuideSlug = 'nen-pdf' | 'scan-anh-sang-pdf' | 'tach-pdf' | 'ocr-van-ban' | 'tao-va-doc-ma-qr' | 'xem-huong-nha' | 'khai-toan-xay-nha' | 'lich-gia-dinh'
 
 export interface Guide {
@@ -26,7 +26,6 @@ export interface GuideText {
 export const GUIDE_GROUPS: readonly { id: GuideGroupId; icon: string }[] = [
   { id: 'tai-lieu', icon: 'file-earmark-pdf' },
   { id: 'hinh-anh-qr', icon: 'qr-code' },
-  { id: 'xay-dung', icon: 'building' },
   { id: 'gia-dinh', icon: 'house-heart' },
 ]
 
@@ -83,20 +82,11 @@ export const GUIDES: readonly Guide[] = [
   {
     slug: 'xem-huong-nha',
     toolIds: ['house-orientation'],
-    group: 'xay-dung',
+    group: 'gia-dinh',
     minutes: 3,
     steps: ['position', 'measure', 'read', 'age', 'save'],
     tips: ['repeat', 'expert', 'iphone'],
     notes: ['sensor', 'https', 'reference', 'save'],
-  },
-  {
-    slug: 'khai-toan-xay-nha',
-    toolIds: ['house-estimate'],
-    group: 'xay-dung',
-    minutes: 2,
-    steps: ['area', 'price', 'ratios', 'result'],
-    tips: ['quotes', 'deposit', 'noSave'],
-    notes: ['ratios', 'excluded', 'prices'],
   },
   {
     slug: 'lich-gia-dinh',

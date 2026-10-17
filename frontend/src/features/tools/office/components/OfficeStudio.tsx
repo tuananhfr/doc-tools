@@ -14,6 +14,6 @@ export function OfficeStudio({ app, children }: { app: OfficeAppId; children: Re
     category={{ title: t('officeStudio.category'), icon: 'file-earmark-richtext', path: '/cong-cu', tools: ['office-word', 'office-sheet', 'office-slide'], relatedTitle: t('officeStudio.related') }}
     trustLabels={[photo('trust.free'), photo('trust.noAccount'), t('funStudio.local'), t('officeStudio.formats')]}
     steps={(['stepOpen', 'stepEdit', 'stepSave'] as const).map(step => t(`${guide}.${step}`))}
-    tips={[t(`${guide}.tip`), t('office.languageNote'), t('office.limit')]}
+    tips={[t(`${guide}.tip`), t(`${guide}.note`), t('office.limit')]}
     faq={[{ q: t('textStudio.accountQ'), a: t('textStudio.accountA') }, { q: t('officeStudio.saveQ'), a: t(`${guide}.note`) }]}>{children}</ImageStudio></div>
 }

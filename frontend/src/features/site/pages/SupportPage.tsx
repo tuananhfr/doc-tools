@@ -17,7 +17,6 @@ const TOPICS = [
   { id: 'documents', icon: 'file-earmark-pdf', to: '/tai-lieu-pdf' },
   { id: 'image', icon: 'image', to: '/cong-cu?nhom=image' },
   { id: 'qr', icon: 'qr-code', to: '/cong-cu?nhom=data' },
-  { id: 'construction', icon: 'building', to: '/xay-dung' },
   { id: 'family', icon: 'house-heart', to: '/gia-dinh' },
   { id: 'install', icon: 'phone', to: '/cai-dat' },
   { id: 'privacy', icon: 'shield-lock', to: '/xu-ly-du-lieu' },

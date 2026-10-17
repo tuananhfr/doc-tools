@@ -187,4 +187,4 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
   },
 }
 
-export const HUB_PAGE_LIST: HubPage[] = Object.values(HUB_PAGES)
+export const HUB_PAGE_LIST: HubPage[] = Object.values(HUB_PAGES).filter(page => page.slug !== 'xay-dung')

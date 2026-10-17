@@ -1557,5 +1557,52 @@
     "suggestTitle": "Suggest a new tool",
     "suggestHint": "Need another useful tool? Share your idea with Chuyện Nhỏ.",
     "suggestAction": "Send an idea"
+  },
+  "pageStudio": {
+    "back": "Back to tools",
+    "countHint": "Tools currently available on Chuyen Nho",
+    "tip": "Search by tool name, file type or the task you want to complete.",
+    "faq": "Frequently asked questions",
+    "allFaq": "View all questions",
+    "support": "Contact support",
+    "devices": "Works across your devices",
+    "referenceTitle": "Keep in mind",
+    "referenceHint": "Tarot, playing cards and numerology are for entertainment and reference. Drawing cards requires a server connection.",
+    "familyNote": "A little more organized\nA happier everyday!",
+    "exploreNote": "Take a short break\nExplore something fun!",
+    "guideTitle": "Help & Information",
+    "guideSubtitle": "Make everyday tasks easier with Chuyen Nho",
+    "guideNote": "Find your answer\nFollow the guide!",
+    "guideSearch": "What do you need help with? (PDF, ID photos, QR...)",
+    "overview": "Overview",
+    "privacy": "Privacy",
+    "chooseTopic": "Choose what you need",
+    "toolGuides": "Guides by tool",
+    "topics": {
+      "quick": {
+        "title": "Quick start",
+        "hint": "Choose a tool and follow the steps."
+      },
+      "tools": {
+        "title": "Guides by tool",
+        "hint": "Practical steps and usage tips."
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "hint": "Answers to common questions."
+      },
+      "data": {
+        "title": "Data & security",
+        "hint": "How each tool processes your data."
+      },
+      "terms": {
+        "title": "Terms of use",
+        "hint": "Terms and related policies."
+      },
+      "devices": {
+        "title": "Use on your devices",
+        "hint": "Get started on desktop and mobile."
+      }
+    }
   }
 }

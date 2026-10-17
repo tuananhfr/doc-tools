@@ -1,5 +1,3 @@
-import { hubMetadata } from '@/features/site/server/hub-metadata'
+export const metadata = { robots: { index: false, follow: false } }
 
-export const generateMetadata = hubMetadata('xay-dung')
-
-export default function HubPageRoute() { return null }
+export default function RetiredHubRoute() { return null }

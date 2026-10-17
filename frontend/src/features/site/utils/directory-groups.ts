@@ -13,7 +13,7 @@ export const DIRECTORY_GROUP_ICONS: Record<DirectoryGroup, string> = {
 }
 const GROUP_IDS = new Map(HUB_NAVIGATION.map(slug => [slug, new Set(HUB_PAGES[slug].subgroups.flatMap(group => group.toolIds))]))
 const GROUPED_IDS = new Set([...GROUP_IDS.values()].flatMap(ids => [...ids]))
-const LEGACY_GROUPS: Record<string, DirectoryGroup> = { document: 'tai-lieu-pdf', image: 'hinh-anh', calc: 'tinh-toan', money: 'tinh-toan', date: 'tinh-toan', data: 'ma-qr', construction: 'xay-dung', home: 'gia-dinh', tech: 'other' }
+const LEGACY_GROUPS: Record<string, DirectoryGroup> = { document: 'tai-lieu-pdf', image: 'hinh-anh', calc: 'tinh-toan', money: 'tinh-toan', date: 'tinh-toan', data: 'ma-qr', home: 'gia-dinh', tech: 'other' }
 
 export function directoryGroup(value: string | null): DirectoryGroup {
   return DIRECTORY_GROUPS.find(group => group === value) ?? LEGACY_GROUPS[value ?? ''] ?? 'all'

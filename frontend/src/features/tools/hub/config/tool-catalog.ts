@@ -42,7 +42,7 @@ export const PDF_ENGINE_SCREENS: ReadonlySet<ToolScreen> = new Set<ToolScreen>([
 ])
 
 /** Mọi nhóm, theo thứ tự trên hàng lọc; nhãn ở `catalog:groups.<nhóm>`. */
-const TOOL_GROUPS: readonly ToolCategory[] = ['document', 'image', 'calc', 'money', 'date', 'data', 'construction', 'home', 'tech', 'other']
+const TOOL_GROUPS: readonly ToolCategory[] = ['document', 'image', 'calc', 'money', 'date', 'data', 'home', 'tech', 'other']
 
 /**
  * Chip của hàng lọc: chỉ nhóm đã có công cụ (kể cả "Sắp có"). Chip dẫn tới lưới

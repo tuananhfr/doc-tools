@@ -135,12 +135,6 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
     inputProfiles: ['video'], expectedOutcome: 'Tệp âm thanh', risk: 'low',
   },
   {
-    id: 'home.estimate', canonical: 'Ước tính chi phí xây nhà', preferredTool: 'house-estimate', acceptableTools: [], forbiddenTools: ['construction-price', 'structure-calc'],
-    requiredTerms: [['xây nhà', 'xây căn nhà'], ['tiền', 'chi phí', 'khái toán', 'ước']],
-    aliases: ['xây nhà hết bao nhiêu tiền', 'khái toán xây nhà', 'tính chi phí xây nhà'],
-    inputProfiles: ['area', 'user-prices'], expectedOutcome: 'Ước tính theo tham số; không phải báo giá chính thức', risk: 'review',
-  },
-  {
     id: 'home.calendar', canonical: 'Lịch gia đình', preferredTool: 'family-calendar', acceptableTools: [], forbiddenTools: ['family-reminders', 'family-health'],
     requiredTerms: [['nhắc', 'lịch', 'tkb', 'thời khóa biểu'], ['thuốc', 'passport', 'hộ chiếu', 'con', 'đứa nhỏ', 'gia đình']],
     aliases: ['nhắc uống thuốc', 'lịch uống thuốc cho ông', 'ghi lịch uống thuốc', 'nhắc hộ chiếu sắp hết hạn', 'lưu lịch gia đình'],

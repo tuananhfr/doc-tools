@@ -136,3 +136,17 @@ Electricity/water uses input and live bill-result cards. Preserve editable elect
 Orientation preserves its live/manual compass, homeowner/professional modes, age options, image/PDF placement, measurement state, exports and leave guard. Give the compass a wider working column on desktops, stack controls on smaller screens, and retain manual input when sensors are unavailable. Sensor support still requires a compatible device and permissions; do not claim it was verified by a desktop browser test. Calendar conversion, grade/admission calculation and group settlement retain their existing rules and task order.
 
 Card-draw connection failures must identify a temporarily unavailable backend separately from invalid response data and validation errors. Keep the same idempotency key for a retry. Verify the actual frontend proxy and database-backed API when diagnosing draw failures; mocked UI responses alone cannot confirm service availability.
+
+## Public categories and help
+
+`ReferencePage` applies the approved directory/help reference to `/gia-dinh`, `/kham-pha-giai-tri` and `/huong-dan`: compact left navigation, searchable hero, recognizable tool or guide artwork, responsive cards, factual FAQ/support panels and device strip. Category search and subgroup selection keep their URL state. Upcoming tools are opt-in; changing back to available tools resets a subgroup with no available entries. Keep the family-calendar product link separate from the tool catalog. Guide topic links must lead to real content; do not invent video tutorials or unsupported tools from the design image. Entertainment guidance must disclose reference-only content and server-backed card drawing.
+
+Construction has moved to ERPCons. Keep dedicated construction capabilities in `EXTERNAL_CAPABILITY_OWNERS`, outside `TOOL_CATALOG`, public search, navigation, counts, sitemap and coming-soon cards. The former `/xay-dung` entry redirects to `/cong-cu`. Do not remove shared household/image tools such as the compass and image measurement. Keep house-direction guidance under Family, and omit construction estimate guides and obsolete construction search intents.
+
+## Office and video
+
+`OfficeStudio` gives Word, spreadsheet and slide editors one three-item category menu and the Document & Form frame. Load the editor only after the existing open action. Preserve the same mounted iframe when expanding/minimizing, fullscreen behavior, close/leave confirmation and native file exports. The editor remains in English and local; do not add unsupported cloud saving or fake upload controls around it.
+
+Compression, trimming and video-to-GIF use the Video & Audio reference with upload, settings/source preview and output/download columns. `VideoProcessStudio` preserves the shared FFmpeg task engine, progress, cancellation, actual downloads, file limits and licenses. GIF adds a real clip preview and range sliders alongside the existing exact time fields, width and frame-rate controls. Clear stale output when settings change; validate selected ranges against source duration before processing. Preserve the original video and explain when compression does not reduce size.
+
+DeckCraft uses its native format for Ctrl+S. Export PPTX through Ctrl+Shift+P, select the second `Export…` entry (the UI dialog), then `PowerPoint Presentation (.pptx)`. Keep slide guidance explicit so users do not confuse a native save with a PowerPoint export.

@@ -14,7 +14,7 @@ import { HubHero } from '../components/HubHero'
 import { HubJourney } from '../components/HubJourney'
 import { HubToolCard } from '../components/HubToolCard'
 import { ToolSearch } from '../components/ToolSearch'
-import { FamilyProductLink } from '../components/FamilyProductLink'
+import { CategoryStudio } from '../components/CategoryStudio'
 
 export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
   const { t } = useTranslation('site')
@@ -23,18 +23,20 @@ export default function CategoryHubPage({ slug }: { slug: HubPageSlug }) {
   const text = hubText(t, slug)
   const catalog = useToolCatalog()
   const hub = useMemo(() => resolveHubTools(page, catalog), [page, catalog])
-  const { groupId, keyword, tools, onGroup, onKeyword, reset } = useHubSearch(hub)
+  const search = useHubSearch(hub)
+  const { groupId, keyword, tools, onGroup, onKeyword, reset } = search
   const resultsId = `cn-hub-results-${slug}`
   usePageTitle(text.metaTitle)
 
   const chips = [{ id: ALL_SUBGROUPS, label: t('filters.all'), count: hub.all.length }, ...hub.groups.map((group) => ({ id: group.id, label: text.subgroups[group.id], count: group.tools.length }))]
+
+  if (slug === 'gia-dinh' || slug === 'kham-pha-giai-tri') return <CategoryStudio page={page} text={text} hub={hub} search={search} />
 
   return (
     <div className="cn-site-page cn-hub">
       <HubHero page={page} text={text} />
       <div className="cn-container cn-hub-body">
         <section className="cn-hub-main" aria-label={t('hub.listLabel', { label: text.label.toLowerCase() })}>
-          {slug === 'gia-dinh' ? <FamilyProductLink /> : null}
           <ToolSearch qualityTracking id={`tim-${slug}`} keyword={keyword} onKeyword={onKeyword} placeholder={text.searchPlaceholder} onSubmit={() => document.getElementById(resultsId)?.focus()} />
           <div className="cn-tool-filters cn-hub-filters" role="group" aria-label={t('hub.subgroupFilter')}>
             {chips.map((chip) => (

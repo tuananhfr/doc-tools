@@ -924,8 +924,8 @@
       "heading": "Create a presentation or open a PowerPoint file",
       "stepOpen": "Open the editor to create a presentation or open a PPTX file.",
       "stepEdit": "Edit content, layout and formatting on your slides.",
-      "stepSave": "Save the PPTX file to your device before closing the editor.",
-      "tip": "Expand the workspace for more room to arrange slides. The editor interface is in English.",
+      "stepSave": "Use the editor’s Export command to save a PowerPoint (.pptx) file before closing.",
+      "tip": "To export PPTX, press Ctrl+Shift+P, type “Export”, select the second “Export…” entry to open the dialog, then choose “PowerPoint Presentation (.pptx)”. Ctrl+S saves the editor’s native format.",
       "note": "Slides are edited on your device. Save the updated file before leaving this page."
     }
   }

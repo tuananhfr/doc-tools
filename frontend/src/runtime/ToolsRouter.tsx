@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { ROUTER_BASENAME, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
 import { localePrefix, localizePath, splitLocalePath, type Locale } from '@/i18n/locales'
-import { createBrowserRouter, createMemoryRouter, RouterProvider, type RouteObject } from 'react-router-dom'
+import { createBrowserRouter, createMemoryRouter, RouterProvider, Navigate, type RouteObject } from 'react-router-dom'
 import { ToolsLayout } from '@/layouts/ToolsLayout'
 import { LandingLayout } from '@/features/site/landing/LandingLayout'
 import { LandingPage } from '@/features/site/landing/LandingPage'
@@ -40,7 +40,7 @@ const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children
   { path: 'cong-cu', element: <ToolDirectoryPage /> },
   { path: 'lich-gia-dinh', element: <FamilyCalendarProductPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
-  { path: 'xay-dung', element: <CategoryHubPage key="xay-dung" slug="xay-dung" /> },
+  { path: 'xay-dung', element: <Navigate to="/cong-cu" replace /> },
   { path: 'gia-dinh', element: <CategoryHubPage key="gia-dinh" slug="gia-dinh" /> },
   { path: 'kham-pha-giai-tri', element: <CategoryHubPage key="kham-pha-giai-tri" slug="kham-pha-giai-tri" /> },
   { path: 'tai-lieu-pdf', element: <CategoryHubPage key="tai-lieu-pdf" slug="tai-lieu-pdf" /> },

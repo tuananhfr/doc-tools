@@ -9,6 +9,7 @@ export function isProductEntry(entry: { id: string }): boolean {
 }
 
 export const EXTERNAL_CAPABILITY_OWNERS: Readonly<Record<string, 'erpcons'>> = {
+  'house-estimate': 'erpcons', 'structure-calc': 'erpcons', 'drawing-convert': 'erpcons', 'drawing-area': 'erpcons', 'site-diary': 'erpcons',
   'construction-price': 'erpcons', 'planning-lookup': 'erpcons', 'construction-law': 'erpcons', 'construction-standards': 'erpcons', 'dossier-check': 'erpcons', 'supplier-lookup': 'erpcons',
 }
 

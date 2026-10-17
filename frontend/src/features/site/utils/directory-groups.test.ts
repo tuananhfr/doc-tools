@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { VI_TOOL_CATALOG } from '@/features/tools/hub/utils/tool-catalog.fixture'
-import { HUB_NAVIGATION } from '../config/site-navigation'
+import { HUB_NAVIGATION, SITE_NAVIGATION } from '../config/site-navigation'
 import { directoryGroup, directoryGroupTools } from './directory-groups'
 
 describe('directory groups', () => {
@@ -21,12 +21,23 @@ describe('directory groups', () => {
   })
 
   it('accepts old shared category links and falls back safely for unknown groups', () => {
+    expect(directoryGroup('construction')).toBe('all')
+    expect(directoryGroup('xay-dung')).toBe('all')
     expect(directoryGroup('image')).toBe('hinh-anh')
     expect(directoryGroup('data')).toBe('ma-qr')
     expect(directoryGroup('tinh-toan')).toBe('tinh-toan')
     expect(directoryGroup('other')).toBe('other')
     expect(directoryGroup('unknown')).toBe('all')
     expect(directoryGroup(null)).toBe('all')
+  })
+
+  it('hides migrated construction tools while retaining everyday image and compass tools', () => {
+    expect(HUB_NAVIGATION).not.toContain('xay-dung')
+    expect(SITE_NAVIGATION.some(item => item.to === '/xay-dung' as string)).toBe(false)
+    const ids = VI_TOOL_CATALOG.map(tool => tool.id)
+    for (const id of ['house-estimate', 'structure-calc', 'drawing-convert', 'drawing-area', 'site-diary', 'construction-price']) expect(ids).not.toContain(id)
+    expect(ids).toContain('house-orientation')
+    expect(ids).toContain('measure-image')
   })
 
   it('handles disabled or empty catalogs without adding phantom entries', () => {

@@ -1,0 +1,126 @@
+.cn-reference-page { padding: 22px 20px 32px; }
+.cn-reference-layout { display: grid; grid-template-columns: 184px minmax(0, 1fr) 248px; gap: 16px; max-width: 1580px; margin: auto; align-items: start; }
+.cn-reference-layout > * { min-width: 0; }
+.cn-reference-sidebar { position: sticky; top: 86px; }
+.cn-reference-back { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-surface); font-size: 12px; text-decoration: none; }
+.cn-reference-nav { padding: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-reference-nav > :is(a, button) { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 9px; border: 0; border-radius: 8px; background: transparent; color: var(--cn-ink); text-align: start; text-decoration: none; font: inherit; font-size: 12px; line-height: 1.5; }
+.cn-reference-nav > :is(a, button) + :is(a, button) { border-top: 1px solid var(--cn-line); }
+.cn-reference-nav > :is(a, button) > .bi { flex: none; font-size: 18px; color: var(--cn-accent); }
+.cn-reference-nav > :is([aria-current='page'], [aria-pressed='true']) { color: white; background: var(--cn-accent); font-weight: 700; }
+.cn-reference-nav > :is([aria-current='page'], [aria-pressed='true']) > .bi { color: white; }
+.cn-reference-motto { position: relative; padding: 30px 10px; color: var(--cn-accent); text-align: center; }
+.cn-reference-motto > .bi { display: block; font-size: 72px; }
+.cn-reference-motto p { white-space: pre-line; font-style: italic; font-size: 17px; line-height: 1.8; }
+.cn-reference-motto > span { position: absolute; right: 14px; top: 60px; color: #ff395c; font-size: 32px; }
+.cn-reference-breadcrumb { display: flex; flex-wrap: wrap; gap: 9px; margin: 0 0 12px; color: var(--cn-muted); font-size: 12px; }
+.cn-reference-breadcrumb a { text-decoration: none; }
+.cn-reference-hero { position: relative; min-height: 215px; padding: 24px 22px; margin-bottom: 16px; border: 1px solid var(--cn-line); border-radius: 14px; background: linear-gradient(110deg, var(--cn-surface), var(--cn-hero)); overflow: hidden; }
+.cn-reference-hero-copy { display: flex; align-items: start; gap: 16px; max-width: calc(100% - 205px); }
+.cn-reference-hero-icon { display: grid; place-items: center; flex: none; width: 60px; height: 60px; border-radius: 14px; background: var(--cn-tint); color: var(--cn-accent); font-size: 34px; }
+.cn-reference-hero h1 { margin: 0 0 8px; font-size: clamp(25px, 2.4vw, 36px); line-height: 1.35; }
+.cn-reference-subtitle { margin: 0; font-size: 17px; line-height: 1.65; }
+.cn-reference-lead { margin: 12px 0 0; color: var(--cn-muted); font-size: 12px; line-height: 1.85; }
+.cn-reference-illustration { position: absolute; inset-inline-end: 10px; top: 12px; display: flex; justify-content: end; align-items: center; width: 200px; height: 160px; pointer-events: none; }
+.cn-reference-illustration .cn-directory-mascot { width: 122px; height: 150px; flex: none; }
+.cn-reference-illustration p { position: absolute; top: 4px; right: 105px; width: 130px; white-space: pre-line; color: var(--cn-accent); font-size: 15px; font-style: italic; line-height: 1.7; transform: rotate(-9deg); }
+.cn-reference-illustration p span { display: block; color: #ff395c; text-align: center; font-size: 27px; }
+.cn-reference-hero .cn-tool-search { margin-top: 20px; width: 100%; position: relative; background: var(--cn-surface); z-index: 1; }
+.cn-reference-aside { display: grid; gap: 14px; }
+.cn-reference-card { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
+.cn-reference-card h2, .cn-reference-main section > h2 { margin: 0 0 14px; font-size: 16px; line-height: 1.6; }
+.cn-reference-card h2 { display: flex; gap: 9px; align-items: center; }
+.cn-reference-card h2 > .bi { color: var(--cn-accent); font-size: 23px; }
+.cn-reference-card p { margin: 0; font-size: 12px; line-height: 1.85; color: var(--cn-muted); }
+.cn-reference-count { display: flex; align-items: center; gap: 12px; background: var(--cn-hero); }
+.cn-reference-count > .bi { font-size: 28px; color: var(--cn-accent); }
+.cn-reference-count strong { font-size: 14px; }
+.cn-reference-count p { margin-top: 5px; font-size: 11px; }
+.cn-reference-tip { background: color-mix(in srgb, #ffbd3d 8%, var(--cn-surface)); }
+.cn-reference-tip h2 > .bi { color: #e9a000; }
+.cn-reference-card .cn-faq-item { padding: 10px 0; border: 0; border-bottom: 1px solid var(--cn-line); border-radius: 0; background: transparent; }
+.cn-reference-card .cn-faq-item summary { padding: 0; font-size: 12px; line-height: 1.7; }
+.cn-reference-card .cn-faq-answer { padding: 10px 0 0; }
+.cn-reference-more { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; font-size: 12px; text-decoration: none; }
+.cn-reference-support { background: var(--cn-hero); }
+.cn-reference-support .cn-button { width: 100%; margin-top: 14px; font-size: 12px; }
+.cn-reference-filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+.cn-reference-filters button { display: inline-flex; align-items: center; gap: 6px; min-height: 37px; padding: 7px 12px; border: 1px solid var(--cn-line); border-radius: 20px; background: var(--cn-surface); color: var(--cn-ink); font: inherit; font-size: 12px; }
+.cn-reference-filters button[aria-pressed='true'] { color: white; background: var(--cn-accent); border-color: var(--cn-accent); }
+.cn-reference-filters button span { font-size: 10px; opacity: .8; }
+.cn-reference-results { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; margin: 20px 0 14px; }
+.cn-reference-results h2 { margin: 0; font-size: 17px; }
+.cn-reference-results h2 span { margin-inline-start: 6px; }
+.cn-reference-results label { display: flex; gap: 7px; align-items: center; color: var(--cn-muted); font-size: 11px; }
+.cn-reference-tool-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0; list-style: none; }
+.cn-reference-tool-grid .cn-hub-card { height: 100%; padding: 16px; border-radius: 12px; box-shadow: none; background: linear-gradient(140deg, var(--cn-surface), var(--cn-hero)); }
+.cn-reference-tool-grid .cn-hub-card-head { display: flex; flex-direction: column; align-items: start; gap: 12px; }
+.cn-reference-tool-grid .cn-hub-card-icon { width: 68px; height: 68px; background: transparent; border: 0; }
+.cn-reference-tool-grid .cn-tool-artwork { width: 66px; height: 66px; }
+.cn-reference-tool-grid h3 { margin: 0 0 7px; font-size: 15px; line-height: 1.6; }
+.cn-reference-tool-grid .cn-hub-card-head p { margin: 0; color: var(--cn-muted); font-size: 12px; line-height: 1.75; }
+.cn-reference-tool-grid .cn-hub-card-cta { min-height: 38px; margin-top: auto; padding: 8px 0 0; font-size: 12px; }
+.cn-reference-tool-grid .cn-processing-badge { margin-block: 12px; }
+.cn-reference-callout { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 18px 0; padding: 18px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-reference-callout > .bi { color: var(--cn-accent); font-size: 32px; }
+.cn-reference-callout h2 { margin: 0 0 6px; font-size: 16px; }
+.cn-reference-callout p { margin: 0; font-size: 12px; color: var(--cn-muted); }
+.cn-reference-callout a { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; font-size: 12px; text-decoration: none; }
+.cn-reference-devices { margin-top: 20px; padding: 20px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-hero); }
+.cn-reference-devices > div { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.cn-reference-devices span { display: grid; justify-items: center; gap: 10px; padding: 10px; border-inline-end: 1px solid var(--cn-line); color: var(--cn-accent); font-size: 12px; }
+.cn-reference-devices span:last-child { border: 0; }
+.cn-reference-devices .bi { font-size: 32px; }
+.cn-reference-devices p { margin: 14px 0 0; font-size: 12px; color: var(--cn-muted); }
+.cn-reference-topics > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.cn-reference-topics :is(a, button) { display: flex; align-items: start; gap: 10px; min-width: 0; padding: 14px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); color: var(--cn-ink); text-align: start; text-decoration: none; font: inherit; }
+.cn-reference-topic-icon { display: grid; place-items: center; flex: none; width: 46px; height: 50px; border-radius: 11px; background: var(--cn-tint); color: var(--cn-accent); font-size: 27px; }
+.cn-reference-topic-icon--quick { background: #fff0df; color: #f07334; }
+.cn-reference-topic-icon--tools { background: #dcf8f1; color: #00a37d; }
+.cn-reference-topic-icon--faq { background: #ffedf3; color: #f03271; }
+.cn-reference-topic-icon--data { background: #fff2ce; color: #d18b00; }
+.cn-reference-topics strong { display: block; font-size: 13px; line-height: 1.6; }
+.cn-reference-topics small { display: block; margin-top: 7px; color: var(--cn-muted); font-size: 11px; line-height: 1.75; }
+.cn-reference-topics :is(a, button) > .bi:last-child { margin-inline-start: auto; align-self: center; color: var(--cn-accent); font-size: 13px; }
+.cn-reference-guides { margin-top: 24px; }
+.cn-reference-guide-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.cn-reference-guide-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; height: 100%; padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); color: var(--cn-ink); text-decoration: none; }
+.cn-reference-guide-card h3 { margin: 0; font-size: 14px; line-height: 1.6; }
+.cn-reference-guide-card p { margin: 0; color: var(--cn-muted); font-size: 12px; line-height: 1.75; }
+.cn-reference-guide-art { width: 52px; height: 52px; }
+.cn-reference-guide-art .cn-tool-artwork { width: 52px; height: 52px; }
+.cn-reference-guide-card .cn-guide-card-group { font-size: 10px; }
+.cn-reference-guide-card .cn-guide-meta { margin-top: auto; padding-top: 10px; font-size: 11px; }
+.cn-reference-guide-card .cn-guide-meta > .bi:last-child { margin-inline-start: auto; color: var(--cn-accent); }
+.cn-reference-empty { padding: 30px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); text-align: center; }
+.cn-reference-page :is(a, button, input, summary):focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+@media (max-width: 1199px) {
+  .cn-reference-layout { grid-template-columns: 170px minmax(0, 1fr); }
+  .cn-reference-aside { grid-column: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cn-reference-hero-copy { max-width: calc(100% - 130px); }
+  .cn-reference-illustration { width: 130px; }
+  .cn-reference-illustration p { display: none; }
+  .cn-reference-tool-grid, .cn-reference-guide-grid, .cn-reference-topics > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .cn-reference-page { padding: 14px 12px 24px; }
+  .cn-reference-layout { display: block; }
+  .cn-reference-sidebar { position: static; margin-bottom: 14px; }
+  .cn-reference-back, .cn-reference-motto { display: none; }
+  .cn-reference-nav { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: thin; }
+  .cn-reference-nav > :is(a, button) { flex: 0 0 auto; width: auto; min-height: 44px; white-space: nowrap; border: 0 !important; }
+  .cn-reference-hero { padding: 20px 16px; min-height: 0; }
+  .cn-reference-hero-copy { max-width: none; gap: 12px; }
+  .cn-reference-hero-icon { width: 48px; height: 48px; font-size: 27px; }
+  .cn-reference-hero h1 { font-size: 25px; }
+  .cn-reference-subtitle { font-size: 14px; }
+  .cn-reference-illustration { display: none; }
+  .cn-reference-tool-grid, .cn-reference-guide-grid, .cn-reference-topics > div { gap: 10px; }
+  .cn-reference-tool-grid .cn-hub-card { padding: 12px; }
+  .cn-reference-tool-grid h3 { font-size: 14px; }
+  .cn-reference-topics :is(a, button) { padding: 12px; flex-wrap: wrap; }
+  .cn-reference-topics :is(a, button) > .bi:last-child { display: none; }
+  .cn-reference-devices { padding: 16px; }
+  .cn-reference-devices span { padding: 8px 0; font-size: 10px; }
+  .cn-reference-aside { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: 16px; }
+}

@@ -920,8 +920,8 @@
       "heading": "Tạo bài trình chiếu hoặc mở tệp PowerPoint",
       "stepOpen": "Mở trình chiếu để tạo bộ slide mới hoặc mở tệp PPTX.",
       "stepEdit": "Chỉnh nội dung, bố cục và định dạng các trang trình chiếu.",
-      "stepSave": "Lưu tệp PPTX về máy trước khi đóng trình soạn thảo.",
-      "tip": "Dùng chế độ mở rộng để có thêm không gian sắp xếp slide. Giao diện trình soạn thảo bằng tiếng Anh.",
+      "stepSave": "Xuất PowerPoint (.pptx) bằng mục Export của trình soạn thảo, rồi lưu tệp trước khi đóng.",
+      "tip": "Để xuất PPTX: nhấn Ctrl+Shift+P, gõ “Export”, chọn dòng “Export…” thứ hai để mở hộp thoại, rồi chọn “PowerPoint Presentation (.pptx)”. Ctrl+S lưu định dạng riêng của trình soạn thảo.",
       "note": "Slide được mở và chỉnh trên thiết bị. Hãy lưu tệp mới về máy trước khi rời trang."
     }
   }

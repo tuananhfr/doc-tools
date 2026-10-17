@@ -1502,5 +1502,52 @@
     "suggestTitle": "Góp ý công cụ mới",
     "suggestHint": "Bạn cần một công cụ hữu ích khác? Hãy chia sẻ ý tưởng với Chuyện Nhỏ.",
     "suggestAction": "Gửi góp ý"
+  },
+  "pageStudio": {
+    "back": "Về công cụ",
+    "countHint": "Công cụ đang dùng được trên Chuyện Nhỏ",
+    "tip": "Tìm bằng tên công cụ, loại tệp hoặc việc bạn muốn làm để đến đúng chức năng nhanh hơn.",
+    "faq": "Câu hỏi thường gặp",
+    "allFaq": "Xem tất cả câu hỏi",
+    "support": "Liên hệ hỗ trợ",
+    "devices": "Sử dụng tốt trên mọi thiết bị",
+    "referenceTitle": "Lưu ý khi khám phá",
+    "referenceHint": "Các nội dung Tarot, bài Tây và thần số học chỉ dành cho tham khảo, giải trí. Chức năng rút bài cần kết nối máy chủ.",
+    "familyNote": "Việc nhà gọn hơn\nMỗi ngày vui hơn!",
+    "exploreNote": "Thư giãn một chút\nKhám phá điều vui!",
+    "guideTitle": "Hướng dẫn & Thông tin",
+    "guideSubtitle": "Sử dụng Chuyện Nhỏ dễ dàng hơn mỗi ngày",
+    "guideNote": "Hỏi gì cũng có\nHướng dẫn ngay!",
+    "guideSearch": "Bạn cần hướng dẫn về gì? (ví dụ: PDF, ảnh thẻ, QR...)",
+    "overview": "Tổng quan",
+    "privacy": "Quyền riêng tư",
+    "chooseTopic": "Chọn nội dung bạn cần",
+    "toolGuides": "Hướng dẫn theo công cụ",
+    "topics": {
+      "quick": {
+        "title": "Bắt đầu nhanh",
+        "hint": "Chọn công cụ và làm theo hướng dẫn từng bước."
+      },
+      "tools": {
+        "title": "Hướng dẫn theo công cụ",
+        "hint": "Các thao tác cụ thể và lưu ý khi sử dụng."
+      },
+      "faq": {
+        "title": "Câu hỏi thường gặp",
+        "hint": "Giải đáp thắc mắc phổ biến khi sử dụng."
+      },
+      "data": {
+        "title": "Dữ liệu & bảo mật",
+        "hint": "Tìm hiểu cách công cụ xử lý dữ liệu của bạn."
+      },
+      "terms": {
+        "title": "Điều khoản sử dụng",
+        "hint": "Điều khoản và các chính sách liên quan."
+      },
+      "devices": {
+        "title": "Sử dụng trên thiết bị",
+        "hint": "Hướng dẫn dùng trên máy tính và điện thoại."
+      }
+    }
   }
 }
