@@ -13,6 +13,7 @@ import type { VideoOptions } from '../types/video.types'
 import styles from './VideoWorkspace.module.css'
 import { TrimVideoStudio, type TrimRangeControls } from './TrimVideoStudio'
 import { VideoProcessStudio } from './VideoProcessStudio'
+import { AudioExtractStudio } from './AudioExtractStudio'
 
 const sizeLabel = (bytes: number) => `${(bytes / 1024 / 1024).toFixed(2)} MB`
 
@@ -58,6 +59,7 @@ export function VideoWorkspace({ options, children, actionLabel, note, trimRange
   const picker = <FilePicker accept={VIDEO_ACCEPT} multiple={false} title={t('workspace.chooseVideo')} hint={t('workspace.limits')} compact={Boolean(file)} loading={null} disabled={task.busy} onFiles={files => chooseFile(files[0] ?? null)} />
   if (options.action === 'trim') return <TrimVideoStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} range={trimRange} picker={picker} failure={failure} note={note}>{children}</TrimVideoStudio>
   if (options.action === 'compress' || options.action === 'gif') return <VideoProcessStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} range={trimRange} picker={picker} failure={failure} note={note}>{children}</VideoProcessStudio>
+  if (options.action === 'audio') return <AudioExtractStudio file={file} inputUrl={inputUrl} outputUrl={outputUrl} duration={duration} onDuration={setDuration} supported={supported} task={task} options={options} picker={picker} failure={failure} note={note}>{children}</AudioExtractStudio>
   return <ToolBoard layout="balanced" className={`cn-video-workspace${studio ? ' cn-video-studio' : ''}`} after={studio ? <div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studioCopy('stepChoose'), studioCopy('stepSet'), studioCopy('stepSave')]} tip={studioCopy('tip')} /></div> : undefined} side={<div className="erp-tool-result">
     {studio ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="headphones" /></span><div><h2>{t('workspace.result')}</h2><p>{studioCopy('resultHint')}</p></div></div> : <p className="erp-tool-result__label">{t('workspace.result')}</p>}
     {studio && !output ? <div className="cn-video-empty" aria-hidden="true"><Icon name="soundwave" /><span /><span /></div> : null}

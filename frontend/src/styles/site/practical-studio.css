@@ -1,0 +1,46 @@
+.cn-practicalstudio .cn-idstudio-hero-copy { max-width: 620px; }
+.cn-practicalstudio .cn-idstudio-hero-copy > p { line-height: 1.7; }
+.cn-practicalstudio .cn-idstudio-toolnav a { min-height: 44px; }
+.cn-practicalstudio .cn-idstudio-help-card li { line-height: 1.8; }
+.cn-practical-notice { padding: 14px 16px; margin: 0 0 14px; border: 1px solid var(--cn-line); border-inline-start: 3px solid var(--cn-accent); border-radius: 10px; background: var(--cn-hero); color: var(--cn-muted); font-size: 12px; line-height: 1.8; }
+.cn-practicalstudio :is(.cn-payroll-modes, .cn-pomodoro-actions, .cn-invoice-downloads) { gap: 8px; }
+.cn-practicalstudio .cn-payroll-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; border-radius: 10px; background: var(--cn-hero); }
+.cn-practicalstudio .btn { min-height: 42px; white-space: normal; overflow-wrap: anywhere; font-size: 12px; }
+.cn-practicalstudio .cn-payroll-net { padding: 14px 10px; margin-block: 14px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-hero); }
+.cn-practicalstudio .cn-payroll-net .erp-tool-result__value { padding: 0; margin: 0; border: 0; background: transparent; font-size: clamp(23px, 2.2vw, 32px); }
+.cn-practicalstudio :is(.cn-address-download, .cn-invoice-downloads .btn) { width: 100%; }
+.cn-practicalstudio .cn-address-empty { display: flex; justify-content: center; gap: 12px; padding: 30px 12px; color: var(--cn-accent); font-size: 36px; }
+.cn-practicalstudio .cn-address-result > .erp-tool-result__value { font-size: 24px; }
+.cn-practicalstudio .table-responsive { max-width: 100%; border: 1px solid var(--cn-line); border-radius: 9px; }
+.cn-practicalstudio .table { margin: 0; font-size: 12px; color: var(--cn-ink); }
+.cn-practicalstudio .table :is(th, td) { padding: 10px; vertical-align: top; }
+.cn-practicalstudio .cn-payroll-result td { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cn-practicalstudio .cn-invoice-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 260px; }
+.cn-practicalstudio .cn-invoice-number { padding: 20px 12px; margin-bottom: 14px; text-align: center; }
+.cn-practicalstudio .cn-invoice-number .erp-tool-result__value { padding: 0; border: 0; background: transparent; }
+.cn-practicalstudio .cn-invoice-total { font-size: 20px; }
+.cn-practicalstudio .cn-pomodoro-dial { display: flex; flex-direction: column; align-items: center; justify-content: center; width: min(100%, 260px); aspect-ratio: 1; margin: 12px auto 22px; padding: 20px; border: 10px solid color-mix(in srgb, var(--cn-accent) 16%, var(--cn-surface)); border-radius: 50%; background: var(--cn-hero); }
+.cn-practicalstudio .cn-pomodoro-dial > .bi { font-size: 28px; color: var(--cn-accent); }
+.cn-practicalstudio .cn-pomodoro-dial .erp-tool-result__value { padding: 0; margin: 0; border: 0; background: transparent; font-size: clamp(36px, 4vw, 52px); font-variant-numeric: tabular-nums; }
+.cn-practicalstudio .cn-pomodoro-dial .erp-tool-result__label { margin-block: 8px 2px; }
+.cn-practicalstudio .cn-pomodoro-timer[data-session='break'] .cn-pomodoro-dial { border-color: color-mix(in srgb, var(--cn-positive) 24%, var(--cn-surface)); }
+.cn-practicalstudio .cn-pomodoro-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cn-practicalstudio .cn-pomodoro-actions > .btn:first-child { grid-column: 1 / -1; }
+.cn-practicalstudio .cn-pomodoro-status { text-align: center; }
+.cn-practicalstudio .cn-assistant-capabilities { padding: 16px; border: 1px solid var(--cn-line); border-radius: 12px; box-shadow: none; background: var(--cn-surface); }
+.cn-practicalstudio .cn-assistant-capabilities > h2 { margin-bottom: 14px; font-size: 15px; }
+.cn-practicalstudio .cn-assistant-capabilities > div { gap: 10px; }
+.cn-practicalstudio .cn-assistant-capabilities h3 { margin-block: 10px 6px; font-size: 13px; }
+.cn-practicalstudio .cn-assistant-capabilities p { font-size: 12px; }
+.cn-audiostudio-formats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.cn-audiostudio-formats button { min-width: 0; min-height: 48px; padding: 8px; border: 1px solid var(--cn-line); border-radius: 9px; color: var(--cn-accent); background: var(--cn-surface); font-size: 13px; font-weight: 700; }
+.cn-audiostudio-formats button[aria-pressed='true'] { color: white; border-color: var(--cn-accent); background: var(--cn-accent); }
+.cn-audiostudio-formats button:focus-visible { outline: 2px solid var(--cn-accent); outline-offset: 2px; }
+.cn-audiostudio-formats button:disabled { opacity: .65; }
+.cn-audiostudio-result audio { display: block; width: 100%; min-width: 0; margin-block: 10px; }
+.cn-audiostudio-empty { padding: 20px 12px; margin-top: 16px; border: 1px dashed var(--cn-line); border-radius: 10px; text-align: center; }
+.cn-audiostudio-empty > .bi { display: block; color: var(--cn-accent); font-size: 48px; }
+@media (max-width: 767px) {
+  .cn-practicalstudio .cn-assistant-capabilities > div { grid-template-columns: minmax(0, 1fr); }
+  .cn-practicalstudio .cn-pomodoro-dial { width: min(100%, 240px); }
+}

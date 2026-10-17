@@ -1,8 +1,9 @@
+import { PracticalStudio } from '@/features/tools/utility/components/PracticalStudio'
 import { useMemo, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
-import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { formatRuleDate, ruleSnapshot } from '@/features/tools/rules/services/signed-rules'
 import { useSignedRules } from '@/features/tools/rules/hooks/useSignedRules'
@@ -55,7 +56,7 @@ export default function AddressConversionPage() {
     const anchor = document.createElement('a'); anchor.href = url; anchor.download = `${t('address.csvFileName')}.csv`; anchor.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
-  return <ToolBoard className="cn-address-workspace" layout="balanced" after={<><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepSource'), studio('stepSave')]} tip={studio('tip')} /></div><AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} /></>} side={<div className="erp-tool-result cn-address-result" aria-live="polite">
+  return <PracticalStudio kind="address"><ToolBoard className="cn-address-workspace" layout="balanced" after={<><AiSourceCheckPanel member={member} loginTo={loginPath('/doi-dia-chi')} toolId="doi-dia-chi" domain="addresses" kinds={ADDRESS_KINDS} snapshot={ruleSnapshot(verified)} currentResult={results.map((row) => `${row.input} → ${row.output}`).join('\n')} /></>} side={<div className="erp-tool-result cn-address-result" aria-live="polite">
     <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="geo-alt" /></span><div><h2>{t('address.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
     {!results.length ? <div className="cn-address-empty" aria-hidden="true"><Icon name="geo" /><Icon name="arrow-right" /><Icon name="geo-alt-fill" /></div> : null}
     <p className="erp-tool-result__value">{hasTable ? t('address.resultValue', { full, total: lines.length }) : t('address.noTable')}</p>
@@ -78,5 +79,5 @@ export default function AddressConversionPage() {
       <div className="table-responsive"><table className="table table-sm mb-0"><thead><tr><th>{t('address.columns.old')}</th><th>{t('address.columns.proposed')}</th><th>{t('address.columns.status')}</th></tr></thead><tbody>{results.map((row, at) => <tr key={at}><td>{row.input}</td><td>{row.output}</td><td>{statusLabel(row)}</td></tr>)}</tbody></table></div>
     </ToolPanel> : null}
     <SaveResultBar member={member} toolId="doi-dia-chi" adapter={saveAdapter} />
-  </ToolBoard>
+  </ToolBoard></PracticalStudio>
 }

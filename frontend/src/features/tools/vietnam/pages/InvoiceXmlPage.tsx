@@ -1,6 +1,7 @@
+import { PracticalStudio } from '@/features/tools/utility/components/PracticalStudio'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { downloadOutput, FilePicker, ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { downloadOutput, FilePicker, ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { invoiceItemsCsv, invoiceItemsXlsx, parseInvoiceXml, type InvoiceSummary } from '../utils/invoice-xml'
@@ -41,7 +42,7 @@ export default function InvoiceXmlPage() {
     }
   }
 
-  return <ToolBoard className="cn-invoice-workspace" layout="wide-result" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('step1'), studio('step2'), studio('step3')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result cn-invoice-result" aria-live="polite">
+  return <PracticalStudio kind="invoice"><ToolBoard className="cn-invoice-workspace" layout="wide-result" side={<div className="erp-tool-result cn-invoice-result" aria-live="polite">
     <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="receipt" /></span><div><h2>{t('invoice.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
     <div className="cn-invoice-number">{!invoice ? <Icon name="filetype-xml" /> : null}<p className="erp-tool-result__value">{invoice ? invoice.number || t('invoice.noNumber') : '—'}</p></div>
     {invoice ? <>
@@ -70,5 +71,5 @@ export default function InvoiceXmlPage() {
         </tr>)}
       </tbody></table></div> : null}
     </ToolPanel>
-  </ToolBoard>
+  </ToolBoard></PracticalStudio>
 }

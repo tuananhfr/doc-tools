@@ -1,9 +1,10 @@
+import { PracticalStudio } from '@/features/tools/utility/components/PracticalStudio'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StructuredTextRows } from '@/features/tools/hub/components/board/StructuredTextRows'
 import { editableRuleLines } from '../utils/editable-rule-lines'
 import { Button, Form } from 'react-bootstrap'
-import { NumberField, readNumber, ToolBoard, ToolPanel, WorkspaceGuide, type NumberRule } from '@/features/tools/hub'
+import { NumberField, readNumber, ToolBoard, ToolPanel, type NumberRule } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { formatNumber } from '@/utils/format'
 import { formatRuleDate, ruleSnapshot } from '@/features/tools/rules/services/signed-rules'
@@ -113,7 +114,7 @@ export default function PayrollPage() {
     },
   }
 
-  return <ToolBoard className="cn-payroll-workspace" layout="balanced" after={<><div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepInput'), studio('stepRules'), studio('stepRead')]} tip={studio('tip')} /></div><AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} /></>} side={<div className="erp-tool-result cn-payroll-result" aria-live="polite">
+  return <PracticalStudio kind="payroll"><ToolBoard className="cn-payroll-workspace" layout="balanced" after={<><AiSourceCheckPanel member={member} loginTo={loginPath('/luong')} toolId="luong" domain="payroll" kinds={PAYROLL_KINDS} snapshot={ruleSnapshot(verified)} currentResult={result ? t('payroll.aiResult', { gross: result.gross, net: result.net }) : ''} /></>} side={<div className="erp-tool-result cn-payroll-result" aria-live="polite">
     <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="wallet2" /></span><div><h2>{t('payroll.resultLabel')}</h2><p>{studio('resultHint')}</p></div></div>
     <div className="cn-payroll-net">{!result ? <Icon name="wallet2" /> : null}<p className="erp-tool-result__value">{result ? t('payroll.net', { amount: formatNumber(result.net) }) : '—'}</p></div>
     {result ? <div className="table-responsive"><table className="table table-sm"><tbody>
@@ -147,5 +148,5 @@ export default function PayrollPage() {
       </details>
     </ToolPanel>
     <SaveResultBar member={member} toolId="luong" adapter={saveAdapter} />
-  </ToolBoard>
+  </ToolBoard></PracticalStudio>
 }

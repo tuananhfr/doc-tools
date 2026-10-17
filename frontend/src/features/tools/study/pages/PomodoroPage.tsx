@@ -1,7 +1,8 @@
+import { PracticalStudio } from '@/features/tools/utility/components/PracticalStudio'
 import { useEffect, useId, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { ToolBoard, ToolPanel, WorkspaceGuide } from '@/features/tools/hub'
+import { ToolBoard, ToolPanel } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { notifySessionEnd, playBeep, primeSessionAlerts } from '../services/session-alert'
 import { formatClock, isValidMinutes, nextSession, secondsLeft, type PomodoroSession } from '../utils/pomodoro'
@@ -78,7 +79,7 @@ export default function PomodoroPage() {
   }
   const valid = isValidMinutes('focus', focusMinutes) && isValidMinutes('break', breakMinutes)
 
-  return <ToolBoard className="cn-pomodoro-workspace" layout="compact" after={<div className="cn-studio-footer-guide"><WorkspaceGuide steps={[studio('stepSet'), studio('stepFocus'), studio('stepRest')]} tip={studio('tip')} /></div>} side={<div className="erp-tool-result cn-pomodoro-timer" data-session={session} role="timer" aria-live="off">
+  return <PracticalStudio kind="pomodoro"><ToolBoard className="cn-pomodoro-workspace" layout="compact" side={<div className="erp-tool-result cn-pomodoro-timer" data-session={session} role="timer" aria-live="off">
     <div className="cn-pomodoro-dial"><Icon name={session === 'focus' ? 'bullseye' : 'cup-hot'} /><p className="erp-tool-result__label">{session === 'focus' ? t('pomodoro.focus') : t('pomodoro.break')}</p><p className="erp-tool-result__value">{formatClock(remaining)}</p></div>
     <p className="cn-pomodoro-status" role="status">{studio(deadline === null ? 'ready' : 'running')}</p>
     {ended ? <p className="erp-tool-result__note" role="status">{t(ended === 'focus' ? 'pomodoro.focusEndedTitle' : 'pomodoro.breakEndedTitle')} · {t('pomodoro.switched')}</p> : null}
@@ -101,5 +102,5 @@ export default function PomodoroPage() {
       </div>
       {!valid ? <p className="text-danger mt-2">{t('pomodoro.invalid')}</p> : null}
     </ToolPanel>
-  </ToolBoard>
+  </ToolBoard></PracticalStudio>
 }
