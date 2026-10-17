@@ -45,7 +45,8 @@ Module({ imports: [DatabaseModule], controllers: [ReadController], providers: [R
 class TestRoot {}
 Module({ imports: [TestSettings, TestRead] })(TestRoot)
 
-const origin = (process.env.SITE_ORIGINS || '').split(',').filter(Boolean)[0] || 'http://localhost:37577'
+const origin = (process.env.SITE_ORIGINS || '').split(',').map(value => value.trim()).filter(Boolean)[0]
+  || new URL(process.env.SITE_PUBLIC_URL || 'https://lpc.vn/doc-tools').origin
 const headers = { 'x-cn-request': '1', origin }
 const clientIp = '2001:db8:' + crypto.randomBytes(4).toString('hex').match(/.{4}/g).join(':') + '::9'
 function extract(url, ip = clientIp, extraHeaders = headers) {

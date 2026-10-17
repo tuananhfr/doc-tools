@@ -17,7 +17,8 @@ class TestRoot {}
 Module({ imports: [TestSettings, CodesModule] })(TestRoot)
 let app, api, secondApp, secondApi, database
 const ids = new Set(), actors = new Set()
-const origin = (process.env.SITE_ORIGINS || '').split(',').filter(Boolean)[0] || 'http://localhost:37577'
+const origin = (process.env.SITE_ORIGINS || '').split(',').map(value => value.trim()).filter(Boolean)[0]
+  || new URL(process.env.SITE_PUBLIC_URL || 'https://lpc.vn/doc-tools').origin
 const ip = '2001:db8:' + crypto.randomBytes(4).toString('hex').match(/.{4}/g).join(':') + '::1'
 const headers = { 'x-cn-request': '1', origin }
 const digest = value => crypto.createHash('sha256').update(value).digest('hex')

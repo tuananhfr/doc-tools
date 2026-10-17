@@ -8,22 +8,25 @@ import { withBase } from '@/utils/url'
 import { PRODUCT_LINKS } from '../config/site-navigation'
 import { SitePageHero } from '../components/SitePageHero'
 
+const CATEGORIES = ['all', 'free', 'work', 'life', 'business'] as const
+type Category = (typeof CATEGORIES)[number]
+
 const SERVICES = [
-  { id: 'chuyenNho', icon: 'clipboard2-pulse', to: '/cong-cu', kind: 'internal' },
-  { id: 'healthDigital', icon: 'heart-pulse', to: 'https://suckhoeso.tekshot.ai', kind: 'external' },
-  { id: 'healthBusiness', icon: 'bar-chart-line', to: 'https://suckhoedoanhnghiep.erpcons.ai', kind: 'external' },
-  { id: 'family', icon: 'calendar-heart', to: '/gia-dinh', kind: 'internal' },
-  { id: 'houseBook', icon: 'house', to: '/huong-nha-la-ban', kind: 'internal' },
-  { id: 'ubotBuild', icon: 'cone-striped', to: '/xay-dung', kind: 'internal' },
-  { id: 'ubotView', icon: 'camera', to: '/hinh-anh', kind: 'internal' },
-  { id: 'ubotConnect', icon: 'share', to: '/he-sinh-thai#ubot-connect', kind: 'internal' },
-  { id: 'tekshotOs', icon: 'film', to: PRODUCT_LINKS.tekshot, kind: 'external' },
-  { id: 'erpcons', icon: 'buildings', to: PRODUCT_LINKS.erpcons, kind: 'external' },
+  { id: 'chuyenNho', icon: 'clipboard2-pulse', to: '/cong-cu', kind: 'internal', category: 'free' },
+  { id: 'healthDigital', icon: 'heart-pulse', to: 'https://suckhoeso.tekshot.ai', kind: 'external', category: 'work' },
+  { id: 'healthBusiness', icon: 'bar-chart-line', to: 'https://suckhoedoanhnghiep.erpcons.ai', kind: 'external', category: 'business' },
+  { id: 'family', icon: 'calendar-heart', to: '/gia-dinh', kind: 'internal', category: 'life' },
+  { id: 'houseBook', icon: 'house', to: '/huong-nha-la-ban', kind: 'internal', category: 'life' },
+  { id: 'ubotBuild', icon: 'cone-striped', to: '/xay-dung', kind: 'internal', category: 'work' },
+  { id: 'ubotView', icon: 'camera', to: '/hinh-anh', kind: 'internal', category: 'work' },
+  { id: 'ubotConnect', icon: 'share', to: '/he-sinh-thai#ubot-connect', kind: 'internal', category: 'business' },
+  { id: 'tekshotOs', icon: 'film', to: PRODUCT_LINKS.tekshot, kind: 'external', category: 'business' },
+  { id: 'erpcons', icon: 'buildings', to: PRODUCT_LINKS.erpcons, kind: 'external', category: 'business' },
 ] as const
 
 export default function EcosystemPage() {
   const { t } = useTranslation('site')
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeCategory, setActiveCategory] = useState<Category>('all')
   usePageTitle(t('pages.he-sinh-thai.title'))
 
   return (
@@ -41,7 +44,7 @@ export default function EcosystemPage() {
         <div>
           <h2 id="cn-ecosystem-services-title">{t('ecosystemPage.servicesTitle')}</h2>
           <nav className="cn-ecosystem-category-tabs" aria-label={t('ecosystemPage.categoriesLabel')}>
-            {(['all', 'free', 'work', 'life', 'business'] as const).map((category) => (
+            {CATEGORIES.map((category) => (
               <button key={category} type="button" className={activeCategory === category ? 'is-active' : undefined} aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)}>
                 {t(`ecosystemPage.categories.${category}`)}
               </button>
@@ -52,17 +55,17 @@ export default function EcosystemPage() {
       </section>
 
       <section className="cn-container cn-ecosystem-service-grid" aria-label={t('ecosystemPage.servicesLabel')}>
-        {SERVICES.map((service, index) => {
+        {SERVICES.filter(service => activeCategory === 'all' || service.category === activeCategory).map((service, index) => {
           const content = <><span className="cn-ecosystem-service-icon"><Icon name={service.icon} /></span><span className="cn-ecosystem-service-copy"><strong>{t(`ecosystemPage.services.${service.id}.title`)}</strong><small>{t(`ecosystemPage.services.${service.id}.description`)}</small></span><Icon className="cn-ecosystem-service-arrow" name={service.kind === 'external' ? 'arrow-up-right' : 'arrow-right'} /></>
           return service.kind === 'external'
             ? <a className={`cn-ecosystem-service-card cn-ecosystem-service-card--${index % 5}`} key={service.id} href={service.to} target="_blank" rel="noopener noreferrer">{content}</a>
             : <Link id={service.id === 'ubotConnect' ? 'ubot-connect' : undefined} className={`cn-ecosystem-service-card cn-ecosystem-service-card--${index % 5}`} key={service.id} to={service.to}>{content}</Link>
         })}
-        <div className="cn-ecosystem-service-card cn-ecosystem-service-card--more">
+        {activeCategory === 'all' && <div className="cn-ecosystem-service-card cn-ecosystem-service-card--more">
           <span className="cn-ecosystem-service-icon"><Icon name="stars" /></span>
           <span className="cn-ecosystem-service-copy"><strong>{t('ecosystemPage.more.title')}</strong><small>{t('ecosystemPage.more.description')}</small></span>
           <Icon className="cn-ecosystem-service-arrow" name="arrow-right" />
-        </div>
+        </div>}
       </section>
 
       <section className="cn-container cn-ecosystem-page-footer" aria-label={t('ecosystemPage.footerLabel')}>
