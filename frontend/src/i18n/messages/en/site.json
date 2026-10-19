@@ -195,11 +195,12 @@
     "disclosure": "Partner spotlight"
   },
   "ecosystemPage":   {
-    "kicker": "CHUYEN NHO ECOSYSTEM",
+    "kicker": "WORK · LIFE · PEOPLE",
     "title": "Explore the ecosystem",
     "tagline": "Many tools. One good thing in common.",
     "description": "Make work lighter and everyday life better.",
-
+    "searchLabel": "Search services",
+    "searchPlaceholder": "Search tools...",
     "categoriesLabel": "Service filters",
     "categories": {
       "all": "All",

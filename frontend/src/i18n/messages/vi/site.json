@@ -190,10 +190,12 @@
     "disclosure": "Giới thiệu đối tác"
   },
   "ecosystemPage": {
-    "kicker": "HỆ SINH THÁI CHUYỆN NHỎ",
+    "kicker": "CÔNG VIỆC · CUỘC SỐNG · CON NGƯỜI",
     "title": "Khám phá hệ sinh thái",
     "tagline": "Nhiều công cụ. Chung một điều tốt đẹp.",
     "description": "Để công việc nhẹ hơn, cuộc sống vui hơn.",
+    "searchLabel": "Tìm dịch vụ",
+    "searchPlaceholder": "Tìm công cụ...",
     "categoriesLabel": "Lọc dịch vụ",
     "categories": {
       "all": "Tất cả",
