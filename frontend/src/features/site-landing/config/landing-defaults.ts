@@ -22,7 +22,7 @@ export const LANDING_ANCHORS = [
 ] as const
 
 export const FOOTER_PAGES = [
-  { path: '/cong-cu', label: 'Tất cả công cụ' },
+  { path: '/', label: 'Tất cả công cụ' },
   { path: '/dieu-khoan', label: 'Điều khoản' },
   { path: '/quyen-rieng-tu', label: 'Quyền riêng tư' },
   { path: '/xu-ly-du-lieu', label: 'Xử lý dữ liệu' },

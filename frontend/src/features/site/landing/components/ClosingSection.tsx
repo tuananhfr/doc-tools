@@ -9,7 +9,7 @@ export function ClosingSection() {
   return (
     <section className="cn-landing-closing" aria-labelledby="cn-landing-closing-title">
       <Image src={withBase('/landing/closing.webp')} alt="" fill sizes="100vw" />
-      <div className="cn-landing-closing-copy cn-landing-container"><h2 id="cn-landing-closing-title">{t('landing.closing.title')}</h2><p>{t('landing.closing.body')}</p><Link to="/cong-cu" className="cn-landing-button cn-landing-button--inverse">{t('landing.openTools')}<Icon name="arrow-right" /></Link></div>
+      <div className="cn-landing-closing-copy cn-landing-container"><h2 id="cn-landing-closing-title">{t('landing.closing.title')}</h2><p>{t('landing.closing.body')}</p><Link to="/" className="cn-landing-button cn-landing-button--inverse">{t('landing.openTools')}<Icon name="arrow-right" /></Link></div>
     </section>
   )
 }

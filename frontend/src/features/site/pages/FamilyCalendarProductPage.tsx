@@ -9,7 +9,7 @@ export default function FamilyCalendarProductPage() {
   usePageTitle(t('pages.lich-gia-dinh.title'))
   return <div className="erp-tool-page cn-tool-workspace cn-family-product" data-tool-screen="family-calendar" data-tool-slug="lich-gia-dinh">
     <nav className="erp-tool-crumb" aria-label={t('familyProduct.navigation')}>
-      <Link className="erp-tool-crumb__back" to="/cong-cu?nhom=gia-dinh"><Icon name="arrow-left" />{t('familyProduct.back')}</Link>
+      <Link className="erp-tool-crumb__back" to="/?nhom=gia-dinh"><Icon name="arrow-left" />{t('familyProduct.back')}</Link>
     </nav>
     <div className="cn-tool-heading"><header className="cn-tool-intro">
       <span className="cn-tool-intro__icon"><Icon name="calendar-heart" /></span>

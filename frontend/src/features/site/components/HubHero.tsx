@@ -13,7 +13,7 @@ export function HubHero({ page, text }: { page: HubPage; text: HubPageText }) {
   return (
     <section className={`cn-hub-hero cn-hub-hero--${page.slug}`} aria-labelledby={titleId}>
       <div className="cn-container">
-        <Breadcrumb items={[{ label: t('breadcrumb.home'), to: '/' }, { label: t('breadcrumb.tools'), to: '/cong-cu' }, { label: text.label }]} />
+        <Breadcrumb items={[{ label: t('breadcrumb.tools'), to: '/' }, { label: text.label }]} />
         <div className="cn-hub-hero-layout">
           <div className="cn-hub-hero-text">
             <h1 id={titleId}>

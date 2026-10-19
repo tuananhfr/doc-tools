@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { ROUTER_BASENAME, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
 import { localePrefix, localizePath, splitLocalePath, type Locale } from '@/i18n/locales'
-import { createBrowserRouter, createMemoryRouter, RouterProvider, Navigate, type RouteObject } from 'react-router-dom'
+import { createBrowserRouter, createMemoryRouter, RouterProvider, Navigate, useLocation, type RouteObject } from 'react-router-dom'
 import { ToolsLayout } from '@/layouts/ToolsLayout'
 import { LandingLayout } from '@/features/site/landing/LandingLayout'
 import { LandingPage } from '@/features/site/landing/LandingPage'
@@ -35,16 +35,22 @@ const AiSettingsPage = dynamic(() => import('@/features/ai/pages/AiSettingsPage'
 const SavedPage = dynamic(() => import('@/features/cloud/pages/SavedPage'), { ssr: false, loading: ToolRouteFallback })
 // Own chrome outside ToolsLayout, and client-only: every admin screen depends on the staff session.
 const AdminApp = dynamic(() => import('@/features/admin/AdminApp'), { ssr: false, loading: () => <div className="cn-site cn-admin is-gate"><div className="cn-admin-gate-loading" aria-busy="true" /></div> })
-const routes: RouteObject[] = [{ path: '/', element: <LandingLayout />, children: [{ index: true, element: <LandingPage /> }] }, { path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
+function LegacyDirectoryRedirect() {
+  const { search, hash } = useLocation()
+  return <Navigate to={{ pathname: '/', search, hash }} replace />
+}
+
+const routes: RouteObject[] = [{ path: '/gioi-thieu', element: <LandingLayout />, children: [{ index: true, element: <LandingPage /> }] }, { path: ADMIN_ROOT + '/*', element: <AdminApp /> }, { path: ROUTES.docTools, element: <ToolsLayout />, children: [
+  { index: true, element: <ToolDirectoryPage /> },
+  { path: 'cong-cu', element: <LegacyDirectoryRedirect /> },
   { path: 'de-xuat-tien-ich', element: <CommunityPage key="idea" mode="idea" /> },
   { path: 'gop-y-quy-dinh', element: <CommunityPage key="feedback" mode="feedback" /> },
-  { path: 'cong-cu', element: <ToolDirectoryPage /> },
   { path: 'lich-gia-dinh', element: <FamilyCalendarProductPage /> },
   { path: 'he-sinh-thai', element: <EcosystemPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
-  { path: 'xay-dung', element: <Navigate to="/cong-cu" replace /> },
-  { path: 'gia-dinh', element: <Navigate to="/cong-cu?nhom=gia-dinh" replace /> },
-  { path: 'kham-pha-giai-tri', element: <Navigate to="/cong-cu?nhom=kham-pha-giai-tri" replace /> },
+  { path: 'xay-dung', element: <Navigate to="/" replace /> },
+  { path: 'gia-dinh', element: <Navigate to="/?nhom=gia-dinh" replace /> },
+  { path: 'kham-pha-giai-tri', element: <Navigate to="/?nhom=kham-pha-giai-tri" replace /> },
   { path: 'tai-lieu-pdf', element: <CategoryHubPage key="tai-lieu-pdf" slug="tai-lieu-pdf" /> },
   { path: 'hinh-anh', element: <CategoryHubPage key="hinh-anh" slug="hinh-anh" /> },
   { path: 'ma-qr', element: <CategoryHubPage key="ma-qr" slug="ma-qr" /> },

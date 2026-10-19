@@ -51,7 +51,7 @@ export default function AboutPage() {
         art={<Image src={withBase('/brand/documents-hero-v1.png')} width={1280} height={1280} sizes="(max-width: 1023px) 220px, 320px" alt="" preload />}
       >
         <div className="cn-page-actions">
-          <Link className="cn-button" to="/cong-cu">{t('about.explore')} <Icon name="arrow-right" /></Link>
+          <Link className="cn-button" to="/">{t('about.explore')} <Icon name="arrow-right" /></Link>
           <Link className="cn-button cn-button--ghost" to="/huong-dan">{t('about.guides')}</Link>
         </div>
       </SitePageHero>

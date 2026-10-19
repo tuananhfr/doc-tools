@@ -21,7 +21,7 @@ export function EntertainmentStudio({ kind, children }: { kind: keyof typeof CON
   const privacy = kind === 'wheel' ? 'funStudio.wheelPrivacy' : kind === 'lunar' ? 'calculationStudio.calendarPrivacy' : kind === 'numerology' ? 'funStudio.numberPrivacy' : 'funStudio.cardPrivacy'
   return <div className={`cn-funstudio cn-funstudio--${kind}${kind === 'lunar' ? ' cn-calcstudio cn-calcstudio--lunar' : ''}`}><ImageStudio toolId={tool.id} icon={tool.icon} title={tool.name} subtitle={tool.description}
     heroNote={t(kind === 'lunar' ? 'calculationStudio.calendarNote' : 'funStudio.heroNote')}
-    category={{ title: t('funStudio.category'), icon: 'stars', path: '/cong-cu', tools: TOOLS, relatedTitle: t('funStudio.related') }}
+    category={{ title: t('funStudio.category'), icon: 'stars', path: '/', tools: TOOLS, relatedTitle: t('funStudio.related') }}
     trustLabels={[photo('trust.free'), photo('trust.easy'), photo('trust.noAccount'), t(kind === 'wheel' ? 'funStudio.local' : kind === 'lunar' ? 'calculationStudio.calendarTrust' : 'funStudio.network')]}
     steps={config.steps.map(key => t(key))}
     tips={[t(config.tip), t(kind === 'wheel' ? 'funStudio.wheelTip' : 'funStudio.reference'), t(privacy)]}

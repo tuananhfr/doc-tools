@@ -1,7 +1,35 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { NextRequest } from 'next/server'
+import { unstable_doesMiddlewareMatch as doesProxyMatch } from 'next/experimental/testing/server'
 
 afterEach(() => { vi.unstubAllEnvs(); vi.resetModules() })
+
+it.each(['', '/doc-tools'])('redirects the old directory with filters and locale intact under %s', async basePath => {
+  vi.stubEnv('NEXT_PUBLIC_BASE_PATH', basePath)
+  vi.resetModules()
+  const { proxy } = await import('./proxy')
+  for (const [oldPath, destination] of [['/cong-cu', '/'], ['/cong-cu/', '/'], ['/vi/cong-cu', '/'], ['/en/cong-cu', '/en'], ['/ar/cong-cu/', '/ar']]) {
+    const response = proxy(new NextRequest('http://localhost:3002' + basePath + oldPath + '?nhom=hinh-anh&q=pdf', { nextConfig: { basePath } }))
+    expect(response.status).toBe(308)
+    expect(response.headers.get('location')).toBe('http://localhost:3002' + basePath + destination + '?nhom=hinh-anh&q=pdf')
+  }
+})
+
+it.each(['', '/doc-tools'])('localizes the main landing without intercepting partner landing routes under %s', async basePath => {
+  vi.stubEnv('NEXT_PUBLIC_BASE_PATH', basePath)
+  vi.resetModules()
+  const { proxy, config } = await import('./proxy')
+  for (const pathname of ['/gioi-thieu', '/gioi-thieu/', '/en/gioi-thieu']) {
+    expect(doesProxyMatch({ config, nextConfig: { basePath }, url: basePath + pathname })).toBe(true)
+  }
+  for (const pathname of ['/gioi-thieu/erpcons', '/gioi-thieu/font/BeVietnamPro-Regular.ttf']) {
+    expect(doesProxyMatch({ config, nextConfig: { basePath }, url: basePath + pathname })).toBe(false)
+  }
+  const defaultPage = proxy(new NextRequest('http://localhost:3002' + basePath + '/gioi-thieu', { nextConfig: { basePath } }))
+  expect(defaultPage.headers.get('x-middleware-rewrite')).toBe('http://localhost:3002' + basePath + '/vi/gioi-thieu')
+  const duplicate = proxy(new NextRequest('http://localhost:3002' + basePath + '/gioi-thieu/', { nextConfig: { basePath } }))
+  expect(duplicate.headers.get('location')).toBe('http://localhost:3002' + basePath + '/gioi-thieu')
+})
 
 it.each(['', '/doc-tools'])('redirects query links without dropping the configured prefix %s', async basePath => {
   vi.stubEnv('NEXT_PUBLIC_BASE_PATH', basePath)
@@ -38,9 +66,9 @@ it.each(['', '/doc-tools'])('serves the default locale without a prefix under %s
   vi.resetModules()
   const { proxy } = await import('./proxy')
   const nextConfig = { basePath }
-  const rewritten = proxy(new NextRequest('http://localhost:3002' + basePath + '/cong-cu?q=pdf', { nextConfig }))
+  const rewritten = proxy(new NextRequest('http://localhost:3002' + basePath + '/gioi-thieu?q=pdf', { nextConfig }))
   expect(rewritten.headers.get('location')).toBeNull()
-  expect(rewritten.headers.get('x-middleware-rewrite')).toBe('http://localhost:3002' + basePath + '/vi/cong-cu?q=pdf')
+  expect(rewritten.headers.get('x-middleware-rewrite')).toBe('http://localhost:3002' + basePath + '/vi/gioi-thieu?q=pdf')
   const home = proxy(new NextRequest('http://localhost:3002' + basePath + '/', { nextConfig }))
   expect(home.headers.get('x-middleware-rewrite')).toBe('http://localhost:3002' + basePath + '/vi')
 

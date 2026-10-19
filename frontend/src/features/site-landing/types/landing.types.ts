@@ -27,7 +27,7 @@ export interface LandingTool { slug: string; icon: string; title: string; body: 
 /** Everything the page links to, as absolute URLs: it is served under other sites' domains. */
 export interface LandingUrls {
   asset(id: string): string
-  /** A DocTools page or tool, by path ("/cong-cu", "/ghep-pdf"). */
+  /** A DocTools page or tool, by path ("/", "/ghep-pdf"). */
   page(path: string): string
   /** A file in DocTools' `public/` ("/landing/hero.webp"). */
   file(path: string): string

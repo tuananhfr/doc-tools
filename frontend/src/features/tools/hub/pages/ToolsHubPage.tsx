@@ -38,7 +38,7 @@ export default function ToolsHubPage() {
       <section className="cn-container cn-catalog cn-home-catalog" aria-labelledby="cn-home-tools-title">
         <div className="cn-catalog-heading">
           <h2 id="cn-home-tools-title" tabIndex={-1}>{t('home.catalogTitle')}</h2>
-          <Link className="cn-catalog-all" to="/cong-cu">{t('results.showAll')} <Icon name="arrow-right" /></Link>
+          <Link className="cn-catalog-all" to="/">{t('results.showAll')} <Icon name="arrow-right" /></Link>
         </div>
         <ToolFilters filter={filter} onFilter={setFilter} />
         {!browsing ? <p className="cn-results-count" role="status">{keyword ? t('results.countFor', { count: tools.length, keyword }) : t('results.count', { count: tools.length })}</p> : null}

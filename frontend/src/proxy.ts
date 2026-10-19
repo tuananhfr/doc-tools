@@ -23,12 +23,22 @@ export function proxy(request: NextRequest) {
     url.pathname = BASE_PATH + '/'
     return NextResponse.redirect(url, 308)
   }
+  const { locale, rest, explicit } = splitLocalePath(url.pathname)
+  if (rest.replace(/\/+$/, '') === '/cong-cu') {
+    url.pathname = withBase(localizePath('/', locale))
+    return NextResponse.redirect(url, 308)
+  }
+  // The main introduction has a locale and app shell. Partner introductions below it do not.
+  if (rest.replace(/\/+$/, '') === '/gioi-thieu' && rest.endsWith('/')) {
+    url.pathname = withBase(explicit && locale !== DEFAULT_LOCALE ? localizePath('/gioi-thieu', locale) : '/gioi-thieu')
+    return NextResponse.redirect(url, 308)
+  }
   return localeRoute(request, url)
 }
 
 /**
  * Every page is prerendered under `app/[lang]`, but the default locale is served
- * without a prefix: `/cong-cu` is rewritten to `/vi/cong-cu`, and `/vi/cong-cu`
+ * without a prefix: `/gioi-thieu` is rewritten to `/vi/gioi-thieu`, and `/vi/gioi-thieu`
  * redirects back so each page has a single URL.
  */
 function localeRoute(request: NextRequest, url: URL) {
@@ -57,5 +67,5 @@ function localeRoute(request: NextRequest, url: URL) {
 }
 
 // Pages only: Next internals, the API rewrite, share images, vendored engines and any file with an extension pass through.
-// `gioi-thieu/` too: host sites proxy those intro pages in, so they get no locale and no app shell.
-export const config = { matcher: ['/((?!_next|__next|api/|og/|vendor/|gioi-thieu/|.*\\.\\w+$).*)'] }
+// Partner `gioi-thieu/<site>` pages get no locale and no app shell; `/gioi-thieu` is the main landing page.
+export const config = { matcher: ['/((?!_next|__next|api/|og/|vendor/|gioi-thieu/[^/]+|.*\\.\\w+$).*)'] }

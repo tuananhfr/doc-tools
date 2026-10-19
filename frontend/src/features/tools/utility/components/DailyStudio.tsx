@@ -21,7 +21,7 @@ export function DailyStudio({ kind, children }: { kind: keyof typeof CONFIG; chi
   const privacy = kind === 'lunar' ? 'calculationStudio.calendarPrivacy' : kind === 'electricity' ? 'dailyStudio.electricityPrivacy' : kind === 'compass' ? 'dailyStudio.compassPrivacy' : kind === 'flashcards' ? 'dailyStudio.flashcardPrivacy' : 'calculationStudio.privacy'
   const note = kind === 'lunar' ? 'calculationStudio.calendarNote' : kind === 'flashcards' ? 'dailyStudio.flashcardNote' : kind === 'compass' ? 'dailyStudio.compassNote' : 'calculationStudio.heroNote'
   return <div className={`cn-calcstudio cn-calcstudio--${kind} cn-dailystudio cn-dailystudio--${kind}`}><ImageStudio toolId={tool.id} icon={tool.icon} title={tool.name} subtitle={tool.description}
-    heroNote={t(note)} category={{ title: t('dailyStudio.category'), icon: 'grid', path: '/cong-cu', tools: TOOLS, relatedTitle: t('dailyStudio.related') }}
+    heroNote={t(note)} category={{ title: t('dailyStudio.category'), icon: 'grid', path: '/', tools: TOOLS, relatedTitle: t('dailyStudio.related') }}
     trustLabels={[photo('trust.free'), photo('trust.easy'), photo('trust.noAccount'), t(kind === 'electricity' ? 'dailyStudio.sourceTrust' : kind === 'compass' ? 'dailyStudio.compassTrust' : kind === 'lunar' ? 'calculationStudio.calendarTrust' : 'funStudio.local')]}
     steps={config.steps.map(key => t(key))} tips={[t(config.tip), t(privacy)]}
     faq={[{ q: t('textStudio.accountQ'), a: t('textStudio.accountA') }, { q: t('funStudio.processingQ'), a: t(privacy) }]}>{children}</ImageStudio></div>

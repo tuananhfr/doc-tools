@@ -12,7 +12,7 @@ export function OfficeStudio({ app, children }: { app: OfficeAppId; children: Re
   const guide = app === 'office-sheet' ? 'studio.sheet' : app === 'office-slide' ? 'officeStudio.slides' : 'studio.office'
   return <div className={`cn-officestudio cn-officestudio--${app}`}><ImageStudio toolId={app} icon={tool.icon} title={tool.name} subtitle={tool.description}
     heroNote={t('officeStudio.heroNote')}
-    category={{ title: site('hubs.mau-giay-to.label'), icon: 'file-earmark-text', path: '/cong-cu?nhom=mau-giay-to', tools: ['cv', 'form-templates', 'office-word', 'office-sheet', 'office-slide', 'number-words', 'legacy-font', 'char-count'], relatedTitle: t('officeStudio.related') }}
+    category={{ title: site('hubs.mau-giay-to.label'), icon: 'file-earmark-text', path: '/?nhom=mau-giay-to', tools: ['cv', 'form-templates', 'office-word', 'office-sheet', 'office-slide', 'number-words', 'legacy-font', 'char-count'], relatedTitle: t('officeStudio.related') }}
     trustLabels={[photo('trust.free'), photo('trust.noAccount'), t('funStudio.local'), t('officeStudio.formats')]}
     steps={(['stepOpen', 'stepEdit', 'stepSave'] as const).map(step => t(`${guide}.${step}`))}
     tips={[t(`${guide}.tip`), t(`${guide}.note`), t('office.limit')]}

@@ -11,7 +11,7 @@ import { COMMON_TASK_IDS } from '../config/landing-content'
 
 /**
  * Ô tìm + việc thường dùng ngay màn đầu (spec v3 §05 HOME, CN-001): trước đây khách trên điện thoại phải
- * bấm "Mở công cụ" rồi mới có ô tìm. Tìm thì chuyển sang `/cong-cu?q=` để dùng chung bộ xếp hạng.
+ * bấm "Mở công cụ" rồi mới có ô tìm. Tìm thì chuyển sang `/?q=` để dùng chung bộ xếp hạng.
  */
 export function QuickStart() {
   const { t } = useTranslation('site')
@@ -22,7 +22,7 @@ export function QuickStart() {
   const tasks = pickCommonTasks(COMMON_TASK_IDS, catalog)
   const search = () => {
     const query = keyword.trim()
-    navigate(query ? `/cong-cu?q=${encodeURIComponent(query)}` : '/cong-cu')
+    navigate(query ? `/?q=${encodeURIComponent(query)}` : '/')
   }
   return (
     <div className="cn-landing-quick">

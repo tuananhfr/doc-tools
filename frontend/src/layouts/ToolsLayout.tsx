@@ -15,7 +15,7 @@ export function ToolsLayout() {
   const { tool: slug } = useParams()
   const { pathname, hash, state } = useLocation()
   const isTool = slug !== undefined || PRODUCT_REGISTRY.some(product => pathname === '/' + product.slug)
-  const showPartnerBanner = isTool || pathname === '/cong-cu' || HUB_PAGE_LIST.some(page => pathname === '/' + page.slug)
+  const showPartnerBanner = isTool || pathname === '/' || HUB_PAGE_LIST.some(page => pathname === '/' + page.slug)
   useEffect(() => {
     if (isTool) return
     const target = hash ? document.getElementById(hash.slice(1)) : null

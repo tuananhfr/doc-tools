@@ -12,7 +12,7 @@ import { FaqList } from './FaqList'
 
 export function CategoryNavigation({ current }: { current: string }) {
   const { t } = useTranslation('site')
-  return <nav className="cn-reference-nav" aria-label={t('nav.groups')}><Link to="/cong-cu"><Icon name="grid" />{t('directoryStudio.all')}</Link>{HUB_NAVIGATION.map(slug => <Link to={hubDirectoryPath(slug)} key={slug} aria-current={current === slug ? 'page' : undefined}><Icon name={DIRECTORY_GROUP_ICONS[slug]} />{t(`hubs.${slug}.label`)}</Link>)}</nav>
+  return <nav className="cn-reference-nav" aria-label={t('nav.groups')}><Link to="/"><Icon name="grid" />{t('directoryStudio.all')}</Link>{HUB_NAVIGATION.map(slug => <Link to={hubDirectoryPath(slug)} key={slug} aria-current={current === slug ? 'page' : undefined}><Icon name={DIRECTORY_GROUP_ICONS[slug]} />{t(`hubs.${slug}.label`)}</Link>)}</nav>
 }
 
 export function ReferenceAside({ reference = false }: { reference?: boolean }) {
@@ -35,7 +35,7 @@ export function ReferenceDevices() {
 export function ReferencePage({ title, subtitle, lead, icon, note, sidebar, search, children, reference = false }: { title: string; subtitle: string; lead?: string; icon: string; note: string; sidebar: ReactNode; search?: ReactNode; children: ReactNode; reference?: boolean }) {
   const { t } = useTranslation('site')
   return <div className="cn-site-page cn-reference-page"><div className="cn-reference-layout">
-    <aside className="cn-reference-sidebar"><Link className="cn-reference-back" to="/cong-cu"><Icon name="arrow-left" />{t('pageStudio.back')}</Link>{sidebar}<div className="cn-reference-motto" aria-hidden="true"><Icon name="house-heart" /><p>{t('directoryStudio.smallThings')}</p><span>♡</span></div></aside>
+    <aside className="cn-reference-sidebar"><Link className="cn-reference-back" to="/"><Icon name="arrow-left" />{t('pageStudio.back')}</Link>{sidebar}<div className="cn-reference-motto" aria-hidden="true"><Icon name="house-heart" /><p>{t('directoryStudio.smallThings')}</p><span>♡</span></div></aside>
     <div className="cn-reference-main"><nav className="cn-reference-breadcrumb" aria-label={t('breadcrumb.home')}><Link to="/">{t('breadcrumb.home')}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
       <header className="cn-reference-hero"><div className="cn-reference-hero-copy"><span className="cn-reference-hero-icon"><Icon name={icon} /></span><div><h1>{title}</h1><p className="cn-reference-subtitle">{subtitle}</p>{lead ? <p className="cn-reference-lead">{lead}</p> : null}</div></div><div className="cn-reference-illustration" aria-hidden="true"><p>{note}<span>♡</span></p><DirectoryMascot /></div>{search}</header>
       {children}<ReferenceDevices />

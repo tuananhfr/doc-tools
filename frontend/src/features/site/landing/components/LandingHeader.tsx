@@ -20,7 +20,7 @@ export function LandingHeader() {
         </nav>
         <div className="cn-landing-header-actions">
           <LandingPreferences />
-          <Link className="cn-landing-button cn-landing-button--outline cn-landing-open" to="/cong-cu">{t('landing.openTools')}</Link>
+          <Link className="cn-landing-button cn-landing-button--outline cn-landing-open" to="/">{t('landing.openTools')}</Link>
           <button className="cn-landing-menu-toggle" type="button" aria-label={t('header.openMenu')} aria-expanded={open} aria-controls="cn-landing-menu" onClick={() => setOpen(true)}><Icon name="list" /></button>
         </div>
       </div>

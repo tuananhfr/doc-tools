@@ -23,7 +23,7 @@ export function PracticalStudio({ kind, children }: { kind: keyof typeof CONFIG;
   return <div className={`cn-calcstudio cn-practicalstudio cn-practicalstudio--${kind}`}>
     <ImageStudio toolId={tool.id} icon={tool.icon} title={tool.name} subtitle={tool.description}
       heroNote={kind === 'payroll' ? t('calculationStudio.heroNote') : kind === 'pomodoro' ? t('calculationStudio.calendarNote') : photo('sideNote')}
-      category={{ title: t('dailyStudio.category'), icon: 'grid', path: '/cong-cu', tools: TOOLS, relatedTitle: t('dailyStudio.related') }}
+      category={{ title: t('dailyStudio.category'), icon: 'grid', path: '/', tools: TOOLS, relatedTitle: t('dailyStudio.related') }}
       trustLabels={assistant ? [photo('trust.easy')] : [photo('trust.free'), photo('trust.easy'), photo('trust.noAccount'), t('funStudio.local')]}
       steps={config.steps.map(key => t(key))} tips={[t(config.tip), privacy]}
       faq={[{ q: assistant ? t('studio.assistant.noteTitle') : t('funStudio.processingQ'), a: privacy }]}>

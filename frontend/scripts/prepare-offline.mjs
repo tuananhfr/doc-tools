@@ -23,7 +23,8 @@ const routes = JSON.parse(fs.readFileSync(`${dist}/prerender-manifest.json`, 'ut
 // Every prerendered page (it has an RSC payload); og images, robots and sitemap do not, and `/_*` are Next internals.
 // Pages live under app/[lang]: precache the default locale only, at the unprefixed URL the proxy serves it from.
 // The staff-only admin shell is never needed offline and must not ship to every visitor's cache.
-const pages = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && (url === '/vi' || url.startsWith('/vi/')) && !/^\/vi\/quan-tri(\/|$)/.test(url)).map(([url]) => url)
+// `/cong-cu` now redirects to `/`; cache the real directory and `/gioi-thieu` instead of the alias.
+const pages = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && (url === '/vi' || url.startsWith('/vi/')) && url !== '/vi/cong-cu' && !/^\/vi\/quan-tri(\/|$)/.test(url)).map(([url]) => url)
 const optimizedImages = new Set()
 for (const url of pages) {
   const file = path.join(`${dist}/server/app`, url.slice(1) + '.html')

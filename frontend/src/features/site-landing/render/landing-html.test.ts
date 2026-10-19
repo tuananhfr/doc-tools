@@ -38,6 +38,8 @@ describe('landingDocumentHtml', () => {
     const links = [...html.matchAll(/\s(?:href|src)="([^"]+)"/g)].map(match => match[1])
     expect(links.filter(link => !link.startsWith('#') && !link.startsWith('https://lpc.vn/doc-tools/'))).toEqual([])
     expect(html).toContain('href="https://lpc.vn/doc-tools/huong-nha-la-ban"')
+    expect(html).toContain('href="https://lpc.vn/doc-tools/"')
+    expect(html).not.toContain('href="https://lpc.vn/doc-tools/cong-cu"')
     expect(html).toContain(`src="https://lpc.vn/doc-tools/api/v1/landings/assets/${'b'.repeat(64)}"`)
     expect(html).not.toContain('<script')
   })

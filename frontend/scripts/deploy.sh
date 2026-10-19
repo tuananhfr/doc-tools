@@ -76,7 +76,7 @@ health() {
     bash -c "$DEPLOY_HEALTH_CMD"
     return
   fi
-  for path in / /cong-cu "/_next/static/$build_id/_buildManifest.js"; do
+  for path in / /gioi-thieu "/_next/static/$build_id/_buildManifest.js"; do
     for ((try = 1; ; try++)); do
       if curl -fsS -o /dev/null --max-time 10 "$health_url$path"; then break; fi
       if ((try >= health_tries)); then

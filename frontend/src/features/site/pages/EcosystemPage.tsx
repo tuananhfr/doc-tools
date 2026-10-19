@@ -12,7 +12,7 @@ const CATEGORIES = ['all', 'free', 'work', 'life', 'business'] as const
 type Category = (typeof CATEGORIES)[number]
 
 const SERVICES = [
-  { id: 'chuyenNho', icon: 'clipboard2-pulse', to: '/cong-cu', kind: 'internal', category: 'free' },
+  { id: 'chuyenNho', icon: 'clipboard2-pulse', to: '/', kind: 'internal', category: 'free' },
   { id: 'healthDigital', icon: 'heart-pulse', to: 'https://suckhoeso.tekshot.ai', kind: 'external', category: 'work' },
   { id: 'healthBusiness', icon: 'bar-chart-line', to: 'https://suckhoedoanhnghiep.erpcons.ai', kind: 'external', category: 'business' },
   { id: 'family', icon: 'calendar-heart', to: '/gia-dinh', kind: 'internal', category: 'life' },
@@ -70,7 +70,7 @@ export default function EcosystemPage() {
 
       <section className="cn-container cn-ecosystem-page-footer" aria-label={t('ecosystemPage.footerLabel')}>
         <p>{t('ecosystemPage.footer')}</p>
-        <Link className="cn-button" to="/cong-cu">{t('ecosystemPage.openTools')} <Icon name="arrow-right" /></Link>
+        <Link className="cn-button" to="/">{t('ecosystemPage.openTools')} <Icon name="arrow-right" /></Link>
       </section>
     </div>
   )

@@ -27,7 +27,7 @@ export function CalculationStudio({ kind, children }: { kind: keyof typeof CONFI
   const lunar = kind === 'lunar'
   return <div className={`cn-calcstudio cn-calcstudio--${kind}`}><ImageStudio toolId={tool.id} icon={tool.icon} title={tool.name} subtitle={tool.description}
     heroNote={t(lunar ? 'calculationStudio.calendarNote' : 'calculationStudio.heroNote')}
-    category={{ title: t('calculationStudio.category'), icon: 'calculator', path: '/cong-cu', tools: TOOLS, relatedTitle: t('calculationStudio.related') }}
+    category={{ title: t('calculationStudio.category'), icon: 'calculator', path: '/', tools: TOOLS, relatedTitle: t('calculationStudio.related') }}
     trustLabels={lunar ? [photo('trust.free'), photo('trust.easy'), photo('trust.noAccount'), t('calculationStudio.calendarTrust')] : undefined}
     steps={config.steps.map(key => t(key))}
     tips={[t(config.tip), t(lunar ? 'calculationStudio.calendarRange' : 'calculationStudio.check'), t(lunar ? 'calculationStudio.calendarPrivacy' : 'calculationStudio.privacy')]}

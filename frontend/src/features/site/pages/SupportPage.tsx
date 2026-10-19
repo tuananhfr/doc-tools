@@ -15,9 +15,9 @@ import { QualityConsent } from '../components/QualityConsent'
 const TOPICS = [
   { id: 'start', icon: 'rocket-takeoff', to: '/huong-dan' },
   { id: 'documents', icon: 'file-earmark-pdf', to: '/tai-lieu-pdf' },
-  { id: 'image', icon: 'image', to: '/cong-cu?nhom=image' },
-  { id: 'qr', icon: 'qr-code', to: '/cong-cu?nhom=data' },
-  { id: 'family', icon: 'house-heart', to: '/cong-cu?nhom=gia-dinh' },
+  { id: 'image', icon: 'image', to: '/?nhom=image' },
+  { id: 'qr', icon: 'qr-code', to: '/?nhom=data' },
+  { id: 'family', icon: 'house-heart', to: '/?nhom=gia-dinh' },
   { id: 'install', icon: 'phone', to: '/cai-dat' },
   { id: 'privacy', icon: 'shield-lock', to: '/xu-ly-du-lieu' },
 ] as const
