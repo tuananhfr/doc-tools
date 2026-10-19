@@ -29,6 +29,7 @@ export default function ToolDirectoryPage() {
   const [view, setView] = useState<'grid' | 'list'>('grid')
   const [sort, setSort] = useState<'recommended' | 'name'>('recommended')
   const [tipOpen, setTipOpen] = useState(true)
+  const ResultsHeading = filter === 'all' ? 'h2' : 'h1'
   usePageTitle(t('directory.metaTitle'))
 
   const groupName = (group: DirectoryGroup) => group === 'all' ? studio('all') : group === 'other' ? studio('other') : t(`hubs.${group}.label`)
@@ -52,11 +53,12 @@ export default function ToolDirectoryPage() {
             <Icon name={DIRECTORY_GROUP_ICONS[group]} /><span>{groupName(group)}</span><span className="cn-directory-group-count">{counts.get(group)}</span>
           </button>)}
         </nav>
+        <section className="cn-directory-suggest"><h2><Icon name="heart-fill" />{studio('suggestTitle')}</h2><p>{studio('suggestHint')}</p><Link to="/de-xuat-tien-ich">{studio('suggestAction')}<Icon name="arrow-right" /></Link></section>
         <div className="cn-directory-nav-footer"><Icon name="house-heart" /><p>{studio('smallThings')}</p></div>
       </aside>
 
       <div className="cn-directory-center">
-        <section className="cn-directory-welcome" aria-labelledby="cn-directory-title">
+        {filter === 'all' ? <section className="cn-directory-welcome" aria-labelledby="cn-directory-title">
           <DirectoryMascot />
           <div className="cn-directory-welcome-content">
             <div className="cn-directory-title-row"><div><h1 id="cn-directory-title">{studio('title')}</h1><p>{studio('lead')}</p></div>
@@ -65,11 +67,11 @@ export default function ToolDirectoryPage() {
             <ToolSearch qualityTracking id="tim-cong-cu" keyword={keyword} onKeyword={onKeyword} onSubmit={() => document.getElementById('cn-directory-results')?.focus()} suggestions={catalog} />
             <p className="cn-directory-search-hint"><Icon name="lightbulb" />{studio('searchHint')}</p>
           </div>
-        </section>
+        </section> : null}
 
         <section className="cn-catalog cn-directory-catalog" aria-label={t('directory.catalogLabel')} data-view={view}>
           <div className="cn-directory-toolbar">
-            <h2 id="cn-directory-results" tabIndex={-1} aria-live="polite">{groupName(filter)} <span>({ordered.length})</span></h2>
+            <ResultsHeading id="cn-directory-results" tabIndex={-1} aria-live="polite">{groupName(filter)} <span>({ordered.length})</span></ResultsHeading>
             <div className="cn-directory-display-controls">
               <label>{studio('sort')}<select className="form-select" value={sort} onChange={event => setSort(event.target.value as typeof sort)}><option value="recommended">{studio('recommended')}</option><option value="name">{studio('alphabetical')}</option></select></label>
               <div className="cn-directory-view" role="group" aria-label={studio('viewLabel')}>{(['grid', 'list'] as const).map(value => <button type="button" key={value} aria-label={studio(value)} aria-pressed={view === value} onClick={() => setView(value)}><Icon name={value === 'grid' ? 'grid' : 'list-ul'} /><span>{studio(value)}</span></button>)}</div>
@@ -82,7 +84,7 @@ export default function ToolDirectoryPage() {
           {ordered.length ? <ul className="erp-tools-grid" aria-label={t('directory.title')}>{ordered.map(tool => <li key={tool.id}><ToolCard tool={tool} illustrated /></li>)}</ul>
             : <StateView icon="search" title={t('results.empty')} description={t('results.emptyHint')} actions={<><button type="button" className="cn-button" onClick={reset}>{t('results.showAll')}</button><Link className="cn-button cn-button--ghost" to="/de-xuat-tien-ich">{tCommunity('feedback.searchSuggestion')}</Link></>} />}
           {productMatches.length ? <FamilyProductLink /> : null}
-          <RecentTools recent={recent} />
+          {filter === 'all' ? <RecentTools recent={recent} /> : null}
         </section>
       </div>
 
@@ -91,7 +93,6 @@ export default function ToolDirectoryPage() {
         {tipOpen ? <section className="cn-directory-tip"><h2><Icon name="lightbulb-fill" />{studio('tipTitle')}</h2><button type="button" aria-label={studio('dismissTip')} onClick={() => setTipOpen(false)}><Icon name="x-lg" /></button><p>{studio('tip')}</p></section> : null}
         <div className="cn-directory-cheer"><DirectoryMascot /><p>{studio('cheer')}</p></div>
         <section className="cn-directory-devices" aria-label={studio('devicesLabel')}><div>{[{ icon: 'laptop', label: 'PC / Laptop' }, { icon: 'tablet', label: 'Tablet' }, { icon: 'phone', label: 'Mobile' }, { icon: 'globe', label: 'Web' }].map(item => <span key={item.icon}><Icon name={item.icon} />{item.label}</span>)}</div><p>{studio('devicesHint')}</p></section>
-        <section className="cn-directory-suggest"><h2><Icon name="heart-fill" />{studio('suggestTitle')}</h2><p>{studio('suggestHint')}</p><Link to="/de-xuat-tien-ich">{studio('suggestAction')}<Icon name="arrow-right" /></Link></section>
       </aside>
     </div>
     <TrustStrip />

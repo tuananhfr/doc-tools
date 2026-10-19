@@ -2,8 +2,6 @@ import type { HubPageSlug } from '../types/hub-page.types'
 
 export const SITE_NAVIGATION = [
   { id: 'tools', to: '/cong-cu' },
-  { id: 'family', to: '/gia-dinh' },
-  { id: 'explore', to: '/kham-pha-giai-tri' },
   { id: 'guides', to: '/huong-dan' },
   { id: 'about', to: '/ve-chung-toi' },
 ] as const
@@ -13,6 +11,9 @@ export const SITE_NAVIGATION = [
  * nhóm hiện ở menu trượt, menu trang chủ và hàng "Nhóm công cụ" của `/cong-cu`.
  */
 export const HUB_NAVIGATION: readonly HubPageSlug[] = ['tai-lieu-pdf', 'hinh-anh', 'mau-giay-to', 'ma-qr', 'doc-va-nghe', 'tinh-toan', 'kham-pha-giai-tri', 'gia-dinh']
+
+/** Category menus open the same directory filters instead of separate landing pages. */
+export const hubDirectoryPath = (slug: HubPageSlug) => `/cong-cu?nhom=${slug}`
 
 export const FOOTER_LINKS = [
   { id: 'suggest', to: '/de-xuat-tien-ich' },

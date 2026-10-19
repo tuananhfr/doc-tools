@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
-import { HUB_NAVIGATION } from '../config/site-navigation'
+import { HUB_NAVIGATION, hubDirectoryPath } from '../config/site-navigation'
 import { DIRECTORY_GROUP_ICONS } from '../utils/directory-groups'
 import { FAQ_ITEMS } from '../config/support-faq'
 import { localizeFaq, pickFaq } from '../utils/faq'
@@ -12,7 +12,7 @@ import { FaqList } from './FaqList'
 
 export function CategoryNavigation({ current }: { current: string }) {
   const { t } = useTranslation('site')
-  return <nav className="cn-reference-nav" aria-label={t('nav.groups')}><Link to="/cong-cu"><Icon name="grid" />{t('directoryStudio.all')}</Link>{HUB_NAVIGATION.map(slug => <Link to={`/${slug}`} key={slug} aria-current={current === slug ? 'page' : undefined}><Icon name={DIRECTORY_GROUP_ICONS[slug]} />{t(`hubs.${slug}.label`)}</Link>)}</nav>
+  return <nav className="cn-reference-nav" aria-label={t('nav.groups')}><Link to="/cong-cu"><Icon name="grid" />{t('directoryStudio.all')}</Link>{HUB_NAVIGATION.map(slug => <Link to={hubDirectoryPath(slug)} key={slug} aria-current={current === slug ? 'page' : undefined}><Icon name={DIRECTORY_GROUP_ICONS[slug]} />{t(`hubs.${slug}.label`)}</Link>)}</nav>
 }
 
 export function ReferenceAside({ reference = false }: { reference?: boolean }) {

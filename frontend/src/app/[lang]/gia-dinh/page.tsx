@@ -1,5 +1,3 @@
-import { hubMetadata } from '@/features/site/server/hub-metadata'
-
-export const generateMetadata = hubMetadata('gia-dinh')
+export const metadata = { robots: { index: false, follow: false } }
 
 export default function HubPageRoute() { return null }

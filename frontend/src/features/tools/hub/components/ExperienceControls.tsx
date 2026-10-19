@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { splitLocalePath } from '@/i18n/locales'
+import { useToolsBranch } from '../hooks/tools-branch'
+import { resolveToolRoute } from '../utils/tool-lookup'
 import { DEFAULT_EXPERIENCE_MODE, EXPERIENCE_MODES, experienceMode, type ExperienceMode } from '../utils/experience-mode'
 
 export const ExperiencePlacementContext = createContext<((target: HTMLDivElement | null) => void) | undefined>(undefined)
@@ -18,10 +20,14 @@ export function ExperienceControls({ target }: { target: HTMLDivElement | null }
   const { t } = useTranslation('common', { keyPrefix: 'experience' })
   const id = useId()
   const { pathname } = useLocation()
+  const { base } = useToolsBranch()
+  const prefix = `${base.replace(/\/+$/, '')}/`
+  const path = splitLocalePath(pathname).rest.replace(/\/+$/, '')
+  const isTool = path.startsWith(prefix) && !!resolveToolRoute(path.slice(prefix.length)).tool
   const [mode, setMode] = useState<ExperienceMode>(DEFAULT_EXPERIENCE_MODE)
   useEffect(() => { setMode(DEFAULT_EXPERIENCE_MODE) }, [pathname])
-  useEffect(() => { document.documentElement.dataset.experience = mode }, [mode])
-  if (splitLocalePath(pathname).rest.replace(/\/+$/, '') === '/cong-cu') return null
+  useEffect(() => { document.documentElement.dataset.experience = isTool ? mode : DEFAULT_EXPERIENCE_MODE }, [mode, isTool])
+  if (!isTool) return null
   const change = (value: ExperienceMode) => {
     setMode(value)
   }

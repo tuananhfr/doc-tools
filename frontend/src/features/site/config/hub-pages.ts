@@ -180,7 +180,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     subgroups: [
       { id: 'cv', toolIds: ['cv'] },
       { id: 'don-bien-ban', toolIds: ['form-templates'] },
-      { id: 'ho-tro-soan', toolIds: ['number-words', 'char-count', 'legacy-font'] },
+      { id: 'ho-tro-soan', toolIds: ['office-word', 'office-sheet', 'office-slide', 'number-words', 'char-count', 'legacy-font'] },
     ],
     aside: [{ kind: 'tips', id: 'tips', items: ['check', 'numberWords', 'sign'] }, { kind: 'privacy' }, { kind: 'support' }],
     journey: { flow: true, steps: [{ id: 'choose', icon: 'grid' }, { id: 'fill', icon: 'pencil' }, { id: 'preview', icon: 'eye' }, { id: 'print', icon: 'printer' }] },

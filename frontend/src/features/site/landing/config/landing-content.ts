@@ -8,7 +8,7 @@ export const LANDING_NAVIGATION = [
 export const USE_CASES = [
   { key: 'documents', image: 'documents.webp', to: '/tai-lieu-pdf' },
   { key: 'media', image: 'media.webp', to: '/cong-cu' },
-  { key: 'everyday', image: 'everyday.webp', to: '/gia-dinh' },
+  { key: 'everyday', image: 'everyday.webp', to: '/cong-cu?nhom=gia-dinh' },
 ] as const
 
 export const PDF_TOOL_IDS = ['edit-pdf', 'merge-pdf', 'split-pdf'] as const

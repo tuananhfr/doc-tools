@@ -1,7 +1,7 @@
 .cn-reference-page { padding: 22px 20px 32px; }
 .cn-reference-layout { display: grid; grid-template-columns: 184px minmax(0, 1fr) 248px; gap: 16px; max-width: 1580px; margin: auto; align-items: start; }
 .cn-reference-layout > * { min-width: 0; }
-.cn-reference-sidebar { position: sticky; top: 86px; }
+.cn-reference-sidebar { position: sticky; top: 12px; }
 .cn-reference-back { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--cn-line); border-radius: 10px; background: var(--cn-surface); font-size: 12px; text-decoration: none; }
 .cn-reference-nav { padding: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: var(--cn-surface); }
 .cn-reference-nav > :is(a, button) { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 9px; border: 0; border-radius: 8px; background: transparent; color: var(--cn-ink); text-align: start; text-decoration: none; font: inherit; font-size: 12px; line-height: 1.5; }

@@ -15,6 +15,10 @@ describe('directory groups', () => {
   it('uses the recognizable existing groups and permits a tool in multiple groups', () => {
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'tai-lieu-pdf').some(tool => tool.id === 'edit-pdf')).toBe(true)
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'mau-giay-to').some(tool => tool.id === 'cv')).toBe(true)
+    for (const id of ['office-word', 'office-sheet', 'office-slide']) {
+      expect(directoryGroupTools(VI_TOOL_CATALOG, 'mau-giay-to').some(tool => tool.id === id)).toBe(true)
+      expect(directoryGroupTools(VI_TOOL_CATALOG, 'other').some(tool => tool.id === id)).toBe(false)
+    }
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'hinh-anh').some(tool => tool.id === 'image-to-text')).toBe(true)
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'tai-lieu-pdf').some(tool => tool.id === 'image-to-text')).toBe(true)
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'other').length).toBeGreaterThan(0)
@@ -34,6 +38,7 @@ describe('directory groups', () => {
   it('hides migrated construction tools while retaining everyday image and compass tools', () => {
     expect(HUB_NAVIGATION).not.toContain('xay-dung')
     expect(SITE_NAVIGATION.some(item => item.to === '/xay-dung' as string)).toBe(false)
+    for (const path of ['/gia-dinh', '/kham-pha-giai-tri']) expect(SITE_NAVIGATION.some(item => item.to === path)).toBe(false)
     const ids = VI_TOOL_CATALOG.map(tool => tool.id)
     for (const id of ['house-estimate', 'structure-calc', 'drawing-convert', 'drawing-area', 'site-diary', 'construction-price']) expect(ids).not.toContain(id)
     expect(ids).toContain('house-orientation')
