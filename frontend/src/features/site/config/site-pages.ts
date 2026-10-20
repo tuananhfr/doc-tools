@@ -16,4 +16,4 @@ export type AccountPageSlug = (typeof ACCOUNT_PAGES)[number]
  * test giữ hai danh sách tách nhau. Thêm trang mới: khai ở đây, ở `app/<slug>/page.tsx`
  * và trong `runtime/ToolsRouter.tsx`.
  */
-export const SITE_PAGE_SLUGS: readonly string[] = ['cong-cu', 'gioi-thieu', ...HUB_PAGE_LIST.map((page) => page.slug), ...SITE_PAGES, ...ACCOUNT_PAGES]
+export const SITE_PAGE_SLUGS: readonly string[] = ['cong-cu', 'gioi-thieu', 'doc-va-nghe', ...HUB_PAGE_LIST.map((page) => page.slug), ...SITE_PAGES, ...ACCOUNT_PAGES]

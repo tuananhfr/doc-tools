@@ -54,7 +54,7 @@ const routes: RouteObject[] = [{ path: '/gioi-thieu', element: <LandingLayout />
   { path: 'tai-lieu-pdf', element: <CategoryHubPage key="tai-lieu-pdf" slug="tai-lieu-pdf" /> },
   { path: 'hinh-anh', element: <CategoryHubPage key="hinh-anh" slug="hinh-anh" /> },
   { path: 'ma-qr', element: <CategoryHubPage key="ma-qr" slug="ma-qr" /> },
-  { path: 'doc-va-nghe', element: <CategoryHubPage key="doc-va-nghe" slug="doc-va-nghe" /> },
+  { path: 'doc-va-nghe', element: <Navigate to="/?nhom=gia-dinh" replace /> },
   { path: 'tinh-toan', element: <CategoryHubPage key="tinh-toan" slug="tinh-toan" /> },
   { path: 'mau-giay-to', element: <CategoryHubPage key="mau-giay-to" slug="mau-giay-to" /> },
   { path: 've-chung-toi', element: <AboutPage /> },

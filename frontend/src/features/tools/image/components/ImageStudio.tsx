@@ -6,6 +6,8 @@ import { toolPath, useToolsBranch, type ToolDefinition } from '@/features/tools/
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
 import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
 import { ExperienceControlsSlot } from '@/features/tools/hub/components/ExperienceControls'
+import { directoryGroupTools, directoryToolGroup, DIRECTORY_GROUP_ICONS } from '@/features/site/utils/directory-groups'
+import { hubDirectoryPath } from '@/features/site/config/site-navigation'
 
 const RELATED = ['id-photo', 'crop-image', 'remove-background', 'compress-image', 'convert-image', 'collage', 'trim-video', 'compress-video', 'extract-audio', 'remove-metadata']
 
@@ -52,12 +54,14 @@ interface ImageStudioProps {
 /** The approved /anh-the layout is the shared frame for photo tools. */
 export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote, steps, tips, faq, navigation, category, trustLabels }: ImageStudioProps) {
   const { t } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
+  const { t: site } = useTranslation('site')
   const { base, kind } = useToolsBranch()
   const catalog = useToolCatalog()
   const currentTool = catalog.find(tool => tool.id === toolId)
-  const tools = (category?.tools ?? RELATED).flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [tool] : [] })
-  const imageHub = kind === 'public' ? category?.path ?? '/hinh-anh' : base
-  const categoryTitle = category?.title ?? t('category')
+  const group = directoryToolGroup(toolId)
+  const tools = group ? directoryGroupTools(catalog, group).filter(tool => tool.status === 'ready') : (category?.tools ?? RELATED).flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [tool] : [] })
+  const imageHub = kind === 'public' ? group ? hubDirectoryPath(group) : category?.path ?? '/hinh-anh' : base
+  const categoryTitle = group ? site(`hubs.${group}.label`) : category?.title ?? t('category')
   return <div className={`cn-idstudio cn-image-studio cn-image-studio--${toolId}`}>
     <div className="cn-idstudio-topline">
       <nav className="cn-idstudio-breadcrumb" aria-label={t('breadcrumb')}><Link to={base}>{t('tools')}</Link><Icon name="chevron-right" /><Link to={imageHub}>{categoryTitle}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
@@ -66,7 +70,7 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
     <div className="cn-idstudio-layout">
       <aside className="cn-idstudio-sidebar">
         <Link to={imageHub} className="cn-idstudio-back"><Icon name="arrow-left" />{t('back')}</Link>
-        <nav className="cn-idstudio-toolnav" aria-label={categoryTitle}><h2><Icon name={category?.icon ?? 'images'} />{categoryTitle}</h2>{tools.map(tool => <Link key={tool.id} to={toolPath(base, tool)} aria-current={tool.id === toolId ? 'page' : undefined}><Icon name={tool.icon} /><span>{tool.name}</span></Link>)}</nav>
+        <nav className="cn-idstudio-toolnav" aria-label={categoryTitle}><h2><Icon name={group ? DIRECTORY_GROUP_ICONS[group] : category?.icon ?? 'images'} />{categoryTitle}</h2>{tools.map(tool => <Link key={tool.id} to={toolPath(base, tool)} aria-current={tool.id === toolId ? 'page' : undefined}><Icon name={tool.icon} /><span>{tool.name}</span></Link>)}</nav>
         <div className="cn-idstudio-side-note" aria-hidden="true"><p>{t('sideNote')}</p><Icon name="house-heart" /><span>♡</span></div>
       </aside>
       <div className="cn-idstudio-main">

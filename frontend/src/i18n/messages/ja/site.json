@@ -597,7 +597,7 @@
       "caption": "Explore\nWith sources and limits.",
       "searchPlaceholder": "Search lunar calendar, Tarot, playing cards…",
       "highlights": {
-        "calendar": "Lunar calendar",
+        "media": "Video & Audio",
         "numbers": "Numerology",
         "cards": "52 playing cards",
         "tarot": "Tarot 78"
@@ -621,7 +621,7 @@
         }
       },
       "subgroups": {
-        "lich": "Calendar",
+        "video-am-thanh": "Video & Audio",
         "kham-pha": "Explore"
       },
       "aside": {

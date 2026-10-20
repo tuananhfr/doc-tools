@@ -1,4 +1,4 @@
-import type { HubPageSlug } from '../types/hub-page.types'
+import type { ActiveHubPageSlug } from '../types/hub-page.types'
 
 export const SITE_NAVIGATION = [
   { id: 'tools', to: '/' },
@@ -10,10 +10,10 @@ export const SITE_NAVIGATION = [
  * Nhóm công cụ theo thứ tự spec v3 §02. Header desktop đã chật nên không thêm vào `SITE_NAVIGATION`;
  * nhóm hiện ở menu trượt, menu trang chủ và hàng "Nhóm công cụ" của `/`.
  */
-export const HUB_NAVIGATION: readonly HubPageSlug[] = ['tai-lieu-pdf', 'hinh-anh', 'mau-giay-to', 'ma-qr', 'doc-va-nghe', 'tinh-toan', 'kham-pha-giai-tri', 'gia-dinh']
+export const HUB_NAVIGATION: readonly ActiveHubPageSlug[] = ['tai-lieu-pdf', 'hinh-anh', 'mau-giay-to', 'ma-qr', 'tinh-toan', 'kham-pha-giai-tri', 'gia-dinh']
 
 /** Category menus open the same directory filters instead of separate landing pages. */
-export const hubDirectoryPath = (slug: HubPageSlug) => `/?nhom=${slug}`
+export const hubDirectoryPath = (slug: ActiveHubPageSlug) => `/?nhom=${slug}`
 
 export const FOOTER_LINKS = [
   { id: 'suggest', to: '/de-xuat-tien-ich' },

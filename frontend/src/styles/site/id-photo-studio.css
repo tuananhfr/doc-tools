@@ -10,6 +10,7 @@
 .cn-idstudio-sidebar { position: sticky; top: 12px; }
 .cn-idstudio-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 12px; padding: 8px 12px; border: 1px solid var(--cn-line); border-radius: 10px; color: var(--cn-accent); text-decoration: none; background: var(--cn-surface); font-size: 13px; }
 .cn-idstudio-toolnav { padding: 6px; border: 1px solid var(--cn-line); border-radius: 12px; background: linear-gradient(135deg, var(--cn-surface), var(--cn-hero)); }
+@media (min-width: 768px) { .cn-idstudio-toolnav { max-height: calc(100dvh - var(--cn-header-height) - 120px); overflow-y: auto; scrollbar-width: thin; } }
 .cn-idstudio-toolnav h2 { display: flex; align-items: center; gap: 10px; margin: 0; padding: 12px 8px; font-size: 15px; font-weight: 700; }
 .cn-idstudio-toolnav h2 .bi { font-size: 20px; color: var(--cn-accent); }
 .cn-idstudio-toolnav a { display: flex; align-items: center; gap: 12px; min-height: 46px; padding: 8px; color: var(--cn-ink); border-radius: 8px; font-size: 12px; line-height: 1.6; text-decoration: none; }

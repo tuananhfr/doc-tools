@@ -32,7 +32,7 @@ export default function ToolDirectoryPage() {
   const ResultsHeading = filter === 'all' ? 'h2' : 'h1'
   usePageTitle(t('directory.metaTitle'))
 
-  const groupName = (group: DirectoryGroup) => group === 'all' ? studio('all') : group === 'other' ? studio('other') : t(`hubs.${group}.label`)
+  const groupName = (group: DirectoryGroup) => group === 'all' ? studio('all') : t(`hubs.${group}.label`)
   const available = catalog.filter(tool => showSoon || tool.status === 'ready')
   const counts = new Map(DIRECTORY_GROUPS.map(group => [group, directoryGroupTools(available, group).length]))
   const allReady = catalog.filter(tool => tool.status === 'ready').length

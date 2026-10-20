@@ -8,9 +8,9 @@ import type { HubPage, HubPageSlug } from '../types/hub-page.types'
  */
 export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
   'kham-pha-giai-tri': {
-    slug: 'kham-pha-giai-tri', art: { kind: 'icon', icon: 'stars' }, highlights: ['calendar', 'numbers', 'cards', 'tarot'],
+    slug: 'kham-pha-giai-tri', art: { kind: 'icon', icon: 'stars' }, highlights: ['media', 'numbers', 'cards', 'tarot'],
     trust: [{ id: 'free', icon: 'gift' }, { id: 'source', icon: 'journal-check' }, { id: 'choice', icon: 'person-check' }, { id: 'reference', icon: 'info-circle' }],
-    subgroups: [{ id: 'lich', toolIds: ['lunar-calendar'] }, { id: 'kham-pha', toolIds: ['numerology', 'playing-cards', 'tarot', 'spin-wheel'] }],
+    subgroups: [{ id: 'video-am-thanh', toolIds: ['compress-video', 'trim-video', 'video-gif', 'extract-audio'] }, { id: 'kham-pha', toolIds: ['numerology', 'playing-cards', 'tarot', 'spin-wheel', 'assistant'] }],
     aside: [{ kind: 'tips', id: 'usage', items: ['features', 'content', 'privacy'] }, { kind: 'support' }],
     journey: { flow: false, steps: [{ id: 'choose', icon: 'grid' }, { id: 'explore', icon: 'search' }, { id: 'source', icon: 'journal' }, { id: 'export', icon: 'download' }] },
   },
@@ -60,12 +60,12 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
       { id: 'devices', icon: 'phone' },
     ],
     subgroups: [
-      { id: 'lich', toolIds: ['lunar-calendar', 'family-reminders', 'special-days'] },
-      { id: 'chi-tieu', toolIds: ['electricity', 'group-split', 'family-budget'] },
-      { id: 'nha-cua', toolIds: ['house-orientation', 'house-chores'] },
-      { id: 'hoc-tap', toolIds: ['flashcards', 'study'] },
+      { id: 'lich', toolIds: ['lunar-calendar', 'pomodoro', 'family-reminders', 'special-days'] },
+      { id: 'chi-tieu', toolIds: ['electricity', 'group-split', 'payroll', 'invoice-xml', 'family-budget'] },
+      { id: 'nha-cua', toolIds: ['house-orientation', 'address-conversion', 'house-chores'] },
+      { id: 'hoc-tap', toolIds: ['flashcards', 'dictation', 'magnifier', 'read-aloud', 'honor-board'] },
       { id: 'suc-khoe', toolIds: ['family-health'] },
-      { id: 'ket-noi', toolIds: ['family-share', 'family-album'] },
+      { id: 'ket-noi', toolIds: ['message-risk', 'quick-note', 'family-share', 'family-album'] },
     ],
     aside: [
       { kind: 'spotlight', id: 'houseOrientation', toolId: 'house-orientation', points: ['direction', 'compass', 'lookup'] },
@@ -96,7 +96,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
       { id: 'sua', toolIds: ['edit-pdf', 'view-pdf', 'organize-pdf', 'page-numbers', 'stamp-pdf'] },
       { id: 'gop-tach', toolIds: ['merge-pdf', 'split-pdf', 'compress-pdf'] },
       { id: 'chuyen-doi', toolIds: ['scan-to-pdf', 'convert-file', 'pdf-to-image'] },
-      { id: 'ocr', toolIds: ['ocr', 'image-to-text', 'compare'] },
+      { id: 'ocr', toolIds: ['ocr', 'compare'] },
       { id: 'ky-bao-mat', toolIds: ['sign', 'pdf-password', 'redact-pdf'] },
     ],
     aside: [
@@ -137,7 +137,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     highlights: ['qr', 'barcode', 'scan', 'labels', 'vietqr', 'dynamic'],
     trust: [{ id: 'free', icon: 'gift' }, { id: 'noInstall', icon: 'lightning-charge' }, { id: 'onDevice', icon: 'shield-check' }, { id: 'consent', icon: 'person-check' }],
     subgroups: [
-      { id: 'tao-ma', toolIds: ['qr-create', 'barcode-create', 'vietqr'] },
+      { id: 'tao-ma', toolIds: ['qr-create', 'barcode-create', 'vietqr', 'random-code'] },
       { id: 'quet-ma', toolIds: ['qr-read'] },
       { id: 'qr-dong', toolIds: ['code-manager'] },
     ],
@@ -163,10 +163,10 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     highlights: ['vat', 'percent', 'units', 'dates', 'area', 'loan'],
     trust: [{ id: 'free', icon: 'gift' }, { id: 'noInstall', icon: 'lightning-charge' }, { id: 'onDevice', icon: 'shield-check' }, { id: 'reference', icon: 'info-circle' }],
     subgroups: [
-      { id: 'tien-thue', toolIds: ['money-calc', 'number-words', 'group-split', 'unit-price'] },
+      { id: 'tien-thue', toolIds: ['money-calc', 'unit-price'] },
       { id: 'vay', toolIds: ['loan'] },
       { id: 'do-luong', toolIds: ['quick-calc', 'unit-convert'] },
-      { id: 'ngay', toolIds: ['date-calc', 'lunar-calendar'] },
+      { id: 'ngay', toolIds: ['date-calc'] },
       { id: 'hoc-tap', toolIds: ['study'] },
     ],
     aside: [{ kind: 'tips', id: 'tips', items: ['check', 'vat', 'units'] }, { kind: 'support' }],
@@ -187,4 +187,4 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
   },
 }
 
-export const HUB_PAGE_LIST: HubPage[] = Object.values(HUB_PAGES).filter(page => page.slug !== 'xay-dung')
+export const HUB_PAGE_LIST: HubPage[] = Object.values(HUB_PAGES).filter(page => page.slug !== 'xay-dung' && page.slug !== 'doc-va-nghe')

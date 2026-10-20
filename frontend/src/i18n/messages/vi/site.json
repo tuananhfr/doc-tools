@@ -597,7 +597,7 @@
       "caption": "Khám phá\nCó nguồn, có giới hạn.",
       "searchPlaceholder": "Tìm lịch âm, Tarot, bài Tây…",
       "highlights": {
-        "calendar": "Lịch âm-dương",
+        "media": "Video & Âm thanh",
         "numbers": "Thần số học",
         "cards": "Bài Tây 52 lá",
         "tarot": "Tarot 78"
@@ -621,7 +621,7 @@
         }
       },
       "subgroups": {
-        "lich": "Lịch",
+        "video-am-thanh": "Video & Âm thanh",
         "kham-pha": "Khám phá"
       },
       "aside": {
