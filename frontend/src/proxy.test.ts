@@ -11,8 +11,21 @@ it.each(['', '/doc-tools'])('redirects the old directory with filters and locale
   for (const [oldPath, destination] of [['/cong-cu', '/'], ['/cong-cu/', '/'], ['/vi/cong-cu', '/'], ['/en/cong-cu', '/en'], ['/ar/cong-cu/', '/ar']]) {
     const response = proxy(new NextRequest('http://localhost:3002' + basePath + oldPath + '?nhom=hinh-anh&q=pdf', { nextConfig: { basePath } }))
     expect(response.status).toBe(308)
-    expect(response.headers.get('location')).toBe('http://localhost:3002' + basePath + destination + '?nhom=hinh-anh&q=pdf')
+    expect(response.headers.get('location')).toBe('http://localhost:3002' + basePath + (destination === '/' ? '' : destination) + '/hinh-anh')
   }
+})
+
+it.each(['', '/doc-tools'])('canonicalizes old category links, preserving locale and unrelated options under %s', async basePath => {
+  vi.stubEnv('NEXT_PUBLIC_BASE_PATH', basePath)
+  vi.resetModules()
+  const { proxy } = await import('./proxy')
+  for (const prefix of ['', '/en', '/ar']) {
+    const response = proxy(new NextRequest(`http://localhost:3002${basePath}${prefix}/?nhom=data&sap-co=1&q=old#cards`, { nextConfig: { basePath } }))
+    expect(response.status).toBe(308)
+    expect(response.headers.get('location')).toBe(`http://localhost:3002${basePath}${prefix}/ma-qr?sap-co=1#cards`)
+  }
+  const invalid = proxy(new NextRequest(`http://localhost:3002${basePath}/?nhom=https://bad.test`, { nextConfig: { basePath } }))
+  expect(invalid.headers.get('location')).toBeNull()
 })
 
 it.each(['', '/doc-tools'])('localizes the main landing without intercepting partner landing routes under %s', async basePath => {

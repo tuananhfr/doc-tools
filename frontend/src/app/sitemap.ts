@@ -7,7 +7,7 @@ import { GUIDES } from '@/features/site/config/guides'
 import { LOCALES, localizePath } from '@/i18n/locales'
 export default function sitemap(): MetadataRoute.Sitemap {
   const root = appConfig.siteUrl.replace(/[/]+$/, '')
-  const paths = ['/', ...SITE_PAGE_SLUGS.filter(slug => !(ACCOUNT_PAGES as readonly string[]).includes(slug) && !['cong-cu', 'doc-va-nghe', 'gia-dinh', 'kham-pha-giai-tri'].includes(slug)).map(slug => '/' + slug), ...GUIDES.map(guide => '/huong-dan/' + guide.slug), ...TOOL_CATALOG.filter(tool => tool.status === 'ready').map(tool => '/' + tool.slug)]
+  const paths = ['/', ...SITE_PAGE_SLUGS.filter(slug => !(ACCOUNT_PAGES as readonly string[]).includes(slug) && !['cong-cu', 'doc-va-nghe'].includes(slug)).map(slug => '/' + slug), ...GUIDES.map(guide => '/huong-dan/' + guide.slug), ...TOOL_CATALOG.filter(tool => tool.status === 'ready').map(tool => '/' + tool.slug)]
   // Every language version is listed and names all the others, as Google expects for hreflang in sitemaps.
   return paths.flatMap(path => {
     const languages = Object.fromEntries(LOCALES.map(locale => [locale.tag, root + withBase(localizePath(path, locale.code))]))

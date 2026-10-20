@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "ໃຊ້ເນື້ອຫາຕົວຢ່າງ",
+    "exampleConfirm": "ແທນທີ່ເນື້ອຫາ CV ດ້ວຍຕົວຢ່າງນີ້ບໍ?",
+    "exampleNotice": "ຂໍ້ມູນສົມມຸດ. ການເລືອກແບບຈະຮັກສາເນື້ອຫາ; ປຸ່ມນີ້ຈຶ່ງຕື່ມຕົວຢ່າງ.",
+    "optional": "ບໍ່ບັງຄັບ",
+    "contactHint": "ໂທລະສັບ ແລະອີເມວຊ່ວຍໃນການຕິດຕໍ່. ປະໄວ້ໄດ້ ແລະບອກພຽງຊື່ເມືອງກໍພໍ.",
+    "templateHints": {
+      "classic": "ຕົວອັກສອນມີເຊີງ ແລະຮຽງຕາມເວລາ.",
+      "modern": "ແຖບຫົວຂໍ້ສີຂຽວ ແລະໝວດທີ່ເດັ່ນ.",
+      "compact": "ຕົວອັກສອນ ແລະຊ່ອງຫວ່າງກະທັດຮັດ.",
+      "executive": "ຫົວຂໍ້ກາງ ແລະຕົວອັກສອນທາງການ.",
+      "sidebar": "ຕິດຕໍ່ ແລະທັກສະຊ້າຍ; ປະສົບການ ແລະການສຶກສາຂວາ."
+    },
+    "validation": {
+      "phone": "ເບີໂທຕ້ອງມີຕົວເລກ 8–15 ຫຼັກ ບໍ່ມີຊ່ອງວ່າງ. ຕົວຢ່າງ: 0901234567.",
+      "email": "ອີເມວຕ້ອງມີ @ ແລະໂດເມນ ເຊັ່ນ name@example.com.",
+      "link": "ປ້ອນລິ້ງທີ່ຂຶ້ນຕົ້ນດ້ວຍ https:// ຫຼື http://."
+    }
   },
   "formTemplates": {
     "title": "ຂຽນແບບຟອມເອກະສານ",

@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "使用示例内容",
+    "exampleConfirm": "用此示例替换当前简历内容？",
+    "exampleNotice": "示例为虚构资料。选择样式保留内容，点击此按钮才会填入示例。",
+    "optional": "选填",
+    "contactHint": "电话和邮箱方便联系，也可留空；住址填写城市即可，不必填写完整家庭地址。",
+    "templateHints": {
+      "classic": "衬线字体和按时间排列的传统版式。",
+      "modern": "绿色标题区和重点突出的章节。",
+      "compact": "紧凑字体与间距，减少页数。",
+      "executive": "居中标题和正式字体，突出管理经验。",
+      "sidebar": "左栏为联系方式和技能，右栏为经历和教育。"
+    },
+    "validation": {
+      "phone": "电话号码只能包含8–15位数字，不能有空格。例如：0901234567。",
+      "email": "邮箱需要包含 @ 和域名。例如：name@example.com。",
+      "link": "请输入以 https:// 或 http:// 开头的链接。"
+    }
   },
   "formTemplates": {
     "title": "制作文书模板",

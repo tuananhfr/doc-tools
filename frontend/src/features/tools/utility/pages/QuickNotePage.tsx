@@ -6,6 +6,7 @@ import { NoteEditor } from '../components/NoteEditor'
 import { NoteList } from '../components/NoteList'
 import { useNotes } from '../hooks/useNotes'
 import { isBlankNote, NOTE_LIMITS } from '../utils/notes'
+import { ToolLeaveGuard } from '@/features/tools/hub'
 
 /**
  * GHI CHÚ NHANH — ghi chú và danh sách việc lưu trong trình duyệt của máy này.
@@ -14,6 +15,7 @@ import { isBlankNote, NOTE_LIMITS } from '../utils/notes'
  */
 export default function QuickNotePage() {
   const { t } = useTranslation('utility')
+  const { t: common } = useTranslation('common')
   const toast = useToast()
   const { notes, saveFailed, create, update, remove, clear } = useNotes()
   // Màn rộng mở sẵn ghi chú mới nhất; màn hẹp (danh sách và khung soạn thay nhau) bắt đầu ở danh sách.
@@ -33,6 +35,7 @@ export default function QuickNotePage() {
 
   return (
     <div className={`erp-notes${open ? ' has-open' : ''}`}>
+      <ToolLeaveGuard active={saveFailed} message={common('workspace.unsaved')} />
       <section className="erp-tool-panel erp-notes__list" aria-label={t('notes.listLabel')}>
         <div className="erp-tool-panel__head">
           <h2 className="erp-tool-panel__title">{notes.length > 0 ? t('notes.titleCount', { count: notes.length }) : t('notes.title')}</h2>

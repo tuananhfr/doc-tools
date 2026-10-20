@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "Use example content",
+    "exampleConfirm": "Replace the current CV content with this template’s example?",
+    "exampleNotice": "Fictional examples. Selecting a style keeps your content; only this button fills in an example.",
+    "optional": "Optional",
+    "contactHint": "Phone and email help employers contact you. Leave any optional item blank; city or region is enough, without your full home address.",
+    "templateHints": {
+      "classic": "Serif type and a chronological layout for a traditional CV.",
+      "modern": "A green header band and highlighted sections for a modern profile.",
+      "compact": "Tighter type and spacing for more information in fewer pages.",
+      "executive": "A centred heading and formal type to emphasise leadership experience.",
+      "sidebar": "Contact details and skills on the left; experience and education on the right."
+    },
+    "validation": {
+      "phone": "Use 8–15 digits only, without spaces. Example: 0901234567.",
+      "email": "Enter an email with @ and a domain, e.g. name@example.com.",
+      "link": "Enter a link starting with https:// or http://."
+    }
   },
   "formTemplates": {
     "title": "Form templates",

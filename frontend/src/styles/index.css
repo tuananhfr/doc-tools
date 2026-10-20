@@ -207,6 +207,7 @@
 @import './site/pdf-workflow-studio.css';
 @import './site/pdf-review-studio.css';
 @import './site/text-document-studio.css';
+@import './site/cv-templates.css';
 @import './site/calculation-studio.css';
 @import './site/entertainment-studio.css';
 @import './site/daily-studio.css';
@@ -215,4 +216,5 @@
 @import './site/reference-pages.css';
 @import './site/community-compact.css';
 @import './site/experience.css';
+@import './site/tool-mobile-intro.css';
 @import './site/embed.css';

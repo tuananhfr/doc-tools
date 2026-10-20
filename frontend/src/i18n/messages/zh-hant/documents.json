@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "使用範例內容",
+    "exampleConfirm": "以此範例取代目前的履歷內容？",
+    "exampleNotice": "範例為虛構資料。選擇樣式會保留內容，按此按鈕才會填入範例。",
+    "optional": "選填",
+    "contactHint": "電話和信箱方便聯絡，也可留空；住址填寫城市即可，不必填寫完整住家地址。",
+    "templateHints": {
+      "classic": "襯線字體與依時間排列的傳統版式。",
+      "modern": "綠色標題區和重點突出的章節。",
+      "compact": "緊湊字體與間距，減少頁數。",
+      "executive": "置中標題和正式字體，突顯管理經驗。",
+      "sidebar": "左欄為聯絡方式與技能，右欄為經歷與教育。"
+    },
+    "validation": {
+      "phone": "電話號碼只能包含8–15位數字，不可有空格。例如：0901234567。",
+      "email": "電子郵件需要包含 @ 和網域。例如：name@example.com。",
+      "link": "請輸入以 https:// 或 http:// 開頭的連結。"
+    }
   },
   "formTemplates": {
     "title": "製作文件範本",

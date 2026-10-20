@@ -1,0 +1,72 @@
+/* Compact tool introductions on phones; desktop retains its full header. */
+@media (max-width: 767px) {
+  .cn-experience-controls,
+  .cn-experience-slot,
+  .cn-experience-fallback { display: none; }
+
+  .cn-tool-workspace .cn-idstudio-hero {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 10px;
+    min-height: 0;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  .cn-tool-workspace .cn-idstudio-hero-copy { display: contents; }
+  .cn-tool-workspace .cn-idstudio-hero-icon {
+    grid-column: 1;
+    grid-row: 1;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  .cn-tool-workspace .cn-idstudio-hero-icon .cn-tool-artwork { width: 40px; height: 40px; }
+  .cn-tool-workspace .cn-idstudio-hero h1 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    min-width: 0;
+    font-size: 21px;
+    line-height: 1.3;
+    letter-spacing: -.3px;
+    overflow-wrap: anywhere;
+  }
+  .cn-tool-workspace .cn-idstudio-hero-copy > p {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  .cn-tool-workspace .cn-idstudio-hero ul,
+  .cn-tool-workspace .cn-idstudio-hero-note,
+  .cn-tool-workspace .cn-idstudio-hero > .cn-idstudio-mascot { display: none; }
+
+  /* Tools using the original shared header follow the same compact layout. */
+  .cn-tool-workspace .cn-tool-intro {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 10px;
+    min-height: 0;
+    padding: 12px;
+  }
+  .cn-tool-workspace .cn-tool-intro__text { display: contents; }
+  .cn-tool-workspace .cn-tool-intro__icon { width: 40px; height: 40px; grid-column: 1; grid-row: 1; }
+  .cn-tool-workspace .cn-tool-intro__icon .cn-tool-artwork { width: 40px; height: 40px; }
+  .cn-tool-workspace .cn-tool-intro h1 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+  .cn-tool-workspace .cn-tool-description { grid-column: 1 / -1; margin: 0; font-size: 13px; line-height: 1.5; }
+  .cn-tool-workspace .cn-tool-meta { display: contents; }
+  .cn-tool-workspace .cn-tool-meta > .cn-tool-privacy { display: none; }
+  .cn-tool-workspace .cn-tool-meta > .cn-tool-offline-notice { grid-column: 1 / -1; }
+  .cn-tool-workspace .cn-tool-meta .cn-tool-capability,
+  .cn-tool-workspace .cn-tool-intro > .cn-studio-hero-art { display: none; }
+}

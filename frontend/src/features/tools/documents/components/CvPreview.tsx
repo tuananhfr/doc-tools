@@ -11,7 +11,8 @@ function Entries({ title, entries }: { title: string; entries: CvEntry[] }) {
 export function CvPreview({ draft, photoUrl }: { draft: CvDraft; photoUrl: string | null }) {
   const { t } = useTranslation('documents')
   const sidebar = draft.template === 'sidebar'
-  const contact = <div className="cn-cv-contact">{[draft.phone, draft.email, draft.location, draft.link].filter(Boolean).map((value, index) => <span key={index}>{value}</span>)}</div>
+  const details = [draft.phone, draft.email, draft.location, draft.link].filter(value => value.trim())
+  const contact = details.length ? <div className="cn-cv-contact">{details.map((value, index) => <span key={index}>{value}</span>)}</div> : null
   const skills = <>{(['skills', 'languages', 'certificates'] as const).map(key => draft[key] ? <section className="cn-cv-section" key={key}><h2>{t(`cv.sections.${key}`)}</h2><Lines value={draft[key]} /></section> : null)}</>
   return <article className={`cn-cv-print cn-cv--${draft.template}`}>
     <header className="cn-cv-header"><div><p className="cn-cv-kicker">{t('cv.print.kicker')}</p><h1>{draft.name || t('cv.fields.name')}</h1><p className="cn-cv-role">{draft.role || t('cv.fields.role')}</p></div>{photoUrl ? <img src={photoUrl} alt={t('cv.photoAlt')} /> : null}</header>

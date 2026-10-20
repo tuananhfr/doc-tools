@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "ប្រើខ្លឹមសារគំរូ",
+    "exampleConfirm": "ជំនួសខ្លឹមសារ CV បច្ចុប្បន្នដោយគំរូនេះឬ?",
+    "exampleNotice": "ទិន្នន័យប្រឌិត។ ការជ្រើសរើសប្លង់រក្សាខ្លឹមសារ ដោយប៊ូតុងនេះបញ្ចូលគំរូ។",
+    "optional": "មិនចាំបាច់",
+    "contactHint": "ទូរស័ព្ទ និងអ៊ីមែលសម្រាប់ទំនាក់ទំនង។ អាចទុកទទេ ហើយដាក់តែឈ្មោះទីក្រុងបាន។",
+    "templateHints": {
+      "classic": "អក្សរបុរាណ និងការរៀបតាមពេលវេលា។",
+      "modern": "ចំណងជើងពណ៌បៃតង និងផ្នែកច្បាស់លាស់។",
+      "compact": "អក្សរ និងគម្លាតតូចសម្រាប់ទំព័រតិច។",
+      "executive": "ចំណងជើងកណ្ដាល និងអក្សរផ្លូវការ។",
+      "sidebar": "ទំនាក់ទំនង និងជំនាញខាងឆ្វេង បទពិសោធន៍ និងការសិក្សាខាងស្ដាំ។"
+    },
+    "validation": {
+      "phone": "បញ្ចូលតែលេខ 8–15 ខ្ទង់ ដោយគ្មានចន្លោះ។ ឧទាហរណ៍៖ 0901234567។",
+      "email": "អ៊ីមែលត្រូវមាន @ និងដូមែន។ ឧទាហរណ៍៖ name@example.com។",
+      "link": "បញ្ចូលតំណដែលចាប់ផ្តើមដោយ https:// ឬ http://។"
+    }
   },
   "formTemplates": {
     "title": "សរសេរគំរូឯកសាររដ្ឋបាល",

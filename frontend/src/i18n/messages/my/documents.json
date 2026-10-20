@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "နမူနာအကြောင်းအရာ သုံးမည်",
+    "exampleConfirm": "လက်ရှိ CV ကို ဤနမူနာဖြင့် အစားထိုးမလား။",
+    "exampleNotice": "စိတ်ကူးယဉ်နမူနာ ဖြစ်သည်။ ပုံစံပြောင်းလျှင် မူရင်းစာသား မပျောက်ပါ။ ဤခလုတ်က နမူနာဖြည့်ပေးသည်။",
+    "optional": "မဖြစ်မနေ မဟုတ်ပါ",
+    "contactHint": "ဖုန်းနှင့် အီးမေးလ်က ဆက်သွယ်ရန် အထောက်အကူပြုသည်။ အလွတ်ထားနိုင်ပြီး မြို့အမည်သာ ရေးနိုင်သည်။",
+    "templateHints": {
+      "classic": "ရိုးရာစာလုံးပုံနှင့် အချိန်အစဉ်လိုက် ပုံစံ။",
+      "modern": "အစိမ်းရောင် ခေါင်းစီးနှင့် ထင်ရှားသော ကဏ္ဍများ။",
+      "compact": "စာလုံးနှင့် အကွာအဝေး ကျစ်လျစ်သောပုံစံ။",
+      "executive": "အလယ်ခေါင်းစဉ်နှင့် တည်ငြိမ်သောစာလုံးပုံ။",
+      "sidebar": "ဘယ်ဘက်တွင် အဆက်အသွယ်နှင့် ကျွမ်းကျင်မှု၊ ညာဘက်တွင် အတွေ့အကြုံနှင့် ပညာရေး။"
+    },
+    "validation": {
+      "phone": "ဖုန်းနံပါတ်ကို နေရာလွတ်မပါဘဲ ဂဏန်း 8–15 လုံးသာ ထည့်ပါ။ ဥပမာ: 0901234567။",
+      "email": "အီးမေးလ်တွင် @ နှင့် ဒိုမိန်း ပါရမည်။ ဥပမာ: name@example.com။",
+      "link": "https:// သို့မဟုတ် http:// ဖြင့်စသော လင့်ခ်ကို ထည့်ပါ။"
+    }
   },
   "formTemplates": {
     "title": "စာရွက်စာတမ်း ပုံစံ ရေးရန်",

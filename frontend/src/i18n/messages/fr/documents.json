@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "Utiliser un exemple",
+    "exampleConfirm": "Remplacer le CV actuel par cet exemple ?",
+    "exampleNotice": "Données fictives. Changer de modèle conserve votre contenu ; ce bouton insère un exemple.",
+    "optional": "Facultatif",
+    "contactHint": "Téléphone et e-mail facilitent le contact. Vous pouvez les omettre ; la ville suffit, sans adresse complète.",
+    "templateHints": {
+      "classic": "Police à empattements et présentation chronologique classique.",
+      "modern": "Bandeau vert et rubriques mises en valeur.",
+      "compact": "Police et espaces resserrés pour un CV plus court.",
+      "executive": "Titre centré et police formelle pour valoriser votre expérience.",
+      "sidebar": "Contact et compétences à gauche ; expérience et formation à droite."
+    },
+    "validation": {
+      "phone": "Saisissez 8 à 15 chiffres, sans espaces. Exemple : 0901234567.",
+      "email": "Saisissez un e-mail avec @ et un domaine, par exemple nom@example.com.",
+      "link": "Saisissez un lien commençant par https:// ou http://."
+    }
   },
   "formTemplates": {
     "title": "Modèles de documents",

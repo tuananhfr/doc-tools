@@ -31,35 +31,35 @@
       "synonyms": "trim video, cắt clip, mp4"
     },
     "video-gif": {
-      "name": "Tạo GIF từ video",
+      "name": "Tạo GIF",
       "description": "Biến một đoạn video ngắn thành ảnh động lặp lại",
-      "synonyms": "gif, ảnh động, video sang gif"
+      "synonyms": "gif, ảnh động, video sang gif, Tạo GIF từ video"
     },
     "extract-audio": {
-      "name": "Tách âm thanh từ video",
+      "name": "Tách âm thanh",
       "description": "Lấy âm thanh, xuất MP3, M4A hoặc WAV trên máy",
-      "synonyms": "video sang mp3, nhạc từ video, extract audio"
+      "synonyms": "video sang mp3, nhạc từ video, extract audio, Tách âm thanh từ video"
     },
     "assistant": {
-      "name": "Trợ lý chọn công cụ",
+      "name": "Trợ lý công cụ",
       "description": "Hỏi trợ lý AI riêng (bản Pro) nên dùng công cụ nào và làm thế nào",
       "privacyNote": "Câu hỏi gửi tới nhà cung cấp AI bạn tự cài, bằng khoá của bạn",
-      "synonyms": "trợ lý ai, hỏi cách làm, tư vấn công cụ"
+      "synonyms": "trợ lý ai, hỏi cách làm, tư vấn công cụ, Trợ lý chọn công cụ"
     },
     "remove-background": {
-      "name": "Xóa phông nền ảnh",
+      "name": "Xóa phông",
       "description": "AI tự động xóa nền ảnh trên thiết bị, chỉnh mép bằng cọ",
-      "synonyms": "tách nền, nền trong suốt, ảnh sản phẩm"
+      "synonyms": "tách nền, nền trong suốt, ảnh sản phẩm, Xóa phông nền ảnh"
     },
     "cv": {
-      "name": "Tạo CV xin việc",
+      "name": "Tạo CV",
       "description": "Soạn CV, chọn mẫu và in hoặc lưu PDF trên thiết bị",
-      "synonyms": "hồ sơ ứng tuyển, sơ yếu lý lịch, resume"
+      "synonyms": "hồ sơ ứng tuyển, sơ yếu lý lịch, resume, Tạo CV xin việc"
     },
     "pdf-password": {
-      "name": "Đặt, gỡ mật khẩu PDF",
+      "name": "Mật khẩu PDF",
       "description": "Mã hóa AES-256 hoặc gỡ khóa bằng mật khẩu hợp lệ",
-      "synonyms": "khóa pdf, bảo vệ pdf, mở pdf"
+      "synonyms": "khóa pdf, bảo vệ pdf, mở pdf, Đặt, gỡ mật khẩu PDF"
     },
     "family-calendar": {
       "name": "Lịch Gia Đình",
@@ -67,10 +67,10 @@
       "synonyms": "lịch gia đình, nhắc việc, sos, lịch học"
     },
     "address-conversion": {
-      "name": "Đổi địa chỉ sau sáp nhập",
+      "name": "Đổi địa chỉ",
       "description": "Đối chiếu địa chỉ cũ theo bảng xã/phường đủ cấp",
       "privacyNote": "Đối chiếu trên máy; góp ý chỉ gửi khi bạn đồng ý",
-      "synonyms": "địa chỉ mới, sáp nhập tỉnh, đổi tên xã"
+      "synonyms": "địa chỉ mới, sáp nhập tỉnh, đổi tên xã, Đổi địa chỉ sau sáp nhập"
     },
     "payroll": {
       "name": "Lương Gross – Net",
@@ -95,10 +95,10 @@
       "synonyms": "đơn xin nghỉ, giấy ủy quyền, biên bản bàn giao, biên nhận tiền, giấy nhận tiền"
     },
     "dictation": {
-      "name": "Ghi âm thành văn bản",
+      "name": "Ghi âm văn bản",
       "description": "Đọc chính tả tiếng Việt bằng nhận dạng giọng nói của trình duyệt",
       "privacyNote": "Âm thanh có thể được trình duyệt gửi tới dịch vụ nhận dạng giọng nói của họ",
-      "synonyms": "đọc chính tả, micro, speech to text"
+      "synonyms": "đọc chính tả, micro, speech to text, Ghi âm thành văn bản"
     },
     "magnifier": {
       "name": "Kính lúp",
@@ -111,9 +111,9 @@
       "synonyms": "diện tích xây dựng, dự toán nhà, đơn giá xây dựng"
     },
     "number-words": {
-      "name": "Đọc số thành chữ",
+      "name": "Số thành chữ",
       "description": "Viết số tiền bằng chữ cho chứng từ và hợp đồng",
-      "synonyms": "số tiền bằng chữ, viết số thành chữ, đọc tiền"
+      "synonyms": "số tiền bằng chữ, viết số thành chữ, đọc tiền, Đọc số thành chữ"
     },
     "loan": {
       "name": "Vay trả góp & tiết kiệm",
@@ -121,14 +121,14 @@
       "synonyms": "vay ngân hàng, dư nợ giảm dần, lãi vay"
     },
     "unit-price": {
-      "name": "So sánh giá theo đơn vị",
+      "name": "So sánh đơn giá",
       "description": "Quy hai sản phẩm về cùng lượng để so giá",
-      "synonyms": "giá mỗi kg, giá mỗi lít, mua sắm"
+      "synonyms": "giá mỗi kg, giá mỗi lít, mua sắm, So sánh giá theo đơn vị"
     },
     "study": {
-      "name": "Quy đổi điểm & xét tuyển",
+      "name": "Điểm xét tuyển",
       "description": "Quy đổi điểm và tính ưu tiên xét tuyển để tham khảo",
-      "synonyms": "điểm hệ 4, điểm hệ 10, điểm ưu tiên"
+      "synonyms": "điểm hệ 4, điểm hệ 10, điểm ưu tiên, Quy đổi điểm & xét tuyển"
     },
     "pomodoro": {
       "name": "Hẹn giờ tập trung",
@@ -141,14 +141,14 @@
       "synonyms": "chia hóa đơn, tiền đi chơi, cân bằng chi phí"
     },
     "legacy-font": {
-      "name": "Chuyển font & dấu tiếng Việt",
+      "name": "Chuyển font Việt",
       "description": "Đổi TCVN3, VNI và chuẩn hóa dấu sang Unicode",
-      "synonyms": "vni sang unicode, tcvn3 sang unicode, bỏ dấu"
+      "synonyms": "vni sang unicode, tcvn3 sang unicode, bỏ dấu, Chuyển font & dấu tiếng Việt"
     },
     "read-aloud": {
-      "name": "Đọc to văn bản",
+      "name": "Đọc văn bản",
       "description": "Nghe văn bản dán vào hoặc tệp PDF, Word, TXT bằng giọng của thiết bị hoặc giọng Chuyện Nhỏ",
-      "synonyms": "text to speech, nghe chữ, đọc văn bản",
+      "synonyms": "text to speech, nghe chữ, đọc văn bản, Đọc to văn bản",
       "privacyNote": "Văn bản và tệp đọc trên thiết bị; thẻ Link (khi bật) gửi đường dẫn để máy chủ tải bài hộ, không lưu."
     },
     "vietqr": {
@@ -157,9 +157,9 @@
       "synonyms": "qr ngân hàng, napas, mã chuyển khoản"
     },
     "invoice-xml": {
-      "name": "Đọc hóa đơn điện tử XML",
+      "name": "Đọc hóa đơn XML",
       "description": "Xem các trường và xuất bảng kê hàng hóa từ XML",
-      "synonyms": "hóa đơn xml, bảng kê hóa đơn, tt78"
+      "synonyms": "hóa đơn xml, bảng kê hóa đơn, tt78, Đọc hóa đơn điện tử XML"
     },
     "remove-metadata": {
       "name": "Xóa vị trí trong ảnh",
@@ -172,9 +172,9 @@
       "synonyms": "collage, lưới ảnh, nối ảnh"
     },
     "message-risk": {
-      "name": "Kiểm tra tin nhắn, link lạ",
+      "name": "Kiểm tra lừa đảo",
       "description": "Sàng lọc dấu hiệu lừa đảo mà không mở đường dẫn",
-      "synonyms": "lừa đảo, phishing, sms giả mạo"
+      "synonyms": "lừa đảo, phishing, sms giả mạo, Kiểm tra tin nhắn, link lạ"
     },
     "flashcards": {
       "name": "Thẻ ghi nhớ",
@@ -294,9 +294,9 @@
       "synonyms": "watermark, bôi đen, che mặt, che số, đóng dấu bản quyền"
     },
     "id-photo": {
-      "name": "Ảnh thẻ & In ảnh",
+      "name": "Ảnh thẻ",
       "description": "Cắt ảnh thẻ, xếp nhiều bản lên tờ in",
-      "synonyms": "ảnh 3x4, ảnh 4x6, ảnh hộ chiếu, in ảnh thẻ, passport"
+      "synonyms": "ảnh 3x4, ảnh 4x6, ảnh hộ chiếu, in ảnh thẻ, passport, Ảnh thẻ & In ảnh"
     },
     "qr-create": {
       "name": "Tạo QR Code",
@@ -325,9 +325,9 @@
       "synonyms": "vat, thuế gtgt, phần trăm, giảm giá, margin, markup, chia hoá đơn, lợi nhuận"
     },
     "date-calc": {
-      "name": "Tính ngày & thời hạn",
+      "name": "Tính ngày",
       "description": "Đếm ngày, ngày làm việc, cộng trừ ngày",
-      "synonyms": "đếm ngày, hạn chót, deadline, ngày làm việc, bao nhiêu ngày"
+      "synonyms": "đếm ngày, hạn chót, deadline, ngày làm việc, bao nhiêu ngày, Tính ngày & thời hạn"
     },
     "house-orientation": {
       "name": "Hướng nhà & la bàn",

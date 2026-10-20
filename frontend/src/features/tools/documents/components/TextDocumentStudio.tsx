@@ -20,7 +20,7 @@ export function TextDocumentStudio({ kind, children }: { kind: keyof typeof CONF
   const tool = catalog.find(item => item.id === config.id)!
   return <div className={`cn-textstudio cn-textstudio--${kind}`}><ImageStudio toolId={tool.id} icon={tool.icon} title={tool.name} subtitle={tool.description}
     heroNote={t(kind === 'cv' || kind === 'forms' ? 'textStudio.documentNote' : 'textStudio.textNote')}
-    category={{ title: t('textStudio.category'), icon: 'file-earmark-text', path: '/?nhom=mau-giay-to', tools: TOOLS, relatedTitle: t('textStudio.related') }}
+    category={{ title: t('textStudio.category'), icon: 'file-earmark-text', path: '/mau-giay-to', tools: TOOLS, relatedTitle: t('textStudio.related') }}
     steps={config.steps.map(key => t(key))}
     tips={[t(config.tip), t('textStudio.check'), t('textStudio.privacy')]}
     faq={[{ q: t('textStudio.accountQ'), a: t('textStudio.accountA') }, { q: t('textStudio.privacyQ'), a: t(kind === 'cv' ? 'textStudio.cvPrivacyA' : 'textStudio.privacyA') }]}>

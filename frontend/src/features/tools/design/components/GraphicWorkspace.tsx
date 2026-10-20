@@ -2,7 +2,7 @@ import { FileInput } from '@/features/tools/hub/components/flow/FileInput'
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { TemplatePicker, ToolBoard, ToolPanel } from '@/features/tools/hub';
+import { TemplatePicker, ToolBoard, ToolLeaveGuard, ToolPanel } from '@/features/tools/hub';
 import { ResponsivePreview } from '@/features/tools/hub/components/board/ResponsivePreview';
 import { FlowProgress } from '@/features/tools/hub/components/flow/FlowProgress';
 import { FlowResult } from '@/features/tools/hub/components/flow/FlowResult';
@@ -42,6 +42,7 @@ export function GraphicWorkspace({ files, onFiles, templates, onBack, design = f
     const update = (patch: Partial<GraphicBrand>) => setBrand(current => ({ ...current, ...patch }));
     const action = run.state.phase === 'running' ? <FlowProgress progress={run.state.progress} onCancel={run.cancel}/> : <Button disabled={Boolean(blocked)} onClick={() => void run.start(graphicTask(job, format))}>{t('shop.run')}</Button>;
     return <>
+    {design ? <ToolLeaveGuard active={Boolean(brand.title || brand.subtitle || files.length || logo)} message={tc('workspace.unsaved')} /> : null}
     {onBack ? <Button className="mb-3" variant="outline-secondary" disabled={run.state.phase === 'running'} onClick={onBack}>{t('shop.back')}</Button> : null}
     {run.state.phase === 'done' ? <FlowResult result={run.state.result} onRestart={run.reset}/> : <ToolBoard className={design ? 'cn-design-board' : undefined}><ResponsivePreview action={design ? <><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="palette2"/></span><div><h2>{tc('studio.design.previewTitle')}</h2><p>{tc('studio.design.previewHint')}</p></div></div>{action}</> : action} templates={picker} preview={<>
       <div className="cn-graphic-preview">{preview.url ? <img src={preview.url} alt={t('shop.preview')}/> : <p>{preview.error ? t('shop.previewFailed') : t('shop.previewWaiting')}</p>}</div>

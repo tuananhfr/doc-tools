@@ -13,6 +13,7 @@ import { receiptProblem, receiptWords } from '../utils/receipt'
 import { anyFormEdited, switchFormKind, type FormSwitchState } from '../utils/template-switch'
 import { DocumentTemplateLayout, TextDocumentStudio } from '../components/TextDocumentStudio'
 import { NumberField, ToolLeaveGuard, type NumberRule } from '@/features/tools/hub'
+import { capitalizeInitial } from '../utils/capitalization'
 
 const RECEIPT_MONEY: NumberRule = { kind: 'money', min: 1, max: 999_999_999_999_999 }
 const FORM_KINDS = Object.keys(FORM_TEMPLATES) as FormKind[]
@@ -45,8 +46,8 @@ export default function FormTemplatesPage() {
         <p className="cn-studio-form-hint">{studio('inputHint')}</p>
         <div className="cn-document-fields">
         {template.fields.map((field) => field.key === 'amount' ? <NumberField key={field.key} className="mt-3" label={t('formTemplates.fields.amount')} rule={RECEIPT_MONEY} unit="đ" value={values.amount ?? ''} onChange={amount => setValues(current => ({ ...current, amount }))} /> : <label className="erp-flow-field__label mt-3" key={field.key}>{t(`formTemplates.fields.${field.label}`)}{field.multiline
-          ? <Form.Control as="textarea" rows={3} maxLength={5000} value={values[field.key] || ''} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />
-          : <Form.Control maxLength={200} placeholder={field.key === 'date' || kind === 'leave' && (field.key === 'from' || field.key === 'to') ? t('formTemplates.datePlaceholder') : undefined} isInvalid={(dateProblem === 'from' && field.key === 'from') || ((dateProblem === 'to' || dateProblem === 'order') && field.key === 'to') || receiptError === 'date' && field.key === 'date'} value={values[field.key] || ''} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />}</label>)}
+          ? <Form.Control as="textarea" autoCapitalize="sentences" rows={3} maxLength={5000} value={values[field.key] || ''} onBlur={event => setValues(current => ({ ...current, [field.key]: capitalizeInitial(event.target.value) }))} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />
+          : <Form.Control autoCapitalize="sentences" maxLength={200} placeholder={field.key === 'date' || kind === 'leave' && (field.key === 'from' || field.key === 'to') ? t('formTemplates.datePlaceholder') : undefined} isInvalid={(dateProblem === 'from' && field.key === 'from') || ((dateProblem === 'to' || dateProblem === 'order') && field.key === 'to') || receiptError === 'date' && field.key === 'date'} value={values[field.key] || ''} onBlur={event => { if (!['from', 'to', 'date', 'fromId', 'toId'].includes(field.key)) setValues(current => ({ ...current, [field.key]: capitalizeInitial(event.target.value, ['name', 'fromName', 'toName', 'giver', 'receiver', 'sender', 'employee'].includes(field.key)) })) }} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} />}</label>)}
         </div>
         {dateProblem ? <p className="erp-tool-form__error mt-2" role="alert">{t(`formTemplates.dateErrors.${dateProblem}`)}</p> : null}
         {kind === 'receipt' ? <><p className="mt-2">{t('formTemplates.print.receipt.words', { value: receiptWords(values.amount ?? '') ?? '—' })}</p>{receiptError ? <p role="alert">{t(`formTemplates.receiptErrors.${receiptError}`)}</p> : null}</> : null}

@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "記入例を使う",
+    "exampleConfirm": "現在の内容をこの記入例に置き換えますか？",
+    "exampleNotice": "架空の記入例です。様式の選択では内容は変わらず、このボタンで例を入力します。",
+    "optional": "任意",
+    "contactHint": "電話やメールは連絡に役立ちます。未入力でも構いません。住所は市区町村程度で十分です。",
+    "templateHints": {
+      "classic": "セリフ体と時系列構成の伝統的な様式。",
+      "modern": "緑色の見出し帯で各項目を強調。",
+      "compact": "文字と余白を詰めた簡潔な構成。",
+      "executive": "中央揃えの見出しと落ち着いた書体で管理経験を強調。",
+      "sidebar": "左列に連絡先と技能、右列に職歴と学歴。"
+    },
+    "validation": {
+      "phone": "電話番号は空白なしの数字8〜15桁で入力してください。例：0901234567。",
+      "email": "@とドメインを含むメールアドレスを入力してください。例：name@example.com。",
+      "link": "https:// または http:// で始まるリンクを入力してください。"
+    }
   },
   "formTemplates": {
     "title": "書類テンプレートを作成",

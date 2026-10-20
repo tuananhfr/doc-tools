@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "Gunakan contoh",
+    "exampleConfirm": "Gantikan kandungan CV dengan contoh ini?",
+    "exampleNotice": "Data rekaan. Memilih gaya mengekalkan kandungan; butang ini mengisi contoh.",
+    "optional": "Pilihan",
+    "contactHint": "Telefon dan e-mel memudahkan hubungan. Boleh dibiarkan kosong; nama bandar sudah memadai.",
+    "templateHints": {
+      "classic": "Fon serif dan susunan kronologi klasik.",
+      "modern": "Jalur tajuk hijau dan bahagian yang ditonjolkan.",
+      "compact": "Fon dan jarak padat untuk CV yang ringkas.",
+      "executive": "Tajuk di tengah dan fon formal bagi pengalaman kepimpinan.",
+      "sidebar": "Hubungan dan kemahiran di kiri; pengalaman dan pendidikan di kanan."
+    },
+    "validation": {
+      "phone": "Gunakan 8–15 digit tanpa ruang. Contoh: 0901234567.",
+      "email": "E-mel mesti mempunyai @ dan domain, contohnya nama@example.com.",
+      "link": "Masukkan pautan bermula dengan https:// atau http://."
+    }
   },
   "formTemplates": {
     "title": "Templat borang",

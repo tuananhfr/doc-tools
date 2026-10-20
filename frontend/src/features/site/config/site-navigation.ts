@@ -13,7 +13,7 @@ export const SITE_NAVIGATION = [
 export const HUB_NAVIGATION: readonly ActiveHubPageSlug[] = ['tai-lieu-pdf', 'hinh-anh', 'mau-giay-to', 'ma-qr', 'tinh-toan', 'kham-pha-giai-tri', 'gia-dinh']
 
 /** Category menus open the same directory filters instead of separate landing pages. */
-export const hubDirectoryPath = (slug: ActiveHubPageSlug) => `/?nhom=${slug}`
+export const hubDirectoryPath = (slug: ActiveHubPageSlug) => `/${slug}`
 
 export const FOOTER_LINKS = [
   { id: 'suggest', to: '/de-xuat-tien-ich' },

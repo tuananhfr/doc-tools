@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useId, useMemo, useState } from 'react'
 import { Button, Form, ProgressBar } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import { downloadOutput, ToolSegments } from '@/features/tools/hub'
+import { downloadOutput, ToolLeaveGuard, ToolSegments } from '@/features/tools/hub'
 import { Icon } from '@/components/ui'
 import { MediaStudio } from '@/features/tools/video/components/MediaStudio'
 import { useDebounce } from '@/hooks'
@@ -38,6 +38,7 @@ const TAB_ICON = { text: 'clipboard', file: 'file-earmark-text', link: 'link-45d
 
 export default function ReadAloudPage() {
   const { t } = useTranslation('accessibility')
+  const { t: common } = useTranslation('common')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.read' })
   const { t: media } = useTranslation('video', { keyPrefix: 'mediaStudio.read' })
   const hintId = useId()
@@ -132,6 +133,7 @@ export default function ReadAloudPage() {
             : t('shared.ready')
 
   return <MediaStudio kind="read"><div className="cn-media-editor cn-readstudio-editor">
+    <ToolLeaveGuard active={Boolean(pasted || fileSource || linkSource)} message={common('workspace.unsaved')} />
     <section className="cn-idstudio-panel cn-readstudio-input"><h2>{media('inputTitle')}</h2>
       <p className="cn-studio-form-hint">{studio('inputHint')}</p>
       <div className="erp-read-tabs cn-read-input-tabs">

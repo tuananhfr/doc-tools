@@ -4,10 +4,14 @@ import { DOCUMENT_EXPORT_LIMITS, documentCharacterCount } from '../types/print-d
 export async function documentDocx(document: PrintDocument): Promise<Blob> {
   if (documentCharacterCount(document) > DOCUMENT_EXPORT_LIMITS.characters) throw new Error('DOCUMENT_TEXT_LIMIT')
   const { Document, Packer, Paragraph, TextRun, ImageRun, Table, TableRow, TableCell, WidthType, AlignmentType, Footer, PageNumber, BorderStyle } = await import('docx')
-  const paragraphs = (blocks: DocumentBlock[]) => blocks.flatMap(block => block.text.split('\n').map(text => new Paragraph({
-    alignment: block.align === 'center' || document.layout === 'centered' && ['title', 'subtitle'].includes(block.kind) ? AlignmentType.CENTER : AlignmentType.LEFT,
+  const paragraphs = (blocks: DocumentBlock[]) => blocks.flatMap(block => block.text.split('\n').map((text, lineIndex) => new Paragraph({
+    alignment: block.align === 'center' || document.layout === 'centered' && (block.kind === 'title' || block.kind === 'heading' || block.kind === 'subtitle' && block.period === undefined) ? AlignmentType.CENTER : AlignmentType.LEFT,
+    shading: document.layout === 'band' && (block.kind === 'title' || block.kind === 'heading' || block.kind === 'subtitle' && block.period === undefined) ? { fill: 'EAF5F2' } : undefined,
+    border: document.font === 'Georgia' && document.blocks[0]?.kind === 'title' && block.kind === 'heading' ? { bottom: { style: BorderStyle.SINGLE, color: document.accent.slice(1), size: 6 } } : undefined,
+    indent: document.cv && block.period !== undefined ? { left: document.layout === 'compact' ? 1360 : 1880, hanging: block.period && lineIndex === 0 ? (document.layout === 'compact' ? 1360 : 1880) : 0 } : undefined,
+    tabStops: document.cv && block.period !== undefined ? [{ type: 'left', position: document.layout === 'compact' ? 1360 : 1880 }] : undefined,
     keepNext: block.kind === 'heading', spacing: { before: block.kind === 'heading' ? 180 : 0, after: document.layout === 'compact' ? 80 : 130 },
-    children: [new TextRun({ text, font: document.font, size: block.kind === 'title' ? 50 : block.kind === 'heading' ? (document.fontSize + 1) * 2 : document.fontSize * 2, bold: ['title', 'heading', 'subtitle'].includes(block.kind), italics: block.kind === 'note', color: block.kind === 'heading' ? document.accent.slice(1) : '202C3A' })],
+    children: [...(block.period && lineIndex === 0 ? [new TextRun({text: block.period + '\t', size: 18, color: '526176'})] : []), new TextRun({ text, font: document.font, size: block.kind === 'title' ? 50 : block.kind === 'heading' ? (document.fontSize + 1) * 2 : document.fontSize * 2, bold: ['title', 'heading', 'subtitle'].includes(block.kind), italics: block.kind === 'note', color: block.kind === 'heading' ? document.accent.slice(1) : '202C3A' })],
   })))
   const children: (InstanceType<typeof Paragraph> | InstanceType<typeof Table>)[] = []
   let photoParagraph: InstanceType<typeof Paragraph> | null = null

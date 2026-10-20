@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "استخدام مثال",
+    "exampleConfirm": "هل تريد استبدال محتوى السيرة الحالي بهذا المثال؟",
+    "exampleNotice": "بيانات توضيحية وهمية. تغيير القالب يحافظ على المحتوى؛ هذا الزر فقط يملأ المثال.",
+    "optional": "اختياري",
+    "contactHint": "الهاتف والبريد يساعدان على التواصل. يمكن ترك الحقول فارغة؛ يكفي اسم المدينة دون عنوان المنزل الكامل.",
+    "templateHints": {
+      "classic": "خط تقليدي وتنسيق زمني للسيرة الكلاسيكية.",
+      "modern": "شريط عنوان أخضر وأقسام بارزة.",
+      "compact": "خط ومسافات أصغر لعرض المعلومات في صفحات أقل.",
+      "executive": "عنوان في الوسط وخط رسمي لإبراز الخبرة القيادية.",
+      "sidebar": "التواصل والمهارات يسارًا والخبرة والتعليم يمينًا."
+    },
+    "validation": {
+      "phone": "أدخل من 8 إلى 15 رقمًا فقط دون مسافات. مثال: 0901234567.",
+      "email": "أدخل بريدًا إلكترونيًا يحتوي على @ واسم نطاق، مثل name@example.com.",
+      "link": "أدخل رابطًا يبدأ بـ https:// أو http://."
+    }
   },
   "formTemplates": {
     "title": "إنشاء نماذج المستندات",

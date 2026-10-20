@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "Gamitin ang halimbawa",
+    "exampleConfirm": "Palitan ang kasalukuyang CV ng halimbawang ito?",
+    "exampleNotice": "Kathang-isip na datos. Hindi nagbabago ang nilalaman sa pagpili ng estilo; ang button na ito ang maglalagay ng halimbawa.",
+    "optional": "Opsyonal",
+    "contactHint": "Makakatulong ang telepono at email sa pakikipag-ugnayan. Maaaring iwanang blangko; sapat na ang lungsod.",
+    "templateHints": {
+      "classic": "Serif na font at klasikong pagkakasunod ayon sa panahon.",
+      "modern": "Berdeng header at malinaw na mga seksiyon.",
+      "compact": "Mas siksik na teksto at pagitan para sa maikling CV.",
+      "executive": "Nakasentrong pamagat at pormal na font para sa pamumuno.",
+      "sidebar": "Contact at kasanayan sa kaliwa; karanasan at edukasyon sa kanan."
+    },
+    "validation": {
+      "phone": "Gumamit ng 8–15 numero na walang espasyo. Halimbawa: 0901234567.",
+      "email": "Maglagay ng email na may @ at domain, gaya ng name@example.com.",
+      "link": "Maglagay ng link na nagsisimula sa https:// o http://."
+    }
   },
   "formTemplates": {
     "title": "Mga template ng form",

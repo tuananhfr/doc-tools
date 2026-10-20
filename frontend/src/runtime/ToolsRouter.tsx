@@ -10,7 +10,6 @@ import { ToolsLayout } from '@/layouts/ToolsLayout'
 import { LandingLayout } from '@/features/site/landing/LandingLayout'
 import { LandingPage } from '@/features/site/landing/LandingPage'
 import ToolDirectoryPage from '@/features/site/pages/ToolDirectoryPage'
-import CategoryHubPage from '@/features/site/pages/CategoryHubPage'
 import AboutPage from '@/features/site/pages/AboutPage'
 import SupportPage from '@/features/site/pages/SupportPage'
 import DataProcessingPage from '@/features/site/pages/DataProcessingPage'
@@ -49,14 +48,14 @@ const routes: RouteObject[] = [{ path: '/gioi-thieu', element: <LandingLayout />
   { path: 'he-sinh-thai', element: <EcosystemPage /> },
   // Trang site khai trước `:tool`; slug giữ ở features/site/config/site-pages.ts.
   { path: 'xay-dung', element: <Navigate to="/" replace /> },
-  { path: 'gia-dinh', element: <Navigate to="/?nhom=gia-dinh" replace /> },
-  { path: 'kham-pha-giai-tri', element: <Navigate to="/?nhom=kham-pha-giai-tri" replace /> },
-  { path: 'tai-lieu-pdf', element: <CategoryHubPage key="tai-lieu-pdf" slug="tai-lieu-pdf" /> },
-  { path: 'hinh-anh', element: <CategoryHubPage key="hinh-anh" slug="hinh-anh" /> },
-  { path: 'ma-qr', element: <CategoryHubPage key="ma-qr" slug="ma-qr" /> },
-  { path: 'doc-va-nghe', element: <Navigate to="/?nhom=gia-dinh" replace /> },
-  { path: 'tinh-toan', element: <CategoryHubPage key="tinh-toan" slug="tinh-toan" /> },
-  { path: 'mau-giay-to', element: <CategoryHubPage key="mau-giay-to" slug="mau-giay-to" /> },
+  { path: 'gia-dinh', element: <ToolDirectoryPage /> },
+  { path: 'kham-pha-giai-tri', element: <ToolDirectoryPage /> },
+  { path: 'tai-lieu-pdf', element: <ToolDirectoryPage /> },
+  { path: 'hinh-anh', element: <ToolDirectoryPage /> },
+  { path: 'ma-qr', element: <ToolDirectoryPage /> },
+  { path: 'doc-va-nghe', element: <Navigate to="/gia-dinh" replace /> },
+  { path: 'tinh-toan', element: <ToolDirectoryPage /> },
+  { path: 'mau-giay-to', element: <ToolDirectoryPage /> },
   { path: 've-chung-toi', element: <AboutPage /> },
   { path: 'ho-tro', element: <SupportPage /> },
   { path: 'xu-ly-du-lieu', element: <DataProcessingPage /> },

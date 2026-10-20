@@ -3,6 +3,7 @@ import { BASE_PATH, withBase } from '@/utils/url'
 import { ROUTES } from '@/constants/routes'
 import { legacyToolPath } from '@/features/tools/hub/utils/tool-lookup'
 import { ADMIN_ROOT } from '@/features/admin'
+import { directoryGroup } from '@/features/site/utils/directory-groups'
 import { DEFAULT_LOCALE, LOCALE_COOKIE, isLocale, localizePath, splitLocalePath } from '@/i18n/locales'
 
 export function proxy(request: NextRequest) {
@@ -24,6 +25,15 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 308)
   }
   const { locale, rest, explicit } = splitLocalePath(url.pathname)
+  if (rest === '/' || rest.replace(/\/+$/, '') === '/cong-cu') {
+    const group = directoryGroup(url.searchParams.get('nhom'))
+    if (group !== 'all') {
+      url.pathname = withBase(localizePath('/' + group, locale))
+      url.searchParams.delete('nhom')
+      url.searchParams.delete('q')
+      return NextResponse.redirect(url, 308)
+    }
+  }
   if (rest.replace(/\/+$/, '') === '/cong-cu') {
     url.pathname = withBase(localizePath('/', locale))
     return NextResponse.redirect(url, 308)

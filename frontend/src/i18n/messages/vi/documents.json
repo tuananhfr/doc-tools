@@ -67,7 +67,24 @@
     "remember": "Nhớ bản nháp trên thiết bị này",
     "availableDraft": "Có bản nháp đã lưu trước đây. Bạn có thể mở lại để tiếp tục.",
     "memoryOnly": "Thông tin chỉ giữ trong phiên đang mở; ảnh không được lưu.",
-    "photoFromHandoff": "Đã nhận ảnh chân dung từ công cụ Ảnh thẻ (chỉ trong phiên này)."
+    "photoFromHandoff": "Đã nhận ảnh chân dung từ công cụ Ảnh thẻ (chỉ trong phiên này).",
+    "example": "Dùng nội dung ví dụ",
+    "exampleConfirm": "Thay nội dung CV đang soạn bằng ví dụ của mẫu này?",
+    "exampleNotice": "Dữ liệu minh họa, không phải hồ sơ thật. Chọn mẫu chỉ đổi bố cục; bấm nút trên mới điền ví dụ.",
+    "optional": "Không bắt buộc",
+    "contactHint": "Điện thoại và email giúp nhà tuyển dụng liên hệ. Có thể để trống mục chưa muốn cung cấp; nơi ở chỉ cần tỉnh/thành phố, không cần địa chỉ nhà đầy đủ.",
+    "templateHints": {
+      "classic": "Phông có chân, trình bày theo thời gian; phù hợp hồ sơ truyền thống.",
+      "modern": "Khối tiêu đề xanh, các mục có điểm nhấn; phù hợp công việc sáng tạo và truyền thông.",
+      "compact": "Chữ và khoảng cách gọn để trình bày nhiều thông tin trong ít trang hơn.",
+      "executive": "Tiêu đề cân giữa, phông trang trọng; làm nổi bật kinh nghiệm quản lý.",
+      "sidebar": "Cột trái dành cho liên hệ và kỹ năng; cột phải là kinh nghiệm và học vấn."
+    },
+    "validation": {
+      "phone": "Số điện thoại chỉ gồm 8–15 chữ số, không có khoảng trắng. Ví dụ: 0901234567.",
+      "email": "Email cần có @ và tên miền. Ví dụ: tenban@example.com.",
+      "link": "Nhập liên kết bắt đầu bằng https:// hoặc http://."
+    }
   },
   "formTemplates": {
     "title": "Soạn mẫu giấy tờ",

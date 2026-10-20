@@ -67,7 +67,24 @@
     "remember": "Remember this draft on this device",
     "availableDraft": "A previously saved draft is available. Open it to continue.",
     "memoryOnly": "Details stay in this open session; the photo is not saved.",
-    "photoFromHandoff": "Portrait received from the ID photo tool (this session only)."
+    "photoFromHandoff": "Portrait received from the ID photo tool (this session only).",
+    "example": "ใช้เนื้อหาตัวอย่าง",
+    "exampleConfirm": "แทนที่เนื้อหาปัจจุบันด้วยตัวอย่างนี้หรือไม่?",
+    "exampleNotice": "ข้อมูลสมมติ การเลือกแบบจะเก็บเนื้อหาเดิม ปุ่มนี้เท่านั้นที่เติมตัวอย่าง",
+    "optional": "ไม่บังคับ",
+    "contactHint": "โทรศัพท์และอีเมลช่วยให้ติดต่อได้ เว้นว่างได้ และระบุเพียงเมืองโดยไม่ต้องใส่ที่อยู่บ้านเต็ม",
+    "templateHints": {
+      "classic": "แบบดั้งเดิม ใช้ตัวอักษรมีเชิงและเรียงตามเวลา",
+      "modern": "แถบหัวเรื่องสีเขียวและหัวข้อที่เด่นชัด",
+      "compact": "ตัวอักษรและระยะห่างกระชับเพื่อลดจำนวนหน้า",
+      "executive": "หัวเรื่องกึ่งกลางและตัวอักษรทางการ เน้นประสบการณ์บริหาร",
+      "sidebar": "ข้อมูลติดต่อและทักษะทางซ้าย ประสบการณ์และการศึกษาทางขวา"
+    },
+    "validation": {
+      "phone": "หมายเลขโทรศัพท์ต้องเป็นตัวเลข 8–15 หลัก ไม่มีช่องว่าง เช่น 0901234567",
+      "email": "อีเมลต้องมี @ และโดเมน เช่น name@example.com",
+      "link": "กรอกลิงก์ที่ขึ้นต้นด้วย https:// หรือ http://"
+    }
   },
   "formTemplates": {
     "title": "เขียนแบบฟอร์มเอกสาร",
