@@ -3,10 +3,12 @@ import { TOOL_ERROR, TOOL_LIMITS, type FlowRejected } from '@/features/tools/hub
 import { translate } from '@/i18n/runtime'
 import { intakeImage } from '../services/image-intake'
 import type { ImageItem } from '../types/image.types'
+import { useMobileImageReveal } from './useMobileImageReveal'
 
 interface ImageFilesOptions {
   /** `false` = công cụ làm trên MỘT ảnh: chọn ảnh mới là thay ảnh cũ. */
   multiple: boolean
+  revealTarget?: string
 }
 
 function release(items: ImageItem[]) {
@@ -17,10 +19,11 @@ function release(items: ImageItem[]) {
 }
 
 /** Ảnh người dùng đã chọn cho một công cụ ảnh: danh sách có thứ tự + ảnh bị từ chối kèm lý do. */
-export function useImageFiles({ multiple }: ImageFilesOptions) {
+export function useImageFiles({ multiple, revealTarget }: ImageFilesOptions) {
   const [items, setItems] = useState<ImageItem[]>([])
   const [loading, setLoading] = useState<{ done: number; total: number } | null>(null)
   const [rejected, setRejected] = useState<FlowRejected[]>([])
+  useMobileImageReveal(items.map(item => item.id), revealTarget)
 
   // URL của ảnh phải thu hồi khi rời công cụ — đọc danh sách MỚI NHẤT qua ref, không qua closure cũ.
   const latest = useRef<ImageItem[]>([])

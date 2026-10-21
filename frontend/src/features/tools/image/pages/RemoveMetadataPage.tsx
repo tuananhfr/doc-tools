@@ -14,7 +14,7 @@ export default function RemoveMetadataPage() {
   const { t } = useTranslation('image')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.metadata' })
   const { t: s } = useTranslation('image', { keyPrefix: 'extendedStudio.metadata' })
-  const images = useImageFiles({ multiple: false }), item = images.items[0]
+  const images = useImageFiles({ multiple: false, revealTarget: '.cn-metadatastudio-output' }), item = images.items[0]
   const [busy, setBusy] = useState(false), [error, setError] = useState('')
   const [result, setResult] = useState<MetadataResult | null>(null), [resultUrl, setResultUrl] = useState<string | null>(null), [original, setOriginal] = useState(false)
   useEffect(() => { setError(''); setResult(null); setOriginal(false) }, [item?.id])

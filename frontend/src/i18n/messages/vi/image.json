@@ -599,7 +599,7 @@
         "a": "Có. Chọn khổ giấy và số bản ở mục Nâng cao, rồi bấm In ảnh. Trong hộp thoại in, chọn kích thước thật / 100%, bỏ tùy chọn vừa trang giấy."
       }
     },
-    "upload": "Tải ảnh lên",
+    "upload": "Tải ảnh",
     "customize": "Tùy chỉnh",
     "previewDownload": "Xem trước & Tải về",
     "dropTitle": "Kéo thả ảnh vào đây",
@@ -608,12 +608,12 @@
     "changePhoto": "Đổi ảnh khác",
     "selectedPhoto": "Ảnh đang chọn",
     "or": "hoặc",
-    "camera": "Chụp ảnh bằng camera",
+    "camera": "Chụp ảnh",
     "trySample": "Thử với ảnh mẫu",
     "loading": "Đang mở ảnh…",
     "sampleFailed": "Chưa tải được ảnh mẫu. Bấm thử lại hoặc chọn ảnh từ máy.",
     "dismiss": "Đóng thông báo",
-    "sampleTitle": "Ảnh mẫu (bấm để dùng thử)",
+    "sampleTitle": "Ảnh mẫu",
     "sampleLabel": "Thử tạo ảnh thẻ 3 × 4",
     "sampleDisclosure": "Chân dung minh họa được tạo bằng AI",
     "localHint": "Ảnh của bạn được xử lý trong trình duyệt, không tải lên máy chủ.",

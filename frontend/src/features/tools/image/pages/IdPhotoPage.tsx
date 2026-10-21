@@ -15,6 +15,7 @@ import { ImageStudioUpload } from '../components/ImageStudioUpload'
 import { PhotoSheetPreview } from '../components/PhotoSheetPreview'
 import { GAP_LIMIT, PAPER_SIZES, PHOTO_SIZES, PRINT_DPI, SHEET_MARGIN } from '../config/photo-presets'
 import { useIdPhotoPreview } from '../hooks/useIdPhotoPreview'
+import { useSamplePhoto } from '../hooks/useSamplePhoto'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { usePhotoCrop } from '../hooks/usePhotoCrop'
 import { idPhotoTask, type PhotoOutput } from '../services/edit-tasks'
@@ -27,7 +28,7 @@ import MixedPhotoPage from './MixedPhotoPage'
 
 const SIZES = [...PHOTO_SIZES, { id: '6x9', label: '6 × 9 cm', width: 60, height: 90 }]
 const QUICK_SIZES = ['2x3', '3x4', '4x6', '6x9', 'custom']
-const BACKGROUNDS = [{ id: 'original', color: null }, { id: 'white', color: '#ffffff' }, { id: 'blue', color: '#65a9e8' }, { id: 'red', color: '#e52638' }, { id: 'gray', color: '#d9d9d9' }, { id: 'green', color: '#009b64' }] as const
+const BACKGROUNDS = [{ id: 'original', color: null }, { id: 'white', color: '#ffffff' }, { id: 'blue', color: '#65a9e8' }] as const
 const TABS = ['size', 'beauty', 'align', 'advanced'] as const
 const SAMPLE = '/assets/id-photo/portrait-demo-v2.png'
 
@@ -36,7 +37,8 @@ export default function IdPhotoPage() {
   const { t } = useTranslation('image')
   const { t: s } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const ids = useId()
-  const images = useImageFiles({ multiple: false })
+  const images = useImageFiles({ multiple: false, revealTarget: '.cn-idstudio-preview' })
+  const samplePhoto = useSamplePhoto(SAMPLE)
   const run = useFlowRun()
   const nudge = useDownloadNudge()
   const [mixed, setMixed] = useState(false)
@@ -72,7 +74,8 @@ export default function IdPhotoPage() {
     ? { id: 'custom', label: s('customLabel', { width: customWidth, height: customHeight }), width: customOk ? width * 10 : 30, height: customOk ? height * 10 : 40 }
     : SIZES.find(size => size.id === photoId) ?? SIZES[1]
   const paper = PAPER_SIZES.find(size => size.id === paperId) ?? PAPER_SIZES[0]
-  const item = images.items[0] ?? null
+  const uploadedItem = images.items[0] ?? null
+  const item = uploadedItem ?? samplePhoto
   const crop = usePhotoCrop(item, photo.width / photo.height)
   const preview = useIdPhotoPreview(item, crop.rect, photo, appearance)
   const ready = !!item && !!crop.rect
@@ -137,8 +140,7 @@ export default function IdPhotoPage() {
             <div className="cn-idstudio-sizes">{QUICK_SIZES.map(size => <button type="button" key={size} aria-pressed={photoId === size} onClick={() => setPhotoId(size)}><span style={{ '--photo-ratio': size === '2x3' || size === '4x6' || size === '6x9' ? '2 / 3' : '3 / 4' } as CSSProperties}><Icon name={size === 'custom' ? 'plus-lg' : 'person-fill'} /></span><small>{size === 'custom' ? s('custom') : SIZES.find(entry => entry.id === size)?.label}</small></button>)}</div>
             {photoId === 'custom' ? <div className="cn-idstudio-pair">{([['width', customWidth, setCustomWidth], ['height', customHeight, setCustomHeight]] as const).map(([key, value, setter]) => <label key={key}>{s(key)}<InputGroup><Form.Control aria-label={s(key)} type="text" inputMode="decimal" value={value} isInvalid={!customOk} onChange={e => setter(e.target.value)} /><InputGroup.Text>cm</InputGroup.Text></InputGroup></label>)}</div> : null}
             <fieldset className="cn-idstudio-backgrounds"><legend>{s('backgroundTitle')}</legend><div>{BACKGROUNDS.map(bg => <button type="button" key={bg.id} aria-pressed={appearance.background === bg.color} onClick={() => setAppearance(current => ({ ...current, background: bg.color }))}><span className={bg.color ? '' : 'is-original'} style={{ backgroundColor: bg.color ?? undefined }}>{appearance.background === bg.color ? <Icon name="check-lg" /> : null}</span><small>{s(`backgrounds.${bg.id}`)}</small></button>)}<label className="cn-idstudio-color"><span style={{ backgroundColor: appearance.background ?? '#ffffff' }} /><input type="color" value={appearance.background ?? '#ffffff'} aria-label={s('customBackground')} onChange={e => setAppearance(current => ({ ...current, background: e.target.value }))} /><small>{s('custom')}</small></label></div></fieldset>
-            {appearance.background ? <p className="cn-idstudio-note">{t('portrait.backgroundHint')}</p> : null}
-            <div className="cn-idstudio-quality"><p><Icon name="check-circle-fill" />{s('identity')}</p><p><Icon name="check-circle-fill" />{s('quality')}</p><button type="button" onClick={() => setTab('align')}><Icon name="crop" />{s('adjustCrop')}<Icon name="arrow-right" /></button></div>
+            <div className="cn-idstudio-quality"><button type="button" onClick={() => setTab('align')}><Icon name="crop" />{s('adjustCrop')}<Icon name="arrow-right" /></button></div>
           </> : null}
           {tab === 'beauty' ? <><h3>{s('beautyTitle')}</h3><p className="cn-idstudio-note">{s('beautyHint')}</p>{(['brightness', 'contrast'] as const).map(key => <label key={key} className="cn-idstudio-range"><span>{s(key)}<output>{appearance[key] ?? 0}%</output></span><Form.Range min={-30} max={30} value={appearance[key] ?? 0} onChange={e => setAppearance(current => ({ ...current, [key]: Number(e.target.value) }))} /></label>)}<Button variant="outline-secondary" onClick={() => setAppearance(current => ({ ...current, brightness: 0, contrast: 0 }))}><Icon name="arrow-counterclockwise" />{s('resetBeauty')}</Button></> : null}
           {tab === 'align' ? <><h3>{s('alignTitle')}</h3><p className="cn-idstudio-note">{s('alignHint')}</p>{item && crop.rect ? <><CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={locked} onRectChange={crop.setRect} /><Button variant="outline-secondary" onClick={() => crop.setRect(rectForAspect(item, photo.width / photo.height))}><Icon name="arrow-counterclockwise" />{s('resetCrop')}</Button></> : <p className="cn-idstudio-empty-crop"><Icon name="person-bounding-box" />{s('alignEmpty')}</p>}</> : null}
@@ -159,7 +161,7 @@ export default function IdPhotoPage() {
         <h2 id={`${ids}-preview-title`}><span>3.</span> {s('previewDownload')}</h2>
         <div className="cn-idstudio-tabs cn-idstudio-preview-tabs"><button type="button" aria-pressed={!original} onClick={() => setOriginal(false)}>{s('preview')}</button><button type="button" aria-pressed={original} onClick={() => setOriginal(true)}>{s('original')}</button></div>
         <div className="cn-idstudio-photo-area"><div className="cn-idstudio-photo" style={{ aspectRatio: original && item ? `${item.width} / ${item.height}` : `${photo.width} / ${photo.height}` }}><img src={item ? original ? item.url : preview.url ?? item.url : withBase(SAMPLE)} alt={item ? original ? s('originalPhoto') : s('previewPhoto') : s('samplePreview')} />{preview.busy && !original ? <span role="status"><Spinner as="span" size="sm" />{appearance.background ? t('removeBg.processing') : s('updating')}</span> : null}</div><div className="cn-idstudio-photo-strip" aria-hidden="true">{[0, 1, 2, 3].map(index => <img key={index} src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt="" style={{ aspectRatio: `${photo.width} / ${photo.height}` }} />)}</div></div>
-        {!ready ? <p className="cn-idstudio-demo-note">{s('demoNote')}</p> : null}
+        {!uploadedItem ? <p className="cn-idstudio-demo-note">{s('sampleDisclosure')}</p> : null}
         <dl className="cn-idstudio-output-meta"><div><dt>{s('dimensions')}</dt><dd>{photo.label}</dd></div><div><dt>{s('resolution')}</dt><dd>{dpi !== null ? `${dpi} DPI` : '—'}</dd></div><div><dt>{s('file')}</dt><dd>{outputWidth ? `${outputWidth} × ${Math.round(outputWidth * photo.height / photo.width)} px · JPG` : 'JPG · 300 DPI'}</dd></div></dl>
         {dpi !== null && dpi < LOW_DPI ? <p className="cn-idstudio-note cn-idstudio-warning" role="status">{t('idPhoto.lowDpi', { dpi, min: LOW_DPI })}</p> : null}
         <div className="cn-idstudio-downloads"><Button variant="primary" disabled={!ready || locked || !!photoBlocked} onClick={() => exportPhoto('single')}><Icon name="download" />{s('download')}</Button><Button variant="outline-primary" disabled={!ready || locked || !!photoBlocked || !!sheetBlocked} onClick={() => exportPhoto(sheetOutput)}><Icon name="collection" />{s('downloadSheet', { count: layout.cells.length })}</Button><Button variant="outline-primary" disabled={!ready || locked || !!photoBlocked || !!sheetBlocked} onClick={() => exportPhoto('sheet', true)}><Icon name="printer" />{s('print')}</Button></div>

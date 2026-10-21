@@ -32,7 +32,7 @@ export default function CropImagePage() {
   const { t: s } = useTranslation('image', { keyPrefix: 'cropStudio' })
   const { t: common } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const ids = useId()
-  const images = useImageFiles({ multiple: false })
+  const images = useImageFiles({ multiple: false, revealTarget: '.cn-cropstudio-stage' })
   const run = useFlowRun()
   const nudge = useDownloadNudge()
   const item = images.items[0] ?? null

@@ -1,0 +1,27 @@
+.cn-photo-source-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
+.cn-photo-source-actions .btn { margin: 0; min-height: 44px; }
+.cn-backgroundstudio-demo { display: block; max-width: 100%; max-height: 220px; margin: 0 auto 12px; border-radius: 8px; }
+.cn-idstudio .cn-idstudio-backgrounds > div { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 767px) {
+  .cn-idstudio-upload .cn-idstudio-drop { min-height: 0; padding: 12px; gap: 10px; }
+  .cn-idstudio-upload .cn-idstudio-drop > .bi,
+  .cn-idstudio-upload .cn-idstudio-drop:not(:has(.cn-idstudio-uploaded)) > strong { display: none; }
+  .cn-idstudio-upload .cn-idstudio-uploaded { max-height: 80px; width: auto; max-width: 100%; object-fit: contain; }
+  .cn-idstudio-upload .cn-idstudio-drop strong { font-size: 12px; overflow-wrap: anywhere; }
+  .cn-idstudio-upload .cn-idstudio-drop small { font-size: 11px; }
+  .cn-photo-source-actions .btn { font-size: 14px; white-space: nowrap; }
+  .cn-image-studio .cn-idstudio-samples { margin-top: 12px; }
+  .cn-image-studio .cn-idstudio-samples > h3 { margin-bottom: 8px; font-size: 13px; }
+  .cn-image-studio .cn-idstudio-samples button { padding: 8px; gap: 10px; }
+  .cn-image-studio .cn-idstudio-samples button img { width: 44px; height: 58px; object-fit: cover; }
+  .cn-image-studio .cn-idstudio-samples button small { font-size: 11px; }
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker { min-height: 0; padding: 12px; gap: 10px; }
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker__icon,
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker__title { display: none; }
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker__actions { display: flex; flex-wrap: wrap; width: 100%; gap: 8px; }
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker__actions > .btn { flex: 1 1 100px; margin: 0; min-height: 44px; font-size: 14px; }
+  .cn-image-studio .cn-convertstudio-upload .erp-flow-picker__actions > .btn-outline-primary { order: -1; }
+  .cn-image-studio .cn-convertstudio-upload > .cn-idstudio-local,
+  .cn-image-studio .cn-convertstudio-upload > .cn-idstudio-note:has(.bi-shield-check) { display: none; }
+  :is(.cn-idstudio-preview, .cn-cropstudio-stage, .cn-convertstudio-preview, .cn-compressstudio-output, .cn-backgroundstudio-output, .cn-metadatastudio-output, .cn-collagestudio-preview) { scroll-margin-top: calc(var(--cn-header-height, 64px) + 12px); }
+}

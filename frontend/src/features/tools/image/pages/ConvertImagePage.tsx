@@ -8,6 +8,7 @@ import { Icon } from '@/components/ui'
 import { formatFileSize } from '@/utils/format'
 import { withBase } from '@/utils/url'
 import { ImageStudio } from '../components/ImageStudio'
+import { ImageCameraInput } from '../components/ImageCameraInput'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { canEncodeWebp } from '../services/image-codec'
 import { convertImagesTask } from '../services/image-tasks'
@@ -25,7 +26,7 @@ export default function ConvertImagePage() {
   const { t: s } = useTranslation('image', { keyPrefix: 'convertStudio' })
   const { t: common } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const ids = useId()
-  const images = useImageFiles({ multiple: true })
+  const images = useImageFiles({ multiple: true, revealTarget: '.cn-convertstudio-preview' })
   const run = useFlowRun()
   const nudge = useDownloadNudge()
   const [format, setFormat] = useState<ImageFormat>('jpeg')
@@ -77,7 +78,7 @@ export default function ConvertImagePage() {
     <div className="cn-idstudio-editor cn-convertstudio-editor">
       <section className="cn-idstudio-panel cn-convertstudio-upload" aria-labelledby={`${ids}-upload`}>
         <h2 id={`${ids}-upload`}>1. {s('uploadTitle')}</h2>
-        <FilePicker accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple title={s('drop')} hint={t('shell.hint')} compact={count > 0} loading={images.loading} disabled={locked} onFiles={addFiles} />
+        <FilePicker accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple title={s('drop')} hint={t('shell.hint')} pickLabel={t('idPhotoStudio.upload')} extra={<ImageCameraInput disabled={locked} onFiles={files => { if (!locked) void images.addFiles(files) }} />} compact={count > 0} loading={images.loading} disabled={locked} onFiles={addFiles} />
         {count ? <FileList files={images.items.map(image => ({ id: image.id, name: image.name, size: image.size, icon: 'file-earmark-image', detail: sizeLabel(image), thumbnail: image.thumbnail ?? undefined }))} disabled={locked} onRemove={images.remove} onClear={images.clear} /> : <div className="cn-convertstudio-sample"><span>{s('or')}</span><Button variant="outline-primary" disabled={locked} onClick={() => void trySample()}>{sampleBusy ? <Spinner as="span" size="sm" /> : <Icon name="image" />}{s('sample')}</Button></div>}
         {sampleFailed ? <p role="alert" className="erp-tool-form__error">{common('sampleFailed')}</p> : null}
         {images.rejected.length ? <div className="cn-convertstudio-rejected" role="alert">{images.rejected.map((file, index) => <p key={index}><strong>{file.name}</strong>: {file.reason}</p>)}<Button variant="link" onClick={images.dismissRejected}>{s('dismiss')}</Button></div> : null}

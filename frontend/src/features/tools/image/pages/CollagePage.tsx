@@ -8,6 +8,7 @@ import { Icon } from '@/components/ui'
 import { formatFileSize } from '@/utils/format'
 import { withBase } from '@/utils/url'
 import { ImageStudio } from '../components/ImageStudio'
+import { useMobileImageReveal } from '../hooks/useMobileImageReveal'
 import { CollageFileError, makeImageCollage } from '../services/collage'
 import { COLLAGE_GAP_RULE, collageBlock, collageFileProblem } from '../utils/collage-input'
 import { SHOP_LAYOUTS } from '@/features/tools/design/config/graphic-templates'
@@ -50,6 +51,7 @@ export default function CollagePage() {
   const [result, setResult] = useState<{ files: File[]; columns: number; gap: number; blob: Blob } | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
   const urls = useCollageUrls(files)
+  useMobileImageReveal(files.map(file => `${file.name}:${file.lastModified}:${file.size}`), '.cn-collagestudio-preview')
   const gap = readNumber(gapText, COLLAGE_GAP_RULE)
   const block = collageBlock(files.length, gap)
   const fileProblem = collageFileProblem(files.length)

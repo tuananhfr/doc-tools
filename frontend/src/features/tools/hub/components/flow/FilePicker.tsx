@@ -21,10 +21,11 @@ interface FilePickerProps extends PickerCopy {
   onFiles: (files: File[]) => void
   /** Đường vào khác ngoài chọn tệp (chụp ảnh…), đứng cạnh nút chọn tệp. */
   extra?: ReactNode
+  pickLabel?: string
 }
 
 /** Vùng thả + nút chọn tệp của bước 1. */
-export function FilePicker({ accept, multiple, title, hint, compact, loading, disabled, onFiles, extra }: FilePickerProps) {
+export function FilePicker({ accept, multiple, title, hint, compact, loading, disabled, onFiles, extra, pickLabel: customPickLabel }: FilePickerProps) {
   const inputId = useId()
   const { t } = useTranslation('common')
   const [over, setOver] = useState(false)
@@ -37,7 +38,7 @@ export function FilePicker({ accept, multiple, title, hint, compact, loading, di
     if (files.length > 0) onFiles(multiple ? files : files.slice(0, 1))
   }
 
-  const pickLabel = compact ? (multiple ? t('filePicker.add') : t('filePicker.pickOther')) : t('filePicker.pick')
+  const pickLabel = customPickLabel ?? (compact ? (multiple ? t('filePicker.add') : t('filePicker.pickOther')) : t('filePicker.pick'))
 
   return (
     <section

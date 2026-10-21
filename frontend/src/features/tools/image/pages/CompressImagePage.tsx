@@ -7,6 +7,7 @@ import { FileList } from '@/features/tools/hub/components/flow/FileList'
 import { recordQualityEvent } from '@/features/tools/hub/services/quality-events'
 import { formatFileSize } from '@/utils/format'
 import { ImageUtilityStudio } from '../components/ImageUtilityStudio'
+import { ImageCameraInput } from '../components/ImageCameraInput'
 import { useImageFiles } from '../hooks/useImageFiles'
 import { compressImagesTask } from '../services/image-tasks'
 import { sizeLabel } from '../utils/image-format'
@@ -21,7 +22,7 @@ export default function CompressImagePage() {
   const { t: s } = useTranslation('image', { keyPrefix: 'utilityStudio.compress' })
   const { t: shared } = useTranslation('image', { keyPrefix: 'convertStudio' })
   const edgeId = useId()
-  const images = useImageFiles({ multiple: true }), run = useFlowRun(), nudge = useDownloadNudge()
+  const images = useImageFiles({ multiple: true, revealTarget: '.cn-compressstudio-output' }), run = useFlowRun(), nudge = useDownloadNudge()
   const [level, setLevel] = useState<Level>('medium'), [maxEdge, setMaxEdge] = useState(0)
   const [original, setOriginal] = useState(false), [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const count = images.items.length, item = images.items[0]
@@ -39,7 +40,7 @@ export default function CompressImagePage() {
   const save = () => { if (result) { downloadOutput(result.output); recordQualityEvent('download', 'compress-image'); nudge.onDownloaded() } }
   return <ImageUtilityStudio kind="compress"><div className="cn-idstudio-editor cn-compressstudio-editor">
     <section className="cn-idstudio-panel cn-convertstudio-upload"><h2>{s('inputTitle')}</h2>
-      <FilePicker accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple title={t('compress.pickerTitle')} hint={t('shell.hint')} compact={count > 0} loading={images.loading} disabled={locked} onFiles={files => { if (!locked) void images.addFiles(files) }} />
+      <FilePicker accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple title={t('compress.pickerTitle')} hint={t('shell.hint')} pickLabel={t('idPhotoStudio.upload')} extra={<ImageCameraInput disabled={locked} onFiles={files => { if (!locked) void images.addFiles(files) }} />} compact={count > 0} loading={images.loading} disabled={locked} onFiles={files => { if (!locked) void images.addFiles(files) }} />
       {count ? <FileList files={images.items.map(image => ({ id: image.id, name: image.name, size: image.size, icon: 'file-earmark-image', detail: sizeLabel(image), thumbnail: image.thumbnail ?? undefined }))} disabled={locked} onRemove={images.remove} onClear={images.clear} /> : null}
       {images.rejected.length ? <div className="cn-compressstudio-rejected" role="alert">{images.rejected.map((entry, index) => <p key={index}><strong>{entry.name}</strong> — {entry.reason}</p>)}<Button variant="link" onClick={images.dismissRejected}>{s('dismiss')}</Button></div> : null}
       <p className="cn-idstudio-note"><Icon name="shield-check" />{s('privacy')}</p>

@@ -31,18 +31,15 @@ export function ImageStudioUpload({ images, disabled, sampleBusy, sampleFailed, 
     <h2 id={`${id}-title`}><span>1.</span> {s('upload')}</h2>
     <div className={`cn-idstudio-drop${over ? ' is-over' : ''}`} onDragOver={event => { event.preventDefault(); if (!disabled) setOver(true) }} onDragLeave={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOver(false) }} onDrop={event => { event.preventDefault(); setOver(false); if (!disabled) onFiles(Array.from(event.dataTransfer.files)) }}>
       {item ? <img className="cn-idstudio-uploaded" src={item.thumbnail ?? item.url} alt={s('selectedPhoto')} /> : <Icon name="cloud-arrow-up" />}
-      <strong>{item ? item.name : s('dropTitle')}</strong><span>{item ? formatFileSize(item.size) : s('dropHint')}</span>
-      <label htmlFor={`${id}-file`} className={`btn btn-primary${disabled ? ' disabled' : ''}`}>{images.loading || sampleBusy ? <Spinner as="span" size="sm" /> : null}{item ? s('changePhoto') : s('choosePhoto')}</label>
+      <strong>{item ? item.name : s('dropTitle')}</strong>{item ? <span>{formatFileSize(item.size)}</span> : null}
+      <div className="cn-photo-source-actions"><Button variant="outline-primary" disabled={disabled} onClick={onCamera}><Icon name="camera" />{s('camera')}</Button><label htmlFor={`${id}-file`} className={`btn btn-primary${disabled ? ' disabled' : ''}`}>{images.loading || sampleBusy ? <Spinner as="span" size="sm" /> : <Icon name="image" />}{s('upload')}</label></div>
       <input id={`${id}-file`} type="file" className="visually-hidden" aria-label={s('choosePhoto')} accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" disabled={disabled} onChange={event => { const files = Array.from(event.target.files ?? []); event.target.value = ''; if (files.length) onFiles(files) }} />
       <small>{t('shell.hint')}</small>
     </div>
-    <div className="cn-idstudio-or"><span>{s('or')}</span></div>
-    <div className="cn-idstudio-upload-actions"><Button variant="outline-primary" disabled={disabled} onClick={onCamera}><Icon name="camera" />{s('camera')}</Button><Button variant="outline-primary" disabled={disabled} onClick={onSample}><Icon name="image" />{s('trySample')}</Button></div>
     {images.loading || sampleBusy ? <p role="status" className="cn-idstudio-note">{s('loading')}</p> : null}
     {sampleFailed ? <p role="alert" className="erp-tool-form__error">{s('sampleFailed')}</p> : null}
     {images.rejected.length ? <div className="cn-idstudio-rejected" role="alert">{images.rejected.map((file, index) => <p key={index}><strong>{file.name}</strong>: {file.reason}</p>)}<Button variant="link" onClick={images.dismissRejected}>{s('dismiss')}</Button></div> : null}
     <div className="cn-idstudio-samples"><h3>{s('sampleTitle')}</h3><button type="button" onClick={onSample} disabled={disabled}><img src={withBase(sampleUrl)} alt="" /><span>{sampleLabel}<small>{s('sampleDisclosure')}</small></span><Icon name="arrow-right" /></button></div>
-    <p className="cn-idstudio-local"><Icon name="shield-check" />{s('localHint')}</p>
     {item ? <Button variant="link" className="cn-idstudio-remove" disabled={disabled} onClick={onClear}><Icon name="trash3" />{s('removePhoto')}</Button> : null}
     {children}
   </section>
