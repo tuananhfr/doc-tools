@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { mergeOcrPasses } from './ocr-consensus'
+import { mergeOcrPasses, selectOcrExportPass } from './ocr-consensus'
 import { needsOcrReview, ocrWords } from './ocr-review'
 import type { OcrLine } from './ocr-runs'
 
@@ -9,6 +9,48 @@ function words(values: { text: string; x: number; width: number }[]) {
   return ocrWords([line], 1, point => point, { width: 200, height: 100 })
 }
 describe('OCR pass consensus', () => {
+  it('recovers full lines after perspective scanning even when a truncated original has a high score', () => {
+    const pass = (name: 'original' | 'local', text: string, confidence: number) => ({ pass: name, engineVersion: 'test', words: words([{ text, x: 0, width: 180 }]).map(word => ({ ...word, confidence })) })
+    const original = pass('original', 'Câu 18. Đại hội Quốc tế Cộng\nkẻ thù trước mắt nguy hiểm của', 91.3)
+    const local = pass('local', 'Câu 18. Đại hội Quốc tế Cộng sản lần thứ VII (7/1935) xác định\nkẻ thù trước mắt nguy hiểm của nhân dân thế giới là gì?', 93.2)
+    expect(selectOcrExportPass([original, local])).toBe(local)
+    expect(selectOcrExportPass([original, { ...local, words: local.words.map(word => ({ ...word, confidence: 90 })) }])).toBe(original)
+    const unrelated = pass('local', 'Nhiều chữ hoàn toàn khác được thêm vào trang và không khớp nội dung cũ của hình chụp', 93.2)
+    expect(selectOcrExportPass([original, unrelated])).toBe(original)
+    const repeated = pass('local', 'Câu '.repeat(40), 93.2)
+    expect(selectOcrExportPass([original, repeated])).toBe(original)
+  })
+  it('accepts a substantially stronger local reading when the original missed entire paragraphs', () => {
+    const original = { pass: 'original' as const, words: words([{ text: 'Đoạn bị thiếu', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 87 })), engineVersion: 'test' }
+    const recovered = { pass: 'local' as const, words: words([{ text: 'Đoạn bị thiếu và các câu hỏi được đọc lại đầy đủ', x: 0, width: 180 }]).map(word => ({ ...word, confidence: 94 })), engineVersion: 'test' }
+    expect(selectOcrExportPass([original, recovered])).toBe(recovered)
+    expect(selectOcrExportPass([original, { ...recovered, words: recovered.words.map(word => ({ ...word, confidence: 88 })) }])).toBe(original)
+    expect(selectOcrExportPass([original, { ...recovered, pass: 'contrast' }])).toBe(original)
+  })
+  it('recovers missing text when a local reading is longer at an equal or higher score', () => {
+    const original = { pass: 'original' as const, words: words([{ text: 'Một trang chữ', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 92 })), engineVersion: 'test' }
+    const local = { pass: 'local' as const, words: words([{ text: 'Một trang chữ rõ', x: 0, width: 80 }]).map(word => ({ ...word, confidence: 93 })), engineVersion: 'test' }
+    expect(selectOcrExportPass([original, local])).toBe(local)
+    expect(selectOcrExportPass([original, { ...local, words: local.words.map(word => ({ ...word, confidence: 89 })) }])).toBe(original)
+  })
+  it('accepts a measurably stronger local reading without merging fragments into it', () => {
+    const original = { pass: 'original' as const, words: words([{ text: 'Một trang chữ', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 90 })), engineVersion: 'test' }
+    const local = { pass: 'local' as const, words: words([{ text: 'Một trang chữ', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 93 })), engineVersion: 'test' }
+    expect(selectOcrExportPass([original, local])).toBe(local)
+    expect(selectOcrExportPass([original, { ...local, words: local.words.map(word => ({ ...word, confidence: 89 })) }])).toBe(original)
+  })
+  it('exports a complete reading rather than concatenating unmatched noise from another pass', () => {
+    const original = { pass: 'original' as const, words: words([{ text: 'Thành phần', x: 0, width: 60 }]), engineVersion: 'test' }
+    const noisy = { pass: 'contrast' as const, words: words([{ text: 'HN', x: 120, width: 20 }]).map(word => ({ ...word, confidence: 0 })), engineVersion: 'test' }
+    expect(mergeOcrPasses([original, noisy])).toHaveLength(2)
+    expect(selectOcrExportPass([original, noisy])).toBe(original)
+  })
+  it('prefers a stronger full-page pass but not a short high-confidence fragment', () => {
+    const original = { pass: 'original' as const, words: words([{ text: 'Thành phần', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 60 })), engineVersion: 'test' }
+    const better = { pass: 'contrast' as const, words: words([{ text: 'Thành phần', x: 0, width: 60 }]), engineVersion: 'test' }
+    expect(selectOcrExportPass([original, better])).toBe(better)
+    expect(selectOcrExportPass([original, { ...better, words: words([{ text: 'A', x: 0, width: 10 }]) }])).toBe(original)
+  })
   it('proposes a stronger aligned reading without changing raw text or its score', () => {
     const original = words([{ text: 'BIẾN', x: 0, width: 60 }]).map(word => ({ ...word, confidence: 64, confidenceLevel: 'MEDIUM' as const }))
     const [result] = mergeOcrPasses([{ pass: 'original', words: original, engineVersion: 'test' }, { pass: 'contrast', words: words([{ text: 'BIÊN', x: 0, width: 60 }]), engineVersion: 'test' }])

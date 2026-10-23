@@ -111,7 +111,7 @@ export default function CropImagePage() {
         <dl className="cn-idstudio-output-meta"><div><dt>{s('sourceSize')}</dt><dd>{item ? sizeLabel(item) : '—'}</dd></div><div><dt>{s('outputSize')}</dt><dd>{output ? sizeLabel(output) : '—'}</dd></div><div><dt>{s('format')}</dt><dd>{format ? IMAGE_FORMAT[format].label : 'JPG / PNG / WebP'}</dd></div></dl>
         <div className="cn-cropstudio-preserves"><Icon name="check-circle-fill" /><span>{s('preserves')}</span></div>
         <div className="cn-idstudio-downloads"><Button variant="primary" disabled={!ready || locked || pristine || preview.failed} onClick={save}><Icon name="download" />{s('save')}</Button></div>
-        {ready && pristine ? <p className="cn-idstudio-note">{t('crop.blocked')}</p> : null}
+        {ready && pristine ? <p className="cn-idstudio-note" role="status">{t('crop.blocked')}</p> : null}
         {preview.failed ? <p className="erp-tool-form__error" role="alert">{t('shared.previewFailed')}</p> : null}
         {busy ? <div className="cn-idstudio-run" role="status"><Spinner as="span" size="sm" />{s('saving')}<Button variant="link" onClick={run.cancel}>{common('cancel')}</Button></div> : null}
         {run.state.phase === 'idle' && run.state.error ? <p className="erp-tool-form__error" role="alert">{run.state.error.message}</p> : null}

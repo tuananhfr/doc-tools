@@ -72,6 +72,7 @@
   "zoomOut": "Zoom out on the original",
   "waitingReview": "Waiting for your review and confirmation.",
   "passNames": {
+    "local": "Pengecaman mengikut kawasan",
     "original": "Original image",
     "contrast": "Contrast",
     "deskew": "Deskew",

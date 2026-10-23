@@ -43,7 +43,7 @@ export interface OcrPageResult {
   pass: OcrPass
   words: OcrWordResult[]
   qualityFlags: OcrQualityFlag[]
-  pipeline?: { version: string; profile: OcrProfile; fingerprint: string; rotation: number; passes: { id: OcrPass; toOriginal: OcrMatrix; operations?: OcrPass[]; crops?: { targetWordId: string; toOriginal: OcrMatrix }[] }[] }
+  pipeline?: { version: string; profile: OcrProfile; fingerprint: string; rotation: number; passes: { id: OcrPass; toOriginal: OcrMatrix; operations?: readonly OcrPass[]; crops?: { targetWordId: string; toOriginal: OcrMatrix }[]; regions?: { bounds: { x: number; y: number; width: number; height: number }; toOriginal: OcrMatrix }[] }[] }
   layout?: OcrLayout
   validations?: OcrValidation[]
 }

@@ -9,6 +9,11 @@ const SPACE = /\s/
  * người chép chữ ra thì cần đúng dòng như trên trang.
  */
 export function plainText(page: PageText): string {
+  // OCR already provides word tokens and line endings. Photo geometry is unreliable on
+  // curved/skewed pages and must not glue words together or split a line into fragments.
+  if (page.ocr || page.runs.length && page.runs.every(run => run.fontName === 'ocr')) {
+    return page.runs.map(run => `${run.text.trim()}${run.eol ? '\n' : ' '}`).join('').split('\n').map(line => line.trim()).join('\n').trim()
+  }
   let out = ''
   page.runs.forEach((run, index) => {
     const previous = page.runs[index - 1]

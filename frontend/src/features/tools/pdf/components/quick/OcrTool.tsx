@@ -29,17 +29,20 @@ export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
   const [output, setOutput] = useState<OcrOutput>(tableIntent ? 'xlsx' : imagesOnly ? 'text' : 'pdf')
   const [options, setOptions] = useState<OcrPipelineOptions>({ ...DEFAULT_OCR_OPTIONS, profile: tableIntent ? 'table' : DEFAULT_OCR_OPTIONS.profile })
   const [invalidCorners, setInvalidCorners] = useState(false)
+  const [checkOcr, setCheckOcr] = useState(false)
+  const structured = output !== 'pdf' && output !== 'text'
   const content = <div className="cn-pdf-quick-workspace cn-ocr-studio"><ol className="cn-ocr-steps" aria-label={o('workflow')}>
     {STEPS.map((step, index) => <li key={step}><span aria-hidden="true">{index + 1}</span>{o(`steps.${step}`)}</li>)}
   </ol><QuickToolShell conversionStudio={imagesOnly ? 'imageText' : 'ocr'} quick={quick} accept={accept} multiple reorder
-    resultKey={JSON.stringify([quick.items.map(item => item.source.id), output, options])}
+    resultKey={JSON.stringify([quick.items.map(item => item.source.id), output, options, checkOcr])}
     waitingLabel={review.pages ? o('waitingReview') : undefined}
     pickerTitle={t(imagesOnly ? 'imageToText.pickerTitle' : 'ocrPage.pickerTitle')}
     runLabel={t(imagesOnly ? 'imageToText.run' : 'ocrPage.run')} runIcon="card-text" blocked={invalidCorners ? o('invalidCorners') : (output === 'csv' || output === 'xlsx') && options.profile !== 'table' ? o('tableRequired') : null}
-    task={() => ocrTask(quick.items, output, review.request, options)}
+    task={() => ocrTask(quick.items, output, checkOcr || structured ? review.request : undefined, options)}
     stage={() => review.pages ? <OcrReview pages={review.pages} onComplete={review.complete} /> : undefined}
     options={<>
       <OcrOutputOptions tiles value={output} onChange={setOutput} />
+      <div className="cn-imagespdf-ocr"><label><input type="checkbox" checked={checkOcr || structured} disabled={structured} onChange={event => setCheckOcr(event.target.checked)} /> {t('documentScan.ocrOptionalReview')}</label><p className="cn-idstudio-note">{t(structured ? 'documentScan.ocrStructuredReview' : 'documentScan.ocrUnreviewed')}</p></div>
       <OcrProfileOptions value={options} onChange={setOptions}>
       <OcrCornerPicker item={quick.items[0]} onChange={perspective => setOptions(current => ({ ...current, perspective, maxPasses: perspective && current.maxPasses === 1 ? 2 : current.maxPasses }))} onInvalid={setInvalidCorners} />
       <p className="erp-flow-field__hint">{t('ocrReview.handwriting')}</p>

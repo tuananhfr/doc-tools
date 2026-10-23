@@ -6,6 +6,49 @@ export interface OcrPassWords { pass: OcrPass; words: OcrWordResult[]; engineVer
 const candidate = (word: OcrWordResult, pass: OcrPassWords): OcrCandidate => ({ id: `${pass.pass}:${word.id}`, engine: 'tesseract', engineVersion: pass.engineVersion, pass: pass.pass, rawText: word.rawText, score: word.confidence, bbox: word.bbox })
 const comparable = (text: string) => text.normalize('NFC').replace(/\s+/gu, '')
 
+/** Count repeated tokens separately: extra noise must not masquerade as recovered text. */
+function retainedContent(original: OcrPassWords, alternative: OcrPassWords) {
+  const tokens = (pass: OcrPassWords) => pass.words.flatMap(word => word.rawText.normalize('NFC').toLocaleLowerCase('vi').match(/[\p{L}\p{N}]+/gu) ?? [])
+  const remaining = new Map<string, number>()
+  for (const token of tokens(alternative)) remaining.set(token, (remaining.get(token) ?? 0) + 1)
+  let total = 0, retained = 0
+  for (const token of tokens(original)) {
+    total += token.length
+    const count = remaining.get(token) ?? 0
+    if (count) { retained += token.length; remaining.set(token, count - 1) }
+  }
+  return total ? retained / total : 0
+}
+
+/** Export one coherent reading; alternative-pass fragments remain available for optional review. */
+export function selectOcrExportPass(passes: OcrPassWords[]): OcrPassWords | undefined {
+  const complete = passes.filter(pass => !pass.targetWordIds)
+  const primary = complete[0]
+  if (!primary) return undefined
+  const characters = (pass: OcrPassWords) => pass.words.reduce((sum, word) => sum + word.rawText.replace(/\s/gu, '').length, 0)
+  const score = (pass: OcrPassWords) => {
+    let total = 0, weighted = 0
+    for (const word of pass.words) { const length = word.rawText.length; total += length; weighted += length * word.confidence }
+    return total ? weighted / total : 0
+  }
+  let selected = primary
+  const baseline = characters(primary)
+  for (const pass of complete.slice(1)) {
+    const count = characters(pass)
+    // A tiny high-confidence snippet must not replace an otherwise complete page.
+    if (baseline && count < baseline * .75) continue
+    // A short reading can still score highly after dropping difficult words.
+    // Accept a longer local reading when it retains most existing content and
+    // has a higher, strong score; length alone must not reject recovered lines.
+    const strongRecovery = pass.pass === 'local' && score(pass) >= 90 && score(pass) > score(selected) && retainedContent(selected, pass) >= .85
+    if (baseline && count > baseline * 1.35 && !strongRecovery && (pass.pass !== 'local' || score(pass) < 85 || score(pass) < score(selected) + 5)) continue
+    const gain = pass.pass === 'local' ? 2 : 5
+    const recovered = pass.pass === 'local' && count >= characters(selected) * 1.02 && score(pass) >= score(selected)
+    if (recovered || score(pass) >= score(selected) + gain) selected = pass
+  }
+  return selected
+}
+
 /** Agreement between correlated passes never upgrades the engine's score. */
 export function mergeOcrPasses(passes: OcrPassWords[]): OcrWordResult[] {
   if (!passes.length) return []

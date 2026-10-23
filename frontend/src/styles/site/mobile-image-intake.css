@@ -3,6 +3,11 @@
 .cn-backgroundstudio-demo { display: block; max-width: 100%; max-height: 220px; margin: 0 auto 12px; border-radius: 8px; }
 .cn-idstudio .cn-idstudio-backgrounds > div { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 @media (max-width: 767px) {
+  /* Hide repeated reassurance and optional tips, never validation errors or output status. */
+  .cn-tool-workspace .cn-idstudio-local,
+  .cn-tool-workspace .cn-idstudio-note:not([role], [id], .cn-idstudio-warning),
+  .cn-tool-workspace .cn-ocr-readiness > p[role='status'],
+  .cn-tool-workspace .cn-idstudio-help { display: none; }
   .cn-idstudio-upload .cn-idstudio-drop { min-height: 0; padding: 12px; gap: 10px; }
   .cn-idstudio-upload .cn-idstudio-drop > .bi,
   .cn-idstudio-upload .cn-idstudio-drop:not(:has(.cn-idstudio-uploaded)) > strong { display: none; }

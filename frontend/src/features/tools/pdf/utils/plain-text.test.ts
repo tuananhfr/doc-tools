@@ -7,6 +7,9 @@ function run(text: string, x: number, y: number, extra: Partial<TextRun> = {}): 
 }
 
 describe('plainText', () => {
+  it('uses OCR token boundaries on warped photos instead of gluing words or splitting skewed baselines', () => {
+    expect(plainText({ runs: [run('Thành', 0, 100, { fontName: 'ocr', angle: 2 }), run('phần', 1, 105, { fontName: 'ocr', angle: 4, eol: true }), run('Câu 6.', 0, 130, { fontName: 'ocr', eol: true })] })).toBe('Thành phần\nCâu 6.')
+  })
   it('keeps one word whole and separates spaced runs', () => {
     // "hợ" + "p" sát nhau, "đồng" cách 5pt (> 0,15 × 10).
     expect(plainText({ runs: [run('hợ', 0, 100), run('p', 10, 100), run('đồng', 20, 100)] })).toBe('hợp đồng')

@@ -48,6 +48,8 @@ export interface FlowResult {
   notes: FlowNote[]
   /** Kết quả là chữ (OCR, báo cáo so sánh): hiện ngay trên màn kết quả để xem và sao chép. */
   text?: string
+  /** Editable OCR text per input page, preserving page breaks when rebuilding a text PDF. */
+  textPages?: string[]
   /** Tên khối chữ đó; bỏ trống = "Nội dung văn bản". */
   textLabel?: string
 }

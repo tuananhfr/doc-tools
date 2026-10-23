@@ -92,7 +92,7 @@ export default function ConvertImagePage() {
           {format !== 'png' ? <><label htmlFor={`${ids}-quality`}>{t('convert.qualityLegend')}</label><select id={`${ids}-quality`} className="form-select" value={quality} onChange={event => setQuality(event.target.value as Quality)}>{(Object.keys(QUALITY_VALUE) as Quality[]).map(value => <option key={value} value={value}>{t(`convert.quality.${value}.label`)}</option>)}</select><p className="cn-idstudio-note">{t(`convert.quality.${quality}.hint`)}</p></> : <p className="cn-idstudio-note">{s('pngHint')}</p>}
           <div className="cn-convertstudio-preserves"><Icon name="aspect-ratio" /><div><strong>{s('keepSize')}</strong><span>{item ? sizeLabel(item) : s('keepSizeHint')}</span></div><Icon name="check-circle-fill" /></div>
           <p className="cn-convertstudio-format-note"><Icon name="info-circle" />{s(format === 'jpeg' ? 'jpegHint' : format === 'png' ? 'pngDetail' : 'webpHint')}</p>
-          {!webp ? <p className="cn-idstudio-note">{t('convert.noWebp')}</p> : null}
+          {!webp ? <p className="cn-idstudio-note" role="status">{t('convert.noWebp')}</p> : null}
         </fieldset>
         <Button variant="primary" className="cn-convertstudio-run" disabled={locked || !count || allSame} onClick={() => void run.start(convertImagesTask(images.items, { format, quality: QUALITY_VALUE[quality] }))}><Icon name="arrow-left-right" />{count > 1 ? t('convert.runMany', { count, format: label }) : t('convert.runOne', { format: label })}</Button>
         {allSame ? <p className="cn-idstudio-note" role="status">{t(count > 1 ? 'convert.blockedMany' : 'convert.blockedOne', { format: label })}</p> : null}

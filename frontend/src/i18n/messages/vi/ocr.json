@@ -72,6 +72,7 @@
   "zoomOut": "Thu nhỏ ảnh gốc",
   "waitingReview": "Chờ bạn đối chiếu và xác nhận nội dung.",
   "passNames": {
+    "local": "Đọc theo vùng",
     "original": "Ảnh gốc",
     "contrast": "Tăng tương phản",
     "deskew": "Chỉnh nghiêng",

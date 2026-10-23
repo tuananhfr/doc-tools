@@ -3,7 +3,7 @@ import type { GrayImage } from './scan-analysis'
 import { validPaperCorners } from './ocr-perspective'
 
 /** Automatic correction requires four bright paper edges separated from a dark background. */
-export function detectPaperCorners(image: GrayImage): Quad | null {
+export function detectPaperCorners(image: GrayImage, includeRectangular = false): Quad | null {
   const { width, height, data } = image
   if (width < 40 || height < 40) return null
   const corners: Quad = [{ x: width, y: height }, { x: 0, y: height }, { x: 0, y: 0 }, { x: width, y: 0 }]
@@ -32,6 +32,6 @@ export function detectPaperCorners(image: GrayImage): Quad | null {
   }
   const top = Math.hypot(corners[1].x-corners[0].x, corners[1].y-corners[0].y), bottom = Math.hypot(corners[2].x-corners[3].x, corners[2].y-corners[3].y)
   const left = Math.hypot(corners[3].x-corners[0].x, corners[3].y-corners[0].y), right = Math.hypot(corners[2].x-corners[1].x, corners[2].y-corners[1].y)
-  if (Math.abs(top-bottom)/Math.max(top,bottom) < .04 && Math.abs(left-right)/Math.max(left,right) < .04) return null
+  if (!includeRectangular && Math.abs(top-bottom)/Math.max(top,bottom) < .04 && Math.abs(left-right)/Math.max(left,right) < .04) return null
   return corners.map(point => ({ x: point.x / width, y: point.y / height })) as Quad
 }

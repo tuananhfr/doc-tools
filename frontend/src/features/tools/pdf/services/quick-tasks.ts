@@ -7,8 +7,8 @@ import { CANVAS_CAP } from '../utils/canvas-cap'
 import { carryoverSummary, type CarryoverReport } from '../utils/carryover-summary'
 import { formatBytes, sizeChange, type Compression, type CompressionStats } from '../utils/compression'
 import { baseName } from '../utils/file-guard'
-import { isDefaultSheet } from '../utils/image-sheet'
 import { joinPageTexts, plainText } from '../utils/plain-text'
+import { ocrPaperText } from '../utils/ocr-paper-text'
 import { rangeLabel } from '../utils/split-groups'
 import { buildBatch, buildImages, buildOffice, buildPdf, buildSplit, type BuildContext, type BuiltFile, type OfficeKind } from './doc-build'
 import { recognizePage, stopOcr } from './ocr'
@@ -281,11 +281,14 @@ function ocrNotes(found: Recognized): FlowNote[] {
   return notes
 }
 
-async function textOf(items: QuickItem[]): Promise<string> {
+async function textOf(items: QuickItem[], reviewed = true): Promise<string> {
   const files: string[] = []
   for (const item of items) {
     const pages: string[] = []
-    for (const page of item.pages) pages.push(reviewedOcrText(await loadPageText(item.source, page)))
+    for (const page of item.pages) {
+      const text = await loadPageText(item.source, page)
+      pages.push(reviewed ? reviewedOcrText(text) : plainText(text))
+    }
     const text = joinPageTexts(pages)
     if (text) files.push(items.length > 1 ? `=== ${item.source.name} ===\n${text}` : text)
   }
@@ -312,7 +315,7 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewS
       found.blank = recognized.filter(text => text.runs.length === 0).length
       if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
     }
-    const notes = ocrNotes(found)
+    const notes = [...ocrNotes(found), ...(!review ? [{ tone: 'warning' as const, text: translate('pdf:documentScan.ocrUnreviewed') }] : [])]
 
     if (kind !== 'pdf' && kind !== 'text') {
       const texts = await Promise.all(pages.map(page => loadPageText(context.sources[page.sourceId], page)))
@@ -322,7 +325,7 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewS
     }
 
     if (kind === 'text') {
-      const text = await textOf(items)
+      const text = await textOf(items, Boolean(review))
       step.signal.throwIfAborted()
       const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${translate('pdf:file.fileCount', { count: items.length })}`
       return {
@@ -366,15 +369,49 @@ export function ocrTask(items: QuickItem[], kind: OcrOutput, review?: OcrReviewS
 }
 
 /** Mỗi ảnh một trang, đặt lên khổ giấy + lề đã chọn, theo thứ tự đang xếp. */
-export function imagesToPdfTask(items: QuickItem[], sheet: ImageSheet): FlowTask {
+export function imagesToPdfTask(items: QuickItem[], sheet: ImageSheet, recognition?: { review?: OcrReviewStep; options: OcrPipelineOptions; layout?: 'text' | 'image' }): FlowTask {
   return async (step) => {
-    const pages = isDefaultSheet(sheet) ? pagesOf(items) : pagesOf(items).map((page) => ({ ...page, sheet }))
+    // Keep image-only exports free of cached OCR from an earlier searchable export.
+    const prepared = items.map(item => {
+      const source = recognition ? item.source : { ...item.source, id: `${item.source.id}:image-only` }
+      return { source, pages: item.pages.map(page => ({ ...page, sourceId: source.id, sheet })) }
+    })
+    const pages = pagesOf(prepared), context = contextOf(prepared)
+    let found: Recognized | undefined
+    if (recognition) {
+      found = await recognizeMissing(context.sources, pages, pages.length, step, recognition.options)
+      if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+      if (recognition.review) {
+        step.onProgress(0, 0, translate('pdf:ocrReview.title'))
+        await recognition.review(prepared, step.signal)
+      }
+      step.signal.throwIfAborted()
+      const reviewed = pages.map(page => ocrText(page.sourceId, page))
+      found.words = reviewed.reduce((count, text) => count + (text?.runs.length ?? 0), 0)
+      found.blank = reviewed.filter(text => !text?.runs.length).length
+      if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+    }
     const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${translate('pdf:file.imageCount', { count: items.length })}`
-    const built = await buildPdf(contextOf(items), pages, name, DEFAULT_PDF_OUTPUT, step)
+    if (recognition?.layout === 'text') {
+      step.onProgress(0, 0, translate('pdf:documentScan.textBuilding'))
+      const texts = pages.map(page => ocrPaperText(ocrText(page.sourceId, page) ?? { runs: [] }))
+      const { buildOcrTextPdf } = await import('./ocr-text-pdf')
+      const built = await buildOcrTextPdf(texts, sheet, step.signal)
+      return {
+        title: translate('pdf:documentScan.textDone'),
+        output: { name: `${name} - OCR.pdf`, blob: built.blob, detail: translate('pdf:stage.pageCount', { count: built.pages }) },
+        notes: !recognition.review ? [{ tone: 'warning', text: translate('pdf:documentScan.ocrUnreviewed') }] : [],
+        text: texts.join('\n\n'),
+        textPages: texts,
+      }
+    }
+    const build = found ? { signal: step.signal, onProgress: (done: number) => step.onProgress(found.spent + done, found.spent + pages.length, translate('pdf:quickTask.buildingPdf')) } : step
+    // Multiple photos still produce ONE PDF in their selected order, never a ZIP of per-image PDFs.
+    const built = await buildPdf(context, pages, name, DEFAULT_PDF_OUTPUT, build)
     return {
-      title: translate('pdf:quickTask.pdfPages', { count: pages.length }),
+      title: translate(recognition ? 'pdf:quickTask.searchablePdf' : 'pdf:quickTask.pdfPages', { count: pages.length }),
       output: output(built.file, translate('pdf:stage.pageCount', { count: pages.length })),
-      notes: [],
+      notes: found ? [...ocrNotes(found), ...(!recognition?.review ? [{ tone: 'warning' as const, text: translate('pdf:documentScan.ocrUnreviewed') }] : [])] : [],
     }
   }
 }

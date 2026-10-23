@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { ocrOfflineReady, prepareOcrOffline } from '../../services/ocr-readiness'
 
-export function OcrReadiness() {
+export function OcrReadiness({ compact = false }: { compact?: boolean }) {
   const { t } = useTranslation('pdf')
   const [ready, setReady] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -27,7 +27,7 @@ export function OcrReadiness() {
     finally { setBusy(false) }
   }
   return <div className="cn-ocr-readiness">
-    <p role="status">{t(ready ? 'ocrReview.offlineReady' : 'ocrReview.offlineHint')}</p>
+    {!compact ? <p role="status">{t(ready ? 'ocrReview.offlineReady' : 'ocrReview.offlineHint')}</p> : null}
     {!ready ? <Button variant="outline-secondary" size="sm" disabled={busy} onClick={() => void prepare()}>{t(busy ? 'ocrReview.preparing' : 'ocrReview.prepare')}</Button> : null}
     {failed ? <p role="alert">{t('ocrReview.prepareFailed')}</p> : null}
   </div>

@@ -72,6 +72,7 @@
   "zoomOut": "Zoom out on the original",
   "waitingReview": "Waiting for your review and confirmation.",
   "passNames": {
+    "local": "Pagbasa ayon sa rehiyon",
     "original": "Original image",
     "contrast": "Contrast",
     "deskew": "Deskew",

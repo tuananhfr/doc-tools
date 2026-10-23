@@ -1,4 +1,30 @@
 .cn-image-studio--scan-to-pdf .cn-idstudio-hero-icon { background: linear-gradient(145deg, #33cfaa, #00957a); box-shadow: 0 -7px 0 -2px #b2efe0; }
+.cn-imagespdf-scan-controls { display: grid; gap: 8px; margin-bottom: 14px; }
+.cn-imagespdf-scan-controls label { display: grid; gap: 6px; }
+.cn-imagespdf-ocr { border: 1px solid var(--cn-line); background: var(--cn-hero); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.cn-imagespdf-ocr > label { display: flex; gap: 8px; align-items: flex-start; font-weight: 600; }
+.cn-imagespdf-ocr input { margin-top: 4px; flex-shrink: 0; }
+.cn-imagespdf-ocr > .cn-imagespdf-ocr-layout { display: grid; gap: 8px; margin-bottom: 12px; }
+.cn-imagespdf-ocr-layout select { width: min(100%, 240px); min-width: 0; min-height: 36px; padding: 6px 8px; font-size: 12px; background: var(--cn-surface); color: var(--cn-ink); border: 1px solid var(--cn-line); border-radius: 6px; }
+.cn-textpdf-preview { width: 100%; min-width: 0; }
+.cn-textpdf-expand[role="button"] { cursor: zoom-in; }
+.cn-textpdf-expand:focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
+.cn-imagespdf-ocr-review { margin-top: 16px; min-width: 0; }
+.cn-imagespdf-scan-controls select { width: 100%; min-width: 0; min-height: 40px; color: var(--cn-ink); background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 6px; }
+.cn-document-scan__stage { position: relative; width: min(100% - 40px, 560px); margin: 26px auto; }
+.cn-document-scan__stage canvas { display: block; width: 100%; height: auto; }
+.cn-document-scan__stage svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cn-document-scan__stage polygon { fill: #007aff22; stroke: #007aff; stroke-width: .6; vector-effect: non-scaling-stroke; }
+.cn-document-scan__corner { position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; border: 2px solid white; border-radius: 50%; background: #0062db; color: white; font-weight: 700; touch-action: none; box-shadow: 0 1px 5px #0005; }
+.cn-document-scan__corner:focus-visible { outline: 3px solid #ffb400; outline-offset: 2px; }
+.cn-document-scan__options { display: grid; gap: 14px; min-width: 0; }
+.cn-document-scan__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cn-document-scan__presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.cn-document-scan__presets button { min-height: 44px; padding: 6px; border: 1px solid var(--cn-line); border-radius: 6px; background: var(--cn-surface); color: var(--cn-ink); }
+.cn-document-scan__presets button[aria-pressed='true'] { border-color: #0062db; box-shadow: inset 0 0 0 1px #0062db; }
+.cn-document-scan__options label { display: flex; align-items: center; gap: 8px; }
+.cn-document-scan__options select { min-height: 44px; }
+@media (max-width: 575px) { .cn-document-scan__presets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .cn-imagespdf-editor { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
 .cn-imagespdf-upload-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; margin-top: 12px; }
 .cn-imagespdf-upload-actions .btn { min-height: 48px; padding: 8px; }
@@ -44,6 +70,18 @@
 .cn-imagespdf-preview .cn-idstudio-output-meta { margin-block: 16px; }
 .cn-imagespdf-preview .cn-idstudio-downloads .btn { min-height: 44px; }
 .cn-imagespdf-download-hint { margin-top: 12px; }
+.cn-imagespdf-edit-text { width: 100%; min-height: 44px; }
+.cn-ocr-text-editor .modal-header { gap: 12px; flex-wrap: wrap; }
+.cn-ocr-text-editor .modal-title { font-size: 18px; }
+.cn-ocr-text-editor .modal-body { background: #e5e7eb; padding: 16px; overflow: auto; }
+.cn-ocr-edit-zoom { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; }
+.cn-ocr-edit-zoom .btn { min-width: 44px; min-height: 44px; font-size: 18px; }
+.cn-ocr-edit-zoom output { min-width: 44px; text-align: center; font-size: 13px; }
+.cn-ocr-edit-sheet { width: max-content; min-width: 100%; margin: 0 0 24px; }
+.cn-ocr-edit-sheet > p { position: sticky; left: 0; width: fit-content; margin: 0 auto 8px; color: #374151; font-size: 12px; }
+.cn-ocr-edit-paper { box-sizing: border-box; margin: 0 auto; background: #fff; color: #111827; box-shadow: 0 2px 12px #0002; font-family: 'CN Be Vietnam Pro', sans-serif; font-weight: 400; font-kerning: normal; white-space: pre-wrap; overflow-wrap: anywhere; outline: none; cursor: text; }
+.cn-ocr-edit-paper:focus { outline: 2px solid #0760ed; outline-offset: 2px; }
+.cn-ocr-text-editor .modal-footer .btn { min-height: 44px; }
 .cn-imagespdf-success { display: grid; grid-template-columns: auto 1fr; gap: 6px; margin-block: 14px; font-size: 12px; overflow-wrap: anywhere; }
 .cn-imagespdf-success > .bi { color: var(--cn-positive); }
 .cn-imagespdf-success small { grid-column: 2; color: var(--cn-muted); }
@@ -54,6 +92,9 @@
   .cn-imagespdf-preview-stage { max-width: 360px; margin-inline: auto; }
 }
 @media (max-width: 767px) {
+  .cn-ocr-edit-zoom { order: 2; width: 100%; margin-inline-start: 0; justify-content: center; }
+  .cn-ocr-text-editor .modal-header .btn-close { order: 1; margin-inline-start: auto; }
+  .cn-imagespdf-ocr-layout select { min-height: 44px; font-size: 16px; }
   .cn-imagespdf-editor { grid-template-columns: minmax(0, 1fr); }
   .cn-imagespdf-settings legend { font-size: 14px; }
   .cn-imagespdf-margins button, .cn-imagespdf-papers strong { font-size: 12px; }
