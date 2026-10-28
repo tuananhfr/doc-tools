@@ -94,7 +94,8 @@
     "account": "계정"
   },
   "footer": {
-    "madeBy": "<link>ERPCons & LPC</link>의 제품",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "<productLink>ERPCons & LPC</productLink>의 제품",
     "navLabel": "하단 메뉴",
     "motto": "늘 곁에서 함께해요.",
     "links": {

@@ -87,3 +87,9 @@ Repo giữ data router React Router bên trong Next.js để bảo toàn handoff
 Trang `/` giới thiệu Chuyện Nhỏ bằng bảy phần: hero, nhóm tiện ích, công cụ PDF, cách dùng, ngôn ngữ/giao diện, xử lý dữ liệu và lời mời mở công cụ. Nút mở công cụ dẫn tới `/cong-cu`. Landing có khung cuộn riêng, không thay đổi luồng xử lý tệp trong các công cụ.
 
 Nội dung landing được dịch cho 15 locale trong `src/i18n/messages/*/site.json`. Chọn ngôn ngữ dùng cơ chế URL/cookie hiện có; giao diện hỗ trợ sáng, tối và ngoài trời. Screenshot trong landing là giao diện tiếng Việt với dữ liệu mẫu, không chứa dữ liệu người dùng. Minh họa nằm trong `public/landing/` và chữ/nút được dựng bằng HTML.
+
+## Ảnh chia sẻ và thông tin công khai
+
+Ảnh PNG chia sẻ mặc định 1200×630 được sinh tại /og/site; trang công cụ giữ ảnh riêng tại /og/<slug>. Metadata của trang chủ, trang nhóm, trang nội dung và hướng dẫn khai cả Open Graph lẫn Twitter trong HTML máy chủ. Khi triển khai, đặt NEXT_PUBLIC_SITE_URL=https://chuyennho.tekshot.ai trước khi build để URL ảnh, canonical và Organization JSON-LD dùng đúng domain.
+
+Hotline, email hỗ trợ và tên chủ sở hữu dùng chung ở src/features/site/config/site-identity.ts; cả ba khung chân trang (site, giới thiệu, công cụ) hiển thị cùng thông tin. Organization JSON-LD xuất trực tiếp trong head. Các namespace chữ của khung và trang chủ được tải sẵn để tránh thay nội dung bằng fallback lúc hydrate. Phần pháp lý vẫn giữ cờ bản nháp chờ duyệt hiện có.

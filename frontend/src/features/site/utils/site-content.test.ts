@@ -42,7 +42,7 @@ describe('FAQ', () => {
     expect(searchFaq(FAQ, 'tai khoan').map((item) => item.id)).toContain('tai-khoan')
     expect(searchFaq(FAQ, '')).toHaveLength(FAQ_ITEMS.length)
     expect(searchFaq(FAQ, 'khongcotunay')).toEqual([])
-    expect(FAQ.find((item) => item.id === 'loi')?.answer).toContain('contact@lpc.vn')
+    expect(FAQ.find((item) => item.id === 'loi')?.answer).toContain('contact@erpcons.vn')
   })
 
   it('escapes markup in JSON-LD', () => {

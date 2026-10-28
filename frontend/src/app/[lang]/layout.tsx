@@ -1,3 +1,5 @@
+import { organizationData } from '@/features/site/server/organization'
+import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
 import { withBase } from '@/utils/url'
 import Script from 'next/script'
 import { notFound } from 'next/navigation'
@@ -33,6 +35,7 @@ export async function generateMetadata({ params }: Pick<Props, 'params'>): Promi
     description: t('meta.description'),
     icons: { icon: withBase('/brand/chuyen-nho-mark-v1.png'), apple: withBase('/icons/apple-touch-icon.png') },
     manifest: webManifestPath(locale),
+    ...siteSocialMetadata(t('meta.title'), t('meta.description'), withBase('/')),
     // iOS đời cũ không đọc manifest; tên ngắn và chế độ toàn màn hình khi "Thêm vào MH chính" lấy từ đây.
     appleWebApp: { capable: true, title: 'Chuyện Nhỏ', statusBarStyle: 'default' },
   }
@@ -45,6 +48,7 @@ export default async function RootLayout({ children, params }: Props) {
   const resources = await loadResources(lang, BOOT_NAMESPACES)
   return <html lang={tag} dir={dir} data-theme="light" data-bs-theme="light" suppressHydrationWarning style={themeCssVars(themeTokens.light) as CSSProperties}>
     <head>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData()).replace(/</g, '\\u003c') }} />
       {/* "Chữ lớn" phải có trước lần vẽ đầu — đợi hydrate là trang nhảy cỡ chữ. Không có CSP nên script inline được. */}
       <script dangerouslySetInnerHTML={{ __html: TEXT_SIZE_BOOT_SCRIPT }} />
       <script dangerouslySetInnerHTML={{ __html: EMBED_BOOT_SCRIPT }} />

@@ -94,7 +94,8 @@
     "account": "Account"
   },
   "footer": {
-    "madeBy": "Isang produkto ng <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "Isang produkto ng <productLink>ERPCons & LPC</productLink>",
     "navLabel": "Navigation sa ibaba ng page",
     "motto": "Kasama mo sa bawat hakbang.",
     "links": {

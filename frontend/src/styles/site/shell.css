@@ -148,3 +148,13 @@
   .cn-header-actions { gap: 0; }
   .cn-header .erp-tools-prefs { gap: 2px; }
 }
+
+/* Reserve a full footer row for contact and ownership; wrap long emails on narrow screens. */
+.cn-footer-content { flex-wrap: wrap; }
+.cn-site-contact { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 24px; width: 100%; margin-top: 12px; font-size: 13px; color: var(--cn-muted); }
+.cn-site-contact a { display: inline-flex; align-items: center; gap: 8px; min-height: var(--cn-tap); max-width: 100%; overflow-wrap: anywhere; color: inherit; text-underline-offset: 3px; }
+.cn-site-contact > span { overflow-wrap: anywhere; }
+.cn-landing-footer .cn-site-contact { color: var(--cn-landing-closing-muted); }
+.cn-tool-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--cn-space-2) var(--cn-space-4); }
+.cn-tool-footer .cn-site-contact { justify-content: center; margin-top: 0; }
+.cn-tool-footer .cn-site-contact a { font-size: inherit; }

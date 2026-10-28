@@ -14,7 +14,7 @@ export function AccountButton() {
   const user = data.user
   if (!user) {
     return (
-      <Link className="cn-account-button" to="/dang-nhap">
+      <Link className="cn-account-button" to="/dang-nhap" aria-label={t('header.signIn')}>
         <Icon name="person-circle" />
         <span className="cn-account-button__label">{t('header.signIn')}</span>
       </Link>

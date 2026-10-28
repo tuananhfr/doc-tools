@@ -1,3 +1,4 @@
+import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
 import type { Metadata } from 'next'
 import { getServerT, localeAlternates, pageLocale, type LangParams } from '@/i18n/server'
 import type { HubPageSlug } from '../types/hub-page.types'
@@ -13,7 +14,7 @@ export function hubMetadata(slug: HubPageSlug) {
       title,
       description,
       alternates,
-      openGraph: { title, description, url: alternates.canonical },
+      ...siteSocialMetadata(title, description, alternates.canonical),
     }
   }
 }

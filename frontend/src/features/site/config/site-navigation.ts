@@ -1,3 +1,4 @@
+import { SITE_IDENTITY } from './site-identity'
 import type { ActiveHubPageSlug } from '../types/hub-page.types'
 
 export const SITE_NAVIGATION = [
@@ -31,4 +32,4 @@ export const PRODUCT_LINKS = {
   tekshot: 'https://tekshot.vn',
 } as const
 
-export const SUPPORT_EMAIL = 'contact@lpc.vn'
+export const SUPPORT_EMAIL = SITE_IDENTITY.email

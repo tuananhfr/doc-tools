@@ -13,7 +13,8 @@ export type Namespace = (typeof NAMESPACES)[number]
  * Namespaces the server sends with every page so the shell hydrates without a
  * round trip; the rest load lazily when a screen first calls `useTranslation(ns)`.
  */
-export const BOOT_NAMESPACES = ['common', 'catalog'] as const satisfies readonly Namespace[]
+// Public chrome and homepage translations must be present before hydration; lazy loading them replaces the page with a fallback.
+export const BOOT_NAMESPACES = ['common', 'catalog', 'site', 'community', 'quality'] as const satisfies readonly Namespace[]
 
 export type Messages = Record<string, unknown>
 export type LocaleResources = Partial<Record<Namespace, Messages>>

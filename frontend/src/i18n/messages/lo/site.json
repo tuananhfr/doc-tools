@@ -94,7 +94,8 @@
     "account": "ບັນຊີ"
   },
   "footer": {
-    "madeBy": "ຜະລິດຕະພັນຈາກ <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "ຜະລິດຕະພັນຈາກ <productLink>ERPCons & LPC</productLink>",
     "navLabel": "ການນຳທາງທ້າຍໜ້າ",
     "motto": "ຢູ່ຄຽງຂ້າງທ່ານ.",
     "links": {

@@ -94,7 +94,8 @@
     "account": "Tài khoản"
   },
   "footer": {
-    "madeBy": "Một sản phẩm từ <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. Bảo lưu mọi quyền.",
+    "madeBy": "Một sản phẩm từ <productLink>ERPCons & LPC</productLink>",
     "navLabel": "Điều hướng cuối trang",
     "motto": "Đồng hành cùng bạn.",
     "links": {

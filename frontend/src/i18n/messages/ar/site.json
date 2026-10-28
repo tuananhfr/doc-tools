@@ -94,7 +94,8 @@
     "account": "الحساب"
   },
   "footer": {
-    "madeBy": "منتج من <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "منتج من <productLink>ERPCons & LPC</productLink>",
     "navLabel": "التنقل في أسفل الصفحة",
     "motto": "نرافقك دائمًا.",
     "links": {

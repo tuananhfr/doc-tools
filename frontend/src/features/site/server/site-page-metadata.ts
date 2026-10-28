@@ -1,3 +1,4 @@
+import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
 import type { Metadata } from 'next'
 import { getServerT, localeAlternates, pageLocale, type LangParams } from '@/i18n/server'
 import type { SitePageSlug } from '../config/site-pages'
@@ -9,6 +10,6 @@ export function sitePageMetadata(slug: SitePageSlug) {
     const title = t(`pages.${slug}.title`)
     const description = t(`pages.${slug}.description`)
     const alternates = localeAlternates('/' + slug, locale)
-    return { title, description, alternates, openGraph: { title, description, url: alternates.canonical } }
+    return { title, description, alternates, ...siteSocialMetadata(title, description, alternates.canonical) }
   }
 }

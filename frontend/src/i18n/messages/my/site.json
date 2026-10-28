@@ -94,7 +94,8 @@
     "account": "အကောင့်"
   },
   "footer": {
-    "madeBy": "<link>ERPCons & LPC</link> ၏ ထုတ်ကုန်တစ်ခု",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "<productLink>ERPCons & LPC</productLink> ၏ ထုတ်ကုန်တစ်ခု",
     "navLabel": "စာမျက်နှာအောက်ခြေ လမ်းညွှန်မီနူး",
     "motto": "သင်နှင့်အတူ လက်တွဲလျက်။",
     "links": {

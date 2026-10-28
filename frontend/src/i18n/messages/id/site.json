@@ -94,7 +94,8 @@
     "account": "Akun"
   },
   "footer": {
-    "madeBy": "Sebuah produk dari <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "Sebuah produk dari <productLink>ERPCons & LPC</productLink>",
     "navLabel": "Navigasi kaki halaman",
     "motto": "Selalu menemani Anda.",
     "links": {

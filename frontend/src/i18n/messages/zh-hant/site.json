@@ -94,7 +94,8 @@
     "account": "帳戶"
   },
   "footer": {
-    "madeBy": "<link>ERPCons & LPC</link> 出品",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "<productLink>ERPCons & LPC</productLink> 出品",
     "navLabel": "頁尾導覽",
     "motto": "一路與你同行。",
     "links": {

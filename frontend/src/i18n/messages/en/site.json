@@ -94,7 +94,8 @@
     "account": "Account"
   },
   "footer": {
-    "madeBy": "A product from <link>ERPCons & LPC</link>",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "A product from <productLink>ERPCons & LPC</productLink>",
     "navLabel": "Footer navigation",
     "motto": "Here to help.",
     "links": {

@@ -94,7 +94,8 @@
     "account": "アカウント"
   },
   "footer": {
-    "madeBy": "<link>ERPCons & LPC</link> の製品です",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeBy": "<productLink>ERPCons & LPC</productLink> の製品です",
     "navLabel": "フッターナビゲーション",
     "motto": "いつもあなたのそばに。",
     "links": {

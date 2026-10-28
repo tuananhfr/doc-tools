@@ -1,3 +1,4 @@
+import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
 import type { Metadata } from 'next'
 import { findGuide, GUIDES } from '@/features/site/config/guides'
 import { guideText } from '@/features/site/utils/guide'
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const text = guideText(await getServerT(locale, 'guides'), guide.slug)
   const title = (await getServerT(locale, 'site'))('guide.metaTitle', { title: text.title })
   const alternates = localeAlternates('/huong-dan/' + guide.slug, locale)
-  return { title, description: text.summary, alternates, openGraph: { title, description: text.summary, url: alternates.canonical, type: 'article' } }
+  return { title, description: text.summary, alternates, ...siteSocialMetadata(title, text.summary, alternates.canonical, 'article') }
 }
 
 // Slug lạ: GuidePage tự chuyển về /huong-dan phía client. Không dùng redirect() ở đây:

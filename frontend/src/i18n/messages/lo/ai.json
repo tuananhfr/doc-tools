@@ -43,7 +43,7 @@
     "removing": "Removing…",
     "removeConfirm": "Remove your AI key? The assistant stops at once; your chat history is kept.",
     "lastError": "Last check: {{message}}",
-    "disabled": "The AI assistant of this account is suspended. Please contact contact@lpc.vn."
+    "disabled": "The AI assistant of this account is suspended. Please contact contact@erpcons.vn."
   },
   "card": {
     "title": "AI assistant",

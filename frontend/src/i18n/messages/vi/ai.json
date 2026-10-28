@@ -43,7 +43,7 @@
     "removing": "Đang gỡ…",
     "removeConfirm": "Gỡ khoá AI? Trợ lý sẽ tắt ngay; lịch sử trò chuyện vẫn được giữ.",
     "lastError": "Lần kiểm tra trước: {{message}}",
-    "disabled": "Trợ lý AI của tài khoản này đang bị tạm khoá. Hãy liên hệ contact@lpc.vn."
+    "disabled": "Trợ lý AI của tài khoản này đang bị tạm khoá. Hãy liên hệ contact@erpcons.vn."
   },
   "card": {
     "title": "Trợ lý AI",

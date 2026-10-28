@@ -189,7 +189,7 @@
     "EMAIL_INVALID": "That email address does not look right.",
     "OTP_INVALID": "The code is wrong or has expired.",
     "RATE_LIMITED": "Too many attempts. Please wait a few minutes and try again.",
-    "ACCOUNT_DISABLED": "This account has been locked. Contact contact@lpc.vn.",
+    "ACCOUNT_DISABLED": "This account has been locked. Contact contact@erpcons.vn.",
     "SIGNUP_CLOSED": "New sign-ups are closed for now. Existing accounts can still sign in.",
     "UNTRUSTED_REQUEST": "The request was rejected. Reload the page and try again.",
     "SIGNED_OUT": "Your session has ended. Please sign in again.",

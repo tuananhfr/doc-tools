@@ -11,7 +11,6 @@ export function ProductPreview({ kind, preload = false }: { kind: 'pdf' | 'direc
         <Image className="cn-landing-preview-light" src={withBase(`/landing/${asset}-light.webp`)} alt={t(`landing.preview.${kind}`)} width={1440} height={900} sizes="(max-width: 767px) 94vw, (max-width: 1100px) 88vw, 900px" preload={preload} />
         <Image className="cn-landing-preview-dark" src={withBase(`/landing/${asset}-dark.webp`)} alt={t(`landing.preview.${kind}`)} width={1440} height={900} sizes="(max-width: 767px) 94vw, (max-width: 1100px) 88vw, 900px" />
       </div>
-      <figcaption>{t('landing.preview.sample')}</figcaption>
     </figure>
   )
 }

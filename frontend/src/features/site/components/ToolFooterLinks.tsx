@@ -1,3 +1,4 @@
+import { SiteContact } from './SiteContact'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -6,13 +7,17 @@ import { Link } from 'react-router-dom'
 const LINKS = [
   { id: 'feedback', to: '/gop-y-quy-dinh' },
   { id: 'suggest', to: '/de-xuat-tien-ich' },
+  { id: 'terms', to: '/dieu-khoan' },
 ] as const
 
 export function ToolFooterLinks() {
   const { t } = useTranslation('site')
   return (
-    <nav className="cn-tool-footer" aria-label={t('footer.navLabel')}>
-      {LINKS.map((item) => <Link key={item.to} to={item.to}>{t(`footer.links.${item.id}`)}</Link>)}
-    </nav>
+    <footer className="cn-tool-footer">
+      <nav aria-label={t('footer.navLabel')}>
+        {LINKS.map((item) => <Link key={item.to} to={item.to}>{t(`footer.links.${item.id}`)}</Link>)}
+      </nav>
+      <SiteContact />
+    </footer>
   )
 }
