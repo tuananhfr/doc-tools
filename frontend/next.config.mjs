@@ -58,6 +58,7 @@ const config = {
       { source: '/api/v1/ent/:path*', destination: backend + '/api/v1/ent/:path*' },
       { source: '/api/v1/landings/:path*', destination: backend + '/api/v1/landings/:path*' },
       { source: '/api/v1/read/:path*', destination: backend + '/api/v1/read/:path*' },
+      { source: '/api/v1/templates/:path*', destination: backend + '/api/v1/templates/:path*' },
     ]
   },
   webpack(config, { isServer, webpack }) {

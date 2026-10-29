@@ -591,5 +591,8 @@
         }
       }
     }
+  },
+  "pihSample": {
+    "button": "Use sample content"
   }
 }

@@ -15,5 +15,6 @@ import { EntertainmentModule } from './entertainment/entertainment.module'
 import { CodesModule } from './codes/codes.module'
 import { ReadModule } from './read/read.module'
 import { SourcesModule } from './sources/sources.module'
-@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule, CodesModule, SourcesModule, ReadModule] })
+import { TemplatesModule } from './templates/templates.module'
+@Module({ imports: [SettingsModule, ToolsModule, RulesModule, ContributionsModule, AccountsModule, AuthModule, AdminModule, AiModule, McpModule, CloudModule, LifecycleModule, LandingsModule, EntertainmentModule, CodesModule, SourcesModule, ReadModule, TemplatesModule] })
 export class AppModule {}

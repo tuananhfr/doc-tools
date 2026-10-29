@@ -283,7 +283,13 @@
     "exitFullscreen": "Thoát toàn màn hình",
     "exitFullscreenShort": "Thoát",
     "closeShort": "Đóng",
-    "fullscreenUnavailable": "Trình duyệt không bật được toàn màn hình. Bạn vẫn có thể làm việc ở chế độ mở rộng."
+    "fullscreenUnavailable": "Trình duyệt không bật được toàn màn hình. Bạn vẫn có thể làm việc ở chế độ mở rộng.",
+    "pihSample": {
+      "downloadLabel": "Tải tệp mẫu để thử",
+      "hint": "Mở trình soạn thảo rồi dùng nút Mở tệp để chọn file vừa tải.",
+      "busy": "Đang tạo tệp mẫu…",
+      "failed": "Không tạo được tệp mẫu."
+    }
   },
   "embed": {
     "saveToCde": "Lưu vào Hồ sơ CDE"
