@@ -3,8 +3,12 @@ import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 /**
  * Nội dung mẫu "PI Holding" cho các công cụ PDF — sinh hoàn toàn trên trình duyệt, không tải
  * tệp nhị phân nào từ máy chủ hay bên thứ ba (không cần quét mã độc, không có macro). MỌI số
- * liệu, tên người, địa chỉ đều là dữ liệu giả lập, đánh dấu "DEMO"/"MẪU" trên từng trang theo
- * đúng tinh thần `editor-samples.ts` đã có sẵn trong công cụ Sửa PDF — xem docs/pi-holding-templates/.
+ * liệu, tên người, địa chỉ đều là dữ liệu giả lập, đánh dấu "DEMO"/"SAMPLE" trên từng trang.
+ *
+ * Chữ trong PDF cố tình viết tiếng Anh, giống hệt `editor-samples.ts` đã có sẵn trong công cụ
+ * Sửa PDF: font chuẩn của pdf-lib (WinAnsi) không mã hoá được nhiều dấu tổ hợp tiếng Việt (vd.
+ * "Ẫ", "Ệ") — `pih-pdf-samples.test.ts` từng đỏ vì việc này khi nội dung còn là tiếng Việt.
+ * Nhúng font Unicode riêng là việc thêm hạ tầng mới không cần thiết cho tài liệu demo.
  *
  * KHÔNG dùng số liệu thật của bất kỳ công ty nào trong nhóm PI Holding (doanh thu, hợp đồng,
  * khách hàng...). Tên thương hiệu (LPC, Ubot, PI Holding, Tekshot) là thương hiệu của chính
@@ -23,42 +27,42 @@ async function baseDoc() {
 
 function header(page: ReturnType<PDFDocument['addPage']>, bold: Awaited<ReturnType<PDFDocument['embedFont']>>, font: Awaited<ReturnType<PDFDocument['embedFont']>>, title: string) {
   page.drawRectangle({ x: 42, y: 757, width: 5, height: 43, color: rgb(.04, .4, .95) })
-  page.drawText('PI HOLDING — MẪU ĐỂ THỬ', { x: 59, y: 784, size: 11, font: bold, color: rgb(.04, .25, .58) })
+  page.drawText('PI HOLDING - SAMPLE TO TRY', { x: 59, y: 784, size: 11, font: bold, color: rgb(.04, .25, .58) })
   page.drawText(title, { x: 59, y: 765, size: 10, font })
 }
 
-function footer(page: ReturnType<PDFDocument['addPage']>, font: Awaited<ReturnType<PDFDocument['embedFont']>>, note = 'Dữ liệu giả lập — chỉ để minh hoạ tính năng, không phải số liệu thật.') {
+function footer(page: ReturnType<PDFDocument['addPage']>, font: Awaited<ReturnType<PDFDocument['embedFont']>>, note = 'Simulated data - for feature demonstration only, not real figures.') {
   page.drawText(note, { x: 55, y: 30, size: 8, font, color: rgb(.42, .47, .56) })
 }
 
-/** PDF edit: "Hồ sơ công nghệ Ubot" — hồ sơ giới thiệu công nghệ giả lập, nhiều mục để thử chỉnh chữ/đánh dấu. */
+/** PDF edit: "Ubot tech profile" — fictional product profile, several sections to try text edit/annotation on. */
 export async function createPihTechProfileSample(): Promise<File> {
   const { doc, font, bold } = await baseDoc()
   const page1 = doc.addPage(PAGE)
-  header(page1, bold, font, 'Hồ sơ công nghệ — bản demo')
-  page1.drawText('HỒ SƠ CÔNG NGHỆ UBOT (DEMO)', { x: 55, y: 700, size: 20, font: bold })
-  page1.drawText('Nền tảng tự động hoá quy trình minh hoạ cho PI Holding Group', { x: 55, y: 676, size: 11, font })
+  header(page1, bold, font, 'Tech profile - demo document')
+  page1.drawText('UBOT TECH PROFILE (DEMO)', { x: 55, y: 700, size: 20, font: bold })
+  page1.drawText('Fictional process-automation platform used for this sample document', { x: 55, y: 676, size: 11, font })
   const intro = [
-    'Ubot Demo là tên gọi minh hoạ cho một nền tảng tự động hoá quy trình, dùng trong tài',
-    'liệu mẫu này để người dùng thử tính năng chỉnh sửa PDF: sửa chữ, thêm ghi chú, đánh dấu.',
+    '"Ubot Demo" is a made-up name for a process-automation platform, used in this',
+    'sample so you can try the PDF edit tool: edit text, add notes, draw highlights.',
     '',
-    'Mục lục (minh hoạ):',
-    '  1. Giới thiệu nền tảng',
-    '  2. Kiến trúc tổng quan (DEMO)',
-    '  3. Năng lực triển khai mẫu',
-    '  4. Liên hệ (thông tin giả lập)',
+    'Table of contents (sample):',
+    '  1. Platform introduction',
+    '  2. Architecture overview (DEMO)',
+    '  3. Sample delivery capability',
+    '  4. Contact (fictional information)',
   ]
   intro.forEach((line, i) => page1.drawText(line, { x: 55, y: 636 - i * 20, size: 11, font }))
   footer(page1, font)
 
   const page2 = doc.addPage(PAGE)
-  header(page2, bold, font, 'Kiến trúc tổng quan (DEMO)')
-  page2.drawText('2. KIẾN TRÚC TỔNG QUAN (DEMO)', { x: 55, y: 700, size: 16, font: bold })
+  header(page2, bold, font, 'Architecture overview (DEMO)')
+  page2.drawText('2. ARCHITECTURE OVERVIEW (DEMO)', { x: 55, y: 700, size: 16, font: bold })
   const rows = [
-    ['Mô-đun (giả lập)', 'Chức năng minh hoạ'],
-    ['Lõi quy trình DEMO', 'Điều phối tác vụ mẫu, không nối hệ thống thật'],
-    ['Kết nối DEMO', 'Mô phỏng trao đổi dữ liệu giữa hai ứng dụng mẫu'],
-    ['Báo cáo DEMO', 'Số liệu minh hoạ, không phải số liệu vận hành thật'],
+    ['Module (fictional)', 'Sample function'],
+    ['DEMO process core', 'Mock task routing, not connected to any real system'],
+    ['DEMO connector', 'Simulated data exchange between two sample apps'],
+    ['DEMO reporting', 'Illustrative figures, not real operating data'],
   ]
   rows.forEach((row, i) => {
     const y = 650 - i * 26
@@ -71,40 +75,40 @@ export async function createPihTechProfileSample(): Promise<File> {
   return new File([new Uint8Array(await doc.save())], 'ubot-tech-profile-demo.pdf', { type: 'application/pdf' })
 }
 
-/** Convert: "Hồ sơ năng lực LPC" — hồ sơ ngắn để thử Chuyển đổi file (PDF -> Word/Excel/ảnh). */
+/** Convert: "LPC company profile" — short profile to try the Convert-file tool (PDF -> Word/Excel/image). */
 export async function createPihLpcProfileSample(): Promise<File> {
   const { doc, font, bold } = await baseDoc()
   const page = doc.addPage(PAGE)
-  header(page, bold, font, 'Hồ sơ năng lực — bản demo')
-  page.drawText('HỒ SƠ NĂNG LỰC LPC (DEMO)', { x: 55, y: 700, size: 20, font: bold })
+  header(page, bold, font, 'Company profile - demo document')
+  page.drawText('LPC COMPANY PROFILE (DEMO)', { x: 55, y: 700, size: 20, font: bold })
   const lines = [
-    'Công ty TNHH LPC Demo', '',
-    'Lĩnh vực (giả lập): giải pháp phần mềm quản trị doanh nghiệp',
-    'Năm thành lập (giả lập): 20XX',
-    'Quy mô nhân sự (giả lập): khoảng một trăm người',
+    'LPC Demo Co., Ltd.', '',
+    'Sector (fictional): enterprise management software',
+    'Founded (fictional): 20XX',
+    'Headcount (fictional): about one hundred people',
     '',
-    'Năng lực tiêu biểu (minh hoạ, không phải dữ liệu thật):',
-    '  - Triển khai phần mềm quản trị cho doanh nghiệp vừa và nhỏ',
-    '  - Tư vấn quy trình số hoá nội bộ',
-    '  - Hỗ trợ vận hành sau triển khai',
+    'Sample capabilities (illustrative, not real data):',
+    '  - Deploying management software for small and mid-size businesses',
+    '  - Advising on internal digitisation processes',
+    '  - Post-deployment operating support',
   ]
   lines.forEach((line, i) => page.drawText(line, { x: 55, y: 660 - i * 22, size: 11, font }))
   footer(page, font)
   return new File([new Uint8Array(await doc.save())], 'lpc-profile-demo.pdf', { type: 'application/pdf' })
 }
 
-/** PDF merge: ba trang rời "Brochure PIH" (bìa / nội dung / liên hệ) để thử ghép PDF. */
+/** PDF merge: three loose "PIH brochure" pages (cover / content / contact) to try merge-PDF. */
 export async function createPihBrochurePages(): Promise<File[]> {
-  const titles = [
-    { title: 'TRANG BÌA (DEMO)', body: ['PI HOLDING', 'Brochure giới thiệu nhóm — bản minh hoạ', '(không phải ấn phẩm chính thức)'] },
-    { title: 'NỘI DUNG (DEMO)', body: ['Các sản phẩm minh hoạ trong hệ sinh thái mẫu:', '  - ERPCons Demo — quản trị doanh nghiệp', '  - Tekshot Demo — quản lý sản xuất', '  - Ubot Demo — tự động hoá quy trình', '', 'Mọi tên gọi, số liệu trong trang này chỉ để thử tính năng ghép PDF.'] },
-    { title: 'LIÊN HỆ (DEMO)', body: ['Thông tin liên hệ minh hoạ:', '  Website demo: (không phải địa chỉ thật)', '  Email demo: (không phải địa chỉ thật)', '', 'Bấm "Ghép PDF" để gộp ba trang mẫu này thành một tệp.'] },
+  const sections = [
+    { title: 'COVER PAGE (DEMO)', body: ['PI HOLDING', 'Group introduction brochure - sample', '(not an official publication)'] },
+    { title: 'CONTENT (DEMO)', body: ['Fictional products in the sample ecosystem:', '  - ERPCons Demo - enterprise management', '  - Tekshot Demo - production management', '  - Ubot Demo - process automation', '', 'Every name and figure on this page exists only to try the merge-PDF feature.'] },
+    { title: 'CONTACT (DEMO)', body: ['Fictional contact information:', '  Demo website: (not a real address)', '  Demo email: (not a real address)', '', 'Press "Merge PDF" to combine these three sample pages into one file.'] },
   ]
   const files: File[] = []
-  for (const [index, section] of titles.entries()) {
+  for (const [index, section] of sections.entries()) {
     const { doc, font, bold } = await baseDoc()
     const page = doc.addPage(PAGE)
-    header(page, bold, font, `Brochure PIH — trang ${index + 1}/3 (demo)`)
+    header(page, bold, font, `PIH brochure - page ${index + 1}/3 (demo)`)
     page.drawText(section.title, { x: 55, y: 700, size: 18, font: bold })
     section.body.forEach((line, i) => page.drawText(line, { x: 55, y: 660 - i * 22, size: 11, font }))
     footer(page, font)
@@ -113,42 +117,42 @@ export async function createPihBrochurePages(): Promise<File[]> {
   return files
 }
 
-/** PDF split: một tệp nhiều trang "Brochure PIH" (6 trang) để thử tách PDF. */
+/** PDF split: one multi-page (6-page) "PIH brochure" file to try split-PDF. */
 export async function createPihBrochureBooklet(): Promise<File> {
   const { doc, font, bold } = await baseDoc()
   for (let i = 1; i <= 6; i++) {
     const page = doc.addPage(PAGE)
-    header(page, bold, font, `Brochure PIH — tài liệu mẫu (demo)`)
-    page.drawText(`TRANG ${i} / 6 (DEMO)`, { x: 55, y: 700, size: 20, font: bold })
-    page.drawText('Nội dung minh hoạ để thử tính năng Tách PDF theo khoảng trang.', { x: 55, y: 660, size: 11, font })
-    page.drawText('Mọi nội dung trong tệp này là dữ liệu giả lập.', { x: 55, y: 638, size: 11, font })
+    header(page, bold, font, 'PIH brochure - sample booklet (demo)')
+    page.drawText(`PAGE ${i} / 6 (DEMO)`, { x: 55, y: 700, size: 20, font: bold })
+    page.drawText('Sample content for trying the split-PDF, page-range feature.', { x: 55, y: 660, size: 11, font })
+    page.drawText('Everything in this file is simulated data.', { x: 55, y: 638, size: 11, font })
     footer(page, font)
   }
   return new File([new Uint8Array(await doc.save())], 'brochure-pih-demo-booklet.pdf', { type: 'application/pdf' })
 }
 
-/** Document compare: "Hợp đồng LPC bản A/B" — hai bản PDF gần giống nhau, khác vài chỗ có chủ đích, để thử So sánh PDF. */
+/** Document compare: "LPC contract A/B" — two near-identical PDFs with a few deliberate differences, to try compare-PDF. */
 export async function createPihContractPair(): Promise<[File, File]> {
   const common = [
-    'HỢP ĐỒNG NGUYÊN TẮC (DEMO)',
-    'Giữa: Công ty TNHH LPC Demo (Bên A)',
-    'Và: Khách hàng Demo (Bên B)',
+    'FRAMEWORK AGREEMENT (DEMO)',
+    'Between: LPC Demo Co., Ltd. (Party A)',
+    'And: Demo Customer (Party B)',
     '',
-    'Điều 1. Phạm vi hợp tác (giả lập)',
-    'Hai bên hợp tác demo trong lĩnh vực phần mềm quản trị doanh nghiệp.',
+    'Article 1. Scope of cooperation (fictional)',
+    'Both parties cooperate, for demo purposes, in enterprise management software.',
     '',
-    'Điều 2. Thời hạn (giả lập)',
+    'Article 2. Term (fictional)',
   ]
   async function build(extra: string[], suffix: 'a' | 'b') {
     const { doc, font, bold } = await baseDoc()
     const page = doc.addPage(PAGE)
-    header(page, bold, font, `Hợp đồng LPC — bản ${suffix.toUpperCase()} (demo)`)
+    header(page, bold, font, `LPC contract - version ${suffix.toUpperCase()} (demo)`)
     const lines = [...common, ...extra]
     lines.forEach((line, i) => page.drawText(line, { x: 55, y: 700 - i * 20, size: 11, font }))
     footer(page, font)
-    return new File([new Uint8Array(await doc.save())], `hop-dong-lpc-demo-${suffix}.pdf`, { type: 'application/pdf' })
+    return new File([new Uint8Array(await doc.save())], `lpc-contract-demo-${suffix}.pdf`, { type: 'application/pdf' })
   }
-  const a = await build(['Hợp đồng có hiệu lực 12 tháng kể từ ngày ký (demo).', '', 'Điều 3. Giá trị hợp đồng (giả lập)', 'Giá trị minh hoạ: 100.000.000 đồng (một trăm triệu, số demo).'], 'a')
-  const b = await build(['Hợp đồng có hiệu lực 24 tháng kể từ ngày ký (demo).', '', 'Điều 3. Giá trị hợp đồng (giả lập)', 'Giá trị minh hoạ: 120.000.000 đồng (một trăm hai mươi triệu, số demo).', 'Điều 4. Điều khoản bổ sung (giả lập, bản B thêm mới)', 'Hai bên thống nhất rà soát lại mỗi quý (demo).'], 'b')
+  const a = await build(['This agreement is valid for 12 months from the signing date (demo).', '', 'Article 3. Contract value (fictional)', 'Sample value: 100,000,000 VND (one hundred million, demo figure).'], 'a')
+  const b = await build(['This agreement is valid for 24 months from the signing date (demo).', '', 'Article 3. Contract value (fictional)', 'Sample value: 120,000,000 VND (one hundred twenty million, demo figure).', 'Article 4. Additional clause (fictional, new in version B)', 'Both parties agree to a quarterly review (demo).'], 'b')
   return [a, b]
 }
