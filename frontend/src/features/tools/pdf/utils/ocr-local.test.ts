@@ -1,8 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { localOcrAngle, localOcrPixels, ocrStrips, uniqueOcrLines } from './ocr-local'
+import { localOcrAngle, localOcrPixels, ocrStrips, printedOcrSegmentation, uniqueOcrLines } from './ocr-local'
 import type { OcrLine } from './ocr-runs'
 
 describe('local printed OCR preparation', () => {
+  it('selects layout detection for strong photo tilt while retaining block reading for straight bands', () => {
+    expect(printedOcrSegmentation(8.75)).toBe('3')
+    expect(printedOcrSegmentation(-4.5)).toBe('3')
+    expect(printedOcrSegmentation(2.75)).toBe('6')
+    expect(printedOcrSegmentation(0)).toBe('6')
+  })
   it('removes duplicate crop-boundary detections while retaining genuinely repeated lines', () => {
     const line = (y: number, confidence: number): OcrLine => ({ bbox: { x0: 20, y0: y, x1: 180, y1: y + 20 }, baseline: { x0: 20, y0: y + 16, x1: 180, y1: y + 16 }, words: [{ text: 'Cách mạng.', confidence, bbox: { x0: 20, y0: y, x1: 180, y1: y + 20 } }] })
     const result = uniqueOcrLines([line(100, 80), line(103, 95), line(150, 90)])

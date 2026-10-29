@@ -1,5 +1,5 @@
 import type { OcrMatrix } from '../types/ocr-profile.types'
-import { localOcrAngle, localOcrPixels, ocrStrips, uniqueOcrLines } from '../utils/ocr-local'
+import { localOcrAngle, localOcrPixels, ocrStrips, printedOcrSegmentation, uniqueOcrLines } from '../utils/ocr-local'
 import type { OcrBox, OcrLine } from '../utils/ocr-runs'
 import { invertMatrix, transformPoint } from '../utils/ocr-transform'
 import { recognizeCanvas, type OcrProgress } from './ocr'
@@ -53,7 +53,10 @@ export async function recognizeLocalPrint(original: HTMLCanvasElement, onProgres
       const toOriginal = invertMatrix(fromOriginal), target = rotated.getContext('2d')!
       target.fillStyle = 'white'; target.fillRect(0, 0, rotated.width, rotated.height)
       target.translate(rotated.width / 2, rotated.height / 2); target.rotate(angle); target.drawImage(crop, -crop.width / 2, -crop.height / 2)
-      const found = await recognizeCanvas(rotated, progress => onProgress({ ...progress, progress: (index + progress.progress) / strips.length }), false, signal, '6')
+      // A photo's upper band can contain a folded neighboring sheet or header.
+      // Let layout detection separate these instead of forcing one text block.
+      const segmentation = index === 0 ? '3' : printedOcrSegmentation(angle * 180 / Math.PI)
+      const found = await recognizeCanvas(rotated, progress => onProgress({ ...progress, progress: (index + progress.progress) / strips.length }), false, signal, segmentation)
       signal.throwIfAborted()
       const point = (x: number, y: number) => transformPoint(toOriginal, { x, y })
       const box = (value: OcrBox): OcrBox => {

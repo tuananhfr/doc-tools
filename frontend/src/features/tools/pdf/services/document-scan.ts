@@ -2,7 +2,9 @@ import { newId } from '@/utils/id'
 import type { QuickItem } from '../hooks/useQuickSources'
 import type { ImageSource } from '../types/doc-tools.types'
 import { sampledGray } from './ocr-preprocess'
-import { detectPaperCorners } from '../utils/ocr-paper'
+import { detectScanCorners } from '../utils/scan-paper'
+import { ocrQuality } from '../utils/ocr-quality'
+import type { OcrQualityFlag } from '../types/ocr-result.types'
 import { estimateSkew } from '../utils/scan-analysis'
 import { expandedRotation, transformPoint } from '../utils/ocr-transform'
 import { scanColor, scanGeometry, SCAN_MAX_PIXELS, type ScanOptions } from '../utils/document-scan'
@@ -22,7 +24,24 @@ export async function loadScanCanvas(source: ImageSource) {
   } finally { bitmap.close() }
 }
 
-export function findScanCorners(canvas: HTMLCanvasElement) { return detectPaperCorners(sampledGray(canvas), true) }
+export function findScanCorners(canvas: HTMLCanvasElement) { return detectScanCorners(sampledGray(canvas)) }
+
+export async function autoScanDocument(item: QuickItem, signal: AbortSignal, onQuality?: (flags: OcrQualityFlag[]) => void) {
+  signal.throwIfAborted()
+  if (item.source.kind !== 'image') return null
+  const canvas = await loadScanCanvas(item.source)
+  let corners: ReturnType<typeof findScanCorners>
+  try {
+    signal.throwIfAborted()
+    const sample = sampledGray(canvas)
+    onQuality?.(ocrQuality(sample, { width: canvas.width, height: canvas.height }))
+    corners = detectScanCorners(sample)
+  }
+  finally { canvas.width = canvas.height = 1 }
+  if (!corners) return null
+  const options: ScanOptions = { corners, preset: 'color', rotation: 0, deskew: true }
+  return { item: await scanDocument(item, options, signal), options }
+}
 
 /** Derive a new image; originals are never overwritten. Preview and PDF use this same derivative. */
 export async function scanDocument(item: QuickItem, options: ScanOptions, signal: AbortSignal): Promise<QuickItem> {

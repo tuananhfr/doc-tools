@@ -1,15 +1,15 @@
 .cn-image-studio--scan-to-pdf .cn-idstudio-hero-icon { background: linear-gradient(145deg, #33cfaa, #00957a); box-shadow: 0 -7px 0 -2px #b2efe0; }
 .cn-imagespdf-scan-controls { display: grid; gap: 8px; margin-bottom: 14px; }
 .cn-imagespdf-scan-controls label { display: grid; gap: 6px; }
-.cn-imagespdf-ocr { border: 1px solid var(--cn-line); background: var(--cn-hero); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-.cn-imagespdf-ocr > label { display: flex; gap: 8px; align-items: flex-start; font-weight: 600; }
-.cn-imagespdf-ocr input { margin-top: 4px; flex-shrink: 0; }
-.cn-imagespdf-ocr > .cn-imagespdf-ocr-layout { display: grid; gap: 8px; margin-bottom: 12px; }
-.cn-imagespdf-ocr-layout select { width: min(100%, 240px); min-width: 0; min-height: 36px; padding: 6px 8px; font-size: 12px; background: var(--cn-surface); color: var(--cn-ink); border: 1px solid var(--cn-line); border-radius: 6px; }
+.cn-imagespdf-ocr { display: grid; gap: 12px; border: 1px solid var(--cn-line); background: var(--cn-hero); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.cn-imagespdf-ocr > label { display: flex; gap: 8px; align-items: flex-start; margin: 0; font-size: 13px; line-height: 1.5; font-weight: 400; cursor: pointer; }
+.cn-imagespdf-ocr > .cn-imagespdf-ocr-toggle { font-weight: 500; }
+.cn-imagespdf-ocr input { width: 15px; height: 15px; margin: 2px 0 0; flex-shrink: 0; accent-color: var(--cn-accent); }
+.cn-imagespdf-ocr > .cn-imagespdf-ocr-layout { display: grid; gap: 6px; margin-inline-start: 23px; font-size: 12px; color: var(--cn-muted); }
+.cn-imagespdf-ocr-layout select { width: min(100%, 240px); min-width: 0; min-height: 36px; padding: 6px 8px; font-size: 13px; background: var(--cn-surface); color: var(--cn-ink); border: 1px solid var(--cn-line); border-radius: 6px; }
 .cn-textpdf-preview { width: 100%; min-width: 0; }
 .cn-textpdf-expand[role="button"] { cursor: zoom-in; }
 .cn-textpdf-expand:focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 3px; }
-.cn-imagespdf-ocr-review { margin-top: 16px; min-width: 0; }
 .cn-imagespdf-scan-controls select { width: 100%; min-width: 0; min-height: 40px; color: var(--cn-ink); background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 6px; }
 .cn-document-scan__stage { position: relative; width: min(100% - 40px, 560px); margin: 26px auto; }
 .cn-document-scan__stage canvas { display: block; width: 100%; height: auto; }

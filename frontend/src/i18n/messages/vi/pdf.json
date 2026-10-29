@@ -1649,6 +1649,16 @@
     "readerEmptyHint": "Chọn tệp để chuyển trang, phóng to và đọc nội dung."
   },
   "documentScan": {
+    "autoRestored": "Đã khôi phục ảnh gốc",
+    "qualityHint": "Ảnh nhỏ hoặc có thể mờ. Dùng ảnh rõ hơn để hạn chế sai chữ.",
+    "autoEnabled": "Tự căn trang khi tải ảnh",
+    "autoKept": "Đang giữ ảnh hiện tại; chưa xác định rõ mép giấy.",
+    "manualAlign": "Chỉnh tay",
+    "autoAligned": "Đã tự căn trang",
+    "scanPreview": "Bản scan",
+    "manualAligned": "Đã chỉnh vùng scan",
+    "autoAlign": "Tự căn trang",
+    "autoProcessing": "Đang tự căn trang…",
     "editText": "Sửa chữ",
     "applyText": "Cập nhật PDF",
     "editTextFailed": "Chưa cập nhật được PDF. Nội dung bạn sửa vẫn được giữ; hãy thử lại.",

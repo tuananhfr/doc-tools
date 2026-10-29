@@ -44,7 +44,13 @@ export function selectOcrExportPass(passes: OcrPassWords[]): OcrPassWords | unde
     if (baseline && count > baseline * 1.35 && !strongRecovery && (pass.pass !== 'local' || score(pass) < 85 || score(pass) < score(selected) + 5)) continue
     const gain = pass.pass === 'local' ? 2 : 5
     const recovered = pass.pass === 'local' && count >= characters(selected) * 1.02 && score(pass) >= score(selected)
-    if (recovered || score(pass) >= score(selected) + gain) selected = pass
+    // A tilted original can score higher precisely because it skipped difficult
+    // line endings. Allow a moderate recovery with a similar strong score only
+    // when almost all previously read content is still present.
+    const completeLines = pass.pass === 'local' && count >= characters(selected) * 1.05
+      && count <= characters(selected) * 1.35 && score(pass) >= 90
+      && score(pass) >= score(selected) - 3 && retainedContent(selected, pass) >= .9
+    if (recovered || completeLines || score(pass) >= score(selected) + gain) selected = pass
   }
   return selected
 }

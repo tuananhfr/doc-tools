@@ -1649,6 +1649,16 @@
     "readerEmptyHint": "Choose a file to navigate, zoom and read."
   },
   "documentScan": {
+    "autoRestored": "Original image restored",
+    "qualityHint": "The image is small or may be blurred. A clearer photo can reduce recognition errors.",
+    "autoEnabled": "Align pages automatically on upload",
+    "autoKept": "Keeping the current image; paper edges are unclear.",
+    "manualAlign": "Adjust manually",
+    "autoAligned": "Page aligned automatically",
+    "scanPreview": "Scan preview",
+    "manualAligned": "Scan region adjusted",
+    "autoAlign": "Auto align",
+    "autoProcessing": "Aligning pages automatically…",
     "editText": "แก้ไขข้อความ",
     "applyText": "อัปเดต PDF",
     "editTextFailed": "อัปเดต PDF ไม่สำเร็จ ข้อความที่แก้ไขยังอยู่ โปรดลองอีกครั้ง",

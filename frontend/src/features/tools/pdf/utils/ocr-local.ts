@@ -1,6 +1,9 @@
 import type { GrayImage } from './scan-analysis'
 import type { OcrLine } from './ocr-runs'
 
+/** Strongly tilted photo bands benefit from layout detection after straightening. */
+export const printedOcrSegmentation = (angle: number): '3' | '6' => Math.abs(angle) > 3 ? '3' : '6'
+
 /** Overlap provides context; it must not duplicate a line when two crops disagree on its centre. */
 export function uniqueOcrLines(lines: OcrLine[], preferFirst = false) {
   const result: OcrLine[] = []

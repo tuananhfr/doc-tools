@@ -1649,6 +1649,16 @@
     "readerEmptyHint": "Choose a file to navigate, zoom and read."
   },
   "documentScan": {
+    "autoRestored": "Original image restored",
+    "qualityHint": "The image is small or may be blurred. A clearer photo can reduce recognition errors.",
+    "autoEnabled": "Align pages automatically on upload",
+    "autoKept": "Keeping the current image; paper edges are unclear.",
+    "manualAlign": "Adjust manually",
+    "autoAligned": "Page aligned automatically",
+    "scanPreview": "Scan preview",
+    "manualAligned": "Scan region adjusted",
+    "autoAlign": "Auto align",
+    "autoProcessing": "Aligning pages automatically…",
     "editText": "កែអត្ថបទ",
     "applyText": "ធ្វើបច្ចុប្បន្នភាព PDF",
     "editTextFailed": "មិនអាចធ្វើបច្ចុប្បន្នភាព PDF បានទេ។ ការកែរបស់អ្នកនៅទីនេះ សូមព្យាយាមម្តងទៀត។",

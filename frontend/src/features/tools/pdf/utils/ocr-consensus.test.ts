@@ -9,6 +9,23 @@ function words(values: { text: string; x: number; width: number }[]) {
   return ocrWords([line], 1, point => point, { width: 200, height: 100 })
 }
 describe('OCR pass consensus', () => {
+  it('recovers a missing footer sentence that is a small part of a long page', () => {
+    const pass = (name: 'original' | 'local', text: string, confidence: number) => ({ pass: name, engineVersion: 'test', words: words([{ text, x: 0, width: 180 }]).map(word => ({ ...word, confidence })) })
+    const body = 'Nội dung tài liệu đã đọc đầy đủ, gồm các nghĩa vụ và quyền hạn của hai bên. '.repeat(8)
+    const original = pass('original', body + 'Khoản bồi thường chênh lệch còn thiếu', 94.6)
+    const local = pass('local', body + 'Khoản bồi thường chênh lệch còn thiếu (nếu có) sẽ có quyền tiếp tục yêu cầu người lao động', 93.1)
+    expect(selectOcrExportPass([original, local])).toBe(local)
+    expect(selectOcrExportPass([original, { ...local, words: local.words.map(word => ({ ...word, confidence: 89 })) }])).toBe(original)
+  })
+  it('keeps recovered line endings when the truncated original scores slightly higher', () => {
+    const pass = (name: 'original' | 'local', text: string, confidence: number) => ({ pass: name, engineVersion: 'test', words: words([{ text, x: 0, width: 180 }]).map(word => ({ ...word, confidence })) })
+    const original = pass('original', 'Câu 18. Đại hội Quốc tế Cộng sản lần thứ VII xác định\nkẻ thù trước mắt nguy hiểm của nhân dân', 92.7)
+    const local = pass('local', 'Câu 18. Đại hội Quốc tế Cộng sản lần thứ VII (7/1935) xác định\nkẻ thù trước mắt nguy hiểm của nhân dân thế giới là gì?', 91.1)
+    expect(selectOcrExportPass([original, local])).toBe(local)
+    expect(selectOcrExportPass([original, { ...local, words: local.words.map(word => ({ ...word, confidence: 89 })) }])).toBe(original)
+    expect(selectOcrExportPass([original, pass('local', original.words[0].rawText.repeat(2), 91.1)])).toBe(original)
+    expect(selectOcrExportPass([original, pass('local', 'Các câu hoàn toàn khác không phải nội dung đã đọc. '.repeat(2), 91.1)])).toBe(original)
+  })
   it('recovers full lines after perspective scanning even when a truncated original has a high score', () => {
     const pass = (name: 'original' | 'local', text: string, confidence: number) => ({ pass: name, engineVersion: 'test', words: words([{ text, x: 0, width: 180 }]).map(word => ({ ...word, confidence })) })
     const original = pass('original', 'Câu 18. Đại hội Quốc tế Cộng\nkẻ thù trước mắt nguy hiểm của', 91.3)

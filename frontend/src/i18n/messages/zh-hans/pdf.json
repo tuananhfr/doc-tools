@@ -1649,6 +1649,16 @@
     "readerEmptyHint": "Choose a file to navigate, zoom and read."
   },
   "documentScan": {
+    "autoRestored": "Original image restored",
+    "qualityHint": "The image is small or may be blurred. A clearer photo can reduce recognition errors.",
+    "autoEnabled": "Align pages automatically on upload",
+    "autoKept": "Keeping the current image; paper edges are unclear.",
+    "manualAlign": "Adjust manually",
+    "autoAligned": "Page aligned automatically",
+    "scanPreview": "Scan preview",
+    "manualAligned": "Scan region adjusted",
+    "autoAlign": "Auto align",
+    "autoProcessing": "Aligning pages automatically…",
     "editText": "修改文字",
     "applyText": "更新 PDF",
     "editTextFailed": "未能更新 PDF。修改内容仍保留在此，请重试。",

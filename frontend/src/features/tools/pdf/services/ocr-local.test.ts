@@ -13,6 +13,13 @@ beforeEach(() => {
   vi.stubGlobal('document', { createElement: () => ({ width: 0, height: 0, getContext: () => ({ drawImage: vi.fn(), translate: vi.fn(), rotate: vi.fn(), fillRect: vi.fn(), putImageData: vi.fn(), getImageData: (_x: number, _y: number, width: number, height: number) => ({ data: new Uint8ClampedArray(width * height * 4).fill(255) }) }) }) })
 })
 afterEach(() => vi.unstubAllGlobals())
+it('detects layout in the upper photo band without extra recognition passes', async () => {
+  vi.mocked(recognizeCanvas).mockResolvedValue([line('Dòng chữ rõ ràng', 95)])
+  const result = await recognizeLocalPrint({ width: 600, height: 600 } as HTMLCanvasElement, vi.fn(), new AbortController().signal)
+  expect(vi.mocked(recognizeCanvas).mock.calls[0][4]).toBe('3')
+  expect(vi.mocked(recognizeCanvas).mock.calls.slice(1).every(call => call[4] === '6')).toBe(true)
+  expect(recognizeCanvas).toHaveBeenCalledTimes(result.regions.length)
+})
 it('re-reads a weak line as one line and maps its words back into the original image', async () => {
   vi.mocked(recognizeCanvas).mockImplementation(async (_canvas, _progress, _numeric, _signal, mode) => [mode === '7' ? line('Thông tin chính', 95, 16, 16) : line('Thông tin chinh', 60)])
   const original = { width: 600, height: 600 } as HTMLCanvasElement
