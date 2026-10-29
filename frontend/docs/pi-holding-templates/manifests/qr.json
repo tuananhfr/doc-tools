@@ -1,0 +1,18 @@
+[
+  {
+    "template_id": "qr.create.foodtek_traceability.vi.v1",
+    "product": "qr",
+    "feature": "qr-create",
+    "locale": "vi-VN",
+    "title": "Foodtek batch traceability text (demo, fictional company)",
+    "source_asset": "frontend/src/features/tools/pih-templates/generators/pih-qr-sample.ts#PIH_QR_SAMPLE_PATCH",
+    "implementation_note": "A 'text'-kind QR payload (not 'url'): the sample is encoded as plain descriptive text containing the word DEMO, not a link to a page that would need to be hosted, kept alive, or malware-scanned. Verified end-to-end through the real buildPayload()/createMatrix() functions in pih-qr-sample.test.ts.",
+    "expected_asset": "n/a - decoded text equals the source text by construction (no lossy transform between form state and QR payload)",
+    "demo_data": true,
+    "rights": "synthetic",
+    "review_status": "draft",
+    "cta": null,
+    "access": { "anonymous": true },
+    "enabled": false
+  }
+]
