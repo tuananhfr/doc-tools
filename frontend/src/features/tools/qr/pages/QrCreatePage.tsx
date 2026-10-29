@@ -13,6 +13,8 @@ import type { QrForm } from '../types/qr.types'
 import { qrFileName } from '../utils/qr-file-name'
 import { createMatrix } from '../utils/qr-matrix'
 import { buildPayload, INITIAL_QR_FORM } from '../utils/qr-payload'
+import { usePihTemplatesEnabled } from '@/features/tools/pih-templates/hooks/usePihTemplatesEnabled'
+import { PIH_QR_SAMPLE_PATCH } from '@/features/tools/pih-templates/generators/pih-qr-sample'
 
 /**
  * TẠO MÃ QR — mã vẽ lại theo từng phím gõ, không có nút "Tạo". Thứ nằm trong mã
@@ -43,8 +45,10 @@ function StaticQrCreatePage() {
   const { t: tc } = useTranslation('common')
   const { t: studio } = useTranslation('common', { keyPrefix: 'studio.qrCreate' })
   const { t: s } = useTranslation('qr', { keyPrefix: 'codeStudio' })
+  const { t: pih } = useTranslation('qr', { keyPrefix: 'pihSample' })
   const toast = useToast()
   const nudge = useDownloadNudge()
+  const pihEnabled = usePihTemplatesEnabled()
   const [form, setForm] = useState<QrForm>(INITIAL_QR_FORM)
   const [colorId, setColorId] = useState(QR_COLORS[0].id)
   const [background, setBackground] = useState<QrBackground>({ mode: 'white', color: '#ffffff' })
@@ -74,6 +78,7 @@ function StaticQrCreatePage() {
   return <CodeWorkspace inputTitle={s('create.input')} previewTitle={s('preview')}
     input={<>
       <p className="cn-codestudio-hint">{studio('inputHint')}</p>
+      {pihEnabled ? <Button type="button" variant="outline-primary" size="sm" className="cn-codestudio-pihsample" onClick={() => setForm(current => ({ ...current, ...PIH_QR_SAMPLE_PATCH }))}><Icon name="stars" />{pih('button')}</Button> : null}
       <QrContentForm kindPicker="tiles" form={form} error={error} onChange={patch => setForm(current => ({ ...current, ...patch }))} />
       <details className="cn-codestudio-options"><summary><Icon name="sliders" />{tc('workspace.customize')}<Icon name="chevron-down" /></summary>
         <QrColorPicker value={colorId} onChange={setColorId} background={background} onBackgroundChange={setBackground} />

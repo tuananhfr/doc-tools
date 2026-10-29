@@ -7,6 +7,8 @@ import { ImageStudio } from '@/features/tools/image/components/ImageStudio'
 import type { LoadingProgress } from '../hooks/useDocWorkspace'
 import type { SideTab } from './DocSidePanel'
 import { createEditorSample, type EditorSample } from '../services/editor-samples'
+import { usePihTemplatesEnabled } from '@/features/tools/pih-templates/hooks/usePihTemplatesEnabled'
+import { createPihTechProfileSample } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
 
 const PDF_TOOLS = ['edit-pdf', 'view-pdf', 'scan-to-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'pdf-to-image', 'organize-pdf', 'pdf-password']
 const EMPTY_TOOLS = [['fonts', 'text'], ['input-cursor-text', 'editText'], ['pencil', 'pen'], ['highlighter', 'highlight'], ['sticky', 'note'], ['cursor', 'select'], ['square', 'rect'], ['arrow-up-right', 'arrow']] as const
@@ -34,10 +36,11 @@ export function PdfEditorStudio({ children, hasPages, loading, onFiles, grid, to
   const id = useId()
   const [sampleBusy, setSampleBusy] = useState(false)
   const [sampleFailed, setSampleFailed] = useState(false)
-  const sample = async (kind: EditorSample) => {
+  const pihEnabled = usePihTemplatesEnabled()
+  const sample = async (kind: EditorSample | 'pih_profile') => {
     if (loading || busy || sampleBusy) return
     setSampleBusy(true); setSampleFailed(false)
-    try { onFiles([await createEditorSample(kind)]) } catch { setSampleFailed(true) } finally { setSampleBusy(false) }
+    try { onFiles([kind === 'pih_profile' ? await createPihTechProfileSample() : await createEditorSample(kind)]) } catch { setSampleFailed(true) } finally { setSampleBusy(false) }
   }
   return <ImageStudio toolId="edit-pdf" icon="file-earmark-pdf-fill" title={s('title')} subtitle={s('subtitle')} heroNote={s('heroNote')}
     category={{ title: s('category'), icon: 'file-earmark-pdf', path: '/tai-lieu-pdf', tools: PDF_TOOLS, relatedTitle: s('related') }}
@@ -57,7 +60,7 @@ export function PdfEditorStudio({ children, hasPages, loading, onFiles, grid, to
           <h2 id={`${id}-input`}>1. {s('uploadTitle')}</h2>
           <FilePicker accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple title={s('drop')} hint={t('picker.pdfImage')} compact={hasPages} loading={loading} disabled={busy || sampleBusy || !!loading} onFiles={onFiles} />
           <p className="cn-idstudio-local"><Icon name="shield-check" />{s('local')}</p>
-          {hasPages ? <div className="cn-pdfeditor-pages"><h3>{s('pagesTitle')}</h3><p className="cn-idstudio-note">{s('pagesHint')}</p>{grid}</div> : <div className="cn-pdfeditor-samples"><h3>{s('samplesTitle')}</h3><div>{(['invoice', 'contract', 'notes'] as const).map(kind => <button type="button" key={kind} disabled={sampleBusy || !!loading} onClick={() => void sample(kind)}><span aria-hidden="true"><Icon name="file-earmark-text" /><i /><i /><i /></span>{s(`samples.${kind}`)}</button>)}</div>{sampleBusy ? <p role="status">{s('sampleBusy')}</p> : null}{sampleFailed ? <p role="alert">{s('sampleFailed')}</p> : null}</div>}
+          {hasPages ? <div className="cn-pdfeditor-pages"><h3>{s('pagesTitle')}</h3><p className="cn-idstudio-note">{s('pagesHint')}</p>{grid}</div> : <div className="cn-pdfeditor-samples"><h3>{s('samplesTitle')}</h3><div>{([...(['invoice', 'contract', 'notes'] as const), ...(pihEnabled ? ['pih_profile' as const] : [])]).map(kind => <button type="button" key={kind} disabled={sampleBusy || !!loading} onClick={() => void sample(kind)}><span aria-hidden="true"><Icon name="file-earmark-text" /><i /><i /><i /></span>{s(`samples.${kind}`)}</button>)}</div>{sampleBusy ? <p role="status">{s('sampleBusy')}</p> : null}{sampleFailed ? <p role="alert">{s('sampleFailed')}</p> : null}</div>}
         </section>
         <div className="cn-pdfeditor-center">
           <section className="cn-idstudio-panel cn-pdfeditor-tools" aria-labelledby={`${id}-tools`}><h2 id={`${id}-tools`}>2. {s('toolsTitle')}</h2>

@@ -5,6 +5,8 @@ import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { compareTask } from '../../services/compare-task'
 import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
+import { PihQuickSampleButton } from '@/features/tools/pih-templates/components/PihQuickSampleButton'
+import { createPihContractPair } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
@@ -33,6 +35,7 @@ export default function ComparePdfPage() {
       runIcon="layout-split"
       blocked={blocked}
       task={() => compareTask(before, after, { ignoreSpace, ignoreCase })}
+      pickerExtra={addFiles => <PihQuickSampleButton visible={count === 0} generate={async () => { const pair = await createPihContractPair(); return [...pair] }} onPick={addFiles} />}
       options={
         <>
           <div className="erp-flow-field">

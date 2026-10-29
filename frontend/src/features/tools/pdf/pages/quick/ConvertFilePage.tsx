@@ -6,6 +6,8 @@ import { FileConversionStudio } from '../../components/quick/FileConversionStudi
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { convertTask, type ConvertTarget } from '../../services/quick-tasks'
+import { PihQuickSampleButton } from '@/features/tools/pih-templates/components/PihQuickSampleButton'
+import { createPihLpcProfileSample } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
@@ -41,6 +43,7 @@ export default function ConvertFilePage() {
       runIcon="arrow-left-right"
       blocked={null}
       task={() => convertTask(quick.items, target, dpi, ocr)}
+      pickerExtra={addFiles => <PihQuickSampleButton visible={quick.items.length === 0} generate={async () => [await createPihLpcProfileSample()]} onPick={addFiles} />}
       options={
         <>
           <fieldset className="cn-fileconversion-formats"><legend>{c('outputFormat')}</legend><div>{TARGETS.map(option => <label key={option.value} className={`cn-fileconversion-format cn-fileconversion-format--${option.value}`}>

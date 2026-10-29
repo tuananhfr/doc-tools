@@ -4,6 +4,8 @@ import { PdfQuickStudio } from '../../components/quick/PdfQuickStudio'
 import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { mergeTask } from '../../services/quick-tasks'
+import { PihQuickSampleButton } from '@/features/tools/pih-templates/components/PihQuickSampleButton'
+import { createPihBrochurePages } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
@@ -27,6 +29,7 @@ export default function MergePdfPage() {
       runIcon="files"
       blocked={count < 2 ? t('merge.blocked') : null}
       task={() => mergeTask(quick.items)}
+      pickerExtra={addFiles => <PihQuickSampleButton visible={count === 0} generate={createPihBrochurePages} onPick={addFiles} />}
       sideIntro={<div className="cn-merge-summary"><span className="cn-studio-small-icon"><Icon name="files" /></span><h2>{studio('summaryTitle')}</h2><p>{studio('summaryHint')}</p><dl><div><dt>{studio('files')}</dt><dd>{count}</dd></div><div><dt>{studio('pages')}</dt><dd>{quick.items.reduce((total, item) => total + item.pages.length, 0)}</dd></div></dl><p className="cn-merge-order"><Icon name="arrow-down-up" />{studio('orderHint')}</p></div>}
     />
     </div></PdfQuickStudio>
