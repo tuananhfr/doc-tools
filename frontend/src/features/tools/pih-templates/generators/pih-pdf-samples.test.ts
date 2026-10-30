@@ -1,5 +1,20 @@
-import { describe, expect, it } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { describe, expect, it, vi } from 'vitest'
+import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument } from 'pdf-lib'
+
+// Real BeVietnamPro font bytes come from `fetch('/assets/...')` at runtime, unavailable under
+// vitest (no dev server) - so read the same TTF straight off disk instead, same precedent as
+// `pdf-form.test.ts`. Unlike mocking in a WinAnsi standard font, this still exercises real
+// Vietnamese glyph encoding (this content has combining diacritics like "Ẫ").
+const REGULAR = readFileSync('src/assets/fonts/BeVietnamPro-Regular.ttf')
+const BOLD = readFileSync('src/assets/fonts/BeVietnamPro-Bold.ttf')
+vi.mock('@/features/tools/pdf/services/pdf-fonts', () => ({
+  createFontLoader: (doc: PDFDocument) => {
+    doc.registerFontkit(fontkit)
+    return (key: string) => doc.embedFont(key === 'bold' ? BOLD : REGULAR, { subset: false })
+  },
+}))
 import {
   createPihBrochureBooklet,
   createPihBrochurePages,

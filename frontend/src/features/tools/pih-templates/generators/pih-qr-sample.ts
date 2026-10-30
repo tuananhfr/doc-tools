@@ -7,5 +7,5 @@ import type { QrForm } from '@/features/tools/qr/types/qr.types'
  */
 export const PIH_QR_SAMPLE_PATCH: Partial<QrForm> = {
   kind: 'text',
-  text: 'FOODTEK DEMO - Lô hàng: FT-DEMO-0001 (dữ liệu minh hoạ, không phải mã tra cứu thật)',
+  text: 'FOODTEK DEMO - Truy xuất lô hàng FT-DEMO-0001 | Kho: Kho Demo 01 | Ngày nhập: 01/01/2026 | Nhà cung cấp: Công ty TNHH Cung ứng Demo (dữ liệu minh hoạ, không phải mã tra cứu thật)',
 }

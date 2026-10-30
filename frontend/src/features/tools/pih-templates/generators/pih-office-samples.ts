@@ -34,6 +34,29 @@ export async function createPihLpcProfileDocx(): Promise<File> {
         new Paragraph('- Triển khai phần mềm quản trị cho doanh nghiệp vừa và nhỏ (demo)'),
         new Paragraph('- Tư vấn quy trình số hoá nội bộ (demo)'),
         new Paragraph('- Hỗ trợ vận hành sau triển khai (demo)'),
+        new Paragraph('- Đào tạo đội ngũ vận hành hệ thống (demo)'),
+        new Paragraph(' '),
+        new Paragraph({ text: 'Dự án tiêu biểu (minh hoạ)', heading: HeadingLevel.HEADING_2 }),
+        new Table({ width: { size: 100, type: WidthType.PERCENTAGE }, rows: [
+          new TableRow({ children: [
+            new TableCell({ width: { size: 50, type: WidthType.PERCENTAGE }, children: [new Paragraph({ children: [new TextRun({ text: 'Tên dự án (hư cấu)', bold: true })] })] }),
+            new TableCell({ width: { size: 25, type: WidthType.PERCENTAGE }, children: [new Paragraph({ children: [new TextRun({ text: 'Quy mô (demo)', bold: true })] })] }),
+            new TableCell({ width: { size: 25, type: WidthType.PERCENTAGE }, children: [new Paragraph({ children: [new TextRun({ text: 'Thời gian (demo)', bold: true })] })] }),
+          ] }),
+          new TableRow({ children: [
+            new TableCell({ children: [new Paragraph('Hệ thống quản trị Demo A')] }),
+            new TableCell({ children: [new Paragraph('Trung bình')] }),
+            new TableCell({ children: [new Paragraph('6 tháng')] }),
+          ] }),
+          new TableRow({ children: [
+            new TableCell({ children: [new Paragraph('Hệ thống quản trị Demo B')] }),
+            new TableCell({ children: [new Paragraph('Lớn')] }),
+            new TableCell({ children: [new Paragraph('12 tháng')] }),
+          ] }),
+        ] }),
+        new Paragraph(' '),
+        new Paragraph({ text: 'Thông tin liên hệ (hư cấu)', heading: HeadingLevel.HEADING_2 }),
+        new Paragraph('Email demo: (không phải địa chỉ thật) — Website demo: (không phải địa chỉ thật)'),
         new Paragraph(' '),
         new Paragraph({ children: [new TextRun({ text: 'Dữ liệu giả lập — chỉ để minh hoạ tính năng, không phải số liệu thật.', italics: true, size: 18 })] }),
       ],
@@ -52,34 +75,45 @@ export async function createPihUbotBoqXlsx(): Promise<File> {
 
   sheet.getCell('A1').value = 'BẢNG KHỐI LƯỢNG DỰ TOÁN — UBOT DEMO (SỐ LIỆU GIẢ LẬP)'
   sheet.getCell('A1').font = { bold: true, size: 13 }
-  sheet.mergeCells('A1:E1')
+  sheet.mergeCells('A1:F1')
 
-  const header = ['Hạng mục (demo)', 'Đơn vị', 'Khối lượng', 'Đơn giá (đồng, demo)', 'Thành tiền']
+  const header = ['Hạng mục (demo)', 'Nhóm (demo)', 'Đơn vị', 'Khối lượng', 'Đơn giá (đồng, demo)', 'Thành tiền']
   const headerRow = sheet.addRow(header)
-  headerRow.font = { bold: true }
+  headerRow.eachCell(cell => {
+    cell.font = { bold: true, color: { argb: 'FFFFFFFF' } }
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1F4E8C' } }
+    cell.alignment = { vertical: 'middle' }
+  })
 
-  const items: [string, string, number, number][] = [
-    ['Mô-đun điều phối quy trình (demo)', 'bộ', 1, 50_000_000],
-    ['Kết nối hệ thống mẫu A (demo)', 'điểm', 3, 8_000_000],
-    ['Kết nối hệ thống mẫu B (demo)', 'điểm', 2, 8_000_000],
-    ['Đào tạo vận hành (demo)', 'buổi', 4, 3_000_000],
+  const items: [string, string, string, number, number][] = [
+    ['Mô-đun điều phối quy trình (demo)', 'Phần mềm', 'bộ', 1, 50_000_000],
+    ['Kết nối hệ thống mẫu A (demo)', 'Tích hợp', 'điểm', 3, 8_000_000],
+    ['Kết nối hệ thống mẫu B (demo)', 'Tích hợp', 'điểm', 2, 8_000_000],
+    ['Mô-đun báo cáo tổng hợp (demo)', 'Phần mềm', 'bộ', 1, 30_000_000],
+    ['Khảo sát hiện trạng (demo)', 'Tư vấn', 'ngày', 5, 2_500_000],
+    ['Đào tạo vận hành (demo)', 'Đào tạo', 'buổi', 4, 3_000_000],
+    ['Bảo trì năm đầu (demo)', 'Hỗ trợ', 'năm', 1, 15_000_000],
   ]
   let firstRow = -1
   let lastRow = -1
-  for (const [name, unit, qty, price] of items) {
-    const r = sheet.addRow([name, unit, qty, price])
+  for (const [name, group, unit, qty, price] of items) {
+    const r = sheet.addRow([name, group, unit, qty, price])
     if (firstRow === -1) firstRow = r.number
     lastRow = r.number
-    r.getCell(5).value = { formula: `C${r.number}*D${r.number}` }
-    r.getCell(4).numFmt = '#,##0'
+    r.getCell(6).value = { formula: `D${r.number}*E${r.number}` }
     r.getCell(5).numFmt = '#,##0'
+    r.getCell(6).numFmt = '#,##0'
+    r.eachCell(cell => { cell.border = { bottom: { style: 'thin', color: { argb: 'FFE1E6EF' } } } })
   }
-  const totalRow = sheet.addRow(['TỔNG (demo)', '', '', '', { formula: `SUM(E${firstRow}:E${lastRow})` }])
+  const totalRow = sheet.addRow(['TỔNG (demo)', '', '', '', '', { formula: `SUM(F${firstRow}:F${lastRow})` }])
   totalRow.font = { bold: true }
-  totalRow.getCell(5).numFmt = '#,##0'
+  totalRow.getCell(6).numFmt = '#,##0'
+  totalRow.eachCell(cell => { cell.border = { top: { style: 'medium', color: { argb: 'FF1F4E8C' } } } })
 
-  sheet.columns.forEach((column, index) => { column.width = index === 0 ? 34 : 18 })
+  sheet.columns.forEach((column, index) => { column.width = index === 0 ? 34 : index === 1 ? 16 : 18 })
   sheet.addRow([])
+  const notesRow = sheet.addRow(['Ghi chú (demo): số liệu trên là dữ liệu giả lập để thử tính năng bảng tính, không phải dự toán thật.'])
+  notesRow.font = { italic: true, size: 10, color: { argb: 'FF6B7280' } }
   sheet.addRow(['Dữ liệu giả lập — chỉ để minh hoạ tính năng, không phải số liệu thật.'])
 
   const buffer = await workbook.xlsx.writeBuffer()
@@ -109,11 +143,11 @@ export async function createPihOfficeEcosystemPptx(): Promise<File> {
 
   const diagram = pptx.addSlide()
   diagram.addText('Sơ đồ hệ sinh thái (minh hoạ)', { x: 0.5, y: 0.3, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
-  const boxes = ['ERPCons Demo', 'Tekshot Demo', 'Ubot Demo', 'DocTools Demo']
-  boxes.forEach((label, i) => {
-    diagram.addShape(pptx.ShapeType.roundRect, { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1, fill: { color: i % 2 === 0 ? accent : '0EA5E9' }, line: { color: 'FFFFFF' }, rectRadius: 0.1 })
-    diagram.addText(label, { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1, fontSize: 13, color: 'FFFFFF', bold: true, align: 'center', valign: 'middle' })
-    if (i < boxes.length - 1) diagram.addText('→', { x: 2.5 + i * 2.3, y: 2, w: 0.3, h: 1, fontSize: 18, color: muted, align: 'center', valign: 'middle' })
+  const boxes: [string, string][] = [['ERPCons Demo', 'Quản trị DN (demo)'], ['Tekshot Demo', 'Sản xuất & bán hàng (demo)'], ['Ubot Demo', 'Tự động hoá (demo)'], ['DocTools Demo', 'Tài liệu văn phòng (demo)']]
+  boxes.forEach(([label, sub], i) => {
+    diagram.addShape(pptx.ShapeType.roundRect, { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1.1, fill: { color: i % 2 === 0 ? accent : '0EA5E9' }, line: { color: 'FFFFFF' }, rectRadius: 0.1 })
+    diagram.addText([{ text: label, options: { breakLine: true, bold: true, fontSize: 13 } }, { text: sub, options: { fontSize: 9 } }], { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1.1, color: 'FFFFFF', align: 'center', valign: 'middle' })
+    if (i < boxes.length - 1) diagram.addText('→', { x: 2.5 + i * 2.3, y: 2, w: 0.3, h: 1.1, fontSize: 18, color: muted, align: 'center', valign: 'middle' })
   })
   diagram.addText('Tên sản phẩm/tổ chức đều là giả lập, không phản ánh cơ cấu hay dữ liệu thật.', { x: 0.5, y: 4.6, w: 9, h: 0.5, fontSize: 11, color: muted, italic: true })
 
@@ -129,6 +163,19 @@ export async function createPihOfficeEcosystemPptx(): Promise<File> {
     highlights.addText(title, { x: 0.6, y, w: 8.8, h: 0.4, fontSize: 15, bold: true, color: accent })
     highlights.addText(items.map(text => ({ text, options: { bullet: true, breakLine: true } })), { x: 0.9, y: y + 0.4, w: 8.5, h: 0.7, fontSize: 12, color: navy })
   })
+
+  const metrics = pptx.addSlide()
+  metrics.addText('Số liệu minh hoạ (demo)', { x: 0.5, y: 0.3, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
+  const bars: [string, number][] = [['ERPCons Demo', 80], ['Tekshot Demo', 65], ['Ubot Demo', 45], ['DocTools Demo', 30]]
+  const maxW = 6
+  bars.forEach(([label, pct], i) => {
+    const y = 1.3 + i * 0.9
+    metrics.addText(label, { x: 0.6, y, w: 2.2, h: 0.5, fontSize: 12, color: navy, valign: 'middle' })
+    metrics.addShape(pptx.ShapeType.rect, { x: 2.9, y: y + 0.05, w: maxW, h: 0.4, fill: { color: 'E5E7EB' } })
+    metrics.addShape(pptx.ShapeType.rect, { x: 2.9, y: y + 0.05, w: (maxW * pct) / 100, h: 0.4, fill: { color: i % 2 === 0 ? accent : '0EA5E9' } })
+    metrics.addText(`${pct}% (demo)`, { x: 2.9 + maxW + 0.15, y, w: 1, h: 0.5, fontSize: 11, color: muted, valign: 'middle' })
+  })
+  metrics.addText('Tỉ lệ minh hoạ mức độ sử dụng mẫu giữa các sản phẩm — số liệu giả lập, không phải dữ liệu vận hành thật.', { x: 0.5, y: 4.9, w: 9, h: 0.5, fontSize: 10, color: muted, italic: true })
 
   const closing = pptx.addSlide()
   closing.addText('Lưu ý dữ liệu', { x: 0.6, y: 1.8, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
