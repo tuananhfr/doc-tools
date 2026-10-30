@@ -9,7 +9,7 @@ import { OfficeCloseDialog } from '../components/OfficeCloseDialog'
 import { useOfficeEditor } from '../hooks/useOfficeEditor'
 import { useOfficeFullscreen } from '../hooks/useOfficeFullscreen'
 import { PihOfficeSampleDownload } from '@/features/tools/pih-templates/components/PihOfficeSampleDownload'
-import { createPihLpcProfileDocx, createPihUbotBoqXlsx } from '@/features/tools/pih-templates/generators/pih-office-samples'
+import { createPihLpcProfileDocx, createPihOfficeEcosystemPptx, createPihUbotBoqXlsx } from '@/features/tools/pih-templates/generators/pih-office-samples'
 
 export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
   const { t } = useTranslation('common')
@@ -66,7 +66,7 @@ export default function OfficeEditorPage({ app }: { app: OfficeAppId }) {
             <Icon name={busy ? 'hourglass-split' : 'box-arrow-up-right'} /> {busy ? t('office.opening') : t('office.open')}
           </Button>
           <p className="cn-office-limit">{t('office.limit')}</p>
-          {app === 'office-word' ? <PihOfficeSampleDownload generate={createPihLpcProfileDocx} /> : app === 'office-sheet' ? <PihOfficeSampleDownload generate={createPihUbotBoqXlsx} /> : null}
+          {app === 'office-word' ? <PihOfficeSampleDownload generate={createPihLpcProfileDocx} /> : app === 'office-sheet' ? <PihOfficeSampleDownload generate={createPihUbotBoqXlsx} /> : app === 'office-slide' ? <PihOfficeSampleDownload generate={createPihOfficeEcosystemPptx} /> : null}
         </div>
         </div>
       )}

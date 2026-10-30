@@ -85,3 +85,55 @@ export async function createPihUbotBoqXlsx(): Promise<File> {
   const buffer = await workbook.xlsx.writeBuffer()
   return new File([buffer], 'boq-ubot-demo.xlsx', { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
 }
+
+/**
+ * PowerPoint: "Hệ sinh thái PIH" — 4 slide dựng bằng text box/hình khối (không ảnh), đủ để thử
+ * DeckCraft mà không kéo theo nhánh xử lý ảnh của pptxgenjs (gói `image-size` kèm theo có advisory
+ * DoS khi parse ảnh JXL/HEIF/ICNS — không chạm tới vì generator này không gọi `addImage`).
+ */
+export async function createPihOfficeEcosystemPptx(): Promise<File> {
+  const { default: PptxGenJS } = await import('pptxgenjs')
+  const pptx = new PptxGenJS()
+  pptx.author = 'PI Holding — mẫu để thử'
+  pptx.title = 'PI Holding ecosystem (demo)'
+
+  const navy = '1F2937'
+  const accent = '2563EB'
+  const muted = '6B7280'
+
+  const cover = pptx.addSlide()
+  cover.background = { color: navy }
+  cover.addText('PI HOLDING — MẪU ĐỂ THỬ', { x: 0.6, y: 1.6, w: 9, h: 0.5, fontSize: 14, color: accent, bold: true })
+  cover.addText('Hệ sinh thái PIH / ERPCons (demo)', { x: 0.6, y: 2.1, w: 9, h: 1, fontSize: 32, color: 'FFFFFF', bold: true })
+  cover.addText('Dữ liệu giả lập — chỉ để minh hoạ tính năng, không phải số liệu thật.', { x: 0.6, y: 4.8, w: 9, h: 0.5, fontSize: 12, color: muted, italic: true })
+
+  const diagram = pptx.addSlide()
+  diagram.addText('Sơ đồ hệ sinh thái (minh hoạ)', { x: 0.5, y: 0.3, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
+  const boxes = ['ERPCons Demo', 'Tekshot Demo', 'Ubot Demo', 'DocTools Demo']
+  boxes.forEach((label, i) => {
+    diagram.addShape(pptx.ShapeType.roundRect, { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1, fill: { color: i % 2 === 0 ? accent : '0EA5E9' }, line: { color: 'FFFFFF' }, rectRadius: 0.1 })
+    diagram.addText(label, { x: 0.5 + i * 2.3, y: 2, w: 2, h: 1, fontSize: 13, color: 'FFFFFF', bold: true, align: 'center', valign: 'middle' })
+    if (i < boxes.length - 1) diagram.addText('→', { x: 2.5 + i * 2.3, y: 2, w: 0.3, h: 1, fontSize: 18, color: muted, align: 'center', valign: 'middle' })
+  })
+  diagram.addText('Tên sản phẩm/tổ chức đều là giả lập, không phản ánh cơ cấu hay dữ liệu thật.', { x: 0.5, y: 4.6, w: 9, h: 0.5, fontSize: 11, color: muted, italic: true })
+
+  const highlights = pptx.addSlide()
+  highlights.addText('Điểm nổi bật (minh hoạ)', { x: 0.5, y: 0.3, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
+  const bullets: [string, string[]][] = [
+    ['ERPCons Demo', ['Quản trị dự án và tài chính (ví dụ minh hoạ)', 'Kết nối dữ liệu nội bộ giữa các phòng ban (demo)']],
+    ['Tekshot Demo', ['Điểm bán hàng và báo cáo kinh doanh (demo)', 'Quảng cáo và nội dung tự động hoá (demo)']],
+    ['Ubot Demo', ['Thiết kế và dự toán công trình (demo)', 'Kiểm tra bản vẽ tự động (demo)']],
+  ]
+  bullets.forEach(([title, items], i) => {
+    const y = 1.1 + i * 1.2
+    highlights.addText(title, { x: 0.6, y, w: 8.8, h: 0.4, fontSize: 15, bold: true, color: accent })
+    highlights.addText(items.map(text => ({ text, options: { bullet: true, breakLine: true } })), { x: 0.9, y: y + 0.4, w: 8.5, h: 0.7, fontSize: 12, color: navy })
+  })
+
+  const closing = pptx.addSlide()
+  closing.addText('Lưu ý dữ liệu', { x: 0.6, y: 1.8, w: 9, h: 0.6, fontSize: 22, bold: true, color: navy })
+  closing.addText('Toàn bộ tên công ty, số liệu và sơ đồ trong tệp này là dữ liệu giả lập, dựng để minh hoạ tính năng trình chiếu. Không phải thông tin thật của bất kỳ tổ chức nào.', { x: 0.6, y: 2.5, w: 8.8, h: 1.2, fontSize: 13, color: muted })
+
+  const blob = (await pptx.write({ outputType: 'blob' })) as Blob
+  return new File([blob], 'pih-ecosystem-demo.pptx', { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' })
+}

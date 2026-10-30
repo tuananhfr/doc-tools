@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createPihLpcProfileDocx, createPihUbotBoqXlsx } from './pih-office-samples'
+import { createPihLpcProfileDocx, createPihOfficeEcosystemPptx, createPihUbotBoqXlsx } from './pih-office-samples'
 
 async function isZip(file: File): Promise<boolean> {
   const bytes = new Uint8Array(await file.slice(0, 2).arrayBuffer())
@@ -34,5 +34,21 @@ describe('pih-office-samples', () => {
     expect(String(amountCell.formula ?? '')).toContain('C3*D3')
     const totalFormula = String(sheet.getCell('E7').formula ?? '')
     expect(totalFormula).toContain('SUM(')
+  })
+
+  it('PIH ecosystem (PowerPoint) is a valid .pptx with 4 slides', async () => {
+    const file = await createPihOfficeEcosystemPptx()
+    expect(file.name).toBe('pih-ecosystem-demo.pptx')
+    expect(file.type).toBe('application/vnd.openxmlformats-officedocument.presentationml.presentation')
+    expect(file.size).toBeGreaterThan(0)
+    expect(await isZip(file)).toBe(true)
+
+    const { unzipSync, strFromU8 } = await import('fflate')
+    const entries = unzipSync(new Uint8Array(await file.arrayBuffer()))
+    const slideFiles = Object.keys(entries).filter(name => /^ppt\/slides\/slide\d+\.xml$/.test(name))
+    expect(slideFiles).toHaveLength(4)
+    const diagramSlide = strFromU8(entries['ppt/slides/slide2.xml'])
+    expect(diagramSlide).toContain('ERPCons Demo')
+    expect(diagramSlide).toContain('Tekshot Demo')
   })
 })
