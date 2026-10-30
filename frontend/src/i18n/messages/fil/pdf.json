@@ -1159,7 +1159,8 @@
     "samples": {
       "invoice": "Sample invoice",
       "contract": "Sample agreement",
-      "notes": "Sample minutes"
+      "notes": "Sample minutes",
+      "pih_profile": "PI Holding tech profile (sample)"
     },
     "sampleBusy": "Creating sample…",
     "sampleFailed": "Could not create the sample. Try again or select a local file.",
@@ -1823,5 +1824,10 @@
     "textPrevious": "Previous PDF page",
     "textNext": "Next PDF page",
     "inputPages": "Input images"
+  },
+  "pihSample": {
+    "button": "Try a PI Holding sample",
+    "busy": "Creating the sample file…",
+    "failed": "Could not create the sample file. Try again or pick a file from your device."
   }
 }

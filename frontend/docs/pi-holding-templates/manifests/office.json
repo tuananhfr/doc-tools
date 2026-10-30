@@ -1,0 +1,50 @@
+[
+  {
+    "template_id": "office.word.lpc_profile.vi.v1",
+    "product": "office",
+    "feature": "word.new",
+    "locale": "vi-VN",
+    "title": "LPC company profile (demo)",
+    "source_asset": "frontend/src/features/tools/pih-templates/generators/pih-office-samples.ts#createPihLpcProfileDocx",
+    "implementation_note": "WordCraft (the vendored WASM Word editor) loads a static index.html in an iframe with no observed postMessage/param channel to pre-load a document, and its vendor bundle is not even present in this checkout (fetched separately). Integration is DOWNLOAD-ONLY: the .docx is generated fresh client-side (docx lib) and offered as a download; the user opens it themselves via WordCraft's own Open-file control. No engine code was touched or guessed at.",
+    "expected_asset": "n/a - verified by pih-office-samples.test.ts (valid zip container, non-empty)",
+    "demo_data": true,
+    "rights": "synthetic",
+    "review_status": "draft",
+    "cta": null,
+    "access": { "anonymous": true },
+    "enabled": false
+  },
+  {
+    "template_id": "office.sheet.ubot_boq.vi.v1",
+    "product": "office",
+    "feature": "sheet.new",
+    "locale": "vi-VN",
+    "title": "Ubot BOQ - bill of quantities (demo)",
+    "source_asset": "frontend/src/features/tools/pih-templates/generators/pih-office-samples.ts#createPihUbotBoqXlsx",
+    "implementation_note": "Same GridCraft iframe constraint as Word above - download-only, same reasoning.",
+    "expected_asset": "n/a - verified by pih-office-samples.test.ts (valid zip container, correct sheet name/rows, real SUM/multiplication formulas re-parsed with ExcelJS, not baked-in totals)",
+    "demo_data": true,
+    "rights": "synthetic",
+    "review_status": "draft",
+    "cta": null,
+    "access": { "anonymous": true },
+    "enabled": false
+  },
+  {
+    "template_id": "office.slide.pih_ecosystem.vi.v1",
+    "product": "office",
+    "feature": "slide.new",
+    "locale": "vi-VN",
+    "title": "PI Holding / ERPCons ecosystem overview (demo)",
+    "source_asset": "frontend/src/features/tools/pih-templates/generators/pih-office-samples.ts#createPihOfficeEcosystemPptx",
+    "implementation_note": "Same DeckCraft iframe constraint as Word/Excel - download-only, same reasoning. Unblocked by adding `pptxgenjs` (new dependency; not previously in repo) and generating 4 slides (cover, ecosystem diagram via shapes/text only, highlights, closing) - no images embedded, so pptxgenjs's image-parsing code path (its `image-size` transitive dep has an open high-severity DoS advisory for malformed JXL/HEIF/ICNS files) is never exercised by this generator. Needs a human to actually open the downloaded file in real PowerPoint and in DeckCraft to confirm it renders as intended - only automated structural checks (valid zip, 4 slide parts, expected text present) have been run.",
+    "expected_asset": "n/a - verified by pih-office-samples.test.ts (valid pptx zip container, exactly 4 slide parts, diagram slide contains expected labels)",
+    "demo_data": true,
+    "rights": "synthetic",
+    "review_status": "draft",
+    "cta": null,
+    "access": { "anonymous": true },
+    "enabled": false
+  }
+]

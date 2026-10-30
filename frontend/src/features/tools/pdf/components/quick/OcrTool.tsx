@@ -13,6 +13,8 @@ import { OcrQualityPreview } from './OcrQualityPreview'
 import { OcrOutputOptions } from './OcrOutputOptions'
 import { OcrCornerPicker } from './OcrCornerPicker'
 import { DEFAULT_OCR_OPTIONS, type OcrPipelineOptions } from '../../types/ocr-profile.types'
+import { PihQuickSampleButton } from '@/features/tools/pih-templates/components/PihQuickSampleButton'
+import { createPihFoodtekReceiptImage } from '@/features/tools/pih-templates/generators/pih-ocr-sample'
 
 const DOCUMENTS: readonly QuickKind[] = ['pdf', 'image']
 const IMAGES: readonly QuickKind[] = ['image']
@@ -40,6 +42,7 @@ export function OcrTool({ imagesOnly = false }: { imagesOnly?: boolean }) {
     runLabel={t(imagesOnly ? 'imageToText.run' : 'ocrPage.run')} runIcon="card-text" blocked={invalidCorners ? o('invalidCorners') : (output === 'csv' || output === 'xlsx') && options.profile !== 'table' ? o('tableRequired') : null}
     task={() => ocrTask(quick.items, output, checkOcr || structured ? review.request : undefined, options)}
     stage={() => review.pages ? <OcrReview pages={review.pages} onComplete={review.complete} /> : undefined}
+    pickerExtra={addFiles => <PihQuickSampleButton visible={quick.items.length === 0} generate={async () => [await createPihFoodtekReceiptImage()]} onPick={addFiles} />}
     options={<>
       <OcrOutputOptions tiles value={output} onChange={setOutput} />
       <div className="cn-imagespdf-ocr"><label><input type="checkbox" checked={checkOcr || structured} disabled={structured} onChange={event => setCheckOcr(event.target.checked)} /> {t('documentScan.ocrOptionalReview')}</label><p className="cn-idstudio-note">{t(structured ? 'documentScan.ocrStructuredReview' : 'documentScan.ocrUnreviewed')}</p></div>

@@ -1053,7 +1053,8 @@
     "samples": {
       "invoice": "Hóa đơn mẫu",
       "contract": "Hợp đồng mẫu",
-      "notes": "Biên bản mẫu"
+      "notes": "Biên bản mẫu",
+      "pih_profile": "Hồ sơ công nghệ PI Holding (mẫu)"
     },
     "sampleBusy": "Đang tạo tệp mẫu…",
     "sampleFailed": "Chưa tạo được tệp mẫu. Bạn có thể thử lại hoặc chọn tệp từ máy.",
@@ -1717,5 +1718,10 @@
     "textPrevious": "Trang PDF trước",
     "textNext": "Trang PDF sau",
     "inputPages": "Số ảnh đầu vào"
+  },
+  "pihSample": {
+    "button": "Dùng mẫu PI Holding",
+    "busy": "Đang tạo tệp mẫu…",
+    "failed": "Không tạo được tệp mẫu, thử lại hoặc chọn tệp từ máy."
   }
 }

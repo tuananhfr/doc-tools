@@ -8,6 +8,8 @@ import { QuickToolShell } from '../../components/quick/QuickToolShell'
 import { useQuickSources, type QuickKind } from '../../hooks/useQuickSources'
 import { splitTask } from '../../services/quick-tasks'
 import { planSplit, type SplitMode } from '../../utils/split-groups'
+import { PihQuickSampleButton } from '@/features/tools/pih-templates/components/PihQuickSampleButton'
+import { createPihBrochureBooklet } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
 
 const ACCEPT: readonly QuickKind[] = ['pdf']
 
@@ -41,6 +43,7 @@ export default function SplitPdfPage() {
       runIcon="scissors"
       blocked={plan && !plan.ok ? plan.message : null}
       task={() => splitTask(item, plan?.ok ? plan.groups : [])}
+      pickerExtra={addFiles => <PihQuickSampleButton visible={!item} generate={async () => [await createPihBrochureBooklet()]} onPick={addFiles} />}
       sideIntro={<div className="cn-merge-summary cn-split-summary"><span className="cn-studio-small-icon"><Icon name="scissors" /></span><h2>{studio('summaryTitle')}</h2><p>{studio('summaryHint')}</p><dl><div><dt>{studio('pages')}</dt><dd>{pageCount}</dd></div><div><dt>{studio('parts')}</dt><dd>{parts}</dd></div></dl></div>}
       options={
         <>

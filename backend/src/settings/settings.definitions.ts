@@ -19,6 +19,7 @@ export const SETTINGS = {
   'cloud.maxItems': { type: 'integer', default: 500, min: 10, max: 5000, unit: 'mục', label: 'Trần mục đã lưu mỗi người', help: 'Gồm cả kết quả đã lưu và công cụ yêu thích. Hạ trần không xoá mục cũ, chỉ chặn lưu thêm.' },
   'cloud.maxMegabytes': { type: 'integer', default: 20, min: 1, max: 500, unit: 'MB', label: 'Trần dung lượng đã lưu mỗi người', help: 'Tổng kích thước dữ liệu kết quả đã lưu. Hạ trần không xoá mục cũ, chỉ chặn lưu thêm.' },
   'sources.staleDays': { type: 'integer', default: 90, min: 7, max: 730, unit: 'ngày', label: 'Ngưỡng "có thể đã cũ" của nguồn pháp lý', help: 'Số liệu có ngày kiểm nguồn cũ hơn ngần này ngày hiện cảnh báo vàng ở tiền điện, lương, đổi địa chỉ.' },
+  'templates.piholding.enabled': { type: 'boolean', default: false, label: 'Mẫu để thử PI Holding', help: 'Hiện nút "Mẫu để thử" (hồ sơ/brochure/QR minh hoạ, dữ liệu giả lập gắn nhãn rõ) cạnh thao tác mở trống ở một số công cụ. Tắt mặc định; chỉ bật sau khi BU/CMO duyệt nội dung mẫu (xem content/ trong nhánh triển khai).' },
 } as const satisfies Record<string, SettingDefinition>
 
 export type SettingKey = keyof typeof SETTINGS

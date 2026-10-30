@@ -285,7 +285,13 @@
     "exitFullscreen": "Exit fullscreen",
     "exitFullscreenShort": "Exit",
     "closeShort": "Close",
-    "fullscreenUnavailable": "Fullscreen could not be enabled in this browser. You can continue working in the expanded workspace."
+    "fullscreenUnavailable": "Fullscreen could not be enabled in this browser. You can continue working in the expanded workspace.",
+    "pihSample": {
+      "downloadLabel": "Download a sample file to try",
+      "hint": "Open the editor, then use its Open file button to pick the file you just downloaded.",
+      "busy": "Creating the sample file…",
+      "failed": "Could not create the sample file."
+    }
   },
   "embed": {
     "saveToCde": "Save to CDE records"
