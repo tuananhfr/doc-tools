@@ -72,7 +72,18 @@ const config = {
     for (const rule of config.module.rules) {
       if (rule.loader?.includes('next-image-loader')) rule.resourceQuery = { not: [/url/] }
     }
-    if (!isServer) config.resolve.fallback = { ...config.resolve.fallback, fs: false, path: false, module: false, crypto: false }
+    // pptxgenjs's ES bundle (client-only, dynamically imported) references `node:fs`/`node:https`
+    // behind runtime environment checks it never takes in the browser; its own package.json
+    // `browser` field would normally no-op these, but that field is ignored once `exports` is
+    // present (no `browser` condition in pptxgenjs's exports map). Webpack treats a `node:`-scheme
+    // request as a protocol, not a normal specifier, so `resolve.fallback` alone can't catch it -
+    // strip the scheme first so it falls through to the plain `fs`/`https` fallbacks below.
+    if (!isServer) {
+      config.plugins.push(new webpack.NormalModuleReplacementPlugin(/^node:/, resource => {
+        resource.request = resource.request.replace(/^node:/, '')
+      }))
+      config.resolve.fallback = { ...config.resolve.fallback, fs: false, path: false, module: false, crypto: false, https: false }
+    }
     return config
   },
 }
