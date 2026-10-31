@@ -709,7 +709,12 @@
     "cancel": "Cancel",
     "downloadAgain": "Download result again",
     "downloadSheet_one": "Download sheet ({{count}} photo)",
-    "downloadSheet_other": "Download sheet ({{count}} photos)"
+    "downloadSheet_other": "Download sheet ({{count}} photos)",
+    "autoSteps": {
+      "1": "Choose the files to process.",
+      "2": "Processing starts automatically. Adjust options if needed.",
+      "3": "Review the result and download."
+    }
   },
   "cropStudio": {
     "title": "Crop & edit photos",
@@ -966,7 +971,7 @@
         "2": "Wait for subject segmentation",
         "3": "Choose transparent, white or blue background",
         "4": "Refine with keep and erase brushes",
-        "5": "Compare, download PNG or make an ID photo"
+        "5": "Preview the result, download PNG or make an ID photo"
       },
       "tips": {
         "1": "Clear photos work best",

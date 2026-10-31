@@ -23,6 +23,8 @@ export default function CompressPdfPage() {
 
   return (
     <PdfQuickStudio kind="compress"><QuickToolShell
+      automatic
+      resultKey={level}
       pdfStudio="compress"
       quick={quick}
       accept={ACCEPT}

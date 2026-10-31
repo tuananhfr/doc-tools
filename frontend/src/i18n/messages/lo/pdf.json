@@ -1717,7 +1717,32 @@
     "textPage": "PDF page {{page}} / {{total}}",
     "textPrevious": "Previous PDF page",
     "textNext": "Next PDF page",
-    "inputPages": "Input images"
+    "inputPages": "Input images",
+    "structure": {
+      "format": "Formatting",
+      "hint": "Select a paragraph or table cell to edit.",
+      "font": "Font",
+      "sans": "Sans serif",
+      "serif": "Serif",
+      "size": "Size (pt)",
+      "spacing": "Line spacing",
+      "bold": "Bold",
+      "italic": "Italic",
+      "align": "Alignment",
+      "left": "Left",
+      "center": "Center",
+      "right": "Right",
+      "applyAll": "Apply style to document",
+      "position": "Position",
+      "indent": "Left (mm)",
+      "width": "Width (mm)",
+      "columns": "Column widths (mm)",
+      "column": "Column {{number}}",
+      "cell": "Table cell",
+      "paragraph": "Paragraph",
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in"
+    }
   },
   "pihSample": {
     "button": "Try a PI Holding sample",

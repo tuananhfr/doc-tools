@@ -9,6 +9,7 @@ export interface FlowChoiceOption<T extends string> {
 }
 
 interface FlowChoiceProps<T extends string> {
+  inline?: boolean
   legend: string
   value: T
   options: FlowChoiceOption<T>[]
@@ -16,7 +17,7 @@ interface FlowChoiceProps<T extends string> {
 }
 
 /** Nhóm nút chọn một trong vài phương án ở cột tuỳ chọn của công cụ nhanh. */
-export function FlowChoice<T extends string>({ legend, value, options, onChange }: FlowChoiceProps<T>) {
+export function FlowChoice<T extends string>({ legend, value, options, onChange, inline = false }: FlowChoiceProps<T>) {
   const ids = useId()
 
   return (
@@ -24,7 +25,7 @@ export function FlowChoice<T extends string>({ legend, value, options, onChange 
       <span id={`${ids}-legend`} className="erp-flow-field__label">
         {legend}
       </span>
-      <div className="erp-flow-choice">
+      {inline ? <div className="erp-flow-choice erp-flow-choice--inline">{options.map(option => <label key={option.value} className="erp-flow-choice__option"><input type="radio" name={ids} value={option.value} checked={value === option.value} onChange={() => onChange(option.value)} /><span>{option.label}</span></label>)}</div> : <div className="erp-flow-choice">
         {options.map((option) => (
           <Form.Check
             key={option.value}
@@ -42,7 +43,7 @@ export function FlowChoice<T extends string>({ legend, value, options, onChange 
             }
           />
         ))}
-      </div>
+      </div>}
     </div>
   )
 }

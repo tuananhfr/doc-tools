@@ -10,7 +10,7 @@ export async function GET() {
   const [regular, bold, logo] = await Promise.all([
     readFile(path.join(process.cwd(), 'src/assets/fonts/BeVietnamPro-Regular.ttf')),
     readFile(path.join(process.cwd(), 'src/assets/fonts/BeVietnamPro-Bold.ttf')),
-    readFile(path.join(process.cwd(), 'public/brand/chuyen-nho-mark-v1.png')),
+    readFile(path.join(process.cwd(), 'public/brand/chuyen-nho-mark-20261031.png')),
   ])
   return new ImageResponse(
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%', padding: '64px 76px', background: '#f3f9ff', color: '#0c254d', fontFamily: 'Be Vietnam Pro' }}>

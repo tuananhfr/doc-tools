@@ -11,12 +11,15 @@ vi.mock('./ocr-quality', () => ({ ocrSourceHash: async () => 'source-hash' }))
 vi.mock('./ocr-export', () => ({ exportReviewedOcr: vi.fn(), reviewedOcrText: vi.fn() }))
 vi.mock('./text-layer', () => ({ loadPageText: async () => ({ runs: [] }) }))
 vi.mock('./ocr-text-pdf', () => ({ buildOcrTextPdf: vi.fn() }))
+vi.mock('./page-size', () => ({ basePageSize: async () => ({ width: 595.28, height: 841.89 }) }))
+vi.mock('./ocr-document-pdf', () => ({ buildOcrDocumentPdf: vi.fn() }))
 
 import { imagesToPdfTask } from './quick-tasks'
 import { buildPdf, buildBatch } from './doc-build'
 import { recognizePipeline } from './ocr-pipeline'
 import { clearOcrTexts, ocrText, saveOcrText } from './ocr-store'
 import { buildOcrTextPdf } from './ocr-text-pdf'
+import { buildOcrDocumentPdf } from './ocr-document-pdf'
 
 const item = (id: string): QuickItem => ({ source: { id, kind: 'image', name: `${id}.png`, mime: 'image/png', bytes: new Uint8Array([1]), size: 1, pageCount: 1 }, pages: [{ id: `page-${id}`, sourceId: id, pageIndex: 0, rotation: 0 }] })
 const text = () => ({ runs: [{ text: 'Nội dung', origin: { x: 20, y: 30 }, width: 80, size: 12, angle: 0, ascent: .8, descent: -.2, fontName: 'test', fontFamily: 'sans-serif', eol: true }] })
@@ -29,6 +32,14 @@ beforeEach(() => {
 })
 
 describe('OCR integrated with the image-to-PDF flow', () => {
+  it('keeps a table-only reading when the whole-page pass missed every word', async () => {
+    vi.mocked(recognizePipeline).mockResolvedValueOnce({ runs: [], ocr: { sourceId: 'table', pageIndex: 0, sourceHash: null, engine: 'tesseract', engineVersion: 'test', pass: 'original', words: [], qualityFlags: [], layout: { regions: [], fields: [], tables: [{ id: 't', rows: 2, columns: 2, origin: 'ruled', verifiedAt: null, cells: [{ id: 'c', row: 0, column: 0, rowSpan: 2, columnSpan: 2, bbox: [{ x: 20, y: 20 }, { x: 200, y: 20 }, { x: 200, y: 200 }, { x: 20, y: 200 }], rawText: '120.000', wordIds: [], verified: null }] }] } } })
+    vi.mocked(buildOcrDocumentPdf).mockResolvedValueOnce({ blob: new Blob(['structured']), pages: 1 })
+    const result = await imagesToPdfTask([item('table')], DEFAULT_SHEET, { options: DEFAULT_OCR_OPTIONS, layout: 'text' })(step())
+    expect(result.text).toContain('120.000')
+    expect(result.ocrDocument?.pages[0].blocks[0].kind).toBe('table')
+    expect(buildPdf).not.toHaveBeenCalled()
+  })
   it('white-page mode uses recognized text and does not invoke the photo PDF assembler', async () => {
     vi.mocked(buildOcrTextPdf).mockResolvedValueOnce({ blob: new Blob(['text pdf'], { type: 'application/pdf' }), pages: 2 })
     const result = await imagesToPdfTask([item('one'), item('two')], DEFAULT_SHEET, { options: DEFAULT_OCR_OPTIONS, layout: 'text' })(step())

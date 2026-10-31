@@ -146,11 +146,6 @@ export const SEARCH_INTENTS: readonly SearchIntent[] = [
     inputProfiles: ['number'], expectedOutcome: 'Số tiền viết bằng chữ', risk: 'review',
   },
   {
-    id: 'money.split', canonical: 'Chia tiền nhóm', preferredTool: 'group-split', acceptableTools: [], forbiddenTools: [],
-    aliases: ['chia tiền ăn nhóm', 'chia hóa đơn cho bạn bè', 'tính mỗi người trả bao nhiêu'],
-    inputProfiles: ['amounts', 'participants'], expectedOutcome: 'Phần tiền từng người', risk: 'review',
-  },
-  {
     id: 'date.count', canonical: 'Tính ngày', preferredTool: 'date-calc', acceptableTools: [], forbiddenTools: ['lunar-calendar'],
     requiredTerms: [['ngày'], ['hạn', 'cộng', 'kể từ', 'cách nhau', 'giữa', 'thời hạn']],
     aliases: ['hai ngày cách nhau bao lâu', 'tính số ngày giữa hai mốc', 'cộng thêm ngày vào ngày hiện tại'],

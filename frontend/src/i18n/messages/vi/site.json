@@ -275,6 +275,106 @@
         "title": "TekShot AI",
         "description": "Công nghệ AI cho công việc"
       }
+    },
+    "catalog": {
+      "groups": {
+        "doanh-nghiep": {
+          "title": "Doanh nghiệp thành viên",
+          "description": "Những doanh nghiệp hoạt động độc lập, cùng phát triển, tạo giá trị chung."
+        },
+        "san-pham": {
+          "title": "Sản phẩm và giải pháp",
+          "description": "Những sản phẩm, giải pháp công nghệ phục vụ con người và doanh nghiệp."
+        },
+        "cong-dong": {
+          "title": "Công cụ vì cộng đồng",
+          "description": "Những tiện ích nhỏ, tạo thay đổi lớn. Miễn phí cho mọi người."
+        }
+      },
+      "items": {
+        "lpc": {
+          "name": "Lam Pham Construction",
+          "description": "Xây dựng và công nghệ, Chuyển đổi số trong xây dựng."
+        },
+        "foodtek": {
+          "name": "Foodtek",
+          "description": "Sản xuất Pizza và thực phẩm cấp đông"
+        },
+        "pizzaHips": {
+          "name": "Pizza Hip's",
+          "description": "Chuỗi nhượng quyền Pizza và đồ ăn nhanh"
+        },
+        "lpcFood": {
+          "name": "LPCfood (LPCf)",
+          "description": "Nguyên phụ liệu và công cụ làm bánh"
+        },
+        "erpconsCompany": {
+          "name": "ERPcons - Construction OS",
+          "description": "Nền tảng điều hành doanh nghiệp và DA xây dựng"
+        },
+        "tekshotAi": {
+          "name": "Tekshot AI",
+          "description": "AI cho hộ kinh doanh\nCamera AI, Bán hàng AI, Nội dung AI, Thấu hiểu AI, Vận hành AI"
+        },
+        "erpcons": {
+          "name": "ERPcons - Construction OS",
+          "description": "Nền tảng vận hành doanh nghiệp và DA xây dựng"
+        },
+        "tekshotOs": {
+          "name": "Tekshot OS",
+          "description": "Nền tảng AI & Marketing OS"
+        },
+        "ubotBuild": {
+          "name": "UbotBuild",
+          "description": "Công cụ xây dựng"
+        },
+        "ubot": {
+          "name": "UBOT",
+          "description": "Giải pháp sàn phẳng · Hộp nhựa tạo rỗng"
+        },
+        "houseBook": {
+          "name": "Sổ Nhà",
+          "description": "Hồ sơ ngôi nhà của bạn"
+        },
+        "ubotView": {
+          "name": "UbotView",
+          "description": "Camera & hiện trường"
+        },
+        "ubotConnect": {
+          "name": "UbotConnect",
+          "description": "Kết nối đa kênh"
+        },
+        "aloUbot": {
+          "name": "AloUbot",
+          "description": "Trò chuyện · Hỗ trợ công việc"
+        },
+        "piAgent": {
+          "name": "PI Agent",
+          "description": "Nhân viên Ai - Thực hiện theo vai trò"
+        },
+        "office": {
+          "name": "Văn phòng",
+          "description": "Văn phòng trực tuyến miễn phí."
+        },
+        "chuyenNho": {
+          "name": "Chuyện Nhỏ",
+          "description": "Công cụ miễn phí hằng ngày"
+        },
+        "familyCalendar": {
+          "name": "Lịch gia đình",
+          "description": "Kết nối yêu thương"
+        },
+        "digitalHealth": {
+          "name": "Sức khỏe số",
+          "description": "Chăm sóc mỗi ngày"
+        },
+        "businessHealth": {
+          "name": "Sức khỏe Doanh nghiệp",
+          "description": "Đánh giá · Tư vấn · Cải thiện vận hành"
+        }
+      },
+      "current": "Bạn đang khám phá",
+      "noLink": "Chưa có liên kết"
     }
   },
   "ecosystem": {
@@ -1453,7 +1553,6 @@
       "privacy": "Quyền riêng tư",
       "ecosystem": "Hệ sinh thái"
     },
-
     "hero": {
       "title": "Việc nhỏ mỗi ngày,",
       "highlight": "giải quyết nhẹ nhàng.",

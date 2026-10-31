@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from '@/features/site/config/brand-assets'
 import type { LandingMode } from '../types/landing.types'
 
 /** Homepage artwork used for any picture slot staff left empty (files in `public/`). */
@@ -6,7 +7,7 @@ export const DEFAULT_PICTURES = {
   privacy: '/landing/privacy.webp',
   closing: '/landing/closing.webp',
   cases: ['/landing/documents.webp', '/landing/media.webp', '/landing/everyday.webp'],
-  logo: '/brand/chuyen-nho-mark-v1.png',
+  logo: SITE_BRAND_MARK,
 } as const
 
 export const defaultToolsShot = (mode: LandingMode) => mode === 'dark' ? '/landing/pdf-editor-dark.webp' : '/landing/pdf-editor-light.webp'

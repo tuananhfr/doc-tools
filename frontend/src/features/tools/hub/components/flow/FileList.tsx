@@ -4,6 +4,7 @@ import { formatFileSize } from '@/utils/format'
 import type { FlowFile } from '../../types/flow.types'
 
 interface FileListProps {
+  compact?: boolean
   files: FlowFile[]
   disabled: boolean
   onRemove: (id: string) => void
@@ -13,11 +14,11 @@ interface FileListProps {
 }
 
 /** Tệp đã chọn: tên, dung lượng, dời lên / xuống, bỏ. */
-export function FileList({ files, disabled, onRemove, onMove, onClear }: FileListProps) {
+export function FileList({ files, disabled, onRemove, onMove, onClear, compact = false }: FileListProps) {
   const { t } = useTranslation('common')
   return (
-    <section className="erp-flow-files" aria-label={t('fileList.title')}>
-      <header className="erp-flow-files__head">
+    <section className={`erp-flow-files${compact ? ' erp-flow-files--compact' : ''}`} aria-label={t('fileList.title')}>
+      {!compact || files.length > 1 ? <header className="erp-flow-files__head">
         <h2 className="erp-flow-files__title">
           {t('fileList.title')} <span className="erp-flow-files__count">({files.length})</span>
         </h2>
@@ -26,23 +27,23 @@ export function FileList({ files, disabled, onRemove, onMove, onClear }: FileLis
             {t('fileList.clearAll')}
           </button>
         ) : null}
-      </header>
+      </header> : null}
 
       <ol className="erp-flow-files__list">
         {files.map((file, index) => (
           <li key={file.id} className="erp-flow-file">
             {onMove && files.length > 1 ? <span className="erp-flow-file__order">{index + 1}</span> : null}
-            <span className="erp-flow-file__thumb">
+            {!compact ? <span className="erp-flow-file__thumb">
               {file.thumbnail ? <img src={file.thumbnail} alt="" /> : <Icon name={file.icon} />}
-            </span>
+            </span> : null}
             <span className="erp-flow-file__text">
               <span className="erp-flow-file__name" title={file.name}>
                 {file.name}
               </span>
-              <span className="erp-flow-file__meta">
+              {!compact ? <span className="erp-flow-file__meta">
                 {formatFileSize(file.size)}
                 {file.detail ? ` · ${file.detail}` : ''}
-              </span>
+              </span> : null}
             </span>
             <span className="erp-flow-file__actions">
               {onMove && files.length > 1 ? (

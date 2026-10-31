@@ -33,6 +33,7 @@ export default function ConvertFilePage() {
   return (
     <FileConversionStudio>
     <QuickToolShell
+      automatic
       pdfStudio="convert"
       resultKey={JSON.stringify([quick.items.map(item => item.source.id), target, dpi, ocr])}
       quick={quick}

@@ -16,7 +16,7 @@ const CONFIG = {
   money: { id: 'money-calc', tip: 'studio.moneyCalc.tip', steps: ['studio.moneyCalc.step1', 'studio.moneyCalc.step2', 'studio.moneyCalc.step3'] },
   dates: { id: 'date-calc', tip: 'calculationStudio.dates.tip', steps: ['calculationStudio.dates.step1', 'calculationStudio.dates.step2', 'calculationStudio.dates.step3'] },
 } as const
-const TOOLS = ['quick-calc', 'unit-convert', 'lunar-calendar', 'number-words', 'loan', 'unit-price', 'study', 'group-split', 'money-calc', 'date-calc']
+const TOOLS = ['unit-convert', 'lunar-calendar', 'number-words', 'loan', 'unit-price', 'study', 'money-calc', 'date-calc']
 
 /** One category menu; preserve the different calculator and calendar workflows. */
 export function CalculationStudio({ kind, children }: { kind: keyof typeof CONFIG; children: ReactNode }) {

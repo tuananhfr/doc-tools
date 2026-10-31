@@ -190,12 +190,11 @@
     "title": "Our partners",
     "disclosure": "Partner spotlight"
   },
-  "ecosystemPage":   {
+  "ecosystemPage": {
     "kicker": "CHUYEN NHO ECOSYSTEM",
     "title": "Explore the ecosystem",
     "tagline": "Many tools. One good thing in common.",
     "description": "Make work lighter and everyday life better.",
-
     "categoriesLabel": "Service filters",
     "categories": {
       "all": "All",
@@ -203,7 +202,8 @@
       "work": "Work",
       "life": "Life",
       "business": "Business"
-    },    "trail": "생태계",
+    },
+    "trail": "생태계",
     "servicesTitle": "Services in the ecosystem",
     "servicesDescription": "Choose a service to get started, or discover tools that fit your needs.",
     "servicesLabel": "Service directory",
@@ -275,6 +275,106 @@
         "title": "TekShot AI",
         "description": "AI technology for better work"
       }
+    },
+    "catalog": {
+      "groups": {
+        "doanh-nghiep": {
+          "title": "Member companies",
+          "description": "Independent businesses working together to grow and create shared value."
+        },
+        "san-pham": {
+          "title": "Products and solutions",
+          "description": "Technology products and solutions designed to support people and businesses."
+        },
+        "cong-dong": {
+          "title": "Tools for the community",
+          "description": "Small everyday tools that create meaningful impact and are free for everyone."
+        }
+      },
+      "items": {
+        "lpc": {
+          "name": "Lam Pham Construction",
+          "description": "Construction and technology;\nDigital transformation in construction."
+        },
+        "foodtek": {
+          "name": "Foodtek",
+          "description": "Pizza and frozen food production"
+        },
+        "pizzaHips": {
+          "name": "Pizza Hip's",
+          "description": "Pizza and fast-food franchise chain"
+        },
+        "lpcFood": {
+          "name": "LPCfood (LPCf)",
+          "description": "Baking ingredients, supplies and tools"
+        },
+        "erpconsCompany": {
+          "name": "ERPcons - Construction OS",
+          "description": "Operating platform for businesses and construction projects"
+        },
+        "tekshotAi": {
+          "name": "Tekshot AI",
+          "description": "AI for small businesses\nAI cameras, AI sales, AI content, AI insights, AI operations"
+        },
+        "erpcons": {
+          "name": "ERPcons - Construction OS",
+          "description": "Operations platform for businesses and construction projects"
+        },
+        "tekshotOs": {
+          "name": "Tekshot OS",
+          "description": "AI & marketing operating system"
+        },
+        "ubotBuild": {
+          "name": "UbotBuild",
+          "description": "Construction tools"
+        },
+        "ubot": {
+          "name": "UBOT",
+          "description": "Flat slab solution · hollow plastic box"
+        },
+        "houseBook": {
+          "name": "Home Ledger",
+          "description": "Your home profile"
+        },
+        "ubotView": {
+          "name": "UbotView",
+          "description": "Camera & jobsite monitoring"
+        },
+        "ubotConnect": {
+          "name": "UbotConnect",
+          "description": "Multi-channel connectivity"
+        },
+        "aloUbot": {
+          "name": "AloUbot",
+          "description": "Chat · work support"
+        },
+        "piAgent": {
+          "name": "PI Agent",
+          "description": "AI staff - Perform role-based tasks"
+        },
+        "office": {
+          "name": "Online office",
+          "description": "Free online office."
+        },
+        "chuyenNho": {
+          "name": "Chuyện Nhỏ",
+          "description": "Daily free tools"
+        },
+        "familyCalendar": {
+          "name": "Family calendar",
+          "description": "Connect and share moments"
+        },
+        "digitalHealth": {
+          "name": "Digital health",
+          "description": "Daily care"
+        },
+        "businessHealth": {
+          "name": "Corporate health",
+          "description": "Assessment · advisory · operational improvement"
+        }
+      },
+      "current": "You are exploring",
+      "noLink": "No link available"
     }
   },
   "ecosystem": {

@@ -670,7 +670,12 @@
     "print": "In ảnh",
     "exporting": "Đang tạo ảnh…",
     "cancel": "Hủy",
-    "downloadAgain": "Tải lại kết quả"
+    "downloadAgain": "Tải lại kết quả",
+    "autoSteps": {
+      "1": "Chọn tệp cần xử lý.",
+      "2": "Công cụ tự xử lý; đổi tùy chọn nếu cần.",
+      "3": "Xem kết quả và tải về."
+    }
   },
   "cropStudio": {
     "title": "Cắt & chỉnh ảnh",
@@ -924,7 +929,7 @@
         "2": "Chờ bộ xử lý tách chủ thể",
         "3": "Chọn nền trong suốt, trắng hoặc xanh",
         "4": "Dùng cọ sửa vùng cần giữ hoặc xóa",
-        "5": "Xem ảnh gốc, tải PNG hoặc làm ảnh thẻ"
+        "5": "Xem kết quả, tải PNG hoặc làm ảnh thẻ"
       },
       "tips": {
         "1": "Ảnh rõ nét giúp tách nền tốt hơn",

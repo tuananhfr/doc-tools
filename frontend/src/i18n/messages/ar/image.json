@@ -865,7 +865,12 @@
     "downloadSheet_two": "تنزيل الورقة (عدد الصور: {{count}})",
     "downloadSheet_few": "تنزيل الورقة (عدد الصور: {{count}})",
     "downloadSheet_many": "تنزيل الورقة (عدد الصور: {{count}})",
-    "downloadSheet_other": "تنزيل الورقة (عدد الصور: {{count}})"
+    "downloadSheet_other": "تنزيل الورقة (عدد الصور: {{count}})",
+    "autoSteps": {
+      "1": "Choose the files to process.",
+      "2": "Processing starts automatically. Adjust options if needed.",
+      "3": "Review the result and download."
+    }
   },
   "cropStudio": {
     "title": "Crop & edit photos",
@@ -1134,7 +1139,7 @@
         "2": "Wait for subject segmentation",
         "3": "Choose transparent, white or blue background",
         "4": "Refine with keep and erase brushes",
-        "5": "Compare, download PNG or make an ID photo"
+        "5": "Preview the result, download PNG or make an ID photo"
       },
       "tips": {
         "1": "Clear photos work best",

@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from '../config/brand-assets'
 import { useTranslation } from 'react-i18next'
 import { withBase } from '@/utils/url'
 import Image from 'next/image'
@@ -44,7 +45,7 @@ export function EcosystemSection() {
         <h3>{t('ecosystem.storyTitle')}</h3>
         <p>{t('ecosystem.story')}</p>
         <div className="cn-ecosystem-steps">
-          <div><Image src={withBase('/brand/chuyen-nho-mark-v1.png')} width={64} height={64} alt="" /><span><strong>Chuyện Nhỏ</strong><small><MultilineText text={t('ecosystem.steps.chuyenNho')} /></small></span></div>
+          <div><Image src={withBase(SITE_BRAND_MARK)} width={64} height={64} alt="" /><span><strong>Chuyện Nhỏ</strong><small><MultilineText text={t('ecosystem.steps.chuyenNho')} /></small></span></div>
           <Icon className="cn-step-arrow" name="arrow-right" />
           <div><Icon name="buildings" /><span><strong>ERPCons</strong><small><MultilineText text={t('ecosystem.steps.erpcons')} /></small></span></div>
           <Icon className="cn-step-arrow" name="arrow-right" />

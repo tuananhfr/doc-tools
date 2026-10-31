@@ -59,6 +59,7 @@ export function ImageToolShell({ images, run, multiple, pickerTitle, stage, opti
 
   return (
     <ToolFlow
+      compactFiles={studioKind === 'batch'}
       studio={studioKind ? { mode: studioKind === 'batch' ? 'process' : 'canvas', inputTitle: layout(studioKind === 'batch' ? 'input' : 'canvasInput'), optionsTitle: layout(studioKind === 'batch' ? 'options' : 'canvasOptions'), previewTitle: layout('preview'), emptyTitle: layout('empty'), emptyHint: layout(studioKind === 'batch' ? 'batchHint' : 'canvasHint'), previewUrl: images.items[0]?.url } : undefined}
       mobilePreview={mobilePreview}
       initialPanel={initialPanel}

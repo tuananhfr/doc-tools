@@ -4,7 +4,7 @@ import { validPaperCorners } from './ocr-perspective'
 
 interface Line { a: number; b: number; r: number; strength: number }
 
-/** Reject text baselines/rules mistaken for a top or bottom edge inside a sheet.
+/** Reject text baselines/rules mistaken for any paper edge inside a sheet.
  * Corners are in sampled pixels. Require sustained paper beyond the candidate,
  * rather than treating one dark text row as the outside of the document. */
 export function hasPaperContinuation(image: GrayImage, corners: Quad): boolean {
@@ -18,7 +18,7 @@ export function hasPaperContinuation(image: GrayImage, corners: Quad): boolean {
     values.sort((a, b) => a - b)
     return values[Math.floor(values.length * .75)]
   }
-  for (const edge of [0, 2]) {
+  for (const edge of [0, 1, 2, 3]) {
     const a = corners[edge], b = corners[(edge + 1) % 4], length = Math.hypot(b.x - a.x, b.y - a.y)
     const nx = -(b.y - a.y) / length * step, ny = (b.x - a.x) / length * step
     let continuing = 0
@@ -26,7 +26,9 @@ export function hasPaperContinuation(image: GrayImage, corners: Quad): boolean {
       const t = .15 + i * .07, x = a.x + (b.x - a.x) * t, y = a.y + (b.y - a.y) * t
       // A gradual shadow is still paper. Look for an actual brightness step
       // along this profile, instead of comparing distant points across shading.
-      const tones = [4, 2, 0, -2, -4, -6].map(distance => paperTone(x + nx * distance, y + ny * distance))
+      // Compare the nearby paper on both sides. Requiring a long outside
+      // profile misses dividers near the photo boundary and clips headers.
+      const tones = [2, 1, 0, -1, -2].map(distance => paperTone(x + nx * distance, y + ny * distance))
       if (tones.every((tone, index) => tone !== null && tone >= 120 && (!index || tone >= tones[index - 1]! - 35))) continuing++
     }
     if (continuing >= 6) return true

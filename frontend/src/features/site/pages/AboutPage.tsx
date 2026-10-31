@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from '../config/brand-assets'
 import Image from 'next/image'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -69,7 +70,7 @@ export default function AboutPage() {
           {PRODUCTS.map((product) => (
             <li key={product.id} className={`cn-about-product cn-about-product--${product.id}`}>
               <div className="cn-about-product-head">
-                {product.id === 'chuyen-nho' ? <Image src={withBase('/brand/chuyen-nho-mark-v1.png')} width={52} height={52} alt="" className="cn-about-logo-mark" /> : null}
+                {product.id === 'chuyen-nho' ? <Image src={withBase(SITE_BRAND_MARK)} width={52} height={52} alt="" className="cn-about-logo-mark" /> : null}
                 {product.id === 'erpcons' ? <Image src={erpLogo} width={110} height={42} unoptimized alt="" className="cn-about-logo-erp" /> : null}
                 {product.id === 'tekshot' ? <Icon name="cpu" /> : null}
                 <span><strong>{product.name}</strong><small>{products[product.id].role}</small></span>

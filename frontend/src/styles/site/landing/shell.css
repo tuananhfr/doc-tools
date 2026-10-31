@@ -48,7 +48,7 @@
 .cn-landing-footer { padding: 40px 0 24px; background: var(--cn-landing-closing); color: var(--cn-landing-closing-text); }
 .cn-landing-footer .cn-brand, .cn-landing-footer .cn-brand-accent { color: var(--cn-landing-closing-text); }
 .cn-landing-footer-main { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding-bottom: 28px; border-bottom: 1px solid rgb(199 216 241 / 25%); }
-.cn-landing-footer .cn-brand img { filter: brightness(0) invert(1); }
+.cn-landing-footer .cn-brand img { filter: none; }
 .cn-landing-footer p { color: var(--cn-landing-closing-muted); font-size: 14px; margin-top: 12px; }
 .cn-landing-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 24px; max-width: 650px; }
 .cn-landing-footer a { color: var(--cn-landing-closing-text); text-decoration: none; }

@@ -121,7 +121,7 @@ describe('legacyToolPath', () => {
 describe('filterTools', () => {
   it('filters by category', () => {
     const ids = filterTools(VI_TOOL_CATALOG, 'calc', '').map((tool) => tool.id)
-    expect(ids).toEqual(['study', 'measure-image', 'quick-calc', 'unit-convert'])
+    expect(ids).toEqual(['study', 'measure-image', 'unit-convert'])
   })
 
   it('folds every PDF tool into the document group', () => {

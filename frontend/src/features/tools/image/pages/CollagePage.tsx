@@ -116,7 +116,7 @@ export default function CollagePage() {
         <FilePicker multiple accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" title={t('collage.choose')} hint={s('formats')} compact={files.length > 0} loading={null} disabled={locked} onFiles={addFiles} />
         {!files.length ? <Button variant="outline-primary" className="cn-collagestudio-sample" disabled={locked} onClick={() => void sample()}>{sampleBusy ? <Spinner as="span" size="sm" /> : <Icon name="images" />}{s('sample')}</Button> : null}
         {sampleFailed ? <p className="erp-tool-form__error" role="alert">{s('sampleFailed')}</p> : null}
-        {files.length ? <><p className="cn-idstudio-note">{s('orderHint')}</p><FileList files={list} disabled={locked} onRemove={id => setFiles(current => current.filter((_, index) => index !== Number(id)))} onMove={move} onClear={() => setFiles([])} /></> : null}
+        {files.length ? <><p className="cn-idstudio-note">{s('orderHint')}</p><FileList compact files={list} disabled={locked} onRemove={id => setFiles(current => current.filter((_, index) => index !== Number(id)))} onMove={move} onClear={() => setFiles([])} /></> : null}
         {countText || fileError ? <p className="erp-tool-form__error" role="alert">{countText || fileError}</p> : null}
         <p className="cn-idstudio-local"><Icon name="shield-check" />{s('local')}</p>
       </section>

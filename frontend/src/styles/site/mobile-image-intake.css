@@ -8,6 +8,8 @@
   .cn-tool-workspace .cn-idstudio-note:not([role], [id], .cn-idstudio-warning),
   .cn-tool-workspace .cn-ocr-readiness > p[role='status'],
   .cn-tool-workspace .cn-idstudio-help { display: none; }
+  :root:not([data-experience='simple']) .cn-tool-workspace .cn-idstudio--focused .cn-idstudio-help { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: 14px; }
+  :root:not([data-experience='full']) .cn-idstudio--focused .cn-idstudio-help > :not(:first-child) { display: none; }
   .cn-idstudio-upload .cn-idstudio-drop { min-height: 0; padding: 12px; gap: 10px; }
   .cn-idstudio-upload .cn-idstudio-drop > .bi,
   .cn-idstudio-upload .cn-idstudio-drop:not(:has(.cn-idstudio-uploaded)) > strong { display: none; }

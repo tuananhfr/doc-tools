@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { FilePicker } from '@/features/tools/hub'
@@ -18,10 +18,9 @@ export default function RemoveBackgroundPage() {
   const { t: s } = useTranslation('image', { keyPrefix: 'utilityStudio.background' })
   const { t: photo } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const tool = useBackgroundRemoval()
-  const [selected, setSelected] = useState<File | null>(null), [originalUrl, setOriginalUrl] = useState<string | null>(null)
-  const [original, setOriginal] = useState(false), [sampleBusy, setSampleBusy] = useState(false), [sampleFailed, setSampleFailed] = useState(false)
-  useEffect(() => { if (!selected) { setOriginalUrl(null); return }; const url = URL.createObjectURL(selected); setOriginalUrl(url); return () => URL.revokeObjectURL(url) }, [selected])
-  const open = async (file: File) => { setSelected(file); setOriginal(false); await tool.open(file) }
+  const [selected, setSelected] = useState<File | null>(null)
+  const [sampleBusy, setSampleBusy] = useState(false), [sampleFailed, setSampleFailed] = useState(false)
+  const open = async (file: File) => { setSelected(file); await tool.open(file) }
   const sample = async () => {
     setSampleBusy(true); setSampleFailed(false)
     try { const response = await fetch(withBase('/assets/id-photo/portrait-demo-v2.png')); if (!response.ok) throw new Error('SAMPLE_FAILED'); await open(new File([await response.blob()], 'portrait-demo.png', { type: 'image/png' })) }
@@ -44,11 +43,9 @@ export default function RemoveBackgroundPage() {
     </section>
     <section className="cn-idstudio-panel cn-backgroundstudio-output"><h2>{s('outputTitle')}</h2>
       {tool.busy ? <p role="status" className="cn-idstudio-note"><Spinner as="span" size="sm" /> {tool.message}</p> : tool.phase === 'error' || tool.phase === 'cancelled' ? <p role="alert" className="cn-imageutility-error">{tool.message}</p> : null}
-      <div className="cn-idstudio-tabs"><button type="button" disabled={!visible} aria-pressed={!original} onClick={() => setOriginal(false)}>{s('result')}</button><button type="button" disabled={!originalUrl || !visible} aria-pressed={original} onClick={() => setOriginal(true)}>{s('original')}</button></div>
       <div className="cn-backgroundstudio-stage" aria-busy={tool.busy}>
         <div hidden={visible}><img className="cn-backgroundstudio-demo" src={withBase('/assets/id-photo/portrait-demo-v2.png')} alt={photo('samplePreview')} /><strong>{s('emptyTitle')}</strong><p>{s('emptyHint')}</p></div>
-        {originalUrl ? <img src={originalUrl} alt={s('original')} hidden={(!original && !tool.busy) || !visible} /> : null}
-        <canvas ref={tool.canvas} hidden={original || !visible || tool.busy} aria-label={t('removeBg.preview')} style={{ touchAction: tool.brush === 'off' ? 'auto' : 'none', cursor: tool.brush === 'off' ? 'default' : 'crosshair' }} onPointerDown={tool.startStroke} onPointerMove={tool.brushAt} onPointerUp={tool.endStroke} onPointerCancel={tool.endStroke} onLostPointerCapture={tool.endStroke} />
+        <canvas ref={tool.canvas} hidden={!visible || tool.busy} aria-label={t('removeBg.preview')} style={{ touchAction: tool.brush === 'off' ? 'auto' : 'none', cursor: tool.brush === 'off' ? 'default' : 'crosshair' }} onPointerDown={tool.startStroke} onPointerMove={tool.brushAt} onPointerUp={tool.endStroke} onPointerCancel={tool.endStroke} onLostPointerCapture={tool.endStroke} />
       </div>
       <p className="cn-idstudio-note">{s('pngHint')}</p>
       <div className="cn-backgroundstudio-download"><Button disabled={!ready} onClick={tool.save}><Icon name="download" />{t('removeBg.download')}</Button><HandoffButton target="id-photo" label={t('handoff.toIdPhoto')} disabled={!ready} file={() => tool.toFile(idPhotoFill(tool.background))} /></div>

@@ -1,3 +1,11 @@
+@font-face { font-family: 'CN OCR Sans'; src: url('../../assets/fonts/Arimo-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'CN OCR Sans'; src: url('../../assets/fonts/Arimo-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'CN OCR Sans'; src: url('../../assets/fonts/Arimo-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'CN OCR Sans'; src: url('../../assets/fonts/Arimo-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: 'CN OCR Serif'; src: url('../../assets/fonts/Tinos-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'CN OCR Serif'; src: url('../../assets/fonts/Tinos-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'CN OCR Serif'; src: url('../../assets/fonts/Tinos-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'CN OCR Serif'; src: url('../../assets/fonts/Tinos-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; font-display: swap; }
 .cn-image-studio--scan-to-pdf .cn-idstudio-hero-icon { background: linear-gradient(145deg, #33cfaa, #00957a); box-shadow: 0 -7px 0 -2px #b2efe0; }
 .cn-imagespdf-scan-controls { display: grid; gap: 8px; margin-bottom: 14px; }
 .cn-imagespdf-scan-controls label { display: grid; gap: 6px; }
@@ -70,6 +78,49 @@
 .cn-imagespdf-preview .cn-idstudio-output-meta { margin-block: 16px; }
 .cn-imagespdf-preview .cn-idstudio-downloads .btn { min-height: 44px; }
 .cn-imagespdf-download-hint { margin-top: 12px; }
+.cn-idstudio-editor.cn-imagespdf-editor--automatic { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; }
+.cn-imagespdf-editor--automatic .cn-imagespdf-preview { grid-column: auto; }
+.cn-imagespdf-editor--automatic .cn-imagespdf-preview-stage { width: 100%; max-width: none; min-height: 0; margin: 0; padding: 0; border: 0; background: transparent; }
+.cn-imagespdf-paper-choice { display: grid; gap: 8px; padding: 0; margin: 14px 0 0; border: 0; min-width: 0; }
+.cn-imagespdf-paper-choice legend { float: none; width: auto; margin: 0 0 8px; padding: 0; font-size: 12px; font-weight: 600; }
+.cn-imagespdf-paper-choice > div { display: flex; gap: 6px; flex: 1; }
+.cn-imagespdf-paper-choice button { flex: 1; min-height: 44px; padding: 6px 10px; border: 1px solid var(--cn-line); border-radius: 7px; background: var(--cn-surface); color: var(--cn-ink); font-size: 13px; white-space: nowrap; }
+.cn-imagespdf-paper-choice button[aria-pressed='true'] { color: var(--cn-accent); border-color: var(--cn-accent); background: var(--cn-hero); font-weight: 600; }
+.cn-imagespdf-files { margin-top: 8px; }
+.cn-imagespdf-files > summary, .cn-imagespdf-more > summary { min-height: 44px; padding-block: 12px; color: var(--cn-accent); font-size: 12px; cursor: pointer; }
+.cn-imagespdf-files .erp-flow-files__title { display: none; }
+.cn-imagespdf-files .erp-flow-files__head { justify-content: flex-end; }
+.cn-imagespdf-files .erp-flow-files__head:not(:has(.erp-flow-files__clear)) { display: none; }
+.cn-auto-settings > summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; font-size: 13px; font-weight: 600; cursor: pointer; list-style: none; }
+.cn-auto-settings > summary::after { content: '+'; font-size: 18px; font-weight: 400; color: var(--cn-accent); }
+.cn-auto-settings[open] > summary::after { content: '−'; }
+.cn-auto-settings[open] > summary { margin-bottom: 12px; }
+.cn-imagespdf-result-actions { position: sticky; top: 4px; z-index: 3; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding-block: 8px; margin-bottom: 10px; background: var(--cn-surface); }
+.cn-imagespdf-result-actions > .btn:only-child { grid-column: 1 / -1; }
+.cn-imagespdf-result-meta { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; color: var(--cn-muted); font-size: 12px; }
+.cn-imagespdf-result-meta > .bi { color: var(--cn-positive); }
+.cn-document-pages { display: grid; gap: 16px; width: 100%; min-width: 0; }
+.cn-document-page { margin: 0; min-width: 0; }
+.cn-document-page figcaption { margin-bottom: 6px; color: var(--cn-muted); font-size: 12px; }
+.cn-document-page-canvas { width: 100%; background: white; box-shadow: 0 2px 10px #0001; }
+.cn-document-page-canvas > .erp-page-stage__frame { width: 100%; max-width: none; margin: 0; border: 0; border-radius: 0; }
+.cn-document-page-canvas[role='button'] { cursor: zoom-in; }
+.cn-document-page-canvas:focus-visible { outline: 3px solid var(--cn-focus); outline-offset: 2px; }
+.cn-auto-result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; }
+.cn-auto-result-actions .btn { min-height: 44px; }
+.cn-auto-result-actions small { width: 100%; color: var(--cn-muted); font-size: 12px; }
+.cn-flowstudio.cn-flowstudio--automatic { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+.cn-flowstudio--automatic .cn-flowstudio-input { grid-column: 1; grid-row: 1; }
+.cn-flowstudio--automatic .cn-flowstudio-options { grid-column: 1; grid-row: 2; }
+.cn-flowstudio--automatic .cn-flowstudio-preview { grid-column: 2; grid-row: 1 / span 2; }
+@media (max-width: 767px) {
+  .cn-idstudio-editor.cn-imagespdf-editor--automatic, .cn-flowstudio.cn-flowstudio--automatic { grid-template-columns: minmax(0, 1fr); }
+  .cn-flowstudio--automatic > :is(.cn-flowstudio-input, .cn-flowstudio-options, .cn-flowstudio-preview) { grid-column: auto; grid-row: auto; }
+  .cn-imagespdf-upload .erp-flow-picker__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
+  .cn-imagespdf-upload .erp-flow-picker__actions > .btn { min-width: 0; min-height: 44px; margin: 0; padding: 8px 6px; }
+  .cn-imagespdf-upload .erp-flow-picker__actions > button { order: -1; }
+  .cn-imagespdf-editor--automatic .cn-imagespdf-preview-stage { min-height: 0; }
+}
 .cn-imagespdf-edit-text { width: 100%; min-height: 44px; }
 .cn-ocr-text-editor .modal-header { gap: 12px; flex-wrap: wrap; }
 .cn-ocr-text-editor .modal-title { font-size: 18px; }
@@ -82,6 +133,32 @@
 .cn-ocr-edit-paper { box-sizing: border-box; margin: 0 auto; background: #fff; color: #111827; box-shadow: 0 2px 12px #0002; font-family: 'CN Be Vietnam Pro', sans-serif; font-weight: 400; font-kerning: normal; white-space: pre-wrap; overflow-wrap: anywhere; outline: none; cursor: text; }
 .cn-ocr-edit-paper:focus { outline: 2px solid #0760ed; outline-offset: 2px; }
 .cn-ocr-text-editor .modal-footer .btn { min-height: 44px; }
+.cn-ocr-document-editor .cn-ocr-document-body { display: grid; grid-template-columns: 240px minmax(0, 1fr); padding: 0; overflow: hidden; }
+.cn-ocr-document-tools { overflow: auto; padding: 16px; border-inline-end: 1px solid var(--cn-line); background: var(--cn-surface); color: var(--cn-ink); }
+.cn-ocr-document-tools > p { font-size: 12px; line-height: 1.6; color: var(--cn-muted); }
+.cn-ocr-document-tools fieldset { display: grid; gap: 10px; margin: 0 0 18px; min-width: 0; }
+.cn-ocr-document-tools legend { float: none; width: auto; font-size: 13px; font-weight: 600; margin: 0 0 8px; }
+.cn-ocr-document-tools label { display: grid; gap: 4px; min-width: 0; font-size: 12px; }
+.cn-ocr-document-tools :is(input, select) { width: 100%; min-width: 0; min-height: 36px; border: 1px solid var(--cn-line); border-radius: 6px; padding: 5px 7px; background: var(--cn-surface); color: var(--cn-ink); font-size: 13px; }
+.cn-ocr-document-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.cn-ocr-document-buttons { display: flex; gap: 6px; }
+.cn-ocr-document-buttons button { flex: 1; min-height: 36px; border: 1px solid var(--cn-line); border-radius: 6px; color: var(--cn-ink); background: var(--cn-surface); font-size: 13px; }
+.cn-ocr-document-buttons button[aria-pressed='true'] { color: var(--cn-accent); border-color: var(--cn-accent); background: var(--cn-hero); }
+.cn-ocr-document-gallery { overflow: auto; padding: 16px; min-width: 0; }
+.cn-ocr-document-paper { position: relative; padding: 0; min-height: 0; overflow: hidden; cursor: default; }
+.cn-ocr-document-border { position: absolute; border: .8px solid #404d59; pointer-events: none; }
+.cn-ocr-document-fragment { position: absolute; margin: 0; padding: 0; border: 0; color: #111; white-space: pre; overflow-wrap: normal; outline: none; cursor: text; font-kerning: normal; }
+.cn-ocr-document-fragment:hover { outline: 1px dashed #86aaff; }
+.cn-ocr-document-fragment.is-selected { outline: 1.5px solid #0760ed; background: #0760ed08; }
+@media (max-width: 767px) {
+  .cn-ocr-document-editor .cn-ocr-document-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .cn-ocr-document-tools { max-height: 190px; border-inline-end: 0; border-bottom: 1px solid var(--cn-line); padding: 10px 12px; }
+  .cn-ocr-document-tools fieldset { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .cn-ocr-document-tools .cn-ocr-document-pair { grid-column: 1 / -1; }
+  .cn-ocr-document-tools :is(input, select) { min-height: 40px; font-size: 16px; }
+  .cn-ocr-document-tools > p { margin-bottom: 8px; }
+  .cn-ocr-document-gallery { padding: 12px; }
+}
 .cn-imagespdf-success { display: grid; grid-template-columns: auto 1fr; gap: 6px; margin-block: 14px; font-size: 12px; overflow-wrap: anywhere; }
 .cn-imagespdf-success > .bi { color: var(--cn-positive); }
 .cn-imagespdf-success small { grid-column: 2; color: var(--cn-muted); }

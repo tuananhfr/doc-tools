@@ -13,9 +13,10 @@ export function useFlowRun() {
   const { t } = useTranslation('common')
   const controller = useRef<AbortController | null>(null)
 
-  useEffect(() => () => controller.current?.abort(), [])
+  useEffect(() => () => { controller.current?.abort(); controller.current = null }, [])
 
   const start = useCallback(async (task: FlowTask): Promise<boolean> => {
+    controller.current?.abort()
     const abort = new AbortController()
     controller.current = abort
     setState({ phase: 'running', progress: null })
@@ -26,18 +27,21 @@ export function useFlowRun() {
         signal: abort.signal,
         onProgress: (done, total, label) => {
           const key = `${total > 0 ? Math.floor((done / total) * 100) : 0}|${label ?? ''}`
-          if (key === shown || abort.signal.aborted) return
+          if (key === shown || abort.signal.aborted || controller.current !== abort) return
           shown = key
           setState({ phase: 'running', progress: { done, total, label } })
         },
       })
       abort.signal.throwIfAborted()
+      if (controller.current !== abort) return false
       setState({ phase: 'done', result })
       recordQualityEvent('completion', qualityToolForPath(window.location.pathname))
       return true
     } catch (error) {
-      if (abort.signal.aborted) setState(IDLE)
-      else setState({ phase: 'idle', error: describeError(error, t('flow.runFailed')) })
+      if (controller.current === abort) {
+        if (abort.signal.aborted) setState(IDLE)
+        else setState({ phase: 'idle', error: describeError(error, t('flow.runFailed')) })
+      }
       return false
     } finally {
       if (controller.current === abort) controller.current = null
@@ -49,6 +53,7 @@ export function useFlowRun() {
   /** Về bước chọn tệp — tệp đã chọn do công cụ giữ, không mất. */
   const reset = useCallback(() => {
     controller.current?.abort()
+    controller.current = null
     setState(IDLE)
   }, [])
 

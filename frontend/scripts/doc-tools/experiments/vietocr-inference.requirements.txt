@@ -1,0 +1,11 @@
+# Install CPU torch/torchvision from https://download.pytorch.org/whl/cpu first:
+#   pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu
+# Install VietOCR's inference code without its training extras:
+#   pip install --no-deps vietocr==0.3.13
+# Then install this inference-only dependency set.
+numpy==1.26.4
+Pillow==10.2.0
+einops==0.2.0
+gdown==4.4.0
+setuptools==80.9.0
+PyYAML==6.0.2

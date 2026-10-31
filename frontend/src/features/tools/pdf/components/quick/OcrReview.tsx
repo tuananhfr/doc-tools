@@ -5,7 +5,6 @@ import type { OcrReviewPage } from '../../hooks/useOcrReview'
 import { confirmOcrWord, needsOcrReview } from '../../utils/ocr-review'
 import { OcrWordPreview } from './OcrWordPreview'
 import { OcrCandidates } from './OcrCandidates'
-import { OcrPagePreview } from './OcrPagePreview'
 import { OcrTableReview } from './OcrTableReview'
 import { OcrFieldsReview } from './OcrFieldsReview'
 import { OcrValidationPanel } from './OcrValidationPanel'
@@ -23,7 +22,6 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
   const [wordIndex, setWordIndex] = useState(() => Math.max(0, initial[0].result.words.findIndex(needsOcrReview)))
   const [draft, setDraft] = useState<string | null>(null)
   const [previewReady, setPreviewReady] = useState(false)
-  const [structuredReady, setStructuredReady] = useState(false)
   const editor = useRef<HTMLDivElement>(null)
   const item = pages[pageIndex]
   const word = item.result.words[wordIndex]
@@ -102,8 +100,6 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
       </div> : null}
     </div>
     <fieldset disabled={draft !== null} className="cn-ocr-structured">
-      {item.result.layout?.tables.length || item.result.layout?.fields.length || item.result.pipeline?.profile === 'table' ? <details className="cn-ocr-source"><summary>{o('fullSource')}</summary><OcrPagePreview item={item} onReady={setStructuredReady} /></details> : null}
-      <fieldset disabled={!structuredReady}>
       {item.result.layout?.tables.map(table => <OcrTableReview key={table.id} table={table} words={item.result.words} item={item}
         onChange={next => update({ ...item.result, layout: { ...item.result.layout!, tables: item.result.layout!.tables.map(current => current.id === next.id ? next : current) } })}
         onConfirm={() => update(confirmOcrTable(item.result, table))} />)}
@@ -111,7 +107,6 @@ export function OcrReview({ pages: initial, onComplete }: { pages: OcrReviewPage
       <OcrFieldsReview fields={item.result.layout?.fields ?? []}
         onChange={(field, value) => update({ ...item.result, layout: { ...item.result.layout!, fields: item.result.layout!.fields.map(current => current.id === field.id ? { ...current, draftValue: value, verified: null } : current) } })}
         onConfirm={field => update(confirmOcrField(item.result, field, field.draftValue ?? field.verified?.value ?? field.rawText))} />
-      </fieldset>
     </fieldset>
     <OcrValidationPanel findings={findings} labels={Object.fromEntries(pages.flatMap((page, index) => [
       ...(page.result.layout?.fields ?? []).map(field => [`${index}:${field.id}`, `${t('ocrReview.page')} ${index + 1}: ${field.label}`]),
