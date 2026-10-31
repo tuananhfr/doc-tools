@@ -5,8 +5,8 @@ import type { Point } from './page-geometry'
 import type { Quad } from '../types/text-layer.types'
 import { rulingLines } from './ocr-image-variants'
 
-export function tableFromGrid(image: GrayImage, words: OcrWordResult[], toBase: (point: Point) => Point): OcrTable | null {
-  const grid = rulingLines(image)
+export function tableFromGrid(image: GrayImage, words: OcrWordResult[], toBase: (point: Point) => Point, detected?: { rows: number[]; columns: number[]; verticalRules?: boolean[][]; horizontalRules?: boolean[][] }): OcrTable | null {
+  const grid = detected ?? rulingLines(image)
   if (grid.rows.length < 3 || grid.columns.length < 2 || grid.rows.length > 65 || grid.columns.length > 17) return null
   const rows = grid.rows.length - 1, columns = grid.columns.length - 1
   const cells: OcrCell[] = []
@@ -23,8 +23,8 @@ export function tableFromGrid(image: GrayImage, words: OcrWordResult[], toBase: 
   for (let row = 0; row < rows; row++) for (let column = columns - 2; column >= 0; column--) {
     const x = Math.round(grid.columns[column + 1]), y0 = Math.ceil(grid.rows[row] + 3), y1 = Math.floor(grid.rows[row + 1] - 3)
     let ink = 0
-    for (let y = y0; y <= y1; y++) if (image.data[y * image.width + x] < 180) ink++
-    if (ink / Math.max(1, y1 - y0 + 1) > 0.45) continue
+    for (let y = y0; y <= y1; y++) if ([-2, -1, 0, 1, 2].some(dx => x + dx >= 0 && x + dx < image.width && image.data[y * image.width + x + dx] < 180)) ink++
+    if (detected?.verticalRules ? detected.verticalRules[row][column] : ink / Math.max(1, y1 - y0 + 1) > 0.45) continue
     const left = cells.find(cell => cell.row === row && cell.column === column), rightIndex = cells.findIndex(cell => cell.row === row && cell.column === column + 1)
     if (!left || rightIndex < 0) continue
     const right = cells[rightIndex]
@@ -39,8 +39,8 @@ export function tableFromGrid(image: GrayImage, words: OcrWordResult[], toBase: 
     if (!top || bottomIndex < 0) continue
     const y = Math.round(grid.rows[row + 1]), x0 = Math.ceil(grid.columns[column] + 3), x1 = Math.floor(grid.columns[column + top.columnSpan] - 3)
     let ink = 0
-    for (let x = x0; x <= x1; x++) if (image.data[y * image.width + x] < 180) ink++
-    if (ink / Math.max(1, x1 - x0 + 1) > 0.45) continue
+    for (let x = x0; x <= x1; x++) if ([-2, -1, 0, 1, 2].some(dy => y + dy >= 0 && y + dy < image.height && image.data[(y + dy) * image.width + x] < 180)) ink++
+    if (detected?.horizontalRules ? detected.horizontalRules[row].slice(column, column + top.columnSpan).some(Boolean) : ink / Math.max(1, x1 - x0 + 1) > 0.45) continue
     const bottom = cells[bottomIndex]
     top.rowSpan += bottom.rowSpan; top.bbox = [top.bbox[0], top.bbox[1], bottom.bbox[2], bottom.bbox[3]]
     top.wordIds.push(...bottom.wordIds); top.rawText = [top.rawText, bottom.rawText].filter(Boolean).join(' ')

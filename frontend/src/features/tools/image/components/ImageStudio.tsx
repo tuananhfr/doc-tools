@@ -36,6 +36,7 @@ function PhotoMascot({ compass = false, entertainment = false, calculation = fal
 }
 
 interface ImageStudioProps {
+  automatic?: boolean
   children: ReactNode
   toolId: ToolDefinition['id']
   icon: string
@@ -52,17 +53,19 @@ interface ImageStudioProps {
 }
 
 /** The approved /anh-the layout is the shared frame for photo tools. */
-export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote, steps, tips, faq, navigation, category, trustLabels }: ImageStudioProps) {
+export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote, steps, tips, faq, navigation, category, trustLabels, automatic = false }: ImageStudioProps) {
   const { t } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const { t: site } = useTranslation('site')
   const { base, kind } = useToolsBranch()
   const catalog = useToolCatalog()
   const currentTool = catalog.find(tool => tool.id === toolId)
   const group = directoryToolGroup(toolId)
-  const tools = group ? directoryGroupTools(catalog, group).filter(tool => tool.status === 'ready') : (category?.tools ?? RELATED).flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [tool] : [] })
+  const groupTools = group ? directoryGroupTools(catalog, group).filter(tool => tool.status === 'ready') : (category?.tools ?? RELATED).flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [tool] : [] })
+  const tools = [...new Set([...(navigation ?? []), ...groupTools.map(tool => tool.id)])].flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [tool] : [] })
   const imageHub = kind === 'public' ? group ? hubDirectoryPath(group) : category?.path ?? '/hinh-anh' : base
   const categoryTitle = group ? site(`hubs.${group}.label`) : category?.title ?? t('category')
-  return <div className={`cn-idstudio cn-image-studio cn-image-studio--${toolId}`}>
+  const guide = automatic ? ([1, 2, 3] as const).map(index => t(`autoSteps.${index}`)) : steps
+  return <div className={`cn-idstudio cn-image-studio cn-image-studio--${toolId}${automatic ? ' cn-idstudio--focused' : ''}`}>
     <div className="cn-idstudio-topline">
       <nav className="cn-idstudio-breadcrumb" aria-label={t('breadcrumb')}><Link to={base}>{t('tools')}</Link><Icon name="chevron-right" /><Link to={imageHub}>{categoryTitle}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
       <ExperienceControlsSlot />
@@ -79,12 +82,11 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
           <div className="cn-idstudio-hero-copy"><h1>{title}</h1><p>{subtitle}</p><ul>{(trustLabels ?? (['free', 'easy', 'noAccount', 'private'] as const).map(key => t(`trust.${key}`))).map((label, index) => <li key={index}><Icon name="check-circle-fill" />{label}</li>)}</ul></div>
           <div className="cn-idstudio-hero-note" aria-hidden="true">{heroNote}<span>♡</span></div><PhotoMascot compass={toolId === 'house-orientation' || toolId === 'address-conversion'} entertainment={['numerology', 'playing-cards', 'tarot', 'spin-wheel'].includes(toolId)} calculation={['payroll', 'pomodoro', 'electricity', 'quick-calc', 'unit-convert', 'loan', 'unit-price', 'study', 'group-split', 'money-calc', 'date-calc'].includes(toolId)} calendar={toolId === 'lunar-calendar'} textDocument={['assistant', 'invoice-xml', 'office-word', 'office-sheet', 'office-slide', 'flashcards', 'cv', 'form-templates', 'number-words', 'legacy-font', 'char-count'].includes(toolId)} document={['edit-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'pdf-password', 'organize-pdf', 'page-numbers', 'stamp-pdf', 'ocr', 'pdf-to-image', 'view-pdf', 'redact-pdf', 'sign', 'compare'].includes(toolId)} qr={['qr-read', 'qr-create', 'barcode-create', 'vietqr', 'code-manager'].includes(toolId)} media={['extract-audio', 'trim-video', 'compress-video', 'video-gif', 'read-aloud'].includes(toolId)} />
         </header>
-        {navigation ? <nav className="cn-processing-nav" aria-label={t('related')}>{navigation.flatMap(id => { const tool = catalog.find(item => item.id === id && item.status === 'ready'); return tool ? [<Link key={id} to={toolPath(base, tool)} aria-current={id === toolId ? 'page' : undefined}><Icon name={tool.icon} /><span>{tool.name}</span></Link>] : [] })}</nav> : null}
         {children}
-        <section className="cn-idstudio-related" aria-labelledby="idstudio-related-title"><h2 id="idstudio-related-title">{category?.relatedTitle ?? t('related')}</h2><div>{tools.filter(tool => tool.id !== toolId).slice(0, 8).map(tool => <Link to={toolPath(base, tool)} key={tool.id}><ToolArtwork tool={tool} small /><span>{tool.name}</span></Link>)}</div></section>
+        {!automatic ? <section className="cn-idstudio-related" aria-labelledby="idstudio-related-title"><h2 id="idstudio-related-title">{category?.relatedTitle ?? t('related')}</h2><div>{tools.filter(tool => tool.id !== toolId).slice(0, 8).map(tool => <Link to={toolPath(base, tool)} key={tool.id}><ToolArtwork tool={tool} small /><span>{tool.name}</span></Link>)}</div></section> : null}
       </div>
       <aside className="cn-idstudio-help">
-        <section className="cn-idstudio-help-card"><h2><Icon name="lightbulb-fill" />{t('guideTitle')}</h2><ol>{steps.map((step, index) => <li key={index}><span>{index + 1}</span>{step}</li>)}</ol></section>
+        <section className="cn-idstudio-help-card"><h2><Icon name="lightbulb-fill" />{t('guideTitle')}</h2><ol>{guide.map((step, index) => <li key={index}><span>{index + 1}</span>{step}</li>)}</ol></section>
         <section className="cn-idstudio-help-card cn-idstudio-tips"><h2><Icon name="patch-check-fill" />{t('tipsTitle')}</h2><ul>{tips.map((tip, index) => <li key={index}><Icon name="check-circle-fill" />{tip}</li>)}</ul></section>
         <section className="cn-idstudio-help-card cn-idstudio-faq"><h2><Icon name="question-circle-fill" />{t('faqTitle')}</h2>{faq.map((item, index) => <details key={index}><summary>{item.q}<Icon name="chevron-right" /></summary><p>{item.a}</p></details>)}</section>
         <div className="cn-idstudio-cheer" aria-hidden="true"><p>{t('cheer')}</p><PhotoMascot /></div>

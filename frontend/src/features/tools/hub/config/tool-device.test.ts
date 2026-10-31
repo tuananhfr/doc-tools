@@ -11,16 +11,15 @@ import type { ReadyToolEntry, ToolOffline } from '../types/tool.types'
 const EXPECTED: Record<ToolOffline, string[]> = {
   no: ['numerology', 'playing-cards', 'tarot', 'lunar-calendar', 'assistant', 'electricity', 'payroll', 'address-conversion', 'qr-create', 'code-manager', 'dictation'],
   'after-first-use': [
-    'office-word', 'office-sheet', 'office-slide',
     'view-pdf', 'edit-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'pdf-to-image', 'organize-pdf', 'page-numbers',
     'stamp-pdf', 'redact-pdf', 'sign', 'compare', 'ocr', 'image-to-text', 'scan-to-pdf', 'pdf-password',
     'compress-video', 'trim-video', 'video-gif', 'extract-audio', 'remove-background', 'read-aloud', 'house-orientation', 'id-photo',
   ],
   yes: [
     'quick-design', 'spin-wheel', 'cv', 'family-calendar', 'form-templates', 'magnifier', 'house-estimate', 'number-words', 'loan',
-    'unit-price', 'study', 'pomodoro', 'group-split', 'legacy-font', 'vietqr', 'invoice-xml', 'remove-metadata', 'collage',
+    'unit-price', 'study', 'pomodoro', 'legacy-font', 'vietqr', 'invoice-xml', 'remove-metadata', 'collage',
     'message-risk', 'flashcards', 'measure-image', 'convert-image', 'compress-image', 'crop-image', 'batch-image', 'mark-image',
-    'barcode-create', 'qr-read', 'quick-calc', 'money-calc', 'date-calc', 'quick-note', 'char-count', 'unit-convert', 'color', 'random-code',
+    'barcode-create', 'qr-read', 'money-calc', 'date-calc', 'quick-note', 'char-count', 'unit-convert', 'color', 'random-code',
   ],
 }
 const CAMERA = ['magnifier', 'qr-read', 'id-photo', 'scan-to-pdf', 'house-orientation']

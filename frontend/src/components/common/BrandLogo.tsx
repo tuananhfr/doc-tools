@@ -1,3 +1,6 @@
+import { SITE_BRAND_MARK } from '@/features/site/config/brand-assets'
+import { SITE_IDENTITY } from '@/features/site/config/site-identity'
+import { withBase } from '@/utils/url'
 import { useIsMobile } from '@/hooks/useMediaQuery'
 import { appConfig } from '@/config/app.config'
 import logoFull from '@/assets/logo-full.png?url'
@@ -39,15 +42,15 @@ interface BrandMarkProps {
 export function BrandMark({ size = 36, inverse = false, title }: BrandMarkProps) {
   return (
     <img
-      src={logoMark}
-      alt={title ?? `${appConfig.name} logo`}
+      src={appConfig.docTools ? withBase(SITE_BRAND_MARK) : logoMark}
+      alt={title ?? `${appConfig.docTools ? SITE_IDENTITY.name : appConfig.name} logo`}
       draggable={false}
       style={{
         height: size,
         width: 'auto',
         flex: 'none',
         objectFit: 'contain',
-        filter: inverse ? INVERSE_FILTER : undefined,
+        filter: inverse && !appConfig.docTools ? INVERSE_FILTER : undefined,
       }}
     />
   )
@@ -67,6 +70,8 @@ export function BrandLogo({
 }: BrandLogoProps) {
   const isMobile = useIsMobile()
   const withText = showText && !(hideTextOnMobile && isMobile)
+
+  if (appConfig.docTools) return <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, maxWidth: '100%', color: inverse ? '#fff' : '#0E2A47' }}><BrandMark size={size} />{withText && <span style={{ fontSize: size * .55, fontWeight: 700, whiteSpace: 'nowrap' }}>{SITE_IDENTITY.name}</span>}</span>
 
   if (!withText) return <BrandMark size={size} inverse={inverse} />
 

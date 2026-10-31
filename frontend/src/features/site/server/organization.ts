@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from '../config/brand-assets'
 import { appConfig } from '@/config/app.config'
 import { withBase } from '@/utils/url'
 import { SITE_IDENTITY } from '../config/site-identity'
@@ -10,7 +11,7 @@ export function organizationData() {
     '@id': url + '#organization',
     name: SITE_IDENTITY.name,
     url,
-    logo: new URL(withBase('/brand/chuyen-nho-mark-v1.png'), appConfig.siteUrl).href,
+    logo: new URL(withBase(SITE_BRAND_MARK), appConfig.siteUrl).href,
     email: SITE_IDENTITY.email,
     telephone: SITE_IDENTITY.telephone,
     parentOrganization: { '@type': 'Organization', name: SITE_IDENTITY.owner },

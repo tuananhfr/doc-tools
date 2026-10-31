@@ -1717,7 +1717,32 @@
     "textPage": "Trang PDF {{page}} / {{total}}",
     "textPrevious": "Trang PDF trước",
     "textNext": "Trang PDF sau",
-    "inputPages": "Số ảnh đầu vào"
+    "inputPages": "Số ảnh đầu vào",
+    "structure": {
+      "format": "Định dạng",
+      "hint": "Chạm vào đoạn văn hoặc ô bảng để sửa.",
+      "font": "Phông chữ",
+      "sans": "Không chân",
+      "serif": "Có chân",
+      "size": "Cỡ chữ (pt)",
+      "spacing": "Giãn dòng",
+      "bold": "Đậm",
+      "italic": "Nghiêng",
+      "align": "Căn chữ",
+      "left": "Trái",
+      "center": "Giữa",
+      "right": "Phải",
+      "applyAll": "Áp dụng kiểu cho cả tài liệu",
+      "position": "Vị trí",
+      "indent": "Lề trái (mm)",
+      "width": "Độ rộng (mm)",
+      "columns": "Độ rộng cột (mm)",
+      "column": "Cột {{number}}",
+      "cell": "Ô bảng",
+      "paragraph": "Đoạn văn",
+      "zoomOut": "Thu nhỏ",
+      "zoomIn": "Phóng to"
+    }
   },
   "pihSample": {
     "button": "Dùng mẫu PI Holding",

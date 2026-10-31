@@ -10,7 +10,7 @@ const CONFIG = {
   font: { id: 'legacy-font', tip: 'studio.legacyFont.tip', steps: ['studio.legacyFont.step1', 'studio.legacyFont.step2', 'studio.legacyFont.step3'] },
   count: { id: 'char-count', tip: 'studio.charCount.tip', steps: ['studio.charCount.step1', 'studio.charCount.step2', 'studio.charCount.step3'] },
 } as const
-const TOOLS = ['cv', 'form-templates', 'office-word', 'office-sheet', 'office-slide', 'number-words', 'legacy-font', 'char-count']
+const TOOLS = ['cv', 'form-templates', 'number-words', 'legacy-font', 'char-count']
 
 /** The document reference for templates; input/result cards for live text tools. */
 export function TextDocumentStudio({ kind, children }: { kind: keyof typeof CONFIG; children: ReactNode }) {

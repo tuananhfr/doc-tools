@@ -19,6 +19,7 @@ export default function MergePdfPage() {
   return (
     <PdfQuickStudio kind="merge"><div className="cn-pdf-quick-workspace cn-merge-workspace">
     <QuickToolShell
+      automatic
       pdfStudio="merge"
       quick={quick}
       accept={ACCEPT}

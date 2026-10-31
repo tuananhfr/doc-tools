@@ -16,16 +16,15 @@ describe('directory groups', () => {
   it('keeps the requested groups and removes duplicate placements', () => {
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'tai-lieu-pdf').some(tool => tool.id === 'edit-pdf')).toBe(true)
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'mau-giay-to').some(tool => tool.id === 'cv')).toBe(true)
-    for (const id of ['office-word', 'office-sheet', 'office-slide']) {
-      expect(directoryGroupTools(VI_TOOL_CATALOG, 'mau-giay-to').some(tool => tool.id === id)).toBe(true)
-      expect(directoryToolGroup(id)).toBe('mau-giay-to')
+    for (const id of ['office-word', 'office-sheet', 'office-slide', 'quick-calc', 'group-split']) {
+      expect(VI_TOOL_CATALOG.some(tool => tool.id === id)).toBe(false)
+      expect(directoryToolGroup(id)).toBeNull()
     }
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'hinh-anh').some(tool => tool.id === 'image-to-text')).toBe(true)
     expect(directoryGroupTools(VI_TOOL_CATALOG, 'tai-lieu-pdf').some(tool => tool.id === 'image-to-text')).toBe(false)
     expect(directoryToolGroup('image-to-text')).toBe('hinh-anh')
     expect(directoryToolGroup('number-words')).toBe('mau-giay-to')
     expect(directoryToolGroup('study')).toBe('tinh-toan')
-    expect(directoryToolGroup('group-split')).toBe('gia-dinh')
     expect(directoryToolGroup('lunar-calendar')).toBe('gia-dinh')
   })
 

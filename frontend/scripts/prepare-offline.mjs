@@ -32,7 +32,9 @@ for (const url of pages) {
   // Precache every emitted image size so a cold offline reload also works at another viewport.
   for (const match of html.matchAll(/\/_next\/image\?[^"\s,<>]+/g)) optimizedImages.add(withBase(match[0].replaceAll('&amp;', '&')))
 }
-const brand = fs.readdirSync('public/brand').filter((name) => /\.(png|webp|svg)$/.test(name)).map((name) => '/brand/' + name)
+// Cả logo hệ sinh thái và icon cài đặt phải có sẵn khi mở app ngoại tuyến.
+const brand = fs.readdirSync('public/brand', { recursive: true }).filter((name) => /\.(png|jpe?g|webp|svg)$/.test(name)).map((name) => '/brand/' + name.replaceAll('\\', '/'))
+const icons = fs.readdirSync('public/icons').filter((name) => /\.png$/.test(name)).map((name) => '/icons/' + name)
 const videoVendor = '/vendor/ffmpeg/core-0.12.10-wrapper-0.12.15/'
 // Group builder lives in the app source so the download button and this script cannot drift apart.
 const { optionalAssetGroups } = await import(pathToFileURL(path.resolve('src/features/tools/hub/config/offline-asset-groups.ts')).href)
@@ -53,5 +55,5 @@ const optionalAssets = [...new Set(Object.values(optionalGroups).flat())]
 const pageUrls = pages.map(url => withBase(url.slice('/vi'.length) || '/'))
 // Prefixed languages are not precached; the worker sends their unvisited pages to the Vietnamese twin when offline.
 const locales = Object.entries(routes).filter(([url, route]) => route.dataRoute?.endsWith('.rsc') && /^\/[a-z][a-z-]*$/.test(url) && url !== '/vi').map(([url]) => url.slice(1))
-const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...assets].map(withBase), ...optimizedImages])], optionalAssets, optionalGroups, locales }
+const manifest = { version: build, assets: [...new Set([...pageUrls,...['/auth-background.jpg', '/logo-tekshot.png', ...brand, ...icons, ...assets].map(withBase), ...optimizedImages])], optionalAssets, optionalGroups, locales }
 fs.writeFileSync(manifestOut, JSON.stringify(manifest), 'utf8')

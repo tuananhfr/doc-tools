@@ -19,8 +19,8 @@
 .cn-page-section { padding-block: 28px 4px; }
 .cn-page-section:last-child { padding-bottom: 36px; }
 .cn-page-section > h2 { font-size: 22px; font-weight: 700; letter-spacing: -.8px; margin: 0 0 6px; }
-.cn-ecosystem-page .cn-page-hero { position: relative; overflow: hidden; background: #f4f9fc; padding-block: 10px 16px; }
-.cn-ecosystem-page .cn-page-hero::after { content: ''; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(180deg, rgb(244 249 252 / 0%), rgb(226 240 246 / 72%)); pointer-events: none; }
+.cn-ecosystem-page .cn-page-hero { position: relative; overflow: hidden; background: var(--cn-hero); padding-block: 10px 16px; }
+.cn-ecosystem-page .cn-page-hero::after { content: ''; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(180deg, transparent, var(--cn-tint)); pointer-events: none; }
 .cn-ecosystem-page .cn-page-hero > .cn-container { position: relative; z-index: 1; }
 .cn-ecosystem-page .cn-page-hero-layout { min-height: 280px; padding-top: 8px; }
 .cn-ecosystem-page .cn-page-hero-text h1 { max-width: 600px; font-size: clamp(36px, 4.2vw, 60px); letter-spacing: -2.5px; }
@@ -280,3 +280,40 @@
   .cn-data-table td:nth-child(2) { white-space: normal; color: var(--cn-ink); }
   .cn-data-table td .cn-processing { justify-self: start; white-space: normal; }
 }
+
+/* Danh mục hệ sinh thái đồng bộ pih.vn; ảnh gốc nằm tại public/brand/ecosystem. */
+.cn-ecosystem-group-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.cn-ecosystem-group-nav a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 16px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-button); color: var(--cn-ink); background: var(--cn-surface); font-size: 13px; text-decoration: none; }
+.cn-ecosystem-group-nav a:hover { border-color: var(--cn-accent); }
+.cn-ecosystem-group-nav a span { color: var(--cn-accent); font-weight: 700; }
+.cn-ecosystem-directory { padding-bottom: 36px; }
+.cn-ecosystem-group { padding-top: 24px; scroll-margin-top: 100px; }
+.cn-ecosystem-group-heading { display: flex; gap: 16px; align-items: center; margin-bottom: 20px; }
+.cn-ecosystem-group-heading > span { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 12px; background: var(--cn-tint); color: var(--cn-accent); font-weight: 700; }
+.cn-ecosystem-group-heading h2 { margin: 0; font-size: 23px; line-height: 1.4; }
+.cn-ecosystem-group-heading p { margin: 5px 0 0; color: var(--cn-muted); font-size: 13px; line-height: 1.6; }
+.cn-ecosystem-group-heading > small { margin-inline-start: auto; color: var(--cn-muted); }
+.cn-ecosystem-catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 24px; }
+.cn-ecosystem-catalog-card { display: flex; align-items: center; gap: 18px; position: relative; min-height: 144px; padding: 20px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); color: var(--cn-ink); background: var(--cn-surface); text-decoration: none; }
+a.cn-ecosystem-catalog-card:hover { border-color: var(--cn-accent); box-shadow: 0 8px 24px rgb(12 37 77 / 8%); }
+.cn-ecosystem-catalog-card.is-current { background: var(--cn-tint); border-color: var(--cn-accent); }
+.cn-ecosystem-catalog-logo { display: grid; place-items: center; width: 88px; height: 88px; flex: none; overflow: hidden; border-radius: 8px; background: #fff; }
+.cn-ecosystem-catalog-logo img { width: 100%; height: 100%; object-fit: contain; }
+.cn-ecosystem-catalog-copy { min-width: 0; }
+.cn-ecosystem-catalog-copy strong { display: block; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.cn-ecosystem-catalog-copy small { display: block; margin-top: 6px; color: var(--cn-muted); font-size: 11px; line-height: 1.7; white-space: pre-line; }
+.cn-ecosystem-current, .cn-ecosystem-no-link { display: block; margin-block: 6px; font-size: 10px; color: var(--cn-accent); }
+.cn-ecosystem-no-link { color: var(--cn-muted); }
+.cn-ecosystem-catalog-arrow { position: absolute; inset-block-start: 10px; inset-inline-end: 12px; font-size: 12px; color: var(--cn-accent); }
+@media (max-width: 1100px) { .cn-ecosystem-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .cn-ecosystem-catalog-grid { grid-template-columns: minmax(0, 1fr); } .cn-ecosystem-catalog-card { min-height: 130px; padding: 18px; gap: 16px; } .cn-ecosystem-catalog-logo { width: 76px; height: 76px; } .cn-ecosystem-group-heading { gap: 12px; } .cn-ecosystem-group-heading h2 { font-size: 20px; } }
+.cn-ecosystem-catalog-logo img[src*="erpcons.png"] { transform: scale(1.45); clip-path: inset(14% 16%); }
+.cn-ecosystem-catalog-logo img[src*="tekshot-os.jpg"] { transform: scale(1.35); clip-path: inset(14% 8%); }
+.cn-ecosystem-catalog-logo img[src*='alo-ubot-20261031.png'] { transform: translate(-3px, 5px) scale(1.25); clip-path: inset(17% 7% 26% 13%); }
+.cn-ecosystem-catalog-logo img[src*='pi-office-20261031.png'] { transform: translate(1px, -3px) scale(1.3); clip-path: inset(22% 11% 18% 9%); }
+.cn-ecosystem-catalog-logo img[src*='suc-khoe-doanh-nghiep-20261031.png'] { transform: translate(1px, 2px) scale(1.3); clip-path: inset(12% 14% 15% 13%); }
+.cn-ecosystem-catalog-logo img[src*='suc-khoe-so-20261031.png'] { transform: scale(1.5); clip-path: inset(18%); }
+.cn-ecosystem-catalog-logo img[src*='ubot-view-20261031.png'] { transform: translate(-3px, 2px) scale(1.35); clip-path: inset(13% 15% 16% 20%); }
+.cn-ecosystem-catalog-logo img[src*='ubot-connect-extracted-20261031.png'] { transform: scale(1.12); clip-path: inset(8%); }
+.cn-ecosystem-catalog-logo img[src*='pi-agent-original-20261031.jpg'] { transform: translate(-1px, 1px) scale(1.28); clip-path: inset(14% 11% 16% 12%); }
+.cn-ecosystem-catalog-logo img[src*='lich-gia-dinh-original-20261031.jpg'] { transform: translate(-1px, -1px) scale(1.45); clip-path: inset(20% 15% 18% 16%); }

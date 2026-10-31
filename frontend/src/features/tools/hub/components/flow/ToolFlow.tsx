@@ -11,6 +11,9 @@ import { FlowResult } from './FlowResult'
 import { StudioFlow, type StudioFlowConfig } from './StudioFlow'
 
 export interface ToolFlowProps {
+  compactFiles?: boolean
+  automatic?: boolean
+  pending?: boolean
   studio?: StudioFlowConfig
   picker: PickerCopy
   files: FlowFile[]
@@ -111,7 +114,7 @@ export function ToolFlow(props: ToolFlowProps) {
           </div>
         ) : null}
 
-        <div className="erp-flow__stage">{stage ?? (files.length > 0 ? <FileList files={files} disabled={running} onRemove={onRemove} onMove={onMove} onClear={onClear} /> : null)}</div>
+        <div className="erp-flow__stage">{stage ?? (files.length > 0 ? <FileList compact={props.compactFiles} files={files} disabled={running} onRemove={onRemove} onMove={onMove} onClear={onClear} /> : null)}</div>
       </div>
 
       <aside className="erp-flow__side" aria-label={t('flow.side')}>

@@ -61,7 +61,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     ],
     subgroups: [
       { id: 'lich', toolIds: ['lunar-calendar', 'pomodoro', 'family-reminders', 'special-days'] },
-      { id: 'chi-tieu', toolIds: ['electricity', 'group-split', 'payroll', 'invoice-xml', 'family-budget'] },
+      { id: 'chi-tieu', toolIds: ['electricity', 'payroll', 'invoice-xml', 'family-budget'] },
       { id: 'nha-cua', toolIds: ['house-orientation', 'address-conversion', 'house-chores'] },
       { id: 'hoc-tap', toolIds: ['flashcards', 'dictation', 'magnifier', 'read-aloud', 'honor-board'] },
       { id: 'suc-khoe', toolIds: ['family-health'] },
@@ -165,7 +165,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     subgroups: [
       { id: 'tien-thue', toolIds: ['money-calc', 'unit-price'] },
       { id: 'vay', toolIds: ['loan'] },
-      { id: 'do-luong', toolIds: ['quick-calc', 'unit-convert'] },
+      { id: 'do-luong', toolIds: ['unit-convert'] },
       { id: 'ngay', toolIds: ['date-calc'] },
       { id: 'hoc-tap', toolIds: ['study'] },
     ],
@@ -180,7 +180,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     subgroups: [
       { id: 'cv', toolIds: ['cv'] },
       { id: 'don-bien-ban', toolIds: ['form-templates'] },
-      { id: 'ho-tro-soan', toolIds: ['office-word', 'office-sheet', 'office-slide', 'number-words', 'char-count', 'legacy-font'] },
+      { id: 'ho-tro-soan', toolIds: ['number-words', 'char-count', 'legacy-font'] },
     ],
     aside: [{ kind: 'tips', id: 'tips', items: ['check', 'numberWords', 'sign'] }, { kind: 'privacy' }, { kind: 'support' }],
     journey: { flow: true, steps: [{ id: 'choose', icon: 'grid' }, { id: 'fill', icon: 'pencil' }, { id: 'preview', icon: 'eye' }, { id: 'print', icon: 'printer' }] },

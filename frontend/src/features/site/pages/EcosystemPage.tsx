@@ -1,34 +1,15 @@
 import Image from 'next/image'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Icon } from '@/components/ui/Icon'
 import { usePageTitle } from '@/features/tools/hub/hooks/usePageTitle'
 import { withBase } from '@/utils/url'
-import { PRODUCT_LINKS } from '../config/site-navigation'
+import { ECOSYSTEM_GROUPS } from '../config/ecosystem'
 import { SitePageHero } from '../components/SitePageHero'
-
-const CATEGORIES = ['all', 'free', 'work', 'life', 'business'] as const
-type Category = (typeof CATEGORIES)[number]
-
-const SERVICES = [
-  { id: 'chuyenNho', icon: 'clipboard2-pulse', to: '/', kind: 'internal', category: 'free' },
-  { id: 'healthDigital', icon: 'heart-pulse', to: 'https://suckhoeso.tekshot.ai', kind: 'external', category: 'work' },
-  { id: 'healthBusiness', icon: 'bar-chart-line', to: 'https://suckhoedoanhnghiep.erpcons.ai', kind: 'external', category: 'business' },
-  { id: 'family', icon: 'calendar-heart', to: '/gia-dinh', kind: 'internal', category: 'life' },
-  { id: 'houseBook', icon: 'house', to: '/huong-nha-la-ban', kind: 'internal', category: 'life' },
-  { id: 'ubotBuild', icon: 'cone-striped', to: '/xay-dung', kind: 'internal', category: 'work' },
-  { id: 'ubotView', icon: 'camera', to: '/hinh-anh', kind: 'internal', category: 'work' },
-  { id: 'ubotConnect', icon: 'share', to: '/he-sinh-thai#ubot-connect', kind: 'internal', category: 'business' },
-  { id: 'tekshotOs', icon: 'film', to: PRODUCT_LINKS.tekshot, kind: 'external', category: 'business' },
-  { id: 'erpcons', icon: 'buildings', to: PRODUCT_LINKS.erpcons, kind: 'external', category: 'business' },
-] as const
 
 export default function EcosystemPage() {
   const { t } = useTranslation('site')
-  const [activeCategory, setActiveCategory] = useState<Category>('all')
   usePageTitle(t('pages.he-sinh-thai.title'))
-
   return (
     <div className="cn-site-page cn-ecosystem-page">
       <SitePageHero
@@ -39,39 +20,24 @@ export default function EcosystemPage() {
         description={<p>{t('ecosystemPage.description')}</p>}
         art={<Image src={withBase('/brand/skyline-hero-v1.png')} width={720} height={320} sizes="(max-width: 767px) 100vw, 520px" alt="" />}
       />
-
       <section className="cn-container cn-ecosystem-page-intro" aria-labelledby="cn-ecosystem-services-title">
-        <div>
-          <h2 id="cn-ecosystem-services-title">{t('ecosystemPage.servicesTitle')}</h2>
-          <nav className="cn-ecosystem-category-tabs" aria-label={t('ecosystemPage.categoriesLabel')}>
-            {CATEGORIES.map((category) => (
-              <button key={category} type="button" className={activeCategory === category ? 'is-active' : undefined} aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)}>
-                {t(`ecosystemPage.categories.${category}`)}
-              </button>
-            ))}
+        <div><h2 id="cn-ecosystem-services-title">{t('ecosystemPage.servicesTitle')}</h2>
+          <nav className="cn-ecosystem-group-nav" aria-label={t('ecosystemPage.servicesLabel')}>
+            {ECOSYSTEM_GROUPS.map(group => <a key={group.id} href={'#' + group.id}><span>{group.number}</span>{t(`ecosystemPage.catalog.groups.${group.id}.title`)}</a>)}
           </nav>
         </div>
-        <div className="cn-ecosystem-page-mark" aria-hidden="true"><Icon name="stars" /></div>
       </section>
-
-      <section className="cn-container cn-ecosystem-service-grid" aria-label={t('ecosystemPage.servicesLabel')}>
-        {SERVICES.filter(service => activeCategory === 'all' || service.category === activeCategory).map((service, index) => {
-          const content = <><span className="cn-ecosystem-service-icon"><Icon name={service.icon} /></span><span className="cn-ecosystem-service-copy"><strong>{t(`ecosystemPage.services.${service.id}.title`)}</strong><small>{t(`ecosystemPage.services.${service.id}.description`)}</small></span><Icon className="cn-ecosystem-service-arrow" name={service.kind === 'external' ? 'arrow-up-right' : 'arrow-right'} /></>
-          return service.kind === 'external'
-            ? <a className={`cn-ecosystem-service-card cn-ecosystem-service-card--${index % 5}`} key={service.id} href={service.to} target="_blank" rel="noopener noreferrer">{content}</a>
-            : <Link id={service.id === 'ubotConnect' ? 'ubot-connect' : undefined} className={`cn-ecosystem-service-card cn-ecosystem-service-card--${index % 5}`} key={service.id} to={service.to}>{content}</Link>
-        })}
-        {activeCategory === 'all' && <div className="cn-ecosystem-service-card cn-ecosystem-service-card--more">
-          <span className="cn-ecosystem-service-icon"><Icon name="stars" /></span>
-          <span className="cn-ecosystem-service-copy"><strong>{t('ecosystemPage.more.title')}</strong><small>{t('ecosystemPage.more.description')}</small></span>
-          <Icon className="cn-ecosystem-service-arrow" name="arrow-right" />
-        </div>}
-      </section>
-
-      <section className="cn-container cn-ecosystem-page-footer" aria-label={t('ecosystemPage.footerLabel')}>
-        <p>{t('ecosystemPage.footer')}</p>
-        <Link className="cn-button" to="/">{t('ecosystemPage.openTools')} <Icon name="arrow-right" /></Link>
-      </section>
+      <div className="cn-container cn-ecosystem-directory">
+        {ECOSYSTEM_GROUPS.map(group => <section key={group.id} id={group.id} className="cn-ecosystem-group" aria-labelledby={'cn-ecosystem-' + group.id}>
+          <div className="cn-ecosystem-group-heading"><span>{group.number}</span><div><h2 id={'cn-ecosystem-' + group.id}>{t(`ecosystemPage.catalog.groups.${group.id}.title`)}</h2><p>{t(`ecosystemPage.catalog.groups.${group.id}.description`)}</p></div><small>{String(group.items.length).padStart(2, '0')}</small></div>
+          <div className="cn-ecosystem-catalog-grid">{group.items.map(item => {
+            const content = <><span className="cn-ecosystem-catalog-logo"><Image src={withBase('/brand/ecosystem/' + item.logo)} width={88} height={88} unoptimized alt="" /></span><span className="cn-ecosystem-catalog-copy">{item.featured && <span className="cn-ecosystem-current">{t('ecosystemPage.catalog.current')}</span>}<strong>{t(`ecosystemPage.catalog.items.${item.id}.name`)}</strong><small>{t(`ecosystemPage.catalog.items.${item.id}.description`)}</small>{!item.href && <span className="cn-ecosystem-no-link">{t('ecosystemPage.catalog.noLink')}</span>}</span>{item.href && <Icon className="cn-ecosystem-catalog-arrow" name="arrow-up-right" />}</>
+            const className = 'cn-ecosystem-catalog-card' + (item.featured ? ' is-current' : '')
+            return item.href ? <a key={item.id} id={item.id === 'ubotConnect' ? 'ubot-connect' : undefined} className={className} href={item.href} target="_blank" rel="noopener noreferrer">{content}</a> : <article key={item.id} className={className}>{content}</article>
+          })}</div>
+        </section>)}
+      </div>
+      <section className="cn-container cn-ecosystem-page-footer" aria-label={t('ecosystemPage.footerLabel')}><p>{t('ecosystemPage.footer')}</p><Link className="cn-button" to="/">{t('ecosystemPage.openTools')} <Icon name="arrow-right" /></Link></section>
     </div>
   )
 }

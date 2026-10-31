@@ -64,11 +64,11 @@ function getWorker(signal?: AbortSignal): Promise<TesseractWorker> {
   return worker
 }
 
-export async function recognizeCanvas(canvas: HTMLCanvasElement, onProgress: (progress: OcrProgress) => void, numeric = false, signal?: AbortSignal, segmentation: '3' | '6' | '7' = '3'): Promise<OcrLine[]> {
+export async function recognizeCanvas(canvas: HTMLCanvasElement, onProgress: (progress: OcrProgress) => void, numeric = false, signal?: AbortSignal, segmentation: '3' | '6' | '7' | '11' | '13' = '3'): Promise<OcrLine[]> {
   listener = onProgress
   try {
     const instance = await awaitOcrJob(getWorker(signal), signal)
-    const options: Partial<import('tesseract.js').RecognizeOptions & import('tesseract.js').WorkerParams> = { tessedit_char_whitelist: numeric ? '0123456789.,/-+ ' : '', tessedit_pageseg_mode: (numeric ? '7' : segmentation) as import('tesseract.js').PSM }
+    const options: Partial<import('tesseract.js').RecognizeOptions & import('tesseract.js').WorkerParams> = { tessedit_char_whitelist: numeric ? '0123456789.,/-+ ' : '', tessedit_pageseg_mode: (numeric && segmentation === '3' ? '7' : segmentation) as import('tesseract.js').PSM }
     const { data } = await awaitOcrJob(instance.recognize(canvas, options, { blocks: true }), signal)
     return (data.blocks ?? []).flatMap(block => block.paragraphs.flatMap(paragraph => paragraph.lines))
   } finally { listener = null }

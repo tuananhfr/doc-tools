@@ -41,7 +41,6 @@ export default function CropImagePage() {
   const ready = item !== null && state !== null
   const preview = useCropPreview(item, state)
   const [tab, setTab] = useState<typeof TABS[number]>('crop')
-  const [original, setOriginal] = useState(false)
   const [camera, setCamera] = useState(false)
   const [sampleBusy, setSampleBusy] = useState(false)
   const [sampleFailed, setSampleFailed] = useState(false)
@@ -102,10 +101,9 @@ export default function CropImagePage() {
       </section>
       <section className="cn-idstudio-panel cn-cropstudio-preview" aria-labelledby={`${ids}-preview-title`}>
         <h2 id={`${ids}-preview-title`}><span>3.</span> {s('previewTitle')}</h2>
-        <div className="cn-idstudio-tabs cn-idstudio-preview-tabs"><button type="button" aria-pressed={!original} onClick={() => setOriginal(false)}>{common('preview')}</button><button type="button" aria-pressed={original} onClick={() => setOriginal(true)}>{common('original')}</button></div>
         <div className="cn-cropstudio-result-image">
-          <img src={item ? original ? item.url : preview.url ?? item.url : withBase(SAMPLE)} alt={item ? original ? common('originalPhoto') : s('previewAlt') : common('samplePreview')} />
-          {preview.busy && !original ? <span role="status"><Spinner as="span" size="sm" />{common('updating')}</span> : null}
+          <img src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt={item ? s('previewAlt') : common('samplePreview')} />
+          {preview.busy ? <span role="status"><Spinner as="span" size="sm" />{common('updating')}</span> : null}
         </div>
         {!ready ? <p className="cn-idstudio-demo-note">{common('demoNote')}</p> : null}
         <dl className="cn-idstudio-output-meta"><div><dt>{s('sourceSize')}</dt><dd>{item ? sizeLabel(item) : '—'}</dd></div><div><dt>{s('outputSize')}</dt><dd>{output ? sizeLabel(output) : '—'}</dd></div><div><dt>{s('format')}</dt><dd>{format ? IMAGE_FORMAT[format].label : 'JPG / PNG / WebP'}</dd></div></dl>

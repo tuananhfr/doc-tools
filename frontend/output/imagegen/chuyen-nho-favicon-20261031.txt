@@ -1,0 +1,4 @@
+Mode: built-in image_gen, background-extraction edit.
+Source: C:/Users/Admin/Downloads/Tool Free/chuyennho.jpg
+
+Use case: background-extraction. Edit target: the supplied Chuyện Nhỏ app and website identity board. Extract ONLY the simplified favicon shown in the middle column: a red upright document with folded top-left corner behind a thick navy wrench rising diagonally from lower left to upper right, with a white circular hole in the wrench handle. The larger target is approximately x1268..1488 y498..742 of the original board. Preserve its exact shapes, proportions, navy #0E2A47, red #D32F2F, and opaque white separator gap/hole. Remove the tile, mockup, background, grid, text, circles, shadows and all other objects. Output one square transparent PNG, centered, symbol occupies 88 percent of height with modest transparent margin. Crisp flat graphic faithfully extracted, no redesign, extra border, lettering, glow or texture.

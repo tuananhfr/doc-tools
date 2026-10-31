@@ -7,7 +7,9 @@ import { ocrQuality } from '../utils/ocr-quality'
 import type { OcrQualityFlag } from '../types/ocr-result.types'
 import { estimateSkew } from '../utils/scan-analysis'
 import { expandedRotation, transformPoint } from '../utils/ocr-transform'
-import { scanColor, scanGeometry, SCAN_MAX_PIXELS, type ScanOptions } from '../utils/document-scan'
+import { FULL_SCAN_CORNERS, scanColor, scanGeometry, SCAN_MAX_PIXELS, type ScanOptions } from '../utils/document-scan'
+import { detectOcrOrientation } from './ocr-orientation'
+import { stopOcr } from './ocr'
 
 const pause = () => new Promise<void>(resolve => setTimeout(resolve, 0))
 export async function loadScanCanvas(source: ImageSource) {
@@ -31,15 +33,22 @@ export async function autoScanDocument(item: QuickItem, signal: AbortSignal, onQ
   if (item.source.kind !== 'image') return null
   const canvas = await loadScanCanvas(item.source)
   let corners: ReturnType<typeof findScanCorners>
+  let rotation: ScanOptions['rotation'] = 0
+  const onAbort = () => { void stopOcr() }
+  signal.addEventListener('abort', onAbort, { once: true })
   try {
     signal.throwIfAborted()
     const sample = sampledGray(canvas)
     onQuality?.(ocrQuality(sample, { width: canvas.width, height: canvas.height }))
     corners = detectScanCorners(sample)
+    // Small-angle deskew cannot turn sideways/upside-down text upright. Find
+    // its reading direction before producing the image used by OCR and preview.
+    try { rotation = await detectOcrOrientation(canvas, signal) }
+    catch { signal.throwIfAborted() } // Plain image-PDF export still works if the OCR model is unavailable.
   }
-  finally { canvas.width = canvas.height = 1 }
-  if (!corners) return null
-  const options: ScanOptions = { corners, preset: 'color', rotation: 0, deskew: true }
+  finally { signal.removeEventListener('abort', onAbort); canvas.width = canvas.height = 1 }
+  if (!corners && rotation === 0) return null
+  const options: ScanOptions = { corners: corners ?? FULL_SCAN_CORNERS, preset: 'color', rotation, deskew: true }
   return { item: await scanDocument(item, options, signal), options }
 }
 

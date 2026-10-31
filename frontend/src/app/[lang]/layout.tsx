@@ -1,3 +1,4 @@
+import { SITE_FAVICON } from '@/features/site/config/brand-assets'
 import { organizationData } from '@/features/site/server/organization'
 import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
 import { withBase } from '@/utils/url'
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Pick<Props, 'params'>): Promi
     metadataBase: new URL(appConfig.siteUrl),
     title: t('meta.title'),
     description: t('meta.description'),
-    icons: { icon: withBase('/brand/chuyen-nho-mark-v1.png'), apple: withBase('/icons/apple-touch-icon.png') },
+    icons: { icon: [{ url: withBase(SITE_FAVICON), sizes: '32x32', type: 'image/png' }, { url: withBase('/brand/chuyen-nho-favicon-16-20261031.png'), sizes: '16x16', type: 'image/png' }], apple: withBase('/icons/apple-touch-icon-20261031.png') },
     manifest: webManifestPath(locale),
     ...siteSocialMetadata(t('meta.title'), t('meta.description'), withBase('/')),
     // iOS đời cũ không đọc manifest; tên ngắn và chế độ toàn màn hình khi "Thêm vào MH chính" lấy từ đây.

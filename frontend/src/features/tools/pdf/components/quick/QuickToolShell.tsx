@@ -19,8 +19,12 @@ import { UnlockPdfModal } from '../UnlockPdfModal'
 import { PdfSourcePreview } from './PdfSourcePreview'
 import type { PdfStudioKind } from './PdfQuickStudio'
 import { ConvertedFilePreview } from './ConvertedFilePreview'
+import { useAutomaticFlow } from '@/features/tools/hub/hooks/useAutomaticFlow'
+import { TextPdfPreview } from './TextPdfPreview'
+import { useMobileImageReveal } from '@/features/tools/image/hooks/useMobileImageReveal'
 
 interface QuickToolShellProps {
+  automatic?: boolean
   imageStudio?: boolean
   conversionStudio?: 'ocr' | 'images' | 'imageText'
   pdfStudio?: PdfStudioKind
@@ -62,7 +66,7 @@ const PICKER: Record<QuickKind | 'pdf+image', Pick<PickerCopy, 'accept'> & { hin
  * tải, và "Sửa tiếp" sang trình chỉnh sửa. Trang công cụ chỉ còn khai tuỳ chọn
  * và việc cần chạy.
  */
-export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, sideIntro, waitingLabel, runLabel, runIcon, blocked, task, mobilePreview, imageStudio, pdfStudio, resultKey, conversionStudio }: QuickToolShellProps) {
+export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, pickerExtra, stage, options, sideIntro, waitingLabel, runLabel, runIcon, blocked, task, mobilePreview, imageStudio, pdfStudio, resultKey, conversionStudio, automatic = false }: QuickToolShellProps) {
   const { t } = useTranslation('pdf')
   const { t: layout } = useTranslation('image', { keyPrefix: 'extendedStudio.layout' })
   const { t: pdfLayout } = useTranslation('pdf', { keyPrefix: 'quickStudio.layout' })
@@ -72,7 +76,10 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
   const { capture } = useToolOrigin()
   const { base } = useToolsBranch()
   const run = useFlowRun()
-  useEffect(() => { if (resultKey !== undefined) run.reset() }, [resultKey, run.reset])
+  useEffect(() => { if (!automatic && resultKey !== undefined) run.reset() }, [resultKey, run.reset, automatic])
+  const autoKey = JSON.stringify([quick.items.map(item => item.source.id), resultKey])
+  const pending = useAutomaticFlow(run, autoKey, quick.items.length > 0 && quick.loading === null && blocked === null, task, automatic)
+  useMobileImageReveal(quick.items.map(item => item.source.id), automatic && blocked === null ? '.cn-flowstudio-preview' : undefined)
   const nudge = useDownloadNudge()
   const { unlock } = quick
   const previewSource = imageStudio ? quick.items[0]?.source : undefined
@@ -125,18 +132,20 @@ export function QuickToolShell({ quick, accept, multiple, pickerTitle, reorder, 
   const workspace = scan || pdfStudio ? {
     mode: canvas ? 'canvas' as const : recognize ? 'ocr' as const : 'process' as const,
     inputTitle: pdfStudio === 'redact' ? workflow('redactInput') : pdfStudio === 'sign' ? workflow('signInput') : canvas ? workflow('organizeInput') : conversionStudio === 'imageText' ? workflow('imageTextInput') : recognize ? workflow('ocrInput') : pdfLayout('input'),
-    optionsTitle: pdfStudio === 'redact' ? workflow('redactOptions') : pdfStudio === 'sign' ? workflow('signOptions') : canvas ? workflow('organizeOptions') : recognize ? workflow('ocrOptions') : conversionStudio === 'images' ? workflow('imageOptions') : scan ? conversion('optionsTitle') : pdfLayout('options'),
-    previewTitle: compare ? workflow('comparePreview') : scan || decorate ? conversion('previewTitle') : pdfLayout('preview'),
+    optionsTitle: automatic ? pdfLayout('options').replace(/^\d+[.)]\s*/, '') : pdfStudio === 'redact' ? workflow('redactOptions') : pdfStudio === 'sign' ? workflow('signOptions') : canvas ? workflow('organizeOptions') : recognize ? workflow('ocrOptions') : conversionStudio === 'images' ? workflow('imageOptions') : scan ? conversion('optionsTitle') : pdfLayout('options'),
+    previewTitle: automatic ? `2. ${t('imagesPdfStudio.previewTitle')}` : compare ? workflow('comparePreview') : scan || decorate ? conversion('previewTitle') : pdfLayout('preview'),
     emptyTitle: pdfLayout('empty'),
-    emptyHint: pdfStudio === 'redact' ? workflow('redactHint') : pdfStudio === 'sign' ? workflow('signHint') : canvas ? workflow('organizeHint') : compare ? workflow('compareHint') : decorate ? workflow('decorationHint') : scan ? conversion('sourceHint') : pdfLayout('hint'),
+    emptyHint: automatic ? '' : pdfStudio === 'redact' ? workflow('redactHint') : pdfStudio === 'sign' ? workflow('signHint') : canvas ? workflow('organizeHint') : compare ? workflow('compareHint') : decorate ? workflow('decorationHint') : scan ? conversion('sourceHint') : pdfLayout('hint'),
     preview: compare ? <div className="cn-compare-pair">{[0, 1].map(index => <section key={index}><h3>{index === 0 ? workflow('oldDocument') : workflow('newDocument')}</h3><PdfSourcePreview items={quick.items[index] ? [quick.items[index]] : []} /></section>)}</div> : decorate && quick.items.length ? stage?.(running) : <PdfSourcePreview items={quick.items} mixed={recognize} />,
-    inlineResult: scan || decorate || compare ? { sourceLabel: compare ? workflow('sourcePair') : decorate ? workflow('editedPreview') : conversion('source'), resultLabel: compare ? workflow('compareReport') : decorate ? workflow('pdfResult') : conversion('result') } : undefined,
-    resultPreview: scan ? (output: FlowOutput) => <ConvertedFilePreview output={output} /> : undefined,
+    inlineResult: automatic || scan || decorate || compare,
+    resultPreview: automatic || scan ? (output: FlowOutput) => output.blob.type === PDF_MIME ? <TextPdfPreview blob={output.blob} name={output.name} allPages /> : <ConvertedFilePreview output={output} /> : undefined,
   } : undefined
 
   return (
     <>
       <ToolFlow
+        automatic={automatic}
+        pending={pending}
         studio={workspace ?? (imageStudio ? { mode: 'ocr', inputTitle: layout('input'), optionsTitle: layout('options'), previewTitle: layout('preview'), emptyTitle: layout('empty'), emptyHint: layout('ocrHint'), previewUrl: preview?.id === previewSource?.id ? preview?.url : undefined } : undefined)}
         mobilePreview={mobilePreview}
         picker={{ accept: picker.accept, hint: t(`picker.${picker.hint}`), multiple, title: pickerTitle }}

@@ -18,6 +18,8 @@ import { ocrSourceHash } from './ocr-quality'
 import { DEFAULT_OCR_OPTIONS, type OcrPipelineOptions } from '../types/ocr-profile.types'
 import { exportReviewedOcr, reviewedOcrText, type OcrStructuredOutput } from './ocr-export'
 import { loadPageText } from './text-layer'
+import { ocrDocumentPage, documentPlainText } from '../utils/ocr-document'
+import { normalizeOcrDocument } from '../utils/ocr-document-normalize'
 
 /**
  * Việc của các công cụ nhanh "Chuyện Nhỏ" làm trên CẢ TỆP (việc trên từng
@@ -378,9 +380,10 @@ export function imagesToPdfTask(items: QuickItem[], sheet: ImageSheet, recogniti
     })
     const pages = pagesOf(prepared), context = contextOf(prepared)
     let found: Recognized | undefined
+    const hasStructuredCells = () => recognition?.layout === 'text' && pages.some(page => ocrText(page.sourceId, page)?.ocr?.layout?.tables.some(table => table.cells.some(cell => cell.rawText.trim())))
     if (recognition) {
-      found = await recognizeMissing(context.sources, pages, pages.length, step, recognition.options)
-      if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+      found = await recognizeMissing(context.sources, pages, pages.length, step, recognition.layout === 'text' ? { ...recognition.options, structured: true } : recognition.options)
+      if (found.words === 0 && found.native === 0 && !hasStructuredCells()) throw new Error(translate('pdf:quickTask.ocrNoText'))
       if (recognition.review) {
         step.onProgress(0, 0, translate('pdf:ocrReview.title'))
         await recognition.review(prepared, step.signal)
@@ -389,11 +392,20 @@ export function imagesToPdfTask(items: QuickItem[], sheet: ImageSheet, recogniti
       const reviewed = pages.map(page => ocrText(page.sourceId, page))
       found.words = reviewed.reduce((count, text) => count + (text?.runs.length ?? 0), 0)
       found.blank = reviewed.filter(text => !text?.runs.length).length
-      if (found.words === 0 && found.native === 0) throw new Error(translate('pdf:quickTask.ocrNoText'))
+      if (found.words === 0 && found.native === 0 && !hasStructuredCells()) throw new Error(translate('pdf:quickTask.ocrNoText'))
     }
     const name = items.length === 1 ? firstName(items) : `${firstName(items)} - ${translate('pdf:file.imageCount', { count: items.length })}`
     if (recognition?.layout === 'text') {
       step.onProgress(0, 0, translate('pdf:documentScan.textBuilding'))
+      const recognized = pages.map(page => ocrText(page.sourceId, page))
+      if (recognized.every(page => page?.ocr)) {
+        const { basePageSize } = await import('./page-size')
+        const initial = { version: 1 as const, pages: await Promise.all(pages.map(async (page, i) => ocrDocumentPage(recognized[i]!, await basePageSize(context.sources[page.sourceId], page), `source-${i}`))) }
+        const { buildOcrDocumentPdf } = await import('./ocr-document-pdf')
+        const document = normalizeOcrDocument(initial)
+        const built = await buildOcrDocumentPdf(document, step.signal), texts = documentPlainText(document)
+        return { title: translate('pdf:documentScan.textDone'), output: { name: `${name} - OCR.pdf`, blob: built.blob, detail: translate('pdf:stage.pageCount', { count: built.pages }) }, notes: !recognition.review ? [{ tone: 'warning', text: translate('pdf:documentScan.ocrUnreviewed') }] : [], text: texts.join('\n\n'), textPages: texts, ocrDocument: document }
+      }
       const texts = pages.map(page => ocrPaperText(ocrText(page.sourceId, page) ?? { runs: [] }))
       const { buildOcrTextPdf } = await import('./ocr-text-pdf')
       const built = await buildOcrTextPdf(texts, sheet, step.signal)

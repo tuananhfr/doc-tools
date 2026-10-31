@@ -46,7 +46,6 @@ export default function IdPhotoPage() {
   const [sampleBusy, setSampleBusy] = useState(false)
   const [sampleFailed, setSampleFailed] = useState(false)
   const [tab, setTab] = useState<typeof TABS[number]>('size')
-  const [original, setOriginal] = useState(false)
   const [appearance, setAppearance] = useState(ORIGINAL_PORTRAIT)
   const [photoId, setPhotoId] = useState('3x4')
   const [customWidth, setCustomWidth] = useState('3')
@@ -159,8 +158,7 @@ export default function IdPhotoPage() {
       </section>
       <section className="cn-idstudio-panel cn-idstudio-preview" aria-labelledby={`${ids}-preview-title`}>
         <h2 id={`${ids}-preview-title`}><span>3.</span> {s('previewDownload')}</h2>
-        <div className="cn-idstudio-tabs cn-idstudio-preview-tabs"><button type="button" aria-pressed={!original} onClick={() => setOriginal(false)}>{s('preview')}</button><button type="button" aria-pressed={original} onClick={() => setOriginal(true)}>{s('original')}</button></div>
-        <div className="cn-idstudio-photo-area"><div className="cn-idstudio-photo" style={{ aspectRatio: original && item ? `${item.width} / ${item.height}` : `${photo.width} / ${photo.height}` }}><img src={item ? original ? item.url : preview.url ?? item.url : withBase(SAMPLE)} alt={item ? original ? s('originalPhoto') : s('previewPhoto') : s('samplePreview')} />{preview.busy && !original ? <span role="status"><Spinner as="span" size="sm" />{appearance.background ? t('removeBg.processing') : s('updating')}</span> : null}</div><div className="cn-idstudio-photo-strip" aria-hidden="true">{[0, 1, 2, 3].map(index => <img key={index} src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt="" style={{ aspectRatio: `${photo.width} / ${photo.height}` }} />)}</div></div>
+        <div className="cn-idstudio-photo-area"><div className="cn-idstudio-photo" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}><img src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt={item ? s('previewPhoto') : s('samplePreview')} />{preview.busy ? <span role="status"><Spinner as="span" size="sm" />{appearance.background ? t('removeBg.processing') : s('updating')}</span> : null}</div><div className="cn-idstudio-photo-strip" aria-hidden="true">{[0, 1, 2, 3].map(index => <img key={index} src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt="" style={{ aspectRatio: `${photo.width} / ${photo.height}` }} />)}</div></div>
         {!uploadedItem ? <p className="cn-idstudio-demo-note">{s('sampleDisclosure')}</p> : null}
         <dl className="cn-idstudio-output-meta"><div><dt>{s('dimensions')}</dt><dd>{photo.label}</dd></div><div><dt>{s('resolution')}</dt><dd>{dpi !== null ? `${dpi} DPI` : '—'}</dd></div><div><dt>{s('file')}</dt><dd>{outputWidth ? `${outputWidth} × ${Math.round(outputWidth * photo.height / photo.width)} px · JPG` : 'JPG · 300 DPI'}</dd></div></dl>
         {dpi !== null && dpi < LOW_DPI ? <p className="cn-idstudio-note cn-idstudio-warning" role="status">{t('idPhoto.lowDpi', { dpi, min: LOW_DPI })}</p> : null}

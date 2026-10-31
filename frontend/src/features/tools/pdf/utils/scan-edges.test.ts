@@ -15,6 +15,24 @@ function shadowedBook(mirror = false) {
 }
 
 describe('shadowed book page edges', () => {
+  it.each([0, 90, 180, 270])('does not crop a printed divider near the photo edge at %i degrees', rotation => {
+    const width = 200, height = 240, data = new Uint8Array(width * height).fill(60)
+    for (let y = 15; y < 225; y++) for (let x = 15; x < 185; x++) data[y * width + x] = 210
+    // A header divider is surrounded by the same sheet on both sides.
+    for (let x = 15; x < 185; x++) data[30 * width + x] = 25
+    const corners = [{ x: 15, y: 30 }, { x: 185, y: 30 }, { x: 185, y: 225 }, { x: 15, y: 225 }]
+    const sideways = rotation % 180 !== 0, w = sideways ? height : width, h = sideways ? width : height
+    const rotated = new Uint8Array(data.length)
+    const point = (x: number, y: number) => rotation === 90 ? { x: height - 1 - y, y: x }
+      : rotation === 180 ? { x: width - 1 - x, y: height - 1 - y }
+      : rotation === 270 ? { x: y, y: width - 1 - x } : { x, y }
+    for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) { const p = point(x, y); rotated[p.y * w + p.x] = data[y * width + x] }
+    const quad = corners.map(p => point(p.x, p.y))
+    // Reorder to top-left, top-right, bottom-right, bottom-left after rotating.
+    const start = quad.reduce((best, p, i) => p.x + p.y < quad[best].x + quad[best].y ? i : best, 0)
+    expect(hasPaperContinuation({ width: w, height: h, data: rotated }, [...quad.slice(start), ...quad.slice(0, start)] as Parameters<typeof hasPaperContinuation>[1])).toBe(true)
+  })
+
   it.each([false, true])('does not treat a printed line inside a clipped sheet as its bottom edge (shaded: %s)', shaded => {
     const width = 400, height = 500, data = new Uint8Array(width * height).fill(60)
     for (let y = 50; y < height; y++) for (let x = 50; x < 350; x++) data[y * width + x] = shaded ? Math.max(145, 220 - Math.max(0, y - 250) * .7) : 210

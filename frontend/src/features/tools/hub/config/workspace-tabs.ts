@@ -12,6 +12,6 @@ export interface WorkspaceTabGroup {
  */
 export const WORKSPACE_TAB_GROUPS: readonly WorkspaceTabGroup[] = [
   { id: 'qr', toolIds: ['qr-create', 'barcode-create', 'qr-read', 'vietqr'] },
-  { id: 'calc', toolIds: ['money-calc', 'quick-calc', 'unit-convert', 'date-calc'] },
+  { id: 'calc', toolIds: ['money-calc', 'unit-convert', 'date-calc'] },
   { id: 'image', toolIds: ['crop-image', 'compress-image', 'convert-image', 'batch-image', 'collage', 'mark-image', 'remove-background'] },
 ]

@@ -28,6 +28,7 @@ export default function PdfToImagePage() {
 
   return (
     <FileConversionStudio kind="images"><QuickToolShell
+      automatic
       conversionStudio="images"
       resultKey={JSON.stringify([quick.items.map(item => item.source.id), format, dpi])}
       quick={quick}

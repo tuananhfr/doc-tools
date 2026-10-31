@@ -32,18 +32,8 @@ export default function QrReadPage() {
   const [misses, setMisses] = useState<ScanMiss[]>([])
   const [loading, setLoading] = useState<{ done: number; total: number } | null>(null)
   const [camera, setCamera] = useState(false)
-  const [preview, setPreview] = useState<File | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [view, setView] = useState<'results' | 'image'>('results')
   const [sampleBusy, setSampleBusy] = useState(false)
   const [sampleFailed, setSampleFailed] = useState(false)
-
-  useEffect(() => {
-    if (!preview) { setPreviewUrl(null); return }
-    const url = URL.createObjectURL(preview)
-    setPreviewUrl(url)
-    return () => URL.revokeObjectURL(url)
-  }, [preview])
 
   const reportsTrace = useEmbed().capabilities.includes('trace')
 
@@ -65,7 +55,6 @@ export default function QrReadPage() {
       if (busy.current || files.length === 0) return
       busy.current = true
       setCamera(false)
-      setView('results')
       const missed: ScanMiss[] = []
       try {
         for (const [index, file] of files.entries()) {
@@ -77,7 +66,6 @@ export default function QrReadPage() {
               missed.push({ name, reason: blocked })
               continue
             }
-            setPreview(file)
             const read = await scanImage(file)
             if (read) addRead(read)
             else missed.push({ name, reason: t('read.noCode') })
@@ -130,12 +118,12 @@ export default function QrReadPage() {
           <h2>{s('inputTitle')}</h2>
           <div className="cn-qrreader-methods" role="group" aria-label={s('method')}>
             <button type="button" aria-pressed={!camera} disabled={loading !== null || sampleBusy} onClick={() => setCamera(false)}><Icon name="image" /><span>{s('image')}<small>{s('imageHint')}</small></span></button>
-            <button type="button" aria-pressed={camera} disabled={loading !== null || sampleBusy} onClick={() => { setCamera(true); setView('results') }}><Icon name="camera" /><span>{s('camera')}<small>{s('cameraHint')}</small></span></button>
+            <button type="button" aria-pressed={camera} disabled={loading !== null || sampleBusy} onClick={() => setCamera(true)}><Icon name="camera" /><span>{s('camera')}<small>{s('cameraHint')}</small></span></button>
           </div>
           <div className="cn-convertstudio-upload" hidden={camera}>
             <FilePicker accept={ACCEPT} multiple title={s('dropTitle')} hint={t('read.pickHint')} compact={false} loading={loading} disabled={sampleBusy} onFiles={files => void scanFiles(files)} />
           </div>
-          {camera ? <QrCamera onRead={read => { addRead(read); setView('results') }} onClose={() => setCamera(false)} /> : null}
+          {camera ? <QrCamera onRead={addRead} onClose={() => setCamera(false)} /> : null}
           {misses.length > 0 ? <div className="erp-flow-rejected" role="alert">
             <Icon name="exclamation-triangle" className="erp-flow-rejected__icon" />
             <div className="erp-flow-rejected__body"><p className="erp-flow-rejected__title">{t('read.missTitle', { count: misses.length })}</p>
@@ -150,19 +138,14 @@ export default function QrReadPage() {
         </section>
         <section className="cn-idstudio-panel cn-qrreader-output">
           <h2>{s('outputTitle')}</h2>
-          <div className="cn-idstudio-tabs" role="group" aria-label={s('outputTitle')}>
-            <button type="button" aria-pressed={view === 'results'} onClick={() => setView('results')}>{s('results')}{hits.length > 0 ? <span className="cn-qrreader-count">{hits.length}</span> : null}</button>
-            <button type="button" aria-pressed={view === 'image'} disabled={!previewUrl} onClick={() => setView('image')}>{s('original')}</button>
-          </div>
           <p className="cn-qrreader-status" role="status" aria-live="polite">{loading ? s('reading', { current: loading.done + 1, total: loading.total }) : hits.length > 0 ? t('read.resultsCount', { count: hits.length }) : s('resultHint')}</p>
-          <div hidden={view !== 'results'}>
+          <div>
             {hits.length === 0 ? <div className="cn-qrreader-empty"><div className="cn-qrreader-scan-frame" aria-hidden="true"><Icon name="qr-code-scan" /></div><strong>{s('emptyTitle')}</strong><p>{t('read.empty')}</p><span><Icon name="upc-scan" />QR · EAN · UPC · Code 128</span></div> : <>
               <div className="cn-qrreader-result-head"><span><Icon name="check-circle-fill" />{s('readSuccess')}</span><Button variant="link" onClick={() => setHits([])}>{t('read.clearAll')}</Button></div>
               <ScanResultList hits={hits} onRemove={id => setHits(current => current.filter(hit => hit.id !== id))} />
               <p className="cn-qrreader-session">{s('sessionHint')}</p>
             </>}
           </div>
-          <div hidden={view !== 'image'} className="cn-qrreader-original">{previewUrl ? <><div><img src={previewUrl} alt={preview?.name ?? s('original')} onError={() => { setPreview(null); setView('results') }} /></div><p>{preview?.name}</p></> : null}</div>
           <p className="cn-qrreader-safety"><Icon name="shield-check" />{t('read.safety')}</p>
         </section>
       </div>

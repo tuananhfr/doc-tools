@@ -1,7 +1,7 @@
 import { useId, useState } from 'react'
 import { Form, InputGroup } from 'react-bootstrap'
 import { Trans, useTranslation } from 'react-i18next'
-import { parseDecimal, useFlowRun } from '@/features/tools/hub'
+import { FlowChoice, parseDecimal, useFlowRun } from '@/features/tools/hub'
 import { ExtendedImageStudio } from '../components/ExtendedImageStudio'
 import { ImageToolShell } from '../components/ImageToolShell'
 import { useImageFiles } from '../hooks/useImageFiles'
@@ -131,16 +131,7 @@ export default function BatchImagePage() {
             </Form.Select>
           </div>
           {lossy ? (
-            <div className="erp-flow-field">
-              <label className="erp-flow-field__label" htmlFor={`${ids}-quality`}>
-                {t('batch.qualityLabel')}
-              </label>
-              <Form.Select id={`${ids}-quality`} value={quality} onChange={(event) => setQuality(event.target.value as Quality)}>
-                <option value="high">{t('batch.quality.high')}</option>
-                <option value="medium">{t('batch.quality.medium')}</option>
-                <option value="small">{t('batch.quality.small')}</option>
-              </Form.Select>
-            </div>
+            <FlowChoice inline legend={t('batch.qualityLabel')} value={quality} onChange={setQuality} options={(Object.keys(QUALITY_VALUE) as Quality[]).map(value => ({ value, label: t(`batch.quality.${value}`) }))} />
           ) : null}
 
           <div className="erp-flow-field">

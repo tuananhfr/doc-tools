@@ -6,6 +6,7 @@
  * tệp kết quả chỉ là một `Blob` trong RAM cho tới khi người dùng bấm Tải về.
  */
 import type { ToolErrorCode, ToolFailure } from '../utils/tool-error'
+import type { OcrEditableDocument } from '../../pdf/types/ocr-document.types'
 
 /** Một tệp người dùng đã chọn, đủ để vẽ một dòng trong danh sách. */
 export interface FlowFile {
@@ -50,6 +51,8 @@ export interface FlowResult {
   text?: string
   /** Editable OCR text per input page, preserving page breaks when rebuilding a text PDF. */
   textPages?: string[]
+  /** Editable text blocks and ruled tables, kept independently of the original photo. */
+  ocrDocument?: OcrEditableDocument
   /** Tên khối chữ đó; bỏ trống = "Nội dung văn bản". */
   textLabel?: string
 }

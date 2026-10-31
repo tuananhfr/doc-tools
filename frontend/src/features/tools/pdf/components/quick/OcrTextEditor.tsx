@@ -6,6 +6,7 @@ import type { ImageSheet } from '../../types/doc-tools.types'
 import { editOcrTextPdf } from '../../services/ocr-text-edit'
 import { previewOcrTextLayout } from '../../services/ocr-text-pdf'
 import { editedOcrSources, type OcrPaperLayout } from '../../utils/ocr-text-layout'
+import { OcrDocumentEditor } from './OcrDocumentEditor'
 
 const PX = 96 / 72
 
@@ -28,7 +29,13 @@ function EditablePaper({ text, label, layout, zoom, disabled, onChange }: { text
     onInput={changed} onPaste={paste} onDrop={event => event.preventDefault()} />
 }
 
-export function OcrTextEditor({ result, sheet, onApply, onClose, onBusy }: { result: FlowResult; sheet: ImageSheet; onApply: (result: FlowResult) => void; onClose: () => void; onBusy: (busy: boolean) => void }) {
+type EditorProps = { result: FlowResult; sheet: ImageSheet; onApply: (result: FlowResult) => void; onClose: () => void; onBusy: (busy: boolean) => void }
+
+export function OcrTextEditor(props: EditorProps) {
+  return props.result.ocrDocument ? <OcrDocumentEditor {...props} /> : <LegacyOcrTextEditor {...props} />
+}
+
+function LegacyOcrTextEditor({ result, sheet, onApply, onClose, onBusy }: EditorProps) {
   const { t } = useTranslation('pdf', { keyPrefix: 'documentScan' }), { t: pdf } = useTranslation('pdf'), { t: ocr } = useTranslation('ocr')
   const id = useId(), controller = useRef<AbortController | null>(null), gallery = useRef<HTMLDivElement>(null)
   const [sources] = useState(() => [...(result.textPages ?? [result.text ?? ''])])

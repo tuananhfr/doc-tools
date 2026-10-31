@@ -27,7 +27,7 @@ export function uniqueOcrLines(lines: OcrLine[], preferFirst = false) {
 }
 
 /** Sauvola threshold, evaluated one strip at a time to bound temporary memory. */
-export function localOcrPixels(rgba: Uint8ClampedArray, width: number, height: number) {
+export function localOcrPixels(rgba: Uint8ClampedArray, width: number, height: number, sensitivity = .3) {
   const stride = width + 1, gray = new Uint8Array(width * height)
   const sums = new Float64Array(stride * (height + 1)), squares = new Float64Array(sums.length)
   for (let y = 0; y < height; y++) {
@@ -47,7 +47,7 @@ export function localOcrPixels(rgba: Uint8ClampedArray, width: number, height: n
     const top = Math.max(0, y - radius), bottom = Math.min(height, y + radius + 1), count = (right - left) * (bottom - top)
     const box = (values: Float64Array) => values[bottom * stride + right] - values[top * stride + right] - values[bottom * stride + left] + values[top * stride + left]
     const mean = box(sums) / count, deviation = Math.sqrt(Math.max(0, box(squares) / count - mean * mean))
-    const offset = (y * width + x) * 4, value = gray[y * width + x] < mean * (1 + .3 * (deviation / 128 - 1)) ? 0 : 255
+    const offset = (y * width + x) * 4, value = gray[y * width + x] < mean * (1 + sensitivity * (deviation / 128 - 1)) ? 0 : 255
     output[offset] = output[offset + 1] = output[offset + 2] = value; output[offset + 3] = 255
   }
   return output
