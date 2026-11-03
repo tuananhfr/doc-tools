@@ -6,6 +6,9 @@ import { resolveToolRoute, toolPageTitle } from '@/features/tools/hub/utils/tool
 import { localizePath } from '@/i18n/locales'
 import { localeAlternates, pageLocale } from '@/i18n/server'
 import { toolShareImagePath } from '@/features/site/server/share-image-locale'
+import { SITE_FAVICON } from '@/features/site/config/brand-assets'
+import { toolIconPath, toolManifestPath } from '@/features/site/config/tool-app'
+import { withBase } from '@/utils/url'
 type Props = { params: Promise<{ lang: string; tool: string }> }
 export function generateStaticParams() { return TOOL_CATALOG.filter(tool => tool.status === 'ready').map(tool => ({ tool: tool.slug })) }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -17,6 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const shareImage = toolShareImagePath(tool.slug, locale)
   return { title: toolPageTitle(tool), description: tool.description,
     alternates,
+    // "Thêm vào màn hình chính" ở trang này ra icon và tên của công cụ, mở thẳng công cụ (không phải app chung).
+    manifest: toolManifestPath(tool.slug, locale),
+    icons: { icon: [{ url: withBase(SITE_FAVICON), sizes: '32x32', type: 'image/png' }, { url: withBase('/brand/chuyen-nho-favicon-16-20261102.png'), sizes: '16x16', type: 'image/png' }], apple: toolIconPath(tool.slug, 'apple-180') },
+    appleWebApp: { capable: true, title: tool.name, statusBarStyle: 'default' },
     openGraph: {
       title: toolPageTitle(tool), description: tool.description, url: alternates.canonical,
       images: [{ url: shareImage, width: 1200, height: 630, type: 'image/png', alt: tool.name + ' — Chuyện Nhỏ' }],

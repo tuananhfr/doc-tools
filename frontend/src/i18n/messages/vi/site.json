@@ -1742,5 +1742,15 @@
         "hint": "Hướng dẫn dùng trên máy tính và điện thoại."
       }
     }
+  },
+  "toolInstall": {
+    "label": "Thêm công cụ ra màn hình chính",
+    "title": "Thêm “{{name}}” vào màn hình chính",
+    "detail": "Lần sau bấm biểu tượng là mở thẳng công cụ này.",
+    "iosSteps": "Bấm nút Chia sẻ (ô vuông có mũi tên lên), chọn “Thêm vào MH chính”, rồi bấm “Thêm”.",
+    "add": "Thêm",
+    "how": "Xem cách thêm",
+    "never": "Không nhắc lại",
+    "close": "Đóng"
   }
 }

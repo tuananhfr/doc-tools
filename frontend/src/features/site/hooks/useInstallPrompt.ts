@@ -56,6 +56,17 @@ async function install(): Promise<boolean> {
   return outcome === 'accepted'
 }
 
+/**
+ * Trang đổi `<link rel="manifest">` (vào/ra một công cụ, xem `useToolAppManifest`): sự kiện cũ thuộc
+ * manifest cũ nên bỏ; Chrome kiểm lại manifest mới và bắn `beforeinstallprompt` mới nếu cài được.
+ */
+export function resetInstallPrompt() {
+  if (!deferredPrompt && !installedNow) return
+  deferredPrompt = null
+  installedNow = false
+  notify()
+}
+
 export function useInstallPrompt() {
   const state = useSyncExternalStore(subscribe, getSnapshot, () => 'unavailable' as const)
   return { state, install }

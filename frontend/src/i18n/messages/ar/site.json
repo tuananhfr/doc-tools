@@ -1807,5 +1807,15 @@
         "hint": "Get started on desktop and mobile."
       }
     }
+  },
+  "toolInstall": {
+    "label": "Add tool to home screen",
+    "title": "Add “{{name}}” to your home screen",
+    "detail": "Next time, tap the icon to open this tool directly.",
+    "iosSteps": "Tap Share (the square with an up arrow), choose “Add to Home Screen”, then tap “Add”.",
+    "add": "Add",
+    "how": "Show me how",
+    "never": "Don’t remind me",
+    "close": "Close"
   }
 }

@@ -25,6 +25,7 @@ import {WORKSPACE_REGISTRY} from './workspace-registry'
 import { TOOL_SCREENS } from './tool-screens'
 import { ToolRouteFallback } from './ToolRouteFallback'
 import { ToolFavourite } from './ToolFavourite'
+import { ToolAppShortcut } from './ToolAppShortcut'
 import { ADMIN_ROOT } from '@/features/admin'
 
 const FamilyCalendarProductPage = dynamic(() => import('@/features/site/pages/FamilyCalendarProductPage'), { ssr: false, loading: ToolRouteFallback })
@@ -69,7 +70,7 @@ const routes: RouteObject[] = [{ path: '/gioi-thieu', element: <LandingLayout />
   { path: 'tai-khoan/ai', element: <AiSettingsPage /> },
   { path: 'tai-khoan/da-luu', element: <SavedPage /> },
   { path: 'de-xuat-cua-toi', element: <MyContributionsPage /> },
-  { path: ':tool', element: <ToolRoutePage screens={TOOL_SCREENS} workspaceVersions={Object.fromEntries(Object.entries(WORKSPACE_REGISTRY).map(([id,entry])=>[id,entry.version]))} headerAction={ToolFavourite} feedbackAction={ToolFeedback} /> },
+  { path: ':tool', element: <><ToolAppShortcut /><ToolRoutePage screens={TOOL_SCREENS} workspaceVersions={Object.fromEntries(Object.entries(WORKSPACE_REGISTRY).map(([id,entry])=>[id,entry.version]))} headerAction={ToolFavourite} feedbackAction={ToolFeedback} /></> },
 ] }]
 
 export function ToolsRouter({ locale }: { locale: Locale }) {
