@@ -57,3 +57,11 @@ it('keeps a corrected mark on an intact line when another line changes its numbe
   const refined = refineOcrLineMarks(original, [[line('Kế', 96), line('22ồ', 95)]])
   expect(refined.map(l => l.words[0].text)).toEqual(['Kế', '228'])
 })
+
+it('uses two spatially aligned views to repair one uncertain letter despite different line segmentation', () => {
+  const original = [line('glao', 25)]
+  const alternatives = [[line('giao', 95), line('extra', 90, 100)], [line('giao', 93)]]
+  expect(refineOcrLineMarks(original, alternatives)[0].words[0].text).toBe('giao')
+  expect(refineOcrLineMarks(original, [alternatives[0]])[0].words[0].text).toBe('glao')
+  expect(refineOcrLineMarks([line('AB01', 20)], [[line('AB02', 99)], [line('AB02', 99)]])[0].words[0].text).toBe('AB01')
+})

@@ -10,6 +10,12 @@ const canRefine = (before: string, score: number, after: string, nextScore: numb
   && /\p{L}/u.test(before) && !/\d/u.test(before + after)
   && letters(before) === letters(after) && nextScore >= 90 && nextScore >= score + 8
 
+function oneLetterApart(a: string, b: string) {
+  const left = Array.from(a), right = Array.from(b)
+  if (left.length < 3 || left.length !== right.length) return false
+  return left.filter((letter, index) => letter !== right[index]).length === 1
+}
+
 /** Keep one complete reading and its geometry, accepting only strong aligned mark corrections. */
 export function refineOcrExportWords(selected: OcrPassWords, passes: OcrPassWords[]): OcrWordResult[] {
   let words = selected.words.map(word => ({ ...word, run: { ...word.run } }))
@@ -44,6 +50,30 @@ export function refineOcrLineMarks(selected: OcrLine[], alternatives: OcrLine[][
         }
       })
     })
+  }
+  // Different segmentation may add a stamp/signature line, so line counts alone
+  // cannot align readings. Accept a one-letter correction only when two separate
+  // views agree on the same glyph box and the selected word is uncertain.
+  for (const line of result) for (const word of line.words) {
+    if (word.confidence >= 75 || /\d/.test(word.text) || !/\p{L}{3}/u.test(word.text)) continue
+    const votes = new Map<string, { count: number; confidence: number }>()
+    for (const alternative of alternatives) {
+      const matches = alternative.flatMap(line => line.words).filter(other => {
+        if (other.confidence < 85 || /\d/.test(other.text) || !oneLetterApart(word.text.normalize('NFC'), other.text.normalize('NFC'))) return false
+        const x = Math.max(0, Math.min(word.bbox.x1, other.bbox.x1) - Math.max(word.bbox.x0, other.bbox.x0))
+        const y = Math.max(0, Math.min(word.bbox.y1, other.bbox.y1) - Math.max(word.bbox.y0, other.bbox.y0))
+        const area = (value: typeof word) => (value.bbox.x1 - value.bbox.x0) * (value.bbox.y1 - value.bbox.y0)
+        return x * y >= Math.min(area(word), area(other)) * .6 && Math.max(area(word), area(other)) <= Math.min(area(word), area(other)) * 2.5
+      }).sort((a, b) => b.confidence - a.confidence)
+      const candidate = matches[0]
+      if (!candidate) continue
+      const key = candidate.text.normalize('NFC'), previous = votes.get(key)
+      votes.set(key, { count: (previous?.count ?? 0) + 1, confidence: Math.max(previous?.confidence ?? 0, candidate.confidence) })
+    }
+    const candidate = [...votes.entries()].sort((a, b) => b[1].count - a[1].count || b[1].confidence - a[1].confidence)[0]
+    if (candidate && candidate[1].count >= 2 && candidate[1].confidence >= 90 && candidate[1].confidence >= word.confidence + 12) {
+      word.text = candidate[0]; word.confidence = candidate[1].confidence
+    }
   }
   return result
 }

@@ -429,5 +429,20 @@
     "tasksFull": "タスクが上限の {{count}} 件に達しました",
     "addTaskPlaceholder": "タスクを追加して Enter",
     "addTask": "追加"
+  },
+  "pocketCalculator": {
+    "title": "Calculator",
+    "expression": "Expression",
+    "result": "Result",
+    "clear": "Clear all",
+    "backspace": "Delete one character",
+    "equals": "Calculate",
+    "copy": "Copy",
+    "errors": {
+      "incomplete": "Complete the expression and close parentheses.",
+      "invalid": "Check the numbers and operators.",
+      "zero": "Cannot divide by zero.",
+      "large": "The expression or number is too large."
+    }
   }
 }

@@ -1,0 +1,69 @@
+/* Compact input → result workspaces, shared by mobile and desktop. */
+.cn-pocket-calculator { width: min(100%, 430px); margin: 0 auto; padding: 20px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); }
+.cn-pocket-display { display: grid; gap: 8px; margin-bottom: 16px; }
+.cn-pocket-display label { font-size: 14px; font-weight: 600; }
+.cn-pocket-display input { width: 100%; min-width: 0; padding: 12px; border: 1px solid var(--cn-line); border-radius: 8px; color: var(--cn-ink); background: var(--cn-hero); font-size: 20px; text-align: end; }
+.cn-pocket-display output { display: block; min-height: 48px; font-size: 32px; font-weight: 700; overflow-wrap: anywhere; text-align: end; }
+.cn-pocket-display small { color: var(--cn-muted); overflow-wrap: anywhere; text-align: end; }
+.cn-pocket-display p { margin: 0; font-size: 14px; }
+.cn-pocket-keypad { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.cn-pocket-keypad button { min-height: 54px; padding: 8px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-hero); color: var(--cn-ink); font-size: 22px; font-weight: 600; }
+.cn-pocket-keypad button:hover { background: var(--cn-tint); }
+.cn-pocket-keypad .cn-pocket-operator { color: #005be8; background: #edf5ff; }
+.cn-pocket-actions { display: flex; gap: 8px; margin-top: 12px; }
+.cn-pocket-actions > button { flex: 1; min-height: 48px; }
+.cn-typing-practice { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 16px; align-items: start; }
+.cn-typing-main, .cn-typing-progress { min-width: 0; padding: 20px; border: 1px solid var(--cn-line); border-radius: 16px; background: var(--cn-surface); }
+.cn-typing-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.cn-typing-levels { display: flex; padding: 4px; border-radius: 10px; background: var(--cn-hero); }
+.cn-typing-levels button { min-height: 44px; border: 0; padding: 8px 16px; border-radius: 8px; color: var(--cn-ink); background: transparent; font-weight: 600; }
+.cn-typing-levels button[aria-pressed='true'] { color: #fff; background: #005be8; }
+.cn-typing-toolbar label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; }
+.cn-typing-toolbar select { max-width: 100%; min-height: 44px; padding: 8px; border: 1px solid var(--cn-line); border-radius: 8px; background: var(--cn-surface); color: var(--cn-ink); }
+.cn-typing-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 20px 0; gap: 8px; }
+.cn-typing-metrics > div { padding: 12px; background: var(--cn-hero); border-radius: 8px; }
+.cn-typing-metrics dt { font-size: 13px; font-weight: 500; color: var(--cn-muted); }
+.cn-typing-metrics dd { margin: 4px 0 0; font-size: 24px; font-weight: 700; }
+.cn-typing-metrics small { font-size: 13px; font-weight: 500; }
+.cn-typing-target { padding: 16px; border: 1px solid var(--cn-line); border-radius: 10px; color: var(--cn-ink); font: 20px/1.9 ui-monospace, monospace; overflow-wrap: anywhere; white-space: pre-wrap; }
+.cn-typing-target .is-correct { color: #14734a; }
+.cn-typing-target .is-wrong { color: #b31b34; background: #ffe2e7; text-decoration: underline; text-decoration-thickness: 2px; }
+.cn-typing-target .is-next { border-bottom: 3px solid #005be8; background: #e7f1ff; }
+.cn-typing-input-label { display: block; margin: 16px 0 8px; font-size: 14px; font-weight: 600; }
+.cn-typing-main textarea { display: block; width: 100%; padding: 12px; border: 1px solid var(--cn-line); border-radius: 10px; color: var(--cn-ink); background: var(--cn-surface); font: 18px/1.7 ui-monospace, monospace; resize: vertical; }
+.cn-typing-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 14px; }
+.cn-typing-completion { margin: 20px 0; padding: 16px; border: 1px solid #b0d6c3; border-radius: 12px; background: #f1faf5; color: #143d2b; }
+.cn-typing-completion h2 { margin: 0; font-size: 20px; }
+.cn-typing-completion .cn-typing-metrics { margin: 12px 0 16px; }
+.cn-typing-completion .cn-typing-metrics > div { background: #fff; }
+.cn-typing-completion-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.cn-typing-completion-actions button { min-height: 44px; font-weight: 600; }
+.cn-typing-completion:focus { outline: 3px solid var(--cn-focus, #005be8); outline-offset: 3px; }
+.cn-typing-guide { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--cn-line); }
+.cn-typing-guide summary { min-height: 44px; font-weight: 600; cursor: pointer; }
+.cn-typing-guide p, .cn-typing-progress p { font-size: 14px; color: var(--cn-muted); }
+.cn-typing-keyboard { padding: 12px 0; }
+.cn-typing-keyboard > div { display: flex; justify-content: center; gap: 4px; margin-top: 4px; }
+.cn-typing-keyboard span { display: grid; place-items: center; width: clamp(18px, 6%, 44px); min-width: 0; height: 36px; border: 1px solid var(--cn-line); border-radius: 5px; background: var(--cn-hero); font-size: 13px; font-weight: 600; }
+.cn-typing-keyboard span[data-finger='3'], .cn-typing-keyboard span[data-finger='4'] { border-bottom: 3px solid #005be8; }
+.cn-typing-keyboard .cn-typing-space { width: 45%; }
+.cn-typing-keyboard .is-active { color: white; background: #005be8; border-color: #005be8; }
+.cn-typing-progress h2 { font-size: 18px; margin-bottom: 16px; }
+.cn-typing-progress dl > div { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; }
+.cn-typing-progress dt { font-size: 14px; font-weight: 500; }
+.cn-typing-progress dd { font-weight: 700; }
+.cn-typing-progress ol { list-style: none; margin: 0; padding: 0; }
+.cn-typing-progress li { display: flex; justify-content: space-between; gap: 8px; padding: 12px 0; border-top: 1px solid var(--cn-line); font-size: 14px; }
+.cn-typing-progress li small { display: block; color: var(--cn-muted); font-size: 12px; font-weight: 400; }
+:is(.cn-pocket-calculator, .cn-typing-practice) :is(button, input, select, textarea, summary):focus-visible { outline: 3px solid var(--cn-focus, #005be8); outline-offset: 2px; }
+@media (max-width: 900px) { .cn-typing-practice { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) {
+  .cn-pocket-calculator, .cn-typing-main, .cn-typing-progress { padding: 16px; }
+  .cn-typing-toolbar { align-items: stretch; }
+  .cn-typing-toolbar > * { width: 100%; }
+  .cn-typing-levels button { flex: 1; }
+  .cn-typing-toolbar label { justify-content: space-between; }
+  .cn-typing-metrics > div { padding: 8px; }
+  .cn-typing-metrics dd { font-size: 20px; }
+  .cn-typing-target { font-size: 18px; padding: 12px; }
+}

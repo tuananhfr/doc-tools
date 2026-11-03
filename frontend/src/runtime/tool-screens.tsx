@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import type { ComponentType } from 'react'
 import { Loading } from '@/components/ui'
 import type { ToolScreen } from '@/features/tools/hub/types/tool.types'
+const PocketCalculatorPage = dynamic(() => import('@/features/tools/utility/pages/PocketCalculatorPage'), { ssr: false, loading: () => <Loading /> })
+const TypingPracticePage = dynamic(() => import('@/features/tools/study/pages/TypingPracticePage'), { ssr: false, loading: () => <Loading /> })
 const OfficeEditorPage = dynamic(() => import('@/features/tools/office/pages/OfficeEditorPage'), { ssr: false, loading: () => <Loading /> })
 const OfficeWordPage = () => <OfficeEditorPage app="office-word" />
 const OfficeSheetPage = () => <OfficeEditorPage app="office-sheet" />
@@ -79,6 +81,8 @@ const TrimVideoPage = dynamic(() => import('@/features/tools/video/pages/TrimVid
 const VideoGifPage = dynamic(() => import('@/features/tools/video/pages/VideoGifPage'), { ssr: false, loading: () => <Loading /> })
 const ExtractAudioPage = dynamic(() => import('@/features/tools/video/pages/ExtractAudioPage'), { ssr: false, loading: () => <Loading /> })
 export const TOOL_SCREENS: Record<ToolScreen, ComponentType> = {
+  'pocket-calculator': PocketCalculatorPage,
+  'typing-practice': TypingPracticePage,
   'office-word': OfficeWordPage,
   'office-sheet': OfficeSheetPage,
   'office-slide': OfficeSlidePage,

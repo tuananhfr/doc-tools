@@ -12,5 +12,5 @@ export interface OcrPipelineOptions {
   structured?: boolean
 }
 
-export const OCR_PIPELINE_VERSION = '2.12.0'
+export const OCR_PIPELINE_VERSION = '2.13.1'
 export const DEFAULT_OCR_OPTIONS: OcrPipelineOptions = { profile: 'printed', maxPasses: 2 }

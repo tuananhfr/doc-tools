@@ -10,3 +10,6 @@ dist/
 qa-output/
 /docs/
 .pnpm-store/
+
+# Tệp kiểm tra và bản trích xuất tạm chỉ dùng trên máy dev.
+/tmp/

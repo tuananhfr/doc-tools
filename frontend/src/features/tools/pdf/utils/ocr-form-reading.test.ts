@@ -50,3 +50,36 @@ it('rejects a damaged amount with a letter mistaken for its final zero', () => {
   candidate.words[1].confidence = 83
   expect(text(mergeFormReadings(before, [candidate]))).toBe('Tax 1248.000')
 })
+
+it('recovers missing leading words using aligned anchors without replacing a clear tail', () => {
+  const candidate = line('The parties confirm receipt of documents today', 20, 40, 82)
+  const tail = structuredClone(candidate)
+  tail.words = tail.words.slice(4).map(word => ({ ...word, confidence: 98 }))
+  tail.bbox.x0 = tail.words[0].bbox.x0
+  candidate.words[5].text = 'docurnents'
+  expect(text(mergeFormReadings([tail], [candidate]))).toBe('The parties confirm receipt of documents today')
+})
+
+it('does not recover a conflicting line merely because it has extra high-confidence words', () => {
+  const original = line('approved final copy', 200, 40, 98)
+  const candidate = line('The parties reject draft copies tomorrow', 20, 40, 82)
+  expect(text(mergeFormReadings([original], [candidate]))).toBe('approved final copy')
+})
+
+it('keeps a nearby phone label on its own row when its tall accent overlaps an address', () => {
+  const address = line('Address 325 Central Street', 20, 40, 90)
+  const phone = line('Phone:', 20, 62, 85)
+  phone.words[0].bbox.y0 = 51
+  phone.bbox.y0 = 51
+  const result = mergeFormReadings([address], [phone])
+  expect(result.map(line => line.words.map(word => word.text).join(' '))).toEqual(['Address 325 Central Street', 'Phone:'])
+})
+
+it('keeps a clear accent while recovering new leading words from a slightly weaker reading', () => {
+  const candidate = line('Xin đọc bạn hướng dẫn', 20, 40, 95)
+  const original = structuredClone(candidate)
+  original.words = original.words.slice(2).map(word => ({ ...word, confidence: 98 }))
+  original.words[0].text = 'bản'
+  original.bbox.x0 = original.words[0].bbox.x0
+  expect(text(mergeFormReadings([original], [candidate]))).toBe('Xin đọc bản hướng dẫn')
+})

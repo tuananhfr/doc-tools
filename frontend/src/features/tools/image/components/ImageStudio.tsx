@@ -73,7 +73,7 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
     <div className="cn-idstudio-layout">
       <aside className="cn-idstudio-sidebar">
         <Link to={imageHub} className="cn-idstudio-back"><Icon name="arrow-left" />{t('back')}</Link>
-        <nav className="cn-idstudio-toolnav" aria-label={categoryTitle}><h2><Icon name={group ? DIRECTORY_GROUP_ICONS[group] : category?.icon ?? 'images'} />{categoryTitle}</h2>{tools.map(tool => <Link key={tool.id} to={toolPath(base, tool)} aria-current={tool.id === toolId ? 'page' : undefined}><Icon name={tool.icon} /><span>{tool.name}</span></Link>)}</nav>
+        <nav className="cn-idstudio-toolnav" aria-label={categoryTitle}><h2><Icon name={group ? DIRECTORY_GROUP_ICONS[group] : category?.icon ?? 'images'} />{categoryTitle}</h2>{tools.map(tool => <Link key={tool.id} to={toolPath(base, tool)} aria-current={tool.id === toolId ? 'page' : undefined}><ToolArtwork tool={tool} small /><span>{tool.name}</span></Link>)}</nav>
         <div className="cn-idstudio-side-note" aria-hidden="true"><p>{t('sideNote')}</p><Icon name="house-heart" /><span>♡</span></div>
       </aside>
       <div className="cn-idstudio-main">

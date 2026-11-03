@@ -429,5 +429,20 @@
     "tasksFull": "待辦已達 {{count}} 項",
     "addTaskPlaceholder": "新增待辦，按 Enter",
     "addTask": "新增"
+  },
+  "pocketCalculator": {
+    "title": "Calculator",
+    "expression": "Expression",
+    "result": "Result",
+    "clear": "Clear all",
+    "backspace": "Delete one character",
+    "equals": "Calculate",
+    "copy": "Copy",
+    "errors": {
+      "incomplete": "Complete the expression and close parentheses.",
+      "invalid": "Check the numbers and operators.",
+      "zero": "Cannot divide by zero.",
+      "large": "The expression or number is too large."
+    }
   }
 }

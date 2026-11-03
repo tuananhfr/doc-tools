@@ -21,12 +21,12 @@
     }
   },
   "meta": {
-    "title": "Chuyện Nhỏ — công cụ miễn phí",
-    "description": "Công cụ PDF, hình ảnh, mã QR và tiện ích miễn phí. Xử lý trên máy bạn, tệp không tải lên."
+    "title": "Chuyện Nhỏ — Việc nhỏ đơn giản hơn, mỗi ngày",
+    "description": "Bộ tiện ích số phục vụ công việc thường ngày: quét tài liệu, PDF, QR và xử lý hình ảnh."
   },
   "shareImage": {
     "label": "Công cụ miễn phí",
-    "slogan": "Cần là dùng.",
+    "slogan": "Việc nhỏ đơn giản hơn, mỗi ngày.",
     "noAccount": "Không cần tài khoản"
   },
   "pages": {
@@ -162,10 +162,10 @@
     "learnMore": "Tìm hiểu {{product}}"
   },
   "home": {
-    "metaTitle": "Chuyện Nhỏ | Công cụ miễn phí. Cần là dùng.",
+    "metaTitle": "Chuyện Nhỏ — Việc nhỏ đơn giản hơn, mỗi ngày",
     "captionStart": "Những việc nhỏ\ntạo nên giá trị lớn.",
-    "tagline": "Công cụ miễn phí. Cần là dùng.",
-    "description": "Những tiện ích đơn giản, thiết thực cho công việc hằng ngày.",
+    "tagline": "— Việc nhỏ đơn giản hơn, mỗi ngày",
+    "description": "Bộ tiện ích số phục vụ công việc thường ngày: quét tài liệu, PDF, QR và xử lý hình ảnh.",
     "promisesLabel": "Sử dụng ngay",
     "promises": {
       "noAccount": "Không cần tài khoản",
@@ -1544,8 +1544,8 @@
     "summary": "Tóm tắt"
   },
   "landing": {
-    "metaTitle": "Chuyện nhỏ | Công cụ cho việc cần mỗi ngày",
-    "metaDescription": "Sửa nén và chuyển đổi tài liệu, chụp ảnh thẻ, scan ảnh sang pdf, hướng nhà và gần 100 tiện ích hàng ngày...",
+    "metaTitle": "Chuyện Nhỏ — Việc nhỏ đơn giản hơn, mỗi ngày",
+    "metaDescription": "Bộ tiện ích số phục vụ công việc thường ngày: quét tài liệu, PDF, QR và xử lý hình ảnh.",
     "openTools": "Mở công cụ",
     "nav": {
       "features": "Tiện ích",
@@ -1554,9 +1554,9 @@
       "ecosystem": "Hệ sinh thái"
     },
     "hero": {
-      "title": "Việc nhỏ mỗi ngày,",
-      "highlight": "giải quyết nhẹ nhàng.",
-      "body": "Công cụ cho tài liệu, hình ảnh và cuộc sống.",
+      "title": "Việc nhỏ đơn giản hơn,",
+      "highlight": "mỗi ngày.",
+      "body": "Bộ tiện ích số phục vụ công việc thường ngày: quét tài liệu, PDF, QR và xử lý hình ảnh.",
       "how": "Xem cách sử dụng",
       "languages": "{{total}} ngôn ngữ",
       "themes": "Giao diện sáng / tối"
@@ -1643,7 +1643,7 @@
       "body": "Bắt đầu từ một công cụ nhỏ hôm nay."
     },
     "footer": {
-      "tagline": "Việc nhỏ mỗi ngày, giải quyết nhẹ nhàng.",
+      "tagline": "— Việc nhỏ đơn giản hơn, mỗi ngày",
       "madeBy": "Một sản phẩm từ <productLink>ERPCons & LPC</productLink>"
     },
     "preview": {

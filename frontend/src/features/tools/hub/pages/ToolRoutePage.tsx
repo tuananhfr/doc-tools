@@ -60,6 +60,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
   if (redirect) return <Navigate to={toolPath(base, { slug: redirect })} replace />
 
   const Screen = screens[tool.screen]
+  const focused = tool.screen === 'pocket-calculator' || tool.screen === 'typing-practice'
   const imageStudio = ['extract-audio', 'assistant', 'address-conversion', 'payroll', 'pomodoro', 'invoice-xml', 'office-word', 'office-sheet', 'office-slide', 'compress-video', 'video-gif', 'electricity', 'flashcards', 'house-orientation', 'numerology', 'playing-cards', 'tarot', 'spin-wheel', 'quick-calc', 'unit-convert', 'lunar-calendar', 'loan', 'unit-price', 'study', 'group-split', 'money-calc', 'date-calc', 'cv', 'form-templates', 'number-words', 'legacy-font', 'char-count', 'qr-create', 'qr-read', 'barcode-create', 'vietqr', 'code-manager', 'read-aloud', 'trim-video', 'compress-image', 'remove-background', 'quick-design', 'remove-metadata', 'image-to-text', 'measure-image', 'batch-image', 'mark-image', 'color', 'dictation', 'magnifier', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'ocr', 'pdf-password', 'pdf-to-image', 'organize-pdf', 'page-numbers', 'stamp-pdf', 'redact-pdf', 'sign-pdf', 'compare-pdf'].includes(tool.screen) || tool.screen === 'id-photo' || tool.screen === 'crop-image' || tool.screen === 'convert-image' || tool.screen === 'collage' || tool.screen === 'images-to-pdf' || (tool.screen === 'editor' && ['chinh-sua-pdf', 'xem-pdf'].includes(tool.slug))
   /* Hỏi TRƯỚC khi vẽ `Screen`: vẽ ra là nạp chunk pdf.js, mà trên trình duyệt
      cũ chunk đó ném lỗi ngay lúc nạp (xem `utils/browser-support.ts`). */
@@ -77,8 +78,8 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
         </Link>
         <Icon name="chevron-right" className="erp-tool-crumb__sep" />
         <span className="cn-tool-crumb-current">{tool.name}</span>
-        {kind === 'public' ? <GuestPrefs className="erp-tool-crumb__prefs" /> : null}
-        {sessionAction ? (
+        {kind === 'public' && !focused ? <GuestPrefs className="erp-tool-crumb__prefs" /> : null}
+        {sessionAction && !focused ? (
           <GuestSessionAction action={sessionAction} className="btn-outline-secondary erp-tool-crumb__action" />
         ) : null}
       </nav>
@@ -89,20 +90,20 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
           <div className="cn-tool-intro__text">
             <h1 className="erp-tool-crumb__title">{tool.name}</h1>
             <p className="cn-tool-description">{tool.description}</p>
-            <div className="cn-tool-meta">
+            {!focused ? <div className="cn-tool-meta">
               <p className="cn-tool-privacy">
                 <Icon name="shield-check" />
                 {tool.privacyNote ?? (tool.noFile ? t('tool.privacyNoFile') : t('tool.privacyFile'))}
               </p>
               <ToolCapability device={tool.device} />
-            </div>
+            </div> : null}
           </div>
           {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
           {studio ? <span className="cn-studio-hero-art" aria-hidden="true"><span /><span /><span><Icon name={tool.icon} /></span><Icon name="stars" /></span> : null}
         </header>
         <div className="cn-tool-heading__action">
           {workspace ? <WorkspaceTabs label={tCatalog(`workspaceTabs.${workspace.groupId}`)} tabs={workspace.tabs} /> : null}
-          {FeedbackAction ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
+          {FeedbackAction && !focused ? <FeedbackAction key={tool.slug} toolSlug={tool.slug} toolName={tool.name} /> : null}
         </div>
       </div>
 

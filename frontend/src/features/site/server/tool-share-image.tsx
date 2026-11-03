@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from '../config/brand-assets'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { ImageResponse } from 'next/og'
@@ -36,12 +37,12 @@ async function loadToolIcon(icon: string): Promise<string> {
 
 /** `tool` must already be localized to `locale`, which is the card's language (see `shareImageLocale`). */
 export async function createToolShareImage(tool: ReadyTool, locale: Locale): Promise<ImageResponse> {
-  const [fonts, icon, t] = await Promise.all([loadFonts(locale), loadToolIcon(tool.icon), getServerT(locale, 'site')])
+  const [fonts, icon, t, logo] = await Promise.all([loadFonts(locale), loadToolIcon(tool.icon), getServerT(locale, 'site'), readFile(path.join(process.cwd(), 'public', SITE_BRAND_MARK))])
   return new ImageResponse(
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: palette.background, color: palette.ink, fontFamily: 'Be Vietnam Pro, Noto Sans CJK, Arimo' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '48px 64px 0' }}>
-        <div style={{ display: 'flex', fontSize: 36, fontWeight: 700, letterSpacing: '-1px' }}>
-          <span>Chuyện</span><span style={{ color: palette.accent, marginLeft: 8 }}>Nhỏ</span>
+        <div style={{ display: 'flex', alignItems: 'center', fontSize: 36, fontWeight: 700, letterSpacing: '-1px' }}>
+          <img src={'data:image/png;base64,' + logo.toString('base64')} width={52} height={52} style={{ marginRight: 14 }} alt="" /><span>Chuyện</span><span style={{ color: '#ed1028', marginLeft: 8 }}>Nhỏ</span>
         </div>
         <span style={{ fontSize: 24, color: palette.muted }}>{t('shareImage.label')}</span>
       </div>

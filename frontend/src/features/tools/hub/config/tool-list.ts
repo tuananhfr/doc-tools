@@ -16,6 +16,8 @@ import type { ToolEntry } from '../types/tool.types'
  * (alias `@/`, đường dẫn không đuôi) là build vỡ. Thứ cần import nằm ở `tool-catalog.ts`.
  */
 export const ALL_TOOLS: ToolEntry[] = [
+  { id: 'pocket-calculator', slug: 'may-tinh-tay', icon: 'calculator', categories: ['calc'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'pocket-calculator' },
+  { id: 'typing-practice', slug: 'luyen-go-10-ngon', icon: 'keyboard', categories: ['other'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'typing-practice' },
   { id: 'quick-design', slug: 'thiet-ke-nhanh', icon: 'palette2', categories: ['image'], noFile: true, device: { offline: 'yes' }, status: 'ready', screen: 'quick-design' },
   { id: 'numerology', slug: 'than-so-hoc', icon: '123', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'numerology' },
   { id: 'playing-cards', slug: 'bai-tay', icon: 'suit-spade', categories: ['other'], noFile: true, processing: 'server', device: { offline: 'no', needs: ['network'] }, status: 'ready', screen: 'playing-cards' },

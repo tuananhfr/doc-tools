@@ -53,6 +53,8 @@ export type ToolProcessing = 'browser' | 'browser-model' | 'hybrid' | 'server'
  * ích không nhận tệp (`ToolBoard`).
  */
 export type ToolScreen =
+  | 'pocket-calculator'
+  | 'typing-practice'
   | 'editor'
   | 'merge-pdf'
   | 'split-pdf'

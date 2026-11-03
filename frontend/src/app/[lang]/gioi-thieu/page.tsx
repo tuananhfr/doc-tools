@@ -1,4 +1,5 @@
-import { SITE_FAVICON } from '@/features/site/config/brand-assets'
+import { siteSocialMetadata } from '@/features/site/server/site-social-metadata'
+import { SITE_FAVICON, SITE_APPLE_ICON } from '@/features/site/config/brand-assets'
 import type { Metadata } from 'next'
 import { getServerT, localeAlternates, pageLocale, type LangParams } from '@/i18n/server'
 import { withBase } from '@/utils/url'
@@ -12,10 +13,9 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   return {
     title,
     description,
-    icons: { icon: [{ url: withBase(SITE_FAVICON), sizes: '32x32', type: 'image/png' }, { url: withBase('/brand/chuyen-nho-favicon-16-20261031.png'), sizes: '16x16', type: 'image/png' }], apple: withBase('/icons/apple-touch-icon-20261031.png') },
+    icons: { icon: [{ url: withBase(SITE_FAVICON), sizes: '32x32', type: 'image/png' }, { url: withBase('/brand/chuyen-nho-favicon-16-20261102.png'), sizes: '16x16', type: 'image/png' }], apple: withBase(SITE_APPLE_ICON) },
     alternates,
-    openGraph: { title, description, url: alternates.canonical, type: 'website', images: [{ url: withBase('/landing/hero.webp'), width: 1672, height: 941, alt: 'Chuyện Nhỏ' }] },
-    twitter: { card: 'summary_large_image', title, description, images: [withBase('/landing/hero.webp')] },
+    ...siteSocialMetadata(title, description, alternates.canonical),
   }
 }
 

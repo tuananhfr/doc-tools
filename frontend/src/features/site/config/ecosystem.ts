@@ -1,3 +1,4 @@
+import { SITE_BRAND_MARK } from './brand-assets'
 import type site from '@/i18n/messages/vi/site.json'
 
 export interface EcosystemItem {
@@ -111,7 +112,7 @@ export const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
       },
       {
         "id": "chuyenNho",
-        "logo": "chuyen-nho-symbol-20261030.png",
+        "logo": SITE_BRAND_MARK,
         "href": "https://chuyennho.tekshot.ai/gioi-thieu",
         "featured": true
       },

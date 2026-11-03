@@ -4,6 +4,8 @@ export type ArtworkTone = 'blue' | 'red' | 'teal' | 'purple' | 'pink' | 'orange'
 export type ArtworkGlyph = 'portrait' | 'landscape' | 'collage' | 'compress-image' | 'wand' | 'video' | 'gif' | 'audio' | 'calculator' | 'coins' | 'helmet' | 'calendar' | 'cards' | 'tarot' | 'lotus' | 'wheel' | 'document'
 export interface ToolArtworkStyle { tone: ArtworkTone; symbol?: string; glyph?: ArtworkGlyph; label?: string; badge?: string; illustrated?: boolean }
 const STYLES: Readonly<Record<string, ToolArtworkStyle>> = {
+  'pocket-calculator': { tone: 'blue', glyph: 'calculator' },
+  'typing-practice': { tone: 'blue', symbol: 'keyboard' },
   'id-photo': { tone: 'blue', glyph: 'portrait' },
   'crop-image': { tone: 'pink', symbol: 'crop' },
   'remove-background': { tone: 'yellow', glyph: 'wand' },

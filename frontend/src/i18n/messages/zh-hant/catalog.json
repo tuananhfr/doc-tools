@@ -482,6 +482,16 @@
       "description": "Open, edit and save PowerPoint (.pptx) files on your device",
       "pageTitle": "Free PowerPoint editor",
       "synonyms": "powerpoint, pptx, presentation, slide, deckcraft"
+    },
+    "pocket-calculator": {
+      "name": "Calculator",
+      "description": "Add, subtract, multiply and divide, with percentages and parentheses.",
+      "synonyms": "calculator, pocket calculator, calculator plus, arithmetic"
+    },
+    "typing-practice": {
+      "name": "Touch typing",
+      "description": "Basic and advanced typing practice with speed and accuracy feedback.",
+      "synonyms": "touch typing, ten fingers, keyboard practice"
     }
   },
   "workspaceTabs": {

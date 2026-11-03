@@ -63,7 +63,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
       { id: 'lich', toolIds: ['lunar-calendar', 'pomodoro', 'family-reminders', 'special-days'] },
       { id: 'chi-tieu', toolIds: ['electricity', 'payroll', 'invoice-xml', 'family-budget'] },
       { id: 'nha-cua', toolIds: ['house-orientation', 'address-conversion', 'house-chores'] },
-      { id: 'hoc-tap', toolIds: ['flashcards', 'dictation', 'magnifier', 'read-aloud', 'honor-board'] },
+      { id: 'hoc-tap', toolIds: ['typing-practice', 'flashcards', 'dictation', 'magnifier', 'read-aloud', 'honor-board'] },
       { id: 'suc-khoe', toolIds: ['family-health'] },
       { id: 'ket-noi', toolIds: ['message-risk', 'quick-note', 'family-share', 'family-album'] },
     ],
@@ -163,7 +163,7 @@ export const HUB_PAGES: Record<HubPageSlug, HubPage> = {
     highlights: ['vat', 'percent', 'units', 'dates', 'area', 'loan'],
     trust: [{ id: 'free', icon: 'gift' }, { id: 'noInstall', icon: 'lightning-charge' }, { id: 'onDevice', icon: 'shield-check' }, { id: 'reference', icon: 'info-circle' }],
     subgroups: [
-      { id: 'tien-thue', toolIds: ['money-calc', 'unit-price'] },
+      { id: 'tien-thue', toolIds: ['pocket-calculator', 'money-calc', 'unit-price'] },
       { id: 'vay', toolIds: ['loan'] },
       { id: 'do-luong', toolIds: ['unit-convert'] },
       { id: 'ngay', toolIds: ['date-calc'] },

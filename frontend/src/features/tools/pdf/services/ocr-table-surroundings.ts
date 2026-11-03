@@ -9,6 +9,8 @@ import { normalizeOcrLighting } from '../utils/ocr-lighting'
 import { refineOcrLineMarks } from '../utils/ocr-refinement'
 import { readOcrFormRows } from './ocr-form-rows'
 import { mergeFormReadings } from '../utils/ocr-form-reading'
+import { cleanPrintedLines } from '../utils/ocr-print-lines'
+import { neutralPrintedPixels } from '../utils/ocr-annotations'
 
 const score = (lines: OcrLine[]) => {
   const words = lines.flatMap(line => line.words), length = words.reduce((sum, word) => sum + word.text.length, 0)
@@ -47,6 +49,7 @@ export async function readOcrTableSurroundings(original: HTMLCanvasElement, tabl
       const context = crop.getContext('2d', { willReadFrequently: true })!
       context.drawImage(original, 0, band.top, crop.width, crop.height, 0, 0, crop.width, crop.height)
       const pixels = context.getImageData(0, 0, crop.width, crop.height), raw = new Uint8ClampedArray(pixels.data)
+      const neutral = neutralPrintedPixels(raw)
       pixels.data.set(localOcrPixels(raw, crop.width, crop.height, .12)); context.putImageData(pixels, 0, 0)
       sample.width = Math.min(512, crop.width); sample.height = Math.max(1, Math.round(crop.height * sample.width / crop.width))
       const sc = sample.getContext('2d')!; sc.drawImage(crop, 0, 0, sample.width, sample.height)
@@ -59,13 +62,14 @@ export async function readOcrTableSurroundings(original: HTMLCanvasElement, tabl
       const target = rotated.getContext('2d')!
       let best: OcrLine[] = []
       const readings: OcrLine[][] = []
-      for (const mode of ['threshold', 'lighting', 'contrast'] as const) {
-        if (mode !== 'threshold') { pixels.data.set(mode === 'lighting' ? normalizeOcrLighting(raw, crop.width, crop.height) : enhancePixels(raw, 'contrast')); context.putImageData(pixels, 0, 0) }
+      const modes = neutral.changed > raw.length / 4 * .003 ? ['threshold', 'lighting', 'contrast', 'neutral'] as const : ['threshold', 'lighting', 'contrast'] as const
+      for (const mode of modes) {
+        if (mode !== 'threshold') { pixels.data.set(mode === 'lighting' ? normalizeOcrLighting(raw, crop.width, crop.height) : mode === 'neutral' ? localOcrPixels(neutral.pixels, crop.width, crop.height, .12) : enhancePixels(raw, 'contrast')); context.putImageData(pixels, 0, 0) }
         target.setTransform(1, 0, 0, 1, 0, 0); target.fillStyle = 'white'; target.fillRect(0, 0, rotated.width, rotated.height)
         const m = geometry.fromOriginal
         target.setTransform(m[0] * scale, m[3] * scale, m[1] * scale, m[4] * scale, (m[2] + pad) * scale, (m[5] + pad) * scale)
         target.drawImage(crop, 0, 0)
-        const found = (await recognizeCanvas(rotated, value => progress({ ...value, progress: (index + value.progress) / Math.max(1, bands.length) }), false, signal, '6'))
+        const found = cleanPrintedLines(await recognizeCanvas(rotated, value => progress({ ...value, progress: (index + value.progress) / Math.max(1, bands.length) }), false, signal, '6'))
           .filter(line => score([line]) >= 45 && contentLength([line]) >= 3)
           .map(line => ({ ...line, words: line.words.filter(word => word.confidence >= 15 || score([line]) >= 75) }))
         readings.push(found)
@@ -81,19 +85,23 @@ export async function readOcrTableSurroundings(original: HTMLCanvasElement, tabl
         const points = [point(value.x0, value.y0), point(value.x1, value.y0), point(value.x1, value.y1), point(value.x0, value.y1)]
         return { x0: Math.min(...points.map(p => p.x)), y0: Math.min(...points.map(p => p.y)), x1: Math.max(...points.map(p => p.x)), y1: Math.max(...points.map(p => p.y)) }
       }
-      let lines: OcrLine[] = best.map(line => {
+      const toOriginalLines = (values: OcrLine[]): OcrLine[] => values.map(line => {
         const start = point(line.baseline.x0, line.baseline.y0), end = point(line.baseline.x1, line.baseline.y1)
         return { ...line, bbox: box(line.bbox), baseline: { x0: start.x, y0: start.y, x1: end.x, y1: end.y },
           rowAttributes: line.rowAttributes ? { rowHeight: line.rowAttributes.rowHeight / scale, descenders: line.rowAttributes.descenders / scale } : undefined,
           words: line.words.map(word => ({ ...word, bbox: box(word.bbox) })) }
       })
+      let lines = toOriginalLines(best)
+      const alignedReadings = readings.map(toOriginalLines)
       const padding = Math.max(6, original.width * .01)
       const left = Math.max(0, Math.floor(Math.min(...boxes.flatMap(box => [box.left(band.top), box.left(band.bottom)])) - padding))
       const right = Math.min(original.width, Math.ceil(Math.max(...boxes.flatMap(box => [box.right(band.top), box.right(band.bottom)])) + padding))
       if (right - left >= 120 && original.width >= 600) {
         const rows = await readOcrFormRows(original, { ...band, left, right }, signal)
+        alignedReadings.push(rows)
         lines = mergeFormReadings(lines, rows)
       }
+      lines = refineOcrLineMarks(lines, alignedReadings)
       if (score(best) >= 65) result.push({ ...band, lines })
     } finally { crop.width = crop.height = sample.width = sample.height = rotated.width = rotated.height = 1 }
   }

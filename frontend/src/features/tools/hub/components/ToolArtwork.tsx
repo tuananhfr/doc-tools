@@ -4,6 +4,7 @@ import { TOOL_ARTWORK_SYMBOLS } from '../config/tool-artwork-symbols'
 import { toolArtworkStyle } from '../config/tool-artwork'
 import type { ToolDefinition } from '../types/tool.types'
 import { ToolIllustration } from './ToolIllustration'
+import { ToolOutlineIllustration } from './ToolOutlineIllustration'
 
 function ArtworkSymbol({ name }: { name: string }) {
   return TOOL_ARTWORK_SYMBOLS.has(name)
@@ -15,7 +16,7 @@ function ArtworkSymbol({ name }: { name: string }) {
 export function ToolArtwork({ tool, small = false }: { tool: Pick<ToolDefinition, 'id' | 'icon' | 'categories'>; small?: boolean }) {
   const art = toolArtworkStyle(tool)
   return <span data-tool-artwork={tool.id} className={`cn-tool-artwork cn-tool-artwork--${art.tone}${art.illustrated ? ' cn-tool-artwork--illustrated' : ''}${small ? ' cn-tool-artwork--sm' : ''}`} aria-hidden="true">
-    {art.glyph ? <ToolIllustration glyph={art.glyph} label={art.illustrated && art.glyph === 'calendar' ? 'bare' : art.label} /> : <ArtworkSymbol name={art.symbol ?? tool.icon} />}
+    {art.glyph ? ['cards', 'tarot', 'lotus', 'wheel'].includes(art.glyph) ? <ToolIllustration glyph={art.glyph} label={art.label} /> : <ToolOutlineIllustration glyph={art.glyph} label={art.label} /> : <ArtworkSymbol name={art.symbol ?? tool.icon} />}
     {art.badge ? <span className="cn-tool-artwork-badge"><ArtworkSymbol name={art.badge} /></span> : null}
   </span>
 }

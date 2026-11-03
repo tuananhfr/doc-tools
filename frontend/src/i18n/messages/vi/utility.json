@@ -429,5 +429,20 @@
     "tasksFull": "Đã đủ {{count}} việc",
     "addTaskPlaceholder": "Thêm việc, nhấn Enter",
     "addTask": "Thêm"
+  },
+  "pocketCalculator": {
+    "title": "Máy tính tay",
+    "expression": "Phép tính",
+    "result": "Kết quả",
+    "clear": "Xóa hết",
+    "backspace": "Xóa một ký tự",
+    "equals": "Tính kết quả",
+    "copy": "Sao chép",
+    "errors": {
+      "incomplete": "Nhập đủ phép tính và đóng ngoặc.",
+      "invalid": "Kiểm tra lại số và phép tính.",
+      "zero": "Không thể chia cho 0.",
+      "large": "Phép tính quá dài hoặc số quá lớn."
+    }
   }
 }

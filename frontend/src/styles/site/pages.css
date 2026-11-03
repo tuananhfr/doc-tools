@@ -104,7 +104,7 @@
 .cn-about-product-head img { flex: none; object-fit: contain; }
 .cn-about-product-head > .bi { display: grid; place-items: center; flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--cn-tint); color: var(--cn-accent); font-size: 26px; }
 .cn-about-logo-erp { width: auto; height: 42px; }
-[data-theme='dark'] .cn-about-logo-mark { background: #eef5ff; border-radius: 50%; }
+[data-theme='dark'] .cn-about-logo-mark { background: transparent; border-radius: 0; }
 .cn-about-product-head strong { display: block; font-size: 18px; letter-spacing: -.5px; }
 .cn-about-product-head small { display: block; font-size: 12px; color: var(--cn-muted); line-height: 1.5; }
 .cn-about-product .cn-hub-checks { margin: 0; }

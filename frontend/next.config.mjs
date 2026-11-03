@@ -42,6 +42,19 @@ const config = {
       },
     ]
   },
+  // Giữ URL icon cũ hoạt động sau khi bỏ các bản PNG trùng; chỉ lưu bộ tách nền mới.
+  async redirects() {
+    const names = ['icon-192', 'icon-512', 'icon-maskable-512', 'apple-touch-icon']
+    return [
+      ...names.flatMap(name => ['', '-20261102'].map(version => ({
+        source: '/icons/' + name + version + '.png',
+        destination: '/icons/' + name + '-20261103.png',
+        permanent: true,
+      }))),
+      { source: '/brand/chuyen-nho-mark-20261102.png', destination: '/brand/chuyen-nho-mark-20261103.png', permanent: true },
+      { source: '/brand/ecosystem/chuyen-nho-mark-20261103.png', destination: '/brand/chuyen-nho-mark-20261103.png', permanent: true },
+    ]
+  },
   async rewrites() {
     const backend = process.env.BACKEND_URL ?? 'http://127.0.0.1:3003'
     return [

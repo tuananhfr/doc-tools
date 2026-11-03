@@ -482,6 +482,16 @@
       "description": "Mở, chỉnh sửa và lưu tệp PowerPoint (.pptx) ngay trên máy",
       "pageTitle": "Chỉnh sửa PowerPoint miễn phí",
       "synonyms": "powerpoint, pptx, trình chiếu, slide, deckcraft"
+    },
+    "pocket-calculator": {
+      "name": "Máy tính tay",
+      "description": "Tính cộng, trừ, nhân, chia, phần trăm và ngoặc.",
+      "synonyms": "máy tính, máy tính tay, calculator, máy tính plus, phép tính"
+    },
+    "typing-practice": {
+      "name": "Luyện gõ 10 ngón",
+      "description": "Luyện từ cơ bản đến nâng cao, xem tốc độ và độ chính xác.",
+      "synonyms": "tập đánh máy, luyện gõ, 10 ngón, typing, bàn phím"
     }
   },
   "workspaceTabs": {

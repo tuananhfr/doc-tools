@@ -1,3 +1,4 @@
+import { SITE_APP_ICON } from '../config/brand-assets'
 import { useEffect, useState, type KeyboardEvent } from 'react'
 import Image from 'next/image'
 import { Trans, useTranslation } from 'react-i18next'
@@ -59,7 +60,7 @@ export default function InstallPage() {
         tagline={t('install.tagline')}
         description={<p>{t('install.intro')}</p>}
         caption={t('install.caption')}
-        art={<span className="cn-install-phone"><Image src={withBase('/icons/icon-192.png')} width={96} height={96} alt="" /><b>Chuyện Nhỏ</b></span>}
+        art={<span className="cn-install-phone"><Image src={withBase(SITE_APP_ICON)} width={96} height={96} alt="" /><b>Chuyện Nhỏ</b></span>}
       >
         <ul className="cn-page-points">{BENEFITS.map((item) => <li key={item.id}><Icon name={item.icon} />{t(`install.benefits.${item.id}`)}</li>)}</ul>
         {installState === 'ready' ? (

@@ -3,6 +3,7 @@ import { formTextRows } from '../utils/ocr-form-rows'
 import { normalizeOcrLighting } from '../utils/ocr-lighting'
 import { localOcrPixels } from '../utils/ocr-local'
 import { recognizeCanvas } from './ocr'
+import { cleanPrintedLines } from '../utils/ocr-print-lines'
 
 const confidence = (lines: OcrLine[]) => {
   const words = lines.flatMap(line => line.words)
@@ -34,7 +35,7 @@ export async function readOcrFormRows(original: HTMLCanvasElement, bounds: { lef
         const scale = Math.min(3, Math.sqrt(1_500_000 / (crop.width * crop.height)))
         enlarged.width = Math.round(crop.width * scale); enlarged.height = Math.round(crop.height * scale)
         enlarged.getContext('2d')!.drawImage(crop, 0, 0, enlarged.width, enlarged.height)
-        const lines = await recognizeCanvas(enlarged, () => undefined, false, signal, h > original.height * .045 ? '6' : '7')
+        const lines = cleanPrintedLines(await recognizeCanvas(enlarged, () => undefined, false, signal, h > original.height * .045 ? '6' : '7'))
         if (!best.length || length(lines) >= length(best) * .95 && confidence(lines) > confidence(best) + 2
           || length(lines) > length(best) * 1.15 && confidence(lines) >= confidence(best) - 4) {
           const move = (box: OcrBox): OcrBox => ({ x0: box.x0 / scale - pad + row.left + bounds.left, y0: box.y0 / scale - pad + row.top + bounds.top, x1: box.x1 / scale - pad + row.left + bounds.left, y1: box.y1 / scale - pad + row.top + bounds.top })

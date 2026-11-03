@@ -459,5 +459,20 @@
     "tasksFull_other": "Limite de {{count}} tâches atteinte",
     "addTaskPlaceholder": "Ajoutez une tâche, appuyez sur Entrée",
     "addTask": "Ajouter"
+  },
+  "pocketCalculator": {
+    "title": "Calculator",
+    "expression": "Expression",
+    "result": "Result",
+    "clear": "Clear all",
+    "backspace": "Delete one character",
+    "equals": "Calculate",
+    "copy": "Copy",
+    "errors": {
+      "incomplete": "Complete the expression and close parentheses.",
+      "invalid": "Check the numbers and operators.",
+      "zero": "Cannot divide by zero.",
+      "large": "The expression or number is too large."
+    }
   }
 }

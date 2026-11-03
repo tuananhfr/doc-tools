@@ -11,7 +11,7 @@
 .cn-brand { display: inline-flex; align-items: center; gap: 8px; min-height: var(--cn-tap); color: var(--cn-ink); text-decoration: none; font-size: 24px; font-weight: 700; letter-spacing: -1px; white-space: nowrap; }
 .cn-brand:hover { color: var(--cn-ink); }
 .cn-brand img { display: block; object-fit: contain; flex: none; }
-.cn-brand-accent { color: var(--cn-accent); }
+.cn-brand-accent { color: #ed1028; }
 .cn-desktop-navigation { display: flex; align-items: center; gap: 22px; margin-right: auto; }
 .cn-desktop-navigation a { color: var(--cn-muted); text-decoration: none; font-size: 12px; white-space: nowrap; padding-block: 14px; }
 .cn-desktop-navigation a:hover, .cn-desktop-navigation a[aria-current] { color: var(--cn-accent); }
@@ -99,7 +99,8 @@
 .cn-footer nav a { display: inline-flex; align-items: center; justify-content: center; min-width: var(--cn-tap); min-height: var(--cn-tap); font-size: 11px; text-decoration: none; color: var(--cn-muted); }
 .cn-footer nav a:hover { color: var(--cn-accent); }
 .cn-footer-motto { font-size: 11px; color: var(--cn-muted); white-space: nowrap; }
-[data-theme='dark'] .cn-brand img { background: #eef5ff; border-radius: 50%; }
+/* Dùng cùng logo tách nền ở cả hai chế độ, không thêm nền hoặc khung tròn. */
+[data-theme='dark'] .cn-brand img { background: transparent; border-radius: 0; }
 @media (max-width: 1399px) {
   .cn-header-content { gap: 16px; }
   .cn-desktop-navigation { gap: 14px; }

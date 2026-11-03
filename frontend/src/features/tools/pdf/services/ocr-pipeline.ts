@@ -22,6 +22,8 @@ import { ocrRuns } from '../utils/ocr-runs'
 import { refineOcrExportWords } from '../utils/ocr-refinement'
 import { mergeFormReadings } from '../utils/ocr-form-reading'
 import type { OcrLine } from '../utils/ocr-runs'
+import { filterPrintedExportWords } from '../utils/ocr-print-lines'
+import { excludeOcrRuns } from '../utils/ocr-run-rows'
 
 export function ocrFingerprint(hash: string | null, page: PageRef, options: OcrPipelineOptions) {
   return JSON.stringify({ hash, page: page.pageIndex, rotation: normalizeRotation(page.rotation), sheet: page.sheet ?? null, options, version: OCR_PIPELINE_VERSION })
@@ -73,8 +75,11 @@ export async function recognizePipeline(source: SourceFile, page: PageRef, onPro
     }
     const exportPass = selectOcrExportPass(passes) ?? passes[0]
     const words = mergeOcrPasses(passes).map(word => router.requiresFullReview ? { ...word, reviewReasons: [...new Set([...(word.reviewReasons ?? []), 'unreadable' as const])] } : word)
-    const exportWords = refineOcrExportWords(exportPass, passes)
-    const structuredWords = options.profile === 'printed' ? exportWords : words
+    const refinedWords = refineOcrExportWords(exportPass, passes)
+    const exportWords = options.profile === 'printed' ? filterPrintedExportWords(refinedWords) : refinedWords
+    // Display-noise filtering must never erase hints used to recover a short
+    // table value (for example a faint digit read as an accented letter).
+    const structuredWords = options.profile === 'printed' ? refinedWords : words
     const geometry = options.profile === 'table' ? variants.find(variant => variant.id === 'deskew' || variant.id === 'perspective') ?? variants[0] : variants[0]
     const sample = geometry.layoutSample ?? sampledGray(geometry.canvas), toGeometry = invertMatrix(geometry.toOriginal)
     const layoutWords = geometry.id === 'original' ? structuredWords : structuredWords.map(word => {
@@ -95,20 +100,29 @@ export async function recognizePipeline(source: SourceFile, page: PageRef, onPro
       const toPixel = (point: { x: number; y: number }) => { const p = transformPoint(toNative, point); return { x: p.x * pxPerPt, y: p.y * pxPerPt } }
       layout.tables = await readOcrTableCells(original, layout.tables, toPixel, signal, value => onProgress({ ...value, progress: (passCount - 1 + value.progress * .7) / passCount }), structuredWords)
       const surroundings = await readOcrTableSurroundings(original, layout.tables, toPixel, signal, value => onProgress({ ...value, progress: (passCount - .3 + value.progress * .3) / passCount }))
+      const provenance = new Map(exportWords.map(word => [word.run, word]))
       for (const band of surroundings) {
-        const existing = runs.filter(run => { const p = toPixel({ x: run.origin.x + run.width / 2, y: run.origin.y - run.size * .3 }); return p.y >= band.top && p.y < band.bottom })
+        const existing = runs.filter(run => {
+          const box = provenance.get(run)?.previewBox
+          const y = box ? (box.y + box.height / 2) * original.height : toPixel({ x: run.origin.x + run.width / 2, y: run.origin.y - run.size * .3 }).y
+          return y >= band.top && y < band.bottom
+        })
         const native: OcrLine[] = []; let row: OcrLine['words'] = []
         const scores = new Map(exportWords.map(word => [word.run, word.confidence]))
         for (const run of existing) {
           const p = toPixel(run.origin), height = run.size * pxPerPt
-          row.push({ text: run.text, confidence: scores.get(run) ?? 85, bbox: { x0: p.x, y0: p.y - height * .8, x1: p.x + run.width * pxPerPt, y1: p.y + height * .2 } })
+          const box = provenance.get(run)?.previewBox
+          row.push({ text: run.text, confidence: scores.get(run) ?? 85, bbox: box ? {
+            x0: box.x * original.width, y0: box.y * original.height,
+            x1: (box.x + box.width) * original.width, y1: (box.y + box.height) * original.height,
+          } : { x0: p.x, y0: p.y - height * .8, x1: p.x + run.width * pxPerPt, y1: p.y + height * .2 } })
           if (run.eol || run === existing.at(-1)) {
             const bbox = { x0: Math.min(...row.map(w => w.bbox.x0)), y0: Math.min(...row.map(w => w.bbox.y0)), x1: Math.max(...row.map(w => w.bbox.x1)), y1: Math.max(...row.map(w => w.bbox.y1)) }
             native.push({ bbox, baseline: { x0: bbox.x0, x1: bbox.x1, y0: p.y, y1: p.y }, words: row }); row = []
           }
         }
         const recovered = ocrRuns(mergeFormReadings(native, band.lines), pxPerPt, originalToBase, 0)
-        runs = [...runs.filter(run => !existing.includes(run)), ...recovered]
+        runs = [...excludeOcrRuns(runs, new Set(existing)), ...recovered]
       }
       // Keep each reading's line order; interleaving individual words breaks eol boundaries.
       const rows: typeof runs[] = []; let row: typeof runs = []

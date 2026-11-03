@@ -23,7 +23,9 @@ describe('workspaceTabsFor', () => {
   })
 
   it('keeps the branch base in every link', () => {
-    expect(workspaceTabsFor('money-calc', VI_TOOL_CATALOG, '/doc-tools')?.tabs[0].to).toBe('/doc-tools/tinh-tien')
+    const tabs = workspaceTabsFor('money-calc', VI_TOOL_CATALOG, '/doc-tools')?.tabs
+    expect(tabs?.find(tab => tab.toolId === 'money-calc')?.to).toBe('/doc-tools/tinh-tien')
+    expect(tabs?.every(tab => tab.to.startsWith('/doc-tools/'))).toBe(true)
   })
 })
 

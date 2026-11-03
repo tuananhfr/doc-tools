@@ -28,3 +28,7 @@ public/vendor/tts/piper-phonemize-*/
 public/vendor/office/
 
 .next-office-qa/
+.next-brand-typing-qa/
+
+# Mọi thư mục Next phục vụ QA (kể cả tên phát sinh mới).
+.next-*-qa/
