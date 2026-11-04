@@ -32,13 +32,27 @@ export function closeHint(prefs: ToolInstallHintPrefs, slug: string): ToolInstal
 
 export type HintMode = 'prompt' | 'ios' | null
 
+/** iPhone/iPad; iPadOS 13+ báo user agent của Mac, chỉ số điểm chạm lộ ra nó. */
+export function isAppleMobile(userAgent: string, maxTouchPoints: number): boolean {
+  return /iphone|ipad|ipod/i.test(userAgent) || (/macintosh/i.test(userAgent) && maxTouchPoints > 1)
+}
+
+/**
+ * Nút cài ở khung tiêu đề công cụ: cùng điều kiện với thẻ gợi ý nhưng không theo lựa chọn tắt gợi ý,
+ * để ai đã bấm × / "Không nhắc lại" vẫn cài lại được.
+ */
+export function installMode(input: { promptReady: boolean; standalone: boolean; framed: boolean; ios: boolean }): HintMode {
+  if (input.standalone || input.framed) return null
+  if (input.promptReady) return 'prompt'
+  return input.ios ? 'ios' : null
+}
+
 /**
  * `prompt`: trình duyệt có hộp cài một chạm (Chrome, Edge, Samsung Internet) cho manifest của công cụ.
  * `ios`: Safari trên iPhone/iPad — không có hộp cài, chỉ hướng dẫn Chia sẻ → Thêm vào MH chính.
  * Không gợi ý khi: đang chạy dạng ứng dụng, trang nằm trong khung của site khác, hoặc đã tắt.
  */
 export function hintMode(input: { slug: string; prefs: ToolInstallHintPrefs; promptReady: boolean; standalone: boolean; framed: boolean; ios: boolean }): HintMode {
-  if (input.standalone || input.framed || input.prefs.never || input.prefs.closed.includes(input.slug)) return null
-  if (input.promptReady) return 'prompt'
-  return input.ios ? 'ios' : null
+  if (input.prefs.never || input.prefs.closed.includes(input.slug)) return null
+  return installMode(input)
 }

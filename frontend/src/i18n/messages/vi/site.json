@@ -1744,6 +1744,7 @@
     }
   },
   "toolInstall": {
+    "button": "Cài đặt vào màn hình chính",
     "label": "Thêm công cụ ra màn hình chính",
     "title": "Thêm “{{name}}” vào màn hình chính",
     "detail": "Lần sau bấm biểu tượng là mở thẳng công cụ này.",

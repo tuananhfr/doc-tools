@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui/Icon'
 import { toolIconPath } from '../config/tool-app'
 import { useInstallPrompt } from '../hooks/useInstallPrompt'
-import { closeHint, hintMode, parseHintPrefs, TOOL_INSTALL_HINT_KEY, type ToolInstallHintPrefs } from '../utils/tool-install-hint'
+import { closeHint, hintMode, isAppleMobile, parseHintPrefs, TOOL_INSTALL_HINT_KEY, type ToolInstallHintPrefs } from '../utils/tool-install-hint'
 
 function readPrefs(): ToolInstallHintPrefs {
   try {
@@ -34,8 +34,7 @@ export function ToolInstallHint({ slug, name }: { slug: string; name: string }) 
 
   // Đọc sau hydrate: HTML tĩnh không có thẻ này, khớp lần vẽ đầu.
   useEffect(() => {
-    const touchMac = /macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1
-    setEnv({ framed: window.parent !== window, ios: touchMac || /iphone|ipad|ipod/i.test(navigator.userAgent) })
+    setEnv({ framed: window.parent !== window, ios: isAppleMobile(navigator.userAgent, navigator.maxTouchPoints) })
     setPrefs(readPrefs())
   }, [])
 

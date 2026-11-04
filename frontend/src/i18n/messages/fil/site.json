@@ -1757,6 +1757,7 @@
     }
   },
   "toolInstall": {
+    "button": "Install to home screen",
     "label": "Add tool to home screen",
     "title": "Add “{{name}}” to your home screen",
     "detail": "Next time, tap the icon to open this tool directly.",

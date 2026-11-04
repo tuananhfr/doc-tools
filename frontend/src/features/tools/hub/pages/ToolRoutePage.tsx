@@ -21,6 +21,7 @@ import { useToolOrigin } from '../hooks/useToolOrigin'
 import { workspaceTabsFor } from '../utils/workspace-tabs'
 import { ToolCapability } from '../components/ToolCapability'
 import { ToolArtwork } from '../components/ToolArtwork'
+import { ToolInstallButton } from '@/features/site/components/ToolInstallButton'
 
 interface ToolRoutePageProps {
   /** Màn thật của từng loại công cụ — tầng route truyền vào, hub không import feature khác. */
@@ -98,6 +99,7 @@ export default function ToolRoutePage({ screens, workspaceVersions, headerAction
               <ToolCapability device={tool.device} />
             </div> : null}
           </div>
+          <ToolInstallButton name={tool.name} className="cn-tool-install--intro" />
           {HeaderAction ? <HeaderAction toolSlug={tool.slug} /> : null}
           {studio ? <span className="cn-studio-hero-art" aria-hidden="true"><span /><span /><span><Icon name={tool.icon} /></span><Icon name="stars" /></span> : null}
         </header>

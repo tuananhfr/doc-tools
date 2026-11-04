@@ -8,6 +8,7 @@ import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
 import { ExperienceControlsSlot } from '@/features/tools/hub/components/ExperienceControls'
 import { directoryGroupTools, directoryToolGroup, DIRECTORY_GROUP_ICONS } from '@/features/site/utils/directory-groups'
 import { hubDirectoryPath } from '@/features/site/config/site-navigation'
+import { ToolInstallButton } from '@/features/site/components/ToolInstallButton'
 
 const RELATED = ['id-photo', 'crop-image', 'remove-background', 'compress-image', 'convert-image', 'collage', 'trim-video', 'compress-video', 'extract-audio', 'remove-metadata']
 
@@ -80,6 +81,7 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
         <header className="cn-idstudio-hero">
           <span className="cn-idstudio-hero-icon">{currentTool ? <ToolArtwork tool={currentTool} /> : <Icon name={icon} />}</span>
           <div className="cn-idstudio-hero-copy"><h1>{title}</h1><p>{subtitle}</p><ul>{(trustLabels ?? (['free', 'easy', 'noAccount', 'private'] as const).map(key => t(`trust.${key}`))).map((label, index) => <li key={index}><Icon name="check-circle-fill" />{label}</li>)}</ul></div>
+          <ToolInstallButton name={title} className="cn-tool-install--hero" />
           <div className="cn-idstudio-hero-note" aria-hidden="true">{heroNote}<span>♡</span></div><PhotoMascot compass={toolId === 'house-orientation' || toolId === 'address-conversion'} entertainment={['numerology', 'playing-cards', 'tarot', 'spin-wheel'].includes(toolId)} calculation={['payroll', 'pomodoro', 'electricity', 'quick-calc', 'unit-convert', 'loan', 'unit-price', 'study', 'group-split', 'money-calc', 'date-calc'].includes(toolId)} calendar={toolId === 'lunar-calendar'} textDocument={['assistant', 'invoice-xml', 'office-word', 'office-sheet', 'office-slide', 'flashcards', 'cv', 'form-templates', 'number-words', 'legacy-font', 'char-count'].includes(toolId)} document={['edit-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'convert-file', 'pdf-password', 'organize-pdf', 'page-numbers', 'stamp-pdf', 'ocr', 'pdf-to-image', 'view-pdf', 'redact-pdf', 'sign', 'compare'].includes(toolId)} qr={['qr-read', 'qr-create', 'barcode-create', 'vietqr', 'code-manager'].includes(toolId)} media={['extract-audio', 'trim-video', 'compress-video', 'video-gif', 'read-aloud'].includes(toolId)} />
         </header>
         {children}
