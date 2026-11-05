@@ -3,6 +3,8 @@
 .cn-responsive-preview__tabs { display: none; }
 .cn-flow-switch, .cn-flow-preview-run, .cn-tool-board__tabs { display: none; }
 .cn-preview-action { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.cn-responsive-preview__action { grid-column: 1 / -1; margin-bottom: 0; }
+.cn-responsive-preview__action > .btn { min-width: 180px; }
 .cn-responsive-preview__output { padding: 16px; border: 1px solid var(--cn-line); border-radius: var(--cn-radius-card); background: var(--cn-surface); }
 .cn-responsive-preview__output > .cn-template-picker { padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--cn-line); }
 .cn-responsive-preview__output > p { font-size: 14px; color: var(--cn-muted); }
@@ -10,6 +12,7 @@
 .cn-tool-workspace details > summary { min-height: 44px; padding-block: 10px; cursor: pointer; font-weight: 600; }
 .cn-mobile-preferences { display: flex; justify-content: flex-end; gap: 12px; padding-bottom: 20px; }
 @media (max-width: 767px) {
+  .cn-responsive-preview__action > .btn { width: 100%; }
   .cn-tool-workspace .cn-flow-workspace { display: flex; flex-direction: column; gap: 12px; }
   .cn-flow-workspace .erp-flow__main { display: contents; }
   .cn-flow-switch { width: 100%; align-self: stretch; order: 2; position: sticky; top: 0; z-index: 1; display: flex; padding: 4px; gap: 4px; background: var(--cn-surface); border: 1px solid var(--cn-line); border-radius: 8px; }

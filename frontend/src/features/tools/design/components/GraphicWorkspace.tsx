@@ -44,7 +44,8 @@ export function GraphicWorkspace({ files, onFiles, templates, onBack, design = f
     return <>
     {design ? <ToolLeaveGuard active={Boolean(brand.title || brand.subtitle || files.length || logo)} message={tc('workspace.unsaved')} /> : null}
     {onBack ? <Button className="mb-3" variant="outline-secondary" disabled={run.state.phase === 'running'} onClick={onBack}>{t('shop.back')}</Button> : null}
-    {run.state.phase === 'done' ? <FlowResult result={run.state.result} onRestart={run.reset}/> : <ToolBoard className={design ? 'cn-design-board' : undefined}><ResponsivePreview action={design ? <><div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="palette2"/></span><div><h2>{tc('studio.design.previewTitle')}</h2><p>{tc('studio.design.previewHint')}</p></div></div>{action}</> : action} templates={picker} preview={<>
+    {run.state.phase === 'done' ? <FlowResult result={run.state.result} onRestart={run.reset}/> : <ToolBoard className={design ? 'cn-design-board' : undefined}><ResponsivePreview action={action} templates={picker} preview={<>
+      {design ? <div className="cn-studio-card-head"><span className="cn-studio-small-icon"><Icon name="palette2"/></span><div><h2>{tc('studio.design.previewTitle')}</h2><p>{tc('studio.design.previewHint')}</p></div></div> : null}
       <div className="cn-graphic-preview">{preview.url ? <img src={preview.url} alt={t('shop.preview')}/> : <p>{preview.error ? t('shop.previewFailed') : t('shop.previewWaiting')}</p>}</div>
       {pages > 1 ? <div className="cn-graphic-page-controls"><Button variant="outline-secondary" disabled={page === 0} onClick={() => setPage(value => Math.max(0, value - 1))}>{t('shop.previous')}</Button><span>{page + 1}/{pages}</span><Button variant="outline-secondary" disabled={page >= pages - 1} onClick={() => setPage(value => Math.min(pages - 1, value + 1))}>{t('shop.next')}</Button></div> : null}
       <p className="erp-flow-field__hint mt-3">{t('shop.dimensions', { width: template.widthMm, height: template.heightMm, count: pages })}</p>
@@ -89,7 +90,6 @@ export function GraphicWorkspace({ files, onFiles, templates, onBack, design = f
       </details>
       {run.state.phase === 'idle' && run.state.error ? <p className="erp-tool-form__error mt-3" role="alert">{run.state.error.message}</p> : null}
       {blocked ? <p className="erp-tool-form__error mt-3" role="alert">{t('shop.invalid')}</p> : null}
-      <div className="mt-3">{action}</div>
     </ToolPanel></ResponsivePreview></ToolBoard>}
   </>;
 }

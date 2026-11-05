@@ -4,6 +4,7 @@ import { translate } from '@/i18n/runtime'
 import { createCanvas, encodeCanvas, releaseCanvas } from '../services/image-codec'
 
 type CameraState = { phase: 'starting' } | { phase: 'live' } | { phase: 'error'; message: string }
+export type CameraFacing = 'user' | 'environment'
 
 /** `torch` chưa có trong kiểu DOM của TypeScript; chỉ Chrome trên Android hỗ trợ. */
 type TorchCapabilities = MediaTrackCapabilities & { torch?: boolean }
@@ -14,24 +15,27 @@ function stop(stream: MediaStream | null) {
 
 /**
  * Luồng camera cho MỘT lần mở: xin quyền lúc mount, tắt camera lúc unmount (đèn
- * báo camera còn sáng sau khi đóng cửa sổ là người dùng mất tin ngay). Ưu tiên
- * camera sau — thứ cần chụp là giấy tờ, không phải người cầm máy.
+ * báo camera còn sáng sau khi đóng cửa sổ là người dùng mất tin ngay).
+ * Camera sau dành cho tài liệu; công cụ chân dung có thể ưu tiên camera trước.
  */
-export function useCamera() {
+export function useCamera(initialFacing: CameraFacing = 'environment') {
   const video = useRef<HTMLVideoElement>(null)
   const stream = useRef<MediaStream | null>(null)
   const [state, setState] = useState<CameraState>({ phase: 'starting' })
   /** null = camera này không có đèn. */
   const [torch, setTorch] = useState<boolean | null>(null)
   const [attempt, setAttempt] = useState(0)
+  const [facing, setFacing] = useState<CameraFacing>(initialFacing)
 
   const supported = cameraAvailable()
 
   useEffect(() => {
     if (!supported) return
     let alive = true
+    setState({ phase: 'starting' })
+    setTorch(null)
     navigator.mediaDevices
-      .getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 2560 }, height: { ideal: 1440 } } })
+      .getUserMedia({ audio: false, video: { facingMode: { ideal: facing }, width: { ideal: 2560 }, height: { ideal: 1440 } } })
       .then(async (media) => {
         // StrictMode / đóng cửa sổ trước khi người dùng kịp bấm Cho phép: luồng tới muộn phải tắt ngay.
         if (!alive) return stop(media)
@@ -52,8 +56,14 @@ export function useCamera() {
       alive = false
       stop(stream.current)
       stream.current = null
+      if (video.current) video.current.srcObject = null
     }
-  }, [supported, attempt])
+  }, [supported, attempt, facing])
+
+  const switchCamera = useCallback(() => {
+    setState({ phase: 'starting' })
+    setFacing(current => current === 'user' ? 'environment' : 'user')
+  }, [])
 
   const retry = useCallback(() => {
     setState({ phase: 'starting' })
@@ -85,5 +95,5 @@ export function useCamera() {
     }
   }, [])
 
-  return { video, state: supported ? state : ({ phase: 'error', message: translate('image:camera.insecure', { reason: translate('common:camera.insecure') }) } as CameraState), canRetry: supported, torch, toggleTorch, retry, capture }
+  return { video, state: supported ? state : ({ phase: 'error', message: translate('image:camera.insecure', { reason: translate('common:camera.insecure') }) } as CameraState), canRetry: supported, torch, toggleTorch, switchCamera, retry, capture }
 }

@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useLayoutEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { Loading } from '@/components/ui'
 import { useEmbedBridge } from '@/features/embed'
@@ -16,6 +16,11 @@ export function ToolsLayout() {
   const { pathname, hash, state } = useLocation()
   const isTool = slug !== undefined || PRODUCT_REGISTRY.some(product => pathname === '/' + product.slug)
   const showPartnerBanner = isTool || pathname === '/' || HUB_PAGE_LIST.some(page => pathname === '/' + page.slug)
+  // The shell persists between routes. A tool must not inherit the catalog's
+  // scroll position, including while its lazy screen is still loading.
+  useLayoutEffect(() => {
+    if (isTool) document.querySelector('.erp-tools-guest')?.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname, isTool])
   useEffect(() => {
     if (isTool) return
     const target = hash ? document.getElementById(hash.slice(1)) : null

@@ -92,10 +92,6 @@ export default function QuickNotePage() {
         <section className="erp-tool-panel erp-notes__editor erp-notes__editor--empty" aria-label={t('notes.editorLabel')}>
           <Icon name="journal-text" className="erp-notes__empty-icon" />
           <p className="erp-notes__empty-text">{notes.length === 0 ? t('notes.emptyStart') : t('notes.emptyPick')}</p>
-          <Button variant="outline-secondary" onClick={add}>
-            <Icon name="plus-lg" className="me-2" />
-            {t('notes.newNote')}
-          </Button>
         </section>
       )}
     </div>

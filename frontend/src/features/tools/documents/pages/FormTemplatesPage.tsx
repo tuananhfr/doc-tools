@@ -51,7 +51,6 @@ export default function FormTemplatesPage() {
         </div>
         {dateProblem ? <p className="erp-tool-form__error mt-2" role="alert">{t(`formTemplates.dateErrors.${dateProblem}`)}</p> : null}
         {kind === 'receipt' ? <><p className="mt-2">{t('formTemplates.print.receipt.words', { value: receiptWords(values.amount ?? '') ?? '—' })}</p>{receiptError ? <p role="alert">{t(`formTemplates.receiptErrors.${receiptError}`)}</p> : null}</> : null}
-        <div className="mt-3">{print}</div>
       </ToolPanel>
       </DocumentTemplateLayout></div></TextDocumentStudio>
     <PrintPortal><FormPreview kind={kind} values={values} /></PrintPortal>

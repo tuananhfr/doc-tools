@@ -8,9 +8,13 @@ import { SITE_NAVIGATION, PRODUCT_LINKS } from '../config/site-navigation'
 import { MobileNavigation } from './MobileNavigation'
 import { SiteBrand } from './SiteBrand'
 import { SiteShare } from './SiteShare'
+import { useThemeMode } from '@/hooks/useThemeTokens'
 
 export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
   const { t } = useTranslation('site')
+  const { t: common } = useTranslation('common')
+  const { mode, toggleTheme } = useThemeMode()
+  const nextTheme = mode === 'dark' ? 'theme.lightShort' : 'theme.darkShort'
   const [menuOpen, setMenuOpen] = useState(false)
   // So pathname thôi: router phía máy chủ không biết query/hash, so cả chuỗi là lệch hydrate.
   const location = useLocation()
@@ -27,6 +31,7 @@ export function SiteHeader({ showPreferences }: { showPreferences: boolean }) {
         </nav>
         <div className="cn-header-actions">
           {showPreferences ? <GuestPrefs /> : null}
+          <button type="button" className="cn-icon-button cn-mobile-theme-toggle" onClick={toggleTheme} aria-pressed={mode === 'dark'} aria-label={common('theme.current', { name: common(nextTheme) })} title={common('theme.current', { name: common(nextTheme) })}><Icon name={mode === 'dark' ? 'sun' : 'moon-stars'} /></button>
           <SiteShare key={`${location.pathname}${location.search}${location.hash}`} />
           <Link className="cn-icon-button cn-header-search" to="/#tim-cong-cu" aria-label={t('header.search')}><Icon name="search" /></Link>
           <div className="cn-header-products">

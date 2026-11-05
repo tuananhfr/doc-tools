@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Icon, useToast } from '@/components/ui'
 import { TOOL_LIMITS } from '@/features/tools/hub'
 import { newId } from '@/utils/id'
-import { useCamera } from '../hooks/useCamera'
+import { useCamera, type CameraFacing } from '../hooks/useCamera'
 import { renderCrop } from '../services/crop-render'
 import type { Rect } from '../types/image.types'
 import { NEUTRAL_ADJUST } from '../utils/adjust'
@@ -14,6 +14,7 @@ import { CropBox } from './CropBox'
 interface CameraCaptureProps {
   show: boolean
   maxShots?: number
+  initialFacing?: CameraFacing
   onClose: () => void
   /** Ảnh đã chụp (và đã cắt nếu có), theo đúng thứ tự chụp. */
   onDone: (files: File[]) => void
@@ -39,19 +40,20 @@ const pad = (value: number) => String(value).padStart(2, '0')
  * Bấm vào ảnh thu nhỏ để cắt tay hoặc bỏ ảnh đó. Camera chỉ bật trong lúc cửa
  * sổ này mở.
  */
-export function CameraCapture({ show, onClose, onDone, maxShots = MAX_SHOTS }: CameraCaptureProps) {
+export function CameraCapture({ show, onClose, onDone, maxShots = MAX_SHOTS, initialFacing = 'environment' }: CameraCaptureProps) {
   return (
     <Modal show={show} onHide={onClose} size="lg" fullscreen="sm-down" centered backdrop="static" keyboard={false} className="erp-camera" aria-labelledby="erp-camera-title">
-      <CameraSession onClose={onClose} onDone={onDone} maxShots={maxShots} />
+      <CameraSession onClose={onClose} onDone={onDone} maxShots={maxShots} initialFacing={initialFacing} />
     </Modal>
   )
 }
 
-function CameraSession({ onClose, onDone, maxShots = MAX_SHOTS }: Omit<CameraCaptureProps, 'show'>) {
+function CameraSession({ onClose, onDone, maxShots = MAX_SHOTS, initialFacing }: Omit<CameraCaptureProps, 'show'>) {
   const shotLimit=Math.min(MAX_SHOTS,Math.max(1,Math.floor(maxShots)))
   const { t } = useTranslation('image')
+  const { t: accessibility } = useTranslation('accessibility')
   const toast = useToast()
-  const { video, state: cameraState, canRetry, torch, toggleTorch, retry, capture } = useCamera()
+  const { video, state: cameraState, canRetry, torch, toggleTorch, switchCamera, retry, capture } = useCamera(initialFacing)
   const [shots, setShots] = useState<Shot[]>([])
   const [reviewing, setReviewing] = useState<string | null>(null)
   const [busy, setBusy] = useState<'shooting' | 'finishing' | null>(null)
@@ -180,6 +182,7 @@ function CameraSession({ onClose, onDone, maxShots = MAX_SHOTS }: Omit<CameraCap
             </button>
 
             <div className="erp-camera__side">
+              <button type="button" className="btn erp-camera__torch" aria-label={accessibility('magnifier.switchCamera')} title={accessibility('magnifier.switchCamera')} disabled={!live || busy !== null} onClick={switchCamera}><Icon name="arrow-repeat" /></button>
               {torch !== null ? (
                 <button
                   type="button"

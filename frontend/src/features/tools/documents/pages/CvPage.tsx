@@ -74,7 +74,6 @@ export default function CvPage() {
       <EntryEditor kind="experience" entries={draft.experience} onChange={(value) => update('experience', value)} /><EntryEditor kind="education" entries={draft.education} onChange={(value) => update('education', value)} />
       {(['skills', 'languages', 'certificates'] as const).map((key) => <label className="erp-flow-field__label mt-3" key={key}>{t(`cv.sections.${key}`)}<Form.Control as="textarea" autoCapitalize="sentences" rows={3} maxLength={3000} value={draft[key]} onBlur={event => update(key, capitalizeInitial(event.target.value))} onChange={(event) => update(key, event.target.value)} /></label>)}
       <Button variant="outline-danger" size="sm" className="mt-3" onClick={clear}>{t('cv.clearDraft')}</Button>
-      <div className="mt-3"><DocumentExportActions build={buildDocument} pdf={getPdf} printReady={pages.length > 0} disabled={invalidContact} /></div>
     </ToolPanel></DocumentTemplateLayout></div></TextDocumentStudio>
     <PrintPortal>{pdfPages}</PrintPortal>
     <ToolLeaveGuard active={unsaved || Boolean(photoUrl)} message={common('workspace.unsaved')} />

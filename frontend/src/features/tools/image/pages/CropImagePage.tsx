@@ -16,6 +16,7 @@ import { outputFile } from '../utils/handoff-file'
 import { useCropEdit } from '../hooks/useCropEdit'
 import { useCropPreview } from '../hooks/useCropPreview'
 import { useImageFiles } from '../hooks/useImageFiles'
+import { useSamplePhoto } from '../hooks/useSamplePhoto'
 import { cropTask } from '../services/edit-tasks'
 import { writableFormat } from '../services/image-codec'
 import { initialCrop, isPristine } from '../utils/crop-state'
@@ -33,39 +34,29 @@ export default function CropImagePage() {
   const { t: common } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const ids = useId()
   const images = useImageFiles({ multiple: false, revealTarget: '.cn-cropstudio-stage' })
+  const samplePhoto = useSamplePhoto(SAMPLE)
   const run = useFlowRun()
   const nudge = useDownloadNudge()
-  const item = images.items[0] ?? null
+  const uploadedItem = images.items[0] ?? null
+  const item = uploadedItem ?? samplePhoto
   const crop = useCropEdit(item)
   const state = crop.state
   const ready = item !== null && state !== null
   const preview = useCropPreview(item, state)
   const [tab, setTab] = useState<typeof TABS[number]>('crop')
   const [camera, setCamera] = useState(false)
-  const [sampleBusy, setSampleBusy] = useState(false)
-  const [sampleFailed, setSampleFailed] = useState(false)
   const [savedKey, setSavedKey] = useState<string | null>(null)
   const key = JSON.stringify([item?.id, state])
   const pristine = !ready || isPristine(state, item)
   const dirty = !pristine && savedKey !== key
   const busy = run.state.phase === 'running'
-  const locked = busy || !!images.loading || sampleBusy
+  const locked = busy || !!images.loading
   const output = ready ? snapRect(state.rect, rotatedSize(item, state.rotation)) : null
   const format = item ? writableFormat(item.format) : null
   const result = run.state.phase === 'done' ? run.state.result : null
   useEffect(() => { run.reset() }, [key, run.reset])
 
   const addFiles = (files: File[]) => { if (!locked) { run.reset(); void images.addFiles(files) } }
-  const trySample = async () => {
-    if (locked) return
-    setSampleBusy(true); setSampleFailed(false)
-    try {
-      const response = await fetch(withBase(SAMPLE))
-      if (!response.ok) throw new Error('SAMPLE_LOAD')
-      const blob = await response.blob()
-      await images.addFiles([new File([blob], 'portrait-demo.png', { type: 'image/png' })])
-    } catch { setSampleFailed(true) } finally { setSampleBusy(false) }
-  }
   const save = () => {
     if (!ready || locked || pristine || preview.failed) return
     const task = cropTask(item, state), snapshot = key
@@ -85,7 +76,7 @@ export default function CropImagePage() {
     faq={([1, 2, 3, 4] as const).map(index => ({ q: s(`faq.${index}.q`), a: s(`faq.${index}.a`) }))}>
     <ToolLeaveGuard active={dirty} />
     <div className="cn-idstudio-editor cn-cropstudio-editor">
-      <ImageStudioUpload images={images} disabled={locked} sampleBusy={sampleBusy} sampleFailed={sampleFailed} sampleUrl={SAMPLE} sampleLabel={s('sampleLabel')} onFiles={addFiles} onCamera={() => setCamera(true)} onSample={() => void trySample()} onClear={() => { run.reset(); images.clear() }} />
+      <ImageStudioUpload images={images} disabled={locked} onFiles={addFiles} onCamera={() => setCamera(true)} onClear={() => { run.reset(); images.clear() }} />
       <section className="cn-idstudio-panel cn-cropstudio-edit" aria-labelledby={`${ids}-edit-title`}>
         <h2 id={`${ids}-edit-title`}><span>2.</span> {s('editTitle')}</h2>
         <div className="cn-idstudio-tabs" aria-label={s('editTitle')}>{TABS.map(value => <button type="button" key={value} aria-pressed={tab === value} aria-controls={`${ids}-controls`} onClick={() => setTab(value)}>{s(`tabs.${value}`)}</button>)}</div>
@@ -105,7 +96,7 @@ export default function CropImagePage() {
           <img src={item ? preview.url ?? item.url : withBase(SAMPLE)} alt={item ? s('previewAlt') : common('samplePreview')} />
           {preview.busy ? <span role="status"><Spinner as="span" size="sm" />{common('updating')}</span> : null}
         </div>
-        {!ready ? <p className="cn-idstudio-demo-note">{common('demoNote')}</p> : null}
+        {!uploadedItem ? <p className="cn-idstudio-demo-note">{common('sampleDisclosure')}</p> : null}
         <dl className="cn-idstudio-output-meta"><div><dt>{s('sourceSize')}</dt><dd>{item ? sizeLabel(item) : '—'}</dd></div><div><dt>{s('outputSize')}</dt><dd>{output ? sizeLabel(output) : '—'}</dd></div><div><dt>{s('format')}</dt><dd>{format ? IMAGE_FORMAT[format].label : 'JPG / PNG / WebP'}</dd></div></dl>
         <div className="cn-cropstudio-preserves"><Icon name="check-circle-fill" /><span>{s('preserves')}</span></div>
         <div className="cn-idstudio-downloads"><Button variant="primary" disabled={!ready || locked || pristine || preview.failed} onClick={save}><Icon name="download" />{s('save')}</Button></div>
@@ -113,7 +104,7 @@ export default function CropImagePage() {
         {preview.failed ? <p className="erp-tool-form__error" role="alert">{t('shared.previewFailed')}</p> : null}
         {busy ? <div className="cn-idstudio-run" role="status"><Spinner as="span" size="sm" />{s('saving')}<Button variant="link" onClick={run.cancel}>{common('cancel')}</Button></div> : null}
         {run.state.phase === 'idle' && run.state.error ? <p className="erp-tool-form__error" role="alert">{run.state.error.message}</p> : null}
-        {result ? <div className="cn-idstudio-result" role="status"><p><Icon name="check-circle-fill" /><strong>{result.title}</strong></p><small>{result.output.name} · {formatFileSize(result.output.blob.size)}</small><Button variant="link" onClick={() => { downloadOutput(result.output); nudge.onDownloaded() }}>{common('downloadAgain')}</Button><HandoffButton target="id-photo" label={t('handoff.toIdPhoto')} file={() => outputFile(result.output)} />{result.notes.map(note => <p key={note.text}>{note.text}</p>)}</div> : null}
+        {result ? <div className="cn-idstudio-result" role="status"><p><Icon name="check-circle-fill" /><strong>{result.title}</strong></p><small>{result.output.name} · {formatFileSize(result.output.blob.size)}</small><HandoffButton target="id-photo" label={t('handoff.toIdPhoto')} file={() => outputFile(result.output)} />{result.notes.map(note => <p key={note.text}>{note.text}</p>)}</div> : null}
         {nudge.extra}
       </section>
     </div>

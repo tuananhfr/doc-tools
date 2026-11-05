@@ -1,6 +1,9 @@
 /* Header sits outside the existing tool scroll region; Bootstrap owns overlay layers. */
 .cn-shell { display: grid; grid-template-rows: var(--cn-header-height) minmax(0, 1fr); height: 100dvh; overflow: hidden; }
 .cn-shell > .erp-tools-frame, .cn-shell .erp-tools-guest { height: 100%; min-height: 0; }
+.cn-shell--tool .erp-tools-guest { display: flex; flex-direction: column; }
+.cn-shell--tool .erp-tools-guest__main { flex: 1 0 auto; min-width: 0; }
+.cn-shell--tool .erp-tools-guest > :is(.cn-partner-banner, .cn-tool-footer) { flex: none; }
 .cn-shell--tool .erp-auth__brand { min-height: 0; }
 .cn-shell:not(.cn-shell--tool) .erp-tools-guest { background: var(--cn-surface); color: var(--cn-ink); }
 .cn-site-main { padding: 0; }

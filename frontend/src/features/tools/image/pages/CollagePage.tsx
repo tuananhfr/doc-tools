@@ -14,7 +14,6 @@ import { COLLAGE_GAP_RULE, collageBlock, collageFileProblem } from '../utils/col
 import { SHOP_LAYOUTS } from '@/features/tools/design/config/graphic-templates'
 
 const GraphicWorkspace = lazy(() => import('@/features/tools/design/components/GraphicWorkspace').then(module => ({ default: module.GraphicWorkspace })))
-const GAP_PRESETS = [0, 12, 24, 48]
 const EMPTY_FILES: File[] = []
 
 function useCollageUrls(files: File[]) {
@@ -123,11 +122,9 @@ export default function CollagePage() {
       <section className="cn-idstudio-panel cn-collagestudio-settings" aria-labelledby={`${ids}-settings`}><h2 id={`${ids}-settings`}>2. {s('settingsTitle')}</h2>
         <fieldset disabled={locked}><legend>{t('collage.columns')}</legend><div className="cn-collagestudio-layouts">{[1, 2, 3].map(value => <button type="button" key={value} aria-pressed={columns === value} onClick={() => setColumns(value)}><span aria-hidden="true" style={{ gridTemplateColumns: `repeat(${value}, 1fr)` }}>{Array.from({ length: value * 2 }, (_, i) => <i key={i} />)}</span><strong>{s('columnCount', { count: value })}</strong>{columns === value ? <Icon name="check-circle-fill" /> : null}</button>)}</div>
         <NumberField label={t('collage.gap')} value={gapText} onChange={setGapText} rule={COLLAGE_GAP_RULE} unit="px" />
-        <div className="cn-collagestudio-gaps" aria-label={s('gapPresets')}>{GAP_PRESETS.map(value => <button type="button" key={value} aria-pressed={gap === value} onClick={() => setGapText(String(value))}>{value ? `${value} px` : s('noGap')}</button>)}</div>
         </fieldset>
         <div className="cn-collagestudio-info"><Icon name="bounding-box" /><div><strong>{s('squareTiles')}</strong><p>{s('cropHint')}</p></div></div>
         <div className="cn-collagestudio-info"><Icon name="file-earmark-image" /><div><strong>{s('pngOutput')}</strong><p>{s('whiteBackground')}</p></div></div>
-        <Button variant="outline-primary" className="cn-collagestudio-more" disabled={locked} onClick={() => { setOpenedShop(true); setShop(true) }}><Icon name="palette" />{t('shop.open')}<Icon name="arrow-right" /></Button>
       </section>
       <section className="cn-idstudio-panel cn-collagestudio-preview" aria-labelledby={`${ids}-preview`}><h2 id={`${ids}-preview`}>3. {s('previewTitle')}</h2>
         <div className="cn-collagestudio-stage">{files.length ? currentResult && resultUrl ? <img className="cn-collagestudio-result-image" src={resultUrl} alt={s('resultAlt')} /> : <CollagePreview files={files} urls={urls} columns={columns} gap={gap ?? 0} /> : <div className="cn-collagestudio-empty"><div aria-hidden="true">{['image', 'flower1', 'sun', 'tree'].map(icon => <span key={icon}><Icon name={icon} /></span>)}</div><strong>{s('empty')}</strong><p>{s('emptyHint')}</p></div>}</div>

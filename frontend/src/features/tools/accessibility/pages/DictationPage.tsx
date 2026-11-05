@@ -94,7 +94,7 @@ export default function DictationPage() {
   return <AccessibilityStudio kind="dictation"><div className="cn-accessstudio-columns cn-dictationstudio">
     <section className="cn-idstudio-panel cn-dictationstudio-input"><h2>{s('inputTitle')}</h2>
       <div className={`cn-dictationstudio-microphone${listening ? ' is-listening' : ''}`}>
-        <Button className="cn-dictationstudio-mic" disabled={!supported} variant={listening ? 'danger' : 'primary'} onClick={toggle} aria-label={listening ? t('shared.stop') : t('dictation.start')} aria-pressed={listening}><Icon name={listening ? 'stop-fill' : 'mic-fill'} /></Button>
+        <span className="cn-dictationstudio-mic" aria-hidden="true"><Icon name={listening ? 'stop-fill' : 'mic-fill'} /></span>
         <strong role="status">{listening ? t('dictation.listening') : supported ? t('shared.ready') : t('dictation.unsupported')}</strong>
         <p>{s(listening ? 'listeningHint' : 'startHint')}</p>
         <Button className="cn-accessstudio-primary" disabled={!supported} variant={listening ? 'outline-danger' : 'primary'} onClick={toggle}><Icon name={listening ? 'stop-circle' : 'mic'} />{listening ? t('shared.stop') : t('dictation.start')}</Button>

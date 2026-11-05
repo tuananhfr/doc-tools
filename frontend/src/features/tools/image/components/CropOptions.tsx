@@ -37,10 +37,7 @@ export function CropOptions({ item, state, onChange, onReset, section = 'all' }:
     <>
       {section === 'all' || section === 'crop' ? <>
       <div className="erp-flow-field">
-        <label className="erp-flow-field__label" htmlFor={`${ids}-aspect`}>
-          {t('crop.aspectLabel')}
-        </label>
-        <Form.Select id={`${ids}-aspect`} value={state.aspect} onChange={(event) => onChange((current) => withAspect(current, item, event.target.value as AspectKey))}>
+        <Form.Select id={`${ids}-aspect`} aria-label={t('crop.aspectLabel')} value={state.aspect} onChange={(event) => onChange((current) => withAspect(current, item, event.target.value as AspectKey))}>
           {ASPECT_OPTIONS.map((option) => (
             <option key={option.value} value={option.value}>
               {t(`crop.aspect.${option.labelKey}`)}
@@ -49,10 +46,6 @@ export function CropOptions({ item, state, onChange, onReset, section = 'all' }:
         </Form.Select>
       </div>
 
-      {section === 'crop' ? <div className="cn-cropstudio-ratios">{ASPECT_OPTIONS.map(option => {
-        const ratio = ASPECT_RATIO[option.value] ?? 4 / 3
-        return <button type="button" key={option.value} aria-pressed={state.aspect === option.value} aria-label={t(`crop.aspect.${option.labelKey}`)} onClick={() => onChange(current => withAspect(current, item, option.value))}><span style={{ width: ratio >= 1 ? 28 : 28 * ratio, height: ratio >= 1 ? 28 / ratio : 28 }} /><small>{option.value === 'free' ? t('crop.aspect.free') : option.value}</small></button>
-      })}</div> : null}
       </> : null}
 
       {section === 'all' || section === 'rotate' ? <>

@@ -88,11 +88,11 @@ function StaticQrCreatePage() {
     </>}
     preview={<>
       <QrPreview matrix={matrix} color={color} background={backgroundColor} placeholder={error ? t('qrCreate.notCreated') : t('shared.enterToCreate')} />
-      {text !== null && matrix ? <div className="cn-codestudio-payload"><span>{t('shared.codeContent')}</span><p className="erp-qr-payload">{text}</p><CopyButton text={text} size="sm" /></div> : null}
       <div className="cn-codestudio-downloads"><Button disabled={!matrix} onClick={() => void download('png')}><Icon name="download" />{t('qrCreate.downloadPng')}</Button><div>
         <Button variant="outline-primary" disabled={!matrix} onClick={() => void download('svg')}>SVG</Button>
         <Button variant="outline-primary" disabled={!matrix} onClick={() => void download('pdf')}>PDF</Button>
       </div></div>
+      {text !== null && matrix ? <div className="cn-codestudio-payload"><span>{t('shared.codeContent')}</span><p className="erp-qr-payload">{text}</p><CopyButton text={text} size="sm" /></div> : null}
       <p className="cn-codestudio-note"><Icon name="qr-code-scan" />{s('scanBeforeSharing')}</p>
       {nudge.extra}
     </>} />

@@ -1,0 +1,171 @@
+/* Mobile tools open directly into their task, with room for inputs and output.
+   Keep field labels, validation, progress, warnings and editing controls intact. */
+.cn-mobile-theme-toggle { display: none; }
+/* Match the specificity of individual PDF/image studios so their large
+   empty drop zones do not override the shared compact layout. */
+.cn-site .cn-tool-workspace .erp-flow-picker:not(.erp-flow-picker--compact) { min-height: 0; padding: 20px; gap: 10px; }
+/* Empty destinations need a clear label, rather than the height of a document. */
+.cn-tool-workspace :is(.cn-media-placeholder, .cn-readstudio-empty, .cn-audiostudio-empty, .cn-passwordstudio-result, .cn-qrreader-empty, .cn-magnifier-empty, .cn-flowstudio-empty, .cn-imageutility-empty) { min-height: 0; padding: 16px; gap: 10px; }
+.cn-tool-workspace :is(.cn-media-placeholder, .cn-audiostudio-empty, .cn-passwordstudio-result, .cn-flowstudio-empty, .cn-imageutility-empty) > .bi { width: auto; height: auto; border: 0; background: none; font-size: 32px; line-height: 1.4; }
+.cn-tool-workspace .cn-pdfsource-viewport:has(.cn-flowstudio-empty),
+.cn-tool-workspace .cn-flowstudio-source:has(.cn-flowstudio-empty),
+.cn-tool-workspace .cn-imageutility-preview:has(.cn-imageutility-empty),
+.cn-tool-workspace .cn-collagestudio-stage:has(.cn-collagestudio-empty) { min-height: 0; }
+.cn-tool-workspace .cn-qrreader-scan-frame { width: 56px; height: 56px; margin-bottom: 8px; border-radius: 10px; }
+.cn-tool-workspace .cn-qrreader-scan-frame .bi { font-size: 34px; }
+.cn-tool-workspace .cn-magnifier-empty > span { width: 48px; height: 48px; border-radius: 12px; font-size: 28px; }
+@media (max-width: 767px) {
+  .cn-header .cn-mobile-theme-toggle { display: inline-grid; }
+  .cn-header .cn-brand { font-size: 18px; }
+  .cn-header .cn-brand img { width: 32px; height: 32px; }
+  .cn-header .cn-header-content { gap: 4px; }
+  .cn-header .cn-header-actions { gap: 0; }
+  .cn-shell--tool .erp-tools-guest { overflow-anchor: none; }
+  .cn-site.cn-shell--tool .erp-tools-guest__main { padding: 8px; }
+  .cn-shell--tool .cn-partner-banner,
+  .cn-shell--tool .cn-tool-footer .cn-site-contact,
+  .cn-tool-workspace :is(.cn-breadcrumb, .erp-tool-crumb, .cn-idstudio-topline, .cn-idstudio-sidebar, .cn-processing-nav, .cn-workspace-tabs, .cn-tool-heading__action, .cn-idstudio-related, .cn-idstudio-help, .cn-studio-footer-guide),
+  :root:not([data-experience='simple']) .cn-tool-workspace .cn-idstudio--focused .cn-idstudio-help,
+  body:has(.cn-shell--tool) .cn-tool-install-hint { display: none; }
+
+  .cn-tool-workspace :is(.cn-idstudio-layout, .cn-idstudio-main) { min-width: 0; }
+  .cn-tool-workspace .cn-tool-heading { margin-bottom: 8px; }
+  .cn-tool-workspace :is(.cn-idstudio-hero, .cn-tool-intro) {
+    grid-template-columns: 30px minmax(0, 1fr);
+    padding: 9px 10px;
+    gap: 4px 8px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
+  .cn-tool-workspace :is(.cn-idstudio-hero-icon, .cn-tool-intro__icon),
+  .cn-tool-workspace :is(.cn-idstudio-hero-icon, .cn-tool-intro__icon) .cn-tool-artwork { width: 30px; height: 30px; }
+  .cn-tool-workspace :is(.cn-idstudio-hero, .cn-tool-intro) h1 { font-size: 18px; line-height: 1.3; }
+  .cn-tool-workspace :is(.cn-idstudio-hero-copy > p, .cn-tool-description) {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  /* Keep section names available to assistive technology without repeating
+     "upload / options / preview" above controls that already explain themselves. */
+  .cn-tool-workspace :is(.cn-idstudio-panel > h2, .cn-studio-card-head) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .cn-tool-workspace .cn-idstudio-editor { gap: 8px; }
+  .cn-tool-workspace .cn-idstudio-tabs button { min-height: 44px; padding: 6px 4px; font-size: 11px; line-height: 1.35; }
+  .cn-tool-workspace .cn-idstudio-upload .cn-idstudio-uploaded { max-height: 48px; }
+  .cn-tool-workspace .cn-idstudio-upload .cn-idstudio-drop > strong { width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cn-tool-workspace :is(.erp-flow, .erp-flow__main) { gap: 10px; }
+  .cn-tool-workspace .cn-idstudio-panel { min-width: 0; padding: 10px; border-radius: 10px; }
+  .cn-tool-workspace .cn-studio-form-hint { display: none; }
+  .cn-tool-workspace .erp-tool-panel__head { gap: 8px; margin-bottom: 12px; padding-bottom: 8px; }
+  .cn-tool-workspace .erp-tool-panel__title { font-size: 14px; }
+  .cn-tool-workspace .erp-flow-field { gap: 6px; margin-bottom: 12px; }
+  .cn-tool-workspace :is(.erp-flow__side, .erp-tool-panel, .cn-responsive-preview__output) { padding: 12px; }
+  .cn-site .cn-tool-workspace .erp-flow-picker:not(.erp-flow-picker--compact),
+  .cn-site .cn-tool-workspace .erp-flow-picker.erp-flow-picker--compact { min-height: 0; height: auto; padding: 10px; gap: 8px; }
+  .cn-tool-workspace .cn-pdf-quick-workspace .erp-flow__main { padding: 10px; border-radius: 10px; }
+  .cn-tool-workspace .cn-pdf-quick-workspace .erp-flow-options__title { margin-bottom: 10px; padding-bottom: 8px; font-size: 14px; }
+  .cn-tool-workspace .cn-merge-summary > :is(.cn-studio-small-icon, h2, p) { display: none; }
+  .cn-tool-workspace .cn-merge-summary dl { margin: 0 0 10px; gap: 8px; }
+  .cn-tool-workspace .cn-merge-summary dl > div { padding: 8px 10px; border-radius: 8px; }
+  .cn-tool-workspace .cn-merge-summary dt { font-size: 11px; }
+  .cn-tool-workspace .cn-merge-summary dd { margin-top: 2px; font-size: 18px; }
+  .cn-tool-workspace .erp-flow-picker__icon,
+  .cn-tool-workspace .erp-flow-picker__title:not([role]),
+  .cn-tool-workspace .cn-idstudio-upload-title { display: none; }
+  .cn-tool-workspace .erp-flow-picker__hint { margin: 0; font-size: 11px; line-height: 1.5; }
+  .cn-tool-workspace .erp-flow-picker__actions { gap: 8px; margin: 0; }
+  .cn-tool-workspace .erp-flow-picker__actions > :is(.btn, label) { min-height: 44px; font-size: 14px; }
+  .cn-tool-workspace .erp-flow-picker__actions:has(.cn-camera-input) { flex-wrap: wrap; }
+  .cn-tool-workspace .cn-idstudio-local { display: none; }
+  .cn-tool-workspace :is(.cn-studio-card-head > p, .erp-flow__hint:not([role]), .cn-convertstudio-placeholder:not(.is-done) > p) { display: none; }
+  .cn-tool-workspace .cn-idstudio-downloads { margin-top: 10px; gap: 8px; }
+  .cn-tool-workspace .cn-convertstudio-formats { margin-bottom: 10px; }
+  .cn-tool-workspace .cn-convertstudio-format { min-height: 44px; padding-block: 8px; }
+  .cn-tool-workspace .cn-convertstudio-settings :is(legend, label) { margin-bottom: 6px; }
+
+  /* Empty previews should indicate the destination, not take a whole screen. */
+  .cn-tool-workspace .cn-flowstudio-source:has(.cn-flowstudio-empty),
+  .cn-tool-workspace .cn-imageutility-preview:has(.cn-imageutility-empty) { min-height: 0; padding: 8px; }
+  .cn-tool-workspace :is(.cn-flowstudio-empty, .cn-imageutility-empty) { min-height: 0; padding: 10px; gap: 8px; }
+  .cn-tool-workspace :is(.cn-flowstudio-empty, .cn-imageutility-empty) > .bi { font-size: 28px; }
+  .cn-tool-workspace :is(.cn-flowstudio-empty, .cn-imageutility-empty) > p:not([role]) { display: none; }
+  .cn-tool-workspace .cn-convertstudio-preview-image { min-height: 0; aspect-ratio: auto; }
+  .cn-tool-workspace .cn-convertstudio-placeholder { padding: 10px; }
+  .cn-tool-workspace .cn-convertstudio-placeholder > .bi { margin-bottom: 6px; font-size: 26px; }
+  .cn-tool-workspace .cn-convertstudio-preview-image > img { max-height: min(240px, 30dvh); width: auto; max-width: 100%; object-fit: contain; }
+  .cn-tool-workspace .cn-idstudio--focused .cn-convertstudio-preview-image > img { max-height: min(240px, 30dvh); }
+  .cn-tool-workspace .cn-imagespdf-preview-stage:has(.cn-imagespdf-empty) { min-height: 0; }
+  .cn-tool-workspace .cn-imagespdf-empty { padding: 14px 6px; gap: 8px; }
+  .cn-tool-workspace .cn-imagespdf-empty > span { font-size: 34px; }
+  .cn-tool-workspace .cn-imagespdf-empty > span .bi-image { font-size: 18px; }
+  .cn-tool-workspace :is(.cn-media-placeholder, .cn-readstudio-empty, .cn-audiostudio-empty, .cn-passwordstudio-result, .cn-qrreader-empty, .cn-magnifier-empty) { min-height: 0; padding: 12px; gap: 8px; }
+  .cn-tool-workspace :is(.cn-media-placeholder, .cn-audiostudio-empty, .cn-passwordstudio-result) > .bi { font-size: 28px; }
+  .cn-tool-workspace :is(.cn-media-placeholder, .cn-qrreader-empty, .cn-collagestudio-empty) > p:not([role]) { display: none; }
+  .cn-tool-workspace .cn-qrreader-empty > span { display: none; }
+  .cn-tool-workspace .cn-qrreader-scan-frame { width: 44px; height: 44px; margin: 0; }
+  .cn-tool-workspace .cn-qrreader-scan-frame .bi { font-size: 28px; }
+  .cn-tool-workspace .cn-collagestudio-stage:has(.cn-collagestudio-empty) { padding: 8px; }
+  .cn-tool-workspace .cn-collagestudio-empty { padding: 8px; gap: 8px; }
+  .cn-tool-workspace .cn-collagestudio-empty > div { width: 132px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .cn-tool-workspace .cn-collagestudio-empty span { font-size: 18px; }
+  .cn-tool-workspace .cn-backgroundstudio-stage:has(> div:not([hidden])) { min-height: 0; }
+  .cn-tool-workspace .cn-backgroundstudio-stage > div:not([hidden]) { padding: 8px; gap: 8px; }
+  .cn-tool-workspace .cn-backgroundstudio-demo { max-height: 120px; margin-bottom: 0; }
+  .cn-tool-workspace :is(.cn-charcount-workspace, .cn-legacyfont-workspace, .cn-readstudio-input, .cn-risk-workspace) textarea { min-height: 140px; height: 140px; resize: vertical; }
+  .cn-tool-workspace .cn-legacyfont-output { min-height: 96px; padding: 12px; }
+  .cn-tool-workspace .cn-legacyfont-output .erp-qr-payload { min-height: 0; }
+  .cn-tool-workspace .cn-legacyfont-output > .bi { margin-bottom: 6px; font-size: 28px; }
+  .cn-tool-workspace .cn-numberwords-text { min-height: 0; padding: 12px; }
+  .cn-tool-workspace .cn-colorstudio .erp-color-swatch { min-height: 96px; height: 96px; }
+  .cn-tool-workspace .cn-legacyfont-workspace .erp-tool-result__note { display: none; }
+  .cn-tool-workspace .cn-trimstudio-upload > :is(.cn-media-note, .cn-media-hint):not([role]) { display: none; }
+  .cn-tool-workspace .cn-qrreader-paste,
+  .cn-tool-workspace .cn-qrreader-sample > span,
+  .cn-tool-workspace .cn-qrreader-methods small { display: none; }
+  .cn-tool-workspace .cn-qrreader-methods button { min-height: 44px; padding: 8px; }
+  .cn-tool-workspace .cn-qrreader-methods button > .bi { width: 28px; height: 28px; font-size: 20px; }
+  .cn-tool-workspace .cn-qrreader-sample { padding-block: 8px; gap: 0; }
+  /* The photo strip repeats the same preview without adding controls. */
+  .cn-tool-workspace .cn-idstudio-photo-strip { display: none; }
+  .cn-tool-workspace .cn-idstudio-samples { margin-top: 8px; }
+  .cn-tool-workspace .cn-idstudio-samples > h3 { display: none; }
+  .cn-tool-workspace .cn-idstudio-samples button { padding: 6px 8px; gap: 8px; }
+  .cn-tool-workspace .cn-idstudio-samples button img { width: 28px; height: 37px; }
+  .cn-tool-workspace .cn-idstudio-samples button small { display: none; }
+  .cn-tool-workspace .cn-idstudio-backgrounds { margin-top: 12px; }
+  .cn-tool-workspace .cn-idstudio-photo-area { grid-template-columns: minmax(0, 1fr); justify-items: center; padding-block: 10px; }
+  .cn-tool-workspace .cn-idstudio-photo { width: min(100%, 150px); max-height: none; }
+  .cn-tool-workspace .cn-idstudio-output-meta { margin-block: 10px; gap: 6px; }
+  /* QR types are choices, not feature illustrations. Keep all six choices. */
+  .cn-tool-workspace .cn-codestudio-input > .cn-codestudio-hint,
+  .cn-tool-workspace .cn-codestudio-input > .cn-codestudio-note { display: none; }
+  .cn-tool-workspace .cn-qr-kind-tiles { margin-bottom: 12px; gap: 6px; }
+  .cn-tool-workspace .cn-qr-kind-tiles button { min-height: 44px; padding: 7px 4px; gap: 3px; font-size: 11px; }
+  .cn-tool-workspace .cn-qr-kind-tiles button > .bi { font-size: 16px; }
+  .cn-tool-workspace .cn-codestudio-options { padding-top: 4px; margin-top: 8px; }
+  .cn-tool-workspace .cn-codestudio .cn-codestudio-output > .erp-qr-preview { min-height: 0; aspect-ratio: auto; margin-bottom: 10px; padding: 12px; }
+  .cn-tool-workspace .cn-codestudio-output > .erp-qr-preview--empty { gap: 8px; }
+  .cn-tool-workspace .cn-codestudio-output .erp-qr-preview__icon { font-size: 28px; }
+  .cn-tool-workspace .cn-codestudio-output .erp-qr-preview__code { max-width: 180px; max-height: 180px; }
+  .cn-tool-workspace .cn-tool-install--hero { align-self: start; }
+}
+@media (max-width: 359px) {
+  .cn-header .cn-brand { font-size: 16px; gap: 3px; }
+  .cn-header .cn-brand img { width: 28px; height: 28px; }
+  .cn-header .cn-container { width: calc(100% - 16px); }
+}

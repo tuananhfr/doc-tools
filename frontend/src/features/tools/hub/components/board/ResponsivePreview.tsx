@@ -14,6 +14,7 @@ export function ResponsivePreview({ children, preview, action, templates }: { ch
       {(['input', 'preview'] as const).map(value => <button type="button" role="tab" key={value} id={`${id}-${value}-tab`} aria-controls={`${id}-${value}`} aria-selected={view === value} onClick={() => setView(value)}>{t(`workspace.${value}`)}</button>)}
     </div>
     <section className="cn-responsive-preview__input" id={`${id}-input`} role="tabpanel" aria-labelledby={`${id}-input-tab`}>{children}</section>
-    <section className="cn-responsive-preview__output" id={`${id}-preview`} role="tabpanel" aria-labelledby={`${id}-preview-tab`}>{action ? <div className="cn-preview-action">{action}</div> : null}{templates}{preview}</section>
+    <section className="cn-responsive-preview__output" id={`${id}-preview`} role="tabpanel" aria-labelledby={`${id}-preview-tab`}>{templates}{preview}</section>
+    {action ? <div className="cn-preview-action cn-responsive-preview__action">{action}</div> : null}
   </div>
 }

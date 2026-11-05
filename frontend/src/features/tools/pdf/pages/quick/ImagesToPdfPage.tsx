@@ -17,7 +17,6 @@ import { DocumentPagePreview } from '../../components/quick/DocumentPagePreview'
 import { DEFAULT_OCR_OPTIONS } from '../../types/ocr-profile.types'
 import { useQuickSources, type QuickItem, type QuickKind } from '../../hooks/useQuickSources'
 import { imagesToPdfTask } from '../../services/quick-tasks'
-import type { ImageSheet, Paper } from '../../types/doc-tools.types'
 import { DEFAULT_SHEET } from '../../utils/image-sheet'
 import type { FlowResult } from '@/features/tools/hub'
 import { OcrTextEditor } from '../../components/quick/OcrTextEditor'
@@ -25,7 +24,6 @@ import { autoScanDocument } from '../../services/document-scan'
 import type { OcrQualityFlag } from '../../types/ocr-result.types'
 
 const ACCEPT: readonly QuickKind[] = ['image']
-const PAPERS: Paper[] = ['a4', 'a3', 'fit']
 const RELATED = ['scan-to-pdf', 'merge-pdf', 'split-pdf', 'compress-pdf', 'edit-pdf', 'organize-pdf', 'convert-file', 'pdf-to-image', 'ocr']
 const NAVIGATION = ['scan-to-pdf', 'image-to-text', 'ocr', 'convert-image']
 
@@ -42,7 +40,8 @@ export default function ImagesToPdfPage() {
   const [textEditor, setTextEditor] = useState(false), [textSaving, setTextSaving] = useState(false)
   const [edited, setEdited] = useState<{ base: FlowResult; value: FlowResult } | null>(null)
   const ids = useId()
-  const [sheet, setSheet] = useState<ImageSheet>(DEFAULT_SHEET), [camera, setCamera] = useState(false)
+  const sheet = DEFAULT_SHEET
+  const [camera, setCamera] = useState(false)
   const [scans, setScans] = useState<Record<string, { item: QuickItem }>>({})
   const [autoDone, setAutoDone] = useState<Record<string, true>>({})
   const [scanQuality, setScanQuality] = useState<Record<string, OcrQualityFlag[]>>({})
@@ -93,7 +92,6 @@ export default function ImagesToPdfPage() {
         <h2 id={`${ids}-upload`}>1. {s('uploadTitle')}</h2>
         <FilePicker accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple title={s('drop')} hint={t('picker.image')} compact={count > 0} loading={quick.loading} disabled={locked} onFiles={addFiles}
           pickLabel={imageText('idPhotoStudio.upload')} extra={<Button variant="outline-primary" disabled={locked} onClick={() => setCamera(true)}><Icon name="camera" />{t('imagesToPdf.camera')}</Button>} />
-        <fieldset className="cn-imagespdf-paper-choice" disabled={locked}><legend>{t('sheet.paper')}</legend><div>{PAPERS.map(paper => <button key={paper} type="button" aria-pressed={sheet.paper === paper} onClick={() => setSheet(current => ({ ...current, paper }))}>{paper === 'fit' ? t('sheet.fit') : paper.toUpperCase()}</button>)}</div></fieldset>
         {count ? <details className="cn-imagespdf-files"><summary>{common('fileList.title')} ({count})</summary><FileList compact files={quick.items.map(({ source }) => ({ id: source.id, name: source.name, size: source.size, icon: 'file-earmark-image', thumbnail: quick.thumbnails[source.id] }))} disabled={locked} onRemove={quick.remove} onMove={quick.move} onClear={quick.clear} /></details> : null}
         {Object.values(scanQuality).some(flags => flags.includes('blur') || flags.includes('low-resolution')) ? <p className="cn-idstudio-note cn-imagespdf-quality-hint" role="status"><Icon name="exclamation-triangle" /> {scanText('qualityHint')}</p> : null}
         {quick.rejected.length ? <div className="cn-convertstudio-rejected" role="alert">{quick.rejected.map((file, index) => <p key={index}><strong>{file.name}</strong>: {file.reason}</p>)}<Button variant="link" onClick={quick.dismissRejected}>{s('dismiss')}</Button></div> : null}

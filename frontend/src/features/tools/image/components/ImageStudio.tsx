@@ -5,7 +5,6 @@ import { Icon } from '@/components/ui'
 import { toolPath, useToolsBranch, type ToolDefinition } from '@/features/tools/hub'
 import { useToolCatalog } from '@/features/tools/hub/hooks/useToolCatalog'
 import { ToolArtwork } from '@/features/tools/hub/components/ToolArtwork'
-import { ExperienceControlsSlot } from '@/features/tools/hub/components/ExperienceControls'
 import { directoryGroupTools, directoryToolGroup, DIRECTORY_GROUP_ICONS } from '@/features/site/utils/directory-groups'
 import { hubDirectoryPath } from '@/features/site/config/site-navigation'
 import { ToolInstallButton } from '@/features/site/components/ToolInstallButton'
@@ -69,7 +68,6 @@ export function ImageStudio({ children, toolId, icon, title, subtitle, heroNote,
   return <div className={`cn-idstudio cn-image-studio cn-image-studio--${toolId}${automatic ? ' cn-idstudio--focused' : ''}`}>
     <div className="cn-idstudio-topline">
       <nav className="cn-idstudio-breadcrumb" aria-label={t('breadcrumb')}><Link to={base}>{t('tools')}</Link><Icon name="chevron-right" /><Link to={imageHub}>{categoryTitle}</Link><Icon name="chevron-right" /><span>{title}</span></nav>
-      <ExperienceControlsSlot />
     </div>
     <div className="cn-idstudio-layout">
       <aside className="cn-idstudio-sidebar">

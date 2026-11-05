@@ -19,20 +19,12 @@ export default function RemoveBackgroundPage() {
   const { t: photo } = useTranslation('image', { keyPrefix: 'idPhotoStudio' })
   const tool = useBackgroundRemoval()
   const [selected, setSelected] = useState<File | null>(null)
-  const [sampleBusy, setSampleBusy] = useState(false), [sampleFailed, setSampleFailed] = useState(false)
   const open = async (file: File) => { setSelected(file); await tool.open(file) }
-  const sample = async () => {
-    setSampleBusy(true); setSampleFailed(false)
-    try { const response = await fetch(withBase('/assets/id-photo/portrait-demo-v2.png')); if (!response.ok) throw new Error('SAMPLE_FAILED'); await open(new File([await response.blob()], 'portrait-demo.png', { type: 'image/png' })) }
-    catch { setSampleFailed(true) } finally { setSampleBusy(false) }
-  }
   const ready = tool.phase === 'ready', visible = Boolean(tool.name) && !['error', 'cancelled'].includes(tool.phase)
   useMobileImageReveal(tool.name ? [`${tool.name}:${selected?.lastModified}`] : [], '.cn-backgroundstudio-output')
   return <ImageUtilityStudio kind="background"><div className="cn-idstudio-editor cn-backgroundstudio-editor">
     <section className="cn-idstudio-panel cn-convertstudio-upload"><h2>{s('inputTitle')}</h2>
-      <FilePicker accept="image/jpeg,image/png,image/webp" multiple={false} title={t('removeBg.choose')} hint={studio('formats')} pickLabel={photo('upload')} extra={<ImageCameraInput disabled={tool.busy || sampleBusy} onFiles={files => { if (files[0]) void open(files[0]) }} />} compact={Boolean(tool.name)} loading={null} disabled={tool.busy || sampleBusy} onFiles={files => { if (files[0]) void open(files[0]) }} />
-      <div className="cn-idstudio-samples"><h3>{photo('sampleTitle')}</h3><button type="button" disabled={tool.busy || sampleBusy} onClick={() => void sample()}><img src={withBase('/assets/id-photo/portrait-demo-v2.png')} alt="" /><span>{photo('sampleLabel')}<small>{photo('sampleDisclosure')}</small></span><Icon name="arrow-right" /></button></div>
-      {sampleFailed ? <p className="cn-imageutility-error" role="alert">{s('sampleFailed')}</p> : null}
+      <FilePicker accept="image/jpeg,image/png,image/webp" multiple={false} title={t('removeBg.choose')} hint={studio('formats')} pickLabel={photo('upload')} extra={<ImageCameraInput disabled={tool.busy} onFiles={files => { if (files[0]) void open(files[0]) }} />} compact={Boolean(tool.name)} loading={null} disabled={tool.busy} onFiles={files => { if (files[0]) void open(files[0]) }} />
       {tool.name ? <p className="cn-backgroundstudio-name">{tool.name}</p> : null}
     </section>
     <section className="cn-idstudio-panel cn-backgroundstudio-settings"><h2>{s('optionsTitle')}</h2>

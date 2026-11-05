@@ -5,7 +5,6 @@ import { Icon } from '@/components/ui'
 import { FilePicker, toolPathOf, useToolsBranch } from '@/features/tools/hub'
 import { ImageStudio } from '@/features/tools/image/components/ImageStudio'
 import type { LoadingProgress } from '../hooks/useDocWorkspace'
-import type { SideTab } from './DocSidePanel'
 import { createEditorSample, type EditorSample } from '../services/editor-samples'
 import { usePihTemplatesEnabled } from '@/features/tools/pih-templates/hooks/usePihTemplatesEnabled'
 import { createPihTechProfileSample } from '@/features/tools/pih-templates/generators/pih-pdf-samples'
@@ -22,14 +21,11 @@ interface Props {
   panel: ReactNode
   preview: ReactNode
   toolHost: (element: HTMLDivElement | null) => void
-  activeTab: SideTab
-  onTab: (tab: SideTab) => void
-  hasForms: boolean
   busy: boolean
 }
 
 /** The approved PDF reference: input/pages, editing/export and an interactive viewer. */
-export function PdfEditorStudio({ children, hasPages, loading, onFiles, grid, toolbar, panel, preview, toolHost, activeTab, onTab, hasForms, busy }: Props) {
+export function PdfEditorStudio({ children, hasPages, loading, onFiles, grid, toolbar, panel, preview, toolHost, busy }: Props) {
   const { t } = useTranslation('pdf')
   const { t: s } = useTranslation('pdf', { keyPrefix: 'editorStudio' })
   const { base } = useToolsBranch()
@@ -49,10 +45,6 @@ export function PdfEditorStudio({ children, hasPages, loading, onFiles, grid, to
     faq={([1, 2, 3, 4] as const).map(index => ({ q: s(`faq.${index}.q`), a: s(`faq.${index}.a`) }))}>
     <div className="cn-pdfeditor-studio">
       <nav className="cn-processing-nav cn-pdfeditor-nav" aria-label={s('functions')}>
-        <button type="button" aria-pressed={activeTab === 'export'} onClick={() => onTab('export')}><Icon name="pencil-square" />{s('edit')}</button>
-        <button type="button" aria-pressed={activeTab === 'decorate'} onClick={() => onTab('decorate')}><Icon name="journal-text" />{t('side.decorate')}</button>
-        {hasForms ? <button type="button" aria-pressed={activeTab === 'form'} onClick={() => onTab('form')}><Icon name="ui-checks" />{t('side.form')}</button> : null}
-        <button type="button" aria-pressed={activeTab === 'search'} onClick={() => onTab('search')}><Icon name="search" />{t('side.search')}</button>
         {(['sign', 'split-pdf', 'convert-file', 'compress-pdf', 'pdf-password'] as const).map((tool, index) => <Link key={tool} to={toolPathOf(base, tool)}><Icon name={['pen', 'scissors', 'arrow-left-right', 'file-earmark-zip', 'shield-lock'][index]} />{s(`nav.${tool}`)}</Link>)}
       </nav>
       <div className="cn-pdfeditor-columns">

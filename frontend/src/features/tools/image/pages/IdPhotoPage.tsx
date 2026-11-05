@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type CSSProperties } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { Button, Form, InputGroup, Spinner } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@/components/ui'
@@ -24,10 +24,8 @@ import { fullRect, rectForAspect } from '../utils/crop-rect'
 import { initialCrop } from '../utils/crop-state'
 import { outputFile } from '../utils/handoff-file'
 import { LOW_DPI, mmToPx, layoutSheet, printDpi } from '../utils/photo-layout'
-import MixedPhotoPage from './MixedPhotoPage'
 
 const SIZES = [...PHOTO_SIZES, { id: '6x9', label: '6 × 9 cm', width: 60, height: 90 }]
-const QUICK_SIZES = ['2x3', '3x4', '4x6', '6x9', 'custom']
 const BACKGROUNDS = [{ id: 'original', color: null }, { id: 'white', color: '#ffffff' }, { id: 'blue', color: '#65a9e8' }] as const
 const TABS = ['size', 'beauty', 'align', 'advanced'] as const
 const SAMPLE = '/assets/id-photo/portrait-demo-v2.png'
@@ -41,15 +39,10 @@ export default function IdPhotoPage() {
   const samplePhoto = useSamplePhoto(SAMPLE)
   const run = useFlowRun()
   const nudge = useDownloadNudge()
-  const [mixed, setMixed] = useState(false)
   const [camera, setCamera] = useState(false)
-  const [sampleBusy, setSampleBusy] = useState(false)
-  const [sampleFailed, setSampleFailed] = useState(false)
   const [tab, setTab] = useState<typeof TABS[number]>('size')
   const [appearance, setAppearance] = useState(ORIGINAL_PORTRAIT)
   const [photoId, setPhotoId] = useState('3x4')
-  const [customWidth, setCustomWidth] = useState('3')
-  const [customHeight, setCustomHeight] = useState('4')
   const [paperId, setPaperId] = useState('10x15-exact')
   const [sheetOutput, setSheetOutput] = useState<'pdf' | 'sheet'>('pdf')
   const [fill, setFill] = useState(false)
@@ -67,11 +60,7 @@ export default function IdPhotoPage() {
     return () => { window.removeEventListener('afterprint', done); URL.revokeObjectURL(printJob.url) }
   }, [printJob])
 
-  const width = parseDecimal(customWidth), height = parseDecimal(customHeight)
-  const customOk = width !== null && height !== null && width >= 1 && width <= 10 && height >= 1 && height <= 15
-  const photo = photoId === 'custom'
-    ? { id: 'custom', label: s('customLabel', { width: customWidth, height: customHeight }), width: customOk ? width * 10 : 30, height: customOk ? height * 10 : 40 }
-    : SIZES.find(size => size.id === photoId) ?? SIZES[1]
+  const photo = SIZES.find(size => size.id === photoId) ?? SIZES[1]
   const paper = PAPER_SIZES.find(size => size.id === paperId) ?? PAPER_SIZES[0]
   const uploadedItem = images.items[0] ?? null
   const item = uploadedItem ?? samplePhoto
@@ -79,7 +68,7 @@ export default function IdPhotoPage() {
   const preview = useIdPhotoPreview(item, crop.rect, photo, appearance)
   const ready = !!item && !!crop.rect
   const busy = run.state.phase === 'running'
-  const locked = busy || !!images.loading || sampleBusy
+  const locked = busy || !!images.loading
   const gap = parseDecimal(gapText), copies = parseDecimal(copiesText)
   const gapOk = gap !== null && gap >= GAP_LIMIT.min && gap <= GAP_LIMIT.max
   const copiesOk = fill || (copies !== null && Number.isInteger(copies) && copies >= 1)
@@ -87,23 +76,13 @@ export default function IdPhotoPage() {
   const paperLabel = t(`idPhoto.paperName.${paper.id}`)
   const sheetBlocked = !gapOk ? t('idPhoto.gapRange', GAP_LIMIT) : !copiesOk ? t('idPhoto.copiesInvalid') : !layout.capacity ? t('idPhoto.tooBig') : !fill && copies! > layout.capacity ? t('idPhoto.overCapacity', { paper: paperLabel, count: layout.capacity }) : null
   const previewError = preview.error ? t(({ MODEL_LOAD: 'removeBg.modelFailed', PROCESSING_FAILED: 'removeBg.processingFailed', UNSUPPORTED: 'removeBg.unsupported', TIMEOUT: 'removeBg.timeout' } as const)[preview.error]) : t('portrait.failed')
-  const photoBlocked = photoId === 'custom' && !customOk ? s('customInvalid') : preview.failed ? previewError : appearance.shirt === 'custom' && !appearance.shirtBlob ? s('shirtRequired') : null
+  const photoBlocked = preview.failed ? previewError : appearance.shirt === 'custom' && !appearance.shirtBlob ? s('shirtRequired') : null
   const dpi = crop.rect ? Math.min(PRINT_DPI, printDpi(crop.rect.width, photo.width)) : null
   const outputWidth = crop.rect ? Math.min(mmToPx(photo.width, PRINT_DPI), Math.round(crop.rect.width)) : null
   const result = run.state.phase === 'done' ? run.state.result : null
-  useEffect(() => { run.reset() }, [item?.id, photoId, customWidth, customHeight, appearance, crop.rect?.x, crop.rect?.y, crop.rect?.width, crop.rect?.height, paperId, sheetOutput, fill, copiesText, gapText, guides, run.reset])
+  useEffect(() => { run.reset() }, [item?.id, photoId, appearance, crop.rect?.x, crop.rect?.y, crop.rect?.width, crop.rect?.height, paperId, sheetOutput, fill, copiesText, gapText, guides, run.reset])
 
   const addFiles = (files: File[]) => { if (!locked) { run.reset(); void images.addFiles(files) } }
-  const trySample = async () => {
-    if (locked) return
-    setSampleBusy(true); setSampleFailed(false)
-    try {
-      const response = await fetch(withBase(SAMPLE))
-      if (!response.ok) throw new Error('SAMPLE_LOAD')
-      const blob = await response.blob()
-      await images.addFiles([new File([blob], 'portrait-demo.png', { type: 'image/png' })])
-    } catch { setSampleFailed(true) } finally { setSampleBusy(false) }
-  }
   const exportPhoto = (output: PhotoOutput, print = false) => {
     if (!item || !crop.rect || locked || photoBlocked || (output !== 'single' && sheetBlocked)) return
     const selected = item, rect = crop.rect
@@ -125,21 +104,15 @@ export default function IdPhotoPage() {
   }
 
   return <IdPhotoStudio>
-    <div hidden={mixed} className="cn-idstudio-editor">
-      <ImageStudioUpload images={images} disabled={locked} sampleBusy={sampleBusy} sampleFailed={sampleFailed} sampleUrl={SAMPLE} sampleLabel={s('sampleLabel')} onFiles={addFiles} onCamera={() => setCamera(true)} onSample={() => void trySample()} onClear={() => { run.reset(); images.clear() }}>
-        <Button variant="outline-secondary" className="cn-idstudio-mixed" disabled={locked} onClick={() => setMixed(true)}><Icon name="grid-3x3-gap" />{t('mixedPhoto.open')}</Button>
-      </ImageStudioUpload>
+    <div className="cn-idstudio-editor">
+      <ImageStudioUpload images={images} disabled={locked} onFiles={addFiles} onCamera={() => setCamera(true)} onClear={() => { run.reset(); images.clear() }} />
       <section className="cn-idstudio-panel cn-idstudio-customize" aria-labelledby={`${ids}-settings-title`}>
         <h2 id={`${ids}-settings-title`}><span>2.</span> {s('customize')}</h2>
         <div className="cn-idstudio-tabs" aria-label={s('customize')}>{TABS.map(value => <button type="button" key={value} aria-pressed={tab === value} aria-controls={`${ids}-settings`} onClick={() => setTab(value)}>{s(`tabs.${value}`)}</button>)}</div>
         <fieldset id={`${ids}-settings`} className="cn-idstudio-settings" disabled={locked}>
           {tab === 'size' ? <>
-            <label className="cn-idstudio-label" htmlFor={`${ids}-size`}>{s('photoSize')}</label>
-            <Form.Select id={`${ids}-size`} value={photoId} onChange={e => setPhotoId(e.target.value)}>{SIZES.map(size => <option key={size.id} value={size.id}>{size.label}{size.id === '3x4' ? ` · ${s('popular')}` : ''}</option>)}<option value="custom">{s('custom')}</option></Form.Select>
-            <div className="cn-idstudio-sizes">{QUICK_SIZES.map(size => <button type="button" key={size} aria-pressed={photoId === size} onClick={() => setPhotoId(size)}><span style={{ '--photo-ratio': size === '2x3' || size === '4x6' || size === '6x9' ? '2 / 3' : '3 / 4' } as CSSProperties}><Icon name={size === 'custom' ? 'plus-lg' : 'person-fill'} /></span><small>{size === 'custom' ? s('custom') : SIZES.find(entry => entry.id === size)?.label}</small></button>)}</div>
-            {photoId === 'custom' ? <div className="cn-idstudio-pair">{([['width', customWidth, setCustomWidth], ['height', customHeight, setCustomHeight]] as const).map(([key, value, setter]) => <label key={key}>{s(key)}<InputGroup><Form.Control aria-label={s(key)} type="text" inputMode="decimal" value={value} isInvalid={!customOk} onChange={e => setter(e.target.value)} /><InputGroup.Text>cm</InputGroup.Text></InputGroup></label>)}</div> : null}
+            <Form.Select id={`${ids}-size`} aria-label={s('photoSize')} value={photoId} onChange={e => setPhotoId(e.target.value)}>{SIZES.map(size => <option key={size.id} value={size.id}>{size.label}{size.id === '3x4' ? ` · ${s('popular')}` : ''}</option>)}</Form.Select>
             <fieldset className="cn-idstudio-backgrounds"><legend>{s('backgroundTitle')}</legend><div>{BACKGROUNDS.map(bg => <button type="button" key={bg.id} aria-pressed={appearance.background === bg.color} onClick={() => setAppearance(current => ({ ...current, background: bg.color }))}><span className={bg.color ? '' : 'is-original'} style={{ backgroundColor: bg.color ?? undefined }}>{appearance.background === bg.color ? <Icon name="check-lg" /> : null}</span><small>{s(`backgrounds.${bg.id}`)}</small></button>)}<label className="cn-idstudio-color"><span style={{ backgroundColor: appearance.background ?? '#ffffff' }} /><input type="color" value={appearance.background ?? '#ffffff'} aria-label={s('customBackground')} onChange={e => setAppearance(current => ({ ...current, background: e.target.value }))} /><small>{s('custom')}</small></label></div></fieldset>
-            <div className="cn-idstudio-quality"><button type="button" onClick={() => setTab('align')}><Icon name="crop" />{s('adjustCrop')}<Icon name="arrow-right" /></button></div>
           </> : null}
           {tab === 'beauty' ? <><h3>{s('beautyTitle')}</h3><p className="cn-idstudio-note">{s('beautyHint')}</p>{(['brightness', 'contrast'] as const).map(key => <label key={key} className="cn-idstudio-range"><span>{s(key)}<output>{appearance[key] ?? 0}%</output></span><Form.Range min={-30} max={30} value={appearance[key] ?? 0} onChange={e => setAppearance(current => ({ ...current, [key]: Number(e.target.value) }))} /></label>)}<Button variant="outline-secondary" onClick={() => setAppearance(current => ({ ...current, brightness: 0, contrast: 0 }))}><Icon name="arrow-counterclockwise" />{s('resetBeauty')}</Button></> : null}
           {tab === 'align' ? <><h3>{s('alignTitle')}</h3><p className="cn-idstudio-note">{s('alignHint')}</p>{item && crop.rect ? <><CropStage item={item} state={{ ...initialCrop(item), rect: crop.rect }} aspect={photo.width / photo.height} disabled={locked} onRectChange={crop.setRect} /><Button variant="outline-secondary" onClick={() => crop.setRect(rectForAspect(item, photo.width / photo.height))}><Icon name="arrow-counterclockwise" />{s('resetCrop')}</Button></> : <p className="cn-idstudio-empty-crop"><Icon name="person-bounding-box" />{s('alignEmpty')}</p>}</> : null}
@@ -166,12 +139,11 @@ export default function IdPhotoPage() {
         {sheetBlocked ? <p className="erp-tool-form__error" role="alert">{sheetBlocked}</p> : null}
         {busy ? <div className="cn-idstudio-run" role="status"><Spinner as="span" size="sm" />{s('exporting')}<Button variant="link" onClick={run.cancel}>{s('cancel')}</Button></div> : null}
         {run.state.phase === 'idle' && run.state.error ? <p className="erp-tool-form__error" role="alert">{run.state.error.message}</p> : null}
-        {result ? <div className="cn-idstudio-result" role="status"><p><Icon name="check-circle-fill" /><strong>{result.title}</strong></p><small>{result.output.name} · {formatFileSize(result.output.blob.size)}</small><Button variant="link" onClick={() => { downloadOutput(result.output); nudge.onDownloaded() }}>{s('downloadAgain')}</Button>{lastOutput === 'single' ? <HandoffButton target="cv" label={t('handoff.toCv')} file={() => outputFile(result.output)} /> : null}{result.notes.filter(note => note.tone === 'warning').map(note => <p key={note.text}>{note.text}</p>)}</div> : null}
+        {result ? <div className="cn-idstudio-result" role="status"><p><Icon name="check-circle-fill" /><strong>{result.title}</strong></p><small>{result.output.name} · {formatFileSize(result.output.blob.size)}</small>{lastOutput === 'single' ? <HandoffButton target="cv" label={t('handoff.toCv')} file={() => outputFile(result.output)} /> : null}{result.notes.filter(note => note.tone === 'warning').map(note => <p key={note.text}>{note.text}</p>)}</div> : null}
         {nudge.extra}
       </section>
     </div>
-    <MixedPhotoPage visible={mixed} initialFiles={images.items.map(image => image.file)} onBack={() => setMixed(false)} />
-    {camera ? <CameraCapture show maxShots={1} onClose={() => setCamera(false)} onDone={files => { setCamera(false); addFiles(files) }} /> : null}
+    {camera ? <CameraCapture show maxShots={1} initialFacing="user" onClose={() => setCamera(false)} onDone={files => { setCamera(false); addFiles(files) }} /> : null}
     {printJob ? <PrintPortal><style>{`@page { size: ${printJob.width}mm ${printJob.height}mm; margin: 0; }`}</style><img className="cn-idstudio-print" src={printJob.url} alt={s('print')} style={{ width: `${printJob.width}mm`, height: `${printJob.height}mm` }} onLoad={() => window.print()} /></PrintPortal> : null}
   </IdPhotoStudio>
 }
