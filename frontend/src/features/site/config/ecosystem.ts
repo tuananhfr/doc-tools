@@ -43,7 +43,7 @@ export const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
       {
         "id": "erpconsCompany",
         "logo": "erpcons.png",
-        "href": "https://erpcons.vn/"
+        "href": "https://erpcons.ai/"
       },
       {
         "id": "tekshotAi",
@@ -59,7 +59,7 @@ export const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
       {
         "id": "erpcons",
         "logo": "erpcons.png",
-        "href": "https://erpcons.vn/"
+        "href": "https://erpcons.ai/"
       },
       {
         "id": "tekshotOs",
@@ -108,7 +108,7 @@ export const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
       {
         "id": "office",
         "logo": "pi-office-20261031.png",
-        "href": "https://office.erpcons.vn/"
+        "href": "https://office.erpcons.ai/"
       },
       {
         "id": "chuyenNho",

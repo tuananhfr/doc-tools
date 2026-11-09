@@ -50,7 +50,7 @@ export function QrContentForm({ form, error, onChange, kindPicker = 'select' }: 
             autoComplete="off"
             autoCapitalize="none"
             spellCheck={false}
-            placeholder="https://erpcons.vn"
+            placeholder="https://erpcons.ai"
             value={form.url}
             isInvalid={error !== null}
             aria-describedby={described}

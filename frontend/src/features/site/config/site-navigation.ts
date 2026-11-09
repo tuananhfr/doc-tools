@@ -28,7 +28,7 @@ export const FOOTER_LINKS = [
 ] as const
 
 export const PRODUCT_LINKS = {
-  erpcons: 'https://erpcons.vn',
+  erpcons: 'https://erpcons.ai',
   tekshot: 'https://tekshot.vn',
 } as const
 
